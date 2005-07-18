@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } T2lXJq2aB/L6MbrImgyYhg
 /*
- * $Id$
- * $Log$
+ * $Id: MushGameMessageFire.h,v 1.1 2005/07/12 12:18:18 southa Exp $
+ * $Log: MushGameMessageFire.h,v $
+ * Revision 1.1  2005/07/12 12:18:18  southa
+ * Projectile work
+ *
  */
 
 #include "MushGameStandard.h"
@@ -41,6 +44,7 @@ public:
 
 private:
     MushMeshPosticity m_post; //:readwrite :wref
+    Mushware::U32 m_count; //:readwrite
     Mushware::U32 m_type; //:readwrite
     std::string m_owner; //:readwrite
 //%classPrototypes {
@@ -49,6 +53,8 @@ public:
     void PostSet(const MushMeshPosticity& inValue) { m_post=inValue; }
     // Writable reference for m_post
     MushMeshPosticity& PostWRef(void) { return m_post; }
+    const Mushware::U32& Count(void) const { return m_count; }
+    void CountSet(const Mushware::U32& inValue) { m_count=inValue; }
     const Mushware::U32& Type(void) const { return m_type; }
     void TypeSet(const Mushware::U32& inValue) { m_type=inValue; }
     const std::string& Owner(void) const { return m_owner; }
@@ -60,7 +66,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } F33/hFDOiCw7KeTmvueA5g
+//%classPrototypes } SQxve7csnrjBohoVMeJKAw
 };
 //%inlineHeader {
 inline std::ostream&

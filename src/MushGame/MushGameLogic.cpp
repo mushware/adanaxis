@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } G0/dfauKPLZ8TwNbwBtU8A
 /*
- * $Id: MushGameLogic.cpp,v 1.17 2005/07/11 16:37:46 southa Exp $
+ * $Id: MushGameLogic.cpp,v 1.18 2005/07/12 12:18:18 southa Exp $
  * $Log: MushGameLogic.cpp,v $
+ * Revision 1.18  2005/07/12 12:18:18  southa
+ * Projectile work
+ *
  * Revision 1.17  2005/07/11 16:37:46  southa
  * Uplink control work
  *
@@ -440,6 +443,7 @@ MushGameLogic::UplinkSequence(void)
 void
 MushGameLogic::PlayerMove(MushGamePlayer& inPlayer)
 {
+    inPlayer.PreControl(*this);
     inPlayer.ControlMailboxProcess(*this);
     inPlayer.Move(*this, 1);
 }

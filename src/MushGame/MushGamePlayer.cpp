@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } nBtAQHbpc8XKKxgcOfRPVA
 /*
- * $Id: MushGamePlayer.cpp,v 1.10 2005/07/11 16:37:46 southa Exp $
+ * $Id: MushGamePlayer.cpp,v 1.11 2005/07/12 12:18:18 southa Exp $
  * $Log: MushGamePlayer.cpp,v $
+ * Revision 1.11  2005/07/12 12:18:18  southa
+ * Projectile work
+ *
  * Revision 1.10  2005/07/11 16:37:46  southa
  * Uplink control work
  *
@@ -68,6 +71,7 @@ MushGamePlayer::MushGamePlayer(std::string inID) :
     m_id(inID),
     m_fireState(0),
     m_fireLastMsec(0),
+    m_fireCount(0),
     m_useControlMailbox(false)
 {
     PostWRef().ToIdentitySet();
@@ -116,7 +120,7 @@ MushGamePlayer::FireConsume(MushGameLogic& ioLogic, const MushGameMessageFire& i
 Mushware::tMsec
 MushGamePlayer::FirePeriodMsec(void)
 {
-    return 500;   
+    return 250;   
 }
 
 void
@@ -125,9 +129,11 @@ MushGamePlayer::ServerSideFire(MushGameLogic& ioLogic)
     FireLastMsecSet(ioLogic.FrameMsec());
     MushGameMessageFire fireMessage(Id());
     fireMessage.PostSet(Post());
+    fireMessage.CountSet(m_fireCount);
     fireMessage.TypeSet(0);
     fireMessage.OwnerSet(Id());
     ioLogic.CopyAndBroadcast(fireMessage);
+    ++m_fireCount;
 }
                                     
 void
@@ -235,6 +241,7 @@ MushGamePlayer::AutoPrint(std::ostream& ioOut) const
     ioOut << "fireState=" << m_fireState << ", ";
     ioOut << "fireStartMsec=" << m_fireStartMsec << ", ";
     ioOut << "fireLastMsec=" << m_fireLastMsec << ", ";
+    ioOut << "fireCount=" << m_fireCount << ", ";
     ioOut << "controlMailboxRef=" << m_controlMailboxRef << ", ";
     ioOut << "useControlMailbox=" << m_useControlMailbox;
     ioOut << "]";
@@ -268,6 +275,10 @@ MushGamePlayer::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
     {
         ioIn >> m_fireLastMsec;
     }
+    else if (inTagStr == "fireCount")
+    {
+        ioIn >> m_fireCount;
+    }
     else if (inTagStr == "controlMailboxRef")
     {
         ioIn >> m_controlMailboxRef;
@@ -300,9 +311,11 @@ MushGamePlayer::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_fireStartMsec;
     ioOut.TagSet("fireLastMsec");
     ioOut << m_fireLastMsec;
+    ioOut.TagSet("fireCount");
+    ioOut << m_fireCount;
     ioOut.TagSet("controlMailboxRef");
     ioOut << m_controlMailboxRef;
     ioOut.TagSet("useControlMailbox");
     ioOut << m_useControlMailbox;
 }
-//%outOfLineFunctions } T7N0qPMBuSKFG3D6LVsEjA
+//%outOfLineFunctions } nwZ9MgjnFJjRzEsHlYu4eQ

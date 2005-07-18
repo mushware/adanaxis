@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } ow0iEi0s5HhumBjS38PxOA
 /*
- * $Id: AdanaxisPlayer.cpp,v 1.11 2005/07/12 20:39:04 southa Exp $
+ * $Id: AdanaxisPlayer.cpp,v 1.12 2005/07/14 16:55:08 southa Exp $
  * $Log: AdanaxisPlayer.cpp,v $
+ * Revision 1.12  2005/07/14 16:55:08  southa
+ * Mesh library work
+ *
  * Revision 1.11  2005/07/12 20:39:04  southa
  * Mesh library work
  *
@@ -57,6 +60,7 @@
 #include "AdanaxisPlayer.h"
 
 #include "AdanaxisConfig.h"
+#include "AdanaxisMeshLibrary.h"
 #include "AdanaxisSaveData.h"
 #include "AdanaxisPieceProjectile.h"
 #include "AdanaxisUtil.h"
@@ -74,11 +78,16 @@ AdanaxisPlayer::AdanaxisPlayer(const std::string& inPlayerID) :
 }
 
 void
+AdanaxisPlayer::PreControl(MushGameLogic& ioLogic)
+{
+    PostWRef().VelWRef().ToAdditiveIdentitySet();
+    PostWRef().AngVelWRef().ToRotationIdentitySet();
+}
+
+void
 AdanaxisPlayer::Move(MushGameLogic& ioLogic, const tVal inFrameslice)
 {
     PostWRef().InPlaceVelocityAdd();
-    PostWRef().VelWRef().ToAdditiveIdentitySet();
-    PostWRef().AngVelWRef().ToRotationIdentitySet();
 }
 
 void
@@ -124,7 +133,7 @@ AdanaxisPlayer::AxisDeltaHandle(Mushware::tVal inDelta, Mushware::U32 inAxisNum)
             throw MushcoreDataFail("Bad axis number");
         }
         
-        angVel.OuterMultiplyBy(Post().AngPos().ConjugateGet());
+        angVel.OuterMultiplyBy(Post().AngPos().Conjugate());
         angVel.OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis(rotationAxisNum, inDelta));
         angVel.OuterMultiplyBy(Post().AngPos());
 
@@ -227,17 +236,44 @@ AdanaxisPlayer::FirePieceCreate(MushGameLogic& ioLogic, const MushGameMessageFir
     AdanaxisSaveData::tProjectile& projectileRef = projectileListRef.back();
     
     projectileRef.OwnerSet(Id());
-    projectileRef.PostSet(inMessage.Post());
     projectileRef.ExpiryMsecSet(ioLogic.FrameMsec() + projectileRef.LifeMsec());
     
-    MushMeshTools::RandomAngularVelocityMake(projectileRef.PostWRef().AngVelWRef(), 0.03);
+    // Create projectile in player's coordinates
+    projectileRef.PostWRef().ToIdentitySet();
     
-    t4Val velocity = t4Val(0,0,0,-projectileRef.InitialVelocity());
+    t4Val posOffset = t4Val(1,0,0,0);
+    if (inMessage.Count() % 2 == 0)
+    {
+        posOffset = t4Val(0,0,0,0) - posOffset;
+    }
+
+    projectileRef.PostWRef().PosWRef() += posOffset;
+
     
-    inMessage.Post().AngPos().VectorRotate(velocity);
-    projectileRef.PostWRef().VelSet(velocity);
+    projectileRef.PostWRef().AngVelWRef().ToRotationIdentitySet();
+    projectileRef.PostWRef().AngVelWRef().OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis(0, 0.02));
+    projectileRef.PostWRef().AngVelWRef().OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis(2, 0.017));
+    projectileRef.PostWRef().AngVelWRef().OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis(5, 0.013));
+    projectileRef.PostWRef().VelSet(t4Val(0,0,0,-projectileRef.InitialVelocity()));
     
-    MushMeshLibraryBase::Sgl().UnitTesseractCreate(projectileRef.MeshWRef());
+    // Now transform to world coordinates
+    // Reorientate the player space vectors to world space
+    inMessage.Post().AngPos().VectorRotate(projectileRef.PostWRef().PosWRef());
+    inMessage.Post().AngPos().VectorRotate(projectileRef.PostWRef().VelWRef());
+
+    // Move to player position and velocity
+    projectileRef.PostWRef().PosWRef() += inMessage.Post().Pos();
+    projectileRef.PostWRef().VelWRef() += inMessage.Post().Vel();
+    projectileRef.PostWRef().AngPosWRef().OuterMultiplyBy(inMessage.Post().AngPos());
+    
+    tQValPair angVel = inMessage.Post().AngPos().Conjugate();
+    angVel.OuterMultiplyBy(projectileRef.Post().AngVel());
+    angVel.OuterMultiplyBy(inMessage.Post().AngPos());
+
+    projectileRef.PostWRef().AngVelSet(angVel);
+    
+    // Create the mesh for this object
+    AdanaxisUtil::MeshLibrary().ProjectileCreate(projectileRef.MeshWRef());
 }
 
 void

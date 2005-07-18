@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef MUSHMESHLIBRARYFGENEXTRUDE_H
-#define MUSHMESHLIBRARYFGENEXTRUDE_H
-//%includeGuardStart } Z1xfm1lBZkdDgXQlA5E8IA
+#ifndef ADANAXISMESHLIBRARY_H
+#define ADANAXISMESHLIBRARY_H
+//%includeGuardStart } cny6ATfwvXDCKlGwAm7+wg
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushMeshLibrary/MushMeshLibraryFGenExtrude.h
+ * File: src/Adanaxis/AdanaxisMeshLibrary.h
  *
  * Copyright: Andy Southgate 2005
  *
@@ -19,35 +19,26 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 7hoBfMd6UMaY2+MEoWD3tQ
+//%Header } 8wu6JJaIcLGhv4Titc9Yww
 /*
- * $Id: MushMeshLibraryFGenExtrude.h,v 1.3 2005/07/14 12:50:31 southa Exp $
- * $Log: MushMeshLibraryFGenExtrude.h,v $
- * Revision 1.3  2005/07/14 12:50:31  southa
- * Extrusion work
- *
- * Revision 1.2  2005/07/13 16:45:05  southa
- * Extrusion work
- *
- * Revision 1.1  2005/07/12 20:39:05  southa
- * Mesh library work
- *
+ * $Id$
+ * $Log$
  */
 
-#include "MushMeshLibraryStandard.h"
+#include "AdanaxisStandard.h"
 
-#include "MushMeshLibraryExtrusionContext.h"
+#include "API/mushMushMeshLibrary.h"
 
-//:xml1base MushMesh4FaceGenerator
+//:xml1base MushMeshLibraryBase
 //:generate virtual standard ostream xml1
-class MushMeshLibraryFGenExtrude : public MushMesh4FaceGenerator
+class AdanaxisMeshLibrary : public MushMeshLibraryBase
 {
 public:
-    virtual void FaceExtrudeOne(MushMesh4Mesh& ioMesh, Mushware::U32& ioFaceNum, bool inToPoint);
-    virtual void FaceExtrude(MushMesh4Mesh& ioMesh, MushMeshLibraryExtrusionContext& ioContext, Mushware::U32 inNum);
-    
+    virtual ~AdanaxisMeshLibrary() {}
+
+    virtual void ProjectileCreate(MushMesh4Mesh& ioMesh) const;
+
 private:
-        
 //%classPrototypes {
 public:
     virtual const char *AutoName(void) const;
@@ -61,12 +52,12 @@ public:
 };
 //%inlineHeader {
 inline std::ostream&
-operator<<(std::ostream& ioOut, const MushMeshLibraryFGenExtrude& inObj)
+operator<<(std::ostream& ioOut, const AdanaxisMeshLibrary& inObj)
 {
     inObj.AutoPrint(ioOut);
     return ioOut;
 }
-//%inlineHeader } 0jMxmCKtw2pO5/9sCc2TeA
+//%inlineHeader } Xho13aScchP/mb9P6u0mnw
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

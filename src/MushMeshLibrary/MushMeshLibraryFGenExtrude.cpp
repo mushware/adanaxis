@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } 5mXJjsgE9FySBp3B30JsGw
 /*
- * $Id: MushMeshLibraryFGenExtrude.cpp,v 1.3 2005/07/13 20:35:48 southa Exp $
+ * $Id: MushMeshLibraryFGenExtrude.cpp,v 1.4 2005/07/14 12:50:31 southa Exp $
  * $Log: MushMeshLibraryFGenExtrude.cpp,v $
+ * Revision 1.4  2005/07/14 12:50:31  southa
+ * Extrusion work
+ *
  * Revision 1.3  2005/07/13 20:35:48  southa
  * Extrusion work
  *
@@ -36,7 +39,7 @@ using namespace Mushware;
 using namespace std;
 
 void
-MushMeshLibraryFGenExtrude::FaceExtrudeOne(MushMesh4Mesh& ioMesh, Mushware::U32& ioFaceNum)
+MushMeshLibraryFGenExtrude::FaceExtrudeOne(MushMesh4Mesh& ioMesh, Mushware::U32& ioFaceNum, bool inToPoint)
 {
     MushMesh4Mesh::tFaces& facesRef = ioMesh.FacesWRef();
     U32 numNewFaces = 0;
@@ -66,7 +69,7 @@ MushMeshLibraryFGenExtrude::FaceExtrudeOne(MushMesh4Mesh& ioMesh, Mushware::U32&
     keyFaceRef = srcFaceRef; // Partial copy would be better
 
     /* After this touch, we must be careful not to create any of the derived information
-     * before the vertex renumbering is done.  No function with side effect should be
+     * before the vertex renumbering is done.  No function with side effects should be
      * called on this face before then
      */
     keyFaceRef.AllTouch();
@@ -89,11 +92,20 @@ MushMeshLibraryFGenExtrude::FaceExtrudeOne(MushMesh4Mesh& ioMesh, Mushware::U32&
     for (U32 i=0; i<srcUniqueVertexListSize; ++i)
     {
         extrusionMapRef[srcUniqueVertexListRef[i]] = vertexBase;
-        extrusionTransformListRef.push_back(MushMesh4Face::tTransform(srcUniqueVertexListRef[i], vertexBase));
+        if (!inToPoint)
+        {
+            // Extruding to a point generates only one new vertex
+            extrusionTransformListRef.push_back(MushMesh4Face::tTransform(srcUniqueVertexListRef[i], vertexBase));
+            ++vertexBase;
+        }
+    }
+    if (inToPoint)
+    {
+        extrusionTransformListRef.push_back(MushMesh4Face::tTransform(srcUniqueVertexListRef[0], vertexBase));
         ++vertexBase;
     }
 
-    // Copy the other faces into position
+    // Copy the other faces into position, and create the correspondance map
     for (U32 newFaceNum=0; newFaceNum < srcConnectivityRef.size(); ++newFaceNum)
     {
         const MushMesh4Face::tFaceConnection& vertConnection = srcConnectivityRef[newFaceNum];
@@ -129,6 +141,8 @@ MushMeshLibraryFGenExtrude::FaceExtrudeOne(MushMesh4Mesh& ioMesh, Mushware::U32&
             }
         }
     }
+    
+    // Apply the correspondance map
     for (U32 newFaceNum=0; newFaceNum < numNewFaces; ++newFaceNum)
     {
         MushMesh4Mesh::tFace& newFaceRef = ioMesh.FaceWRef(ioMesh.FaceCounter() + newFaceNum);
@@ -148,8 +162,12 @@ MushMeshLibraryFGenExtrude::FaceExtrudeOne(MushMesh4Mesh& ioMesh, Mushware::U32&
                 newVertexListRef[i] = p->second;
             }
         }
+        if (inToPoint)
+        {
+            MushMesh4Util::NullFacetsRemove(ioMesh, ioMesh.FaceCounter() + newFaceNum);
+        }
     }
-    
+
     // Commit the new faces
     ioMesh.FaceWRef(ioFaceNum).ExtrudedFacesWRef().push_back(ioMesh.FaceCounter());
     ioMesh.FaceCounterWRef() += numNewFaces;
@@ -162,7 +180,16 @@ MushMeshLibraryFGenExtrude::FaceExtrude(MushMesh4Mesh& ioMesh, MushMeshLibraryEx
 {
     for (U32 i=0; i<inNum; ++i)
     {
-        FaceExtrudeOne(ioMesh, ioContext.RollingFaceNumWRef());
+        bool toPoint;
+        toPoint = (ioContext.RollingDisp().Scale() <= 0);
+
+        FaceExtrudeOne(ioMesh, ioContext.RollingFaceNumWRef(), toPoint);
+        
+        if (ioContext.RollingDisp().Scale() <= 0)
+        {
+            break;
+        }
+        
         ioContext.VelocityAdd();
     }
 }

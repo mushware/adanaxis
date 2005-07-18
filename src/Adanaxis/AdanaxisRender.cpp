@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } eomVoawiv9P4VcOw5CYHSg
 /*
- * $Id: AdanaxisRender.cpp,v 1.12 2005/07/13 16:45:04 southa Exp $
+ * $Id: AdanaxisRender.cpp,v 1.13 2005/07/16 14:22:59 southa Exp $
  * $Log: AdanaxisRender.cpp,v $
+ * Revision 1.13  2005/07/16 14:22:59  southa
+ * Added diagnostic renderer
+ *
  * Revision 1.12  2005/07/13 16:45:04  southa
  * Extrusion work
  *
@@ -116,6 +119,7 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
     
     //MushRenderMeshDiagnostic renderMesh;
     MushRenderMeshWireframe renderMesh;
+    
     MushGameCamera camera(inCamera);
     
     camera.ProjectionSet(m_projection);

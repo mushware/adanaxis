@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } zqv5sDIS/YwQOY7KGL7Rww
 /*
- * $Id: AdanaxisPlayer.h,v 1.6 2005/07/11 16:37:46 southa Exp $
+ * $Id: AdanaxisPlayer.h,v 1.7 2005/07/12 12:18:17 southa Exp $
  * $Log: AdanaxisPlayer.h,v $
+ * Revision 1.7  2005/07/12 12:18:17  southa
+ * Projectile work
+ *
  * Revision 1.6  2005/07/11 16:37:46  southa
  * Uplink control work
  *
@@ -54,6 +57,7 @@ class AdanaxisPlayer : public MushGamePlayer
 public:
     explicit AdanaxisPlayer(const std::string& inPlayerID = "");
     
+    virtual void PreControl(MushGameLogic& ioLogic);
     virtual void Move(MushGameLogic& ioLogic, const Mushware::tVal inFrameslice);
 
     virtual void AxisDeltaHandle(Mushware::tVal inDelta, Mushware::U32 inAxisNum);

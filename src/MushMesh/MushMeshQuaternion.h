@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } il7Yy3B6XrnFCBgRdzgKNA
 /*
- * $Id: MushMeshQuaternion.h,v 1.9 2005/05/18 15:53:27 southa Exp $
+ * $Id: MushMeshQuaternion.h,v 1.10 2005/05/19 13:02:10 southa Exp $
  * $Log: MushMeshQuaternion.h,v $
+ * Revision 1.10  2005/05/19 13:02:10  southa
+ * Mac release work
+ *
  * Revision 1.9  2005/05/18 15:53:27  southa
  * Made buildable using gcc 4.0/Mac OS X 10.4
  *
@@ -76,12 +79,12 @@ public:
     
     void PreMultiplyBy(const MushMeshQuaternion<T>& inQuat);
     void PostMultiplyBy(const MushMeshQuaternion<T>& inQuat);
-    MushMeshQuaternion<T> ConjugateGet(void) const;
+    MushMeshQuaternion<T> Conjugate(void) const;
     void PreMultiplyVector(tBase& ioVec) const;
     void PostMultiplyVector(tBase& ioVec) const;
     
-    static MushMeshQuaternion AdditiveIdentityGet(void) { return MushMeshQuaternion(0,0,0,0); }
-    static MushMeshQuaternion MultiplicativeIdentityGet(void) { return MushMeshQuaternion(1,0,0,0); }
+    static MushMeshQuaternion AdditiveIdentity(void) { return MushMeshQuaternion(0,0,0,0); }
+    static MushMeshQuaternion MultiplicativeIdentity(void) { return MushMeshQuaternion(1,0,0,0); }
     
 };
 
@@ -178,7 +181,7 @@ MushMeshQuaternion<T>::PostMultiplyVector(tBase& ioVec) const
 
 template <class T>
 inline MushMeshQuaternion<T>
-MushMeshQuaternion<T>::ConjugateGet(void) const
+MushMeshQuaternion<T>::Conjugate(void) const
 {
     return MushMeshQuaternion<T>(this->m_value[0], -this->m_value[1], -this->m_value[2], -this->m_value[3]);
 }

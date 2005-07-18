@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } TE/rDUf2Sf89WHdHn2RHUA
 /*
- * $Id: MushMeshLibraryExtrusionContext.h,v 1.1 2005/07/14 12:50:31 southa Exp $
+ * $Id: MushMeshLibraryExtrusionContext.h,v 1.2 2005/07/14 16:55:09 southa Exp $
  * $Log: MushMeshLibraryExtrusionContext.h,v $
+ * Revision 1.2  2005/07/14 16:55:09  southa
+ * Mesh library work
+ *
  * Revision 1.1  2005/07/14 12:50:31  southa
  * Extrusion work
  *
@@ -63,7 +66,11 @@ public:
     }
     void VelocityAdd(void)
     {
-        m_rollingDisp.ScaleWRef() += m_scaleVelocity;
+        
+        Mushware::tVal newScale = m_rollingDisp.Scale() + m_scaleVelocity;
+        if (newScale < 0) newScale = 0;
+        m_rollingDisp.ScaleSet(newScale);
+        
         m_rollingDisp.Rotation().VectorRotate(m_rollingDisp.OffsetWRef());
     }
     

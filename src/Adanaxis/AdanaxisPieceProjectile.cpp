@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } cKEASf8ImtK3tzSM6fwREw
 /*
- * $Id$
- * $Log$
+ * $Id: AdanaxisPieceProjectile.cpp,v 1.1 2005/07/12 12:18:17 southa Exp $
+ * $Log: AdanaxisPieceProjectile.cpp,v $
+ * Revision 1.1  2005/07/12 12:18:17  southa
+ * Projectile work
+ *
  */
 
 #include "AdanaxisPieceProjectile.h"
@@ -60,7 +63,7 @@ AdanaxisPieceProjectile::Render(MushGameLogic& ioLogic, MushRenderMesh& inRender
     viewOffset.PosSet(t4Val(0,0,0,0)-inCamera.Post().Pos());
     
     viewAng.ToIdentitySet();
-    viewAng.AngPosSet(inCamera.Post().AngPos().ConjugateGet());
+    viewAng.AngPosSet(inCamera.Post().AngPos().Conjugate());
     
     MushMeshOps::PosticityToMattress(renderSpec.ModelWRef(), Post());
     MushMeshOps::PosticityToMattress(renderSpec.SpecialWRef(), viewOffset);

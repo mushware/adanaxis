@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } ALTYrsUnRmh8nIy3s/p33Q
 /*
- * $Id: MushMeshOps.cpp,v 1.5 2005/05/19 13:02:10 southa Exp $
+ * $Id: MushMeshOps.cpp,v 1.6 2005/07/04 15:59:00 southa Exp $
  * $Log: MushMeshOps.cpp,v $
+ * Revision 1.6  2005/07/04 15:59:00  southa
+ * Adanaxis work
+ *
  * Revision 1.5  2005/05/19 13:02:10  southa
  * Mac release work
  *
@@ -128,7 +131,7 @@ MushMeshOps::RotationMatrixToQuaternionPair(Mushware::tQValPair& outPair, const 
 {
     tQVal qS = tQVal(inMatrix.ColumnGet(0));
     
-    t4x4Val mS = PreQuaternionToMatrix(qS.ConjugateGet());
+    t4x4Val mS = PreQuaternionToMatrix(qS.Conjugate());
     t4x4Val mP = mS * inMatrix;
     
     //std::cout << "mA=" << inMatrix << endl;
@@ -226,7 +229,7 @@ Q3LARGEST:
     
     tQVal qP = tQVal(q0, q1, q2, q3);
     outPair.FirstSet(qS * qP);
-    outPair.SecondSet(qP.ConjugateGet());
+    outPair.SecondSet(qP.Conjugate());
 }
 
 void

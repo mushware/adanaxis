@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } CFEozIhAxC4/w3MDbuOShQ
 /*
- * $Id: AdanaxisUtil.cpp,v 1.10 2005/07/14 16:55:08 southa Exp $
+ * $Id: AdanaxisUtil.cpp,v 1.11 2005/07/16 14:22:59 southa Exp $
  * $Log: AdanaxisUtil.cpp,v $
+ * Revision 1.11  2005/07/16 14:22:59  southa
+ * Added diagnostic renderer
+ *
  * Revision 1.10  2005/07/14 16:55:08  southa
  * Mesh library work
  *
@@ -54,6 +57,7 @@
 #include "AdanaxisUtil.h"
 
 #include "AdanaxisAppHandler.h"
+#include "AdanaxisMeshLibrary.h"
 #include "AdanaxisVolatileData.h"
 
 #include "API/mushMushMeshLibrary.h"
@@ -72,6 +76,17 @@ AdanaxisUtil::AppHandler(void)
     return *pAppHandler;
 }
 
+AdanaxisMeshLibrary&
+AdanaxisUtil::MeshLibrary(void)
+{
+    AdanaxisMeshLibrary *pMeshLibrary=dynamic_cast<AdanaxisMeshLibrary *>(&MushMeshLibraryBase::Sgl());
+    if (pMeshLibrary == NULL)
+    {
+        throw MushcoreRequestFail("MeshLibrary of wrong type for AdanaxisMeshLibrary");
+    }
+    return *pMeshLibrary;
+}
+
 void
 AdanaxisUtil::TestPiecesCreate(AdanaxisLogic& ioLogic)
 {
@@ -80,7 +95,7 @@ AdanaxisUtil::TestPiecesCreate(AdanaxisLogic& ioLogic)
     tVal rotMin = -0.03;
     tVal rotMax = 0.03;
     
-    for (U32 i=0; i<10; ++i)
+    for (U32 i=0; i<20; ++i)
     {
         decoListRef.push_back(AdanaxisPieceDeco("testObj1"));
         AdanaxisVolatileData::tDeco& decoRef = decoListRef.back();
@@ -93,7 +108,7 @@ AdanaxisUtil::TestPiecesCreate(AdanaxisLogic& ioLogic)
         decoRef.PostWRef().AngPosSet(orientation);
         decoRef.PostWRef().AngVelWRef().ToRotationIdentitySet();
         
-        if (i % 4 > 1)
+        if (i % 5 > 1)
         {
             decoRef.PostWRef().AngVelWRef().OuterMultiplyBy(orientation);
             
@@ -102,7 +117,7 @@ AdanaxisUtil::TestPiecesCreate(AdanaxisLogic& ioLogic)
             decoRef.PostWRef().AngVelWRef().OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis
                                                  (1, MushMeshTools::Random(rotMin, rotMax)));
             
-            decoRef.PostWRef().AngVelWRef().OuterMultiplyBy(orientation.ConjugateGet());
+            decoRef.PostWRef().AngVelWRef().OuterMultiplyBy(orientation.Conjugate());
         }
 
         MushMeshLibraryFGenExtrude faceExtrude;
@@ -112,7 +127,7 @@ AdanaxisUtil::TestPiecesCreate(AdanaxisLogic& ioLogic)
         MushMeshDisplacement disp(t4Val(0,0,0,1), rotation, 0.5);
         
         MushMeshLibraryExtrusionContext extrusionContext(disp, 0);
-        switch (i % 3)
+        switch (i % 4)
         {
             case 0:
             {
@@ -184,9 +199,15 @@ AdanaxisUtil::TestPiecesCreate(AdanaxisLogic& ioLogic)
                 vertexExtrude.FaceExtrude(decoRef.MeshWRef(), extrusionContext, number);
                 offset.WSet(-offset.W());
                 disp.OffsetSet(offset);
-                disp.RotationSet(disp.Rotation().ConjugateGet());
+                disp.RotationSet(disp.Rotation().Conjugate());
                 extrusionContext.ResetNewDispFace(disp, 1);
                 vertexExtrude.FaceExtrude(decoRef.MeshWRef(), extrusionContext, number);
+            }
+            break;
+                
+            case 3:
+            {
+                MeshLibrary().ProjectileCreate(decoRef.MeshWRef());
             }
             break;
         }

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } TUyHLJpfwBpQ6dlpQI4+nQ
 /*
- * $Id$
- * $Log$
+ * $Id: MushGameMessageFire.cpp,v 1.1 2005/07/12 12:18:18 southa Exp $
+ * $Log: MushGameMessageFire.cpp,v $
+ * Revision 1.1  2005/07/12 12:18:18  southa
+ * Projectile work
+ *
  */
 
 #include "MushGameMessageFire.h"
@@ -60,6 +63,7 @@ MushGameMessageFire::AutoPrint(std::ostream& ioOut) const
     ioOut << "[";
     MushGameMessage::AutoPrint(ioOut);
     ioOut << "post=" << m_post << ", ";
+    ioOut << "count=" << m_count << ", ";
     ioOut << "type=" << m_type << ", ";
     ioOut << "owner=" << m_owner;
     ioOut << "]";
@@ -76,6 +80,10 @@ MushGameMessageFire::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::str
     else if (inTagStr == "post")
     {
         ioIn >> m_post;
+    }
+    else if (inTagStr == "count")
+    {
+        ioIn >> m_count;
     }
     else if (inTagStr == "type")
     {
@@ -101,9 +109,11 @@ MushGameMessageFire::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     MushGameMessage::AutoXMLPrint(ioOut);
     ioOut.TagSet("post");
     ioOut << m_post;
+    ioOut.TagSet("count");
+    ioOut << m_count;
     ioOut.TagSet("type");
     ioOut << m_type;
     ioOut.TagSet("owner");
     ioOut << m_owner;
 }
-//%outOfLineFunctions } Fe/fXpUZOJom5d70lajqAw
+//%outOfLineFunctions } dGSu6t039EO+Y26nZ3IJCA

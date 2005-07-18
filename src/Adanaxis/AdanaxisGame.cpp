@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } 1+Fcp5/pJdalVjA2hnviXw
 /*
- * $Id: AdanaxisGame.cpp,v 1.16 2005/07/07 16:54:17 southa Exp $
+ * $Id: AdanaxisGame.cpp,v 1.17 2005/07/11 16:37:46 southa Exp $
  * $Log: AdanaxisGame.cpp,v $
+ * Revision 1.17  2005/07/11 16:37:46  southa
+ * Uplink control work
+ *
  * Revision 1.16  2005/07/07 16:54:17  southa
  * Control tweaks
  *
@@ -73,6 +76,7 @@
 
 #include "AdanaxisAppHandler.h"
 #include "AdanaxisClient.h"
+#include "AdanaxisMeshLibrary.h"
 #include "AdanaxisSaveData.h"
 #include "AdanaxisServer.h"
 #include "AdanaxisUtil.h"
@@ -129,6 +133,8 @@ AdanaxisGame::LocalGameCreate(GameAppHandler& inAppHandler)
 void
 AdanaxisGame::Init(GameAppHandler& inAppHandler)
 {
+    MushMeshLibraryBase::SingletonMutate(new AdanaxisMeshLibrary);
+
     LocalGameCreate(inAppHandler);
     
     MushGameConfigUtils::ConfigAcquire(&m_config);

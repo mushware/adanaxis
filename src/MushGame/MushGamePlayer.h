@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } oGbXkYO013mPUX90XE1YJg
 /*
- * $Id: MushGamePlayer.h,v 1.8 2005/07/11 16:37:46 southa Exp $
+ * $Id: MushGamePlayer.h,v 1.9 2005/07/12 12:18:18 southa Exp $
  * $Log: MushGamePlayer.h,v $
+ * Revision 1.9  2005/07/12 12:18:18  southa
+ * Projectile work
+ *
  * Revision 1.8  2005/07/11 16:37:46  southa
  * Uplink control work
  *
@@ -87,6 +90,7 @@ private:
     Mushware::U32 m_fireState; //:readwrite
     Mushware::tMsec m_fireStartMsec; //:readwrite
     Mushware::tMsec m_fireLastMsec; //:readwrite
+    Mushware::tMsec m_fireCount; //:readwrite
     MushcoreDataRef<MushGameMailbox> m_controlMailboxRef;
     bool m_useControlMailbox;
     
@@ -102,6 +106,8 @@ public:
     void FireStartMsecSet(const Mushware::tMsec& inValue) { m_fireStartMsec=inValue; }
     const Mushware::tMsec& FireLastMsec(void) const { return m_fireLastMsec; }
     void FireLastMsecSet(const Mushware::tMsec& inValue) { m_fireLastMsec=inValue; }
+    const Mushware::tMsec& FireCount(void) const { return m_fireCount; }
+    void FireCountSet(const Mushware::tMsec& inValue) { m_fireCount=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -109,7 +115,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } KeNYb6uoWdiwoZeovEfqRA
+//%classPrototypes } WqGZjuwdPoprQ0AAD3fETQ
 };
 //%inlineHeader {
 inline std::ostream&

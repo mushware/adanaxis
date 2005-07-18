@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } h0Ba5isJoX+glev7XNkQ4g
 /*
- * $Id: AdanaxisUtil.h,v 1.2 2005/07/06 19:08:26 southa Exp $
+ * $Id: AdanaxisUtil.h,v 1.3 2005/07/12 12:18:17 southa Exp $
  * $Log: AdanaxisUtil.h,v $
+ * Revision 1.3  2005/07/12 12:18:17  southa
+ * Projectile work
+ *
  * Revision 1.2  2005/07/06 19:08:26  southa
  * Adanaxis control work
  *
@@ -36,12 +39,14 @@
 #include "AdanaxisLogic.h"
 
 class AdanaxisAppHandler;
+class AdanaxisMeshLibrary;
 
 class AdanaxisUtil
 {
 public:
     static void TestPiecesCreate(AdanaxisLogic& ioLogic);
     static AdanaxisAppHandler& AppHandler(void);
+    static AdanaxisMeshLibrary& MeshLibrary(void);
     static AdanaxisLogic& Logic(MushGameLogic& ioLogic);
 };
 

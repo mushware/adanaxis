@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } rV7W1a77HVUWXl5PMDq1vw
 /*
- * $Id: MushMeshTools.cpp,v 1.4 2005/05/19 13:02:11 southa Exp $
+ * $Id: MushMeshTools.cpp,v 1.5 2005/07/12 12:18:18 southa Exp $
  * $Log: MushMeshTools.cpp,v $
+ * Revision 1.5  2005/07/12 12:18:18  southa
+ * Projectile work
+ *
  * Revision 1.4  2005/05/19 13:02:11  southa
  * Mac release work
  *
@@ -215,5 +218,5 @@ MushMeshTools::RandomAngularVelocityMake(Mushware::tQValPair& outPair, Mushware:
     outPair.OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis
                                                     (1, MushMeshTools::Random(-inAmount, inAmount)));
     
-    outPair.OuterMultiplyBy(orientation.ConjugateGet());
+    outPair.OuterMultiplyBy(orientation.Conjugate());
 }

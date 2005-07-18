@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } slrkoNIBI9nz7vtTH5Yo6g
 /*
- * $Id: MushGameAnimPostManip.cpp,v 1.3 2005/07/06 19:08:27 southa Exp $
+ * $Id: MushGameAnimPostManip.cpp,v 1.4 2005/07/14 16:55:08 southa Exp $
  * $Log: MushGameAnimPostManip.cpp,v $
+ * Revision 1.4  2005/07/14 16:55:08  southa
+ * Mesh library work
+ *
  * Revision 1.3  2005/07/06 19:08:27  southa
  * Adanaxis control work
  *
@@ -68,7 +71,7 @@ MushGameAnimPostManip::PostAdjust(MushMeshPosticity& ioPost)
     if (appHandler.KeyStateGet('r')) { ioPost.VelWRef() -= t4Val(0,0,0,posSpeed); m_posSpeed += 0.8; }
     if (appHandler.KeyStateGet('f')) { ioPost.VelWRef() += t4Val(0,0,0,posSpeed); m_posSpeed += 0.8; }
     
-    ioPost.AngVelWRef().OuterMultiplyBy(ioPost.AngPos().ConjugateGet());
+    ioPost.AngVelWRef().OuterMultiplyBy(ioPost.AngPos().Conjugate());
     if (appHandler.KeyStateGet('t')) ioPost.AngVelWRef().OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis(0, -angSpeed));
     if (appHandler.KeyStateGet('g')) ioPost.AngVelWRef().OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis(0, +angSpeed));
     if (appHandler.KeyStateGet('y')) ioPost.AngVelWRef().OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis(1, -angSpeed));

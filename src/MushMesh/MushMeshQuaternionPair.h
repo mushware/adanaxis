@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 5+xwz0v1Mv1OTeaDe83ISg
 /*
- * $Id: MushMeshQuaternionPair.h,v 1.7 2005/07/02 00:42:38 southa Exp $
+ * $Id: MushMeshQuaternionPair.h,v 1.8 2005/07/14 16:55:08 southa Exp $
  * $Log: MushMeshQuaternionPair.h,v $
+ * Revision 1.8  2005/07/14 16:55:08  southa
+ * Mesh library work
+ *
  * Revision 1.7  2005/07/02 00:42:38  southa
  * Conditioning tweaks
  *
@@ -71,21 +74,21 @@ public:
     void InPlaceNormalise(void);
     void ToRotationIdentitySet(void);
     
-    MushMeshQuaternionPair<T> ConjugateGet(void) const;
+    MushMeshQuaternionPair<T> Conjugate(void) const;
         
-    static MushMeshQuaternionPair AdditiveIdentityGet()
+    static MushMeshQuaternionPair AdditiveIdentity()
     {
-        return MushMeshQuaternionPair(MushMeshQuaternion<T>::AdditiveIdentityGet(),
-                                      MushMeshQuaternion<T>::AdditiveIdentityGet());
+        return MushMeshQuaternionPair(MushMeshQuaternion<T>::AdditiveIdentity(),
+                                      MushMeshQuaternion<T>::AdditiveIdentity());
     }
-    static MushMeshQuaternionPair MultiplicativeIdentityGet()
+    static MushMeshQuaternionPair MultiplicativeIdentity()
     {
-        return MushMeshQuaternionPair(MushMeshQuaternion<T>::MultiplicativeIdentityGet(),
-                                      MushMeshQuaternion<T>::MultiplicativeIdentityGet());
+        return MushMeshQuaternionPair(MushMeshQuaternion<T>::MultiplicativeIdentity(),
+                                      MushMeshQuaternion<T>::MultiplicativeIdentity());
     }
-    static MushMeshQuaternionPair RotationIdentityGet()
+    static MushMeshQuaternionPair RotationIdentity()
     {
-        return MultiplicativeIdentityGet();
+        return MultiplicativeIdentity();
     }
     
     void ObjectRead(MushcoreXMLIStream& ioIn);
@@ -141,15 +144,15 @@ template<class T>
 inline void
 MushMeshQuaternionPair<T>::ToRotationIdentitySet()
 {
-    m_first = MushMeshQuaternion<T>::MultiplicativeIdentityGet();
-    m_second = MushMeshQuaternion<T>::MultiplicativeIdentityGet();
+    m_first = MushMeshQuaternion<T>::MultiplicativeIdentity();
+    m_second = MushMeshQuaternion<T>::MultiplicativeIdentity();
 }
 
 template<class T>
 inline MushMeshQuaternionPair<T>
-MushMeshQuaternionPair<T>::ConjugateGet(void) const
+MushMeshQuaternionPair<T>::Conjugate(void) const
 {
-    return MushMeshQuaternionPair(m_first.ConjugateGet(), m_second.ConjugateGet());
+    return MushMeshQuaternionPair(m_first.Conjugate(), m_second.Conjugate());
 }
 
 
@@ -179,11 +182,11 @@ operator<<(MushcoreXMLOStream& ioOut, const MushMeshQuaternionPair<T>& inObj)
 {
     std::string localTag = ioOut.OpeningTagWrite();
     
-    ioOut.OStreamGet() << '(';
+    ioOut.OStream() << '(';
     ioOut << inObj.First();
-    ioOut.OStreamGet() << ',';
+    ioOut.OStream() << ',';
     ioOut << inObj.Second();
-    ioOut.OStreamGet() << ')';
+    ioOut.OStream() << ')';
     
     ioOut.ClosingTagWrite(localTag);
     
