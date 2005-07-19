@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } +eMrlpttHnUzQ/qPZM7tGQ
 /*
- * $Id: MushMeshPosticity.h,v 1.2 2005/06/29 11:11:15 southa Exp $
+ * $Id: MushMeshPosticity.h,v 1.3 2005/07/04 15:59:00 southa Exp $
  * $Log: MushMeshPosticity.h,v $
+ * Revision 1.3  2005/07/04 15:59:00  southa
+ * Adanaxis work
+ *
  * Revision 1.2  2005/06/29 11:11:15  southa
  * Camera and rendering work
  *
@@ -46,6 +49,8 @@ public:
     
     inline void ToIdentitySet(void);
     inline void InPlaceVelocityAdd(void);
+    const MushMeshPosticity Inverse(void) const;
+    void InPlaceInvert(void);
     
 private:
     Mushware::tQValPair m_angPos; //:readwrite :wref
@@ -103,6 +108,29 @@ MushMeshPosticity::InPlaceVelocityAdd(void)
 {
     m_pos += m_vel;
     m_angPos.OuterMultiplyBy(m_angVel);
+}
+
+inline const MushMeshPosticity
+MushMeshPosticity::Inverse(void) const
+{
+    MushMeshPosticity retVal;
+    retVal.PosSet(-Pos());
+    retVal.VelSet(-Vel());
+    retVal.AngPosSet(AngPos().Conjugate());
+    retVal.AngVelSet(AngVel().Conjugate());
+
+    // Leave timeValid false
+    return retVal;
+}
+
+inline void
+MushMeshPosticity::InPlaceInvert(void)
+{
+    m_pos = -m_pos;
+    m_vel = -m_vel;
+    m_angPos.InPlaceConjugate();
+    m_angVel.InPlaceConjugate();
+    m_timeValid = false;
 }
 
 //%inlineHeader {

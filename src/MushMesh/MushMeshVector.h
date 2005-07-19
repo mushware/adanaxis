@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } +nh81wCMNvdKJB1CmhTiew
 /*
- * $Id: MushMeshVector.h,v 1.21 2005/06/30 14:26:36 southa Exp $
+ * $Id: MushMeshVector.h,v 1.22 2005/07/04 15:59:00 southa Exp $
  * $Log: MushMeshVector.h,v $
+ * Revision 1.22  2005/07/04 15:59:00  southa
+ * Adanaxis work
+ *
  * Revision 1.21  2005/06/30 14:26:36  southa
  * Adanaxis work
  *
@@ -178,6 +181,7 @@ private:
     template <class fnT, Mushware::U32 fnD> friend const MushMeshVector<fnT, fnD>& operator/=(MushMeshVector<fnT, fnD>& a, const MushMeshVector<fnT, fnD>& b);
     template <class fnT, Mushware::U32 fnD> friend bool operator==(const MushMeshVector<fnT, fnD>& a, const MushMeshVector<fnT, fnD>& b);
     template <class fnT, Mushware::U32 fnD> friend bool operator!=(const MushMeshVector<fnT, fnD>& a, const MushMeshVector<fnT, fnD>& b);
+    template <class fnT, Mushware::U32 fnD> friend const MushMeshVector<fnT, fnD> operator-(const MushMeshVector<fnT, fnD>& a);
 #endif
 };
 
@@ -305,6 +309,19 @@ inline bool
 operator!=(const MushMeshVector<T, D>& a, const MushMeshVector<T, D>& b)
 {
     return !a.EqualIs(b);
+}
+
+// Unary
+template <class T, Mushware::U32 D>
+inline const MushMeshVector<T, D>
+operator-(const MushMeshVector<T, D>& a)
+{
+    MushMeshVector<T, D> retValue;
+    for (Mushware::U32 i=0; i<D; ++i)
+    {
+        retValue.Set(-a.m_value[i], i);
+    }
+    return retValue;
 }
 
 // Vector with value

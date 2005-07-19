@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 5+xwz0v1Mv1OTeaDe83ISg
 /*
- * $Id: MushMeshQuaternionPair.h,v 1.8 2005/07/14 16:55:08 southa Exp $
+ * $Id: MushMeshQuaternionPair.h,v 1.9 2005/07/18 13:13:36 southa Exp $
  * $Log: MushMeshQuaternionPair.h,v $
+ * Revision 1.9  2005/07/18 13:13:36  southa
+ * Extrude to point and projectile mesh
+ *
  * Revision 1.8  2005/07/14 16:55:08  southa
  * Mesh library work
  *
@@ -75,6 +78,7 @@ public:
     void ToRotationIdentitySet(void);
     
     MushMeshQuaternionPair<T> Conjugate(void) const;
+    void InPlaceConjugate(void);
         
     static MushMeshQuaternionPair AdditiveIdentity()
     {
@@ -155,6 +159,13 @@ MushMeshQuaternionPair<T>::Conjugate(void) const
     return MushMeshQuaternionPair(m_first.Conjugate(), m_second.Conjugate());
 }
 
+template<class T>
+inline void
+MushMeshQuaternionPair<T>::InPlaceConjugate(void)
+{
+    m_first.InPlaceConjugate();
+    m_second.InPlaceConjugate();
+}
 
 // Stream operators
 

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } X9UP1KNKwyumuL+woGoUdg
 /*
- * $Id: MushMeshMattress.h,v 1.2 2005/07/04 11:10:43 southa Exp $
+ * $Id: MushMeshMattress.h,v 1.3 2005/07/04 15:59:00 southa Exp $
  * $Log: MushMeshMattress.h,v $
+ * Revision 1.3  2005/07/04 15:59:00  southa
+ * Adanaxis work
+ *
  * Revision 1.2  2005/07/04 11:10:43  southa
  * Rendering pipeline
  *
@@ -53,6 +56,8 @@ public:
         m_matrix(inMatrix), m_offset(inOffset) {}
     
     void ToIdentitySet(void) { m_matrix.ToMultiplicativeIdentitySet(); m_offset.ToAdditiveIdentitySet(); }
+    const tThis Inverse(void) const;
+    void InPlaceInvert(void);
     
 private:
     tMatrix m_matrix; //:readwrite :wref
@@ -86,6 +91,25 @@ inline MushMeshMattress<T, D>
 operator*(const MushMeshMattress<T, D>& inA, const MushMeshMattress<T, D>& inB)
 {
     return MushMeshMattress<T, D>(inA.Matrix() * inB.Matrix(), inA.Matrix() * inB.Offset() + inA.Offset());
+}
+
+template<class T, Mushware::U32 D>
+inline const MushMeshMattress<T, D>
+MushMeshMattress<T, D>::Inverse(void) const
+{
+    MushMeshMattress<T, D> retVal;
+    retVal.MatrixSet(m_matrix.Transpose());
+    retVal.OffsetSet(retVal.Matrix() * -m_offset);
+    return retVal;
+}
+
+template<class T, Mushware::U32 D>
+inline void
+MushMeshMattress<T, D>::InPlaceInvert(void)
+{
+    MushMeshMattress<T, D> retVal;
+    m_matrix.InPlaceTranspose();
+    m_offset = m_matrix * -m_offset;
 }
 
 //%inlineHeader {
