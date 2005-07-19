@@ -1,7 +1,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/Adanaxis/AdanaxisPieceDeco.cpp
+ * File: src/Adanaxis/AdanaxisPieceKhazi.cpp
  *
  * Copyright: Andy Southgate 2005
  *
@@ -15,59 +15,37 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } sexYl99zeFqxCTpAO8DLNQ
+//%Header } 1en6OnZ85se795baUuYn3A
 /*
- * $Id: AdanaxisPieceDeco.cpp,v 1.10 2005/07/18 13:13:35 southa Exp $
- * $Log: AdanaxisPieceDeco.cpp,v $
- * Revision 1.10  2005/07/18 13:13:35  southa
- * Extrude to point and projectile mesh
- *
- * Revision 1.9  2005/07/06 19:08:26  southa
- * Adanaxis control work
- *
- * Revision 1.8  2005/07/05 16:35:53  southa
- * Adanaxis work
- *
- * Revision 1.7  2005/07/05 13:52:22  southa
- * Adanaxis work
- *
- * Revision 1.6  2005/07/04 15:59:00  southa
- * Adanaxis work
- *
- * Revision 1.5  2005/07/04 11:10:43  southa
- * Rendering pipeline
- *
- * Revision 1.4  2005/07/02 00:42:36  southa
- * Conditioning tweaks
- *
- * Revision 1.3  2005/07/01 10:36:46  southa
- * MushRender work
- *
- * Revision 1.2  2005/06/30 16:29:24  southa
- * Adanaxis work
- *
- * Revision 1.1  2005/06/30 14:26:35  southa
- * Adanaxis work
- *
+ * $Id$
+ * $Log$
  */
 
-#include "AdanaxisPieceDeco.h"
+#include "AdanaxisPieceKhazi.h"
+
+#include "AdanaxisPieceProjectile.h"
 
 using namespace Mushware;
 using namespace std;
 
-AdanaxisPieceDeco::AdanaxisPieceDeco(const std::string& inID) :
-    m_id(inID)
+AdanaxisPieceKhazi::AdanaxisPieceKhazi(const std::string& inID) :
+    m_id(inID),
+    m_expireFlag(false)
 {
     PostWRef().ToIdentitySet();
     m_buffersRef.NameSet(MushGLBuffers::NextBufferNumAdvance());
-    MushGLBuffers::tData::Sgl().GetOrCreate(m_buffersRef.Name());    
+    MushGLBuffers::tData::Sgl().GetOrCreate(m_buffersRef.Name());
+}  
+
+void
+AdanaxisPieceKhazi::Move(MushGameLogic& ioLogic, const tVal inFrameslice)
+{
+    PostWRef().InPlaceVelocityAdd();
 }
 
 void
-AdanaxisPieceDeco::Render(MushGameLogic& ioLogic, MushRenderMesh& inRender, const MushGameCamera& inCamera)
+AdanaxisPieceKhazi::Render(MushGameLogic& ioLogic, MushRenderMesh& inRender, const MushGameCamera& inCamera)
 {
-    PostWRef().InPlaceVelocityAdd();
     MushRenderSpec renderSpec;
     renderSpec.BuffersRefSet(m_buffersRef);
     
@@ -82,45 +60,46 @@ AdanaxisPieceDeco::Render(MushGameLogic& ioLogic, MushRenderMesh& inRender, cons
 
 //%outOfLineFunctions {
 
-const char *AdanaxisPieceDeco::AutoName(void) const
+const char *AdanaxisPieceKhazi::AutoName(void) const
 {
-    return "AdanaxisPieceDeco";
+    return "AdanaxisPieceKhazi";
 }
 
-MushcoreVirtualObject *AdanaxisPieceDeco::AutoClone(void) const
+MushcoreVirtualObject *AdanaxisPieceKhazi::AutoClone(void) const
 {
-    return new AdanaxisPieceDeco(*this);
+    return new AdanaxisPieceKhazi(*this);
 }
 
-MushcoreVirtualObject *AdanaxisPieceDeco::AutoCreate(void) const
+MushcoreVirtualObject *AdanaxisPieceKhazi::AutoCreate(void) const
 {
-    return new AdanaxisPieceDeco;
+    return new AdanaxisPieceKhazi;
 }
 
-MushcoreVirtualObject *AdanaxisPieceDeco::AutoVirtualFactory(void)
+MushcoreVirtualObject *AdanaxisPieceKhazi::AutoVirtualFactory(void)
 {
-    return new AdanaxisPieceDeco;
+    return new AdanaxisPieceKhazi;
 }
 namespace
 {
 void AutoInstall(void)
 {
-    MushcoreFactory::Sgl().FactoryAdd("AdanaxisPieceDeco", AdanaxisPieceDeco::AutoVirtualFactory);
+    MushcoreFactory::Sgl().FactoryAdd("AdanaxisPieceKhazi", AdanaxisPieceKhazi::AutoVirtualFactory);
 }
 MushcoreInstaller AutoInstaller(AutoInstall);
 } // end anonymous namespace
 void
-AdanaxisPieceDeco::AutoPrint(std::ostream& ioOut) const
+AdanaxisPieceKhazi::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
     MushGamePiece::AutoPrint(ioOut);
     ioOut << "id=" << m_id << ", ";
+    ioOut << "expireFlag=" << m_expireFlag << ", ";
     ioOut << "mesh=" << m_mesh << ", ";
     ioOut << "buffersRef=" << m_buffersRef;
     ioOut << "]";
 }
 bool
-AdanaxisPieceDeco::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr)
+AdanaxisPieceKhazi::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr)
 {
     if (inTagStr == "obj")
     {
@@ -131,6 +110,10 @@ AdanaxisPieceDeco::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::strin
     else if (inTagStr == "id")
     {
         ioIn >> m_id;
+    }
+    else if (inTagStr == "expireFlag")
+    {
+        ioIn >> m_expireFlag;
     }
     else if (inTagStr == "mesh")
     {
@@ -151,14 +134,16 @@ AdanaxisPieceDeco::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::strin
     return true;
 }
 void
-AdanaxisPieceDeco::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
+AdanaxisPieceKhazi::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
     MushGamePiece::AutoXMLPrint(ioOut);
     ioOut.TagSet("id");
     ioOut << m_id;
+    ioOut.TagSet("expireFlag");
+    ioOut << m_expireFlag;
     ioOut.TagSet("mesh");
     ioOut << m_mesh;
     ioOut.TagSet("buffersRef");
     ioOut << m_buffersRef;
 }
-//%outOfLineFunctions } 8IECvxeHlwRBQh1H5NuTiQ
+//%outOfLineFunctions } +rRGlQGREGt/ADZ3Yg/BTg

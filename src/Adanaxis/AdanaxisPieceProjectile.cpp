@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } cKEASf8ImtK3tzSM6fwREw
 /*
- * $Id: AdanaxisPieceProjectile.cpp,v 1.1 2005/07/12 12:18:17 southa Exp $
+ * $Id: AdanaxisPieceProjectile.cpp,v 1.2 2005/07/18 13:13:36 southa Exp $
  * $Log: AdanaxisPieceProjectile.cpp,v $
+ * Revision 1.2  2005/07/18 13:13:36  southa
+ * Extrude to point and projectile mesh
+ *
  * Revision 1.1  2005/07/12 12:18:17  southa
  * Projectile work
  *
@@ -56,23 +59,15 @@ AdanaxisPieceProjectile::Render(MushGameLogic& ioLogic, MushRenderMesh& inRender
     MushRenderSpec renderSpec;
     renderSpec.BuffersRefSet(m_buffersRef);
     
-    MushMeshPosticity viewOffset;
-    MushMeshPosticity viewAng;
-    
-    viewOffset.ToIdentitySet();
-    viewOffset.PosSet(t4Val(0,0,0,0)-inCamera.Post().Pos());
-    
-    viewAng.ToIdentitySet();
-    viewAng.AngPosSet(inCamera.Post().AngPos().Conjugate());
-    
     MushMeshOps::PosticityToMattress(renderSpec.ModelWRef(), Post());
-    MushMeshOps::PosticityToMattress(renderSpec.SpecialWRef(), viewOffset);
-    MushMeshOps::PosticityToMattress(renderSpec.ViewWRef(), viewAng);
+    MushMeshOps::PosticityToMattress(renderSpec.ViewWRef(), inCamera.Post());
+    renderSpec.ViewWRef().InPlaceInvert();
     
     renderSpec.ProjectionSet(inCamera.Projection());
     
     inRender.MeshRender(renderSpec, m_mesh);
 }
+
 //%outOfLineFunctions {
 
 const char *AdanaxisPieceProjectile::AutoName(void) const
