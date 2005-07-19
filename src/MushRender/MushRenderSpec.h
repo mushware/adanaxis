@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } hzHOaqG45RxILxoV7rJ+JA
 /*
- * $Id: MushRenderSpec.h,v 1.6 2005/07/05 13:52:22 southa Exp $
+ * $Id: MushRenderSpec.h,v 1.7 2005/07/05 16:35:53 southa Exp $
  * $Log: MushRenderSpec.h,v $
+ * Revision 1.7  2005/07/05 16:35:53  southa
+ * Adanaxis work
+ *
  * Revision 1.6  2005/07/05 13:52:22  southa
  * Adanaxis work
  *
@@ -57,14 +60,13 @@ class MushRenderSpec : public MushcoreVirtualObject
 public:
     typedef Mushware::t4x4o4Val tMattress;
     virtual ~MushRenderSpec() {}
-    const tMattress ModelToEyeMattress(void) const { return m_view * (m_special * m_model); }
+    const tMattress ModelToEyeMattress(void) const { return m_view * m_model; }
     
     const tMattress ModelToClipMattress(void) const { return m_projection.Mattress() * ModelToEyeMattress(); }
     
 private:
     MushGLProjection m_projection; //:readwrite :wref
     tMattress m_view; //:readwrite :wref
-    tMattress m_special; //:readwrite :wref
     tMattress m_model; //:readwrite :wref
 
     MushGLBuffers::tDataRef m_buffersRef; //:readwrite
@@ -79,10 +81,6 @@ public:
     void ViewSet(const tMattress& inValue) { m_view=inValue; }
     // Writable reference for m_view
     tMattress& ViewWRef(void) { return m_view; }
-    const tMattress& Special(void) const { return m_special; }
-    void SpecialSet(const tMattress& inValue) { m_special=inValue; }
-    // Writable reference for m_special
-    tMattress& SpecialWRef(void) { return m_special; }
     const tMattress& Model(void) const { return m_model; }
     void ModelSet(const tMattress& inValue) { m_model=inValue; }
     // Writable reference for m_model
@@ -96,7 +94,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } DSa9jBUVXHBnMVUe4LDQIA
+//%classPrototypes } PyDH4xjtfKZ7eqLcbt8A3A
 };
 //%inlineHeader {
 inline std::ostream&

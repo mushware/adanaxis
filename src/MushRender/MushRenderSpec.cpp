@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } XttDYnY7xVQ0Mej3+yO1wQ
 /*
- * $Id: MushRenderSpec.cpp,v 1.5 2005/07/04 15:59:00 southa Exp $
+ * $Id: MushRenderSpec.cpp,v 1.6 2005/07/05 13:52:22 southa Exp $
  * $Log: MushRenderSpec.cpp,v $
+ * Revision 1.6  2005/07/05 13:52:22  southa
+ * Adanaxis work
+ *
  * Revision 1.5  2005/07/04 15:59:00  southa
  * Adanaxis work
  *
@@ -75,7 +78,6 @@ MushRenderSpec::AutoPrint(std::ostream& ioOut) const
     ioOut << "[";
     ioOut << "projection=" << m_projection << ", ";
     ioOut << "view=" << m_view << ", ";
-    ioOut << "special=" << m_special << ", ";
     ioOut << "model=" << m_model << ", ";
     ioOut << "buffersRef=" << m_buffersRef;
     ioOut << "]";
@@ -96,10 +98,6 @@ MushRenderSpec::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
     else if (inTagStr == "view")
     {
         ioIn >> m_view;
-    }
-    else if (inTagStr == "special")
-    {
-        ioIn >> m_special;
     }
     else if (inTagStr == "model")
     {
@@ -122,11 +120,9 @@ MushRenderSpec::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_projection;
     ioOut.TagSet("view");
     ioOut << m_view;
-    ioOut.TagSet("special");
-    ioOut << m_special;
     ioOut.TagSet("model");
     ioOut << m_model;
     ioOut.TagSet("buffersRef");
     ioOut << m_buffersRef;
 }
-//%outOfLineFunctions } UhCttVZ5JGbwx1egtlcXfA
+//%outOfLineFunctions } 55gRE4bQ3trC07QiLy6ZOw
