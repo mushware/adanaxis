@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } MRqkmNXxP7DiVadot5CVdg
 /*
- * $Id: MushMeshTools.h,v 1.5 2005/05/19 13:02:11 southa Exp $
+ * $Id: MushMeshTools.h,v 1.6 2005/07/12 12:18:18 southa Exp $
  * $Log: MushMeshTools.h,v $
+ * Revision 1.6  2005/07/12 12:18:18  southa
+ * Projectile work
+ *
  * Revision 1.5  2005/05/19 13:02:11  southa
  * Mac release work
  *
@@ -51,6 +54,16 @@
 class MushMeshTools
 {
 public:
+    enum
+    {
+        kAxisXY = 0,
+        kAxisZW = 1,
+        kAxisXZ = 2,
+        kAxisYW = 3,
+        kAxisXW = 4,
+        kAxisYZ = 5
+    };
+    
     static Mushware::t3x3Val RotateInXY(Mushware::tVal inAngle);
     static Mushware::t4x4Val MatrixRotateInAxis(Mushware::U32 inAxis, Mushware::tVal inAngle);
     static Mushware::tQValPair QuaternionRotateInAxis(Mushware::U32 inAxis, Mushware::tVal inAngle);

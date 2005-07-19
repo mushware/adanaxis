@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 7Y7qw9fXK5qyxNASaSz7KA
 /*
- * $Id: MushMeshPreMatrix.h,v 1.9 2005/07/04 15:59:00 southa Exp $
+ * $Id: MushMeshPreMatrix.h,v 1.10 2005/07/05 13:52:22 southa Exp $
  * $Log: MushMeshPreMatrix.h,v $
+ * Revision 1.10  2005/07/05 13:52:22  southa
+ * Adanaxis work
+ *
  * Revision 1.9  2005/07/04 15:59:00  southa
  * Adanaxis work
  *
@@ -115,6 +118,9 @@ public:
     
     void PreMultiply(MushMeshVector<T, C>& ioVec) const;
     void ToMultiplicativeIdentitySet(void);
+    
+    const MushMeshPreMatrix<T, R, C> Transpose(void) const;
+    void InPlaceTranspose(void);
     
     static const tThis Identity(void);
     
@@ -226,6 +232,37 @@ inline bool
 operator!=(const MushMeshPreMatrix<T, C, R>& a, const MushMeshPreMatrix<T, C, R>& b)
 {
     return !(a == b);
+}
+
+template <class T, Mushware::U32 C, Mushware::U32 R>
+inline const MushMeshPreMatrix<T, R, C>
+MushMeshPreMatrix<T, C, R>::Transpose(void) const
+{
+    MushMeshPreMatrix<T, R, C> retValue;
+    for (Mushware::U32 r = 0; r < R; ++r)
+    {
+        for (Mushware::U32 c = 0; c < C; ++c)
+        {
+            retValue.RCSet(RCGet(r, c), c, r);
+        }
+    }
+    return retValue;
+}
+
+template <class T, Mushware::U32 C, Mushware::U32 R>
+inline void
+MushMeshPreMatrix<T, C, R>::InPlaceTranspose(void)
+{
+    MUSHCOREASSERT(R == C);
+    for (Mushware::U32 r = 0; r < R; ++r)
+    {
+        for (Mushware::U32 c = r+1; c < C; ++c)
+        {
+            T temp = RCGet(r, c);
+            RCSet(RCGet(c, r), r, c);
+            RCSet(temp, c, r);
+        }
+    }
 }
 
 // Stream operators

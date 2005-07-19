@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } il7Yy3B6XrnFCBgRdzgKNA
 /*
- * $Id: MushMeshQuaternion.h,v 1.10 2005/05/19 13:02:10 southa Exp $
+ * $Id: MushMeshQuaternion.h,v 1.11 2005/07/18 13:13:36 southa Exp $
  * $Log: MushMeshQuaternion.h,v $
+ * Revision 1.11  2005/07/18 13:13:36  southa
+ * Extrude to point and projectile mesh
+ *
  * Revision 1.10  2005/05/19 13:02:10  southa
  * Mac release work
  *
@@ -80,6 +83,7 @@ public:
     void PreMultiplyBy(const MushMeshQuaternion<T>& inQuat);
     void PostMultiplyBy(const MushMeshQuaternion<T>& inQuat);
     MushMeshQuaternion<T> Conjugate(void) const;
+    void InPlaceConjugate(void);
     void PreMultiplyVector(tBase& ioVec) const;
     void PostMultiplyVector(tBase& ioVec) const;
     
@@ -184,6 +188,15 @@ inline MushMeshQuaternion<T>
 MushMeshQuaternion<T>::Conjugate(void) const
 {
     return MushMeshQuaternion<T>(this->m_value[0], -this->m_value[1], -this->m_value[2], -this->m_value[3]);
+}
+
+template <class T>
+inline void
+MushMeshQuaternion<T>::InPlaceConjugate(void)
+{
+    this->m_value[1] = -this->m_value[1];
+    this->m_value[2] = -this->m_value[2];
+    this->m_value[3] = -this->m_value[3];
 }
 
 // Free operators
