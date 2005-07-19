@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } Thhd451+Uw5oCuW9+FveAg
 /*
- * $Id: TestMushMeshStandard.h,v 1.5 2004/01/07 11:14:15 southa Exp $
+ * $Id: TestMushMeshStandard.h,v 1.6 2005/05/19 13:02:23 southa Exp $
  * $Log: TestMushMeshStandard.h,v $
+ * Revision 1.6  2005/05/19 13:02:23  southa
+ * Mac release work
+ *
  * Revision 1.5  2004/01/07 11:14:15  southa
  * Snapshot fixes
  *
@@ -62,6 +65,14 @@
 #include <MushMesh.h>
 #else
 #include "MushMesh/MushMesh.h"
+#endif
+
+#if defined(HAVE_MUSHMESHLIBRARY_MUSHMESHLIBRARY_H)
+#include <MushMeshLibrary/MushMeshLibrary.h>
+#elif defined(HAVE_MUSHMESHLIBRARY_H)
+#include <MushMeshLibrary.h>
+#else
+#include "MushMeshLibrary/MushMeshLibrary.h"
 #endif
 
 #include <list>

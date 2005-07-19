@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } RoNLC7hPh49geDtJu2CaFA
 /*
- * $Id: MushMeshLibraryBase.h,v 1.1 2005/07/12 20:39:05 southa Exp $
+ * $Id: MushMeshLibraryBase.h,v 1.2 2005/07/14 16:55:09 southa Exp $
  * $Log: MushMeshLibraryBase.h,v $
+ * Revision 1.2  2005/07/14 16:55:09  southa
+ * Mesh library work
+ *
  * Revision 1.1  2005/07/12 20:39:05  southa
  * Mesh library work
  *
@@ -43,10 +46,6 @@ public:
     virtual void PolygonPrismCreate(MushMesh4Mesh& ioMesh, const Mushware::t4Val& inScale, Mushware::U32 inOrder) const;
     
 protected:
-    virtual void NewFaceCreate(MushMesh4Mesh& ioMesh,
-                               MushMesh4Face *& outpFace,
-                               MushMesh4Face::tVertexList *& outpVertexList,
-                               MushMesh4Face::tVertexGroupSize *& outpVertexGroupSize) const;
     virtual void CongruentFacesJoin(MushMesh4Mesh& ioMesh, Mushware::U32 inFaceNum1, Mushware::U32 inFaceNum2) const;
 
 private:

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } +nh81wCMNvdKJB1CmhTiew
 /*
- * $Id: MushMeshVector.h,v 1.22 2005/07/04 15:59:00 southa Exp $
+ * $Id: MushMeshVector.h,v 1.23 2005/07/19 10:07:00 southa Exp $
  * $Log: MushMeshVector.h,v $
+ * Revision 1.23  2005/07/19 10:07:00  southa
+ * Adanaxis work
+ *
  * Revision 1.22  2005/07/04 15:59:00  southa
  * Adanaxis work
  *
@@ -152,6 +155,9 @@ public:
     void InPlaceNormalise(void);
     void ToAdditiveIdentitySet(void);
     void ToMultiplicativeIdentitySet(void);
+    
+    static const tThis AdditiveIdentity(void);
+    static const tThis MultiplicativeIdentity(void);
     
     // Unchecked array operators
     const T& operator[](Mushware::U32 inIndex) const { return m_value[inIndex]; }
@@ -474,14 +480,29 @@ MushMeshVector<T, D>::ToAdditiveIdentitySet(void)
 }
 
 template <class T, Mushware::U32 D>
-inline void
-MushMeshVector<T, D>::ToMultiplicativeIdentitySet(void)
+inline const MushMeshVector<T, D>
+MushMeshVector<T, D>::AdditiveIdentity(void)
 {
+    MushMeshVector<T, D> retVal;
     for (Mushware::U32 i=0; i<D; ++i)
     {
-        m_value[i] = 1;
+        retVal.Set(0, i);
     }
+    return retVal;
 }
+
+template <class T, Mushware::U32 D>
+inline const MushMeshVector<T, D>
+MushMeshVector<T, D>::MultiplicativeIdentity(void)
+{
+    MushMeshVector<T, D> retVal;
+    for (Mushware::U32 i=0; i<D; ++i)
+    {
+        retVal.Set(1, i);
+    }
+    return retVal;
+}
+
 
 // Stream operators
 

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } /3rWQ+PBevPGAR8k/1jYTA
 /*
- * $Id$
- * $Log$
+ * $Id: TestMushMeshMattress.cpp,v 1.1 2005/07/02 00:42:39 southa Exp $
+ * $Log: TestMushMeshMattress.cpp,v $
+ * Revision 1.1  2005/07/02 00:42:39  southa
+ * Conditioning tweaks
+ *
  */
 
 #include "TestMushMeshMattress.h"
@@ -44,11 +47,19 @@ TestMushMeshMattress::TestMattress(MushcoreCommand& ioCommand, MushcoreEnv& ioEn
     t4Val offsetVec(t4Val(2,3,4,5));
     t4x4o4Val testMattress(testMatrix, offsetVec);
     
+    if (testMattress * (testMattress * testVec) != (testMattress * testMattress) * testVec)
+    {
+        throw MushcoreLogicFail("Mattress failure 1");
+    }
+    
+#if 0
     xmlOut << testMattress;
     xmlOut << (testMattress * testVec);
     xmlOut << (testMattress * testMattress);
     xmlOut << testMattress * (testMattress * testVec);
     xmlOut << (testMattress * testMattress) * testVec;
+#endif
+    
     return MushcoreScalar(0);
 }
 

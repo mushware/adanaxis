@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } v136Oh1IVziX36Di81JIXQ
 /*
- * $Id: MushMesh4Mesh.cpp,v 1.7 2005/07/13 16:45:05 southa Exp $
+ * $Id: MushMesh4Mesh.cpp,v 1.8 2005/07/14 12:50:31 southa Exp $
  * $Log: MushMesh4Mesh.cpp,v $
+ * Revision 1.8  2005/07/14 12:50:31  southa
+ * Extrusion work
+ *
  * Revision 1.7  2005/07/13 16:45:05  southa
  * Extrusion work
  *
@@ -52,7 +55,9 @@
 using namespace Mushware;
 using namespace std;
 
-MushMesh4Mesh::MushMesh4Mesh()
+MushMesh4Mesh::MushMesh4Mesh() :
+    m_vertexCounter(0),
+    m_faceCounter(0)
 {
     AllTouch();
 }
@@ -84,10 +89,19 @@ MushMesh4Mesh::Prebuild(void)
     ConnectivityBuild();
     CentroidBuild();
     BoundingRadiusBuild();
-    U32 numFaces = m_faces.size();
-    for (U32 i=0; i<numFaces; ++i)
+
+    for (U32 i=0; i<m_faces.size(); ++i)
     {
         FaceCentroidBuild(i);
+        FaceConnectivityBuild(i); 
+        m_faces[i].VertexConnectivity();
+    }
+    
+    for (U32 i=0; i<m_chunks.size(); ++i)
+    {
+        ChunkUniqueVertexListBuild(i);
+        ChunkBoundingRadiusBuild(i);
+        ChunkCentroidBuild(i);
     }
 }
 
@@ -343,6 +357,78 @@ MushMesh4Mesh::FaceCentroidBuild(Mushware::U32 inFaceNum) const
     faceRef.FaceCentroidSet(centroid / uniqueVertexListSize);
 }
 
+void
+MushMesh4Mesh::ChunkUniqueVertexListBuild(Mushware::U32 inChunkNum) const
+{
+    const tChunk& chunkRef = Chunk(inChunkNum);
+
+    MushMesh4Chunk::tVertexList& destUniqueVertexListRef = chunkRef.UniqueVertexListWRef();
+    destUniqueVertexListRef.clear();
+        
+    const MushMesh4Chunk::tFaceList& faceListRef = chunkRef.FaceList();
+    Mushware::U32 faceListSize = faceListRef.size();
+    
+    for (U32 i=0; i<faceListSize; ++i)
+    {
+        const MushMesh4Face& faceRef = Face(faceListRef[i]);
+        const MushMesh4Face::tVertexList& srcUniqueVertexListRef = faceRef.UniqueVertexList();
+        U32 srcUniqueVertexListSize = srcUniqueVertexListRef.size();
+        for (U32 j=0; j<srcUniqueVertexListSize; ++j)
+        {
+            U32 vertNum = srcUniqueVertexListRef[j];
+            if (std::find(destUniqueVertexListRef.begin(),
+                          destUniqueVertexListRef.end(),
+                          vertNum) == destUniqueVertexListRef.end())
+            {
+                destUniqueVertexListRef.push_back(vertNum);
+            }
+        }
+    }
+    chunkRef.UniqueVertexListValidSet(true);
+}
+
+void
+MushMesh4Mesh::ChunkBoundingRadiusBuild(Mushware::U32 inChunkNum) const
+{
+    const tChunk& chunkRef = Chunk(inChunkNum);
+    
+    t4Val centroid = ChunkCentroid(inChunkNum);
+        
+    tVal maxRadiusSquared = 0;
+    
+    const MushMesh4Chunk::tVertexList& uniqueVertexList = ChunkUniqueVertexList(inChunkNum);
+    
+    U32 uniqueVertexListSize = uniqueVertexList.size();
+    
+    for (U32 i=0; i<uniqueVertexListSize; ++i)
+    {
+        tVal radiusSquared = (centroid - Vertex(uniqueVertexList[i])).MagnitudeSquared();
+        if (radiusSquared >  maxRadiusSquared)
+        {
+            maxRadiusSquared = radiusSquared;
+        }
+    }
+    
+    chunkRef.BoundingRadiusSet(std::sqrt(maxRadiusSquared));
+}
+
+void
+MushMesh4Mesh::ChunkCentroidBuild(Mushware::U32 inChunkNum) const
+{
+    const tChunk& chunkRef = Chunk(inChunkNum);
+    
+    const MushMesh4Chunk::tVertexList& uniqueVertexList = ChunkUniqueVertexList(inChunkNum);
+    
+    U32 uniqueVertexListSize = uniqueVertexList.size();
+    
+    t4Val centroid(t4Val::AdditiveIdentity());
+    
+    for (U32 i=0; i<uniqueVertexListSize; ++i)
+    {
+        centroid += Vertex(uniqueVertexList[i]);
+    }
+    chunkRef.CentroidSet(centroid / uniqueVertexListSize);
+}
 
 //%outOfLineFunctions {
 
@@ -385,6 +471,7 @@ MushMesh4Mesh::AutoPrint(std::ostream& ioOut) const
     ioOut << "faceCounter=" << m_faceCounter << ", ";
     ioOut << "faceGenerator=" << m_faceGenerator << ", ";
     ioOut << "vertexGenerator=" << m_vertexGenerator << ", ";
+    ioOut << "chunks=" << m_chunks << ", ";
     ioOut << "normals=" << m_normals << ", ";
     ioOut << "connectivity=" << m_connectivity << ", ";
     ioOut << "centroid=" << m_centroid << ", ";
@@ -434,6 +521,10 @@ MushMesh4Mesh::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& i
     else if (inTagStr == "vertexGenerator")
     {
         ioIn >> m_vertexGenerator;
+    }
+    else if (inTagStr == "chunks")
+    {
+        ioIn >> m_chunks;
     }
     else if (inTagStr == "normals")
     {
@@ -507,6 +598,8 @@ MushMesh4Mesh::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_faceGenerator;
     ioOut.TagSet("vertexGenerator");
     ioOut << m_vertexGenerator;
+    ioOut.TagSet("chunks");
+    ioOut << m_chunks;
     ioOut.TagSet("normals");
     ioOut << m_normals;
     ioOut.TagSet("connectivity");
@@ -530,4 +623,4 @@ MushMesh4Mesh::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("boundingRadiusValid");
     ioOut << m_boundingRadiusValid;
 }
-//%outOfLineFunctions } YeS41lj7Z1ubUFtpllQj/g
+//%outOfLineFunctions } tRHNwx/epHtokbpQGhNBiQ

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } TGM/4ae2lNjW0/j6zPy6UA
 /*
- * $Id: TestMushMeshQuaternion.cpp,v 1.6 2005/06/30 12:04:56 southa Exp $
+ * $Id: TestMushMeshQuaternion.cpp,v 1.7 2005/07/14 16:55:09 southa Exp $
  * $Log: TestMushMeshQuaternion.cpp,v $
+ * Revision 1.7  2005/07/14 16:55:09  southa
+ * Mesh library work
+ *
  * Revision 1.6  2005/06/30 12:04:56  southa
  * Mesh work
  *
@@ -225,7 +228,7 @@ TestMushMeshQuaternion::TestQuaternion(MushcoreCommand& ioCommand, MushcoreEnv& 
             bVec = rotate * bVec;
         }
 
-        tQValPair orient(tQValPair::RotationIdentityGet());
+        tQValPair orient(tQValPair::RotationIdentity());
         
         for (U32 i=0; i<6; ++i)
         {

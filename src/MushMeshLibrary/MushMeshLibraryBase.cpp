@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } wT/XlXiDrkjXl6HW1CFN3Q
 /*
- * $Id: MushMeshLibraryBase.cpp,v 1.2 2005/07/14 16:55:09 southa Exp $
+ * $Id: MushMeshLibraryBase.cpp,v 1.3 2005/07/16 14:22:59 southa Exp $
  * $Log: MushMeshLibraryBase.cpp,v $
+ * Revision 1.3  2005/07/16 14:22:59  southa
+ * Added diagnostic renderer
+ *
  * Revision 1.2  2005/07/14 16:55:09  southa
  * Mesh library work
  *
@@ -28,6 +31,8 @@
  */
 
 #include "MushMeshLibraryBase.h"
+
+#include "MushMeshLibraryUtil.h"
 
 using namespace Mushware;
 using namespace std;
@@ -62,7 +67,12 @@ MushMeshLibraryBase::UnitTesseractVerticesCreate(MushMesh4Mesh& ioMesh) const
 void
 MushMeshLibraryBase::UnitTesseractCreate(MushMesh4Mesh& ioMesh) const
 {
-    MushMesh4Mesh::tFaces& facesRef = ioMesh.FacesWRef();
+    MushMesh4Face *pFace = NULL;
+    MushMesh4Face::tVertexList *pVertexList = NULL;
+    MushMesh4Face::tVertexGroupSize *pVertexGroupSize = NULL;
+    
+    // Chunk.  All faces are placed in one chunk
+    MushMeshLibraryUtil::NewChunkCreate(ioMesh);
     
     // Vertices
     UnitTesseractVerticesCreate(ioMesh);
@@ -72,11 +82,8 @@ MushMeshLibraryBase::UnitTesseractCreate(MushMesh4Mesh& ioMesh) const
     // Faces
     for (U32 i=0; i<8 && fixedAxis > 0; ++i)
     {
-        facesRef.push_back(MushMesh4Mesh::tFace());
-        MushMesh4Mesh::tFace& face = facesRef.back();
-        
-        MushMesh4Mesh::tFace::tVertexList& vertexList = face.VertexListWRef();
-        MushMesh4Mesh::tFace::tVertexGroupSize& vertexGroupSize = face.VertexGroupSizeWRef();
+        // Creating new faces invalidates references to other faces and their components
+        MushMeshLibraryUtil::NewFaceCreate(ioMesh, pFace, pVertexList, pVertexGroupSize);
         
         // fixedAxis: 1->x, 2->y, 4->z, 8->w
         
@@ -138,12 +145,12 @@ MushMeshLibraryBase::UnitTesseractCreate(MushMesh4Mesh& ioMesh) const
             
             U32 baseOffset = fixedAxisOffset + planeAxisOffset;
             
-            vertexList.push_back(baseOffset);
-            vertexList.push_back(baseOffset + lowAxis);
-            vertexList.push_back(baseOffset + lowAxis + highAxis);
-            vertexList.push_back(baseOffset + highAxis);
+            pVertexList->push_back(baseOffset);
+            pVertexList->push_back(baseOffset + lowAxis);
+            pVertexList->push_back(baseOffset + lowAxis + highAxis);
+            pVertexList->push_back(baseOffset + highAxis);
             
-            vertexGroupSize.push_back(4);
+            pVertexGroupSize->push_back(4);
             
             if ((j % 2) == 1)
             {
@@ -155,7 +162,6 @@ MushMeshLibraryBase::UnitTesseractCreate(MushMesh4Mesh& ioMesh) const
             fixedAxis /= 2;
         }
     }
-    ioMesh.FaceCounterSet(8);
 }
 
 void
@@ -173,6 +179,8 @@ MushMeshLibraryBase::PolygonPrismVerticesCreate(MushMesh4Mesh& ioMesh, const Mus
     tVal angularStep = M_PI * 2.0 / inOrder;
     U32 vertexNum = 0;
     
+    t4Val scale = inScale / 2;
+    
     // Vertices
     for (U32 i=0; i<4; ++i)
     {
@@ -180,10 +188,10 @@ MushMeshLibraryBase::PolygonPrismVerticesCreate(MushMesh4Mesh& ioMesh, const Mus
         {
             MushMesh4Mesh::tVertex& vertex = verticesRef[vertexNum];
             
-            vertex.XSet(inScale.X() * cos(angularStep * j));
-            vertex.YSet(inScale.Y() * sin(angularStep * j));
-            vertex.ZSet(((i & 1) == 0)?-inScale.Z():inScale.Z());
-            vertex.WSet(((i & 2) == 0)?-inScale.W():inScale.W());
+            vertex.XSet(scale.X() * cos(angularStep * j));
+            vertex.YSet(scale.Y() * sin(angularStep * j));
+            vertex.ZSet(((i & 1) == 0)?-scale.Z():scale.Z());
+            vertex.WSet(((i & 2) == 0)?-scale.W():scale.W());
             
             ++vertexNum;
         }
@@ -192,20 +200,6 @@ MushMeshLibraryBase::PolygonPrismVerticesCreate(MushMesh4Mesh& ioMesh, const Mus
     ioMesh.VertexCounterSet(numVertices);
 }
 
-void
-MushMeshLibraryBase::NewFaceCreate(MushMesh4Mesh& ioMesh,
-                                   MushMesh4Face *& outpFace,
-                                   MushMesh4Face::tVertexList *& outpVertexList,
-                                   MushMesh4Face::tVertexGroupSize *& outpVertexGroupSize) const
-{
-    ioMesh.FacesWRef().push_back(MushMesh4Mesh::tFace());
-
-    outpFace = &ioMesh.FacesWRef().back();
-    outpVertexList = &outpFace->VertexListWRef();
-    outpVertexGroupSize = &outpFace->VertexGroupSizeWRef();
-    
-    ++ioMesh.FaceCounterWRef();
-}
 
 
 void
@@ -220,6 +214,9 @@ MushMeshLibraryBase::PolygonPrismCreate(MushMesh4Mesh& ioMesh, const Mushware::t
     MushMesh4Face::tVertexList *pVertexList = NULL;
     MushMesh4Face::tVertexGroupSize *pVertexGroupSize = NULL;
     
+    // Chunk.  All faces are placed in one chunk
+    MushMeshLibraryUtil::NewChunkCreate(ioMesh);
+    
     // Vertices
     PolygonPrismVerticesCreate(ioMesh, inScale, inOrder);
     
@@ -230,9 +227,9 @@ MushMeshLibraryBase::PolygonPrismCreate(MushMesh4Mesh& ioMesh, const Mushware::t
     
     for (U32 w=0; w<2; ++w)
     {
-        // Polygon facets
+        // Polygon end facets (the ends of the prism)
         // Creating new faces invalidates references to other faces and their components
-        NewFaceCreate(ioMesh, pFace, pVertexList, pVertexGroupSize);
+        MushMeshLibraryUtil::NewFaceCreate(ioMesh, pFace, pVertexList, pVertexGroupSize);
         U32 vBase = w * wStep;   
         for (U32 z=0; z<2; ++z)
         {
@@ -271,7 +268,7 @@ MushMeshLibraryBase::CongruentFacesJoin(MushMesh4Mesh& ioMesh, Mushware::U32 inF
         
         // Create a new (joining) face for each facet in the source face
         // Creating new faces invalidates references to other faces and their components
-        NewFaceCreate(ioMesh, pFace, pVertexList, pVertexGroupSize);
+        MushMeshLibraryUtil::NewFaceCreate(ioMesh, pFace, pVertexList, pVertexGroupSize);
         
         const MushMesh4Face& face1Ref = ioMesh.Face(inFaceNum1);
         const MushMesh4Face::tVertexList& vertexList1Ref = face1Ref.VertexList();

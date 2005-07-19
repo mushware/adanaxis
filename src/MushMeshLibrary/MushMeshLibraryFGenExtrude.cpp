@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } 5mXJjsgE9FySBp3B30JsGw
 /*
- * $Id: MushMeshLibraryFGenExtrude.cpp,v 1.4 2005/07/14 12:50:31 southa Exp $
+ * $Id: MushMeshLibraryFGenExtrude.cpp,v 1.5 2005/07/18 13:13:36 southa Exp $
  * $Log: MushMeshLibraryFGenExtrude.cpp,v $
+ * Revision 1.5  2005/07/18 13:13:36  southa
+ * Extrude to point and projectile mesh
+ *
  * Revision 1.4  2005/07/14 12:50:31  southa
  * Extrusion work
  *
@@ -34,6 +37,8 @@
  */
 
 #include "MushMeshLibraryFGenExtrude.h"
+
+#include "MushMeshLibraryUtil.h"
 
 using namespace Mushware;
 using namespace std;
@@ -58,6 +63,9 @@ MushMeshLibraryFGenExtrude::FaceExtrudeOne(MushMesh4Mesh& ioMesh, Mushware::U32&
         // References to objects within faces invalid after resize, so discard
     }
 
+    // New chunk.  All faces are placed in one chunk
+    MushMeshLibraryUtil::NewChunkCreate(ioMesh);
+    
     const MushMesh4Mesh::tFace& srcFaceRef = ioMesh.Face(ioFaceNum);
     const MushMesh4Mesh::tFace::tFaceConnectivity& srcConnectivityRef =
         ioMesh.FaceConnectivity(ioFaceNum);
@@ -142,10 +150,13 @@ MushMeshLibraryFGenExtrude::FaceExtrudeOne(MushMesh4Mesh& ioMesh, Mushware::U32&
         }
     }
     
-    // Apply the correspondance map
+    MushMesh4Chunk::tFaceList& chunkFaceListRef = ioMesh.ChunksWRef().back().FaceListWRef();
+    
+    // Apply the correspondance map, fill the chunk and tidy/remove facets
     for (U32 newFaceNum=0; newFaceNum < numNewFaces; ++newFaceNum)
     {
-        MushMesh4Mesh::tFace& newFaceRef = ioMesh.FaceWRef(ioMesh.FaceCounter() + newFaceNum);
+        U32 faceIndexNum = ioMesh.FaceCounter() + newFaceNum;
+        MushMesh4Mesh::tFace& newFaceRef = ioMesh.FaceWRef(faceIndexNum);
         MushMesh4Face::tVertexList& newVertexListRef = newFaceRef.VertexListWRef();
         tSize newVertexListSize = newVertexListRef.size();
         
@@ -164,8 +175,9 @@ MushMeshLibraryFGenExtrude::FaceExtrudeOne(MushMesh4Mesh& ioMesh, Mushware::U32&
         }
         if (inToPoint)
         {
-            MushMesh4Util::NullFacetsRemove(ioMesh, ioMesh.FaceCounter() + newFaceNum);
+            MushMesh4Util::NullFacetsRemove(ioMesh, faceIndexNum);
         }
+        chunkFaceListRef.push_back(faceIndexNum);
     }
 
     // Commit the new faces

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } iKJwoqVdIXwCMTQh3g5qCg
 /*
- * $Id: MushMesh.h,v 1.25 2005/07/12 20:39:04 southa Exp $
+ * $Id: MushMesh.h,v 1.26 2005/07/18 13:13:36 southa Exp $
  * $Log: MushMesh.h,v $
+ * Revision 1.26  2005/07/18 13:13:36  southa
+ * Extrude to point and projectile mesh
+ *
  * Revision 1.25  2005/07/12 20:39:04  southa
  * Mesh library work
  *
@@ -102,6 +105,7 @@
  *
  */
 
+#include "MushMesh4Chunk.h"
 #include "MushMesh4Face.h"
 #include "MushMesh4FaceGenerator.h"
 #include "MushMesh4LinkFaceFace.h"

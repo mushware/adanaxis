@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } pM9lKxUBsV8LUNEqYXbulg
 /*
- * $Id: MushMesh4Mesh.h,v 1.6 2005/07/12 20:39:05 southa Exp $
+ * $Id: MushMesh4Mesh.h,v 1.7 2005/07/13 16:45:05 southa Exp $
  * $Log: MushMesh4Mesh.h,v $
+ * Revision 1.7  2005/07/13 16:45:05  southa
+ * Extrusion work
+ *
  * Revision 1.6  2005/07/12 20:39:05  southa
  * Mesh library work
  *
@@ -48,6 +51,7 @@
 #include "MushMeshStandard.h"
 
 #include "MushMeshMesh.h"
+#include "MushMesh4Chunk.h"
 #include "MushMesh4Face.h"
 #include "MushMesh4FaceGenerator.h"
 #include "MushMesh4VertexGenerator.h"
@@ -70,6 +74,8 @@ public:
     typedef std::vector<tConnection> tConnectivity;
     typedef Mushware::t4Val tCentroid;
     typedef Mushware::tVal tBoundingRadius;
+    typedef MushMesh4Chunk tChunk;
+    typedef std::vector<tChunk> tChunks;
     
     MushMesh4Mesh();
     virtual ~MushMesh4Mesh() {}
@@ -78,14 +84,19 @@ public:
     tVertex& VertexWRef(Mushware::U32 inNum) { MushcoreUtil::BoundsCheck(inNum, m_vertices.size()); return m_vertices[inNum]; }
     const tFace& Face(Mushware::U32 inNum) const { MushcoreUtil::BoundsCheck(inNum, m_faces.size()); return m_faces[inNum]; }
     tFace& FaceWRef(Mushware::U32 inNum) { MushcoreUtil::BoundsCheck(inNum, m_faces.size()); return m_faces[inNum]; }
+    const tChunk& Chunk(Mushware::U32 inNum) const { MushcoreUtil::BoundsCheck(inNum, m_chunks.size()); return m_chunks[inNum]; }
+    tChunk& ChunkWRef(Mushware::U32 inNum) { MushcoreUtil::BoundsCheck(inNum, m_chunks.size()); return m_chunks[inNum]; }
     
     const tNormals& Normals(void) const { if (!m_normalsValid) NormalsBuild(); return m_normals; }
     const tConnectivity& Connectivity(void) const { if (!m_connectivityValid) ConnectivityBuild(); return m_connectivity; }
     const Mushware::U32 NumConnections(void) const { if (!m_connectivityValid) ConnectivityBuild(); return m_numConnections; }
-    const tCentroid& Centroid(Mushware::U32 inFaceNum) const { if (!m_centroidValid) CentroidBuild(); return m_centroid; }
-    const tBoundingRadius BoundingRadius(Mushware::U32 inFaceNum) const { if (!m_boundingRadiusValid) BoundingRadiusBuild(); return m_boundingRadius; }
+    const tCentroid& Centroid(void) const { if (!m_centroidValid) CentroidBuild(); return m_centroid; }
+    const tBoundingRadius BoundingRadius(void) const { if (!m_boundingRadiusValid) BoundingRadiusBuild(); return m_boundingRadius; }
     const tCentroid& FaceCentroid(Mushware::U32 inFaceNum) const;
     const MushMesh4Face::tFaceConnectivity& FaceConnectivity(Mushware::U32 inFaceNum) const;
+    const tChunk::tVertexList& ChunkUniqueVertexList(Mushware::U32 inChunkNum) const;
+    const tCentroid& ChunkCentroid(Mushware::U32 inChunkNum) const;
+    const Mushware::tVal ChunkBoundingRadius(Mushware::U32 inChunkNum) const;
     
     void NormalsBuild(void) const;
     void ConnectivityBuild(void) const;    
@@ -94,6 +105,9 @@ public:
     void FaceCentroidBuild(Mushware::U32 inFaceNum) const;
     void FaceConnectivityBuild(Mushware::U32 inFaceNum) const;    
     void FaceBoundingRadiiBuild(void) const;
+    void ChunkUniqueVertexListBuild(Mushware::U32 inChunkNum) const;
+    void ChunkBoundingRadiusBuild(Mushware::U32 inChunkNum) const;
+    void ChunkCentroidBuild(Mushware::U32 inChunkNum) const;
 
     void AllTouch(void);
     void VerticesTouch(void);
@@ -110,6 +124,9 @@ private:
     Mushware::U32 m_faceCounter; //:readwrite :wref
     MushcoreAutoClonePtr<MushMesh4FaceGenerator> m_faceGenerator; //:readwrite :wref
     MushcoreAutoClonePtr<MushMesh4VertexGenerator> m_vertexGenerator; //:readwrite :wref
+    
+    // Collision
+    tChunks m_chunks; //:readwrite :wref
     
     // Derived representation
     mutable tNormals m_normals;
@@ -155,6 +172,10 @@ public:
     void VertexGeneratorSet(const MushcoreAutoClonePtr<MushMesh4VertexGenerator>& inValue) { m_vertexGenerator=inValue; }
     // Writable reference for m_vertexGenerator
     MushcoreAutoClonePtr<MushMesh4VertexGenerator>& VertexGeneratorWRef(void) { return m_vertexGenerator; }
+    const tChunks& Chunks(void) const { return m_chunks; }
+    void ChunksSet(const tChunks& inValue) { m_chunks=inValue; }
+    // Writable reference for m_chunks
+    tChunks& ChunksWRef(void) { return m_chunks; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -162,7 +183,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } z9Q1WCoH3dwH6MnFUPwitw
+//%classPrototypes } 1hhEHGoBUTD1vFH59zOkmA
 };
 
 inline const MushMesh4Mesh::tCentroid&
@@ -187,6 +208,45 @@ MushMesh4Mesh::FaceConnectivity(Mushware::U32 inFaceNum) const
     }
     MUSHCOREASSERT(faceRef.FaceConnectivityValid());
     return faceRef.FaceConnectivity(); 
+}
+
+inline const MushMesh4Chunk::tVertexList&
+MushMesh4Mesh::ChunkUniqueVertexList(Mushware::U32 inChunkNum) const
+{
+    const tChunk& chunkRef = Chunk(inChunkNum);
+    
+    if (!chunkRef.UniqueVertexListValid())
+    {
+        ChunkUniqueVertexListBuild(inChunkNum);
+    }
+    MUSHCOREASSERT(chunkRef.UniqueVertexListValid());
+    return chunkRef.UniqueVertexList(); 
+}
+
+inline const Mushware::tVal
+MushMesh4Mesh::ChunkBoundingRadius(Mushware::U32 inChunkNum) const
+{
+    const tChunk& chunkRef = Chunk(inChunkNum);
+    
+    if (!chunkRef.BoundingRadiusValid())
+    {
+        ChunkBoundingRadiusBuild(inChunkNum);
+    }
+    MUSHCOREASSERT(chunkRef.BoundingRadiusValid());
+    return chunkRef.BoundingRadius(); 
+}
+
+inline const MushMesh4Mesh::tCentroid&
+MushMesh4Mesh::ChunkCentroid(Mushware::U32 inChunkNum) const
+{
+    const tChunk& chunkRef = Chunk(inChunkNum);
+    
+    if (!chunkRef.CentroidValid())
+    {
+        ChunkCentroidBuild(inChunkNum);
+    }
+    MUSHCOREASSERT(chunkRef.CentroidValid());
+    return chunkRef.Centroid(); 
 }
 
 //%inlineHeader {
