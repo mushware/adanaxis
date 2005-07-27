@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } ic4notP94YKlJO17pfZjfA
 /*
- * $Id$
- * $Log$
+ * $Id: MushMeshLibraryUtil.cpp,v 1.1 2005/07/19 13:44:26 southa Exp $
+ * $Log: MushMeshLibraryUtil.cpp,v $
+ * Revision 1.1  2005/07/19 13:44:26  southa
+ * MushMesh4Chunk work
+ *
  */
 
 #include "MushMeshLibraryUtil.h"
@@ -41,7 +44,7 @@ MushMeshLibraryUtil::NewFaceCreate(MushMesh4Mesh& ioMesh,
     {
         throw MushcoreLogicFail("Attempt to add face without creating a chunk");
     }
-    ioMesh.ChunksWRef().back().FaceList().push_back(ioMesh.FaceCounter());
+    ioMesh.ChunksWRef().back().FaceListWRef().push_back(ioMesh.FaceCounter());
 
     ++ioMesh.FaceCounterWRef();
 }
