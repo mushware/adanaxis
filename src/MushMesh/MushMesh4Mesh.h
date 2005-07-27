@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } pM9lKxUBsV8LUNEqYXbulg
 /*
- * $Id: MushMesh4Mesh.h,v 1.7 2005/07/13 16:45:05 southa Exp $
+ * $Id: MushMesh4Mesh.h,v 1.8 2005/07/19 13:44:26 southa Exp $
  * $Log: MushMesh4Mesh.h,v $
+ * Revision 1.8  2005/07/19 13:44:26  southa
+ * MushMesh4Chunk work
+ *
  * Revision 1.7  2005/07/13 16:45:05  southa
  * Extrusion work
  *
@@ -109,8 +112,8 @@ public:
     void ChunkBoundingRadiusBuild(Mushware::U32 inChunkNum) const;
     void ChunkCentroidBuild(Mushware::U32 inChunkNum) const;
 
-    void AllTouch(void);
-    void VerticesTouch(void);
+    void AllTouch(void); // Called from constructor
+    void VerticesTouch(void); // Called from constructor
     void Prebuild(void);
     
 private:

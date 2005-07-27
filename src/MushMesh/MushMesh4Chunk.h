@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } YGouJviALgm2Aa1vRXc28Q
 /*
- * $Id$
- * $Log$
+ * $Id: MushMesh4Chunk.h,v 1.1 2005/07/19 13:44:26 southa Exp $
+ * $Log: MushMesh4Chunk.h,v $
+ * Revision 1.1  2005/07/19 13:44:26  southa
+ * MushMesh4Chunk work
+ *
  */
 
 #include "MushMeshStandard.h"
@@ -41,8 +44,8 @@ public:
     MushMesh4Chunk();
     virtual ~MushMesh4Chunk() {}
     
-    virtual void AllTouch(void); 
-    virtual void VerticesTouch(void); 
+    void AllTouch(void); // Called from constructor
+    void VerticesTouch(void); // Called from constructor
     
     // Read access to mutable elements
     const tVertexList& UniqueVertexList(void) const;    
