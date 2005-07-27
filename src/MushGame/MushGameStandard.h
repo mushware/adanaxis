@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 224Ie4daUSboM1+BVBtEVQ
 /*
- * $Id: MushGameStandard.h,v 1.2 2005/06/24 10:30:13 southa Exp $
+ * $Id: MushGameStandard.h,v 1.3 2005/07/01 10:36:46 southa Exp $
  * $Log: MushGameStandard.h,v $
+ * Revision 1.3  2005/07/01 10:36:46  southa
+ * MushRender work
+ *
  * Revision 1.2  2005/06/24 10:30:13  southa
  * MushGame camera work
  *
@@ -51,18 +54,6 @@
 #include <MushMesh.h>
 #else
 #include "MushMesh/MushMesh.h"
-#endif
-
-#if 0
-
-#if defined(HAVE_MUSHGL_MUSHGL_H)
-#include <MushGL/MushGL.h>
-#elif defined(HAVE_MUSHGL_H)
-#include <MushGL.h>
-#else
-#include "MushGL/MushGL.h"
-#endif
-
 #endif
 
 namespace Mushware
