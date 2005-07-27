@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } T/MWnTXtRKRQsmRlB17JyQ
 /*
- * $Id: MushGamePiece.h,v 1.6 2005/07/07 16:54:17 southa Exp $
+ * $Id: MushGamePiece.h,v 1.7 2005/07/18 13:13:36 southa Exp $
  * $Log: MushGamePiece.h,v $
+ * Revision 1.7  2005/07/18 13:13:36  southa
+ * Extrude to point and projectile mesh
+ *
  * Revision 1.6  2005/07/07 16:54:17  southa
  * Control tweaks
  *
@@ -53,7 +56,7 @@ class MushGameMessage;
 #include "API/mushMushMesh.h"
 
 //:generate virtual standard ostream xml1
-class MushGamePiece : public MushcoreVirtualObject
+class MushGamePiece : public virtual MushcoreVirtualObject
 {
 public:
     MushGamePiece();
