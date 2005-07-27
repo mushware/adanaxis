@@ -21,12 +21,16 @@
  ****************************************************************************/
 //%Header } oprIPxIlqMIU0R5tKHZ3SA
 /*
- * $Id$
- * $Log$
+ * $Id: AdanaxisPieceProjectile.h,v 1.1 2005/07/12 12:18:17 southa Exp $
+ * $Log: AdanaxisPieceProjectile.h,v $
+ * Revision 1.1  2005/07/12 12:18:17  southa
+ * Projectile work
+ *
  */
 
 #include "AdanaxisStandard.h"
 
+#include "API/mushMushCollision.h"
 #include "API/mushMushGame.h"
 #include "API/mushMushGL.h"
 #include "API/mushMushMesh.h"
@@ -34,15 +38,17 @@
 
 //:xml1base MushGamePiece
 //:generate virtual standard ostream xml1
-class AdanaxisPieceProjectile : public MushGamePiece
+class AdanaxisPieceProjectile : public MushGamePiece, public MushCollisionPiece
 {
 public:
     explicit AdanaxisPieceProjectile(const std::string& inID = "");
     virtual ~AdanaxisPieceProjectile() {}
     
     virtual void Move(MushGameLogic& ioLogic, const Mushware::tVal inFrameslice);
-
     virtual void Render(MushGameLogic& ioLogic, MushRenderMesh& inRender, const MushGameCamera& inCamera);
+    
+    virtual const MushMesh4Mesh& CollisionMesh(void) const { return m_mesh; }
+    virtual const MushMeshPosticity& CollisionPost(void) const { return Post(); }
     
 private:
     std::string m_id;
