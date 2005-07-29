@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } c+kkiNz4qO+XRi5oHm5Ztg
 /*
- * $Id: TestMushcoreCounter.h,v 1.1 2005/06/13 14:25:46 southa Exp $
+ * $Id: TestMushcoreCounter.h,v 1.2 2005/07/29 11:53:41 southa Exp $
  * $Log: TestMushcoreCounter.h,v $
+ * Revision 1.2  2005/07/29 11:53:41  southa
+ * MushcoreMaptor created
+ *
  * Revision 1.1  2005/06/13 14:25:46  southa
  * Pipe and ordered data work
  *
@@ -32,17 +35,30 @@
 
 #include "TestMushcoreStandard.h"
 
+//:generate ostream
 class TestMushcoreCounter
 {
 public:
     TestMushcoreCounter() : m_pCount(NULL) {}
     TestMushcoreCounter(Mushware::U32& inCount) : m_pCount(&inCount) { ++*m_pCount; }
     TestMushcoreCounter(const TestMushcoreCounter& inObj) : m_pCount(inObj.m_pCount) { ++*m_pCount; }
-    ~TestMushcoreCounter() { if (m_pCount != NULL) --*m_pCount; }
+    virtual ~TestMushcoreCounter() { if (m_pCount != NULL) --*m_pCount; }
     
 private:
     Mushware::U32 *m_pCount;
+//%classPrototypes {
+public:
+    virtual void AutoPrint(std::ostream& ioOut) const;
+//%classPrototypes } b86DSDsq8lQQbiM0rrNtkg
 };
+//%inlineHeader {
+inline std::ostream&
+operator<<(std::ostream& ioOut, const TestMushcoreCounter& inObj)
+{
+    inObj.AutoPrint(ioOut);
+    return ioOut;
+}
+//%inlineHeader } grgfDk8Jvfo8V+vau0KSNw
 
 
 //%includeGuardEnd {

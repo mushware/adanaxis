@@ -19,10 +19,29 @@
  ****************************************************************************/
 //%Header } FcQIvOSTVzh1l8S42FSs3g
 /*
- * $Id$
- * $Log$
+ * $Id: TestMushcoreCounter.cpp,v 1.1 2005/06/13 14:25:46 southa Exp $
+ * $Log: TestMushcoreCounter.cpp,v $
+ * Revision 1.1  2005/06/13 14:25:46  southa
+ * Pipe and ordered data work
+ *
  */
 
 
 #include "TestMushcoreCounter.h"
 
+//%outOfLineFunctions {
+void
+TestMushcoreCounter::AutoPrint(std::ostream& ioOut) const
+{
+    ioOut << "[";
+    if (m_pCount == NULL)
+    {
+        ioOut << "pCount=NULL" ;
+    }
+    else
+    {
+        ioOut << "pCount=" << *m_pCount;
+    }
+    ioOut << "]";
+}
+//%outOfLineFunctions } QRyICuAGxR/CwyXbo+TjWA

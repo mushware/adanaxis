@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } bMQSqQZvxv1cGuqD8QyRCw
 /*
- * $Id: TestMushcoreMaptor.cpp,v 1.1 2005/07/29 11:53:41 southa Exp $
+ * $Id: TestMushcoreMaptor.cpp,v 1.2 2005/07/29 14:59:51 southa Exp $
  * $Log: TestMushcoreMaptor.cpp,v $
+ * Revision 1.2  2005/07/29 14:59:51  southa
+ * Maptor access
+ *
  * Revision 1.1  2005/07/29 11:53:41  southa
  * MushcoreMaptor created
  *
@@ -70,7 +73,7 @@ TestMushcoreMaptor::TestMaptor(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
         throw MushcoreCommandFail("Erase fault 1");
     }
     
-    if (maptor.erase(6) != 1 || counter != 2 || maptor.size() != 2)
+    if (maptor.erase(6) != 1 || counter != 2 || maptor.size() != 4)
     {
         throw MushcoreCommandFail("Erase fault 2");
     }
@@ -189,9 +192,9 @@ TestMushcoreMaptor::TestMaptor(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
     u32Maptor.push_back(7);
     u32Maptor.push_back(1);
     
-    MushcoreMaptor<U32>::tIter endIter = u32Maptor.end();
+    MushcoreMaptor<U32>::iterator endIter = u32Maptor.end();
     U32 sum = 0;
-    for (MushcoreMaptor<U32>::tIter p = u32Maptor.begin(); p != endIter;)
+    for (MushcoreMaptor<U32>::iterator p = u32Maptor.begin(); p != endIter;)
     {
         sum += *p;
         if (*p == 7)
@@ -204,14 +207,14 @@ TestMushcoreMaptor::TestMaptor(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
         }
     }
     
-    if (sum != 11 || u32Maptor.size() != 2)
+    if (sum != 11 || u32Maptor.size() != 3)
     {
         throw MushcoreCommandFail("Iterator fault 1");
     }
     
-    MushcoreMaptor<U32>::tConstIter endConstIter = u32Maptor.end();
+    MushcoreMaptor<U32>::const_iterator endConstIter = u32Maptor.end();
     sum = 0;
-    for (MushcoreMaptor<U32>::tConstIter p = u32Maptor.begin(); p != endConstIter; ++p)
+    for (MushcoreMaptor<U32>::const_iterator p = u32Maptor.begin(); p != endConstIter; ++p)
     {
         sum += *p;
     }
@@ -243,6 +246,24 @@ TestMushcoreMaptor::TestMaptor(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
     {
         throw MushcoreCommandFail("Reference fault 2");
     }
+    
+    maptor.resize(15);
+    if (maptor.size() != 15)
+    {
+        throw MushcoreCommandFail("Size fault 1");        
+    }
+    maptor.resize(0);
+    if (maptor.size() != 0)
+    {
+        throw MushcoreCommandFail("Size fault 2");        
+    }
+    maptor.resize(15);
+    maptor.resize(7);
+    if (maptor.size() != 7)
+    {
+        throw MushcoreCommandFail("Size fault 3");        
+    }
+
     return MushcoreScalar(0);
 }
 
