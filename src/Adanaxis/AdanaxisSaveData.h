@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } lP1KYvwjO8U4fVO07cIsNw
 /*
- * $Id: AdanaxisSaveData.h,v 1.6 2005/07/12 12:18:17 southa Exp $
+ * $Id: AdanaxisSaveData.h,v 1.7 2005/07/29 08:27:47 southa Exp $
  * $Log: AdanaxisSaveData.h,v $
+ * Revision 1.7  2005/07/29 08:27:47  southa
+ * Collision work
+ *
  * Revision 1.6  2005/07/12 12:18:17  southa
  * Projectile work
  *
@@ -57,9 +60,9 @@ class AdanaxisSaveData : public MushGameSaveData
 {
 public:
     typedef AdanaxisPieceProjectile tProjectile;
-    typedef std::list<tProjectile> tProjectileList;
+    typedef MushcoreMaptor<tProjectile> tProjectileList;
     typedef AdanaxisPieceKhazi tKhazi;
-    typedef std::list<tKhazi> tKhaziList;
+    typedef MushcoreMaptor<tKhazi> tKhaziList;
 
     AdanaxisSaveData();
     virtual ~AdanaxisSaveData() {}
