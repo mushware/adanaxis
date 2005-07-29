@@ -10,8 +10,11 @@
 #
 ##############################################################################
 
-# $Id: SourceConditioner.pl,v 1.42 2005/07/04 11:10:41 southa Exp $
+# $Id: SourceConditioner.pl,v 1.43 2005/07/14 12:50:29 southa Exp $
 # $Log: SourceConditioner.pl,v $
+# Revision 1.43  2005/07/14 12:50:29  southa
+# Extrusion work
+#
 # Revision 1.42  2005/07/04 11:10:41  southa
 # Rendering pipeline
 #
@@ -261,7 +264,7 @@ sub TemplateDataGenerate($$)
     {
         $infoRef->{TEMPLATE_PREFIX} = $templateLine;
         
-        die "Malformed template directive" unless ($templateLine =~ /<(.*)>/);
+        die "Malformed template directive '$templateLine'" unless ($templateLine =~ /<(.*)>/);
 
         my $typedSuffix = $1;
         my $untypedSuffix = "<";
@@ -321,6 +324,9 @@ sub HeaderInfoCreate($$)
                 }
                 else
                 {
+# Remove default arguments from template line - we won't need them
+                    $line =~ s/(<.*)<[^>]*>(.*>)/$1$2/g;
+                    $line =~ s/(\s*=[^,>]+)//g;
                     $$infoRef{CLASS_TEMPLATE} = $line;
                 }
             }
