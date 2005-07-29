@@ -23,11 +23,16 @@
  ****************************************************************************/
 //%Header } c2RtA/5bJ+a5yX6GTdYnag
 /*
- * $Id$
- * $Log$
+ * $Id: MushCollisionPiece.h,v 1.1 2005/07/27 18:09:59 southa Exp $
+ * $Log: MushCollisionPiece.h,v $
+ * Revision 1.1  2005/07/27 18:09:59  southa
+ * Collision checking
+ *
  */
 
 #include "MushCollisionStandard.h"
+
+#include "MushCollisionWorkspace.h"
 
 //:generate virtual standard ostream xml1
 class MushCollisionPiece : public virtual MushcoreVirtualObject
@@ -37,6 +42,8 @@ public:
     virtual const MushMeshPosticity& CollisionPost(void) const;
 
 private:
+    MushCollisionWorkspace m_collisionWorkspace;
+    
 //%classPrototypes {
 public:
     virtual const char *AutoName(void) const;

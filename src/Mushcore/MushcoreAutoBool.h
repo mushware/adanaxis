@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } +WB2MdIOBsSrTuMx0VuX2Q
 /*
- * $Id$
- * $Log$
+ * $Id: MushcoreAutoBool.h,v 1.1 2005/06/13 14:25:45 southa Exp $
+ * $Log: MushcoreAutoBool.h,v $
+ * Revision 1.1  2005/06/13 14:25:45  southa
+ * Pipe and ordered data work
+ *
  */
 
 #include "MushcoreStandard.h"
@@ -35,6 +38,9 @@ public:
     MushcoreAutoBool(bool &inBool) : m_pBool(&inBool) { *m_pBool = true; }
     ~MushcoreAutoBool() { *m_pBool = false; }
 private:
+    MushcoreAutoBool(const MushcoreAutoBool& inBool) : m_pBool(inBool.m_pBool) {}
+    const MushcoreAutoBool& operator=(MushcoreAutoBool&) { return *this; }
+    
     bool *m_pBool;
 };
 

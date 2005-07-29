@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } WV+Zfql/63Y6iHwT6AXVfQ
 /*
- * $Id$
- * $Log$
+ * $Id: MushCollisionPiece.cpp,v 1.1 2005/07/27 18:09:59 southa Exp $
+ * $Log: MushCollisionPiece.cpp,v $
+ * Revision 1.1  2005/07/27 18:09:59  southa
+ * Collision checking
+ *
  */
 
 #include "MushCollisionPiece.h"
@@ -73,6 +76,7 @@ void
 MushCollisionPiece::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
+    ioOut << "collisionWorkspace=" << m_collisionWorkspace;
     ioOut << "]";
 }
 bool
@@ -84,6 +88,10 @@ MushCollisionPiece::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::stri
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
     }
+    else if (inTagStr == "collisionWorkspace")
+    {
+        ioIn >> m_collisionWorkspace;
+    }
     else 
     {
         return false;
@@ -93,5 +101,7 @@ MushCollisionPiece::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::stri
 void
 MushCollisionPiece::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
+    ioOut.TagSet("collisionWorkspace");
+    ioOut << m_collisionWorkspace;
 }
-//%outOfLineFunctions } rr64XEbE2865DW9MUmyBQg
+//%outOfLineFunctions } KEOYoALsa82JDtqEcCxtTg

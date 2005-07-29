@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } chUuZxIZ5LkHF5ysVOjQrQ
 /*
- * $Id: MushcoreEnv.cpp,v 1.12 2005/03/13 00:34:47 southa Exp $
+ * $Id: MushcoreEnv.cpp,v 1.13 2005/05/19 13:02:15 southa Exp $
  * $Log: MushcoreEnv.cpp,v $
+ * Revision 1.13  2005/05/19 13:02:15  southa
+ * Mac release work
+ *
  * Revision 1.12  2005/03/13 00:34:47  southa
  * Build fixes, key support and stereo
  *
@@ -122,7 +125,7 @@
 using namespace Mushware;
 using namespace std;
 
-MushcoreEnv *MushcoreEnv::m_instance=NULL;
+MUSHCORE_SINGLETON_INSTANCE(MushcoreEnv);
 
 MushcoreEnv::MushcoreEnv() :
     m_outStream(&cerr),

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } ut0PZ9K0qO+aZi1YpU+JsA
 /*
- * $Id$
- * $Log$
+ * $Id: MushCollisionResolver.cpp,v 1.1 2005/07/27 18:09:59 southa Exp $
+ * $Log: MushCollisionResolver.cpp,v $
+ * Revision 1.1  2005/07/27 18:09:59  southa
+ * Collision checking
+ *
  */
 
 #include "MushCollisionResolver.h"
@@ -71,6 +74,7 @@ void
 MushCollisionResolver::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
+    ioOut << "frameMsec=" << m_frameMsec;
     ioOut << "]";
 }
 bool
@@ -82,6 +86,10 @@ MushCollisionResolver::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::s
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
     }
+    else if (inTagStr == "frameMsec")
+    {
+        ioIn >> m_frameMsec;
+    }
     else 
     {
         return false;
@@ -91,5 +99,7 @@ MushCollisionResolver::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::s
 void
 MushCollisionResolver::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
+    ioOut.TagSet("frameMsec");
+    ioOut << m_frameMsec;
 }
-//%outOfLineFunctions } 4mKibTCSxSPbj2PR0U2u1Q
+//%outOfLineFunctions } Wu3J/g5sj6Eo9u+Jjy0hSw

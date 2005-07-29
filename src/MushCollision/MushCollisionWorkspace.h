@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } CqrAMDY0CcR/iEXbQBk/ZA
 /*
- * $Id$
- * $Log$
+ * $Id: MushCollisionWorkspace.h,v 1.1 2005/07/27 18:09:59 southa Exp $
+ * $Log: MushCollisionWorkspace.h,v $
+ * Revision 1.1  2005/07/27 18:09:59  southa
+ * Collision checking
+ *
  */
 
 #include "MushCollisionStandard.h"
@@ -33,11 +36,31 @@
 class MushCollisionWorkspace : public MushcoreVirtualObject
 {
 public:
+    MushCollisionWorkspace();
+
+    void Touch(void); // Called by constructor
+    void ResetIfNeeded(Mushware::tMsec inFrameMsec);
     
 private:
-
+    Mushware::tMsec m_frameMsec; //:readwrite
+    Mushware::t4Val m_centroid; //:readwrite :wref
+    std::vector<Mushware::t4Val> m_chunkCentroids; //:readwrite :wref
+    
+    bool m_centroidValid;
+    bool m_chunkCentroidsValid;
+    
 //%classPrototypes {
 public:
+    const Mushware::tMsec& FrameMsec(void) const { return m_frameMsec; }
+    void FrameMsecSet(const Mushware::tMsec& inValue) { m_frameMsec=inValue; }
+    const Mushware::t4Val& Centroid(void) const { return m_centroid; }
+    void CentroidSet(const Mushware::t4Val& inValue) { m_centroid=inValue; }
+    // Writable reference for m_centroid
+    Mushware::t4Val& CentroidWRef(void) { return m_centroid; }
+    const std::vector<Mushware::t4Val>& ChunkCentroids(void) const { return m_chunkCentroids; }
+    void ChunkCentroidsSet(const std::vector<Mushware::t4Val>& inValue) { m_chunkCentroids=inValue; }
+    // Writable reference for m_chunkCentroids
+    std::vector<Mushware::t4Val>& ChunkCentroidsWRef(void) { return m_chunkCentroids; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -45,7 +68,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } 1oBgFruy5qHAaudtV+Hcmg
+//%classPrototypes } LiHeCqRN6Tc5e7cDR6BR9Q
 };
 //%inlineHeader {
 inline std::ostream&

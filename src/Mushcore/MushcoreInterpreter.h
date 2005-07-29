@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 9BonG8ZCjVEP0E/J+hz7Eg
 /*
- * $Id: MushcoreInterpreter.h,v 1.12 2004/01/05 14:27:41 southa Exp $
+ * $Id: MushcoreInterpreter.h,v 1.13 2005/05/19 13:02:15 southa Exp $
  * $Log: MushcoreInterpreter.h,v $
+ * Revision 1.13  2005/05/19 13:02:15  southa
+ * Mac release work
+ *
  * Revision 1.12  2004/01/05 14:27:41  southa
  * MushPie work and build fixes
  *
@@ -106,20 +109,19 @@
 #include "MushcoreStandard.h"
 
 #include "MushcoreCommandHandler.h"
+#include "MushcoreSingleton.h"
 
 class MushcoreCommand;
 class MushcoreEnv;
 class MushcoreScalar;
 
-class MushcoreInterpreter
+class MushcoreInterpreter : public MushcoreSingleton<MushcoreInterpreter>
 {
 public:
     typedef void (*tLogFunction)(const std::string& inStr);
     
     MushcoreInterpreter();
     virtual ~MushcoreInterpreter() {}
-
-    static MushcoreInterpreter& Sgl(void) {return *((m_instance==NULL)?m_instance=new MushcoreInterpreter:m_instance);}
 
     virtual void Execute(const std::string& inStr);
     
@@ -137,8 +139,6 @@ private:
     
     tHandlerMap m_handlers;
     tLogFunction m_logFunction;
-    
-    static MushcoreInterpreter *m_instance;
 };
 //%includeGuardEnd {
 #endif

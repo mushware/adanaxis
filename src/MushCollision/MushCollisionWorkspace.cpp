@@ -19,11 +19,41 @@
  ****************************************************************************/
 //%Header } 6KASaPiwmr9A4q1aVRtl6g
 /*
- * $Id$
- * $Log$
+ * $Id: MushCollisionWorkspace.cpp,v 1.1 2005/07/27 18:09:59 southa Exp $
+ * $Log: MushCollisionWorkspace.cpp,v $
+ * Revision 1.1  2005/07/27 18:09:59  southa
+ * Collision checking
+ *
  */
 
 #include "MushCollisionWorkspace.h"
+
+using namespace Mushware;
+using namespace std;
+
+MushCollisionWorkspace::MushCollisionWorkspace() :
+    m_frameMsec(0)
+{
+    Touch();    
+}
+
+// Called by constructor
+void
+MushCollisionWorkspace::Touch(void)
+{
+    m_centroidValid = false;
+    m_chunkCentroidsValid = false;    
+}
+
+void
+MushCollisionWorkspace::ResetIfNeeded(Mushware::tMsec inFrameMsec)
+{
+    if (m_frameMsec != inFrameMsec)
+    {
+        Touch();
+        m_frameMsec = inFrameMsec;
+    }
+}
 
 //%outOfLineFunctions {
 
@@ -58,6 +88,11 @@ void
 MushCollisionWorkspace::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
+    ioOut << "frameMsec=" << m_frameMsec << ", ";
+    ioOut << "centroid=" << m_centroid << ", ";
+    ioOut << "chunkCentroids=" << m_chunkCentroids << ", ";
+    ioOut << "centroidValid=" << m_centroidValid << ", ";
+    ioOut << "chunkCentroidsValid=" << m_chunkCentroidsValid;
     ioOut << "]";
 }
 bool
@@ -69,6 +104,26 @@ MushCollisionWorkspace::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
     }
+    else if (inTagStr == "frameMsec")
+    {
+        ioIn >> m_frameMsec;
+    }
+    else if (inTagStr == "centroid")
+    {
+        ioIn >> m_centroid;
+    }
+    else if (inTagStr == "chunkCentroids")
+    {
+        ioIn >> m_chunkCentroids;
+    }
+    else if (inTagStr == "centroidValid")
+    {
+        ioIn >> m_centroidValid;
+    }
+    else if (inTagStr == "chunkCentroidsValid")
+    {
+        ioIn >> m_chunkCentroidsValid;
+    }
     else 
     {
         return false;
@@ -78,5 +133,15 @@ MushCollisionWorkspace::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::
 void
 MushCollisionWorkspace::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
+    ioOut.TagSet("frameMsec");
+    ioOut << m_frameMsec;
+    ioOut.TagSet("centroid");
+    ioOut << m_centroid;
+    ioOut.TagSet("chunkCentroids");
+    ioOut << m_chunkCentroids;
+    ioOut.TagSet("centroidValid");
+    ioOut << m_centroidValid;
+    ioOut.TagSet("chunkCentroidsValid");
+    ioOut << m_chunkCentroidsValid;
 }
-//%outOfLineFunctions } 7U0lCVx4tlIQkeWRConURw
+//%outOfLineFunctions } UqBfnTcNY4hBO786+WrQWA

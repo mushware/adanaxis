@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } CFEozIhAxC4/w3MDbuOShQ
 /*
- * $Id: AdanaxisUtil.cpp,v 1.11 2005/07/16 14:22:59 southa Exp $
+ * $Id: AdanaxisUtil.cpp,v 1.12 2005/07/18 13:13:36 southa Exp $
  * $Log: AdanaxisUtil.cpp,v $
+ * Revision 1.12  2005/07/18 13:13:36  southa
+ * Extrude to point and projectile mesh
+ *
  * Revision 1.11  2005/07/16 14:22:59  southa
  * Added diagnostic renderer
  *
@@ -58,6 +61,7 @@
 
 #include "AdanaxisAppHandler.h"
 #include "AdanaxisMeshLibrary.h"
+#include "AdanaxisSaveData.h"
 #include "AdanaxisVolatileData.h"
 
 #include "API/mushMushMeshLibrary.h"
@@ -90,34 +94,34 @@ AdanaxisUtil::MeshLibrary(void)
 void
 AdanaxisUtil::TestPiecesCreate(AdanaxisLogic& ioLogic)
 {
-    AdanaxisVolatileData::tDecoList& decoListRef = ioLogic.VolatileData().DecoListWRef();
+    AdanaxisSaveData::tKhaziList& khaziListRef = ioLogic.SaveData().KhaziListWRef();
     
     tVal rotMin = -0.03;
     tVal rotMax = 0.03;
     
     for (U32 i=0; i<20; ++i)
     {
-        decoListRef.push_back(AdanaxisPieceDeco("testObj1"));
-        AdanaxisVolatileData::tDeco& decoRef = decoListRef.back();
+        khaziListRef.push_back(AdanaxisPieceKhazi("testObj1"));
+        AdanaxisSaveData::tKhazi& khaziRef = khaziListRef.back();
         
-        decoRef.PostWRef().PosSet(t4Val(MushMeshTools::Random(-1,1),MushMeshTools::Random(-1,1),MushMeshTools::Random(-1,1),MushMeshTools::Random(-1,1)));
+        khaziRef.PostWRef().PosSet(t4Val(MushMeshTools::Random(-1,1),MushMeshTools::Random(-1,1),MushMeshTools::Random(-1,1),MushMeshTools::Random(-1,1)));
         
-        decoRef.PostWRef().PosWRef() *= 20;
+        khaziRef.PostWRef().PosWRef() *= 20;
         
         tQValPair orientation = MushMeshTools::RandomOrientation();
-        decoRef.PostWRef().AngPosSet(orientation);
-        decoRef.PostWRef().AngVelWRef().ToRotationIdentitySet();
+        khaziRef.PostWRef().AngPosSet(orientation);
+        khaziRef.PostWRef().AngVelWRef().ToRotationIdentitySet();
         
         if (i % 5 > 1)
         {
-            decoRef.PostWRef().AngVelWRef().OuterMultiplyBy(orientation);
+            khaziRef.PostWRef().AngVelWRef().OuterMultiplyBy(orientation);
             
-            decoRef.PostWRef().AngVelWRef().OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis
+            khaziRef.PostWRef().AngVelWRef().OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis
                                                  (0, MushMeshTools::Random(rotMin, rotMax)));
-            decoRef.PostWRef().AngVelWRef().OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis
+            khaziRef.PostWRef().AngVelWRef().OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis
                                                  (1, MushMeshTools::Random(rotMin, rotMax)));
             
-            decoRef.PostWRef().AngVelWRef().OuterMultiplyBy(orientation.Conjugate());
+            khaziRef.PostWRef().AngVelWRef().OuterMultiplyBy(orientation.Conjugate());
         }
 
         MushMeshLibraryFGenExtrude faceExtrude;
@@ -131,53 +135,52 @@ AdanaxisUtil::TestPiecesCreate(AdanaxisLogic& ioLogic)
         {
             case 0:
             {
-                MushMeshLibraryBase::Sgl().PolygonPrismCreate(decoRef.MeshWRef(), t4Val(1,1,0.5,3), 6);            
-                
+                MushMeshLibraryBase::Sgl().PolygonPrismCreate(khaziRef.MeshWRef(), t4Val(1,1,0.5,3), 6);            
             }
             break;
                 
             case 1:
             {
-                MushMeshLibraryBase::Sgl().UnitTesseractCreate(decoRef.MeshWRef());
-                //MushMeshLibraryBase::Sgl().PolygonPrismCreate(decoRef.MeshWRef(), t4Val(1,1,0.5,3), 6);            
+                MushMeshLibraryBase::Sgl().UnitTesseractCreate(khaziRef.MeshWRef());
+                //MushMeshLibraryBase::Sgl().PolygonPrismCreate(khaziRef.MeshWRef(), t4Val(1,1,0.5,3), 6);            
                 for (U32 j=0; j<8; ++j)
                 {
                     extrusionContext.ResetNewFace(j);
-                    faceExtrude.FaceExtrude(decoRef.MeshWRef(), extrusionContext, 1);
+                    faceExtrude.FaceExtrude(khaziRef.MeshWRef(), extrusionContext, 1);
                 }
                 disp.ScaleSet(0.3);
                 tVal dist = 3.0;
                 disp.OffsetSet(t4Val(0,0,0,dist));
                 extrusionContext.ResetNewDispFace(disp, 0);
-                vertexExtrude.FaceExtrude(decoRef.MeshWRef(), extrusionContext, 1);
+                vertexExtrude.FaceExtrude(khaziRef.MeshWRef(), extrusionContext, 1);
                 disp.OffsetSet(t4Val(0,0,0,-dist));
                 extrusionContext.ResetNewDispFace(disp, 1);
-                vertexExtrude.FaceExtrude(decoRef.MeshWRef(), extrusionContext, 1);
+                vertexExtrude.FaceExtrude(khaziRef.MeshWRef(), extrusionContext, 1);
                 disp.OffsetSet(t4Val(0,0,dist,0));
                 extrusionContext.ResetNewDispFace(disp, 2);
-                vertexExtrude.FaceExtrude(decoRef.MeshWRef(), extrusionContext, 1);
+                vertexExtrude.FaceExtrude(khaziRef.MeshWRef(), extrusionContext, 1);
                 disp.OffsetSet(t4Val(0,0,-dist,0));
                 extrusionContext.ResetNewDispFace(disp, 3);
-                vertexExtrude.FaceExtrude(decoRef.MeshWRef(), extrusionContext, 1);
+                vertexExtrude.FaceExtrude(khaziRef.MeshWRef(), extrusionContext, 1);
                 disp.OffsetSet(t4Val(0,dist,0,0));
                 extrusionContext.ResetNewDispFace(disp, 4);
-                vertexExtrude.FaceExtrude(decoRef.MeshWRef(), extrusionContext, 1);
+                vertexExtrude.FaceExtrude(khaziRef.MeshWRef(), extrusionContext, 1);
                 disp.OffsetSet(t4Val(0,-dist,0,0));
                 extrusionContext.ResetNewDispFace(disp, 5);
-                vertexExtrude.FaceExtrude(decoRef.MeshWRef(), extrusionContext, 1);
+                vertexExtrude.FaceExtrude(khaziRef.MeshWRef(), extrusionContext, 1);
                 disp.OffsetSet(t4Val(dist,0,0,0));
                 extrusionContext.ResetNewDispFace(disp, 6);
-                vertexExtrude.FaceExtrude(decoRef.MeshWRef(), extrusionContext, 1);
+                vertexExtrude.FaceExtrude(khaziRef.MeshWRef(), extrusionContext, 1);
                 disp.OffsetSet(t4Val(-dist,0,0,0));
                 extrusionContext.ResetNewDispFace(disp, 7);
-                vertexExtrude.FaceExtrude(decoRef.MeshWRef(), extrusionContext, 1);     
+                vertexExtrude.FaceExtrude(khaziRef.MeshWRef(), extrusionContext, 1);     
             }
             break;
             
             case 2:
             {
-                //MushMeshLibraryBase::Sgl().UnitTesseractCreate(decoRef.MeshWRef());
-                MushMeshLibraryBase::Sgl().PolygonPrismCreate(decoRef.MeshWRef(), t4Val(1,1,1,1), 12);            
+                //MushMeshLibraryBase::Sgl().UnitTesseractCreate(khaziRef.MeshWRef());
+                MushMeshLibraryBase::Sgl().PolygonPrismCreate(khaziRef.MeshWRef(), t4Val(1,1,1,1), 12);            
                 U32 number = 12;
                 t4Val offset(0,0,0,-1);
                 if (i % 1 == 0)
@@ -190,24 +193,24 @@ AdanaxisUtil::TestPiecesCreate(AdanaxisLogic& ioLogic)
                 }
                 extrusionContext.ScaleVelocitySet(1.0/number);
                 extrusionContext.ResetNewFace(0);
-                faceExtrude.FaceExtrude(decoRef.MeshWRef(), extrusionContext, number);
+                faceExtrude.FaceExtrude(khaziRef.MeshWRef(), extrusionContext, number);
                 extrusionContext.ResetNewFace(1);
-                faceExtrude.FaceExtrude(decoRef.MeshWRef(), extrusionContext, number);
+                faceExtrude.FaceExtrude(khaziRef.MeshWRef(), extrusionContext, number);
 
                 disp.OffsetSet(offset);
                 extrusionContext.ResetNewDispFace(disp, 0);
-                vertexExtrude.FaceExtrude(decoRef.MeshWRef(), extrusionContext, number);
+                vertexExtrude.FaceExtrude(khaziRef.MeshWRef(), extrusionContext, number);
                 offset.WSet(-offset.W());
                 disp.OffsetSet(offset);
                 disp.RotationSet(disp.Rotation().Conjugate());
                 extrusionContext.ResetNewDispFace(disp, 1);
-                vertexExtrude.FaceExtrude(decoRef.MeshWRef(), extrusionContext, number);
+                vertexExtrude.FaceExtrude(khaziRef.MeshWRef(), extrusionContext, number);
             }
             break;
                 
             case 3:
             {
-                MeshLibrary().ProjectileCreate(decoRef.MeshWRef());
+                MeshLibrary().ProjectileCreate(khaziRef.MeshWRef());
             }
             break;
         }

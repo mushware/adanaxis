@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } eomVoawiv9P4VcOw5CYHSg
 /*
- * $Id: AdanaxisRender.cpp,v 1.13 2005/07/16 14:22:59 southa Exp $
+ * $Id: AdanaxisRender.cpp,v 1.14 2005/07/18 13:13:36 southa Exp $
  * $Log: AdanaxisRender.cpp,v $
+ * Revision 1.14  2005/07/18 13:13:36  southa
+ * Extrude to point and projectile mesh
+ *
  * Revision 1.13  2005/07/16 14:22:59  southa
  * Added diagnostic renderer
  *
@@ -134,6 +137,14 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
     
     tProjectileList::iterator projectileEndIter = pSaveData->ProjectileListWRef().end();
     for (tProjectileList::iterator p = pSaveData->ProjectileListWRef().begin(); p != projectileEndIter; ++p)
+    {
+        p->Render(ioLogic, renderMesh, camera);
+    }    
+    
+    typedef AdanaxisSaveData::tKhaziList tKhaziList;
+    
+    tKhaziList::iterator khaziEndIter = pSaveData->KhaziListWRef().end();
+    for (tKhaziList::iterator p = pSaveData->KhaziListWRef().begin(); p != khaziEndIter; ++p)
     {
         p->Render(ioLogic, renderMesh, camera);
     }    

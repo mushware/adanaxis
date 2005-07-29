@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } S54oWqW1F2wpWNS9IEzJBQ
 /*
- * $Id: MushcoreEnv.h,v 1.13 2004/01/02 21:13:12 southa Exp $
+ * $Id: MushcoreEnv.h,v 1.14 2005/05/19 13:02:15 southa Exp $
  * $Log: MushcoreEnv.h,v $
+ * Revision 1.14  2005/05/19 13:02:15  southa
+ * Mac release work
+ *
  * Revision 1.13  2004/01/02 21:13:12  southa
  * Source conditioning
  *
@@ -118,14 +121,14 @@
 #include "MushcoreStandard.h"
 
 #include "MushcoreConfig.h"
+#include "MushcoreSingleton.h"
 
 class MushcoreScalar;
 
-class MushcoreEnv
+class MushcoreEnv : public MushcoreSingleton<MushcoreEnv>
 {
 public:
-    static MushcoreEnv& Sgl(void) {return *((m_instance==NULL)?m_instance=new MushcoreEnv:m_instance);}
-
+    MushcoreEnv();
     void PushConfig(MushcoreConfig& inConfig);
     void PopConfig(MushcoreConfig& inConfig);
     const MushcoreScalar& VariableGet(const std::string& inName) const;
@@ -154,12 +157,10 @@ public:
     static void NullFunction(void);
 
 private:
-    MushcoreEnv();
 
-    std::ostream *m_outStream;
+    std::ostream *m_outStream; //:notowner
     bool m_outSet;
-    std::vector<MushcoreConfig *> m_config;
-    static MushcoreEnv *m_instance;
+    std::vector<MushcoreConfig *> m_config; //:notowner
 };
 
 //%includeGuardEnd {

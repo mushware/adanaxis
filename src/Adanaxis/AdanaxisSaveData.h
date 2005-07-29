@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } lP1KYvwjO8U4fVO07cIsNw
 /*
- * $Id: AdanaxisSaveData.h,v 1.5 2005/06/30 14:26:35 southa Exp $
+ * $Id: AdanaxisSaveData.h,v 1.6 2005/07/12 12:18:17 southa Exp $
  * $Log: AdanaxisSaveData.h,v $
+ * Revision 1.6  2005/07/12 12:18:17  southa
+ * Projectile work
+ *
  * Revision 1.5  2005/06/30 14:26:35  southa
  * Adanaxis work
  *
@@ -42,6 +45,7 @@
 
 #include "AdanaxisStandard.h"
 
+#include "AdanaxisPieceKhazi.h"
 #include "AdanaxisPieceProjectile.h"
 
 #include "API/mushGame.h"
@@ -54,12 +58,15 @@ class AdanaxisSaveData : public MushGameSaveData
 public:
     typedef AdanaxisPieceProjectile tProjectile;
     typedef std::list<tProjectile> tProjectileList;
+    typedef AdanaxisPieceKhazi tKhazi;
+    typedef std::list<tKhazi> tKhaziList;
 
     AdanaxisSaveData();
     virtual ~AdanaxisSaveData() {}
     
 private:
     tProjectileList m_projectileList; //:readwrite :wref
+    tKhaziList m_khaziList; //:readwrite :wref
     MushcoreData<GameDialogue> m_dialogues; //:readwrite :wref
     
 //%classPrototypes {
@@ -68,6 +75,10 @@ public:
     void ProjectileListSet(const tProjectileList& inValue) { m_projectileList=inValue; }
     // Writable reference for m_projectileList
     tProjectileList& ProjectileListWRef(void) { return m_projectileList; }
+    const tKhaziList& KhaziList(void) const { return m_khaziList; }
+    void KhaziListSet(const tKhaziList& inValue) { m_khaziList=inValue; }
+    // Writable reference for m_khaziList
+    tKhaziList& KhaziListWRef(void) { return m_khaziList; }
     const MushcoreData<GameDialogue>& Dialogues(void) const { return m_dialogues; }
     void DialoguesSet(const MushcoreData<GameDialogue>& inValue) { m_dialogues=inValue; }
     // Writable reference for m_dialogues
@@ -79,7 +90,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } gzSeQ+uaiPsRP5xECDjS4Q
+//%classPrototypes } xkhConJ4pDCHRz3h/7eagQ
 };
 //%inlineHeader {
 inline std::ostream&

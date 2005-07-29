@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 8L5LwRT0dtQsufvO5C5dDg
 /*
- * $Id: MushcoreXML.h,v 1.8 2005/04/20 22:18:25 southa Exp $
+ * $Id: MushcoreXML.h,v 1.9 2005/05/19 13:02:17 southa Exp $
  * $Log: MushcoreXML.h,v $
+ * Revision 1.9  2005/05/19 13:02:17  southa
+ * Mac release work
+ *
  * Revision 1.8  2005/04/20 22:18:25  southa
  * Mac OS X build fixes
  *
@@ -153,6 +156,7 @@ public:
     void ParseStream(MushcoreXMLHandler& inHandler);
 
 private:
+    MUSHCORE_NOCOPY(MushcoreXML);
     void ProcessStartElement(const char *inName, const char **inAttribs);
     void ProcessEndElement(const char *inName);
     void ProcessCharacterData(const char *inData, Mushware::U32 inLen);

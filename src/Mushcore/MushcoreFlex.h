@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 9d7rq2Ubp5iaHAb17PIx+w
 /*
- * $Id: MushcoreFlex.h,v 1.5 2004/01/02 21:13:12 southa Exp $
+ * $Id: MushcoreFlex.h,v 1.6 2005/05/19 13:02:15 southa Exp $
  * $Log: MushcoreFlex.h,v $
+ * Revision 1.6  2005/05/19 13:02:15  southa
+ * Mac release work
+ *
  * Revision 1.5  2004/01/02 21:13:12  southa
  * Source conditioning
  *
@@ -81,12 +84,13 @@
 class MushcoreFlex
 {
 public:
-    MushcoreFlex(const std::string& inStr);
+    explicit MushcoreFlex(const std::string& inStr ="");
     int Lex(MushcoreScalar *outScalar, void *inPtr);
     void SetVal(const MushcoreScalar& inScalar) {m_scalar=inScalar;}
     
 private:
-    void *m_buffer_state; // Opaque to YY_BUFFER_STATE
+    MUSHCORE_NOCOPY(MushcoreFlex);
+
     MushcoreScalar m_scalar;
     bool m_eofFound;
 };

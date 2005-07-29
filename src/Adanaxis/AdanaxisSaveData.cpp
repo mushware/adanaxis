@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } 2C9hzhWi276zZkbFt6K5Ng
 /*
- * $Id: AdanaxisSaveData.cpp,v 1.6 2005/07/02 00:42:36 southa Exp $
+ * $Id: AdanaxisSaveData.cpp,v 1.7 2005/07/12 12:18:17 southa Exp $
  * $Log: AdanaxisSaveData.cpp,v $
+ * Revision 1.7  2005/07/12 12:18:17  southa
+ * Projectile work
+ *
  * Revision 1.6  2005/07/02 00:42:36  southa
  * Conditioning tweaks
  *
@@ -80,6 +83,7 @@ AdanaxisSaveData::AutoPrint(std::ostream& ioOut) const
     ioOut << "[";
     MushGameSaveData::AutoPrint(ioOut);
     ioOut << "projectileList=" << m_projectileList << ", ";
+    ioOut << "khaziList=" << m_khaziList << ", ";
     ioOut << "dialogues=" << m_dialogues;
     ioOut << "]";
 }
@@ -95,6 +99,10 @@ AdanaxisSaveData::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string
     else if (inTagStr == "projectileList")
     {
         ioIn >> m_projectileList;
+    }
+    else if (inTagStr == "khaziList")
+    {
+        ioIn >> m_khaziList;
     }
     else if (inTagStr == "dialogues")
     {
@@ -116,7 +124,9 @@ AdanaxisSaveData::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     MushGameSaveData::AutoXMLPrint(ioOut);
     ioOut.TagSet("projectileList");
     ioOut << m_projectileList;
+    ioOut.TagSet("khaziList");
+    ioOut << m_khaziList;
     ioOut.TagSet("dialogues");
     ioOut << m_dialogues;
 }
-//%outOfLineFunctions } DcfDapWZViHESaKMI0DfMQ
+//%outOfLineFunctions } 4Q96TiOFJosciFuEmRZE9w

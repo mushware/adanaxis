@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } OkLaKNsPzgty1sczCrbe0Q
 /*
- * $Id$
- * $Log$
+ * $Id: MushCollisionResolver.h,v 1.1 2005/07/27 18:09:59 southa Exp $
+ * $Log: MushCollisionResolver.h,v $
+ * Revision 1.1  2005/07/27 18:09:59  southa
+ * Collision checking
+ *
  */
 
 #include "MushCollisionStandard.h"
@@ -36,11 +39,14 @@ class MushCollisionResolver : public MushcoreVirtualObject, public MushcoreSingl
 {
 public:
     Mushware::tVal Resolve(const MushCollisionPiece& inPiece1, const MushCollisionPiece& inPiece2) const;
-
+    
 private:
+    Mushware::tMsec m_frameMsec; //:readwrite
     
 //%classPrototypes {
 public:
+    const Mushware::tMsec& FrameMsec(void) const { return m_frameMsec; }
+    void FrameMsecSet(const Mushware::tMsec& inValue) { m_frameMsec=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -48,7 +54,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } 1oBgFruy5qHAaudtV+Hcmg
+//%classPrototypes } P6nDSQv2g7W3VXxd34GhhQ
 };
 //%inlineHeader {
 inline std::ostream&

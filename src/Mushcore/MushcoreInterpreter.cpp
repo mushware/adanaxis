@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 0UuiDudwQ4iW5qsEEgtChA
 /*
- * $Id: MushcoreInterpreter.cpp,v 1.13 2004/01/05 14:27:41 southa Exp $
+ * $Id: MushcoreInterpreter.cpp,v 1.14 2005/05/19 13:02:15 southa Exp $
  * $Log: MushcoreInterpreter.cpp,v $
+ * Revision 1.14  2005/05/19 13:02:15  southa
+ * Mac release work
+ *
  * Revision 1.13  2004/01/05 14:27:41  southa
  * MushPie work and build fixes
  *
@@ -116,7 +119,7 @@
 using namespace Mushware;
 using namespace std;
 
-MushcoreInterpreter *MushcoreInterpreter::m_instance = NULL;
+MUSHCORE_SINGLETON_INSTANCE(MushcoreInterpreter);
 
 MushcoreInterpreter::MushcoreInterpreter() :
     m_logFunction(NULL)

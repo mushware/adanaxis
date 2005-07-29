@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } OQkztujQZ8jx5h7beoOwyw
 /*
- * $Id: MushcoreBison.h,v 1.7 2004/01/02 21:13:12 southa Exp $
+ * $Id: MushcoreBison.h,v 1.8 2005/05/19 13:02:14 southa Exp $
  * $Log: MushcoreBison.h,v $
+ * Revision 1.8  2005/05/19 13:02:14  southa
+ * Mac release work
+ *
  * Revision 1.7  2004/01/02 21:13:12  southa
  * Source conditioning
  *
@@ -93,9 +96,9 @@ class MushcoreScalar;
 class MushcoreBison
 {
 public:
-    MushcoreBison(const std::string& inStr):
-        m_flex(MushcoreFlex(inStr)) {}
-    MushcoreBison(MushcoreFlex& inFlex): m_flex(inFlex) {}
+    explicit MushcoreBison(const std::string& inStr) :
+        m_flex(inStr), m_command(NULL) {}
+    // MushcoreBison(MushcoreFlex& inFlex): m_flex(inFlex) {}
     int Parse(MushcoreCommand& inCommand);
     MushcoreScalar Despatch(MushcoreScalar& inCommand);
     void PushParam(MushcoreScalar& inParam);
@@ -105,6 +108,7 @@ public:
         {return m_flex.Lex(outScalar, inPtr);}
     
 private:
+    MUSHCORE_NOCOPY(MushcoreBison);
     MushcoreFlex m_flex;
     MushcoreCommand *m_command;
 };

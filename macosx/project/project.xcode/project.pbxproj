@@ -37,8 +37,6 @@
 //204
 		20286C28FDCF999611CA2CEA = {
 			buildSettings = {
-				MACOSX_DEPLOYMENT_TARGET = 10.2;
-				SDKROOT = /Developer/SDKs/MacOSX10.2.7.sdk;
 			};
 			buildStyles = (
 				4A9504C5FFE6A39111CA0CBA,
@@ -147,7 +145,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_MODEL_CPU = "";
+				GCC_MODEL_CPU = G4;
 				GCC_OPTIMIZATION_LEVEL = 1;
 				GCC_PFE_FILE_C_DIALECTS = "c++";
 				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
@@ -155,6 +153,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = YES;
 				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
+				GCC_WARN_EFFECTIVE_CPLUSPLUS_VIOLATIONS = NO;
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
 				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
 				GCC_WARN_MISSING_PARENTHESES = YES;
@@ -619,6 +618,180 @@
 			settings = {
 			};
 		};
+		7A224D95088E788F0078A295 = {
+			children = (
+				7A224DAC088E79DF0078A295,
+				7A224DAB088E79DF0078A295,
+				7AD2F5830897FE8F005C8E60,
+				7AD2F5820897FE8F005C8E60,
+				7AD2F58B0897FF82005C8E60,
+				7AD2F58A0897FF82005C8E60,
+				7A224DA2088E79AF0078A295,
+				7A224DA1088E79AF0078A295,
+				7AD2F59C0898014F005C8E60,
+				7AD2F59B0898014F005C8E60,
+				7A224D96088E788F0078A295,
+				7A224D97088E788F0078A295,
+				7AD2F5A508980402005C8E60,
+				7AD2F5A408980402005C8E60,
+			);
+			isa = PBXGroup;
+			path = MushCollision;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7A224D96088E788F0078A295 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			path = MushCollisionStandard.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7A224D97088E788F0078A295 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = MushCollisionStandard.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7A224D98088E788F0078A295 = {
+			fileRef = 7A224D96088E788F0078A295;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A224D99088E788F0078A295 = {
+			fileRef = 7A224D97088E788F0078A295;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A224D9A088E788F0078A295 = {
+			fileRef = 7A224D96088E788F0078A295;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A224D9B088E788F0078A295 = {
+			fileRef = 7A224D97088E788F0078A295;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A224D9C088E788F0078A295 = {
+			fileRef = 7A224D96088E788F0078A295;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A224D9D088E788F0078A295 = {
+			fileRef = 7A224D97088E788F0078A295;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A224DA1088E79AF0078A295 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = MushCollisionPiece.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7A224DA2088E79AF0078A295 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			path = MushCollisionPiece.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7A224DA3088E79AF0078A295 = {
+			fileRef = 7A224DA1088E79AF0078A295;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A224DA4088E79AF0078A295 = {
+			fileRef = 7A224DA2088E79AF0078A295;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A224DA5088E79AF0078A295 = {
+			fileRef = 7A224DA1088E79AF0078A295;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A224DA6088E79AF0078A295 = {
+			fileRef = 7A224DA2088E79AF0078A295;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A224DAB088E79DF0078A295 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = MushCollision.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7A224DAC088E79DF0078A295 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			path = MushCollision.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7A224DAD088E79DF0078A295 = {
+			fileRef = 7A224DAB088E79DF0078A295;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A224DAE088E79DF0078A295 = {
+			fileRef = 7A224DAC088E79DF0078A295;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A224DAF088E79DF0078A295 = {
+			fileRef = 7A224DAB088E79DF0078A295;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A224DB0088E79DF0078A295 = {
+			fileRef = 7A224DAC088E79DF0078A295;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A224DB3088E7A550078A295 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = mushMushCollision.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7A224DB4088E7A550078A295 = {
+			fileRef = 7A224DB3088E7A550078A295;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7A224DB5088E7A550078A295 = {
+			fileRef = 7A224DB3088E7A550078A295;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		7A2380FE05F9E5E000505F59 = {
 			fileRef = 7AB650D705F9E0A0003E2845;
 			isa = PBXBuildFile;
@@ -722,7 +895,7 @@
 			targetProxy = 7A23841405F9E98000505F59;
 		};
 		7A261EEE083BA8D300042901 = {
-			compilerSpec = com.apple.compilers.gcc.3_3;
+			compilerSpec = com.apple.compilers.gcc.4_0;
 			fileType = sourcecode.cpp;
 			isEditable = 1;
 			isa = PBXBuildRule;
@@ -730,7 +903,7 @@
 			);
 		};
 		7A261EF2083BA8E300042901 = {
-			compilerSpec = com.apple.compilers.gcc.3_3;
+			compilerSpec = com.apple.compilers.gcc.4_0;
 			fileType = sourcecode.cpp;
 			isEditable = 1;
 			isa = PBXBuildRule;
@@ -1091,16 +1264,8 @@
 			);
 		};
 		7A490360083B9E2D000775B1 = {
-			compilerSpec = com.apple.compilers.gcc.3_3;
+			compilerSpec = com.apple.compilers.gcc.4_0;
 			fileType = sourcecode.cpp;
-			isEditable = 1;
-			isa = PBXBuildRule;
-			outputFiles = (
-			);
-		};
-		7A490361083B9E2E000775B1 = {
-			compilerSpec = com.apple.compilers.gcc.3_3;
-			fileType = sourcecode.c;
 			isEditable = 1;
 			isa = PBXBuildRule;
 			outputFiles = (
@@ -2236,6 +2401,14 @@
 				7AD17DAE088BB33700BE236E,
 				7AFB11E6088C052000F097A3,
 				7AD10DDB088D2B2800AEDC48,
+				7A224D9D088E788F0078A295,
+				7A224DA5088E79AF0078A295,
+				7A224DAF088E79DF0078A295,
+				7A224DB5088E7A550078A295,
+				7AD2F5840897FE8F005C8E60,
+				7AD2F58C0897FF82005C8E60,
+				7AD2F59D0898014F005C8E60,
+				7AD2F5A608980402005C8E60,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2649,6 +2822,13 @@
 				7AD17DAF088BB33700BE236E,
 				7AFB11E7088C052000F097A3,
 				7AD10DDC088D2B2800AEDC48,
+				7A224D9C088E788F0078A295,
+				7A224DA6088E79AF0078A295,
+				7A224DB0088E79DF0078A295,
+				7AD2F5850897FE8F005C8E60,
+				7AD2F58D0897FF82005C8E60,
+				7AD2F59E0898014F005C8E60,
+				7AD2F5A708980402005C8E60,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2764,6 +2944,7 @@
 				7AB64DCF05F9DE94003E2845,
 				7A62B7D405A49D05002A5F1C,
 				7A62B7E605A49D05002A5F1C,
+				7A224D95088E788F0078A295,
 				7A62B7EF05A49D05002A5F1C,
 				7AD23B9B085EFF870017859F,
 				7A66E36805FB240500135328,
@@ -2794,6 +2975,7 @@
 				7A62B70E05A49D04002A5F1C,
 				7A62B70F05A49D04002A5F1C,
 				7A61E65905B0702A00AFEB17,
+				7A224DB3088E7A550078A295,
 				7ACC31F105AB36AD001A0873,
 				7ACC32F705AB4141001A0873,
 				7ACC330005AB4150001A0873,
@@ -11265,6 +11447,7 @@
 				7AD10D39088D08EB00AEDC48,
 				7AD10D3B088D08ED00AEDC48,
 				7AD10DD7088D2B2800AEDC48,
+				7A224D99088E788F0078A295,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -11308,6 +11491,7 @@
 				7AD10D38088D08EB00AEDC48,
 				7AD10D3A088D08EC00AEDC48,
 				7AD10DD8088D2B2800AEDC48,
+				7A224D98088E788F0078A295,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -13186,6 +13370,14 @@
 				7AD17DAC088BB33700BE236E,
 				7AFB11E4088C052000F097A3,
 				7AD10DD9088D2B2800AEDC48,
+				7A224D9B088E788F0078A295,
+				7A224DA3088E79AF0078A295,
+				7A224DAD088E79DF0078A295,
+				7A224DB4088E7A550078A295,
+				7AD2F5860897FE8F005C8E60,
+				7AD2F58E0897FF82005C8E60,
+				7AD2F59F0898014F005C8E60,
+				7AD2F5A808980402005C8E60,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -14331,6 +14523,13 @@
 				7AD17DAD088BB33700BE236E,
 				7AFB11E5088C052000F097A3,
 				7AD10DDA088D2B2800AEDC48,
+				7A224D9A088E788F0078A295,
+				7A224DA4088E79AF0078A295,
+				7A224DAE088E79DF0078A295,
+				7AD2F5870897FE8F005C8E60,
+				7AD2F58F0897FF82005C8E60,
+				7AD2F5A00898014F005C8E60,
+				7AD2F5A908980402005C8E60,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -15042,7 +15241,7 @@
 			shellScript = "pwd\ncd ../macosxlibs\n/bin/sh CopyLibs.sh \"$TARGET_BUILD_DIR/$FRAMEWORKS_FOLDER_PATH\"\ndate\necho Done\n\n";
 		};
 		7A70CE7D085DEE2D0055C6FB = {
-			compilerSpec = com.apple.compilers.gcc.3_3;
+			compilerSpec = com.apple.compilers.gcc.4_0;
 			fileType = sourcecode.cpp;
 			isEditable = 1;
 			isa = PBXBuildRule;
@@ -16679,7 +16878,6 @@
 				7A7194EB05A998B900C42A20,
 			);
 			buildRules = (
-				7A490361083B9E2E000775B1,
 				7A490360083B9E2D000775B1,
 			);
 			buildSettings = {
@@ -26871,6 +27069,166 @@
 		};
 		7AD2C18F08760BA100DA421F = {
 			fileRef = 7AD2C18D08760BA100DA421F;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AD2F5820897FE8F005C8E60 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = MushCollisionList.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7AD2F5830897FE8F005C8E60 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			path = MushCollisionList.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7AD2F5840897FE8F005C8E60 = {
+			fileRef = 7AD2F5820897FE8F005C8E60;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AD2F5850897FE8F005C8E60 = {
+			fileRef = 7AD2F5830897FE8F005C8E60;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AD2F5860897FE8F005C8E60 = {
+			fileRef = 7AD2F5820897FE8F005C8E60;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AD2F5870897FE8F005C8E60 = {
+			fileRef = 7AD2F5830897FE8F005C8E60;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AD2F58A0897FF82005C8E60 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = MushCollisionListEntry.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7AD2F58B0897FF82005C8E60 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			path = MushCollisionListEntry.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7AD2F58C0897FF82005C8E60 = {
+			fileRef = 7AD2F58A0897FF82005C8E60;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AD2F58D0897FF82005C8E60 = {
+			fileRef = 7AD2F58B0897FF82005C8E60;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AD2F58E0897FF82005C8E60 = {
+			fileRef = 7AD2F58A0897FF82005C8E60;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AD2F58F0897FF82005C8E60 = {
+			fileRef = 7AD2F58B0897FF82005C8E60;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AD2F59B0898014F005C8E60 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = MushCollisionResolver.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7AD2F59C0898014F005C8E60 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			path = MushCollisionResolver.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7AD2F59D0898014F005C8E60 = {
+			fileRef = 7AD2F59B0898014F005C8E60;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AD2F59E0898014F005C8E60 = {
+			fileRef = 7AD2F59C0898014F005C8E60;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AD2F59F0898014F005C8E60 = {
+			fileRef = 7AD2F59B0898014F005C8E60;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AD2F5A00898014F005C8E60 = {
+			fileRef = 7AD2F59C0898014F005C8E60;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AD2F5A408980402005C8E60 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = MushCollisionWorkspace.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7AD2F5A508980402005C8E60 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			path = MushCollisionWorkspace.cpp;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		7AD2F5A608980402005C8E60 = {
+			fileRef = 7AD2F5A408980402005C8E60;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AD2F5A708980402005C8E60 = {
+			fileRef = 7AD2F5A508980402005C8E60;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AD2F5A808980402005C8E60 = {
+			fileRef = 7AD2F5A408980402005C8E60;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		7AD2F5A908980402005C8E60 = {
+			fileRef = 7AD2F5A508980402005C8E60;
 			isa = PBXBuildFile;
 			settings = {
 			};

@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } v0NoK60n2sQZAwN5ucHNyw
 /*
- * $Id: AdanaxisLogic.h,v 1.3 2005/07/05 13:52:22 southa Exp $
+ * $Id: AdanaxisLogic.h,v 1.4 2005/07/12 12:18:17 southa Exp $
  * $Log: AdanaxisLogic.h,v $
+ * Revision 1.4  2005/07/12 12:18:17  southa
+ * Projectile work
+ *
  * Revision 1.3  2005/07/05 13:52:22  southa
  * Adanaxis work
  *
@@ -53,8 +56,11 @@ public:
     virtual MushGamePlayer *PlayerNew(const MushGameMessage *inpMessage) { return new AdanaxisPlayer; }
     
     virtual void ProjectilesMove(void);
+    virtual void KhaziMove(void);
     virtual void MoveSequence(void);
 
+    virtual void ProjectilesFullCollide(void);
+    
     virtual AdanaxisSaveData& SaveData(void);
     virtual AdanaxisVolatileData& VolatileData(void);
     

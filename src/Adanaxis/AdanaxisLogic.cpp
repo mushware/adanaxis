@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } ui3Az6sPZVE4olMwWeOmrw
 /*
- * $Id: AdanaxisLogic.cpp,v 1.4 2005/07/02 00:42:36 southa Exp $
+ * $Id: AdanaxisLogic.cpp,v 1.5 2005/07/12 12:18:17 southa Exp $
  * $Log: AdanaxisLogic.cpp,v $
+ * Revision 1.5  2005/07/12 12:18:17  southa
+ * Projectile work
+ *
  * Revision 1.4  2005/07/02 00:42:36  southa
  * Conditioning tweaks
  *
@@ -64,9 +67,54 @@ AdanaxisLogic::ProjectilesMove(void)
 }
 
 void
+AdanaxisLogic::KhaziMove(void)
+{
+    typedef AdanaxisSaveData::tKhaziList tKhaziList;
+    
+    tKhaziList::iterator khaziEndIter = SaveData().KhaziListWRef().end();
+    for (tKhaziList::iterator p = SaveData().KhaziListWRef().begin(); p != khaziEndIter;)
+    {
+        p->Move(*this, 1);
+        tKhaziList::iterator nextP = p;
+        ++nextP;
+        
+        if (p->ExpireFlag())
+        {
+            SaveData().KhaziListWRef().erase(p);
+        }
+        p = nextP;
+    }
+}
+
+// Slow version for debug - rechecks every object
+void
+AdanaxisLogic::ProjectilesFullCollide(void)
+{
+    typedef AdanaxisSaveData::tProjectileList tProjectileList;
+    typedef AdanaxisSaveData::tKhaziList tKhaziList;
+    
+    MushCollisionResolver::Sgl().FrameMsecSet(VolatileData().FrameMsec());
+    
+    tProjectileList::const_iterator projectileEndIter = SaveData().ProjectileList().end();
+    tKhaziList::const_iterator khaziEndIter = SaveData().KhaziList().end();
+    for (tProjectileList::const_iterator p = SaveData().ProjectileList().begin(); p != projectileEndIter; ++p)
+    {
+        for (tKhaziList::const_iterator q = SaveData().KhaziList().begin(); q != khaziEndIter; ++q)
+        {
+            if (MushCollisionResolver::Sgl().Resolve(*p, *q) <= 0)
+            {
+                p->ExpireFlagSet(true);
+                q->ExpireFlagSet(true);
+            }
+        }
+    }
+}
+
+void
 AdanaxisLogic::MoveSequence(void)
 {
     MushGameLogic::MoveSequence();
+    KhaziMove();
     ProjectilesMove();
     
 }

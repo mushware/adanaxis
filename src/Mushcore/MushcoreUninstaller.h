@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } Ui4OhrDoP00hGibwfS789w
 /*
- * $Id: MushcoreUninstaller.h,v 1.5 2004/01/02 21:13:14 southa Exp $
+ * $Id: MushcoreUninstaller.h,v 1.6 2005/05/19 13:02:17 southa Exp $
  * $Log: MushcoreUninstaller.h,v $
+ * Revision 1.6  2005/05/19 13:02:17  southa
+ * Mac release work
+ *
  * Revision 1.5  2004/01/02 21:13:14  southa
  * Source conditioning
  *
@@ -44,6 +47,8 @@
 
 #include "MushcoreStandard.h"
 
+#include "MushcoreFail.h"
+
 // Functions passed to MushcoreUninstaller are called with the global
 // destructors at application exit, so should not throw exceptions
 // or cause global objects to be created
@@ -57,6 +62,7 @@ public:
     void NullFunction(void) const;
 
 private:
+    MUSHCORE_NOCOPY(MushcoreUninstaller);
     tFuncPtr m_funcPtr;
 };
 //%includeGuardEnd {

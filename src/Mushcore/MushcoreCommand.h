@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } Kvm3e4L1OH1BApdDV72KRA
 /*
- * $Id: MushcoreCommand.h,v 1.10 2004/09/26 19:42:05 southa Exp $
+ * $Id: MushcoreCommand.h,v 1.11 2005/05/19 13:02:14 southa Exp $
  * $Log: MushcoreCommand.h,v $
+ * Revision 1.11  2005/05/19 13:02:14  southa
+ * Mac release work
+ *
  * Revision 1.10  2004/09/26 19:42:05  southa
  * Added MushMesh, fixed typenames and release target
  *
@@ -118,7 +121,7 @@ class MushcoreEnv;
 class MushcoreCommand
 {
 public:
-    MushcoreCommand(const std::string& inStr): m_bison(inStr), m_string(inStr) {}
+    MushcoreCommand(const std::string& inStr): m_bison(inStr), m_name(), m_string(inStr) {}
     void Execute(MushcoreEnv& inEnv);
     void Execute(void);
     const std::string& Name(void) const { return m_name; }

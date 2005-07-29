@@ -21,12 +21,16 @@
  ****************************************************************************/
 //%Header } ECoWMgOgfphFtEFoxlZ8Qg
 /*
- * $Id$
- * $Log$
+ * $Id: AdanaxisPieceKhazi.h,v 1.1 2005/07/19 10:08:06 southa Exp $
+ * $Log: AdanaxisPieceKhazi.h,v $
+ * Revision 1.1  2005/07/19 10:08:06  southa
+ * Adanaxis work
+ *
  */
 
 #include "AdanaxisStandard.h"
 
+#include "API/mushMushCollision.h"
 #include "API/mushMushGame.h"
 #include "API/mushMushGL.h"
 #include "API/mushMushMesh.h"
@@ -34,15 +38,18 @@
 
 //:xml1base MushGamePiece
 //:generate virtual standard ostream xml1
-class AdanaxisPieceKhazi : public MushGamePiece
+class AdanaxisPieceKhazi : public MushGamePiece, public MushCollisionPiece
 {
 public:
     explicit AdanaxisPieceKhazi(const std::string& inID = "");
     virtual ~AdanaxisPieceKhazi() {}
-    
+
     virtual void Move(MushGameLogic& ioLogic, const Mushware::tVal inFrameslice);
     virtual void Render(MushGameLogic& ioLogic, MushRenderMesh& inRender, const MushGameCamera& inCamera);
     
+    virtual const MushMesh4Mesh& CollisionMesh(void) const { return m_mesh; }
+    virtual const MushMeshPosticity& CollisionPost(void) const { return Post(); }
+
 private:
     std::string m_id;
     bool m_expireFlag; //:readwrite
@@ -67,6 +74,7 @@ public:
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
 //%classPrototypes } FjcY3+C7MWxGfZq26ztv9A
 };
+
 //%inlineHeader {
 inline std::ostream&
 operator<<(std::ostream& ioOut, const AdanaxisPieceKhazi& inObj)

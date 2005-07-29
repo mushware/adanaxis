@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 9ETNO07nndi1buun61a/EQ
 /*
- * $Id: MushcoreStandard.h,v 1.24 2005/06/24 10:30:13 southa Exp $
+ * $Id: MushcoreStandard.h,v 1.25 2005/06/29 11:11:15 southa Exp $
  * $Log: MushcoreStandard.h,v $
+ * Revision 1.25  2005/06/29 11:11:15  southa
+ * Camera and rendering work
+ *
  * Revision 1.24  2005/06/24 10:30:13  southa
  * MushGame camera work
  *
@@ -271,6 +274,12 @@ namespace Mushware
 
 
 #define MUSHCOREASSERT(exp) assert(exp)
+
+#define MUSHCORE_NOCOPY(a) \
+    a(const a&) { throw MushcoreLogicFail("Copy " #a); } \
+    a& operator=(const a&) { throw MushcoreLogicFail("Assign " #a); }
+
+
 
 //%includeGuardEnd {
 #endif

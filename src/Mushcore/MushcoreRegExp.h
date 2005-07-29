@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } lFkm/nWFCCpr9JlD4I2KFQ
 /*
- * $Id: MushcoreRegExp.h,v 1.8 2004/01/02 21:13:13 southa Exp $
+ * $Id: MushcoreRegExp.h,v 1.9 2005/05/19 13:02:16 southa Exp $
  * $Log: MushcoreRegExp.h,v $
+ * Revision 1.9  2005/05/19 13:02:16  southa
+ * Mac release work
+ *
  * Revision 1.8  2004/01/02 21:13:13  southa
  * Source conditioning
  *
@@ -83,6 +86,8 @@
 
 #include "MushcoreStandard.h"
 
+#include "MushcoreFail.h"
+
 class MushcoreRegExp
 {
 public:
@@ -103,6 +108,7 @@ public:
     bool Search(tMatches& outMatches, const std::string& inString);
 
 private:
+    MUSHCORE_NOCOPY(MushcoreRegExp);
     bool HandleReturnCode(int inRC);
         
     void *m_regExp;

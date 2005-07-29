@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } Bq8XxaaUUfoNxs2oOiSOLA
 /*
- * $Id: MushcoreLog.h,v 1.4 2005/06/23 11:58:29 southa Exp $
+ * $Id: MushcoreLog.h,v 1.5 2005/07/14 16:55:09 southa Exp $
  * $Log: MushcoreLog.h,v $
+ * Revision 1.5  2005/07/14 16:55:09  southa
+ * Mesh library work
+ *
  * Revision 1.4  2005/06/23 11:58:29  southa
  * MushGame link work
  *
@@ -41,6 +44,7 @@
 
 #include "MushcoreStandard.h"
 
+#include "MushcoreFail.h"
 #include "MushcoreSingleton.h"
 #include "MushcoreXMLOStream.h"
 
@@ -68,6 +72,7 @@ protected:
     MushcoreXMLOStream& XMLStdStream(void);
     
 private:
+    MUSHCORE_NOCOPY(MushcoreLog);
     std::ofstream *m_errorStream;
     std::ofstream *m_stdStream;
     MushcoreXMLOStream *m_xmlErrorStream;
