@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } 2C9hzhWi276zZkbFt6K5Ng
 /*
- * $Id: AdanaxisSaveData.cpp,v 1.7 2005/07/12 12:18:17 southa Exp $
+ * $Id: AdanaxisSaveData.cpp,v 1.8 2005/07/29 08:27:47 southa Exp $
  * $Log: AdanaxisSaveData.cpp,v $
+ * Revision 1.8  2005/07/29 08:27:47  southa
+ * Collision work
+ *
  * Revision 1.7  2005/07/12 12:18:17  southa
  * Projectile work
  *
@@ -57,7 +60,7 @@ const char *AdanaxisSaveData::AutoName(void) const
 
 MushcoreVirtualObject *AdanaxisSaveData::AutoClone(void) const
 {
-    return new AdanaxisSaveData(*this);
+    throw MushcoreRequestFail("Cannot clone 'AdanaxisSaveData'");;
 }
 
 MushcoreVirtualObject *AdanaxisSaveData::AutoCreate(void) const
@@ -129,4 +132,4 @@ AdanaxisSaveData::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("dialogues");
     ioOut << m_dialogues;
 }
-//%outOfLineFunctions } 4Q96TiOFJosciFuEmRZE9w
+//%outOfLineFunctions } I1umnKaoHF4d6RhVXZcmtQ

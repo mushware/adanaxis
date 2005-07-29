@@ -23,18 +23,25 @@
  ****************************************************************************/
 //%Header } 1+xBZKC0ADJmMoP0vONLyQ
 /*
- * $Id$
- * $Log$
+ * $Id: MushcoreMaptor.h,v 1.1 2005/07/29 11:53:41 southa Exp $
+ * $Log: MushcoreMaptor.h,v $
+ * Revision 1.1  2005/07/29 11:53:41  southa
+ * MushcoreMaptor created
+ *
  */
 
 #include "MushcoreStandard.h"
 
 #include "MushcoreFail.h"
+#include "MushcoreMaptorConstIterator.h"
+#include "MushcoreMaptorIterator.h"
 #include "MushcoreUtil.h"
 #include "MushcoreXMLIStream.h"
 #include "MushcoreXMLOStream.h"
 
-//:generate nonvirtual inline ostream xml1
+template<class T, class K, class C> class MushcoreMaptorRef;
+
+//:generate nonvirtual inline ostream
 template<class T, class K = Mushware::U32, class C = std::map<K, T *> >
 class MushcoreMaptor
 {
@@ -52,15 +59,18 @@ public:
     typedef typename C::reverse_iterator reverse_iterator;
     typedef typename C::const_reverse_iterator const_reverse_iterator;
     
+    typedef MushcoreMaptorIterator<T, K, C> tIter;
+    typedef MushcoreMaptorConstIterator<T, K, C> tConstIter;
+    typedef MushcoreMaptorRef<T, K, MushcoreMaptor> tRef;
+    
     MushcoreMaptor();
     ~MushcoreMaptor();
     
-    
-    // Standrd container interface
+    // Standard container interface
     bool empty(void) const { return m_data.empty(); }
     size_type size(void) const { return m_data.size(); }
-    iterator begin(void) { return m_data.begin(); }
-    iterator end(void) { return m_data.end(); }
+    iterator begin(void) { return iterator(m_data.begin()); }
+    iterator end(void) { return iterator(m_data.end()); }
     const_iterator begin(void) const { return m_data.begin(); }
     const_iterator end(void) const { return m_data.end(); }
     reverse_iterator rbegin(void) { return m_data.rbegin(); }
@@ -68,65 +78,13 @@ public:
     const_reverse_iterator rbegin(void) const { return m_data.rbegin(); }
     const_reverse_iterator rend(void) const { return m_data.rend(); }
     mapped_type& operator[](const key_type& k) { return m_data[k]; }
-    void erase(iterator pos)
-    {
-        delete pos->second;
-        m_data.erase(pos);
-        ++m_sequenceNum;
-    }
-    size_type erase(const key_type& key)
-    {
-        iterator p = m_data.find(key);
-        bool retVal = (p != end());
-        if (retVal)
-        {
-            erase(p);
-        }
-        return retVal;
-    }
-    void clear(void)
-    {
-        std::for_each(begin(), end(), MushcoreUtil::DeleteSecond<T, K>);
-        m_data.clear();
-    }
-    
-    T& back()
-    {
-        if (empty())
-        {
-            throw MushcoreDataFail("Access to back() of empty maptor");
-        }
-        return (--end())->second;
-    }
-    const T& back() const
-    {
-        if (empty())
-        {
-            throw MushcoreDataFail("Access to back() of empty maptor");
-        }
-        return (--end())->second;
-    }    
-    void push_back(const T& inObj)
-    {
-        Mushware::U32 keyValue;
-        if (empty())
-        {
-            keyValue = 0;
-        }
-        else
-        {
-            keyValue = (--end())->first + 1;
-        }
-        Give(new T(inObj), keyValue);
-    }
-    void pop_back()
-    {
-        if (empty())
-        {
-            throw MushcoreDataFail("pop_back() on empty maptor");
-        }
-        erase(--end());
-    }
+    void erase(iterator pos);
+    size_type erase(const key_type& key);
+    void clear(void);
+    T& back(void);
+    const T& back(void) const; 
+    void push_back(const T& inObj);
+    void pop_back(void);
     
 #if 0
     // These would work if key value was S32
@@ -140,9 +98,14 @@ public:
     void Give(T *inpObj, const K& inKey);
     T *Get(const K& inKey) const;
     bool GetIfExists(T *& outpObj, const K& inKey) const;
+    void Delete(const tIter& inIter) { erase(inIter.MapIter()); }
     void Delete(const K& inKey);
     bool DeleteIfExists(const K& inKey) { return (erase(inKey) != 0); }
     void Clear(void) { clear(); }
+    
+    // XML operations
+    void XMLRead(MushcoreXMLIStream& ioIn);
+    void XMLPrint(MushcoreXMLOStream& ioOut) const;
     
 protected:
     MushcoreMaptor(const MushcoreMaptor& inMaptor);
@@ -158,9 +121,7 @@ public:
     void DataSet(const C& inValue) { m_data=inValue; }
     const Mushware::U32& SequenceNum(void) const { return m_sequenceNum; }
     void AutoPrint(std::ostream& ioOut) const;
-    bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
-    void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } uhzUwIvDj+qpJZgx3bbwjQ
+//%classPrototypes } OBcmHLdwqGT/h6MK+bElEw
 };
 
 template<class T, class K, class C>
@@ -174,13 +135,15 @@ template<class T, class K, class C>
 inline
 MushcoreMaptor<T, K, C>::MushcoreMaptor(const MushcoreMaptor<T, K, C>& inMaptor)
 {
-    throw MushcoreLogicFail("Cannot copy construct MushcoreMaptor yet");
+    // Not able to clone the contents of m_data
+    throw MushcoreLogicFail("Cannot copy construct MushcoreMaptor");
 }
 
 template<class T, class K, class C>
 inline
 MushcoreMaptor<T, K, C>::~MushcoreMaptor()
 {
+    // Not able to clone the contents of m_data
     std::for_each(begin(), end(), MushcoreUtil::DeleteSecond<T, K>);
 }
 
@@ -188,8 +151,97 @@ template<class T, class K, class C>
 inline MushcoreMaptor<T, K, C>&
 MushcoreMaptor<T, K, C>::operator=(const MushcoreMaptor<T, K, C>& inMaptor)
 {
-    throw MushcoreLogicFail("Cannot assign MushcoreMaptor yet");
+    throw MushcoreLogicFail("Cannot assign MushcoreMaptor");
     return *this;
+}
+
+template<class T, class K, class C>
+inline void
+MushcoreMaptor<T, K, C>::erase(iterator pos)
+{
+    delete pos->second;
+    m_data.erase(pos);
+    ++m_sequenceNum;
+}
+
+template<class T, class K, class C>
+inline typename MushcoreMaptor<T, K, C>::size_type
+MushcoreMaptor<T, K, C>::erase(const key_type& key)
+{
+    iterator p = m_data.find(key);
+    bool retVal = (p != end());
+    if (retVal)
+    {
+        erase(p);
+    }
+    return retVal;
+}
+
+template<class T, class K, class C>
+inline void
+MushcoreMaptor<T, K, C>::clear(void)
+{
+    std::for_each(begin(), end(), MushcoreUtil::DeleteSecond<T, K>);
+    m_data.clear();
+}
+
+template<class T, class K, class C>
+inline T&
+MushcoreMaptor<T, K, C>::back(void)
+{
+    if (empty())
+    {
+        throw MushcoreDataFail("Access to back() of empty maptor");
+    }
+    T *retPtr = (--end())->second;
+    if (retPtr == NULL)
+    {
+        throw MushcoreDataFail("Access to NULL at back() of maptor");
+    }
+    return *retPtr;
+}
+
+template<class T, class K, class C>
+inline const T&
+MushcoreMaptor<T, K, C>::back(void) const
+{
+    if (empty())
+    {
+        throw MushcoreDataFail("Access to back() of empty maptor");
+    }
+    const T *retPtr = (--end())->second;
+    if (retPtr == NULL)
+    {
+        throw MushcoreDataFail("Access to NULL at back() of maptor");
+    }
+    return *retPtr;
+}
+
+template<class T, class K, class C>
+inline void
+MushcoreMaptor<T, K, C>::push_back(const T& inObj)
+{
+    Mushware::U32 keyValue;
+    if (empty())
+    {
+        keyValue = 0;
+    }
+    else
+    {
+        keyValue = (--end())->first + 1;
+    }
+    Give(new T(inObj), keyValue);
+}
+
+template<class T, class K, class C>
+inline void
+MushcoreMaptor<T, K, C>::pop_back(void)
+{
+    if (empty())
+    {
+        throw MushcoreDataFail("pop_back() on empty maptor");
+    }
+    erase(--end());
 }
 
 template<class T, class K, class C>
@@ -254,6 +306,37 @@ MushcoreMaptor<T, K, C>::Delete(const K& inKey)
     }
 }
 
+// XML operators
+template<class T, class K, class C>
+inline MushcoreXMLIStream&
+operator>>(MushcoreXMLIStream& ioIn, MushcoreMaptor<T, K, C>& outObj)
+{
+    outObj.XMLRead(ioIn);
+    return ioIn;
+}
+
+template<class T, class K, class C>
+inline MushcoreXMLOStream&
+operator<<(MushcoreXMLOStream& ioOut, const MushcoreMaptor<T, K, C>& inObj)
+{
+    inObj.XMLPrint(ioOut);
+    return ioOut;
+}
+
+template<class T, class K, class C>
+inline void
+MushcoreMaptor<T, K, C>::XMLRead(MushcoreXMLIStream& ioIn)
+{
+    ioIn >> m_data;
+}
+
+template<class T, class K, class C>
+inline void
+MushcoreMaptor<T, K, C>::XMLPrint(MushcoreXMLOStream& ioOut) const
+{
+    ioOut << m_data;
+}
+
 //%inlineHeader {
 template<class T, class K, class C>
 inline std::ostream&
@@ -263,70 +346,15 @@ operator<<(std::ostream& ioOut, const MushcoreMaptor<T, K, C>& inObj)
     return ioOut;
 }
 template<class T, class K, class C>
-inline MushcoreXMLIStream&
-operator>>(MushcoreXMLIStream& ioIn, MushcoreMaptor<T, K, C>& outObj)
-{
-    throw MushcoreDataFail("Cannot read XML object type 'MushcoreMaptor'");
-    return ioIn;
-}
-template<class T, class K, class C>
-inline MushcoreXMLOStream&
-operator<<(MushcoreXMLOStream& ioOut, const MushcoreMaptor<T, K, C>& inObj)
-{
-    inObj.AutoXMLPrint(ioOut);
-    return ioOut;
-}
-template<class T, class K, class C>
 inline void
 MushcoreMaptor<T, K, C>::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
-    ioOut << "retVal=" << retVal << ", ";
-    ioOut << "keyValue=" << keyValue << ", ";
     ioOut << "data=" << m_data << ", ";
     ioOut << "sequenceNum=" << m_sequenceNum;
     ioOut << "]";
 }
-template<class T, class K, class C>
-inline bool
-MushcoreMaptor<T, K, C>::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr)
-{
-    if (inTagStr == "retVal")
-    {
-        ioIn >> retVal;
-    }
-    else if (inTagStr == "keyValue")
-    {
-        ioIn >> keyValue;
-    }
-    else if (inTagStr == "data")
-    {
-        ioIn >> m_data;
-    }
-    else if (inTagStr == "sequenceNum")
-    {
-        ioIn >> m_sequenceNum;
-    }
-    else 
-    {
-        return false;
-    }
-    return true;
-}
-template<class T, class K, class C>
-inline void
-MushcoreMaptor<T, K, C>::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
-{
-    ioOut.TagSet("retVal");
-    ioOut << retVal;
-    ioOut.TagSet("keyValue");
-    ioOut << keyValue;
-    ioOut.TagSet("data");
-    ioOut << m_data;
-    ioOut.TagSet("sequenceNum");
-    ioOut << m_sequenceNum;
-}
-//%inlineHeader } EkZlMaWRoB5OIxYVu5m0QQ
+//%inlineHeader } PFIQhglLnuKb2VKYgJq36Q
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

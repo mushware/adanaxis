@@ -102,11 +102,16 @@
 		7A4FA60805F9F0FE00297E23 /* MaurheenGame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A4FA60405F9F0FE00297E23 /* MaurheenGame.cpp */; };
 		7A532BCB089A29F90090B78C /* MushcoreMaptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A532BC7089A29F90090B78C /* MushcoreMaptor.h */; };
 		7A532BCC089A29F90090B78C /* MushcoreMaptor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A532BC8089A29F90090B78C /* MushcoreMaptor.cpp */; };
-		7A532BCE089A305D0090B78C /* MushcoreMaptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A532BC7089A29F90090B78C /* MushcoreMaptor.h */; };
 		7A532BCF089A30620090B78C /* MushcoreMaptor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A532BC8089A29F90090B78C /* MushcoreMaptor.cpp */; };
 		7A532BD0089A30640090B78C /* MushcoreMaptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A532BC7089A29F90090B78C /* MushcoreMaptor.h */; };
 		7A532C08089A3CE80090B78C /* TestMushcoreMaptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A532C06089A3CE80090B78C /* TestMushcoreMaptor.h */; };
 		7A532C09089A3CE80090B78C /* TestMushcoreMaptor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A532C07089A3CE80090B78C /* TestMushcoreMaptor.cpp */; };
+		7A581111089A569B000A1C04 /* MushcoreMaptorRef.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A58110F089A569B000A1C04 /* MushcoreMaptorRef.h */; };
+		7A581112089A569B000A1C04 /* MushcoreMaptorRef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A581110089A569B000A1C04 /* MushcoreMaptorRef.cpp */; };
+		7A58111E089A5E32000A1C04 /* MushcoreMaptorIterator.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A58111C089A5E32000A1C04 /* MushcoreMaptorIterator.h */; };
+		7A58111F089A5E32000A1C04 /* MushcoreMaptorIterator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A58111D089A5E32000A1C04 /* MushcoreMaptorIterator.cpp */; };
+		7A581158089A6CCE000A1C04 /* MushcoreMaptorConstIterator.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A581156089A6CCE000A1C04 /* MushcoreMaptorConstIterator.h */; };
+		7A581159089A6CCE000A1C04 /* MushcoreMaptorConstIterator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A581157089A6CCE000A1C04 /* MushcoreMaptorConstIterator.cpp */; };
 		7A5BE6EF07FB53DA00306E18 /* libjpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A5BE6EE07FB53DA00306E18 /* libjpeg.a */; };
 		7A5BE6F007FB53DA00306E18 /* libjpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A5BE6EE07FB53DA00306E18 /* libjpeg.a */; };
 		7A5C9EF9080979900017E78B /* CodeGenCommands.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A5C9EF5080979900017E78B /* CodeGenCommands.cpp */; };
@@ -2751,6 +2756,12 @@
 		7A532C06089A3CE80090B78C /* TestMushcoreMaptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestMushcoreMaptor.h; sourceTree = "<group>"; };
 		7A532C07089A3CE80090B78C /* TestMushcoreMaptor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestMushcoreMaptor.cpp; sourceTree = "<group>"; };
 		7A5353C705AE013000097C96 /* BaseMaterials.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = BaseMaterials.xml; sourceTree = "<group>"; };
+		7A58110F089A569B000A1C04 /* MushcoreMaptorRef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushcoreMaptorRef.h; sourceTree = "<group>"; };
+		7A581110089A569B000A1C04 /* MushcoreMaptorRef.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushcoreMaptorRef.cpp; sourceTree = "<group>"; };
+		7A58111C089A5E32000A1C04 /* MushcoreMaptorIterator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushcoreMaptorIterator.h; sourceTree = "<group>"; };
+		7A58111D089A5E32000A1C04 /* MushcoreMaptorIterator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushcoreMaptorIterator.cpp; sourceTree = "<group>"; };
+		7A581156089A6CCE000A1C04 /* MushcoreMaptorConstIterator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushcoreMaptorConstIterator.h; sourceTree = "<group>"; };
+		7A581157089A6CCE000A1C04 /* MushcoreMaptorConstIterator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushcoreMaptorConstIterator.cpp; sourceTree = "<group>"; };
 		7A5BE6EE07FB53DA00306E18 /* libjpeg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libjpeg.a; path = /usr/local/lib/libjpeg.a; sourceTree = "<absolute>"; };
 		7A5BE75807FB56AF00306E18 /* font-mono1.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "font-mono1.tiff"; sourceTree = "<group>"; };
 		7A5BE75907FB56AF00306E18 /* plane-target1.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "plane-target1.tiff"; sourceTree = "<group>"; };
@@ -4544,6 +4555,12 @@
 				7A62431607ABEE79006BCF7E /* MushcoreLog.h */,
 				7A532BC8089A29F90090B78C /* MushcoreMaptor.cpp */,
 				7A532BC7089A29F90090B78C /* MushcoreMaptor.h */,
+				7A581157089A6CCE000A1C04 /* MushcoreMaptorConstIterator.cpp */,
+				7A581156089A6CCE000A1C04 /* MushcoreMaptorConstIterator.h */,
+				7A58111D089A5E32000A1C04 /* MushcoreMaptorIterator.cpp */,
+				7A58111C089A5E32000A1C04 /* MushcoreMaptorIterator.h */,
+				7A581110089A569B000A1C04 /* MushcoreMaptorRef.cpp */,
+				7A58110F089A569B000A1C04 /* MushcoreMaptorRef.h */,
 				7A62B82405A49D05002A5F1C /* MushcoreObject.cpp */,
 				7A62B82505A49D05002A5F1C /* MushcoreObject.h */,
 				7AFFFF1C085D9B5500999549 /* MushcoreOrderedData.cpp */,
@@ -6611,7 +6628,6 @@
 				7AD2F58E0897FF82005C8E60 /* MushCollisionListEntry.h in Headers */,
 				7AD2F59F0898014F005C8E60 /* MushCollisionResolver.h in Headers */,
 				7AD2F5A808980402005C8E60 /* MushCollisionWorkspace.h in Headers */,
-				7A532BCE089A305D0090B78C /* MushcoreMaptor.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6670,6 +6686,9 @@
 				7AFFFF2C085DAC7500999549 /* MushcoreAutoBool.h in Headers */,
 				7AA0FACF08841B5E00997505 /* MushcoreAutoClonePtr.h in Headers */,
 				7A532BD0089A30640090B78C /* MushcoreMaptor.h in Headers */,
+				7A581111089A569B000A1C04 /* MushcoreMaptorRef.h in Headers */,
+				7A58111E089A5E32000A1C04 /* MushcoreMaptorIterator.h in Headers */,
+				7A581158089A6CCE000A1C04 /* MushcoreMaptorConstIterator.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9014,6 +9033,9 @@
 				7AFFFF2D085DAC7500999549 /* MushcoreAutoBool.cpp in Sources */,
 				7AA0FAD008841B5E00997505 /* MushcoreAutoClonePtr.cpp in Sources */,
 				7A532BCF089A30620090B78C /* MushcoreMaptor.cpp in Sources */,
+				7A581112089A569B000A1C04 /* MushcoreMaptorRef.cpp in Sources */,
+				7A58111F089A5E32000A1C04 /* MushcoreMaptorIterator.cpp in Sources */,
+				7A581159089A6CCE000A1C04 /* MushcoreMaptorConstIterator.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

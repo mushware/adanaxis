@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } KJPGwB9vha6Uq1oSN1g5gg
 /*
- * $Id: MushGameHostSaveData.h,v 1.4 2005/06/23 13:56:58 southa Exp $
+ * $Id: MushGameHostSaveData.h,v 1.5 2005/06/23 17:25:25 southa Exp $
  * $Log: MushGameHostSaveData.h,v $
+ * Revision 1.5  2005/06/23 17:25:25  southa
+ * MushGame link work
+ *
  * Revision 1.4  2005/06/23 13:56:58  southa
  * MushGame link work
  *
@@ -45,7 +48,7 @@
 #include "MushGameJob.h"
 #include "MushGamePlayer.h"
 
-//:generate virtual standard ostream xml1
+//:generate virtual standard ostream xml1 nocopy
 class MushGameHostSaveData : public MushcoreVirtualObject
 {
 public:
@@ -57,10 +60,10 @@ public:
     
 private:
     std::string m_serverName; //:readwrite
-    MushcoreData<MushGamePlayer> m_hostPlayers; //:readwrite :wref
+    MushcoreData<MushGamePlayer> m_hostPlayers; //:read :wref
     Mushware::U32 m_nextPlayerNum; //:readwrite :wref
     Mushware::U32 m_maxPlayersAllowed; //:readwrite
-    MushcoreData<MushGameJob> m_jobList; //:readwrite :wref
+    MushcoreData<MushGameJob> m_jobList; //:read :wref
     tClientAddrRefs m_clientAddrRefs; //:readwrite :wref
 
 //%classPrototypes {
@@ -68,7 +71,6 @@ public:
     const std::string& ServerName(void) const { return m_serverName; }
     void ServerNameSet(const std::string& inValue) { m_serverName=inValue; }
     const MushcoreData<MushGamePlayer>& HostPlayers(void) const { return m_hostPlayers; }
-    void HostPlayersSet(const MushcoreData<MushGamePlayer>& inValue) { m_hostPlayers=inValue; }
     // Writable reference for m_hostPlayers
     MushcoreData<MushGamePlayer>& HostPlayersWRef(void) { return m_hostPlayers; }
     const Mushware::U32& NextPlayerNum(void) const { return m_nextPlayerNum; }
@@ -78,7 +80,6 @@ public:
     const Mushware::U32& MaxPlayersAllowed(void) const { return m_maxPlayersAllowed; }
     void MaxPlayersAllowedSet(const Mushware::U32& inValue) { m_maxPlayersAllowed=inValue; }
     const MushcoreData<MushGameJob>& JobList(void) const { return m_jobList; }
-    void JobListSet(const MushcoreData<MushGameJob>& inValue) { m_jobList=inValue; }
     // Writable reference for m_jobList
     MushcoreData<MushGameJob>& JobListWRef(void) { return m_jobList; }
     const tClientAddrRefs& ClientAddrRefs(void) const { return m_clientAddrRefs; }
@@ -92,7 +93,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } GIPIZlrvSauNNdMynlWTsA
+//%classPrototypes } ljoz81UYreYe9nruONk/3Q
 };
 //%inlineHeader {
 inline std::ostream&

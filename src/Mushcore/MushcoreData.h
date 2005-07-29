@@ -24,8 +24,11 @@
 //%Header } OdZeU4YhHykfAaYZoP6Iyg
 
 /*
- * $Id: MushcoreData.h,v 1.27 2005/06/20 14:30:38 southa Exp $
+ * $Id: MushcoreData.h,v 1.28 2005/07/29 11:53:40 southa Exp $
  * $Log: MushcoreData.h,v $
+ * Revision 1.28  2005/07/29 11:53:40  southa
+ * MushcoreMaptor created
+ *
  * Revision 1.27  2005/06/20 14:30:38  southa
  * Adanaxis work
  *
@@ -222,6 +225,8 @@ public:
     bool PtrEquals(const MushcoreData& inObj) const;
     
 protected:
+    MushcoreData(const MushcoreData& inData);
+    MushcoreData& operator=(const MushcoreData& inData);
 
 private:
     tMap m_data;
@@ -232,6 +237,23 @@ template<class RefType, class KeyType>
 MushcoreData<RefType, KeyType>::MushcoreData(void) :
     m_sequenceNum(1)
 {
+}
+
+template<class RefType, class KeyType>
+inline
+MushcoreData<RefType, KeyType>::MushcoreData(const MushcoreData<RefType, KeyType>& inMaptor)
+{
+    // Not able to clone the contents of m_data
+    throw MushcoreLogicFail("Cannot copy construct MushcoreData");
+}
+
+template<class RefType, class KeyType>
+inline MushcoreData<RefType, KeyType>&
+MushcoreData<RefType, KeyType>::operator=(const MushcoreData<RefType, KeyType>& inMaptor)
+{
+    // Not able to clone the contents of m_data
+    throw MushcoreLogicFail("Cannot assign MushcoreData");
+    return *this;
 }
 
 template<class RefType, class KeyType>

@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } lP1KYvwjO8U4fVO07cIsNw
 /*
- * $Id: AdanaxisSaveData.h,v 1.7 2005/07/29 08:27:47 southa Exp $
+ * $Id: AdanaxisSaveData.h,v 1.8 2005/07/29 11:52:43 southa Exp $
  * $Log: AdanaxisSaveData.h,v $
+ * Revision 1.8  2005/07/29 11:52:43  southa
+ * MushcoreMaptor created
+ *
  * Revision 1.7  2005/07/29 08:27:47  southa
  * Collision work
  *
@@ -55,7 +58,7 @@
 #include "API/mushMushGame.h"
 
 //:xml1base MushGameSaveData
-//:generate virtual standard ostream xml1
+//:generate virtual standard ostream xml1 nocopy
 class AdanaxisSaveData : public MushGameSaveData
 {
 public:
@@ -68,22 +71,19 @@ public:
     virtual ~AdanaxisSaveData() {}
     
 private:
-    tProjectileList m_projectileList; //:readwrite :wref
-    tKhaziList m_khaziList; //:readwrite :wref
-    MushcoreData<GameDialogue> m_dialogues; //:readwrite :wref
+    tProjectileList m_projectileList; //:read :wref
+    tKhaziList m_khaziList; //:read :wref
+    MushcoreData<GameDialogue> m_dialogues; //:read :wref
     
 //%classPrototypes {
 public:
     const tProjectileList& ProjectileList(void) const { return m_projectileList; }
-    void ProjectileListSet(const tProjectileList& inValue) { m_projectileList=inValue; }
     // Writable reference for m_projectileList
     tProjectileList& ProjectileListWRef(void) { return m_projectileList; }
     const tKhaziList& KhaziList(void) const { return m_khaziList; }
-    void KhaziListSet(const tKhaziList& inValue) { m_khaziList=inValue; }
     // Writable reference for m_khaziList
     tKhaziList& KhaziListWRef(void) { return m_khaziList; }
     const MushcoreData<GameDialogue>& Dialogues(void) const { return m_dialogues; }
-    void DialoguesSet(const MushcoreData<GameDialogue>& inValue) { m_dialogues=inValue; }
     // Writable reference for m_dialogues
     MushcoreData<GameDialogue>& DialoguesWRef(void) { return m_dialogues; }
     virtual const char *AutoName(void) const;
@@ -93,7 +93,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } xkhConJ4pDCHRz3h/7eagQ
+//%classPrototypes } j/3JActG1IT8dYrr+N96mQ
 };
 //%inlineHeader {
 inline std::ostream&

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } Sadh94DLrs/FIT4AZy/cYg
 /*
- * $Id: Mushcore.h,v 1.22 2005/07/12 20:39:05 southa Exp $
+ * $Id: Mushcore.h,v 1.23 2005/07/29 11:53:40 southa Exp $
  * $Log: Mushcore.h,v $
+ * Revision 1.23  2005/07/29 11:53:40  southa
+ * MushcoreMaptor created
+ *
  * Revision 1.22  2005/07/12 20:39:05  southa
  * Mesh library work
  *
@@ -115,6 +118,9 @@
 #include "MushcoreInterpreter.h"
 #include "MushcoreLog.h"
 #include "MushcoreMaptor.h"
+#include "MushcoreMaptorConstIterator.h"
+#include "MushcoreMaptorIterator.h"
+#include "MushcoreMaptorRef.h"
 // #include "MushcoreIO.h"
 #include "MushcoreObject.h"
 #include "MushcoreOrderedData.h"

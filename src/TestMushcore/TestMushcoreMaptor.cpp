@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } bMQSqQZvxv1cGuqD8QyRCw
 /*
- * $Id$
- * $Log$
+ * $Id: TestMushcoreMaptor.cpp,v 1.1 2005/07/29 11:53:41 southa Exp $
+ * $Log: TestMushcoreMaptor.cpp,v $
+ * Revision 1.1  2005/07/29 11:53:41  southa
+ * MushcoreMaptor created
+ *
  */
 
 #include "TestMushcoreMaptor.h"
@@ -180,6 +183,66 @@ TestMushcoreMaptor::TestMaptor(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
         throw MushcoreCommandFail("pop_back fault 1");
     }
     
+    // Iterators
+    MushcoreMaptor<U32> u32Maptor;
+    u32Maptor.push_back(3);
+    u32Maptor.push_back(7);
+    u32Maptor.push_back(1);
+    
+    MushcoreMaptor<U32>::tIter endIter = u32Maptor.end();
+    U32 sum = 0;
+    for (MushcoreMaptor<U32>::tIter p = u32Maptor.begin(); p != endIter;)
+    {
+        sum += *p;
+        if (*p == 7)
+        {
+            u32Maptor.Delete(p++);
+        }
+        else
+        {
+            ++p;
+        }
+    }
+    
+    if (sum != 11 || u32Maptor.size() != 2)
+    {
+        throw MushcoreCommandFail("Iterator fault 1");
+    }
+    
+    MushcoreMaptor<U32>::tConstIter endConstIter = u32Maptor.end();
+    sum = 0;
+    for (MushcoreMaptor<U32>::tConstIter p = u32Maptor.begin(); p != endConstIter; ++p)
+    {
+        sum += *p;
+    }
+    
+    if (sum != 4)
+    {
+        throw MushcoreCommandFail("Iterator fault 2");
+    }
+    
+    // References
+    MushcoreMaptor<U32>::tRef ref0(u32Maptor, 0);
+    MushcoreMaptor<U32>::tRef ref1(u32Maptor, 1);
+    MushcoreMaptor<U32>::tRef ref2(u32Maptor, 2);
+    
+    if (*ref0 != 3 || *ref2 != 1)
+    {
+        throw MushcoreCommandFail("Reference fault 1");        
+    }
+    excepted = false;
+    try
+    {
+        *ref1;
+    }
+    catch (MushcoreNonFatalFail& e)
+    {
+        excepted = true;
+    }
+    if (!excepted)
+    {
+        throw MushcoreCommandFail("Reference fault 2");
+    }
     return MushcoreScalar(0);
 }
 

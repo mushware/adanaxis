@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } eomVoawiv9P4VcOw5CYHSg
 /*
- * $Id: AdanaxisRender.cpp,v 1.14 2005/07/18 13:13:36 southa Exp $
+ * $Id: AdanaxisRender.cpp,v 1.15 2005/07/29 08:27:47 southa Exp $
  * $Log: AdanaxisRender.cpp,v $
+ * Revision 1.15  2005/07/29 08:27:47  southa
+ * Collision work
+ *
  * Revision 1.14  2005/07/18 13:13:36  southa
  * Extrude to point and projectile mesh
  *
@@ -138,7 +141,7 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
     tProjectileList::iterator projectileEndIter = pSaveData->ProjectileListWRef().end();
     for (tProjectileList::iterator p = pSaveData->ProjectileListWRef().begin(); p != projectileEndIter; ++p)
     {
-        p->Render(ioLogic, renderMesh, camera);
+        p->second->Render(ioLogic, renderMesh, camera);
     }    
     
     typedef AdanaxisSaveData::tKhaziList tKhaziList;
@@ -146,7 +149,7 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
     tKhaziList::iterator khaziEndIter = pSaveData->KhaziListWRef().end();
     for (tKhaziList::iterator p = pSaveData->KhaziListWRef().begin(); p != khaziEndIter; ++p)
     {
-        p->Render(ioLogic, renderMesh, camera);
+        p->second->Render(ioLogic, renderMesh, camera);
     }    
     
     MushGLUtil::IdentityEpilogue();

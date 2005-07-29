@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } OWJ0lyKjoxUWAtsxD5Oexg
 /*
- * $Id: MushGameSaveData.cpp,v 1.10 2005/07/02 00:42:38 southa Exp $
+ * $Id: MushGameSaveData.cpp,v 1.11 2005/07/06 19:08:27 southa Exp $
  * $Log: MushGameSaveData.cpp,v $
+ * Revision 1.11  2005/07/06 19:08:27  southa
+ * Adanaxis control work
+ *
  * Revision 1.10  2005/07/02 00:42:38  southa
  * Conditioning tweaks
  *
@@ -70,7 +73,7 @@ const char *MushGameSaveData::AutoName(void) const
 
 MushcoreVirtualObject *MushGameSaveData::AutoClone(void) const
 {
-    return new MushGameSaveData(*this);
+    throw MushcoreRequestFail("Cannot clone 'MushGameSaveData'");;
 }
 
 MushcoreVirtualObject *MushGameSaveData::AutoCreate(void) const
@@ -178,4 +181,4 @@ MushGameSaveData::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("controlMailboxName");
     ioOut << m_controlMailboxName;
 }
-//%outOfLineFunctions } F77mz93g4CAn+pCKX2u5+A
+//%outOfLineFunctions } o0ZngYG0x1H+8zLQkWKldg

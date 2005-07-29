@@ -10,8 +10,11 @@
 #
 ##############################################################################
 
-# $Id: SourceConditioner.pl,v 1.43 2005/07/14 12:50:29 southa Exp $
+# $Id: SourceConditioner.pl,v 1.44 2005/07/29 11:51:44 southa Exp $
 # $Log: SourceConditioner.pl,v $
+# Revision 1.44  2005/07/29 11:51:44  southa
+# MushcoreMaptor created
+#
 # Revision 1.43  2005/07/14 12:50:29  southa
 # Extrusion work
 #
@@ -363,7 +366,7 @@ sub HeaderInfoCreate($$)
                 $state = HS_DONE;
             }
         
-            if ($line =~ /^\s+(mutable\s+|const\s+)?($gExprScopedType)\s*($gExprTemplateSuffix)?\s+($gExprVariableExpr)\s*;/)
+            if ($line =~ /^\s+(mutable\s+|const\s+)?(typename\s+$gExprScopedType|$gExprScopedType)\s*($gExprTemplateSuffix)?\s+($gExprVariableExpr)\s*;/)
             {
                 my $template = $3;
                 $template = "" unless defined($template);

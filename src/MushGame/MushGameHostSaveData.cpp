@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } PtE5rBAXGQWHrOsXuTDTuQ
 /*
- * $Id: MushGameHostSaveData.cpp,v 1.4 2005/06/23 17:25:25 southa Exp $
+ * $Id: MushGameHostSaveData.cpp,v 1.5 2005/07/02 00:42:37 southa Exp $
  * $Log: MushGameHostSaveData.cpp,v $
+ * Revision 1.5  2005/07/02 00:42:37  southa
+ * Conditioning tweaks
+ *
  * Revision 1.4  2005/06/23 17:25:25  southa
  * MushGame link work
  *
@@ -56,7 +59,7 @@ const char *MushGameHostSaveData::AutoName(void) const
 
 MushcoreVirtualObject *MushGameHostSaveData::AutoClone(void) const
 {
-    return new MushGameHostSaveData(*this);
+    throw MushcoreRequestFail("Cannot clone 'MushGameHostSaveData'");;
 }
 
 MushcoreVirtualObject *MushGameHostSaveData::AutoCreate(void) const
@@ -143,4 +146,4 @@ MushGameHostSaveData::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("clientAddrRefs");
     ioOut << m_clientAddrRefs;
 }
-//%outOfLineFunctions } gu8lzlMCgCY6gqI8sEZrnA
+//%outOfLineFunctions } yXVFeGreW0ip58F8ufokiA
