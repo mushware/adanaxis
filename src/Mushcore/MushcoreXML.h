@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 8L5LwRT0dtQsufvO5C5dDg
 /*
- * $Id: MushcoreXML.h,v 1.9 2005/05/19 13:02:17 southa Exp $
+ * $Id: MushcoreXML.h,v 1.10 2005/07/29 08:27:47 southa Exp $
  * $Log: MushcoreXML.h,v $
+ * Revision 1.10  2005/07/29 08:27:47  southa
+ * Collision work
+ *
  * Revision 1.9  2005/05/19 13:02:17  southa
  * Mac release work
  *
@@ -105,6 +108,13 @@
  *
  */
 
+
+/*****************************************************************************
+ *
+ * Deprecated class - use MushcoreXMLIStream/MushcoreXMLOStream instead
+ *
+ *****************************************************************************/
+
 #include "MushcoreStandard.h"
 
 #ifdef MUSHCORE_USE_EXPAT
@@ -133,6 +143,7 @@ class MushcoreXML;
 class MushcoreXMLHandler
 {
 public:
+    virtual ~MushcoreXMLHandler() {}
     virtual void XMLStartHandler(MushcoreXML& inXML) {}
     virtual void XMLEndHandler(MushcoreXML& inXML) = 0;
     virtual void XMLDataHandler(MushcoreXML& inXML);

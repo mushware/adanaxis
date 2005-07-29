@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef TESTMUSHCORECOUNTER_H
-#define TESTMUSHCORECOUNTER_H
-//%includeGuardStart } Ri6Sd6FAxTULZy0XBqE/Uw
+#ifndef TESTMUSHCOREMAPTOR_H
+#define TESTMUSHCOREMAPTOR_H
+//%includeGuardStart } HdWYC6EkuyTHKwHsOLsIGQ
 //%Header {
 /*****************************************************************************
  *
- * File: src/TestMushcore/TestMushcoreCounter.h
+ * File: src/TestMushcore/TestMushcoreMaptor.h
  *
  * Author: Andy Southgate 2002-2005
  *
@@ -21,30 +21,20 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } c+kkiNz4qO+XRi5oHm5Ztg
+//%Header } it12J+qpUQ8t3h2U/7OP6g
 /*
- * $Id: TestMushcoreCounter.h,v 1.1 2005/06/13 14:25:46 southa Exp $
- * $Log: TestMushcoreCounter.h,v $
- * Revision 1.1  2005/06/13 14:25:46  southa
- * Pipe and ordered data work
- *
+ * $Id$
+ * $Log$
  */
 
 #include "TestMushcoreStandard.h"
 
-class TestMushcoreCounter
+class TestMushcoreMaptor
 {
 public:
-    TestMushcoreCounter() : m_pCount(NULL) {}
-    TestMushcoreCounter(Mushware::U32& inCount) : m_pCount(&inCount) { ++*m_pCount; }
-    TestMushcoreCounter(const TestMushcoreCounter& inObj) : m_pCount(inObj.m_pCount) { ++*m_pCount; }
-    ~TestMushcoreCounter() { if (m_pCount != NULL) --*m_pCount; }
-    
-private:
-    Mushware::U32 *m_pCount;
+    static MushcoreScalar TestMaptor(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
+    static void Install(void);
 };
-
-
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

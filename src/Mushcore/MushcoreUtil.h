@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } p0lCEz9EKwWFMt2/eD0agg
 /*
- * $Id: MushcoreUtil.h,v 1.22 2005/07/06 19:08:27 southa Exp $
+ * $Id: MushcoreUtil.h,v 1.23 2005/07/13 16:45:05 southa Exp $
  * $Log: MushcoreUtil.h,v $
+ * Revision 1.23  2005/07/13 16:45:05  southa
+ * Extrusion work
+ *
  * Revision 1.22  2005/07/06 19:08:27  southa
  * Adanaxis control work
  *
@@ -155,6 +158,9 @@ public:
     static void BoundaryThrow(Mushware::U32 inValue, Mushware::U32 inLimit);
     static void BoundaryThrow(Mushware::U32 inValue1, Mushware::U32 inLimit1, Mushware::U32 inValue2, Mushware::U32 inLimit2);
     static void BoundsCheck(Mushware::U32 inValue, Mushware::U32 inLimit);
+    
+    template<class T, class K> static void DeleteSecond(std::pair<const K, T *>& inValue)
+        { delete inValue.second; inValue.second = NULL; }
 };
 
 template<class T>

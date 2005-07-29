@@ -24,8 +24,11 @@
 //%Header } OdZeU4YhHykfAaYZoP6Iyg
 
 /*
- * $Id: MushcoreData.h,v 1.26 2005/06/14 20:39:42 southa Exp $
+ * $Id: MushcoreData.h,v 1.27 2005/06/20 14:30:38 southa Exp $
  * $Log: MushcoreData.h,v $
+ * Revision 1.27  2005/06/20 14:30:38  southa
+ * Adanaxis work
+ *
  * Revision 1.26  2005/06/14 20:39:42  southa
  * Adanaxis work
  *
@@ -176,8 +179,10 @@ class MushcoreData : public MushcoreSingleton< MushcoreData<RefType, KeyType> >
 public:
     typedef typename std::map<KeyType, RefType *> tMap;
     typedef typename std::pair<KeyType, RefType *> tPair;
+    typedef typename tMap::iterator iterator;
     typedef typename tMap::iterator tIterator;
     typedef typename tMap::iterator tMapIterator;
+    typedef typename tMap::const_iterator const_iterator;
     typedef typename tMap::const_iterator tConstIterator;
     typedef typename tMap::const_iterator tMapConstIterator;
 
@@ -200,10 +205,14 @@ public:
     inline Mushware::U32 Size(void) const;
     inline void Iterate(void (*inFnPtr)(RefType&));
     inline void Dump(std::ostream& ioOut) const;
-    inline tMapIterator Begin(void);
-    inline tMapIterator End(void);
-    inline tMapConstIterator Begin(void) const;
-    inline tMapConstIterator End(void) const;
+    inline iterator begin(void);
+    inline iterator end(void);
+    inline const_iterator begin(void) const;
+    inline const_iterator end(void) const;
+    inline tMapIterator Begin(void) { return begin(); }
+    inline tMapIterator End(void) { return end(); }
+    inline tMapConstIterator Begin(void) const { return begin(); }
+    inline tMapConstIterator End(void) const { return end(); }
     inline Mushware::U32 SequenceNumGet(void) const;
 
     void Print(std::ostream& ioOut) const;
@@ -410,29 +419,29 @@ MushcoreData<RefType, KeyType>::Dump(std::ostream& ioOut) const
 }
 
 template<class RefType, class KeyType>
-inline typename MushcoreData<RefType, KeyType>::tMapIterator
-MushcoreData<RefType, KeyType>::Begin(void)
+inline typename MushcoreData<RefType, KeyType>::iterator
+MushcoreData<RefType, KeyType>::begin(void)
 {
     return m_data.begin();
 }
 
 template<class RefType, class KeyType>
-inline typename MushcoreData<RefType, KeyType>::tMapIterator
-MushcoreData<RefType, KeyType>::End(void)
+inline typename MushcoreData<RefType, KeyType>::iterator
+MushcoreData<RefType, KeyType>::end(void)
 {
     return m_data.end();
 }
 
 template<class RefType, class KeyType>
-inline typename MushcoreData<RefType, KeyType>::tMapConstIterator
-MushcoreData<RefType, KeyType>::Begin(void) const
+inline typename MushcoreData<RefType, KeyType>::const_iterator
+MushcoreData<RefType, KeyType>::begin(void) const
 {
     return m_data.begin();
 }
 
 template<class RefType, class KeyType>
-inline typename MushcoreData<RefType, KeyType>::tMapConstIterator
-MushcoreData<RefType, KeyType>::End(void) const
+inline typename MushcoreData<RefType, KeyType>::const_iterator
+MushcoreData<RefType, KeyType>::end(void) const
 {
     return m_data.end();
 }

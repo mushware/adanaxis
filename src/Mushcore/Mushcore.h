@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } Sadh94DLrs/FIT4AZy/cYg
 /*
- * $Id: Mushcore.h,v 1.21 2005/06/13 14:25:45 southa Exp $
+ * $Id: Mushcore.h,v 1.22 2005/07/12 20:39:05 southa Exp $
  * $Log: Mushcore.h,v $
+ * Revision 1.22  2005/07/12 20:39:05  southa
+ * Mesh library work
+ *
  * Revision 1.21  2005/06/13 14:25:45  southa
  * Pipe and ordered data work
  *
@@ -111,6 +114,7 @@
 #include "MushcoreInstaller.h"
 #include "MushcoreInterpreter.h"
 #include "MushcoreLog.h"
+#include "MushcoreMaptor.h"
 // #include "MushcoreIO.h"
 #include "MushcoreObject.h"
 #include "MushcoreOrderedData.h"

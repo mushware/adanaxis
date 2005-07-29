@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } S1UoE1Ybhd51+1HwlVDjjQ
 /*
- * $Id: MushcoreInfo.h,v 1.10 2005/05/19 13:02:15 southa Exp $
+ * $Id: MushcoreInfo.h,v 1.11 2005/06/14 13:25:34 southa Exp $
  * $Log: MushcoreInfo.h,v $
+ * Revision 1.11  2005/06/14 13:25:34  southa
+ * Adanaxis work
+ *
  * Revision 1.10  2005/05/19 13:02:15  southa
  * Mac release work
  *
@@ -76,6 +79,7 @@
 class MushcoreInfo : public MushcoreSingleton<MushcoreInfo>
 {
 public:
+    virtual ~MushcoreInfo() {}
     virtual std::string PlatformNameGet(void);
     virtual std::string ApplicationNameGet(void);
     virtual std::string PackageNameGet(void);
