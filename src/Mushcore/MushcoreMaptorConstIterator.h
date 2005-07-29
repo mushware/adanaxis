@@ -23,13 +23,17 @@
  ****************************************************************************/
 //%Header } Hkd44fiSNTyapd6cYLTkew
 /*
- * $Id$
- * $Log$
+ * $Id: MushcoreMaptorConstIterator.h,v 1.1 2005/07/29 14:59:50 southa Exp $
+ * $Log: MushcoreMaptorConstIterator.h,v $
+ * Revision 1.1  2005/07/29 14:59:50  southa
+ * Maptor access
+ *
  */
 
 #include "MushcoreStandard.h"
 
 #include "MushcoreFail.h"
+#include "MushcoreMaptorIterator.h"
 
 //:generate
 template<class T, class K = Mushware::U32, class C = std::map<K, T *> >
@@ -38,14 +42,16 @@ class MushcoreMaptorConstIterator
 public:
     typedef MushcoreMaptorConstIterator tThis;
     
-    MushcoreMaptorConstIterator(const typename C::const_iterator& inIter) : m_mapIter(inIter) {}
-    MushcoreMaptorConstIterator(const typename C::iterator& inIter) : m_mapIter(inIter) {}
+    explicit MushcoreMaptorConstIterator(const typename C::const_iterator& inIter) : m_mapIter(inIter) {}
+    explicit MushcoreMaptorConstIterator(const typename C::iterator& inIter) : m_mapIter(inIter) {}
+    MushcoreMaptorConstIterator(const MushcoreMaptorIterator<T, K, C>& inIter) : m_mapIter(inIter.MapIter()) {}
     
     T& operator*() const { return *(m_mapIter->second); }
     T *operator->() const { return m_mapIter->second; }
     
     tThis& operator=(const typename C::const_iterator& inIter) { m_mapIter = inIter; return *this; }
     tThis& operator=(const typename C::iterator& inIter) { m_mapIter = inIter; return *this; }
+    tThis& operator=(const MushcoreMaptorIterator<T, K, C>& inIter) { m_mapIter = inIter.MapIter(); return *this; }
     tThis& operator++() { ++m_mapIter; return *this; } // prefix
     tThis operator++(int) { tThis retVal(*this); ++m_mapIter; return retVal; } // postfix
     tThis& operator--() { --m_mapIter; return *this; } // prefix
