@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } OkLaKNsPzgty1sczCrbe0Q
 /*
- * $Id: MushCollisionResolver.h,v 1.1 2005/07/27 18:09:59 southa Exp $
+ * $Id: MushCollisionResolver.h,v 1.2 2005/07/29 08:27:47 southa Exp $
  * $Log: MushCollisionResolver.h,v $
+ * Revision 1.2  2005/07/29 08:27:47  southa
+ * Collision work
+ *
  * Revision 1.1  2005/07/27 18:09:59  southa
  * Collision checking
  *
@@ -39,6 +42,9 @@ class MushCollisionResolver : public MushcoreVirtualObject, public MushcoreSingl
 {
 public:
     Mushware::tVal Resolve(const MushCollisionPiece& inPiece1, const MushCollisionPiece& inPiece2) const;
+
+protected:
+    Mushware::tVal ChunkResolve(const MushCollisionPiece& inPiece1, const MushCollisionPiece& inPiece2) const;
     
 private:
     Mushware::tMsec m_frameMsec; //:readwrite

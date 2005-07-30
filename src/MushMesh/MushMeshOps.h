@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } rbf8AK++JTeVEs9EtXBbeg
 /*
- * $Id: MushMeshOps.h,v 1.6 2005/05/19 13:02:10 southa Exp $
+ * $Id: MushMeshOps.h,v 1.7 2005/07/04 15:59:00 southa Exp $
  * $Log: MushMeshOps.h,v $
+ * Revision 1.7  2005/07/04 15:59:00  southa
+ * Adanaxis work
+ *
  * Revision 1.6  2005/05/19 13:02:10  southa
  * Mac release work
  *
@@ -74,6 +77,7 @@ public:
     template <class T> static MushMeshQuaternionPair<T> SlerpNormalised(const MushMeshQuaternionPair<T>& inA, const MushMeshQuaternionPair<T>& inB, const Mushware::tVal inProp);
 
     static void PosticityToMattress(Mushware::t4x4o4Val& outMattress, const MushMeshPosticity& inPost);
+    static void ObjectToWorld(Mushware::t4Val& ioVec, const MushMeshPosticity& inPost);
 };
 
 template <class T, Mushware::U32 D>
@@ -205,6 +209,13 @@ MushMeshOps::SlerpNormalised(const MushMeshQuaternionPair<T>& inA,
     retVal.SecondSet(Mushware::tQVal(SlerpNormalised(inA.Second(), inB.Second(), inProp)));
     
     return retVal;
+}
+
+inline void
+MushMeshOps::ObjectToWorld(Mushware::t4Val& ioVec, const MushMeshPosticity& inPost)
+{
+    inPost.AngPos().VectorRotate(ioVec);
+    ioVec += inPost.Pos();
 }
 
 //%includeGuardEnd {

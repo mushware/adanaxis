@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } ui3Az6sPZVE4olMwWeOmrw
 /*
- * $Id: AdanaxisLogic.cpp,v 1.6 2005/07/29 08:27:46 southa Exp $
+ * $Id: AdanaxisLogic.cpp,v 1.7 2005/07/29 14:59:49 southa Exp $
  * $Log: AdanaxisLogic.cpp,v $
+ * Revision 1.7  2005/07/29 14:59:49  southa
+ * Maptor access
+ *
  * Revision 1.6  2005/07/29 08:27:46  southa
  * Collision work
  *
@@ -43,6 +46,9 @@
 
 #include "AdanaxisRender.h"
 
+using namespace Mushware;
+using namespace std;
+
 void
 AdanaxisLogic::InitialDataCreate(void)
 {
@@ -54,8 +60,8 @@ AdanaxisLogic::ProjectilesMove(void)
 {
     typedef AdanaxisSaveData::tProjectileList tProjectileList;
     
-    tProjectileList::tIter projectileEndIter = SaveData().ProjectileListWRef().end();
-    for (tProjectileList::tIter p = SaveData().ProjectileListWRef().begin(); p != projectileEndIter;)
+    tProjectileList::iterator projectileEndIter = SaveData().ProjectileListWRef().end();
+    for (tProjectileList::iterator p = SaveData().ProjectileListWRef().begin(); p != projectileEndIter;)
     {
         p->Move(*this, 1);
         
@@ -75,8 +81,8 @@ AdanaxisLogic::KhaziMove(void)
 {
     typedef AdanaxisSaveData::tKhaziList tKhaziList;
     
-    tKhaziList::tIter khaziEndIter = SaveData().KhaziListWRef().end();
-    for (tKhaziList::tIter p = SaveData().KhaziListWRef().begin(); p != khaziEndIter;)
+    tKhaziList::iterator khaziEndIter = SaveData().KhaziListWRef().end();
+    for (tKhaziList::iterator p = SaveData().KhaziListWRef().begin(); p != khaziEndIter;)
     {
         p->Move(*this, 1);
         
@@ -97,14 +103,14 @@ AdanaxisLogic::ProjectilesFullCollide(void)
 {
     typedef AdanaxisSaveData::tProjectileList tProjectileList;
     typedef AdanaxisSaveData::tKhaziList tKhaziList;
-    
+
     MushCollisionResolver::Sgl().FrameMsecSet(VolatileData().FrameMsec());
     
-    tProjectileList::tConstIter projectileEndIter = SaveData().ProjectileList().end();
-    tKhaziList::tConstIter khaziEndIter = SaveData().KhaziList().end();
-    for (tProjectileList::tConstIter p = SaveData().ProjectileList().begin(); p != projectileEndIter; ++p)
+    tProjectileList::const_iterator projectileEndIter = SaveData().ProjectileList().end();
+    tKhaziList::const_iterator khaziEndIter = SaveData().KhaziList().end();
+    for (tProjectileList::const_iterator p = SaveData().ProjectileList().begin(); p != projectileEndIter; ++p)
     {
-        for (tKhaziList::tConstIter q = SaveData().KhaziList().begin(); q != khaziEndIter; ++q)
+        for (tKhaziList::const_iterator q = SaveData().KhaziList().begin(); q != khaziEndIter; ++q)
         {
             if (MushCollisionResolver::Sgl().Resolve(*p, *q) <= 0)
             {
@@ -121,7 +127,7 @@ AdanaxisLogic::MoveSequence(void)
     MushGameLogic::MoveSequence();
     KhaziMove();
     ProjectilesMove();
-    
+    ProjectilesFullCollide();
 }
 
 //%outOfLineFunctions {

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 5+xwz0v1Mv1OTeaDe83ISg
 /*
- * $Id: MushMeshQuaternionPair.h,v 1.9 2005/07/18 13:13:36 southa Exp $
+ * $Id: MushMeshQuaternionPair.h,v 1.10 2005/07/19 10:07:00 southa Exp $
  * $Log: MushMeshQuaternionPair.h,v $
+ * Revision 1.10  2005/07/19 10:07:00  southa
+ * Adanaxis work
+ *
  * Revision 1.9  2005/07/18 13:13:36  southa
  * Extrude to point and projectile mesh
  *
@@ -73,6 +76,7 @@ public:
     void OuterMultiplyBy(const MushMeshQuaternionPair& inVal);
     
     void VectorRotate(Mushware::t4Val& ioVec) const;
+    Mushware::t4Val RotatedVector(const Mushware::t4Val& inVec) const;
     
     void InPlaceNormalise(void);
     void ToRotationIdentitySet(void);
@@ -134,6 +138,15 @@ MushMeshQuaternionPair<T>::VectorRotate(Mushware::t4Val& ioVec) const
 {
     m_first.PreMultiplyVector(ioVec);
     m_second.PostMultiplyVector(ioVec);
+}
+
+template<class T>
+inline Mushware::t4Val
+MushMeshQuaternionPair<T>::RotatedVector(const Mushware::t4Val& inVec) const
+{
+    Mushware::t4Val retVal(inVec);
+    VectorRotate(retVal);
+    return retVal;
 }
 
 template<class T>

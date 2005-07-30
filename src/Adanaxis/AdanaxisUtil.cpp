@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } CFEozIhAxC4/w3MDbuOShQ
 /*
- * $Id: AdanaxisUtil.cpp,v 1.12 2005/07/18 13:13:36 southa Exp $
+ * $Id: AdanaxisUtil.cpp,v 1.13 2005/07/29 08:27:47 southa Exp $
  * $Log: AdanaxisUtil.cpp,v $
+ * Revision 1.13  2005/07/29 08:27:47  southa
+ * Collision work
+ *
  * Revision 1.12  2005/07/18 13:13:36  southa
  * Extrude to point and projectile mesh
  *
@@ -99,7 +102,7 @@ AdanaxisUtil::TestPiecesCreate(AdanaxisLogic& ioLogic)
     tVal rotMin = -0.03;
     tVal rotMax = 0.03;
     
-    for (U32 i=0; i<20; ++i)
+    for (U32 i=0; i<40; ++i)
     {
         khaziListRef.push_back(AdanaxisPieceKhazi("testObj1"));
         AdanaxisSaveData::tKhazi& khaziRef = khaziListRef.back();

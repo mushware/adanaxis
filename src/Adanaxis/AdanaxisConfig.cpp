@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } G3+dIgQrIeaNRuZ7DQOVuQ
 /*
- * $Id: AdanaxisConfig.cpp,v 1.7 2005/07/07 16:54:17 southa Exp $
+ * $Id: AdanaxisConfig.cpp,v 1.8 2005/07/11 16:37:45 southa Exp $
  * $Log: AdanaxisConfig.cpp,v $
+ * Revision 1.8  2005/07/11 16:37:45  southa
+ * Uplink control work
+ *
  * Revision 1.7  2005/07/07 16:54:17  southa
  * Control tweaks
  *
@@ -123,6 +126,7 @@ AdanaxisConfig::AutoInputPrologue(MushcoreXMLIStream& ioIn)
     VersionSet(kVersion);
     m_displayMode = 0;
     m_axisDefs.resize(0);
+    m_keyDefs.resize(0);
 }
 
 void

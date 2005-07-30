@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } c2RtA/5bJ+a5yX6GTdYnag
 /*
- * $Id: MushCollisionPiece.h,v 1.1 2005/07/27 18:09:59 southa Exp $
+ * $Id: MushCollisionPiece.h,v 1.2 2005/07/29 08:27:47 southa Exp $
  * $Log: MushCollisionPiece.h,v $
+ * Revision 1.2  2005/07/29 08:27:47  southa
+ * Collision work
+ *
  * Revision 1.1  2005/07/27 18:09:59  southa
  * Collision checking
  *
@@ -40,9 +43,17 @@ class MushCollisionPiece : public virtual MushcoreVirtualObject
 public:
     virtual const MushMesh4Mesh& CollisionMesh(void) const;
     virtual const MushMeshPosticity& CollisionPost(void) const;
-
+    const Mushware::t4Val& CollisionWorldCentroid(void) const;
+    Mushware::tVal CollisionBoundingRadius(void) const;
+    const MushCollisionWorkspace::tChunkCentroids& CollisionChunkWorldCentroids(void) const;
+    
+    void CollisionResetIfNeeded(Mushware::tMsec inFrameMsec) const { m_collSpace.ResetIfNeeded(inFrameMsec); }
+    
+protected:
+    void CollisionChunkWorldCentroidsBuild(void) const;
+        
 private:
-    MushCollisionWorkspace m_collisionWorkspace;
+    mutable MushCollisionWorkspace m_collSpace;
     
 //%classPrototypes {
 public:
@@ -55,6 +66,37 @@ public:
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
 //%classPrototypes } 1oBgFruy5qHAaudtV+Hcmg
 };
+
+inline const Mushware::t4Val&
+MushCollisionPiece::CollisionWorldCentroid(void) const
+{
+    if (!m_collSpace.CentroidValid())
+    {
+        m_collSpace.CentroidSet(CollisionMesh().Centroid());
+        MushMeshOps::ObjectToWorld(m_collSpace.CentroidWRef(), CollisionPost());
+        m_collSpace.CentroidValidSet(true);
+    }
+    MUSHCOREASSERT(m_collSpace.CentroidValid());
+    return m_collSpace.Centroid();
+}
+
+inline Mushware::tVal
+MushCollisionPiece::CollisionBoundingRadius(void) const
+{
+    return CollisionMesh().BoundingRadius();
+}
+
+inline const MushCollisionWorkspace::tChunkCentroids&
+MushCollisionPiece::CollisionChunkWorldCentroids(void) const
+{
+    if (!m_collSpace.ChunkCentroidsValid())
+    {
+        CollisionChunkWorldCentroidsBuild();
+    }
+    MUSHCOREASSERT(m_collSpace.ChunkCentroidsValid());
+    return m_collSpace.ChunkCentroids();
+}
+
 
 //%inlineHeader {
 inline std::ostream&

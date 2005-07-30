@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } WV+Zfql/63Y6iHwT6AXVfQ
 /*
- * $Id: MushCollisionPiece.cpp,v 1.1 2005/07/27 18:09:59 southa Exp $
+ * $Id: MushCollisionPiece.cpp,v 1.2 2005/07/29 08:27:47 southa Exp $
  * $Log: MushCollisionPiece.cpp,v $
+ * Revision 1.2  2005/07/29 08:27:47  southa
+ * Collision work
+ *
  * Revision 1.1  2005/07/27 18:09:59  southa
  * Collision checking
  *
@@ -41,6 +44,28 @@ const MushMeshPosticity&
 MushCollisionPiece::CollisionPost(void) const
 {
     throw MushcoreDataFail(std::string("Request for collision post unsupported for type '")+AutoName()+"'");
+}
+
+void
+MushCollisionPiece::CollisionChunkWorldCentroidsBuild(void) const
+{
+    const MushMesh4Mesh& meshRef = CollisionMesh();
+    const MushMesh4Mesh::tChunks& chunksRef = meshRef.Chunks();
+    MushCollisionWorkspace::tChunkCentroids& centroidsRef = m_collSpace.ChunkCentroidsWRef();
+    
+    U32 numChunks = chunksRef.size();
+    if (centroidsRef.size() != numChunks)
+    {
+        centroidsRef.resize(numChunks);
+    }
+    
+    const MushMeshPosticity& postRef = CollisionPost();
+    for (U32 i=0; i<numChunks; ++i)
+    {
+        centroidsRef[i] = meshRef.ChunkCentroid(i);
+        MushMeshOps::ObjectToWorld(centroidsRef[i], postRef);
+    }
+    m_collSpace.ChunkCentroidsValidSet(true);
 }
 
 //%outOfLineFunctions {
@@ -76,7 +101,7 @@ void
 MushCollisionPiece::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
-    ioOut << "collisionWorkspace=" << m_collisionWorkspace;
+    ioOut << "collSpace=" << m_collSpace;
     ioOut << "]";
 }
 bool
@@ -88,9 +113,9 @@ MushCollisionPiece::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::stri
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
     }
-    else if (inTagStr == "collisionWorkspace")
+    else if (inTagStr == "collSpace")
     {
-        ioIn >> m_collisionWorkspace;
+        ioIn >> m_collSpace;
     }
     else 
     {
@@ -101,7 +126,7 @@ MushCollisionPiece::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::stri
 void
 MushCollisionPiece::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
-    ioOut.TagSet("collisionWorkspace");
-    ioOut << m_collisionWorkspace;
+    ioOut.TagSet("collSpace");
+    ioOut << m_collSpace;
 }
-//%outOfLineFunctions } KEOYoALsa82JDtqEcCxtTg
+//%outOfLineFunctions } eFXYCQeLBEGTe+atLRenOA

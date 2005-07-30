@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } CqrAMDY0CcR/iEXbQBk/ZA
 /*
- * $Id: MushCollisionWorkspace.h,v 1.1 2005/07/27 18:09:59 southa Exp $
+ * $Id: MushCollisionWorkspace.h,v 1.2 2005/07/29 08:27:47 southa Exp $
  * $Log: MushCollisionWorkspace.h,v $
+ * Revision 1.2  2005/07/29 08:27:47  southa
+ * Collision work
+ *
  * Revision 1.1  2005/07/27 18:09:59  southa
  * Collision checking
  *
@@ -36,6 +39,7 @@
 class MushCollisionWorkspace : public MushcoreVirtualObject
 {
 public:
+    typedef std::vector<Mushware::t4Val> tChunkCentroids;
     MushCollisionWorkspace();
 
     void Touch(void); // Called by constructor
@@ -44,10 +48,10 @@ public:
 private:
     Mushware::tMsec m_frameMsec; //:readwrite
     Mushware::t4Val m_centroid; //:readwrite :wref
-    std::vector<Mushware::t4Val> m_chunkCentroids; //:readwrite :wref
+    tChunkCentroids m_chunkCentroids; //:readwrite :wref
     
-    bool m_centroidValid;
-    bool m_chunkCentroidsValid;
+    bool m_centroidValid; //:readwrite
+    bool m_chunkCentroidsValid; //:readwrite
     
 //%classPrototypes {
 public:
@@ -57,10 +61,14 @@ public:
     void CentroidSet(const Mushware::t4Val& inValue) { m_centroid=inValue; }
     // Writable reference for m_centroid
     Mushware::t4Val& CentroidWRef(void) { return m_centroid; }
-    const std::vector<Mushware::t4Val>& ChunkCentroids(void) const { return m_chunkCentroids; }
-    void ChunkCentroidsSet(const std::vector<Mushware::t4Val>& inValue) { m_chunkCentroids=inValue; }
+    const tChunkCentroids& ChunkCentroids(void) const { return m_chunkCentroids; }
+    void ChunkCentroidsSet(const tChunkCentroids& inValue) { m_chunkCentroids=inValue; }
     // Writable reference for m_chunkCentroids
-    std::vector<Mushware::t4Val>& ChunkCentroidsWRef(void) { return m_chunkCentroids; }
+    tChunkCentroids& ChunkCentroidsWRef(void) { return m_chunkCentroids; }
+    const bool& CentroidValid(void) const { return m_centroidValid; }
+    void CentroidValidSet(const bool& inValue) { m_centroidValid=inValue; }
+    const bool& ChunkCentroidsValid(void) const { return m_chunkCentroidsValid; }
+    void ChunkCentroidsValidSet(const bool& inValue) { m_chunkCentroidsValid=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -68,7 +76,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } LiHeCqRN6Tc5e7cDR6BR9Q
+//%classPrototypes } OBFgasRLxn9Yl9EYFJenKg
 };
 //%inlineHeader {
 inline std::ostream&

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } ut0PZ9K0qO+aZi1YpU+JsA
 /*
- * $Id: MushCollisionResolver.cpp,v 1.1 2005/07/27 18:09:59 southa Exp $
+ * $Id: MushCollisionResolver.cpp,v 1.2 2005/07/29 08:27:47 southa Exp $
  * $Log: MushCollisionResolver.cpp,v $
+ * Revision 1.2  2005/07/29 08:27:47  southa
+ * Collision work
+ *
  * Revision 1.1  2005/07/27 18:09:59  southa
  * Collision checking
  *
@@ -33,10 +36,61 @@ using namespace std;
 
 MUSHCORE_SINGLETON_INSTANCE(MushCollisionResolver);
 
+
+Mushware::tVal
+MushCollisionResolver::ChunkResolve(const MushCollisionPiece& inPiece1, const MushCollisionPiece& inPiece2) const
+{
+    const MushMesh4Mesh& meshRef1 = inPiece1.CollisionMesh();
+    const MushMesh4Mesh& meshRef2 = inPiece2.CollisionMesh();
+    const MushMesh4Mesh::tChunks& chunksRef1 = meshRef1.Chunks();
+    const MushMesh4Mesh::tChunks& chunksRef2 = meshRef2.Chunks();
+    const MushCollisionWorkspace::tChunkCentroids& centroidsRef1 = inPiece1.CollisionChunkWorldCentroids();
+    const MushCollisionWorkspace::tChunkCentroids& centroidsRef2 = inPiece2.CollisionChunkWorldCentroids();
+    
+    U32 numChunks1 = chunksRef1.size();
+    U32 numChunks2 = chunksRef2.size();
+    
+    tVal minDistanceSep = 1;
+    
+    for (U32 i=0; i<numChunks1; ++i)
+    {
+        tVal boundingRadius1 = meshRef1.ChunkBoundingRadius(i);
+        
+        for (U32 j=0; j<numChunks2; ++j)
+        {
+            tVal boundingRadius2 = meshRef2.ChunkBoundingRadius(j);
+            
+            tVal distanceSep = (centroidsRef1[i] - centroidsRef2[j]).Magnitude() - boundingRadius1 - boundingRadius2;
+            if ((i == 0 && j == 0) || distanceSep < minDistanceSep)
+            {
+                minDistanceSep = distanceSep;
+                //cout << "New minimum: ";
+            }
+#if 0
+            cout << " +++sep=" << distanceSep;
+            cout << ", cent1=" << centroidsRef1[i] << " radius " << boundingRadius1;
+            cout << ", cent2=" << centroidsRef2[j] << " radius " << boundingRadius2;
+            cout << endl;
+#endif
+                
+        }
+    }
+    return minDistanceSep;
+}
+
 Mushware::tVal
 MushCollisionResolver::Resolve(const MushCollisionPiece& inPiece1, const MushCollisionPiece& inPiece2) const
 {
-    return 0;
+    inPiece1.CollisionResetIfNeeded(FrameMsec());
+    inPiece2.CollisionResetIfNeeded(FrameMsec());
+    t4Val centroidSepVec = inPiece1.CollisionWorldCentroid() - inPiece2.CollisionWorldCentroid();
+    tVal centroidSep = centroidSepVec.Magnitude();
+    tVal distanceSep = centroidSep - inPiece1.CollisionBoundingRadius() - inPiece2.CollisionBoundingRadius();
+    if (distanceSep <= 0)
+    {
+        distanceSep = ChunkResolve(inPiece1, inPiece2);
+    }
+    return distanceSep;
 }
 
 
