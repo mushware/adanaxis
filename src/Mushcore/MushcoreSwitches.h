@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } H2pgO0Z2uw1STSVyJvnilw
 /*
- * $Id: MushcoreSwitches.h,v 1.8 2004/01/02 21:13:13 southa Exp $
+ * $Id: MushcoreSwitches.h,v 1.9 2005/05/19 13:02:16 southa Exp $
  * $Log: MushcoreSwitches.h,v $
+ * Revision 1.9  2005/05/19 13:02:16  southa
+ * Mac release work
+ *
  * Revision 1.8  2004/01/02 21:13:13  southa
  * Source conditioning
  *
@@ -90,6 +93,12 @@
 #define MUSHCORE_IFFLEXTESTING(a) a
 #else
 #define MUSHCORE_IFFLEXTESTING(a)
+#endif
+
+#ifdef NDEBUG
+#undef MUSHCORE_DEBUG
+#else
+#define MUSHCORE_DEBUG 1
 #endif
 
 //%includeGuardEnd {
