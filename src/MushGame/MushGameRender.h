@@ -23,14 +23,17 @@
  ****************************************************************************/
 //%Header } 758vG5RYBv9QjPDnAkLDSw
 /*
- * $Id: MushGameRender.h,v 1.1 2005/06/29 11:11:15 southa Exp $
+ * $Id: MushGameRender.h,v 1.2 2005/07/02 00:42:38 southa Exp $
  * $Log: MushGameRender.h,v $
+ * Revision 1.2  2005/07/02 00:42:38  southa
+ * Conditioning tweaks
+ *
  * Revision 1.1  2005/06/29 11:11:15  southa
  * Camera and rendering work
  *
  */
 
-#include "MushGameRender.h"
+#include "MushGameStandard.h"
 
 class MushGameCamera;
 class MushGameLogic;
