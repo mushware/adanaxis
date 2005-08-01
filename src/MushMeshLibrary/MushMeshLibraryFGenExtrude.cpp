@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } 5mXJjsgE9FySBp3B30JsGw
 /*
- * $Id: MushMeshLibraryFGenExtrude.cpp,v 1.5 2005/07/18 13:13:36 southa Exp $
+ * $Id: MushMeshLibraryFGenExtrude.cpp,v 1.6 2005/07/19 13:44:26 southa Exp $
  * $Log: MushMeshLibraryFGenExtrude.cpp,v $
+ * Revision 1.6  2005/07/19 13:44:26  southa
+ * MushMesh4Chunk work
+ *
  * Revision 1.5  2005/07/18 13:13:36  southa
  * Extrude to point and projectile mesh
  *
@@ -64,7 +67,7 @@ MushMeshLibraryFGenExtrude::FaceExtrudeOne(MushMesh4Mesh& ioMesh, Mushware::U32&
     }
 
     // New chunk.  All faces are placed in one chunk
-    MushMeshLibraryUtil::NewChunkCreate(ioMesh);
+    MushMesh4Util::NewChunkCreate(ioMesh);
     
     const MushMesh4Mesh::tFace& srcFaceRef = ioMesh.Face(ioFaceNum);
     const MushMesh4Mesh::tFace::tFaceConnectivity& srcConnectivityRef =

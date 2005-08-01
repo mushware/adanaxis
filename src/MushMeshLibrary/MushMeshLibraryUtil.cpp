@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } ic4notP94YKlJO17pfZjfA
 /*
- * $Id: MushMeshLibraryUtil.cpp,v 1.1 2005/07/19 13:44:26 southa Exp $
+ * $Id: MushMeshLibraryUtil.cpp,v 1.2 2005/07/27 18:10:06 southa Exp $
  * $Log: MushMeshLibraryUtil.cpp,v $
+ * Revision 1.2  2005/07/27 18:10:06  southa
+ * Collision checking
+ *
  * Revision 1.1  2005/07/19 13:44:26  southa
  * MushMesh4Chunk work
  *
@@ -26,31 +29,3 @@
 
 #include "MushMeshLibraryUtil.h"
 
-void
-MushMeshLibraryUtil::NewFaceCreate(MushMesh4Mesh& ioMesh,
-                                   MushMesh4Face *& outpFace,
-                                   MushMesh4Face::tVertexList *& outpVertexList,
-                                   MushMesh4Face::tVertexGroupSize *& outpVertexGroupSize)
-{
-
-    ioMesh.FacesWRef().push_back(MushMesh4Mesh::tFace());
-    
-    outpFace = &ioMesh.FacesWRef().back();
-    outpVertexList = &outpFace->VertexListWRef();
-    outpVertexGroupSize = &outpFace->VertexGroupSizeWRef();
-
-    // Add this face to the current chunk
-    if (ioMesh.Chunks().size() == 0)
-    {
-        throw MushcoreLogicFail("Attempt to add face without creating a chunk");
-    }
-    ioMesh.ChunksWRef().back().FaceListWRef().push_back(ioMesh.FaceCounter());
-
-    ++ioMesh.FaceCounterWRef();
-}
-
-void
-MushMeshLibraryUtil::NewChunkCreate(MushMesh4Mesh& ioMesh)
-{
-    ioMesh.ChunksWRef().push_back(MushMesh4Mesh::tChunk());
-}

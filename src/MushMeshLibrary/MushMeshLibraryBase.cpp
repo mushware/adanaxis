@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } wT/XlXiDrkjXl6HW1CFN3Q
 /*
- * $Id: MushMeshLibraryBase.cpp,v 1.3 2005/07/16 14:22:59 southa Exp $
+ * $Id: MushMeshLibraryBase.cpp,v 1.4 2005/07/19 13:44:26 southa Exp $
  * $Log: MushMeshLibraryBase.cpp,v $
+ * Revision 1.4  2005/07/19 13:44:26  southa
+ * MushMesh4Chunk work
+ *
  * Revision 1.3  2005/07/16 14:22:59  southa
  * Added diagnostic renderer
  *
@@ -72,7 +75,7 @@ MushMeshLibraryBase::UnitTesseractCreate(MushMesh4Mesh& ioMesh) const
     MushMesh4Face::tVertexGroupSize *pVertexGroupSize = NULL;
     
     // Chunk.  All faces are placed in one chunk
-    MushMeshLibraryUtil::NewChunkCreate(ioMesh);
+    MushMesh4Util::NewChunkCreate(ioMesh);
     
     // Vertices
     UnitTesseractVerticesCreate(ioMesh);
@@ -83,7 +86,7 @@ MushMeshLibraryBase::UnitTesseractCreate(MushMesh4Mesh& ioMesh) const
     for (U32 i=0; i<8 && fixedAxis > 0; ++i)
     {
         // Creating new faces invalidates references to other faces and their components
-        MushMeshLibraryUtil::NewFaceCreate(ioMesh, pFace, pVertexList, pVertexGroupSize);
+        MushMesh4Util::NewFaceCreate(ioMesh, pFace, pVertexList, pVertexGroupSize);
         
         // fixedAxis: 1->x, 2->y, 4->z, 8->w
         
@@ -215,7 +218,7 @@ MushMeshLibraryBase::PolygonPrismCreate(MushMesh4Mesh& ioMesh, const Mushware::t
     MushMesh4Face::tVertexGroupSize *pVertexGroupSize = NULL;
     
     // Chunk.  All faces are placed in one chunk
-    MushMeshLibraryUtil::NewChunkCreate(ioMesh);
+    MushMesh4Util::NewChunkCreate(ioMesh);
     
     // Vertices
     PolygonPrismVerticesCreate(ioMesh, inScale, inOrder);
@@ -229,7 +232,7 @@ MushMeshLibraryBase::PolygonPrismCreate(MushMesh4Mesh& ioMesh, const Mushware::t
     {
         // Polygon end facets (the ends of the prism)
         // Creating new faces invalidates references to other faces and their components
-        MushMeshLibraryUtil::NewFaceCreate(ioMesh, pFace, pVertexList, pVertexGroupSize);
+        MushMesh4Util::NewFaceCreate(ioMesh, pFace, pVertexList, pVertexGroupSize);
         U32 vBase = w * wStep;   
         for (U32 z=0; z<2; ++z)
         {
@@ -268,7 +271,7 @@ MushMeshLibraryBase::CongruentFacesJoin(MushMesh4Mesh& ioMesh, Mushware::U32 inF
         
         // Create a new (joining) face for each facet in the source face
         // Creating new faces invalidates references to other faces and their components
-        MushMeshLibraryUtil::NewFaceCreate(ioMesh, pFace, pVertexList, pVertexGroupSize);
+        MushMesh4Util::NewFaceCreate(ioMesh, pFace, pVertexList, pVertexGroupSize);
         
         const MushMesh4Face& face1Ref = ioMesh.Face(inFaceNum1);
         const MushMesh4Face::tVertexList& vertexList1Ref = face1Ref.VertexList();

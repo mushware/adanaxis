@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } dTepjkjze3ED1TtgNY790w
 /*
- * $Id$
- * $Log$
+ * $Id: MushMeshLibraryUtil.h,v 1.1 2005/07/19 13:44:26 southa Exp $
+ * $Log: MushMeshLibraryUtil.h,v $
+ * Revision 1.1  2005/07/19 13:44:26  southa
+ * MushMesh4Chunk work
+ *
  */
 
 #include "MushMeshLibraryStandard.h"
@@ -30,11 +33,6 @@
 class MushMeshLibraryUtil
 {
 public:
-    static void NewFaceCreate(MushMesh4Mesh& ioMesh,
-                              MushMesh4Face *& outpFace,
-                              MushMesh4Face::tVertexList *& outpVertexList,
-                              MushMesh4Face::tVertexGroupSize *& outpVertexGroupSize);
-    static void NewChunkCreate(MushMesh4Mesh& ioMesh);
     
 private:
     
