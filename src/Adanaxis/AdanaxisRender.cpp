@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } eomVoawiv9P4VcOw5CYHSg
 /*
- * $Id: AdanaxisRender.cpp,v 1.16 2005/07/29 14:59:49 southa Exp $
+ * $Id: AdanaxisRender.cpp,v 1.17 2005/07/30 19:06:14 southa Exp $
  * $Log: AdanaxisRender.cpp,v $
+ * Revision 1.17  2005/07/30 19:06:14  southa
+ * Collision checking
+ *
  * Revision 1.16  2005/07/29 14:59:49  southa
  * Maptor access
  *
@@ -133,12 +136,20 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
     
     camera.ProjectionSet(m_projection);
     
+    renderMesh.ColourZMiddleSet(t4Val(0.5,0.0,1.0,0.1));
+    renderMesh.ColourZLeftSet(t4Val(0,0.0,1.0,0.0));
+    renderMesh.ColourZRightSet(t4Val(0,0.5,1.0,0.0));
+    
     tDecoList::iterator decoEndIter = pVolData->DecoListWRef().end();
     for (tDecoList::iterator p = pVolData->DecoListWRef().begin(); p != decoEndIter; ++p)
     {
         p->Render(ioLogic, renderMesh, camera);
     }
-        
+
+    renderMesh.ColourZMiddleSet(t4Val(1.0,1.0,1.0,1.0));
+    renderMesh.ColourZLeftSet(t4Val(1.0,0.0,0.0,0.0));
+    renderMesh.ColourZRightSet(t4Val(0.0,1.0,0.0,0.0));
+
     typedef AdanaxisSaveData::tProjectileList tProjectileList;
     
     tProjectileList::iterator projectileEndIter = pSaveData->ProjectileListWRef().end();

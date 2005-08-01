@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } 1+Fcp5/pJdalVjA2hnviXw
 /*
- * $Id: AdanaxisGame.cpp,v 1.17 2005/07/11 16:37:46 southa Exp $
+ * $Id: AdanaxisGame.cpp,v 1.18 2005/07/18 13:13:35 southa Exp $
  * $Log: AdanaxisGame.cpp,v $
+ * Revision 1.18  2005/07/18 13:13:35  southa
+ * Extrude to point and projectile mesh
+ *
  * Revision 1.17  2005/07/11 16:37:46  southa
  * Uplink control work
  *
@@ -151,6 +154,7 @@ AdanaxisGame::Init(GameAppHandler& inAppHandler)
 
     UpdateFromConfig();
     
+    AdanaxisUtil::TestDecoCreate(Logic());
     AdanaxisUtil::TestPiecesCreate(Logic());
     
     {

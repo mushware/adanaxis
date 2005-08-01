@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } CFEozIhAxC4/w3MDbuOShQ
 /*
- * $Id: AdanaxisUtil.cpp,v 1.14 2005/07/30 19:06:14 southa Exp $
+ * $Id: AdanaxisUtil.cpp,v 1.15 2005/08/01 13:09:57 southa Exp $
  * $Log: AdanaxisUtil.cpp,v $
+ * Revision 1.15  2005/08/01 13:09:57  southa
+ * Collision messaging
+ *
  * Revision 1.14  2005/07/30 19:06:14  southa
  * Collision checking
  *
@@ -95,6 +98,96 @@ AdanaxisUtil::MeshLibrary(void)
         throw MushcoreRequestFail("MeshLibrary of wrong type for AdanaxisMeshLibrary");
     }
     return *pMeshLibrary;
+}
+
+void
+AdanaxisUtil::TestDecoCreate(AdanaxisLogic& ioLogic)
+{
+    AdanaxisVolatileData::tDecoList& decoListRef = ioLogic.VolatileData().DecoListWRef();
+
+    tVal rotMin = -0.03;
+    tVal rotMax = 0.03;
+    
+    for (U32 i=0; i<1000; ++i)
+    {
+        decoListRef.push_back(AdanaxisPieceDeco("decoObj1"));
+        AdanaxisVolatileData::tDeco& objRef = decoListRef.back();
+        
+        objRef.PostWRef().PosSet(t4Val(MushMeshTools::Random(-1,1),MushMeshTools::Random(-1,1),MushMeshTools::Random(-1,1),MushMeshTools::Random(-1,1)));
+        
+        objRef.PostWRef().PosWRef().InPlaceNormalise();
+        
+        objRef.PostWRef().PosWRef() *= 50;
+        
+        tQValPair orientation = MushMeshTools::RandomOrientation();
+        objRef.PostWRef().AngPosSet(orientation);
+        objRef.PostWRef().AngVelWRef().ToRotationIdentitySet();
+        
+        {
+            objRef.PostWRef().AngVelWRef().OuterMultiplyBy(orientation);
+            
+            objRef.PostWRef().AngVelWRef().OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis
+                                                             (0, MushMeshTools::Random(rotMin, rotMax)));
+            objRef.PostWRef().AngVelWRef().OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis
+                                                             (1, MushMeshTools::Random(rotMin, rotMax)));
+            
+            objRef.PostWRef().AngVelWRef().OuterMultiplyBy(orientation.Conjugate());
+        }
+        
+        MushMeshLibraryFGenExtrude faceExtrude;
+        MushMeshLibraryVGenExtrude vertexExtrude;
+        tQValPair rotation;
+        rotation.ToRotationIdentitySet();
+        MushMeshDisplacement disp(t4Val(0,0,0,1), rotation, 0.75);
+        
+        MushMeshLibraryExtrusionContext extrusionContext(disp, 0);
+        switch (i % 30)
+        {
+            case 2:
+            {
+                MushMeshLibraryBase::Sgl().PolygonPrismCreate(objRef.MeshWRef(), t4Val(3,3,3,3), 5);            
+            }
+            break;
+                                
+            case 1:
+            {
+                MushMeshLibraryBase::Sgl().PolygonPrismCreate(objRef.MeshWRef(), t4Val(1,1,1,1), 3);            
+                U32 number = 5;
+                t4Val offset(0,0,0,-1);
+                if (i % 1 == 0)
+                {
+                    disp.RotationWRef().OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis
+                                                        (1, 0.5*M_PI/number));
+                    MushMeshTools::QuaternionRotateInAxis(1, 0.25*M_PI/number).VectorRotate(offset);
+                    disp.OffsetSet(offset);
+                    extrusionContext.DispSet(disp);
+                }
+                extrusionContext.ScaleVelocitySet(0);
+                extrusionContext.ResetNewFace(0);
+                faceExtrude.FaceExtrude(objRef.MeshWRef(), extrusionContext, number);
+                extrusionContext.ResetNewFace(1);
+                faceExtrude.FaceExtrude(objRef.MeshWRef(), extrusionContext, number);
+                
+                disp.OffsetSet(offset);
+                extrusionContext.ResetNewDispFace(disp, 0);
+                vertexExtrude.FaceExtrude(objRef.MeshWRef(), extrusionContext, number);
+                offset.WSet(-offset.W());
+                disp.OffsetSet(offset);
+                disp.RotationSet(disp.Rotation().Conjugate());
+                extrusionContext.ResetNewDispFace(disp, 1);
+                vertexExtrude.FaceExtrude(objRef.MeshWRef(), extrusionContext, number);
+            }
+            break;
+                
+            case 0:
+            default:
+            {
+                tVal scale=MushMeshTools::Random(0.1,0.2);
+                MushMeshLibraryBase::Sgl().PolygonPrismCreate(objRef.MeshWRef(), scale * t4Val(1,1,1,1), 4);            
+            }
+            break;
+        }
+    }
 }
 
 void

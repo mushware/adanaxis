@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } h0Ba5isJoX+glev7XNkQ4g
 /*
- * $Id: AdanaxisUtil.h,v 1.3 2005/07/12 12:18:17 southa Exp $
+ * $Id: AdanaxisUtil.h,v 1.4 2005/07/18 13:13:36 southa Exp $
  * $Log: AdanaxisUtil.h,v $
+ * Revision 1.4  2005/07/18 13:13:36  southa
+ * Extrude to point and projectile mesh
+ *
  * Revision 1.3  2005/07/12 12:18:17  southa
  * Projectile work
  *
@@ -45,6 +48,7 @@ class AdanaxisUtil
 {
 public:
     static void TestPiecesCreate(AdanaxisLogic& ioLogic);
+    static void TestDecoCreate(AdanaxisLogic& ioLogic);
     static AdanaxisAppHandler& AppHandler(void);
     static AdanaxisMeshLibrary& MeshLibrary(void);
     static AdanaxisLogic& Logic(MushGameLogic& ioLogic);

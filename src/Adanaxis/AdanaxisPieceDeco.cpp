@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } sexYl99zeFqxCTpAO8DLNQ
 /*
- * $Id: AdanaxisPieceDeco.cpp,v 1.10 2005/07/18 13:13:35 southa Exp $
+ * $Id: AdanaxisPieceDeco.cpp,v 1.11 2005/07/19 10:08:06 southa Exp $
  * $Log: AdanaxisPieceDeco.cpp,v $
+ * Revision 1.11  2005/07/19 10:08:06  southa
+ * Adanaxis work
+ *
  * Revision 1.10  2005/07/18 13:13:35  southa
  * Extrude to point and projectile mesh
  *
@@ -67,17 +70,32 @@ AdanaxisPieceDeco::AdanaxisPieceDeco(const std::string& inID) :
 void
 AdanaxisPieceDeco::Render(MushGameLogic& ioLogic, MushRenderMesh& inRender, const MushGameCamera& inCamera)
 {
-    PostWRef().InPlaceVelocityAdd();
-    MushRenderSpec renderSpec;
-    renderSpec.BuffersRefSet(m_buffersRef);
+    bool visible = true;
+    t4Val objNormal = t4Val(1,0,0,0);
+    t4Val viewNormal = t4Val(1,0,0,0);
     
-    MushMeshOps::PosticityToMattress(renderSpec.ModelWRef(), Post());
-    MushMeshOps::PosticityToMattress(renderSpec.ViewWRef(), inCamera.Post());
-    renderSpec.ViewWRef().InPlaceInvert();
+    Post().AngPos().VectorRotate(objNormal);
+    inCamera.Post().AngPos().Conjugate().VectorRotate(viewNormal);
     
-    renderSpec.ProjectionSet(inCamera.Projection());
+    visible = true;
     
-    inRender.MeshRender(renderSpec, m_mesh);
+    if (visible)
+    {
+        MushRenderSpec renderSpec;
+        renderSpec.BuffersRefSet(m_buffersRef);
+
+        MushGameCamera newCamera(inCamera);
+        newCamera.PostWRef().PosWRef().ToAdditiveIdentitySet();
+        newCamera.PostWRef().AngPosWRef().OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis
+                                                          (0, ioLogic.FrameMsec()/50000.0));
+        MushMeshOps::PosticityToMattress(renderSpec.ModelWRef(), Post());
+        MushMeshOps::PosticityToMattress(renderSpec.ViewWRef(), newCamera.Post());
+        renderSpec.ViewWRef().InPlaceInvert();
+        
+        renderSpec.ProjectionSet(inCamera.Projection());
+        
+        inRender.MeshRender(renderSpec, m_mesh);
+    }
 }
 
 //%outOfLineFunctions {
