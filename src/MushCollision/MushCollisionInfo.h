@@ -23,9 +23,15 @@
  ****************************************************************************/
 //%Header } XC7ySvvC8bbl/ig/EYoMxg
 /*
- * $Id$
- * $Log$
+ * $Id: MushCollisionInfo.h,v 1.1 2005/08/01 13:09:57 southa Exp $
+ * $Log: MushCollisionInfo.h,v $
+ * Revision 1.1  2005/08/01 13:09:57  southa
+ * Collision messaging
+ *
  */
+
+
+#include "MushCollisionStandard.h"
 
 //:generate virtual standard ostream xml1
 class MushCollisionInfo : public MushcoreVirtualObject

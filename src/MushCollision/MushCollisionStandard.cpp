@@ -19,9 +19,12 @@
  ****************************************************************************/
 //%Header } t00bGkGBxoN0xaAf1UnNkg
 /*
- * $Id$
- * $Log$
+ * $Id: MushCollisionStandard.cpp,v 1.1 2005/07/27 18:09:59 southa Exp $
+ * $Log: MushCollisionStandard.cpp,v $
+ * Revision 1.1  2005/07/27 18:09:59  southa
+ * Collision checking
+ *
  */
 
-#include "MushGameStandard.h"
+#include "MushCollisionStandard.h"
 
