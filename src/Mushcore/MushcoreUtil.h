@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } p0lCEz9EKwWFMt2/eD0agg
 /*
- * $Id: MushcoreUtil.h,v 1.23 2005/07/13 16:45:05 southa Exp $
+ * $Id: MushcoreUtil.h,v 1.24 2005/07/29 11:53:41 southa Exp $
  * $Log: MushcoreUtil.h,v $
+ * Revision 1.24  2005/07/29 11:53:41  southa
+ * MushcoreMaptor created
+ *
  * Revision 1.23  2005/07/13 16:45:05  southa
  * Extrusion work
  *
@@ -158,6 +161,7 @@ public:
     static void BoundaryThrow(Mushware::U32 inValue, Mushware::U32 inLimit);
     static void BoundaryThrow(Mushware::U32 inValue1, Mushware::U32 inLimit1, Mushware::U32 inValue2, Mushware::U32 inLimit2);
     static void BoundsCheck(Mushware::U32 inValue, Mushware::U32 inLimit);
+    static void DebugBoundsCheck(Mushware::U32 inValue, Mushware::U32 inLimit);
     
     template<class T, class K> static void DeleteSecond(std::pair<const K, T *>& inValue)
         { delete inValue.second; inValue.second = NULL; }
@@ -178,10 +182,21 @@ MushcoreUtil::ArrayToVector(const T inArray[], Mushware::U32 inSize)
 inline void
 MushcoreUtil::BoundsCheck(Mushware::U32 inValue, Mushware::U32 inLimit)
 {
-    if (inValue > inLimit)
+    if (inValue >= inLimit)
     {
         BoundaryThrow(inValue, inLimit);
     }
+}
+
+inline void
+MushcoreUtil::DebugBoundsCheck(Mushware::U32 inValue, Mushware::U32 inLimit)
+{
+#ifdef MUSHCORE_DEBUG
+    if (inValue >= inLimit)
+    {
+        BoundaryThrow(inValue, inLimit);
+    }
+#endif
 }
 
 template<class T>
