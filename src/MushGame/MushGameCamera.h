@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } iR1nzzDghU7XG/JS99oDQQ
 /*
- * $Id: MushGameCamera.h,v 1.3 2005/06/29 11:11:15 southa Exp $
+ * $Id: MushGameCamera.h,v 1.4 2005/07/04 15:59:00 southa Exp $
  * $Log: MushGameCamera.h,v $
+ * Revision 1.4  2005/07/04 15:59:00  southa
+ * Adanaxis work
+ *
  * Revision 1.3  2005/06/29 11:11:15  southa
  * Camera and rendering work
  *
@@ -76,16 +79,20 @@ public:
     virtual void TiedRefCopy(MushGameRef *inpRef);
     
 private:
-    MushMeshPosticity m_post; //:readwrite
-    MushGLProjection m_projection; //:readwrite
+    MushMeshPosticity m_post; //:readwrite :wref
+    MushGLProjection m_projection; //:readwrite :wref
     MushGameRef *m_pTiedRef;
     
 //%classPrototypes {
 public:
     const MushMeshPosticity& Post(void) const { return m_post; }
     void PostSet(const MushMeshPosticity& inValue) { m_post=inValue; }
+    // Writable reference for m_post
+    MushMeshPosticity& PostWRef(void) { return m_post; }
     const MushGLProjection& Projection(void) const { return m_projection; }
     void ProjectionSet(const MushGLProjection& inValue) { m_projection=inValue; }
+    // Writable reference for m_projection
+    MushGLProjection& ProjectionWRef(void) { return m_projection; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -93,7 +100,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } 6Znngf6eU1lxCXv2olz8HA
+//%classPrototypes } b0TYGAO+rwIrQB2rMp5jQQ
 };
 //%inlineHeader {
 inline std::ostream&
