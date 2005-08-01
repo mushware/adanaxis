@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } 1en6OnZ85se795baUuYn3A
 /*
- * $Id: AdanaxisPieceKhazi.cpp,v 1.1 2005/07/19 10:08:06 southa Exp $
+ * $Id: AdanaxisPieceKhazi.cpp,v 1.2 2005/08/01 13:09:57 southa Exp $
  * $Log: AdanaxisPieceKhazi.cpp,v $
+ * Revision 1.2  2005/08/01 13:09:57  southa
+ * Collision messaging
+ *
  * Revision 1.1  2005/07/19 10:08:06  southa
  * Adanaxis work
  *
@@ -26,7 +29,9 @@
 
 #include "AdanaxisPieceKhazi.h"
 
+#include "AdanaxisData.h"
 #include "AdanaxisPieceProjectile.h"
+#include "AdanaxisUtil.h"
 
 using namespace Mushware;
 using namespace std;
@@ -64,7 +69,11 @@ AdanaxisPieceKhazi::Render(MushGameLogic& ioLogic, MushRenderMesh& inRender, con
 void
 AdanaxisPieceKhazi::CollisionFatalConsume(MushGameLogic& ioLogic, const MushGameMessageCollisionFatal& inMessage)
 {
-    ExpireFlagSet(true);
+    if (!ExpireFlag())
+    {
+        ExpireFlagSet(true);
+        Explode(ioLogic, inMessage);
+    }
 }    
 
 void
@@ -80,6 +89,72 @@ AdanaxisPieceKhazi::MessageConsume(MushGameLogic& ioLogic, const MushGameMessage
     {
         // Pass to base class
         MushGamePiece::MessageConsume(ioLogic, inMessage);
+    }
+}
+
+
+void
+AdanaxisPieceKhazi::Explode(MushGameLogic& ioLogic, const MushGameMessageCollisionFatal& inMessage)
+{
+    U32 numChunks = Mesh().Chunks().size();
+    U32 contactChunk = 0;
+    if (inMessage.ChunkNumsValid())
+    {
+        contactChunk = inMessage.ChunkNum2();
+    }
+    
+    tVal objectSize = Mesh().BoundingRadius();
+    
+    if (objectSize == 0)
+    {
+        throw MushcoreDataFail("Cannot explode object of zero size");
+    }
+    
+    MushMesh4Mesh::tCentroid contactCentroid = Mesh().ChunkCentroid(contactChunk);
+    
+    for (U32 i=0; i<numChunks; ++i)
+    {
+        if (i != contactChunk)
+        {
+            AdanaxisSaveData::tProjectileList& projectileListRef =
+            AdanaxisUtil::Logic(ioLogic).SaveData().ProjectileListWRef();
+            
+            projectileListRef.push_back(AdanaxisPieceProjectile("khazi"+Id()));
+            AdanaxisSaveData::tProjectile& projectileRef = projectileListRef.back();
+            
+            projectileRef.OwnerSet(Id());
+            projectileRef.ExpiryMsecSet(ioLogic.FrameMsec() + projectileRef.LifeMsec());
+            
+            // Create projectile in Khazi's coordinates
+            projectileRef.PostWRef().ToIdentitySet();
+            
+            t4Val posOffset = Mesh().ChunkCentroid(i);
+            
+            projectileRef.PostWRef().PosWRef() += posOffset;
+            
+            projectileRef.PostWRef().AngVelWRef().ToRotationIdentitySet();
+            for (U32 j=0; j<6; ++j)
+            {
+                tVal rot=0.02;
+                projectileRef.PostWRef().AngVelWRef().OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis(0, MushMeshTools::Random(-rot, +rot)));
+            }
+            projectileRef.PostWRef().VelSet((posOffset - contactCentroid) * (MushMeshTools::Random(0.2,2) / objectSize));
+            
+            // Now transform to world coordinates
+            // Reorientate the player space vectors to world space
+            Post().AngPos().VectorRotate(projectileRef.PostWRef().PosWRef());
+            Post().AngPos().VectorRotate(projectileRef.PostWRef().VelWRef());
+            
+            // Move to this object's position and velocity
+            projectileRef.PostWRef().PosWRef() += Post().Pos();
+            projectileRef.PostWRef().VelWRef() += Post().Vel();
+            projectileRef.PostWRef().AngPosWRef().OuterMultiplyBy(Post().AngPos());
+            
+            // Don't inherit angular velocity
+            
+            // Create the mesh for this object
+            MushMesh4Util::ChunkCopy(projectileRef.MeshWRef(), Mesh(), i);
+        }
     }
 }
 

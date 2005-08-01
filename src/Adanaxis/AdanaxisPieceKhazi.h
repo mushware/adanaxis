@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } ECoWMgOgfphFtEFoxlZ8Qg
 /*
- * $Id: AdanaxisPieceKhazi.h,v 1.2 2005/07/29 08:27:46 southa Exp $
+ * $Id: AdanaxisPieceKhazi.h,v 1.3 2005/08/01 13:09:57 southa Exp $
  * $Log: AdanaxisPieceKhazi.h,v $
+ * Revision 1.3  2005/08/01 13:09:57  southa
+ * Collision messaging
+ *
  * Revision 1.2  2005/07/29 08:27:46  southa
  * Collision work
  *
@@ -56,13 +59,18 @@ public:
     virtual const MushMesh4Mesh& CollisionMesh(void) const { return m_mesh; }
     virtual const MushMeshPosticity& CollisionPost(void) const { return Post(); }
 
+protected:
+    virtual void Explode(MushGameLogic& ioLogic, const MushGameMessageCollisionFatal& inMessage);
+    
 private:
-    std::string m_id;
+    std::string m_id; //:readwrite
     bool m_expireFlag; //:readwrite
     MushMesh4Mesh m_mesh; //:readwrite :wref
     MushGLBuffers::tDataRef m_buffersRef; //:readwrite
 //%classPrototypes {
 public:
+    const std::string& Id(void) const { return m_id; }
+    void IdSet(const std::string& inValue) { m_id=inValue; }
     const bool& ExpireFlag(void) const { return m_expireFlag; }
     void ExpireFlagSet(const bool& inValue) { m_expireFlag=inValue; }
     const MushMesh4Mesh& Mesh(void) const { return m_mesh; }
@@ -78,7 +86,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } FjcY3+C7MWxGfZq26ztv9A
+//%classPrototypes } KsVVnCSviYxIetGbK9RswQ
 };
 
 //%inlineHeader {
