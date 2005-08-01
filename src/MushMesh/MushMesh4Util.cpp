@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } V62Lt+D2xzRsWTfsB/etng
 /*
- * $Id$
- * $Log$
+ * $Id: MushMesh4Util.cpp,v 1.1 2005/07/18 13:13:36 southa Exp $
+ * $Log: MushMesh4Util.cpp,v $
+ * Revision 1.1  2005/07/18 13:13:36  southa
+ * Extrude to point and projectile mesh
+ *
  */
 
 #include "MushMesh4Util.h"
@@ -30,6 +33,60 @@
 
 using namespace Mushware;
 using namespace std;
+
+void
+MushMesh4Util::NewFaceCreate(MushMesh4Mesh& ioMesh,
+                             MushMesh4Face *& outpFace,
+                             MushMesh4Face::tVertexList *& outpVertexList,
+                             MushMesh4Face::tVertexGroupSize *& outpVertexGroupSize)
+{
+    
+    ioMesh.FacesWRef().push_back(MushMesh4Mesh::tFace());
+    
+    outpFace = &ioMesh.FacesWRef().back();
+    outpVertexList = &outpFace->VertexListWRef();
+    outpVertexGroupSize = &outpFace->VertexGroupSizeWRef();
+    
+    // Add this face to the current chunk
+    if (ioMesh.Chunks().size() == 0)
+    {
+        throw MushcoreLogicFail("Attempt to add face without creating a chunk");
+    }
+    ioMesh.ChunksWRef().back().FaceListWRef().push_back(ioMesh.FaceCounter());
+    
+    ++ioMesh.FaceCounterWRef();
+}
+
+void
+MushMesh4Util::NewFaceClone(MushMesh4Mesh& ioMesh,
+                            MushMesh4Face *& outpFace,
+                            MushMesh4Face::tVertexList *& outpVertexList,
+                            MushMesh4Face::tVertexGroupSize *& outpVertexGroupSize,
+                            const MushMesh4Face& inFace)
+{
+    
+    ioMesh.FacesWRef().push_back(inFace);
+    
+    outpFace = &ioMesh.FacesWRef().back();
+    outpVertexList = &outpFace->VertexListWRef();
+    outpVertexGroupSize = &outpFace->VertexGroupSizeWRef();
+    
+    // Add this face to the current chunk
+    if (ioMesh.Chunks().size() == 0)
+    {
+        throw MushcoreLogicFail("Attempt to add face without creating a chunk");
+    }
+    ioMesh.ChunksWRef().back().FaceListWRef().push_back(ioMesh.FaceCounter());
+    
+    ++ioMesh.FaceCounterWRef();
+}
+
+void
+MushMesh4Util::NewChunkCreate(MushMesh4Mesh& ioMesh)
+{
+    ioMesh.ChunksWRef().push_back(MushMesh4Mesh::tChunk());
+}
+
 
 void 
 MushMesh4Util::NullFacetsRemove(MushMesh4Mesh& ioMesh, Mushware::U32 inFaceNum)
@@ -117,4 +174,66 @@ MushMesh4Util::NullFacetsRemove(MushMesh4Mesh& ioMesh, Mushware::U32 inFaceNum)
         // MushcoreLog::Sgl().InfoLog() << "Wrote modified face" << endl;
 
     }
+}
+
+void 
+MushMesh4Util::ChunkCopy(MushMesh4Mesh& ioMesh, const MushMesh4Mesh& inMesh, Mushware::U32 inChunkNum)
+{
+    typedef MushMesh4Mesh::tChunk tChunk;
+    const tChunk& chunkRef = inMesh.Chunk(inChunkNum);
+    const tChunk::tVertexList& uniqueVertexListRef = chunkRef.UniqueVertexList();
+    
+    
+    // Map lookup for old vertex numbers to new
+    std::map<U32, U32> vertexOldToNew;
+    
+    // Create the set of vertices
+    MushMesh4Mesh::tVertices& outVerticesRef = ioMesh.VerticesWRef();
+    U32 numVertices = uniqueVertexListRef.size();
+    U32 vertexBase = ioMesh.VertexCounter();
+    U32 newNumVertices = vertexBase + numVertices;
+    
+    if (outVerticesRef.size() < newNumVertices)
+    {
+        outVerticesRef.resize(newNumVertices);
+        ioMesh.VertexCounterSet(newNumVertices);
+    }
+    t4Val vertexOffset = -inMesh.ChunkCentroid(inChunkNum);
+    
+    for (U32 i=0; i<numVertices; ++i)
+    {
+        MUSHCOREASSERT(vertexBase + i < outVerticesRef.size());
+        
+        outVerticesRef[vertexBase + i] = inMesh.Vertex(uniqueVertexListRef[i]) + vertexOffset;
+        vertexOldToNew[uniqueVertexListRef[i]] = vertexBase + i;
+    }
+    
+    MushMesh4Face *pFace = NULL;
+    MushMesh4Face::tVertexList *pVertexList = NULL;
+    MushMesh4Face::tVertexGroupSize *pVertexGroupSize = NULL;
+    MushMesh4Util::NewChunkCreate(ioMesh);
+    
+    const tChunk::tFaceList& faceListRef = chunkRef.FaceList();
+
+    for (U32 i=0; i<faceListRef.size(); ++i)
+    {
+        U32 faceNum = faceListRef[i];
+        
+        MushMesh4Util::NewFaceClone(ioMesh, pFace, pVertexList, pVertexGroupSize, inMesh.Face(faceNum));
+        
+        U32 vertexListSize = pVertexList->size();
+        for (U32 j=0; j<vertexListSize; ++j)
+        {
+            std::map<U32, U32>::const_iterator p = vertexOldToNew.find((*pVertexList)[j]);
+            
+            if (p == vertexOldToNew.end())
+            {
+                throw MushcoreDataFail("ChunkCopy vertex map failure");
+            }
+            
+            (*pVertexList)[j] = p->second;
+        }
+        pFace->InternalSet(false);
+    }
+    ioMesh.AllTouch();
 }

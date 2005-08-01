@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } +nh81wCMNvdKJB1CmhTiew
 /*
- * $Id: MushMeshVector.h,v 1.23 2005/07/19 10:07:00 southa Exp $
+ * $Id: MushMeshVector.h,v 1.24 2005/07/19 13:44:26 southa Exp $
  * $Log: MushMeshVector.h,v $
+ * Revision 1.24  2005/07/19 13:44:26  southa
+ * MushMesh4Chunk work
+ *
  * Revision 1.23  2005/07/19 10:07:00  southa
  * Adanaxis work
  *
@@ -163,7 +166,12 @@ public:
     const T& operator[](Mushware::U32 inIndex) const { return m_value[inIndex]; }
 
 protected:
-    void BoundsCheck(Mushware::U32 i) const { if (i >= D) MushcoreUtil::BoundaryThrow(i, D); }
+    void BoundsCheck(Mushware::U32 i) const
+    {
+#ifdef MUSHMESH_DEBUG
+        if (i >= D) MushcoreUtil::BoundaryThrow(i, D);
+#endif
+    }
 
 #ifdef MUSHWARE_NO_TEMPLATE_FRIENDS
 	/* Make private data public if template friends are not allowed.

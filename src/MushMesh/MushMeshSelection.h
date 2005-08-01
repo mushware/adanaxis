@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } tJYYj+Qfq9IjergstaSiwQ
 /*
- * $Id: MushMeshSelection.h,v 1.5 2005/05/19 13:02:11 southa Exp $
+ * $Id: MushMeshSelection.h,v 1.6 2005/07/02 00:42:38 southa Exp $
  * $Log: MushMeshSelection.h,v $
+ * Revision 1.6  2005/07/02 00:42:38  southa
+ * Conditioning tweaks
+ *
  * Revision 1.5  2005/05/19 13:02:11  southa
  * Mac release work
  *
@@ -45,17 +48,18 @@
 #include "MushMeshStandard.h"
 #include "MushMeshVector.h"
 
-//:generate ostream
+//:generate nonvirtual ostream
 class MushMeshSelection
 {
 public:
+
     Mushware::t2U32 start;
     Mushware::t2U32 stride;
     Mushware::U32 size;
 //%classPrototypes {
 public:
-    virtual void AutoPrint(std::ostream& ioOut) const;
-//%classPrototypes } b86DSDsq8lQQbiM0rrNtkg
+    void AutoPrint(std::ostream& ioOut) const;
+//%classPrototypes } igNZsqh+Ffme42HZCDZW6Q
 };
 //%inlineHeader {
 inline std::ostream&

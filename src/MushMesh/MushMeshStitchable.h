@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 7DgjNfqEJ0p76LVccqeX4Q
 /*
- * $Id: MushMeshStitchable.h,v 1.8 2005/06/30 12:34:59 southa Exp $
+ * $Id: MushMeshStitchable.h,v 1.9 2005/07/02 00:42:38 southa Exp $
  * $Log: MushMeshStitchable.h,v $
+ * Revision 1.9  2005/07/02 00:42:38  southa
+ * Conditioning tweaks
+ *
  * Revision 1.8  2005/06/30 12:34:59  southa
  * Mesh and source conditioner work
  *
@@ -57,7 +60,7 @@
 #include "MushMeshPatchTypes.h"
 #include "MushMeshSelection.h"
 
-//:generate ostream
+//:generate nonvirtual ostream
 class MushMeshStitchable
 {
 public:
@@ -84,8 +87,8 @@ private:
     MushMeshSelection m_selection;
 //%classPrototypes {
 public:
-    virtual void AutoPrint(std::ostream& ioOut) const;
-//%classPrototypes } b86DSDsq8lQQbiM0rrNtkg
+    void AutoPrint(std::ostream& ioOut) const;
+//%classPrototypes } igNZsqh+Ffme42HZCDZW6Q
 };
 
 inline

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } pM9lKxUBsV8LUNEqYXbulg
 /*
- * $Id: MushMesh4Mesh.h,v 1.8 2005/07/19 13:44:26 southa Exp $
+ * $Id: MushMesh4Mesh.h,v 1.9 2005/07/27 18:09:10 southa Exp $
  * $Log: MushMesh4Mesh.h,v $
+ * Revision 1.9  2005/07/27 18:09:10  southa
+ * Collision checking
+ *
  * Revision 1.8  2005/07/19 13:44:26  southa
  * MushMesh4Chunk work
  *
@@ -82,7 +85,8 @@ public:
     
     MushMesh4Mesh();
     virtual ~MushMesh4Mesh() {}
-    
+
+    const tVertex& QuickVertex(Mushware::U32 inNum) const { MushcoreUtil::DebugBoundsCheck(inNum, m_vertices.size()); return m_vertices[inNum]; }
     const tVertex& Vertex(Mushware::U32 inNum) const { MushcoreUtil::BoundsCheck(inNum, m_vertices.size()); return m_vertices[inNum]; }
     tVertex& VertexWRef(Mushware::U32 inNum) { MushcoreUtil::BoundsCheck(inNum, m_vertices.size()); return m_vertices[inNum]; }
     const tFace& Face(Mushware::U32 inNum) const { MushcoreUtil::BoundsCheck(inNum, m_faces.size()); return m_faces[inNum]; }

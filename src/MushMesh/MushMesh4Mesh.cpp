@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } v136Oh1IVziX36Di81JIXQ
 /*
- * $Id: MushMesh4Mesh.cpp,v 1.8 2005/07/14 12:50:31 southa Exp $
+ * $Id: MushMesh4Mesh.cpp,v 1.9 2005/07/19 13:44:26 southa Exp $
  * $Log: MushMesh4Mesh.cpp,v $
+ * Revision 1.9  2005/07/19 13:44:26  southa
+ * MushMesh4Chunk work
+ *
  * Revision 1.8  2005/07/14 12:50:31  southa
  * Extrusion work
  *
@@ -78,6 +81,14 @@ MushMesh4Mesh::VerticesTouch(void)
 void
 MushMesh4Mesh::AllTouch(void)
 {
+    for (U32 i=0; i<m_faces.size(); ++i)
+    {
+        m_faces[i].AllTouch();
+    }
+    for (U32 i=0; i<m_chunks.size(); ++i)
+    {
+        m_chunks[i].AllTouch();
+    }
     VerticesTouch();
     m_connectivityValid = false;
 }
@@ -305,6 +316,12 @@ MushMesh4Mesh::CentroidBuild(void) const
 {
     m_centroid = t4Val(0,0,0,0);
     U32 verticesSize = m_vertices.size();
+    
+    if (verticesSize == 0)
+    {
+        throw MushcoreDataFail("Attempt to build centroid of object with no vertices");
+    }    
+    
     for (U32 i=0; i<verticesSize; ++i)
     {
         m_centroid += m_vertices[i];
@@ -346,6 +363,11 @@ MushMesh4Mesh::FaceCentroidBuild(Mushware::U32 inFaceNum) const
     const MushMesh4Face::tVertexList& uniqueVertexList = faceRef.UniqueVertexList();
 
     U32 uniqueVertexListSize = uniqueVertexList.size();
+    
+    if (uniqueVertexListSize == 0)
+    {
+        throw MushcoreDataFail("Attempt to build centroid of face with no vertices");
+    }    
     
     t4Val centroid;
     centroid.ToAdditiveIdentitySet();
@@ -420,6 +442,11 @@ MushMesh4Mesh::ChunkCentroidBuild(Mushware::U32 inChunkNum) const
     const MushMesh4Chunk::tVertexList& uniqueVertexList = ChunkUniqueVertexList(inChunkNum);
     
     U32 uniqueVertexListSize = uniqueVertexList.size();
+    
+    if (uniqueVertexListSize == 0)
+    {
+        throw MushcoreDataFail("Attempt to build centroid of chunk with no vertices");
+    }
     
     t4Val centroid(t4Val::AdditiveIdentity());
     

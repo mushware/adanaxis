@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 5+xwz0v1Mv1OTeaDe83ISg
 /*
- * $Id: MushMeshQuaternionPair.h,v 1.10 2005/07/19 10:07:00 southa Exp $
+ * $Id: MushMeshQuaternionPair.h,v 1.11 2005/07/30 19:06:15 southa Exp $
  * $Log: MushMeshQuaternionPair.h,v $
+ * Revision 1.11  2005/07/30 19:06:15  southa
+ * Collision checking
+ *
  * Revision 1.10  2005/07/19 10:07:00  southa
  * Adanaxis work
  *
@@ -61,7 +64,7 @@
 
 #include "MushMeshQuaternion.h"
 
-//:generate inline ostream basic
+//:generate inline nonvirtual ostream basic
 template<class T>
 class MushMeshQuaternionPair
 {
@@ -71,7 +74,7 @@ public:
         m_first(inFirst),
         m_second(inSecond)
     {}
-    
+
     void InnerMultiplyBy(const MushMeshQuaternionPair& inVal);
     void OuterMultiplyBy(const MushMeshQuaternionPair& inVal);
     
@@ -111,9 +114,9 @@ public:
     void FirstSet(const MushMeshQuaternion<T>& inValue) { m_first=inValue; }
     const MushMeshQuaternion<T>& Second(void) const { return m_second; }
     void SecondSet(const MushMeshQuaternion<T>& inValue) { m_second=inValue; }
-    virtual bool AutoEquals(const MushMeshQuaternionPair& inObj) const;
-    virtual void AutoPrint(std::ostream& ioOut) const;
-//%classPrototypes } F6dbaqtDAqhPsRpGUg9OSQ
+    bool AutoEquals(const MushMeshQuaternionPair& inObj) const;
+    void AutoPrint(std::ostream& ioOut) const;
+//%classPrototypes } 4abaurIVgYYyfv8JFiCIsw
 };
 
 template<class T>

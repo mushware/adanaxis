@@ -35,6 +35,10 @@
 #include "Mushcore/Mushcore.h"
 #endif
 
+#ifdef MUSHCORE_DEBUG
+#define MUSHMESH_DEBUG 1
+#endif
+
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw
