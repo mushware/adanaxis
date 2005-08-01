@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 1+xBZKC0ADJmMoP0vONLyQ
 /*
- * $Id: MushcoreMaptor.h,v 1.2 2005/07/29 14:59:50 southa Exp $
+ * $Id: MushcoreMaptor.h,v 1.3 2005/07/29 18:50:12 southa Exp $
  * $Log: MushcoreMaptor.h,v $
+ * Revision 1.3  2005/07/29 18:50:12  southa
+ * Maptor tweaks
+ *
  * Revision 1.2  2005/07/29 14:59:50  southa
  * Maptor access
  *
@@ -88,7 +91,7 @@ public:
     
     // Give/Get/Delete/Clear interface
     void Give(T *inpObj, const K& inKey);
-    T *Get(const K& inKey) const;
+    T& Get(const K& inKey) const;
     bool GetIfExists(T *& outpObj, const K& inKey) const;
     void Delete(const iterator& inIter) { erase(inIter.MapIter()); }
     void Delete(const K& inKey);
@@ -136,7 +139,6 @@ template<class T, class K, class C>
 inline
 MushcoreMaptor<T, K, C>::~MushcoreMaptor()
 {
-    // Not able to clone the contents of m_data
     std::for_each(m_data.begin(), m_data.end(), MushcoreUtil::DeleteSecond<T, K>);
 }
 
@@ -144,6 +146,7 @@ template<class T, class K, class C>
 inline MushcoreMaptor<T, K, C>&
 MushcoreMaptor<T, K, C>::operator=(const MushcoreMaptor<T, K, C>& inMaptor)
 {
+    // Not able to clone the contents of m_data
     throw MushcoreLogicFail("Cannot assign MushcoreMaptor");
     return *this;
 }
@@ -299,7 +302,7 @@ MushcoreMaptor<T, K, C>::Give(T *inpObj, const K& inKey)
 }
 
 template<class T, class K, class C>
-inline T *
+inline T&
 MushcoreMaptor<T, K, C>::Get(const K& inKey) const
 {
     tMapConstIter p = m_data.find(inKey);
@@ -309,7 +312,11 @@ MushcoreMaptor<T, K, C>::Get(const K& inKey) const
         message << "No element '" << inKey << "' in MushcoreMaptor";
         throw MushcoreDataFail(message.str());
     }
-    return p->second;
+    if (p->second == NULL)
+    {
+        throw MushcoreDataFail("MushcoreMaptor::Get() called on NULL object");
+    }
+    return *(p->second);
 }
 
 template<class T, class K, class C>

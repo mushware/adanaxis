@@ -2008,6 +2008,22 @@
 		7ACFC8AA086C0FCE00B0E7E4 /* MushMeshPosticity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7ACFC8A6086C0FCE00B0E7E4 /* MushMeshPosticity.cpp */; };
 		7ACFC8AB086C108B00B0E7E4 /* MushMeshPosticity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7ACFC8A6086C0FCE00B0E7E4 /* MushMeshPosticity.cpp */; };
 		7ACFC8AC086C108B00B0E7E4 /* MushMeshPosticity.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ACFC8A5086C0FCE00B0E7E4 /* MushMeshPosticity.h */; };
+		7ACFED1F089E28590055BF20 /* MushGameMessageCollision.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ACFED1D089E28580055BF20 /* MushGameMessageCollision.h */; };
+		7ACFED20089E28590055BF20 /* MushGameMessageCollision.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7ACFED1E089E28590055BF20 /* MushGameMessageCollision.cpp */; };
+		7ACFED21089E28590055BF20 /* MushGameMessageCollision.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ACFED1D089E28580055BF20 /* MushGameMessageCollision.h */; };
+		7ACFED22089E28590055BF20 /* MushGameMessageCollision.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7ACFED1E089E28590055BF20 /* MushGameMessageCollision.cpp */; };
+		7ACFED28089E2A300055BF20 /* MushGameMessageCollisionFatal.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ACFED26089E2A300055BF20 /* MushGameMessageCollisionFatal.h */; };
+		7ACFED29089E2A300055BF20 /* MushGameMessageCollisionFatal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7ACFED27089E2A300055BF20 /* MushGameMessageCollisionFatal.cpp */; };
+		7ACFED2A089E2A300055BF20 /* MushGameMessageCollisionFatal.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ACFED26089E2A300055BF20 /* MushGameMessageCollisionFatal.h */; };
+		7ACFED2B089E2A300055BF20 /* MushGameMessageCollisionFatal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7ACFED27089E2A300055BF20 /* MushGameMessageCollisionFatal.cpp */; };
+		7ACFED30089E31950055BF20 /* MushCollisionInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ACFED2E089E31950055BF20 /* MushCollisionInfo.h */; };
+		7ACFED31089E31950055BF20 /* MushCollisionInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7ACFED2F089E31950055BF20 /* MushCollisionInfo.cpp */; };
+		7ACFED32089E31950055BF20 /* MushCollisionInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ACFED2E089E31950055BF20 /* MushCollisionInfo.h */; };
+		7ACFED33089E31950055BF20 /* MushCollisionInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7ACFED2F089E31950055BF20 /* MushCollisionInfo.cpp */; };
+		7ACFED38089E36030055BF20 /* AdanaxisData.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ACFED36089E36020055BF20 /* AdanaxisData.h */; };
+		7ACFED39089E36030055BF20 /* AdanaxisData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7ACFED37089E36030055BF20 /* AdanaxisData.cpp */; };
+		7ACFED3A089E36030055BF20 /* AdanaxisData.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ACFED36089E36020055BF20 /* AdanaxisData.h */; };
+		7ACFED3B089E36030055BF20 /* AdanaxisData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7ACFED37089E36030055BF20 /* AdanaxisData.cpp */; };
 		7AD008320882B0FE004EEAA8 /* MushGameMessageUplinkPiece.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD008300882B0FE004EEAA8 /* MushGameMessageUplinkPiece.h */; };
 		7AD008330882B0FE004EEAA8 /* MushGameMessageUplinkPiece.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AD008310882B0FE004EEAA8 /* MushGameMessageUplinkPiece.cpp */; };
 		7AD008340882B0FE004EEAA8 /* MushGameMessageUplinkPiece.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD008300882B0FE004EEAA8 /* MushGameMessageUplinkPiece.h */; };
@@ -3644,6 +3660,14 @@
 		7ACFC87F086C06B100B0E7E4 /* MushGamePiece.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushGamePiece.cpp; sourceTree = "<group>"; };
 		7ACFC8A5086C0FCE00B0E7E4 /* MushMeshPosticity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushMeshPosticity.h; sourceTree = "<group>"; };
 		7ACFC8A6086C0FCE00B0E7E4 /* MushMeshPosticity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushMeshPosticity.cpp; sourceTree = "<group>"; };
+		7ACFED1D089E28580055BF20 /* MushGameMessageCollision.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushGameMessageCollision.h; sourceTree = "<group>"; };
+		7ACFED1E089E28590055BF20 /* MushGameMessageCollision.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushGameMessageCollision.cpp; sourceTree = "<group>"; };
+		7ACFED26089E2A300055BF20 /* MushGameMessageCollisionFatal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushGameMessageCollisionFatal.h; sourceTree = "<group>"; };
+		7ACFED27089E2A300055BF20 /* MushGameMessageCollisionFatal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushGameMessageCollisionFatal.cpp; sourceTree = "<group>"; };
+		7ACFED2E089E31950055BF20 /* MushCollisionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushCollisionInfo.h; sourceTree = "<group>"; };
+		7ACFED2F089E31950055BF20 /* MushCollisionInfo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushCollisionInfo.cpp; sourceTree = "<group>"; };
+		7ACFED36089E36020055BF20 /* AdanaxisData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdanaxisData.h; sourceTree = "<group>"; };
+		7ACFED37089E36030055BF20 /* AdanaxisData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AdanaxisData.cpp; sourceTree = "<group>"; };
 		7AD008300882B0FE004EEAA8 /* MushGameMessageUplinkPiece.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushGameMessageUplinkPiece.h; sourceTree = "<group>"; };
 		7AD008310882B0FE004EEAA8 /* MushGameMessageUplinkPiece.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushGameMessageUplinkPiece.cpp; sourceTree = "<group>"; };
 		7AD008390882B1B9004EEAA8 /* MushGameMessageUplinkPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushGameMessageUplinkPlayer.h; sourceTree = "<group>"; };
@@ -4073,6 +4097,8 @@
 			children = (
 				7A224DAC088E79DF0078A295 /* MushCollision.cpp */,
 				7A224DAB088E79DF0078A295 /* MushCollision.h */,
+				7ACFED2F089E31950055BF20 /* MushCollisionInfo.cpp */,
+				7ACFED2E089E31950055BF20 /* MushCollisionInfo.h */,
 				7AD2F5830897FE8F005C8E60 /* MushCollisionList.cpp */,
 				7AD2F5820897FE8F005C8E60 /* MushCollisionList.h */,
 				7AD2F58B0897FF82005C8E60 /* MushCollisionListEntry.cpp */,
@@ -5109,6 +5135,8 @@
 				7A70CEB4085DF1C50055C6FB /* AdanaxisCommandHandler.h */,
 				7A70CEB5085DF1C50055C6FB /* AdanaxisConfig.cpp */,
 				7A70CEB6085DF1C50055C6FB /* AdanaxisConfig.h */,
+				7ACFED37089E36030055BF20 /* AdanaxisData.cpp */,
+				7ACFED36089E36020055BF20 /* AdanaxisData.h */,
 				7A70CEB7085DF1C50055C6FB /* AdanaxisGame.cpp */,
 				7A70CEB8085DF1C50055C6FB /* AdanaxisGame.h */,
 				7A70CEB9085DF1C50055C6FB /* AdanaxisInfo.cpp */,
@@ -5710,6 +5738,10 @@
 				7AD3B6330861868E00512DB1 /* MushGameMailbox.h */,
 				7AD3B6040861804500512DB1 /* MushGameMessage.cpp */,
 				7AD3B6030861804500512DB1 /* MushGameMessage.h */,
+				7ACFED1E089E28590055BF20 /* MushGameMessageCollision.cpp */,
+				7ACFED1D089E28580055BF20 /* MushGameMessageCollision.h */,
+				7ACFED27089E2A300055BF20 /* MushGameMessageCollisionFatal.cpp */,
+				7ACFED26089E2A300055BF20 /* MushGameMessageCollisionFatal.h */,
 				7AD2BB31087C46A600DB2E4B /* MushGameMessageControlInfo.cpp */,
 				7AD2BB30087C46A600DB2E4B /* MushGameMessageControlInfo.h */,
 				7AD186080883D2F000F5459F /* MushGameMessageFire.cpp */,
@@ -6247,6 +6279,10 @@
 				7AD2F59D0898014F005C8E60 /* MushCollisionResolver.h in Headers */,
 				7AD2F5A608980402005C8E60 /* MushCollisionWorkspace.h in Headers */,
 				7A532BCB089A29F90090B78C /* MushcoreMaptor.h in Headers */,
+				7ACFED21089E28590055BF20 /* MushGameMessageCollision.h in Headers */,
+				7ACFED2A089E2A300055BF20 /* MushGameMessageCollisionFatal.h in Headers */,
+				7ACFED32089E31950055BF20 /* MushCollisionInfo.h in Headers */,
+				7ACFED3A089E36030055BF20 /* AdanaxisData.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6628,6 +6664,10 @@
 				7AD2F58E0897FF82005C8E60 /* MushCollisionListEntry.h in Headers */,
 				7AD2F59F0898014F005C8E60 /* MushCollisionResolver.h in Headers */,
 				7AD2F5A808980402005C8E60 /* MushCollisionWorkspace.h in Headers */,
+				7ACFED1F089E28590055BF20 /* MushGameMessageCollision.h in Headers */,
+				7ACFED28089E2A300055BF20 /* MushGameMessageCollisionFatal.h in Headers */,
+				7ACFED30089E31950055BF20 /* MushCollisionInfo.h in Headers */,
+				7ACFED38089E36030055BF20 /* AdanaxisData.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8679,6 +8719,10 @@
 				7AD2F59E0898014F005C8E60 /* MushCollisionResolver.cpp in Sources */,
 				7AD2F5A708980402005C8E60 /* MushCollisionWorkspace.cpp in Sources */,
 				7A532BCC089A29F90090B78C /* MushcoreMaptor.cpp in Sources */,
+				7ACFED22089E28590055BF20 /* MushGameMessageCollision.cpp in Sources */,
+				7ACFED2B089E2A300055BF20 /* MushGameMessageCollisionFatal.cpp in Sources */,
+				7ACFED33089E31950055BF20 /* MushCollisionInfo.cpp in Sources */,
+				7ACFED3B089E36030055BF20 /* AdanaxisData.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8977,6 +9021,10 @@
 				7AD2F58F0897FF82005C8E60 /* MushCollisionListEntry.cpp in Sources */,
 				7AD2F5A00898014F005C8E60 /* MushCollisionResolver.cpp in Sources */,
 				7AD2F5A908980402005C8E60 /* MushCollisionWorkspace.cpp in Sources */,
+				7ACFED20089E28590055BF20 /* MushGameMessageCollision.cpp in Sources */,
+				7ACFED29089E2A300055BF20 /* MushGameMessageCollisionFatal.cpp in Sources */,
+				7ACFED31089E31950055BF20 /* MushCollisionInfo.cpp in Sources */,
+				7ACFED39089E36030055BF20 /* AdanaxisData.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

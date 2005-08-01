@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } C5fM34hXX9m29VnMY+6cvg
 /*
- * $Id$
- * $Log$
+ * $Id: MushcoreMaptorIterator.h,v 1.1 2005/07/29 14:59:50 southa Exp $
+ * $Log: MushcoreMaptorIterator.h,v $
+ * Revision 1.1  2005/07/29 14:59:50  southa
+ * Maptor access
+ *
  */
 
 #include "MushcoreStandard.h"
@@ -49,6 +52,7 @@ public:
     tThis& operator--() { --m_mapIter; return *this; } // prefix
     tThis operator--(int) { tThis retVal(*this); --m_mapIter; return retVal; } // postfix
 
+    const K& Key(void) const { return m_mapIter->first; }
     bool EqualIs(const tThis& inObj) const { return (m_mapIter == inObj.m_mapIter); }
     
 private:

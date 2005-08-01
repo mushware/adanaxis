@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef MUSHCOLLISIONRESOLVER_H
-#define MUSHCOLLISIONRESOLVER_H
-//%includeGuardStart } jGGnAirmq717WeH6BtDTlw
+#ifndef MUSHGAMEMESSAGECOLLISION_H
+#define MUSHGAMEMESSAGECOLLISION_H
+//%includeGuardStart } QPQrOeEYWhDLCHjfAmk7Gg
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushCollision/MushCollisionResolver.h
+ * File: src/MushGame/MushGameMessageCollision.h
  *
  * Author: Andy Southgate 2002-2005
  *
@@ -21,42 +21,35 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } OkLaKNsPzgty1sczCrbe0Q
+//%Header } kZtYeijpx045aLFmVQfaEg
 /*
- * $Id: MushCollisionResolver.h,v 1.3 2005/07/30 19:06:14 southa Exp $
- * $Log: MushCollisionResolver.h,v $
- * Revision 1.3  2005/07/30 19:06:14  southa
- * Collision checking
- *
- * Revision 1.2  2005/07/29 08:27:47  southa
- * Collision work
- *
- * Revision 1.1  2005/07/27 18:09:59  southa
- * Collision checking
- *
+ * $Id$
+ * $Log$
  */
 
-#include "MushCollisionStandard.h"
+#include "MushGameStandard.h"
 
-#include "MushCollisionInfo.h"
-#include "MushCollisionPiece.h"
+#include "MushGameMessage.h"
 
-//:generate standard ostream xml1
-class MushCollisionResolver : public MushcoreVirtualObject, public MushcoreSingleton<MushCollisionResolver>
+//:xml1base MushGameMessage
+//:generate virtual standard ostream xml1
+class MushGameMessageCollision : public MushGameMessage
 {
 public:
-    void Resolve(MushCollisionInfo& outCollInfo, const MushCollisionPiece& inPiece1, const MushCollisionPiece& inPiece2) const;
+    explicit MushGameMessageCollision(const std::string& inID = "") :
+        MushGameMessage(inID)
+    {}
 
-protected:
-    void ChunkResolve(MushCollisionInfo& outCollInfo, const MushCollisionPiece& inPiece1, const MushCollisionPiece& inPiece2) const;
-    
 private:
-    Mushware::tMsec m_frameMsec; //:readwrite
+    std::string m_objectName1; //:readwrite
+    std::string m_objectName2; //:readwrite
     
 //%classPrototypes {
 public:
-    const Mushware::tMsec& FrameMsec(void) const { return m_frameMsec; }
-    void FrameMsecSet(const Mushware::tMsec& inValue) { m_frameMsec=inValue; }
+    const std::string& ObjectName1(void) const { return m_objectName1; }
+    void ObjectName1Set(const std::string& inValue) { m_objectName1=inValue; }
+    const std::string& ObjectName2(void) const { return m_objectName2; }
+    void ObjectName2Set(const std::string& inValue) { m_objectName2=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -64,16 +57,16 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } P6nDSQv2g7W3VXxd34GhhQ
+//%classPrototypes } /hQHOIrqK2QxgkAgwJRPTQ
 };
 //%inlineHeader {
 inline std::ostream&
-operator<<(std::ostream& ioOut, const MushCollisionResolver& inObj)
+operator<<(std::ostream& ioOut, const MushGameMessageCollision& inObj)
 {
     inObj.AutoPrint(ioOut);
     return ioOut;
 }
-//%inlineHeader } HNNZFTynkudwCQk/JqIOBw
+//%inlineHeader } 7rke0whDQgrG8sneg+XDNw
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

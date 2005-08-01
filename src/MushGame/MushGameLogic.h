@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } VWSLWDpWLWDN8N9AhLEiHQ
 /*
- * $Id: MushGameLogic.h,v 1.12 2005/07/11 16:37:46 southa Exp $
+ * $Id: MushGameLogic.h,v 1.13 2005/07/12 12:18:18 southa Exp $
  * $Log: MushGameLogic.h,v $
+ * Revision 1.13  2005/07/12 12:18:18  southa
+ * Projectile work
+ *
  * Revision 1.12  2005/07/11 16:37:46  southa
  * Uplink control work
  *
@@ -88,8 +91,10 @@ public:
     virtual void JobListProcess(tJobList& ioList);
     virtual Mushware::U32 GameMsec(void) const;
     virtual Mushware::tMsec FrameMsec(void) const { return ConstVolatileData().FrameMsec(); }
+    virtual MushGamePiece& PieceLookup(const std::string& inName) const;
     virtual void PerFrameProcessing(void);
     virtual void DefaultMessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage);
+    virtual void CollisionMessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage);
     virtual void JobMessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage);
     virtual void ServerPlayerMessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage);
     virtual void MessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage);
@@ -113,6 +118,7 @@ public:
     virtual void UplinkSequence(void);
     virtual void PlayerMove(MushGamePlayer& inPlayer);
     virtual void MoveSequence(void);
+    virtual void CollideSequence(void);
     virtual void PlayerTicker(MushGamePlayer& inPlayer);
     virtual void TickerSequence(void);
     virtual void CameraMove(MushGameCamera& inCamera);
@@ -124,12 +130,13 @@ public:
     
     virtual MushGamePlayer *PlayerNew(const MushGameMessage *inpMessage) { return new MushGamePlayer; }
     
-    virtual MushGameSaveData& SaveData(void) { return m_dataRef.Ref().SaveDataRef().WRef(); }
-    virtual MushGameVolatileData& VolatileData(void) { return m_dataRef.Ref().VolatileDataRef().WRef(); }
+    virtual MushGameSaveData& SaveData(void) const { return m_dataRef.Ref().SaveDataRef().WRef(); }
+    virtual const MushGameSaveData& ConstSaveData(void) const { return m_dataRef.Ref().SaveDataRef().Ref();; }
+    virtual MushGameVolatileData& VolatileData(void) const { return m_dataRef.Ref().VolatileDataRef().WRef(); }
     virtual const MushGameVolatileData& ConstVolatileData(void) const { return m_dataRef.Ref().VolatileDataRef().Ref(); }
     
-    virtual MushGameHostSaveData& HostSaveData(void) { return m_hostDataRef.Ref().SaveDataRef().WRef(); }
-    virtual MushGameHostVolatileData& HostVolatileData(void) { return m_hostDataRef.Ref().VolatileDataRef().WRef(); }
+    virtual MushGameHostSaveData& HostSaveData(void) const { return m_hostDataRef.Ref().SaveDataRef().WRef(); }
+    virtual MushGameHostVolatileData& HostVolatileData(void) const { return m_hostDataRef.Ref().VolatileDataRef().WRef(); }
     
     virtual void ExceptionHandle(std::exception *inpFail, const std::string& inName) const;
 protected:

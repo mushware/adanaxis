@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } ui3Az6sPZVE4olMwWeOmrw
 /*
- * $Id: AdanaxisLogic.cpp,v 1.7 2005/07/29 14:59:49 southa Exp $
+ * $Id: AdanaxisLogic.cpp,v 1.8 2005/07/30 19:06:14 southa Exp $
  * $Log: AdanaxisLogic.cpp,v $
+ * Revision 1.8  2005/07/30 19:06:14  southa
+ * Collision checking
+ *
  * Revision 1.7  2005/07/29 14:59:49  southa
  * Maptor access
  *
@@ -44,6 +47,7 @@
 
 #include "AdanaxisLogic.h"
 
+#include "AdanaxisData.h"
 #include "AdanaxisRender.h"
 
 using namespace Mushware;
@@ -97,6 +101,35 @@ AdanaxisLogic::KhaziMove(void)
     }
 }
 
+void
+AdanaxisLogic::CollisionHandle(AdanaxisSaveData::tProjectile& ioProj,
+                               AdanaxisSaveData::tKhazi& ioKhazi, const MushCollisionInfo& inCollInfo)
+{
+    bool fatal = true;
+    
+    MUSHCOREASSERT(inCollInfo.ObjectNamesValid());
+    
+    if (fatal)
+    {
+        MushGameMessageCollisionFatal fatalMesg("c:");
+        fatalMesg.ObjectName1Set(inCollInfo.ObjectName1());
+        fatalMesg.ObjectName2Set(inCollInfo.ObjectName2());
+        fatalMesg.Post1Set(ioProj.Post());
+        fatalMesg.Post2Set(ioProj.Post());
+        if (inCollInfo.ChunkNumsValid())
+        {
+            fatalMesg.ChunkNum1Set(inCollInfo.ChunkNum1());
+            fatalMesg.ChunkNum2Set(inCollInfo.ChunkNum2());
+            fatalMesg.ChunkNumsValidSet(true);
+        }
+        else
+        {
+            fatalMesg.ChunkNumsValidSet(false);
+        }
+        CopyAndBroadcast(fatalMesg);
+    }
+}
+
 // Slow version for debug - rechecks every object
 void
 AdanaxisLogic::ProjectilesFullCollide(void)
@@ -110,12 +143,23 @@ AdanaxisLogic::ProjectilesFullCollide(void)
     tKhaziList::const_iterator khaziEndIter = SaveData().KhaziList().end();
     for (tProjectileList::const_iterator p = SaveData().ProjectileList().begin(); p != projectileEndIter; ++p)
     {
-        for (tKhaziList::const_iterator q = SaveData().KhaziList().begin(); q != khaziEndIter; ++q)
+        if (!p->ExpireFlag())
         {
-            if (MushCollisionResolver::Sgl().Resolve(*p, *q) <= 0)
+            for (tKhaziList::const_iterator q = SaveData().KhaziList().begin(); q != khaziEndIter; ++q)
             {
-                p->ExpireFlagSet(true);
-                q->ExpireFlagSet(true);
+                if (!q->ExpireFlag())
+                {
+                    MushCollisionInfo collInfo;
+                    MushCollisionResolver::Sgl().Resolve(collInfo, *p, *q);
+                    if (collInfo.SeparatingDistance() <= 0)
+                    {
+                        collInfo.ObjectName1Set(MushGameUtil::ObjectName(AdanaxisData::kCharProjectile, p.Key()));
+                        collInfo.ObjectName2Set(MushGameUtil::ObjectName(AdanaxisData::kCharKhazi, q.Key()));
+                        collInfo.ObjectNamesValidSet(true);
+                        
+                        CollisionHandle(*p, *q, collInfo);
+                    }
+                }
             }
         }
     }
@@ -127,7 +171,73 @@ AdanaxisLogic::MoveSequence(void)
     MushGameLogic::MoveSequence();
     KhaziMove();
     ProjectilesMove();
+}
+
+void
+AdanaxisLogic::CollideSequence(void)
+{
     ProjectilesFullCollide();
+}
+
+MushGamePiece&
+AdanaxisLogic::PieceLookup(const std::string& inName) const
+{
+    MushGamePiece *pPiece = NULL;
+    Mushware::U8 objType;
+    Mushware::U32 objNum;
+    MushGameUtil::ObjectNameDecode(objType, objNum, inName);
+    switch (objType)
+    {
+        case AdanaxisData::kCharProjectile:
+            pPiece = &SaveData().Projectile(objNum);
+            break;
+            
+        case AdanaxisData::kCharKhazi:
+            pPiece = &SaveData().Khazi(objNum);
+            break;
+            
+        default:
+            pPiece = &MushGameLogic::PieceLookup(inName);
+            break;
+    }
+    return *pPiece;
+}
+
+void
+AdanaxisLogic::CollisionFatalConsume(MushGameLogic& ioLogic, const MushGameMessageCollisionFatal& inMessage)
+{    
+    // Forward this message to both colliding objects
+    try
+    {
+        PieceLookup(inMessage.ObjectName1()).MessageConsume(ioLogic, inMessage);
+    }
+    catch (MushcoreNonFatalFail& e)
+    {
+        MushcoreLog::Sgl().WarningLog() << "CollisionMessageConsume(1): " << e.what() << endl;    
+    }
+    try
+    {
+        PieceLookup(inMessage.ObjectName2()).MessageConsume(ioLogic, inMessage);
+    }
+    catch (MushcoreNonFatalFail& e)
+    {
+        MushcoreLog::Sgl().WarningLog() << "CollisionMessageConsume(2): " << e.what() << endl;    
+    }
+}
+
+void
+AdanaxisLogic::CollisionMessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage)
+{
+    const MushGameMessageCollisionFatal *pCollisionFatal;
+    
+    if ((pCollisionFatal = dynamic_cast<const MushGameMessageCollisionFatal *>(&inMessage)) != NULL)
+    {
+        CollisionFatalConsume(ioLogic, *pCollisionFatal);
+    }
+    else
+    {
+        MushGameLogic::CollisionMessageConsume(ioLogic, inMessage);
+    }
 }
 
 //%outOfLineFunctions {

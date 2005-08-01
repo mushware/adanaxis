@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } oprIPxIlqMIU0R5tKHZ3SA
 /*
- * $Id: AdanaxisPieceProjectile.h,v 1.1 2005/07/12 12:18:17 southa Exp $
+ * $Id: AdanaxisPieceProjectile.h,v 1.2 2005/07/27 18:10:17 southa Exp $
  * $Log: AdanaxisPieceProjectile.h,v $
+ * Revision 1.2  2005/07/27 18:10:17  southa
+ * Collision checking
+ *
  * Revision 1.1  2005/07/12 12:18:17  southa
  * Projectile work
  *
@@ -47,6 +50,9 @@ public:
     virtual void Move(MushGameLogic& ioLogic, const Mushware::tVal inFrameslice);
     virtual void Render(MushGameLogic& ioLogic, MushRenderMesh& inRender, const MushGameCamera& inCamera);
     
+    virtual void CollisionFatalConsume(MushGameLogic& ioLogic, const MushGameMessageCollisionFatal& inMessage);
+    virtual void MessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage);
+
     virtual const MushMesh4Mesh& CollisionMesh(void) const { return m_mesh; }
     virtual const MushMeshPosticity& CollisionPost(void) const { return Post(); }
     

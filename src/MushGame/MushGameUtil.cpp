@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 8ZH+YByKztCX9b83kDeaRA
 /*
- * $Id: MushGameUtil.cpp,v 1.9 2005/06/30 16:29:25 southa Exp $
+ * $Id: MushGameUtil.cpp,v 1.10 2005/07/06 19:08:27 southa Exp $
  * $Log: MushGameUtil.cpp,v $
+ * Revision 1.10  2005/07/06 19:08:27  southa
+ * Adanaxis control work
+ *
  * Revision 1.9  2005/06/30 16:29:25  southa
  * Adanaxis work
  *
@@ -215,3 +218,30 @@ MushGameUtil::AppHandler(void)
     }
     return *pAppHandler;
 }
+
+std::string
+MushGameUtil::ObjectName(Mushware::U8 inPrefix, Mushware::U32 inNumber)
+{
+    ostringstream nameStream;
+    nameStream << static_cast<char>(inPrefix) << ':' << inNumber;
+    return nameStream.str();
+}
+
+void
+MushGameUtil::ObjectNameDecode(Mushware::U8& outPrefix, Mushware::U32& outNumber, const std::string& inName)
+{
+    istringstream nameStream(inName);
+    char prefixChar, colonChar;
+
+    nameStream >> prefixChar;
+    if (nameStream) nameStream >> colonChar;
+    if (nameStream) nameStream >> outNumber;
+    if (!nameStream || colonChar != ':')
+    {
+        throw MushcoreDataFail("Cannot decode object name from '"+inName+"'");
+    }
+    outPrefix = prefixChar;
+}
+
+
+

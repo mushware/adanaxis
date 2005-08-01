@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 91HSyJ80zvMVrJEEjE/n9w
 /*
- * $Id: MushGame.h,v 1.12 2005/07/11 16:37:46 southa Exp $
+ * $Id: MushGame.h,v 1.13 2005/07/12 12:18:18 southa Exp $
  * $Log: MushGame.h,v $
+ * Revision 1.13  2005/07/12 12:18:18  southa
+ * Projectile work
+ *
  * Revision 1.12  2005/07/11 16:37:46  southa
  * Uplink control work
  *
@@ -85,6 +88,8 @@
 #include "MushGameLogicLocal.h"
 #include "MushGameMailbox.h"
 #include "MushGameMessage.h"
+#include "MushGameMessageCollision.h"
+#include "MushGameMessageCollisionFatal.h"
 #include "MushGameMessageControlInfo.h"
 #include "MushGameMessageFire.h"
 #include "MushGameMessageJoinConfirm.h"

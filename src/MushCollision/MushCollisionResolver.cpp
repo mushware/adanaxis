@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } ut0PZ9K0qO+aZi1YpU+JsA
 /*
- * $Id: MushCollisionResolver.cpp,v 1.2 2005/07/29 08:27:47 southa Exp $
+ * $Id: MushCollisionResolver.cpp,v 1.3 2005/07/30 19:06:14 southa Exp $
  * $Log: MushCollisionResolver.cpp,v $
+ * Revision 1.3  2005/07/30 19:06:14  southa
+ * Collision checking
+ *
  * Revision 1.2  2005/07/29 08:27:47  southa
  * Collision work
  *
@@ -37,8 +40,8 @@ using namespace std;
 MUSHCORE_SINGLETON_INSTANCE(MushCollisionResolver);
 
 
-Mushware::tVal
-MushCollisionResolver::ChunkResolve(const MushCollisionPiece& inPiece1, const MushCollisionPiece& inPiece2) const
+void
+MushCollisionResolver::ChunkResolve(MushCollisionInfo& outCollInfo, const MushCollisionPiece& inPiece1, const MushCollisionPiece& inPiece2) const
 {
     const MushMesh4Mesh& meshRef1 = inPiece1.CollisionMesh();
     const MushMesh4Mesh& meshRef2 = inPiece2.CollisionMesh();
@@ -51,6 +54,8 @@ MushCollisionResolver::ChunkResolve(const MushCollisionPiece& inPiece1, const Mu
     U32 numChunks2 = chunksRef2.size();
     
     tVal minDistanceSep = 1;
+    U32 chunkNum1 = 0;
+    U32 chunkNum2 = 0;
     
     for (U32 i=0; i<numChunks1; ++i)
     {
@@ -64,7 +69,8 @@ MushCollisionResolver::ChunkResolve(const MushCollisionPiece& inPiece1, const Mu
             if ((i == 0 && j == 0) || distanceSep < minDistanceSep)
             {
                 minDistanceSep = distanceSep;
-                //cout << "New minimum: ";
+                chunkNum1 = i;
+                chunkNum2 = j;
             }
 #if 0
             cout << " +++sep=" << distanceSep;
@@ -75,22 +81,32 @@ MushCollisionResolver::ChunkResolve(const MushCollisionPiece& inPiece1, const Mu
                 
         }
     }
-    return minDistanceSep;
+    outCollInfo.SeparatingDistanceSet(minDistanceSep);
+    outCollInfo.ChunkNum1Set(chunkNum1);
+    outCollInfo.ChunkNum2Set(chunkNum2);
+    outCollInfo.ChunkNumsValidSet(true);
 }
 
-Mushware::tVal
-MushCollisionResolver::Resolve(const MushCollisionPiece& inPiece1, const MushCollisionPiece& inPiece2) const
+void
+MushCollisionResolver::Resolve(MushCollisionInfo& outCollInfo, const MushCollisionPiece& inPiece1, const MushCollisionPiece& inPiece2) const
 {
     inPiece1.CollisionResetIfNeeded(FrameMsec());
     inPiece2.CollisionResetIfNeeded(FrameMsec());
     t4Val centroidSepVec = inPiece1.CollisionWorldCentroid() - inPiece2.CollisionWorldCentroid();
     tVal centroidSep = centroidSepVec.Magnitude();
     tVal distanceSep = centroidSep - inPiece1.CollisionBoundingRadius() - inPiece2.CollisionBoundingRadius();
-    if (distanceSep <= 0)
+    
+    if (distanceSep > 0)
     {
-        distanceSep = ChunkResolve(inPiece1, inPiece2);
+        // Object bounding spheres not intersecting
+        outCollInfo.SeparatingDistanceSet(distanceSep);
+        outCollInfo.ChunkNumsValidSet(false);
     }
-    return distanceSep;
+    else
+    {
+        // Object bounding spheres intersect, so perform the chunkwise test
+        ChunkResolve(outCollInfo, inPiece1, inPiece2);
+    }
 }
 
 

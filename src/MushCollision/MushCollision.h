@@ -23,10 +23,14 @@
  ****************************************************************************/
 //%Header } oFPth+3GKwsgosaBHDvDGg
 /*
- * $Id$
- * $Log$
+ * $Id: MushCollision.h,v 1.1 2005/07/27 18:09:59 southa Exp $
+ * $Log: MushCollision.h,v $
+ * Revision 1.1  2005/07/27 18:09:59  southa
+ * Collision checking
+ *
  */
 
+#include "MushCollisionInfo.h"
 #include "MushCollisionList.h"
 #include "MushCollisionListEntry.h"
 #include "MushCollisionPiece.h"

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } mQ7a0aB9sYaMT3bmln5Sjw
 /*
- * $Id: MushGameData.h,v 1.2 2005/06/21 15:57:47 southa Exp $
+ * $Id: MushGameData.h,v 1.3 2005/06/29 09:07:56 southa Exp $
  * $Log: MushGameData.h,v $
+ * Revision 1.3  2005/06/29 09:07:56  southa
+ * MushGame camera work
+ *
  * Revision 1.2  2005/06/21 15:57:47  southa
  * MushGame work
  *
@@ -42,6 +45,13 @@
 class MushGameData : public MushcoreVirtualObject
 {
 public:
+    enum
+    {
+        kCharCollision = 'c',
+        kCharPlayer = 'p',
+        kCharJob = 'j'
+    };
+    
     MushGameData(const std::string& inName="");
     virtual ~MushGameData() {}
     virtual void GroupingNameSet(const std::string& inName) { m_saveDataRef.NameSet(inName); m_volatileDataRef.NameSet(inName); }

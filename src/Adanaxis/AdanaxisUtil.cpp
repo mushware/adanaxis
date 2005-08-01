@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } CFEozIhAxC4/w3MDbuOShQ
 /*
- * $Id: AdanaxisUtil.cpp,v 1.13 2005/07/29 08:27:47 southa Exp $
+ * $Id: AdanaxisUtil.cpp,v 1.14 2005/07/30 19:06:14 southa Exp $
  * $Log: AdanaxisUtil.cpp,v $
+ * Revision 1.14  2005/07/30 19:06:14  southa
+ * Collision checking
+ *
  * Revision 1.13  2005/07/29 08:27:47  southa
  * Collision work
  *
@@ -102,20 +105,20 @@ AdanaxisUtil::TestPiecesCreate(AdanaxisLogic& ioLogic)
     tVal rotMin = -0.03;
     tVal rotMax = 0.03;
     
-    for (U32 i=0; i<40; ++i)
+    for (U32 i=0; i<30; ++i)
     {
         khaziListRef.push_back(AdanaxisPieceKhazi("testObj1"));
         AdanaxisSaveData::tKhazi& khaziRef = khaziListRef.back();
         
         khaziRef.PostWRef().PosSet(t4Val(MushMeshTools::Random(-1,1),MushMeshTools::Random(-1,1),MushMeshTools::Random(-1,1),MushMeshTools::Random(-1,1)));
         
-        khaziRef.PostWRef().PosWRef() *= 20;
+        khaziRef.PostWRef().PosWRef() *= 50;
         
         tQValPair orientation = MushMeshTools::RandomOrientation();
         khaziRef.PostWRef().AngPosSet(orientation);
         khaziRef.PostWRef().AngVelWRef().ToRotationIdentitySet();
         
-        if (i % 5 > 1)
+        if (i % 5 > 0)
         {
             khaziRef.PostWRef().AngVelWRef().OuterMultiplyBy(orientation);
             
@@ -134,9 +137,9 @@ AdanaxisUtil::TestPiecesCreate(AdanaxisLogic& ioLogic)
         MushMeshDisplacement disp(t4Val(0,0,0,1), rotation, 0.5);
         
         MushMeshLibraryExtrusionContext extrusionContext(disp, 0);
-        switch (i % 4)
+        switch (i % 2)
         {
-            case 0:
+            case 2:
             {
                 MushMeshLibraryBase::Sgl().PolygonPrismCreate(khaziRef.MeshWRef(), t4Val(1,1,0.5,3), 6);            
             }
@@ -180,11 +183,11 @@ AdanaxisUtil::TestPiecesCreate(AdanaxisLogic& ioLogic)
             }
             break;
             
-            case 2:
+            case 0:
             {
                 //MushMeshLibraryBase::Sgl().UnitTesseractCreate(khaziRef.MeshWRef());
-                MushMeshLibraryBase::Sgl().PolygonPrismCreate(khaziRef.MeshWRef(), t4Val(1,1,1,1), 12);            
-                U32 number = 12;
+                MushMeshLibraryBase::Sgl().PolygonPrismCreate(khaziRef.MeshWRef(), t4Val(1,1,1,1), 5);            
+                U32 number = 5;
                 t4Val offset(0,0,0,-1);
                 if (i % 1 == 0)
                 {

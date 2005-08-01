@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } cKEASf8ImtK3tzSM6fwREw
 /*
- * $Id: AdanaxisPieceProjectile.cpp,v 1.2 2005/07/18 13:13:36 southa Exp $
+ * $Id: AdanaxisPieceProjectile.cpp,v 1.3 2005/07/19 10:08:06 southa Exp $
  * $Log: AdanaxisPieceProjectile.cpp,v $
+ * Revision 1.3  2005/07/19 10:08:06  southa
+ * Adanaxis work
+ *
  * Revision 1.2  2005/07/18 13:13:36  southa
  * Extrude to point and projectile mesh
  *
@@ -67,6 +70,29 @@ AdanaxisPieceProjectile::Render(MushGameLogic& ioLogic, MushRenderMesh& inRender
     
     inRender.MeshRender(renderSpec, m_mesh);
 }
+
+void
+AdanaxisPieceProjectile::CollisionFatalConsume(MushGameLogic& ioLogic, const MushGameMessageCollisionFatal& inMessage)
+{
+    ExpireFlagSet(true);
+}    
+
+void
+AdanaxisPieceProjectile::MessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage)
+{
+    const MushGameMessageCollisionFatal *pCollisionFatal;
+    
+    if ((pCollisionFatal = dynamic_cast<const MushGameMessageCollisionFatal *>(&inMessage)) != NULL)
+    {
+        CollisionFatalConsume(ioLogic, *pCollisionFatal);
+    }
+    else
+    {
+        // Pass to base class
+        MushGamePiece::MessageConsume(ioLogic, inMessage);
+    }
+}
+
 
 //%outOfLineFunctions {
 

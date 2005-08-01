@@ -23,15 +23,18 @@
  ****************************************************************************/
 //%Header } Ngk/gn/dudKSDaCJ2t6riQ
 /*
- * $Id$
- * $Log$
+ * $Id: MushCollisionListEntry.h,v 1.1 2005/07/27 18:09:59 southa Exp $
+ * $Log: MushCollisionListEntry.h,v $
+ * Revision 1.1  2005/07/27 18:09:59  southa
+ * Collision checking
+ *
  */
 
 #include "MushCollisionStandard.h"
 
 #include "MushCollisionPiece.h"
 
-//:generate standard ostream xml1
+//:generate virtual standard ostream xml1
 class MushCollisionListEntry : public MushcoreVirtualObject
 {
 public:

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } G0/dfauKPLZ8TwNbwBtU8A
 /*
- * $Id: MushGameLogic.cpp,v 1.18 2005/07/12 12:18:18 southa Exp $
+ * $Id: MushGameLogic.cpp,v 1.19 2005/07/18 13:13:36 southa Exp $
  * $Log: MushGameLogic.cpp,v $
+ * Revision 1.19  2005/07/18 13:13:36  southa
+ * Extrude to point and projectile mesh
+ *
  * Revision 1.18  2005/07/12 12:18:18  southa
  * Projectile work
  *
@@ -108,6 +111,27 @@ MushGameLogic::GameMsec(void) const
     }
 }
 
+MushGamePiece&
+MushGameLogic::PieceLookup(const std::string& inName) const
+{
+    MushGamePiece *pPiece = NULL;
+    Mushware::U8 objType;
+    Mushware::U32 objNum;
+    MushGameUtil::ObjectNameDecode(objType, objNum, inName);
+    switch (objType)
+    {
+        case MushGameData::kCharPlayer:
+            // pPiece = &SaveData().Players().Get(objNum);
+            throw MushcoreDataFail("No player lookup yet");
+            break;
+            
+        default:
+            throw MushcoreDataFail("Unknown object type '"+inName+"'");
+            break;
+    }
+    return *pPiece;
+}
+
 void
 MushGameLogic::JobListProcess(tJobList& ioList)
 {
@@ -156,6 +180,12 @@ void
 MushGameLogic::DefaultMessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage)
 {
     throw MushcoreDataFail(std::string("Discarding message of type '")+inMessage.AutoName()+"' with no ID");
+}
+
+void
+MushGameLogic::CollisionMessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage)
+{
+    throw MushcoreDataFail(std::string("Discarding message of type '")+inMessage.AutoName()+"' with collision ID");
 }
 
 void
@@ -211,11 +241,15 @@ MushGameLogic::MessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inM
     {
         switch (msgID[0])
         {
-            case 'j':
+            case MushGameData::kCharCollision:
+                CollisionMessageConsume(ioLogic, inMessage);
+                break;
+                
+            case MushGameData::kCharJob:
                 JobMessageConsume(ioLogic, inMessage);
                 break;
                 
-            case 'p':
+            case MushGameData::kCharPlayer:
                 ServerPlayerMessageConsume(ioLogic, inMessage);
                 break;
                 
@@ -460,6 +494,11 @@ MushGameLogic::MoveSequence(void)
 }
 
 void
+MushGameLogic::CollideSequence(void)
+{
+}
+
+void
 MushGameLogic::PlayerTicker(MushGamePlayer& inPlayer)
 {
     inPlayer.TickerProcess(*this);
@@ -514,10 +553,14 @@ MushGameLogic::MainSequence(void)
     catch (MushcoreNonFatalFail& e) { ExceptionHandle(&e, "SendSequence"); }
     try { MoveSequence(); }
     catch (MushcoreNonFatalFail& e) { ExceptionHandle(&e, "MoveSequence"); }
+    try { CollideSequence(); }
+    catch (MushcoreNonFatalFail& e) { ExceptionHandle(&e, "CollideSequence"); }
     try { TickerSequence(); }
     catch (MushcoreNonFatalFail& e) { ExceptionHandle(&e, "TickerSequence"); }
     try { UplinkSequence(); }
     catch (MushcoreNonFatalFail& e) { ExceptionHandle(&e, "UplinkSequence"); }
+    try { SendSequence(); }
+    catch (MushcoreNonFatalFail& e) { ExceptionHandle(&e, "SendSequence"); }
     try { CameraSequence(); }
     catch (MushcoreNonFatalFail& e) { ExceptionHandle(&e, "CameraSequence"); }
     try { RenderSequence(); }

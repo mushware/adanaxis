@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } 1en6OnZ85se795baUuYn3A
 /*
- * $Id$
- * $Log$
+ * $Id: AdanaxisPieceKhazi.cpp,v 1.1 2005/07/19 10:08:06 southa Exp $
+ * $Log: AdanaxisPieceKhazi.cpp,v $
+ * Revision 1.1  2005/07/19 10:08:06  southa
+ * Adanaxis work
+ *
  */
 
 #include "AdanaxisPieceKhazi.h"
@@ -56,6 +59,28 @@ AdanaxisPieceKhazi::Render(MushGameLogic& ioLogic, MushRenderMesh& inRender, con
     renderSpec.ProjectionSet(inCamera.Projection());
     
     inRender.MeshRender(renderSpec, m_mesh);
+}
+
+void
+AdanaxisPieceKhazi::CollisionFatalConsume(MushGameLogic& ioLogic, const MushGameMessageCollisionFatal& inMessage)
+{
+    ExpireFlagSet(true);
+}    
+
+void
+AdanaxisPieceKhazi::MessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage)
+{
+    const MushGameMessageCollisionFatal *pCollisionFatal;
+    
+    if ((pCollisionFatal = dynamic_cast<const MushGameMessageCollisionFatal *>(&inMessage)) != NULL)
+    {
+        CollisionFatalConsume(ioLogic, *pCollisionFatal);
+    }
+    else
+    {
+        // Pass to base class
+        MushGamePiece::MessageConsume(ioLogic, inMessage);
+    }
 }
 
 //%outOfLineFunctions {

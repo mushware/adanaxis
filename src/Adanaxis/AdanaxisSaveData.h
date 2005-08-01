@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } lP1KYvwjO8U4fVO07cIsNw
 /*
- * $Id: AdanaxisSaveData.h,v 1.8 2005/07/29 11:52:43 southa Exp $
+ * $Id: AdanaxisSaveData.h,v 1.9 2005/07/29 14:59:49 southa Exp $
  * $Log: AdanaxisSaveData.h,v $
+ * Revision 1.9  2005/07/29 14:59:49  southa
+ * Maptor access
+ *
  * Revision 1.8  2005/07/29 11:52:43  southa
  * MushcoreMaptor created
  *
@@ -69,6 +72,11 @@ public:
 
     AdanaxisSaveData();
     virtual ~AdanaxisSaveData() {}
+
+    tProjectile& Projectile(Mushware::U32 inNum) { return m_projectileList.Get(inNum); }
+    const tProjectile& Projectile(Mushware::U32 inNum) const { return m_projectileList.Get(inNum); }
+    tKhazi& Khazi(Mushware::U32 inNum) { return m_khaziList.Get(inNum); }
+    const tKhazi& Khazi(Mushware::U32 inNum) const { return m_khaziList.Get(inNum); }
     
 private:
     tProjectileList m_projectileList; //:read :wref
@@ -95,6 +103,7 @@ public:
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
 //%classPrototypes } j/3JActG1IT8dYrr+N96mQ
 };
+
 //%inlineHeader {
 inline std::ostream&
 operator<<(std::ostream& ioOut, const AdanaxisSaveData& inObj)
