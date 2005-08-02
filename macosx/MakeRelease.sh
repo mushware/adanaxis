@@ -9,8 +9,11 @@
 #
 ##############################################################################
 #
-# $Id: MakeRelease.sh,v 1.7 2005/06/04 13:45:11 southa Exp $
+# $Id: MakeRelease.sh,v 1.8 2005/06/04 13:53:58 southa Exp $
 # $Log: MakeRelease.sh,v $
+# Revision 1.8  2005/06/04 13:53:58  southa
+# Release tweaks
+#
 # Revision 1.7  2005/06/04 13:45:11  southa
 # Release 0.1.2 tweaks
 #
@@ -67,6 +70,7 @@ cp -pR "$datadir" "$releasedir"
 
 find "$releasedir" -type d -name 'CVS' -prune -exec rm -rf "{}" \;
 find "$releasedir" -name '.DS_Store' -exec rm -f "{}" \;
+find "$releasedir" -name 'Makefile*' -exec rm -f "{}" \;
 
 cp "$releasedir/system/start.txt" "$releasedir/system/start_backup.txt"
 

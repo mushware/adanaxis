@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } v0NoK60n2sQZAwN5ucHNyw
 /*
- * $Id: AdanaxisLogic.h,v 1.6 2005/08/01 13:09:57 southa Exp $
+ * $Id: AdanaxisLogic.h,v 1.7 2005/08/02 11:11:47 southa Exp $
  * $Log: AdanaxisLogic.h,v $
+ * Revision 1.7  2005/08/02 11:11:47  southa
+ * Adanaxis control demo work
+ *
  * Revision 1.6  2005/08/01 13:09:57  southa
  * Collision messaging
  *
@@ -57,6 +60,7 @@
 class AdanaxisLogic : public MushGameLogic 
 {
 public:
+    AdanaxisLogic();
     virtual MushGamePiece& PieceLookup(const std::string& inName) const;
     virtual void InitialDataCreate(void);
     

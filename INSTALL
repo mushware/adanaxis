@@ -10,8 +10,8 @@ Unix/POSIX/Linux/FreeBSD
 
 Download and unpack the source and data files and build thus:
 
-tar xvzf adanaxiscontroldemo-0.1.4.tar.gz
-cd adanaxiscontroldemo-0.1.4
+tar xvzf adanaxiscontroldemo-0.0.1.tar.gz
+cd adanaxiscontroldemo-0.0.1
 ./configure
 # (spend a few days getting the libraries that configure asks for)
 make

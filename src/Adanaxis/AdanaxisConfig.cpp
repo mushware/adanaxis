@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } G3+dIgQrIeaNRuZ7DQOVuQ
 /*
- * $Id: AdanaxisConfig.cpp,v 1.9 2005/07/30 19:06:14 southa Exp $
+ * $Id: AdanaxisConfig.cpp,v 1.10 2005/08/02 11:11:47 southa Exp $
  * $Log: AdanaxisConfig.cpp,v $
+ * Revision 1.10  2005/08/02 11:11:47  southa
+ * Adanaxis control demo work
+ *
  * Revision 1.9  2005/07/30 19:06:14  southa
  * Collision checking
  *
@@ -65,10 +68,11 @@ AdanaxisConfig::ToDefaultSet(void)
 {
     MushGameConfigBase::ToDefaultSet();
     VersionSet(kVersion);
-    m_displayMode = 0;
+    m_displayMode = 2;
     AxesToDefaultSet();
     KeysToDefaultSet();
     m_recordTime = 0;
+    m_playMusic = true;
 }
 
 void
@@ -128,7 +132,7 @@ AdanaxisConfig::AutoInputPrologue(MushcoreXMLIStream& ioIn)
 {
     MushGameConfigBase::AutoInputPrologue(ioIn);
     VersionSet(kVersion);
-    m_displayMode = 0;
+    m_displayMode = 2;
     m_axisDefs.resize(0);
     m_keyDefs.resize(0);
     m_recordTime = 0;
@@ -190,7 +194,8 @@ AdanaxisConfig::AutoPrint(std::ostream& ioOut) const
     ioOut << "axisDefs=" << m_axisDefs << ", ";
     ioOut << "keyDefs=" << m_keyDefs << ", ";
     ioOut << "displayMode=" << m_displayMode << ", ";
-    ioOut << "recordTime=" << m_recordTime;
+    ioOut << "recordTime=" << m_recordTime << ", ";
+    ioOut << "playMusic=" << m_playMusic;
     ioOut << "]";
 }
 bool
@@ -218,6 +223,10 @@ AdanaxisConfig::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
     {
         ioIn >> m_recordTime;
     }
+    else if (inTagStr == "playMusic")
+    {
+        ioIn >> m_playMusic;
+    }
     else if (MushGameConfigBase::AutoXMLDataProcess(ioIn, inTagStr))
     {
         // Tag consumed by base class
@@ -240,5 +249,7 @@ AdanaxisConfig::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_displayMode;
     ioOut.TagSet("recordTime");
     ioOut << m_recordTime;
+    ioOut.TagSet("playMusic");
+    ioOut << m_playMusic;
 }
-//%outOfLineFunctions } 3e6oe+6sKcc33IeIlZTNng
+//%outOfLineFunctions } 0GiRptJ2ai7KQ8BL6LPCsw

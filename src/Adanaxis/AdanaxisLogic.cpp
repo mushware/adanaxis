@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } ui3Az6sPZVE4olMwWeOmrw
 /*
- * $Id: AdanaxisLogic.cpp,v 1.9 2005/08/01 13:09:57 southa Exp $
+ * $Id: AdanaxisLogic.cpp,v 1.10 2005/08/02 11:11:47 southa Exp $
  * $Log: AdanaxisLogic.cpp,v $
+ * Revision 1.10  2005/08/02 11:11:47  southa
+ * Adanaxis control demo work
+ *
  * Revision 1.9  2005/08/01 13:09:57  southa
  * Collision messaging
  *
@@ -50,11 +53,19 @@
 
 #include "AdanaxisLogic.h"
 
+#include "AdanaxisAppHandler.h"
 #include "AdanaxisData.h"
 #include "AdanaxisRender.h"
+#include "AdanaxisUtil.h"
 
 using namespace Mushware;
 using namespace std;
+
+AdanaxisLogic::AdanaxisLogic() :
+    MushGameLogic(),
+    m_khaziCount(1)
+{
+}
 
 void
 AdanaxisLogic::InitialDataCreate(void)
@@ -195,6 +206,22 @@ AdanaxisLogic::RenderSequence(void)
     if (m_khaziCount != 0)
     {
         EndTimeSet(FrameMsec());
+    }
+    
+    AdanaxisAppHandler& appHandler = AdanaxisUtil::AppHandler();
+    
+    if (appHandler.LatchedKeyStateTake('z'))
+    {
+        static bool show = true;
+        if (show)
+        {
+            MushGameDialogueUtils::NamedDialoguesAdd(SaveData().DialoguesWRef(), "^keyhelp");
+        }
+        else
+        {
+            SaveData().DialoguesWRef().Clear();
+        }
+        show = !show;
     }
     
     MushGameLogic::RenderSequence();

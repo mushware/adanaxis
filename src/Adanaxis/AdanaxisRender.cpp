@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } eomVoawiv9P4VcOw5CYHSg
 /*
- * $Id: AdanaxisRender.cpp,v 1.18 2005/08/01 20:24:15 southa Exp $
+ * $Id: AdanaxisRender.cpp,v 1.19 2005/08/02 11:11:47 southa Exp $
  * $Log: AdanaxisRender.cpp,v $
+ * Revision 1.19  2005/08/02 11:11:47  southa
+ * Adanaxis control demo work
+ *
  * Revision 1.18  2005/08/01 20:24:15  southa
  * Backdrop and build fixes
  *
@@ -261,6 +264,7 @@ AdanaxisRender::Overplot(MushGameLogic& ioLogic, const MushGameCamera& inCamera)
             GLString glStr(message.str(), GLFontRef("font-mono1", 0.03), 0);
             glStr.Render();        
         }
+        if (logicRef.RecordTime() != 0)
         {
             orthoGL.MoveTo(0, -0.04);
             ostringstream message;

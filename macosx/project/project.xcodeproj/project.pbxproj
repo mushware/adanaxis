@@ -2758,6 +2758,7 @@
 		7A3A86AD0882CD7D008A5F9C /* keyconfig-default.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "keyconfig-default.xml"; sourceTree = "<group>"; };
 		7A3E8BEE05A5E63B00AC6E8A /* MushPiePieceSimple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushPiePieceSimple.h; sourceTree = "<group>"; };
 		7A3E8BEF05A5E63C00AC6E8A /* MushPiePieceSimple.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushPiePieceSimple.cpp; sourceTree = "<group>"; };
+		7A44BC59089FABB800A08A3F /* objects.xml */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; path = objects.xml; sourceTree = "<group>"; };
 		7A45EA6607F45D6700773CF6 /* GameStringSpec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameStringSpec.h; sourceTree = "<group>"; };
 		7A45EA6707F45D6700773CF6 /* GameStringSpec.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameStringSpec.cpp; sourceTree = "<group>"; };
 		7A45EAB007F46A9900773CF6 /* GameSoundSpec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSoundSpec.h; sourceTree = "<group>"; };
@@ -3376,7 +3377,7 @@
 		7A6CE21C05A5935800777D9B /* MushPieSTL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushPieSTL.cpp; sourceTree = "<group>"; };
 		7A70CD10085DE6A90055C6FB /* MushGLControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushGLControl.h; sourceTree = "<group>"; };
 		7A70CD11085DE6A90055C6FB /* MushGLControl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushGLControl.cpp; sourceTree = "<group>"; };
-		7A70CE7E085DEE2D0055C6FB /* Adanaxis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Adanaxis.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7A70CE7E085DEE2D0055C6FB /* Adanaxis Control Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Adanaxis Control Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A70CEB1085DF1C40055C6FB /* AdanaxisAppHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = AdanaxisAppHandler.cpp; sourceTree = "<group>"; };
 		7A70CEB2085DF1C40055C6FB /* AdanaxisAppHandler.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = AdanaxisAppHandler.h; sourceTree = "<group>"; };
 		7A70CEB3085DF1C50055C6FB /* AdanaxisCommandHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = AdanaxisCommandHandler.cpp; sourceTree = "<group>"; };
@@ -4039,7 +4040,7 @@
 				7A657EE905A9CD1C00E727F8 /* MushPie.framework */,
 				7AB650D705F9E0A0003E2845 /* Mustl.framework */,
 				7AAE6CD807AFC4250085C60F /* Tesseract Trainer.app */,
-				7A70CE7E085DEE2D0055C6FB /* Adanaxis.app */,
+				7A70CE7E085DEE2D0055C6FB /* Adanaxis Control Demo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -5196,6 +5197,7 @@
 		7A70D1F4085DF8870055C6FB /* system */ = {
 			isa = PBXGroup;
 			children = (
+				7A44BC59089FABB800A08A3F /* objects.xml */,
 				7A70D1F5085DF8870055C6FB /* start.txt */,
 				7A70D1F6085DF8870055C6FB /* start_safe.txt */,
 				7AD2BA88087C284000DB2E4B /* axisconfig-default.xml */,
@@ -7510,7 +7512,7 @@
 			);
 			name = Adanaxis;
 			productName = All;
-			productReference = 7A70CE7E085DEE2D0055C6FB /* Adanaxis.app */;
+			productReference = 7A70CE7E085DEE2D0055C6FB /* Adanaxis Control Demo.app */;
 			productSettingsXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
 <!DOCTYPE plist PUBLIC \"-//Apple Computer//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">
 <plist version=\"1.0\">
@@ -9896,7 +9898,7 @@
 				INSTALL_PATH = "$(USER_APPS_DIR)";
 				LIBRARY_SEARCH_PATHS = /usr/lib/gcc/darwin/3.3;
 				MACOSX_DEPLOYMENT_TARGET = "";
-				PRODUCT_NAME = Adanaxis;
+				PRODUCT_NAME = "Adanaxis Control Demo";
 				WARNING_CFLAGS = "-Wall";
 				ZERO_LINK = YES;
 			};
@@ -9997,7 +9999,7 @@
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				MACOSX_DEPLOYMENT_TARGET = 10.2;
 				PRESERVE_DEAD_CODE_INITS_AND_TERMS = NO;
-				PRODUCT_NAME = Adanaxis;
+				PRODUCT_NAME = "Adanaxis Control Demo";
 				ZERO_LINK = NO;
 			};
 			name = Deployment;

@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleExecutable</key>
-	<string>Adanaxis</string>
+	<string>Adanaxis Control Demo</string>
 	<key>CFBundleGetInfoString</key>
 	<string></string>
 	<key>CFBundleIconFile</key>
@@ -21,6 +21,6 @@
 	<key>CFBundleSignature</key>
 	<string>Mush</string>
 	<key>CFBundleVersion</key>
-	<string>0.1.2</string>
+	<string>0.0.1</string>
 </dict>
 </plist>

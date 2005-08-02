@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } 76Z23tD76SliFedbLacn1Q
 /*
- * $Id: AdanaxisConfig.h,v 1.7 2005/07/11 16:37:46 southa Exp $
+ * $Id: AdanaxisConfig.h,v 1.8 2005/08/02 11:11:47 southa Exp $
  * $Log: AdanaxisConfig.h,v $
+ * Revision 1.8  2005/08/02 11:11:47  southa
+ * Adanaxis control demo work
+ *
  * Revision 1.7  2005/07/11 16:37:46  southa
  * Uplink control work
  *
@@ -97,7 +100,8 @@ private:
     std::vector<MushGameKeyDef> m_keyDefs; //:read
     Mushware::U32 m_displayMode; //:readwrite
     Mushware::tMsec m_recordTime; //:readwrite
-    
+    bool m_playMusic; //:readwrite :toggle
+
 //%classPrototypes {
 public:
     const std::vector<MushGameAxisDef>& AxisDefs(void) const { return m_axisDefs; }
@@ -106,6 +110,9 @@ public:
     void DisplayModeSet(const Mushware::U32& inValue) { m_displayMode=inValue; }
     const Mushware::tMsec& RecordTime(void) const { return m_recordTime; }
     void RecordTimeSet(const Mushware::tMsec& inValue) { m_recordTime=inValue; }
+    const bool& PlayMusic(void) const { return m_playMusic; }
+    void PlayMusicSet(const bool& inValue) { m_playMusic=inValue; }
+    void PlayMusicToggle(void) { m_playMusic=!(m_playMusic); }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -113,7 +120,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } 7/bmsZAzY6gfl7rJTjhB/Q
+//%classPrototypes } 4QAtAYcpTDmObYnIXbO+6g
 };
 //%inlineHeader {
 inline std::ostream&

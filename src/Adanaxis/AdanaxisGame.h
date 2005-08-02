@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } TlcXhfM+VEvZ0twh8kZG0Q
 /*
- * $Id: AdanaxisGame.h,v 1.9 2005/07/01 16:42:54 southa Exp $
+ * $Id: AdanaxisGame.h,v 1.10 2005/07/06 19:08:26 southa Exp $
  * $Log: AdanaxisGame.h,v $
+ * Revision 1.10  2005/07/06 19:08:26  southa
+ * Adanaxis control work
+ *
  * Revision 1.9  2005/07/01 16:42:54  southa
  * Render work
  *
@@ -91,7 +94,7 @@ private:
     bool m_inited; //:ignore
     std::string m_name;
     
-    Mushware::tVal m_modeKeypressMsec;
+    Mushware::tMsec m_modeKeypressMsec;
     Mushware::U32 m_newMode;
     
     MushcoreDataRef<MushGameSaveData> m_saveDataRef;

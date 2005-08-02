@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } ow0iEi0s5HhumBjS38PxOA
 /*
- * $Id: AdanaxisPlayer.cpp,v 1.13 2005/07/18 13:13:36 southa Exp $
+ * $Id: AdanaxisPlayer.cpp,v 1.14 2005/08/02 11:11:47 southa Exp $
  * $Log: AdanaxisPlayer.cpp,v $
+ * Revision 1.14  2005/08/02 11:11:47  southa
+ * Adanaxis control demo work
+ *
  * Revision 1.13  2005/07/18 13:13:36  southa
  * Extrude to point and projectile mesh
  *
@@ -78,7 +81,7 @@ using namespace std;
 AdanaxisPlayer::AdanaxisPlayer(const std::string& inPlayerID) :
     MushGamePlayer(inPlayerID)
 {
-    PostWRef().PosSet(t4Val(0,0,0,20));
+    PostWRef().PosSet(t4Val(0,0,0,55));
 }
 
 void

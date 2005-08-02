@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } CFEozIhAxC4/w3MDbuOShQ
 /*
- * $Id: AdanaxisUtil.cpp,v 1.16 2005/08/01 20:24:15 southa Exp $
+ * $Id: AdanaxisUtil.cpp,v 1.17 2005/08/02 11:11:47 southa Exp $
  * $Log: AdanaxisUtil.cpp,v $
+ * Revision 1.17  2005/08/02 11:11:47  southa
+ * Adanaxis control demo work
+ *
  * Revision 1.16  2005/08/01 20:24:15  southa
  * Backdrop and build fixes
  *
@@ -201,7 +204,7 @@ AdanaxisUtil::TestPiecesCreate(AdanaxisLogic& ioLogic)
     tVal rotMin = -0.03;
     tVal rotMax = 0.03;
     
-    for (U32 i=0; i<1; ++i)
+    for (U32 i=0; i<30; ++i)
     {
         khaziListRef.push_back(AdanaxisPieceKhazi("testObj1"));
         AdanaxisSaveData::tKhazi& khaziRef = khaziListRef.back();

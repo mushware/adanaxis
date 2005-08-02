@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 8FammiHLxEKuAIAzehni5g
 /*
- * $Id: MushGameJobPlayerCreate.cpp,v 1.8 2005/07/02 00:42:37 southa Exp $
+ * $Id: MushGameJobPlayerCreate.cpp,v 1.9 2005/07/06 19:08:27 southa Exp $
  * $Log: MushGameJobPlayerCreate.cpp,v $
+ * Revision 1.9  2005/07/06 19:08:27  southa
+ * Adanaxis control work
+ *
  * Revision 1.8  2005/07/02 00:42:37  southa
  * Conditioning tweaks
  *
@@ -75,7 +78,7 @@ MushGameJobPlayerCreate::WakeConsume(MushGameLogic& ioLogic, const MushGameMessa
         case kStateInit:
         case kStateWait:
         {
-            MushcoreLog::Sgl().InfoLog() << "Send player request" << endl;
+            // MushcoreLog::Sgl().InfoLog() << "Send player request" << endl;
             
             MushGameMessageJoinRequest joinRequest("j:admission|"+Id());
             joinRequest.ClientNameSet(ioLogic.SaveData().ClientName());

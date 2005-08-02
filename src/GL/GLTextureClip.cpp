@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } vvubElBf6+4UkoyNs9yohw
 /*
- * $Id: GLTextureClip.cpp,v 1.16 2004/01/02 21:13:06 southa Exp $
+ * $Id: GLTextureClip.cpp,v 1.17 2005/05/19 13:02:00 southa Exp $
  * $Log: GLTextureClip.cpp,v $
+ * Revision 1.17  2005/05/19 13:02:00  southa
+ * Mac release work
+ *
  * Revision 1.16  2004/01/02 21:13:06  southa
  * Source conditioning
  *
@@ -127,9 +130,9 @@ GLTextureClip::GLTextureClip(const GLTexture& inTex, U32 inX1, U32 inY1, U32 inX
         U32 *srcBase=inTex.DataPtr();
         U32 srcWidth=inTex.Width();
         U32 srcHeight=inTex.Height();
-        U32 *srcPtrLim=srcBase+srcWidth*srcHeight;
+        // U32 *srcPtrLim=srcBase+srcWidth*srcHeight;
         U32 *destPtr=def.DataPtr();
-        U32 *destPtrLim=def.DataPtr()+u32Size;
+        // U32 *destPtrLim=def.DataPtr()+u32Size;
 
         for (U32 yLoop = inY1; yLoop != inY2; yLoop += yinc)
         {

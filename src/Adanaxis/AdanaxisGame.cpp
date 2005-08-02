@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } 1+Fcp5/pJdalVjA2hnviXw
 /*
- * $Id: AdanaxisGame.cpp,v 1.19 2005/08/01 20:24:15 southa Exp $
+ * $Id: AdanaxisGame.cpp,v 1.20 2005/08/02 11:11:47 southa Exp $
  * $Log: AdanaxisGame.cpp,v $
+ * Revision 1.20  2005/08/02 11:11:47  southa
+ * Adanaxis control demo work
+ *
  * Revision 1.19  2005/08/01 20:24:15  southa
  * Backdrop and build fixes
  *
@@ -107,11 +110,24 @@ AdanaxisGame::~AdanaxisGame()
 void
 AdanaxisGame::Process(GameAppHandler& inAppHandler)
 {    
-    tVal msecNow = inAppHandler.MillisecondsGet();
+    U32 msecNow = inAppHandler.MillisecondsGet();
 
     VolatileData().ModeKeypressMsecSet(m_modeKeypressMsec);
     VolatileData().NewModeSet(m_newMode);
-        
+    
+    
+    if (inAppHandler.LatchedKeyStateTake('m'))
+    {
+        m_config.PlayMusicToggle();
+        if (m_config.PlayMusic())
+        {
+            MediaAudio::Sgl().MusicFadeIn(300);            
+        }
+        else
+        {
+            MediaAudio::Sgl().MusicFadeOut(300);            
+        }
+    }
     if (inAppHandler.LatchedKeyStateTake('-'))
     {
         if (m_modeKeypressMsec != 0)
@@ -175,6 +191,8 @@ AdanaxisGame::Init(GameAppHandler& inAppHandler)
 {
     MushMeshLibraryBase::SingletonMutate(new AdanaxisMeshLibrary);
 
+    std::srand(time(NULL));
+    
     LocalGameCreate(inAppHandler);
     
     MushGameConfigUtils::ConfigAcquire(&m_config);
@@ -208,8 +226,13 @@ AdanaxisGame::Init(GameAppHandler& inAppHandler)
     }
 #endif
     
-    Logic().StartTimeSet(inAppHandler.MillisecondsGet());
+    MushcoreInterpreter::Sgl().Execute("loadsoundstream('adanaxis-music1')");
+    if (m_config.PlayMusic())
+    {
+        MediaAudio::Sgl().MusicFadeIn(300);                    
+    }
     
+    Logic().StartTimeSet(inAppHandler.MillisecondsGet());
     m_inited = true;
 }
 
@@ -267,7 +290,10 @@ AdanaxisGame::SwapOut(GameAppHandler& inAppHandler)
     
     if (m_config.RecordTime() == 0 || gameTime < m_config.RecordTime())
     {
-        m_config.RecordTimeSet(gameTime);
+        if (Logic().KhaziCount() == 0)
+        {
+            m_config.RecordTimeSet(gameTime);
+        }
     }
 
     const MushcoreScalar *pScalar;    

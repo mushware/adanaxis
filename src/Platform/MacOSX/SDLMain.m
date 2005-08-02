@@ -81,8 +81,11 @@ static NSString *getApplicationName(void)
         char parentdir[MAXPATHLEN];
 		CFURLRef url = CFBundleCopyBundleURL(CFBundleGetMainBundle());
 		CFURLRef url2 = CFURLCreateCopyDeletingLastPathComponent(0, url);
-		if (CFURLGetFileSystemRepresentation(url2, true, parentdir, MAXPATHLEN)) {
-	        assert ( chdir (parentdir) == 0 );   /* chdir to the binary app's parent */
+		if (CFURLGetFileSystemRepresentation(url2, true, parentdir, MAXPATHLEN))
+        {
+            // Andy's fix
+            bool result = chdir(parentdir);
+	        assert ( result == 0 );   /* chdir to the binary app's parent */
 		}
 		CFRelease(url);
 		CFRelease(url2);
