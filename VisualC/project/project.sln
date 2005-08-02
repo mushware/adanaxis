@@ -7,6 +7,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tesseracttrainer", "tessera
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "adanaxis", "adanaxis.vcproj", "{6475BAC2-81B1-4936-A2E3-7EE678E7235F}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfiguration) = preSolution
 		Debug = Debug
@@ -14,7 +18,8 @@ Global
 	EndGlobalSection
 	GlobalSection(ProjectConfiguration) = postSolution
 		{6475BAC2-81B1-4936-A2E3-7EE678E7235F}.Debug.ActiveCfg = Debug|Win32
-		{6475BAC2-81B1-4936-A2E3-7EE678E7235F}.Debug.Build.0 = Debug|Win32
+		{6475BAC2-81B1-4936-A2E3-7EE678E7235F}.Release.ActiveCfg = Release|Win32
+		{6475BAC2-81B1-4936-A2E3-7EE678E7235F}.Debug.ActiveCfg = Debug|Win32
 		{6475BAC2-81B1-4936-A2E3-7EE678E7235F}.Release.ActiveCfg = Release|Win32
 		{6475BAC2-81B1-4936-A2E3-7EE678E7235F}.Debug.ActiveCfg = Debug|Win32
 		{6475BAC2-81B1-4936-A2E3-7EE678E7235F}.Debug.Build.0 = Debug|Win32

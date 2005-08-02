@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } vvubElBf6+4UkoyNs9yohw
 /*
- * $Id: GLTextureClip.cpp,v 1.17 2005/05/19 13:02:00 southa Exp $
+ * $Id: GLTextureClip.cpp,v 1.18 2005/08/02 14:37:44 southa Exp $
  * $Log: GLTextureClip.cpp,v $
+ * Revision 1.18  2005/08/02 14:37:44  southa
+ * Adanaxis control demo work
+ *
  * Revision 1.17  2005/05/19 13:02:00  southa
  * Mac release work
  *
@@ -130,9 +133,11 @@ GLTextureClip::GLTextureClip(const GLTexture& inTex, U32 inX1, U32 inY1, U32 inX
         U32 *srcBase=inTex.DataPtr();
         U32 srcWidth=inTex.Width();
         U32 srcHeight=inTex.Height();
-        // U32 *srcPtrLim=srcBase+srcWidth*srcHeight;
         U32 *destPtr=def.DataPtr();
-        // U32 *destPtrLim=def.DataPtr()+u32Size;
+#ifdef MUSHCORE_DEBUG
+        U32 *srcPtrLim=srcBase+srcWidth*srcHeight; // Assertions only
+        U32 *destPtrLim=def.DataPtr()+u32Size; // Assertions only
+#endif
 
         for (U32 yLoop = inY1; yLoop != inY2; yLoop += yinc)
         {

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 9ETNO07nndi1buun61a/EQ
 /*
- * $Id: MushcoreStandard.h,v 1.25 2005/06/29 11:11:15 southa Exp $
+ * $Id: MushcoreStandard.h,v 1.26 2005/07/29 08:27:47 southa Exp $
  * $Log: MushcoreStandard.h,v $
+ * Revision 1.26  2005/07/29 08:27:47  southa
+ * Collision work
+ *
  * Revision 1.25  2005/06/29 11:11:15  southa
  * Camera and rendering work
  *
@@ -240,6 +243,7 @@
 #include <string>
 #include <utility>
 #include <vector>
+#include <algorithm>
 
 #ifdef HAVE_SSTREAM_NOT_IN_IOSFWD
 #include <sstream>
@@ -279,7 +283,11 @@ namespace Mushware
     a(const a&) { throw MushcoreLogicFail("Copy " #a); } \
     a& operator=(const a&) { throw MushcoreLogicFail("Assign " #a); }
 
-
+#ifdef NDEBUG
+#undef MUSHCORE_DEBUG
+#else
+#define MUSHCORE_DEBUG 1
+#endif
 
 //%includeGuardEnd {
 #endif

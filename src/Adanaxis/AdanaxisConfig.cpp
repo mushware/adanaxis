@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } G3+dIgQrIeaNRuZ7DQOVuQ
 /*
- * $Id: AdanaxisConfig.cpp,v 1.10 2005/08/02 11:11:47 southa Exp $
+ * $Id: AdanaxisConfig.cpp,v 1.11 2005/08/02 14:37:44 southa Exp $
  * $Log: AdanaxisConfig.cpp,v $
+ * Revision 1.11  2005/08/02 14:37:44  southa
+ * Adanaxis control demo work
+ *
  * Revision 1.10  2005/08/02 11:11:47  southa
  * Adanaxis control demo work
  *
@@ -55,6 +58,8 @@
 
 #include "AdanaxisSTL.h"
 
+#include "API/mushPlatform.h"
+
 using namespace Mushware;
 using namespace std;
 
@@ -68,7 +73,7 @@ AdanaxisConfig::ToDefaultSet(void)
 {
     MushGameConfigBase::ToDefaultSet();
     VersionSet(kVersion);
-    m_displayMode = 2;
+    m_displayMode = PlatformVideoUtils::Sgl().DefaultModeGet();
     AxesToDefaultSet();
     KeysToDefaultSet();
     m_recordTime = 0;
@@ -132,7 +137,7 @@ AdanaxisConfig::AutoInputPrologue(MushcoreXMLIStream& ioIn)
 {
     MushGameConfigBase::AutoInputPrologue(ioIn);
     VersionSet(kVersion);
-    m_displayMode = 2;
+    m_displayMode = PlatformVideoUtils::Sgl().DefaultModeGet();
     m_axisDefs.resize(0);
     m_keyDefs.resize(0);
     m_recordTime = 0;

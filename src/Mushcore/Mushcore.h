@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } Sadh94DLrs/FIT4AZy/cYg
 /*
- * $Id: Mushcore.h,v 1.23 2005/07/29 11:53:40 southa Exp $
+ * $Id: Mushcore.h,v 1.24 2005/07/29 14:59:50 southa Exp $
  * $Log: Mushcore.h,v $
+ * Revision 1.24  2005/07/29 14:59:50  southa
+ * Maptor access
+ *
  * Revision 1.23  2005/07/29 11:53:40  southa
  * MushcoreMaptor created
  *
@@ -131,6 +134,7 @@
 #include "MushcoreScript.h"
 #include "MushcoreSingleton.h"
 #include "MushcoreStandard.h"
+#include "MushcoreStreamUtil.h"
 #include "MushcoreStreamUtil.h"
 #include "MushcoreUninstaller.h"
 #include "MushcoreUtil.h"
