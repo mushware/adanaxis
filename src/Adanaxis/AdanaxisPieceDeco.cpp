@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } sexYl99zeFqxCTpAO8DLNQ
 /*
- * $Id: AdanaxisPieceDeco.cpp,v 1.11 2005/07/19 10:08:06 southa Exp $
+ * $Id: AdanaxisPieceDeco.cpp,v 1.12 2005/08/01 20:24:15 southa Exp $
  * $Log: AdanaxisPieceDeco.cpp,v $
+ * Revision 1.12  2005/08/01 20:24:15  southa
+ * Backdrop and build fixes
+ *
  * Revision 1.11  2005/07/19 10:08:06  southa
  * Adanaxis work
  *
@@ -71,23 +74,24 @@ void
 AdanaxisPieceDeco::Render(MushGameLogic& ioLogic, MushRenderMesh& inRender, const MushGameCamera& inCamera)
 {
     bool visible = true;
-    t4Val objNormal = t4Val(1,0,0,0);
-    t4Val viewNormal = t4Val(1,0,0,0);
+    t4Val objNormal = Post().Pos();
+    objNormal.InPlaceNormalise();
+    t4Val viewNormal = t4Val(0,0,0,-1);
     
-    Post().AngPos().VectorRotate(objNormal);
-    inCamera.Post().AngPos().Conjugate().VectorRotate(viewNormal);
+    inCamera.Post().AngPos().VectorRotate(viewNormal);
     
-    visible = true;
+    visible = (objNormal * viewNormal > 0.9);
     
     if (visible)
     {
-        MushRenderSpec renderSpec;
-        renderSpec.BuffersRefSet(m_buffersRef);
+        PostWRef().InPlaceVelocityAdd();
 
         MushGameCamera newCamera(inCamera);
         newCamera.PostWRef().PosWRef().ToAdditiveIdentitySet();
-        newCamera.PostWRef().AngPosWRef().OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis
-                                                          (0, ioLogic.FrameMsec()/50000.0));
+
+        MushRenderSpec renderSpec;
+        renderSpec.BuffersRefSet(m_buffersRef);
+
         MushMeshOps::PosticityToMattress(renderSpec.ModelWRef(), Post());
         MushMeshOps::PosticityToMattress(renderSpec.ViewWRef(), newCamera.Post());
         renderSpec.ViewWRef().InPlaceInvert();

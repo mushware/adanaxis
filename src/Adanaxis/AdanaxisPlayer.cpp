@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } ow0iEi0s5HhumBjS38PxOA
 /*
- * $Id: AdanaxisPlayer.cpp,v 1.12 2005/07/14 16:55:08 southa Exp $
+ * $Id: AdanaxisPlayer.cpp,v 1.13 2005/07/18 13:13:36 southa Exp $
  * $Log: AdanaxisPlayer.cpp,v $
+ * Revision 1.13  2005/07/18 13:13:36  southa
+ * Extrude to point and projectile mesh
+ *
  * Revision 1.12  2005/07/14 16:55:08  southa
  * Mesh library work
  *
@@ -61,8 +64,9 @@
 
 #include "AdanaxisConfig.h"
 #include "AdanaxisMeshLibrary.h"
-#include "AdanaxisSaveData.h"
 #include "AdanaxisPieceProjectile.h"
+#include "AdanaxisRender.h"
+#include "AdanaxisSaveData.h"
 #include "AdanaxisUtil.h"
 #include "AdanaxisVolatileData.h"
 
@@ -280,6 +284,10 @@ void
 AdanaxisPlayer::FireConsume(MushGameLogic& ioLogic, const MushGameMessageFire& inMessage)
 {
     FirePieceCreate(ioLogic, inMessage);
+    
+    MediaAudio::Sgl().Play(*MushcoreDataRef<MediaSound>("fire").Get());
+    
+    dynamic_cast<AdanaxisRender&>(ioLogic.SaveData().RenderRef().WRef()).ScannerOnSet(false);
 }
 
 

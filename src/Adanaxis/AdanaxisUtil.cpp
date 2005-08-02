@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } CFEozIhAxC4/w3MDbuOShQ
 /*
- * $Id: AdanaxisUtil.cpp,v 1.15 2005/08/01 13:09:57 southa Exp $
+ * $Id: AdanaxisUtil.cpp,v 1.16 2005/08/01 20:24:15 southa Exp $
  * $Log: AdanaxisUtil.cpp,v $
+ * Revision 1.16  2005/08/01 20:24:15  southa
+ * Backdrop and build fixes
+ *
  * Revision 1.15  2005/08/01 13:09:57  southa
  * Collision messaging
  *
@@ -105,8 +108,8 @@ AdanaxisUtil::TestDecoCreate(AdanaxisLogic& ioLogic)
 {
     AdanaxisVolatileData::tDecoList& decoListRef = ioLogic.VolatileData().DecoListWRef();
 
-    tVal rotMin = -0.03;
-    tVal rotMax = 0.03;
+    tVal rotMin = -0.002;
+    tVal rotMax = 0.002;
     
     for (U32 i=0; i<1000; ++i)
     {
@@ -138,7 +141,7 @@ AdanaxisUtil::TestDecoCreate(AdanaxisLogic& ioLogic)
         MushMeshLibraryVGenExtrude vertexExtrude;
         tQValPair rotation;
         rotation.ToRotationIdentitySet();
-        MushMeshDisplacement disp(t4Val(0,0,0,1), rotation, 0.75);
+        MushMeshDisplacement disp(t4Val(0,0,0,1), rotation, 1);
         
         MushMeshLibraryExtrusionContext extrusionContext(disp, 0);
         switch (i % 30)
@@ -158,11 +161,11 @@ AdanaxisUtil::TestDecoCreate(AdanaxisLogic& ioLogic)
                 {
                     disp.RotationWRef().OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis
                                                         (1, 0.5*M_PI/number));
-                    MushMeshTools::QuaternionRotateInAxis(1, 0.25*M_PI/number).VectorRotate(offset);
+                    MushMeshTools::QuaternionRotateInAxis(1, 0.5*M_PI/number).VectorRotate(offset);
                     disp.OffsetSet(offset);
                     extrusionContext.DispSet(disp);
                 }
-                extrusionContext.ScaleVelocitySet(0);
+                extrusionContext.ScaleVelocitySet(-0.205);
                 extrusionContext.ResetNewFace(0);
                 faceExtrude.FaceExtrude(objRef.MeshWRef(), extrusionContext, number);
                 extrusionContext.ResetNewFace(1);
@@ -198,7 +201,7 @@ AdanaxisUtil::TestPiecesCreate(AdanaxisLogic& ioLogic)
     tVal rotMin = -0.03;
     tVal rotMax = 0.03;
     
-    for (U32 i=0; i<30; ++i)
+    for (U32 i=0; i<1; ++i)
     {
         khaziListRef.push_back(AdanaxisPieceKhazi("testObj1"));
         AdanaxisSaveData::tKhazi& khaziRef = khaziListRef.back();

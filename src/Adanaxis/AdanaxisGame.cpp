@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } 1+Fcp5/pJdalVjA2hnviXw
 /*
- * $Id: AdanaxisGame.cpp,v 1.18 2005/07/18 13:13:35 southa Exp $
+ * $Id: AdanaxisGame.cpp,v 1.19 2005/08/01 20:24:15 southa Exp $
  * $Log: AdanaxisGame.cpp,v $
+ * Revision 1.19  2005/08/01 20:24:15  southa
+ * Backdrop and build fixes
+ *
  * Revision 1.18  2005/07/18 13:13:35  southa
  * Extrude to point and projectile mesh
  *
@@ -104,8 +107,42 @@ AdanaxisGame::~AdanaxisGame()
 void
 AdanaxisGame::Process(GameAppHandler& inAppHandler)
 {    
+    tVal msecNow = inAppHandler.MillisecondsGet();
+
+    VolatileData().ModeKeypressMsecSet(m_modeKeypressMsec);
+    VolatileData().NewModeSet(m_newMode);
+        
+    if (inAppHandler.LatchedKeyStateTake('-'))
+    {
+        if (m_modeKeypressMsec != 0)
+        {
+            m_newMode = PlatformVideoUtils::Sgl().PreviousModeDef(m_newMode);
+        }
+        m_modeKeypressMsec = msecNow;
+    }
+    if (inAppHandler.LatchedKeyStateTake('='))
+    {
+        if (m_modeKeypressMsec != 0)
+        {
+            m_newMode = PlatformVideoUtils::Sgl().NextModeDef(m_newMode);
+        }
+        m_modeKeypressMsec = msecNow;
+    }
+    if (m_modeKeypressMsec != 0 && m_modeKeypressMsec + 3000 < msecNow)
+    {
+        if (m_newMode != m_config.DisplayMode())
+        {
+            m_config.DisplayModeSet(m_newMode);
+            SwapOut(inAppHandler);
+            SwapIn(inAppHandler);
+        }
+        
+        m_modeKeypressMsec=0;
+    }
+    
     m_logicRef.WRef().PerFrameProcessing();
     Logic().MainSequence();
+        
     GLUtils::PostRedisplay();
 }
 
@@ -171,6 +208,8 @@ AdanaxisGame::Init(GameAppHandler& inAppHandler)
     }
 #endif
     
+    Logic().StartTimeSet(inAppHandler.MillisecondsGet());
+    
     m_inited = true;
 }
 
@@ -217,12 +256,20 @@ AdanaxisGame::SwapIn(GameAppHandler& inAppHandler)
    
     m_modeKeypressMsec = 0;
     m_newMode = m_config.DisplayMode();
-
+    Logic().RecordTimeSet(m_config.RecordTime());
 }
 
 void
 AdanaxisGame::SwapOut(GameAppHandler& inAppHandler)
 {
+    
+    tMsec gameTime = Logic().EndTime() - Logic().StartTime();
+    
+    if (m_config.RecordTime() == 0 || gameTime < m_config.RecordTime())
+    {
+        m_config.RecordTimeSet(gameTime);
+    }
+
     const MushcoreScalar *pScalar;    
     if (MushcoreEnv::Sgl().VariableGetIfExists(pScalar, "CONFIG_FILENAME"))
     {

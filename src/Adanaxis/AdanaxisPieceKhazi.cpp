@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } 1en6OnZ85se795baUuYn3A
 /*
- * $Id: AdanaxisPieceKhazi.cpp,v 1.2 2005/08/01 13:09:57 southa Exp $
+ * $Id: AdanaxisPieceKhazi.cpp,v 1.3 2005/08/01 17:58:51 southa Exp $
  * $Log: AdanaxisPieceKhazi.cpp,v $
+ * Revision 1.3  2005/08/01 17:58:51  southa
+ * Object explosion
+ *
  * Revision 1.2  2005/08/01 13:09:57  southa
  * Collision messaging
  *
@@ -73,6 +76,7 @@ AdanaxisPieceKhazi::CollisionFatalConsume(MushGameLogic& ioLogic, const MushGame
     {
         ExpireFlagSet(true);
         Explode(ioLogic, inMessage);
+        MediaAudio::Sgl().Play(*MushcoreDataRef<MediaSound>("explode").Get());
     }
 }    
 

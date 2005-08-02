@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } 76Z23tD76SliFedbLacn1Q
 /*
- * $Id: AdanaxisConfig.h,v 1.6 2005/07/06 19:08:26 southa Exp $
+ * $Id: AdanaxisConfig.h,v 1.7 2005/07/11 16:37:46 southa Exp $
  * $Log: AdanaxisConfig.h,v $
+ * Revision 1.7  2005/07/11 16:37:46  southa
+ * Uplink control work
+ *
  * Revision 1.6  2005/07/06 19:08:26  southa
  * Adanaxis control work
  *
@@ -93,6 +96,7 @@ private:
     std::vector<MushGameAxisDef> m_axisDefs; //:read
     std::vector<MushGameKeyDef> m_keyDefs; //:read
     Mushware::U32 m_displayMode; //:readwrite
+    Mushware::tMsec m_recordTime; //:readwrite
     
 //%classPrototypes {
 public:
@@ -100,6 +104,8 @@ public:
     const std::vector<MushGameKeyDef>& KeyDefs(void) const { return m_keyDefs; }
     const Mushware::U32& DisplayMode(void) const { return m_displayMode; }
     void DisplayModeSet(const Mushware::U32& inValue) { m_displayMode=inValue; }
+    const Mushware::tMsec& RecordTime(void) const { return m_recordTime; }
+    void RecordTimeSet(const Mushware::tMsec& inValue) { m_recordTime=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -107,7 +113,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } o8V20dDJ/f6CPeqLqotZNA
+//%classPrototypes } 7/bmsZAzY6gfl7rJTjhB/Q
 };
 //%inlineHeader {
 inline std::ostream&

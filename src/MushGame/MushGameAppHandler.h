@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } JEoS3kjwIi/5WzNfzKQqBA
 /*
- * $Id: MushGameAppHandler.h,v 1.2 2005/07/08 12:07:07 southa Exp $
+ * $Id: MushGameAppHandler.h,v 1.3 2005/07/11 16:37:46 southa Exp $
  * $Log: MushGameAppHandler.h,v $
+ * Revision 1.3  2005/07/11 16:37:46  southa
+ * Uplink control work
+ *
  * Revision 1.2  2005/07/08 12:07:07  southa
  * MushGaem control work
  *
@@ -41,6 +44,7 @@
 
 #include "API/mushGame.h"
 
+//:generate
 class MushGameAppHandler : public GameAppHandler
 {
 public:
@@ -64,6 +68,12 @@ private:
     Mushware::tMsec m_lastTickerMsec;
     MushcoreDataRef<MushGameMailbox> m_controlMailboxRef; //:read
     bool m_lastAxesValid;
+    std::string m_axisNames; //:read
+//%classPrototypes {
+public:
+    const MushcoreDataRef<MushGameMailbox>& ControlMailboxRef(void) const { return m_controlMailboxRef; }
+    const std::string& AxisNames(void) const { return m_axisNames; }
+//%classPrototypes } qagyUqz+a66MkXxr8gLlQA
 };
 
 //%includeGuardEnd {

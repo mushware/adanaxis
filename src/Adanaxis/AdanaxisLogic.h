@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } v0NoK60n2sQZAwN5ucHNyw
 /*
- * $Id: AdanaxisLogic.h,v 1.5 2005/07/29 08:27:46 southa Exp $
+ * $Id: AdanaxisLogic.h,v 1.6 2005/08/01 13:09:57 southa Exp $
  * $Log: AdanaxisLogic.h,v $
+ * Revision 1.6  2005/08/01 13:09:57  southa
+ * Collision messaging
+ *
  * Revision 1.5  2005/07/29 08:27:46  southa
  * Collision work
  *
@@ -63,13 +66,11 @@ public:
     virtual void KhaziMove(void);
     virtual void MoveSequence(void);
     virtual void CollideSequence(void);
-
+    virtual void RenderSequence(void);
     virtual void ProjectilesFullCollide(void);
     
     virtual void CollisionFatalConsume(MushGameLogic& ioLogic, const MushGameMessageCollisionFatal& inMessage);
     virtual void CollisionMessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage);
-
-    
     
     virtual AdanaxisSaveData& SaveData(void) const;
     virtual const AdanaxisSaveData& ConstSaveData(void) const;
@@ -85,8 +86,21 @@ protected:
                          const MushCollisionInfo& inCollInfo);
     
 private:
+    Mushware::U32 m_khaziCount; //:readwrite
+    Mushware::tMsec m_startTime; //:readwrite
+    Mushware::tMsec m_endTime; //:readwrite
+    Mushware::tMsec m_recordTime; //:readwrite
+    
 //%classPrototypes {
 public:
+    const Mushware::U32& KhaziCount(void) const { return m_khaziCount; }
+    void KhaziCountSet(const Mushware::U32& inValue) { m_khaziCount=inValue; }
+    const Mushware::tMsec& StartTime(void) const { return m_startTime; }
+    void StartTimeSet(const Mushware::tMsec& inValue) { m_startTime=inValue; }
+    const Mushware::tMsec& EndTime(void) const { return m_endTime; }
+    void EndTimeSet(const Mushware::tMsec& inValue) { m_endTime=inValue; }
+    const Mushware::tMsec& RecordTime(void) const { return m_recordTime; }
+    void RecordTimeSet(const Mushware::tMsec& inValue) { m_recordTime=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -94,7 +108,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } 1oBgFruy5qHAaudtV+Hcmg
+//%classPrototypes } dl8cBZqIOtan46mtOs/q1w
 };
 
 inline AdanaxisSaveData&

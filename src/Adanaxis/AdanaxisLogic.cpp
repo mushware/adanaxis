@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } ui3Az6sPZVE4olMwWeOmrw
 /*
- * $Id: AdanaxisLogic.cpp,v 1.8 2005/07/30 19:06:14 southa Exp $
+ * $Id: AdanaxisLogic.cpp,v 1.9 2005/08/01 13:09:57 southa Exp $
  * $Log: AdanaxisLogic.cpp,v $
+ * Revision 1.9  2005/08/01 13:09:57  southa
+ * Collision messaging
+ *
  * Revision 1.8  2005/07/30 19:06:14  southa
  * Collision checking
  *
@@ -179,6 +182,24 @@ AdanaxisLogic::CollideSequence(void)
     ProjectilesFullCollide();
 }
 
+void
+AdanaxisLogic::RenderSequence(void)
+{
+    m_khaziCount = 0;
+    AdanaxisData::tKhaziList::iterator khaziEndIter = SaveData().KhaziListWRef().end();
+    for (AdanaxisData::tKhaziList::iterator p = SaveData().KhaziListWRef().begin(); p != khaziEndIter; ++p)
+    {
+        ++m_khaziCount;
+    }  
+    
+    if (m_khaziCount != 0)
+    {
+        EndTimeSet(FrameMsec());
+    }
+    
+    MushGameLogic::RenderSequence();
+}
+
 MushGamePiece&
 AdanaxisLogic::PieceLookup(const std::string& inName) const
 {
@@ -274,6 +295,10 @@ AdanaxisLogic::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
     MushGameLogic::AutoPrint(ioOut);
+    ioOut << "khaziCount=" << m_khaziCount << ", ";
+    ioOut << "startTime=" << m_startTime << ", ";
+    ioOut << "endTime=" << m_endTime << ", ";
+    ioOut << "recordTime=" << m_recordTime;
     ioOut << "]";
 }
 bool
@@ -284,6 +309,22 @@ AdanaxisLogic::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& i
         AutoInputPrologue(ioIn);
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
+    }
+    else if (inTagStr == "khaziCount")
+    {
+        ioIn >> m_khaziCount;
+    }
+    else if (inTagStr == "startTime")
+    {
+        ioIn >> m_startTime;
+    }
+    else if (inTagStr == "endTime")
+    {
+        ioIn >> m_endTime;
+    }
+    else if (inTagStr == "recordTime")
+    {
+        ioIn >> m_recordTime;
     }
     else if (MushGameLogic::AutoXMLDataProcess(ioIn, inTagStr))
     {
@@ -299,5 +340,13 @@ void
 AdanaxisLogic::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
     MushGameLogic::AutoXMLPrint(ioOut);
+    ioOut.TagSet("khaziCount");
+    ioOut << m_khaziCount;
+    ioOut.TagSet("startTime");
+    ioOut << m_startTime;
+    ioOut.TagSet("endTime");
+    ioOut << m_endTime;
+    ioOut.TagSet("recordTime");
+    ioOut << m_recordTime;
 }
-//%outOfLineFunctions } CJla1G67YOsafSjFedjYqA
+//%outOfLineFunctions } bCjjtTQxMbrlyKOMMqlD2Q

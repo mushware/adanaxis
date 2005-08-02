@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } eomVoawiv9P4VcOw5CYHSg
 /*
- * $Id: AdanaxisRender.cpp,v 1.17 2005/07/30 19:06:14 southa Exp $
+ * $Id: AdanaxisRender.cpp,v 1.18 2005/08/01 20:24:15 southa Exp $
  * $Log: AdanaxisRender.cpp,v $
+ * Revision 1.18  2005/08/01 20:24:15  southa
+ * Backdrop and build fixes
+ *
  * Revision 1.17  2005/07/30 19:06:14  southa
  * Collision checking
  *
@@ -74,8 +77,11 @@
 
 #include "AdanaxisRender.h"
 
+#include "AdanaxisAppHandler.h"
 #include "AdanaxisSaveData.h"
+#include "AdanaxisLogic.h"
 #include "AdanaxisVolatileData.h"
+#include "AdanaxisUtil.h"
 
 #include "API/mushGL.h"
 #include "API/mushMushGame.h"
@@ -87,7 +93,8 @@ using namespace std;
 
 AdanaxisRender::AdanaxisRender() :
     m_halfAngle(M_PI/12),
-    m_halfAngleAttractor(M_PI/12)
+    m_halfAngleAttractor(M_PI/12),
+    m_scannerOn(false)
 {
 }
 
@@ -117,7 +124,16 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
     
     if (MushGLUtil::AppHandler().LatchedKeyStateTake(9))
     {
-        m_halfAngleAttractor = M_PI/3 - m_halfAngleAttractor;
+        m_scannerOn = !m_scannerOn;
+    }
+    
+    if (m_scannerOn)
+    {
+        m_halfAngleAttractor = 0.4*M_PI;
+    }
+    else
+    {
+        m_halfAngleAttractor = M_PI/12;
     }
     
     MushGLUtil::DisplayPrologue();
@@ -136,16 +152,20 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
     
     camera.ProjectionSet(m_projection);
     
-    renderMesh.ColourZMiddleSet(t4Val(0.5,0.0,1.0,0.1));
-    renderMesh.ColourZLeftSet(t4Val(0,0.0,1.0,0.0));
-    renderMesh.ColourZRightSet(t4Val(0,0.5,1.0,0.0));
     
-    tDecoList::iterator decoEndIter = pVolData->DecoListWRef().end();
-    for (tDecoList::iterator p = pVolData->DecoListWRef().begin(); p != decoEndIter; ++p)
+    if (!m_scannerOn)
     {
-        p->Render(ioLogic, renderMesh, camera);
-    }
+        renderMesh.ColourZMiddleSet(t4Val(0.5,0.0,1.0,0.2));
+        renderMesh.ColourZLeftSet(t4Val(0,0.0,1.0,0.0));
+        renderMesh.ColourZRightSet(t4Val(0,0.5,1.0,0.0));
 
+        tDecoList::iterator decoEndIter = pVolData->DecoListWRef().end();
+        for (tDecoList::iterator p = pVolData->DecoListWRef().begin(); p != decoEndIter; ++p)
+        {
+            p->Render(ioLogic, renderMesh, camera);
+        }
+    }
+    
     renderMesh.ColourZMiddleSet(t4Val(1.0,1.0,1.0,1.0));
     renderMesh.ColourZLeftSet(t4Val(1.0,0.0,0.0,0.0));
     renderMesh.ColourZRightSet(t4Val(0.0,1.0,0.0,0.0));
@@ -173,6 +193,8 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
     
     MushGLUtil::OrthoPrologue();
     
+    Overplot(ioLogic, inCamera);
+    
     if (pVolData->ModeKeypressMsec() != 0)
     {
         PlatformVideoUtils::Sgl().RenderModeInfo(pVolData->NewMode());
@@ -189,6 +211,72 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
     MushGLUtil::OrthoEpilogue();
     
     MushGLUtil::DisplayEpilogue();
+}
+
+void
+AdanaxisRender::Overplot(MushGameLogic& ioLogic, const MushGameCamera& inCamera)
+{    
+    GLState::ColourSet(1.0,1.0,1.0,0.3);
+    GLUtils orthoGL;
+    
+    AdanaxisLogic &logicRef = dynamic_cast<AdanaxisLogic &>(ioLogic);
+    
+    if (m_scannerOn)
+    {
+        orthoGL.MoveToEdge(0,1);
+        orthoGL.MoveRelative(0, -0.08);
+        GLString glStr("Fish-eye scanner", GLFontRef("font-mono1", 0.02), 0);
+        glStr.Render();
+    }
+    
+    {
+        orthoGL.MoveToEdge(-1,1);
+        orthoGL.MoveRelative(0.01, -0.04);
+        ostringstream message;
+        message << logicRef.KhaziCount() << " left";
+        GLString glStr(message.str(), GLFontRef("font-mono1", 0.02), -1);
+        glStr.Render();
+    }
+    {
+        orthoGL.MoveToEdge(1,1);
+        orthoGL.MoveRelative(-0.01, -0.04);
+        ostringstream message;
+        message << GameTimer::MsecToLongString(logicRef.EndTime() - logicRef.StartTime());
+        GLString glStr(message.str(), GLFontRef("font-mono1", 0.02), 1);
+        glStr.Render();
+    }
+    {
+        orthoGL.MoveToEdge(0,-1);
+        orthoGL.MoveRelative(0, 0.04);
+        GLString glStr(AdanaxisUtil::AppHandler().AxisNames(), GLFontRef("font-mono1", 0.02), 0);
+        glStr.Render();
+    }
+    
+    if (logicRef.KhaziCount() == 0)
+    {
+        {
+            orthoGL.MoveTo(0, 0.04);
+            ostringstream message;
+            message << "Time:   " << GameTimer::MsecToLongString(logicRef.EndTime() - logicRef.StartTime());
+            GLString glStr(message.str(), GLFontRef("font-mono1", 0.03), 0);
+            glStr.Render();        
+        }
+        {
+            orthoGL.MoveTo(0, -0.04);
+            ostringstream message;
+            message << "Record: " << GameTimer::MsecToLongString(logicRef.RecordTime());
+            GLString glStr(message.str(), GLFontRef("font-mono1", 0.03), 0);
+            glStr.Render();        
+        }
+        {
+            orthoGL.MoveTo(0, -0.2);
+            ostringstream message;
+            message << "(Esc to exit)";
+            GLString glStr(message.str(), GLFontRef("font-mono1", 0.02), 0);
+            glStr.Render();        
+        }
+    }
+    orthoGL.MoveTo(0, 0);
 }
 
 //%outOfLineFunctions {
@@ -226,7 +314,8 @@ AdanaxisRender::AutoPrint(std::ostream& ioOut) const
     ioOut << "[";
     ioOut << "projection=" << m_projection << ", ";
     ioOut << "halfAngle=" << m_halfAngle << ", ";
-    ioOut << "halfAngleAttractor=" << m_halfAngleAttractor;
+    ioOut << "halfAngleAttractor=" << m_halfAngleAttractor << ", ";
+    ioOut << "scannerOn=" << m_scannerOn;
     ioOut << "]";
 }
 bool
@@ -250,6 +339,10 @@ AdanaxisRender::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
     {
         ioIn >> m_halfAngleAttractor;
     }
+    else if (inTagStr == "scannerOn")
+    {
+        ioIn >> m_scannerOn;
+    }
     else 
     {
         return false;
@@ -265,5 +358,7 @@ AdanaxisRender::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_halfAngle;
     ioOut.TagSet("halfAngleAttractor");
     ioOut << m_halfAngleAttractor;
+    ioOut.TagSet("scannerOn");
+    ioOut << m_scannerOn;
 }
-//%outOfLineFunctions } aAe1Jck4WoR6xPb7tD1Caw
+//%outOfLineFunctions } FzYzr+Y85we+EGcomKAJOA

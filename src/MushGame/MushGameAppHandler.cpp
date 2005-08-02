@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } vTDmm7/9yQPLbrRCYbzIaw
 /*
- * $Id: MushGameAppHandler.cpp,v 1.2 2005/07/08 12:07:07 southa Exp $
+ * $Id: MushGameAppHandler.cpp,v 1.3 2005/07/11 16:37:46 southa Exp $
  * $Log: MushGameAppHandler.cpp,v $
+ * Revision 1.3  2005/07/11 16:37:46  southa
+ * Uplink control work
+ *
  * Revision 1.2  2005/07/08 12:07:07  southa
  * MushGaem control work
  *
@@ -167,6 +170,7 @@ MushGameAppHandler::AxisFromDeviceUpdate(MushGameAxisDef& ioAxisDef, Mushware::t
 void
 MushGameAppHandler::AxisTicker(Mushware::tMsec inTimeslice)
 {
+    m_axisNames = "";
     tVal amount = inTimeslice / 1000.0;
     
     
@@ -192,18 +196,23 @@ MushGameAppHandler::AxisTicker(Mushware::tMsec inTimeslice)
     {
         MushGameAxisDef& axisDefRef = m_axisDefs[i];
         bool decelerate = true;
+        S32 keyMoved = 0;
         
         if (axisDefRef.UseKeys())
         {
-            if (KeyStateGet(axisDefRef.UpKey()))
+            bool upState = KeyStateGet(axisDefRef.UpKey());
+            bool downState = KeyStateGet(axisDefRef.DownKey());
+            if (upState && !downState)
             {
                 axisDefRef.Accelerate(amount);
                 decelerate = false;
+                keyMoved += 1;
             }
-            else if (KeyStateGet(axisDefRef.DownKey()))
+            else if (downState && !upState)
             {
                 axisDefRef.Accelerate(-amount);
                 decelerate = false;
+                keyMoved -= 1;
             }
         }
         
@@ -220,6 +229,15 @@ MushGameAppHandler::AxisTicker(Mushware::tMsec inTimeslice)
         if (axisDefRef.Integrate())
         {
             axisDefRef.ApplyIntegration(amount);
+        }
+        if (keyMoved != 0) 
+        {
+            if (m_axisNames != "")
+            {
+                m_axisNames += ",";
+            }
+            m_axisNames += (keyMoved == 1)?"+":"-";
+            m_axisNames += axisDefRef.AxisName();
         }
     }
     m_lastAxesValid = true;

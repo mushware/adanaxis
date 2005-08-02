@@ -3504,6 +3504,8 @@
 		7A8FBB1F07F43A3900BAAFBE /* GameDialogue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameDialogue.h; sourceTree = "<group>"; };
 		7A8FBB2007F43A3900BAAFBE /* GameDialogue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameDialogue.cpp; sourceTree = "<group>"; };
 		7A8FBC9A07F4572E00BAAFBE /* mushMushPie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mushMushPie.h; sourceTree = "<group>"; };
+		7A9778FD089E9BA500802242 /* adanaxis.ChangeLog */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = adanaxis.ChangeLog; sourceTree = "<group>"; };
+		7A9778FE089E9BA500802242 /* adanaxis.def */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = adanaxis.def; sourceTree = "<group>"; };
 		7AA0FACB08841B5E00997505 /* MushcoreAutoClonePtr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushcoreAutoClonePtr.h; sourceTree = "<group>"; };
 		7AA0FACC08841B5E00997505 /* MushcoreAutoClonePtr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushcoreAutoClonePtr.cpp; sourceTree = "<group>"; };
 		7AA0FADF088424F200997505 /* MushMesh4VertexGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushMesh4VertexGenerator.h; sourceTree = "<group>"; };
@@ -5667,6 +5669,8 @@
 		7ACC317305AB2FDD001A0873 /* targets */ = {
 			isa = PBXGroup;
 			children = (
+				7A9778FD089E9BA500802242 /* adanaxis.ChangeLog */,
+				7A9778FE089E9BA500802242 /* adanaxis.def */,
 				7ABCE96F05AB463800A00CC6 /* app.Makefile.am */,
 				7ABCE94B05AB45CE00A00CC6 /* mushcore.def */,
 				7ABCE94C05AB45CE00A00CC6 /* mushmesh.def */,
@@ -11634,6 +11638,7 @@
 		7A19619D0899A34800B8B840 /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = "NDEBUG=1";
 			};
 			name = Deployment;
 		};
