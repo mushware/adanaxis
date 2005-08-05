@@ -11,8 +11,11 @@
 ##############################################################################
 
 #
-# $Id: MakeInstaller.sh,v 1.3 2002/10/20 22:31:06 southa Exp $
+# $Id: MakeInstaller.sh,v 1.4 2005/05/27 19:25:24 southa Exp $
 # $Log: MakeInstaller.sh,v $
+# Revision 1.4  2005/05/27 19:25:24  southa
+# win32 build fixes
+#
 # Revision 1.3  2002/10/20 22:31:06  southa
 # Fixed win32 release build
 #
@@ -56,6 +59,7 @@ cp -pR "$datadir" "$releasedir"
 
 find "$releasedir" -type d -name 'CVS' -prune -exec rm -rf "{}" \;
 find "$releasedir" -name '.DS_Store' -exec rm -f "{}" \;
+find "$releasedir" -name 'Makefile*' -exec rm -f "{}" \;
 
 cp "$releasedir/system/start.txt" "$releasedir/system/start_backup.txt"
 
