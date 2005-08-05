@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } 1+Fcp5/pJdalVjA2hnviXw
 /*
- * $Id: AdanaxisGame.cpp,v 1.20 2005/08/02 11:11:47 southa Exp $
+ * $Id: AdanaxisGame.cpp,v 1.21 2005/08/02 14:37:44 southa Exp $
  * $Log: AdanaxisGame.cpp,v $
+ * Revision 1.21  2005/08/02 14:37:44  southa
+ * Adanaxis control demo work
+ *
  * Revision 1.20  2005/08/02 11:11:47  southa
  * Adanaxis control demo work
  *
@@ -254,6 +257,9 @@ AdanaxisGame::UpdateFromConfig(void)
 void
 AdanaxisGame::SwapIn(GameAppHandler& inAppHandler)
 {
+    AdanaxisAppHandler& appHandler = AdanaxisUtil::AppHandler();
+    appHandler.LastAxesValidSet(false);
+
     if (!m_inited)
     {
         Init(inAppHandler);

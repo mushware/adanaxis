@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } JEoS3kjwIi/5WzNfzKQqBA
 /*
- * $Id: MushGameAppHandler.h,v 1.3 2005/07/11 16:37:46 southa Exp $
+ * $Id: MushGameAppHandler.h,v 1.4 2005/08/02 11:11:48 southa Exp $
  * $Log: MushGameAppHandler.h,v $
+ * Revision 1.4  2005/08/02 11:11:48  southa
+ * Adanaxis control demo work
+ *
  * Revision 1.3  2005/07/11 16:37:46  southa
  * Uplink control work
  *
@@ -67,13 +70,15 @@ private:
     std::vector<MushGameKeyDef> m_keyDefs;
     Mushware::tMsec m_lastTickerMsec;
     MushcoreDataRef<MushGameMailbox> m_controlMailboxRef; //:read
-    bool m_lastAxesValid;
+    bool m_lastAxesValid; //:readwrite
     std::string m_axisNames; //:read
 //%classPrototypes {
 public:
     const MushcoreDataRef<MushGameMailbox>& ControlMailboxRef(void) const { return m_controlMailboxRef; }
+    const bool& LastAxesValid(void) const { return m_lastAxesValid; }
+    void LastAxesValidSet(const bool& inValue) { m_lastAxesValid=inValue; }
     const std::string& AxisNames(void) const { return m_axisNames; }
-//%classPrototypes } qagyUqz+a66MkXxr8gLlQA
+//%classPrototypes } /Xz87dsou8RJtLplwowKtw
 };
 
 //%includeGuardEnd {
