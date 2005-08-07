@@ -1,6 +1,9 @@
 # Target definition file
-# $Id: adanaxis.def,v 1.1 2005/08/01 20:23:43 southa Exp $
+# $Id: adanaxis.def,v 1.2 2005/08/02 14:37:45 southa Exp $
 # $Log: adanaxis.def,v $
+# Revision 1.2  2005/08/02 14:37:45  southa
+# Adanaxis control demo work
+#
 # Revision 1.1  2005/08/01 20:23:43  southa
 # Backdrop and build fixes
 #
@@ -55,6 +58,6 @@ Modules: x11/man/adanaxiscontroldemo.*
 
 Create: data-adanaxis/Makefile.am
 PkgData:
-Modules: system/.*\.xml$ system/.*\.txt$
+Modules: pixels waves system/.*\.xml$ system/.*\.txt$
 ExtraDist:
 Modules: \.*pdf$

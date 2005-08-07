@@ -16,7 +16,14 @@ cd MUSH_APP_PACKAGE-MUSH_APP_VERSION
 # (spend a few days getting the libraries that configure asks for)
 make
 make install
-./MUSH_APP_PACKAGE
+MUSH_APP_PACKAGE
+
+Alternatively, the application can be started without installing, but
+this must be done from the system directory.
+
+make
+cd data-MUSH_APP_PACKAGE
+../../src/MUSH_APP_PACKAGEbinary
 
 MacOS X
 =======
