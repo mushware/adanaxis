@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } do/pC4WFtsQItE9mWclSaw
 /*
- * $Id: AdanaxisPixelSource.cpp,v 1.4 2005/06/20 14:30:33 southa Exp $
+ * $Id: AdanaxisPixelSource.cpp,v 1.5 2005/07/02 00:42:36 southa Exp $
  * $Log: AdanaxisPixelSource.cpp,v $
+ * Revision 1.5  2005/07/02 00:42:36  southa
+ * Conditioning tweaks
+ *
  * Revision 1.4  2005/06/20 14:30:33  southa
  * Adanaxis work
  *
@@ -39,7 +42,7 @@ using namespace Mushware;
 using namespace std;
 
 void
-AdanaxisPixelSource::ParameterSet(Mushware::U32 inNum, Mushware::tLongVal inVal)
+AdanaxisPixelSource::ValueParameterSet(Mushware::U32 inNum, Mushware::tLongVal inVal)
 {
     switch (inNum)
     {
@@ -70,7 +73,7 @@ AdanaxisPixelSource::ParameterSet(Mushware::U32 inNum, Mushware::tLongVal inVal)
         default:
         {
             ostringstream msg;
-            msg << "AdanaxisPixelSource::ParameterSet: Unknown paramerer: " << inNum;
+            msg << "AdanaxisPixelSource::ParameterSet: Unknown parameter: " << inNum;
             throw MushcoreRequestFail(msg.str());
         }
     }

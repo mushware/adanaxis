@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef MUSHGLPIXELSOURCE_H
-#define MUSHGLPIXELSOURCE_H
-//%includeGuardStart } kwijVJ9oL6wy/PlBOEfl6w
+#ifndef MUSHGLPIXELSOURCETIFF_H
+#define MUSHGLPIXELSOURCETIFF_H
+//%includeGuardStart } nH7Z6maSsLIzcTPVyFNcrQ
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushGL/MushGLPixelSource.h
+ * File: src/MushGL/MushGLPixelSourceTIFF.h
  *
  * Author: Andy Southgate 2002-2005
  *
@@ -21,61 +21,46 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 929uH06nvmR9AZQiCgrrTw
+//%Header } InmAy0O3dIDzzAuuSRabNA
 /*
- * $Id: MushGLPixelSource.h,v 1.2 2005/05/19 13:02:09 southa Exp $
- * $Log: MushGLPixelSource.h,v $
- * Revision 1.2  2005/05/19 13:02:09  southa
- * Mac release work
- *
- * Revision 1.1  2005/02/13 22:44:07  southa
- * Tesseract stuff
- *
+ * $Id$
+ * $Log$
  */
 
 #include "MushGLStandard.h"
 
+#include "MushGLPixelSource.h"
+
 class MushGLTexture;
 
 //:generate virtual ostream xml1
-class MushGLPixelSource : public MushcoreVirtualObject
+class MushGLPixelSourceTIFF : public MushGLPixelSource
 {
 public:
-    enum
-    {
-        kParamInvalid,
-        kParamNone,
-        kParamFrameTime,
-        kParamRed,
-        kParamGreen,
-        kParamBlue,
-        kParamAlpha,
-        kParamSeed,
-        kParamFilename,
-        kParamBaseNext
-    };
-    virtual ~MushGLPixelSource() {}
     virtual void ValueParameterSet(const Mushware::U32 inNum, const Mushware::tLongVal inVal);
     virtual void StringParameterSet(const Mushware::U32 inNum, const std::string& inStr);
-    virtual void BufferFill(Mushware::U32 * const outPtr, const Mushware::t2U32 inSize) const; // Deprecated
     virtual void ToTextureCreate(MushGLTexture& outTexture);
-        
+
 private:
+    std::string m_filename; //:readwrite
+    
 //%classPrototypes {
 public:
+    const std::string& Filename(void) const { return m_filename; }
+    void FilenameSet(const std::string& inValue) { m_filename=inValue; }
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } ZNroX5cBIW8CbBVukLOWpQ
+//%classPrototypes } NQP6PIjklhTO38CbQyj3eg
 };
 //%inlineHeader {
 inline std::ostream&
-operator<<(std::ostream& ioOut, const MushGLPixelSource& inObj)
+operator<<(std::ostream& ioOut, const MushGLPixelSourceTIFF& inObj)
 {
     inObj.AutoPrint(ioOut);
     return ioOut;
 }
-//%inlineHeader } Hkku+u2zp3t0yLCsH+78Gw
+//%inlineHeader } 5BAQQlXQC1ekl4kX6Wc5+Q
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

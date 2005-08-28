@@ -1,0 +1,103 @@
+//%includeGuardStart {
+#ifndef MUSHGLTEXTURE_H
+#define MUSHGLTEXTURE_H
+//%includeGuardStart } 2OOZzxKbPULo3XX0MW1IxQ
+//%Header {
+/*****************************************************************************
+ *
+ * File: src/MushGL/MushGLTexture.h
+ *
+ * Author: Andy Southgate 2002-2005
+ *
+ * This file contains original work by Andy Southgate.  The author and his
+ * employer (Mushware Limited) irrevocably waive all of their copyright rights
+ * vested in this particular version of this file to the furthest extent
+ * permitted.  The author and Mushware Limited also irrevocably waive any and
+ * all of their intellectual property rights arising from said file and its
+ * creation that would otherwise restrict the rights of any party to use and/or
+ * distribute the use of, the techniques and methods used herein.  A written
+ * waiver can be obtained via http://www.mushware.com/.
+ *
+ * This software carries NO WARRANTY of any kind.
+ *
+ ****************************************************************************/
+//%Header } nz+Fu4qaTnAG/0iggFLOcQ
+/*
+ * $Id$
+ * $Log$
+ */
+
+#include "MushGLStandard.h"
+
+//:generate virtual standard ostream xml1 nocopy
+class MushGLTexture : public MushcoreVirtualObject
+{
+public:
+    MushGLTexture() :
+        m_size(Mushware::t4U32(0,0,0)),
+        m_bound(false),
+        m_bindingNameValid(false),
+        m_pixelType(kPixelTypeNone),
+        m_storageType(kStorageTypeNone)
+    {}
+
+    void Make(void);
+    
+    void PixelTypeRGBASet(void) { m_pixelType = kPixelTypeRGBA; }
+    void StorageTypeGLSet(void) { m_storageType = kStorageTypeGL; }
+    void PixelDataUse(void *pData);
+    
+    static MushcoreScalar Texture(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
+    static void Install(void);
+
+private:
+    enum 
+    {
+        kTypeInvalid,
+        kPixelTypeNone,
+        kPixelTypeRGBA,
+        kPixelTypeFloat,
+        kStorageTypeNone,
+        kStorageTypeU8Data,
+        kStorageTypeValData,
+        kStorageTypeGL
+    };
+    
+    void PixelDataGLRGBAUse(void *pData);
+    
+    std::vector<Mushware::U8> m_u8Data;
+    std::vector<Mushware::tVal> m_valData;
+    Mushware::t4U32 m_size; //:readwrite
+    bool m_bound;
+    bool m_bindingNameValid;
+    GLuint m_bindingName;
+    Mushware::U32 m_pixelType;
+    Mushware::U32 m_storageType;
+    std::string m_srcName; //:readwrite
+    
+//%classPrototypes {
+public:
+    const Mushware::t4U32& Size(void) const { return m_size; }
+    void SizeSet(const Mushware::t4U32& inValue) { m_size=inValue; }
+    const std::string& SrcName(void) const { return m_srcName; }
+    void SrcNameSet(const std::string& inValue) { m_srcName=inValue; }
+    virtual const char *AutoName(void) const;
+    virtual MushcoreVirtualObject *AutoClone(void) const;
+    virtual MushcoreVirtualObject *AutoCreate(void) const;
+    static MushcoreVirtualObject *AutoVirtualFactory(void);
+    virtual void AutoPrint(std::ostream& ioOut) const;
+    virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
+    virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
+//%classPrototypes } dMBsMFRK5iAZwViDEknjPg
+};
+//%inlineHeader {
+inline std::ostream&
+operator<<(std::ostream& ioOut, const MushGLTexture& inObj)
+{
+    inObj.AutoPrint(ioOut);
+    return ioOut;
+}
+//%inlineHeader } +ORFC1dr5UCCSVx9I4MYaQ
+//%includeGuardEnd {
+#endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

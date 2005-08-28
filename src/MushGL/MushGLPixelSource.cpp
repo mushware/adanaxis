@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } LccQwBTHLT37eo+dpTNBig
 /*
- * $Id: MushGLPixelSource.cpp,v 1.3 2005/06/16 17:25:39 southa Exp $
+ * $Id: MushGLPixelSource.cpp,v 1.4 2005/07/02 00:42:37 southa Exp $
  * $Log: MushGLPixelSource.cpp,v $
+ * Revision 1.4  2005/07/02 00:42:37  southa
+ * Conditioning tweaks
+ *
  * Revision 1.3  2005/06/16 17:25:39  southa
  * Client/server work
  *
@@ -35,6 +38,37 @@
 #include "MushGLPixelSource.h"
 
 MUSHCORE_DATA_INSTANCE(MushGLPixelSource);
+
+using namespace Mushware;
+using namespace std;
+
+void
+MushGLPixelSource::ValueParameterSet(Mushware::U32 inNum, Mushware::tLongVal inVal)
+{
+    ostringstream message;
+    message << "MushGLPixelSource::ValueParameterSet: Unknown parameter: " << inNum;
+    throw MushcoreRequestFail(message.str());
+}
+
+void
+MushGLPixelSource::StringParameterSet(Mushware::U32 inNum, const std::string& inStr)
+{
+    ostringstream message;
+    message << "MushGLPixelSource::StringParameterSet: Unknown parameter: " << inNum;
+    throw MushcoreRequestFail(message.str());
+}
+
+void
+MushGLPixelSource::BufferFill(Mushware::U32 * const outPtr, const Mushware::t2U32 inSize) const
+{
+    throw MushcoreRequestFail("Cannot fill buffer from this pixel source");
+}
+
+void
+MushGLPixelSource::ToTextureCreate(MushGLTexture& outTexture)
+{
+    throw MushcoreRequestFail("Cannot create texture from this pixel source");
+}
 
 //%outOfLineFunctions {
 void

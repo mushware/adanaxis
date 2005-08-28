@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } FMmVnTVJEIGX5O4wYovW2Q
 /*
- * $Id: AdanaxisPixelSource.h,v 1.3 2005/06/20 14:30:33 southa Exp $
+ * $Id: AdanaxisPixelSource.h,v 1.4 2005/07/02 00:42:36 southa Exp $
  * $Log: AdanaxisPixelSource.h,v $
+ * Revision 1.4  2005/07/02 00:42:36  southa
+ * Conditioning tweaks
+ *
  * Revision 1.3  2005/06/20 14:30:33  southa
  * Adanaxis work
  *
@@ -48,7 +51,7 @@ public:
         kParamSpare = kParamBaseNext
     };
     virtual ~AdanaxisPixelSource() {}
-    virtual void ParameterSet(const Mushware::U32 inNum, const Mushware::tLongVal inVal);
+    virtual void ValueParameterSet(const Mushware::U32 inNum, const Mushware::tLongVal inVal);
     virtual void BufferFill(Mushware::U32 * const outPtr, const Mushware::t2U32 inSize) const;
 
 private:
