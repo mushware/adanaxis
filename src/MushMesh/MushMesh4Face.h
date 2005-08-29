@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 5yE/wZtm0/nEX6N7oHMfOA
 /*
- * $Id: MushMesh4Face.h,v 1.5 2005/07/13 20:35:48 southa Exp $
+ * $Id: MushMesh4Face.h,v 1.6 2005/07/27 18:09:10 southa Exp $
  * $Log: MushMesh4Face.h,v $
+ * Revision 1.6  2005/07/27 18:09:10  southa
+ * Collision checking
+ *
  * Revision 1.5  2005/07/13 20:35:48  southa
  * Extrusion work
  *
@@ -80,7 +83,8 @@ public:
     
     void FacetLimitsGet(Mushware::U32& outStart, Mushware::U32& outEnd, Mushware::U32 inFacetNum) const;
     bool ConnectedVertexInFacetFind(Mushware::U32& outNum, Mushware::U32 inFacetNum, Mushware::U32 inVertNum) const;
-    
+    Mushware::U32 NumFacets(void) const { return m_vertexGroupSize.size(); }
+
     // Read access for mutable elements
     const tVertexList& UniqueVertexList(void) const;
     const Mushware::t4Val& FaceCentroid(void) const;

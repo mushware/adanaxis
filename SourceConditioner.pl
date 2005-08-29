@@ -10,8 +10,11 @@
 #
 ##############################################################################
 
-# $Id: SourceConditioner.pl,v 1.44 2005/07/29 11:51:44 southa Exp $
+# $Id: SourceConditioner.pl,v 1.45 2005/07/29 14:59:48 southa Exp $
 # $Log: SourceConditioner.pl,v $
+# Revision 1.45  2005/07/29 14:59:48  southa
+# Maptor access
+#
 # Revision 1.44  2005/07/29 11:51:44  southa
 # MushcoreMaptor created
 #
@@ -180,7 +183,7 @@ my @gCHeaders = (
 ' *',
 ' ****************************************************************************/'
 ],
-'^(Adanaxis|MushMeshLibrary)' => [
+'^(Adanaxis|MushMeshLibrary|MushSkin)' => [
 '/*****************************************************************************',
 ' *',
 ' * File: @FILENAME@',

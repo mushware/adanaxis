@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } nz+Fu4qaTnAG/0iggFLOcQ
 /*
- * $Id$
- * $Log$
+ * $Id: MushGLTexture.h,v 1.1 2005/08/28 22:41:52 southa Exp $
+ * $Log: MushGLTexture.h,v $
+ * Revision 1.1  2005/08/28 22:41:52  southa
+ * MushGLTexture work
+ *
  */
 
 #include "MushGLStandard.h"
@@ -38,10 +41,12 @@ public:
         m_bound(false),
         m_bindingNameValid(false),
         m_pixelType(kPixelTypeNone),
-        m_storageType(kStorageTypeNone)
+        m_storageType(kStorageTypeNone),
+        m_made(false)
     {}
 
     void Make(void);
+    void Bind(void);
     
     void PixelTypeRGBASet(void) { m_pixelType = kPixelTypeRGBA; }
     void StorageTypeGLSet(void) { m_storageType = kStorageTypeGL; }
@@ -74,6 +79,7 @@ private:
     Mushware::U32 m_pixelType;
     Mushware::U32 m_storageType;
     std::string m_srcName; //:readwrite
+    bool m_made;
     
 //%classPrototypes {
 public:

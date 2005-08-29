@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef MUSHRENDER_H
-#define MUSHRENDER_H
-//%includeGuardStart } 5fmF16UOHKnng34sEDWRmg
+#ifndef MUSHMUSHSKIN_H
+#define MUSHMUSHSKIN_H
+//%includeGuardStart } nuEbELjclki2ff3NJWW8xw
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushRender/MushRender.h
+ * File: src/API/mushMushSkin.h
  *
  * Author: Andy Southgate 2002-2005
  *
@@ -21,27 +21,23 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } NUzrLBU/hE8fJ4WHp26kcQ
+//%Header } cB9/5yg1bwmJy41iKUyVTA
 /*
- * $Id: MushRender.h,v 1.3 2005/07/16 14:22:59 southa Exp $
- * $Log: MushRender.h,v $
- * Revision 1.3  2005/07/16 14:22:59  southa
- * Added diagnostic renderer
- *
- * Revision 1.2  2005/07/04 11:10:43  southa
- * Rendering pipeline
- *
- * Revision 1.1  2005/07/01 10:36:46  southa
- * MushRender work
- *
+ * $Id$
+ * $Log$
  */
 
-#include "MushRenderMesh.h"
-#include "MushRenderMeshDiagnostic.h"
-#include "MushRenderMeshSolid.h"
-#include "MushRenderMeshWireframe.h"
-#include "MushRenderSpec.h"
-#include "MushRenderStandard.h"
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
+
+#if defined(HAVE_MUSHSKIN_MUSHSKIN_H)
+#include <MushSkin/MushSkin.h>
+#elif defined(HAVE_MUSHSKIN_H)
+#include <MushSkin.h>
+#else
+#include "MushSkin/MushSkin.h"
+#endif
 
 //%includeGuardEnd {
 #endif

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } k7YzD6cuxRNSZv9q4zzcpw
 /*
- * $Id: MushGLV.cpp,v 1.8 2005/06/13 17:34:56 southa Exp $
+ * $Id: MushGLV.cpp,v 1.9 2005/07/04 11:10:43 southa Exp $
  * $Log: MushGLV.cpp,v $
+ * Revision 1.9  2005/07/04 11:10:43  southa
+ * Rendering pipeline
+ *
  * Revision 1.8  2005/06/13 17:34:56  southa
  * Adanaxis creation
  *
@@ -68,7 +71,8 @@ MushGLV::MushGLV() :
     m_fpGenBuffers(NULL),
     m_fpMapBuffer(NULL),
     m_fpUnmapBuffer(NULL),
-    m_contextNum(0)
+    m_contextNum(0),
+    m_contextValid(false)
 {
 }
 
@@ -127,6 +131,7 @@ MushGLV::Acquaint()
     }
     
     MushGLState::Sgl().ResetWriteAll();
+    m_contextValid = true;
 }
 
 //%outOfLineFunctions {
@@ -146,7 +151,8 @@ MushGLV::AutoPrint(std::ostream& ioOut) const
     ioOut << "renderer=" << m_renderer << ", ";
     ioOut << "version=" << m_version << ", ";
     ioOut << "extensions=" << m_extensions << ", ";
-    ioOut << "contextNum=" << m_contextNum;
+    ioOut << "contextNum=" << m_contextNum << ", ";
+    ioOut << "contextValid=" << m_contextValid;
     ioOut << "]";
 }
-//%outOfLineFunctions } Hy0vCXDf3BKDouVKwtdIeQ
+//%outOfLineFunctions } 18CD1jOewm83tkY7U5/FxQ

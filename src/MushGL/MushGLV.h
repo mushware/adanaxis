@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 7iEHHdeOPdV1ZH7aSJ/mHA
 /*
- * $Id: MushGLV.h,v 1.11 2005/07/02 00:42:37 southa Exp $
+ * $Id: MushGLV.h,v 1.12 2005/07/04 11:10:43 southa Exp $
  * $Log: MushGLV.h,v $
+ * Revision 1.12  2005/07/04 11:10:43  southa
+ * Rendering pipeline
+ *
  * Revision 1.11  2005/07/02 00:42:37  southa
  * Conditioning tweaks
  *
@@ -72,6 +75,10 @@ public:
     virtual void Acquaint();
     
     void DrawArrays(GLenum inMode, GLint inFirst, GLsizei inCount);
+    void BindTexture2D(GLuint inBindingName) { glBindTexture(GL_TEXTURE_2D, inBindingName); }
+    
+
+    
     
     bool HasVertexBuffer() const { return m_hasVertexBuffer; }
     bool UseVertexBuffer() const { return m_hasVertexBuffer; }
@@ -115,11 +122,14 @@ private:
     std::string m_extensions;
     
     Mushware::U32 m_contextNum; //:read
+    bool m_contextValid; //:read
+    
 //%classPrototypes {
 public:
     const Mushware::U32& ContextNum(void) const { return m_contextNum; }
+    const bool& ContextValid(void) const { return m_contextValid; }
     virtual void AutoPrint(std::ostream& ioOut) const;
-//%classPrototypes } aSXvyLUCgDCMBt87MWqeRQ
+//%classPrototypes } J+g55dtb809G3M6/QwYSPA
 };
 
 inline void

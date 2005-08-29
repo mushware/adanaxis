@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } v136Oh1IVziX36Di81JIXQ
 /*
- * $Id: MushMesh4Mesh.cpp,v 1.9 2005/07/19 13:44:26 southa Exp $
+ * $Id: MushMesh4Mesh.cpp,v 1.10 2005/08/01 17:58:25 southa Exp $
  * $Log: MushMesh4Mesh.cpp,v $
+ * Revision 1.10  2005/08/01 17:58:25  southa
+ * Object explosion
+ *
  * Revision 1.9  2005/07/19 13:44:26  southa
  * MushMesh4Chunk work
  *
@@ -60,7 +63,8 @@ using namespace std;
 
 MushMesh4Mesh::MushMesh4Mesh() :
     m_vertexCounter(0),
-    m_faceCounter(0)
+    m_faceCounter(0),
+    m_texCoordCounter(0)
 {
     AllTouch();
 }
@@ -91,6 +95,7 @@ MushMesh4Mesh::AllTouch(void)
     }
     VerticesTouch();
     m_connectivityValid = false;
+    m_numFacetsValid = false;
 }
 
 void
@@ -199,6 +204,19 @@ MushMesh4Mesh::ConnectivityBuild(void) const
     
     m_connectivityValid = true;
 }
+
+void
+MushMesh4Mesh::NumFacetsBuild(void) const
+{
+    U32 facetCount = 0;
+    for (U32 i=0; i<m_faces.size(); ++i)
+    {
+        const MushMesh4Face& faceRef = Face(i);
+        facetCount += faceRef.NumFacets();
+    }
+    m_numFacets = facetCount;
+    m_numFacetsValid = true;
+}    
 
 void
 MushMesh4Mesh::FaceConnectivityBuild(Mushware::U32 inFaceNum) const
@@ -496,6 +514,7 @@ MushMesh4Mesh::AutoPrint(std::ostream& ioOut) const
     ioOut << "faces=" << m_faces << ", ";
     ioOut << "vertexCounter=" << m_vertexCounter << ", ";
     ioOut << "faceCounter=" << m_faceCounter << ", ";
+    ioOut << "texCoordCounter=" << m_texCoordCounter << ", ";
     ioOut << "faceGenerator=" << m_faceGenerator << ", ";
     ioOut << "vertexGenerator=" << m_vertexGenerator << ", ";
     ioOut << "chunks=" << m_chunks << ", ";
@@ -506,10 +525,12 @@ MushMesh4Mesh::AutoPrint(std::ostream& ioOut) const
     ioOut << "faceCentroids=" << m_faceCentroids << ", ";
     ioOut << "faceBoundingRadii=" << m_faceBoundingRadii << ", ";
     ioOut << "numConnections=" << m_numConnections << ", ";
+    ioOut << "numFacets=" << m_numFacets << ", ";
     ioOut << "normalsValid=" << m_normalsValid << ", ";
     ioOut << "connectivityValid=" << m_connectivityValid << ", ";
     ioOut << "centroidValid=" << m_centroidValid << ", ";
-    ioOut << "boundingRadiusValid=" << m_boundingRadiusValid;
+    ioOut << "boundingRadiusValid=" << m_boundingRadiusValid << ", ";
+    ioOut << "numFacetsValid=" << m_numFacetsValid;
     ioOut << "]";
 }
 bool
@@ -540,6 +561,10 @@ MushMesh4Mesh::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& i
     else if (inTagStr == "faceCounter")
     {
         ioIn >> m_faceCounter;
+    }
+    else if (inTagStr == "texCoordCounter")
+    {
+        ioIn >> m_texCoordCounter;
     }
     else if (inTagStr == "faceGenerator")
     {
@@ -581,6 +606,10 @@ MushMesh4Mesh::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& i
     {
         ioIn >> m_numConnections;
     }
+    else if (inTagStr == "numFacets")
+    {
+        ioIn >> m_numFacets;
+    }
     else if (inTagStr == "normalsValid")
     {
         ioIn >> m_normalsValid;
@@ -596,6 +625,10 @@ MushMesh4Mesh::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& i
     else if (inTagStr == "boundingRadiusValid")
     {
         ioIn >> m_boundingRadiusValid;
+    }
+    else if (inTagStr == "numFacetsValid")
+    {
+        ioIn >> m_numFacetsValid;
     }
     else if (MushMeshMesh::AutoXMLDataProcess(ioIn, inTagStr))
     {
@@ -621,6 +654,8 @@ MushMesh4Mesh::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_vertexCounter;
     ioOut.TagSet("faceCounter");
     ioOut << m_faceCounter;
+    ioOut.TagSet("texCoordCounter");
+    ioOut << m_texCoordCounter;
     ioOut.TagSet("faceGenerator");
     ioOut << m_faceGenerator;
     ioOut.TagSet("vertexGenerator");
@@ -641,6 +676,8 @@ MushMesh4Mesh::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_faceBoundingRadii;
     ioOut.TagSet("numConnections");
     ioOut << m_numConnections;
+    ioOut.TagSet("numFacets");
+    ioOut << m_numFacets;
     ioOut.TagSet("normalsValid");
     ioOut << m_normalsValid;
     ioOut.TagSet("connectivityValid");
@@ -649,5 +686,7 @@ MushMesh4Mesh::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_centroidValid;
     ioOut.TagSet("boundingRadiusValid");
     ioOut << m_boundingRadiusValid;
+    ioOut.TagSet("numFacetsValid");
+    ioOut << m_numFacetsValid;
 }
-//%outOfLineFunctions } tRHNwx/epHtokbpQGhNBiQ
+//%outOfLineFunctions } 4DoOUZAMk8nWErhv5F8c0g

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } pM9lKxUBsV8LUNEqYXbulg
 /*
- * $Id: MushMesh4Mesh.h,v 1.9 2005/07/27 18:09:10 southa Exp $
+ * $Id: MushMesh4Mesh.h,v 1.10 2005/08/01 17:58:25 southa Exp $
  * $Log: MushMesh4Mesh.h,v $
+ * Revision 1.10  2005/08/01 17:58:25  southa
+ * Object explosion
+ *
  * Revision 1.9  2005/07/27 18:09:10  southa
  * Collision checking
  *
@@ -97,6 +100,7 @@ public:
     const tNormals& Normals(void) const { if (!m_normalsValid) NormalsBuild(); return m_normals; }
     const tConnectivity& Connectivity(void) const { if (!m_connectivityValid) ConnectivityBuild(); return m_connectivity; }
     const Mushware::U32 NumConnections(void) const { if (!m_connectivityValid) ConnectivityBuild(); return m_numConnections; }
+    const Mushware::U32 NumFacets(void) const { if (!m_numFacetsValid) NumFacetsBuild(); return m_numFacets; }
     const tCentroid& Centroid(void) const { if (!m_centroidValid) CentroidBuild(); return m_centroid; }
     const tBoundingRadius BoundingRadius(void) const { if (!m_boundingRadiusValid) BoundingRadiusBuild(); return m_boundingRadius; }
     const tCentroid& FaceCentroid(Mushware::U32 inFaceNum) const;
@@ -107,6 +111,7 @@ public:
     
     void NormalsBuild(void) const;
     void ConnectivityBuild(void) const;    
+    void NumFacetsBuild(void) const;    
     void CentroidBuild(void) const;
     void BoundingRadiusBuild(void) const;
     void FaceCentroidBuild(Mushware::U32 inFaceNum) const;
@@ -129,6 +134,7 @@ private:
     // Generation and animation
     Mushware::U32 m_vertexCounter; //:readwrite :wref
     Mushware::U32 m_faceCounter; //:readwrite :wref
+    Mushware::U32 m_texCoordCounter; //:readwrite :wref
     MushcoreAutoClonePtr<MushMesh4FaceGenerator> m_faceGenerator; //:readwrite :wref
     MushcoreAutoClonePtr<MushMesh4VertexGenerator> m_vertexGenerator; //:readwrite :wref
     
@@ -143,12 +149,14 @@ private:
     mutable std::vector<tCentroid> m_faceCentroids;
     mutable std::vector<tBoundingRadius> m_faceBoundingRadii;
     mutable Mushware::U32 m_numConnections;
+    mutable Mushware::U32 m_numFacets;
     
     mutable bool m_normalsValid;
     mutable bool m_connectivityValid;
     mutable bool m_centroidValid;
     mutable bool m_boundingRadiusValid;
-
+    mutable bool m_numFacetsValid;
+    
 //%classPrototypes {
 public:
     const tVertices& Vertices(void) const { return m_vertices; }
@@ -171,6 +179,10 @@ public:
     void FaceCounterSet(const Mushware::U32& inValue) { m_faceCounter=inValue; }
     // Writable reference for m_faceCounter
     Mushware::U32& FaceCounterWRef(void) { return m_faceCounter; }
+    const Mushware::U32& TexCoordCounter(void) const { return m_texCoordCounter; }
+    void TexCoordCounterSet(const Mushware::U32& inValue) { m_texCoordCounter=inValue; }
+    // Writable reference for m_texCoordCounter
+    Mushware::U32& TexCoordCounterWRef(void) { return m_texCoordCounter; }
     const MushcoreAutoClonePtr<MushMesh4FaceGenerator>& FaceGenerator(void) const { return m_faceGenerator; }
     void FaceGeneratorSet(const MushcoreAutoClonePtr<MushMesh4FaceGenerator>& inValue) { m_faceGenerator=inValue; }
     // Writable reference for m_faceGenerator
@@ -190,7 +202,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } 1hhEHGoBUTD1vFH59zOkmA
+//%classPrototypes } Fm9CpiZuzaBmXIwlHDJ47g
 };
 
 inline const MushMesh4Mesh::tCentroid&

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } UeKm8ocP/ZSk4urYuI/mzg
 /*
- * $Id$
- * $Log$
+ * $Id: MushGLPixelSourceTIFF.cpp,v 1.1 2005/08/28 22:41:52 southa Exp $
+ * $Log: MushGLPixelSourceTIFF.cpp,v $
+ * Revision 1.1  2005/08/28 22:41:52  southa
+ * MushGLTexture work
+ *
  */
 
 #include "MushGLPixelSourceTIFF.h"
@@ -83,6 +86,7 @@ MushGLPixelSourceTIFF::ToTextureCreate(MushGLTexture& outTexture)
             tiffio::TIFFGetField(pTIFF, TIFFTAG_IMAGEWIDTH, &width);
             tiffio::TIFFGetField(pTIFF, TIFFTAG_IMAGELENGTH, &height);
             
+            
             U32 numPixels=width*height;
             pTIFFData = reinterpret_cast<tiffio::uint32 *>(tiffio::_TIFFmalloc(sizeof(tiffio::uint32)*width*height));
             
@@ -132,6 +136,34 @@ MushGLPixelSourceTIFF::ToTextureCreate(MushGLTexture& outTexture)
 }
 
 //%outOfLineFunctions {
+
+const char *MushGLPixelSourceTIFF::AutoName(void) const
+{
+    return "MushGLPixelSourceTIFF";
+}
+
+MushcoreVirtualObject *MushGLPixelSourceTIFF::AutoClone(void) const
+{
+    return new MushGLPixelSourceTIFF(*this);
+}
+
+MushcoreVirtualObject *MushGLPixelSourceTIFF::AutoCreate(void) const
+{
+    return new MushGLPixelSourceTIFF;
+}
+
+MushcoreVirtualObject *MushGLPixelSourceTIFF::AutoVirtualFactory(void)
+{
+    return new MushGLPixelSourceTIFF;
+}
+namespace
+{
+void AutoInstall(void)
+{
+    MushcoreFactory::Sgl().FactoryAdd("MushGLPixelSourceTIFF", MushGLPixelSourceTIFF::AutoVirtualFactory);
+}
+MushcoreInstaller AutoInstaller(AutoInstall);
+} // end anonymous namespace
 void
 MushGLPixelSourceTIFF::AutoPrint(std::ostream& ioOut) const
 {
@@ -164,4 +196,4 @@ MushGLPixelSourceTIFF::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("filename");
     ioOut << m_filename;
 }
-//%outOfLineFunctions } TQQ5lz1jmQEk08vt8hvB0g
+//%outOfLineFunctions } Tkm2IzZ5ojau36+Dkqqx5w

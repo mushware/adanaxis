@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } InmAy0O3dIDzzAuuSRabNA
 /*
- * $Id$
- * $Log$
+ * $Id: MushGLPixelSourceTIFF.h,v 1.1 2005/08/28 22:41:52 southa Exp $
+ * $Log: MushGLPixelSourceTIFF.h,v $
+ * Revision 1.1  2005/08/28 22:41:52  southa
+ * MushGLTexture work
+ *
  */
 
 #include "MushGLStandard.h"
@@ -33,7 +36,7 @@
 
 class MushGLTexture;
 
-//:generate virtual ostream xml1
+//:generate virtual standard ostream xml1
 class MushGLPixelSourceTIFF : public MushGLPixelSource
 {
 public:
@@ -48,10 +51,14 @@ private:
 public:
     const std::string& Filename(void) const { return m_filename; }
     void FilenameSet(const std::string& inValue) { m_filename=inValue; }
+    virtual const char *AutoName(void) const;
+    virtual MushcoreVirtualObject *AutoClone(void) const;
+    virtual MushcoreVirtualObject *AutoCreate(void) const;
+    static MushcoreVirtualObject *AutoVirtualFactory(void);
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } NQP6PIjklhTO38CbQyj3eg
+//%classPrototypes } xJVc2BAp9iykej3O+aElGA
 };
 //%inlineHeader {
 inline std::ostream&

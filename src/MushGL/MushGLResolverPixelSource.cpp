@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 3ppT9q8gO5IVI+Nga13RUQ
 /*
- * $Id$
- * $Log$
+ * $Id: MushGLResolverPixelSource.cpp,v 1.1 2005/08/28 22:41:52 southa Exp $
+ * $Log: MushGLResolverPixelSource.cpp,v $
+ * Revision 1.1  2005/08/28 22:41:52  southa
+ * MushGLTexture work
+ *
  */
 
 
@@ -38,10 +41,14 @@ MushGLResolverPixelSource::Resolve(const std::string& inSrcName)
 {
     MushcoreRegExp regExp;
     MushcoreRegExp::tMatches matches;
-    regExp.SearchPatternSet("file=\"[^\"]+\\.tiff?\"");
+    regExp.SearchPatternSet("file=\"([^\"]+\\.tiff?)\"");
     if (regExp.Search(matches, inSrcName))
     {
+        MUSHCOREASSERT(matches.size() == 1);
         
+        std::auto_ptr<MushGLPixelSourceTIFF> aResolver(new MushGLPixelSourceTIFF);
+        aResolver->StringParameterSet(MushGLPixelSource::kParamFilename, matches[0]);
+        MushcoreData<MushGLPixelSource>::Sgl().Give(inSrcName, aResolver.release());
     }
     else
     {

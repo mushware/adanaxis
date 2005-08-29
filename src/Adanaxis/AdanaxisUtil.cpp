@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } CFEozIhAxC4/w3MDbuOShQ
 /*
- * $Id: AdanaxisUtil.cpp,v 1.17 2005/08/02 11:11:47 southa Exp $
+ * $Id: AdanaxisUtil.cpp,v 1.18 2005/08/02 14:37:44 southa Exp $
  * $Log: AdanaxisUtil.cpp,v $
+ * Revision 1.18  2005/08/02 14:37:44  southa
+ * Adanaxis control demo work
+ *
  * Revision 1.17  2005/08/02 11:11:47  southa
  * Adanaxis control demo work
  *
@@ -80,6 +83,7 @@
 #include "AdanaxisVolatileData.h"
 
 #include "API/mushMushMeshLibrary.h"
+#include "API/mushMushSkin.h"
 
 using namespace Mushware;
 using namespace std;
@@ -310,6 +314,10 @@ AdanaxisUtil::TestPiecesCreate(AdanaxisLogic& ioLogic)
                 disp.RotationSet(disp.Rotation().Conjugate());
                 extrusionContext.ResetNewDispFace(disp, 1);
                 vertexExtrude.FaceExtrude(khaziRef.MeshWRef(), extrusionContext, number);
+                if (i == 0)
+                {
+                    TestSkinCreate(ioLogic, khaziRef.MeshWRef());
+                }
             }
             break;
                 
@@ -320,5 +328,13 @@ AdanaxisUtil::TestPiecesCreate(AdanaxisLogic& ioLogic)
             break;
         }
     }
+}
+
+void
+AdanaxisUtil::TestSkinCreate(AdanaxisLogic& ioLogic, MushMesh4Mesh& ioMesh)
+{
+    MushSkinNoise skinNoise;
+    skinNoise.TextureGenerate(ioMesh);
+    skinNoise.TexCoordsGenerate(ioMesh);
 }
 

@@ -19,14 +19,18 @@
  ****************************************************************************/
 //%Header } x6YRzHVc1aFZ86XnvPhOUg
 /*
- * $Id$
- * $Log$
+ * $Id: MushGLTexture.cpp,v 1.1 2005/08/28 22:41:52 southa Exp $
+ * $Log: MushGLTexture.cpp,v $
+ * Revision 1.1  2005/08/28 22:41:52  southa
+ * MushGLTexture work
+ *
  */
 
 #include "MushGLTexture.h"
 
 #include "MushGLPixelSource.h"
 #include "MushGLResolverPixelSource.h"
+#include "MushGLV.h"
 
 using namespace Mushware;
 using namespace std;
@@ -57,18 +61,38 @@ MushGLTexture::Make(void)
         throw MushcoreRequestFail("MushGLTexture::Make failure");
     }
     pSrc->ToTextureCreate(*this);
+    m_made = true;
+}
+
+void
+MushGLTexture::Bind(void)
+{
+    if (!m_made)
+    {
+        Make();
+    }
+    if (!m_bindingNameValid)
+    {
+        throw MushcoreRequestFail("MushGLTexture::Bind attempt on non-GL texture");
+    }
+    MushGLV::Sgl().BindTexture2D(m_bindingName);
 }
 
 void
 MushGLTexture::PixelDataGLRGBAUse(void *pData)
 {
+    if (!MushGLV::Sgl().ContextValid())
+    {
+        throw MushcoreRequestFail("Cannot create texture because OpenGL context not valid yet");
+    }
+    
     if (!m_bindingNameValid)
     {
         glGenTextures(1, &m_bindingName);
         m_bindingNameValid = true;
     }
     
-    glBindTexture(GL_TEXTURE_2D, m_bindingName);
+    MushGLV::Sgl().BindTexture2D(m_bindingName);
 
     if (1) // Use MIPMAP
     {
@@ -149,7 +173,6 @@ MushGLTexture::Texture(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
     
     MushGLTexture *pTexture = MushcoreData<MushGLTexture>::Sgl().Give(name, new MushGLTexture);
     pTexture->SrcNameSet(srcName);
-    pTexture->Make();
     return MushcoreScalar(0);
 }
 
@@ -200,7 +223,8 @@ MushGLTexture::AutoPrint(std::ostream& ioOut) const
     ioOut << "bindingName=" << m_bindingName << ", ";
     ioOut << "pixelType=" << m_pixelType << ", ";
     ioOut << "storageType=" << m_storageType << ", ";
-    ioOut << "srcName=" << m_srcName;
+    ioOut << "srcName=" << m_srcName << ", ";
+    ioOut << "made=" << m_made;
     ioOut << "]";
 }
 bool
@@ -248,6 +272,10 @@ MushGLTexture::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& i
     {
         ioIn >> m_srcName;
     }
+    else if (inTagStr == "made")
+    {
+        ioIn >> m_made;
+    }
     else 
     {
         return false;
@@ -275,5 +303,7 @@ MushGLTexture::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_storageType;
     ioOut.TagSet("srcName");
     ioOut << m_srcName;
+    ioOut.TagSet("made");
+    ioOut << m_made;
 }
-//%outOfLineFunctions } USQvYWdIJZ1BaqqlW1XrbQ
+//%outOfLineFunctions } 9wwaTOCwgkS84wlF+YtV+A
