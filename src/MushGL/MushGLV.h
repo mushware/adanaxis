@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 7iEHHdeOPdV1ZH7aSJ/mHA
 /*
- * $Id: MushGLV.h,v 1.12 2005/07/04 11:10:43 southa Exp $
+ * $Id: MushGLV.h,v 1.13 2005/08/29 18:40:57 southa Exp $
  * $Log: MushGLV.h,v $
+ * Revision 1.13  2005/08/29 18:40:57  southa
+ * Solid rendering work
+ *
  * Revision 1.12  2005/07/04 11:10:43  southa
  * Rendering pipeline
  *
@@ -76,9 +79,7 @@ public:
     
     void DrawArrays(GLenum inMode, GLint inFirst, GLsizei inCount);
     void BindTexture2D(GLuint inBindingName) { glBindTexture(GL_TEXTURE_2D, inBindingName); }
-    
-
-    
+    void ActiveTextureZeroBased(Mushware::U32 inTexNum);
     
     bool HasVertexBuffer() const { return m_hasVertexBuffer; }
     bool UseVertexBuffer() const { return m_hasVertexBuffer; }
@@ -96,6 +97,9 @@ public:
     void *MapBuffer(GLenum target, GLenum access) const { if (m_fpMapBuffer != NULL) return m_fpMapBuffer(target, access); else throw MushcoreLogicFail("MushGLV::MapBuffer"); }
     
     bool UnmapBuffer(GLenum target) const { if (m_fpUnmapBuffer != NULL) return (m_fpUnmapBuffer(target) != GL_FALSE); else return true; }
+    
+protected:
+    void ContextValidAssert(void) const;
     
 private:
     bool m_hasVertexBuffer;
@@ -120,22 +124,46 @@ private:
     std::string m_renderer;
     std::string m_version;
     std::string m_extensions;
+    Mushware::U32 m_numTextureUnits; //:read
     
     Mushware::U32 m_contextNum; //:read
     bool m_contextValid; //:read
     
 //%classPrototypes {
 public:
+    const Mushware::U32& NumTextureUnits(void) const { return m_numTextureUnits; }
     const Mushware::U32& ContextNum(void) const { return m_contextNum; }
     const bool& ContextValid(void) const { return m_contextValid; }
     virtual void AutoPrint(std::ostream& ioOut) const;
-//%classPrototypes } J+g55dtb809G3M6/QwYSPA
+//%classPrototypes } TkqaHEFK0g6oJ8tlRZ8mtA
 };
 
 inline void
 MushGLV::DrawArrays(GLenum inMode, GLint inFirst, GLsizei inCount)
 {
     glDrawArrays(inMode, inFirst, inCount);
+}
+
+inline void
+MushGLV::ContextValidAssert(void) const
+{
+    if (!ContextValid())
+    {
+        throw MushcoreLogicFail("MushGLV operation on invalid context");
+    }
+}
+
+inline void
+MushGLV::ActiveTextureZeroBased(Mushware::U32 inTexNum)
+{
+    ContextValidAssert();
+    if (inTexNum >= m_numTextureUnits)
+    {
+        std::ostringstream message;
+        message << "Texture number too high (" << inTexNum << " >= " << m_numTextureUnits << ")";
+        throw MushcoreRequestFail(message.str());
+    }
+    glActiveTexture(GL_TEXTURE0 + inTexNum);
 }
 
 //%inlineHeader {

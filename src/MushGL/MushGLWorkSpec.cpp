@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } Wpgv8RTp/irSWsiiI5S6xA
 /*
- * $Id$
- * $Log$
+ * $Id: MushGLWorkSpec.cpp,v 1.1 2005/07/04 11:10:43 southa Exp $
+ * $Log: MushGLWorkSpec.cpp,v $
+ * Revision 1.1  2005/07/04 11:10:43  southa
+ * Rendering pipeline
+ *
  */
 
 #include "MushGLWorkSpec.h"
@@ -53,6 +56,21 @@ MushGLWorkSpec::Execute(MushGLBuffers& ioBuffers)
         stateRef.ColourArraySetTrue(ioBuffers.ColourBufferWRef());
     }
     
+    for (U32 i=0; i<ioBuffers.TexCoordBuffers().size(); ++i)
+    {
+        tSize texCoordSize = ioBuffers.TexCoordBuffers().size();
+
+        if (texCoordSize > 0)
+        {
+            if (vertexSize != texCoordSize)
+            {
+                throw MushcoreDataFail("Sizes of vertex and texture coordinate buffers do not match");
+            }
+            stateRef.TexCoordArraySetTrue(ioBuffers.TexCoordBufferWRef(i), i);
+            stateRef.TextureEnable2D(i);
+        }
+    }
+
     switch (m_renderType)
     {
         case GL_POINTS:

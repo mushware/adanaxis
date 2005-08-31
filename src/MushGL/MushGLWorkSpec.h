@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } Tcvr8t/02ON4PA2mIz92sQ
 /*
- * $Id$
- * $Log$
+ * $Id: MushGLWorkSpec.h,v 1.1 2005/07/04 11:10:43 southa Exp $
+ * $Log: MushGLWorkSpec.h,v $
+ * Revision 1.1  2005/07/04 11:10:43  southa
+ * Rendering pipeline
+ *
  */
 
 #include "MushGLStandard.h"
@@ -37,7 +40,8 @@ class MushGLWorkSpec : public MushcoreVirtualObject
 public:
     enum
     {
-        kRenderTypeLines = GL_LINES
+        kRenderTypeLines = GL_LINES,
+        kRenderTypeTriangles = GL_TRIANGLES,
     };
     
     MushGLWorkSpec() : m_renderType(0) {}

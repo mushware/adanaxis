@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } k7YzD6cuxRNSZv9q4zzcpw
 /*
- * $Id: MushGLV.cpp,v 1.9 2005/07/04 11:10:43 southa Exp $
+ * $Id: MushGLV.cpp,v 1.10 2005/08/29 18:40:57 southa Exp $
  * $Log: MushGLV.cpp,v $
+ * Revision 1.10  2005/08/29 18:40:57  southa
+ * Solid rendering work
+ *
  * Revision 1.9  2005/07/04 11:10:43  southa
  * Rendering pipeline
  *
@@ -71,6 +74,7 @@ MushGLV::MushGLV() :
     m_fpGenBuffers(NULL),
     m_fpMapBuffer(NULL),
     m_fpUnmapBuffer(NULL),
+    m_numTextureUnits(0),
     m_contextNum(0),
     m_contextValid(false)
 {
@@ -110,6 +114,12 @@ MushGLV::Acquaint()
         }
     }
 
+    {
+        GLint texUnits = 0;
+        glGetIntegerv(GL_MAX_TEXTURE_UNITS, &texUnits);
+        m_numTextureUnits = texUnits;
+    }
+    
     if (!safeMode && m_extensions.find(" GL_ARB_vertex_buffer_object ") != string::npos)
     {
         try
@@ -130,8 +140,8 @@ MushGLV::Acquaint()
         }
     }
     
-    MushGLState::Sgl().ResetWriteAll();
     m_contextValid = true;
+    MushGLState::Sgl().ResetWriteAll();
 }
 
 //%outOfLineFunctions {
@@ -151,8 +161,9 @@ MushGLV::AutoPrint(std::ostream& ioOut) const
     ioOut << "renderer=" << m_renderer << ", ";
     ioOut << "version=" << m_version << ", ";
     ioOut << "extensions=" << m_extensions << ", ";
+    ioOut << "numTextureUnits=" << m_numTextureUnits << ", ";
     ioOut << "contextNum=" << m_contextNum << ", ";
     ioOut << "contextValid=" << m_contextValid;
     ioOut << "]";
 }
-//%outOfLineFunctions } 18CD1jOewm83tkY7U5/FxQ
+//%outOfLineFunctions } fsdoU922o2TPyocrPnWuOQ

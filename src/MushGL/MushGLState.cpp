@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } tWGKT6xf6h2OQMzlKKglYA
 /*
- * $Id$
- * $Log$
+ * $Id: MushGLState.cpp,v 1.1 2005/07/04 11:10:43 southa Exp $
+ * $Log: MushGLState.cpp,v $
+ * Revision 1.1  2005/07/04 11:10:43  southa
+ * Rendering pipeline
+ *
  */
 
 #include "MushGLState.h"
@@ -64,8 +67,10 @@ MushGLState::AutoPrint(std::ostream& ioOut) const
     ioOut << "edgeFlagArray=" << m_edgeFlagArray << ", ";
     ioOut << "indexArray=" << m_indexArray << ", ";
     ioOut << "normalArray=" << m_normalArray << ", ";
-    ioOut << "texCoordArray=" << m_texCoordArray << ", ";
-    ioOut << "vertexArray=" << m_vertexArray;
+    ioOut << "vertexArray=" << m_vertexArray << ", ";
+    ioOut << "texCoordArrays=" << m_texCoordArrays << ", ";
+    ioOut << "textureStates=" << m_textureStates << ", ";
+    ioOut << "activeTexNum=" << m_activeTexNum;
     ioOut << "]";
 }
 bool
@@ -93,13 +98,21 @@ MushGLState::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inT
     {
         ioIn >> m_normalArray;
     }
-    else if (inTagStr == "texCoordArray")
-    {
-        ioIn >> m_texCoordArray;
-    }
     else if (inTagStr == "vertexArray")
     {
         ioIn >> m_vertexArray;
+    }
+    else if (inTagStr == "texCoordArrays")
+    {
+        ioIn >> m_texCoordArrays;
+    }
+    else if (inTagStr == "textureStates")
+    {
+        ioIn >> m_textureStates;
+    }
+    else if (inTagStr == "activeTexNum")
+    {
+        ioIn >> m_activeTexNum;
     }
     else 
     {
@@ -118,9 +131,13 @@ MushGLState::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_indexArray;
     ioOut.TagSet("normalArray");
     ioOut << m_normalArray;
-    ioOut.TagSet("texCoordArray");
-    ioOut << m_texCoordArray;
     ioOut.TagSet("vertexArray");
     ioOut << m_vertexArray;
+    ioOut.TagSet("texCoordArrays");
+    ioOut << m_texCoordArrays;
+    ioOut.TagSet("textureStates");
+    ioOut << m_textureStates;
+    ioOut.TagSet("activeTexNum");
+    ioOut << m_activeTexNum;
 }
-//%outOfLineFunctions } k4i2j5WyjSYUpLTKBOlfrA
+//%outOfLineFunctions } wffnwScjrhX7HJurtizrmw

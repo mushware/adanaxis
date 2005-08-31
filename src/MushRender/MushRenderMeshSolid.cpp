@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } zdbEcRL1ilVe+y99FKu15g
 /*
- * $Id$
- * $Log$
+ * $Id: MushRenderMeshSolid.cpp,v 1.1 2005/08/29 18:40:57 southa Exp $
+ * $Log: MushRenderMeshSolid.cpp,v $
+ * Revision 1.1  2005/08/29 18:40:57  southa
+ * Solid rendering work
+ *
  */
 
 #include "MushRenderMeshSolid.h"
@@ -86,7 +89,7 @@ MushRenderMeshSolid::MeshRender(const MushRenderSpec& inSpec, const MushMeshMesh
     MushGLWorkSpec& workSpecRef = jobRender.WorkSpecNew();
     
     jobRender.BuffersRefSet(inSpec.BuffersRef());
-    workSpecRef.RenderTypeSet(MushGLWorkSpec::kRenderTypeLines);
+    workSpecRef.RenderTypeSet(MushGLWorkSpec::kRenderTypeTriangles);
     
     jobRender.Execute();
 }
@@ -131,23 +134,37 @@ MushRenderMeshSolid::DerivedColourSet(Mushware::t4Val& outColour, const Mushware
 bool
 MushRenderMeshSolid::OutputBufferGenerate(const MushRenderSpec& inSpec, const MushMeshMesh& inMesh)
 {
-    tMsec msecNow = MushGLUtil::AppHandler().MillisecondsGet();
-    tVal scale = 0.99+0.01*sin(msecNow * M_PI/2000);
-    
     // Gather data
-    MushGLBuffers& glDestBuffersRef = inSpec.BuffersRef().WRef(); // GL Buffer set for output
-    MushGLClaimer<MushGLBuffers> claimer(glDestBuffersRef); // Claim the buffers
-    MushGLBuffers::tVertexBuffer& destVertices = glDestBuffersRef.VertexBufferWRef(); // Vertex buffer for output
-    MushGLBuffers::tColourBuffer& destColours = glDestBuffersRef.ColourBufferWRef(); // Colour buffer for output
-    
     const MushMesh4Mesh *p4Mesh = dynamic_cast<const MushMesh4Mesh *>(&inMesh); // Pointer to the input mesh
     if (p4Mesh == NULL)
     {
         throw MushcoreRequestFail(std::string("Cannot render mesh type '")+inMesh.AutoName()+"'");
     }
     
-    const MushMesh4Mesh::tVertices& srcVertices = p4Mesh->Vertices(); // Input vertices
+    U32 texCoordsPerVertex;
+    if (p4Mesh->TexCoords().size() == 0)
+    {
+        texCoordsPerVertex = 0;
+    }
+    else
+    {
+        texCoordsPerVertex = 1;
+    }
     
+    const MushMesh4Mesh::tVertices& srcVertices = p4Mesh->Vertices(); // Input vertices
+    const MushMesh4Mesh::tTexCoords& srcTexCoords = p4Mesh->TexCoords(); // Input vertices
+    MushGLBuffers& glDestBuffersRef = inSpec.BuffersRef().WRef(); // GL Buffer set for output
+    MushGLClaimer<MushGLBuffers> claimer(glDestBuffersRef); // Claim the buffers
+    MushGLBuffers::tVertexBuffer& destVertices = glDestBuffersRef.VertexBufferWRef(); // Vertex buffer for output
+    MushGLBuffers::tColourBuffer& destColours = glDestBuffersRef.ColourBufferWRef(); // Colour buffer for output
+    std::vector<MushGLBuffers::tTexCoordBuffer>& destTexCoords =
+        glDestBuffersRef.TexCoordBuffersWRef(); // Texture coordinate buffers for output
+    
+    if (texCoordsPerVertex >= destTexCoords.size())
+    {
+        destTexCoords.resize(texCoordsPerVertex);
+    }
+
     MushGLWorkspace<MushGLBuffers::tVertex>& projectedWorkspace =
         glDestBuffersRef.ProjectedVerticesWRef(); // Projected vertex workspace
     MushMesh4Mesh::tVertices& projectedVertices = projectedWorkspace.DataWRef();
@@ -161,19 +178,19 @@ MushRenderMeshSolid::OutputBufferGenerate(const MushRenderSpec& inSpec, const Mu
     MushRenderUtil::Transform(eyeVertices, srcVertices, inSpec.ModelToEyeMattress());
     // U32 eyeVerticesSize = eyeVertices.size(); // Size of projected vertex vector array
     
-    U32 numLines = 0;
+    U32 numPolygons = 0;
+    U32 numVertices = 0;
     for (U32 faceNum=0; faceNum<p4Mesh->Faces().size(); ++faceNum)
     {
         const MushMesh4Face::tVertexGroupSize& srcGroupSizeRef = p4Mesh->Face(faceNum).VertexGroupSize();
 
         for (U32 facetNum=0; facetNum<srcGroupSizeRef.size(); ++facetNum)
         {
-            numLines += srcGroupSizeRef[facetNum];
+            numPolygons += srcGroupSizeRef[facetNum] - 1;
+            numVertices += srcGroupSizeRef[facetNum];
         }
     }
-    
-    U32 numVertices = numLines * 2; // Number of output vertices, i.e. space to reserve in the output buffer
-    
+        
     // Reserve output space
     if (destVertices.Size() < numVertices)
     {
@@ -189,6 +206,12 @@ MushRenderMeshSolid::OutputBufferGenerate(const MushRenderSpec& inSpec, const Mu
     destVertices.MapReadWrite();
     destColours.MapReadWrite();
     
+    for (U32 i=0; i<texCoordsPerVertex; ++i)
+    {
+        destTexCoords[i].ClearAndResize(numVertices);
+        destTexCoords[i].MapReadWrite();
+    }
+    
     U32 destVertexIndex = 0; // Index into output buffer for next output vertex
     U32 destVerticesSize = destVertices.Size(); // Size (in elements) of the destVertices buffer
         
@@ -200,38 +223,15 @@ MushRenderMeshSolid::OutputBufferGenerate(const MushRenderSpec& inSpec, const Mu
         
         for (U32 facetNum=0; facetNum<srcGroupSizeRef.size(); ++facetNum)
         {
-            m_colourZMiddle = t4Val(1.0,1.0,1.0,0.3);   
-
-            if (faceNum != m_highlightedFace)
-            {
-                m_colourZMiddle = t4Val(1.0,1.0,1.0,0.05);   
-            }
-            if (msecNow % 500 < 250 && faceNum == m_highlightedFace && facetNum == m_highlightedFacet)
+            m_colourZMiddle = t4Val(1.0,1.0,1.0,0.3);
             
+            if (srcFaceVertexIndex >= srcVertexListRef.size())
             {
-                m_colourZMiddle = t4Val(1.0,1.0,1.0,1.0);   
-            }
-        
+                throw MushcoreDataFail(std::string("Vertex list overrun in ")+AutoName());
+            }            
+            U32 vertexNum0 = srcVertexListRef[srcFaceVertexIndex]; 
             
-            t4Val faceCentroid;
-            faceCentroid.ToAdditiveIdentitySet();
-            for (U32 i=0; i<srcGroupSizeRef[facetNum]; ++i)
-            {
-                U32 vertexListNum1 = srcFaceVertexIndex + i;
-                
-                if (vertexListNum1 >= srcVertexListRef.size())
-                {
-                    throw MushcoreDataFail(std::string("Vertex list overrun in ")+AutoName());
-                }
-                U32 vertexNum1 = srcVertexListRef[vertexListNum1];
-                if (vertexNum1 >= projectedVertices.size())
-                {
-                    throw MushcoreDataFail(std::string("Vertex overrun in ")+AutoName());
-                }
-                faceCentroid += projectedVertices[vertexNum1];
-            }
-            
-            for (U32 i=0; i<srcGroupSizeRef[facetNum]; ++i)
+            for (U32 i=1; i<srcGroupSizeRef[facetNum]; ++i)
             {
                 U32 vertexListNum1 = srcFaceVertexIndex + i;
                 U32 vertexListNum2 = srcFaceVertexIndex + ((i + 1) % srcGroupSizeRef[facetNum]);
@@ -247,12 +247,34 @@ MushRenderMeshSolid::OutputBufferGenerate(const MushRenderSpec& inSpec, const Mu
                     throw MushcoreDataFail(std::string("Vertex overrun in ")+AutoName());
                 }
                 
-                destVertices.Set(projectedVertices[vertexNum1] * scale + faceCentroid * (1-scale), destVertexIndex);
+                destVertices.Set(projectedVertices[vertexNum0], destVertexIndex);
+                DerivedColourSet(destColours.Ref(destVertexIndex), eyeVertices[vertexNum0], inSpec);
+                for (U32 j=0; j<texCoordsPerVertex; ++j)
+                {
+                    destTexCoords[j].Set(srcTexCoords[vertexNum0], destVertexIndex);
+                }
+                destVertexIndex++;
+                
+                destVertices.Set(projectedVertices[vertexNum1], destVertexIndex);
                 DerivedColourSet(destColours.Ref(destVertexIndex), eyeVertices[vertexNum1], inSpec);
+                for (U32 j=0; j<texCoordsPerVertex; ++j)
+                {
+                    destTexCoords[j].Set(srcTexCoords[vertexNum1], destVertexIndex);
+                }
                 destVertexIndex++;
-                destVertices.Set(projectedVertices[vertexNum2] * scale + faceCentroid * (1-scale), destVertexIndex);
+                
+                destVertices.Set(projectedVertices[vertexNum2], destVertexIndex);
                 DerivedColourSet(destColours.Ref(destVertexIndex), eyeVertices[vertexNum2], inSpec);
+                for (U32 j=0; j<texCoordsPerVertex; ++j)
+                {
+                    if (destVertexIndex >= destTexCoords[j].Size())
+                    {
+                        throw MushcoreDataFail(std::string("Destination texture coordinate overrun in ")+AutoName());
+                    } 
+                    destTexCoords[j].Set(srcTexCoords[vertexNum2], destVertexIndex);
+                }
                 destVertexIndex++;
+
                 if (destVertexIndex > destVerticesSize)
                 {
                     throw MushcoreDataFail(std::string("Destination vertex overrun in ")+AutoName());
@@ -262,16 +284,12 @@ MushRenderMeshSolid::OutputBufferGenerate(const MushRenderSpec& inSpec, const Mu
         }
     }
     
-    static U32 ctr=0;
-    if (++ctr < 0)
+    bool unmapSuccess = destVertices.AttemptUnmap();
+    unmapSuccess = destColours.AttemptUnmap() && unmapSuccess;;
+    for (U32 i=0; i<texCoordsPerVertex; ++i)
     {
-        for (U32 i=0; i<destVertexIndex; ++i)
-        {
-            cout << destVertices.Ref(i) << endl;
-        }
+        unmapSuccess = destTexCoords[i].AttemptUnmap() && unmapSuccess;
     }
-    
-    bool unmapSuccess = destVertices.AttemptUnmap() && destColours.AttemptUnmap();
     return unmapSuccess;
 }
 //%outOfLineFunctions {

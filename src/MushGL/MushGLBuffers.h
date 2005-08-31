@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } DbBqjjQLEDRD5N83MupJQQ
 /*
- * $Id: MushGLBuffers.h,v 1.2 2005/07/04 15:59:00 southa Exp $
+ * $Id: MushGLBuffers.h,v 1.3 2005/07/05 13:52:22 southa Exp $
  * $Log: MushGLBuffers.h,v $
+ * Revision 1.3  2005/07/05 13:52:22  southa
+ * Adanaxis work
+ *
  * Revision 1.2  2005/07/04 15:59:00  southa
  * Adanaxis work
  *
@@ -68,11 +71,16 @@ public:
     
     static Mushware::U32 NextBufferNumAdvance(void) { return ++m_nextBufferNum; }
     
+    const tTexCoordBuffer& TexCoordBuffer(Mushware::U32 inIndex) const
+        { MushcoreUtil::BoundsCheck(inIndex, m_texCoordBuffers.size()); return m_texCoordBuffers[inIndex]; }
+    tTexCoordBuffer& TexCoordBufferWRef(Mushware::U32 inIndex)
+        { MushcoreUtil::BoundsCheck(inIndex, m_texCoordBuffers.size()); return m_texCoordBuffers[inIndex]; }
+    
 private:
     Mushware::U8 m_owner;
     tVertexBuffer m_vertexBuffer; //:read :wref
     tColourBuffer m_colourBuffer; //:read :wref
-    std::vector<tTexCoordBuffer> m_texCoordBuffers; //:wref
+    std::vector<tTexCoordBuffer> m_texCoordBuffers; //:read :wref
 
     MushGLWorkspace<tVertex> m_worldVertices; //:read :wref
     MushGLWorkspace<tVertex> m_eyeVertices; //:read :wref
@@ -87,6 +95,7 @@ public:
     const tColourBuffer& ColourBuffer(void) const { return m_colourBuffer; }
     // Writable reference for m_colourBuffer
     tColourBuffer& ColourBufferWRef(void) { return m_colourBuffer; }
+    const std::vector<tTexCoordBuffer>& TexCoordBuffers(void) const { return m_texCoordBuffers; }
     // Writable reference for m_texCoordBuffers
     std::vector<tTexCoordBuffer>& TexCoordBuffersWRef(void) { return m_texCoordBuffers; }
     const MushGLWorkspace<tVertex>& WorldVertices(void) const { return m_worldVertices; }
@@ -105,7 +114,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } wYdzZVuNen/570raLWFIHA
+//%classPrototypes } /pPtQszfWVPWhV388tE0rw
 };
 
 inline void
