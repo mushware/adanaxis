@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } Wpgv8RTp/irSWsiiI5S6xA
 /*
- * $Id: MushGLWorkSpec.cpp,v 1.1 2005/07/04 11:10:43 southa Exp $
+ * $Id: MushGLWorkSpec.cpp,v 1.2 2005/08/31 23:57:27 southa Exp $
  * $Log: MushGLWorkSpec.cpp,v $
+ * Revision 1.2  2005/08/31 23:57:27  southa
+ * Texture coordinate work
+ *
  * Revision 1.1  2005/07/04 11:10:43  southa
  * Rendering pipeline
  *
@@ -56,9 +59,9 @@ MushGLWorkSpec::Execute(MushGLBuffers& ioBuffers)
         stateRef.ColourArraySetTrue(ioBuffers.ColourBufferWRef());
     }
     
-    for (U32 i=0; i<ioBuffers.TexCoordBuffers().size(); ++i)
+    for (U32 i=0; i<ioBuffers.NumTexCoordBuffers(); ++i)
     {
-        tSize texCoordSize = ioBuffers.TexCoordBuffers().size();
+        tSize texCoordSize = ioBuffers.TexCoordBuffer(i).Size();
 
         if (texCoordSize > 0)
         {
@@ -77,6 +80,7 @@ MushGLWorkSpec::Execute(MushGLBuffers& ioBuffers)
         case GL_LINE_STRIP:
         case GL_LINE_LOOP:
         case GL_LINES:
+        case GL_TRIANGLES:
         case GL_TRIANGLE_STRIP:
         case GL_TRIANGLE_FAN:
         case GL_QUAD_STRIP:

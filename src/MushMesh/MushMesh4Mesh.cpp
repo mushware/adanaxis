@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } v136Oh1IVziX36Di81JIXQ
 /*
- * $Id: MushMesh4Mesh.cpp,v 1.10 2005/08/01 17:58:25 southa Exp $
+ * $Id: MushMesh4Mesh.cpp,v 1.11 2005/08/29 18:40:57 southa Exp $
  * $Log: MushMesh4Mesh.cpp,v $
+ * Revision 1.11  2005/08/29 18:40:57  southa
+ * Solid rendering work
+ *
  * Revision 1.10  2005/08/01 17:58:25  southa
  * Object explosion
  *
@@ -57,6 +60,8 @@
 
 #include "MushMeshMushcoreIO.h"
 #include "MushMeshSTL.h"
+
+MUSHCORE_DATA_INSTANCE(MushMesh4Mesh);
 
 using namespace Mushware;
 using namespace std;
@@ -512,6 +517,7 @@ MushMesh4Mesh::AutoPrint(std::ostream& ioOut) const
     ioOut << "vertices=" << m_vertices << ", ";
     ioOut << "texCoords=" << m_texCoords << ", ";
     ioOut << "faces=" << m_faces << ", ";
+    ioOut << "materialRef=" << m_materialRef << ", ";
     ioOut << "vertexCounter=" << m_vertexCounter << ", ";
     ioOut << "faceCounter=" << m_faceCounter << ", ";
     ioOut << "texCoordCounter=" << m_texCoordCounter << ", ";
@@ -553,6 +559,10 @@ MushMesh4Mesh::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& i
     else if (inTagStr == "faces")
     {
         ioIn >> m_faces;
+    }
+    else if (inTagStr == "materialRef")
+    {
+        ioIn >> m_materialRef;
     }
     else if (inTagStr == "vertexCounter")
     {
@@ -650,6 +660,8 @@ MushMesh4Mesh::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_texCoords;
     ioOut.TagSet("faces");
     ioOut << m_faces;
+    ioOut.TagSet("materialRef");
+    ioOut << m_materialRef;
     ioOut.TagSet("vertexCounter");
     ioOut << m_vertexCounter;
     ioOut.TagSet("faceCounter");
@@ -689,4 +701,4 @@ MushMesh4Mesh::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("numFacetsValid");
     ioOut << m_numFacetsValid;
 }
-//%outOfLineFunctions } 4DoOUZAMk8nWErhv5F8c0g
+//%outOfLineFunctions } vaQx0zHWaj9L8IY9pJ9fdQ

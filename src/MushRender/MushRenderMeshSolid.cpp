@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } zdbEcRL1ilVe+y99FKu15g
 /*
- * $Id: MushRenderMeshSolid.cpp,v 1.1 2005/08/29 18:40:57 southa Exp $
+ * $Id: MushRenderMeshSolid.cpp,v 1.2 2005/08/31 23:57:27 southa Exp $
  * $Log: MushRenderMeshSolid.cpp,v $
+ * Revision 1.2  2005/08/31 23:57:27  southa
+ * Texture coordinate work
+ *
  * Revision 1.1  2005/08/29 18:40:57  southa
  * Solid rendering work
  *
@@ -157,12 +160,12 @@ MushRenderMeshSolid::OutputBufferGenerate(const MushRenderSpec& inSpec, const Mu
     MushGLClaimer<MushGLBuffers> claimer(glDestBuffersRef); // Claim the buffers
     MushGLBuffers::tVertexBuffer& destVertices = glDestBuffersRef.VertexBufferWRef(); // Vertex buffer for output
     MushGLBuffers::tColourBuffer& destColours = glDestBuffersRef.ColourBufferWRef(); // Colour buffer for output
-    std::vector<MushGLBuffers::tTexCoordBuffer>& destTexCoords =
+    MushGLBuffers::tTexCoordBuffers& destTexCoords =
         glDestBuffersRef.TexCoordBuffersWRef(); // Texture coordinate buffers for output
     
-    if (texCoordsPerVertex >= destTexCoords.size())
+    if (texCoordsPerVertex > glDestBuffersRef.NumTexCoordBuffers())
     {
-        destTexCoords.resize(texCoordsPerVertex);
+        glDestBuffersRef.NumTexCoordBuffersSet(texCoordsPerVertex);
     }
 
     MushGLWorkspace<MushGLBuffers::tVertex>& projectedWorkspace =
@@ -178,18 +181,21 @@ MushRenderMeshSolid::OutputBufferGenerate(const MushRenderSpec& inSpec, const Mu
     MushRenderUtil::Transform(eyeVertices, srcVertices, inSpec.ModelToEyeMattress());
     // U32 eyeVerticesSize = eyeVertices.size(); // Size of projected vertex vector array
     
-    U32 numPolygons = 0;
-    U32 numVertices = 0;
+    U32 numTriangles = 0;
     for (U32 faceNum=0; faceNum<p4Mesh->Faces().size(); ++faceNum)
     {
         const MushMesh4Face::tVertexGroupSize& srcGroupSizeRef = p4Mesh->Face(faceNum).VertexGroupSize();
 
         for (U32 facetNum=0; facetNum<srcGroupSizeRef.size(); ++facetNum)
         {
-            numPolygons += srcGroupSizeRef[facetNum] - 1;
-            numVertices += srcGroupSizeRef[facetNum];
+            U32 srcGroupSize = srcGroupSizeRef[facetNum];
+            if (srcGroupSize > 2)
+            {
+                numTriangles += srcGroupSize - 2;
+            }
         }
     }
+    U32 numVertices = numTriangles * 3;
         
     // Reserve output space
     if (destVertices.Size() < numVertices)
@@ -231,10 +237,10 @@ MushRenderMeshSolid::OutputBufferGenerate(const MushRenderSpec& inSpec, const Mu
             }            
             U32 vertexNum0 = srcVertexListRef[srcFaceVertexIndex]; 
             
-            for (U32 i=1; i<srcGroupSizeRef[facetNum]; ++i)
+            for (U32 i=1; i+1 < srcGroupSizeRef[facetNum]; ++i)
             {
                 U32 vertexListNum1 = srcFaceVertexIndex + i;
-                U32 vertexListNum2 = srcFaceVertexIndex + ((i + 1) % srcGroupSizeRef[facetNum]);
+                U32 vertexListNum2 = srcFaceVertexIndex + i + 1;
                 
                 if (vertexListNum1 >= srcVertexListRef.size() || vertexListNum2 >= srcVertexListRef.size())
                 {

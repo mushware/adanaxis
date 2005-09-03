@@ -10,8 +10,11 @@
 #
 ##############################################################################
 
-# $Id: SourceConditioner.pl,v 1.45 2005/07/29 14:59:48 southa Exp $
+# $Id: SourceConditioner.pl,v 1.46 2005/08/29 18:40:56 southa Exp $
 # $Log: SourceConditioner.pl,v $
+# Revision 1.46  2005/08/29 18:40:56  southa
+# Solid rendering work
+#
 # Revision 1.45  2005/07/29 14:59:48  southa
 # Maptor access
 #
@@ -921,7 +924,7 @@ sub XMLIStreamWriteFunctionGenerate($$)
             my $type = $$attributesRef[$i];
             my $attr = $$attributesRef[$i+1];
             my $comment = $$attributesRef[$i+2];
-            next if ($comment =~ /:ignore\b/);
+            next if ($comment =~ /:(xml|)ignore\b/);
             my $baseAttr = VarBaseNameGet($attr);
             my $trimmedAttr = VarNameTrim($attr);
             push @$outputRef,

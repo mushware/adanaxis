@@ -19,12 +19,14 @@
  ****************************************************************************/
 //%Header } ek+PrEazBHnDzh6+u6ddnA
 /*
- * $Id: MushGLVertexBuffer.cpp,v 1.1 2005/02/01 13:40:37 southa Exp $
+ * $Id: MushGLVertexBuffer.cpp,v 1.2 2005/05/19 13:02:09 southa Exp $
  * $Log: MushGLVertexBuffer.cpp,v $
+ * Revision 1.2  2005/05/19 13:02:09  southa
+ * Mac release work
+ *
  * Revision 1.1  2005/02/01 13:40:37  southa
  * Rotating spheres and hypercube
  *
  */
 
 #include "MushGLVertexBuffer.h"
-

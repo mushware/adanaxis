@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } DbBqjjQLEDRD5N83MupJQQ
 /*
- * $Id: MushGLBuffers.h,v 1.3 2005/07/05 13:52:22 southa Exp $
+ * $Id: MushGLBuffers.h,v 1.4 2005/08/31 23:57:27 southa Exp $
  * $Log: MushGLBuffers.h,v $
+ * Revision 1.4  2005/08/31 23:57:27  southa
+ * Texture coordinate work
+ *
  * Revision 1.3  2005/07/05 13:52:22  southa
  * Adanaxis work
  *
@@ -41,7 +44,7 @@
 #include "MushGLVertexBuffer.h"
 #include "MushGLWorkspace.h"
 
-//:generate standard ostream xml1
+//:generate standard ostream xml1 nocopy
 class MushGLBuffers : public MushcoreVirtualObject
 {
 public:
@@ -50,7 +53,8 @@ public:
         kOwnerInvalid,
         kOwnerNone,
         kOwnerMushGL,
-        kOwnerOther
+        kOwnerOther,
+        kNumTexCoordBuffers = 8
     };
     
     typedef Mushware::t4GLVal tVertex;
@@ -59,12 +63,22 @@ public:
     typedef MushGLVertexBuffer<tVertex> tVertexBuffer;
     typedef MushGLVertexBuffer<tColour> tColourBuffer;
     typedef MushGLVertexBuffer<tTexCoord> tTexCoordBuffer;
+    typedef tTexCoordBuffer tTexCoordBuffers[kNumTexCoordBuffers];
     typedef MushcoreData<MushGLBuffers, Mushware::U32> tData;
     typedef MushcoreDataRef<MushGLBuffers, Mushware::U32> tDataRef;
     
-    MushGLBuffers() : m_owner(kOwnerNone) {}
+    MushGLBuffers() : m_owner(kOwnerNone), m_numTexCoordBuffers(0) {}
     virtual ~MushGLBuffers() {}
-
+    
+    void NumTexCoordBuffersSet(const Mushware::U32& inValue)
+    {
+        if (inValue >= kNumTexCoordBuffers)
+        {
+            throw MushcoreLogicFail("Request for too many texture coordinates");
+        }
+        m_numTexCoordBuffers=inValue;
+    }
+    
     void Claim(Mushware::U8 inOwner = kOwnerOther);
     void Release(Mushware::U8 inOwner = kOwnerOther);
     void Decache(void) {}
@@ -72,16 +86,17 @@ public:
     static Mushware::U32 NextBufferNumAdvance(void) { return ++m_nextBufferNum; }
     
     const tTexCoordBuffer& TexCoordBuffer(Mushware::U32 inIndex) const
-        { MushcoreUtil::BoundsCheck(inIndex, m_texCoordBuffers.size()); return m_texCoordBuffers[inIndex]; }
+        { MushcoreUtil::BoundsCheck(inIndex, m_numTexCoordBuffers); return m_texCoordBuffers[inIndex]; }
     tTexCoordBuffer& TexCoordBufferWRef(Mushware::U32 inIndex)
-        { MushcoreUtil::BoundsCheck(inIndex, m_texCoordBuffers.size()); return m_texCoordBuffers[inIndex]; }
+        { MushcoreUtil::BoundsCheck(inIndex, m_numTexCoordBuffers); return m_texCoordBuffers[inIndex]; }
     
 private:
     Mushware::U8 m_owner;
     tVertexBuffer m_vertexBuffer; //:read :wref
     tColourBuffer m_colourBuffer; //:read :wref
-    std::vector<tTexCoordBuffer> m_texCoordBuffers; //:read :wref
-
+    tTexCoordBuffers m_texCoordBuffers; //:read :wref :xmlignore
+    Mushware::U32 m_numTexCoordBuffers; //:read
+    
     MushGLWorkspace<tVertex> m_worldVertices; //:read :wref
     MushGLWorkspace<tVertex> m_eyeVertices; //:read :wref
     MushGLWorkspace<tVertex> m_projectedVertices; //:read :wref
@@ -95,9 +110,10 @@ public:
     const tColourBuffer& ColourBuffer(void) const { return m_colourBuffer; }
     // Writable reference for m_colourBuffer
     tColourBuffer& ColourBufferWRef(void) { return m_colourBuffer; }
-    const std::vector<tTexCoordBuffer>& TexCoordBuffers(void) const { return m_texCoordBuffers; }
+    const tTexCoordBuffers& TexCoordBuffers(void) const { return m_texCoordBuffers; }
     // Writable reference for m_texCoordBuffers
-    std::vector<tTexCoordBuffer>& TexCoordBuffersWRef(void) { return m_texCoordBuffers; }
+    tTexCoordBuffers& TexCoordBuffersWRef(void) { return m_texCoordBuffers; }
+    const Mushware::U32& NumTexCoordBuffers(void) const { return m_numTexCoordBuffers; }
     const MushGLWorkspace<tVertex>& WorldVertices(void) const { return m_worldVertices; }
     // Writable reference for m_worldVertices
     MushGLWorkspace<tVertex>& WorldVerticesWRef(void) { return m_worldVertices; }
@@ -114,7 +130,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } /pPtQszfWVPWhV388tE0rw
+//%classPrototypes } f9aEVFOumIkVo6mzy6UmCw
 };
 
 inline void

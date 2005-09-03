@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } pM9lKxUBsV8LUNEqYXbulg
 /*
- * $Id: MushMesh4Mesh.h,v 1.10 2005/08/01 17:58:25 southa Exp $
+ * $Id: MushMesh4Mesh.h,v 1.11 2005/08/29 18:40:57 southa Exp $
  * $Log: MushMesh4Mesh.h,v $
+ * Revision 1.11  2005/08/29 18:40:57  southa
+ * Solid rendering work
+ *
  * Revision 1.10  2005/08/01 17:58:25  southa
  * Object explosion
  *
@@ -85,7 +88,8 @@ public:
     typedef Mushware::tVal tBoundingRadius;
     typedef MushMesh4Chunk tChunk;
     typedef std::vector<tChunk> tChunks;
-    
+    typedef MushcoreDataRef<MushMesh4Mesh> tDataRef;
+        
     MushMesh4Mesh();
     virtual ~MushMesh4Mesh() {}
 
@@ -130,7 +134,8 @@ private:
     tVertices m_vertices; //:readwrite :wref
     tTexCoords m_texCoords; //:readwrite :wref
     tFaces m_faces; //:readwrite :wref
-
+    Mushware::U32 m_materialRef; //:readwrite
+    
     // Generation and animation
     Mushware::U32 m_vertexCounter; //:readwrite :wref
     Mushware::U32 m_faceCounter; //:readwrite :wref
@@ -171,6 +176,8 @@ public:
     void FacesSet(const tFaces& inValue) { m_faces=inValue; }
     // Writable reference for m_faces
     tFaces& FacesWRef(void) { return m_faces; }
+    const Mushware::U32& MaterialRef(void) const { return m_materialRef; }
+    void MaterialRefSet(const Mushware::U32& inValue) { m_materialRef=inValue; }
     const Mushware::U32& VertexCounter(void) const { return m_vertexCounter; }
     void VertexCounterSet(const Mushware::U32& inValue) { m_vertexCounter=inValue; }
     // Writable reference for m_vertexCounter
@@ -202,7 +209,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } Fm9CpiZuzaBmXIwlHDJ47g
+//%classPrototypes } j/RRigXbAkvoGQQ5Zwj38g
 };
 
 inline const MushMesh4Mesh::tCentroid&

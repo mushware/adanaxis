@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } hWNbm86RBoWi7/IeO2I8bQ
 /*
- * $Id: MushGLVertexBuffer.h,v 1.7 2005/07/04 11:10:43 southa Exp $
+ * $Id: MushGLVertexBuffer.h,v 1.8 2005/07/04 15:59:00 southa Exp $
  * $Log: MushGLVertexBuffer.h,v $
+ * Revision 1.8  2005/07/04 15:59:00  southa
+ * Adanaxis work
+ *
  * Revision 1.7  2005/07/04 11:10:43  southa
  * Rendering pipeline
  *
@@ -61,8 +64,11 @@ public:
     
     MushGLVertexBuffer();
     explicit MushGLVertexBuffer(const Mushware::tSize inSize);
-    MushGLVertexBuffer(const MushGLVertexBuffer& inBuffer) { throw MushcoreLogicFail("Forbiddden copy contructor"); }
+    
+private:
+    MushGLVertexBuffer(const MushGLVertexBuffer& inBuffer) { throw MushcoreLogicFail("Forbiddden copy constructor"); }
     const MushGLVertexBuffer& operator=(const MushGLVertexBuffer& inBuffer) { throw MushcoreLogicFail("Forbiddden assignment"); }
+public:
     
     virtual ~MushGLVertexBuffer();
     

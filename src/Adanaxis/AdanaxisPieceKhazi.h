@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } ECoWMgOgfphFtEFoxlZ8Qg
 /*
- * $Id: AdanaxisPieceKhazi.h,v 1.3 2005/08/01 13:09:57 southa Exp $
+ * $Id: AdanaxisPieceKhazi.h,v 1.4 2005/08/01 17:58:51 southa Exp $
  * $Log: AdanaxisPieceKhazi.h,v $
+ * Revision 1.4  2005/08/01 17:58:51  southa
+ * Object explosion
+ *
  * Revision 1.3  2005/08/01 13:09:57  southa
  * Collision messaging
  *
@@ -67,6 +70,10 @@ private:
     bool m_expireFlag; //:readwrite
     MushMesh4Mesh m_mesh; //:readwrite :wref
     MushGLBuffers::tDataRef m_buffersRef; //:readwrite
+    
+    MushMesh4Mesh::tDataRef m_secondaryMeshRef; //:readwrite
+    MushGLBuffers::tDataRef m_secondaryBuffersRef; //:readwrite
+        
 //%classPrototypes {
 public:
     const std::string& Id(void) const { return m_id; }
@@ -79,6 +86,10 @@ public:
     MushMesh4Mesh& MeshWRef(void) { return m_mesh; }
     const MushGLBuffers::tDataRef& BuffersRef(void) const { return m_buffersRef; }
     void BuffersRefSet(const MushGLBuffers::tDataRef& inValue) { m_buffersRef=inValue; }
+    const MushMesh4Mesh::tDataRef& SecondaryMeshRef(void) const { return m_secondaryMeshRef; }
+    void SecondaryMeshRefSet(const MushMesh4Mesh::tDataRef& inValue) { m_secondaryMeshRef=inValue; }
+    const MushGLBuffers::tDataRef& SecondaryBuffersRef(void) const { return m_secondaryBuffersRef; }
+    void SecondaryBuffersRefSet(const MushGLBuffers::tDataRef& inValue) { m_secondaryBuffersRef=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -86,7 +97,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } KsVVnCSviYxIetGbK9RswQ
+//%classPrototypes } xg87vv8DJSe0CwHsJ6Lbzw
 };
 
 //%inlineHeader {

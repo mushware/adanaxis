@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } 1en6OnZ85se795baUuYn3A
 /*
- * $Id: AdanaxisPieceKhazi.cpp,v 1.3 2005/08/01 17:58:51 southa Exp $
+ * $Id: AdanaxisPieceKhazi.cpp,v 1.4 2005/08/02 11:11:47 southa Exp $
  * $Log: AdanaxisPieceKhazi.cpp,v $
+ * Revision 1.4  2005/08/02 11:11:47  southa
+ * Adanaxis control demo work
+ *
  * Revision 1.3  2005/08/01 17:58:51  southa
  * Object explosion
  *
@@ -199,7 +202,9 @@ AdanaxisPieceKhazi::AutoPrint(std::ostream& ioOut) const
     ioOut << "id=" << m_id << ", ";
     ioOut << "expireFlag=" << m_expireFlag << ", ";
     ioOut << "mesh=" << m_mesh << ", ";
-    ioOut << "buffersRef=" << m_buffersRef;
+    ioOut << "buffersRef=" << m_buffersRef << ", ";
+    ioOut << "secondaryMeshRef=" << m_secondaryMeshRef << ", ";
+    ioOut << "secondaryBuffersRef=" << m_secondaryBuffersRef;
     ioOut << "]";
 }
 bool
@@ -227,6 +232,14 @@ AdanaxisPieceKhazi::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::stri
     {
         ioIn >> m_buffersRef;
     }
+    else if (inTagStr == "secondaryMeshRef")
+    {
+        ioIn >> m_secondaryMeshRef;
+    }
+    else if (inTagStr == "secondaryBuffersRef")
+    {
+        ioIn >> m_secondaryBuffersRef;
+    }
     else if (MushGamePiece::AutoXMLDataProcess(ioIn, inTagStr))
     {
         // Tag consumed by base class
@@ -249,5 +262,9 @@ AdanaxisPieceKhazi::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_mesh;
     ioOut.TagSet("buffersRef");
     ioOut << m_buffersRef;
+    ioOut.TagSet("secondaryMeshRef");
+    ioOut << m_secondaryMeshRef;
+    ioOut.TagSet("secondaryBuffersRef");
+    ioOut << m_secondaryBuffersRef;
 }
-//%outOfLineFunctions } +rRGlQGREGt/ADZ3Yg/BTg
+//%outOfLineFunctions } n0uWZFiUoHy5qdqEpqIszw
