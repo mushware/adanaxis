@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } zdbEcRL1ilVe+y99FKu15g
 /*
- * $Id: MushRenderMeshSolid.cpp,v 1.2 2005/08/31 23:57:27 southa Exp $
+ * $Id: MushRenderMeshSolid.cpp,v 1.3 2005/09/03 17:05:36 southa Exp $
  * $Log: MushRenderMeshSolid.cpp,v $
+ * Revision 1.3  2005/09/03 17:05:36  southa
+ * Material work
+ *
  * Revision 1.2  2005/08/31 23:57:27  southa
  * Texture coordinate work
  *
@@ -134,6 +137,79 @@ MushRenderMeshSolid::DerivedColourSet(Mushware::t4Val& outColour, const Mushware
     }
 }
 
+void
+MushRenderMeshSolid::TriangleListBuild(MushGLBuffers::tTriangleList& ioList, const MushMesh4Mesh& inMesh,
+                                       tSourceType inSourceType)
+{
+    ioList.resize(0);
+    U32 numFaces = inMesh.Faces().size();
+    U32 entryLimit = 0;
+    for (U32 faceNum=0; faceNum<numFaces; ++faceNum)
+    {
+        const MushMesh4Face::tVertexList *pSrcList = NULL;
+        switch (inSourceType)
+        {
+            case kSourceTypeVertex:
+                pSrcList = &inMesh.Face(faceNum).VertexList();
+                entryLimit = inMesh.Vertices().size();
+                break;
+                
+            case kSourceTypeTexCoord:
+                pSrcList = &inMesh.Face(faceNum).TexCoordList();
+                entryLimit = inMesh.TexCoords().size();
+                break;
+                
+            default:
+                throw MushcoreLogicFail("Bad source type selector");
+        }
+        
+        const MushMesh4Face::tVertexList& srcListRef = *pSrcList;
+        
+        U32 srcListSize = srcListRef.size();
+        
+        const MushMesh4Face::tVertexGroupSize& srcGroupSizeRef = inMesh.Face(faceNum).VertexGroupSize();
+        U32 numFacets = srcGroupSizeRef.size();
+        
+        U32 srcFaceIndex = 0;
+        for (U32 facetNum=0; facetNum<numFacets; ++facetNum)
+        {
+            // listNum0 is srcFaceIndex
+            if (srcFaceIndex >= srcListSize)
+            {
+                throw MushcoreDataFail(std::string("Vertex list overrun in ")+AutoName());
+            }            
+            U32 entryValue0 = srcListRef[srcFaceIndex]; 
+            if (entryValue0 >= entryLimit)
+            {
+                throw MushcoreDataFail(std::string("Entry index list overrun in ")+AutoName());
+            }
+            // Add triangles for this facet
+            U32 groupSize = srcGroupSizeRef[facetNum];
+            
+            for (U32 i=1; i+1 < groupSize; ++i)
+            {
+                U32 listNum1 = srcFaceIndex + i;
+                U32 listNum2 = srcFaceIndex + i + 1;
+                
+                if (listNum1 >= srcListSize || listNum2 >= srcListSize)
+                {
+                    throw MushcoreDataFail(std::string("Vertex list overrun in ")+AutoName());
+                }
+                U32 entryValue1 = srcListRef[listNum1];
+                U32 entryValue2 = srcListRef[listNum2];
+                if (entryValue1 >= entryLimit || entryValue2 >= entryLimit)
+                {
+                    throw MushcoreDataFail(std::string("Entry index list overrun in ")+AutoName());
+                }
+                ioList.push_back(entryValue0);
+                ioList.push_back(entryValue1);
+                ioList.push_back(entryValue2);
+            }
+            srcFaceIndex += groupSize;
+        }
+    }
+}
+
 bool
 MushRenderMeshSolid::OutputBufferGenerate(const MushRenderSpec& inSpec, const MushMeshMesh& inMesh)
 {
@@ -143,31 +219,70 @@ MushRenderMeshSolid::OutputBufferGenerate(const MushRenderSpec& inSpec, const Mu
     {
         throw MushcoreRequestFail(std::string("Cannot render mesh type '")+inMesh.AutoName()+"'");
     }
+    const MushMesh4Mesh *pTexCoordMesh = NULL;
     
-    U32 texCoordsPerVertex;
-    if (p4Mesh->TexCoords().size() == 0)
+    if (p4Mesh->TexCoordDelegate().Name().size() == 0)
     {
-        texCoordsPerVertex = 0;
+        // Name not set, use same mesh
+        pTexCoordMesh = p4Mesh;
     }
     else
+    {
+        pTexCoordMesh = &p4Mesh->TexCoordDelegate().Ref();
+    }
+    
+    const MushMesh4Mesh::tVertices& srcVertices = p4Mesh->Vertices(); // Source vertices
+    const U32 srcVerticesSize = srcVertices.size(); // Number of source vertices
+    const MushMesh4Mesh::tTexCoords& srcTexCoords = pTexCoordMesh->TexCoords(); // Source texture coordinates
+    const U32 srcTexCoordsSize = srcTexCoords.size(); // Number of source texture coordinates
+    
+    U32 texCoordsPerVertex = 0;
+    if (srcTexCoordsSize != 0)
     {
         texCoordsPerVertex = 1;
     }
     
-    const MushMesh4Mesh::tVertices& srcVertices = p4Mesh->Vertices(); // Input vertices
-    const MushMesh4Mesh::tTexCoords& srcTexCoords = p4Mesh->TexCoords(); // Input vertices
     MushGLBuffers& glDestBuffersRef = inSpec.BuffersRef().WRef(); // GL Buffer set for output
+    
+    // Get the delegated buffer if there is one, otherwise use the main buffer
+    MushGLBuffers *pglDestTexCoordBuffers;
+    if (inSpec.TexCoordBuffersRef().Name().size() != 0)
+    {
+        pglDestTexCoordBuffers = &inSpec.TexCoordBuffersRef().WRef();
+    }
+    else
+    {
+        pglDestTexCoordBuffers = &glDestBuffersRef;
+    }
+    MushGLBuffers& glDestTexCoordBuffersRef = *pglDestTexCoordBuffers; // GL Buffer set for output
+
     MushGLClaimer<MushGLBuffers> claimer(glDestBuffersRef); // Claim the buffers
     MushGLBuffers::tVertexBuffer& destVertices = glDestBuffersRef.VertexBufferWRef(); // Vertex buffer for output
     MushGLBuffers::tColourBuffer& destColours = glDestBuffersRef.ColourBufferWRef(); // Colour buffer for output
     MushGLBuffers::tTexCoordBuffers& destTexCoords =
-        glDestBuffersRef.TexCoordBuffersWRef(); // Texture coordinate buffers for output
+        glDestTexCoordBuffersRef.TexCoordBuffersWRef(); // Texture coordinate buffers for output
     
     if (texCoordsPerVertex > glDestBuffersRef.NumTexCoordBuffers())
     {
         glDestBuffersRef.NumTexCoordBuffersSet(texCoordsPerVertex);
     }
 
+    // Build the triangle lists if necessary
+    if (glDestBuffersRef.TriangleListContextNum() == 0)
+    {
+        TriangleListBuild(glDestBuffersRef.VertexTriangleListWRef(), *p4Mesh, kSourceTypeVertex);
+        glDestBuffersRef.TriangleListContextNumSet(1);
+    }
+    
+    if (glDestTexCoordBuffersRef.TriangleListContextNum() < 2)
+    {
+        for (U32 i=0; i<texCoordsPerVertex; ++i)
+        {
+            TriangleListBuild(glDestTexCoordBuffersRef.TexCoordTriangleListWRef(), *pTexCoordMesh, kSourceTypeTexCoord);
+            glDestTexCoordBuffersRef.TriangleListContextNumSet(2);
+        }
+    }
+    
     MushGLWorkspace<MushGLBuffers::tVertex>& projectedWorkspace =
         glDestBuffersRef.ProjectedVerticesWRef(); // Projected vertex workspace
     MushMesh4Mesh::tVertices& projectedVertices = projectedWorkspace.DataWRef();
@@ -181,115 +296,51 @@ MushRenderMeshSolid::OutputBufferGenerate(const MushRenderSpec& inSpec, const Mu
     MushRenderUtil::Transform(eyeVertices, srcVertices, inSpec.ModelToEyeMattress());
     // U32 eyeVerticesSize = eyeVertices.size(); // Size of projected vertex vector array
     
-    U32 numTriangles = 0;
-    for (U32 faceNum=0; faceNum<p4Mesh->Faces().size(); ++faceNum)
-    {
-        const MushMesh4Face::tVertexGroupSize& srcGroupSizeRef = p4Mesh->Face(faceNum).VertexGroupSize();
-
-        for (U32 facetNum=0; facetNum<srcGroupSizeRef.size(); ++facetNum)
-        {
-            U32 srcGroupSize = srcGroupSizeRef[facetNum];
-            if (srcGroupSize > 2)
-            {
-                numTriangles += srcGroupSize - 2;
-            }
-        }
-    }
-    U32 numVertices = numTriangles * 3;
-        
+    
+    const MushGLBuffers::tTriangleList& vertexTriangleList = glDestBuffersRef.VertexTriangleList();
+    Mushware::U32 vertexTriangleListSize = vertexTriangleList.size();
+    const MushGLBuffers::tTriangleList& texCoordTriangleList = glDestTexCoordBuffersRef.TexCoordTriangleList();
+    Mushware::U32 texCoordTriangleListSize = texCoordTriangleList.size();
+    
+    // Build the vertex fuffer
     // Reserve output space
-    if (destVertices.Size() < numVertices)
+    if (destVertices.Size() < vertexTriangleListSize)
     {
-        destVertices.ClearAndResize(numVertices);
+        destVertices.ClearAndResize(vertexTriangleListSize);
     }
-    
-    if (destColours.Size() < numVertices)
-    {
-        destColours.ClearAndResize(numVertices);
-    }
-    
     // Make output area writable
     destVertices.MapReadWrite();
-    destColours.MapReadWrite();
-    
-    for (U32 i=0; i<texCoordsPerVertex; ++i)
+
+    for (U32 i=0; i<vertexTriangleListSize; ++i)
     {
-        destTexCoords[i].ClearAndResize(numVertices);
-        destTexCoords[i].MapReadWrite();
+        destVertices.Set(projectedVertices[vertexTriangleList[i]], i);
     }
     
-    U32 destVertexIndex = 0; // Index into output buffer for next output vertex
-    U32 destVerticesSize = destVertices.Size(); // Size (in elements) of the destVertices buffer
-        
-    for (U32 faceNum=0; faceNum<p4Mesh->Faces().size(); ++faceNum)
+    // Build the colour buffer
+    if (destColours.Size() < vertexTriangleListSize)
     {
-        const MushMesh4Face::tVertexList& srcVertexListRef = p4Mesh->Face(faceNum).VertexList();
-        const MushMesh4Face::tVertexGroupSize& srcGroupSizeRef = p4Mesh->Face(faceNum).VertexGroupSize();
-        U32 srcFaceVertexIndex = 0;
+        destColours.ClearAndResize(vertexTriangleListSize);
+    }
+    destColours.MapReadWrite();
+    for (U32 i=0; i<vertexTriangleListSize; ++i)
+    {
+        DerivedColourSet(destColours.Ref(i), eyeVertices[vertexTriangleList[i]], inSpec);
+    }
         
-        for (U32 facetNum=0; facetNum<srcGroupSizeRef.size(); ++facetNum)
+    for (U32 texCoordNum=0; texCoordNum<texCoordsPerVertex; ++texCoordNum)
+    {
+        MushGLBuffers::tTexCoordBuffer& destTexCoord = destTexCoords[texCoordNum];
+        if (destTexCoord.Size() != texCoordTriangleListSize)
         {
-            m_colourZMiddle = t4Val(1.0,1.0,1.0,0.3);
-            
-            if (srcFaceVertexIndex >= srcVertexListRef.size())
-            {
-                throw MushcoreDataFail(std::string("Vertex list overrun in ")+AutoName());
-            }            
-            U32 vertexNum0 = srcVertexListRef[srcFaceVertexIndex]; 
-            
-            for (U32 i=1; i+1 < srcGroupSizeRef[facetNum]; ++i)
-            {
-                U32 vertexListNum1 = srcFaceVertexIndex + i;
-                U32 vertexListNum2 = srcFaceVertexIndex + i + 1;
-                
-                if (vertexListNum1 >= srcVertexListRef.size() || vertexListNum2 >= srcVertexListRef.size())
-                {
-                    throw MushcoreDataFail(std::string("Vertex list overrun in ")+AutoName());
-                }
-                U32 vertexNum1 = srcVertexListRef[vertexListNum1];
-                U32 vertexNum2 = srcVertexListRef[vertexListNum2];
-                if (vertexNum1 >= projectedVertices.size() || vertexNum2 >= projectedVertices.size())
-                {
-                    throw MushcoreDataFail(std::string("Vertex overrun in ")+AutoName());
-                }
-                
-                destVertices.Set(projectedVertices[vertexNum0], destVertexIndex);
-                DerivedColourSet(destColours.Ref(destVertexIndex), eyeVertices[vertexNum0], inSpec);
-                for (U32 j=0; j<texCoordsPerVertex; ++j)
-                {
-                    destTexCoords[j].Set(srcTexCoords[vertexNum0], destVertexIndex);
-                }
-                destVertexIndex++;
-                
-                destVertices.Set(projectedVertices[vertexNum1], destVertexIndex);
-                DerivedColourSet(destColours.Ref(destVertexIndex), eyeVertices[vertexNum1], inSpec);
-                for (U32 j=0; j<texCoordsPerVertex; ++j)
-                {
-                    destTexCoords[j].Set(srcTexCoords[vertexNum1], destVertexIndex);
-                }
-                destVertexIndex++;
-                
-                destVertices.Set(projectedVertices[vertexNum2], destVertexIndex);
-                DerivedColourSet(destColours.Ref(destVertexIndex), eyeVertices[vertexNum2], inSpec);
-                for (U32 j=0; j<texCoordsPerVertex; ++j)
-                {
-                    if (destVertexIndex >= destTexCoords[j].Size())
-                    {
-                        throw MushcoreDataFail(std::string("Destination texture coordinate overrun in ")+AutoName());
-                    } 
-                    destTexCoords[j].Set(srcTexCoords[vertexNum2], destVertexIndex);
-                }
-                destVertexIndex++;
-
-                if (destVertexIndex > destVerticesSize)
-                {
-                    throw MushcoreDataFail(std::string("Destination vertex overrun in ")+AutoName());
-                } 
-            }
-            srcFaceVertexIndex += srcGroupSizeRef[facetNum];
+            destTexCoord.ClearAndResize(texCoordTriangleListSize);
+        }
+        destTexCoord.MapReadWrite();
+        for (U32 i=0; i<texCoordTriangleListSize; ++i)
+        {
+            destVertices.Set(srcTexCoords[texCoordTriangleList[i]], i);
         }
     }
-    
+
     bool unmapSuccess = destVertices.AttemptUnmap();
     unmapSuccess = destColours.AttemptUnmap() && unmapSuccess;;
     for (U32 i=0; i<texCoordsPerVertex; ++i)
@@ -298,6 +349,7 @@ MushRenderMeshSolid::OutputBufferGenerate(const MushRenderSpec& inSpec, const Mu
     }
     return unmapSuccess;
 }
+
 //%outOfLineFunctions {
 
 const char *MushRenderMeshSolid::AutoName(void) const

@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } HZgJeg4wxB1Uq93YJryJDg
 /*
- * $Id$
- * $Log$
+ * $Id: AdanaxisMeshLibrary.cpp,v 1.1 2005/07/18 13:13:35 southa Exp $
+ * $Log: AdanaxisMeshLibrary.cpp,v $
+ * Revision 1.1  2005/07/18 13:13:35  southa
+ * Extrude to point and projectile mesh
+ *
  */
 
 #include "AdanaxisMeshLibrary.h"
@@ -44,6 +47,60 @@ AdanaxisMeshLibrary::ProjectileCreate(MushMesh4Mesh& ioMesh) const
     extrusionContext.Reset();
     vertexExtrude.FaceExtrude(ioMesh, extrusionContext, 1);
 }
+
+void
+AdanaxisMeshLibrary::AttendantExtrusionContext(MushMeshLibraryExtrusionContext& outContext, const MushMesh4Mesh& inMesh, Mushware::tVal inAnim) const
+{
+    U32 number = kAttendantLODFactor * inMesh.LevelOfDetail();
+    
+    MushMeshDisplacement disp(t4Val(0,0,0,1), tQValPair::RotationIdentity(), 0.5);
+    t4Val offset(0,0,0,-1);
+
+    disp.RotationWRef().OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis
+                                        (1, inAnim*M_PI/number));
+    MushMeshTools::QuaternionRotateInAxis(1, 0.5*inAnim*M_PI/number).VectorRotate(offset);
+    disp.OffsetSet(offset);
+    outContext.DispSet(disp);
+    outContext.ScaleVelocitySet(1.0/number);    
+}    
+
+void
+AdanaxisMeshLibrary::AttendantVerticesSet(MushMesh4Mesh& ioMesh, tVal inAnim) const
+{
+    U32 number = kAttendantLODFactor * ioMesh.LevelOfDetail();
+
+    MushMeshLibraryExtrusionContext extrusionContext;
+    AttendantExtrusionContext(extrusionContext, ioMesh, inAnim);
+    
+    MushMeshLibraryVGenExtrude vertexExtrude;
+    extrusionContext.ResetNewFace(0);
+    vertexExtrude.FaceExtrude(ioMesh, extrusionContext, number);
+    MushMeshDisplacement disp = extrusionContext.Disp();
+    disp.OffsetWRef().InPlaceElementwiseMultiply(t4Val(1,1,1,-1)); // Reverse W direction
+    disp.RotationSet(disp.Rotation().Conjugate()); // Reverse rotation
+    extrusionContext.ResetNewDispFace(disp, 1);
+    vertexExtrude.FaceExtrude(ioMesh, extrusionContext, number);
+}    
+
+void
+AdanaxisMeshLibrary::AttendantCreate(MushMesh4Mesh& ioMesh) const
+{
+    U32 number = kAttendantLODFactor * ioMesh.LevelOfDetail();
+
+    MushMeshLibraryExtrusionContext extrusionContext;
+    AttendantExtrusionContext(extrusionContext, ioMesh, 1.0);
+
+    MushMeshLibraryFGenExtrude faceExtrude;
+    
+    MushMeshLibraryBase::Sgl().PolygonPrismCreate(ioMesh, t4Val(1,1,1,1), number);            
+
+    extrusionContext.ResetNewFace(0);
+    faceExtrude.FaceExtrude(ioMesh, extrusionContext, number);
+    extrusionContext.ResetNewFace(1);
+    faceExtrude.FaceExtrude(ioMesh, extrusionContext, number);
+    
+    AttendantVerticesSet(ioMesh, 1.0);
+}    
 
 //%outOfLineFunctions {
 

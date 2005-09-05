@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } c8LaySAshLTgIZq/9pb54Q
 /*
- * $Id: MushGL.h,v 1.8 2005/07/04 11:10:43 southa Exp $
+ * $Id: MushGL.h,v 1.9 2005/07/05 13:52:22 southa Exp $
  * $Log: MushGL.h,v $
+ * Revision 1.9  2005/07/05 13:52:22  southa
+ * Adanaxis work
+ *
  * Revision 1.8  2005/07/04 11:10:43  southa
  * Rendering pipeline
  *
@@ -59,14 +62,18 @@
 #include "MushGLControl.h"
 #include "MushGLJob.h"
 #include "MushGLJobRender.h"
+#include "MushGLMaterial.h"
 #include "MushGLPixelSource.h"
+// #include "MushGLPixelSourceTIFF.h"
 #include "MushGLProjection.h"
 #include "MushGLStandard.h"
 #include "MushGLState.h"
+#include "MushGLTexture.h"
 #include "MushGLUtil.h"
 #include "MushGLV.h"
 #include "MushGLVertexBuffer.h"
 #include "MushGLWorkSpec.h"
+#include "MushGLWorkSpace.h"
 
 //%includeGuardEnd {
 #endif

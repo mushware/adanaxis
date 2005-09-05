@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } 8wu6JJaIcLGhv4Titc9Yww
 /*
- * $Id$
- * $Log$
+ * $Id: AdanaxisMeshLibrary.h,v 1.1 2005/07/18 13:13:35 southa Exp $
+ * $Log: AdanaxisMeshLibrary.h,v $
+ * Revision 1.1  2005/07/18 13:13:35  southa
+ * Extrude to point and projectile mesh
+ *
  */
 
 #include "AdanaxisStandard.h"
@@ -38,7 +41,20 @@ public:
 
     virtual void ProjectileCreate(MushMesh4Mesh& ioMesh) const;
 
+    virtual void AttendantVerticesSet(MushMesh4Mesh& ioMesh, Mushware::tVal inAnim) const;
+    virtual void AttendantCreate(MushMesh4Mesh& ioMesh) const;
+
+    static AdanaxisMeshLibrary& AdanaxisSgl(void);
+    
+protected:
+    virtual void AttendantExtrusionContext(MushMeshLibraryExtrusionContext& outContext, const MushMesh4Mesh& inMesh, Mushware::tVal inAnim) const;
+    
 private:
+    enum
+    {
+        kAttendantLODFactor = 5
+    };
+        
 //%classPrototypes {
 public:
     virtual const char *AutoName(void) const;
@@ -50,6 +66,18 @@ public:
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
 //%classPrototypes } 1oBgFruy5qHAaudtV+Hcmg
 };
+
+inline AdanaxisMeshLibrary&
+AdanaxisMeshLibrary::AdanaxisSgl(void)
+{
+    AdanaxisMeshLibrary *pLibrary = dynamic_cast<AdanaxisMeshLibrary *>(&Sgl());
+    if (pLibrary == NULL)
+    {
+        throw MushcoreRequestFail(std::string("MeshLibrary of wrong type (")+Sgl().AutoName()+")");
+    }
+    return *pLibrary;
+}
+
 //%inlineHeader {
 inline std::ostream&
 operator<<(std::ostream& ioOut, const AdanaxisMeshLibrary& inObj)

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } YOqikbGkSghET5DVnp+snQ
 /*
- * $Id$
- * $Log$
+ * $Id: MushRenderMeshSolid.h,v 1.1 2005/08/29 18:40:57 southa Exp $
+ * $Log: MushRenderMeshSolid.h,v $
+ * Revision 1.1  2005/08/29 18:40:57  southa
+ * Solid rendering work
+ *
  */
 
 #include "MushRenderStandard.h"
@@ -44,6 +47,14 @@ public:
     virtual void MeshRender(const MushRenderSpec& inSpec, const MushMeshMesh& inMesh);
     
 protected:
+    enum tSourceType
+    {
+        kSourceTypeVertex,
+        kSourceTypeTexCoord
+    };
+    
+    void TriangleListBuild(MushGLBuffers::tTriangleList& ioList, const MushMesh4Mesh& inMesh, tSourceType inSourceType);
+        
     void DerivedColourSet(Mushware::t4Val& outColour, const Mushware::t4Val& inEyeVertex, const MushRenderSpec& inSpec);
     
 private:

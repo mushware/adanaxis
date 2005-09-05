@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } DbBqjjQLEDRD5N83MupJQQ
 /*
- * $Id: MushGLBuffers.h,v 1.4 2005/08/31 23:57:27 southa Exp $
+ * $Id: MushGLBuffers.h,v 1.5 2005/09/03 17:05:36 southa Exp $
  * $Log: MushGLBuffers.h,v $
+ * Revision 1.5  2005/09/03 17:05:36  southa
+ * Material work
+ *
  * Revision 1.4  2005/08/31 23:57:27  southa
  * Texture coordinate work
  *
@@ -64,10 +67,20 @@ public:
     typedef MushGLVertexBuffer<tColour> tColourBuffer;
     typedef MushGLVertexBuffer<tTexCoord> tTexCoordBuffer;
     typedef tTexCoordBuffer tTexCoordBuffers[kNumTexCoordBuffers];
+    typedef std::vector<Mushware::U32> tTriangleList;
+    
     typedef MushcoreData<MushGLBuffers, Mushware::U32> tData;
     typedef MushcoreDataRef<MushGLBuffers, Mushware::U32> tDataRef;
+    typedef MushcoreDataRef<MushGLBuffers> tSharedDataRef;
     
-    MushGLBuffers() : m_owner(kOwnerNone), m_numTexCoordBuffers(0) {}
+    MushGLBuffers() :
+        m_owner(kOwnerNone),
+        m_numTexCoordBuffers(0),
+        m_vertexContextNum(0),
+        m_colourContextNum(0),
+        m_texCoordContextNum(0),
+        m_triangleListContextNum(0)
+    {}
     virtual ~MushGLBuffers() {}
     
     void NumTexCoordBuffersSet(const Mushware::U32& inValue)
@@ -96,10 +109,18 @@ private:
     tColourBuffer m_colourBuffer; //:read :wref
     tTexCoordBuffers m_texCoordBuffers; //:read :wref :xmlignore
     Mushware::U32 m_numTexCoordBuffers; //:read
+    tTriangleList m_vertexTriangleList; //:read :wref
+    tTriangleList m_texCoordTriangleList; //:read :wref
+    
+    Mushware::U32 m_vertexContextNum; //:readwrite
+    Mushware::U32 m_colourContextNum; //:readwrite
+    Mushware::U32 m_texCoordContextNum; //:readwrite
+    Mushware::U32 m_triangleListContextNum; //:readwrite
     
     MushGLWorkspace<tVertex> m_worldVertices; //:read :wref
     MushGLWorkspace<tVertex> m_eyeVertices; //:read :wref
     MushGLWorkspace<tVertex> m_projectedVertices; //:read :wref
+    
     static Mushware::U32 m_nextBufferNum;
     
 //%classPrototypes {
@@ -114,6 +135,20 @@ public:
     // Writable reference for m_texCoordBuffers
     tTexCoordBuffers& TexCoordBuffersWRef(void) { return m_texCoordBuffers; }
     const Mushware::U32& NumTexCoordBuffers(void) const { return m_numTexCoordBuffers; }
+    const tTriangleList& VertexTriangleList(void) const { return m_vertexTriangleList; }
+    // Writable reference for m_vertexTriangleList
+    tTriangleList& VertexTriangleListWRef(void) { return m_vertexTriangleList; }
+    const tTriangleList& TexCoordTriangleList(void) const { return m_texCoordTriangleList; }
+    // Writable reference for m_texCoordTriangleList
+    tTriangleList& TexCoordTriangleListWRef(void) { return m_texCoordTriangleList; }
+    const Mushware::U32& VertexContextNum(void) const { return m_vertexContextNum; }
+    void VertexContextNumSet(const Mushware::U32& inValue) { m_vertexContextNum=inValue; }
+    const Mushware::U32& ColourContextNum(void) const { return m_colourContextNum; }
+    void ColourContextNumSet(const Mushware::U32& inValue) { m_colourContextNum=inValue; }
+    const Mushware::U32& TexCoordContextNum(void) const { return m_texCoordContextNum; }
+    void TexCoordContextNumSet(const Mushware::U32& inValue) { m_texCoordContextNum=inValue; }
+    const Mushware::U32& TriangleListContextNum(void) const { return m_triangleListContextNum; }
+    void TriangleListContextNumSet(const Mushware::U32& inValue) { m_triangleListContextNum=inValue; }
     const MushGLWorkspace<tVertex>& WorldVertices(void) const { return m_worldVertices; }
     // Writable reference for m_worldVertices
     MushGLWorkspace<tVertex>& WorldVerticesWRef(void) { return m_worldVertices; }
@@ -130,7 +165,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } f9aEVFOumIkVo6mzy6UmCw
+//%classPrototypes } 6JhyED29uNQef7FgFLuVIQ
 };
 
 inline void

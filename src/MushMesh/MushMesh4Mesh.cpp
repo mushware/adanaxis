@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } v136Oh1IVziX36Di81JIXQ
 /*
- * $Id: MushMesh4Mesh.cpp,v 1.11 2005/08/29 18:40:57 southa Exp $
+ * $Id: MushMesh4Mesh.cpp,v 1.12 2005/09/03 17:05:36 southa Exp $
  * $Log: MushMesh4Mesh.cpp,v $
+ * Revision 1.12  2005/09/03 17:05:36  southa
+ * Material work
+ *
  * Revision 1.11  2005/08/29 18:40:57  southa
  * Solid rendering work
  *
@@ -67,6 +70,7 @@ using namespace Mushware;
 using namespace std;
 
 MushMesh4Mesh::MushMesh4Mesh() :
+    m_levelOfDetail(1),
     m_vertexCounter(0),
     m_faceCounter(0),
     m_texCoordCounter(0)
@@ -517,7 +521,9 @@ MushMesh4Mesh::AutoPrint(std::ostream& ioOut) const
     ioOut << "vertices=" << m_vertices << ", ";
     ioOut << "texCoords=" << m_texCoords << ", ";
     ioOut << "faces=" << m_faces << ", ";
-    ioOut << "materialRef=" << m_materialRef << ", ";
+    ioOut << "materialNum=" << m_materialNum << ", ";
+    ioOut << "levelOfDetail=" << m_levelOfDetail << ", ";
+    ioOut << "texCoordDelegate=" << m_texCoordDelegate << ", ";
     ioOut << "vertexCounter=" << m_vertexCounter << ", ";
     ioOut << "faceCounter=" << m_faceCounter << ", ";
     ioOut << "texCoordCounter=" << m_texCoordCounter << ", ";
@@ -560,9 +566,17 @@ MushMesh4Mesh::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& i
     {
         ioIn >> m_faces;
     }
-    else if (inTagStr == "materialRef")
+    else if (inTagStr == "materialNum")
     {
-        ioIn >> m_materialRef;
+        ioIn >> m_materialNum;
+    }
+    else if (inTagStr == "levelOfDetail")
+    {
+        ioIn >> m_levelOfDetail;
+    }
+    else if (inTagStr == "texCoordDelegate")
+    {
+        ioIn >> m_texCoordDelegate;
     }
     else if (inTagStr == "vertexCounter")
     {
@@ -660,8 +674,12 @@ MushMesh4Mesh::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_texCoords;
     ioOut.TagSet("faces");
     ioOut << m_faces;
-    ioOut.TagSet("materialRef");
-    ioOut << m_materialRef;
+    ioOut.TagSet("materialNum");
+    ioOut << m_materialNum;
+    ioOut.TagSet("levelOfDetail");
+    ioOut << m_levelOfDetail;
+    ioOut.TagSet("texCoordDelegate");
+    ioOut << m_texCoordDelegate;
     ioOut.TagSet("vertexCounter");
     ioOut << m_vertexCounter;
     ioOut.TagSet("faceCounter");
@@ -701,4 +719,4 @@ MushMesh4Mesh::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("numFacetsValid");
     ioOut << m_numFacetsValid;
 }
-//%outOfLineFunctions } vaQx0zHWaj9L8IY9pJ9fdQ
+//%outOfLineFunctions } b0ZlDl2tBTAQtc8XdxLmUw

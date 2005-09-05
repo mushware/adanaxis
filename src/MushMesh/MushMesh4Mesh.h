@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } pM9lKxUBsV8LUNEqYXbulg
 /*
- * $Id: MushMesh4Mesh.h,v 1.11 2005/08/29 18:40:57 southa Exp $
+ * $Id: MushMesh4Mesh.h,v 1.12 2005/09/03 17:05:36 southa Exp $
  * $Log: MushMesh4Mesh.h,v $
+ * Revision 1.12  2005/09/03 17:05:36  southa
+ * Material work
+ *
  * Revision 1.11  2005/08/29 18:40:57  southa
  * Solid rendering work
  *
@@ -134,7 +137,11 @@ private:
     tVertices m_vertices; //:readwrite :wref
     tTexCoords m_texCoords; //:readwrite :wref
     tFaces m_faces; //:readwrite :wref
-    Mushware::U32 m_materialRef; //:readwrite
+    Mushware::U32 m_materialNum; //:readwrite
+    Mushware::U32 m_levelOfDetail; //:readwrite
+    
+    // Delegates
+    tDataRef m_texCoordDelegate; //:readwrite :wref
     
     // Generation and animation
     Mushware::U32 m_vertexCounter; //:readwrite :wref
@@ -176,8 +183,14 @@ public:
     void FacesSet(const tFaces& inValue) { m_faces=inValue; }
     // Writable reference for m_faces
     tFaces& FacesWRef(void) { return m_faces; }
-    const Mushware::U32& MaterialRef(void) const { return m_materialRef; }
-    void MaterialRefSet(const Mushware::U32& inValue) { m_materialRef=inValue; }
+    const Mushware::U32& MaterialNum(void) const { return m_materialNum; }
+    void MaterialNumSet(const Mushware::U32& inValue) { m_materialNum=inValue; }
+    const Mushware::U32& LevelOfDetail(void) const { return m_levelOfDetail; }
+    void LevelOfDetailSet(const Mushware::U32& inValue) { m_levelOfDetail=inValue; }
+    const tDataRef& TexCoordDelegate(void) const { return m_texCoordDelegate; }
+    void TexCoordDelegateSet(const tDataRef& inValue) { m_texCoordDelegate=inValue; }
+    // Writable reference for m_texCoordDelegate
+    tDataRef& TexCoordDelegateWRef(void) { return m_texCoordDelegate; }
     const Mushware::U32& VertexCounter(void) const { return m_vertexCounter; }
     void VertexCounterSet(const Mushware::U32& inValue) { m_vertexCounter=inValue; }
     // Writable reference for m_vertexCounter
@@ -209,7 +222,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } j/RRigXbAkvoGQQ5Zwj38g
+//%classPrototypes } kGySnQFG6TZuog0FK70n/w
 };
 
 inline const MushMesh4Mesh::tCentroid&

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } hzHOaqG45RxILxoV7rJ+JA
 /*
- * $Id: MushRenderSpec.h,v 1.7 2005/07/05 16:35:53 southa Exp $
+ * $Id: MushRenderSpec.h,v 1.8 2005/07/19 10:06:49 southa Exp $
  * $Log: MushRenderSpec.h,v $
+ * Revision 1.8  2005/07/19 10:06:49  southa
+ * Adanaxis work
+ *
  * Revision 1.7  2005/07/05 16:35:53  southa
  * Adanaxis work
  *
@@ -70,6 +73,7 @@ private:
     tMattress m_model; //:readwrite :wref
 
     MushGLBuffers::tDataRef m_buffersRef; //:readwrite
+    MushGLBuffers::tSharedDataRef m_texCoordBuffersRef; //:readwrite
     
 //%classPrototypes {
 public:
@@ -87,6 +91,8 @@ public:
     tMattress& ModelWRef(void) { return m_model; }
     const MushGLBuffers::tDataRef& BuffersRef(void) const { return m_buffersRef; }
     void BuffersRefSet(const MushGLBuffers::tDataRef& inValue) { m_buffersRef=inValue; }
+    const MushGLBuffers::tSharedDataRef& TexCoordBuffersRef(void) const { return m_texCoordBuffersRef; }
+    void TexCoordBuffersRefSet(const MushGLBuffers::tSharedDataRef& inValue) { m_texCoordBuffersRef=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -94,7 +100,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } PyDH4xjtfKZ7eqLcbt8A3A
+//%classPrototypes } eo6ShDpTtzBdvR+enEqYzw
 };
 //%inlineHeader {
 inline std::ostream&

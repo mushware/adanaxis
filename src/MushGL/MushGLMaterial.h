@@ -23,21 +23,31 @@
  ****************************************************************************/
 //%Header } o2aSbaPsq9RU5xpAX8xZpQ
 /*
- * $Id$
- * $Log$
+ * $Id: MushGLMaterial.h,v 1.1 2005/09/03 17:05:36 southa Exp $
+ * $Log: MushGLMaterial.h,v $
+ * Revision 1.1  2005/09/03 17:05:36  southa
+ * Material work
+ *
  */
 
 #include "MushGLStandard.h"
+
+#include "MushGLTexture.h"
 
 //:generate virtual standard ostream xml1
 class MushGLMaterial : public MushcoreVirtualObject
 {
 public:
+    const MushGLTexture::tDataRef& TextureHandles(Mushware::U32 inIndex) const { MushcoreUtil::BoundsCheck(inIndex, m_textureHandles.size()); return m_textureHandles[inIndex]; }
+    void TextureHandlesResizeAndSet(const MushGLTexture::tDataRef& inValue, Mushware::U32 inIndex) { if (inIndex >= m_textureHandles.size()) m_textureHandles.resize(inIndex + 1); m_textureHandles[inIndex]=inValue; }
     
 private:
+    std::vector<MushGLTexture::tDataRef> m_textureHandles; //:wref
     
 //%classPrototypes {
 public:
+    // Writable reference for m_textureHandles
+    std::vector<MushGLTexture::tDataRef>& TextureHandlesWRef(void) { return m_textureHandles; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -45,8 +55,9 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } 1oBgFruy5qHAaudtV+Hcmg
+//%classPrototypes } axqNSa5Fgcgko3ukg4CIXg
 };
+
 //%inlineHeader {
 inline std::ostream&
 operator<<(std::ostream& ioOut, const MushGLMaterial& inObj)

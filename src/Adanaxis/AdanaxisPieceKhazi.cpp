@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } 1en6OnZ85se795baUuYn3A
 /*
- * $Id: AdanaxisPieceKhazi.cpp,v 1.4 2005/08/02 11:11:47 southa Exp $
+ * $Id: AdanaxisPieceKhazi.cpp,v 1.5 2005/09/03 17:05:36 southa Exp $
  * $Log: AdanaxisPieceKhazi.cpp,v $
+ * Revision 1.5  2005/09/03 17:05:36  southa
+ * Material work
+ *
  * Revision 1.4  2005/08/02 11:11:47  southa
  * Adanaxis control demo work
  *
@@ -62,7 +65,8 @@ AdanaxisPieceKhazi::Render(MushGameLogic& ioLogic, MushRenderMesh& inRender, con
 {
     MushRenderSpec renderSpec;
     renderSpec.BuffersRefSet(m_buffersRef);
-    
+    renderSpec.TexCoordBuffersRefSet(m_texCoordBuffersRef);
+
     MushMeshOps::PosticityToMattress(renderSpec.ModelWRef(), Post());
     MushMeshOps::PosticityToMattress(renderSpec.ViewWRef(), inCamera.Post());
     renderSpec.ViewWRef().InPlaceInvert();
@@ -203,8 +207,7 @@ AdanaxisPieceKhazi::AutoPrint(std::ostream& ioOut) const
     ioOut << "expireFlag=" << m_expireFlag << ", ";
     ioOut << "mesh=" << m_mesh << ", ";
     ioOut << "buffersRef=" << m_buffersRef << ", ";
-    ioOut << "secondaryMeshRef=" << m_secondaryMeshRef << ", ";
-    ioOut << "secondaryBuffersRef=" << m_secondaryBuffersRef;
+    ioOut << "texCoordBuffersRef=" << m_texCoordBuffersRef;
     ioOut << "]";
 }
 bool
@@ -232,13 +235,9 @@ AdanaxisPieceKhazi::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::stri
     {
         ioIn >> m_buffersRef;
     }
-    else if (inTagStr == "secondaryMeshRef")
+    else if (inTagStr == "texCoordBuffersRef")
     {
-        ioIn >> m_secondaryMeshRef;
-    }
-    else if (inTagStr == "secondaryBuffersRef")
-    {
-        ioIn >> m_secondaryBuffersRef;
+        ioIn >> m_texCoordBuffersRef;
     }
     else if (MushGamePiece::AutoXMLDataProcess(ioIn, inTagStr))
     {
@@ -262,9 +261,7 @@ AdanaxisPieceKhazi::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_mesh;
     ioOut.TagSet("buffersRef");
     ioOut << m_buffersRef;
-    ioOut.TagSet("secondaryMeshRef");
-    ioOut << m_secondaryMeshRef;
-    ioOut.TagSet("secondaryBuffersRef");
-    ioOut << m_secondaryBuffersRef;
+    ioOut.TagSet("texCoordBuffersRef");
+    ioOut << m_texCoordBuffersRef;
 }
-//%outOfLineFunctions } n0uWZFiUoHy5qdqEpqIszw
+//%outOfLineFunctions } D6JDYxKGRjbu54jREvOUTg

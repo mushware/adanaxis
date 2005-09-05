@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } iJqp18kDKyw/qVmGx/vsLQ
 /*
- * $Id: MushGLBuffers.cpp,v 1.3 2005/07/05 13:52:22 southa Exp $
+ * $Id: MushGLBuffers.cpp,v 1.4 2005/09/03 17:05:36 southa Exp $
  * $Log: MushGLBuffers.cpp,v $
+ * Revision 1.4  2005/09/03 17:05:36  southa
+ * Material work
+ *
  * Revision 1.3  2005/07/05 13:52:22  southa
  * Adanaxis work
  *
@@ -34,7 +37,11 @@
 
 #include "MushGLBuffers.h"
 
+// Keyed data for per-object buffers
 MUSHCORE_KEYED_DATA_INSTANCE(MushGLBuffers, Mushware::U32);
+
+// Named data for shared buffers
+MUSHCORE_DATA_INSTANCE(MushGLBuffers);
 
 Mushware::U32 MushGLBuffers::m_nextBufferNum = 1;
 
@@ -76,6 +83,12 @@ MushGLBuffers::AutoPrint(std::ostream& ioOut) const
     ioOut << "colourBuffer=" << m_colourBuffer << ", ";
     ioOut << "texCoordBuffers=" << m_texCoordBuffers << ", ";
     ioOut << "numTexCoordBuffers=" << m_numTexCoordBuffers << ", ";
+    ioOut << "vertexTriangleList=" << m_vertexTriangleList << ", ";
+    ioOut << "texCoordTriangleList=" << m_texCoordTriangleList << ", ";
+    ioOut << "vertexContextNum=" << m_vertexContextNum << ", ";
+    ioOut << "colourContextNum=" << m_colourContextNum << ", ";
+    ioOut << "texCoordContextNum=" << m_texCoordContextNum << ", ";
+    ioOut << "triangleListContextNum=" << m_triangleListContextNum << ", ";
     ioOut << "worldVertices=" << m_worldVertices << ", ";
     ioOut << "eyeVertices=" << m_eyeVertices << ", ";
     ioOut << "projectedVertices=" << m_projectedVertices;
@@ -106,6 +119,30 @@ MushGLBuffers::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& i
     {
         ioIn >> m_numTexCoordBuffers;
     }
+    else if (inTagStr == "vertexTriangleList")
+    {
+        ioIn >> m_vertexTriangleList;
+    }
+    else if (inTagStr == "texCoordTriangleList")
+    {
+        ioIn >> m_texCoordTriangleList;
+    }
+    else if (inTagStr == "vertexContextNum")
+    {
+        ioIn >> m_vertexContextNum;
+    }
+    else if (inTagStr == "colourContextNum")
+    {
+        ioIn >> m_colourContextNum;
+    }
+    else if (inTagStr == "texCoordContextNum")
+    {
+        ioIn >> m_texCoordContextNum;
+    }
+    else if (inTagStr == "triangleListContextNum")
+    {
+        ioIn >> m_triangleListContextNum;
+    }
     else if (inTagStr == "worldVertices")
     {
         ioIn >> m_worldVertices;
@@ -135,6 +172,18 @@ MushGLBuffers::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_colourBuffer;
     ioOut.TagSet("numTexCoordBuffers");
     ioOut << m_numTexCoordBuffers;
+    ioOut.TagSet("vertexTriangleList");
+    ioOut << m_vertexTriangleList;
+    ioOut.TagSet("texCoordTriangleList");
+    ioOut << m_texCoordTriangleList;
+    ioOut.TagSet("vertexContextNum");
+    ioOut << m_vertexContextNum;
+    ioOut.TagSet("colourContextNum");
+    ioOut << m_colourContextNum;
+    ioOut.TagSet("texCoordContextNum");
+    ioOut << m_texCoordContextNum;
+    ioOut.TagSet("triangleListContextNum");
+    ioOut << m_triangleListContextNum;
     ioOut.TagSet("worldVertices");
     ioOut << m_worldVertices;
     ioOut.TagSet("eyeVertices");
@@ -142,4 +191,4 @@ MushGLBuffers::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("projectedVertices");
     ioOut << m_projectedVertices;
 }
-//%outOfLineFunctions } GXnnEFisMmpD4Cg+1/MRFQ
+//%outOfLineFunctions } ASFwYJD7v+VNjlqdWpgnyw

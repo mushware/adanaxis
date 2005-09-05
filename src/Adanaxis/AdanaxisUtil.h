@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } h0Ba5isJoX+glev7XNkQ4g
 /*
- * $Id: AdanaxisUtil.h,v 1.5 2005/08/01 20:24:15 southa Exp $
+ * $Id: AdanaxisUtil.h,v 1.6 2005/08/29 18:40:56 southa Exp $
  * $Log: AdanaxisUtil.h,v $
+ * Revision 1.6  2005/08/29 18:40:56  southa
+ * Solid rendering work
+ *
  * Revision 1.5  2005/08/01 20:24:15  southa
  * Backdrop and build fixes
  *
@@ -52,7 +55,7 @@ class AdanaxisUtil
 public:
     static void TestPiecesCreate(AdanaxisLogic& ioLogic);
     static void TestDecoCreate(AdanaxisLogic& ioLogic);
-    static void TestSkinCreate(AdanaxisLogic& ioLogic, MushMesh4Mesh& ioMesh);
+    static void TestSkinsCreate(AdanaxisLogic& ioLogic);
     static AdanaxisAppHandler& AppHandler(void);
     static AdanaxisMeshLibrary& MeshLibrary(void);
     static AdanaxisLogic& Logic(MushGameLogic& ioLogic);

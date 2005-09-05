@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } CFEozIhAxC4/w3MDbuOShQ
 /*
- * $Id: AdanaxisUtil.cpp,v 1.18 2005/08/02 14:37:44 southa Exp $
+ * $Id: AdanaxisUtil.cpp,v 1.19 2005/08/29 18:40:56 southa Exp $
  * $Log: AdanaxisUtil.cpp,v $
+ * Revision 1.19  2005/08/29 18:40:56  southa
+ * Solid rendering work
+ *
  * Revision 1.18  2005/08/02 14:37:44  southa
  * Adanaxis control demo work
  *
@@ -208,7 +211,7 @@ AdanaxisUtil::TestPiecesCreate(AdanaxisLogic& ioLogic)
     tVal rotMin = -0.03;
     tVal rotMax = 0.03;
     
-    for (U32 i=0; i<30; ++i)
+    for (U32 i=0; i<10; ++i)
     {
         khaziListRef.push_back(AdanaxisPieceKhazi("testObj1"));
         AdanaxisSaveData::tKhazi& khaziRef = khaziListRef.back();
@@ -233,108 +236,21 @@ AdanaxisUtil::TestPiecesCreate(AdanaxisLogic& ioLogic)
             khaziRef.PostWRef().AngVelWRef().OuterMultiplyBy(orientation.Conjugate());
         }
 
-        MushMeshLibraryFGenExtrude faceExtrude;
-        MushMeshLibraryVGenExtrude vertexExtrude;
-        tQValPair rotation;
-        rotation.ToRotationIdentitySet();
-        MushMeshDisplacement disp(t4Val(0,0,0,1), rotation, 0.5);
-        
-        MushMeshLibraryExtrusionContext extrusionContext(disp, 0);
-        switch (i % 2)
-        {
-            case 2:
-            {
-                MushMeshLibraryBase::Sgl().PolygonPrismCreate(khaziRef.MeshWRef(), t4Val(1,1,0.5,3), 6);            
-            }
-            break;
-                
-            case 1:
-            {
-                MushMeshLibraryBase::Sgl().UnitTesseractCreate(khaziRef.MeshWRef());
-                //MushMeshLibraryBase::Sgl().PolygonPrismCreate(khaziRef.MeshWRef(), t4Val(1,1,0.5,3), 6);            
-                for (U32 j=0; j<8; ++j)
-                {
-                    extrusionContext.ResetNewFace(j);
-                    faceExtrude.FaceExtrude(khaziRef.MeshWRef(), extrusionContext, 1);
-                }
-                disp.ScaleSet(0.3);
-                tVal dist = 3.0;
-                disp.OffsetSet(t4Val(0,0,0,dist));
-                extrusionContext.ResetNewDispFace(disp, 0);
-                vertexExtrude.FaceExtrude(khaziRef.MeshWRef(), extrusionContext, 1);
-                disp.OffsetSet(t4Val(0,0,0,-dist));
-                extrusionContext.ResetNewDispFace(disp, 1);
-                vertexExtrude.FaceExtrude(khaziRef.MeshWRef(), extrusionContext, 1);
-                disp.OffsetSet(t4Val(0,0,dist,0));
-                extrusionContext.ResetNewDispFace(disp, 2);
-                vertexExtrude.FaceExtrude(khaziRef.MeshWRef(), extrusionContext, 1);
-                disp.OffsetSet(t4Val(0,0,-dist,0));
-                extrusionContext.ResetNewDispFace(disp, 3);
-                vertexExtrude.FaceExtrude(khaziRef.MeshWRef(), extrusionContext, 1);
-                disp.OffsetSet(t4Val(0,dist,0,0));
-                extrusionContext.ResetNewDispFace(disp, 4);
-                vertexExtrude.FaceExtrude(khaziRef.MeshWRef(), extrusionContext, 1);
-                disp.OffsetSet(t4Val(0,-dist,0,0));
-                extrusionContext.ResetNewDispFace(disp, 5);
-                vertexExtrude.FaceExtrude(khaziRef.MeshWRef(), extrusionContext, 1);
-                disp.OffsetSet(t4Val(dist,0,0,0));
-                extrusionContext.ResetNewDispFace(disp, 6);
-                vertexExtrude.FaceExtrude(khaziRef.MeshWRef(), extrusionContext, 1);
-                disp.OffsetSet(t4Val(-dist,0,0,0));
-                extrusionContext.ResetNewDispFace(disp, 7);
-                vertexExtrude.FaceExtrude(khaziRef.MeshWRef(), extrusionContext, 1);     
-            }
-            break;
-            
-            case 0:
-            {
-                //MushMeshLibraryBase::Sgl().UnitTesseractCreate(khaziRef.MeshWRef());
-                MushMeshLibraryBase::Sgl().PolygonPrismCreate(khaziRef.MeshWRef(), t4Val(1,1,1,1), 5);            
-                U32 number = 5;
-                t4Val offset(0,0,0,-1);
-                if (i % 1 == 0)
-                {
-                    disp.RotationWRef().OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis
-                                                        (1, M_PI/number));
-                    MushMeshTools::QuaternionRotateInAxis(1, 0.5*M_PI/number).VectorRotate(offset);
-                    disp.OffsetSet(offset);
-                    extrusionContext.DispSet(disp);
-                }
-                extrusionContext.ScaleVelocitySet(1.0/number);
-                extrusionContext.ResetNewFace(0);
-                faceExtrude.FaceExtrude(khaziRef.MeshWRef(), extrusionContext, number);
-                extrusionContext.ResetNewFace(1);
-                faceExtrude.FaceExtrude(khaziRef.MeshWRef(), extrusionContext, number);
-
-                disp.OffsetSet(offset);
-                extrusionContext.ResetNewDispFace(disp, 0);
-                vertexExtrude.FaceExtrude(khaziRef.MeshWRef(), extrusionContext, number);
-                offset.WSet(-offset.W());
-                disp.OffsetSet(offset);
-                disp.RotationSet(disp.Rotation().Conjugate());
-                extrusionContext.ResetNewDispFace(disp, 1);
-                vertexExtrude.FaceExtrude(khaziRef.MeshWRef(), extrusionContext, number);
-                if (i == 0)
-                {
-                    TestSkinCreate(ioLogic, khaziRef.MeshWRef());
-                }
-            }
-            break;
-                
-            case 3:
-            {
-                MeshLibrary().ProjectileCreate(khaziRef.MeshWRef());
-            }
-            break;
-        }
+        AdanaxisMeshLibrary::AdanaxisSgl().AttendantCreate(khaziRef.MeshWRef());
+        khaziRef.MeshWRef().TexCoordDelegateSet(MushMesh4Mesh::tDataRef("attendant"));
+        khaziRef.TexCoordBuffersNameSet("attendant");
     }
 }
 
 void
-AdanaxisUtil::TestSkinCreate(AdanaxisLogic& ioLogic, MushMesh4Mesh& ioMesh)
+AdanaxisUtil::TestSkinsCreate(AdanaxisLogic& ioLogic)
 {
+    MushMesh4Mesh *p4Mesh = MushcoreData<MushMesh4Mesh>::Sgl().Give("attendant", new MushMesh4Mesh);
+    AdanaxisMeshLibrary::AdanaxisSgl().AttendantCreate(*p4Mesh);
+                                                       
     MushSkinNoise skinNoise;
-    skinNoise.TextureGenerate(ioMesh);
-    skinNoise.TexCoordsGenerate(ioMesh);
+    skinNoise.TextureGenerate(*p4Mesh);
+    skinNoise.TexCoordsGenerate(*p4Mesh);
+    MushcoreData<MushGLBuffers>::Sgl().GetOrCreate("attendant");
 }
 

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 89CRHyqzGdmyRnU8sWf03w
 /*
- * $Id$
- * $Log$
+ * $Id: MushGLMaterial.cpp,v 1.1 2005/09/03 17:05:36 southa Exp $
+ * $Log: MushGLMaterial.cpp,v $
+ * Revision 1.1  2005/09/03 17:05:36  southa
+ * Material work
+ *
  */
 
 #include "MushGLMaterial.h"
@@ -58,6 +61,7 @@ void
 MushGLMaterial::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
+    ioOut << "textureHandles=" << m_textureHandles;
     ioOut << "]";
 }
 bool
@@ -69,6 +73,10 @@ MushGLMaterial::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
     }
+    else if (inTagStr == "textureHandles")
+    {
+        ioIn >> m_textureHandles;
+    }
     else 
     {
         return false;
@@ -78,5 +86,7 @@ MushGLMaterial::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
 void
 MushGLMaterial::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
+    ioOut.TagSet("textureHandles");
+    ioOut << m_textureHandles;
 }
-//%outOfLineFunctions } WIjlwmDRxiVzveHChAzoxQ
+//%outOfLineFunctions } iZG9tKYk5DXBuXrkz3Qydg

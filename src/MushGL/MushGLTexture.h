@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } nz+Fu4qaTnAG/0iggFLOcQ
 /*
- * $Id: MushGLTexture.h,v 1.1 2005/08/28 22:41:52 southa Exp $
+ * $Id: MushGLTexture.h,v 1.2 2005/08/29 18:40:57 southa Exp $
  * $Log: MushGLTexture.h,v $
+ * Revision 1.2  2005/08/29 18:40:57  southa
+ * Solid rendering work
+ *
  * Revision 1.1  2005/08/28 22:41:52  southa
  * MushGLTexture work
  *
@@ -36,6 +39,8 @@
 class MushGLTexture : public MushcoreVirtualObject
 {
 public:
+    typedef MushcoreDataRef<MushGLTexture> tDataRef;
+    
     MushGLTexture() :
         m_size(Mushware::t4U32(0,0,0)),
         m_bound(false),

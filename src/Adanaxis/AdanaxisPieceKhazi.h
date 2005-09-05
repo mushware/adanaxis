@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } ECoWMgOgfphFtEFoxlZ8Qg
 /*
- * $Id: AdanaxisPieceKhazi.h,v 1.4 2005/08/01 17:58:51 southa Exp $
+ * $Id: AdanaxisPieceKhazi.h,v 1.5 2005/09/03 17:05:36 southa Exp $
  * $Log: AdanaxisPieceKhazi.h,v $
+ * Revision 1.5  2005/09/03 17:05:36  southa
+ * Material work
+ *
  * Revision 1.4  2005/08/01 17:58:51  southa
  * Object explosion
  *
@@ -62,6 +65,8 @@ public:
     virtual const MushMesh4Mesh& CollisionMesh(void) const { return m_mesh; }
     virtual const MushMeshPosticity& CollisionPost(void) const { return Post(); }
 
+    virtual void TexCoordBuffersNameSet(const std::string& inName) { m_texCoordBuffersRef.NameSet(inName); }
+    
 protected:
     virtual void Explode(MushGameLogic& ioLogic, const MushGameMessageCollisionFatal& inMessage);
     
@@ -70,9 +75,7 @@ private:
     bool m_expireFlag; //:readwrite
     MushMesh4Mesh m_mesh; //:readwrite :wref
     MushGLBuffers::tDataRef m_buffersRef; //:readwrite
-    
-    MushMesh4Mesh::tDataRef m_secondaryMeshRef; //:readwrite
-    MushGLBuffers::tDataRef m_secondaryBuffersRef; //:readwrite
+    MushGLBuffers::tSharedDataRef m_texCoordBuffersRef; //:readwrite
         
 //%classPrototypes {
 public:
@@ -86,10 +89,8 @@ public:
     MushMesh4Mesh& MeshWRef(void) { return m_mesh; }
     const MushGLBuffers::tDataRef& BuffersRef(void) const { return m_buffersRef; }
     void BuffersRefSet(const MushGLBuffers::tDataRef& inValue) { m_buffersRef=inValue; }
-    const MushMesh4Mesh::tDataRef& SecondaryMeshRef(void) const { return m_secondaryMeshRef; }
-    void SecondaryMeshRefSet(const MushMesh4Mesh::tDataRef& inValue) { m_secondaryMeshRef=inValue; }
-    const MushGLBuffers::tDataRef& SecondaryBuffersRef(void) const { return m_secondaryBuffersRef; }
-    void SecondaryBuffersRefSet(const MushGLBuffers::tDataRef& inValue) { m_secondaryBuffersRef=inValue; }
+    const MushGLBuffers::tSharedDataRef& TexCoordBuffersRef(void) const { return m_texCoordBuffersRef; }
+    void TexCoordBuffersRefSet(const MushGLBuffers::tSharedDataRef& inValue) { m_texCoordBuffersRef=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -97,7 +98,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } xg87vv8DJSe0CwHsJ6Lbzw
+//%classPrototypes } Slgxgt2LdHfWwvnW2K7VTQ
 };
 
 //%inlineHeader {

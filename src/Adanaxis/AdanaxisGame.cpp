@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } 1+Fcp5/pJdalVjA2hnviXw
 /*
- * $Id: AdanaxisGame.cpp,v 1.21 2005/08/02 14:37:44 southa Exp $
+ * $Id: AdanaxisGame.cpp,v 1.22 2005/08/05 10:33:33 southa Exp $
  * $Log: AdanaxisGame.cpp,v $
+ * Revision 1.22  2005/08/05 10:33:33  southa
+ * win32 build fixes
+ *
  * Revision 1.21  2005/08/02 14:37:44  southa
  * Adanaxis control demo work
  *
@@ -212,6 +215,7 @@ AdanaxisGame::Init(GameAppHandler& inAppHandler)
 
     UpdateFromConfig();
     
+    AdanaxisUtil::TestSkinsCreate(Logic());
     AdanaxisUtil::TestDecoCreate(Logic());
     AdanaxisUtil::TestPiecesCreate(Logic());
     
