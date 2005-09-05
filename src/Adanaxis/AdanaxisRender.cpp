@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } eomVoawiv9P4VcOw5CYHSg
 /*
- * $Id: AdanaxisRender.cpp,v 1.20 2005/08/02 14:37:44 southa Exp $
+ * $Id: AdanaxisRender.cpp,v 1.21 2005/08/31 23:57:26 southa Exp $
  * $Log: AdanaxisRender.cpp,v $
+ * Revision 1.21  2005/08/31 23:57:26  southa
+ * Texture coordinate work
+ *
  * Revision 1.20  2005/08/02 14:37:44  southa
  * Adanaxis control demo work
  *
@@ -172,9 +175,9 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
         }
     }
     
-    renderMesh.ColourZMiddleSet(t4Val(1.0,1.0,1.0,1.0));
-    renderMesh.ColourZLeftSet(t4Val(1.0,0.0,0.0,0.0));
-    renderMesh.ColourZRightSet(t4Val(0.0,1.0,0.0,0.0));
+    renderMesh.ColourZMiddleSet(t4Val(1.0,1.0,1.0,0.3));
+    renderMesh.ColourZLeftSet(t4Val(1.0,0.7,0.7,0.0));
+    renderMesh.ColourZRightSet(t4Val(0.7,1.0,0.7,0.0));
 
     typedef AdanaxisSaveData::tProjectileList tProjectileList;
     

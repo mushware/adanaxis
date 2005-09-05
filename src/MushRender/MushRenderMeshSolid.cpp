@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } zdbEcRL1ilVe+y99FKu15g
 /*
- * $Id: MushRenderMeshSolid.cpp,v 1.3 2005/09/03 17:05:36 southa Exp $
+ * $Id: MushRenderMeshSolid.cpp,v 1.4 2005/09/05 12:54:30 southa Exp $
  * $Log: MushRenderMeshSolid.cpp,v $
+ * Revision 1.4  2005/09/05 12:54:30  southa
+ * Solid rendering work
+ *
  * Revision 1.3  2005/09/03 17:05:36  southa
  * Material work
  *
@@ -46,9 +49,9 @@ Mushware::U32 MushRenderMeshSolid::m_highlightedFace = 0;
 Mushware::U32 MushRenderMeshSolid::m_highlightedFacet = 0;
 
 MushRenderMeshSolid::MushRenderMeshSolid() :
-    m_colourZMiddle(t4Val(1.0,1.0,1.0,0.5)),
-    m_colourZLeft(t4Val(1.0,0.0,0.0,0.0)),
-    m_colourZRight(t4Val(0.0,1.0,0.0,0.0))
+    m_colourZMiddle(t4Val(1.0,1.0,1.0,0.1)),
+    m_colourZLeft(t4Val(1.0,0.8,0.8,0.0)),
+    m_colourZRight(t4Val(0.8,1.0,0.8,0.0))
 {
 }
 
@@ -95,6 +98,7 @@ MushRenderMeshSolid::MeshRender(const MushRenderSpec& inSpec, const MushMeshMesh
     MushGLWorkSpec& workSpecRef = jobRender.WorkSpecNew();
     
     jobRender.BuffersRefSet(inSpec.BuffersRef());
+    jobRender.TexCoordBuffersRefSet(inSpec.TexCoordBuffersRef());
     workSpecRef.RenderTypeSet(MushGLWorkSpec::kRenderTypeTriangles);
     
     jobRender.Execute();
@@ -262,9 +266,9 @@ MushRenderMeshSolid::OutputBufferGenerate(const MushRenderSpec& inSpec, const Mu
     MushGLBuffers::tTexCoordBuffers& destTexCoords =
         glDestTexCoordBuffersRef.TexCoordBuffersWRef(); // Texture coordinate buffers for output
     
-    if (texCoordsPerVertex > glDestBuffersRef.NumTexCoordBuffers())
+    if (texCoordsPerVertex > glDestTexCoordBuffersRef.NumTexCoordBuffers())
     {
-        glDestBuffersRef.NumTexCoordBuffersSet(texCoordsPerVertex);
+        glDestTexCoordBuffersRef.NumTexCoordBuffersSet(texCoordsPerVertex);
     }
 
     // Build the triangle lists if necessary
@@ -326,7 +330,7 @@ MushRenderMeshSolid::OutputBufferGenerate(const MushRenderSpec& inSpec, const Mu
     {
         DerivedColourSet(destColours.Ref(i), eyeVertices[vertexTriangleList[i]], inSpec);
     }
-        
+
     for (U32 texCoordNum=0; texCoordNum<texCoordsPerVertex; ++texCoordNum)
     {
         MushGLBuffers::tTexCoordBuffer& destTexCoord = destTexCoords[texCoordNum];
@@ -337,7 +341,7 @@ MushRenderMeshSolid::OutputBufferGenerate(const MushRenderSpec& inSpec, const Mu
         destTexCoord.MapReadWrite();
         for (U32 i=0; i<texCoordTriangleListSize; ++i)
         {
-            destVertices.Set(srcTexCoords[texCoordTriangleList[i]], i);
+            destTexCoord.Set(srcTexCoords[texCoordTriangleList[i]], i);
         }
     }
 

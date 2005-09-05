@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } d/h1MgTijF1xZZlnCvknWQ
 /*
- * $Id: MushGLState.h,v 1.2 2005/07/06 19:08:26 southa Exp $
+ * $Id: MushGLState.h,v 1.3 2005/08/31 23:57:27 southa Exp $
  * $Log: MushGLState.h,v $
+ * Revision 1.3  2005/08/31 23:57:27  southa
+ * Texture coordinate work
+ *
  * Revision 1.2  2005/07/06 19:08:26  southa
  * Adanaxis control work
  *
@@ -53,6 +56,7 @@ public:
     MushGLState();
     
     void ActiveTextureZeroBased(Mushware::U32 inTexNum);
+    void ClientActiveTextureZeroBased(Mushware::U32 inTexNum);
     void TextureEnable2D(Mushware::U32 inTexNum);
     void TextureDisable2D(Mushware::U32 inTexNum);
     
@@ -68,6 +72,7 @@ public:
     void VertexArraySetTrue(MushGLVertexBuffer<Mushware::t4GLVal>& ioBuffer);
     
     void ArraysDisable(void);
+    void TexturesDisable(void);
     
     void ResetWriteAll(void) { InvalidateAll(); Reset(); }
     void Reset(void);
@@ -89,6 +94,7 @@ private:
     std::vector<tState> m_texCoordArrays;
     std::vector<tState> m_textureStates;
     Mushware::U32 m_activeTexNum;
+    Mushware::U32 m_clientActiveTexNum;
     
 //%classPrototypes {
 public:
@@ -101,186 +107,6 @@ public:
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
 //%classPrototypes } 1oBgFruy5qHAaudtV+Hcmg
 };
-
-inline
-MushGLState::MushGLState()
-{
-    InvalidateAll();
-}
-
-inline void
-MushGLState::InvalidateAll(void)
-{
-    m_colourArray = kStateNone;
-    m_edgeFlagArray = kStateNone;
-    m_indexArray = kStateNone;
-    m_normalArray = kStateNone;
-    for (Mushware::U32 i=0; i<m_texCoordArrays.size(); ++i)
-    {
-        m_texCoordArrays[i] = kStateNone;
-    }
-    m_vertexArray = kStateNone;
-    m_activeTexNum = ~0;
-}
-
-inline void
-MushGLState::Reset(void)
-{
-    ArraysDisable();
-    for (Mushware::U32 i=0; i<m_textureStates.size(); ++i)
-    {
-        TextureDisable2D(i);
-    }
-    ActiveTextureZeroBased(0);
-}
-
-inline void
-MushGLState::ActiveTextureZeroBased(Mushware::U32 inTexNum)
-{
-    if (m_activeTexNum != inTexNum)
-    {
-        MushGLV::Sgl().ActiveTextureZeroBased(inTexNum);
-    }
-    m_activeTexNum = inTexNum;
-}
-
-inline void
-MushGLState::TextureStateGrow(Mushware::U32 inTexNum)
-{
-    if (inTexNum <= m_textureStates.size())
-    {
-        if (inTexNum >= MushGLV::Sgl().NumTextureUnits())
-        {
-            std::ostringstream message;
-            message << "Texture number too high (" << inTexNum << " >= " << MushGLV::Sgl().NumTextureUnits() << ")";
-            throw MushcoreRequestFail(message.str());
-        }
-        m_textureStates.resize(inTexNum+1, kStateNone);
-    }
-}
-
-inline void
-MushGLState::TextureEnable2D(Mushware::U32 inTexNum)
-{
-    TextureStateGrow(inTexNum);
-    if (m_textureStates[inTexNum] != kStateTrue)
-    {
-        ActiveTextureZeroBased(inTexNum);
-        glEnable(GL_TEXTURE_2D);
-        m_textureStates[inTexNum] = kStateTrue;
-    }
-}    
-
-inline void
-MushGLState::TextureDisable2D(Mushware::U32 inTexNum)
-{
-    TextureStateGrow(inTexNum);
-    if (m_textureStates[inTexNum] != kStateFalse)
-    {
-        ActiveTextureZeroBased(inTexNum);
-        glDisable(GL_TEXTURE_2D);
-        m_textureStates[inTexNum] = kStateFalse;
-    }
-}    
-
-inline void
-MushGLState::DisableClientState(Mushware::U8& ioStateVar, Mushware::U32 inGLState)
-{
-    if (ioStateVar != kStateFalse)
-    {
-        glDisableClientState(inGLState);
-        ioStateVar = kStateFalse;
-    }
-}
-
-inline void
-MushGLState::TextureArrayGrow(Mushware::U32 inTexNum)
-{
-    if (inTexNum <= m_texCoordArrays.size())
-    {
-        if (inTexNum >= MushGLV::Sgl().NumTextureUnits())
-        {
-            std::ostringstream message;
-            message << "Texture number too high (" << inTexNum << " >= " << MushGLV::Sgl().NumTextureUnits() << ")";
-            throw MushcoreRequestFail(message.str());
-        }
-        m_texCoordArrays.resize(inTexNum+1, kStateNone);
-    }
-}
-
-inline void
-MushGLState::DisableClientTextureState(Mushware::U32 inTexNum)
-{
-    TextureArrayGrow(inTexNum);
-    if (m_texCoordArrays[inTexNum] != kStateFalse)
-    {
-        ActiveTextureZeroBased(inTexNum);
-        glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-    }
-    m_texCoordArrays[inTexNum] = kStateFalse;
-}
-
-inline void
-MushGLState::ColourArraySetTrue(MushGLVertexBuffer<Mushware::t4GLVal>& ioBuffer)
-{
-    ioBuffer.Bind();
-    
-    glColorPointer(4, MUSHGL_VALTYPE, 0, ioBuffer.AddrForGLGet());
-    
-    if (m_colourArray != kStateTrue)
-    {
-        glEnableClientState(GL_COLOR_ARRAY);
-        m_colourArray = kStateTrue;
-    }
-}
-
-inline void
-MushGLState::TexCoordArraySetTrue(MushGLVertexBuffer<Mushware::t4GLVal>& ioBuffer, Mushware::U32 inTexNum)
-{
-    TextureArrayGrow(inTexNum);
-
-    ioBuffer.Bind();
-    
-    MushGLV::Sgl().ActiveTextureZeroBased(inTexNum);
-    
-    glTexCoordPointer(4, MUSHGL_VALTYPE, 0, ioBuffer.AddrForGLGet());
-    
-    MUSHCOREASSERT(inTexNum < m_texCoordArrays.size());
-    
-    if (m_texCoordArrays[inTexNum] != kStateTrue)
-    {
-        glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-        m_texCoordArrays[inTexNum] = kStateTrue;
-    }
-}
-
-inline void
-MushGLState::VertexArraySetTrue(MushGLVertexBuffer<Mushware::t4GLVal>& ioBuffer)
-{
-    ioBuffer.Bind();
-    
-    glVertexPointer(4, MUSHGL_VALTYPE, 0, ioBuffer.AddrForGLGet());
-    
-    if (m_vertexArray != kStateTrue)
-    {
-        glEnableClientState(GL_VERTEX_ARRAY);
-        m_vertexArray = kStateTrue;
-    }
-}
-
-inline void
-MushGLState::ArraysDisable(void)
-{
-    ColourArrayDisable();
-    EdgeFlagArrayDisable();
-    IndexArrayDisable();
-    NormalArrayDisable();
-    for (Mushware::U32 i=0; i<m_texCoordArrays.size(); ++i)
-    {
-        TexCoordArrayDisable(i);
-    }
-    VertexArrayDisable();
-}
 
 //%inlineHeader {
 inline std::ostream&

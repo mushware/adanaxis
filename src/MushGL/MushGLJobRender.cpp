@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } X47iPT+8iMD/6mUj/Cr/qg
 /*
- * $Id$
- * $Log$
+ * $Id: MushGLJobRender.cpp,v 1.1 2005/07/04 11:10:43 southa Exp $
+ * $Log: MushGLJobRender.cpp,v $
+ * Revision 1.1  2005/07/04 11:10:43  southa
+ * Rendering pipeline
+ *
  */
 
 
@@ -42,7 +45,6 @@ void
 MushGLJobRender::Execute(void)
 {
     U32 workSpecSize = m_workSpecs.size();
-    MushGLBuffers& buffersRef = m_buffersRef.WRef();
     
     for (U32 i=0; i<workSpecSize; ++i)
     {
@@ -50,7 +52,7 @@ MushGLJobRender::Execute(void)
         {
             throw MushcoreLogicFail(std::string("Corrupt ")+AutoName()+" job");
         }
-        m_workSpecs[i]->Execute(buffersRef);
+        m_workSpecs[i]->Execute(m_buffersRef, m_texCoordBuffersRef);
     }    
 }
 
@@ -89,7 +91,8 @@ MushGLJobRender::AutoPrint(std::ostream& ioOut) const
     ioOut << "[";
     MushGLJob::AutoPrint(ioOut);
     ioOut << "workSpecs=" << m_workSpecs << ", ";
-    ioOut << "buffersRef=" << m_buffersRef;
+    ioOut << "buffersRef=" << m_buffersRef << ", ";
+    ioOut << "texCoordBuffersRef=" << m_texCoordBuffersRef;
     ioOut << "]";
 }
 bool
@@ -109,6 +112,10 @@ MushGLJobRender::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string&
     {
         ioIn >> m_buffersRef;
     }
+    else if (inTagStr == "texCoordBuffersRef")
+    {
+        ioIn >> m_texCoordBuffersRef;
+    }
     else if (MushGLJob::AutoXMLDataProcess(ioIn, inTagStr))
     {
         // Tag consumed by base class
@@ -127,5 +134,7 @@ MushGLJobRender::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_workSpecs;
     ioOut.TagSet("buffersRef");
     ioOut << m_buffersRef;
+    ioOut.TagSet("texCoordBuffersRef");
+    ioOut << m_texCoordBuffersRef;
 }
-//%outOfLineFunctions } MHMwse8jUppzhUcsiyrRdg
+//%outOfLineFunctions } ncI2XvlpAz9s3goAXt7ifA

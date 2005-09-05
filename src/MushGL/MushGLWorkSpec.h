@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } Tcvr8t/02ON4PA2mIz92sQ
 /*
- * $Id: MushGLWorkSpec.h,v 1.1 2005/07/04 11:10:43 southa Exp $
+ * $Id: MushGLWorkSpec.h,v 1.2 2005/08/31 23:57:27 southa Exp $
  * $Log: MushGLWorkSpec.h,v $
+ * Revision 1.2  2005/08/31 23:57:27  southa
+ * Texture coordinate work
+ *
  * Revision 1.1  2005/07/04 11:10:43  southa
  * Rendering pipeline
  *
@@ -47,7 +50,7 @@ public:
     MushGLWorkSpec() : m_renderType(0) {}
     virtual ~MushGLWorkSpec() {}
 
-    void Execute(MushGLBuffers& ioBuffers);
+    void Execute(MushGLBuffers::tDataRef& ioDataRef, MushGLBuffers::tSharedDataRef& ioSharedDataRef);
     
 private:
     Mushware::U32 m_renderType; //:readwrite

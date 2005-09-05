@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } Wpgv8RTp/irSWsiiI5S6xA
 /*
- * $Id: MushGLWorkSpec.cpp,v 1.3 2005/09/03 17:05:36 southa Exp $
+ * $Id: MushGLWorkSpec.cpp,v 1.4 2005/09/05 12:54:30 southa Exp $
  * $Log: MushGLWorkSpec.cpp,v $
+ * Revision 1.4  2005/09/05 12:54:30  southa
+ * Solid rendering work
+ *
  * Revision 1.3  2005/09/03 17:05:36  southa
  * Material work
  *
@@ -42,17 +45,18 @@ using namespace Mushware;
 using namespace std;
 
 void
-MushGLWorkSpec::Execute(MushGLBuffers& ioBuffers)
+MushGLWorkSpec::Execute(MushGLBuffers::tDataRef& ioDataRef, MushGLBuffers::tSharedDataRef& ioSharedDataRef)
 {
-    MushGLClaimer<MushGLBuffers> claimBuffer(ioBuffers);
     MushGLState& stateRef = MushGLState::Sgl();
-    
 
-    tSize vertexSize = ioBuffers.VertexBuffer().Size();
-    tSize colourSize = ioBuffers.ColourBuffer().Size();
+    MushGLBuffers& buffersRef = ioDataRef.WRef();
+    MushGLClaimer<MushGLBuffers> claimBuffer(buffersRef);
+
+    tSize vertexSize = buffersRef.VertexBuffer().Size();
+    tSize colourSize = buffersRef.ColourBuffer().Size();
     if (vertexSize > 0)
     {
-        stateRef.VertexArraySetTrue(ioBuffers.VertexBufferWRef());
+        stateRef.VertexArraySetTrue(buffersRef.VertexBufferWRef());
     }
     if (colourSize > 0)
     {
@@ -60,24 +64,30 @@ MushGLWorkSpec::Execute(MushGLBuffers& ioBuffers)
         {
             throw MushcoreDataFail("Sizes of vertex and colour buffers do not match");
         }
-        stateRef.ColourArraySetTrue(ioBuffers.ColourBufferWRef());
+        stateRef.ColourArraySetTrue(buffersRef.ColourBufferWRef());
     }
-    
-    for (U32 i=0; i<ioBuffers.NumTexCoordBuffers(); ++i)
-    {
-        tSize texCoordSize = ioBuffers.TexCoordBuffer(i).Size();
 
-        if (texCoordSize > 0)
+    if (ioSharedDataRef.Name() != "")
+    {
+        MushGLBuffers& texCoordBuffersRef = ioSharedDataRef.WRef();
+        MushGLClaimer<MushGLBuffers> texCoordClaimBuffer(texCoordBuffersRef);
+
+        for (U32 i=0; i<texCoordBuffersRef.NumTexCoordBuffers(); ++i)
         {
-            if (vertexSize != texCoordSize)
+            tSize texCoordSize = texCoordBuffersRef.TexCoordBuffer(i).Size();
+
+            if (texCoordSize > 0)
             {
-                throw MushcoreDataFail("Sizes of vertex and texture coordinate buffers do not match");
+                if (vertexSize != texCoordSize)
+                {
+                    throw MushcoreDataFail("Sizes of vertex and texture coordinate buffers do not match");
+                }
+                static MushcoreDataRef<MushGLTexture> texRef("tex1");
+                
+                texRef.WRef().Bind();
+                stateRef.TexCoordArraySetTrue(texCoordBuffersRef.TexCoordBufferWRef(i), i);
+                stateRef.TextureEnable2D(i);
             }
-            static MushcoreDataRef<MushGLTexture> texRef("tex1");
-            
-            texRef.WRef().Bind();
-            stateRef.TexCoordArraySetTrue(ioBuffers.TexCoordBufferWRef(i), i);
-            stateRef.TextureEnable2D(i);
         }
     }
 
@@ -103,9 +113,16 @@ MushGLWorkSpec::Execute(MushGLBuffers& ioBuffers)
         }
         break;
     }
+    GLState::BlendSet(GLState::kBlendTransparent);
+    GLState::ModulationSet(GLState::kModulationColour);
+    GLState::DepthSet(GLState::kDepthNone);
+    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR_MIPMAP_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
     
+    //glEnable(GL_TEXTURE_2D);
     MushGLV::Sgl().DrawArrays(m_renderType, 0, vertexSize);
     
+    stateRef.TexturesDisable();
     stateRef.ArraysDisable();
 }
 

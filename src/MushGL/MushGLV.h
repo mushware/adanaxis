@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 7iEHHdeOPdV1ZH7aSJ/mHA
 /*
- * $Id: MushGLV.h,v 1.13 2005/08/29 18:40:57 southa Exp $
+ * $Id: MushGLV.h,v 1.14 2005/08/31 23:57:27 southa Exp $
  * $Log: MushGLV.h,v $
+ * Revision 1.14  2005/08/31 23:57:27  southa
+ * Texture coordinate work
+ *
  * Revision 1.13  2005/08/29 18:40:57  southa
  * Solid rendering work
  *
@@ -80,6 +83,7 @@ public:
     void DrawArrays(GLenum inMode, GLint inFirst, GLsizei inCount);
     void BindTexture2D(GLuint inBindingName) { glBindTexture(GL_TEXTURE_2D, inBindingName); }
     void ActiveTextureZeroBased(Mushware::U32 inTexNum);
+    void ClientActiveTextureZeroBased(Mushware::U32 inTexNum);
     
     bool HasVertexBuffer() const { return m_hasVertexBuffer; }
     bool UseVertexBuffer() const { return m_hasVertexBuffer; }
@@ -164,6 +168,19 @@ MushGLV::ActiveTextureZeroBased(Mushware::U32 inTexNum)
         throw MushcoreRequestFail(message.str());
     }
     glActiveTexture(GL_TEXTURE0 + inTexNum);
+}
+
+inline void
+MushGLV::ClientActiveTextureZeroBased(Mushware::U32 inTexNum)
+{
+    ContextValidAssert();
+    if (inTexNum >= m_numTextureUnits)
+    {
+        std::ostringstream message;
+        message << "Texture number too high (" << inTexNum << " >= " << m_numTextureUnits << ")";
+        throw MushcoreRequestFail(message.str());
+    }
+    glClientActiveTexture(GL_TEXTURE0 + inTexNum);
 }
 
 //%inlineHeader {
