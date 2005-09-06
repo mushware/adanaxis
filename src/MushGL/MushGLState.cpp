@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } tWGKT6xf6h2OQMzlKKglYA
 /*
- * $Id: MushGLState.cpp,v 1.2 2005/08/31 23:57:27 southa Exp $
+ * $Id: MushGLState.cpp,v 1.3 2005/09/05 17:14:22 southa Exp $
  * $Log: MushGLState.cpp,v $
+ * Revision 1.3  2005/09/05 17:14:22  southa
+ * Solid rendering
+ *
  * Revision 1.2  2005/08/31 23:57:27  southa
  * Texture coordinate work
  *
@@ -65,6 +68,29 @@ MushGLState::Reset(void)
     }
     ActiveTextureZeroBased(0);
     ClientActiveTextureZeroBased(0);
+}
+
+void
+MushGLState::RenderStateSet(Mushware::U32 inRenderState)
+{
+    switch (inRenderState)
+    {
+        case kRenderState4D:
+            glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+            glEnable(GL_BLEND);
+            glDisable(GL_CULL_FACE);
+            glDisable(GL_POLYGON_SMOOTH);
+            glDisable(GL_DEPTH_TEST);
+            glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+            glDisable(GL_LIGHTING);
+            glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR_MIPMAP_LINEAR);
+            glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
+            break;
+            
+        default:
+            throw(MushcoreRequestFail("Invalid RenderState value"));
+            break;
+    }
 }
 
 void
@@ -178,7 +204,7 @@ MushGLState::ColourArraySetTrue(MushGLVertexBuffer<Mushware::t4GLVal>& ioBuffer)
 }
 
 void
-MushGLState::TexCoordArraySetTrue(MushGLVertexBuffer<Mushware::t4GLVal>& ioBuffer, Mushware::U32 inTexNum)
+MushGLState::TexCoordArraySetTrue(MushGLVertexBuffer<Mushware::tGLTexCoord>& ioBuffer, Mushware::U32 inTexNum)
 {
     TextureArrayGrow(inTexNum);
     
@@ -187,7 +213,7 @@ MushGLState::TexCoordArraySetTrue(MushGLVertexBuffer<Mushware::t4GLVal>& ioBuffe
     
     ioBuffer.Bind();
     
-    glTexCoordPointer(2, MUSHGL_VALTYPE, 2, ioBuffer.AddrForGLGet());
+    glTexCoordPointer(2, MUSHGL_VALTYPE, 0, ioBuffer.AddrForGLGet());
     
     MUSHCOREASSERT(inTexNum < m_texCoordArrays.size());
     

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } YOqikbGkSghET5DVnp+snQ
 /*
- * $Id: MushRenderMeshSolid.h,v 1.1 2005/08/29 18:40:57 southa Exp $
+ * $Id: MushRenderMeshSolid.h,v 1.2 2005/09/05 12:54:30 southa Exp $
  * $Log: MushRenderMeshSolid.h,v $
+ * Revision 1.2  2005/09/05 12:54:30  southa
+ * Solid rendering work
+ *
  * Revision 1.1  2005/08/29 18:40:57  southa
  * Solid rendering work
  *
@@ -63,9 +66,6 @@ private:
     Mushware::t4Val m_colourZMiddle; //:readwrite
     Mushware::t4Val m_colourZLeft;   //:readwrite
     Mushware::t4Val m_colourZRight;  //:readwrite
-    
-    static Mushware::U32 m_highlightedFace; //:readwrite
-    static Mushware::U32 m_highlightedFacet; //:readwrite
     
 //%classPrototypes {
 public:

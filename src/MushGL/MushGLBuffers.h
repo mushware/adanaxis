@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } DbBqjjQLEDRD5N83MupJQQ
 /*
- * $Id: MushGLBuffers.h,v 1.5 2005/09/03 17:05:36 southa Exp $
+ * $Id: MushGLBuffers.h,v 1.6 2005/09/05 12:54:30 southa Exp $
  * $Log: MushGLBuffers.h,v $
+ * Revision 1.6  2005/09/05 12:54:30  southa
+ * Solid rendering work
+ *
  * Revision 1.5  2005/09/03 17:05:36  southa
  * Material work
  *
@@ -62,7 +65,7 @@ public:
     
     typedef Mushware::t4GLVal tVertex;
     typedef Mushware::t4GLVal tColour;
-    typedef Mushware::t4GLVal tTexCoord;
+    typedef Mushware::tGLTexCoord tTexCoord;
     typedef MushGLVertexBuffer<tVertex> tVertexBuffer;
     typedef MushGLVertexBuffer<tColour> tColourBuffer;
     typedef MushGLVertexBuffer<tTexCoord> tTexCoordBuffer;

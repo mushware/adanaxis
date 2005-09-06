@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } 5mXJjsgE9FySBp3B30JsGw
 /*
- * $Id: MushMeshLibraryFGenExtrude.cpp,v 1.6 2005/07/19 13:44:26 southa Exp $
+ * $Id: MushMeshLibraryFGenExtrude.cpp,v 1.7 2005/08/01 17:58:44 southa Exp $
  * $Log: MushMeshLibraryFGenExtrude.cpp,v $
+ * Revision 1.7  2005/08/01 17:58:44  southa
+ * Object explosion
+ *
  * Revision 1.6  2005/07/19 13:44:26  southa
  * MushMesh4Chunk work
  *
@@ -183,6 +186,9 @@ MushMeshLibraryFGenExtrude::FaceExtrudeOne(MushMesh4Mesh& ioMesh, Mushware::U32&
         chunkFaceListRef.push_back(faceIndexNum);
     }
 
+    // The source face which we've just extruded from is now internal
+    srcFaceRef.InternalSet(true);
+    
     // Commit the new faces
     ioMesh.FaceWRef(ioFaceNum).ExtrudedFacesWRef().push_back(ioMesh.FaceCounter());
     ioMesh.FaceCounterWRef() += numNewFaces;

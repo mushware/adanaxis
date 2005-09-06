@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } Wpgv8RTp/irSWsiiI5S6xA
 /*
- * $Id: MushGLWorkSpec.cpp,v 1.4 2005/09/05 12:54:30 southa Exp $
+ * $Id: MushGLWorkSpec.cpp,v 1.5 2005/09/05 17:14:23 southa Exp $
  * $Log: MushGLWorkSpec.cpp,v $
+ * Revision 1.5  2005/09/05 17:14:23  southa
+ * Solid rendering
+ *
  * Revision 1.4  2005/09/05 12:54:30  southa
  * Solid rendering work
  *
@@ -113,13 +116,7 @@ MushGLWorkSpec::Execute(MushGLBuffers::tDataRef& ioDataRef, MushGLBuffers::tShar
         }
         break;
     }
-    GLState::BlendSet(GLState::kBlendTransparent);
-    GLState::ModulationSet(GLState::kModulationColour);
-    GLState::DepthSet(GLState::kDepthNone);
-    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR_MIPMAP_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
-    
-    //glEnable(GL_TEXTURE_2D);
+
     MushGLV::Sgl().DrawArrays(m_renderType, 0, vertexSize);
     
     stateRef.TexturesDisable();

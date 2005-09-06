@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } pR2b3ygRpl/qeOeauh/8HA
 /*
- * $Id$
- * $Log$
+ * $Id: MushSkinNoise.cpp,v 1.1 2005/08/29 18:40:57 southa Exp $
+ * $Log: MushSkinNoise.cpp,v $
+ * Revision 1.1  2005/08/29 18:40:57  southa
+ * Solid rendering work
+ *
  */
 
 #include "MushSkinNoise.h"
@@ -181,7 +184,7 @@ MushSkinNoise::TexCoordsGenerate(MushMesh4Mesh& ioMesh)
                     texCoordsWRef.resize(texCoordNum + 16);
                 }
                 MUSHCOREASSERT(texCoordNum < texCoordsWRef.size());
-                texCoordsWRef[texCoordNum] = t4Val(uvVector.X(), uvVector.Y(), 0, 0);
+                texCoordsWRef[texCoordNum] = t4Val(uvVector.X(), uvVector.Y(), 0, 1);
                 
                 // Add reference to that coordinate to face
                 MUSHCOREASSERT(texCoordBase + i < texCoordListWRef.size());

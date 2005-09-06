@@ -24,8 +24,11 @@
 //%Header } IwFY+vEV1v39vptrGOffNA
 
 /*
- * $Id: GLState.h,v 1.15 2005/04/10 00:09:22 southa Exp $
+ * $Id: GLState.h,v 1.16 2005/05/19 13:02:00 southa Exp $
  * $Log: GLState.h,v $
+ * Revision 1.16  2005/05/19 13:02:00  southa
+ * Mac release work
+ *
  * Revision 1.15  2005/04/10 00:09:22  southa
  * Registration
  *
@@ -130,7 +133,7 @@ public:
     static void TextureEnable(void);
     static void TextureDisable(void);
     static bool UseMipMap(void) { return m_useMipMap; }
-    
+    static void ContextReset(void);
 private:
     static void ResolveDisplayQuality(void);
         
@@ -394,6 +397,12 @@ GLState::BindTexture(GLuint inHandle)
         m_boundTexture = inHandle;
     }
 }
+
+inline void
+GLState::ContextReset(void)
+{
+    m_boundTexture = ~0;
+}    
 
 inline void
 GLState::TextureDisable(void)

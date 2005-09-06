@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } d/h1MgTijF1xZZlnCvknWQ
 /*
- * $Id: MushGLState.h,v 1.3 2005/08/31 23:57:27 southa Exp $
+ * $Id: MushGLState.h,v 1.4 2005/09/05 17:14:23 southa Exp $
  * $Log: MushGLState.h,v $
+ * Revision 1.4  2005/09/05 17:14:23  southa
+ * Solid rendering
+ *
  * Revision 1.3  2005/08/31 23:57:27  southa
  * Texture coordinate work
  *
@@ -53,7 +56,14 @@ public:
         kStateNone
     };
     
+    enum
+    {
+        kRenderState4D
+    };
+    
     MushGLState();
+    
+    void RenderStateSet(Mushware::U32 inRenderState);
     
     void ActiveTextureZeroBased(Mushware::U32 inTexNum);
     void ClientActiveTextureZeroBased(Mushware::U32 inTexNum);
@@ -68,7 +78,7 @@ public:
     void VertexArrayDisable(void) { DisableClientState(m_vertexArray, GL_VERTEX_ARRAY); }
         
     void ColourArraySetTrue(MushGLVertexBuffer<Mushware::t4GLVal>& ioBuffer);
-    void TexCoordArraySetTrue(MushGLVertexBuffer<Mushware::t4GLVal>& ioBuffer, Mushware::U32 inIndex);
+    void TexCoordArraySetTrue(MushGLVertexBuffer<Mushware::tGLTexCoord>& ioBuffer, Mushware::U32 inIndex);
     void VertexArraySetTrue(MushGLVertexBuffer<Mushware::t4GLVal>& ioBuffer);
     
     void ArraysDisable(void);

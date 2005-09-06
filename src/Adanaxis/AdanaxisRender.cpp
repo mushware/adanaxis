@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } eomVoawiv9P4VcOw5CYHSg
 /*
- * $Id: AdanaxisRender.cpp,v 1.21 2005/08/31 23:57:26 southa Exp $
+ * $Id: AdanaxisRender.cpp,v 1.22 2005/09/05 17:14:22 southa Exp $
  * $Log: AdanaxisRender.cpp,v $
+ * Revision 1.22  2005/09/05 17:14:22  southa
+ * Solid rendering
+ *
  * Revision 1.21  2005/08/31 23:57:26  southa
  * Texture coordinate work
  *
@@ -152,6 +155,8 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
     
     MushGLUtil::IdentityPrologue();
     
+    MushGLState::Sgl().RenderStateSet(MushGLState::kRenderState4D);
+    
     typedef AdanaxisVolatileData::tDecoList tDecoList;
     
     //MushRenderMeshDiagnostic renderMesh;
@@ -197,6 +202,8 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
     
     MushGLUtil::IdentityEpilogue();
     
+    GLState::ContextReset();
+
     MushGameDialogueUtils::MoveAndRender(pSaveData->DialoguesWRef(), GameUtils::AppHandler());
     
     
@@ -208,15 +215,7 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
     {
         PlatformVideoUtils::Sgl().RenderModeInfo(pVolData->NewMode());
     }
-    
-    static U32 ctr=0;
 
-    if (ctr++ < 0)
-    {
-        MushcoreXMLOStream xmlOut(std::cout);
-        std::cout << "Camera " << inCamera << endl;
-        xmlOut << m_projection;
-    }
     MushGLUtil::OrthoEpilogue();
     
     MushGLUtil::DisplayEpilogue();
@@ -224,7 +223,7 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
 
 void
 AdanaxisRender::Overplot(MushGameLogic& ioLogic, const MushGameCamera& inCamera)
-{    
+{
     GLState::ColourSet(1.0,1.0,1.0,0.3);
     GLUtils orthoGL;
     
