@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 929uH06nvmR9AZQiCgrrTw
 /*
- * $Id: MushGLPixelSource.h,v 1.2 2005/05/19 13:02:09 southa Exp $
+ * $Id: MushGLPixelSource.h,v 1.3 2005/08/28 22:41:52 southa Exp $
  * $Log: MushGLPixelSource.h,v $
+ * Revision 1.3  2005/08/28 22:41:52  southa
+ * MushGLTexture work
+ *
  * Revision 1.2  2005/05/19 13:02:09  southa
  * Mac release work
  *
@@ -52,6 +55,9 @@ public:
         kParamAlpha,
         kParamSeed,
         kParamFilename,
+        kParamXSize,
+        kParamYSize,
+        kParamSourceName,
         kParamBaseNext
     };
     virtual ~MushGLPixelSource() {}

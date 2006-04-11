@@ -19,7 +19,7 @@
  ****************************************************************************/
 //%Header } O8joXp2wbkSfRipztzWPwA
 /*
- * $Id: MushGameMessage.cpp,v 1.4 2005/06/23 11:58:28 southa Exp $
+ * $Id: MushGameMessage.cpp,v 1.5 2005/07/02 00:42:37 southa Exp $
  * $Log
  */
 
@@ -73,10 +73,6 @@ MushGameMessage::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string&
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
     }
-    else if (inTagStr == "srcAddrRef")
-    {
-        ioIn >> m_srcAddrRef;
-    }
     else if (inTagStr == "id")
     {
         ioIn >> m_id;
@@ -93,4 +89,4 @@ MushGameMessage::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("id");
     ioOut << m_id;
 }
-//%outOfLineFunctions } cD+qXAPnk5ouMYeLbidmIg
+//%outOfLineFunctions } bD9TYqfQLqtbsUeThpAL1Q

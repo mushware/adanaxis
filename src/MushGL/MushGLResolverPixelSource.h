@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } UWY3Pxnr/7dustUxmKjfTA
 /*
- * $Id$
- * $Log$
+ * $Id: MushGLResolverPixelSource.h,v 1.1 2005/08/28 22:41:52 southa Exp $
+ * $Log: MushGLResolverPixelSource.h,v $
+ * Revision 1.1  2005/08/28 22:41:52  southa
+ * MushGLTexture work
+ *
  */
 
 #include "MushGLStandard.h"
@@ -33,7 +36,7 @@
 class MushGLResolverPixelSource : public MushcoreVirtualObject, public MushcoreSingleton<MushGLResolverPixelSource>
 {
 public:
-    void Resolve(const std::string& inSrcName);
+    virtual void Resolve(const std::string& inSrcName);
     
 //%classPrototypes {
 public:

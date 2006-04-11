@@ -17,11 +17,79 @@
  ****************************************************************************/
 //%Header } TdUdiTjja8uY1Ei6cDI06Q
 /*
- * $Id$
- * $Log$
+ * $Id: MushSkinPixelSourceNoise.cpp,v 1.1 2005/09/06 12:15:35 southa Exp $
+ * $Log: MushSkinPixelSourceNoise.cpp,v $
+ * Revision 1.1  2005/09/06 12:15:35  southa
+ * Texture and rendering work
+ *
  */
 
 #include "MushSkinPixelSourceNoise.h"
+
+using namespace Mushware;
+using namespace std;
+
+void
+MushSkinPixelSourceNoise::ValueParameterSet(Mushware::U32 inNum, Mushware::tLongVal inVal)
+{
+    switch (inNum)
+    {
+        case kParamXSize:
+            m_xSize = static_cast<U32>(inVal);
+            break;
+        
+        case kParamYSize:
+            m_ySize = static_cast<U32>(inVal);
+            break;
+        
+        default:
+            MushGLPixelSource::ValueParameterSet(inNum, inVal);
+            break;
+    }
+}
+
+void
+MushSkinPixelSourceNoise::StringParameterSet(Mushware::U32 inNum, const std::string& inStr)
+{
+    switch (inNum)
+    {
+        case kParamSourceName:
+            m_sourceName = inStr;
+            break;
+            
+        default:
+            MushGLPixelSource::StringParameterSet(inNum, inStr);
+            break;
+    }
+}
+
+void
+MushSkinPixelSourceNoise::ToTextureCreate(MushGLTexture& outTexture)
+{
+    U32 pixelDataSize = 4*m_xSize*m_ySize;
+    std::vector<U8> pixelData(pixelDataSize);
+    
+    U32 dataIndex = 0;
+    for (U32 y=0; y<m_ySize; ++y)
+    {
+        for (U32 x=0; x<m_xSize; ++x)
+        {
+            tVal colourIndex = x+y;
+            
+            pixelData[dataIndex] = 128+MushcoreUtil::RandomU32(32,64)*sin(x * 1.0); // Red
+            pixelData[++dataIndex] = 96+MushcoreUtil::RandomU32(0,127);//128+127*sin(colourIndex * 1.2); // Green
+            pixelData[++dataIndex] = 224+MushcoreUtil::RandomU32(16,31)*sin(y*1.1); // Blue
+            pixelData[++dataIndex] = 128+127*sin(colourIndex * 0.07); // Alpha
+            ++dataIndex;
+        }
+    }
+    
+    // Bind the texture
+    outTexture.SizeSet(t4U32(m_xSize, m_ySize, 1, 1));
+    outTexture.PixelTypeRGBASet();
+    outTexture.StorageTypeGLSet();
+    outTexture.PixelDataUse(&pixelData[0]);
+}
 
 //%outOfLineFunctions {
 
@@ -56,6 +124,9 @@ void
 MushSkinPixelSourceNoise::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
+    ioOut << "xSize=" << m_xSize << ", ";
+    ioOut << "ySize=" << m_ySize << ", ";
+    ioOut << "sourceName=" << m_sourceName;
     ioOut << "]";
 }
 bool
@@ -67,6 +138,18 @@ MushSkinPixelSourceNoise::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
     }
+    else if (inTagStr == "xSize")
+    {
+        ioIn >> m_xSize;
+    }
+    else if (inTagStr == "ySize")
+    {
+        ioIn >> m_ySize;
+    }
+    else if (inTagStr == "sourceName")
+    {
+        ioIn >> m_sourceName;
+    }
     else 
     {
         return false;
@@ -76,5 +159,11 @@ MushSkinPixelSourceNoise::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std
 void
 MushSkinPixelSourceNoise::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
+    ioOut.TagSet("xSize");
+    ioOut << m_xSize;
+    ioOut.TagSet("ySize");
+    ioOut << m_ySize;
+    ioOut.TagSet("sourceName");
+    ioOut << m_sourceName;
 }
-//%outOfLineFunctions } 7+fZOCxEk9CU2K94uDVA7A
+//%outOfLineFunctions } /xdfP66fMW3hhQpZeaXGrA

@@ -30,6 +30,10 @@
 		7A0D469C07357AA800D06F24 /* MaurheenHypercube.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A0D469A07357AA800D06F24 /* MaurheenHypercube.cpp */; };
 		7A0D78B307358A2B00D06F24 /* MushMeshTools.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A0D78B107358A2B00D06F24 /* MushMeshTools.h */; };
 		7A0D78B407358A2B00D06F24 /* MushMeshTools.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A0D78B207358A2B00D06F24 /* MushMeshTools.cpp */; };
+		7A1A52C608CDD24700CBC8EC /* MushSkinResolverPixelSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A1A52C408CDD24700CBC8EC /* MushSkinResolverPixelSource.h */; };
+		7A1A52C708CDD24700CBC8EC /* MushSkinResolverPixelSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A1A52C508CDD24700CBC8EC /* MushSkinResolverPixelSource.cpp */; };
+		7A1A52C808CDD24700CBC8EC /* MushSkinResolverPixelSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A1A52C408CDD24700CBC8EC /* MushSkinResolverPixelSource.h */; };
+		7A1A52C908CDD24700CBC8EC /* MushSkinResolverPixelSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A1A52C508CDD24700CBC8EC /* MushSkinResolverPixelSource.cpp */; };
 		7A1F79740885312E009BFCCA /* MushMesh4LinkFaceFace.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A1F79720885312E009BFCCA /* MushMesh4LinkFaceFace.h */; };
 		7A1F79750885312E009BFCCA /* MushMesh4LinkFaceFace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A1F79730885312E009BFCCA /* MushMesh4LinkFaceFace.cpp */; };
 		7A1F7979088535C1009BFCCA /* MushMesh4LinkFaceFace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A1F79730885312E009BFCCA /* MushMesh4LinkFaceFace.cpp */; };
@@ -2125,6 +2129,112 @@
 		7AD19D2C08867AEB00CB6581 /* MushMeshLibraryExtrusionContext.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AD19D2A08867AEB00CB6581 /* MushMeshLibraryExtrusionContext.cpp */; };
 		7AD19D2D08867AEB00CB6581 /* MushMeshLibraryExtrusionContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD19D2908867AEB00CB6581 /* MushMeshLibraryExtrusionContext.h */; };
 		7AD19D2E08867AEB00CB6581 /* MushMeshLibraryExtrusionContext.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AD19D2A08867AEB00CB6581 /* MushMeshLibraryExtrusionContext.cpp */; };
+		7AD1AA9809EC594A0059879A /* array.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA6109EC59480059879A /* array.c */; };
+		7AD1AA9909EC594A0059879A /* bignum.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA6209EC59480059879A /* bignum.c */; };
+		7AD1AA9A09EC594A0059879A /* class.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA6309EC59480059879A /* class.c */; };
+		7AD1AA9B09EC594A0059879A /* compar.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA6409EC59480059879A /* compar.c */; };
+		7AD1AA9C09EC594A0059879A /* config.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD1AA6509EC59480059879A /* config.h */; };
+		7AD1AA9D09EC594A0059879A /* defines.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD1AA6609EC59480059879A /* defines.h */; };
+		7AD1AA9E09EC594A0059879A /* dir.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA6709EC59480059879A /* dir.c */; };
+		7AD1AA9F09EC594A0059879A /* dln.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA6809EC59480059879A /* dln.c */; };
+		7AD1AAA009EC594A0059879A /* dln.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD1AA6909EC59480059879A /* dln.h */; };
+		7AD1AAA209EC594A0059879A /* dmyext.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA6B09EC59480059879A /* dmyext.c */; };
+		7AD1AAA309EC594A0059879A /* enum.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA6C09EC59480059879A /* enum.c */; };
+		7AD1AAA409EC594A0059879A /* env.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD1AA6D09EC59480059879A /* env.h */; };
+		7AD1AAA509EC594A0059879A /* error.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA6E09EC59480059879A /* error.c */; };
+		7AD1AAA609EC594A0059879A /* eval.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA6F09EC59480059879A /* eval.c */; };
+		7AD1AAA709EC594A0059879A /* file.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA7009EC59480059879A /* file.c */; };
+		7AD1AAA809EC594A0059879A /* gc.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA7109EC59480059879A /* gc.c */; };
+		7AD1AAA909EC594A0059879A /* hash.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA7209EC59480059879A /* hash.c */; };
+		7AD1AAAA09EC594A0059879A /* inits.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA7309EC59480059879A /* inits.c */; };
+		7AD1AAAB09EC594A0059879A /* intern.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD1AA7409EC59480059879A /* intern.h */; };
+		7AD1AAAC09EC594A0059879A /* io.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA7509EC59480059879A /* io.c */; };
+		7AD1AAAF09EC594A0059879A /* marshal.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA7809EC59480059879A /* marshal.c */; };
+		7AD1AAB009EC594A0059879A /* math.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA7909EC59480059879A /* math.c */; };
+		7AD1AAB109EC594A0059879A /* missing.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD1AA7A09EC59480059879A /* missing.h */; };
+		7AD1AAB209EC594A0059879A /* node.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD1AA7B09EC59480059879A /* node.h */; };
+		7AD1AAB309EC594A0059879A /* numeric.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA7C09EC59490059879A /* numeric.c */; };
+		7AD1AAB409EC594A0059879A /* object.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA7D09EC59490059879A /* object.c */; };
+		7AD1AAB509EC594A0059879A /* pack.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA7E09EC59490059879A /* pack.c */; };
+		7AD1AAB609EC594A0059879A /* parse.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA7F09EC59490059879A /* parse.c */; };
+		7AD1AAB709EC594A0059879A /* prec.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA8009EC59490059879A /* prec.c */; };
+		7AD1AAB809EC594A0059879A /* process.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA8109EC59490059879A /* process.c */; };
+		7AD1AAB909EC594A0059879A /* random.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA8209EC59490059879A /* random.c */; };
+		7AD1AABA09EC594A0059879A /* range.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA8309EC59490059879A /* range.c */; };
+		7AD1AABB09EC594A0059879A /* re.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA8409EC59490059879A /* re.c */; };
+		7AD1AABC09EC594A0059879A /* re.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD1AA8509EC59490059879A /* re.h */; };
+		7AD1AABD09EC594A0059879A /* regex.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA8609EC59490059879A /* regex.c */; };
+		7AD1AABE09EC594A0059879A /* regex.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD1AA8709EC59490059879A /* regex.h */; };
+		7AD1AABF09EC594A0059879A /* ruby.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA8809EC59490059879A /* ruby.c */; };
+		7AD1AAC009EC594A0059879A /* ruby.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD1AA8909EC59490059879A /* ruby.h */; };
+		7AD1AAC109EC594A0059879A /* rubyio.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD1AA8A09EC59490059879A /* rubyio.h */; };
+		7AD1AAC209EC594A0059879A /* rubysig.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD1AA8B09EC59490059879A /* rubysig.h */; };
+		7AD1AAC309EC594A0059879A /* signal.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA8C09EC59490059879A /* signal.c */; };
+		7AD1AAC409EC594A0059879A /* sprintf.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA8D09EC59490059879A /* sprintf.c */; };
+		7AD1AAC509EC594A0059879A /* st.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA8E09EC59490059879A /* st.c */; };
+		7AD1AAC609EC594A0059879A /* st.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD1AA8F09EC59490059879A /* st.h */; };
+		7AD1AAC709EC594A0059879A /* string.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA9009EC59490059879A /* string.c */; };
+		7AD1AAC809EC594A0059879A /* struct.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA9109EC59490059879A /* struct.c */; };
+		7AD1AAC909EC594A0059879A /* time.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA9209EC59490059879A /* time.c */; };
+		7AD1AACA09EC594A0059879A /* util.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA9309EC59490059879A /* util.c */; };
+		7AD1AACB09EC594A0059879A /* util.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD1AA9409EC59490059879A /* util.h */; };
+		7AD1AACC09EC594A0059879A /* variable.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA9509EC59490059879A /* variable.c */; };
+		7AD1AACD09EC594A0059879A /* version.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA9609EC59490059879A /* version.c */; };
+		7AD1AACE09EC594A0059879A /* version.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD1AA9709EC594A0059879A /* version.h */; };
+		7AD1AB0109EC598E0059879A /* expat.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D1705A4A26700A58F05 /* expat.h */; };
+		7AD1AB0209EC598E0059879A /* pcre.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D1D05A4A26700A58F05 /* pcre.h */; };
+		7AD1ABE809EC5E180059879A /* version.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD1AA9709EC594A0059879A /* version.h */; };
+		7AD1ABE909EC5E190059879A /* version.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA9609EC59490059879A /* version.c */; };
+		7AD1ABEA09EC5E1A0059879A /* variable.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA9509EC59490059879A /* variable.c */; };
+		7AD1ABEB09EC5E1A0059879A /* util.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD1AA9409EC59490059879A /* util.h */; };
+		7AD1ABEC09EC5E1B0059879A /* util.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA9309EC59490059879A /* util.c */; };
+		7AD1ABED09EC5E1B0059879A /* time.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA9209EC59490059879A /* time.c */; };
+		7AD1ABEE09EC5E1C0059879A /* struct.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA9109EC59490059879A /* struct.c */; };
+		7AD1ABEF09EC5E1D0059879A /* string.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA9009EC59490059879A /* string.c */; };
+		7AD1ABF009EC5E1E0059879A /* st.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD1AA8F09EC59490059879A /* st.h */; };
+		7AD1ABF109EC5E1E0059879A /* st.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA8E09EC59490059879A /* st.c */; };
+		7AD1ABF209EC5E1F0059879A /* sprintf.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA8D09EC59490059879A /* sprintf.c */; };
+		7AD1ABF309EC5E200059879A /* signal.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA8C09EC59490059879A /* signal.c */; };
+		7AD1ABF409EC5E200059879A /* rubysig.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD1AA8B09EC59490059879A /* rubysig.h */; };
+		7AD1ABF509EC5E210059879A /* rubyio.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD1AA8A09EC59490059879A /* rubyio.h */; };
+		7AD1ABF609EC5E240059879A /* ruby.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD1AA8909EC59490059879A /* ruby.h */; };
+		7AD1ABF709EC5E250059879A /* ruby.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA8809EC59490059879A /* ruby.c */; };
+		7AD1ABF809EC5E250059879A /* regex.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD1AA8709EC59490059879A /* regex.h */; };
+		7AD1ABF909EC5E270059879A /* regex.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA8609EC59490059879A /* regex.c */; };
+		7AD1ABFA09EC5E270059879A /* re.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD1AA8509EC59490059879A /* re.h */; };
+		7AD1ABFB09EC5E280059879A /* re.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA8409EC59490059879A /* re.c */; };
+		7AD1ABFC09EC5E290059879A /* range.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA8309EC59490059879A /* range.c */; };
+		7AD1ABFD09EC5E290059879A /* random.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA8209EC59490059879A /* random.c */; };
+		7AD1ABFE09EC5E2A0059879A /* process.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA8109EC59490059879A /* process.c */; };
+		7AD1ABFF09EC5E2A0059879A /* prec.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA8009EC59490059879A /* prec.c */; };
+		7AD1AC0009EC5E2C0059879A /* parse.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA7F09EC59490059879A /* parse.c */; };
+		7AD1AC0109EC5E2D0059879A /* pack.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA7E09EC59490059879A /* pack.c */; };
+		7AD1AC0209EC5E2D0059879A /* object.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA7D09EC59490059879A /* object.c */; };
+		7AD1AC0309EC5E2E0059879A /* numeric.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA7C09EC59490059879A /* numeric.c */; };
+		7AD1AC0409EC5E2F0059879A /* node.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD1AA7B09EC59480059879A /* node.h */; };
+		7AD1AC0509EC5E300059879A /* missing.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD1AA7A09EC59480059879A /* missing.h */; };
+		7AD1AC0609EC5E310059879A /* math.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA7909EC59480059879A /* math.c */; };
+		7AD1AC0709EC5E310059879A /* marshal.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA7809EC59480059879A /* marshal.c */; };
+		7AD1AC0A09EC5E340059879A /* io.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA7509EC59480059879A /* io.c */; };
+		7AD1AC0B09EC5E350059879A /* intern.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD1AA7409EC59480059879A /* intern.h */; };
+		7AD1AC0C09EC5E360059879A /* inits.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA7309EC59480059879A /* inits.c */; };
+		7AD1AC0D09EC5E370059879A /* hash.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA7209EC59480059879A /* hash.c */; };
+		7AD1AC0E09EC5E380059879A /* gc.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA7109EC59480059879A /* gc.c */; };
+		7AD1AC0F09EC5E380059879A /* file.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA7009EC59480059879A /* file.c */; };
+		7AD1AC1009EC5E390059879A /* eval.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA6F09EC59480059879A /* eval.c */; };
+		7AD1AC1109EC5E3A0059879A /* error.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA6E09EC59480059879A /* error.c */; };
+		7AD1AC1209EC5E3B0059879A /* env.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD1AA6D09EC59480059879A /* env.h */; };
+		7AD1AC1309EC5E3C0059879A /* enum.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA6C09EC59480059879A /* enum.c */; };
+		7AD1AC1609EC5E3F0059879A /* dln.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD1AA6909EC59480059879A /* dln.h */; };
+		7AD1AC1709EC5E3F0059879A /* dln.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA6809EC59480059879A /* dln.c */; };
+		7AD1AC1809EC5E400059879A /* dir.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA6709EC59480059879A /* dir.c */; };
+		7AD1AC1909EC5E410059879A /* defines.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD1AA6609EC59480059879A /* defines.h */; };
+		7AD1AC1A09EC5E420059879A /* config.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD1AA6509EC59480059879A /* config.h */; };
+		7AD1AC1B09EC5E430059879A /* compar.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA6409EC59480059879A /* compar.c */; };
+		7AD1AC1C09EC5E440059879A /* class.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA6309EC59480059879A /* class.c */; };
+		7AD1AC1D09EC5E450059879A /* bignum.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA6209EC59480059879A /* bignum.c */; };
+		7AD1AC1E09EC5E450059879A /* array.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA6109EC59480059879A /* array.c */; };
+		7AD1AD1C09EC66A60059879A /* dmyext.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA6B09EC59480059879A /* dmyext.c */; };
 		7AD1B84E086C8F180079FBCF /* MushGameRefPiece.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD1B84C086C8F180079FBCF /* MushGameRefPiece.h */; };
 		7AD1B84F086C8F180079FBCF /* MushGameRefPiece.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1B84D086C8F180079FBCF /* MushGameRefPiece.cpp */; };
 		7AD1B850086C8F180079FBCF /* MushGameRefPiece.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD1B84C086C8F180079FBCF /* MushGameRefPiece.h */; };
@@ -2463,6 +2573,14 @@
 			outputFiles = (
 			);
 		};
+		7AD1AB4709EC598E0059879A /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.gcc.3_3;
+			fileType = sourcecode.cpp;
+			isEditable = 1;
+			outputFiles = (
+			);
+		};
 /* End PBXBuildRule section */
 
 /* Begin PBXBuildStyle section */
@@ -2774,6 +2892,8 @@
 		7A0D469A07357AA800D06F24 /* MaurheenHypercube.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MaurheenHypercube.cpp; sourceTree = "<group>"; };
 		7A0D78B107358A2B00D06F24 /* MushMeshTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushMeshTools.h; sourceTree = "<group>"; };
 		7A0D78B207358A2B00D06F24 /* MushMeshTools.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushMeshTools.cpp; sourceTree = "<group>"; };
+		7A1A52C408CDD24700CBC8EC /* MushSkinResolverPixelSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushSkinResolverPixelSource.h; sourceTree = "<group>"; };
+		7A1A52C508CDD24700CBC8EC /* MushSkinResolverPixelSource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushSkinResolverPixelSource.cpp; sourceTree = "<group>"; };
 		7A1F79720885312E009BFCCA /* MushMesh4LinkFaceFace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushMesh4LinkFaceFace.h; sourceTree = "<group>"; };
 		7A1F79730885312E009BFCCA /* MushMesh4LinkFaceFace.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushMesh4LinkFaceFace.cpp; sourceTree = "<group>"; };
 		7A218C2F08729CAA00EEA4E1 /* MushGameRender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushGameRender.h; sourceTree = "<group>"; };
@@ -2807,6 +2927,7 @@
 		7A4FA55C05F9EBCA00297E23 /* start.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = start.txt; sourceTree = "<group>"; };
 		7A4FA60305F9F0FE00297E23 /* MaurheenGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaurheenGame.h; sourceTree = "<group>"; };
 		7A4FA60405F9F0FE00297E23 /* MaurheenGame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MaurheenGame.cpp; sourceTree = "<group>"; };
+		7A519DB109EC72CE001DC0A0 /* lex.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = lex.c; sourceTree = "<group>"; };
 		7A532BC7089A29F90090B78C /* MushcoreMaptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushcoreMaptor.h; sourceTree = "<group>"; };
 		7A532BC8089A29F90090B78C /* MushcoreMaptor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushcoreMaptor.cpp; sourceTree = "<group>"; };
 		7A532C06089A3CE80090B78C /* TestMushcoreMaptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestMushcoreMaptor.h; sourceTree = "<group>"; };
@@ -3416,7 +3537,7 @@
 		7A6CE21C05A5935800777D9B /* MushPieSTL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushPieSTL.cpp; sourceTree = "<group>"; };
 		7A70CD10085DE6A90055C6FB /* MushGLControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushGLControl.h; sourceTree = "<group>"; };
 		7A70CD11085DE6A90055C6FB /* MushGLControl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushGLControl.cpp; sourceTree = "<group>"; };
-		7A70CE7E085DEE2D0055C6FB /* Adanaxis Control Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Adanaxis Control Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7A70CE7E085DEE2D0055C6FB /* Adanaxis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Adanaxis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A70CEB1085DF1C40055C6FB /* AdanaxisAppHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = AdanaxisAppHandler.cpp; sourceTree = "<group>"; };
 		7A70CEB2085DF1C40055C6FB /* AdanaxisAppHandler.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = AdanaxisAppHandler.h; sourceTree = "<group>"; };
 		7A70CEB3085DF1C50055C6FB /* AdanaxisCommandHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = AdanaxisCommandHandler.cpp; sourceTree = "<group>"; };
@@ -3756,6 +3877,60 @@
 		7AD1912708891F5B007761E5 /* MushRenderMeshDiagnostic.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushRenderMeshDiagnostic.cpp; sourceTree = "<group>"; };
 		7AD19D2908867AEB00CB6581 /* MushMeshLibraryExtrusionContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushMeshLibraryExtrusionContext.h; sourceTree = "<group>"; };
 		7AD19D2A08867AEB00CB6581 /* MushMeshLibraryExtrusionContext.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushMeshLibraryExtrusionContext.cpp; sourceTree = "<group>"; };
+		7AD1AA6109EC59480059879A /* array.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = array.c; sourceTree = "<group>"; };
+		7AD1AA6209EC59480059879A /* bignum.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = bignum.c; sourceTree = "<group>"; };
+		7AD1AA6309EC59480059879A /* class.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = class.c; sourceTree = "<group>"; };
+		7AD1AA6409EC59480059879A /* compar.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = compar.c; sourceTree = "<group>"; };
+		7AD1AA6509EC59480059879A /* config.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
+		7AD1AA6609EC59480059879A /* defines.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = defines.h; sourceTree = "<group>"; };
+		7AD1AA6709EC59480059879A /* dir.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = dir.c; sourceTree = "<group>"; };
+		7AD1AA6809EC59480059879A /* dln.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = dln.c; sourceTree = "<group>"; };
+		7AD1AA6909EC59480059879A /* dln.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = dln.h; sourceTree = "<group>"; };
+		7AD1AA6B09EC59480059879A /* dmyext.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = dmyext.c; sourceTree = "<group>"; };
+		7AD1AA6C09EC59480059879A /* enum.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = enum.c; sourceTree = "<group>"; };
+		7AD1AA6D09EC59480059879A /* env.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = env.h; sourceTree = "<group>"; };
+		7AD1AA6E09EC59480059879A /* error.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = error.c; sourceTree = "<group>"; };
+		7AD1AA6F09EC59480059879A /* eval.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = eval.c; sourceTree = "<group>"; };
+		7AD1AA7009EC59480059879A /* file.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = file.c; sourceTree = "<group>"; };
+		7AD1AA7109EC59480059879A /* gc.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = gc.c; sourceTree = "<group>"; };
+		7AD1AA7209EC59480059879A /* hash.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = hash.c; sourceTree = "<group>"; };
+		7AD1AA7309EC59480059879A /* inits.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = inits.c; sourceTree = "<group>"; };
+		7AD1AA7409EC59480059879A /* intern.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = intern.h; sourceTree = "<group>"; };
+		7AD1AA7509EC59480059879A /* io.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = io.c; sourceTree = "<group>"; };
+		7AD1AA7809EC59480059879A /* marshal.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = marshal.c; sourceTree = "<group>"; };
+		7AD1AA7909EC59480059879A /* math.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = math.c; sourceTree = "<group>"; };
+		7AD1AA7A09EC59480059879A /* missing.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = missing.h; sourceTree = "<group>"; };
+		7AD1AA7B09EC59480059879A /* node.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = node.h; sourceTree = "<group>"; };
+		7AD1AA7C09EC59490059879A /* numeric.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = numeric.c; sourceTree = "<group>"; };
+		7AD1AA7D09EC59490059879A /* object.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = object.c; sourceTree = "<group>"; };
+		7AD1AA7E09EC59490059879A /* pack.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = pack.c; sourceTree = "<group>"; };
+		7AD1AA7F09EC59490059879A /* parse.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = parse.c; sourceTree = "<group>"; };
+		7AD1AA8009EC59490059879A /* prec.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = prec.c; sourceTree = "<group>"; };
+		7AD1AA8109EC59490059879A /* process.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = process.c; sourceTree = "<group>"; };
+		7AD1AA8209EC59490059879A /* random.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = random.c; sourceTree = "<group>"; };
+		7AD1AA8309EC59490059879A /* range.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = range.c; sourceTree = "<group>"; };
+		7AD1AA8409EC59490059879A /* re.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = re.c; sourceTree = "<group>"; };
+		7AD1AA8509EC59490059879A /* re.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = re.h; sourceTree = "<group>"; };
+		7AD1AA8609EC59490059879A /* regex.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = regex.c; sourceTree = "<group>"; };
+		7AD1AA8709EC59490059879A /* regex.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = regex.h; sourceTree = "<group>"; };
+		7AD1AA8809EC59490059879A /* ruby.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = ruby.c; sourceTree = "<group>"; };
+		7AD1AA8909EC59490059879A /* ruby.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = ruby.h; sourceTree = "<group>"; };
+		7AD1AA8A09EC59490059879A /* rubyio.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = rubyio.h; sourceTree = "<group>"; };
+		7AD1AA8B09EC59490059879A /* rubysig.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = rubysig.h; sourceTree = "<group>"; };
+		7AD1AA8C09EC59490059879A /* signal.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = signal.c; sourceTree = "<group>"; };
+		7AD1AA8D09EC59490059879A /* sprintf.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = sprintf.c; sourceTree = "<group>"; };
+		7AD1AA8E09EC59490059879A /* st.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = st.c; sourceTree = "<group>"; };
+		7AD1AA8F09EC59490059879A /* st.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = st.h; sourceTree = "<group>"; };
+		7AD1AA9009EC59490059879A /* string.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = string.c; sourceTree = "<group>"; };
+		7AD1AA9109EC59490059879A /* struct.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = struct.c; sourceTree = "<group>"; };
+		7AD1AA9209EC59490059879A /* time.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = time.c; sourceTree = "<group>"; };
+		7AD1AA9309EC59490059879A /* util.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = util.c; sourceTree = "<group>"; };
+		7AD1AA9409EC59490059879A /* util.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = util.h; sourceTree = "<group>"; };
+		7AD1AA9509EC59490059879A /* variable.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = variable.c; sourceTree = "<group>"; };
+		7AD1AA9609EC59490059879A /* version.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = version.c; sourceTree = "<group>"; };
+		7AD1AA9709EC594A0059879A /* version.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
+		7AD1AB4D09EC598E0059879A /* MushRuby.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MushRuby.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7AD1AB5209EC598F0059879A /* Mushcore-Info copy.plist */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = "Mushcore-Info copy.plist"; path = "/Users/southa/core-app/macosx/project/Mushcore-Info copy.plist"; sourceTree = "<absolute>"; };
 		7AD1B84C086C8F180079FBCF /* MushGameRefPiece.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushGameRefPiece.h; sourceTree = "<group>"; };
 		7AD1B84D086C8F180079FBCF /* MushGameRefPiece.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushGameRefPiece.cpp; sourceTree = "<group>"; };
 		7AD1B871086C9F660079FBCF /* MushGameRef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushGameRef.h; sourceTree = "<group>"; };
@@ -4082,6 +4257,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7AD1AB4409EC598E0059879A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -4099,7 +4281,8 @@
 				7A657EE905A9CD1C00E727F8 /* MushPie.framework */,
 				7AB650D705F9E0A0003E2845 /* Mustl.framework */,
 				7AAE6CD807AFC4250085C60F /* Tesseract Trainer.app */,
-				7A70CE7E085DEE2D0055C6FB /* Adanaxis Control Demo.app */,
+				7A70CE7E085DEE2D0055C6FB /* Adanaxis.app */,
+				7AD1AB4D09EC598E0059879A /* MushRuby.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -4262,6 +4445,7 @@
 				7A71A33D05AC547E00B315B0 /* MushModel */,
 				7A62B87005A49D05002A5F1C /* MushPie */,
 				7A85875B08754D4100ED67ED /* MushRender */,
+				7AD1AA6009EC59480059879A /* MushRuby */,
 				7ACF535508C35D1300BBEB7E /* MushSkin */,
 				7A62B87105A49D05002A5F1C /* Mustl */,
 				7A62B8BC05A49D05002A5F1C /* MustlGame */,
@@ -5110,6 +5294,7 @@
 				7A63E9AE05AA260F0051D708 /* TestMushcore-Info.plist */,
 				7A63E9AF05AA260F0051D708 /* TestMushMesh-Info.plist */,
 				7A63E9B005AA260F0051D708 /* TestMushPie-Info.plist */,
+				7AD1AB5209EC598F0059879A /* Mushcore-Info copy.plist */,
 			);
 			name = Info;
 			sourceTree = "<group>";
@@ -5185,9 +5370,9 @@
 		7A6CE19605A58DB000777D9B /* Scripts */ = {
 			isa = PBXGroup;
 			children = (
-				7A6CE19E05A58DF000777D9B /* autogen.pl */,
 				7A6CE19F05A58DF000777D9B /* autogen.sh */,
 				7A8A6E74067C5CE60025D379 /* COBHandler.pm */,
+				7A6CE19E05A58DF000777D9B /* autogen.pl */,
 				7A8A6E7F067C5D7B0025D379 /* COBTranslate.pl */,
 				7AB661DE083BEDF0009D477D /* CopyLibs.sh */,
 				7A6CE1A005A58DF000777D9B /* prebuild.sh */,
@@ -5768,10 +5953,72 @@
 				7ACF536B08C35E3600BBEB7E /* MushSkinNoise.h */,
 				7ACFD18708CDBEC80062C6D9 /* MushSkinPixelSourceNoise.cpp */,
 				7ACFD18608CDBEC80062C6D9 /* MushSkinPixelSourceNoise.h */,
+				7A1A52C508CDD24700CBC8EC /* MushSkinResolverPixelSource.cpp */,
+				7A1A52C408CDD24700CBC8EC /* MushSkinResolverPixelSource.h */,
 				7ACF535808C35D1300BBEB7E /* MushSkinStandard.cpp */,
 				7ACF535908C35D1300BBEB7E /* MushSkinStandard.h */,
 			);
 			path = MushSkin;
+			sourceTree = "<group>";
+		};
+		7AD1AA6009EC59480059879A /* MushRuby */ = {
+			isa = PBXGroup;
+			children = (
+				7AD1AA6109EC59480059879A /* array.c */,
+				7AD1AA6209EC59480059879A /* bignum.c */,
+				7AD1AA6309EC59480059879A /* class.c */,
+				7AD1AA6409EC59480059879A /* compar.c */,
+				7AD1AA6509EC59480059879A /* config.h */,
+				7AD1AA6609EC59480059879A /* defines.h */,
+				7AD1AA6709EC59480059879A /* dir.c */,
+				7AD1AA6809EC59480059879A /* dln.c */,
+				7AD1AA6909EC59480059879A /* dln.h */,
+				7AD1AA6B09EC59480059879A /* dmyext.c */,
+				7AD1AA6C09EC59480059879A /* enum.c */,
+				7AD1AA6D09EC59480059879A /* env.h */,
+				7AD1AA6E09EC59480059879A /* error.c */,
+				7AD1AA6F09EC59480059879A /* eval.c */,
+				7AD1AA7009EC59480059879A /* file.c */,
+				7AD1AA7109EC59480059879A /* gc.c */,
+				7AD1AA7209EC59480059879A /* hash.c */,
+				7AD1AA7309EC59480059879A /* inits.c */,
+				7AD1AA7409EC59480059879A /* intern.h */,
+				7AD1AA7509EC59480059879A /* io.c */,
+				7A519DB109EC72CE001DC0A0 /* lex.c */,
+				7AD1AA7809EC59480059879A /* marshal.c */,
+				7AD1AA7909EC59480059879A /* math.c */,
+				7AD1AA7A09EC59480059879A /* missing.h */,
+				7AD1AA7B09EC59480059879A /* node.h */,
+				7AD1AA7C09EC59490059879A /* numeric.c */,
+				7AD1AA7D09EC59490059879A /* object.c */,
+				7AD1AA7E09EC59490059879A /* pack.c */,
+				7AD1AA7F09EC59490059879A /* parse.c */,
+				7AD1AA8009EC59490059879A /* prec.c */,
+				7AD1AA8109EC59490059879A /* process.c */,
+				7AD1AA8209EC59490059879A /* random.c */,
+				7AD1AA8309EC59490059879A /* range.c */,
+				7AD1AA8409EC59490059879A /* re.c */,
+				7AD1AA8509EC59490059879A /* re.h */,
+				7AD1AA8609EC59490059879A /* regex.c */,
+				7AD1AA8709EC59490059879A /* regex.h */,
+				7AD1AA8809EC59490059879A /* ruby.c */,
+				7AD1AA8909EC59490059879A /* ruby.h */,
+				7AD1AA8A09EC59490059879A /* rubyio.h */,
+				7AD1AA8B09EC59490059879A /* rubysig.h */,
+				7AD1AA8C09EC59490059879A /* signal.c */,
+				7AD1AA8D09EC59490059879A /* sprintf.c */,
+				7AD1AA8E09EC59490059879A /* st.c */,
+				7AD1AA8F09EC59490059879A /* st.h */,
+				7AD1AA9009EC59490059879A /* string.c */,
+				7AD1AA9109EC59490059879A /* struct.c */,
+				7AD1AA9209EC59490059879A /* time.c */,
+				7AD1AA9309EC59490059879A /* util.c */,
+				7AD1AA9409EC59490059879A /* util.h */,
+				7AD1AA9509EC59490059879A /* variable.c */,
+				7AD1AA9609EC59490059879A /* version.c */,
+				7AD1AA9709EC594A0059879A /* version.h */,
+			);
+			path = MushRuby;
 			sourceTree = "<group>";
 		};
 		7AD23B9B085EFF870017859F /* MushGame */ = {
@@ -6386,6 +6633,22 @@
 				7ACF543808C38BE800BBEB7E /* MushRenderMeshSolid.h in Headers */,
 				7AD2CDE508CA0BFD0088E9AD /* MushGLMaterial.h in Headers */,
 				7ACFD18808CDBEC80062C6D9 /* MushSkinPixelSourceNoise.h in Headers */,
+				7A1A52C608CDD24700CBC8EC /* MushSkinResolverPixelSource.h in Headers */,
+				7AD1AA9C09EC594A0059879A /* config.h in Headers */,
+				7AD1AA9D09EC594A0059879A /* defines.h in Headers */,
+				7AD1AAA009EC594A0059879A /* dln.h in Headers */,
+				7AD1AAA409EC594A0059879A /* env.h in Headers */,
+				7AD1AAAB09EC594A0059879A /* intern.h in Headers */,
+				7AD1AAB109EC594A0059879A /* missing.h in Headers */,
+				7AD1AAB209EC594A0059879A /* node.h in Headers */,
+				7AD1AABC09EC594A0059879A /* re.h in Headers */,
+				7AD1AABE09EC594A0059879A /* regex.h in Headers */,
+				7AD1AAC009EC594A0059879A /* ruby.h in Headers */,
+				7AD1AAC109EC594A0059879A /* rubyio.h in Headers */,
+				7AD1AAC209EC594A0059879A /* rubysig.h in Headers */,
+				7AD1AAC609EC594A0059879A /* st.h in Headers */,
+				7AD1AACB09EC594A0059879A /* util.h in Headers */,
+				7AD1AACE09EC594A0059879A /* version.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6781,6 +7044,7 @@
 				7ACF543608C38BE800BBEB7E /* MushRenderMeshSolid.h in Headers */,
 				7AD2CDE708CA0BFD0088E9AD /* MushGLMaterial.h in Headers */,
 				7ACFD18A08CDBEC80062C6D9 /* MushSkinPixelSourceNoise.h in Headers */,
+				7A1A52C808CDD24700CBC8EC /* MushSkinResolverPixelSource.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7264,6 +7528,30 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7AD1AAD609EC598E0059879A /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7AD1AB0109EC598E0059879A /* expat.h in Headers */,
+				7AD1AB0209EC598E0059879A /* pcre.h in Headers */,
+				7AD1ABE809EC5E180059879A /* version.h in Headers */,
+				7AD1ABEB09EC5E1A0059879A /* util.h in Headers */,
+				7AD1ABF009EC5E1E0059879A /* st.h in Headers */,
+				7AD1ABF409EC5E200059879A /* rubysig.h in Headers */,
+				7AD1ABF509EC5E210059879A /* rubyio.h in Headers */,
+				7AD1ABF609EC5E240059879A /* ruby.h in Headers */,
+				7AD1ABF809EC5E250059879A /* regex.h in Headers */,
+				7AD1ABFA09EC5E270059879A /* re.h in Headers */,
+				7AD1AC0409EC5E2F0059879A /* node.h in Headers */,
+				7AD1AC0509EC5E300059879A /* missing.h in Headers */,
+				7AD1AC0B09EC5E350059879A /* intern.h in Headers */,
+				7AD1AC1209EC5E3B0059879A /* env.h in Headers */,
+				7AD1AC1609EC5E3F0059879A /* dln.h in Headers */,
+				7AD1AC1909EC5E410059879A /* defines.h in Headers */,
+				7AD1AC1A09EC5E420059879A /* config.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
@@ -7619,7 +7907,7 @@
 			);
 			name = Adanaxis;
 			productName = All;
-			productReference = 7A70CE7E085DEE2D0055C6FB /* Adanaxis Control Demo.app */;
+			productReference = 7A70CE7E085DEE2D0055C6FB /* Adanaxis.app */;
 			productSettingsXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
 <!DOCTYPE plist PUBLIC \"-//Apple Computer//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">
 <plist version=\"1.0\">
@@ -8032,6 +8320,70 @@
 ";
 			productType = "com.apple.product-type.application";
 		};
+		7AD1AAD409EC598E0059879A /* MushRuby */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7AD1AB4809EC598E0059879A /* Build configuration list for PBXNativeTarget "MushRuby" */;
+			buildPhases = (
+				7AD1AAD509EC598E0059879A /* ShellScript */,
+				7AD1AAD609EC598E0059879A /* Headers */,
+				7AD1AB0D09EC598E0059879A /* Resources */,
+				7AD1AB0E09EC598E0059879A /* Sources */,
+				7AD1AB4309EC598E0059879A /* Rez */,
+				7AD1AB4409EC598E0059879A /* Frameworks */,
+			);
+			buildRules = (
+				7AD1AB4709EC598E0059879A /* PBXBuildRule */,
+			);
+			buildSettings = {
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				INFOPLIST_FILE = "Mushcore-Info.plist";
+				INSTALL_PATH = "@executable_path/../Frameworks";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-seg1addr",
+					0x2a000000,
+				);
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = Mushcore;
+				REZ_EXECUTABLE = NO;
+				SECTORDER_FLAGS = "";
+			};
+			dependencies = (
+			);
+			name = MushRuby;
+			productName = Mushcore;
+			productReference = 7AD1AB4D09EC598E0059879A /* MushRuby.framework */;
+			productSettingsXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+<!DOCTYPE plist PUBLIC \"-//Apple Computer//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">
+<plist version=\"1.0\">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>English</string>
+	<key>CFBundleExecutable</key>
+	<string>Mushcore</string>
+	<key>CFBundleGetInfoString</key>
+	<string></string>
+	<key>CFBundleIdentifier</key>
+	<string>com.MySoftwareCompany.Mushcore</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundlePackageType</key>
+	<string>FMWK</string>
+	<key>CFBundleShortVersionString</key>
+	<string></string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string>1.0.0d1</string>
+</dict>
+</plist>
+";
+			productType = "com.apple.product-type.framework";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -8061,6 +8413,7 @@
 				7A65813905A9D09C00E727F8 /* MushMesh */,
 				7A657E8905A9CD1C00E727F8 /* MushPie */,
 				7AB650A105F9E0A0003E2845 /* Mustl */,
+				7AD1AAD409EC598E0059879A /* MushRuby */,
 			);
 		};
 /* End PBXProject section */
@@ -8157,6 +8510,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7AD1AB0D09EC598E0059879A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXRezBuildPhase section */
@@ -8242,6 +8602,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		7AB652CF05F9E1FF003E2845 /* Rez */ = {
+			isa = PBXRezBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7AD1AB4309EC598E0059879A /* Rez */ = {
 			isa = PBXRezBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -8421,6 +8788,19 @@
 			shellPath = /bin/sh;
 			shellScript = "date
 ";
+		};
+		7AD1AAD509EC598E0059879A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd ../..\n/bin/sh ./prebuild.sh\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -8846,6 +9226,44 @@
 				7ACF543908C38BE800BBEB7E /* MushRenderMeshSolid.cpp in Sources */,
 				7AD2CDE608CA0BFD0088E9AD /* MushGLMaterial.cpp in Sources */,
 				7ACFD18908CDBEC80062C6D9 /* MushSkinPixelSourceNoise.cpp in Sources */,
+				7A1A52C708CDD24700CBC8EC /* MushSkinResolverPixelSource.cpp in Sources */,
+				7AD1AA9809EC594A0059879A /* array.c in Sources */,
+				7AD1AA9909EC594A0059879A /* bignum.c in Sources */,
+				7AD1AA9A09EC594A0059879A /* class.c in Sources */,
+				7AD1AA9B09EC594A0059879A /* compar.c in Sources */,
+				7AD1AA9E09EC594A0059879A /* dir.c in Sources */,
+				7AD1AA9F09EC594A0059879A /* dln.c in Sources */,
+				7AD1AAA209EC594A0059879A /* dmyext.c in Sources */,
+				7AD1AAA309EC594A0059879A /* enum.c in Sources */,
+				7AD1AAA509EC594A0059879A /* error.c in Sources */,
+				7AD1AAA609EC594A0059879A /* eval.c in Sources */,
+				7AD1AAA709EC594A0059879A /* file.c in Sources */,
+				7AD1AAA809EC594A0059879A /* gc.c in Sources */,
+				7AD1AAA909EC594A0059879A /* hash.c in Sources */,
+				7AD1AAAA09EC594A0059879A /* inits.c in Sources */,
+				7AD1AAAC09EC594A0059879A /* io.c in Sources */,
+				7AD1AAAF09EC594A0059879A /* marshal.c in Sources */,
+				7AD1AAB009EC594A0059879A /* math.c in Sources */,
+				7AD1AAB309EC594A0059879A /* numeric.c in Sources */,
+				7AD1AAB409EC594A0059879A /* object.c in Sources */,
+				7AD1AAB509EC594A0059879A /* pack.c in Sources */,
+				7AD1AAB609EC594A0059879A /* parse.c in Sources */,
+				7AD1AAB709EC594A0059879A /* prec.c in Sources */,
+				7AD1AAB809EC594A0059879A /* process.c in Sources */,
+				7AD1AAB909EC594A0059879A /* random.c in Sources */,
+				7AD1AABA09EC594A0059879A /* range.c in Sources */,
+				7AD1AABB09EC594A0059879A /* re.c in Sources */,
+				7AD1AABD09EC594A0059879A /* regex.c in Sources */,
+				7AD1AABF09EC594A0059879A /* ruby.c in Sources */,
+				7AD1AAC309EC594A0059879A /* signal.c in Sources */,
+				7AD1AAC409EC594A0059879A /* sprintf.c in Sources */,
+				7AD1AAC509EC594A0059879A /* st.c in Sources */,
+				7AD1AAC709EC594A0059879A /* string.c in Sources */,
+				7AD1AAC809EC594A0059879A /* struct.c in Sources */,
+				7AD1AAC909EC594A0059879A /* time.c in Sources */,
+				7AD1AACA09EC594A0059879A /* util.c in Sources */,
+				7AD1AACC09EC594A0059879A /* variable.c in Sources */,
+				7AD1AACD09EC594A0059879A /* version.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9157,6 +9575,7 @@
 				7ACF543708C38BE800BBEB7E /* MushRenderMeshSolid.cpp in Sources */,
 				7AD2CDE808CA0BFD0088E9AD /* MushGLMaterial.cpp in Sources */,
 				7ACFD18B08CDBEC80062C6D9 /* MushSkinPixelSourceNoise.cpp in Sources */,
+				7A1A52C908CDD24700CBC8EC /* MushSkinResolverPixelSource.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9487,6 +9906,50 @@
 				7AB652EA05F9E21F003E2845 /* TestMustlMain.cpp in Sources */,
 				7AB652F205F9E221003E2845 /* TestMustlPostHandler.cpp in Sources */,
 				7AB652FA05F9E222003E2845 /* TestMustlStandard.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7AD1AB0E09EC598E0059879A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7AD1ABE909EC5E190059879A /* version.c in Sources */,
+				7AD1ABEA09EC5E1A0059879A /* variable.c in Sources */,
+				7AD1ABEC09EC5E1B0059879A /* util.c in Sources */,
+				7AD1ABED09EC5E1B0059879A /* time.c in Sources */,
+				7AD1ABEE09EC5E1C0059879A /* struct.c in Sources */,
+				7AD1ABEF09EC5E1D0059879A /* string.c in Sources */,
+				7AD1ABF109EC5E1E0059879A /* st.c in Sources */,
+				7AD1ABF209EC5E1F0059879A /* sprintf.c in Sources */,
+				7AD1ABF309EC5E200059879A /* signal.c in Sources */,
+				7AD1ABF709EC5E250059879A /* ruby.c in Sources */,
+				7AD1ABF909EC5E270059879A /* regex.c in Sources */,
+				7AD1ABFB09EC5E280059879A /* re.c in Sources */,
+				7AD1ABFC09EC5E290059879A /* range.c in Sources */,
+				7AD1ABFD09EC5E290059879A /* random.c in Sources */,
+				7AD1ABFE09EC5E2A0059879A /* process.c in Sources */,
+				7AD1ABFF09EC5E2A0059879A /* prec.c in Sources */,
+				7AD1AC0009EC5E2C0059879A /* parse.c in Sources */,
+				7AD1AC0109EC5E2D0059879A /* pack.c in Sources */,
+				7AD1AC0209EC5E2D0059879A /* object.c in Sources */,
+				7AD1AC0309EC5E2E0059879A /* numeric.c in Sources */,
+				7AD1AC0609EC5E310059879A /* math.c in Sources */,
+				7AD1AC0709EC5E310059879A /* marshal.c in Sources */,
+				7AD1AC0A09EC5E340059879A /* io.c in Sources */,
+				7AD1AC0C09EC5E360059879A /* inits.c in Sources */,
+				7AD1AC0D09EC5E370059879A /* hash.c in Sources */,
+				7AD1AC0E09EC5E380059879A /* gc.c in Sources */,
+				7AD1AC0F09EC5E380059879A /* file.c in Sources */,
+				7AD1AC1009EC5E390059879A /* eval.c in Sources */,
+				7AD1AC1109EC5E3A0059879A /* error.c in Sources */,
+				7AD1AC1309EC5E3C0059879A /* enum.c in Sources */,
+				7AD1AC1709EC5E3F0059879A /* dln.c in Sources */,
+				7AD1AC1809EC5E400059879A /* dir.c in Sources */,
+				7AD1AC1B09EC5E430059879A /* compar.c in Sources */,
+				7AD1AC1C09EC5E440059879A /* class.c in Sources */,
+				7AD1AC1D09EC5E450059879A /* bignum.c in Sources */,
+				7AD1AC1E09EC5E450059879A /* array.c in Sources */,
+				7AD1AD1C09EC66A60059879A /* dmyext.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -11776,6 +12239,205 @@
 			};
 			name = Default;
 		};
+		7AD1AB4909EC598E0059879A /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEBUGGING_SYMBOLS = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_ALTIVEC_EXTENSIONS = YES;
+				GCC_AUTO_VECTORIZATION = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_CPU = G4;
+				GCC_OPTIMIZATION_LEVEL = 1;
+				GCC_PFE_FILE_C_DIALECTS = "c++";
+				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = YES;
+				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
+				GCC_WARN_EFFECTIVE_CPLUSPLUS_VIOLATIONS = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
+				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
+				GCC_WARN_MISSING_PARENTHESES = YES;
+				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
+				GCC_WARN_SHADOW = YES;
+				GCC_WARN_SIGN_COMPARE = YES;
+				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNKNOWN_PRAGMAS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_LABEL = YES;
+				GCC_WARN_UNUSED_VALUE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					../../src,
+					../../src/API,
+				);
+				INFOPLIST_FILE = "/Users/southa/core-app/macosx/project/MushRuby-Info.plist";
+				INSTALL_PATH = "@executable_path/../Frameworks";
+				LIBRARY_STYLE = DYNAMIC;
+				MACOSX_DEPLOYMENT_TARGET = "";
+				OTHER_CFLAGS = "-DRUBY_EXPORT";
+				OTHER_LDFLAGS = (
+					"-seg1addr",
+					0x2d000000,
+				);
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = MushRuby;
+				REZ_EXECUTABLE = NO;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = "-Wall";
+				ZERO_LINK = YES;
+			};
+			name = Development;
+		};
+		7AD1AB4A09EC598E0059879A /* Development 10.2.7 */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEBUGGING_SYMBOLS = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_ALTIVEC_EXTENSIONS = YES;
+				GCC_AUTO_VECTORIZATION = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_FAST_MATH = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_CPU = "";
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PFE_FILE_C_DIALECTS = "c++";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_STRICT_ALIASING = YES;
+				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = YES;
+				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
+				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
+				GCC_WARN_MISSING_PARENTHESES = YES;
+				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
+				GCC_WARN_SHADOW = YES;
+				GCC_WARN_SIGN_COMPARE = YES;
+				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_LABEL = YES;
+				GCC_WARN_UNUSED_VALUE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					../../src,
+					../../src/API,
+				);
+				INFOPLIST_FILE = "/Users/southa/core-app/macosx/project/MushRuby-Info.plist";
+				INSTALL_PATH = "@executable_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				LIBRARY_STYLE = DYNAMIC;
+				MACOSX_DEPLOYMENT_TARGET = 10.2;
+				OTHER_CFLAGS = "-DRUBY_EXPORT";
+				OTHER_LDFLAGS = (
+					"-seg1addr",
+					0x2d000000,
+				);
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = MushRuby;
+				REZ_EXECUTABLE = NO;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = "-Wall";
+				ZERO_LINK = NO;
+			};
+			name = "Development 10.2.7";
+		};
+		7AD1AB4B09EC598E0059879A /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEAD_CODE_STRIPPING = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_ALTIVEC_EXTENSIONS = YES;
+				GCC_AUTO_VECTORIZATION = YES;
+				GCC_DEBUGGING_SYMBOLS = default;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_FAST_MATH = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PFE_FILE_C_DIALECTS = "c++";
+				GCC_STRICT_ALIASING = YES;
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
+				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
+				GCC_WARN_MISSING_PARENTHESES = YES;
+				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
+				GCC_WARN_SHADOW = YES;
+				GCC_WARN_SIGN_COMPARE = YES;
+				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_LABEL = YES;
+				GCC_WARN_UNUSED_PARAMETER = NO;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					../../src,
+					../../src/API,
+				);
+				INFOPLIST_FILE = "/Users/southa/core-app/macosx/project/MushRuby-Info.plist";
+				INSTALL_PATH = "@executable_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				LIBRARY_STYLE = DYNAMIC;
+				MACOSX_DEPLOYMENT_TARGET = 10.2;
+				OTHER_CFLAGS = "-DRUBY_EXPORT";
+				OTHER_LDFLAGS = (
+					"-seg1addr",
+					0x2d000000,
+				);
+				OTHER_REZFLAGS = "";
+				PRESERVE_DEAD_CODE_INITS_AND_TERMS = NO;
+				PRODUCT_NAME = MushRuby;
+				REZ_EXECUTABLE = NO;
+				SECTORDER_FLAGS = "";
+				ZERO_LINK = NO;
+			};
+			name = Deployment;
+		};
+		7AD1AB4C09EC598E0059879A /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				INFOPLIST_FILE = "/Users/southa/core-app/macosx/project/MushRuby-Info.plist";
+				INSTALL_PATH = "@executable_path/../Frameworks";
+				LIBRARY_STYLE = DYNAMIC;
+				OTHER_CFLAGS = "-DRUBY_EXPORT";
+				OTHER_LDFLAGS = (
+					"-seg1addr",
+					0x2d000000,
+				);
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = MushRuby;
+				REZ_EXECUTABLE = NO;
+				SECTORDER_FLAGS = "";
+			};
+			name = Default;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -11918,6 +12580,17 @@
 				7A19619C0899A34800B8B840 /* Development 10.2.7 */,
 				7A19619D0899A34800B8B840 /* Deployment */,
 				7A19619E0899A34800B8B840 /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+		7AD1AB4809EC598E0059879A /* Build configuration list for PBXNativeTarget "MushRuby" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7AD1AB4909EC598E0059879A /* Development */,
+				7AD1AB4A09EC598E0059879A /* Development 10.2.7 */,
+				7AD1AB4B09EC598E0059879A /* Deployment */,
+				7AD1AB4C09EC598E0059879A /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Default;

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } peWMqmrFcS8gCDJQFOQtUg
 /*
- * $Id$
- * $Log$
+ * $Id: MushGameKeyDef.h,v 1.1 2005/07/11 16:37:46 southa Exp $
+ * $Log: MushGameKeyDef.h,v $
+ * Revision 1.1  2005/07/11 16:37:46  southa
+ * Uplink control work
+ *
  */
 
 #include "MushGameStandard.h"
@@ -42,7 +45,7 @@ public:
 private:
     Mushware::U32 m_keyValue; //:readwrite
     bool m_state; //:readwrite
-    bool m_stateHasChanged; //::readwrite
+    bool m_stateHasChanged; //:readwrite
     std::string m_keyName; //:readwrite
 //%classPrototypes {
 public:

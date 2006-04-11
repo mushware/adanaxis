@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } Wpgv8RTp/irSWsiiI5S6xA
 /*
- * $Id: MushGLWorkSpec.cpp,v 1.5 2005/09/05 17:14:23 southa Exp $
+ * $Id: MushGLWorkSpec.cpp,v 1.6 2005/09/06 12:15:35 southa Exp $
  * $Log: MushGLWorkSpec.cpp,v $
+ * Revision 1.6  2005/09/06 12:15:35  southa
+ * Texture and rendering work
+ *
  * Revision 1.5  2005/09/05 17:14:23  southa
  * Solid rendering
  *
@@ -85,7 +88,7 @@ MushGLWorkSpec::Execute(MushGLBuffers::tDataRef& ioDataRef, MushGLBuffers::tShar
                 {
                     throw MushcoreDataFail("Sizes of vertex and texture coordinate buffers do not match");
                 }
-                static MushcoreDataRef<MushGLTexture> texRef("tex1");
+                static MushcoreDataRef<MushGLTexture> texRef("tex2");
                 
                 texRef.WRef().Bind();
                 stateRef.TexCoordArraySetTrue(texCoordBuffersRef.TexCoordBufferWRef(i), i);

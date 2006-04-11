@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 3fsTjKX8hwRiWKdocOfP2g
 /*
- * $Id: MushGameMailbox.cpp,v 1.5 2005/07/02 00:42:37 southa Exp $
+ * $Id: MushGameMailbox.cpp,v 1.6 2005/07/06 19:08:27 southa Exp $
  * $Log: MushGameMailbox.cpp,v $
+ * Revision 1.6  2005/07/06 19:08:27  southa
+ * Adanaxis control work
+ *
  * Revision 1.5  2005/07/02 00:42:37  southa
  * Conditioning tweaks
  *
@@ -157,10 +160,6 @@ MushGameMailbox::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string&
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
     }
-    else if (inTagStr == "srcAddrRef")
-    {
-        ioIn >> m_srcAddrRef;
-    }
     else if (inTagStr == "deque")
     {
         ioIn >> m_deque;
@@ -189,4 +188,4 @@ MushGameMailbox::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("messageLimit");
     ioOut << m_messageLimit;
 }
-//%outOfLineFunctions } 7SB8tbY/nJXLCPdwx5C8PQ
+//%outOfLineFunctions } EdFahwS2nzwyvjjVBrQuNA

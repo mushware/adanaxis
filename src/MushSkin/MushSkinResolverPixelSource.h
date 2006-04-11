@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef MUSHSKINPIXELSOURCENOISE_H
-#define MUSHSKINPIXELSOURCENOISE_H
-//%includeGuardStart } zzDX6Lm0vtHywsZ1Q8TL3w
+#ifndef MUSHSKINRESOLVERPIXELSOURCE_H
+#define MUSHSKINRESOLVERPIXELSOURCE_H
+//%includeGuardStart } tv2DLLCkkHUWcypzYDGXNQ
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushSkin/MushSkinPixelSourceNoise.h
+ * File: src/MushSkin/MushSkinResolverPixelSource.h
  *
  * Copyright: Andy Southgate 2005
  *
@@ -19,35 +19,23 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } lVfaYP/dRbMmzL4zztbrHA
+//%Header } 1tXANyMrO1JkkLm5vXV9Sg
 /*
- * $Id: MushSkinPixelSourceNoise.h,v 1.1 2005/09/06 12:15:35 southa Exp $
- * $Log: MushSkinPixelSourceNoise.h,v $
- * Revision 1.1  2005/09/06 12:15:35  southa
- * Texture and rendering work
- *
+ * $Id$
+ * $Log$
  */
 
 #include "MushSkinStandard.h"
 
-//:generate virtual standard ostream xml1
-class MushSkinPixelSourceNoise : public MushGLPixelSource
+//:generate virtual standard ostream xml1 nocopy
+class MushSkinResolverPixelSource : public MushGLResolverPixelSource
 {
 public:
-    MushSkinPixelSourceNoise() :
-        m_xSize(0),
-        m_ySize(0)
-    {}
-    
-    virtual void ValueParameterSet(const Mushware::U32 inNum, const Mushware::tLongVal inVal);
-    virtual void StringParameterSet(const Mushware::U32 inNum, const std::string& inStr);
-    virtual void ToTextureCreate(MushGLTexture& outTexture);
+    virtual void Resolve(const std::string& inSrcName);
     
 private:
-    Mushware::U32 m_xSize;
-    Mushware::U32 m_ySize;
-    std::string m_sourceName;
-        
+    
+    
 //%classPrototypes {
 public:
     virtual const char *AutoName(void) const;
@@ -61,12 +49,12 @@ public:
 };
 //%inlineHeader {
 inline std::ostream&
-operator<<(std::ostream& ioOut, const MushSkinPixelSourceNoise& inObj)
+operator<<(std::ostream& ioOut, const MushSkinResolverPixelSource& inObj)
 {
     inObj.AutoPrint(ioOut);
     return ioOut;
 }
-//%inlineHeader } hrW5HfwUJFyV2mDS0sS9Jw
+//%inlineHeader } TUFnZyEz8EQYO/tzUv6vZg
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

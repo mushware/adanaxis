@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } NwX2oZoV03fnvBpO2sWLsQ
 /*
- * $Id: MushcoreRegExp.cpp,v 1.6 2004/01/02 21:13:13 southa Exp $
+ * $Id: MushcoreRegExp.cpp,v 1.7 2005/05/19 13:02:16 southa Exp $
  * $Log: MushcoreRegExp.cpp,v $
+ * Revision 1.7  2005/05/19 13:02:16  southa
+ * Mac release work
+ *
  * Revision 1.6  2004/01/02 21:13:13  southa
  * Source conditioning
  *
@@ -192,12 +195,11 @@ bool MushcoreRegExp::Search(tMatches& outMatches, const tPattern& inString)
         0,                  /* default options */
         oVector,            /* vector for substring information */
         3*kMaxMatches);     /* number of elements in the vector */
-
+    
+    outMatches.resize(0);
     for (int i=1; i<returnCode; i++)
     {
         outMatches.push_back(string(inString.data(), oVector[2*i], oVector[2*i+1] - oVector[2*i]));
     }
     return HandleReturnCode(returnCode);
 }
-
-

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } c8LaySAshLTgIZq/9pb54Q
 /*
- * $Id: MushGL.h,v 1.9 2005/07/05 13:52:22 southa Exp $
+ * $Id: MushGL.h,v 1.10 2005/09/05 12:54:30 southa Exp $
  * $Log: MushGL.h,v $
+ * Revision 1.10  2005/09/05 12:54:30  southa
+ * Solid rendering work
+ *
  * Revision 1.9  2005/07/05 13:52:22  southa
  * Adanaxis work
  *
@@ -66,6 +69,7 @@
 #include "MushGLPixelSource.h"
 // #include "MushGLPixelSourceTIFF.h"
 #include "MushGLProjection.h"
+#include "MushGLResolverPixelSource.h"
 #include "MushGLStandard.h"
 #include "MushGLState.h"
 #include "MushGLTexture.h"
