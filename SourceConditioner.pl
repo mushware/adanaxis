@@ -10,8 +10,11 @@
 #
 ##############################################################################
 
-# $Id: SourceConditioner.pl,v 1.47 2005/09/03 17:05:35 southa Exp $
+# $Id: SourceConditioner.pl,v 1.48 2006/04/11 23:30:07 southa Exp $
 # $Log: SourceConditioner.pl,v $
+# Revision 1.48  2006/04/11 23:30:07  southa
+# Created MushRuby from ruby-1.8.4
+#
 # Revision 1.47  2005/09/03 17:05:35  southa
 # Material work
 #
@@ -182,7 +185,7 @@ my @gCHeaders = (
 ' *',
 ' * File: @FILENAME@',
 ' *',
-' * Copyright: Andy Southgate 2002-2005',
+' * Copyright: Andy Southgate 2002-2006',
 ' *',
 ' * All rights reserved.  Distribution prohibited.  For information, please',
 ' * contact the author via http://www.mushware.com/.',
@@ -227,7 +230,7 @@ my @gCHeaders = (
 ' *',
 ' * File: @FILENAME@',
 ' *',
-' * Copyright: Andy Southgate 2005',
+' * Copyright: Andy Southgate 2005-2006',
 ' *',
 ' * This file may be used and distributed under the terms of the Mushware',
 ' * software licence version 1.0, under the terms for \'Proprietary original',
@@ -246,7 +249,7 @@ my @gCHeaders = (
 ' *',
 ' * File: @FILENAME@',
 ' *',
-' * Author: Andy Southgate 2002-2005',
+' * Author: Andy Southgate 2002-2006',
 ' *',
 ' * This file contains original work by Andy Southgate.  The author and his',
 ' * employer (Mushware Limited) irrevocably waive all of their copyright rights',

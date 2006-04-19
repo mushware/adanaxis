@@ -2362,6 +2362,11 @@
 		7AD2F5A708980402005C8E60 /* MushCollisionWorkspace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AD2F5A508980402005C8E60 /* MushCollisionWorkspace.cpp */; };
 		7AD2F5A808980402005C8E60 /* MushCollisionWorkspace.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD2F5A408980402005C8E60 /* MushCollisionWorkspace.h */; };
 		7AD2F5A908980402005C8E60 /* MushCollisionWorkspace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AD2F5A508980402005C8E60 /* MushCollisionWorkspace.cpp */; };
+		7AD399BD09F6CC86000BE1C1 /* mushMushRuby.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD399BC09F6CC86000BE1C1 /* mushMushRuby.h */; };
+		7AD399C809F6CD58000BE1C1 /* MushRuby.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD399C609F6CD57000BE1C1 /* MushRuby.h */; };
+		7AD399C909F6CD58000BE1C1 /* MushRuby.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AD399C709F6CD58000BE1C1 /* MushRuby.cpp */; };
+		7AD399D509F6CFFE000BE1C1 /* MushRuby.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AD1AB4D09EC598E0059879A /* MushRuby.framework */; };
+		7AD399D609F6D023000BE1C1 /* MushRuby.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7AD1AB4D09EC598E0059879A /* MushRuby.framework */; };
 		7AD3B59F085F326B00512DB1 /* MushGameConfigUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD3B59D085F326B00512DB1 /* MushGameConfigUtils.h */; };
 		7AD3B5A0085F326B00512DB1 /* MushGameConfigUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AD3B59E085F326B00512DB1 /* MushGameConfigUtils.cpp */; };
 		7AD3B5A1085F326B00512DB1 /* MushGameConfigUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD3B59D085F326B00512DB1 /* MushGameConfigUtils.h */; };
@@ -2801,6 +2806,13 @@
 			remoteGlobalIDString = 7AB650A105F9E0A0003E2845;
 			remoteInfo = Mustl;
 		};
+		7AD399B209F6CBC8000BE1C1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 20286C28FDCF999611CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7AD1AAD409EC598E0059879A;
+			remoteInfo = MushRuby;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -2824,6 +2836,7 @@
 			files = (
 				7A70CE79085DEE2D0055C6FB /* Mushcore.framework in CopyFiles */,
 				7A70CE7A085DEE2D0055C6FB /* MushMesh.framework in CopyFiles */,
+				7AD399D609F6D023000BE1C1 /* MushRuby.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4002,6 +4015,9 @@
 		7AD2F59C0898014F005C8E60 /* MushCollisionResolver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushCollisionResolver.cpp; sourceTree = "<group>"; };
 		7AD2F5A408980402005C8E60 /* MushCollisionWorkspace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushCollisionWorkspace.h; sourceTree = "<group>"; };
 		7AD2F5A508980402005C8E60 /* MushCollisionWorkspace.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushCollisionWorkspace.cpp; sourceTree = "<group>"; };
+		7AD399BC09F6CC86000BE1C1 /* mushMushRuby.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mushMushRuby.h; sourceTree = "<group>"; };
+		7AD399C609F6CD57000BE1C1 /* MushRuby.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushRuby.h; sourceTree = "<group>"; };
+		7AD399C709F6CD58000BE1C1 /* MushRuby.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushRuby.cpp; sourceTree = "<group>"; };
 		7AD3B59D085F326B00512DB1 /* MushGameConfigUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushGameConfigUtils.h; sourceTree = "<group>"; };
 		7AD3B59E085F326B00512DB1 /* MushGameConfigUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushGameConfigUtils.cpp; sourceTree = "<group>"; };
 		7AD3B5A5085F33C900512DB1 /* MushGameConfigBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushGameConfigBase.h; sourceTree = "<group>"; };
@@ -4160,6 +4176,7 @@
 				7A70CE74085DEE2D0055C6FB /* MushMesh.framework in Frameworks */,
 				7A70CE76085DEE2D0055C6FB /* libjpeg.a in Frameworks */,
 				7A70CE77085DEE2D0055C6FB /* OpenGL.framework in Frameworks */,
+				7AD399D509F6CFFE000BE1C1 /* MushRuby.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4479,6 +4496,7 @@
 				7AA0FB05088430A700997505 /* mushMushMeshLibrary.h */,
 				7A8FBC9A07F4572E00BAAFBE /* mushMushPie.h */,
 				7A85877508754EAC00ED67ED /* mushMushRender.h */,
+				7AD399BC09F6CC86000BE1C1 /* mushMushRuby.h */,
 				7ACF536408C35D3900BBEB7E /* mushMushSkin.h */,
 				7ACC327B05AB3A09001A0873 /* mushMustl.h */,
 				7A62B71005A49D04002A5F1C /* mushMustlGame.h */,
@@ -5964,6 +5982,8 @@
 		7AD1AA6009EC59480059879A /* MushRuby */ = {
 			isa = PBXGroup;
 			children = (
+				7AD399C709F6CD58000BE1C1 /* MushRuby.cpp */,
+				7AD399C609F6CD57000BE1C1 /* MushRuby.h */,
 				7AD1AA6109EC59480059879A /* array.c */,
 				7AD1AA6209EC59480059879A /* bignum.c */,
 				7AD1AA6309EC59480059879A /* class.c */,
@@ -7045,6 +7065,7 @@
 				7AD2CDE708CA0BFD0088E9AD /* MushGLMaterial.h in Headers */,
 				7ACFD18A08CDBEC80062C6D9 /* MushSkinPixelSourceNoise.h in Headers */,
 				7A1A52C808CDD24700CBC8EC /* MushSkinResolverPixelSource.h in Headers */,
+				7AD399BD09F6CC86000BE1C1 /* mushMushRuby.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7549,6 +7570,7 @@
 				7AD1AC1609EC5E3F0059879A /* dln.h in Headers */,
 				7AD1AC1909EC5E410059879A /* defines.h in Headers */,
 				7AD1AC1A09EC5E420059879A /* config.h in Headers */,
+				7AD399C809F6CD58000BE1C1 /* MushRuby.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7904,6 +7926,7 @@
 			dependencies = (
 				7A70CD4C085DEE2D0055C6FB /* PBXTargetDependency */,
 				7A70CD4D085DEE2D0055C6FB /* PBXTargetDependency */,
+				7AD399B309F6CBC8000BE1C1 /* PBXTargetDependency */,
 			);
 			name = Adanaxis;
 			productName = All;
@@ -9950,6 +9973,7 @@
 				7AD1AC1D09EC5E450059879A /* bignum.c in Sources */,
 				7AD1AC1E09EC5E450059879A /* array.c in Sources */,
 				7AD1AD1C09EC66A60059879A /* dmyext.c in Sources */,
+				7AD399C909F6CD58000BE1C1 /* MushRuby.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -10040,6 +10064,11 @@
 			isa = PBXTargetDependency;
 			target = 7AB650A105F9E0A0003E2845 /* Mustl */;
 			targetProxy = 7AB6531D05F9E278003E2845 /* PBXContainerItemProxy */;
+		};
+		7AD399B309F6CBC8000BE1C1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7AD1AAD409EC598E0059879A /* MushRuby */;
+			targetProxy = 7AD399B209F6CBC8000BE1C1 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -10541,7 +10570,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.2;
 				PRODUCT_NAME = Adanaxis;
 				WARNING_CFLAGS = "-Wall";
-				ZERO_LINK = NO;
+				ZERO_LINK = YES;
 			};
 			name = "Development 10.2.7";
 		};
@@ -10611,6 +10640,7 @@
 				INSTALL_PATH = "$(USER_APPS_DIR)";
 				LIBRARY_SEARCH_PATHS = /usr/lib/gcc/darwin/3.3;
 				PRODUCT_NAME = Adanaxis;
+				ZERO_LINK = NO;
 			};
 			name = Default;
 		};

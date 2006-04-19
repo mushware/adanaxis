@@ -3,7 +3,7 @@
  *
  * File: src/Adanaxis/AdanaxisGame.cpp
  *
- * Copyright: Andy Southgate 2005
+ * Copyright: Andy Southgate 2005-2006
  *
  * This file may be used and distributed under the terms of the Mushware
  * software licence version 1.0, under the terms for 'Proprietary original
@@ -15,10 +15,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 1+Fcp5/pJdalVjA2hnviXw
+//%Header } DEX6Sh9oUk/bih2GXm2coA
 /*
- * $Id: AdanaxisGame.cpp,v 1.22 2005/08/05 10:33:33 southa Exp $
+ * $Id: AdanaxisGame.cpp,v 1.23 2005/09/05 12:54:29 southa Exp $
  * $Log: AdanaxisGame.cpp,v $
+ * Revision 1.23  2005/09/05 12:54:29  southa
+ * Solid rendering work
+ *
  * Revision 1.22  2005/08/05 10:33:33  southa
  * win32 build fixes
  *
@@ -100,6 +103,7 @@
 #include "API/mushMedia.h"
 #include "API/mushMushGL.h"
 #include "API/mushMushGame.h"
+#include "API/mushMushRuby.h"
 
 using namespace Mushware;
 using namespace std;
