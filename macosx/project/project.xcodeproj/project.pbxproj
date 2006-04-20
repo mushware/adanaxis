@@ -1992,6 +1992,17 @@
 		7ACC327C05AB3A0A001A0873 /* mushMustl.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ACC327B05AB3A09001A0873 /* mushMustl.h */; };
 		7ACC32F805AB4141001A0873 /* mushMushcoreSTL.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ACC32F705AB4141001A0873 /* mushMushcoreSTL.h */; };
 		7ACC330105AB4150001A0873 /* mushMushcoreIO.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ACC330005AB4150001A0873 /* mushMushcoreIO.h */; };
+		7ACEFB1A09F6E98700E38865 /* MushRubyExec.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ACEFB1809F6E98700E38865 /* MushRubyExec.h */; };
+		7ACEFB1B09F6E98700E38865 /* MushRubyExec.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7ACEFB1909F6E98700E38865 /* MushRubyExec.cpp */; };
+		7ACEFB2309F6EB0400E38865 /* MushRubyStandard.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ACEFB2109F6EB0400E38865 /* MushRubyStandard.h */; };
+		7ACEFB2409F6EB0400E38865 /* MushRubyStandard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7ACEFB2209F6EB0400E38865 /* MushRubyStandard.cpp */; };
+		7ACEFB3809F6F75A00E38865 /* Mushcore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A7194ED05A998B900C42A20 /* Mushcore.framework */; };
+		7ACEFB3D09F6F7DB00E38865 /* MushRubyFail.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ACEFB3B09F6F7DB00E38865 /* MushRubyFail.h */; };
+		7ACEFB3E09F6F7DB00E38865 /* MushRubyFail.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7ACEFB3C09F6F7DB00E38865 /* MushRubyFail.cpp */; };
+		7ACEFB4709F6F9CA00E38865 /* MushRubyRuby.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ACEFB4509F6F9CA00E38865 /* MushRubyRuby.h */; };
+		7ACEFB4809F6F9CA00E38865 /* MushRubyRuby.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7ACEFB4609F6F9CA00E38865 /* MushRubyRuby.cpp */; };
+		7ACEFB5B09F7052600E38865 /* MushRubySTL.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ACEFB5909F7052600E38865 /* MushRubySTL.h */; };
+		7ACEFB5C09F7052600E38865 /* MushRubySTL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7ACEFB5A09F7052600E38865 /* MushRubySTL.cpp */; };
 		7ACF104008C25FB70050F369 /* MushGLPixelSourceTIFF.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ACF103E08C25FB70050F369 /* MushGLPixelSourceTIFF.h */; };
 		7ACF104108C25FB70050F369 /* MushGLPixelSourceTIFF.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7ACF103F08C25FB70050F369 /* MushGLPixelSourceTIFF.cpp */; };
 		7ACF104208C25FB70050F369 /* MushGLPixelSourceTIFF.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ACF103E08C25FB70050F369 /* MushGLPixelSourceTIFF.h */; };
@@ -3550,7 +3561,7 @@
 		7A6CE21C05A5935800777D9B /* MushPieSTL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushPieSTL.cpp; sourceTree = "<group>"; };
 		7A70CD10085DE6A90055C6FB /* MushGLControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushGLControl.h; sourceTree = "<group>"; };
 		7A70CD11085DE6A90055C6FB /* MushGLControl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushGLControl.cpp; sourceTree = "<group>"; };
-		7A70CE7E085DEE2D0055C6FB /* Adanaxis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Adanaxis.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7A70CE7E085DEE2D0055C6FB /* Adanaxis Control Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Adanaxis Control Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A70CEB1085DF1C40055C6FB /* AdanaxisAppHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = AdanaxisAppHandler.cpp; sourceTree = "<group>"; };
 		7A70CEB2085DF1C40055C6FB /* AdanaxisAppHandler.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = AdanaxisAppHandler.h; sourceTree = "<group>"; };
 		7A70CEB3085DF1C50055C6FB /* AdanaxisCommandHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = AdanaxisCommandHandler.cpp; sourceTree = "<group>"; };
@@ -3826,6 +3837,18 @@
 		7ACC327B05AB3A09001A0873 /* mushMustl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mushMustl.h; sourceTree = "<group>"; };
 		7ACC32F705AB4141001A0873 /* mushMushcoreSTL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mushMushcoreSTL.h; sourceTree = "<group>"; };
 		7ACC330005AB4150001A0873 /* mushMushcoreIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mushMushcoreIO.h; sourceTree = "<group>"; };
+		7ACEFB1809F6E98700E38865 /* MushRubyExec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushRubyExec.h; sourceTree = "<group>"; };
+		7ACEFB1909F6E98700E38865 /* MushRubyExec.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushRubyExec.cpp; sourceTree = "<group>"; };
+		7ACEFB2109F6EB0400E38865 /* MushRubyStandard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushRubyStandard.h; sourceTree = "<group>"; };
+		7ACEFB2209F6EB0400E38865 /* MushRubyStandard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushRubyStandard.cpp; sourceTree = "<group>"; };
+		7ACEFB3109F6EF6700E38865 /* init.rb */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.ruby; path = init.rb; sourceTree = "<group>"; };
+		7ACEFB3B09F6F7DB00E38865 /* MushRubyFail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushRubyFail.h; sourceTree = "<group>"; };
+		7ACEFB3C09F6F7DB00E38865 /* MushRubyFail.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushRubyFail.cpp; sourceTree = "<group>"; };
+		7ACEFB4509F6F9CA00E38865 /* MushRubyRuby.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushRubyRuby.h; sourceTree = "<group>"; };
+		7ACEFB4609F6F9CA00E38865 /* MushRubyRuby.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushRubyRuby.cpp; sourceTree = "<group>"; };
+		7ACEFB4F09F6FE8F00E38865 /* TopMenu.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = TopMenu.rb; sourceTree = "<group>"; };
+		7ACEFB5909F7052600E38865 /* MushRubySTL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushRubySTL.h; sourceTree = "<group>"; };
+		7ACEFB5A09F7052600E38865 /* MushRubySTL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushRubySTL.cpp; sourceTree = "<group>"; };
 		7ACF103E08C25FB70050F369 /* MushGLPixelSourceTIFF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushGLPixelSourceTIFF.h; sourceTree = "<group>"; };
 		7ACF103F08C25FB70050F369 /* MushGLPixelSourceTIFF.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushGLPixelSourceTIFF.cpp; sourceTree = "<group>"; };
 		7ACF140A08BE4BB700A78938 /* MushGLTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushGLTexture.h; sourceTree = "<group>"; };
@@ -4278,6 +4301,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7ACEFB3809F6F75A00E38865 /* Mushcore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4298,7 +4322,7 @@
 				7A657EE905A9CD1C00E727F8 /* MushPie.framework */,
 				7AB650D705F9E0A0003E2845 /* Mustl.framework */,
 				7AAE6CD807AFC4250085C60F /* Tesseract Trainer.app */,
-				7A70CE7E085DEE2D0055C6FB /* Adanaxis.app */,
+				7A70CE7E085DEE2D0055C6FB /* Adanaxis Control Demo.app */,
 				7AD1AB4D09EC598E0059879A /* MushRuby.framework */,
 			);
 			name = Products;
@@ -5453,6 +5477,7 @@
 			isa = PBXGroup;
 			children = (
 				7A70D1F3085DF8870055C6FB /* pixels */,
+				7ACEFB3009F6EF6700E38865 /* ruby */,
 				7A70D1F4085DF8870055C6FB /* system */,
 				7A70D1F7085DF8870055C6FB /* waves */,
 			);
@@ -5962,6 +5987,15 @@
 			path = ../../targets;
 			sourceTree = SOURCE_ROOT;
 		};
+		7ACEFB3009F6EF6700E38865 /* ruby */ = {
+			isa = PBXGroup;
+			children = (
+				7ACEFB3109F6EF6700E38865 /* init.rb */,
+				7ACEFB4F09F6FE8F00E38865 /* TopMenu.rb */,
+			);
+			path = ruby;
+			sourceTree = "<group>";
+		};
 		7ACF535508C35D1300BBEB7E /* MushSkin */ = {
 			isa = PBXGroup;
 			children = (
@@ -5984,6 +6018,16 @@
 			children = (
 				7AD399C709F6CD58000BE1C1 /* MushRuby.cpp */,
 				7AD399C609F6CD57000BE1C1 /* MushRuby.h */,
+				7ACEFB1909F6E98700E38865 /* MushRubyExec.cpp */,
+				7ACEFB1809F6E98700E38865 /* MushRubyExec.h */,
+				7ACEFB3C09F6F7DB00E38865 /* MushRubyFail.cpp */,
+				7ACEFB3B09F6F7DB00E38865 /* MushRubyFail.h */,
+				7ACEFB4609F6F9CA00E38865 /* MushRubyRuby.cpp */,
+				7ACEFB4509F6F9CA00E38865 /* MushRubyRuby.h */,
+				7ACEFB2209F6EB0400E38865 /* MushRubyStandard.cpp */,
+				7ACEFB2109F6EB0400E38865 /* MushRubyStandard.h */,
+				7ACEFB5A09F7052600E38865 /* MushRubySTL.cpp */,
+				7ACEFB5909F7052600E38865 /* MushRubySTL.h */,
 				7AD1AA6109EC59480059879A /* array.c */,
 				7AD1AA6209EC59480059879A /* bignum.c */,
 				7AD1AA6309EC59480059879A /* class.c */,
@@ -7571,6 +7615,11 @@
 				7AD1AC1909EC5E410059879A /* defines.h in Headers */,
 				7AD1AC1A09EC5E420059879A /* config.h in Headers */,
 				7AD399C809F6CD58000BE1C1 /* MushRuby.h in Headers */,
+				7ACEFB1A09F6E98700E38865 /* MushRubyExec.h in Headers */,
+				7ACEFB2309F6EB0400E38865 /* MushRubyStandard.h in Headers */,
+				7ACEFB3D09F6F7DB00E38865 /* MushRubyFail.h in Headers */,
+				7ACEFB4709F6F9CA00E38865 /* MushRubyRuby.h in Headers */,
+				7ACEFB5B09F7052600E38865 /* MushRubySTL.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7930,7 +7979,7 @@
 			);
 			name = Adanaxis;
 			productName = All;
-			productReference = 7A70CE7E085DEE2D0055C6FB /* Adanaxis.app */;
+			productReference = 7A70CE7E085DEE2D0055C6FB /* Adanaxis Control Demo.app */;
 			productSettingsXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
 <!DOCTYPE plist PUBLIC \"-//Apple Computer//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">
 <plist version=\"1.0\">
@@ -9974,6 +10023,11 @@
 				7AD1AC1E09EC5E450059879A /* array.c in Sources */,
 				7AD1AD1C09EC66A60059879A /* dmyext.c in Sources */,
 				7AD399C909F6CD58000BE1C1 /* MushRuby.cpp in Sources */,
+				7ACEFB1B09F6E98700E38865 /* MushRubyExec.cpp in Sources */,
+				7ACEFB2409F6EB0400E38865 /* MushRubyStandard.cpp in Sources */,
+				7ACEFB3E09F6F7DB00E38865 /* MushRubyFail.cpp in Sources */,
+				7ACEFB4809F6F9CA00E38865 /* MushRubyRuby.cpp in Sources */,
+				7ACEFB5C09F7052600E38865 /* MushRubySTL.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,9 +1,7 @@
-#ifndef MUSHRUBY_H
-#define MUSHRUBY_H
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushRuby/MushRuby.h
+ * File: src/MushRuby/MushRubySTL.cpp
  *
  * Author: Andy Southgate 2002-2006
  *
@@ -19,16 +17,11 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } Wr9YgRvUclXifNHyxB/v3A
+//%Header } f4sEHAXXHE5Y/7WT7mf1Rw
 /*
- * $Id: MushRuby.h,v 1.1 2006/04/19 20:21:34 southa Exp $
- * $Log: MushRuby.h,v $
- * Revision 1.1  2006/04/19 20:21:34  southa
- * Added Ruby framework
- *
+ * $Id$
+ * $Log$
  */
 
-#include "MushRubyExec.h"
-#include "MushRubyStandard.h"
+#include "MushRubySTL.h"
 
-#endif

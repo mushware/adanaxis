@@ -1,9 +1,11 @@
-#ifndef MUSHRUBY_H
-#define MUSHRUBY_H
+//%includeGuardStart {
+#ifndef MUSHRUBYSTANDARD_H
+#define MUSHRUBYSTANDARD_H
+//%includeGuardStart } nBDoPvfnxLSuYSrB2MSw2A
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushRuby/MushRuby.h
+ * File: src/MushRuby/MushRubyStandard.h
  *
  * Author: Andy Southgate 2002-2006
  *
@@ -19,16 +21,30 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } Wr9YgRvUclXifNHyxB/v3A
+//%Header } Yh+jb7Kt8ubaZEY+Q2v/cg
 /*
- * $Id: MushRuby.h,v 1.1 2006/04/19 20:21:34 southa Exp $
- * $Log: MushRuby.h,v $
- * Revision 1.1  2006/04/19 20:21:34  southa
- * Added Ruby framework
- *
+ * $Id$
+ * $Log$
  */
 
-#include "MushRubyExec.h"
-#include "MushRubyStandard.h"
-
+#ifdef HAVE_CONFIG_H
+#include "config.h"
 #endif
+
+#if defined(HAVE_MUSHCORE_MUSHCORE_H)
+#include <Mushcore/Mushcore.h>
+#elif defined(HAVE_MUSHCORE_H)
+#include <Mushcore.h>
+#else
+#include "Mushcore/Mushcore.h"
+#endif
+
+namespace Mushware
+{
+    typedef unsigned long tRubyValue;
+    typedef unsigned long tRubyID;
+    typedef int tRubyError;
+}
+//%includeGuardEnd {
+#endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

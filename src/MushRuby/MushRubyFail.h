@@ -1,9 +1,11 @@
-#ifndef MUSHRUBY_H
-#define MUSHRUBY_H
+//%includeGuardStart {
+#ifndef MUSHRUBYFAIL_H
+#define MUSHRUBYFAIL_H
+//%includeGuardStart } mzIxmbAiLfZek9bhkqSxQw
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushRuby/MushRuby.h
+ * File: src/MushRuby/MushRubyFail.h
  *
  * Author: Andy Southgate 2002-2006
  *
@@ -19,16 +21,23 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } Wr9YgRvUclXifNHyxB/v3A
+//%Header } hTk4d/BuNJMOCr+nQfG6nw
 /*
- * $Id: MushRuby.h,v 1.1 2006/04/19 20:21:34 southa Exp $
- * $Log: MushRuby.h,v $
- * Revision 1.1  2006/04/19 20:21:34  southa
- * Added Ruby framework
- *
+ * $Id$
+ * $Log$
  */
 
-#include "MushRubyExec.h"
 #include "MushRubyStandard.h"
 
+class MushRubyFail : public MushcoreNonFatalFail
+{
+public:
+    MushRubyFail();
+    MushRubyFail(const std::string& inMessage);
+    
+    static std::string ExceptionInfo(void);
+};
+
+//%includeGuardEnd {
 #endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

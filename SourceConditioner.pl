@@ -10,8 +10,11 @@
 #
 ##############################################################################
 
-# $Id: SourceConditioner.pl,v 1.48 2006/04/11 23:30:07 southa Exp $
+# $Id: SourceConditioner.pl,v 1.49 2006/04/19 20:14:09 southa Exp $
 # $Log: SourceConditioner.pl,v $
+# Revision 1.49  2006/04/19 20:14:09  southa
+# Added Ruby framework
+#
 # Revision 1.48  2006/04/11 23:30:07  southa
 # Created MushRuby from ruby-1.8.4
 #
@@ -177,7 +180,7 @@ use constant HS_SCAN_FOR_CLASS => 0;
 use constant HS_SCAN_FOR_MEMBERS => 1;
 use constant HS_DONE => 10;
 
-my $gNoIncludeGuardFileExpr = 'MushRuby';
+my $gNoIncludeGuardFileExpr = 'MushRuby\/[a-z]*\.h';
 
 my @gCHeaders = (
 '^CodeGen' => [
@@ -201,10 +204,10 @@ my @gCHeaders = (
 ' *',
 ' ****************************************************************************/'
 ],
-'\.c$' => [
+'^[a-z]+\.c$' => [
 '/*****************************************************************************',
 ' *',
-' * File: @FILENAME@',
+' * File: @FILENAME@ (ruby)',
 ' *',
 ' * This file has been taken the ruby distribution and may have been modified.',
 ' * For more information on the original see http://www.ruby-lang.org/.',
