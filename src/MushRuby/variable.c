@@ -1,7 +1,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushRuby/variable.c
+ * File: src/MushRuby/variable.c (ruby)
  *
  * This file has been taken the ruby distribution and may have been modified.
  * For more information on the original see http://www.ruby-lang.org/.
@@ -21,13 +21,13 @@
  * Mushware Limited.
  *
  ****************************************************************************/
-//%Header } SAq8MXDKK1PWboLB9LGAlQ
+//%Header } 4w03hKKGAIzSn495I0uvHg
 /**********************************************************************
 
   variable.c -
 
-  $Author: matz $
-  $Date: 2005/12/12 00:36:52 $
+ 
+  $Date: 2006/04/11 23:30:11 $
   created at: Tue Apr 19 23:55:15 JST 1994
 
   Copyright (C) 1993-2003 Yukihiro Matsumoto

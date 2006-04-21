@@ -1,7 +1,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushRuby/MushRubyStandard.cpp
+ * File: src/MushRuby/MushRubyInstall.cpp
  *
  * Author: Andy Southgate 2002-2006
  *
@@ -17,11 +17,30 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } cAZ5yAFm+lHtMzO/urDaSg
+//%Header } OdQ+sHC8Eym9cO1lHw6idQ
 /*
  * $Id$
  * $Log$
  */
 
-#include "MushRubyStandard.h"
+#include "MushRubyInstall.h"
 
+MUSHCORE_SINGLETON_INSTANCE(MushRubyInstall);
+
+using namespace Mushware;
+using namespace std;
+
+void
+MushRubyInstall::Add(MushRubyInstall::tpInstallFunction inFunction)
+{
+    m_installFunctions.push_back(inFunction);
+}
+
+void
+MushRubyInstall::Execute(void)
+{
+    for (U32 i=0; i<m_installFunctions.size(); ++i)
+    {
+        m_installFunctions[i]();
+    }
+}

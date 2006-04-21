@@ -1,7 +1,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushRuby/sprintf.c
+ * File: src/MushRuby/sprintf.c (ruby)
  *
  * This file has been taken the ruby distribution and may have been modified.
  * For more information on the original see http://www.ruby-lang.org/.
@@ -21,13 +21,13 @@
  * Mushware Limited.
  *
  ****************************************************************************/
-//%Header } ngQejzezl/gDwcJSPwG3XA
+//%Header } OnueB7cHe6cRVxP7Wq4qqw
 /**********************************************************************
 
   sprintf.c -
 
-  $Author: akr $
-  $Date: 2005/12/12 15:09:50 $
+ 
+  $Date: 2006/04/11 23:30:11 $
   created at: Fri Oct 15 10:39:26 JST 1993
 
   Copyright (C) 1993-2003 Yukihiro Matsumoto

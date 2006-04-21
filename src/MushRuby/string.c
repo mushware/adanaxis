@@ -1,7 +1,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushRuby/string.c
+ * File: src/MushRuby/string.c (ruby)
  *
  * This file has been taken the ruby distribution and may have been modified.
  * For more information on the original see http://www.ruby-lang.org/.
@@ -21,13 +21,13 @@
  * Mushware Limited.
  *
  ****************************************************************************/
-//%Header } JdedUK0w+akaSQqecoK0Yg
+//%Header } 2rl/hARKpr9d5WHR1eCPJQ
 /**********************************************************************
 
   string.c -
 
-  $Author: matz $
-  $Date: 2005/10/27 08:19:20 $
+ 
+  $Date: 2006/04/11 23:30:11 $
   created at: Mon Aug  9 17:12:58 JST 1993
 
   Copyright (C) 1993-2003 Yukihiro Matsumoto

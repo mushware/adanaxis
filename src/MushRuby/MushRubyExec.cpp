@@ -19,13 +19,17 @@
  ****************************************************************************/
 //%Header } ZcziFKLJA7zY/8U6Ju48NA
 /*
- * $Id$
- * $Log$
+ * $Id: MushRubyExec.cpp,v 1.1 2006/04/20 00:22:45 southa Exp $
+ * $Log: MushRubyExec.cpp,v $
+ * Revision 1.1  2006/04/20 00:22:45  southa
+ * Added ruby executive
+ *
  */
 
 #include "MushRubyExec.h"
 
 #include "MushRubyFail.h"
+#include "MushRubyInstall.h"
 #include "MushRubySTL.h"
 
 using namespace Mushware;
@@ -72,8 +76,6 @@ MushRubyExec::Call(const std::string& inRecv, const std::string& inFunc)
     tRubyValue retVal;
     tRubyError rubyError;
     
-    std::cerr << "Calling '" << inRecv << "' '" << inFunc << "'" << std::endl;
-    
     m_callReceiver = rb_gv_get(inRecv.c_str());
     m_callFunction = rb_intern(inFunc.c_str());
     
@@ -114,13 +116,14 @@ MushRubyExec::Initialise(void)
 {
     ruby_init();
     ruby_script("init.rb");
-    rb_secure(5);
     
     MushcoreScalar rubyPath;
     if (MushcoreEnv::Sgl().VariableGetIfExists(rubyPath, "RUBY_PATH"))
     {
         Eval("$LOAD_PATH.push('"+rubyPath.StringGet()+"')");
     }
-    Require("init.rb");
+    rb_set_safe_level(2);
+    MushRubyInstall::Sgl().Execute();
 
+    Require("init.rb");
 }

@@ -1,7 +1,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushRuby/range.c
+ * File: src/MushRuby/range.c (ruby)
  *
  * This file has been taken the ruby distribution and may have been modified.
  * For more information on the original see http://www.ruby-lang.org/.
@@ -21,13 +21,13 @@
  * Mushware Limited.
  *
  ****************************************************************************/
-//%Header } 3Yj4zRUm9figGAQxRIeVkw
+//%Header } nQ7IG3zyq4bZH6kk/xaVgQ
 /**********************************************************************
 
   range.c -
 
-  $Author: nobu $
-  $Date: 2005/08/14 15:39:39 $
+ 
+  $Date: 2006/04/11 23:30:10 $
   created at: Thu Aug 19 17:46:47 JST 1993
 
   Copyright (C) 1993-2003 Yukihiro Matsumoto

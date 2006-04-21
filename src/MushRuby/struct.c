@@ -1,7 +1,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushRuby/struct.c
+ * File: src/MushRuby/struct.c (ruby)
  *
  * This file has been taken the ruby distribution and may have been modified.
  * For more information on the original see http://www.ruby-lang.org/.
@@ -21,13 +21,13 @@
  * Mushware Limited.
  *
  ****************************************************************************/
-//%Header } KdX1WMxwc6bg/4ThFPHXkg
+//%Header } aINJdps5Bg0RUS8vAxXySg
 /**********************************************************************
 
   struct.c -
 
-  $Author: matz $
-  $Date: 2005/07/19 14:58:59 $
+ 
+  $Date: 2006/04/11 23:30:11 $
   created at: Tue Mar 22 18:44:30 JST 1995
 
   Copyright (C) 1993-2003 Yukihiro Matsumoto

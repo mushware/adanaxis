@@ -1,7 +1,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushRuby/compar.c
+ * File: src/MushRuby/compar.c (ruby)
  *
  * This file has been taken the ruby distribution and may have been modified.
  * For more information on the original see http://www.ruby-lang.org/.
@@ -21,13 +21,13 @@
  * Mushware Limited.
  *
  ****************************************************************************/
-//%Header } VOfwQPIZCqvG//luGVbULg
+//%Header } kID3QThtcjz0CqNwLKQB5w
 /**********************************************************************
 
   compar.c -
 
-  $Author: dave $
-  $Date: 2003/12/19 00:01:18 $
+ 
+  $Date: 2006/04/11 23:30:09 $
   created at: Thu Aug 26 14:39:48 JST 1993
 
   Copyright (C) 1993-2003 Yukihiro Matsumoto

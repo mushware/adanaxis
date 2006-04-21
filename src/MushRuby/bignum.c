@@ -1,7 +1,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushRuby/bignum.c
+ * File: src/MushRuby/bignum.c (ruby)
  *
  * This file has been taken the ruby distribution and may have been modified.
  * For more information on the original see http://www.ruby-lang.org/.
@@ -21,13 +21,13 @@
  * Mushware Limited.
  *
  ****************************************************************************/
-//%Header } FQNhphUfbCc7i4bOrmTX9g
+//%Header } SI6bp5tlsWuDYwOjp6bHEQ
 /**********************************************************************
 
   bignum.c -
 
-  $Author: akr $
-  $Date: 2005/12/16 18:59:31 $
+ 
+  $Date: 2006/04/11 23:30:08 $
   created at: Fri Jun 10 00:48:55 JST 1994
 
   Copyright (C) 1993-2003 Yukihiro Matsumoto

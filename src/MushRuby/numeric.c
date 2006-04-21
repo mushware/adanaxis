@@ -1,7 +1,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushRuby/numeric.c
+ * File: src/MushRuby/numeric.c (ruby)
  *
  * This file has been taken the ruby distribution and may have been modified.
  * For more information on the original see http://www.ruby-lang.org/.
@@ -21,13 +21,13 @@
  * Mushware Limited.
  *
  ****************************************************************************/
-//%Header } Wf6asRjf0UZfZK3t1h885g
+//%Header } GC1oDk3SOhXv3f8BWaVc9w
 /**********************************************************************
 
   numeric.c -
 
-  $Author: matz $
-  $Date: 2005/10/30 18:20:53 $
+ 
+  $Date: 2006/04/11 23:30:10 $
   created at: Fri Aug 13 18:33:09 JST 1993
 
   Copyright (C) 1993-2003 Yukihiro Matsumoto

@@ -1,7 +1,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushRuby/error.c
+ * File: src/MushRuby/error.c (ruby)
  *
  * This file has been taken the ruby distribution and may have been modified.
  * For more information on the original see http://www.ruby-lang.org/.
@@ -21,13 +21,13 @@
  * Mushware Limited.
  *
  ****************************************************************************/
-//%Header } GhzyJM7q21miqGblvIPF+w
+//%Header } 0sjuti8WJQXX3GQG73WBrw
 /**********************************************************************
 
   error.c -
 
-  $Author: matz $
-  $Date: 2005/07/20 01:09:53 $
+ 
+  $Date: 2006/04/11 23:30:09 $
   created at: Mon Aug  9 16:11:34 JST 1993
 
   Copyright (C) 1993-2003 Yukihiro Matsumoto

@@ -1,7 +1,11 @@
+//%includeGuardStart {
+#ifndef MUSHRUBYINSTALL_H
+#define MUSHRUBYINSTALL_H
+//%includeGuardStart } 3UeA3jhmLesW/JpzA9vyDA
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushRuby/MushRubyStandard.cpp
+ * File: src/MushRuby/MushRubyInstall.h
  *
  * Author: Andy Southgate 2002-2006
  *
@@ -17,7 +21,7 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } cAZ5yAFm+lHtMzO/urDaSg
+//%Header } jdgFb5i3vyCl+/NcIHhqAQ
 /*
  * $Id$
  * $Log$
@@ -25,3 +29,18 @@
 
 #include "MushRubyStandard.h"
 
+class MushRubyInstall : public MushcoreSingleton<MushRubyInstall>
+{
+public:
+    typedef void (*tpInstallFunction)(void);
+    
+    void Add(tpInstallFunction inFunction);
+    void Execute(void);
+private:
+    
+    std::vector<tpInstallFunction> m_installFunctions;
+};
+
+//%includeGuardEnd {
+#endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

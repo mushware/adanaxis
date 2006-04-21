@@ -1,7 +1,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushRuby/io.c
+ * File: src/MushRuby/io.c (ruby)
  *
  * This file has been taken the ruby distribution and may have been modified.
  * For more information on the original see http://www.ruby-lang.org/.
@@ -21,13 +21,13 @@
  * Mushware Limited.
  *
  ****************************************************************************/
-//%Header } pntepXC2GVDZu6+iUXLLpw
+//%Header } QQ7QxuSSAAVBHdnZT0JCFw
 /**********************************************************************
 
   io.c -
 
-  $Author: akr $
-  $Date: 2005/12/19 17:11:20 $
+ 
+  $Date: 2006/04/11 23:30:09 $
   created at: Fri Oct 15 18:08:59 JST 1993
 
   Copyright (C) 1993-2003 Yukihiro Matsumoto

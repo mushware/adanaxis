@@ -1,7 +1,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushRuby/class.c
+ * File: src/MushRuby/class.c (ruby)
  *
  * This file has been taken the ruby distribution and may have been modified.
  * For more information on the original see http://www.ruby-lang.org/.
@@ -21,13 +21,13 @@
  * Mushware Limited.
  *
  ****************************************************************************/
-//%Header } uPpXIegPL48NEjOoymTbyQ
+//%Header } Cbkd9sSNXt+5tQj2avKg7g
 /**********************************************************************
 
   class.c -
 
-  $Author: nobu $
-  $Date: 2005/09/28 14:42:46 $
+ 
+  $Date: 2006/04/11 23:30:09 $
   created at: Tue Aug 10 15:05:44 JST 1993
 
   Copyright (C) 1993-2003 Yukihiro Matsumoto

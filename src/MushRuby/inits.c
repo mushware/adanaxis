@@ -1,7 +1,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushRuby/inits.c
+ * File: src/MushRuby/inits.c (ruby)
  *
  * This file has been taken the ruby distribution and may have been modified.
  * For more information on the original see http://www.ruby-lang.org/.
@@ -21,13 +21,13 @@
  * Mushware Limited.
  *
  ****************************************************************************/
-//%Header } A1gUYSU12z03S1BvuQFtGQ
+//%Header } IFJWDI9EotuCgB6EFtYntA
 /**********************************************************************
 
   inits.c -
 
-  $Author: dave $
-  $Date: 2003/12/19 03:58:57 $
+ 
+  $Date: 2006/04/11 23:30:09 $
   created at: Tue Dec 28 16:01:58 JST 1993
 
   Copyright (C) 1993-2003 Yukihiro Matsumoto

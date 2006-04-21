@@ -1,7 +1,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushRuby/re.c
+ * File: src/MushRuby/re.c (ruby)
  *
  * This file has been taken the ruby distribution and may have been modified.
  * For more information on the original see http://www.ruby-lang.org/.
@@ -21,12 +21,12 @@
  * Mushware Limited.
  *
  ****************************************************************************/
-//%Header } zEPKnePJB8dxzYgHRH8rBw
+//%Header } ei7PEv9VsSkHX9OeId21iw
 /**********************************************************************
 
   re.c -
 
-  $Author: akr $
+ 
   created at: Mon Aug  9 18:24:49 JST 1993
 
   Copyright (C) 1993-2003 Yukihiro Matsumoto

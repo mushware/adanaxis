@@ -1,7 +1,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushRuby/prec.c
+ * File: src/MushRuby/prec.c (ruby)
  *
  * This file has been taken the ruby distribution and may have been modified.
  * For more information on the original see http://www.ruby-lang.org/.
@@ -21,13 +21,13 @@
  * Mushware Limited.
  *
  ****************************************************************************/
-//%Header } 6vq2lavt7VQR/q6qEW54NA
+//%Header } PpAG2SMrGmOpLNBO4yJ/VA
 /**********************************************************************
 
   prec.c -
 
-  $Author: nobu $
-  $Date: 2004/04/14 04:06:52 $
+ 
+  $Date: 2006/04/11 23:30:10 $
   created at: Tue Jan 26 02:40:41 2000
 
   Copyright (C) 1993-2003 Yukihiro Matsumoto

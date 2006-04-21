@@ -1,7 +1,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushRuby/marshal.c
+ * File: src/MushRuby/marshal.c (ruby)
  *
  * This file has been taken the ruby distribution and may have been modified.
  * For more information on the original see http://www.ruby-lang.org/.
@@ -21,13 +21,13 @@
  * Mushware Limited.
  *
  ****************************************************************************/
-//%Header } RMtnokae4ob0p3fGzjhhTg
+//%Header } NA9ay9CygUdSAVup897ImA
 /**********************************************************************
 
   marshal.c -
 
-  $Author: akr $
-  $Date: 2005/12/14 03:04:14 $
+ 
+  $Date: 2006/04/11 23:30:10 $
   created at: Thu Apr 27 16:30:01 JST 1995
 
   Copyright (C) 1993-2003 Yukihiro Matsumoto

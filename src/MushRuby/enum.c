@@ -1,7 +1,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushRuby/enum.c
+ * File: src/MushRuby/enum.c (ruby)
  *
  * This file has been taken the ruby distribution and may have been modified.
  * For more information on the original see http://www.ruby-lang.org/.
@@ -21,13 +21,13 @@
  * Mushware Limited.
  *
  ****************************************************************************/
-//%Header } SNmgymu5YLsSfFOagAA6tw
+//%Header } +vOSJ7D+BXreN5/XP7Psjg
 /**********************************************************************
 
   enum.c -
 
-  $Author: nobu $
-  $Date: 2005/06/30 16:46:13 $
+ 
+  $Date: 2006/04/11 23:30:09 $
   created at: Fri Oct  1 15:15:19 JST 1993
 
   Copyright (C) 1993-2003 Yukihiro Matsumoto

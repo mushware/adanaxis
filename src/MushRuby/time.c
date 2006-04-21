@@ -1,7 +1,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushRuby/time.c
+ * File: src/MushRuby/time.c (ruby)
  *
  * This file has been taken the ruby distribution and may have been modified.
  * For more information on the original see http://www.ruby-lang.org/.
@@ -21,13 +21,13 @@
  * Mushware Limited.
  *
  ****************************************************************************/
-//%Header } HZB4Uym7JCNMh+rA2aurXg
+//%Header } ottdljCLHVuzBUTpJqko4A
 /**********************************************************************
 
   time.c -
 
-  $Author: nobu $
-  $Date: 2005/10/22 04:27:48 $
+ 
+  $Date: 2006/04/11 23:30:11 $
   created at: Tue Dec 28 14:31:59 JST 1993
 
   Copyright (C) 1993-2003 Yukihiro Matsumoto

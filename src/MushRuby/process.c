@@ -1,7 +1,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushRuby/process.c
+ * File: src/MushRuby/process.c (ruby)
  *
  * This file has been taken the ruby distribution and may have been modified.
  * For more information on the original see http://www.ruby-lang.org/.
@@ -21,13 +21,13 @@
  * Mushware Limited.
  *
  ****************************************************************************/
-//%Header } vsJWeA5/omBnERkCGf2PgQ
+//%Header } YHCAbehglAY+eG0MtxV+cQ
 /**********************************************************************
 
   process.c -
 
-  $Author: akr $
-  $Date: 2005/11/20 03:30:47 $
+ 
+  $Date: 2006/04/11 23:30:10 $
   created at: Tue Aug 10 14:30:50 JST 1993
 
   Copyright (C) 1993-2003 Yukihiro Matsumoto

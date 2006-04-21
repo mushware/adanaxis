@@ -1,7 +1,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushRuby/random.c
+ * File: src/MushRuby/random.c (ruby)
  *
  * This file has been taken the ruby distribution and may have been modified.
  * For more information on the original see http://www.ruby-lang.org/.
@@ -21,13 +21,13 @@
  * Mushware Limited.
  *
  ****************************************************************************/
-//%Header } g2gJkenlxG6D2m6UONABag
+//%Header } S0AAyb3+ZPBnABu9fSu31A
 /**********************************************************************
 
   random.c -
 
-  $Author: nobu $
-  $Date: 2005/02/12 06:07:47 $
+ 
+  $Date: 2006/04/11 23:30:10 $
   created at: Fri Dec 24 16:39:21 JST 1993
 
   Copyright (C) 1993-2003 Yukihiro Matsumoto

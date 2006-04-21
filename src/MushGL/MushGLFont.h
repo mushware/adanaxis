@@ -1,7 +1,11 @@
+//%includeGuardStart {
+#ifndef MUSHGLFONT_H
+#define MUSHGLFONT_H
+//%includeGuardStart } t3ghUhPwnkLwSMZ+RJKnCA
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushRuby/MushRubyStandard.cpp
+ * File: src/MushGL/MushGLFont.h
  *
  * Author: Andy Southgate 2002-2006
  *
@@ -17,11 +21,26 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } cAZ5yAFm+lHtMzO/urDaSg
+//%Header } GszAZNIc4XTjBhyVnPxI7g
 /*
  * $Id$
  * $Log$
  */
 
-#include "MushRubyStandard.h"
+#include "MushGLStandard.h"
 
+#include "mushMushRuby.h"
+
+class MushGLFont
+{
+public:
+    
+    static Mushware::tRubyValue RubyRender(Mushware::tRubyArgC inArgC,
+        Mushware::tRubyValue *inpArgV, Mushware::tRubyValue inSelf);
+    static void RubyInstall(void);
+    static void Install(void);
+private:
+};
+//%includeGuardEnd {
+#endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

@@ -1,7 +1,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushRuby/util.c
+ * File: src/MushRuby/util.c (ruby)
  *
  * This file has been taken the ruby distribution and may have been modified.
  * For more information on the original see http://www.ruby-lang.org/.
@@ -21,13 +21,13 @@
  * Mushware Limited.
  *
  ****************************************************************************/
-//%Header } GzDcwPp4jgZ2Qk4C+BWtlA
+//%Header } JRzLxeoSxfm4kVHOHZJVnw
 /**********************************************************************
 
   util.c -
 
-  $Author: matz $
-  $Date: 2004/09/21 09:35:28 $
+ 
+  $Date: 2006/04/11 23:30:11 $
   created at: Fri Mar 10 17:22:34 JST 1995
 
   Copyright (C) 1993-2003 Yukihiro Matsumoto

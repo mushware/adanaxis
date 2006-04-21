@@ -1,7 +1,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushRuby/math.c
+ * File: src/MushRuby/math.c (ruby)
  *
  * This file has been taken the ruby distribution and may have been modified.
  * For more information on the original see http://www.ruby-lang.org/.
@@ -21,13 +21,13 @@
  * Mushware Limited.
  *
  ****************************************************************************/
-//%Header } Qhf+ERCyelYVZGk0njoQKA
+//%Header } 4WUcYtB7UD0L1VpWdAaSbQ
 /**********************************************************************
 
   math.c -
 
-  $Author: dave $
-  $Date: 2003/12/28 15:43:33 $
+ 
+  $Date: 2006/04/11 23:30:10 $
   created at: Tue Jan 25 14:12:56 JST 1994
 
   Copyright (C) 1993-2003 Yukihiro Matsumoto

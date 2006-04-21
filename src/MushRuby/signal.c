@@ -1,7 +1,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushRuby/signal.c
+ * File: src/MushRuby/signal.c (ruby)
  *
  * This file has been taken the ruby distribution and may have been modified.
  * For more information on the original see http://www.ruby-lang.org/.
@@ -21,13 +21,13 @@
  * Mushware Limited.
  *
  ****************************************************************************/
-//%Header } mbMqyrXQYVCthF9U/Dfv7A
+//%Header } e4rDm5bDGqYgtdruJTIBbA
 /**********************************************************************
 
   signal.c -
 
-  $Author: matz $
-  $Date: 2005/12/15 15:57:05 $
+ 
+  $Date: 2006/04/11 23:30:11 $
   created at: Tue Dec 20 10:13:44 JST 1994
 
   Copyright (C) 1993-2003 Yukihiro Matsumoto

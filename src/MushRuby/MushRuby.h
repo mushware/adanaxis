@@ -1,5 +1,7 @@
+//%includeGuardStart {
 #ifndef MUSHRUBY_H
 #define MUSHRUBY_H
+//%includeGuardStart } U/64qX501i9BXUFwLOFhbQ
 //%Header {
 /*****************************************************************************
  *
@@ -21,14 +23,22 @@
  ****************************************************************************/
 //%Header } Wr9YgRvUclXifNHyxB/v3A
 /*
- * $Id: MushRuby.h,v 1.1 2006/04/19 20:21:34 southa Exp $
+ * $Id: MushRuby.h,v 1.2 2006/04/20 00:22:45 southa Exp $
  * $Log: MushRuby.h,v $
+ * Revision 1.2  2006/04/20 00:22:45  southa
+ * Added ruby executive
+ *
  * Revision 1.1  2006/04/19 20:21:34  southa
  * Added Ruby framework
  *
  */
 
 #include "MushRubyExec.h"
+#include "MushRubyFail.h"
+#include "MushRubyInstall.h"
 #include "MushRubyStandard.h"
+#include "MushRubyUtil.h"
 
+//%includeGuardEnd {
 #endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

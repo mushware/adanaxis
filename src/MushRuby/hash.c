@@ -1,7 +1,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushRuby/hash.c
+ * File: src/MushRuby/hash.c (ruby)
  *
  * This file has been taken the ruby distribution and may have been modified.
  * For more information on the original see http://www.ruby-lang.org/.
@@ -21,13 +21,13 @@
  * Mushware Limited.
  *
  ****************************************************************************/
-//%Header } 0ub8DVxzs7FFec+5kqQfbg
+//%Header } 7nSD9ySQ/cwPZRzmmhxaiA
 /**********************************************************************
 
   hash.c -
 
-  $Author: matz $
-  $Date: 2005/07/19 08:25:37 $
+ 
+  $Date: 2006/04/11 23:30:09 $
   created at: Mon Nov 22 18:51:18 JST 1993
 
   Copyright (C) 1993-2003 Yukihiro Matsumoto

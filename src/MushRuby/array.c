@@ -1,7 +1,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushRuby/array.c
+ * File: src/MushRuby/array.c (ruby)
  *
  * This file has been taken the ruby distribution and may have been modified.
  * For more information on the original see http://www.ruby-lang.org/.
@@ -21,13 +21,13 @@
  * Mushware Limited.
  *
  ****************************************************************************/
-//%Header } FsvvW1FxJWZDEaAXBsNH8g
+//%Header } 5Fos1bR9pYs9+N1j0jHEfw
 /**********************************************************************
 
   array.c -
 
-  $Author: matz $
-  $Date: 2005/12/22 07:08:51 $
+ 
+  $Date: 2006/04/11 23:30:08 $
   created at: Fri Aug  6 09:46:12 JST 1993
 
   Copyright (C) 1993-2003 Yukihiro Matsumoto

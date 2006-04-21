@@ -1,7 +1,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushRuby/gc.c
+ * File: src/MushRuby/gc.c (ruby)
  *
  * This file has been taken the ruby distribution and may have been modified.
  * For more information on the original see http://www.ruby-lang.org/.
@@ -21,13 +21,13 @@
  * Mushware Limited.
  *
  ****************************************************************************/
-//%Header } gF3KBhVh2hFsEPimBwaKbA
+//%Header } pVh41JQN4ZrG6eSRzWrkEQ
 /**********************************************************************
 
   gc.c -
 
-  $Author: akr $
-  $Date: 2005/12/16 04:58:51 $
+ 
+  $Date: 2006/04/11 23:30:09 $
   created at: Tue Oct  5 09:44:46 JST 1993
 
   Copyright (C) 1993-2003 Yukihiro Matsumoto

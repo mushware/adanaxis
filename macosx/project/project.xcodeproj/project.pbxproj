@@ -1992,6 +1992,12 @@
 		7ACC327C05AB3A0A001A0873 /* mushMustl.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ACC327B05AB3A09001A0873 /* mushMustl.h */; };
 		7ACC32F805AB4141001A0873 /* mushMushcoreSTL.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ACC32F705AB4141001A0873 /* mushMushcoreSTL.h */; };
 		7ACC330105AB4150001A0873 /* mushMushcoreIO.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ACC330005AB4150001A0873 /* mushMushcoreIO.h */; };
+		7ACED0D009F83ED500055E66 /* MushRubyInstall.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ACED0CE09F83ED500055E66 /* MushRubyInstall.h */; };
+		7ACED0D109F83ED500055E66 /* MushRubyInstall.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7ACED0CF09F83ED500055E66 /* MushRubyInstall.cpp */; };
+		7ACED0D609F8416400055E66 /* MushRubyUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ACED0D409F8416300055E66 /* MushRubyUtil.h */; };
+		7ACED0D709F8416400055E66 /* MushRubyUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7ACED0D509F8416300055E66 /* MushRubyUtil.cpp */; };
+		7ACED0DC09F8429700055E66 /* MushGLFont.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ACED0DA09F8429700055E66 /* MushGLFont.h */; };
+		7ACED0DD09F8429700055E66 /* MushGLFont.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7ACED0DB09F8429700055E66 /* MushGLFont.cpp */; };
 		7ACEFB1A09F6E98700E38865 /* MushRubyExec.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ACEFB1809F6E98700E38865 /* MushRubyExec.h */; };
 		7ACEFB1B09F6E98700E38865 /* MushRubyExec.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7ACEFB1909F6E98700E38865 /* MushRubyExec.cpp */; };
 		7ACEFB2309F6EB0400E38865 /* MushRubyStandard.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ACEFB2109F6EB0400E38865 /* MushRubyStandard.h */; };
@@ -3837,6 +3843,13 @@
 		7ACC327B05AB3A09001A0873 /* mushMustl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mushMustl.h; sourceTree = "<group>"; };
 		7ACC32F705AB4141001A0873 /* mushMushcoreSTL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mushMushcoreSTL.h; sourceTree = "<group>"; };
 		7ACC330005AB4150001A0873 /* mushMushcoreIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mushMushcoreIO.h; sourceTree = "<group>"; };
+		7ACED0CE09F83ED500055E66 /* MushRubyInstall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushRubyInstall.h; sourceTree = "<group>"; };
+		7ACED0CF09F83ED500055E66 /* MushRubyInstall.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushRubyInstall.cpp; sourceTree = "<group>"; };
+		7ACED0D409F8416300055E66 /* MushRubyUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushRubyUtil.h; sourceTree = "<group>"; };
+		7ACED0D509F8416300055E66 /* MushRubyUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushRubyUtil.cpp; sourceTree = "<group>"; };
+		7ACED0DA09F8429700055E66 /* MushGLFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushGLFont.h; sourceTree = "<group>"; };
+		7ACED0DB09F8429700055E66 /* MushGLFont.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushGLFont.cpp; sourceTree = "<group>"; };
+		7ACED0E109F84F2400055E66 /* MushGLFont.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = MushGLFont.rb; sourceTree = "<group>"; };
 		7ACEFB1809F6E98700E38865 /* MushRubyExec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushRubyExec.h; sourceTree = "<group>"; };
 		7ACEFB1909F6E98700E38865 /* MushRubyExec.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushRubyExec.cpp; sourceTree = "<group>"; };
 		7ACEFB2109F6EB0400E38865 /* MushRubyStandard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushRubyStandard.h; sourceTree = "<group>"; };
@@ -5375,6 +5388,8 @@
 				7ADEF6EF0876CB7A00820697 /* MushGLClaimer.h */,
 				7A70CD11085DE6A90055C6FB /* MushGLControl.cpp */,
 				7A70CD10085DE6A90055C6FB /* MushGLControl.h */,
+				7ACED0DB09F8429700055E66 /* MushGLFont.cpp */,
+				7ACED0DA09F8429700055E66 /* MushGLFont.h */,
 				7AD2990A0876952D00367963 /* MushGLJob.cpp */,
 				7AD299090876952D00367963 /* MushGLJob.h */,
 				7AD299020876949A00367963 /* MushGLJobRender.cpp */,
@@ -5992,6 +6007,7 @@
 			children = (
 				7ACEFB3109F6EF6700E38865 /* init.rb */,
 				7ACEFB4F09F6FE8F00E38865 /* TopMenu.rb */,
+				7ACED0E109F84F2400055E66 /* MushGLFont.rb */,
 			);
 			path = ruby;
 			sourceTree = "<group>";
@@ -6022,12 +6038,16 @@
 				7ACEFB1809F6E98700E38865 /* MushRubyExec.h */,
 				7ACEFB3C09F6F7DB00E38865 /* MushRubyFail.cpp */,
 				7ACEFB3B09F6F7DB00E38865 /* MushRubyFail.h */,
+				7ACED0CF09F83ED500055E66 /* MushRubyInstall.cpp */,
+				7ACED0CE09F83ED500055E66 /* MushRubyInstall.h */,
 				7ACEFB4609F6F9CA00E38865 /* MushRubyRuby.cpp */,
 				7ACEFB4509F6F9CA00E38865 /* MushRubyRuby.h */,
 				7ACEFB2209F6EB0400E38865 /* MushRubyStandard.cpp */,
 				7ACEFB2109F6EB0400E38865 /* MushRubyStandard.h */,
 				7ACEFB5A09F7052600E38865 /* MushRubySTL.cpp */,
 				7ACEFB5909F7052600E38865 /* MushRubySTL.h */,
+				7ACED0D509F8416300055E66 /* MushRubyUtil.cpp */,
+				7ACED0D409F8416300055E66 /* MushRubyUtil.h */,
 				7AD1AA6109EC59480059879A /* array.c */,
 				7AD1AA6209EC59480059879A /* bignum.c */,
 				7AD1AA6309EC59480059879A /* class.c */,
@@ -7110,6 +7130,7 @@
 				7ACFD18A08CDBEC80062C6D9 /* MushSkinPixelSourceNoise.h in Headers */,
 				7A1A52C808CDD24700CBC8EC /* MushSkinResolverPixelSource.h in Headers */,
 				7AD399BD09F6CC86000BE1C1 /* mushMushRuby.h in Headers */,
+				7ACED0DC09F8429700055E66 /* MushGLFont.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7620,6 +7641,8 @@
 				7ACEFB3D09F6F7DB00E38865 /* MushRubyFail.h in Headers */,
 				7ACEFB4709F6F9CA00E38865 /* MushRubyRuby.h in Headers */,
 				7ACEFB5B09F7052600E38865 /* MushRubySTL.h in Headers */,
+				7ACED0D009F83ED500055E66 /* MushRubyInstall.h in Headers */,
+				7ACED0D609F8416400055E66 /* MushRubyUtil.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9648,6 +9671,7 @@
 				7AD2CDE808CA0BFD0088E9AD /* MushGLMaterial.cpp in Sources */,
 				7ACFD18B08CDBEC80062C6D9 /* MushSkinPixelSourceNoise.cpp in Sources */,
 				7A1A52C908CDD24700CBC8EC /* MushSkinResolverPixelSource.cpp in Sources */,
+				7ACED0DD09F8429700055E66 /* MushGLFont.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -10028,6 +10052,8 @@
 				7ACEFB3E09F6F7DB00E38865 /* MushRubyFail.cpp in Sources */,
 				7ACEFB4809F6F9CA00E38865 /* MushRubyRuby.cpp in Sources */,
 				7ACEFB5C09F7052600E38865 /* MushRubySTL.cpp in Sources */,
+				7ACED0D109F83ED500055E66 /* MushRubyInstall.cpp in Sources */,
+				7ACED0D709F8416400055E66 /* MushRubyUtil.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

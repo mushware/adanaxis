@@ -1,7 +1,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushRuby/ruby.c
+ * File: src/MushRuby/ruby.c (ruby)
  *
  * This file has been taken the ruby distribution and may have been modified.
  * For more information on the original see http://www.ruby-lang.org/.
@@ -21,13 +21,13 @@
  * Mushware Limited.
  *
  ****************************************************************************/
-//%Header } sObK26lkrPplPMQTckveEQ
+//%Header } nK72ZLZkbeERi5Fy4NYsAA
 /**********************************************************************
 
   ruby.c -
 
-  $Author: matz $
-  $Date: 2005/12/12 00:36:52 $
+ 
+  $Date: 2006/04/11 23:30:10 $
   created at: Tue Aug 10 12:47:31 JST 1993
 
   Copyright (C) 1993-2003 Yukihiro Matsumoto

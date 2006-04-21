@@ -1,7 +1,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushRuby/dln.c
+ * File: src/MushRuby/dln.c (ruby)
  *
  * This file has been taken the ruby distribution and may have been modified.
  * For more information on the original see http://www.ruby-lang.org/.
@@ -21,13 +21,13 @@
  * Mushware Limited.
  *
  ****************************************************************************/
-//%Header } BxvqMtJkfvW4z0kh+hRbSQ
+//%Header } R1rgp8Xz561yu6d0cULr4A
 /**********************************************************************
 
   dln.c -
 
-  $Author: eban $
-  $Date: 2005/11/26 11:01:01 $
+ 
+  $Date: 2006/04/11 23:30:09 $
   created at: Tue Jan 18 17:05:06 JST 1994
 
   Copyright (C) 1993-2003 Yukihiro Matsumoto

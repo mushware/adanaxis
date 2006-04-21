@@ -1,7 +1,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushRuby/dir.c
+ * File: src/MushRuby/dir.c (ruby)
  *
  * This file has been taken the ruby distribution and may have been modified.
  * For more information on the original see http://www.ruby-lang.org/.
@@ -21,13 +21,13 @@
  * Mushware Limited.
  *
  ****************************************************************************/
-//%Header } C5g+fG8SQvkB+NXsWb/veA
+//%Header } qkKUj4IFg9KVDNULe0TbJw
 /**********************************************************************
 
   dir.c -
 
-  $Author: nobu $
-  $Date: 2005/09/14 13:40:58 $
+ 
+  $Date: 2006/04/11 23:30:09 $
   created at: Wed Jan  5 09:51:01 JST 1994
 
   Copyright (C) 1993-2003 Yukihiro Matsumoto

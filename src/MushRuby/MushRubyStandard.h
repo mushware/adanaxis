@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } Yh+jb7Kt8ubaZEY+Q2v/cg
 /*
- * $Id$
- * $Log$
+ * $Id: MushRubyStandard.h,v 1.1 2006/04/20 00:22:45 southa Exp $
+ * $Log: MushRubyStandard.h,v $
+ * Revision 1.1  2006/04/20 00:22:45  southa
+ * Added ruby executive
+ *
  */
 
 #ifdef HAVE_CONFIG_H
@@ -43,7 +46,8 @@ namespace Mushware
 {
     typedef unsigned long tRubyValue;
     typedef unsigned long tRubyID;
-    typedef int tRubyError;
+    typedef int tRubyError, tRubyArgC;
+    typedef tRubyValue (*tfpRubyMethod)(tRubyArgC inArgC, tRubyValue *inpArgV, tRubyValue inSelf);
 }
 //%includeGuardEnd {
 #endif
