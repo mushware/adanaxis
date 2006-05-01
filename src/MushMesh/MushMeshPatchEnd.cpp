@@ -3,7 +3,7 @@
  *
  * File: src/MushMesh/MushMeshPatchEnd.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,7 +17,7 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } HEPv7kZjErsdQ5Jwd78MnQ
+//%Header } ViZWJ8aS8np4gcU3pKr75g
 
 
 #include "MushMeshPatchEnd.h"
@@ -89,7 +89,7 @@ MushMeshPatchEnd::NeighbourSelectionGet(MushMeshSelection& outSelection, tEdgeSe
     switch  (inEdge)
     {   
     case kEdgeRight:
-        outSelection.start = t2U32(m_activeBox.EndGet().X(), m_activeBox.StartGet().Y());
+        outSelection.start = t2U32(m_activeBox.End().X(), m_activeBox.Start().Y());
         outSelection.stride = t2U32(0, 1);
         outSelection.size = m_activeBox.SizeGet().Y();
         break;
@@ -117,21 +117,21 @@ MushMeshPatchEnd::EdgeStitchableGet(MushMeshStitchable& outStitchable, tEdgeSele
     switch (inEdge)
     {        
     case kEdgeRight:
-        selection.start = t2U32(m_activeBox.EndGet().X() - 2, m_activeBox.StartGet().Y());
+        selection.start = t2U32(m_activeBox.End().X() - 2, m_activeBox.Start().Y());
         selection.stride = t2U32(0, 1);
         selection.size = m_activeBox.SizeGet().Y();
         break;
         
     case kPointBottomRight:
         // Points wrap around, so this is the top right data point
-        selection.start = m_activeBox.EndGet() - t2U32(2, 1);
+        selection.start = m_activeBox.End() - t2U32(2, 1);
         selection.stride = t2U32(0, 0);
         selection.size = 1;
         break;
         
     case kPointTopRight:
         // Points wrap around, so this is the bottom right data point
-        selection.start = t2U32(m_activeBox.EndGet().X() - 2, m_activeBox.StartGet().Y());
+        selection.start = t2U32(m_activeBox.End().X() - 2, m_activeBox.Start().Y());
         selection.stride = t2U32(0, 0);
         selection.size = 1;
         break;

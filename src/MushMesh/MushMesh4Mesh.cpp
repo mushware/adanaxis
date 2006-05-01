@@ -3,7 +3,7 @@
  *
  * File: src/MushMesh/MushMesh4Mesh.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } v136Oh1IVziX36Di81JIXQ
+//%Header } oYzojPrY+iq5d6Z2oF715A
 /*
- * $Id: MushMesh4Mesh.cpp,v 1.12 2005/09/03 17:05:36 southa Exp $
+ * $Id: MushMesh4Mesh.cpp,v 1.13 2005/09/05 12:54:30 southa Exp $
  * $Log: MushMesh4Mesh.cpp,v $
+ * Revision 1.13  2005/09/05 12:54:30  southa
+ * Solid rendering work
+ *
  * Revision 1.12  2005/09/03 17:05:36  southa
  * Material work
  *
@@ -529,6 +532,7 @@ MushMesh4Mesh::AutoPrint(std::ostream& ioOut) const
     ioOut << "texCoordCounter=" << m_texCoordCounter << ", ";
     ioOut << "faceGenerator=" << m_faceGenerator << ", ";
     ioOut << "vertexGenerator=" << m_vertexGenerator << ", ";
+    ioOut << "textureTiles=" << m_textureTiles << ", ";
     ioOut << "chunks=" << m_chunks << ", ";
     ioOut << "normals=" << m_normals << ", ";
     ioOut << "connectivity=" << m_connectivity << ", ";
@@ -597,6 +601,10 @@ MushMesh4Mesh::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& i
     else if (inTagStr == "vertexGenerator")
     {
         ioIn >> m_vertexGenerator;
+    }
+    else if (inTagStr == "textureTiles")
+    {
+        ioIn >> m_textureTiles;
     }
     else if (inTagStr == "chunks")
     {
@@ -690,6 +698,8 @@ MushMesh4Mesh::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_faceGenerator;
     ioOut.TagSet("vertexGenerator");
     ioOut << m_vertexGenerator;
+    ioOut.TagSet("textureTiles");
+    ioOut << m_textureTiles;
     ioOut.TagSet("chunks");
     ioOut << m_chunks;
     ioOut.TagSet("normals");
@@ -719,4 +729,4 @@ MushMesh4Mesh::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("numFacetsValid");
     ioOut << m_numFacetsValid;
 }
-//%outOfLineFunctions } b0ZlDl2tBTAQtc8XdxLmUw
+//%outOfLineFunctions } Z92dFJhIMoy6k6OFQ8dAUA

@@ -3,7 +3,7 @@
  *
  * File: src/TestMushMesh/TestMushMeshBox.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } iKum3f99Gn46cn8ojcNK+Q
+//%Header } ybm93LAaWGWQswYpiz14pw
 /*
- * $Id: TestMushMeshBox.cpp,v 1.4 2004/01/05 20:13:15 southa Exp $
+ * $Id: TestMushMeshBox.cpp,v 1.5 2005/05/19 13:02:23 southa Exp $
  * $Log: TestMushMeshBox.cpp,v $
+ * Revision 1.5  2005/05/19 13:02:23  southa
+ * Mac release work
+ *
  * Revision 1.4  2004/01/05 20:13:15  southa
  * Target and test updates
  *
@@ -83,7 +86,7 @@ TestMushMeshBox::TestBox(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
         throw(MushcoreLogicFail(message.str()));
     }
 
-    testBox.StartSet(tPoint(testBox.StartGet().Y(), testBox.StartGet().X()));
+    testBox.StartSet(tPoint(testBox.Start().Y(), testBox.Start().X()));
     if (testBox != tTestBox(1,2,4,3))
     {
         ostringstream message;
@@ -99,7 +102,7 @@ TestMushMeshBox::TestBox(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
     }
     
 
-    testBox.EndSet(tPoint(testBox.EndGet().Y(), testBox.EndGet().X()));
+    testBox.EndSet(tPoint(testBox.End().Y(), testBox.End().X()));
     if (testBox != tTestBox(1,2,3,4))
     {
         ostringstream message;

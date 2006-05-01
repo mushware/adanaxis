@@ -7,7 +7,7 @@
  *
  * File: src/MushMesh/MushMesh4Mesh.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } pM9lKxUBsV8LUNEqYXbulg
+//%Header } YrK9KiG4XjKqbWo1rVGU4w
 /*
- * $Id: MushMesh4Mesh.h,v 1.12 2005/09/03 17:05:36 southa Exp $
+ * $Id: MushMesh4Mesh.h,v 1.13 2005/09/05 12:54:30 southa Exp $
  * $Log: MushMesh4Mesh.h,v $
+ * Revision 1.13  2005/09/05 12:54:30  southa
+ * Solid rendering work
+ *
  * Revision 1.12  2005/09/03 17:05:36  southa
  * Material work
  *
@@ -69,6 +72,7 @@
 #include "MushMesh4Chunk.h"
 #include "MushMesh4Face.h"
 #include "MushMesh4FaceGenerator.h"
+#include "MushMesh4TextureTile.h"
 #include "MushMesh4VertexGenerator.h"
 #include "MushMeshVector.h"
 
@@ -92,7 +96,9 @@ public:
     typedef MushMesh4Chunk tChunk;
     typedef std::vector<tChunk> tChunks;
     typedef MushcoreDataRef<MushMesh4Mesh> tDataRef;
-        
+    typedef MushMesh4TextureTile tTextureTile;
+    typedef std::vector<tTextureTile> tTextureTiles;
+    
     MushMesh4Mesh();
     virtual ~MushMesh4Mesh() {}
 
@@ -149,6 +155,7 @@ private:
     Mushware::U32 m_texCoordCounter; //:readwrite :wref
     MushcoreAutoClonePtr<MushMesh4FaceGenerator> m_faceGenerator; //:readwrite :wref
     MushcoreAutoClonePtr<MushMesh4VertexGenerator> m_vertexGenerator; //:readwrite :wref
+    tTextureTiles m_textureTiles; //:readwrite :wref
     
     // Collision
     tChunks m_chunks; //:readwrite :wref
@@ -168,7 +175,7 @@ private:
     mutable bool m_centroidValid;
     mutable bool m_boundingRadiusValid;
     mutable bool m_numFacetsValid;
-    
+
 //%classPrototypes {
 public:
     const tVertices& Vertices(void) const { return m_vertices; }
@@ -211,6 +218,10 @@ public:
     void VertexGeneratorSet(const MushcoreAutoClonePtr<MushMesh4VertexGenerator>& inValue) { m_vertexGenerator=inValue; }
     // Writable reference for m_vertexGenerator
     MushcoreAutoClonePtr<MushMesh4VertexGenerator>& VertexGeneratorWRef(void) { return m_vertexGenerator; }
+    const tTextureTiles& TextureTiles(void) const { return m_textureTiles; }
+    void TextureTilesSet(const tTextureTiles& inValue) { m_textureTiles=inValue; }
+    // Writable reference for m_textureTiles
+    tTextureTiles& TextureTilesWRef(void) { return m_textureTiles; }
     const tChunks& Chunks(void) const { return m_chunks; }
     void ChunksSet(const tChunks& inValue) { m_chunks=inValue; }
     // Writable reference for m_chunks
@@ -222,7 +233,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } kGySnQFG6TZuog0FK70n/w
+//%classPrototypes } N/sjRJiPIgFRIZwOgTVN1w
 };
 
 inline const MushMesh4Mesh::tCentroid&

@@ -7,7 +7,7 @@
  *
  * File: src/MushMesh/MushMeshBox.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } N3TXbL5QkWJoBhjw68fw1Q
+//%Header } KWHuQYUWapEShhv17q+wBA
 /*
- * $Id: MushMeshBox.h,v 1.4 2004/01/02 21:13:10 southa Exp $
+ * $Id: MushMeshBox.h,v 1.5 2005/05/19 13:02:10 southa Exp $
  * $Log: MushMeshBox.h,v $
+ * Revision 1.5  2005/05/19 13:02:10  southa
+ * Mac release work
+ *
  * Revision 1.4  2004/01/02 21:13:10  southa
  * Source conditioning
  *
@@ -43,6 +46,7 @@
 
 #include "MushMeshVector.h"
 
+//:generate inline
 template <class T>
 class MushMeshBox
 {
@@ -53,22 +57,25 @@ public:
     MushMeshBox(const tPoint& inStart, const tPoint& inEnd);
     MushMeshBox(const T& inStartX, const T& inStartY, const T& inEndX, const T& inEndY);
 
-    const tPoint& StartGet(void) const { return m_start; }
-    void StartSet(const tPoint& inPoint) { m_start = inPoint; }
-    const tPoint& EndGet(void) const { return m_end; }
-    void EndSet(const tPoint& inPoint) { m_end = inPoint; }
     const tPoint SizeGet(void) const { return m_end - m_start; }
 
     bool RegularIs(void);
     void RegularMake(void);
 
 private:
-    tPoint m_start;
-    tPoint m_end;    
+    tPoint m_start; //:readwrite
+    tPoint m_end; //:readwrite
 
 public:
     bool EqualIs(const MushMeshBox& inObj) const;
     void Print(std::ostream& ioOut) const;
+//%classPrototypes {
+public:
+    const tPoint& Start(void) const { return m_start; }
+    void StartSet(const tPoint& inValue) { m_start=inValue; }
+    const tPoint& End(void) const { return m_end; }
+    void EndSet(const tPoint& inValue) { m_end=inValue; }
+//%classPrototypes } qnV570tW6c1wp7S+E9oAGA
 };
 
 template <class T>
@@ -161,6 +168,33 @@ inline std::ostream&
 operator<<(std::ostream& ioOut, const MushMeshBox<T>& inObj)
 {
     inObj.Print(ioOut);
+    return ioOut;
+}
+
+template <class T>
+inline void
+operator>>(MushcoreXMLIStream& ioIn, MushMeshBox<T>& outObj)
+{
+    std::vector<T> valueVec;
+    ioIn >> valueVec;
+    if (valueVec.size() != 4)
+    {
+        ioIn.Throw("Bad vector size for MushMeshBox");
+    }
+    outObj = MushMeshBox<T>(valueVec[0], valueVec[1], valueVec[2], valueVec[3]);
+}
+
+template <class T>
+inline MushcoreXMLOStream&
+operator<<(MushcoreXMLOStream& ioOut, const MushMeshBox<T>& inObj)
+{
+    std::vector<T> valueVec(4);
+    valueVec[0] = inObj.Start().X();
+    valueVec[1] = inObj.Start().Y();
+    valueVec[2] = inObj.End().X();
+    valueVec[3] = inObj.End().Y();
+    ioOut << valueVec;
+    
     return ioOut;
 }
 

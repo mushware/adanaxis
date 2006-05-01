@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } DEX6Sh9oUk/bih2GXm2coA
 /*
- * $Id: AdanaxisGame.cpp,v 1.24 2006/04/19 20:14:10 southa Exp $
+ * $Id: AdanaxisGame.cpp,v 1.25 2006/04/20 00:22:45 southa Exp $
  * $Log: AdanaxisGame.cpp,v $
+ * Revision 1.25  2006/04/20 00:22:45  southa
+ * Added ruby executive
+ *
  * Revision 1.24  2006/04/19 20:14:10  southa
  * Added Ruby framework
  *
@@ -203,7 +206,7 @@ void
 AdanaxisGame::Init(GameAppHandler& inAppHandler)
 {
     
-    MushRubyExec::Sgl().Call("topMenu.render");
+    // MushRubyExec::Sgl().Call("topMenu.render");
     
     MushMeshLibraryBase::SingletonMutate(new AdanaxisMeshLibrary);
 

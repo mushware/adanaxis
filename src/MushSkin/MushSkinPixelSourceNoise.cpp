@@ -3,7 +3,7 @@
  *
  * File: src/MushSkin/MushSkinPixelSourceNoise.cpp
  *
- * Copyright: Andy Southgate 2005
+ * Copyright: Andy Southgate 2005-2006
  *
  * This file may be used and distributed under the terms of the Mushware
  * software licence version 1.0, under the terms for 'Proprietary original
@@ -15,10 +15,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } TdUdiTjja8uY1Ei6cDI06Q
+//%Header } IHi2qaicNzVbb+bqL7ZTVw
 /*
- * $Id: MushSkinPixelSourceNoise.cpp,v 1.1 2005/09/06 12:15:35 southa Exp $
+ * $Id: MushSkinPixelSourceNoise.cpp,v 1.2 2006/04/11 23:30:11 southa Exp $
  * $Log: MushSkinPixelSourceNoise.cpp,v $
+ * Revision 1.2  2006/04/11 23:30:11  southa
+ * Created MushRuby from ruby-1.8.4
+ *
  * Revision 1.1  2005/09/06 12:15:35  southa
  * Texture and rendering work
  *
@@ -68,6 +71,8 @@ MushSkinPixelSourceNoise::ToTextureCreate(MushGLTexture& outTexture)
 {
     U32 pixelDataSize = 4*m_xSize*m_ySize;
     std::vector<U8> pixelData(pixelDataSize);
+    
+    MushMesh4Mesh *p4Mesh = MushcoreData<MushMesh4Mesh>::Sgl().Get(m_sourceName);
     
     U32 dataIndex = 0;
     for (U32 y=0; y<m_ySize; ++y)

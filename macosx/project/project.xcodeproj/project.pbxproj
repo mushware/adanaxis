@@ -2029,6 +2029,10 @@
 		7ACF38430874333E0012CFFE /* AdanaxisVolatileData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7ACF38410874333E0012CFFE /* AdanaxisVolatileData.cpp */; };
 		7ACF38440874333E0012CFFE /* AdanaxisVolatileData.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ACF38400874333E0012CFFE /* AdanaxisVolatileData.h */; };
 		7ACF38450874333E0012CFFE /* AdanaxisVolatileData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7ACF38410874333E0012CFFE /* AdanaxisVolatileData.cpp */; };
+		7ACF4CE20A065AE600830BCC /* MushMesh4TextureTile.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ACF4CE00A065AE600830BCC /* MushMesh4TextureTile.h */; };
+		7ACF4CE30A065AE600830BCC /* MushMesh4TextureTile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7ACF4CE10A065AE600830BCC /* MushMesh4TextureTile.cpp */; };
+		7ACF4CF80A066D8100830BCC /* TestMushMesh4TextureTile.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ACF4CF60A066D8100830BCC /* TestMushMesh4TextureTile.h */; };
+		7ACF4CF90A066D8100830BCC /* TestMushMesh4TextureTile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7ACF4CF70A066D8100830BCC /* TestMushMesh4TextureTile.cpp */; };
 		7ACF535A08C35D1300BBEB7E /* MushSkin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7ACF535608C35D1300BBEB7E /* MushSkin.cpp */; };
 		7ACF535B08C35D1300BBEB7E /* MushSkin.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ACF535708C35D1300BBEB7E /* MushSkin.h */; };
 		7ACF535C08C35D1300BBEB7E /* MushSkinStandard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7ACF535808C35D1300BBEB7E /* MushSkinStandard.cpp */; };
@@ -3872,6 +3876,10 @@
 		7ACF3838087431520012CFFE /* AdanaxisPieceDeco.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AdanaxisPieceDeco.cpp; sourceTree = "<group>"; };
 		7ACF38400874333E0012CFFE /* AdanaxisVolatileData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdanaxisVolatileData.h; sourceTree = "<group>"; };
 		7ACF38410874333E0012CFFE /* AdanaxisVolatileData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AdanaxisVolatileData.cpp; sourceTree = "<group>"; };
+		7ACF4CE00A065AE600830BCC /* MushMesh4TextureTile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushMesh4TextureTile.h; sourceTree = "<group>"; };
+		7ACF4CE10A065AE600830BCC /* MushMesh4TextureTile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushMesh4TextureTile.cpp; sourceTree = "<group>"; };
+		7ACF4CF60A066D8100830BCC /* TestMushMesh4TextureTile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestMushMesh4TextureTile.h; sourceTree = "<group>"; };
+		7ACF4CF70A066D8100830BCC /* TestMushMesh4TextureTile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestMushMesh4TextureTile.cpp; sourceTree = "<group>"; };
 		7ACF535608C35D1300BBEB7E /* MushSkin.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = MushSkin.cpp; sourceTree = "<group>"; };
 		7ACF535708C35D1300BBEB7E /* MushSkin.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = MushSkin.h; sourceTree = "<group>"; };
 		7ACF535808C35D1300BBEB7E /* MushSkinStandard.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = MushSkinStandard.cpp; sourceTree = "<group>"; };
@@ -4950,6 +4958,8 @@
 				7A1F79720885312E009BFCCA /* MushMesh4LinkFaceFace.h */,
 				7AD2B6840873F25800DA5A9F /* MushMesh4Mesh.cpp */,
 				7AD2B6830873F25800DA5A9F /* MushMesh4Mesh.h */,
+				7ACF4CE10A065AE600830BCC /* MushMesh4TextureTile.cpp */,
+				7ACF4CE00A065AE600830BCC /* MushMesh4TextureTile.h */,
 				7AA0FAE0088424F200997505 /* MushMesh4VertexGenerator.cpp */,
 				7AA0FADF088424F200997505 /* MushMesh4VertexGenerator.h */,
 				7AD17D87088BAEF800BE236E /* MushMesh4Util.cpp */,
@@ -5289,6 +5299,8 @@
 			children = (
 				7AD2B69B0873FC6600DA5A9F /* TestMushMesh4Library.cpp */,
 				7AD2B69A0873FC6600DA5A9F /* TestMushMesh4Library.h */,
+				7ACF4CF70A066D8100830BCC /* TestMushMesh4TextureTile.cpp */,
+				7ACF4CF60A066D8100830BCC /* TestMushMesh4TextureTile.h */,
 				7A62B90105A49D05002A5F1C /* TestMushMeshApp.cpp */,
 				7A62B90205A49D05002A5F1C /* TestMushMeshApp.h */,
 				7A62B90305A49D05002A5F1C /* TestMushMeshArray.cpp */,
@@ -6795,6 +6807,7 @@
 				7AD10D3B088D08ED00AEDC48 /* MushMeshLibraryVGenExtrude.h in Headers */,
 				7AD10DD7088D2B2800AEDC48 /* MushMeshLibraryUtil.h in Headers */,
 				7A224D99088E788F0078A295 /* MushCollisionStandard.h in Headers */,
+				7ACF4CF80A066D8100830BCC /* TestMushMesh4TextureTile.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6845,6 +6858,7 @@
 				7A1F797A088535C2009BFCCA /* MushMesh4LinkFaceFace.h in Headers */,
 				7AD17D88088BAEF800BE236E /* MushMesh4Util.h in Headers */,
 				7AD10D40088D0ABC00AEDC48 /* MushMesh4Chunk.h in Headers */,
+				7ACF4CE20A065AE600830BCC /* MushMesh4TextureTile.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9418,6 +9432,7 @@
 				7AD10D3A088D08EC00AEDC48 /* MushMeshLibraryVGenExtrude.cpp in Sources */,
 				7AD10DD8088D2B2800AEDC48 /* MushMeshLibraryUtil.cpp in Sources */,
 				7A224D98088E788F0078A295 /* MushCollisionStandard.cpp in Sources */,
+				7ACF4CF90A066D8100830BCC /* TestMushMesh4TextureTile.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9466,6 +9481,7 @@
 				7A1F7979088535C1009BFCCA /* MushMesh4LinkFaceFace.cpp in Sources */,
 				7AD17D89088BAEF800BE236E /* MushMesh4Util.cpp in Sources */,
 				7AD10D41088D0ABC00AEDC48 /* MushMesh4Chunk.cpp in Sources */,
+				7ACF4CE30A065AE600830BCC /* MushMesh4TextureTile.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

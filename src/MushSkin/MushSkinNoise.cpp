@@ -3,7 +3,7 @@
  *
  * File: src/MushSkin/MushSkinNoise.cpp
  *
- * Copyright: Andy Southgate 2005
+ * Copyright: Andy Southgate 2005-2006
  *
  * This file may be used and distributed under the terms of the Mushware
  * software licence version 1.0, under the terms for 'Proprietary original
@@ -15,10 +15,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } pR2b3ygRpl/qeOeauh/8HA
+//%Header } stZjV2zH0hRmAqmLipntXQ
 /*
- * $Id: MushSkinNoise.cpp,v 1.1 2005/08/29 18:40:57 southa Exp $
+ * $Id: MushSkinNoise.cpp,v 1.2 2005/09/06 12:15:35 southa Exp $
  * $Log: MushSkinNoise.cpp,v $
+ * Revision 1.2  2005/09/06 12:15:35  southa
+ * Texture and rendering work
+ *
  * Revision 1.1  2005/08/29 18:40:57  southa
  * Solid rendering work
  *
@@ -153,7 +156,7 @@ MushSkinNoise::TexCoordsGenerate(MushMesh4Mesh& ioMesh)
             texCoordListWRef.resize(texCoordBase + faceWRef.VertexList().size());
         }
 
-        // Iterate through each facet, using a vertex base and the vertex group size list a usual
+        // Iterate through each facet, using a vertex base and the vertex group size list as usual
         U32 vertexBase = 0;
         for (U32 vgsIndex = 0; vgsIndex < vgsRef.size(); ++vgsIndex)
         {

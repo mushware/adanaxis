@@ -1,7 +1,11 @@
+//%includeGuardStart {
+#ifndef TESTMUSHMESH4TEXTURETILE_H
+#define TESTMUSHMESH4TEXTURETILE_H
+//%includeGuardStart } XeFFQ3aZ3yQxRY9GTyZ4CQ
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushMesh/MushMeshBox.cpp
+ * File: src/TestMushMesh/TestMushMesh4TextureTile.h
  *
  * Author: Andy Southgate 2002-2006
  *
@@ -17,6 +21,25 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } RGRpnsX5WCHb3fHW+HztCQ
+//%Header } oCfNDL0ixZ21gseEO8MqsA
+/*
+ * $Id$
+ * $Log$
+ */
 
-#include "MushMeshBox.h"
+#include "TestMushMeshStandard.h"
+
+class TestMushMesh4TextureTile
+{
+public:
+    static void TransformTest(const MushMesh4TextureTile& inTile,
+                              const Mushware::t2Val& inTestVec,
+                              const Mushware::t4Val& inExpectedVec);
+    static MushcoreScalar Test4TextureTile(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
+    static void Install(void);
+    
+private:
+};
+//%includeGuardEnd {
+#endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

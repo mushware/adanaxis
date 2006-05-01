@@ -3,7 +3,7 @@
  *
  * File: src/MushMesh/MushMeshPatchPipe.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,7 +17,7 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } hx66EuEBLtocGwyydYz4Zg
+//%Header } 6Kwg4EjfR4V7ZyRXyKaZfA
 
 
 #include "MushMeshPatchPipe.h"
@@ -78,48 +78,48 @@ MushMeshPatchPipe::NeighbourSelectionGet(MushMeshSelection& outSelection, tEdgeS
     switch  (inEdge)
     {
     case kEdgeLeft:
-        outSelection.start = m_activeBox.StartGet() - t2U32(1, 0);
+        outSelection.start = m_activeBox.Start() - t2U32(1, 0);
         outSelection.stride = t2U32(0, 1);
         outSelection.size = m_activeBox.SizeGet().Y();
         break;
         
     case kEdgeRight:
-        outSelection.start = t2U32(m_activeBox.EndGet().X(), m_activeBox.StartGet().Y());
+        outSelection.start = t2U32(m_activeBox.End().X(), m_activeBox.Start().Y());
         outSelection.stride = t2U32(0, 1);
         outSelection.size = m_activeBox.SizeGet().Y();
         break;
         
-    case kEdgeBottom: outSelection.start = m_activeBox.StartGet() - t2U32(0, 1);
+    case kEdgeBottom: outSelection.start = m_activeBox.Start() - t2U32(0, 1);
         outSelection.stride = t2U32(1, 0);
         outSelection.size = m_activeBox.SizeGet().X();
         break;
         
     case kEdgeTop:
-        outSelection.start = t2U32(m_activeBox.StartGet().X(), m_activeBox.EndGet().Y());
+        outSelection.start = t2U32(m_activeBox.Start().X(), m_activeBox.End().Y());
         outSelection.stride = t2U32(1, 0);
         outSelection.size = m_activeBox.SizeGet().X();
         break;
         
     case kPointBottomLeft:
-        outSelection.start = m_activeBox.StartGet() - t2U32(1, 1);
+        outSelection.start = m_activeBox.Start() - t2U32(1, 1);
         outSelection.stride = t2U32(0, 0);
         outSelection.size = 1;
         break;
         
     case kPointBottomRight:
-        outSelection.start = t2U32(m_activeBox.EndGet().X(), m_activeBox.StartGet().Y() - 1);
+        outSelection.start = t2U32(m_activeBox.End().X(), m_activeBox.Start().Y() - 1);
         outSelection.stride = t2U32(0, 0);
         outSelection.size = 1;
         break;
         
     case kPointTopLeft:
-        outSelection.start = t2U32(m_activeBox.StartGet().X() - 1, m_activeBox.EndGet().Y());
+        outSelection.start = t2U32(m_activeBox.Start().X() - 1, m_activeBox.End().Y());
         outSelection.stride = t2U32(0, 0);
         outSelection.size = 1;
         break;
         
     case kPointTopRight:
-        outSelection.start = m_activeBox.EndGet();
+        outSelection.start = m_activeBox.End();
         outSelection.stride = t2U32(0, 0);
         outSelection.size = 1;
         break;
@@ -140,49 +140,49 @@ MushMeshPatchPipe::EdgeStitchableGet(MushMeshStitchable& outStitchable, tEdgeSel
     switch (inEdge)
     {
     case kEdgeLeft:
-        selection.start = m_activeBox.StartGet() + t2U32(1, 0);
+        selection.start = m_activeBox.Start() + t2U32(1, 0);
         selection.stride = t2U32(0, 1);
         selection.size = m_activeBox.SizeGet().Y();
         break;
         
     case kEdgeRight:
-        selection.start = t2U32(m_activeBox.EndGet().X() - 2, m_activeBox.StartGet().Y());
+        selection.start = t2U32(m_activeBox.End().X() - 2, m_activeBox.Start().Y());
         selection.stride = t2U32(0, 1);
         selection.size = m_activeBox.SizeGet().Y();
         break;
         
     case kEdgeBottom:
-        selection.start = m_activeBox.StartGet() + t2U32(0, 1);
+        selection.start = m_activeBox.Start() + t2U32(0, 1);
         selection.stride = t2U32(1, 0);
         selection.size = m_activeBox.SizeGet().X();
         break;
         
     case kEdgeTop:
-        selection.start = t2U32(m_activeBox.StartGet().X(), m_activeBox.EndGet().Y() - 2);
+        selection.start = t2U32(m_activeBox.Start().X(), m_activeBox.End().Y() - 2);
         selection.stride = t2U32(1, 0);
         selection.size = m_activeBox.SizeGet().X();
         break;
         
     case kPointBottomLeft:
-        selection.start = m_activeBox.StartGet() + t2U32(1,1);
+        selection.start = m_activeBox.Start() + t2U32(1,1);
         selection.stride = t2U32(0, 0);
         selection.size = 1;
         break;
 
     case kPointBottomRight:
-        selection.start = t2U32(m_activeBox.EndGet().X() - 2, m_activeBox.StartGet().Y() + 1);
+        selection.start = t2U32(m_activeBox.End().X() - 2, m_activeBox.Start().Y() + 1);
         selection.stride = t2U32(0, 0);
         selection.size = 1;
         break;
         
     case kPointTopLeft:
-        selection.start = t2U32(m_activeBox.StartGet().X() + 1, m_activeBox.EndGet().Y() - 2);
+        selection.start = t2U32(m_activeBox.Start().X() + 1, m_activeBox.End().Y() - 2);
         selection.stride = t2U32(0, 0);
         selection.size = 1;
         break;
         
     case kPointTopRight:
-        selection.start = m_activeBox.EndGet() - t2U32(2, 2);
+        selection.start = m_activeBox.End() - t2U32(2, 2);
         selection.stride = t2U32(0, 0);
         selection.size = 1;
         break;

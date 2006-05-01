@@ -7,7 +7,7 @@
  *
  * File: src/MushMesh/MushMeshSubdivide.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } dJhiVPt3WB6dl+dH+X0xhw
+//%Header } sdfYFD+t5g3xrrC8U8hX9g
 /*
- * $Id: MushMeshSubdivide.h,v 1.14 2004/01/05 20:13:15 southa Exp $
+ * $Id: MushMeshSubdivide.h,v 1.15 2005/05/19 13:02:11 southa Exp $
  * $Log: MushMeshSubdivide.h,v $
+ * Revision 1.15  2005/05/19 13:02:11  southa
+ * Mac release work
+ *
  * Revision 1.14  2004/01/05 20:13:15  southa
  * Target and test updates
  *
@@ -101,14 +104,14 @@ MushMeshSubdivide<T>::RectangularSubdivide(MushMeshArray<T>& outArray, const Mus
      * outside of the active box on all sides
      */
     MUSHCOREASSERT(inActiveBox.RegularIs());
-    MUSHCOREASSERT(inActiveBox.StartGet().X() > 0);
-    MUSHCOREASSERT(inActiveBox.StartGet().Y() > 0);
-    MUSHCOREASSERT(inActiveBox.EndGet().X() < inArray.XSizeGet());
-    MUSHCOREASSERT(inActiveBox.EndGet().Y() < inArray.YSizeGet());
+    MUSHCOREASSERT(inActiveBox.Start().X() > 0);
+    MUSHCOREASSERT(inActiveBox.Start().Y() > 0);
+    MUSHCOREASSERT(inActiveBox.End().X() < inArray.XSizeGet());
+    MUSHCOREASSERT(inActiveBox.End().Y() < inArray.YSizeGet());
 
     // These are start and end points for the first pass
-    Mushware::t2U32 startPoint(inActiveBox.StartGet());
-    Mushware::t2U32 endPoint(inActiveBox.EndGet());
+    Mushware::t2U32 startPoint(inActiveBox.Start());
+    Mushware::t2U32 endPoint(inActiveBox.End());
 
     // Size the output array appropriately for the active box
     outArray.SizeSet(2 * inActiveBox.SizeGet() + 1);
@@ -455,11 +458,11 @@ MushMeshSubdivide<T>::TriangularSubdivide(MushMeshArray<T>& outArray, const Mush
      * and that we have at least 1 extra row on the right hand side
      */
     MUSHCOREASSERT(inActiveBox.RegularIs());
-    MUSHCOREASSERT(inActiveBox.EndGet().X() < inArray.XSizeGet());
-    MUSHCOREASSERT(inActiveBox.EndGet().Y() <= inArray.YSizeGet());
+    MUSHCOREASSERT(inActiveBox.End().X() < inArray.XSizeGet());
+    MUSHCOREASSERT(inActiveBox.End().Y() <= inArray.YSizeGet());
 
     // These are start and end points for passes through the source array
-    Mushware::t2U32 startPoint(inActiveBox.StartGet());
+    Mushware::t2U32 startPoint(inActiveBox.Start());
     // unused Mushware::t2U32 endPoint(inActiveBox.EndGet()); // + (1,0)?
     Mushware::t2U32 sizeVec = inActiveBox.SizeGet();
 
