@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } stZjV2zH0hRmAqmLipntXQ
 /*
- * $Id: MushSkinNoise.cpp,v 1.2 2005/09/06 12:15:35 southa Exp $
+ * $Id: MushSkinNoise.cpp,v 1.3 2006/05/01 17:39:01 southa Exp $
  * $Log: MushSkinNoise.cpp,v $
+ * Revision 1.3  2006/05/01 17:39:01  southa
+ * Texture generation
+ *
  * Revision 1.2  2005/09/06 12:15:35  southa
  * Texture and rendering work
  *
@@ -114,7 +117,9 @@ void
 MushSkinNoise::TexCoordsGenerate(MushMesh4Mesh& ioMesh)
 {
     U32 numFacets = ioMesh.NumFacets();
+    const MushMesh4Mesh::tVertices& verticesRef = ioMesh.Vertices();
     MushMesh4Mesh::tTexCoords& texCoordsWRef = ioMesh.TexCoordsWRef();
+    MushMesh4Mesh::tTextureTiles& texTilesWRef = ioMesh.TextureTilesWRef();
     
     t2U32 divideSize;
     DivideSize(divideSize, numFacets);
@@ -123,6 +128,8 @@ MushSkinNoise::TexCoordsGenerate(MushMesh4Mesh& ioMesh)
 
     // Tile count.  Progresses through the texture as we use them up
     U32 texTileNum = 0;
+    
+    U32 textureErrorCount = 0;
     
     // Index to add new texture coordinates
     U32 texCoordNum = ioMesh.TexCoordCounter();
@@ -136,11 +143,15 @@ MushSkinNoise::TexCoordsGenerate(MushMesh4Mesh& ioMesh)
         texCoordsWRef.resize(texCoordSizeGuess);
     }
 
+    // Resize the texture tile list
+    texTilesWRef.resize(numFacets);
+    
     // Iterate through all faces in the mesh
     for (U32 faceNum = 0; faceNum < ioMesh.FaceCounter(); ++faceNum)
     {
         MushMesh4Face& faceWRef = ioMesh.FaceWRef(faceNum);
-        const MushMesh4Face::tVertexList& vgsRef = faceWRef.VertexGroupSize();
+        const MushMesh4Face::tVertexList& vlRef = faceWRef.VertexList();
+        const MushMesh4Face::tVertexGroupSize& vgsRef = faceWRef.VertexGroupSize();
         MushMesh4Face::tTexCoordList& texCoordListWRef = faceWRef.TexCoordListWRef();
         
         // Base for adding texture coordinates
@@ -167,6 +178,8 @@ MushSkinNoise::TexCoordsGenerate(MushMesh4Mesh& ioMesh)
             // Get the uv coordinates of the lower left corner of the tile we're about to use
             t2Val uvBase(texTileNum % divideSize.X(), texTileNum / divideSize.Y());
             uvBase.InPlaceElementwiseMultiply(uvScale);            
+            
+            U32 tileTexCoordBase = texCoordNum;
             
             // For each vertex in the facet...
             for (U32 i=0; i<verticesInFacet; ++i)
@@ -196,6 +209,90 @@ MushSkinNoise::TexCoordsGenerate(MushMesh4Mesh& ioMesh)
                 // Advance to the next free texture coordinate slot read for the next one
                 ++texCoordNum;
             }
+            
+            // Generate the tile definition for this tile
+            if (texTileNum >= texTilesWRef.size())
+            {
+                texTilesWRef.resize(texTileNum + 1);
+            }
+            MushMesh4Mesh::tTextureTile& texTileWRef = texTilesWRef[texTileNum];
+
+            // Choose p0, v0 and v1
+            /* Simple algorithm for the moment.  Choose the vector one-quarter of the way
+             * through the facet, and adjust so that it isn't the same as the base of v0
+                */
+            U32 v1Base = verticesInFacet / 4;
+            if (v1Base == 0)
+            {
+                ++v1Base;   
+            }
+            
+            texTileWRef.TileBoxSet(t2BoxVal(uvBase, uvBase + uvScale));
+            texTileWRef.SourceFaceSet(faceNum);
+            
+            t4Val tileP0Vec = texCoordsWRef[tileTexCoordBase];
+            t4Val tileV0Vec = texCoordsWRef[tileTexCoordBase+1] - texCoordsWRef[tileTexCoordBase];
+            t4Val tileV1Vec = texCoordsWRef[tileTexCoordBase+((v1Base + 1) % verticesInFacet)] -
+                texCoordsWRef[tileTexCoordBase+v1Base];
+            
+            // Get the tile vertices (uv on the texture) from the texture coords generated above
+            texTileWRef.TileP0Set(t2Val(tileP0Vec.X(), tileP0Vec.Y()));
+            texTileWRef.TileV0Set(t2Val(tileV0Vec.X(), tileV0Vec.Y()));
+            texTileWRef.TileV1Set(t2Val(tileV1Vec.X(), tileV1Vec.Y()));
+            
+            // Get object vertices by indirecting through the vertex list
+            U32 p0Index = vlRef[vertexBase];
+            U32 v0StartIndex = vlRef[vertexBase];
+            U32 v0EndIndex = vlRef[vertexBase+1];
+            U32 v1StartIndex = vlRef[vertexBase+v1Base];
+            U32 v1EndIndex = vlRef[vertexBase+((v1Base+1) % verticesInFacet)];
+            
+            texTileWRef.ObjectP0Set(verticesRef[p0Index]);
+            texTileWRef.ObjectV0Set(verticesRef[v0EndIndex] - verticesRef[v0StartIndex]);
+            texTileWRef.ObjectV1Set(verticesRef[v1EndIndex] - verticesRef[v1StartIndex]);
+            
+            texTileWRef.Make();
+            
+#ifdef MUSHCORE_DEBUG
+            // Only report the first error
+            static bool textureError = false;
+            
+            for (U32 i=0; i<verticesInFacet; ++i)
+            {
+                t2Val uvPos = t2Val(texCoordsWRef[tileTexCoordBase+i].X(), texCoordsWRef[tileTexCoordBase+i].Y());
+                t4Val resultVec, expectedVec;
+                
+                texTileWRef.Transform(resultVec, uvPos);
+                
+                expectedVec = verticesRef[vlRef[vertexBase+i]];
+         
+                if (!expectedVec.ApproxEqual(resultVec, ioMesh.BoundingRadius() / 100))
+                {
+                    if (textureError)
+                    {
+                        ++textureErrorCount;
+                    }   
+                    else
+                    {
+                        MushcoreLog::Sgl().InfoLog() << "Texture coordinate check failed:" << endl;
+                        
+                        for (U32 j=0; j<verticesInFacet; ++j)
+                        {
+                            MushcoreLog::Sgl().InfoLog() << "Vertex " << vlRef[vertexBase+j] << " = " << verticesRef[vlRef[vertexBase+j]] << endl;
+                        }
+                        MushcoreLog::Sgl().XMLInfoLog() << faceWRef;
+                        // MushcoreLog::Sgl().XMLInfoLog() << texCoordsWRef;
+                        MushcoreLog::Sgl().XMLInfoLog() << texTileWRef;
+                        
+                        MushcoreLog::Sgl().InfoLog() << "i=" << i << ", uvPos=" << uvPos << ", resultVec=" << resultVec <<
+                            ", expectedVec=" << expectedVec << endl;
+                        
+                        textureError = true;
+                    }
+                }
+            }
+#endif
+
             ++texTileNum;
             vertexBase += vgsRef[vgsIndex];
             texCoordBase += vgsRef[vgsIndex];
@@ -207,6 +304,11 @@ MushSkinNoise::TexCoordsGenerate(MushMesh4Mesh& ioMesh)
     {
         ctr++;
         MushcoreLog::Sgl().XMLInfoLog() << ioMesh;
+    }
+    if (textureErrorCount)
+    {
+        MushcoreLog::Sgl().WarningLog() << "Number of texture tile errors: " << textureErrorCount <<
+            " in " << texTilesWRef.size() << " tiles" << endl;
     }
 }
 

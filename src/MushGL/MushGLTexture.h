@@ -7,7 +7,7 @@
  *
  * File: src/MushGL/MushGLTexture.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } nz+Fu4qaTnAG/0iggFLOcQ
+//%Header } AYQWMxoJ+uDPAQUnlwSk/w
 /*
- * $Id: MushGLTexture.h,v 1.2 2005/08/29 18:40:57 southa Exp $
+ * $Id: MushGLTexture.h,v 1.3 2005/09/05 12:54:30 southa Exp $
  * $Log: MushGLTexture.h,v $
+ * Revision 1.3  2005/09/05 12:54:30  southa
+ * Solid rendering work
+ *
  * Revision 1.2  2005/08/29 18:40:57  southa
  * Solid rendering work
  *
@@ -55,7 +58,10 @@ public:
     
     void PixelTypeRGBASet(void) { m_pixelType = kPixelTypeRGBA; }
     void StorageTypeGLSet(void) { m_storageType = kStorageTypeGL; }
+    void StorageTypeSet(const std::string& inType);
+    
     void PixelDataUse(void *pData);
+    Mushware::t4Val U8RGBALookup(Mushware::t2Val inPos);
     
     static MushcoreScalar Texture(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
     static void Install(void);
@@ -72,8 +78,9 @@ private:
         kStorageTypeValData,
         kStorageTypeGL
     };
-    
+
     void PixelDataGLRGBAUse(void *pData);
+    void PixelDataU8RGBAUse(void *pData);
     
     std::vector<Mushware::U8> m_u8Data;
     std::vector<Mushware::tVal> m_valData;

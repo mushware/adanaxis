@@ -3,7 +3,7 @@
  *
  * File: src/MushGL/MushGLPixelSource.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } LccQwBTHLT37eo+dpTNBig
+//%Header } vz1knUYnzwX5FNm6RC5EZw
 /*
- * $Id: MushGLPixelSource.cpp,v 1.4 2005/07/02 00:42:37 southa Exp $
+ * $Id: MushGLPixelSource.cpp,v 1.5 2005/08/28 22:41:51 southa Exp $
  * $Log: MushGLPixelSource.cpp,v $
+ * Revision 1.5  2005/08/28 22:41:51  southa
+ * MushGLTexture work
+ *
  * Revision 1.4  2005/07/02 00:42:37  southa
  * Conditioning tweaks
  *
@@ -42,6 +45,11 @@ MUSHCORE_DATA_INSTANCE(MushGLPixelSource);
 using namespace Mushware;
 using namespace std;
 
+MushGLPixelSource::MushGLPixelSource() :
+    m_storageType("GL")
+{
+}
+
 void
 MushGLPixelSource::ValueParameterSet(Mushware::U32 inNum, Mushware::tLongVal inVal)
 {
@@ -53,9 +61,18 @@ MushGLPixelSource::ValueParameterSet(Mushware::U32 inNum, Mushware::tLongVal inV
 void
 MushGLPixelSource::StringParameterSet(Mushware::U32 inNum, const std::string& inStr)
 {
-    ostringstream message;
-    message << "MushGLPixelSource::StringParameterSet: Unknown parameter: " << inNum;
-    throw MushcoreRequestFail(message.str());
+    switch (inNum)
+    {
+        case kParamStorageType:
+            m_storageType = inStr;
+            break;
+            
+        default:   
+            ostringstream message;
+            message << "MushGLPixelSource::StringParameterSet: Unknown parameter: " << inNum;
+            throw MushcoreRequestFail(message.str());
+            break;
+    }
 }
 
 void
@@ -75,6 +92,7 @@ void
 MushGLPixelSource::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
+    ioOut << "storageType=" << m_storageType;
     ioOut << "]";
 }
 bool
@@ -86,6 +104,10 @@ MushGLPixelSource::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::strin
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
     }
+    else if (inTagStr == "storageType")
+    {
+        ioIn >> m_storageType;
+    }
     else 
     {
         return false;
@@ -95,5 +117,7 @@ MushGLPixelSource::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::strin
 void
 MushGLPixelSource::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
+    ioOut.TagSet("storageType");
+    ioOut << m_storageType;
 }
-//%outOfLineFunctions } 37WCFQbqqNiTIIL+iLYvhw
+//%outOfLineFunctions } /w4B3nnFlHBRbHWp95KRKQ

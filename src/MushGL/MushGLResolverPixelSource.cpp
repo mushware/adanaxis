@@ -3,7 +3,7 @@
  *
  * File: src/MushGL/MushGLResolverPixelSource.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 3ppT9q8gO5IVI+Nga13RUQ
+//%Header } MLe+9IO+KhBjFrt79ygTPg
 /*
- * $Id: MushGLResolverPixelSource.cpp,v 1.1 2005/08/28 22:41:52 southa Exp $
+ * $Id: MushGLResolverPixelSource.cpp,v 1.2 2005/08/29 18:40:57 southa Exp $
  * $Log: MushGLResolverPixelSource.cpp,v $
+ * Revision 1.2  2005/08/29 18:40:57  southa
+ * Solid rendering work
+ *
  * Revision 1.1  2005/08/28 22:41:52  southa
  * MushGLTexture work
  *
@@ -45,9 +48,19 @@ MushGLResolverPixelSource::Resolve(const std::string& inSrcName)
     if (regExp.Search(matches, inSrcName))
     {
         MUSHCOREASSERT(matches.size() == 1);
+        std::string filenameStr = matches[0];
         
+        std::string storageType = "GL";
+        regExp.SearchPatternSet("\\bstoragetype=\"([^\"]*)\"");
+        if (regExp.Search(matches, inSrcName))
+        {
+            MUSHCOREASSERT(matches.size() == 1);
+            storageType = matches[0];
+        }
+
         std::auto_ptr<MushGLPixelSourceTIFF> aResolver(new MushGLPixelSourceTIFF);
-        aResolver->StringParameterSet(MushGLPixelSource::kParamFilename, matches[0]);
+        aResolver->StringParameterSet(MushGLPixelSource::kParamFilename, filenameStr);
+        aResolver->StringParameterSet(MushGLPixelSource::kParamStorageType, storageType);
         MushcoreData<MushGLPixelSource>::Sgl().Give(inSrcName, aResolver.release());
     }
     else

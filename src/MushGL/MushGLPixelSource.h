@@ -7,7 +7,7 @@
  *
  * File: src/MushGL/MushGLPixelSource.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 929uH06nvmR9AZQiCgrrTw
+//%Header } vzsiY9MwPTZIFsQ1nPV4fA
 /*
- * $Id: MushGLPixelSource.h,v 1.3 2005/08/28 22:41:52 southa Exp $
+ * $Id: MushGLPixelSource.h,v 1.4 2006/04/11 23:30:08 southa Exp $
  * $Log: MushGLPixelSource.h,v $
+ * Revision 1.4  2006/04/11 23:30:08  southa
+ * Created MushRuby from ruby-1.8.4
+ *
  * Revision 1.3  2005/08/28 22:41:52  southa
  * MushGLTexture work
  *
@@ -48,6 +51,7 @@ public:
     {
         kParamInvalid,
         kParamNone,
+        kParamStorageType,
         kParamFrameTime,
         kParamRed,
         kParamGreen,
@@ -58,8 +62,15 @@ public:
         kParamXSize,
         kParamYSize,
         kParamSourceName,
+        kParamPaletteName,
+        kParamPaletteStartX,
+        kParamPaletteStartY,
+        kParamPaletteVectorX,
+        kParamPaletteVectorY,
         kParamBaseNext
     };
+    
+    MushGLPixelSource();
     virtual ~MushGLPixelSource() {}
     virtual void ValueParameterSet(const Mushware::U32 inNum, const Mushware::tLongVal inVal);
     virtual void StringParameterSet(const Mushware::U32 inNum, const std::string& inStr);
@@ -67,12 +78,15 @@ public:
     virtual void ToTextureCreate(MushGLTexture& outTexture);
         
 private:
+    std::string m_storageType; //:read
+    
 //%classPrototypes {
 public:
+    const std::string& StorageType(void) const { return m_storageType; }
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } ZNroX5cBIW8CbBVukLOWpQ
+//%classPrototypes } k2al8Mq61cURRl7hNk+xaw
 };
 //%inlineHeader {
 inline std::ostream&

@@ -7,7 +7,7 @@
  *
  * File: src/MushMesh/MushMeshVector.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } +nh81wCMNvdKJB1CmhTiew
+//%Header } HwAE/QIL5vyQn3et9Ekwtg
 /*
- * $Id: MushMeshVector.h,v 1.24 2005/07/19 13:44:26 southa Exp $
+ * $Id: MushMeshVector.h,v 1.25 2005/08/01 17:58:25 southa Exp $
  * $Log: MushMeshVector.h,v $
+ * Revision 1.25  2005/08/01 17:58:25  southa
+ * Object explosion
+ *
  * Revision 1.24  2005/07/19 13:44:26  southa
  * MushMesh4Chunk work
  *
@@ -150,6 +153,7 @@ public:
 
     static Mushware::U32 SizeGet(void) { return D; }
     bool EqualIs(const tThis& b) const;
+    bool ApproxEqual(const tThis& b, const T& inLimit) const;
 
     void InPlaceElementwiseMultiply(const tThis& inB);
     tThis ElementwiseProduct(const tThis& inB) const;
@@ -208,6 +212,21 @@ MushMeshVector<T, D>::EqualIs(const MushMeshVector& b) const
     for (Mushware::U32 i=0; i<D; ++i)
     {
         if (m_value[i] != b.m_value[i])
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+template <class T, Mushware::U32 D>
+inline bool
+MushMeshVector<T, D>::ApproxEqual(const MushMeshVector& b, const T& inLimit) const
+{
+    for (Mushware::U32 i=0; i<D; ++i)
+    {
+        if (m_value[i] - b.m_value[i] > inLimit ||
+            b.m_value[i] - m_value[i] > inLimit)
         {
             return false;
         }

@@ -7,7 +7,7 @@
  *
  * File: src/MushSkin/MushSkinPixelSourceNoise.h
  *
- * Copyright: Andy Southgate 2005
+ * Copyright: Andy Southgate 2005-2006
  *
  * This file may be used and distributed under the terms of the Mushware
  * software licence version 1.0, under the terms for 'Proprietary original
@@ -19,10 +19,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } lVfaYP/dRbMmzL4zztbrHA
+//%Header } p+qloydajE1rCLfMhFW9wg
 /*
- * $Id: MushSkinPixelSourceNoise.h,v 1.1 2005/09/06 12:15:35 southa Exp $
+ * $Id: MushSkinPixelSourceNoise.h,v 1.2 2006/04/11 23:30:11 southa Exp $
  * $Log: MushSkinPixelSourceNoise.h,v $
+ * Revision 1.2  2006/04/11 23:30:11  southa
+ * Created MushRuby from ruby-1.8.4
+ *
  * Revision 1.1  2005/09/06 12:15:35  southa
  * Texture and rendering work
  *
@@ -36,18 +39,27 @@ class MushSkinPixelSourceNoise : public MushGLPixelSource
 public:
     MushSkinPixelSourceNoise() :
         m_xSize(0),
-        m_ySize(0)
+        m_ySize(0),
+        m_pPaletteTexture(NULL)
     {}
     
     virtual void ValueParameterSet(const Mushware::U32 inNum, const Mushware::tLongVal inVal);
     virtual void StringParameterSet(const Mushware::U32 inNum, const std::string& inStr);
     virtual void ToTextureCreate(MushGLTexture& outTexture);
     
+protected:
+    virtual void TileLineGenerate(Mushware::U8 *inpTileData, const MushMesh4Mesh::tTextureTile& inTileRef,
+                                  Mushware::U32 inNumPixels, Mushware::t4Val inStartPos, Mushware::t4Val inEndPos);
+    
 private:
     Mushware::U32 m_xSize;
     Mushware::U32 m_ySize;
     std::string m_sourceName;
-        
+    std::string m_paletteName;
+    Mushware::t2Val m_paletteStart;    
+    Mushware::t2Val m_paletteVector;
+    MushGLTexture *m_pPaletteTexture; // Not owned by this object
+    
 //%classPrototypes {
 public:
     virtual const char *AutoName(void) const;

@@ -12349,6 +12349,7 @@
 		7A19619C0899A34800B8B840 /* Development 10.2.7 */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_OPTIMIZATION_LEVEL = 0;
 			};
 			name = "Development 10.2.7";
 		};

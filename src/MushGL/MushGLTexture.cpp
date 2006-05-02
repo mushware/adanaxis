@@ -3,7 +3,7 @@
  *
  * File: src/MushGL/MushGLTexture.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } x6YRzHVc1aFZ86XnvPhOUg
+//%Header } vh/xCnesmbXGxXqZK5YEaA
 /*
- * $Id: MushGLTexture.cpp,v 1.1 2005/08/28 22:41:52 southa Exp $
+ * $Id: MushGLTexture.cpp,v 1.2 2005/08/29 18:40:57 southa Exp $
  * $Log: MushGLTexture.cpp,v $
+ * Revision 1.2  2005/08/29 18:40:57  southa
+ * Solid rendering work
+ *
  * Revision 1.1  2005/08/28 22:41:52  southa
  * MushGLTexture work
  *
@@ -145,11 +148,88 @@ MushGLTexture::PixelDataGLRGBAUse(void *pData)
 }
 
 void
+MushGLTexture::PixelDataU8RGBAUse(void *pData)
+{
+    m_bindingNameValid = false;
+    m_bound = false;
+    U32 storageSize = 4*m_size.X()*m_size.Y();
+    m_u8Data.resize(storageSize);
+    memcpy(&m_u8Data[0], pData, storageSize);
+}        
+
+Mushware::t4Val
+MushGLTexture::U8RGBALookup(Mushware::t2Val inPos)
+{
+    if (m_pixelType != kPixelTypeRGBA || m_storageType != kStorageTypeU8Data)
+    {
+        ostringstream message;
+        message << "U8RGBALookup not possible when pixelType=" << m_pixelType << " and storageType=" << m_storageType;
+        throw MushcoreRequestFail(message.str());
+    }
+    
+    
+    // Input values spanning the texture in the range 0 < x < 1
+    tVal x = inPos.X();
+    tVal y = inPos.Y();
+    
+    tVal xFrac, yFrac;
+    
+    double xInteger, yInteger;
+
+    if (x<0)
+    {
+        std::modf(x, &xInteger);
+        x += xInteger+1;
+    }
+    
+    if (y<0)
+    {
+        std::modf(y, &yInteger);
+        y += yInteger+1;
+    }
+
+    xFrac = std::modf(std::fmod(m_size.X()*x, m_size.X()), &xInteger);
+    yFrac = std::modf(std::fmod(m_size.Y()*y, m_size.Y()), &yInteger);
+
+    U32 x0 = static_cast<U32>(xInteger);
+    U32 y0 = static_cast<U32>(yInteger);
+    
+    U32 x1 = x0+1;
+    if (x1 >= m_size.X()) x1 = 0;
+    U32 y1 = y0+1;
+    if (y1 >= m_size.Y()) y1 = 0;
+
+    U8 *p00 = &m_u8Data[4*(y0*m_size.X()+x0)];
+    U8 *p10 = &m_u8Data[4*(y0*m_size.X()+x1)];
+    U8 *p01 = &m_u8Data[4*(y1*m_size.X()+x0)];
+    U8 *p11 = &m_u8Data[4*(y1*m_size.X()+x1)];
+    
+    MUSHCOREASSERT(p00 >= &m_u8Data[0] && p00 < &m_u8Data[m_u8Data.size()]);
+    MUSHCOREASSERT(p10 >= &m_u8Data[0] && p10 < &m_u8Data[m_u8Data.size()]);
+    MUSHCOREASSERT(p01 >= &m_u8Data[0] && p01 < &m_u8Data[m_u8Data.size()]);
+    MUSHCOREASSERT(p11 >= &m_u8Data[0] && p11 < &m_u8Data[m_u8Data.size()]);
+    
+    t4Val col00 = t4Val(p00[0], p00[1], p00[2], p00[3]);
+    t4Val col10 = t4Val(p10[0], p10[1], p10[2], p10[3]);
+    t4Val col01 = t4Val(p01[0], p01[1], p01[2], p01[3]);
+    t4Val col11 = t4Val(p11[0], p11[1], p11[2], p11[3]);
+
+    t4Val retVal = (col00 * (1-xFrac) + col10 * xFrac) * (1-yFrac) +
+        (col01 * (1-xFrac) + col11 * xFrac) * yFrac;
+    
+    return retVal;
+}
+
+void
 MushGLTexture::PixelDataUse(void *pData)
 {
     if (m_pixelType == kPixelTypeRGBA && m_storageType == kStorageTypeGL)
     {
         PixelDataGLRGBAUse(pData);
+    }
+    else if (m_pixelType == kPixelTypeRGBA && m_storageType == kStorageTypeU8Data)
+    {
+        PixelDataU8RGBAUse(pData);
     }
     else
     {
@@ -159,11 +239,31 @@ MushGLTexture::PixelDataUse(void *pData)
     }
 }
 
+void
+MushGLTexture::StorageTypeSet(const std::string& inType)
+{
+    if (inType == "gl" || inType == "GL")
+    {
+        m_storageType = kStorageTypeGL;
+    }
+    else  if (inType == "u8" || inType == "U8")
+    {
+        m_storageType = kStorageTypeU8Data;
+    }
+    else
+    {
+        m_storageType = kStorageTypeNone;
+        throw MushcoreRequestFail("Unknown pixel storage type '"+inType+"'");
+    }
+}
+
 MushcoreScalar
 MushGLTexture::Texture(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 {
     string name;
     string srcName;
+    string flags;
+    
     if (ioCommand.NumParams() != 2)
     {
         throw(MushcoreCommandFail("Usage: mushgltexture(name, source)"));

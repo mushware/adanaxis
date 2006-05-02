@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } JKEnx9FBo7lsZ4SNGVymjg
 /*
- * $Id: MushSkinResolverPixelSource.cpp,v 1.1 2006/04/11 23:30:11 southa Exp $
+ * $Id: MushSkinResolverPixelSource.cpp,v 1.2 2006/05/01 17:39:01 southa Exp $
  * $Log: MushSkinResolverPixelSource.cpp,v $
+ * Revision 1.2  2006/05/01 17:39:01  southa
+ * Texture generation
+ *
  * Revision 1.1  2006/04/11 23:30:11  southa
  * Created MushRuby from ruby-1.8.4
  *
@@ -65,10 +68,47 @@ MushSkinResolverPixelSource::Resolve(const std::string& inSrcName)
             throw MushcoreSyntaxFail("Malformed 'size=\"(<xsize>,<ysize>)\"' entry for noise texture '"+inSrcName+";");
         }
         
+        std::string paletteName = "";
+        regExp.SearchPatternSet("\\bpalette=\"([^\"]*)\"");
+        if (regExp.Search(matches, inSrcName))
+        {
+            paletteName = matches[0];
+        }
+        
+        t2Val paletteStart = t2Val(0, 0);
+        regExp.SearchPatternSet("\\bpalettestart=\"([^\"]*)\"");
+        
+        if (regExp.Search(matches, inSrcName))
+        {
+            MUSHCOREASSERT(matches.size() == 1);
+            std::istringstream vecStream(matches[0]);
+            MushcoreXMLIStream xmlVecStream(vecStream);
+                        
+            xmlVecStream >> paletteStart;
+        }
+        
+        t2Val paletteVector = t2Val(1, 0);
+        regExp.SearchPatternSet("\\bpalettevector=\"([^\"]*)\"");
+        
+        if (regExp.Search(matches, inSrcName))
+        {
+            MUSHCOREASSERT(matches.size() == 1);
+            std::istringstream vecStream(matches[0]);
+            MushcoreXMLIStream xmlVecStream(vecStream);
+            
+            xmlVecStream >> paletteVector;
+        }
+        
         std::auto_ptr<MushSkinPixelSourceNoise> aResolver(new MushSkinPixelSourceNoise);
         aResolver->StringParameterSet(MushGLPixelSource::kParamSourceName, nameStr);
         aResolver->ValueParameterSet(MushGLPixelSource::kParamXSize, sizeVec[0]);
         aResolver->ValueParameterSet(MushGLPixelSource::kParamYSize, sizeVec[1]);
+        aResolver->StringParameterSet(MushGLPixelSource::kParamPaletteName, paletteName);
+        aResolver->ValueParameterSet(MushGLPixelSource::kParamPaletteStartX, paletteStart.X());
+        aResolver->ValueParameterSet(MushGLPixelSource::kParamPaletteStartY, paletteStart.Y());
+        aResolver->ValueParameterSet(MushGLPixelSource::kParamPaletteVectorX, paletteVector.X());
+        aResolver->ValueParameterSet(MushGLPixelSource::kParamPaletteVectorY, paletteVector.Y());
+
         MushcoreData<MushGLPixelSource>::Sgl().Give(inSrcName, aResolver.release());
     }
     else

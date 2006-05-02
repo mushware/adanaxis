@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 1kCIwS/JA8VtB31OUyUq8Q
 /*
- * $Id$
- * $Log$
+ * $Id: MushMesh4TextureTile.cpp,v 1.1 2006/05/01 17:39:00 southa Exp $
+ * $Log: MushMesh4TextureTile.cpp,v $
+ * Revision 1.1  2006/05/01 17:39:00  southa
+ * Texture generation
+ *
  */
 
 #include "MushMesh4TextureTile.h"
@@ -101,7 +104,8 @@ MushMesh4TextureTile::AutoPrint(std::ostream& ioOut) const
     ioOut << "objectV1=" << m_objectV1 << ", ";
     ioOut << "constant=" << m_constant << ", ";
     ioOut << "uFactor=" << m_uFactor << ", ";
-    ioOut << "vFactor=" << m_vFactor;
+    ioOut << "vFactor=" << m_vFactor << ", ";
+    ioOut << "sourceFace=" << m_sourceFace;
     ioOut << "]";
 }
 bool
@@ -153,6 +157,10 @@ MushMesh4TextureTile::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::st
     {
         ioIn >> m_vFactor;
     }
+    else if (inTagStr == "sourceFace")
+    {
+        ioIn >> m_sourceFace;
+    }
     else 
     {
         return false;
@@ -182,5 +190,7 @@ MushMesh4TextureTile::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_uFactor;
     ioOut.TagSet("vFactor");
     ioOut << m_vFactor;
+    ioOut.TagSet("sourceFace");
+    ioOut << m_sourceFace;
 }
-//%outOfLineFunctions } h8ugTCmO6zwfvFqYr+TEOA
+//%outOfLineFunctions } wd/cV+Xz/5o25589swP2rw

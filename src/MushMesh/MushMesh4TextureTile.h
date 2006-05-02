@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } Gpt6onVQ6MJeAFRAfWsomw
 /*
- * $Id$
- * $Log$
+ * $Id: MushMesh4TextureTile.h,v 1.1 2006/05/01 17:39:00 southa Exp $
+ * $Log: MushMesh4TextureTile.h,v $
+ * Revision 1.1  2006/05/01 17:39:00  southa
+ * Texture generation
+ *
  */
 
 #include "MushMeshStandard.h"
@@ -52,6 +55,9 @@ private:
     Mushware::t4Val m_constant; //:readwrite
     Mushware::t4Val m_uFactor; //:readwrite
     Mushware::t4Val m_vFactor; //:readwrite
+    
+    Mushware::U32 m_sourceFace; //:readwrite
+    
 //%classPrototypes {
 public:
     const Mushware::t2BoxVal& TileBox(void) const { return m_tileBox; }
@@ -74,6 +80,8 @@ public:
     void UFactorSet(const Mushware::t4Val& inValue) { m_uFactor=inValue; }
     const Mushware::t4Val& VFactor(void) const { return m_vFactor; }
     void VFactorSet(const Mushware::t4Val& inValue) { m_vFactor=inValue; }
+    const Mushware::U32& SourceFace(void) const { return m_sourceFace; }
+    void SourceFaceSet(const Mushware::U32& inValue) { m_sourceFace=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -81,7 +89,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } OvMWGt5Ms+1X9uhA4Db41A
+//%classPrototypes } G/Ll8tk2m9FtmMfiWmZPdw
 };
 
 inline void

@@ -3,7 +3,7 @@
  *
  * File: src/MushGL/MushGLPixelSourceTIFF.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } UeKm8ocP/ZSk4urYuI/mzg
+//%Header } SaBXzXzmz9pA2fL3GoZFMQ
 /*
- * $Id: MushGLPixelSourceTIFF.cpp,v 1.1 2005/08/28 22:41:52 southa Exp $
+ * $Id: MushGLPixelSourceTIFF.cpp,v 1.2 2005/08/29 18:40:56 southa Exp $
  * $Log: MushGLPixelSourceTIFF.cpp,v $
+ * Revision 1.2  2005/08/29 18:40:56  southa
+ * Solid rendering work
+ *
  * Revision 1.1  2005/08/28 22:41:52  southa
  * MushGLTexture work
  *
@@ -57,7 +60,7 @@ MushGLPixelSourceTIFF::StringParameterSet(Mushware::U32 inNum, const std::string
         case kParamFilename:
             m_filename = inStr;
             break;
-            
+
         default:
             MushGLPixelSource::StringParameterSet(inNum, inStr);
             break;
@@ -75,7 +78,7 @@ MushGLPixelSourceTIFF::ToTextureCreate(MushGLTexture& outTexture)
     {
         throw MushcoreFileFail(m_filename, "Could not open file");
     }
-    
+
     try
     {
         // Needs extending for multi image TIFFs
@@ -84,8 +87,7 @@ MushGLPixelSourceTIFF::ToTextureCreate(MushGLTexture& outTexture)
             tiffio::uint32 width, height;
             
             tiffio::TIFFGetField(pTIFF, TIFFTAG_IMAGEWIDTH, &width);
-            tiffio::TIFFGetField(pTIFF, TIFFTAG_IMAGELENGTH, &height);
-            
+            tiffio::TIFFGetField(pTIFF, TIFFTAG_IMAGELENGTH, &height);            
             
             U32 numPixels=width*height;
             pTIFFData = reinterpret_cast<tiffio::uint32 *>(tiffio::_TIFFmalloc(sizeof(tiffio::uint32)*width*height));
@@ -116,7 +118,7 @@ MushGLPixelSourceTIFF::ToTextureCreate(MushGLTexture& outTexture)
             // Bind the texture
             outTexture.SizeSet(t4U32(width, height, 1, 1));
             outTexture.PixelTypeRGBASet();
-            outTexture.StorageTypeGLSet();
+            outTexture.StorageTypeSet(StorageType());
             outTexture.PixelDataUse(pTIFFData);
             
             tiffio::_TIFFfree(pTIFFData);

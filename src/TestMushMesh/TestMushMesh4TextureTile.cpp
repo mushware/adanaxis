@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } HQFNuJCoSOs5LfF+JM9ETw
 /*
- * $Id$
- * $Log$
+ * $Id: TestMushMesh4TextureTile.cpp,v 1.1 2006/05/01 17:39:01 southa Exp $
+ * $Log: TestMushMesh4TextureTile.cpp,v $
+ * Revision 1.1  2006/05/01 17:39:01  southa
+ * Texture generation
+ *
  */
 
 #include "TestMushMesh4TextureTile.h"
@@ -72,6 +75,7 @@ TestMushMesh4TextureTile::Test4TextureTile(MushcoreCommand& ioCommand, MushcoreE
         TransformTest(texTile, texTile.TileP0()+texTile.TileV0(), texTile.ObjectP0()+texTile.ObjectV0());
         TransformTest(texTile, texTile.TileP0()+texTile.TileV1(), texTile.ObjectP0()+texTile.ObjectV1());
         TransformTest(texTile, texTile.TileP0()+texTile.TileV0()+texTile.TileV1(), texTile.ObjectP0()+texTile.ObjectV0()+texTile.ObjectV1());
+        TransformTest(texTile, texTile.TileP0()+0.3*texTile.TileV0()+0.83*texTile.TileV1(), texTile.ObjectP0()+0.3*texTile.ObjectV0()+0.83*texTile.ObjectV1());
     }
     
     return MushcoreScalar(0);
