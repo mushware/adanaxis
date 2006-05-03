@@ -3,7 +3,7 @@
  *
  * File: src/Adanaxis/AdanaxisUtil.cpp
  *
- * Copyright: Andy Southgate 2005
+ * Copyright: Andy Southgate 2005-2006
  *
  * This file may be used and distributed under the terms of the Mushware
  * software licence version 1.0, under the terms for 'Proprietary original
@@ -15,10 +15,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } CFEozIhAxC4/w3MDbuOShQ
+//%Header } gq3ekJ+T4/5Q9GxsUU01+w
 /*
- * $Id: AdanaxisUtil.cpp,v 1.19 2005/08/29 18:40:56 southa Exp $
+ * $Id: AdanaxisUtil.cpp,v 1.20 2005/09/05 12:54:29 southa Exp $
  * $Log: AdanaxisUtil.cpp,v $
+ * Revision 1.20  2005/09/05 12:54:29  southa
+ * Solid rendering work
+ *
  * Revision 1.19  2005/08/29 18:40:56  southa
  * Solid rendering work
  *
@@ -208,8 +211,8 @@ AdanaxisUtil::TestPiecesCreate(AdanaxisLogic& ioLogic)
 {
     AdanaxisSaveData::tKhaziList& khaziListRef = ioLogic.SaveData().KhaziListWRef();
     
-    tVal rotMin = -0.03;
-    tVal rotMax = 0.03;
+    tVal rotMin = -0.01;
+    tVal rotMax = 0.01;
     
     for (U32 i=0; i<10; ++i)
     {
@@ -237,6 +240,7 @@ AdanaxisUtil::TestPiecesCreate(AdanaxisLogic& ioLogic)
         }
 
         AdanaxisMeshLibrary::AdanaxisSgl().AttendantCreate(khaziRef.MeshWRef());
+        //AdanaxisMeshLibrary::AdanaxisSgl().TesseractCreate(khaziRef.MeshWRef());
         khaziRef.MeshWRef().TexCoordDelegateSet(MushMesh4Mesh::tDataRef("attendant"));
         khaziRef.TexCoordBuffersNameSet("attendant");
     }
@@ -245,12 +249,28 @@ AdanaxisUtil::TestPiecesCreate(AdanaxisLogic& ioLogic)
 void
 AdanaxisUtil::TestSkinsCreate(AdanaxisLogic& ioLogic)
 {
-    MushMesh4Mesh *p4Mesh = MushcoreData<MushMesh4Mesh>::Sgl().Give("attendant", new MushMesh4Mesh);
-    AdanaxisMeshLibrary::AdanaxisSgl().AttendantCreate(*p4Mesh);
-                                                       
+    MushMesh4Mesh *p4Mesh = NULL;
     MushSkinNoise skinNoise;
+    
+    p4Mesh = MushcoreData<MushMesh4Mesh>::Sgl().Give("tesseract", new MushMesh4Mesh);
+    AdanaxisMeshLibrary::AdanaxisSgl().TesseractCreate(*p4Mesh);
+    
+    skinNoise.TextureGenerate(*p4Mesh);
+    skinNoise.TexCoordsGenerate(*p4Mesh);
+    MushcoreData<MushGLBuffers>::Sgl().GetOrCreate("tesseract");
+      
+    p4Mesh = MushcoreData<MushMesh4Mesh>::Sgl().Give("attendant", new MushMesh4Mesh);
+    AdanaxisMeshLibrary::AdanaxisSgl().AttendantCreate(*p4Mesh);
+    
     skinNoise.TextureGenerate(*p4Mesh);
     skinNoise.TexCoordsGenerate(*p4Mesh);
     MushcoreData<MushGLBuffers>::Sgl().GetOrCreate("attendant");
+    
+    p4Mesh = MushcoreData<MushMesh4Mesh>::Sgl().Give("projectile", new MushMesh4Mesh);
+    AdanaxisMeshLibrary::AdanaxisSgl().ProjectileCreate(*p4Mesh);
+    
+    skinNoise.TextureGenerate(*p4Mesh);
+    skinNoise.TexCoordsGenerate(*p4Mesh);
+    MushcoreData<MushGLBuffers>::Sgl().GetOrCreate("projectile");
 }
 

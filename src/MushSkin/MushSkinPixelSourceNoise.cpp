@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } IHi2qaicNzVbb+bqL7ZTVw
 /*
- * $Id: MushSkinPixelSourceNoise.cpp,v 1.3 2006/05/01 17:39:01 southa Exp $
+ * $Id: MushSkinPixelSourceNoise.cpp,v 1.4 2006/05/02 17:32:13 southa Exp $
  * $Log: MushSkinPixelSourceNoise.cpp,v $
+ * Revision 1.4  2006/05/02 17:32:13  southa
+ * Texturing
+ *
  * Revision 1.3  2006/05/01 17:39:01  southa
  * Texture generation
  *
@@ -97,7 +100,7 @@ MushSkinPixelSourceNoise::TileLineGenerate(Mushware::U8 *inpTileData, const Mush
     t4Val objectPos = inStartPos;
     t4Val objectPosStep;
     
-    objectPosStep = (inStartPos - inEndPos) / inNumPixels;
+    objectPosStep = (inEndPos - inStartPos) / inNumPixels;
     
     U32 tileSourceFace = inTileRef.SourceFace();
     
@@ -105,18 +108,20 @@ MushSkinPixelSourceNoise::TileLineGenerate(Mushware::U8 *inpTileData, const Mush
     {
         for (U32 i=0; i<inNumPixels; ++i)
         {
-            tVal paletteValue = pow(sin(4*objectPos.X()), 2) *
-            pow(sin(4*objectPos.Y()), 2) *
-            pow(sin(4*objectPos.Z()), 2) *
-            pow(sin(4*objectPos.W()), 2)
+            tVal paletteValue = pow(sin(4*objectPos.X()), 2) +
+            pow(sin(5*objectPos.Y()), 2) +
+            pow(sin(6*objectPos.Z()), 2) +
+            pow(sin(7*objectPos.W()), 2)
             ;
             
             t4Val pixelCol = m_pPaletteTexture->U8RGBALookup(m_paletteStart + paletteValue * m_paletteVector);
             
+            // if (tileSourceFace < 6) pixelCol.WSet(0);
+            
             *pTileData++ = static_cast<U8>(pixelCol.X()); // Red
             *pTileData++ = static_cast<U8>(pixelCol.Y()); // Green
             *pTileData++ = static_cast<U8>(pixelCol.Z()); // Blue
-            *pTileData++ = static_cast<U8>(pixelCol.W()); // Alpha
+            *pTileData++ = static_cast<U8>(pixelCol.Z()); // Alpha
             
             objectPos += objectPosStep;
         }
@@ -186,6 +191,15 @@ MushSkinPixelSourceNoise::ToTextureCreate(MushGLTexture& outTexture)
             
             if (endX > startX)
             {
+                {
+                    static U32 ctr=0;
+                    if (ctr==0)
+                    {
+                        MushcoreLog::Sgl().InfoLog() << "objectPos=" << objectPos << ", objectEndPos=" << objectEndPos << endl;;
+                    }
+                    ++ctr;
+                }
+                
                 TileLineGenerate(pTileData, tileRef, endX - startX, objectPos, objectEndPos);
             }
             

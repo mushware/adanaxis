@@ -7,7 +7,7 @@
  *
  * File: src/Adanaxis/AdanaxisMeshLibrary.h
  *
- * Copyright: Andy Southgate 2005
+ * Copyright: Andy Southgate 2005-2006
  *
  * This file may be used and distributed under the terms of the Mushware
  * software licence version 1.0, under the terms for 'Proprietary original
@@ -19,10 +19,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 8wu6JJaIcLGhv4Titc9Yww
+//%Header } pAnBImGOeVSA1w9soZXoNg
 /*
- * $Id: AdanaxisMeshLibrary.h,v 1.1 2005/07/18 13:13:35 southa Exp $
+ * $Id: AdanaxisMeshLibrary.h,v 1.2 2005/09/05 12:54:29 southa Exp $
  * $Log: AdanaxisMeshLibrary.h,v $
+ * Revision 1.2  2005/09/05 12:54:29  southa
+ * Solid rendering work
+ *
  * Revision 1.1  2005/07/18 13:13:35  southa
  * Extrude to point and projectile mesh
  *
@@ -39,6 +42,7 @@ class AdanaxisMeshLibrary : public MushMeshLibraryBase
 public:
     virtual ~AdanaxisMeshLibrary() {}
 
+    virtual void TesseractCreate(MushMesh4Mesh& ioMesh) const;
     virtual void ProjectileCreate(MushMesh4Mesh& ioMesh) const;
 
     virtual void AttendantVerticesSet(MushMesh4Mesh& ioMesh, Mushware::tVal inAnim) const;

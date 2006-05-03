@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } stZjV2zH0hRmAqmLipntXQ
 /*
- * $Id: MushSkinNoise.cpp,v 1.3 2006/05/01 17:39:01 southa Exp $
+ * $Id: MushSkinNoise.cpp,v 1.4 2006/05/02 17:32:13 southa Exp $
  * $Log: MushSkinNoise.cpp,v $
+ * Revision 1.4  2006/05/02 17:32:13  southa
+ * Texturing
+ *
  * Revision 1.3  2006/05/01 17:39:01  southa
  * Texture generation
  *
@@ -220,7 +223,7 @@ MushSkinNoise::TexCoordsGenerate(MushMesh4Mesh& ioMesh)
             // Choose p0, v0 and v1
             /* Simple algorithm for the moment.  Choose the vector one-quarter of the way
              * through the facet, and adjust so that it isn't the same as the base of v0
-                */
+             */
             U32 v1Base = verticesInFacet / 4;
             if (v1Base == 0)
             {
@@ -309,6 +312,21 @@ MushSkinNoise::TexCoordsGenerate(MushMesh4Mesh& ioMesh)
     {
         MushcoreLog::Sgl().WarningLog() << "Number of texture tile errors: " << textureErrorCount <<
             " in " << texTilesWRef.size() << " tiles" << endl;
+    }
+    
+    for (U32 j=0; j<8; ++j)
+    {
+        MushcoreLog::Sgl().InfoLog() << "Vertex " << j << " = " << verticesRef[j] << endl;
+    }
+    for (U32 j=0; j<24; ++j)
+    {
+        MushcoreLog::Sgl().InfoLog() << "TexCoord " << j << " = " << texCoordsWRef[j] << endl;
+    }
+    MushcoreLog::Sgl().XMLInfoLog() << ioMesh.FaceWRef(0);
+
+    for (U32 i=0; i<6; ++i)
+    {
+        MushcoreLog::Sgl().XMLInfoLog() << texTilesWRef[i];
     }
 }
 

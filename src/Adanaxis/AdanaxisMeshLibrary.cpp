@@ -3,7 +3,7 @@
  *
  * File: src/Adanaxis/AdanaxisMeshLibrary.cpp
  *
- * Copyright: Andy Southgate 2005
+ * Copyright: Andy Southgate 2005-2006
  *
  * This file may be used and distributed under the terms of the Mushware
  * software licence version 1.0, under the terms for 'Proprietary original
@@ -15,10 +15,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } HZgJeg4wxB1Uq93YJryJDg
+//%Header } s/ATdwJmdoQd9jSw8sBfiA
 /*
- * $Id: AdanaxisMeshLibrary.cpp,v 1.1 2005/07/18 13:13:35 southa Exp $
+ * $Id: AdanaxisMeshLibrary.cpp,v 1.2 2005/09/05 12:54:29 southa Exp $
  * $Log: AdanaxisMeshLibrary.cpp,v $
+ * Revision 1.2  2005/09/05 12:54:29  southa
+ * Solid rendering work
+ *
  * Revision 1.1  2005/07/18 13:13:35  southa
  * Extrude to point and projectile mesh
  *
@@ -28,6 +31,12 @@
 
 using namespace Mushware;
 using namespace std;
+
+void
+AdanaxisMeshLibrary::TesseractCreate(MushMesh4Mesh& ioMesh) const
+{
+    MushMeshLibraryBase::Sgl().PolygonPrismCreate(ioMesh, t4Val(1, 1, 1, 1), 4);
+}
 
 void
 AdanaxisMeshLibrary::ProjectileCreate(MushMesh4Mesh& ioMesh) const
