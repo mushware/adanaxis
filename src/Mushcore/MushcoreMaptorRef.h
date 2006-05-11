@@ -7,7 +7,7 @@
  *
  * File: src/Mushcore/MushcoreMaptorRef.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } GvnvPHVKb+H/ThuBQjxpTw
+//%Header } oYaclGAzf6mPo2JW/S6SXA
 /*
- * $Id$
- * $Log$
+ * $Id: MushcoreMaptorRef.h,v 1.1 2005/07/29 14:59:50 southa Exp $
+ * $Log: MushcoreMaptorRef.h,v $
+ * Revision 1.1  2005/07/29 14:59:50  southa
+ * Maptor access
+ *
  */
 
 #include "MushcoreStandard.h"
@@ -88,7 +91,7 @@ MushcoreMaptorRef<T, K, C>::Dereference(void) const
     }
     if (m_ptr == NULL || m_sequenceNum != m_pContainer->SequenceNum())
     {
-        m_ptr = m_pContainer->Get(m_key);
+        m_ptr = &m_pContainer->Get(m_key);
         m_sequenceNum = m_pContainer->SequenceNum();
     }
     return m_ptr;

@@ -1267,6 +1267,30 @@
 		7A8040EC086AE085007B0F20 /* MushGameJobAdmission.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A8040EA086AE085007B0F20 /* MushGameJobAdmission.cpp */; };
 		7A8040ED086AE085007B0F20 /* MushGameJobAdmission.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A8040E9086AE085007B0F20 /* MushGameJobAdmission.h */; };
 		7A8040EE086AE085007B0F20 /* MushGameJobAdmission.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A8040EA086AE085007B0F20 /* MushGameJobAdmission.cpp */; };
+		7A8177A50A134B4E005C1108 /* TesseractTrainerSTL.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AAE6BAB07AFC36C0085C60F /* TesseractTrainerSTL.h */; };
+		7A8177A60A134B4F005C1108 /* TesseractTrainerSTL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AAE6BAA07AFC36C0085C60F /* TesseractTrainerSTL.cpp */; };
+		7A8177A70A134B50005C1108 /* TesseractTrainerStandard.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AAE6BA907AFC36C0085C60F /* TesseractTrainerStandard.h */; };
+		7A8177A80A134B51005C1108 /* TesseractTrainerStandard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AAE6BA807AFC36C0085C60F /* TesseractTrainerStandard.cpp */; };
+		7A8177A90A134B52005C1108 /* TesseractTrainerPlaneSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AB6287F07D0EB6A0035D7F1 /* TesseractTrainerPlaneSet.h */; };
+		7A8177AA0A134B53005C1108 /* TesseractTrainerPlaneSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AB6288007D0EB6A0035D7F1 /* TesseractTrainerPlaneSet.cpp */; };
+		7A8177AB0A134B54005C1108 /* TesseractTrainerPlanePair.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AB627CA07D0D4D00035D7F1 /* TesseractTrainerPlanePair.h */; };
+		7A8177AC0A134B55005C1108 /* TesseractTrainerPlanePair.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AB627CB07D0D4D00035D7F1 /* TesseractTrainerPlanePair.cpp */; };
+		7A8177AD0A134B55005C1108 /* TesseractTrainerPixelSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62BCFD07BE2FC100C05896 /* TesseractTrainerPixelSource.h */; };
+		7A8177AE0A134B55005C1108 /* TesseractTrainerPixelSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62BCFE07BE2FC100C05896 /* TesseractTrainerPixelSource.cpp */; };
+		7A8177AF0A134B58005C1108 /* TesseractTrainerInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AAE6BA707AFC36C0085C60F /* TesseractTrainerInfo.h */; };
+		7A8177B00A134B58005C1108 /* TesseractTrainerInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AAE6BA607AFC36C0085C60F /* TesseractTrainerInfo.cpp */; };
+		7A8177B10A134B59005C1108 /* TesseractTrainerHypersphere.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AAE6BA507AFC36C0085C60F /* TesseractTrainerHypersphere.h */; };
+		7A8177B20A134B59005C1108 /* TesseractTrainerHypersphere.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AAE6BA407AFC36C0085C60F /* TesseractTrainerHypersphere.cpp */; };
+		7A8177B30A134B5B005C1108 /* TesseractTrainerHypercube.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AAE6BA307AFC36C0085C60F /* TesseractTrainerHypercube.h */; };
+		7A8177B40A134B5E005C1108 /* TesseractTrainerHypercube.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AAE6BA207AFC36C0085C60F /* TesseractTrainerHypercube.cpp */; };
+		7A8177B50A134B5E005C1108 /* TesseractTrainerGame.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AAE6BA107AFC36C0085C60F /* TesseractTrainerGame.h */; };
+		7A8177B60A134B5E005C1108 /* TesseractTrainerGame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AAE6BA007AFC36C0085C60F /* TesseractTrainerGame.cpp */; };
+		7A8177B70A134B5F005C1108 /* TesseractTrainerConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A7DE93808157EE300CB5432 /* TesseractTrainerConfig.h */; };
+		7A8177B80A134B60005C1108 /* TesseractTrainerConfig.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A7DE93908157EE300CB5432 /* TesseractTrainerConfig.cpp */; };
+		7A8177B90A134B62005C1108 /* TesseractTrainerCommandHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AAE6B9F07AFC36C0085C60F /* TesseractTrainerCommandHandler.h */; };
+		7A8177BA0A134B64005C1108 /* TesseractTrainerCommandHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AAE6B9E07AFC36C0085C60F /* TesseractTrainerCommandHandler.cpp */; };
+		7A8177BB0A134B64005C1108 /* TesseractTrainerAppHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AAE6B9D07AFC36C0085C60F /* TesseractTrainerAppHandler.h */; };
+		7A8177BC0A134B65005C1108 /* TesseractTrainerAppHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AAE6B9C07AFC36C0085C60F /* TesseractTrainerAppHandler.cpp */; };
 		7A85876008754D4100ED67ED /* MushRenderStandard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A85875C08754D4100ED67ED /* MushRenderStandard.cpp */; };
 		7A85876108754D4100ED67ED /* MushRenderStandard.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A85875D08754D4100ED67ED /* MushRenderStandard.h */; };
 		7A85876208754D4100ED67ED /* MushRender.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A85875E08754D4100ED67ED /* MushRender.cpp */; };
@@ -2261,65 +2285,6 @@
 		7AFFFF3C085DBA2800999549 /* TestMushcoreCounter.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AFFFF3A085DBA2800999549 /* TestMushcoreCounter.h */; };
 		7AFFFF3D085DBA2800999549 /* TestMushcoreCounter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AFFFF3B085DBA2800999549 /* TestMushcoreCounter.cpp */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXBuildRule section */
-		7A261EEE083BA8D300042901 /* PBXBuildRule */ = {
-			isa = PBXBuildRule;
-			compilerSpec = com.apple.compilers.gcc.3_3;
-			fileType = sourcecode.cpp;
-			isEditable = 1;
-			outputFiles = (
-			);
-		};
-		7A261EF2083BA8E300042901 /* PBXBuildRule */ = {
-			isa = PBXBuildRule;
-			compilerSpec = com.apple.compilers.gcc.3_3;
-			fileType = sourcecode.cpp;
-			isEditable = 1;
-			outputFiles = (
-			);
-		};
-		7A49035D083B9E15000775B1 /* PBXBuildRule */ = {
-			isa = PBXBuildRule;
-			compilerSpec = com.apple.compilers.gcc.3_3;
-			fileType = sourcecode.cpp;
-			isEditable = 1;
-			outputFiles = (
-			);
-		};
-		7A490360083B9E2D000775B1 /* PBXBuildRule */ = {
-			isa = PBXBuildRule;
-			compilerSpec = com.apple.compilers.gcc.3_3;
-			fileType = sourcecode.cpp;
-			isEditable = 1;
-			outputFiles = (
-			);
-		};
-		7A532BFF089A3C7C0090B78C /* PBXBuildRule */ = {
-			isa = PBXBuildRule;
-			compilerSpec = com.apple.compilers.gcc.3_3;
-			fileType = sourcecode.cpp;
-			isEditable = 1;
-			outputFiles = (
-			);
-		};
-		7A70CE7D085DEE2D0055C6FB /* PBXBuildRule */ = {
-			isa = PBXBuildRule;
-			compilerSpec = com.apple.compilers.gcc.3_3;
-			fileType = sourcecode.cpp;
-			isEditable = 1;
-			outputFiles = (
-			);
-		};
-		7AD1AB4709EC598E0059879A /* PBXBuildRule */ = {
-			isa = PBXBuildRule;
-			compilerSpec = com.apple.compilers.gcc.3_3;
-			fileType = sourcecode.cpp;
-			isEditable = 1;
-			outputFiles = (
-			);
-		};
-/* End PBXBuildRule section */
 
 /* Begin PBXBuildStyle section */
 		4A9504C5FFE6A39111CA0CBA /* Development */ = {
@@ -7049,6 +7014,18 @@
 				7ABBAB2408087A3900A01FB4 /* GameUtils.h in Headers */,
 				7A5C9F640809869B0017E78B /* GameCode.h in Headers */,
 				7A70CD14085DE6A90055C6FB /* MushGLControl.h in Headers */,
+				7A8177A50A134B4E005C1108 /* TesseractTrainerSTL.h in Headers */,
+				7A8177A70A134B50005C1108 /* TesseractTrainerStandard.h in Headers */,
+				7A8177A90A134B52005C1108 /* TesseractTrainerPlaneSet.h in Headers */,
+				7A8177AB0A134B54005C1108 /* TesseractTrainerPlanePair.h in Headers */,
+				7A8177AD0A134B55005C1108 /* TesseractTrainerPixelSource.h in Headers */,
+				7A8177AF0A134B58005C1108 /* TesseractTrainerInfo.h in Headers */,
+				7A8177B10A134B59005C1108 /* TesseractTrainerHypersphere.h in Headers */,
+				7A8177B30A134B5B005C1108 /* TesseractTrainerHypercube.h in Headers */,
+				7A8177B50A134B5E005C1108 /* TesseractTrainerGame.h in Headers */,
+				7A8177B70A134B5F005C1108 /* TesseractTrainerConfig.h in Headers */,
+				7A8177B90A134B62005C1108 /* TesseractTrainerCommandHandler.h in Headers */,
+				7A8177BB0A134B64005C1108 /* TesseractTrainerAppHandler.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7276,7 +7253,6 @@
 				7A657EE605A9CD1C00E727F8 /* Frameworks */,
 			);
 			buildRules = (
-				7A261EF2083BA8E300042901 /* PBXBuildRule */,
 			);
 			buildSettings = {
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -7402,7 +7378,6 @@
 				7A65815005A9D09C00E727F8 /* Frameworks */,
 			);
 			buildRules = (
-				7A261EEE083BA8D300042901 /* PBXBuildRule */,
 			);
 			buildSettings = {
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -7471,7 +7446,6 @@
 				7A70CE7C085DEE2D0055C6FB /* ShellScript */,
 			);
 			buildRules = (
-				7A70CE7D085DEE2D0055C6FB /* PBXBuildRule */,
 			);
 			buildSettings = {
 				DEAD_CODE_STRIPPING = YES;
@@ -7539,7 +7513,6 @@
 				7A7194EB05A998B900C42A20 /* Frameworks */,
 			);
 			buildRules = (
-				7A490360083B9E2D000775B1 /* PBXBuildRule */,
 			);
 			buildSettings = {
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -7603,7 +7576,6 @@
 				7A71998905A99B6700C42A20 /* Frameworks */,
 			);
 			buildRules = (
-				7A532BFF089A3C7C0090B78C /* PBXBuildRule */,
 			);
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -7667,7 +7639,6 @@
 				7AAE6CD707AFC4250085C60F /* ShellScript */,
 			);
 			buildRules = (
-				7A49035D083B9E15000775B1 /* PBXBuildRule */,
 			);
 			buildSettings = {
 				DEAD_CODE_STRIPPING = YES;
@@ -7857,7 +7828,6 @@
 				7AD1AB4409EC598E0059879A /* Frameworks */,
 			);
 			buildRules = (
-				7AD1AB4709EC598E0059879A /* PBXBuildRule */,
 			);
 			buildSettings = {
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -9234,6 +9204,18 @@
 				7A5C9F650809869B0017E78B /* GameCode.cpp in Sources */,
 				7A47C7D8083CEB5D00FE6EF4 /* PlatformMiscUtils.cpp in Sources */,
 				7A70CD15085DE6A90055C6FB /* MushGLControl.cpp in Sources */,
+				7A8177A60A134B4F005C1108 /* TesseractTrainerSTL.cpp in Sources */,
+				7A8177A80A134B51005C1108 /* TesseractTrainerStandard.cpp in Sources */,
+				7A8177AA0A134B53005C1108 /* TesseractTrainerPlaneSet.cpp in Sources */,
+				7A8177AC0A134B55005C1108 /* TesseractTrainerPlanePair.cpp in Sources */,
+				7A8177AE0A134B55005C1108 /* TesseractTrainerPixelSource.cpp in Sources */,
+				7A8177B00A134B58005C1108 /* TesseractTrainerInfo.cpp in Sources */,
+				7A8177B20A134B59005C1108 /* TesseractTrainerHypersphere.cpp in Sources */,
+				7A8177B40A134B5E005C1108 /* TesseractTrainerHypercube.cpp in Sources */,
+				7A8177B60A134B5E005C1108 /* TesseractTrainerGame.cpp in Sources */,
+				7A8177B80A134B60005C1108 /* TesseractTrainerConfig.cpp in Sources */,
+				7A8177BA0A134B64005C1108 /* TesseractTrainerCommandHandler.cpp in Sources */,
+				7A8177BC0A134B65005C1108 /* TesseractTrainerAppHandler.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9712,7 +9694,8 @@
 				GCC_FAST_MATH = YES;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
 				GCC_MODEL_TUNING = G5;
-				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_OPTIMIZATION_LEVEL = 1;
+				GCC_PFE_FILE_C_DIALECTS = "c++";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_STRICT_ALIASING = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
@@ -9732,12 +9715,14 @@
 				GCC_WARN_UNUSED_PARAMETER = NO;
 				GCC_WARN_UNUSED_VALUE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				MUSH_APP_HEADERS = "../../src ../../src/API";
 				MUSH_APP_INSTALL_PATH = "@install_path";
 				MUSH_APP_PREFIX_HEADER = ../../src/API/mushAppPrefix.h;
 				MUSH_FRAMEWORK_HEADERS = "../../src ../../src/API";
 				MUSH_FRAMEWORK_INSTALL_PATH = "@executable_path/../Frameworks";
-				ZERO_LINK = YES;
+				PREBINDING = NO;
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 			};
 			name = Development;
 		};
@@ -9753,8 +9738,9 @@
 				GCC_AUTO_VECTORIZATION = YES;
 				GCC_FAST_MATH = YES;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
-				GCC_MODEL_TUNING = G5;
+				GCC_MODEL_TUNING = G4;
 				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PFE_FILE_C_DIALECTS = "c++";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = "NDEBUG=1";
 				GCC_STRICT_ALIASING = YES;
@@ -9775,11 +9761,14 @@
 				GCC_WARN_UNUSED_PARAMETER = NO;
 				GCC_WARN_UNUSED_VALUE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				MUSH_APP_HEADERS = "../../src ../../src/API";
 				MUSH_APP_INSTALL_PATH = "@install_path";
 				MUSH_APP_PREFIX_HEADER = ../../src/API/mushAppPrefix.h;
 				MUSH_FRAMEWORK_HEADERS = "../../src ../../src/API";
 				MUSH_FRAMEWORK_INSTALL_PATH = "@executable_path/../Frameworks";
+				PREBINDING = NO;
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 			};
 			name = Deployment;
 		};
@@ -9801,7 +9790,7 @@
 					0x2d000000,
 				);
 				PRODUCT_NAME = MushRuby;
-				USER_HEADER_SEARCH_PATHS = $MUSH_FRAMEWORKS_HEADERS;
+				USER_HEADER_SEARCH_PATHS = $MUSH_FRAMEWORK_HEADERS;
 			};
 			name = Development;
 		};
@@ -9823,7 +9812,7 @@
 					0x2d000000,
 				);
 				PRODUCT_NAME = MushRuby;
-				USER_HEADER_SEARCH_PATHS = $MUSH_FRAMEWORKS_HEADERS;
+				USER_HEADER_SEARCH_PATHS = $MUSH_FRAMEWORK_HEADERS;
 			};
 			name = Deployment;
 		};

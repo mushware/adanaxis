@@ -3,7 +3,7 @@
  *
  * File: src/Mushcore/MushcoreMaptorRef.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } MFxsdFZ8kAo8WUeHStFxag
+//%Header } 0eYxMp7oXaicYcmQS3eYqA
 /*
- * $Id$
- * $Log$
+ * $Id: MushcoreMaptorRef.cpp,v 1.1 2005/07/29 14:59:50 southa Exp $
+ * $Log: MushcoreMaptorRef.cpp,v $
+ * Revision 1.1  2005/07/29 14:59:50  southa
+ * Maptor access
+ *
  */
 
 #include "MushcoreMaptorRef.h"

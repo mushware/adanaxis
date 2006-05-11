@@ -7,7 +7,7 @@
  *
  * File: src/TesseractTrainer/TesseractTrainerGame.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 9wvYEOqMkw8/R2pHAfRAxg
+//%Header } XFjRT8K5hGy21XMnuX0LrQ
 /*
- * $Id: TesseractTrainerGame.h,v 1.14 2005/05/19 13:02:22 southa Exp $
+ * $Id: TesseractTrainerGame.h,v 1.15 2005/06/20 14:30:39 southa Exp $
  * $Log: TesseractTrainerGame.h,v $
+ * Revision 1.15  2005/06/20 14:30:39  southa
+ * Adanaxis work
+ *
  * Revision 1.14  2005/05/19 13:02:22  southa
  * Mac release work
  *
@@ -79,7 +82,7 @@
 #include "TesseractTrainerPlanePair.h"
 #include "TesseractTrainerPlaneSet.h"
 
-//:generate virtual standard ostream xml1
+//:generate virtual standard ostream xml1 nocopy
 class TesseractTrainerGame : public GameBase
 {
 public:

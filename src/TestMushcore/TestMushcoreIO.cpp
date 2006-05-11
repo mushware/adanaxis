@@ -3,7 +3,7 @@
  *
  * File: src/TestMushcore/TestMushcoreIO.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } sRZ+ShiK5Qx3jj9TSzKp5g
+//%Header } zeSb0lown4bnu/nWWH50Ag
 /*
- * $Id: TestMushcoreIO.cpp,v 1.17 2005/06/13 14:25:46 southa Exp $
+ * $Id: TestMushcoreIO.cpp,v 1.18 2005/07/01 14:59:00 southa Exp $
  * $Log: TestMushcoreIO.cpp,v $
+ * Revision 1.18  2005/07/01 14:59:00  southa
+ * Mushcore auto_ptr and binary string fixes
+ *
  * Revision 1.17  2005/06/13 14:25:46  southa
  * Pipe and ordered data work
  *
@@ -206,13 +209,14 @@ TestMushcoreIO::TestIO(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
             throw MushcoreCommandFail("MushcoreIO DataRef not found ");            
         }            
         
-        if (*testObjectRef.Get() != TestMushcoreObject(1))
+        TestMushcoreObject testObj1(1); // gcc 4.0.1 workaround
+        if (*testObjectRef.Get() != testObj1)
         {
             throw MushcoreCommandFail("MushcoreIO DataRef value fault ");            
         }
         
         testObjectRef.Get()->U8Set(3);
-        if (*testObjectRef.Get() == TestMushcoreObject(1))
+        if (*testObjectRef.Get() == testObj1)
         {
             throw MushcoreCommandFail("MushcoreIO DataRef write failure ");            
         }

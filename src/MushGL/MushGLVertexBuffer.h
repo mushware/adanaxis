@@ -7,7 +7,7 @@
  *
  * File: src/MushGL/MushGLVertexBuffer.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } hWNbm86RBoWi7/IeO2I8bQ
+//%Header } IqSxvqRd3OSDd+9vhv6sYw
 /*
- * $Id: MushGLVertexBuffer.h,v 1.8 2005/07/04 15:59:00 southa Exp $
+ * $Id: MushGLVertexBuffer.h,v 1.9 2005/09/03 17:05:36 southa Exp $
  * $Log: MushGLVertexBuffer.h,v $
+ * Revision 1.9  2005/09/03 17:05:36  southa
+ * Material work
+ *
  * Revision 1.8  2005/07/04 15:59:00  southa
  * Adanaxis work
  *
@@ -66,8 +69,8 @@ public:
     explicit MushGLVertexBuffer(const Mushware::tSize inSize);
     
 private:
-    MushGLVertexBuffer(const MushGLVertexBuffer& inBuffer) { throw MushcoreLogicFail("Forbiddden copy constructor"); }
-    const MushGLVertexBuffer& operator=(const MushGLVertexBuffer& inBuffer) { throw MushcoreLogicFail("Forbiddden assignment"); }
+    //MushGLVertexBuffer(const MushGLVertexBuffer& inBuffer) { throw MushcoreLogicFail("Forbiddden copy constructor"); }
+    //const MushGLVertexBuffer& operator=(const MushGLVertexBuffer& inBuffer) { throw MushcoreLogicFail("Forbiddden assignment"); }
 public:
     
     virtual ~MushGLVertexBuffer();

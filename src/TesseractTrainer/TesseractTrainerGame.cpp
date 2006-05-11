@@ -3,7 +3,7 @@
  *
  * File: src/TesseractTrainer/TesseractTrainerGame.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } DJDbUJa+Ksug6ny/9yE+0Q
+//%Header } 0c6cEpe2NbQ1Mx+x8GRiCA
 /*
- * $Id: TesseractTrainerGame.cpp,v 1.24 2005/06/20 14:30:39 southa Exp $
+ * $Id: TesseractTrainerGame.cpp,v 1.25 2005/07/02 00:42:38 southa Exp $
  * $Log: TesseractTrainerGame.cpp,v $
+ * Revision 1.25  2005/07/02 00:42:38  southa
+ * Conditioning tweaks
+ *
  * Revision 1.24  2005/06/20 14:30:39  southa
  * Adanaxis work
  *
@@ -424,8 +427,8 @@ TesseractTrainerGame::Reorientate(void)
     
     std::swap(m_current, m_previous);
     
-    m_orientations[m_current] = tQValPair::RotationIdentityGet();
-    m_angVels[m_current] = tQValPair::RotationIdentityGet();
+    m_orientations[m_current] = tQValPair::RotationIdentity();
+    m_angVels[m_current] = tQValPair::RotationIdentity();
     
     m_angVels[m_current].OuterMultiplyBy(orientation);
     
@@ -434,10 +437,10 @@ TesseractTrainerGame::Reorientate(void)
     m_angVels[m_current].OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis
                              (1, MushMeshTools::Random(ttRotationBMin, ttRotationBMax)));
     
-    m_angVels[m_current].OuterMultiplyBy(orientation.ConjugateGet());
+    m_angVels[m_current].OuterMultiplyBy(orientation.Conjugate());
     
     m_planepair.Create(0, m_colours);
-    m_planepair.Rotate(orientation.ConjugateGet());
+    m_planepair.Rotate(orientation.Conjugate());
 }
 
 void
@@ -554,8 +557,8 @@ TesseractTrainerGame::SwapIn(GameAppHandler& inAppHandler)
     
     for (U32 i=0; i<2; ++i)
     {
-        m_orientations[i] = tQValPair::RotationIdentityGet();
-        m_angVels[i] = tQValPair::RotationIdentityGet();
+        m_orientations[i] = tQValPair::RotationIdentity();
+        m_angVels[i] = tQValPair::RotationIdentity();
     }
 }
 
@@ -630,7 +633,7 @@ const char *TesseractTrainerGame::AutoName(void) const
 
 MushcoreVirtualObject *TesseractTrainerGame::AutoClone(void) const
 {
-    return new TesseractTrainerGame(*this);
+    throw MushcoreRequestFail("Cannot clone 'TesseractTrainerGame'");;
 }
 
 MushcoreVirtualObject *TesseractTrainerGame::AutoCreate(void) const
@@ -752,4 +755,4 @@ TesseractTrainerGame::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("config");
     ioOut << m_config;
 }
-//%outOfLineFunctions } SlowAEcGI1pppOxVP89tLw
+//%outOfLineFunctions } 2gs/4gySak0wPL8VJbTp/Q
