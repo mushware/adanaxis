@@ -26,8 +26,6 @@
 		7A06969C08686175007ACACE /* MushGameMessageWake.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A06969A08686175007ACACE /* MushGameMessageWake.cpp */; };
 		7A06969D08686175007ACACE /* MushGameMessageWake.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A06969908686175007ACACE /* MushGameMessageWake.h */; };
 		7A06969E08686175007ACACE /* MushGameMessageWake.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A06969A08686175007ACACE /* MushGameMessageWake.cpp */; };
-		7A0D469B07357AA800D06F24 /* MaurheenHypercube.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A0D469907357AA800D06F24 /* MaurheenHypercube.h */; };
-		7A0D469C07357AA800D06F24 /* MaurheenHypercube.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A0D469A07357AA800D06F24 /* MaurheenHypercube.cpp */; };
 		7A0D78B307358A2B00D06F24 /* MushMeshTools.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A0D78B107358A2B00D06F24 /* MushMeshTools.h */; };
 		7A0D78B407358A2B00D06F24 /* MushMeshTools.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A0D78B207358A2B00D06F24 /* MushMeshTools.cpp */; };
 		7A1A52C608CDD24700CBC8EC /* MushSkinResolverPixelSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A1A52C408CDD24700CBC8EC /* MushSkinResolverPixelSource.h */; };
@@ -63,14 +61,6 @@
 		7A224DB4088E7A550078A295 /* mushMushCollision.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A224DB3088E7A550078A295 /* mushMushCollision.h */; };
 		7A224DB5088E7A550078A295 /* mushMushCollision.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A224DB3088E7A550078A295 /* mushMushCollision.h */; };
 		7A2380FE05F9E5E000505F59 /* Mustl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AB650D705F9E0A0003E2845 /* Mustl.framework */; };
-		7A2383D405F9E85000505F59 /* Mushcore.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7A7194ED05A998B900C42A20 /* Mushcore.framework */; };
-		7A2383D505F9E85000505F59 /* MushMesh.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7A65815405A9D09C00E727F8 /* MushMesh.framework */; };
-		7A2383D605F9E85000505F59 /* MushPie.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7A657EE905A9CD1C00E727F8 /* MushPie.framework */; };
-		7A2383D705F9E85000505F59 /* Mustl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7AB650D705F9E0A0003E2845 /* Mustl.framework */; };
-		7A2383E805F9E8E000505F59 /* Mushcore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A7194ED05A998B900C42A20 /* Mushcore.framework */; };
-		7A2383E905F9E8E000505F59 /* MushMesh.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A65815405A9D09C00E727F8 /* MushMesh.framework */; };
-		7A2383EA05F9E8E000505F59 /* MushPie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A657EE905A9CD1C00E727F8 /* MushPie.framework */; };
-		7A2383EB05F9E8E000505F59 /* Mustl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AB650D705F9E0A0003E2845 /* Mustl.framework */; };
 		7A261F57083BB5A400042901 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ACC29DB05AB0DF3001A0873 /* OpenGL.framework */; };
 		7A2E6C9605A4DAF90025F99B /* ic2_app.icns in Resources */ = {isa = PBXBuildFile; fileRef = 7A2E6C9505A4DAF90025F99B /* ic2_app.icns */; };
 		7A321517087443960056D5C4 /* AdanaxisUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A321515087443960056D5C4 /* AdanaxisUtil.h */; };
@@ -100,8 +90,6 @@
 		7A45EABC07F46BE500773CF6 /* GameSoundStreamSpec.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A45EAB807F46BE500773CF6 /* GameSoundStreamSpec.h */; };
 		7A45EABD07F46BE500773CF6 /* GameSoundStreamSpec.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A45EAB907F46BE500773CF6 /* GameSoundStreamSpec.cpp */; };
 		7A47C7D8083CEB5D00FE6EF4 /* PlatformMiscUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B8D005A49D05002A5F1C /* PlatformMiscUtils.cpp */; };
-		7A4FA60505F9F0FE00297E23 /* MaurheenGame.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A4FA60305F9F0FE00297E23 /* MaurheenGame.h */; };
-		7A4FA60605F9F0FE00297E23 /* MaurheenGame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A4FA60405F9F0FE00297E23 /* MaurheenGame.cpp */; };
 		7A4FA60705F9F0FE00297E23 /* MaurheenGame.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A4FA60305F9F0FE00297E23 /* MaurheenGame.h */; };
 		7A4FA60805F9F0FE00297E23 /* MaurheenGame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A4FA60405F9F0FE00297E23 /* MaurheenGame.cpp */; };
 		7A532BCB089A29F90090B78C /* MushcoreMaptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A532BC7089A29F90090B78C /* MushcoreMaptor.h */; };
@@ -149,8 +137,6 @@
 		7A61E7A405B07B1F00AFEB17 /* GLXMLOperators.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A61E7A205B07B1F00AFEB17 /* GLXMLOperators.cpp */; };
 		7A620FCD07ABA3DD00347A99 /* MushGLBuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A620FCB07ABA3DD00347A99 /* MushGLBuffer.h */; };
 		7A620FCE07ABA3DD00347A99 /* MushGLBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A620FCC07ABA3DD00347A99 /* MushGLBuffer.cpp */; };
-		7A620FCF07ABA3DD00347A99 /* MushGLBuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A620FCB07ABA3DD00347A99 /* MushGLBuffer.h */; };
-		7A620FD007ABA3DD00347A99 /* MushGLBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A620FCC07ABA3DD00347A99 /* MushGLBuffer.cpp */; };
 		7A62381707BB6AA500BE8911 /* MushPieDialogue.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62381507BB6AA500BE8911 /* MushPieDialogue.h */; };
 		7A62381807BB6AA500BE8911 /* MushPieDialogue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62381607BB6AA500BE8911 /* MushPieDialogue.cpp */; };
 		7A62381907BB6AA500BE8911 /* MushPieDialogue.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62381507BB6AA500BE8911 /* MushPieDialogue.h */; };
@@ -637,8 +623,6 @@
 		7A63EB1B05AA311A0051D708 /* MushPie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A657EE905A9CD1C00E727F8 /* MushPie.framework */; };
 		7A643D7E07AEB25D006E88DD /* MushGLVertexBuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A643D7C07AEB25D006E88DD /* MushGLVertexBuffer.h */; };
 		7A643D7F07AEB25D006E88DD /* MushGLVertexBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A643D7D07AEB25D006E88DD /* MushGLVertexBuffer.cpp */; };
-		7A643D8007AEB25D006E88DD /* MushGLVertexBuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A643D7C07AEB25D006E88DD /* MushGLVertexBuffer.h */; };
-		7A643D8107AEB25D006E88DD /* MushGLVertexBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A643D7D07AEB25D006E88DD /* MushGLVertexBuffer.cpp */; };
 		7A651D3E05A85C230026CBAE /* MushPiePieceMobile.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A651D3C05A85C230026CBAE /* MushPiePieceMobile.h */; };
 		7A651D3F05A85C230026CBAE /* MushPiePieceMobile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A651D3D05A85C230026CBAE /* MushPiePieceMobile.cpp */; };
 		7A651DA505A8622D0026CBAE /* MushMeshQuaternion.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A651DA305A8622D0026CBAE /* MushMeshQuaternion.h */; };
@@ -653,8 +637,6 @@
 		7A654B9C07A9402200DE4A9D /* MushMeshDivide.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A654B9807A9402200DE4A9D /* MushMeshDivide.cpp */; };
 		7A654B9D07A9402200DE4A9D /* MushMeshDivide.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A654B9707A9402200DE4A9D /* MushMeshDivide.h */; };
 		7A654B9E07A9402200DE4A9D /* MushMeshDivide.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A654B9807A9402200DE4A9D /* MushMeshDivide.cpp */; };
-		7A654C8F07A9713200DE4A9D /* MaurheenHypersphere.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A654C8D07A9713200DE4A9D /* MaurheenHypersphere.h */; };
-		7A654C9007A9713200DE4A9D /* MaurheenHypersphere.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A654C8E07A9713200DE4A9D /* MaurheenHypersphere.cpp */; };
 		7A654C9107A9713200DE4A9D /* MaurheenHypersphere.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A654C8D07A9713200DE4A9D /* MaurheenHypersphere.h */; };
 		7A654C9207A9713200DE4A9D /* MaurheenHypersphere.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A654C8E07A9713200DE4A9D /* MaurheenHypersphere.cpp */; };
 		7A65688805AAAE6A0003984A /* MushPieForm.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A65688605AAAE6A0003984A /* MushPieForm.h */; };
@@ -766,28 +748,16 @@
 		7A66E04F074C06AC00759E06 /* MushMeshOps.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A66E04D074C06AC00759E06 /* MushMeshOps.cpp */; };
 		7A66E082074C106500759E06 /* TestMushMeshOps.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A66E080074C106400759E06 /* TestMushMeshOps.h */; };
 		7A66E083074C106500759E06 /* TestMushMeshOps.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A66E081074C106400759E06 /* TestMushMeshOps.cpp */; };
-		7A66E1F305FB1AB100135328 /* MaurheenWorm.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A66E1F105FB1AB100135328 /* MaurheenWorm.h */; };
-		7A66E1F405FB1AB100135328 /* MaurheenWorm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A66E1F205FB1AB100135328 /* MaurheenWorm.cpp */; };
 		7A66E1F505FB1AB100135328 /* MaurheenWorm.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A66E1F105FB1AB100135328 /* MaurheenWorm.h */; };
 		7A66E1F605FB1AB100135328 /* MaurheenWorm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A66E1F205FB1AB100135328 /* MaurheenWorm.cpp */; };
-		7A66E21405FB1B0100135328 /* MaurheenStandard.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A66E21205FB1B0100135328 /* MaurheenStandard.h */; };
-		7A66E21505FB1B0100135328 /* MaurheenStandard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A66E21305FB1B0100135328 /* MaurheenStandard.cpp */; };
 		7A66E21605FB1B0100135328 /* MaurheenStandard.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A66E21205FB1B0100135328 /* MaurheenStandard.h */; };
 		7A66E21705FB1B0100135328 /* MaurheenStandard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A66E21305FB1B0100135328 /* MaurheenStandard.cpp */; };
-		7A66E2A705FB1F3800135328 /* mushMushMesh.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A66E2A605FB1F3800135328 /* mushMushMesh.h */; };
 		7A66E2A805FB1F3800135328 /* mushMushMesh.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A66E2A605FB1F3800135328 /* mushMushMesh.h */; };
-		7A66E36B05FB240500135328 /* MushGLArrays.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A66E36905FB240500135328 /* MushGLArrays.cpp */; };
-		7A66E36C05FB240500135328 /* MushGLArrays.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A66E36A05FB240500135328 /* MushGLArrays.h */; };
 		7A66E36D05FB240500135328 /* MushGLArrays.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A66E36905FB240500135328 /* MushGLArrays.cpp */; };
 		7A66E36E05FB240500135328 /* MushGLArrays.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A66E36A05FB240500135328 /* MushGLArrays.h */; };
-		7A66E40305FB256A00135328 /* MushGLStandard.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A66E40105FB256A00135328 /* MushGLStandard.h */; };
-		7A66E40405FB256A00135328 /* MushGLStandard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A66E40205FB256A00135328 /* MushGLStandard.cpp */; };
 		7A66E40505FB256A00135328 /* MushGLStandard.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A66E40105FB256A00135328 /* MushGLStandard.h */; };
 		7A66E40605FB256A00135328 /* MushGLStandard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A66E40205FB256A00135328 /* MushGLStandard.cpp */; };
-		7A66E42605FB25C500135328 /* mushMushGL.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A66E42505FB25C500135328 /* mushMushGL.h */; };
 		7A66E42705FB25C500135328 /* mushMushGL.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A66E42505FB25C500135328 /* mushMushGL.h */; };
-		7A66E44205FB260600135328 /* MushGL.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A66E44005FB260600135328 /* MushGL.h */; };
-		7A66E44305FB260600135328 /* MushGL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A66E44105FB260600135328 /* MushGL.cpp */; };
 		7A66E44405FB260600135328 /* MushGL.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A66E44005FB260600135328 /* MushGL.h */; };
 		7A66E44505FB260600135328 /* MushGL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A66E44105FB260600135328 /* MushGL.cpp */; };
 		7A69DF0807626B89004F23F7 /* TestMushMeshQuaternion.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A69DF0607626B89004F23F7 /* TestMushMeshQuaternion.h */; };
@@ -806,8 +776,6 @@
 		7A6CE1FD05A5930A00777D9B /* MushPieStandard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A6CE1FB05A5930A00777D9B /* MushPieStandard.cpp */; };
 		7A6CE21D05A5935800777D9B /* MushPieSTL.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A6CE21B05A5935800777D9B /* MushPieSTL.h */; };
 		7A6CE21E05A5935800777D9B /* MushPieSTL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A6CE21C05A5935800777D9B /* MushPieSTL.cpp */; };
-		7A70CD12085DE6A90055C6FB /* MushGLControl.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A70CD10085DE6A90055C6FB /* MushGLControl.h */; };
-		7A70CD13085DE6A90055C6FB /* MushGLControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A70CD11085DE6A90055C6FB /* MushGLControl.cpp */; };
 		7A70CD14085DE6A90055C6FB /* MushGLControl.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A70CD10085DE6A90055C6FB /* MushGLControl.h */; };
 		7A70CD15085DE6A90055C6FB /* MushGLControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A70CD11085DE6A90055C6FB /* MushGLControl.cpp */; };
 		7A70CD16085DE6A90055C6FB /* MushGLControl.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A70CD10085DE6A90055C6FB /* MushGLControl.h */; };
@@ -1613,260 +1581,6 @@
 		7AB64DDD05F9DE95003E2845 /* MaurheenInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AB64DD505F9DE94003E2845 /* MaurheenInfo.h */; };
 		7AB64DDE05F9DE95003E2845 /* MaurheenSTL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AB64DD605F9DE94003E2845 /* MaurheenSTL.cpp */; };
 		7AB64DDF05F9DE95003E2845 /* MaurheenSTL.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AB64DD705F9DE94003E2845 /* MaurheenSTL.h */; };
-		7AB64E2805F9E057003E2845 /* GameAppHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B71505A49D04002A5F1C /* GameAppHandler.h */; };
-		7AB64E2905F9E057003E2845 /* GameBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B71705A49D04002A5F1C /* GameBase.h */; };
-		7AB64E2A05F9E057003E2845 /* GameCommandHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B71905A49D04002A5F1C /* GameCommandHandler.h */; };
-		7AB64E2B05F9E057003E2845 /* GameConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B71B05A49D04002A5F1C /* GameConfig.h */; };
-		7AB64E2C05F9E057003E2845 /* GameConfigDef.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B71D05A49D04002A5F1C /* GameConfigDef.h */; };
-		7AB64E2D05F9E057003E2845 /* GameControlFrameDef.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B71F05A49D04002A5F1C /* GameControlFrameDef.h */; };
-		7AB64E2E05F9E057003E2845 /* GameController.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B72105A49D04002A5F1C /* GameController.h */; };
-		7AB64E2F05F9E057003E2845 /* GameEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B72305A49D04002A5F1C /* GameEvent.h */; };
-		7AB64E3005F9E057003E2845 /* GameFrameTimer.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B72505A49D04002A5F1C /* GameFrameTimer.h */; };
-		7AB64E3105F9E057003E2845 /* GameGlobalConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B72705A49D04002A5F1C /* GameGlobalConfig.h */; };
-		7AB64E3205F9E057003E2845 /* GameGraphic.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B72905A49D04002A5F1C /* GameGraphic.h */; };
-		7AB64E3305F9E057003E2845 /* GameGraphicModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B72B05A49D04002A5F1C /* GameGraphicModel.h */; };
-		7AB64E3405F9E057003E2845 /* GameGraphicSprite.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B72D05A49D04002A5F1C /* GameGraphicSprite.h */; };
-		7AB64E3505F9E057003E2845 /* GamePiece.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B72F05A49D04002A5F1C /* GamePiece.h */; };
-		7AB64E3605F9E057003E2845 /* GameProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B73105A49D04002A5F1C /* GameProtocol.h */; };
-		7AB64E3705F9E057003E2845 /* GameQuit.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B73305A49D04002A5F1C /* GameQuit.h */; };
-		7AB64E3805F9E057003E2845 /* GameRecords.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B73505A49D04002A5F1C /* GameRecords.h */; };
-		7AB64E3905F9E057003E2845 /* GameRewards.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B73705A49D04002A5F1C /* GameRewards.h */; };
-		7AB64E3A05F9E057003E2845 /* GameRouter.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B73905A49D04002A5F1C /* GameRouter.h */; };
-		7AB64E3B05F9E057003E2845 /* GameSetup.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B73B05A49D04002A5F1C /* GameSetup.h */; };
-		7AB64E3C05F9E057003E2845 /* GameSTL.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B73D05A49D04002A5F1C /* GameSTL.h */; };
-		7AB64E3D05F9E057003E2845 /* GameSwitches.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B73E05A49D04002A5F1C /* GameSwitches.h */; };
-		7AB64E3E05F9E057003E2845 /* GameTimer.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B74005A49D04002A5F1C /* GameTimer.h */; };
-		7AB64E3F05F9E057003E2845 /* GameType.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B74205A49D04002A5F1C /* GameType.h */; };
-		7AB64E4005F9E057003E2845 /* GLAppHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B74505A49D04002A5F1C /* GLAppHandler.h */; };
-		7AB64E4105F9E057003E2845 /* GLAppSignal.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B74605A49D04002A5F1C /* GLAppSignal.h */; };
-		7AB64E4205F9E057003E2845 /* GLArray.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B74805A49D04002A5F1C /* GLArray.h */; };
-		7AB64E4305F9E057003E2845 /* GLColour.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B74A05A49D04002A5F1C /* GLColour.h */; };
-		7AB64E4405F9E057003E2845 /* GLCommandHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B74C05A49D04002A5F1C /* GLCommandHandler.h */; };
-		7AB64E4505F9E057003E2845 /* GLData.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B74E05A49D04002A5F1C /* GLData.h */; };
-		7AB64E4605F9E057003E2845 /* GLFont.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B75005A49D04002A5F1C /* GLFont.h */; };
-		7AB64E4705F9E057003E2845 /* GLFontRef.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B75205A49D04002A5F1C /* GLFontRef.h */; };
-		7AB64E4805F9E057003E2845 /* GLKeys.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B75405A49D04002A5F1C /* GLKeys.h */; };
-		7AB64E4905F9E057003E2845 /* GLLightDef.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B75605A49D04002A5F1C /* GLLightDef.h */; };
-		7AB64E4A05F9E057003E2845 /* GLLights.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B75805A49D04002A5F1C /* GLLights.h */; };
-		7AB64E4B05F9E057003E2845 /* GLLine.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B75A05A49D04002A5F1C /* GLLine.h */; };
-		7AB64E4C05F9E057003E2845 /* GLModeDef.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B75C05A49D04002A5F1C /* GLModeDef.h */; };
-		7AB64E4D05F9E057003E2845 /* GLPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B75E05A49D04002A5F1C /* GLPoint.h */; };
-		7AB64E4E05F9E057003E2845 /* GLQuad.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B76005A49D04002A5F1C /* GLQuad.h */; };
-		7AB64E4F05F9E057003E2845 /* GLRectangle.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B76205A49D04002A5F1C /* GLRectangle.h */; };
-		7AB64E5005F9E057003E2845 /* GLRender.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B76405A49D04002A5F1C /* GLRender.h */; };
-		7AB64E5105F9E057003E2845 /* GLRenderable.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B76605A49D04002A5F1C /* GLRenderable.h */; };
-		7AB64E5205F9E057003E2845 /* GLStandard.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B76705A49D04002A5F1C /* GLStandard.h */; };
-		7AB64E5305F9E057003E2845 /* GLState.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B76905A49D04002A5F1C /* GLState.h */; };
-		7AB64E5405F9E057003E2845 /* GLSTL.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B76B05A49D04002A5F1C /* GLSTL.h */; };
-		7AB64E5505F9E057003E2845 /* GLString.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B76D05A49D04002A5F1C /* GLString.h */; };
-		7AB64E5605F9E057003E2845 /* GLTest.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B76F05A49D04002A5F1C /* GLTest.h */; };
-		7AB64E5705F9E057003E2845 /* GLTest1AppHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B77105A49D04002A5F1C /* GLTest1AppHandler.h */; };
-		7AB64E5805F9E057003E2845 /* GLTexture.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B77305A49D04002A5F1C /* GLTexture.h */; };
-		7AB64E5905F9E057003E2845 /* GLTextureClip.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B77505A49D04002A5F1C /* GLTextureClip.h */; };
-		7AB64E5A05F9E057003E2845 /* GLTextureDef.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B77705A49D04002A5F1C /* GLTextureDef.h */; };
-		7AB64E5B05F9E057003E2845 /* GLTextureGIF.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B77905A49D04002A5F1C /* GLTextureGIF.h */; };
-		7AB64E5C05F9E057003E2845 /* GLTextureRef.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B77B05A49D04002A5F1C /* GLTextureRef.h */; };
-		7AB64E5D05F9E057003E2845 /* GLTextureSpr.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B77D05A49D04002A5F1C /* GLTextureSpr.h */; };
-		7AB64E5E05F9E057003E2845 /* GLTextureTIFF.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B77F05A49D04002A5F1C /* GLTextureTIFF.h */; };
-		7AB64E6005F9E057003E2845 /* GLUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B78305A49D04002A5F1C /* GLUtils.h */; };
-		7AB64E6105F9E057003E2845 /* GLVector.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B78505A49D04002A5F1C /* GLVector.h */; };
-		7AB64E6205F9E057003E2845 /* SDLAppHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B78705A49D04002A5F1C /* SDLAppHandler.h */; };
-		7AB64E8505F9E057003E2845 /* MediaAudio.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B7D605A49D05002A5F1C /* MediaAudio.h */; };
-		7AB64E8605F9E057003E2845 /* MediaAudioCommandHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B7D805A49D05002A5F1C /* MediaAudioCommandHandler.h */; };
-		7AB64E8705F9E057003E2845 /* MediaAudioNull.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B7DA05A49D05002A5F1C /* MediaAudioNull.h */; };
-		7AB64E8805F9E057003E2845 /* MediaAudioSDL.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B7DC05A49D05002A5F1C /* MediaAudioSDL.h */; };
-		7AB64E8905F9E057003E2845 /* MediaSDL.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B7DE05A49D05002A5F1C /* MediaSDL.h */; };
-		7AB64E8A05F9E057003E2845 /* MediaSound.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B7E005A49D05002A5F1C /* MediaSound.h */; };
-		7AB64E8B05F9E057003E2845 /* MediaSoundStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B7E205A49D05002A5F1C /* MediaSoundStream.h */; };
-		7AB64E8C05F9E057003E2845 /* MediaStandard.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B7E305A49D05002A5F1C /* MediaStandard.h */; };
-		7AB64E8D05F9E057003E2845 /* MediaSTL.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B7E505A49D05002A5F1C /* MediaSTL.h */; };
-		7AB64EF405F9E057003E2845 /* MustlGameBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B8BE05A49D05002A5F1C /* MustlGameBase.h */; };
-		7AB64EF505F9E057003E2845 /* MustlGameClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B8C005A49D05002A5F1C /* MustlGameClient.h */; };
-		7AB64EF605F9E057003E2845 /* MustlGameID.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B8C205A49D05002A5F1C /* MustlGameID.h */; };
-		7AB64EF705F9E057003E2845 /* MustlGameObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B8C405A49D05002A5F1C /* MustlGameObject.h */; };
-		7AB64EF805F9E057003E2845 /* MustlGameServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B8C605A49D05002A5F1C /* MustlGameServer.h */; };
-		7AB64EF905F9E057003E2845 /* MustlGameSTL.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B8C805A49D05002A5F1C /* MustlGameSTL.h */; };
-		7AB64EFA05F9E057003E2845 /* MustlGameUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B8CA05A49D05002A5F1C /* MustlGameUtils.h */; };
-		7AB64EFB05F9E057003E2845 /* PlatformBoxes.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B8CD05A49D05002A5F1C /* PlatformBoxes.h */; };
-		7AB64EFC05F9E057003E2845 /* SDLMain.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B8D305A49D05002A5F1C /* SDLMain.h */; };
-		7AB64EFD05F9E057003E2845 /* PlatformInputUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B8D505A49D05002A5F1C /* PlatformInputUtils.h */; };
-		7AB64EFE05F9E057003E2845 /* PlatformMiscUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B8D605A49D05002A5F1C /* PlatformMiscUtils.h */; };
-		7AB64EFF05F9E057003E2845 /* PlatformSTL.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B8D905A49D05002A5F1C /* PlatformSTL.h */; };
-		7AB64F0005F9E057003E2845 /* PlatformVideoUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B8DC05A49D05002A5F1C /* PlatformVideoUtils.h */; };
-		7AB64F1605F9E057003E2845 /* expat.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D1705A4A26700A58F05 /* expat.h */; };
-		7AB64F1705F9E057003E2845 /* gif_lib.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D1805A4A26700A58F05 /* gif_lib.h */; };
-		7AB64F1805F9E057003E2845 /* config_types.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D1A05A4A26700A58F05 /* config_types.h */; };
-		7AB64F1905F9E057003E2845 /* ogg.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D1B05A4A26700A58F05 /* ogg.h */; };
-		7AB64F1A05F9E057003E2845 /* os_types.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D1C05A4A26700A58F05 /* os_types.h */; };
-		7AB64F1B05F9E057003E2845 /* pcre.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D1D05A4A26700A58F05 /* pcre.h */; };
-		7AB64F1C05F9E057003E2845 /* pcreposix.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D1E05A4A26700A58F05 /* pcreposix.h */; };
-		7AB64F1D05F9E057003E2845 /* begin_code.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D2005A4A26700A58F05 /* begin_code.h */; };
-		7AB64F1E05F9E057003E2845 /* close_code.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D2105A4A26700A58F05 /* close_code.h */; };
-		7AB64F1F05F9E057003E2845 /* SDL.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D2205A4A26700A58F05 /* SDL.h */; };
-		7AB64F2005F9E057003E2845 /* SDL_active.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D2305A4A26700A58F05 /* SDL_active.h */; };
-		7AB64F2105F9E057003E2845 /* SDL_audio.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D2405A4A26700A58F05 /* SDL_audio.h */; };
-		7AB64F2205F9E057003E2845 /* SDL_byteorder.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D2505A4A26700A58F05 /* SDL_byteorder.h */; };
-		7AB64F2305F9E057003E2845 /* SDL_cdrom.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D2605A4A26700A58F05 /* SDL_cdrom.h */; };
-		7AB64F2405F9E057003E2845 /* SDL_copying.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D2705A4A26700A58F05 /* SDL_copying.h */; };
-		7AB64F2505F9E057003E2845 /* SDL_endian.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D2805A4A26700A58F05 /* SDL_endian.h */; };
-		7AB64F2605F9E057003E2845 /* SDL_error.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D2905A4A26700A58F05 /* SDL_error.h */; };
-		7AB64F2705F9E057003E2845 /* SDL_events.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D2A05A4A26700A58F05 /* SDL_events.h */; };
-		7AB64F2805F9E057003E2845 /* SDL_getenv.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D2B05A4A26700A58F05 /* SDL_getenv.h */; };
-		7AB64F2905F9E057003E2845 /* SDL_joystick.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D2C05A4A26700A58F05 /* SDL_joystick.h */; };
-		7AB64F2A05F9E057003E2845 /* SDL_keyboard.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D2D05A4A26700A58F05 /* SDL_keyboard.h */; };
-		7AB64F2B05F9E057003E2845 /* SDL_keysym.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D2E05A4A26700A58F05 /* SDL_keysym.h */; };
-		7AB64F2C05F9E057003E2845 /* SDL_loadso.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D2F05A4A26700A58F05 /* SDL_loadso.h */; };
-		7AB64F2D05F9E057003E2845 /* SDL_main.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D3005A4A26700A58F05 /* SDL_main.h */; };
-		7AB64F2E05F9E057003E2845 /* SDL_mixer.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D3105A4A26700A58F05 /* SDL_mixer.h */; };
-		7AB64F2F05F9E057003E2845 /* SDL_mouse.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D3205A4A26700A58F05 /* SDL_mouse.h */; };
-		7AB64F3005F9E057003E2845 /* SDL_mutex.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D3305A4A26700A58F05 /* SDL_mutex.h */; };
-		7AB64F3105F9E057003E2845 /* SDL_name.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D3405A4A26700A58F05 /* SDL_name.h */; };
-		7AB64F3205F9E057003E2845 /* SDL_opengl.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D3505A4A26700A58F05 /* SDL_opengl.h */; };
-		7AB64F3305F9E057003E2845 /* SDL_quit.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D3605A4A26700A58F05 /* SDL_quit.h */; };
-		7AB64F3405F9E057003E2845 /* SDL_rwops.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D3705A4A26700A58F05 /* SDL_rwops.h */; };
-		7AB64F3505F9E057003E2845 /* SDL_syswm.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D3805A4A26700A58F05 /* SDL_syswm.h */; };
-		7AB64F3605F9E057003E2845 /* SDL_thread.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D3905A4A26700A58F05 /* SDL_thread.h */; };
-		7AB64F3705F9E057003E2845 /* SDL_timer.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D3A05A4A26700A58F05 /* SDL_timer.h */; };
-		7AB64F3805F9E057003E2845 /* SDL_types.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D3B05A4A26700A58F05 /* SDL_types.h */; };
-		7AB64F3905F9E057003E2845 /* SDL_version.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D3C05A4A26700A58F05 /* SDL_version.h */; };
-		7AB64F3A05F9E057003E2845 /* SDL_video.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D3D05A4A26700A58F05 /* SDL_video.h */; };
-		7AB64F3B05F9E057003E2845 /* MPEG.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D3F05A4A26700A58F05 /* MPEG.h */; };
-		7AB64F3C05F9E057003E2845 /* MPEGaction.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D4005A4A26700A58F05 /* MPEGaction.h */; };
-		7AB64F3D05F9E057003E2845 /* MPEGaudio.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D4105A4A26700A58F05 /* MPEGaudio.h */; };
-		7AB64F3E05F9E057003E2845 /* MPEGerror.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D4205A4A26700A58F05 /* MPEGerror.h */; };
-		7AB64F3F05F9E057003E2845 /* MPEGfilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D4305A4A26700A58F05 /* MPEGfilter.h */; };
-		7AB64F4005F9E057003E2845 /* MPEGlist.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D4405A4A26700A58F05 /* MPEGlist.h */; };
-		7AB64F4105F9E057003E2845 /* MPEGring.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D4505A4A26700A58F05 /* MPEGring.h */; };
-		7AB64F4205F9E057003E2845 /* MPEGstream.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D4605A4A26700A58F05 /* MPEGstream.h */; };
-		7AB64F4305F9E057003E2845 /* MPEGsystem.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D4705A4A26700A58F05 /* MPEGsystem.h */; };
-		7AB64F4405F9E057003E2845 /* MPEGvideo.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D4805A4A26700A58F05 /* MPEGvideo.h */; };
-		7AB64F4505F9E057003E2845 /* smpeg.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D4905A4A26700A58F05 /* smpeg.h */; };
-		7AB64F4605F9E057003E2845 /* tiff.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D4A05A4A26700A58F05 /* tiff.h */; };
-		7AB64F4705F9E057003E2845 /* tiffconf.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D4B05A4A26700A58F05 /* tiffconf.h */; };
-		7AB64F4805F9E057003E2845 /* tiffio.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D4C05A4A26700A58F05 /* tiffio.h */; };
-		7AB64F4905F9E057003E2845 /* tiffvers.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D4D05A4A26700A58F05 /* tiffvers.h */; };
-		7AB64F4A05F9E057003E2845 /* codec.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D4F05A4A26700A58F05 /* codec.h */; };
-		7AB64F4B05F9E057003E2845 /* vorbisenc.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D5005A4A26700A58F05 /* vorbisenc.h */; };
-		7AB64F4C05F9E057003E2845 /* vorbisfile.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D5105A4A26700A58F05 /* vorbisfile.h */; };
-		7AB64F4D05F9E057003E2845 /* PlatformUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B8DB05A49D05002A5F1C /* PlatformUtils.h */; };
-		7AB64F5805F9E057003E2845 /* mushMustlGame.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B71005A49D04002A5F1C /* mushMustlGame.h */; };
-		7AB64F5905F9E057003E2845 /* mushMedia.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B70F05A49D04002A5F1C /* mushMedia.h */; };
-		7AB64F5A05F9E057003E2845 /* mushGL.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B70E05A49D04002A5F1C /* mushGL.h */; };
-		7AB64F5B05F9E057003E2845 /* mushGame.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B70D05A49D04002A5F1C /* mushGame.h */; };
-		7AB64F5C05F9E057003E2845 /* mushPlatform.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B71105A49D04002A5F1C /* mushPlatform.h */; };
-		7AB64F5D05F9E057003E2845 /* SecondaryMain.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A719AFF05A9A0A200C42A20 /* SecondaryMain.h */; };
-		7AB64F5F05F9E057003E2845 /* mushMushcore.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ACC31F105AB36AD001A0873 /* mushMushcore.h */; };
-		7AB64F6005F9E057003E2845 /* mushMustl.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ACC327B05AB3A09001A0873 /* mushMustl.h */; };
-		7AB64F6105F9E057003E2845 /* mushMushcoreSTL.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ACC32F705AB4141001A0873 /* mushMushcoreSTL.h */; };
-		7AB64F6205F9E057003E2845 /* mushMushcoreIO.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ACC330005AB4150001A0873 /* mushMushcoreIO.h */; };
-		7AB64F7105F9E057003E2845 /* mushModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A61E65905B0702A00AFEB17 /* mushModel.h */; };
-		7AB64F7205F9E057003E2845 /* GLXMLOperators.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A61E7A105B07B1F00AFEB17 /* GLXMLOperators.h */; };
-		7AB64F7305F9E057003E2845 /* MaurheenAppHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AB64DD105F9DE94003E2845 /* MaurheenAppHandler.h */; };
-		7AB64F7405F9E057003E2845 /* MaurheenCommandHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AB64DD305F9DE94003E2845 /* MaurheenCommandHandler.h */; };
-		7AB64F7505F9E057003E2845 /* MaurheenInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AB64DD505F9DE94003E2845 /* MaurheenInfo.h */; };
-		7AB64F7605F9E057003E2845 /* MaurheenSTL.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AB64DD705F9DE94003E2845 /* MaurheenSTL.h */; };
-		7AB64F7805F9E057003E2845 /* sstream in Resources */ = {isa = PBXBuildFile; fileRef = 7A62B8EB05A49D05002A5F1C /* sstream */; };
-		7AB64F7905F9E057003E2845 /* ic2_app.icns in Resources */ = {isa = PBXBuildFile; fileRef = 7A2E6C9505A4DAF90025F99B /* ic2_app.icns */; };
-		7AB64F7B05F9E057003E2845 /* GameAppHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B71405A49D04002A5F1C /* GameAppHandler.cpp */; };
-		7AB64F7C05F9E057003E2845 /* GameBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B71605A49D04002A5F1C /* GameBase.cpp */; };
-		7AB64F7D05F9E057003E2845 /* GameCommandHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B71805A49D04002A5F1C /* GameCommandHandler.cpp */; };
-		7AB64F7E05F9E057003E2845 /* GameConfig.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B71A05A49D04002A5F1C /* GameConfig.cpp */; };
-		7AB64F7F05F9E057003E2845 /* GameConfigDef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B71C05A49D04002A5F1C /* GameConfigDef.cpp */; };
-		7AB64F8005F9E057003E2845 /* GameControlFrameDef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B71E05A49D04002A5F1C /* GameControlFrameDef.cpp */; };
-		7AB64F8105F9E057003E2845 /* GameController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B72005A49D04002A5F1C /* GameController.cpp */; };
-		7AB64F8205F9E057003E2845 /* GameEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B72205A49D04002A5F1C /* GameEvent.cpp */; };
-		7AB64F8305F9E057003E2845 /* GameFrameTimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B72405A49D04002A5F1C /* GameFrameTimer.cpp */; };
-		7AB64F8405F9E057003E2845 /* GameGlobalConfig.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B72605A49D04002A5F1C /* GameGlobalConfig.cpp */; };
-		7AB64F8505F9E057003E2845 /* GameGraphic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B72805A49D04002A5F1C /* GameGraphic.cpp */; };
-		7AB64F8605F9E057003E2845 /* GameGraphicModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B72A05A49D04002A5F1C /* GameGraphicModel.cpp */; };
-		7AB64F8705F9E057003E2845 /* GameGraphicSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B72C05A49D04002A5F1C /* GameGraphicSprite.cpp */; };
-		7AB64F8805F9E057003E2845 /* GamePiece.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B72E05A49D04002A5F1C /* GamePiece.cpp */; };
-		7AB64F8905F9E057003E2845 /* GameProtocol.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B73005A49D04002A5F1C /* GameProtocol.cpp */; };
-		7AB64F8A05F9E057003E2845 /* GameQuit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B73205A49D04002A5F1C /* GameQuit.cpp */; };
-		7AB64F8B05F9E057003E2845 /* GameRecords.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B73405A49D04002A5F1C /* GameRecords.cpp */; };
-		7AB64F8C05F9E057003E2845 /* GameRewards.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B73605A49D04002A5F1C /* GameRewards.cpp */; };
-		7AB64F8D05F9E057003E2845 /* GameRouter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B73805A49D04002A5F1C /* GameRouter.cpp */; };
-		7AB64F8E05F9E057003E2845 /* GameSetup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B73A05A49D04002A5F1C /* GameSetup.cpp */; };
-		7AB64F8F05F9E057003E2845 /* GameSTL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B73C05A49D04002A5F1C /* GameSTL.cpp */; };
-		7AB64F9005F9E057003E2845 /* GameTimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B73F05A49D04002A5F1C /* GameTimer.cpp */; };
-		7AB64F9105F9E057003E2845 /* GameType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B74105A49D04002A5F1C /* GameType.cpp */; };
-		7AB64F9205F9E057003E2845 /* GLAppHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B74405A49D04002A5F1C /* GLAppHandler.cpp */; };
-		7AB64F9305F9E057003E2845 /* GLArray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B74705A49D04002A5F1C /* GLArray.cpp */; };
-		7AB64F9405F9E057003E2845 /* GLColour.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B74905A49D04002A5F1C /* GLColour.cpp */; };
-		7AB64F9505F9E057003E2845 /* GLCommandHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B74B05A49D04002A5F1C /* GLCommandHandler.cpp */; };
-		7AB64F9605F9E057003E2845 /* GLData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B74D05A49D04002A5F1C /* GLData.cpp */; };
-		7AB64F9705F9E057003E2845 /* GLFont.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B74F05A49D04002A5F1C /* GLFont.cpp */; };
-		7AB64F9805F9E057003E2845 /* GLFontRef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B75105A49D04002A5F1C /* GLFontRef.cpp */; };
-		7AB64F9905F9E057003E2845 /* GLKeys.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B75305A49D04002A5F1C /* GLKeys.cpp */; };
-		7AB64F9A05F9E057003E2845 /* GLLightDef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B75505A49D04002A5F1C /* GLLightDef.cpp */; };
-		7AB64F9B05F9E057003E2845 /* GLLights.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B75705A49D04002A5F1C /* GLLights.cpp */; };
-		7AB64F9C05F9E057003E2845 /* GLLine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B75905A49D04002A5F1C /* GLLine.cpp */; };
-		7AB64F9D05F9E057003E2845 /* GLModeDef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B75B05A49D04002A5F1C /* GLModeDef.cpp */; };
-		7AB64F9E05F9E057003E2845 /* GLPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B75D05A49D04002A5F1C /* GLPoint.cpp */; };
-		7AB64F9F05F9E057003E2845 /* GLQuad.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B75F05A49D04002A5F1C /* GLQuad.cpp */; };
-		7AB64FA005F9E057003E2845 /* GLRectangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B76105A49D04002A5F1C /* GLRectangle.cpp */; };
-		7AB64FA105F9E057003E2845 /* GLRender.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B76305A49D04002A5F1C /* GLRender.cpp */; };
-		7AB64FA205F9E057003E2845 /* GLRenderable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B76505A49D04002A5F1C /* GLRenderable.cpp */; };
-		7AB64FA305F9E057003E2845 /* GLState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B76805A49D04002A5F1C /* GLState.cpp */; };
-		7AB64FA405F9E057003E2845 /* GLSTL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B76A05A49D04002A5F1C /* GLSTL.cpp */; };
-		7AB64FA505F9E057003E2845 /* GLString.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B76C05A49D04002A5F1C /* GLString.cpp */; };
-		7AB64FA605F9E057003E2845 /* GLTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B76E05A49D04002A5F1C /* GLTest.cpp */; };
-		7AB64FA705F9E057003E2845 /* GLTest1AppHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B77005A49D04002A5F1C /* GLTest1AppHandler.cpp */; };
-		7AB64FA805F9E057003E2845 /* GLTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B77205A49D04002A5F1C /* GLTexture.cpp */; };
-		7AB64FA905F9E057003E2845 /* GLTextureClip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B77405A49D04002A5F1C /* GLTextureClip.cpp */; };
-		7AB64FAA05F9E057003E2845 /* GLTextureDef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B77605A49D04002A5F1C /* GLTextureDef.cpp */; };
-		7AB64FAB05F9E057003E2845 /* GLTextureGIF.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B77805A49D04002A5F1C /* GLTextureGIF.cpp */; };
-		7AB64FAC05F9E057003E2845 /* GLTextureRef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B77A05A49D04002A5F1C /* GLTextureRef.cpp */; };
-		7AB64FAD05F9E057003E2845 /* GLTextureSpr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B77C05A49D04002A5F1C /* GLTextureSpr.cpp */; };
-		7AB64FAE05F9E057003E2845 /* GLTextureTIFF.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B77E05A49D04002A5F1C /* GLTextureTIFF.cpp */; };
-		7AB64FB005F9E057003E2845 /* GLUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B78205A49D04002A5F1C /* GLUtils.cpp */; };
-		7AB64FB105F9E057003E2845 /* GLVector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B78405A49D04002A5F1C /* GLVector.cpp */; };
-		7AB64FB205F9E057003E2845 /* SDLAppHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B78605A49D04002A5F1C /* SDLAppHandler.cpp */; };
-		7AB64FD205F9E057003E2845 /* MediaAudio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B7D505A49D05002A5F1C /* MediaAudio.cpp */; };
-		7AB64FD305F9E057003E2845 /* MediaAudioCommandHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B7D705A49D05002A5F1C /* MediaAudioCommandHandler.cpp */; };
-		7AB64FD405F9E057003E2845 /* MediaAudioNull.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B7D905A49D05002A5F1C /* MediaAudioNull.cpp */; };
-		7AB64FD505F9E057003E2845 /* MediaAudioSDL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B7DB05A49D05002A5F1C /* MediaAudioSDL.cpp */; };
-		7AB64FD605F9E057003E2845 /* MediaSDL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B7DD05A49D05002A5F1C /* MediaSDL.cpp */; };
-		7AB64FD705F9E057003E2845 /* MediaSound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B7DF05A49D05002A5F1C /* MediaSound.cpp */; };
-		7AB64FD805F9E057003E2845 /* MediaSoundStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B7E105A49D05002A5F1C /* MediaSoundStream.cpp */; };
-		7AB64FD905F9E057003E2845 /* MediaSTL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B7E405A49D05002A5F1C /* MediaSTL.cpp */; };
-		7AB6504005F9E057003E2845 /* MustlGameBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B8BD05A49D05002A5F1C /* MustlGameBase.cpp */; };
-		7AB6504105F9E057003E2845 /* MustlGameClient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B8BF05A49D05002A5F1C /* MustlGameClient.cpp */; };
-		7AB6504205F9E057003E2845 /* MustlGameID.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B8C105A49D05002A5F1C /* MustlGameID.cpp */; };
-		7AB6504305F9E057003E2845 /* MustlGameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B8C305A49D05002A5F1C /* MustlGameObject.cpp */; };
-		7AB6504405F9E057003E2845 /* MustlGameServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B8C505A49D05002A5F1C /* MustlGameServer.cpp */; };
-		7AB6504505F9E057003E2845 /* MustlGameSTL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B8C705A49D05002A5F1C /* MustlGameSTL.cpp */; };
-		7AB6504605F9E057003E2845 /* MustlGameUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B8C905A49D05002A5F1C /* MustlGameUtils.cpp */; };
-		7AB6504705F9E057003E2845 /* PlatformInputUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B8CF05A49D05002A5F1C /* PlatformInputUtils.cpp */; };
-		7AB6504805F9E057003E2845 /* PlatformMiscUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B8D005A49D05002A5F1C /* PlatformMiscUtils.cpp */; };
-		7AB6504905F9E057003E2845 /* PlatformVideoUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B8D205A49D05002A5F1C /* PlatformVideoUtils.cpp */; };
-		7AB6504A05F9E057003E2845 /* SDLMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B8D405A49D05002A5F1C /* SDLMain.m */; };
-		7AB6504B05F9E057003E2845 /* PlatformSTL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B8D805A49D05002A5F1C /* PlatformSTL.cpp */; };
-		7AB6506B05F9E057003E2845 /* SecondaryMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A719AD205A9A02000C42A20 /* SecondaryMain.cpp */; };
-		7AB6507A05F9E057003E2845 /* GLXMLOperators.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A61E7A205B07B1F00AFEB17 /* GLXMLOperators.cpp */; };
-		7AB6507B05F9E057003E2845 /* MaurheenAppHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AB64DD005F9DE94003E2845 /* MaurheenAppHandler.cpp */; };
-		7AB6507C05F9E057003E2845 /* MaurheenCommandHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AB64DD205F9DE94003E2845 /* MaurheenCommandHandler.cpp */; };
-		7AB6507D05F9E057003E2845 /* MaurheenInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AB64DD405F9DE94003E2845 /* MaurheenInfo.cpp */; };
-		7AB6507E05F9E057003E2845 /* MaurheenSTL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AB64DD605F9DE94003E2845 /* MaurheenSTL.cpp */; };
-		7AB6508005F9E057003E2845 /* PlatformBoxes.r in Rez */ = {isa = PBXBuildFile; fileRef = 7A62B8CE05A49D05002A5F1C /* PlatformBoxes.r */; };
-		7AB6508205F9E057003E2845 /* libexpat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A710CBF05A4A15700A58F05 /* libexpat.a */; };
-		7AB6508305F9E057003E2845 /* libogg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A710CC305A4A18B00A58F05 /* libogg.a */; };
-		7AB6508405F9E057003E2845 /* libpcre.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A710CC405A4A18B00A58F05 /* libpcre.a */; };
-		7AB6508505F9E057003E2845 /* libtiff.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A710CC505A4A18B00A58F05 /* libtiff.a */; };
-		7AB6508605F9E057003E2845 /* libungif.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A710CC605A4A18B00A58F05 /* libungif.a */; };
-		7AB6508705F9E057003E2845 /* libvorbis.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A710CC705A4A18B00A58F05 /* libvorbis.a */; };
-		7AB6508805F9E057003E2845 /* libSDL_mixer-1.2.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A710D0905A4A23100A58F05 /* libSDL_mixer-1.2.0.dylib */; };
-		7AB6508905F9E057003E2845 /* libSDL_mixer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A710D0A05A4A23100A58F05 /* libSDL_mixer.a */; };
-		7AB6508A05F9E057003E2845 /* libSDL-1.2.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A710D0B05A4A23100A58F05 /* libSDL-1.2.0.dylib */; };
-		7AB6508B05F9E057003E2845 /* libSDL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A710D0C05A4A23100A58F05 /* libSDL.a */; };
-		7AB6508C05F9E057003E2845 /* libsmpeg-0.4.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A710D0D05A4A23100A58F05 /* libsmpeg-0.4.0.dylib */; };
-		7AB6508D05F9E057003E2845 /* libsmpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A710D0E05A4A23100A58F05 /* libsmpeg.a */; };
-		7AB6508E05F9E057003E2845 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ACC29DB05AB0DF3001A0873 /* OpenGL.framework */; };
-		7AB6508F05F9E057003E2845 /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A9504C8FFE6A3BC11CA0CBA /* ApplicationServices.framework */; };
-		7AB6509005F9E057003E2845 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20286C33FDCF999611CA2CEA /* Carbon.framework */; };
-		7AB6509105F9E057003E2845 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ACC2F3A05AB0FCC001A0873 /* Foundation.framework */; };
-		7AB6509205F9E057003E2845 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ACC2FB505AB10A8001A0873 /* AppKit.framework */; };
-		7AB6509305F9E057003E2845 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ACC305605AB10D0001A0873 /* GLUT.framework */; };
 		7AB650A405F9E0A0003E2845 /* expat.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D1705A4A26700A58F05 /* expat.h */; };
 		7AB650A505F9E0A0003E2845 /* pcre.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D1D05A4A26700A58F05 /* pcre.h */; };
 		7AB650D405F9E0A0003E2845 /* libexpat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A710CBF05A4A15700A58F05 /* libexpat.a */; };
@@ -1972,8 +1686,6 @@
 		7AC439280861E1C3006D73D3 /* MushGameSaveData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AC439260861E1C3006D73D3 /* MushGameSaveData.cpp */; };
 		7AC439290861E1C3006D73D3 /* MushGameSaveData.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AC439250861E1C3006D73D3 /* MushGameSaveData.h */; };
 		7AC4392A0861E1C3006D73D3 /* MushGameSaveData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AC439260861E1C3006D73D3 /* MushGameSaveData.cpp */; };
-		7AC5D50B06FF502E00EF3984 /* MushGLV.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AC5D50906FF502E00EF3984 /* MushGLV.h */; };
-		7AC5D50C06FF502E00EF3984 /* MushGLV.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AC5D50A06FF502E00EF3984 /* MushGLV.cpp */; };
 		7AC6AB7A087964F60078A331 /* MushGLWorkspace.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AC6AB78087964F60078A331 /* MushGLWorkspace.h */; };
 		7AC6AB7B087964F60078A331 /* MushGLWorkspace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AC6AB79087964F60078A331 /* MushGLWorkspace.cpp */; };
 		7AC6AB7C087964F60078A331 /* MushGLWorkspace.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AC6AB78087964F60078A331 /* MushGLWorkspace.h */; };
@@ -2757,20 +2469,6 @@
 			remoteGlobalIDString = 7A65813905A9D09C00E727F8;
 			remoteInfo = MushMesh;
 		};
-		7A23841205F9E98000505F59 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 20286C28FDCF999611CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7A657E8905A9CD1C00E727F8;
-			remoteInfo = MushPie;
-		};
-		7A23841405F9E98000505F59 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 20286C28FDCF999611CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7AB650A105F9E0A0003E2845;
-			remoteInfo = Mustl;
-		};
 		7A632D410816D43D00637D49 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 20286C28FDCF999611CA2CEA /* Project object */;
@@ -2870,19 +2568,6 @@
 				7AAE6CD307AFC4250085C60F /* Mushcore.framework in CopyFiles */,
 				7AAE6CD407AFC4250085C60F /* MushMesh.framework in CopyFiles */,
 				7A632D4D0816D5EC00637D49 /* MushPie.framework in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		7AB6509405F9E057003E2845 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				7A2383D405F9E85000505F59 /* Mushcore.framework in CopyFiles */,
-				7A2383D505F9E85000505F59 /* MushMesh.framework in CopyFiles */,
-				7A2383D605F9E85000505F59 /* MushPie.framework in CopyFiles */,
-				7A2383D705F9E85000505F59 /* Mustl.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3005,7 +2690,7 @@
 		7A62431607ABEE79006BCF7E /* MushcoreLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushcoreLog.h; sourceTree = "<group>"; };
 		7A62431707ABEE79006BCF7E /* MushcoreLog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushcoreLog.cpp; sourceTree = "<group>"; };
 		7A6252EE05AC1A8D006A2161 /* app.acinclude.m4 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = app.acinclude.m4; sourceTree = "<group>"; };
-		7A62B6F905A49C0B002A5F1C /* ic2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ic2.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7A62B6F905A49C0B002A5F1C /* All.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = All.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A62B70D05A49D04002A5F1C /* mushGame.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = mushGame.h; sourceTree = "<group>"; };
 		7A62B70E05A49D04002A5F1C /* mushGL.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = mushGL.h; sourceTree = "<group>"; };
 		7A62B70F05A49D04002A5F1C /* mushMedia.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = mushMedia.h; sourceTree = "<group>"; };
@@ -3749,7 +3434,6 @@
 		7AB64DD505F9DE94003E2845 /* MaurheenInfo.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = MaurheenInfo.h; sourceTree = "<group>"; };
 		7AB64DD605F9DE94003E2845 /* MaurheenSTL.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = MaurheenSTL.cpp; sourceTree = "<group>"; };
 		7AB64DD705F9DE94003E2845 /* MaurheenSTL.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = MaurheenSTL.h; sourceTree = "<group>"; };
-		7AB6509605F9E057003E2845 /* Maurheen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Maurheen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AB650D705F9E0A0003E2845 /* Mustl.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Mustl.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AB652D805F9E1FF003E2845 /* TestMustl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestMustl.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AB661DE083BEDF0009D477D /* CopyLibs.sh */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.sh; name = CopyLibs.sh; path = ../macosxlibs/CopyLibs.sh; sourceTree = SOURCE_ROOT; };
@@ -4268,35 +3952,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7AB6508105F9E057003E2845 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7AB6508205F9E057003E2845 /* libexpat.a in Frameworks */,
-				7AB6508305F9E057003E2845 /* libogg.a in Frameworks */,
-				7AB6508405F9E057003E2845 /* libpcre.a in Frameworks */,
-				7AB6508505F9E057003E2845 /* libtiff.a in Frameworks */,
-				7AB6508605F9E057003E2845 /* libungif.a in Frameworks */,
-				7AB6508705F9E057003E2845 /* libvorbis.a in Frameworks */,
-				7AB6508805F9E057003E2845 /* libSDL_mixer-1.2.0.dylib in Frameworks */,
-				7AB6508905F9E057003E2845 /* libSDL_mixer.a in Frameworks */,
-				7AB6508A05F9E057003E2845 /* libSDL-1.2.0.dylib in Frameworks */,
-				7AB6508B05F9E057003E2845 /* libSDL.a in Frameworks */,
-				7AB6508C05F9E057003E2845 /* libsmpeg-0.4.0.dylib in Frameworks */,
-				7AB6508D05F9E057003E2845 /* libsmpeg.a in Frameworks */,
-				7AB6508E05F9E057003E2845 /* OpenGL.framework in Frameworks */,
-				7AB6508F05F9E057003E2845 /* ApplicationServices.framework in Frameworks */,
-				7AB6509005F9E057003E2845 /* Carbon.framework in Frameworks */,
-				7AB6509105F9E057003E2845 /* Foundation.framework in Frameworks */,
-				7AB6509205F9E057003E2845 /* AppKit.framework in Frameworks */,
-				7AB6509305F9E057003E2845 /* GLUT.framework in Frameworks */,
-				7A2383E805F9E8E000505F59 /* Mushcore.framework in Frameworks */,
-				7A2383E905F9E8E000505F59 /* MushMesh.framework in Frameworks */,
-				7A2383EA05F9E8E000505F59 /* MushPie.framework in Frameworks */,
-				7A2383EB05F9E8E000505F59 /* Mustl.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		7AB650D305F9E0A0003E2845 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -4332,8 +3987,7 @@
 		195DF8CFFE9D517E11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7AB6509605F9E057003E2845 /* Maurheen.app */,
-				7A62B6F905A49C0B002A5F1C /* ic2.app */,
+				7A62B6F905A49C0B002A5F1C /* All.app */,
 				7A71998B05A99B6700C42A20 /* TestMushcore.app */,
 				7A65813605A9D09700E727F8 /* TestMushMesh.app */,
 				7A657E8605A9CC4100E727F8 /* TestMushPie.app */,
@@ -7398,179 +7052,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7AB64E2705F9E057003E2845 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7AB64E2805F9E057003E2845 /* GameAppHandler.h in Headers */,
-				7AB64E2905F9E057003E2845 /* GameBase.h in Headers */,
-				7AB64E2A05F9E057003E2845 /* GameCommandHandler.h in Headers */,
-				7AB64E2B05F9E057003E2845 /* GameConfig.h in Headers */,
-				7AB64E2C05F9E057003E2845 /* GameConfigDef.h in Headers */,
-				7AB64E2D05F9E057003E2845 /* GameControlFrameDef.h in Headers */,
-				7AB64E2E05F9E057003E2845 /* GameController.h in Headers */,
-				7AB64E2F05F9E057003E2845 /* GameEvent.h in Headers */,
-				7AB64E3005F9E057003E2845 /* GameFrameTimer.h in Headers */,
-				7AB64E3105F9E057003E2845 /* GameGlobalConfig.h in Headers */,
-				7AB64E3205F9E057003E2845 /* GameGraphic.h in Headers */,
-				7AB64E3305F9E057003E2845 /* GameGraphicModel.h in Headers */,
-				7AB64E3405F9E057003E2845 /* GameGraphicSprite.h in Headers */,
-				7AB64E3505F9E057003E2845 /* GamePiece.h in Headers */,
-				7AB64E3605F9E057003E2845 /* GameProtocol.h in Headers */,
-				7AB64E3705F9E057003E2845 /* GameQuit.h in Headers */,
-				7AB64E3805F9E057003E2845 /* GameRecords.h in Headers */,
-				7AB64E3905F9E057003E2845 /* GameRewards.h in Headers */,
-				7AB64E3A05F9E057003E2845 /* GameRouter.h in Headers */,
-				7AB64E3B05F9E057003E2845 /* GameSetup.h in Headers */,
-				7AB64E3C05F9E057003E2845 /* GameSTL.h in Headers */,
-				7AB64E3D05F9E057003E2845 /* GameSwitches.h in Headers */,
-				7AB64E3E05F9E057003E2845 /* GameTimer.h in Headers */,
-				7AB64E3F05F9E057003E2845 /* GameType.h in Headers */,
-				7AB64E4005F9E057003E2845 /* GLAppHandler.h in Headers */,
-				7AB64E4105F9E057003E2845 /* GLAppSignal.h in Headers */,
-				7AB64E4205F9E057003E2845 /* GLArray.h in Headers */,
-				7AB64E4305F9E057003E2845 /* GLColour.h in Headers */,
-				7AB64E4405F9E057003E2845 /* GLCommandHandler.h in Headers */,
-				7AB64E4505F9E057003E2845 /* GLData.h in Headers */,
-				7AB64E4605F9E057003E2845 /* GLFont.h in Headers */,
-				7AB64E4705F9E057003E2845 /* GLFontRef.h in Headers */,
-				7AB64E4805F9E057003E2845 /* GLKeys.h in Headers */,
-				7AB64E4905F9E057003E2845 /* GLLightDef.h in Headers */,
-				7AB64E4A05F9E057003E2845 /* GLLights.h in Headers */,
-				7AB64E4B05F9E057003E2845 /* GLLine.h in Headers */,
-				7AB64E4C05F9E057003E2845 /* GLModeDef.h in Headers */,
-				7AB64E4D05F9E057003E2845 /* GLPoint.h in Headers */,
-				7AB64E4E05F9E057003E2845 /* GLQuad.h in Headers */,
-				7AB64E4F05F9E057003E2845 /* GLRectangle.h in Headers */,
-				7AB64E5005F9E057003E2845 /* GLRender.h in Headers */,
-				7AB64E5105F9E057003E2845 /* GLRenderable.h in Headers */,
-				7AB64E5205F9E057003E2845 /* GLStandard.h in Headers */,
-				7AB64E5305F9E057003E2845 /* GLState.h in Headers */,
-				7AB64E5405F9E057003E2845 /* GLSTL.h in Headers */,
-				7AB64E5505F9E057003E2845 /* GLString.h in Headers */,
-				7AB64E5605F9E057003E2845 /* GLTest.h in Headers */,
-				7AB64E5705F9E057003E2845 /* GLTest1AppHandler.h in Headers */,
-				7AB64E5805F9E057003E2845 /* GLTexture.h in Headers */,
-				7AB64E5905F9E057003E2845 /* GLTextureClip.h in Headers */,
-				7AB64E5A05F9E057003E2845 /* GLTextureDef.h in Headers */,
-				7AB64E5B05F9E057003E2845 /* GLTextureGIF.h in Headers */,
-				7AB64E5C05F9E057003E2845 /* GLTextureRef.h in Headers */,
-				7AB64E5D05F9E057003E2845 /* GLTextureSpr.h in Headers */,
-				7AB64E5E05F9E057003E2845 /* GLTextureTIFF.h in Headers */,
-				7AB64E6005F9E057003E2845 /* GLUtils.h in Headers */,
-				7AB64E6105F9E057003E2845 /* GLVector.h in Headers */,
-				7AB64E6205F9E057003E2845 /* SDLAppHandler.h in Headers */,
-				7AB64E8505F9E057003E2845 /* MediaAudio.h in Headers */,
-				7AB64E8605F9E057003E2845 /* MediaAudioCommandHandler.h in Headers */,
-				7AB64E8705F9E057003E2845 /* MediaAudioNull.h in Headers */,
-				7AB64E8805F9E057003E2845 /* MediaAudioSDL.h in Headers */,
-				7AB64E8905F9E057003E2845 /* MediaSDL.h in Headers */,
-				7AB64E8A05F9E057003E2845 /* MediaSound.h in Headers */,
-				7AB64E8B05F9E057003E2845 /* MediaSoundStream.h in Headers */,
-				7AB64E8C05F9E057003E2845 /* MediaStandard.h in Headers */,
-				7AB64E8D05F9E057003E2845 /* MediaSTL.h in Headers */,
-				7AB64EF405F9E057003E2845 /* MustlGameBase.h in Headers */,
-				7AB64EF505F9E057003E2845 /* MustlGameClient.h in Headers */,
-				7AB64EF605F9E057003E2845 /* MustlGameID.h in Headers */,
-				7AB64EF705F9E057003E2845 /* MustlGameObject.h in Headers */,
-				7AB64EF805F9E057003E2845 /* MustlGameServer.h in Headers */,
-				7AB64EF905F9E057003E2845 /* MustlGameSTL.h in Headers */,
-				7AB64EFA05F9E057003E2845 /* MustlGameUtils.h in Headers */,
-				7AB64EFB05F9E057003E2845 /* PlatformBoxes.h in Headers */,
-				7AB64EFC05F9E057003E2845 /* SDLMain.h in Headers */,
-				7AB64EFD05F9E057003E2845 /* PlatformInputUtils.h in Headers */,
-				7AB64EFE05F9E057003E2845 /* PlatformMiscUtils.h in Headers */,
-				7AB64EFF05F9E057003E2845 /* PlatformSTL.h in Headers */,
-				7AB64F0005F9E057003E2845 /* PlatformVideoUtils.h in Headers */,
-				7AB64F1605F9E057003E2845 /* expat.h in Headers */,
-				7AB64F1705F9E057003E2845 /* gif_lib.h in Headers */,
-				7AB64F1805F9E057003E2845 /* config_types.h in Headers */,
-				7AB64F1905F9E057003E2845 /* ogg.h in Headers */,
-				7AB64F1A05F9E057003E2845 /* os_types.h in Headers */,
-				7AB64F1B05F9E057003E2845 /* pcre.h in Headers */,
-				7AB64F1C05F9E057003E2845 /* pcreposix.h in Headers */,
-				7AB64F1D05F9E057003E2845 /* begin_code.h in Headers */,
-				7AB64F1E05F9E057003E2845 /* close_code.h in Headers */,
-				7AB64F1F05F9E057003E2845 /* SDL.h in Headers */,
-				7AB64F2005F9E057003E2845 /* SDL_active.h in Headers */,
-				7AB64F2105F9E057003E2845 /* SDL_audio.h in Headers */,
-				7AB64F2205F9E057003E2845 /* SDL_byteorder.h in Headers */,
-				7AB64F2305F9E057003E2845 /* SDL_cdrom.h in Headers */,
-				7AB64F2405F9E057003E2845 /* SDL_copying.h in Headers */,
-				7AB64F2505F9E057003E2845 /* SDL_endian.h in Headers */,
-				7AB64F2605F9E057003E2845 /* SDL_error.h in Headers */,
-				7AB64F2705F9E057003E2845 /* SDL_events.h in Headers */,
-				7AB64F2805F9E057003E2845 /* SDL_getenv.h in Headers */,
-				7AB64F2905F9E057003E2845 /* SDL_joystick.h in Headers */,
-				7AB64F2A05F9E057003E2845 /* SDL_keyboard.h in Headers */,
-				7AB64F2B05F9E057003E2845 /* SDL_keysym.h in Headers */,
-				7AB64F2C05F9E057003E2845 /* SDL_loadso.h in Headers */,
-				7AB64F2D05F9E057003E2845 /* SDL_main.h in Headers */,
-				7AB64F2E05F9E057003E2845 /* SDL_mixer.h in Headers */,
-				7AB64F2F05F9E057003E2845 /* SDL_mouse.h in Headers */,
-				7AB64F3005F9E057003E2845 /* SDL_mutex.h in Headers */,
-				7AB64F3105F9E057003E2845 /* SDL_name.h in Headers */,
-				7AB64F3205F9E057003E2845 /* SDL_opengl.h in Headers */,
-				7AB64F3305F9E057003E2845 /* SDL_quit.h in Headers */,
-				7AB64F3405F9E057003E2845 /* SDL_rwops.h in Headers */,
-				7AB64F3505F9E057003E2845 /* SDL_syswm.h in Headers */,
-				7AB64F3605F9E057003E2845 /* SDL_thread.h in Headers */,
-				7AB64F3705F9E057003E2845 /* SDL_timer.h in Headers */,
-				7AB64F3805F9E057003E2845 /* SDL_types.h in Headers */,
-				7AB64F3905F9E057003E2845 /* SDL_version.h in Headers */,
-				7AB64F3A05F9E057003E2845 /* SDL_video.h in Headers */,
-				7AB64F3B05F9E057003E2845 /* MPEG.h in Headers */,
-				7AB64F3C05F9E057003E2845 /* MPEGaction.h in Headers */,
-				7AB64F3D05F9E057003E2845 /* MPEGaudio.h in Headers */,
-				7AB64F3E05F9E057003E2845 /* MPEGerror.h in Headers */,
-				7AB64F3F05F9E057003E2845 /* MPEGfilter.h in Headers */,
-				7AB64F4005F9E057003E2845 /* MPEGlist.h in Headers */,
-				7AB64F4105F9E057003E2845 /* MPEGring.h in Headers */,
-				7AB64F4205F9E057003E2845 /* MPEGstream.h in Headers */,
-				7AB64F4305F9E057003E2845 /* MPEGsystem.h in Headers */,
-				7AB64F4405F9E057003E2845 /* MPEGvideo.h in Headers */,
-				7AB64F4505F9E057003E2845 /* smpeg.h in Headers */,
-				7AB64F4605F9E057003E2845 /* tiff.h in Headers */,
-				7AB64F4705F9E057003E2845 /* tiffconf.h in Headers */,
-				7AB64F4805F9E057003E2845 /* tiffio.h in Headers */,
-				7AB64F4905F9E057003E2845 /* tiffvers.h in Headers */,
-				7AB64F4A05F9E057003E2845 /* codec.h in Headers */,
-				7AB64F4B05F9E057003E2845 /* vorbisenc.h in Headers */,
-				7AB64F4C05F9E057003E2845 /* vorbisfile.h in Headers */,
-				7AB64F4D05F9E057003E2845 /* PlatformUtils.h in Headers */,
-				7AB64F5805F9E057003E2845 /* mushMustlGame.h in Headers */,
-				7AB64F5905F9E057003E2845 /* mushMedia.h in Headers */,
-				7AB64F5A05F9E057003E2845 /* mushGL.h in Headers */,
-				7AB64F5B05F9E057003E2845 /* mushGame.h in Headers */,
-				7AB64F5C05F9E057003E2845 /* mushPlatform.h in Headers */,
-				7AB64F5D05F9E057003E2845 /* SecondaryMain.h in Headers */,
-				7AB64F5F05F9E057003E2845 /* mushMushcore.h in Headers */,
-				7AB64F6005F9E057003E2845 /* mushMustl.h in Headers */,
-				7AB64F6105F9E057003E2845 /* mushMushcoreSTL.h in Headers */,
-				7AB64F6205F9E057003E2845 /* mushMushcoreIO.h in Headers */,
-				7AB64F7105F9E057003E2845 /* mushModel.h in Headers */,
-				7AB64F7205F9E057003E2845 /* GLXMLOperators.h in Headers */,
-				7AB64F7305F9E057003E2845 /* MaurheenAppHandler.h in Headers */,
-				7AB64F7405F9E057003E2845 /* MaurheenCommandHandler.h in Headers */,
-				7AB64F7505F9E057003E2845 /* MaurheenInfo.h in Headers */,
-				7AB64F7605F9E057003E2845 /* MaurheenSTL.h in Headers */,
-				7A4FA60505F9F0FE00297E23 /* MaurheenGame.h in Headers */,
-				7A66E1F305FB1AB100135328 /* MaurheenWorm.h in Headers */,
-				7A66E21405FB1B0100135328 /* MaurheenStandard.h in Headers */,
-				7A66E2A705FB1F3800135328 /* mushMushMesh.h in Headers */,
-				7A66E36C05FB240500135328 /* MushGLArrays.h in Headers */,
-				7A66E40305FB256A00135328 /* MushGLStandard.h in Headers */,
-				7A66E42605FB25C500135328 /* mushMushGL.h in Headers */,
-				7A66E44205FB260600135328 /* MushGL.h in Headers */,
-				7AC5D50B06FF502E00EF3984 /* MushGLV.h in Headers */,
-				7A0D469B07357AA800D06F24 /* MaurheenHypercube.h in Headers */,
-				7A654C8F07A9713200DE4A9D /* MaurheenHypersphere.h in Headers */,
-				7A620FCF07ABA3DD00347A99 /* MushGLBuffer.h in Headers */,
-				7A643D8007AEB25D006E88DD /* MushGLVertexBuffer.h in Headers */,
-				7A70CD12085DE6A90055C6FB /* MushGLControl.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		7AB650A305F9E0A0003E2845 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -7694,7 +7175,7 @@
 			);
 			name = All;
 			productName = All;
-			productReference = 7A62B6F905A49C0B002A5F1C /* ic2.app */;
+			productReference = 7A62B6F905A49C0B002A5F1C /* All.app */;
 			productSettingsXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
 <!DOCTYPE plist PUBLIC \"-//Apple Computer//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">
 <plist version=\"1.0\">
@@ -8241,71 +7722,6 @@
 ";
 			productType = "com.apple.product-type.application";
 		};
-		7AB64E2505F9E057003E2845 /* Maurheen */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 7A1961770899A34800B8B840 /* Build configuration list for PBXNativeTarget "Maurheen" */;
-			buildPhases = (
-				7AB64E2605F9E057003E2845 /* ShellScript */,
-				7AB64E2705F9E057003E2845 /* Headers */,
-				7AB64F7705F9E057003E2845 /* Resources */,
-				7AB64F7A05F9E057003E2845 /* Sources */,
-				7AB6507F05F9E057003E2845 /* Rez */,
-				7AB6508105F9E057003E2845 /* Frameworks */,
-				7AB6509405F9E057003E2845 /* CopyFiles */,
-				7AB6509505F9E057003E2845 /* ShellScript */,
-			);
-			buildRules = (
-			);
-			buildSettings = {
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ../../src/Mushcore/Mushcore.h;
-				HEADER_SEARCH_PATHS = (
-					../../src,
-					../../src/API,
-				);
-				INFOPLIST_FILE = "Maurheen-Info.plist";
-				INSTALL_PATH = "$(USER_APPS_DIR)";
-				LIBRARY_SEARCH_PATHS = /usr/lib/gcc/darwin/3.3;
-				PRODUCT_NAME = Maurheen;
-			};
-			dependencies = (
-				7A23840F05F9E98000505F59 /* PBXTargetDependency */,
-				7A23841105F9E98000505F59 /* PBXTargetDependency */,
-				7A23841305F9E98000505F59 /* PBXTargetDependency */,
-				7A23841505F9E98000505F59 /* PBXTargetDependency */,
-			);
-			name = Maurheen;
-			productName = All;
-			productReference = 7AB6509605F9E057003E2845 /* Maurheen.app */;
-			productSettingsXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
-<!DOCTYPE plist PUBLIC \"-//Apple Computer//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">
-<plist version=\"1.0\">
-<dict>
-	<key>CFBundleDevelopmentRegion</key>
-	<string>English</string>
-	<key>CFBundleExecutable</key>
-	<string>All</string>
-	<key>CFBundleGetInfoString</key>
-	<string></string>
-	<key>CFBundleIconFile</key>
-	<string></string>
-	<key>CFBundleIdentifier</key>
-	<string>com.MySoftwareCompany.All</string>
-	<key>CFBundleInfoDictionaryVersion</key>
-	<string>6.0</string>
-	<key>CFBundlePackageType</key>
-	<string>APPL</string>
-	<key>CFBundleShortVersionString</key>
-	<string></string>
-	<key>CFBundleSignature</key>
-	<string>????</string>
-	<key>CFBundleVersion</key>
-	<string>1.0.0d1</string>
-</dict>
-</plist>
-";
-			productType = "com.apple.product-type.application";
-		};
 		7AB650A105F9E0A0003E2845 /* Mustl */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7A1961720899A34800B8B840 /* Build configuration list for PBXNativeTarget "Mustl" */;
@@ -8511,7 +7927,6 @@
 			projectDirPath = "";
 			targets = (
 				7A70CD4B085DEE2D0055C6FB /* Adanaxis */,
-				7AB64E2505F9E057003E2845 /* Maurheen */,
 				7A62B6F805A49C0B002A5F1C /* All */,
 				7AAE6BAC07AFC4250085C60F /* Tesseract Trainer */,
 				7A71998A05A99B6700C42A20 /* TestMushcore */,
@@ -8593,15 +8008,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				7A03DDBB083DE47000EC5296 /* tesseracttrainer_app.icns in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		7AB64F7705F9E057003E2845 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7AB64F7805F9E057003E2845 /* sstream in Resources */,
-				7AB64F7905F9E057003E2845 /* ic2_app.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8692,14 +8098,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				7AAE6CBA07AFC4250085C60F /* PlatformBoxes.r in Rez */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		7AB6507F05F9E057003E2845 /* Rez */ = {
-			isa = PBXRezBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7AB6508005F9E057003E2845 /* PlatformBoxes.r in Rez */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8843,33 +8241,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "pwd\ncd ../macosxlibs\n/bin/sh CopyLibs.sh \"$TARGET_BUILD_DIR/$FRAMEWORKS_FOLDER_PATH\"\ndate\necho Done\n\n";
-		};
-		7AB64E2605F9E057003E2845 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "date\ncd ../..\n./prebuild.sh";
-		};
-		7AB6509505F9E057003E2845 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "date
-";
 		};
 		7AB652C705F9E1FF003E2845 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -9866,106 +9237,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7AB64F7A05F9E057003E2845 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7AB64F7B05F9E057003E2845 /* GameAppHandler.cpp in Sources */,
-				7AB64F7C05F9E057003E2845 /* GameBase.cpp in Sources */,
-				7AB64F7D05F9E057003E2845 /* GameCommandHandler.cpp in Sources */,
-				7AB64F7E05F9E057003E2845 /* GameConfig.cpp in Sources */,
-				7AB64F7F05F9E057003E2845 /* GameConfigDef.cpp in Sources */,
-				7AB64F8005F9E057003E2845 /* GameControlFrameDef.cpp in Sources */,
-				7AB64F8105F9E057003E2845 /* GameController.cpp in Sources */,
-				7AB64F8205F9E057003E2845 /* GameEvent.cpp in Sources */,
-				7AB64F8305F9E057003E2845 /* GameFrameTimer.cpp in Sources */,
-				7AB64F8405F9E057003E2845 /* GameGlobalConfig.cpp in Sources */,
-				7AB64F8505F9E057003E2845 /* GameGraphic.cpp in Sources */,
-				7AB64F8605F9E057003E2845 /* GameGraphicModel.cpp in Sources */,
-				7AB64F8705F9E057003E2845 /* GameGraphicSprite.cpp in Sources */,
-				7AB64F8805F9E057003E2845 /* GamePiece.cpp in Sources */,
-				7AB64F8905F9E057003E2845 /* GameProtocol.cpp in Sources */,
-				7AB64F8A05F9E057003E2845 /* GameQuit.cpp in Sources */,
-				7AB64F8B05F9E057003E2845 /* GameRecords.cpp in Sources */,
-				7AB64F8C05F9E057003E2845 /* GameRewards.cpp in Sources */,
-				7AB64F8D05F9E057003E2845 /* GameRouter.cpp in Sources */,
-				7AB64F8E05F9E057003E2845 /* GameSetup.cpp in Sources */,
-				7AB64F8F05F9E057003E2845 /* GameSTL.cpp in Sources */,
-				7AB64F9005F9E057003E2845 /* GameTimer.cpp in Sources */,
-				7AB64F9105F9E057003E2845 /* GameType.cpp in Sources */,
-				7AB64F9205F9E057003E2845 /* GLAppHandler.cpp in Sources */,
-				7AB64F9305F9E057003E2845 /* GLArray.cpp in Sources */,
-				7AB64F9405F9E057003E2845 /* GLColour.cpp in Sources */,
-				7AB64F9505F9E057003E2845 /* GLCommandHandler.cpp in Sources */,
-				7AB64F9605F9E057003E2845 /* GLData.cpp in Sources */,
-				7AB64F9705F9E057003E2845 /* GLFont.cpp in Sources */,
-				7AB64F9805F9E057003E2845 /* GLFontRef.cpp in Sources */,
-				7AB64F9905F9E057003E2845 /* GLKeys.cpp in Sources */,
-				7AB64F9A05F9E057003E2845 /* GLLightDef.cpp in Sources */,
-				7AB64F9B05F9E057003E2845 /* GLLights.cpp in Sources */,
-				7AB64F9C05F9E057003E2845 /* GLLine.cpp in Sources */,
-				7AB64F9D05F9E057003E2845 /* GLModeDef.cpp in Sources */,
-				7AB64F9E05F9E057003E2845 /* GLPoint.cpp in Sources */,
-				7AB64F9F05F9E057003E2845 /* GLQuad.cpp in Sources */,
-				7AB64FA005F9E057003E2845 /* GLRectangle.cpp in Sources */,
-				7AB64FA105F9E057003E2845 /* GLRender.cpp in Sources */,
-				7AB64FA205F9E057003E2845 /* GLRenderable.cpp in Sources */,
-				7AB64FA305F9E057003E2845 /* GLState.cpp in Sources */,
-				7AB64FA405F9E057003E2845 /* GLSTL.cpp in Sources */,
-				7AB64FA505F9E057003E2845 /* GLString.cpp in Sources */,
-				7AB64FA605F9E057003E2845 /* GLTest.cpp in Sources */,
-				7AB64FA705F9E057003E2845 /* GLTest1AppHandler.cpp in Sources */,
-				7AB64FA805F9E057003E2845 /* GLTexture.cpp in Sources */,
-				7AB64FA905F9E057003E2845 /* GLTextureClip.cpp in Sources */,
-				7AB64FAA05F9E057003E2845 /* GLTextureDef.cpp in Sources */,
-				7AB64FAB05F9E057003E2845 /* GLTextureGIF.cpp in Sources */,
-				7AB64FAC05F9E057003E2845 /* GLTextureRef.cpp in Sources */,
-				7AB64FAD05F9E057003E2845 /* GLTextureSpr.cpp in Sources */,
-				7AB64FAE05F9E057003E2845 /* GLTextureTIFF.cpp in Sources */,
-				7AB64FB005F9E057003E2845 /* GLUtils.cpp in Sources */,
-				7AB64FB105F9E057003E2845 /* GLVector.cpp in Sources */,
-				7AB64FB205F9E057003E2845 /* SDLAppHandler.cpp in Sources */,
-				7AB64FD205F9E057003E2845 /* MediaAudio.cpp in Sources */,
-				7AB64FD305F9E057003E2845 /* MediaAudioCommandHandler.cpp in Sources */,
-				7AB64FD405F9E057003E2845 /* MediaAudioNull.cpp in Sources */,
-				7AB64FD505F9E057003E2845 /* MediaAudioSDL.cpp in Sources */,
-				7AB64FD605F9E057003E2845 /* MediaSDL.cpp in Sources */,
-				7AB64FD705F9E057003E2845 /* MediaSound.cpp in Sources */,
-				7AB64FD805F9E057003E2845 /* MediaSoundStream.cpp in Sources */,
-				7AB64FD905F9E057003E2845 /* MediaSTL.cpp in Sources */,
-				7AB6504005F9E057003E2845 /* MustlGameBase.cpp in Sources */,
-				7AB6504105F9E057003E2845 /* MustlGameClient.cpp in Sources */,
-				7AB6504205F9E057003E2845 /* MustlGameID.cpp in Sources */,
-				7AB6504305F9E057003E2845 /* MustlGameObject.cpp in Sources */,
-				7AB6504405F9E057003E2845 /* MustlGameServer.cpp in Sources */,
-				7AB6504505F9E057003E2845 /* MustlGameSTL.cpp in Sources */,
-				7AB6504605F9E057003E2845 /* MustlGameUtils.cpp in Sources */,
-				7AB6504705F9E057003E2845 /* PlatformInputUtils.cpp in Sources */,
-				7AB6504805F9E057003E2845 /* PlatformMiscUtils.cpp in Sources */,
-				7AB6504905F9E057003E2845 /* PlatformVideoUtils.cpp in Sources */,
-				7AB6504A05F9E057003E2845 /* SDLMain.m in Sources */,
-				7AB6504B05F9E057003E2845 /* PlatformSTL.cpp in Sources */,
-				7AB6506B05F9E057003E2845 /* SecondaryMain.cpp in Sources */,
-				7AB6507A05F9E057003E2845 /* GLXMLOperators.cpp in Sources */,
-				7AB6507B05F9E057003E2845 /* MaurheenAppHandler.cpp in Sources */,
-				7AB6507C05F9E057003E2845 /* MaurheenCommandHandler.cpp in Sources */,
-				7AB6507D05F9E057003E2845 /* MaurheenInfo.cpp in Sources */,
-				7AB6507E05F9E057003E2845 /* MaurheenSTL.cpp in Sources */,
-				7A4FA60605F9F0FE00297E23 /* MaurheenGame.cpp in Sources */,
-				7A66E1F405FB1AB100135328 /* MaurheenWorm.cpp in Sources */,
-				7A66E21505FB1B0100135328 /* MaurheenStandard.cpp in Sources */,
-				7A66E36B05FB240500135328 /* MushGLArrays.cpp in Sources */,
-				7A66E40405FB256A00135328 /* MushGLStandard.cpp in Sources */,
-				7A66E44305FB260600135328 /* MushGL.cpp in Sources */,
-				7AC5D50C06FF502E00EF3984 /* MushGLV.cpp in Sources */,
-				7A0D469C07357AA800D06F24 /* MaurheenHypercube.cpp in Sources */,
-				7A654C9007A9713200DE4A9D /* MaurheenHypersphere.cpp in Sources */,
-				7A620FD007ABA3DD00347A99 /* MushGLBuffer.cpp in Sources */,
-				7A643D8107AEB25D006E88DD /* MushGLVertexBuffer.cpp in Sources */,
-				7A70CD13085DE6A90055C6FB /* MushGLControl.cpp in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		7AB650BC05F9E0A0003E2845 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -10076,26 +9347,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		7A23840F05F9E98000505F59 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 7A7194EC05A998B900C42A20 /* Mushcore */;
-			targetProxy = 7A23840E05F9E98000505F59 /* PBXContainerItemProxy */;
-		};
-		7A23841105F9E98000505F59 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 7A65813905A9D09C00E727F8 /* MushMesh */;
-			targetProxy = 7A23841005F9E98000505F59 /* PBXContainerItemProxy */;
-		};
-		7A23841305F9E98000505F59 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 7A657E8905A9CD1C00E727F8 /* MushPie */;
-			targetProxy = 7A23841205F9E98000505F59 /* PBXContainerItemProxy */;
-		};
-		7A23841505F9E98000505F59 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 7AB650A105F9E0A0003E2845 /* Mustl */;
-			targetProxy = 7A23841405F9E98000505F59 /* PBXContainerItemProxy */;
-		};
 		7A632D420816D43D00637D49 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 7A657E8905A9CD1C00E727F8 /* MushPie */;
@@ -10172,2149 +9423,284 @@
 		7A19615F0899A34800B8B840 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				DEBUGGING_SYMBOLS = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
-				GCC_ALTIVEC_EXTENSIONS = YES;
-				GCC_AUTO_VECTORIZATION = YES;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_MODEL_CPU = G4;
-				GCC_OPTIMIZATION_LEVEL = 1;
-				GCC_PFE_FILE_C_DIALECTS = "c++";
-				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = YES;
-				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
-				GCC_WARN_EFFECTIVE_CPLUSPLUS_VIOLATIONS = NO;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
-				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
-				GCC_WARN_MISSING_PARENTHESES = YES;
-				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
-				GCC_WARN_SHADOW = YES;
-				GCC_WARN_SIGN_COMPARE = YES;
-				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNKNOWN_PRAGMAS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_LABEL = YES;
-				GCC_WARN_UNUSED_VALUE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					../../src,
-					../../src/API,
-				);
 				INFOPLIST_FILE = "Mushcore-Info.plist";
-				INSTALL_PATH = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = "";
-				OTHER_CFLAGS = "";
+				INSTALL_PATH = $MUSH_FRAMEWORK_INSTALL_PATH;
 				OTHER_LDFLAGS = (
 					"-seg1addr",
 					0x2a000000,
 				);
-				OTHER_REZFLAGS = "";
 				PRODUCT_NAME = Mushcore;
-				REZ_EXECUTABLE = NO;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = "-Wall";
-				ZERO_LINK = YES;
 			};
 			name = Development;
-		};
-		7A1961600899A34800B8B840 /* Development 10.2.7 */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				DEBUGGING_SYMBOLS = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				FRAMEWORK_VERSION = A;
-				GCC_ALTIVEC_EXTENSIONS = YES;
-				GCC_AUTO_VECTORIZATION = YES;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_FAST_MATH = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_MODEL_CPU = "";
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PFE_FILE_C_DIALECTS = "c++";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_STRICT_ALIASING = YES;
-				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = YES;
-				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
-				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
-				GCC_WARN_MISSING_PARENTHESES = YES;
-				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
-				GCC_WARN_SHADOW = YES;
-				GCC_WARN_SIGN_COMPARE = YES;
-				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = NO;
-				GCC_WARN_UNKNOWN_PRAGMAS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_LABEL = YES;
-				GCC_WARN_UNUSED_VALUE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					../../src,
-					../../src/API,
-				);
-				INFOPLIST_FILE = "Mushcore-Info.plist";
-				INSTALL_PATH = "@executable_path/../Frameworks";
-				LIBRARY_SEARCH_PATHS = /usr/local/lib;
-				LIBRARY_STYLE = DYNAMIC;
-				MACOSX_DEPLOYMENT_TARGET = 10.2;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = (
-					"-seg1addr",
-					0x2a000000,
-				);
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = Mushcore;
-				REZ_EXECUTABLE = NO;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = "-Wall";
-				ZERO_LINK = NO;
-			};
-			name = "Development 10.2.7";
 		};
 		7A1961610899A34800B8B840 /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COPY_PHASE_STRIP = YES;
-				DEAD_CODE_STRIPPING = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
-				GCC_ALTIVEC_EXTENSIONS = YES;
-				GCC_AUTO_VECTORIZATION = YES;
-				GCC_DEBUGGING_SYMBOLS = default;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_FAST_MATH = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
-				GCC_OPTIMIZATION_LEVEL = 3;
-				GCC_PFE_FILE_C_DIALECTS = "c++";
-				GCC_STRICT_ALIASING = YES;
-				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
-				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
-				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
-				GCC_WARN_MISSING_PARENTHESES = YES;
-				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
-				GCC_WARN_SHADOW = YES;
-				GCC_WARN_SIGN_COMPARE = YES;
-				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNKNOWN_PRAGMAS = NO;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_LABEL = YES;
-				GCC_WARN_UNUSED_PARAMETER = NO;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					../../src,
-					../../src/API,
-				);
 				INFOPLIST_FILE = "Mushcore-Info.plist";
-				INSTALL_PATH = "@executable_path/../Frameworks";
-				LIBRARY_SEARCH_PATHS = /usr/local/lib;
-				MACOSX_DEPLOYMENT_TARGET = 10.2;
-				OTHER_CFLAGS = "";
+				INSTALL_PATH = $MUSH_FRAMEWORK_INSTALL_PATH;
 				OTHER_LDFLAGS = (
 					"-seg1addr",
 					0x2a000000,
 				);
-				OTHER_REZFLAGS = "";
-				PRESERVE_DEAD_CODE_INITS_AND_TERMS = NO;
 				PRODUCT_NAME = Mushcore;
-				REZ_EXECUTABLE = NO;
-				SECTORDER_FLAGS = "";
-				ZERO_LINK = NO;
 			};
 			name = Deployment;
-		};
-		7A1961620899A34800B8B840 /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				FRAMEWORK_VERSION = A;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
-				GCC_WARN_UNKNOWN_PRAGMAS = NO;
-				INFOPLIST_FILE = "Mushcore-Info.plist";
-				INSTALL_PATH = "@executable_path/../Frameworks";
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = (
-					"-seg1addr",
-					0x2a000000,
-				);
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = Mushcore;
-				REZ_EXECUTABLE = NO;
-				SECTORDER_FLAGS = "";
-			};
-			name = Default;
 		};
 		7A1961640899A34800B8B840 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				DEBUGGING_SYMBOLS = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
-				GCC_ALTIVEC_EXTENSIONS = YES;
-				GCC_AUTO_VECTORIZATION = YES;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_MODEL_CPU = G4;
-				GCC_OPTIMIZATION_LEVEL = 1;
-				GCC_PFE_FILE_C_DIALECTS = "c++";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = ../../src/API/mushMushcore.h;
-				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = YES;
-				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
-				GCC_WARN_EFFECTIVE_CPLUSPLUS_VIOLATIONS = NO;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
-				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
-				GCC_WARN_MISSING_PARENTHESES = YES;
-				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
-				GCC_WARN_SHADOW = YES;
-				GCC_WARN_SIGN_COMPARE = YES;
-				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNKNOWN_PRAGMAS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_LABEL = YES;
-				GCC_WARN_UNUSED_VALUE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					../../src,
-					../../src/API,
-				);
 				INFOPLIST_FILE = "MushMesh-Info.plist";
-				INSTALL_PATH = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = "";
-				OTHER_CFLAGS = "";
+				INSTALL_PATH = $MUSH_FRAMEWORK_INSTALL_PATH;
 				OTHER_LDFLAGS = (
 					"-seg1addr",
 					0x2b000000,
 				);
-				OTHER_REZFLAGS = "";
 				PRODUCT_NAME = MushMesh;
-				REZ_EXECUTABLE = NO;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = "-Wall";
-				ZERO_LINK = YES;
+				USER_HEADER_SEARCH_PATHS = $MUSH_FRAMEWORK_HEADERS;
 			};
 			name = Development;
-		};
-		7A1961650899A34800B8B840 /* Development 10.2.7 */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				DEBUGGING_SYMBOLS = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				FRAMEWORK_VERSION = A;
-				GCC_ALTIVEC_EXTENSIONS = YES;
-				GCC_AUTO_VECTORIZATION = YES;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_FAST_MATH = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_MODEL_CPU = "";
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PFE_FILE_C_DIALECTS = "c++";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ../../src/API/mushMushcore.h;
-				GCC_STRICT_ALIASING = YES;
-				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = YES;
-				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
-				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
-				GCC_WARN_MISSING_PARENTHESES = YES;
-				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
-				GCC_WARN_SHADOW = YES;
-				GCC_WARN_SIGN_COMPARE = YES;
-				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = NO;
-				GCC_WARN_UNKNOWN_PRAGMAS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_LABEL = YES;
-				GCC_WARN_UNUSED_VALUE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					../../src,
-					../../src/API,
-				);
-				INFOPLIST_FILE = "MushMesh-Info.plist";
-				INSTALL_PATH = "@executable_path/../Frameworks";
-				LIBRARY_SEARCH_PATHS = /usr/local/lib;
-				LIBRARY_STYLE = DYNAMIC;
-				MACOSX_DEPLOYMENT_TARGET = 10.2;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = (
-					"-seg1addr",
-					0x2b000000,
-				);
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = MushMesh;
-				REZ_EXECUTABLE = NO;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = "-Wall";
-				ZERO_LINK = NO;
-			};
-			name = "Development 10.2.7";
 		};
 		7A1961660899A34800B8B840 /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COPY_PHASE_STRIP = YES;
-				DEAD_CODE_STRIPPING = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
-				GCC_ALTIVEC_EXTENSIONS = YES;
-				GCC_AUTO_VECTORIZATION = YES;
-				GCC_DEBUGGING_SYMBOLS = default;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_FAST_MATH = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
-				GCC_OPTIMIZATION_LEVEL = 3;
-				GCC_PFE_FILE_C_DIALECTS = "c++";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = ../../src/API/mushMushcore.h;
-				GCC_STRICT_ALIASING = YES;
-				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
-				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
-				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
-				GCC_WARN_MISSING_PARENTHESES = YES;
-				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
-				GCC_WARN_SHADOW = YES;
-				GCC_WARN_SIGN_COMPARE = YES;
-				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNKNOWN_PRAGMAS = NO;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_LABEL = YES;
-				GCC_WARN_UNUSED_PARAMETER = NO;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					../../src,
-					../../src/API,
-				);
 				INFOPLIST_FILE = "MushMesh-Info.plist";
-				INSTALL_PATH = "@executable_path/../Frameworks";
-				LIBRARY_SEARCH_PATHS = /usr/local/lib;
-				MACOSX_DEPLOYMENT_TARGET = 10.2;
-				OTHER_CFLAGS = "";
+				INSTALL_PATH = $MUSH_FRAMEWORK_INSTALL_PATH;
 				OTHER_LDFLAGS = (
 					"-seg1addr",
 					0x2b000000,
 				);
-				OTHER_REZFLAGS = "";
-				PRESERVE_DEAD_CODE_INITS_AND_TERMS = NO;
 				PRODUCT_NAME = MushMesh;
-				REZ_EXECUTABLE = NO;
-				SECTORDER_FLAGS = "";
-				ZERO_LINK = NO;
+				USER_HEADER_SEARCH_PATHS = $MUSH_FRAMEWORK_HEADERS;
 			};
 			name = Deployment;
-		};
-		7A1961670899A34800B8B840 /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				FRAMEWORK_VERSION = A;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ../../src/API/mushMushcore.h;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
-				GCC_WARN_UNKNOWN_PRAGMAS = NO;
-				INFOPLIST_FILE = "MushMesh-Info.plist";
-				INSTALL_PATH = "@executable_path/../Frameworks";
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = (
-					"-seg1addr",
-					0x2b000000,
-				);
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = MushMesh;
-				REZ_EXECUTABLE = NO;
-				SECTORDER_FLAGS = "";
-			};
-			name = Default;
 		};
 		7A1961690899A34800B8B840 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				DEAD_CODE_STRIPPING = YES;
-				DEBUGGING_SYMBOLS = YES;
-				DSTROOT = "";
-				GCC_ALTIVEC_EXTENSIONS = YES;
-				GCC_AUTO_VECTORIZATION = YES;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_MODEL_CPU = G4;
-				GCC_OPTIMIZATION_LEVEL = 1;
-				GCC_PFE_FILE_C_DIALECTS = "c++";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = ../../src/API/mushAppPrefix.h;
-				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = YES;
-				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
-				GCC_WARN_EFFECTIVE_CPLUSPLUS_VIOLATIONS = NO;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
-				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
-				GCC_WARN_MISSING_PARENTHESES = YES;
-				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
-				GCC_WARN_SHADOW = YES;
-				GCC_WARN_SIGN_COMPARE = YES;
-				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNKNOWN_PRAGMAS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_LABEL = YES;
-				GCC_WARN_UNUSED_VALUE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					../../src,
-					../../src/API,
-				);
 				INFOPLIST_FILE = "/Users/southa/core-app/macosx/project/Adanaxis-Info.plist";
-				INSTALL_PATH = "$(USER_APPS_DIR)";
-				LIBRARY_SEARCH_PATHS = /usr/lib/gcc/darwin/3.3;
-				MACOSX_DEPLOYMENT_TARGET = "";
+				INSTALL_PATH = "$(MUSH_APP_INSTALL_PATH)";
 				PRODUCT_NAME = "Adanaxis Control Demo";
-				WARNING_CFLAGS = "-Wall";
-				ZERO_LINK = YES;
+				USER_HEADER_SEARCH_PATHS = $MUSH_APP_HEADERS;
 			};
 			name = Development;
-		};
-		7A19616A0899A34800B8B840 /* Development 10.2.7 */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				DEAD_CODE_STRIPPING = YES;
-				DEBUGGING_SYMBOLS = YES;
-				DSTROOT = "";
-				GCC_ALTIVEC_EXTENSIONS = YES;
-				GCC_AUTO_VECTORIZATION = YES;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_FAST_MATH = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_MODEL_CPU = "";
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PFE_FILE_C_DIALECTS = "c++";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ../../src/API/mushAppPrefix.h;
-				GCC_STRICT_ALIASING = YES;
-				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = YES;
-				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
-				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
-				GCC_WARN_MISSING_PARENTHESES = YES;
-				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
-				GCC_WARN_SHADOW = YES;
-				GCC_WARN_SIGN_COMPARE = YES;
-				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = NO;
-				GCC_WARN_UNKNOWN_PRAGMAS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_LABEL = YES;
-				GCC_WARN_UNUSED_VALUE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					../../src,
-					../../src/API,
-				);
-				INFOPLIST_FILE = "/Users/southa/core-app/macosx/project/Adanaxis-Info.plist";
-				INSTALL_PATH = "$(USER_APPS_DIR)";
-				LIBRARY_SEARCH_PATHS = /usr/local/lib;
-				LIBRARY_STYLE = DYNAMIC;
-				MACOSX_DEPLOYMENT_TARGET = 10.2;
-				PRODUCT_NAME = Adanaxis;
-				WARNING_CFLAGS = "-Wall";
-				ZERO_LINK = YES;
-			};
-			name = "Development 10.2.7";
 		};
 		7A19616B0899A34800B8B840 /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COPY_PHASE_STRIP = YES;
-				DEAD_CODE_STRIPPING = NO;
-				DSTROOT = "";
-				GCC_ALTIVEC_EXTENSIONS = YES;
-				GCC_AUTO_VECTORIZATION = YES;
-				GCC_DEBUGGING_SYMBOLS = default;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_FAST_MATH = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
-				GCC_OPTIMIZATION_LEVEL = 3;
-				GCC_PFE_FILE_C_DIALECTS = "c++";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = ../../src/API/mushAppPrefix.h;
-				GCC_STRICT_ALIASING = YES;
-				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
-				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
-				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
-				GCC_WARN_MISSING_PARENTHESES = YES;
-				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
-				GCC_WARN_SHADOW = YES;
-				GCC_WARN_SIGN_COMPARE = YES;
-				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_LABEL = YES;
-				GCC_WARN_UNUSED_PARAMETER = NO;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					../../src,
-					../../src/API,
-				);
 				INFOPLIST_FILE = "/Users/southa/core-app/macosx/project/Adanaxis-Info.plist";
-				INSTALL_PATH = "$(USER_APPS_DIR)";
-				LIBRARY_SEARCH_PATHS = /usr/local/lib;
-				MACOSX_DEPLOYMENT_TARGET = 10.2;
-				PRESERVE_DEAD_CODE_INITS_AND_TERMS = NO;
+				INSTALL_PATH = "$(MUSH_APP_INSTALL_PATH)";
 				PRODUCT_NAME = "Adanaxis Control Demo";
-				ZERO_LINK = NO;
+				USER_HEADER_SEARCH_PATHS = $MUSH_APP_HEADERS;
 			};
 			name = Deployment;
-		};
-		7A19616C0899A34800B8B840 /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				DEAD_CODE_STRIPPING = YES;
-				DSTROOT = "";
-				GCC_ALTIVEC_EXTENSIONS = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ../../src/API/mushAppPrefix.h;
-				HEADER_SEARCH_PATHS = (
-					../../src,
-					../../src/API,
-				);
-				INFOPLIST_FILE = "/Users/southa/core-app/macosx/project/Adanaxis-Info.plist";
-				INSTALL_PATH = "$(USER_APPS_DIR)";
-				LIBRARY_SEARCH_PATHS = /usr/lib/gcc/darwin/3.3;
-				PRODUCT_NAME = Adanaxis;
-				ZERO_LINK = NO;
-			};
-			name = Default;
 		};
 		7A19616E0899A34800B8B840 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				DEBUGGING_SYMBOLS = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
-				GCC_ALTIVEC_EXTENSIONS = YES;
-				GCC_AUTO_VECTORIZATION = YES;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_MODEL_CPU = G4;
-				GCC_OPTIMIZATION_LEVEL = 1;
-				GCC_PFE_FILE_C_DIALECTS = "c++";
-				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = YES;
-				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
-				GCC_WARN_EFFECTIVE_CPLUSPLUS_VIOLATIONS = NO;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
-				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
-				GCC_WARN_MISSING_PARENTHESES = YES;
-				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
-				GCC_WARN_SHADOW = YES;
-				GCC_WARN_SIGN_COMPARE = YES;
-				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNKNOWN_PRAGMAS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_LABEL = YES;
-				GCC_WARN_UNUSED_VALUE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					../../src,
-					../../src/API,
-				);
 				INFOPLIST_FILE = "MushPie-Info.plist";
-				INSTALL_PATH = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = "";
-				OTHER_CFLAGS = "";
+				INSTALL_PATH = $MUSH_FRAMEWORK_INSTALL_PATH;
 				OTHER_LDFLAGS = (
 					"-seg1addr",
 					0x2b800000,
 				);
-				OTHER_REZFLAGS = "";
 				PRODUCT_NAME = MushPie;
-				REZ_EXECUTABLE = NO;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = "-Wall";
-				ZERO_LINK = YES;
+				USER_HEADER_SEARCH_PATHS = $MUSH_FRAMEWORK_HEADERS;
 			};
 			name = Development;
-		};
-		7A19616F0899A34800B8B840 /* Development 10.2.7 */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				DEBUGGING_SYMBOLS = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				FRAMEWORK_VERSION = A;
-				GCC_ALTIVEC_EXTENSIONS = YES;
-				GCC_AUTO_VECTORIZATION = YES;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_FAST_MATH = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_MODEL_CPU = "";
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PFE_FILE_C_DIALECTS = "c++";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_STRICT_ALIASING = YES;
-				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = YES;
-				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
-				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
-				GCC_WARN_MISSING_PARENTHESES = YES;
-				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
-				GCC_WARN_SHADOW = YES;
-				GCC_WARN_SIGN_COMPARE = YES;
-				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = NO;
-				GCC_WARN_UNKNOWN_PRAGMAS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_LABEL = YES;
-				GCC_WARN_UNUSED_VALUE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					../../src,
-					../../src/API,
-				);
-				INFOPLIST_FILE = "MushPie-Info.plist";
-				INSTALL_PATH = "@executable_path/../Frameworks";
-				LIBRARY_SEARCH_PATHS = /usr/local/lib;
-				LIBRARY_STYLE = DYNAMIC;
-				MACOSX_DEPLOYMENT_TARGET = 10.2;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = (
-					"-seg1addr",
-					0x2b800000,
-				);
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = MushPie;
-				REZ_EXECUTABLE = NO;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = "-Wall";
-				ZERO_LINK = NO;
-			};
-			name = "Development 10.2.7";
 		};
 		7A1961700899A34800B8B840 /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COPY_PHASE_STRIP = YES;
-				DEAD_CODE_STRIPPING = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
-				GCC_ALTIVEC_EXTENSIONS = YES;
-				GCC_AUTO_VECTORIZATION = YES;
-				GCC_DEBUGGING_SYMBOLS = default;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_FAST_MATH = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
-				GCC_OPTIMIZATION_LEVEL = 3;
-				GCC_PFE_FILE_C_DIALECTS = "c++";
-				GCC_STRICT_ALIASING = YES;
-				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
-				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
-				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
-				GCC_WARN_MISSING_PARENTHESES = YES;
-				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
-				GCC_WARN_SHADOW = YES;
-				GCC_WARN_SIGN_COMPARE = YES;
-				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNKNOWN_PRAGMAS = NO;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_LABEL = YES;
-				GCC_WARN_UNUSED_PARAMETER = NO;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					../../src,
-					../../src/API,
-				);
 				INFOPLIST_FILE = "MushPie-Info.plist";
-				INSTALL_PATH = "@executable_path/../Frameworks";
-				LIBRARY_SEARCH_PATHS = /usr/local/lib;
-				MACOSX_DEPLOYMENT_TARGET = 10.2;
-				OTHER_CFLAGS = "";
+				INSTALL_PATH = $MUSH_FRAMEWORK_INSTALL_PATH;
 				OTHER_LDFLAGS = (
 					"-seg1addr",
 					0x2b800000,
 				);
-				OTHER_REZFLAGS = "";
-				PRESERVE_DEAD_CODE_INITS_AND_TERMS = NO;
 				PRODUCT_NAME = MushPie;
-				REZ_EXECUTABLE = NO;
-				SECTORDER_FLAGS = "";
-				ZERO_LINK = NO;
+				USER_HEADER_SEARCH_PATHS = $MUSH_FRAMEWORK_HEADERS;
 			};
 			name = Deployment;
-		};
-		7A1961710899A34800B8B840 /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				FRAMEWORK_VERSION = A;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
-				GCC_WARN_UNKNOWN_PRAGMAS = NO;
-				INFOPLIST_FILE = "MushPie-Info.plist";
-				INSTALL_PATH = "@executable_path/../Frameworks";
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = (
-					"-seg1addr",
-					0x2b800000,
-				);
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = MushPie;
-				REZ_EXECUTABLE = NO;
-				SECTORDER_FLAGS = "";
-			};
-			name = Default;
 		};
 		7A1961730899A34800B8B840 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				DEBUGGING_SYMBOLS = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
-				GCC_ALTIVEC_EXTENSIONS = YES;
-				GCC_AUTO_VECTORIZATION = YES;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_MODEL_CPU = G4;
-				GCC_OPTIMIZATION_LEVEL = 1;
-				GCC_PFE_FILE_C_DIALECTS = "c++";
-				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = YES;
-				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
-				GCC_WARN_EFFECTIVE_CPLUSPLUS_VIOLATIONS = NO;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
-				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
-				GCC_WARN_MISSING_PARENTHESES = YES;
-				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
-				GCC_WARN_SHADOW = YES;
-				GCC_WARN_SIGN_COMPARE = YES;
-				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNKNOWN_PRAGMAS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_LABEL = YES;
-				GCC_WARN_UNUSED_VALUE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					../../src,
-					../../src/API,
-				);
 				INFOPLIST_FILE = "Mustl-Info.plist";
-				INSTALL_PATH = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = "";
-				OTHER_CFLAGS = "";
+				INSTALL_PATH = $MUSH_FRAMEWORK_INSTALL_PATH;
 				OTHER_LDFLAGS = (
 					"-seg1addr",
 					0x2c000000,
 				);
-				OTHER_REZFLAGS = "";
 				PRODUCT_NAME = Mustl;
-				REZ_EXECUTABLE = NO;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = "-Wall";
-				ZERO_LINK = YES;
+				USER_HEADER_SEARCH_PATHS = $MUSH_FRAMEWORK_HEADERS;
 			};
 			name = Development;
-		};
-		7A1961740899A34800B8B840 /* Development 10.2.7 */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				DEBUGGING_SYMBOLS = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				FRAMEWORK_VERSION = A;
-				GCC_ALTIVEC_EXTENSIONS = YES;
-				GCC_AUTO_VECTORIZATION = YES;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_FAST_MATH = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_MODEL_CPU = "";
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PFE_FILE_C_DIALECTS = "c++";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_STRICT_ALIASING = YES;
-				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = YES;
-				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
-				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
-				GCC_WARN_MISSING_PARENTHESES = YES;
-				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
-				GCC_WARN_SHADOW = YES;
-				GCC_WARN_SIGN_COMPARE = YES;
-				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = NO;
-				GCC_WARN_UNKNOWN_PRAGMAS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_LABEL = YES;
-				GCC_WARN_UNUSED_VALUE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					../../src,
-					../../src/API,
-				);
-				INFOPLIST_FILE = "Mustl-Info.plist";
-				INSTALL_PATH = "@executable_path/../Frameworks";
-				LIBRARY_SEARCH_PATHS = /usr/local/lib;
-				LIBRARY_STYLE = DYNAMIC;
-				MACOSX_DEPLOYMENT_TARGET = 10.2;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = (
-					"-seg1addr",
-					0x2c000000,
-				);
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = Mustl;
-				REZ_EXECUTABLE = NO;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = "-Wall";
-				ZERO_LINK = NO;
-			};
-			name = "Development 10.2.7";
 		};
 		7A1961750899A34800B8B840 /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COPY_PHASE_STRIP = YES;
-				DEAD_CODE_STRIPPING = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
-				GCC_ALTIVEC_EXTENSIONS = YES;
-				GCC_AUTO_VECTORIZATION = YES;
-				GCC_DEBUGGING_SYMBOLS = default;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_FAST_MATH = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
-				GCC_OPTIMIZATION_LEVEL = 3;
-				GCC_PFE_FILE_C_DIALECTS = "c++";
-				GCC_STRICT_ALIASING = YES;
-				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
-				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
-				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
-				GCC_WARN_MISSING_PARENTHESES = YES;
-				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
-				GCC_WARN_SHADOW = YES;
-				GCC_WARN_SIGN_COMPARE = YES;
-				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNKNOWN_PRAGMAS = NO;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_LABEL = YES;
-				GCC_WARN_UNUSED_PARAMETER = NO;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					../../src,
-					../../src/API,
-				);
 				INFOPLIST_FILE = "Mustl-Info.plist";
-				INSTALL_PATH = "@executable_path/../Frameworks";
-				LIBRARY_SEARCH_PATHS = /usr/local/lib;
-				MACOSX_DEPLOYMENT_TARGET = 10.2;
-				OTHER_CFLAGS = "";
+				INSTALL_PATH = $MUSH_FRAMEWORK_INSTALL_PATH;
 				OTHER_LDFLAGS = (
 					"-seg1addr",
 					0x2c000000,
 				);
-				OTHER_REZFLAGS = "";
-				PRESERVE_DEAD_CODE_INITS_AND_TERMS = NO;
 				PRODUCT_NAME = Mustl;
-				REZ_EXECUTABLE = NO;
-				SECTORDER_FLAGS = "";
-				ZERO_LINK = NO;
+				USER_HEADER_SEARCH_PATHS = $MUSH_FRAMEWORK_HEADERS;
 			};
 			name = Deployment;
-		};
-		7A1961760899A34800B8B840 /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				FRAMEWORK_VERSION = A;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
-				GCC_WARN_UNKNOWN_PRAGMAS = NO;
-				INFOPLIST_FILE = "Mustl-Info.plist";
-				INSTALL_PATH = "@executable_path/../Frameworks";
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = (
-					"-seg1addr",
-					0x2c000000,
-				);
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = Mustl;
-				REZ_EXECUTABLE = NO;
-				SECTORDER_FLAGS = "";
-			};
-			name = Default;
-		};
-		7A1961780899A34800B8B840 /* Development */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				DEBUGGING_SYMBOLS = YES;
-				GCC_ALTIVEC_EXTENSIONS = YES;
-				GCC_AUTO_VECTORIZATION = YES;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_MODEL_CPU = G4;
-				GCC_OPTIMIZATION_LEVEL = 1;
-				GCC_PFE_FILE_C_DIALECTS = "c++";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ../../src/Mushcore/Mushcore.h;
-				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = YES;
-				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
-				GCC_WARN_EFFECTIVE_CPLUSPLUS_VIOLATIONS = NO;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
-				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
-				GCC_WARN_MISSING_PARENTHESES = YES;
-				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
-				GCC_WARN_SHADOW = YES;
-				GCC_WARN_SIGN_COMPARE = YES;
-				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNKNOWN_PRAGMAS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_LABEL = YES;
-				GCC_WARN_UNUSED_VALUE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					../../src,
-					../../src/API,
-				);
-				INFOPLIST_FILE = "Maurheen-Info.plist";
-				INSTALL_PATH = "$(USER_APPS_DIR)";
-				LIBRARY_SEARCH_PATHS = /usr/lib/gcc/darwin/3.3;
-				MACOSX_DEPLOYMENT_TARGET = "";
-				PRODUCT_NAME = Maurheen;
-				WARNING_CFLAGS = "-Wall";
-				ZERO_LINK = YES;
-			};
-			name = Development;
-		};
-		7A1961790899A34800B8B840 /* Development 10.2.7 */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				DEBUGGING_SYMBOLS = YES;
-				GCC_ALTIVEC_EXTENSIONS = YES;
-				GCC_AUTO_VECTORIZATION = YES;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_FAST_MATH = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_MODEL_CPU = "";
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PFE_FILE_C_DIALECTS = "c++";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ../../src/Mushcore/Mushcore.h;
-				GCC_STRICT_ALIASING = YES;
-				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = YES;
-				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
-				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
-				GCC_WARN_MISSING_PARENTHESES = YES;
-				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
-				GCC_WARN_SHADOW = YES;
-				GCC_WARN_SIGN_COMPARE = YES;
-				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = NO;
-				GCC_WARN_UNKNOWN_PRAGMAS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_LABEL = YES;
-				GCC_WARN_UNUSED_VALUE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					../../src,
-					../../src/API,
-				);
-				INFOPLIST_FILE = "Maurheen-Info.plist";
-				INSTALL_PATH = "$(USER_APPS_DIR)";
-				LIBRARY_SEARCH_PATHS = /usr/local/lib;
-				LIBRARY_STYLE = DYNAMIC;
-				MACOSX_DEPLOYMENT_TARGET = 10.2;
-				PRODUCT_NAME = Maurheen;
-				WARNING_CFLAGS = "-Wall";
-				ZERO_LINK = NO;
-			};
-			name = "Development 10.2.7";
-		};
-		7A19617A0899A34800B8B840 /* Deployment */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPY_PHASE_STRIP = YES;
-				DEAD_CODE_STRIPPING = NO;
-				GCC_ALTIVEC_EXTENSIONS = YES;
-				GCC_AUTO_VECTORIZATION = YES;
-				GCC_DEBUGGING_SYMBOLS = default;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_FAST_MATH = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
-				GCC_OPTIMIZATION_LEVEL = 3;
-				GCC_PFE_FILE_C_DIALECTS = "c++";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ../../src/Mushcore/Mushcore.h;
-				GCC_STRICT_ALIASING = YES;
-				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
-				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
-				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
-				GCC_WARN_MISSING_PARENTHESES = YES;
-				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
-				GCC_WARN_SHADOW = YES;
-				GCC_WARN_SIGN_COMPARE = YES;
-				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_LABEL = YES;
-				GCC_WARN_UNUSED_PARAMETER = NO;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					../../src,
-					../../src/API,
-				);
-				INFOPLIST_FILE = "Maurheen-Info.plist";
-				INSTALL_PATH = "$(USER_APPS_DIR)";
-				LIBRARY_SEARCH_PATHS = /usr/local/lib;
-				MACOSX_DEPLOYMENT_TARGET = 10.2;
-				PRESERVE_DEAD_CODE_INITS_AND_TERMS = NO;
-				PRODUCT_NAME = Maurheen;
-				ZERO_LINK = NO;
-			};
-			name = Deployment;
-		};
-		7A19617B0899A34800B8B840 /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ../../src/Mushcore/Mushcore.h;
-				HEADER_SEARCH_PATHS = (
-					../../src,
-					../../src/API,
-				);
-				INFOPLIST_FILE = "Maurheen-Info.plist";
-				INSTALL_PATH = "$(USER_APPS_DIR)";
-				LIBRARY_SEARCH_PATHS = /usr/lib/gcc/darwin/3.3;
-				PRODUCT_NAME = Maurheen;
-			};
-			name = Default;
 		};
 		7A19617D0899A34800B8B840 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				DEBUGGING_SYMBOLS = YES;
-				GCC_ALTIVEC_EXTENSIONS = YES;
-				GCC_AUTO_VECTORIZATION = YES;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_MODEL_CPU = G4;
-				GCC_OPTIMIZATION_LEVEL = 1;
-				GCC_PFE_FILE_C_DIALECTS = "c++";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ../../src/Mushcore/Mushcore.h;
-				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = YES;
-				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
-				GCC_WARN_EFFECTIVE_CPLUSPLUS_VIOLATIONS = NO;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
-				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
-				GCC_WARN_MISSING_PARENTHESES = YES;
-				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
-				GCC_WARN_SHADOW = YES;
-				GCC_WARN_SIGN_COMPARE = YES;
-				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNKNOWN_PRAGMAS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_LABEL = YES;
-				GCC_WARN_UNUSED_VALUE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					../../src,
-					../../src/API,
-				);
+				GCC_PREFIX_HEADER = "$(MUSH_APP_PREFIX_HEADER)";
 				INFOPLIST_FILE = All.Info.plist;
-				INSTALL_PATH = "$(USER_APPS_DIR)";
-				LIBRARY_SEARCH_PATHS = /usr/lib/gcc/darwin/3.3;
-				MACOSX_DEPLOYMENT_TARGET = "";
-				PRODUCT_NAME = ic2;
-				WARNING_CFLAGS = "-Wall";
-				ZERO_LINK = YES;
+				INSTALL_PATH = "$(MUSH_APP_INSTALL_PATH)";
+				PRODUCT_NAME = All;
+				USER_HEADER_SEARCH_PATHS = "$(MUSH_APP_HEADERS)";
 			};
 			name = Development;
-		};
-		7A19617E0899A34800B8B840 /* Development 10.2.7 */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				DEBUGGING_SYMBOLS = YES;
-				GCC_ALTIVEC_EXTENSIONS = YES;
-				GCC_AUTO_VECTORIZATION = YES;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_FAST_MATH = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_MODEL_CPU = "";
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PFE_FILE_C_DIALECTS = "c++";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ../../src/Mushcore/Mushcore.h;
-				GCC_STRICT_ALIASING = YES;
-				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = YES;
-				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
-				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
-				GCC_WARN_MISSING_PARENTHESES = YES;
-				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
-				GCC_WARN_SHADOW = YES;
-				GCC_WARN_SIGN_COMPARE = YES;
-				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = NO;
-				GCC_WARN_UNKNOWN_PRAGMAS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_LABEL = YES;
-				GCC_WARN_UNUSED_VALUE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					../../src,
-					../../src/API,
-				);
-				INFOPLIST_FILE = All.Info.plist;
-				INSTALL_PATH = "$(USER_APPS_DIR)";
-				LIBRARY_SEARCH_PATHS = /usr/local/lib;
-				LIBRARY_STYLE = DYNAMIC;
-				MACOSX_DEPLOYMENT_TARGET = 10.2;
-				PRODUCT_NAME = ic2;
-				WARNING_CFLAGS = "-Wall";
-				ZERO_LINK = NO;
-			};
-			name = "Development 10.2.7";
 		};
 		7A19617F0899A34800B8B840 /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COPY_PHASE_STRIP = YES;
-				DEAD_CODE_STRIPPING = NO;
-				GCC_ALTIVEC_EXTENSIONS = YES;
-				GCC_AUTO_VECTORIZATION = YES;
-				GCC_DEBUGGING_SYMBOLS = default;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_FAST_MATH = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
-				GCC_OPTIMIZATION_LEVEL = 3;
-				GCC_PFE_FILE_C_DIALECTS = "c++";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ../../src/Mushcore/Mushcore.h;
-				GCC_STRICT_ALIASING = YES;
-				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
-				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
-				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
-				GCC_WARN_MISSING_PARENTHESES = YES;
-				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
-				GCC_WARN_SHADOW = YES;
-				GCC_WARN_SIGN_COMPARE = YES;
-				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_LABEL = YES;
-				GCC_WARN_UNUSED_PARAMETER = NO;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					../../src,
-					../../src/API,
-				);
+				GCC_PREFIX_HEADER = "$(MUSH_APP_PREFIX_HEADER)";
 				INFOPLIST_FILE = All.Info.plist;
-				INSTALL_PATH = "$(USER_APPS_DIR)";
-				LIBRARY_SEARCH_PATHS = /usr/local/lib;
-				MACOSX_DEPLOYMENT_TARGET = 10.2;
-				PRESERVE_DEAD_CODE_INITS_AND_TERMS = NO;
-				PRODUCT_NAME = ic2;
-				ZERO_LINK = NO;
+				INSTALL_PATH = "$(MUSH_APP_INSTALL_PATH)";
+				PRODUCT_NAME = All;
+				USER_HEADER_SEARCH_PATHS = "$(MUSH_APP_HEADERS)";
 			};
 			name = Deployment;
-		};
-		7A1961800899A34800B8B840 /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ../../src/Mushcore/Mushcore.h;
-				HEADER_SEARCH_PATHS = (
-					../../src,
-					../../src/API,
-				);
-				INFOPLIST_FILE = All.Info.plist;
-				INSTALL_PATH = "$(USER_APPS_DIR)";
-				LIBRARY_SEARCH_PATHS = /usr/lib/gcc/darwin/3.3;
-				PRODUCT_NAME = ic2;
-			};
-			name = Default;
 		};
 		7A1961820899A34800B8B840 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				DEAD_CODE_STRIPPING = YES;
-				DEBUGGING_SYMBOLS = YES;
-				DSTROOT = "";
-				GCC_ALTIVEC_EXTENSIONS = YES;
-				GCC_AUTO_VECTORIZATION = YES;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_MODEL_CPU = G4;
-				GCC_OPTIMIZATION_LEVEL = 1;
-				GCC_PFE_FILE_C_DIALECTS = "c++";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ../../src/Mushcore/Mushcore.h;
-				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = YES;
-				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
-				GCC_WARN_EFFECTIVE_CPLUSPLUS_VIOLATIONS = NO;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
-				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
-				GCC_WARN_MISSING_PARENTHESES = YES;
-				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
-				GCC_WARN_SHADOW = YES;
-				GCC_WARN_SIGN_COMPARE = YES;
-				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNKNOWN_PRAGMAS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_LABEL = YES;
-				GCC_WARN_UNUSED_VALUE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					../../src,
-					../../src/API,
-				);
+				GCC_PREFIX_HEADER = "$(MUSH_APP_PREFIX_HEADER)";
 				INFOPLIST_FILE = "/Users/southa/core-app/macosx/project/TesseractTrainer.plist";
-				INSTALL_PATH = "$(USER_APPS_DIR)";
-				LIBRARY_SEARCH_PATHS = /usr/lib/gcc/darwin/3.3;
-				MACOSX_DEPLOYMENT_TARGET = "";
+				INSTALL_PATH = "$(MUSH_APP_INSTALL_PATH)";
 				PRODUCT_NAME = "Tesseract Trainer";
-				WARNING_CFLAGS = "-Wall";
-				ZERO_LINK = YES;
+				USER_HEADER_SEARCH_PATHS = $MUSH_APP_HEADERS;
 			};
 			name = Development;
-		};
-		7A1961830899A34800B8B840 /* Development 10.2.7 */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				DEAD_CODE_STRIPPING = YES;
-				DEBUGGING_SYMBOLS = YES;
-				DSTROOT = "";
-				GCC_ALTIVEC_EXTENSIONS = YES;
-				GCC_AUTO_VECTORIZATION = YES;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_FAST_MATH = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_MODEL_CPU = "";
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PFE_FILE_C_DIALECTS = "c++";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ../../src/Mushcore/Mushcore.h;
-				GCC_STRICT_ALIASING = YES;
-				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = YES;
-				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
-				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
-				GCC_WARN_MISSING_PARENTHESES = YES;
-				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
-				GCC_WARN_SHADOW = YES;
-				GCC_WARN_SIGN_COMPARE = YES;
-				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = NO;
-				GCC_WARN_UNKNOWN_PRAGMAS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_LABEL = YES;
-				GCC_WARN_UNUSED_VALUE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					../../src,
-					../../src/API,
-				);
-				INFOPLIST_FILE = "/Users/southa/core-app/macosx/project/TesseractTrainer.plist";
-				INSTALL_PATH = "$(USER_APPS_DIR)";
-				LIBRARY_SEARCH_PATHS = /usr/local/lib;
-				LIBRARY_STYLE = DYNAMIC;
-				MACOSX_DEPLOYMENT_TARGET = 10.2;
-				PRODUCT_NAME = "Tesseract Trainer";
-				WARNING_CFLAGS = "-Wall";
-				ZERO_LINK = NO;
-			};
-			name = "Development 10.2.7";
 		};
 		7A1961840899A34800B8B840 /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COPY_PHASE_STRIP = YES;
-				DEAD_CODE_STRIPPING = NO;
-				DSTROOT = "";
-				GCC_ALTIVEC_EXTENSIONS = YES;
-				GCC_AUTO_VECTORIZATION = YES;
-				GCC_DEBUGGING_SYMBOLS = default;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_FAST_MATH = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
-				GCC_OPTIMIZATION_LEVEL = 3;
-				GCC_PFE_FILE_C_DIALECTS = "c++";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ../../src/Mushcore/Mushcore.h;
-				GCC_STRICT_ALIASING = YES;
-				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
-				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
-				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
-				GCC_WARN_MISSING_PARENTHESES = YES;
-				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
-				GCC_WARN_SHADOW = YES;
-				GCC_WARN_SIGN_COMPARE = YES;
-				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_LABEL = YES;
-				GCC_WARN_UNUSED_PARAMETER = NO;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					../../src,
-					../../src/API,
-				);
+				GCC_PREFIX_HEADER = "$(MUSH_APP_PREFIX_HEADER)";
 				INFOPLIST_FILE = "/Users/southa/core-app/macosx/project/TesseractTrainer.plist";
-				INSTALL_PATH = "$(USER_APPS_DIR)";
-				LIBRARY_SEARCH_PATHS = /usr/local/lib;
-				MACOSX_DEPLOYMENT_TARGET = 10.2;
-				PRESERVE_DEAD_CODE_INITS_AND_TERMS = NO;
+				INSTALL_PATH = "$(MUSH_APP_INSTALL_PATH)";
 				PRODUCT_NAME = "Tesseract Trainer";
-				ZERO_LINK = NO;
+				USER_HEADER_SEARCH_PATHS = $MUSH_APP_HEADERS;
 			};
 			name = Deployment;
-		};
-		7A1961850899A34800B8B840 /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				DEAD_CODE_STRIPPING = YES;
-				DSTROOT = "";
-				GCC_ALTIVEC_EXTENSIONS = YES;
-				GCC_OPTIMIZATION_LEVEL = 1;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ../../src/Mushcore/Mushcore.h;
-				HEADER_SEARCH_PATHS = (
-					../../src,
-					../../src/API,
-				);
-				INFOPLIST_FILE = "/Users/southa/core-app/macosx/project/TesseractTrainer.plist";
-				INSTALL_PATH = "$(USER_APPS_DIR)";
-				LIBRARY_SEARCH_PATHS = /usr/lib/gcc/darwin/3.3;
-				PRODUCT_NAME = "Tesseract Trainer";
-			};
-			name = Default;
 		};
 		7A1961870899A34800B8B840 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				DEBUGGING_SYMBOLS = YES;
-				GCC_ALTIVEC_EXTENSIONS = YES;
-				GCC_AUTO_VECTORIZATION = YES;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_MODEL_CPU = G4;
-				GCC_OPTIMIZATION_LEVEL = 1;
-				GCC_PFE_FILE_C_DIALECTS = "c++";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = ../../src/API/mushMushcore.h;
-				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = YES;
-				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
-				GCC_WARN_EFFECTIVE_CPLUSPLUS_VIOLATIONS = NO;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
-				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
-				GCC_WARN_MISSING_PARENTHESES = YES;
-				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
-				GCC_WARN_SHADOW = YES;
-				GCC_WARN_SIGN_COMPARE = YES;
-				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNKNOWN_PRAGMAS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_LABEL = YES;
-				GCC_WARN_UNUSED_VALUE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					../../src,
-					../../src/API,
-				);
 				INFOPLIST_FILE = "TestMushcore-Info.plist";
-				INSTALL_PATH = "$(USER_APPS_DIR)";
-				MACOSX_DEPLOYMENT_TARGET = "";
-				OTHER_CFLAGS = "";
-				OTHER_REZFLAGS = "";
 				PRODUCT_NAME = TestMushcore;
-				REZ_EXECUTABLE = NO;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = "-Wall";
-				ZERO_LINK = YES;
+				USER_HEADER_SEARCH_PATHS = $MUSH_APP_HEADERS;
 			};
 			name = Development;
-		};
-		7A1961880899A34800B8B840 /* Development 10.2.7 */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				DEBUGGING_SYMBOLS = YES;
-				GCC_ALTIVEC_EXTENSIONS = YES;
-				GCC_AUTO_VECTORIZATION = YES;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_FAST_MATH = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_MODEL_CPU = "";
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PFE_FILE_C_DIALECTS = "c++";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ../../src/API/mushMushcore.h;
-				GCC_STRICT_ALIASING = YES;
-				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = YES;
-				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
-				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
-				GCC_WARN_MISSING_PARENTHESES = YES;
-				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
-				GCC_WARN_SHADOW = YES;
-				GCC_WARN_SIGN_COMPARE = YES;
-				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = NO;
-				GCC_WARN_UNKNOWN_PRAGMAS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_LABEL = YES;
-				GCC_WARN_UNUSED_VALUE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					../../src,
-					../../src/API,
-				);
-				INFOPLIST_FILE = "TestMushcore-Info.plist";
-				INSTALL_PATH = "$(USER_APPS_DIR)";
-				LIBRARY_SEARCH_PATHS = /usr/local/lib;
-				LIBRARY_STYLE = DYNAMIC;
-				MACOSX_DEPLOYMENT_TARGET = 10.2;
-				OTHER_CFLAGS = "";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = TestMushcore;
-				REZ_EXECUTABLE = NO;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = "-Wall";
-				ZERO_LINK = NO;
-			};
-			name = "Development 10.2.7";
 		};
 		7A1961890899A34800B8B840 /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COPY_PHASE_STRIP = YES;
-				DEAD_CODE_STRIPPING = NO;
-				GCC_ALTIVEC_EXTENSIONS = YES;
-				GCC_AUTO_VECTORIZATION = YES;
-				GCC_DEBUGGING_SYMBOLS = default;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_FAST_MATH = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
-				GCC_OPTIMIZATION_LEVEL = 3;
-				GCC_PFE_FILE_C_DIALECTS = "c++";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = ../../src/API/mushMushcore.h;
-				GCC_STRICT_ALIASING = YES;
-				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
-				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
-				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
-				GCC_WARN_MISSING_PARENTHESES = YES;
-				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
-				GCC_WARN_SHADOW = YES;
-				GCC_WARN_SIGN_COMPARE = YES;
-				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNKNOWN_PRAGMAS = NO;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_LABEL = YES;
-				GCC_WARN_UNUSED_PARAMETER = NO;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					../../src,
-					../../src/API,
-				);
 				INFOPLIST_FILE = "TestMushcore-Info.plist";
-				INSTALL_PATH = "$(USER_APPS_DIR)";
-				LIBRARY_SEARCH_PATHS = /usr/local/lib;
-				MACOSX_DEPLOYMENT_TARGET = 10.2;
-				OTHER_CFLAGS = "";
-				OTHER_REZFLAGS = "";
-				PRESERVE_DEAD_CODE_INITS_AND_TERMS = NO;
 				PRODUCT_NAME = TestMushcore;
-				REZ_EXECUTABLE = NO;
-				SECTORDER_FLAGS = "";
-				ZERO_LINK = NO;
+				USER_HEADER_SEARCH_PATHS = $MUSH_APP_HEADERS;
 			};
 			name = Deployment;
-		};
-		7A19618A0899A34800B8B840 /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ../../src/API/mushMushcore.h;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
-				GCC_WARN_UNKNOWN_PRAGMAS = NO;
-				INFOPLIST_FILE = "TestMushcore-Info.plist";
-				INSTALL_PATH = "$(USER_APPS_DIR)";
-				OTHER_CFLAGS = "";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = TestMushcore;
-				REZ_EXECUTABLE = NO;
-				SECTORDER_FLAGS = "";
-			};
-			name = Default;
 		};
 		7A19618C0899A34800B8B840 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				DEBUGGING_SYMBOLS = YES;
-				GCC_ALTIVEC_EXTENSIONS = YES;
-				GCC_AUTO_VECTORIZATION = YES;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_MODEL_CPU = G4;
-				GCC_OPTIMIZATION_LEVEL = 1;
-				GCC_PFE_FILE_C_DIALECTS = "c++";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ../../src/Mushcore/Mushcore.h;
-				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = YES;
-				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
-				GCC_WARN_EFFECTIVE_CPLUSPLUS_VIOLATIONS = NO;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
-				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
-				GCC_WARN_MISSING_PARENTHESES = YES;
-				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
-				GCC_WARN_SHADOW = YES;
-				GCC_WARN_SIGN_COMPARE = YES;
-				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNKNOWN_PRAGMAS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_LABEL = YES;
-				GCC_WARN_UNUSED_VALUE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					../../src,
-					../../src/API,
-				);
 				INFOPLIST_FILE = "TestMushMesh-Info.plist";
-				INSTALL_PATH = "$(USER_APPS_DIR)";
-				MACOSX_DEPLOYMENT_TARGET = "";
-				OTHER_CFLAGS = "";
-				OTHER_REZFLAGS = "";
+				INSTALL_PATH = "$(MUSH_APP_INSTALL_PATH)";
 				PRODUCT_NAME = TestMushMesh;
-				REZ_EXECUTABLE = NO;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = "-Wall";
-				ZERO_LINK = YES;
+				USER_HEADER_SEARCH_PATHS = $MUSH_APP_HEADERS;
 			};
 			name = Development;
-		};
-		7A19618D0899A34800B8B840 /* Development 10.2.7 */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				DEBUGGING_SYMBOLS = YES;
-				GCC_ALTIVEC_EXTENSIONS = YES;
-				GCC_AUTO_VECTORIZATION = YES;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_FAST_MATH = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_MODEL_CPU = "";
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PFE_FILE_C_DIALECTS = "c++";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ../../src/Mushcore/Mushcore.h;
-				GCC_STRICT_ALIASING = YES;
-				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = YES;
-				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
-				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
-				GCC_WARN_MISSING_PARENTHESES = YES;
-				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
-				GCC_WARN_SHADOW = YES;
-				GCC_WARN_SIGN_COMPARE = YES;
-				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = NO;
-				GCC_WARN_UNKNOWN_PRAGMAS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_LABEL = YES;
-				GCC_WARN_UNUSED_VALUE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					../../src,
-					../../src/API,
-				);
-				INFOPLIST_FILE = "TestMushMesh-Info.plist";
-				INSTALL_PATH = "$(USER_APPS_DIR)";
-				LIBRARY_SEARCH_PATHS = /usr/local/lib;
-				LIBRARY_STYLE = DYNAMIC;
-				MACOSX_DEPLOYMENT_TARGET = 10.2;
-				OTHER_CFLAGS = "";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = TestMushMesh;
-				REZ_EXECUTABLE = NO;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = "-Wall";
-				ZERO_LINK = NO;
-			};
-			name = "Development 10.2.7";
 		};
 		7A19618E0899A34800B8B840 /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COPY_PHASE_STRIP = YES;
-				DEAD_CODE_STRIPPING = NO;
-				GCC_ALTIVEC_EXTENSIONS = YES;
-				GCC_AUTO_VECTORIZATION = YES;
-				GCC_DEBUGGING_SYMBOLS = default;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_FAST_MATH = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
-				GCC_OPTIMIZATION_LEVEL = 3;
-				GCC_PFE_FILE_C_DIALECTS = "c++";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ../../src/Mushcore/Mushcore.h;
-				GCC_STRICT_ALIASING = YES;
-				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
-				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
-				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
-				GCC_WARN_MISSING_PARENTHESES = YES;
-				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
-				GCC_WARN_SHADOW = YES;
-				GCC_WARN_SIGN_COMPARE = YES;
-				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNKNOWN_PRAGMAS = NO;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_LABEL = YES;
-				GCC_WARN_UNUSED_PARAMETER = NO;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					../../src,
-					../../src/API,
-				);
 				INFOPLIST_FILE = "TestMushMesh-Info.plist";
-				INSTALL_PATH = "$(USER_APPS_DIR)";
-				LIBRARY_SEARCH_PATHS = /usr/local/lib;
-				MACOSX_DEPLOYMENT_TARGET = 10.2;
-				OTHER_CFLAGS = "";
-				OTHER_REZFLAGS = "";
-				PRESERVE_DEAD_CODE_INITS_AND_TERMS = NO;
+				INSTALL_PATH = "$(MUSH_APP_INSTALL_PATH)";
 				PRODUCT_NAME = TestMushMesh;
-				REZ_EXECUTABLE = NO;
-				SECTORDER_FLAGS = "";
-				ZERO_LINK = NO;
+				USER_HEADER_SEARCH_PATHS = $MUSH_APP_HEADERS;
 			};
 			name = Deployment;
-		};
-		7A19618F0899A34800B8B840 /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ../../src/Mushcore/Mushcore.h;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
-				GCC_WARN_UNKNOWN_PRAGMAS = NO;
-				INFOPLIST_FILE = "TestMushMesh-Info.plist";
-				INSTALL_PATH = "$(USER_APPS_DIR)";
-				OTHER_CFLAGS = "";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = TestMushMesh;
-				REZ_EXECUTABLE = NO;
-				SECTORDER_FLAGS = "";
-			};
-			name = Default;
 		};
 		7A1961910899A34800B8B840 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				DEBUGGING_SYMBOLS = YES;
-				GCC_ALTIVEC_EXTENSIONS = YES;
-				GCC_AUTO_VECTORIZATION = YES;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_MODEL_CPU = G4;
-				GCC_OPTIMIZATION_LEVEL = 1;
-				GCC_PFE_FILE_C_DIALECTS = "c++";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ../../src/Mushcore/Mushcore.h;
-				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = YES;
-				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
-				GCC_WARN_EFFECTIVE_CPLUSPLUS_VIOLATIONS = NO;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
-				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
-				GCC_WARN_MISSING_PARENTHESES = YES;
-				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
-				GCC_WARN_SHADOW = YES;
-				GCC_WARN_SIGN_COMPARE = YES;
-				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNKNOWN_PRAGMAS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_LABEL = YES;
-				GCC_WARN_UNUSED_VALUE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					../../src,
-					../../src/API,
-				);
 				INFOPLIST_FILE = "TestMushPie-Info.plist";
-				INSTALL_PATH = "$(USER_APPS_DIR)";
-				MACOSX_DEPLOYMENT_TARGET = "";
-				OTHER_CFLAGS = "";
-				OTHER_REZFLAGS = "";
+				INSTALL_PATH = "$(MUSH_APP_INSTALL_PATH)";
 				PRODUCT_NAME = TestMushPie;
-				REZ_EXECUTABLE = NO;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = "-Wall";
-				ZERO_LINK = YES;
+				USER_HEADER_SEARCH_PATHS = "$(MUSH_APP_HEADERS)";
 			};
 			name = Development;
-		};
-		7A1961920899A34800B8B840 /* Development 10.2.7 */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				DEBUGGING_SYMBOLS = YES;
-				GCC_ALTIVEC_EXTENSIONS = YES;
-				GCC_AUTO_VECTORIZATION = YES;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_FAST_MATH = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_MODEL_CPU = "";
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PFE_FILE_C_DIALECTS = "c++";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ../../src/Mushcore/Mushcore.h;
-				GCC_STRICT_ALIASING = YES;
-				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = YES;
-				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
-				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
-				GCC_WARN_MISSING_PARENTHESES = YES;
-				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
-				GCC_WARN_SHADOW = YES;
-				GCC_WARN_SIGN_COMPARE = YES;
-				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = NO;
-				GCC_WARN_UNKNOWN_PRAGMAS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_LABEL = YES;
-				GCC_WARN_UNUSED_VALUE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					../../src,
-					../../src/API,
-				);
-				INFOPLIST_FILE = "TestMushPie-Info.plist";
-				INSTALL_PATH = "$(USER_APPS_DIR)";
-				LIBRARY_SEARCH_PATHS = /usr/local/lib;
-				LIBRARY_STYLE = DYNAMIC;
-				MACOSX_DEPLOYMENT_TARGET = 10.2;
-				OTHER_CFLAGS = "";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = TestMushPie;
-				REZ_EXECUTABLE = NO;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = "-Wall";
-				ZERO_LINK = NO;
-			};
-			name = "Development 10.2.7";
 		};
 		7A1961930899A34800B8B840 /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COPY_PHASE_STRIP = YES;
-				DEAD_CODE_STRIPPING = NO;
-				GCC_ALTIVEC_EXTENSIONS = YES;
-				GCC_AUTO_VECTORIZATION = YES;
-				GCC_DEBUGGING_SYMBOLS = default;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_FAST_MATH = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
-				GCC_OPTIMIZATION_LEVEL = 3;
-				GCC_PFE_FILE_C_DIALECTS = "c++";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ../../src/Mushcore/Mushcore.h;
-				GCC_STRICT_ALIASING = YES;
-				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
-				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
-				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
-				GCC_WARN_MISSING_PARENTHESES = YES;
-				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
-				GCC_WARN_SHADOW = YES;
-				GCC_WARN_SIGN_COMPARE = YES;
-				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_LABEL = YES;
-				GCC_WARN_UNUSED_PARAMETER = NO;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					../../src,
-					../../src/API,
-				);
 				INFOPLIST_FILE = "TestMushPie-Info.plist";
-				INSTALL_PATH = "$(USER_APPS_DIR)";
-				LIBRARY_SEARCH_PATHS = /usr/local/lib;
-				MACOSX_DEPLOYMENT_TARGET = 10.2;
-				OTHER_CFLAGS = "";
-				OTHER_REZFLAGS = "";
-				PRESERVE_DEAD_CODE_INITS_AND_TERMS = NO;
+				INSTALL_PATH = "$(MUSH_APP_INSTALL_PATH)";
 				PRODUCT_NAME = TestMushPie;
-				REZ_EXECUTABLE = NO;
-				SECTORDER_FLAGS = "";
-				ZERO_LINK = NO;
+				USER_HEADER_SEARCH_PATHS = "$(MUSH_APP_HEADERS)";
 			};
 			name = Deployment;
-		};
-		7A1961940899A34800B8B840 /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ../../src/Mushcore/Mushcore.h;
-				INFOPLIST_FILE = "TestMushPie-Info.plist";
-				INSTALL_PATH = "$(USER_APPS_DIR)";
-				OTHER_CFLAGS = "";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = TestMushPie;
-				REZ_EXECUTABLE = NO;
-				SECTORDER_FLAGS = "";
-			};
-			name = Default;
 		};
 		7A1961960899A34800B8B840 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				DEBUGGING_SYMBOLS = YES;
-				GCC_ALTIVEC_EXTENSIONS = YES;
-				GCC_AUTO_VECTORIZATION = YES;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_MODEL_CPU = G4;
-				GCC_OPTIMIZATION_LEVEL = 1;
-				GCC_PFE_FILE_C_DIALECTS = "c++";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ../../src/Mushcore/Mushcore.h;
-				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = YES;
-				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
-				GCC_WARN_EFFECTIVE_CPLUSPLUS_VIOLATIONS = NO;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
-				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
-				GCC_WARN_MISSING_PARENTHESES = YES;
-				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
-				GCC_WARN_SHADOW = YES;
-				GCC_WARN_SIGN_COMPARE = YES;
-				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNKNOWN_PRAGMAS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_LABEL = YES;
-				GCC_WARN_UNUSED_VALUE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					../../src,
-					../../src/API,
-				);
 				INFOPLIST_FILE = "TestMustl-Info.plist";
-				INSTALL_PATH = "$(USER_APPS_DIR)";
-				MACOSX_DEPLOYMENT_TARGET = "";
-				OTHER_CFLAGS = "";
-				OTHER_REZFLAGS = "";
+				INSTALL_PATH = "$(MUSH_APP_INSTALL_PATH)";
 				PRODUCT_NAME = TestMustl;
-				REZ_EXECUTABLE = NO;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = "-Wall";
-				ZERO_LINK = YES;
+				USER_HEADER_SEARCH_PATHS = "$(MUSH_APP_HEADERS)";
 			};
 			name = Development;
-		};
-		7A1961970899A34800B8B840 /* Development 10.2.7 */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				DEBUGGING_SYMBOLS = YES;
-				GCC_ALTIVEC_EXTENSIONS = YES;
-				GCC_AUTO_VECTORIZATION = YES;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_FAST_MATH = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_MODEL_CPU = "";
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PFE_FILE_C_DIALECTS = "c++";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ../../src/Mushcore/Mushcore.h;
-				GCC_STRICT_ALIASING = YES;
-				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = YES;
-				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
-				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
-				GCC_WARN_MISSING_PARENTHESES = YES;
-				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
-				GCC_WARN_SHADOW = YES;
-				GCC_WARN_SIGN_COMPARE = YES;
-				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = NO;
-				GCC_WARN_UNKNOWN_PRAGMAS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_LABEL = YES;
-				GCC_WARN_UNUSED_VALUE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					../../src,
-					../../src/API,
-				);
-				INFOPLIST_FILE = "TestMustl-Info.plist";
-				INSTALL_PATH = "$(USER_APPS_DIR)";
-				LIBRARY_SEARCH_PATHS = /usr/local/lib;
-				LIBRARY_STYLE = DYNAMIC;
-				MACOSX_DEPLOYMENT_TARGET = 10.2;
-				OTHER_CFLAGS = "";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = TestMustl;
-				REZ_EXECUTABLE = NO;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = "-Wall";
-				ZERO_LINK = NO;
-			};
-			name = "Development 10.2.7";
 		};
 		7A1961980899A34800B8B840 /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COPY_PHASE_STRIP = YES;
-				DEAD_CODE_STRIPPING = NO;
-				GCC_ALTIVEC_EXTENSIONS = YES;
-				GCC_AUTO_VECTORIZATION = YES;
-				GCC_DEBUGGING_SYMBOLS = default;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_FAST_MATH = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
-				GCC_OPTIMIZATION_LEVEL = 3;
-				GCC_PFE_FILE_C_DIALECTS = "c++";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ../../src/Mushcore/Mushcore.h;
-				GCC_STRICT_ALIASING = YES;
-				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
-				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
-				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
-				GCC_WARN_MISSING_PARENTHESES = YES;
-				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
-				GCC_WARN_SHADOW = YES;
-				GCC_WARN_SIGN_COMPARE = YES;
-				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_LABEL = YES;
-				GCC_WARN_UNUSED_PARAMETER = NO;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					../../src,
-					../../src/API,
-				);
 				INFOPLIST_FILE = "TestMustl-Info.plist";
-				INSTALL_PATH = "$(USER_APPS_DIR)";
-				LIBRARY_SEARCH_PATHS = /usr/local/lib;
-				MACOSX_DEPLOYMENT_TARGET = 10.2;
-				OTHER_CFLAGS = "";
-				OTHER_REZFLAGS = "";
-				PRESERVE_DEAD_CODE_INITS_AND_TERMS = NO;
+				INSTALL_PATH = "$(MUSH_APP_INSTALL_PATH)";
 				PRODUCT_NAME = TestMustl;
-				REZ_EXECUTABLE = NO;
-				SECTORDER_FLAGS = "";
-				ZERO_LINK = NO;
+				USER_HEADER_SEARCH_PATHS = "$(MUSH_APP_HEADERS)";
 			};
 			name = Deployment;
-		};
-		7A1961990899A34800B8B840 /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ../../src/Mushcore/Mushcore.h;
-				INFOPLIST_FILE = "TestMustl-Info.plist";
-				INSTALL_PATH = "$(USER_APPS_DIR)";
-				OTHER_CFLAGS = "";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = TestMustl;
-				REZ_EXECUTABLE = NO;
-				SECTORDER_FLAGS = "";
-			};
-			name = Default;
 		};
 		7A19619B0899A34800B8B840 /* Development */ = {
 			isa = XCBuildConfiguration;
@@ -12339,6 +9725,11 @@
 				GCC_WARN_UNUSED_PARAMETER = NO;
 				GCC_WARN_UNUSED_VALUE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				MUSH_APP_HEADERS = "../../src ../../src/API";
+				MUSH_APP_INSTALL_PATH = "@install_path";
+				MUSH_APP_PREFIX_HEADER = ../../src/API/mushAppPrefix.h;
+				MUSH_FRAMEWORK_HEADERS = "../../src ../../src/API";
+				MUSH_FRAMEWORK_INSTALL_PATH = "@executable_path/../Frameworks";
 				WARNING_CFLAGS = (
 					"-W",
 					"-Wall",
@@ -12346,224 +9737,61 @@
 			};
 			name = Development;
 		};
-		7A19619C0899A34800B8B840 /* Development 10.2.7 */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				GCC_OPTIMIZATION_LEVEL = 0;
-			};
-			name = "Development 10.2.7";
-		};
 		7A19619D0899A34800B8B840 /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PREPROCESSOR_DEFINITIONS = "NDEBUG=1";
+				MUSH_APP_HEADERS = "../../src ../../src/API";
+				MUSH_APP_INSTALL_PATH = "@install_path";
+				MUSH_APP_PREFIX_HEADER = ../../src/API/mushAppPrefix.h;
+				MUSH_FRAMEWORK_HEADERS = "../../src ../../src/API";
+				MUSH_FRAMEWORK_INSTALL_PATH = "@executable_path/../Frameworks";
 			};
 			name = Deployment;
-		};
-		7A19619E0899A34800B8B840 /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-			};
-			name = Default;
 		};
 		7AD1AB4909EC598E0059879A /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				DEBUGGING_SYMBOLS = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
-				GCC_ALTIVEC_EXTENSIONS = YES;
-				GCC_AUTO_VECTORIZATION = YES;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_MODEL_CPU = G4;
-				GCC_OPTIMIZATION_LEVEL = 1;
-				GCC_PFE_FILE_C_DIALECTS = "c++";
-				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = YES;
-				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
-				GCC_WARN_EFFECTIVE_CPLUSPLUS_VIOLATIONS = NO;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
-				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
-				GCC_WARN_MISSING_PARENTHESES = YES;
-				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
-				GCC_WARN_SHADOW = YES;
-				GCC_WARN_SIGN_COMPARE = YES;
-				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNKNOWN_PRAGMAS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_LABEL = YES;
-				GCC_WARN_UNUSED_VALUE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					../../src,
-					../../src/API,
-				);
 				INFOPLIST_FILE = "/Users/southa/core-app/macosx/project/MushRuby-Info.plist";
-				INSTALL_PATH = "@executable_path/../Frameworks";
-				LIBRARY_STYLE = DYNAMIC;
-				MACOSX_DEPLOYMENT_TARGET = "";
-				OTHER_CFLAGS = "-DRUBY_EXPORT";
+				INSTALL_PATH = $MUSH_FRAMEWORK_INSTALL_PATH;
+				MACH_O_TYPE = mh_dylib;
+				OTHER_CFLAGS = (
+					$OTHER_CFLAGS,
+					"-DRUBY_EXPORT",
+				);
 				OTHER_LDFLAGS = (
 					"-seg1addr",
 					0x2d000000,
 				);
-				OTHER_REZFLAGS = "";
 				PRODUCT_NAME = MushRuby;
-				REZ_EXECUTABLE = NO;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = "-Wall";
-				ZERO_LINK = YES;
+				USER_HEADER_SEARCH_PATHS = $MUSH_FRAMEWORKS_HEADERS;
 			};
 			name = Development;
-		};
-		7AD1AB4A09EC598E0059879A /* Development 10.2.7 */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				DEBUGGING_SYMBOLS = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				FRAMEWORK_VERSION = A;
-				GCC_ALTIVEC_EXTENSIONS = YES;
-				GCC_AUTO_VECTORIZATION = YES;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_FAST_MATH = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_MODEL_CPU = "";
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PFE_FILE_C_DIALECTS = "c++";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_STRICT_ALIASING = YES;
-				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = YES;
-				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
-				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
-				GCC_WARN_MISSING_PARENTHESES = YES;
-				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
-				GCC_WARN_SHADOW = YES;
-				GCC_WARN_SIGN_COMPARE = YES;
-				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = NO;
-				GCC_WARN_UNKNOWN_PRAGMAS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_LABEL = YES;
-				GCC_WARN_UNUSED_VALUE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					../../src,
-					../../src/API,
-				);
-				INFOPLIST_FILE = "/Users/southa/core-app/macosx/project/MushRuby-Info.plist";
-				INSTALL_PATH = "@executable_path/../Frameworks";
-				LIBRARY_SEARCH_PATHS = /usr/local/lib;
-				LIBRARY_STYLE = DYNAMIC;
-				MACOSX_DEPLOYMENT_TARGET = 10.2;
-				OTHER_CFLAGS = "-DRUBY_EXPORT";
-				OTHER_LDFLAGS = (
-					"-seg1addr",
-					0x2d000000,
-				);
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = MushRuby;
-				REZ_EXECUTABLE = NO;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = "-Wall";
-				ZERO_LINK = NO;
-			};
-			name = "Development 10.2.7";
 		};
 		7AD1AB4B09EC598E0059879A /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COPY_PHASE_STRIP = YES;
-				DEAD_CODE_STRIPPING = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
-				GCC_ALTIVEC_EXTENSIONS = YES;
-				GCC_AUTO_VECTORIZATION = YES;
-				GCC_DEBUGGING_SYMBOLS = default;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_FAST_MATH = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
-				GCC_OPTIMIZATION_LEVEL = 3;
-				GCC_PFE_FILE_C_DIALECTS = "c++";
-				GCC_STRICT_ALIASING = YES;
-				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
-				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
-				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
-				GCC_WARN_MISSING_PARENTHESES = YES;
-				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
-				GCC_WARN_SHADOW = YES;
-				GCC_WARN_SIGN_COMPARE = YES;
-				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNKNOWN_PRAGMAS = NO;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_LABEL = YES;
-				GCC_WARN_UNUSED_PARAMETER = NO;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					../../src,
-					../../src/API,
-				);
 				INFOPLIST_FILE = "/Users/southa/core-app/macosx/project/MushRuby-Info.plist";
-				INSTALL_PATH = "@executable_path/../Frameworks";
-				LIBRARY_SEARCH_PATHS = /usr/local/lib;
-				LIBRARY_STYLE = DYNAMIC;
-				MACOSX_DEPLOYMENT_TARGET = 10.2;
-				OTHER_CFLAGS = "-DRUBY_EXPORT";
+				INSTALL_PATH = $MUSH_FRAMEWORK_INSTALL_PATH;
+				MACH_O_TYPE = mh_dylib;
+				OTHER_CFLAGS = (
+					$OTHER_CFLAGS,
+					"-DRUBY_EXPORT",
+				);
 				OTHER_LDFLAGS = (
 					"-seg1addr",
 					0x2d000000,
 				);
-				OTHER_REZFLAGS = "";
-				PRESERVE_DEAD_CODE_INITS_AND_TERMS = NO;
 				PRODUCT_NAME = MushRuby;
-				REZ_EXECUTABLE = NO;
-				SECTORDER_FLAGS = "";
-				ZERO_LINK = NO;
+				USER_HEADER_SEARCH_PATHS = $MUSH_FRAMEWORKS_HEADERS;
 			};
 			name = Deployment;
-		};
-		7AD1AB4C09EC598E0059879A /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				FRAMEWORK_VERSION = A;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
-				GCC_WARN_UNKNOWN_PRAGMAS = NO;
-				INFOPLIST_FILE = "/Users/southa/core-app/macosx/project/MushRuby-Info.plist";
-				INSTALL_PATH = "@executable_path/../Frameworks";
-				LIBRARY_STYLE = DYNAMIC;
-				OTHER_CFLAGS = "-DRUBY_EXPORT";
-				OTHER_LDFLAGS = (
-					"-seg1addr",
-					0x2d000000,
-				);
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = MushRuby;
-				REZ_EXECUTABLE = NO;
-				SECTORDER_FLAGS = "";
-			};
-			name = Default;
 		};
 /* End XCBuildConfiguration section */
 
@@ -12572,155 +9800,118 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7A19615F0899A34800B8B840 /* Development */,
-				7A1961600899A34800B8B840 /* Development 10.2.7 */,
 				7A1961610899A34800B8B840 /* Deployment */,
-				7A1961620899A34800B8B840 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Development;
 		};
 		7A1961630899A34800B8B840 /* Build configuration list for PBXNativeTarget "MushMesh" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7A1961640899A34800B8B840 /* Development */,
-				7A1961650899A34800B8B840 /* Development 10.2.7 */,
 				7A1961660899A34800B8B840 /* Deployment */,
-				7A1961670899A34800B8B840 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Development;
 		};
 		7A1961680899A34800B8B840 /* Build configuration list for PBXNativeTarget "Adanaxis" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7A1961690899A34800B8B840 /* Development */,
-				7A19616A0899A34800B8B840 /* Development 10.2.7 */,
 				7A19616B0899A34800B8B840 /* Deployment */,
-				7A19616C0899A34800B8B840 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Development;
 		};
 		7A19616D0899A34800B8B840 /* Build configuration list for PBXNativeTarget "MushPie" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7A19616E0899A34800B8B840 /* Development */,
-				7A19616F0899A34800B8B840 /* Development 10.2.7 */,
 				7A1961700899A34800B8B840 /* Deployment */,
-				7A1961710899A34800B8B840 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Development;
 		};
 		7A1961720899A34800B8B840 /* Build configuration list for PBXNativeTarget "Mustl" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7A1961730899A34800B8B840 /* Development */,
-				7A1961740899A34800B8B840 /* Development 10.2.7 */,
 				7A1961750899A34800B8B840 /* Deployment */,
-				7A1961760899A34800B8B840 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
-		};
-		7A1961770899A34800B8B840 /* Build configuration list for PBXNativeTarget "Maurheen" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				7A1961780899A34800B8B840 /* Development */,
-				7A1961790899A34800B8B840 /* Development 10.2.7 */,
-				7A19617A0899A34800B8B840 /* Deployment */,
-				7A19617B0899A34800B8B840 /* Default */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Development;
 		};
 		7A19617C0899A34800B8B840 /* Build configuration list for PBXNativeTarget "All" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7A19617D0899A34800B8B840 /* Development */,
-				7A19617E0899A34800B8B840 /* Development 10.2.7 */,
 				7A19617F0899A34800B8B840 /* Deployment */,
-				7A1961800899A34800B8B840 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Development;
 		};
 		7A1961810899A34800B8B840 /* Build configuration list for PBXNativeTarget "Tesseract Trainer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7A1961820899A34800B8B840 /* Development */,
-				7A1961830899A34800B8B840 /* Development 10.2.7 */,
 				7A1961840899A34800B8B840 /* Deployment */,
-				7A1961850899A34800B8B840 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Development;
 		};
 		7A1961860899A34800B8B840 /* Build configuration list for PBXNativeTarget "TestMushcore" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7A1961870899A34800B8B840 /* Development */,
-				7A1961880899A34800B8B840 /* Development 10.2.7 */,
 				7A1961890899A34800B8B840 /* Deployment */,
-				7A19618A0899A34800B8B840 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Development;
 		};
 		7A19618B0899A34800B8B840 /* Build configuration list for PBXNativeTarget "TestMushMesh" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7A19618C0899A34800B8B840 /* Development */,
-				7A19618D0899A34800B8B840 /* Development 10.2.7 */,
 				7A19618E0899A34800B8B840 /* Deployment */,
-				7A19618F0899A34800B8B840 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Development;
 		};
 		7A1961900899A34800B8B840 /* Build configuration list for PBXNativeTarget "TestMushPie" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7A1961910899A34800B8B840 /* Development */,
-				7A1961920899A34800B8B840 /* Development 10.2.7 */,
 				7A1961930899A34800B8B840 /* Deployment */,
-				7A1961940899A34800B8B840 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Development;
 		};
 		7A1961950899A34800B8B840 /* Build configuration list for PBXNativeTarget "TestMustl" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7A1961960899A34800B8B840 /* Development */,
-				7A1961970899A34800B8B840 /* Development 10.2.7 */,
 				7A1961980899A34800B8B840 /* Deployment */,
-				7A1961990899A34800B8B840 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Development;
 		};
 		7A19619A0899A34800B8B840 /* Build configuration list for PBXProject "project" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7A19619B0899A34800B8B840 /* Development */,
-				7A19619C0899A34800B8B840 /* Development 10.2.7 */,
 				7A19619D0899A34800B8B840 /* Deployment */,
-				7A19619E0899A34800B8B840 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Development;
 		};
 		7AD1AB4809EC598E0059879A /* Build configuration list for PBXNativeTarget "MushRuby" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7AD1AB4909EC598E0059879A /* Development */,
-				7AD1AB4A09EC598E0059879A /* Development 10.2.7 */,
 				7AD1AB4B09EC598E0059879A /* Deployment */,
-				7AD1AB4C09EC598E0059879A /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Development;
 		};
 /* End XCConfigurationList section */
 	};
