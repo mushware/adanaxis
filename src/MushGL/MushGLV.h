@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } JUBCCFXz/CzIx64ACD8wjA
 /*
- * $Id: MushGLV.h,v 1.15 2005/09/05 17:14:23 southa Exp $
+ * $Id: MushGLV.h,v 1.16 2006/06/01 15:39:19 southa Exp $
  * $Log: MushGLV.h,v $
+ * Revision 1.16  2006/06/01 15:39:19  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.15  2005/09/05 17:14:23  southa
  * Solid rendering
  *
@@ -138,17 +141,19 @@ private:
     std::string m_version;
     std::string m_extensions;
     Mushware::U32 m_numTextureUnits; //:read
-    
+    bool m_hasS3TC; //:read
+	
     Mushware::U32 m_contextNum; //:read
     bool m_contextValid; //:read
     
 //%classPrototypes {
 public:
     const Mushware::U32& NumTextureUnits(void) const { return m_numTextureUnits; }
+    const bool& HasS3TC(void) const { return m_hasS3TC; }
     const Mushware::U32& ContextNum(void) const { return m_contextNum; }
     const bool& ContextValid(void) const { return m_contextValid; }
     virtual void AutoPrint(std::ostream& ioOut) const;
-//%classPrototypes } TkqaHEFK0g6oJ8tlRZ8mtA
+//%classPrototypes } xh5aSPuEY0XhVV6xBEZ5rQ
 };
 
 inline void

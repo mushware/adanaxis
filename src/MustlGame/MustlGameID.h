@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } YA9b7okKTgZGOl30g8KHlg
 /*
- * $Id: MustlGameID.h,v 1.5 2005/05/19 13:02:20 southa Exp $
+ * $Id: MustlGameID.h,v 1.6 2006/06/01 15:39:56 southa Exp $
  * $Log: MustlGameID.h,v $
+ * Revision 1.6  2006/06/01 15:39:56  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.5  2005/05/19 13:02:20  southa
  * Mac release work
  *
@@ -70,6 +73,7 @@
 #include "mushMedia.h"
 
 #include "MustlGameClient.h"
+#include "MustlID.h"
 
 class MustlGameID : public MustlID
 {

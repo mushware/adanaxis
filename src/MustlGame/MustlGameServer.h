@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } jTkRU3nq18BRvkqdj0FTpQ
 /*
- * $Id: MustlGameServer.h,v 1.5 2005/05/19 13:02:20 southa Exp $
+ * $Id: MustlGameServer.h,v 1.6 2006/06/01 15:39:57 southa Exp $
  * $Log: MustlGameServer.h,v $
+ * Revision 1.6  2006/06/01 15:39:57  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.5  2005/05/19 13:02:20  southa
  * Mac release work
  *
@@ -89,7 +92,9 @@
 
 #include "mushMushcore.h"
 
+#include "MustlAddress.h"
 #include "MustlGameBase.h"
+#include "MustlUtils.h"
 
 #include "mushMedia.h"
 

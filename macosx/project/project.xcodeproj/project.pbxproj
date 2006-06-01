@@ -98,6 +98,8 @@
 		7A532BD0089A30640090B78C /* MushcoreMaptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A532BC7089A29F90090B78C /* MushcoreMaptor.h */; };
 		7A532C08089A3CE80090B78C /* TestMushcoreMaptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A532C06089A3CE80090B78C /* TestMushcoreMaptor.h */; };
 		7A532C09089A3CE80090B78C /* TestMushcoreMaptor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A532C07089A3CE80090B78C /* TestMushcoreMaptor.cpp */; };
+		7A561DA20A2F592500E5EC7F /* MushGLTIFFUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A561DA00A2F592500E5EC7F /* MushGLTIFFUtil.h */; };
+		7A561DA30A2F592500E5EC7F /* MushGLTIFFUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A561DA10A2F592500E5EC7F /* MushGLTIFFUtil.cpp */; };
 		7A581111089A569B000A1C04 /* MushcoreMaptorRef.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A58110F089A569B000A1C04 /* MushcoreMaptorRef.h */; };
 		7A581112089A569B000A1C04 /* MushcoreMaptorRef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A581110089A569B000A1C04 /* MushcoreMaptorRef.cpp */; };
 		7A58111E089A5E32000A1C04 /* MushcoreMaptorIterator.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A58111C089A5E32000A1C04 /* MushcoreMaptorIterator.h */; };
@@ -2617,6 +2619,8 @@
 		7A532C06089A3CE80090B78C /* TestMushcoreMaptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestMushcoreMaptor.h; sourceTree = "<group>"; };
 		7A532C07089A3CE80090B78C /* TestMushcoreMaptor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestMushcoreMaptor.cpp; sourceTree = "<group>"; };
 		7A5353C705AE013000097C96 /* BaseMaterials.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = BaseMaterials.xml; sourceTree = "<group>"; };
+		7A561DA00A2F592500E5EC7F /* MushGLTIFFUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushGLTIFFUtil.h; sourceTree = "<group>"; };
+		7A561DA10A2F592500E5EC7F /* MushGLTIFFUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushGLTIFFUtil.cpp; sourceTree = "<group>"; };
 		7A58110F089A569B000A1C04 /* MushcoreMaptorRef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushcoreMaptorRef.h; sourceTree = "<group>"; };
 		7A581110089A569B000A1C04 /* MushcoreMaptorRef.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushcoreMaptorRef.cpp; sourceTree = "<group>"; };
 		7A58111C089A5E32000A1C04 /* MushcoreMaptorIterator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushcoreMaptorIterator.h; sourceTree = "<group>"; };
@@ -5041,6 +5045,8 @@
 				7AD2991D0876BE2300367963 /* MushGLState.h */,
 				7ACF140B08BE4BB700A78938 /* MushGLTexture.cpp */,
 				7ACF140A08BE4BB700A78938 /* MushGLTexture.h */,
+				7A561DA10A2F592500E5EC7F /* MushGLTIFFUtil.cpp */,
+				7A561DA00A2F592500E5EC7F /* MushGLTIFFUtil.h */,
 				7AD164CB087A891B0071C752 /* MushGLUtil.cpp */,
 				7AD164CA087A891B0071C752 /* MushGLUtil.h */,
 				7AC5D50A06FF502E00EF3984 /* MushGLV.cpp */,
@@ -6764,6 +6770,7 @@
 				7A1A52C808CDD24700CBC8EC /* MushSkinResolverPixelSource.h in Headers */,
 				7AD399BD09F6CC86000BE1C1 /* mushMushRuby.h in Headers */,
 				7ACED0DC09F8429700055E66 /* MushGLFont.h in Headers */,
+				7A561DA20A2F592500E5EC7F /* MushGLTIFFUtil.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8106,7 +8113,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "date\ncd ../..\n./prebuild.sh";
+			shellScript = "date\ncd ../..\n/bin/sh ./prebuild.sh";
 		};
 		7A63EAD805AA2E910051D708 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -9029,6 +9036,7 @@
 				7ACFD18B08CDBEC80062C6D9 /* MushSkinPixelSourceNoise.cpp in Sources */,
 				7A1A52C908CDD24700CBC8EC /* MushSkinResolverPixelSource.cpp in Sources */,
 				7ACED0DD09F8429700055E66 /* MushGLFont.cpp in Sources */,
+				7A561DA30A2F592500E5EC7F /* MushGLTIFFUtil.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

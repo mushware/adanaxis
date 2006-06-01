@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } N+HIsHryFimnlL1POdIW+A
 /*
- * $Id: MustlGameObject.h,v 1.4 2005/05/19 13:02:20 southa Exp $
+ * $Id: MustlGameObject.h,v 1.5 2006/06/01 15:39:56 southa Exp $
  * $Log: MustlGameObject.h,v $
+ * Revision 1.5  2006/06/01 15:39:56  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.4  2005/05/19 13:02:20  southa
  * Mac release work
  *
@@ -74,6 +77,8 @@
  * CreateObject message decoding
  *
  */
+
+#include "MustlAddress.h"
 
 #include "mushMushcore.h"
 

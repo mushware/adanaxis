@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } PMe9tcdK+gyaRddssClULw
 /*
- * $Id: GameCommandHandler.cpp,v 1.25 2005/05/19 13:02:01 southa Exp $
+ * $Id: GameCommandHandler.cpp,v 1.26 2006/06/01 15:38:56 southa Exp $
  * $Log: GameCommandHandler.cpp,v $
+ * Revision 1.26  2006/06/01 15:38:56  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.25  2005/05/19 13:02:01  southa
  * Mac release work
  *
@@ -136,7 +139,7 @@ GameCommandHandler::SetSavePath(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
         {
             try
             {
-                PlatformMiscUtils::MakeDirectory(dirPath);
+                PlatformMiscUtils::MakePrivateDirectory(dirPath);
                 MushcoreGlobalConfig::Sgl().Set("FIRST_RUN", 1);
 
                 found=true;
@@ -155,6 +158,52 @@ GameCommandHandler::SetSavePath(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
     else
     {
         cerr << "*** Couldn't find working save path - cannot save data" << endl;
+    }
+    return MushcoreScalar(0);
+}
+
+MushcoreScalar
+GameCommandHandler::SetCachePath(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
+{
+    U32 numParams=ioCommand.NumParams();
+    if (numParams < 2)
+    {
+        throw(MushcoreCommandFail("Usage: setcachepath(name,root,...)"));
+    }
+    string dirName;
+    string rootName;
+    ioCommand.PopParam(dirName);
+    bool found=false;
+    string dirPath="/nopath";
+    for (U32 i=0; !found && i+1<numParams; ++i)
+    {
+        ioCommand.PopParam(rootName);
+        dirPath=rootName+"/"+dirName;
+        if (PlatformMiscUtils::DirectoryExists(dirPath))
+        {
+            found=true;
+        }
+        else
+        {
+            try
+			{
+				PlatformMiscUtils::MakePublicDirectory(dirPath);
+				found=true;
+			}
+            catch (MushcoreCommandFail& e)
+			{
+					cerr << e.what() << endl;
+			}
+        }
+    }
+    if (found)
+    {
+        MushcoreGlobalConfig::Sgl().Set("GLOBAL_CACHE_PATH", dirPath);
+        cout << "Cache path is '" << dirPath << "'" << endl;
+    }
+    else
+    {
+        cerr << "*** Couldn't find working cache path - cannot cache data" << endl;
     }
     return MushcoreScalar(0);
 }
@@ -206,6 +255,7 @@ void
 GameCommandHandler::Install(void)
 {
     MushcoreInterpreter::Sgl().HandlerAdd("setsavepath", SetSavePath);
+    MushcoreInterpreter::Sgl().HandlerAdd("setcachepath", SetCachePath);
     MushcoreInterpreter::Sgl().HandlerAdd("updatecheck", UpdateCheck);
     MushcoreInterpreter::Sgl().HandlerAdd("readdirectorytomenu", ReadDirectoryToMenu);
 }

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } nsV76GW3owDjusQMHIpipw
 /*
- * $Id: PlatformMiscUtils.h,v 1.27 2005/05/19 13:02:21 southa Exp $
+ * $Id: PlatformMiscUtils.h,v 1.28 2006/06/01 15:39:57 southa Exp $
  * $Log: PlatformMiscUtils.h,v $
+ * Revision 1.28  2006/06/01 15:39:57  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.27  2005/05/19 13:02:21  southa
  * Mac release work
  *
@@ -97,7 +100,8 @@ public:
     static void TweakArgs(std::string& ioString);
     static void Initialise(void);
     static bool DirectoryExists(const std::string& inName);
-    static void MakeDirectory(const std::string& inName);
+    static void MakePrivateDirectory(const std::string& inName);
+    static void MakePublicDirectory(const std::string& inName);
     static void ReadDirectory(std::vector<std::string>& outFilenames, const std::string& inDirName);
     static void ErrorBox(const std::string& inStr);
     static void MinorErrorBox(const std::string& inStr);

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } BbWg6jDbaXWaD0ZL3bePAA
 /*
- * $Id: InfernalWebCommands.cpp,v 1.6 2005/05/19 13:02:06 southa Exp $
+ * $Id: InfernalWebCommands.cpp,v 1.7 2006/06/01 15:39:09 southa Exp $
  * $Log: InfernalWebCommands.cpp,v $
+ * Revision 1.7  2006/06/01 15:39:09  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.6  2005/05/19 13:02:06  southa
  * Mac release work
  *
@@ -175,6 +178,7 @@
 #include "mushMushcore.h"
 #include "mushMedia.h"
 #include "mushMustlGame.h"
+#include "mushMustl.h"
 #include "mushPlatform.h"
 
 using namespace Mushware;

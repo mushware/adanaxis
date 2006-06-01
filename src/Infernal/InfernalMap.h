@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } a5DmGr1sFcF5GDrJ25djkw
 /*
- * $Id: InfernalMap.h,v 1.5 2005/05/19 13:02:05 southa Exp $
+ * $Id: InfernalMap.h,v 1.6 2006/06/01 15:39:03 southa Exp $
  * $Log: InfernalMap.h,v $
+ * Revision 1.6  2006/06/01 15:39:03  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.5  2005/05/19 13:02:05  southa
  * Mac release work
  *
@@ -122,7 +125,7 @@ InfernalMap<T>::ElementGet(Mushware::U32 inX, Mushware::U32 inY) const
 {
     if (inX >= m_xSize)
     {
-        cerr << "inX=" << inX << ", m_xSize=" << m_xSize << endl;
+		std::cerr << "inX=" << inX << ", m_xSize=" << m_xSize << std::endl;
     }
     MUSHCOREASSERT(inX < m_xSize);
     MUSHCOREASSERT(inY < m_ySize);

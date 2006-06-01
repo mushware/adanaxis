@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 0R+Ye4SBf8jdvaM7l0X5uA
 /*
- * $Id: GLStandard.h,v 1.25 2005/05/27 19:25:24 southa Exp $
+ * $Id: GLStandard.h,v 1.26 2006/06/01 15:38:52 southa Exp $
  * $Log: GLStandard.h,v $
+ * Revision 1.26  2006/06/01 15:38:52  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.25  2005/05/27 19:25:24  southa
  * win32 build fixes
  *
@@ -140,10 +143,13 @@
 #endif
 
 #ifdef _MSC_VER
+#undef HAVE_SDL_OPENGL_H 1
 #define HAVE_SDL_OPENGL_H 1
 #endif
 
 #if defined(__APPLE__) || defined(MACOSX)
+#undef HAVE_OPENGL_GL_H
+#undef HAVE_OPENGL_GLU_H
 #define HAVE_OPENGL_GL_H
 #define HAVE_OPENGL_GLU_H
 #endif

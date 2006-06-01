@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 5iETz5j8OX6vjuLqntqgIg
 /*
- * $Id: MushGameReceiver.h,v 1.2 2005/06/21 15:57:48 southa Exp $
+ * $Id: MushGameReceiver.h,v 1.3 2006/06/01 15:39:26 southa Exp $
  * $Log: MushGameReceiver.h,v $
+ * Revision 1.3  2006/06/01 15:39:26  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.2  2005/06/21 15:57:48  southa
  * MushGame work
  *
@@ -43,6 +46,7 @@ class MushGameLogic;
 class MushGameReceiver
 {
 public:
+	virtual ~MushGameReceiver() {}
     virtual void MessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage) = 0;
 private:
 };

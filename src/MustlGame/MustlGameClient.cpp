@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } p0vK5BFtdfHP9EXqMdfVug
 /*
- * $Id: MustlGameClient.cpp,v 1.6 2005/05/19 13:02:20 southa Exp $
+ * $Id: MustlGameClient.cpp,v 1.7 2006/06/01 15:39:56 southa Exp $
  * $Log: MustlGameClient.cpp,v $
+ * Revision 1.7  2006/06/01 15:39:56  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.6  2005/05/19 13:02:20  southa
  * Mac release work
  *
@@ -160,6 +163,7 @@
 #include "MustlGameServer.h"
 #include "MustlGameUtils.h"
 #include "MustlGameSTL.h"
+#include "MustlLog.h"
 
 #include "mushGame.h"
 #include "mushPlatform.h"

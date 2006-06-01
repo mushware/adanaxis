@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } NYmv5MZn7NEYPYHpc3JV8Q
 /*
- * $Id: MushGLV.cpp,v 1.11 2005/08/31 23:57:27 southa Exp $
+ * $Id: MushGLV.cpp,v 1.12 2006/06/01 15:39:19 southa Exp $
  * $Log: MushGLV.cpp,v $
+ * Revision 1.12  2006/06/01 15:39:19  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.11  2005/08/31 23:57:27  southa
  * Texture coordinate work
  *
@@ -80,6 +83,7 @@ MushGLV::MushGLV() :
     m_fpMapBuffer(NULL),
     m_fpUnmapBuffer(NULL),
     m_numTextureUnits(0),
+    m_hasS3TC(false),
     m_contextNum(0),
     m_contextValid(false)
 {
@@ -146,6 +150,15 @@ MushGLV::Acquaint()
         }
     }
     
+	if (!safeMode && m_extensions.find(" GL_EXT_texture_compression_s3tc ") != string::npos)
+    {
+		m_hasS3TC = true;
+	}
+	else
+	{
+		m_hasS3TC = false;
+	}
+	
     m_contextValid = true;
     MushGLState::Sgl().ResetWriteAll();
 }
@@ -258,8 +271,9 @@ MushGLV::AutoPrint(std::ostream& ioOut) const
     ioOut << "version=" << m_version << ", ";
     ioOut << "extensions=" << m_extensions << ", ";
     ioOut << "numTextureUnits=" << m_numTextureUnits << ", ";
+    ioOut << "hasS3TC=" << m_hasS3TC << ", ";
     ioOut << "contextNum=" << m_contextNum << ", ";
     ioOut << "contextValid=" << m_contextValid;
     ioOut << "]";
 }
-//%outOfLineFunctions } Cwa89sZ0/lDhTr4LgJx2vA
+//%outOfLineFunctions } lvH9cLlevM8m/ID/Hl+Oyw

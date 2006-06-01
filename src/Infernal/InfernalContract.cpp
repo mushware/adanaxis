@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } n6Q53F6zLlMZL/wQeMp7Sw
 /*
- * $Id: InfernalContract.cpp,v 1.17 2005/07/02 00:42:37 southa Exp $
+ * $Id: InfernalContract.cpp,v 1.18 2006/06/01 15:39:01 southa Exp $
  * $Log: InfernalContract.cpp,v $
+ * Revision 1.18  2006/06/01 15:39:01  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.17  2005/07/02 00:42:37  southa
  * Conditioning tweaks
  *
@@ -1088,10 +1091,10 @@ InfernalContract::GlobalKeyControl(void)
             
             pPiece->FormRefSet(MushPieForm::tDataRef(1));
             pPiece->NewPosSet(MushPiePosicity(
-                t3Val(playerSpec.pos.x, playerSpec.pos.y, 0),
-                t3Val(0, 0, 0),
-                tQVal::MultiplicativeIdentityGet(),
-                tQVal::MultiplicativeIdentityGet()));
+                t4Val(playerSpec.pos.x, playerSpec.pos.y, 0, 0),
+                t4Val(0, 0, 0, 0),
+                tQValPair::MultiplicativeIdentity(),
+                tQValPair::MultiplicativeIdentity()));
 
             pPiece->PosSwap();
             

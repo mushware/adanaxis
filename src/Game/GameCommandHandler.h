@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 513/Fm4BslYnjrLacHnnww
 /*
- * $Id: GameCommandHandler.h,v 1.18 2005/05/19 13:02:01 southa Exp $
+ * $Id: GameCommandHandler.h,v 1.19 2006/06/01 15:38:56 southa Exp $
  * $Log: GameCommandHandler.h,v $
+ * Revision 1.19  2006/06/01 15:38:56  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.18  2005/05/19 13:02:01  southa
  * Mac release work
  *
@@ -88,6 +91,7 @@ class GameCommandHandler
 public:
     static void Install(void);
     static MushcoreScalar SetSavePath(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
+    static MushcoreScalar SetCachePath(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
     static MushcoreScalar UpdateCheck(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
     static MushcoreScalar ReadDirectoryToMenu(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
 };

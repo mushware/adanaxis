@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } uREud0TMFED4ZSY9i9c7Ag
 /*
- * $Id: MustlMessageHandler.h,v 1.6 2005/05/19 13:02:19 southa Exp $
+ * $Id: MustlMessageHandler.h,v 1.7 2006/06/01 15:39:53 southa Exp $
  * $Log: MustlMessageHandler.h,v $
+ * Revision 1.7  2006/06/01 15:39:53  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.6  2005/05/19 13:02:19  southa
  * Mac release work
  *
@@ -71,6 +74,7 @@ class MustlLink;
 class MustlMessageHandler
 {
 public:
+	virtual ~MustlMessageHandler() {}
     virtual void MessageHandle(MustlData& ioData, MustlLink& inLink, Mustl::U32 inType) = 0;
 };
 //%includeGuardEnd {

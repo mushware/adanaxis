@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } GzLsU3Z4Z88Pw50Tltyxkg
 /*
- * $Id: MustlGameClient.h,v 1.6 2005/05/19 13:02:20 southa Exp $
+ * $Id: MustlGameClient.h,v 1.7 2006/06/01 15:39:56 southa Exp $
  * $Log: MustlGameClient.h,v $
+ * Revision 1.7  2006/06/01 15:39:56  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.6  2005/05/19 13:02:20  southa
  * Mac release work
  *
@@ -110,9 +113,10 @@
 
 #include "mushMushcore.h"
 
+#include "MustlAddress.h"
+#include "MustlData.h"
+#include "MustlLink.h"
 #include "MustlGameBase.h"
-// Need to remove this dependency
-// #include "Infernal/InfernalPiecePlayer.h"
 
 class InfernalPiecePlayer;
 

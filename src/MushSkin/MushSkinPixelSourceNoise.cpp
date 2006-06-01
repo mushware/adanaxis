@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } IHi2qaicNzVbb+bqL7ZTVw
 /*
- * $Id: MushSkinPixelSourceNoise.cpp,v 1.4 2006/05/02 17:32:13 southa Exp $
+ * $Id: MushSkinPixelSourceNoise.cpp,v 1.5 2006/05/03 00:58:44 southa Exp $
  * $Log: MushSkinPixelSourceNoise.cpp,v $
+ * Revision 1.5  2006/05/03 00:58:44  southa
+ * Texturing updates
+ *
  * Revision 1.4  2006/05/02 17:32:13  southa
  * Texturing
  *
@@ -101,9 +104,7 @@ MushSkinPixelSourceNoise::TileLineGenerate(Mushware::U8 *inpTileData, const Mush
     t4Val objectPosStep;
     
     objectPosStep = (inEndPos - inStartPos) / inNumPixels;
-    
-    U32 tileSourceFace = inTileRef.SourceFace();
-    
+        
     if (m_pPaletteTexture != NULL)
     {
         for (U32 i=0; i<inNumPixels; ++i)

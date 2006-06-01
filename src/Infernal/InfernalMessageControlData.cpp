@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } z2Hj5X4sOJoDlXRQscaqNw
 /*
- * $Id: InfernalMessageControlData.cpp,v 1.5 2005/05/19 13:02:05 southa Exp $
+ * $Id: InfernalMessageControlData.cpp,v 1.6 2006/06/01 15:39:03 southa Exp $
  * $Log: InfernalMessageControlData.cpp,v $
+ * Revision 1.6  2006/06/01 15:39:03  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.5  2005/05/19 13:02:05  southa
  * Mac release work
  *
@@ -74,6 +77,7 @@
 
 #include "mushGame.h"
 #include "mushMedia.h"
+#include "mushMustl.h"
 
 using namespace Mushware;
 using namespace std;

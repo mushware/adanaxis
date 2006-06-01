@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } vl7jY3WxF4VnrsvzzFB2Cw
 /*
- * $Id: MushGLUtil.cpp,v 1.1 2005/07/05 13:52:22 southa Exp $
+ * $Id: MushGLUtil.cpp,v 1.2 2006/06/01 15:39:18 southa Exp $
  * $Log: MushGLUtil.cpp,v $
+ * Revision 1.2  2006/06/01 15:39:18  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.1  2005/07/05 13:52:22  southa
  * Adanaxis work
  *
@@ -234,4 +237,10 @@ MushGLUtil::GLErrorString(const GLenum inGLErr)
         break;
     }
 	return errorString;
+}
+
+std::string
+MushGLUtil::TextureCacheFilename(const std::string& inName)
+{
+	return MushcoreEnv::Sgl().VariableGet("GLOBAL_CACHE_PATH").StringGet()+"/"+inName+".tiff";
 }

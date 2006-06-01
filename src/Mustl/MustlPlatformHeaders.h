@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } +HyN2jtsAzzDTyWJCE3NDw
 /*
- * $Id: MustlPlatformHeaders.h,v 1.16 2005/05/19 13:02:19 southa Exp $
+ * $Id: MustlPlatformHeaders.h,v 1.17 2006/06/01 15:39:54 southa Exp $
  * $Log: MustlPlatformHeaders.h,v $
+ * Revision 1.17  2006/06/01 15:39:54  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.16  2005/05/19 13:02:19  southa
  * Mac release work
  *
@@ -221,7 +224,7 @@
 
 
 #ifdef MUSTL_MACOSX
-#define MUSTL_SOCKLEN_T             int
+#define MUSTL_SOCKLEN_T             socklen_t // was int
 #endif
 
 

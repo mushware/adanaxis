@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } ugdMWclEcV9SVo/Zs20lbA
 /*
- * $Id: GLColour.h,v 1.19 2005/05/19 13:01:58 southa Exp $
+ * $Id: GLColour.h,v 1.20 2006/06/01 15:38:50 southa Exp $
  * $Log: GLColour.h,v $
+ * Revision 1.20  2006/06/01 15:38:50  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.19  2005/05/19 13:01:58  southa
  * Mac release work
  *
@@ -100,6 +103,8 @@ public:
         m_col[2]=inBlue;
         m_col[3]=inAlpha;
     }
+    virtual ~GLColour() {}
+
     void Apply(void) const { GLState::ColourSet(m_col[0], m_col[1], m_col[2], m_col[3]); }
     Mushware::tVal RedGet(void) const { return m_col[0]; }
     Mushware::tVal GreenGet(void) const { return m_col[1]; }

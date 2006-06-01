@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 4aNrDWDcHhvbi/ZjV2ZFxA
 /*
- * $Id: MushGLStandard.h,v 1.11 2005/09/06 12:15:35 southa Exp $
+ * $Id: MushGLStandard.h,v 1.12 2006/06/01 15:39:18 southa Exp $
  * $Log: MushGLStandard.h,v $
+ * Revision 1.12  2006/06/01 15:39:18  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.11  2005/09/06 12:15:35  southa
  * Texture and rendering work
  *
@@ -70,10 +73,13 @@
 #endif
 
 #ifdef _MSC_VER
+#undef HAVE_SDL_OPENGL_H 1
 #define HAVE_SDL_OPENGL_H 1
 #endif
 
 #if defined(__APPLE__) || defined(MACOSX)
+#undef HAVE_OPENGL_GL_H
+#undef HAVE_OPENGL_GLU_H
 #define HAVE_OPENGL_GL_H
 #define HAVE_OPENGL_GLU_H
 #endif

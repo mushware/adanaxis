@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 0OQkM+NcUqCBag3zq+cczA
 /*
- * $Id: MushGLUtil.h,v 1.1 2005/07/05 13:52:22 southa Exp $
+ * $Id: MushGLUtil.h,v 1.2 2006/06/01 15:39:18 southa Exp $
  * $Log: MushGLUtil.h,v $
+ * Revision 1.2  2006/06/01 15:39:18  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.1  2005/07/05 13:52:22  southa
  * Adanaxis work
  *
@@ -56,6 +59,8 @@ public:
 	static void ThrowIfGLError(const std::string& inMessage);
 	static void CheckGLError(void);
 	static void CheckGLError(const std::string& inMessage);
+	
+	static std::string TextureCacheFilename(const std::string& inName);
 	
 private:
 	static void ThrowGLError(GLenum inGLErr);

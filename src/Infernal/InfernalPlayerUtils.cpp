@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } ZWl9+/fsKCaukAKope/qRw
 /*
- * $Id: InfernalPlayerUtils.cpp,v 1.6 2005/05/19 13:02:05 southa Exp $
+ * $Id: InfernalPlayerUtils.cpp,v 1.7 2006/06/01 15:39:05 southa Exp $
  * $Log: InfernalPlayerUtils.cpp,v $
+ * Revision 1.7  2006/06/01 15:39:05  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.6  2005/05/19 13:02:05  southa
  * Mac release work
  *
@@ -100,6 +103,7 @@
 
 #include "mushGame.h"
 #include "mushMustlGame.h"
+#include "mushMustl.h"
 
 using namespace Mushware;
 using namespace std;

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } vh/xCnesmbXGxXqZK5YEaA
 /*
- * $Id: MushGLTexture.cpp,v 1.2 2005/08/29 18:40:57 southa Exp $
+ * $Id: MushGLTexture.cpp,v 1.3 2006/05/02 17:32:13 southa Exp $
  * $Log: MushGLTexture.cpp,v $
+ * Revision 1.3  2006/05/02 17:32:13  southa
+ * Texturing
+ *
  * Revision 1.2  2005/08/29 18:40:57  southa
  * Solid rendering work
  *
@@ -33,6 +36,8 @@
 
 #include "MushGLPixelSource.h"
 #include "MushGLResolverPixelSource.h"
+#include "MushGLTIFFUtil.h"
+#include "MushGLUtil.h"
 #include "MushGLV.h"
 
 using namespace Mushware;
@@ -64,21 +69,37 @@ MushGLTexture::Make(void)
         throw MushcoreRequestFail("MushGLTexture::Make failure");
     }
     pSrc->ToTextureCreate(*this);
+	
     m_made = true;
 }
 
 void
 MushGLTexture::Bind(void)
 {
+	bool saveToCache = false;
     if (!m_made)
     {
         Make();
+		saveToCache = true;
     }
     if (!m_bindingNameValid)
     {
         throw MushcoreRequestFail("MushGLTexture::Bind attempt on non-GL texture");
     }
     MushGLV::Sgl().BindTexture2D(m_bindingName);
+	
+	if (saveToCache)
+	{
+		try
+	    {
+			std::string filename = MushGLUtil::TextureCacheFilename("test1");
+	        MushGLTIFFUtil::TextureSave(filename, m_srcName);
+		}
+		catch (MushcoreNonFatalFail& e)
+	    {
+			MushcoreLog::Sgl().InfoLog() << "Texture cache failed: " << e.what();
+	    }
+	}
 }
 
 void
@@ -101,16 +122,28 @@ MushGLTexture::PixelDataGLRGBAUse(void *pData)
     {
 #ifdef GL_VERSION_1_4
         glTexParameteri(GL_TEXTURE_2D, GL_GENERATE_MIPMAP, GL_TRUE);
-        
-        glTexImage2D(GL_TEXTURE_2D,    // target
-                     0,                // level
-                     GL_RGBA,          // internal format
-                     m_size.X(),       // width
-                     m_size.Y(),       // height
-                     0,                // border
-                     GL_RGBA,          // format
-                     GL_UNSIGNED_BYTE, // type
-                     pData             // pointer to data
+        glHint(GL_TEXTURE_COMPRESSION_HINT, GL_NICEST);
+
+		GLenum internalFormat;
+		
+		if (MushGLV::Sgl().HasS3TC())
+		{
+			internalFormat = GL_COMPRESSED_RGBA_S3TC_DXT5_EXT;
+		}
+		else
+		{
+		    internalFormat = GL_RGBA;	
+		}
+		
+        glTexImage2D(GL_TEXTURE_2D,      // target
+                     0,                  // level
+                     internalFormat,     // internal format
+                     m_size.X(),         // width
+                     m_size.Y(),         // height
+                     0,                  // border
+                     GL_RGBA,            // format
+                     GL_UNSIGNED_BYTE,   // type
+                     pData               // pointer to data
                      );   
 #else
         GLint err=gluBuild2DMipmaps(GL_TEXTURE_2D,    // target
