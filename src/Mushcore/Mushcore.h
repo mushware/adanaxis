@@ -7,7 +7,7 @@
  *
  * File: src/Mushcore/Mushcore.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } Sadh94DLrs/FIT4AZy/cYg
+//%Header } jhSNwMkq/SHeaVk7wOwOOA
 /*
- * $Id: Mushcore.h,v 1.24 2005/07/29 14:59:50 southa Exp $
+ * $Id: Mushcore.h,v 1.25 2005/08/02 17:11:28 southa Exp $
  * $Log: Mushcore.h,v $
+ * Revision 1.25  2005/08/02 17:11:28  southa
+ * win32 build fixes
+ *
  * Revision 1.24  2005/07/29 14:59:50  southa
  * Maptor access
  *

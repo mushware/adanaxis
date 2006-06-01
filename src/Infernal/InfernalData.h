@@ -7,7 +7,7 @@
  *
  * File: src/Infernal/InfernalData.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } p0oUQx2XS8KQS7orrNUyUw
+//%Header } ZGtTaeQ+a2mWW3GvCcwZMA
 /*
- * $Id: InfernalData.h,v 1.8 2005/02/03 21:02:54 southa Exp $
+ * $Id: InfernalData.h,v 1.9 2005/05/19 13:02:04 southa Exp $
  * $Log: InfernalData.h,v $
+ * Revision 1.9  2005/05/19 13:02:04  southa
+ * Mac release work
+ *
  * Revision 1.8  2005/02/03 21:02:54  southa
  * Build fixes
  *

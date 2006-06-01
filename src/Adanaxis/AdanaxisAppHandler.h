@@ -7,7 +7,7 @@
  *
  * File: src/Adanaxis/AdanaxisAppHandler.h
  *
- * Copyright: Andy Southgate 2005
+ * Copyright: Andy Southgate 2005-2006
  *
  * This file may be used and distributed under the terms of the Mushware
  * software licence version 1.0, under the terms for 'Proprietary original
@@ -19,10 +19,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } K3hFA55rGfb+D50+6fnrZg
+//%Header } C/16EW0GDk97fUG+f75bUQ
 /*
- * $Id: AdanaxisAppHandler.h,v 1.2 2005/06/14 13:25:32 southa Exp $
+ * $Id: AdanaxisAppHandler.h,v 1.3 2005/07/06 19:08:26 southa Exp $
  * $Log: AdanaxisAppHandler.h,v $
+ * Revision 1.3  2005/07/06 19:08:26  southa
+ * Adanaxis control work
+ *
  * Revision 1.2  2005/06/14 13:25:32  southa
  * Adanaxis work
  *

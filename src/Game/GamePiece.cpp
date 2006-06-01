@@ -3,7 +3,7 @@
  *
  * File: src/Game/GamePiece.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } CqNvm4uabuEIndFjOzt0TA
+//%Header } 5qHZivJ2zhCu2q51tkMJsQ
 /*
- * $Id: GamePiece.cpp,v 1.13 2004/01/02 21:13:07 southa Exp $
+ * $Id: GamePiece.cpp,v 1.14 2005/05/19 13:02:02 southa Exp $
  * $Log: GamePiece.cpp,v $
+ * Revision 1.14  2005/05/19 13:02:02  southa
+ * Mac release work
+ *
  * Revision 1.13  2004/01/02 21:13:07  southa
  * Source conditioning
  *

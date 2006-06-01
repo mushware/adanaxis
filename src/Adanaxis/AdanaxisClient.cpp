@@ -3,7 +3,7 @@
  *
  * File: src/Adanaxis/AdanaxisClient.cpp
  *
- * Copyright: Andy Southgate 2005
+ * Copyright: Andy Southgate 2005-2006
  *
  * This file may be used and distributed under the terms of the Mushware
  * software licence version 1.0, under the terms for 'Proprietary original
@@ -15,10 +15,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } mGYcBWqP13PsBBDcwTbikQ
+//%Header } H9wVgWa8uNw1DoLcCnhl7Q
 /*
- * $Id: AdanaxisClient.cpp,v 1.2 2005/06/20 14:30:33 southa Exp $
+ * $Id: AdanaxisClient.cpp,v 1.3 2005/07/02 00:42:36 southa Exp $
  * $Log: AdanaxisClient.cpp,v $
+ * Revision 1.3  2005/07/02 00:42:36  southa
+ * Conditioning tweaks
+ *
  * Revision 1.2  2005/06/20 14:30:33  southa
  * Adanaxis work
  *

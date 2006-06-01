@@ -3,7 +3,7 @@
  *
  * File: src/Platform/MacOSX/PlatformVideoUtils.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 5uxxs82jaFpMYF4+/fHOsg
+//%Header } vRSkWrGbuq+m7eRcwoLkDA
 /*
- * $Id: PlatformVideoUtils.cpp,v 1.18 2005/05/19 13:02:21 southa Exp $
+ * $Id: PlatformVideoUtils.cpp,v 1.19 2005/05/20 10:26:28 southa Exp $
  * $Log: PlatformVideoUtils.cpp,v $
+ * Revision 1.19  2005/05/20 10:26:28  southa
+ * Release work
+ *
  * Revision 1.18  2005/05/19 13:02:21  southa
  * Mac release work
  *
@@ -150,6 +153,7 @@ PlatformVideoUtils::DefaultModeGet(void) const
             retVal = i;   
         }
     }
+	retVal = 0;
     return retVal;
 }
 

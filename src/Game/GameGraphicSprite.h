@@ -7,7 +7,7 @@
  *
  * File: src/Game/GameGraphicSprite.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } Ktkss+bBwv8BATE41Mdw5A
+//%Header } ab2nAaRCW3BPJ+E6TdxjAg
 /*
- * $Id: GameGraphicSprite.h,v 1.17 2004/01/02 21:13:07 southa Exp $
+ * $Id: GameGraphicSprite.h,v 1.18 2005/05/19 13:02:02 southa Exp $
  * $Log: GameGraphicSprite.h,v $
+ * Revision 1.18  2005/05/19 13:02:02  southa
+ * Mac release work
+ *
  * Revision 1.17  2004/01/02 21:13:07  southa
  * Source conditioning
  *

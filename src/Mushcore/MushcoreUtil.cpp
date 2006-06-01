@@ -3,7 +3,7 @@
  *
  * File: src/Mushcore/MushcoreUtil.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } Nd4PoIz3nPwfnH84Wy1Y3w
+//%Header } ZI0Hun17ShjHoXjyZsJaeA
 /*
- * $Id: MushcoreUtil.cpp,v 1.21 2005/07/01 14:59:00 southa Exp $
+ * $Id: MushcoreUtil.cpp,v 1.22 2005/07/04 15:59:01 southa Exp $
  * $Log: MushcoreUtil.cpp,v $
+ * Revision 1.22  2005/07/04 15:59:01  southa
+ * Adanaxis work
+ *
  * Revision 1.21  2005/07/01 14:59:00  southa
  * Mushcore auto_ptr and binary string fixes
  *

@@ -3,7 +3,7 @@
  *
  * File: src/CodeGen/CodeGenCommands.cpp
  *
- * Copyright: Andy Southgate 2002-2005
+ * Copyright: Andy Southgate 2002-2006
  *
  * All rights reserved.  Distribution prohibited.  For information, please
  * contact the author via http://www.mushware.com/.
@@ -11,7 +11,7 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } rOsLt4C/wypw4ZZBxXSluw
+//%Header } i3AyXZU3zbdohH/3DsabcQ
 
 
 #include "CodeGenCommands.h"

@@ -3,7 +3,7 @@
  *
  * File: src/MushRender/MushRenderMeshSolid.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } zdbEcRL1ilVe+y99FKu15g
+//%Header } A/GPso4jrQBD0hPDpi3qXg
 /*
- * $Id: MushRenderMeshSolid.cpp,v 1.5 2005/09/05 17:14:23 southa Exp $
+ * $Id: MushRenderMeshSolid.cpp,v 1.6 2005/09/06 12:15:35 southa Exp $
  * $Log: MushRenderMeshSolid.cpp,v $
+ * Revision 1.6  2005/09/06 12:15:35  southa
+ * Texture and rendering work
+ *
  * Revision 1.5  2005/09/05 17:14:23  southa
  * Solid rendering
  *

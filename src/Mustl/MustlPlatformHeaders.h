@@ -7,7 +7,7 @@
  *
  * File: src/Mustl/MustlPlatformHeaders.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } sq84KGUPOQkp1PrLkwXRyQ
+//%Header } +HyN2jtsAzzDTyWJCE3NDw
 /*
- * $Id: MustlPlatformHeaders.h,v 1.15 2004/01/02 21:13:15 southa Exp $
+ * $Id: MustlPlatformHeaders.h,v 1.16 2005/05/19 13:02:19 southa Exp $
  * $Log: MustlPlatformHeaders.h,v $
+ * Revision 1.16  2005/05/19 13:02:19  southa
+ * Mac release work
+ *
  * Revision 1.15  2004/01/02 21:13:15  southa
  * Source conditioning
  *

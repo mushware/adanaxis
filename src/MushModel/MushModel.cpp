@@ -3,7 +3,7 @@
  *
  * File: src/MushModel/MushModel.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } QpwoKYtLFYxnjWPif8EkWg
+//%Header } obxJr8Iqh+XcIUn79G1jKA
 /*
- * $Id: MushModel.cpp,v 1.1 2004/01/07 18:01:18 southa Exp $
+ * $Id: MushModel.cpp,v 1.2 2005/05/19 13:02:11 southa Exp $
  * $Log: MushModel.cpp,v $
+ * Revision 1.2  2005/05/19 13:02:11  southa
+ * Mac release work
+ *
  * Revision 1.1  2004/01/07 18:01:18  southa
  * MushModel and Infernal work
  *

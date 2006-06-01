@@ -3,7 +3,7 @@
  *
  * File: src/GL/GLTexture.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } ej9ThOgaMcdsA9brpVOZaQ
+//%Header } DxsRQB06bVHlIxEExMHeyg
 /*
- * $Id: GLTexture.cpp,v 1.35 2005/05/19 13:02:00 southa Exp $
+ * $Id: GLTexture.cpp,v 1.36 2005/05/27 19:25:24 southa Exp $
  * $Log: GLTexture.cpp,v $
+ * Revision 1.36  2005/05/27 19:25:24  southa
+ * win32 build fixes
+ *
  * Revision 1.35  2005/05/19 13:02:00  southa
  * Mac release work
  *

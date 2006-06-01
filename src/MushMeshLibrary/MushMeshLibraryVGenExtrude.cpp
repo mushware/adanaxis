@@ -3,7 +3,7 @@
  *
  * File: src/MushMeshLibrary/MushMeshLibraryVGenExtrude.cpp
  *
- * Copyright: Andy Southgate 2005
+ * Copyright: Andy Southgate 2005-2006
  *
  * This file may be used and distributed under the terms of the Mushware
  * software licence version 1.0, under the terms for 'Proprietary original
@@ -15,10 +15,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } xl+RaDfLSM+fS7txnPLwTQ
+//%Header } 1XpIVIgiHvKJLMjMoray6A
 /*
- * $Id: MushMeshLibraryVGenExtrude.cpp,v 1.3 2005/07/14 12:50:31 southa Exp $
+ * $Id: MushMeshLibraryVGenExtrude.cpp,v 1.4 2005/07/14 16:55:09 southa Exp $
  * $Log: MushMeshLibraryVGenExtrude.cpp,v $
+ * Revision 1.4  2005/07/14 16:55:09  southa
+ * Mesh library work
+ *
  * Revision 1.3  2005/07/14 12:50:31  southa
  * Extrusion work
  *

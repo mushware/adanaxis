@@ -1,7 +1,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushRuby/regex.c
+ * File: src/MushRuby/regex.c (ruby)
  *
  * This file has been taken the ruby distribution and may have been modified.
  * For more information on the original see http://www.ruby-lang.org/.
@@ -21,7 +21,7 @@
  * Mushware Limited.
  *
  ****************************************************************************/
-//%Header } 4WXz37oi2irRcT9Bcncp5Q
+//%Header } EQzjo5yOsHM2P7JyaSsG8g
 /* Extended regular expression matching and search library.
    Copyright (C) 1993, 94, 95, 96, 97, 98 Free Software Foundation, Inc.
 

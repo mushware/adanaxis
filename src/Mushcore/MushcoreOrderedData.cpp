@@ -3,7 +3,7 @@
  *
  * File: src/Mushcore/MushcoreOrderedData.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } V3b9T9W+9UgEOZYDUNHB8A
+//%Header } Nip57J+cmo6IVeNBlE4k1A
 /*
- * $Id$
- * $Log$
+ * $Id: MushcoreOrderedData.cpp,v 1.1 2005/06/13 14:25:45 southa Exp $
+ * $Log: MushcoreOrderedData.cpp,v $
+ * Revision 1.1  2005/06/13 14:25:45  southa
+ * Pipe and ordered data work
+ *
  */
 
 #include "MushcoreOrderedData.h"

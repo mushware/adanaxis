@@ -7,7 +7,7 @@
  *
  * File: src/Adanaxis/AdanaxisServer.h
  *
- * Copyright: Andy Southgate 2005
+ * Copyright: Andy Southgate 2005-2006
  *
  * This file may be used and distributed under the terms of the Mushware
  * software licence version 1.0, under the terms for 'Proprietary original
@@ -19,7 +19,7 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } zl2Tg8EBWYOOk2JLPbdS4w
+//%Header } EYJWVxYwp8X8WSXoumquVQ
 
 #include "AdanaxisStandard.h"
 

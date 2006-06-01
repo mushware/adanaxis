@@ -7,7 +7,7 @@
  *
  * File: src/MushGame/MushGameMessageWake.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 0gZ3zcMmn8FK1WXV3uYVgw
+//%Header } hlr7Co6z6NMHHQxVZWvFYg
 /*
- * $Id: MushGameMessageWake.h,v 1.1 2005/06/21 15:57:48 southa Exp $
+ * $Id: MushGameMessageWake.h,v 1.2 2005/06/23 11:58:29 southa Exp $
  * $Log: MushGameMessageWake.h,v $
+ * Revision 1.2  2005/06/23 11:58:29  southa
+ * MushGame link work
+ *
  * Revision 1.1  2005/06/21 15:57:48  southa
  * MushGame work
  *

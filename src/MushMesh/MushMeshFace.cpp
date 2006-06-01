@@ -3,7 +3,7 @@
  *
  * File: src/MushMesh/MushMeshFace.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } EdF8rw7ulzOAVAjW1Qr63A
+//%Header } 9ZEn/lkDyaEcqPC5FlsIVA
 /*
- * $Id: MushMeshFace.cpp,v 1.1 2005/06/30 12:04:55 southa Exp $
+ * $Id: MushMeshFace.cpp,v 1.2 2005/07/02 00:42:38 southa Exp $
  * $Log: MushMeshFace.cpp,v $
+ * Revision 1.2  2005/07/02 00:42:38  southa
+ * Conditioning tweaks
+ *
  * Revision 1.1  2005/06/30 12:04:55  southa
  * Mesh work
  *

@@ -7,7 +7,7 @@
  *
  * File: src/Adanaxis/AdanaxisVolatileData.h
  *
- * Copyright: Andy Southgate 2005
+ * Copyright: Andy Southgate 2005-2006
  *
  * This file may be used and distributed under the terms of the Mushware
  * software licence version 1.0, under the terms for 'Proprietary original
@@ -19,10 +19,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } T2Jvb6GmQsX2nP/3BMU8mg
+//%Header } lXOhNHrEv7a8Ndh1gy3P5A
 /*
- * $Id: AdanaxisVolatileData.h,v 1.1 2005/06/30 14:26:35 southa Exp $
+ * $Id: AdanaxisVolatileData.h,v 1.2 2005/07/01 16:42:54 southa Exp $
  * $Log: AdanaxisVolatileData.h,v $
+ * Revision 1.2  2005/07/01 16:42:54  southa
+ * Render work
+ *
  * Revision 1.1  2005/06/30 14:26:35  southa
  * Adanaxis work
  *

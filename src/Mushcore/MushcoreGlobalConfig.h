@@ -7,7 +7,7 @@
  *
  * File: src/Mushcore/MushcoreGlobalConfig.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } TyTdSHSJmXeJ2Y4otqSkcA
+//%Header } KxEHuqzPYn3P4JRT4/FKKQ
 /*
- * $Id: MushcoreGlobalConfig.h,v 1.11 2004/01/02 21:13:12 southa Exp $
+ * $Id: MushcoreGlobalConfig.h,v 1.12 2005/05/19 13:02:15 southa Exp $
  * $Log: MushcoreGlobalConfig.h,v $
+ * Revision 1.12  2005/05/19 13:02:15  southa
+ * Mac release work
+ *
  * Revision 1.11  2004/01/02 21:13:12  southa
  * Source conditioning
  *

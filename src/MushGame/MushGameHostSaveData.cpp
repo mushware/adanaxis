@@ -3,7 +3,7 @@
  *
  * File: src/MushGame/MushGameHostSaveData.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } PtE5rBAXGQWHrOsXuTDTuQ
+//%Header } TWnJMo1kUQ+/N7vXcpUc0w
 /*
- * $Id: MushGameHostSaveData.cpp,v 1.5 2005/07/02 00:42:37 southa Exp $
+ * $Id: MushGameHostSaveData.cpp,v 1.6 2005/07/29 14:59:49 southa Exp $
  * $Log: MushGameHostSaveData.cpp,v $
+ * Revision 1.6  2005/07/29 14:59:49  southa
+ * Maptor access
+ *
  * Revision 1.5  2005/07/02 00:42:37  southa
  * Conditioning tweaks
  *

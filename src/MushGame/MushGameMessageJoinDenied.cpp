@@ -3,7 +3,7 @@
  *
  * File: src/MushGame/MushGameMessageJoinDenied.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } P+nosjqtH61VY4J6ugK5iQ
+//%Header } 8OhOysd2wSXXv7FqDpkVvQ
 /*
- * $Id: MushGameMessageJoinDenied.cpp,v 1.1 2005/06/20 14:30:36 southa Exp $
+ * $Id: MushGameMessageJoinDenied.cpp,v 1.2 2005/07/02 00:42:38 southa Exp $
  * $Log: MushGameMessageJoinDenied.cpp,v $
+ * Revision 1.2  2005/07/02 00:42:38  southa
+ * Conditioning tweaks
+ *
  * Revision 1.1  2005/06/20 14:30:36  southa
  * Adanaxis work
  *

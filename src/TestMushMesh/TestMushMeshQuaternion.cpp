@@ -3,7 +3,7 @@
  *
  * File: src/TestMushMesh/TestMushMeshQuaternion.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } TGM/4ae2lNjW0/j6zPy6UA
+//%Header } JKWgzOw4/EfZqMIva7fWWQ
 /*
- * $Id: TestMushMeshQuaternion.cpp,v 1.7 2005/07/14 16:55:09 southa Exp $
+ * $Id: TestMushMeshQuaternion.cpp,v 1.8 2005/07/19 13:44:26 southa Exp $
  * $Log: TestMushMeshQuaternion.cpp,v $
+ * Revision 1.8  2005/07/19 13:44:26  southa
+ * MushMesh4Chunk work
+ *
  * Revision 1.7  2005/07/14 16:55:09  southa
  * Mesh library work
  *

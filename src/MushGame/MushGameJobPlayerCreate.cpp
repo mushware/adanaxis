@@ -3,7 +3,7 @@
  *
  * File: src/MushGame/MushGameJobPlayerCreate.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 8FammiHLxEKuAIAzehni5g
+//%Header } sMWR8ancG1E3YqBNuEjJWw
 /*
- * $Id: MushGameJobPlayerCreate.cpp,v 1.9 2005/07/06 19:08:27 southa Exp $
+ * $Id: MushGameJobPlayerCreate.cpp,v 1.10 2005/08/02 14:37:45 southa Exp $
  * $Log: MushGameJobPlayerCreate.cpp,v $
+ * Revision 1.10  2005/08/02 14:37:45  southa
+ * Adanaxis control demo work
+ *
  * Revision 1.9  2005/07/06 19:08:27  southa
  * Adanaxis control work
  *

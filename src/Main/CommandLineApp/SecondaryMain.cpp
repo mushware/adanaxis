@@ -3,7 +3,7 @@
  *
  * File: src/Main/CommandLineApp/SecondaryMain.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } HKS8lDmzNLTN2IIRiP+tHA
+//%Header } bo3GesYsYAJV70wEPnYqiw
 /*
- * $Id: SecondaryMain.cpp,v 1.4 2004/09/26 19:42:05 southa Exp $
+ * $Id: SecondaryMain.cpp,v 1.5 2005/05/19 13:02:07 southa Exp $
  * $Log: SecondaryMain.cpp,v $
+ * Revision 1.5  2005/05/19 13:02:07  southa
+ * Mac release work
+ *
  * Revision 1.4  2004/09/26 19:42:05  southa
  * Added MushMesh, fixed typenames and release target
  *

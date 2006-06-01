@@ -3,7 +3,7 @@
  *
  * File: src/MushMesh/MushMesh4FaceGenerator.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } XIWKKkNGT7C5rsGYH8/g6A
+//%Header } hmaZeJ4W0isrc1LJnszufQ
 /*
- * $Id$
- * $Log$
+ * $Id: MushMesh4FaceGenerator.cpp,v 1.1 2005/07/12 20:39:04 southa Exp $
+ * $Log: MushMesh4FaceGenerator.cpp,v $
+ * Revision 1.1  2005/07/12 20:39:04  southa
+ * Mesh library work
+ *
  */
 
 #include "MushMesh4FaceGenerator.h"

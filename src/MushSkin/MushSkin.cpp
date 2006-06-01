@@ -3,7 +3,7 @@
  *
  * File: src/MushSkin/MushSkin.cpp
  *
- * Copyright: Andy Southgate 2005
+ * Copyright: Andy Southgate 2005-2006
  *
  * This file may be used and distributed under the terms of the Mushware
  * software licence version 1.0, under the terms for 'Proprietary original
@@ -15,10 +15,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 8sK3mxsIbs9/XTHb4MC8KA
+//%Header } Q/19ujtTPhVgLWAyIXw/9Q
 /*
- * $Id$
- * $Log$
+ * $Id: MushSkin.cpp,v 1.1 2005/08/29 18:40:57 southa Exp $
+ * $Log: MushSkin.cpp,v $
+ * Revision 1.1  2005/08/29 18:40:57  southa
+ * Solid rendering work
+ *
  */
 
 #include "MushSkin.h"

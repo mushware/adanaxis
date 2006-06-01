@@ -3,7 +3,7 @@
  *
  * File: src/Adanaxis/AdanaxisLogic.cpp
  *
- * Copyright: Andy Southgate 2005
+ * Copyright: Andy Southgate 2005-2006
  *
  * This file may be used and distributed under the terms of the Mushware
  * software licence version 1.0, under the terms for 'Proprietary original
@@ -15,10 +15,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } ui3Az6sPZVE4olMwWeOmrw
+//%Header } kEA/hGTYr5TaTuBUG+UAGA
 /*
- * $Id: AdanaxisLogic.cpp,v 1.10 2005/08/02 11:11:47 southa Exp $
+ * $Id: AdanaxisLogic.cpp,v 1.11 2005/08/02 14:37:44 southa Exp $
  * $Log: AdanaxisLogic.cpp,v $
+ * Revision 1.11  2005/08/02 14:37:44  southa
+ * Adanaxis control demo work
+ *
  * Revision 1.10  2005/08/02 11:11:47  southa
  * Adanaxis control demo work
  *

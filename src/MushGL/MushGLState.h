@@ -7,7 +7,7 @@
  *
  * File: src/MushGL/MushGLState.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } d/h1MgTijF1xZZlnCvknWQ
+//%Header } vFMISa2849VX/N6vU3bn2g
 /*
- * $Id: MushGLState.h,v 1.4 2005/09/05 17:14:23 southa Exp $
+ * $Id: MushGLState.h,v 1.5 2005/09/06 12:15:35 southa Exp $
  * $Log: MushGLState.h,v $
+ * Revision 1.5  2005/09/06 12:15:35  southa
+ * Texture and rendering work
+ *
  * Revision 1.4  2005/09/05 17:14:23  southa
  * Solid rendering
  *
@@ -48,6 +51,10 @@ class MushGLState : public MushcoreVirtualObject, public MushcoreSingleton<MushG
 {
 public:
     typedef Mushware::U8 tState;
+	typedef MushGLVertexBuffer<Mushware::t4GLVal> tColourArrayBuffer;
+	typedef MushGLVertexBuffer<Mushware::tGLTexCoord> tTexCoordArrayBuffer;
+	typedef MushGLVertexBuffer<Mushware::t4GLVal> tVertexArrayBuffer;
+	
     enum
     {
         kStateFalse,
@@ -63,6 +70,17 @@ public:
     
     MushGLState();
     
+	bool ColourArray(void) const { return m_colourArray == kStateTrue; }
+    bool EdgeFlagArray(void) const { return m_edgeFlagArray == kStateTrue; }
+    bool IndexArray(void) const { return m_indexArray == kStateTrue; }
+    bool NormalArray(void) const { return m_normalArray == kStateTrue; }
+    bool VertexArray(void) const { return m_vertexArray == kStateTrue; }
+    bool TexCoordArray(Mushware::U32 inIndex) const { MushcoreUtil::DebugBoundsCheck(inIndex, m_texCoordArrays.size()); return m_texCoordArrays[inIndex] == kStateTrue; }
+    bool TextureState(Mushware::U32 inIndex) const { MushcoreUtil::DebugBoundsCheck(inIndex, m_textureStates.size()); return m_textureStates[inIndex] == kStateTrue; }
+	
+	Mushware::U32 NumTexCoordArrays(void) const { return m_texCoordArrays.size(); }
+	Mushware::U32 NumTextureStates(void) const { return m_textureStates.size(); }
+	
     void RenderStateSet(Mushware::U32 inRenderState);
     
     void ActiveTextureZeroBased(Mushware::U32 inTexNum);
@@ -70,23 +88,28 @@ public:
     void TextureEnable2D(Mushware::U32 inTexNum);
     void TextureDisable2D(Mushware::U32 inTexNum);
     
-    void ColourArrayDisable(void) { DisableClientState(m_colourArray, GL_COLOR_ARRAY); }
+    void ColourArrayDisable(void) { m_pCurrentColourBuffer = NULL; DisableClientState(m_colourArray, GL_COLOR_ARRAY); }
     void EdgeFlagArrayDisable(void) { DisableClientState(m_edgeFlagArray, GL_EDGE_FLAG_ARRAY); }
     void IndexArrayDisable(void) { DisableClientState(m_indexArray, GL_INDEX_ARRAY); }
     void NormalArrayDisable(void) { DisableClientState(m_normalArray, GL_NORMAL_ARRAY); }
-    void TexCoordArrayDisable(Mushware::U32 inIndex) { DisableClientTextureState(inIndex); }
-    void VertexArrayDisable(void) { DisableClientState(m_vertexArray, GL_VERTEX_ARRAY); }
-        
-    void ColourArraySetTrue(MushGLVertexBuffer<Mushware::t4GLVal>& ioBuffer);
-    void TexCoordArraySetTrue(MushGLVertexBuffer<Mushware::tGLTexCoord>& ioBuffer, Mushware::U32 inIndex);
-    void VertexArraySetTrue(MushGLVertexBuffer<Mushware::t4GLVal>& ioBuffer);
+    void TexCoordArrayDisable(Mushware::U32 inIndex) { m_pCurrentTexCoordBuffer = NULL; DisableClientTextureState(inIndex); }
+    void VertexArrayDisable(void) { m_pCurrentVertexBuffer = NULL; DisableClientState(m_vertexArray, GL_VERTEX_ARRAY); }
+
+    void ColourArraySetTrue(tColourArrayBuffer& ioBuffer);
+    void TexCoordArraySetTrue(tTexCoordArrayBuffer& ioBuffer, Mushware::U32 inIndex);
+    void VertexArraySetTrue(tVertexArrayBuffer& ioBuffer);
     
     void ArraysDisable(void);
     void TexturesDisable(void);
     
-    void ResetWriteAll(void) { InvalidateAll(); Reset(); }
+    void ResetWriteAll(void);
     void Reset(void);
     
+	// Debug access
+	tColourArrayBuffer *DebugColourBuffer(void) { return m_pCurrentColourBuffer; }
+	tTexCoordArrayBuffer *DebugTexCoordBuffer(void) { return m_pCurrentTexCoordBuffer; }
+	tVertexArrayBuffer *DebugVertexBuffer(void) { return m_pCurrentVertexBuffer; }
+	
 protected:
     void DisableClientState(tState& ioStateVar, Mushware::U32 inGLState);
     void DisableClientTextureState(Mushware::U32 inIndex);
@@ -106,6 +129,11 @@ private:
     Mushware::U32 m_activeTexNum;
     Mushware::U32 m_clientActiveTexNum;
     
+	// Debug variables
+	tColourArrayBuffer *m_pCurrentColourBuffer;
+	tTexCoordArrayBuffer *m_pCurrentTexCoordBuffer;
+	tVertexArrayBuffer *m_pCurrentVertexBuffer;
+	
 //%classPrototypes {
 public:
     virtual const char *AutoName(void) const;
@@ -115,7 +143,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } 1oBgFruy5qHAaudtV+Hcmg
+//%classPrototypes } tO7bdQQzNBsFVPCMwFt0ng
 };
 
 //%inlineHeader {

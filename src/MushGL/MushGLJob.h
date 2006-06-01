@@ -7,7 +7,7 @@
  *
  * File: src/MushGL/MushGLJob.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 2itDwCcu0MoHHQO6fPcMdA
+//%Header } 2tAm3a+oQ7bVae6uFKwmhg
 /*
- * $Id$
- * $Log$
+ * $Id: MushGLJob.h,v 1.1 2005/07/04 11:10:43 southa Exp $
+ * $Log: MushGLJob.h,v $
+ * Revision 1.1  2005/07/04 11:10:43  southa
+ * Rendering pipeline
+ *
  */
 
 #include "MushGLStandard.h"

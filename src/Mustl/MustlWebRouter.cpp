@@ -3,7 +3,7 @@
  *
  * File: src/Mustl/MustlWebRouter.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } QgVYeHVnb0+kbOOk7qNckw
+//%Header } oJRK49hz9xwJ86O00yhYJg
 /*
- * $Id: MustlWebRouter.cpp,v 1.15 2004/01/02 21:13:16 southa Exp $
+ * $Id: MustlWebRouter.cpp,v 1.16 2005/05/19 13:02:20 southa Exp $
  * $Log: MustlWebRouter.cpp,v $
+ * Revision 1.16  2005/05/19 13:02:20  southa
+ * Mac release work
+ *
  * Revision 1.15  2004/01/02 21:13:16  southa
  * Source conditioning
  *

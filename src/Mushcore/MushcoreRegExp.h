@@ -7,7 +7,7 @@
  *
  * File: src/Mushcore/MushcoreRegExp.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } lFkm/nWFCCpr9JlD4I2KFQ
+//%Header } i3yxz/FLR0WpY44NBPdKzg
 /*
- * $Id: MushcoreRegExp.h,v 1.9 2005/05/19 13:02:16 southa Exp $
+ * $Id: MushcoreRegExp.h,v 1.10 2005/07/29 08:27:47 southa Exp $
  * $Log: MushcoreRegExp.h,v $
+ * Revision 1.10  2005/07/29 08:27:47  southa
+ * Collision work
+ *
  * Revision 1.9  2005/05/19 13:02:16  southa
  * Mac release work
  *

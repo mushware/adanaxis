@@ -3,7 +3,7 @@
  *
  * File: src/MushGame/MushGameMessageCollisionFatal.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } CshWGlblieIk6ihSs7/OQQ
+//%Header } 8+vEUhxZ7MMq+VWptKOYQQ
 /*
- * $Id$
- * $Log$
+ * $Id: MushGameMessageCollisionFatal.cpp,v 1.1 2005/08/01 13:09:58 southa Exp $
+ * $Log: MushGameMessageCollisionFatal.cpp,v $
+ * Revision 1.1  2005/08/01 13:09:58  southa
+ * Collision messaging
+ *
  */
 
 #include "MushGameMessageCollisionFatal.h"

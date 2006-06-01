@@ -3,7 +3,7 @@
  *
  * File: src/Mustl/MustlConfigDefString.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } mCe/4JloTEtEH2xA25cCgg
+//%Header } 6sZe/rZaFYgYyyUFwKymfg
 /*
- * $Id: MustlConfigDefString.cpp,v 1.8 2004/01/02 21:13:14 southa Exp $
+ * $Id: MustlConfigDefString.cpp,v 1.9 2005/05/19 13:02:18 southa Exp $
  * $Log: MustlConfigDefString.cpp,v $
+ * Revision 1.9  2005/05/19 13:02:18  southa
+ * Mac release work
+ *
  * Revision 1.8  2004/01/02 21:13:14  southa
  * Source conditioning
  *

@@ -7,7 +7,7 @@
  *
  * File: src/GL/GLTextureDef.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } vT+yqZNf+FNdsdOFU5EiWg
+//%Header } K+3c8B+hBoOmLWo/Ag8aOw
 /*
- * $Id: GLTextureDef.h,v 1.12 2004/03/06 13:13:42 southa Exp $
+ * $Id: GLTextureDef.h,v 1.13 2005/05/19 13:02:00 southa Exp $
  * $Log: GLTextureDef.h,v $
+ * Revision 1.13  2005/05/19 13:02:00  southa
+ * Mac release work
+ *
  * Revision 1.12  2004/03/06 13:13:42  southa
  * Maurheen created
  *

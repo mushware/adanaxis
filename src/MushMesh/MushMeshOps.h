@@ -7,7 +7,7 @@
  *
  * File: src/MushMesh/MushMeshOps.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } rbf8AK++JTeVEs9EtXBbeg
+//%Header } GJlZBIYl2ITmOX7Z7a3NIw
 /*
- * $Id: MushMeshOps.h,v 1.7 2005/07/04 15:59:00 southa Exp $
+ * $Id: MushMeshOps.h,v 1.8 2005/07/30 19:06:14 southa Exp $
  * $Log: MushMeshOps.h,v $
+ * Revision 1.8  2005/07/30 19:06:14  southa
+ * Collision checking
+ *
  * Revision 1.7  2005/07/04 15:59:00  southa
  * Adanaxis work
  *

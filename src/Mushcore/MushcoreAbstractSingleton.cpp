@@ -3,7 +3,7 @@
  *
  * File: src/Mushcore/MushcoreAbstractSingleton.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 1xvy/H7hzdhhjX6hI1fs7A
+//%Header } lezNHwrx9KQjsbQVlRs2JQ
 /*
- * $Id: MushcoreAbstractSingleton.cpp,v 1.4 2004/01/02 21:13:11 southa Exp $
+ * $Id: MushcoreAbstractSingleton.cpp,v 1.5 2005/05/19 13:02:14 southa Exp $
  * $Log: MushcoreAbstractSingleton.cpp,v $
+ * Revision 1.5  2005/05/19 13:02:14  southa
+ * Mac release work
+ *
  * Revision 1.4  2004/01/02 21:13:11  southa
  * Source conditioning
  *

@@ -7,7 +7,7 @@
  *
  * File: src/Game/GameRouter.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } gaVLUX5RzIGCQwma7Vyy8Q
+//%Header } /KFDqjYZBhl5D1wx/12F/w
 /*
- * $Id: GameRouter.h,v 1.21 2005/03/13 00:34:46 southa Exp $
+ * $Id: GameRouter.h,v 1.22 2005/05/19 13:02:03 southa Exp $
  * $Log: GameRouter.h,v $
+ * Revision 1.22  2005/05/19 13:02:03  southa
+ * Mac release work
+ *
  * Revision 1.21  2005/03/13 00:34:46  southa
  * Build fixes, key support and stereo
  *

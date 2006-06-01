@@ -7,7 +7,7 @@
  *
  * File: src/Mushcore/MushcoreFail.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } jolLisLTBger7BjMB5WCXg
+//%Header } h68aAL7L8aRXhZmobd4S/g
 /*
- * $Id: MushcoreFail.h,v 1.8 2005/05/19 13:02:15 southa Exp $
+ * $Id: MushcoreFail.h,v 1.9 2005/06/20 14:30:38 southa Exp $
  * $Log: MushcoreFail.h,v $
+ * Revision 1.9  2005/06/20 14:30:38  southa
+ * Adanaxis work
+ *
  * Revision 1.8  2005/05/19 13:02:15  southa
  * Mac release work
  *

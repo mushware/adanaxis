@@ -7,7 +7,7 @@
  *
  * File: src/Adanaxis/AdanaxisPieceKhazi.h
  *
- * Copyright: Andy Southgate 2005
+ * Copyright: Andy Southgate 2005-2006
  *
  * This file may be used and distributed under the terms of the Mushware
  * software licence version 1.0, under the terms for 'Proprietary original
@@ -19,10 +19,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } ECoWMgOgfphFtEFoxlZ8Qg
+//%Header } zxudYl+J614B+ona+VDSzQ
 /*
- * $Id: AdanaxisPieceKhazi.h,v 1.5 2005/09/03 17:05:36 southa Exp $
+ * $Id: AdanaxisPieceKhazi.h,v 1.6 2005/09/05 12:54:29 southa Exp $
  * $Log: AdanaxisPieceKhazi.h,v $
+ * Revision 1.6  2005/09/05 12:54:29  southa
+ * Solid rendering work
+ *
  * Revision 1.5  2005/09/03 17:05:36  southa
  * Material work
  *

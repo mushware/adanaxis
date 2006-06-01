@@ -7,7 +7,7 @@
  *
  * File: src/Game/GameDialogue.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } iPr3iVUkIZotRXQmnn7Wiw
+//%Header } 3nM2apF6KJGi+V2wHzhqRQ
 /*
- * $Id: GameDialogue.h,v 1.25 2005/06/20 14:30:34 southa Exp $
+ * $Id: GameDialogue.h,v 1.26 2005/07/02 00:42:37 southa Exp $
  * $Log: GameDialogue.h,v $
+ * Revision 1.26  2005/07/02 00:42:37  southa
+ * Conditioning tweaks
+ *
  * Revision 1.25  2005/06/20 14:30:34  southa
  * Adanaxis work
  *

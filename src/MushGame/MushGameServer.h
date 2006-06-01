@@ -7,7 +7,7 @@
  *
  * File: src/MushGame/MushGameServer.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } okZwqrFoOPduCmtBZnptBQ
+//%Header } JVA3qtrceMekU5NOwhGXzA
 /*
- * $Id: MushGameServer.h,v 1.3 2005/06/20 14:30:36 southa Exp $
+ * $Id: MushGameServer.h,v 1.4 2005/06/21 15:57:48 southa Exp $
  * $Log: MushGameServer.h,v $
+ * Revision 1.4  2005/06/21 15:57:48  southa
+ * MushGame work
+ *
  * Revision 1.3  2005/06/20 14:30:36  southa
  * Adanaxis work
  *

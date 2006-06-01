@@ -3,7 +3,7 @@
  *
  * File: src/MushGame/MushGameMessageUplinkPiece.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } HMrl6MUkU0BSx7cWfwSZbw
+//%Header } QNzzvBhg3nwSBEDkZRYz5Q
 /*
- * $Id$
- * $Log$
+ * $Id: MushGameMessageUplinkPiece.cpp,v 1.1 2005/07/11 14:48:46 southa Exp $
+ * $Log: MushGameMessageUplinkPiece.cpp,v $
+ * Revision 1.1  2005/07/11 14:48:46  southa
+ * Uplink work
+ *
  */
 
 #include "MushGameMessageUplinkPiece.h"

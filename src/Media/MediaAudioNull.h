@@ -7,7 +7,7 @@
  *
  * File: src/Media/MediaAudioNull.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } McS/6Msc3rhK8N7UcBOtbA
+//%Header } +TqwNDFCDF610zYAXeniiA
 /*
- * $Id: MediaAudioNull.h,v 1.10 2005/04/19 23:25:40 southa Exp $
+ * $Id: MediaAudioNull.h,v 1.11 2005/05/19 13:02:08 southa Exp $
  * $Log: MediaAudioNull.h,v $
+ * Revision 1.11  2005/05/19 13:02:08  southa
+ * Mac release work
+ *
  * Revision 1.10  2005/04/19 23:25:40  southa
  * Mode switching and recognition
  *

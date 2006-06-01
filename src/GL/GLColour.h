@@ -7,7 +7,7 @@
  *
  * File: src/GL/GLColour.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } gCHzt7toTr/JKZzrWUdc6w
+//%Header } ugdMWclEcV9SVo/Zs20lbA
 /*
- * $Id: GLColour.h,v 1.18 2005/03/25 19:13:48 southa Exp $
+ * $Id: GLColour.h,v 1.19 2005/05/19 13:01:58 southa Exp $
  * $Log: GLColour.h,v $
+ * Revision 1.19  2005/05/19 13:01:58  southa
+ * Mac release work
+ *
  * Revision 1.18  2005/03/25 19:13:48  southa
  * GameDialogue work
  *

@@ -7,7 +7,7 @@
  *
  * File: src/API/mushMushSkin.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } cB9/5yg1bwmJy41iKUyVTA
+//%Header } qAMyEcGuwRRbhvdkUaBVeQ
 /*
- * $Id$
- * $Log$
+ * $Id: mushMushSkin.h,v 1.1 2005/08/29 18:40:56 southa Exp $
+ * $Log: mushMushSkin.h,v $
+ * Revision 1.1  2005/08/29 18:40:56  southa
+ * Solid rendering work
+ *
  */
 
 #ifdef HAVE_CONFIG_H

@@ -7,7 +7,7 @@
  *
  * File: src/GL/GLCommandHandler.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } x17QErbfVu6MmbTM9o0L1w
+//%Header } 0nKUZAH7+qFfQa0NavanlQ
 /*
- * $Id: GLCommandHandler.h,v 1.16 2004/09/27 22:42:08 southa Exp $
+ * $Id: GLCommandHandler.h,v 1.17 2005/05/19 13:01:58 southa Exp $
  * $Log: GLCommandHandler.h,v $
+ * Revision 1.17  2005/05/19 13:01:58  southa
+ * Mac release work
+ *
  * Revision 1.16  2004/09/27 22:42:08  southa
  * MSVC compilation fixes
  *

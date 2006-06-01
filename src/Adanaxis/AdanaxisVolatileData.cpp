@@ -3,7 +3,7 @@
  *
  * File: src/Adanaxis/AdanaxisVolatileData.cpp
  *
- * Copyright: Andy Southgate 2005
+ * Copyright: Andy Southgate 2005-2006
  *
  * This file may be used and distributed under the terms of the Mushware
  * software licence version 1.0, under the terms for 'Proprietary original
@@ -15,7 +15,7 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } UQlePzUhRShM7Bkq1WvtPQ
+//%Header } WOK6bg7pMfVL2uBwMmEFBQ
 /*
  *  AdanaxisVolatileData.cpp
  *  project

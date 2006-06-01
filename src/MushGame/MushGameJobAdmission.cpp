@@ -3,7 +3,7 @@
  *
  * File: src/MushGame/MushGameJobAdmission.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } YalEpz8yBppohkHxqtvbBA
+//%Header } KiIXpTnHXcN2vGSkbhO8LQ
 /*
- * $Id: MushGameJobAdmission.cpp,v 1.2 2005/06/23 17:25:25 southa Exp $
+ * $Id: MushGameJobAdmission.cpp,v 1.3 2005/07/02 00:42:37 southa Exp $
  * $Log: MushGameJobAdmission.cpp,v $
+ * Revision 1.3  2005/07/02 00:42:37  southa
+ * Conditioning tweaks
+ *
  * Revision 1.2  2005/06/23 17:25:25  southa
  * MushGame link work
  *

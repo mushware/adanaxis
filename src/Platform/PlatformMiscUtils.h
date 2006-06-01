@@ -7,7 +7,7 @@
  *
  * File: src/Platform/PlatformMiscUtils.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } beSj3uDNQXgxLzqIhxicWA
+//%Header } nsV76GW3owDjusQMHIpipw
 /*
- * $Id: PlatformMiscUtils.h,v 1.26 2005/01/29 18:27:31 southa Exp $
+ * $Id: PlatformMiscUtils.h,v 1.27 2005/05/19 13:02:21 southa Exp $
  * $Log: PlatformMiscUtils.h,v $
+ * Revision 1.27  2005/05/19 13:02:21  southa
+ * Mac release work
+ *
  * Revision 1.26  2005/01/29 18:27:31  southa
  * Vertex buffer stuff
  *

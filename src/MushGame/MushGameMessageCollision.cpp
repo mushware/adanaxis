@@ -3,7 +3,7 @@
  *
  * File: src/MushGame/MushGameMessageCollision.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } K4+nipImYcVKzuloQY9QIA
+//%Header } 1v0gxN1HJj5gA6gMJ/jSTw
 /*
- * $Id$
- * $Log$
+ * $Id: MushGameMessageCollision.cpp,v 1.1 2005/08/01 13:09:58 southa Exp $
+ * $Log: MushGameMessageCollision.cpp,v $
+ * Revision 1.1  2005/08/01 13:09:58  southa
+ * Collision messaging
+ *
  */
 
 #include "MushGameMessageCollision.h"

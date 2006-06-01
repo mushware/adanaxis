@@ -3,7 +3,7 @@
  *
  * File: src/Infernal/InfernalMotionSpec.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } /aLE51iELARL6hfRayf5uA
+//%Header } bVTGBdolkj0HEos58Ja6vg
 /*
- * $Id: InfernalMotionSpec.cpp,v 1.4 2004/01/02 21:13:08 southa Exp $
+ * $Id: InfernalMotionSpec.cpp,v 1.5 2005/05/19 13:02:05 southa Exp $
  * $Log: InfernalMotionSpec.cpp,v $
+ * Revision 1.5  2005/05/19 13:02:05  southa
+ * Mac release work
+ *
  * Revision 1.4  2004/01/02 21:13:08  southa
  * Source conditioning
  *

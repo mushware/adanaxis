@@ -3,7 +3,7 @@
  *
  * File: src/TestMushcore/TestMushcoreObject.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } /C4CFFmSnufbqgXbq7HAiw
+//%Header } VpHjnzHnc2Bo6Bri/Ej9PQ
 /*
- * $Id: TestMushcoreObject.cpp,v 1.24 2005/07/01 14:59:00 southa Exp $
+ * $Id: TestMushcoreObject.cpp,v 1.25 2005/07/02 00:42:39 southa Exp $
  * $Log: TestMushcoreObject.cpp,v $
+ * Revision 1.25  2005/07/02 00:42:39  southa
+ * Conditioning tweaks
+ *
  * Revision 1.24  2005/07/01 14:59:00  southa
  * Mushcore auto_ptr and binary string fixes
  *

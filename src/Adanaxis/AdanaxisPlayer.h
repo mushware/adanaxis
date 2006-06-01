@@ -7,7 +7,7 @@
  *
  * File: src/Adanaxis/AdanaxisPlayer.h
  *
- * Copyright: Andy Southgate 2005
+ * Copyright: Andy Southgate 2005-2006
  *
  * This file may be used and distributed under the terms of the Mushware
  * software licence version 1.0, under the terms for 'Proprietary original
@@ -19,10 +19,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } zqv5sDIS/YwQOY7KGL7Rww
+//%Header } hi3ujI4Vfz2nY7QFnANQWA
 /*
- * $Id: AdanaxisPlayer.h,v 1.7 2005/07/12 12:18:17 southa Exp $
+ * $Id: AdanaxisPlayer.h,v 1.8 2005/07/18 13:13:36 southa Exp $
  * $Log: AdanaxisPlayer.h,v $
+ * Revision 1.8  2005/07/18 13:13:36  southa
+ * Extrude to point and projectile mesh
+ *
  * Revision 1.7  2005/07/12 12:18:17  southa
  * Projectile work
  *

@@ -7,7 +7,7 @@
  *
  * File: src/Mushcore/MushcoreStandard.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 9ETNO07nndi1buun61a/EQ
+//%Header } 4s7wY1aMgDZVh+3QUWPOuQ
 /*
- * $Id: MushcoreStandard.h,v 1.26 2005/07/29 08:27:47 southa Exp $
+ * $Id: MushcoreStandard.h,v 1.27 2005/08/02 17:11:28 southa Exp $
  * $Log: MushcoreStandard.h,v $
+ * Revision 1.27  2005/08/02 17:11:28  southa
+ * win32 build fixes
+ *
  * Revision 1.26  2005/07/29 08:27:47  southa
  * Collision work
  *

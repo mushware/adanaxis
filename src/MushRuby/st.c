@@ -1,7 +1,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushRuby/st.c
+ * File: src/MushRuby/st.c (ruby)
  *
  * This file has been taken the ruby distribution and may have been modified.
  * For more information on the original see http://www.ruby-lang.org/.
@@ -21,7 +21,7 @@
  * Mushware Limited.
  *
  ****************************************************************************/
-//%Header } fOpBydtfqFW2MpmlTFKiiQ
+//%Header } oml9RcCIV5ukiYUbQpJjBw
 /* This is a public domain general purpose hash table package written by Peter Moore @ UCB. */
 
 /* static	char	sccsid[] = "@(#) st.c 5.1 89/12/14 Crucible"; */

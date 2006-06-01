@@ -7,7 +7,7 @@
  *
  * File: src/Adanaxis/AdanaxisRender.h
  *
- * Copyright: Andy Southgate 2005
+ * Copyright: Andy Southgate 2005-2006
  *
  * This file may be used and distributed under the terms of the Mushware
  * software licence version 1.0, under the terms for 'Proprietary original
@@ -19,10 +19,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } ApiIiDIkgHS1hGasLAa6EQ
+//%Header } jpyq9WjuLQC6cyA1T6bbWw
 /*
- * $Id: AdanaxisRender.h,v 1.4 2005/07/05 16:35:53 southa Exp $
+ * $Id: AdanaxisRender.h,v 1.5 2005/08/02 11:11:47 southa Exp $
  * $Log: AdanaxisRender.h,v $
+ * Revision 1.5  2005/08/02 11:11:47  southa
+ * Adanaxis control demo work
+ *
  * Revision 1.4  2005/07/05 16:35:53  southa
  * Adanaxis work
  *

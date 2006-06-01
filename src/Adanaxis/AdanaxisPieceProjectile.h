@@ -7,7 +7,7 @@
  *
  * File: src/Adanaxis/AdanaxisPieceProjectile.h
  *
- * Copyright: Andy Southgate 2005
+ * Copyright: Andy Southgate 2005-2006
  *
  * This file may be used and distributed under the terms of the Mushware
  * software licence version 1.0, under the terms for 'Proprietary original
@@ -19,10 +19,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } oprIPxIlqMIU0R5tKHZ3SA
+//%Header } AFo2vzl87aFxQx3VFVpFzA
 /*
- * $Id: AdanaxisPieceProjectile.h,v 1.2 2005/07/27 18:10:17 southa Exp $
+ * $Id: AdanaxisPieceProjectile.h,v 1.3 2005/08/01 13:09:57 southa Exp $
  * $Log: AdanaxisPieceProjectile.h,v $
+ * Revision 1.3  2005/08/01 13:09:57  southa
+ * Collision messaging
+ *
  * Revision 1.2  2005/07/27 18:10:17  southa
  * Collision checking
  *

@@ -7,7 +7,7 @@
  *
  * File: src/MushRender/MushRender.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } NUzrLBU/hE8fJ4WHp26kcQ
+//%Header } n/kahdmCKLOsZ25z7ErcEg
 /*
- * $Id: MushRender.h,v 1.3 2005/07/16 14:22:59 southa Exp $
+ * $Id: MushRender.h,v 1.4 2005/08/29 18:40:57 southa Exp $
  * $Log: MushRender.h,v $
+ * Revision 1.4  2005/08/29 18:40:57  southa
+ * Solid rendering work
+ *
  * Revision 1.3  2005/07/16 14:22:59  southa
  * Added diagnostic renderer
  *

@@ -3,7 +3,7 @@
  *
  * File: src/TestMushMesh/TestMushMeshVector.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } jmj2aIyiqQ2FyhMVB3qb7g
+//%Header } 4R8lZm43pDyp2Ck1l7BIxg
 /*
- * $Id: TestMushMeshVector.cpp,v 1.8 2004/10/31 09:22:51 southa Exp $
+ * $Id: TestMushMeshVector.cpp,v 1.9 2005/05/19 13:02:23 southa Exp $
  * $Log: TestMushMeshVector.cpp,v $
+ * Revision 1.9  2005/05/19 13:02:23  southa
+ * Mac release work
+ *
  * Revision 1.8  2004/10/31 09:22:51  southa
  * Added MushMeshPreMatrix
  *

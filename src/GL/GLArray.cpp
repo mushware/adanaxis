@@ -3,7 +3,7 @@
  *
  * File: src/GL/GLArray.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } WDAk95hxfFZk6NKJGLkXBg
+//%Header } 3i5zA0KYOhft0SOCdTeJWQ
 /*
- * $Id: GLArray.cpp,v 1.7 2004/01/02 21:13:04 southa Exp $
+ * $Id: GLArray.cpp,v 1.8 2005/05/19 13:01:58 southa Exp $
  * $Log: GLArray.cpp,v $
+ * Revision 1.8  2005/05/19 13:01:58  southa
+ * Mac release work
+ *
  * Revision 1.7  2004/01/02 21:13:04  southa
  * Source conditioning
  *

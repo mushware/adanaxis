@@ -7,7 +7,7 @@
  *
  * File: src/Adanaxis/AdanaxisPieceDeco.h
  *
- * Copyright: Andy Southgate 2005
+ * Copyright: Andy Southgate 2005-2006
  *
  * This file may be used and distributed under the terms of the Mushware
  * software licence version 1.0, under the terms for 'Proprietary original
@@ -19,10 +19,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } enJUO8WAIa4qUMI3BXYVJA
+//%Header } 6GdOb3M8gmTP56sPCf1YGA
 /*
- * $Id: AdanaxisPieceDeco.h,v 1.4 2005/07/04 11:10:43 southa Exp $
+ * $Id: AdanaxisPieceDeco.h,v 1.5 2005/07/12 12:18:17 southa Exp $
  * $Log: AdanaxisPieceDeco.h,v $
+ * Revision 1.5  2005/07/12 12:18:17  southa
+ * Projectile work
+ *
  * Revision 1.4  2005/07/04 11:10:43  southa
  * Rendering pipeline
  *

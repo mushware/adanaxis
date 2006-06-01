@@ -7,7 +7,7 @@
  *
  * File: src/Game/GameSetup.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } lTso9kUtkH+4JIVsnGYQiA
+//%Header } wghvR7XY7ttGX+TY0ahFfA
 /*
- * $Id: GameSetup.h,v 1.19 2005/05/19 13:02:03 southa Exp $
+ * $Id: GameSetup.h,v 1.20 2005/06/20 14:30:34 southa Exp $
  * $Log: GameSetup.h,v $
+ * Revision 1.20  2005/06/20 14:30:34  southa
+ * Adanaxis work
+ *
  * Revision 1.19  2005/05/19 13:02:03  southa
  * Mac release work
  *

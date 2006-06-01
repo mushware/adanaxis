@@ -3,7 +3,7 @@
  *
  * File: src/Game/GameType.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } d2MbCJoWo9UKlvUqGTis4g
+//%Header } E0Vya7S7RrbkYmwyc6iIgg
 /*
- * $Id: GameType.cpp,v 1.9 2004/01/02 21:13:08 southa Exp $
+ * $Id: GameType.cpp,v 1.10 2005/05/19 13:02:03 southa Exp $
  * $Log: GameType.cpp,v $
+ * Revision 1.10  2005/05/19 13:02:03  southa
+ * Mac release work
+ *
  * Revision 1.9  2004/01/02 21:13:08  southa
  * Source conditioning
  *

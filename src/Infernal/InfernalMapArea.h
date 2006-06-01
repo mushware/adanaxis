@@ -7,7 +7,7 @@
  *
  * File: src/Infernal/InfernalMapArea.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } M2h8p/n0lzeLptgtBOFeUg
+//%Header } hrLITZlpfX7KU990Pary4A
 /*
- * $Id: InfernalMapArea.h,v 1.4 2004/01/06 20:46:50 southa Exp $
+ * $Id: InfernalMapArea.h,v 1.5 2005/05/19 13:02:05 southa Exp $
  * $Log: InfernalMapArea.h,v $
+ * Revision 1.5  2005/05/19 13:02:05  southa
+ * Mac release work
+ *
  * Revision 1.4  2004/01/06 20:46:50  southa
  * Build fixes
  *

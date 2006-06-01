@@ -7,7 +7,7 @@
  *
  * File: src/Mustl/MustlLink.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } HDXdKumtf3xUj8n9cb8hCw
+//%Header } bACXAcwmBTAvyKbHpV6Epw
 /*
- * $Id: MustlLink.h,v 1.11 2004/01/02 21:13:15 southa Exp $
+ * $Id: MustlLink.h,v 1.12 2005/05/19 13:02:19 southa Exp $
  * $Log: MustlLink.h,v $
+ * Revision 1.12  2005/05/19 13:02:19  southa
+ * Mac release work
+ *
  * Revision 1.11  2004/01/02 21:13:15  southa
  * Source conditioning
  *

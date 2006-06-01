@@ -3,7 +3,7 @@
  *
  * File: src/MushMesh/MushMeshPatchTypes.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } Q8KlBfUXMp6O7a8spMzj5g
+//%Header } dsdCFDybkjeYptZt9WTstg
 /*
- * $Id: MushMeshPatchTypes.cpp,v 1.2 2004/01/02 21:13:11 southa Exp $
+ * $Id: MushMeshPatchTypes.cpp,v 1.3 2005/05/19 13:02:10 southa Exp $
  * $Log: MushMeshPatchTypes.cpp,v $
+ * Revision 1.3  2005/05/19 13:02:10  southa
+ * Mac release work
+ *
  * Revision 1.2  2004/01/02 21:13:11  southa
  * Source conditioning
  *

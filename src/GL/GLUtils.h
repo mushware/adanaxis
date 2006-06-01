@@ -7,7 +7,7 @@
  *
  * File: src/GL/GLUtils.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } TGXL6/hKQ0loCR2CzU3flA
+//%Header } aH0jzA+fQe5IrpR15+RM6w
 /*
- * $Id: GLUtils.h,v 1.45 2005/05/19 13:02:01 southa Exp $
+ * $Id: GLUtils.h,v 1.46 2005/05/20 13:19:00 southa Exp $
  * $Log: GLUtils.h,v $
+ * Revision 1.46  2005/05/20 13:19:00  southa
+ * Release work
+ *
  * Revision 1.45  2005/05/19 13:02:01  southa
  * Mac release work
  *

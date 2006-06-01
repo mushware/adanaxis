@@ -3,7 +3,7 @@
  *
  * File: src/MushGame/MushGameLogicLocal.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } qP/D11f61WKLayRHqTfr/g
+//%Header } 73iRqDd6zP6hGImTnrZMfg
 /*
- * $Id: MushGameLogicLocal.cpp,v 1.6 2005/06/30 16:29:25 southa Exp $
+ * $Id: MushGameLogicLocal.cpp,v 1.7 2005/07/02 00:42:37 southa Exp $
  * $Log: MushGameLogicLocal.cpp,v $
+ * Revision 1.7  2005/07/02 00:42:37  southa
+ * Conditioning tweaks
+ *
  * Revision 1.6  2005/06/30 16:29:25  southa
  * Adanaxis work
  *

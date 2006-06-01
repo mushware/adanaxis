@@ -7,7 +7,7 @@
  *
  * File: src/MushMeshLibrary/MushMeshLibraryStandard.h
  *
- * Copyright: Andy Southgate 2005
+ * Copyright: Andy Southgate 2005-2006
  *
  * This file may be used and distributed under the terms of the Mushware
  * software licence version 1.0, under the terms for 'Proprietary original
@@ -19,10 +19,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 5IjGco5ByTornbT6D9F2Zw
+//%Header } xgg9LTLaXZQTzU4KMl9GsQ
 /*
- * $Id: MushMeshLibraryStandard.h,v 1.1 2005/07/12 20:39:05 southa Exp $
+ * $Id: MushMeshLibraryStandard.h,v 1.2 2005/08/02 17:11:28 southa Exp $
  * $Log: MushMeshLibraryStandard.h,v $
+ * Revision 1.2  2005/08/02 17:11:28  southa
+ * win32 build fixes
+ *
  * Revision 1.1  2005/07/12 20:39:05  southa
  * Mesh library work
  *

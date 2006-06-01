@@ -7,7 +7,7 @@
  *
  * File: src/TestMustl/TestMustlApp.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } ok9x1aXTtjjQ+/SqGw10zA
+//%Header } 16R49BhOlP6Pn0AmqA8V9A
 /*
- * $Id: TestMustlApp.h,v 1.9 2004/09/26 20:43:19 southa Exp $
+ * $Id: TestMustlApp.h,v 1.10 2005/05/19 13:02:25 southa Exp $
  * $Log: TestMustlApp.h,v $
+ * Revision 1.10  2005/05/19 13:02:25  southa
+ * Mac release work
+ *
  * Revision 1.9  2004/09/26 20:43:19  southa
  * TestMustl fixes
  *

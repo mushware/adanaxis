@@ -3,7 +3,7 @@
  *
  * File: src/Adanaxis/AdanaxisPlayer.cpp
  *
- * Copyright: Andy Southgate 2005
+ * Copyright: Andy Southgate 2005-2006
  *
  * This file may be used and distributed under the terms of the Mushware
  * software licence version 1.0, under the terms for 'Proprietary original
@@ -15,10 +15,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } ow0iEi0s5HhumBjS38PxOA
+//%Header } 0edG1wrkU5hKeWbu3l1MQA
 /*
- * $Id: AdanaxisPlayer.cpp,v 1.14 2005/08/02 11:11:47 southa Exp $
+ * $Id: AdanaxisPlayer.cpp,v 1.15 2005/08/02 14:37:44 southa Exp $
  * $Log: AdanaxisPlayer.cpp,v $
+ * Revision 1.15  2005/08/02 14:37:44  southa
+ * Adanaxis control demo work
+ *
  * Revision 1.14  2005/08/02 11:11:47  southa
  * Adanaxis control demo work
  *

@@ -8,7 +8,7 @@
  *
  * File: src/API/mushGL.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -22,10 +22,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } bRccx86sJou+QpOf6oEK8g
+//%Header } cyJh62SddBGNNHq4/S5wvg
 /*
- * $Id: mushGL.h,v 1.28 2005/02/13 22:44:06 southa Exp $
+ * $Id: mushGL.h,v 1.29 2005/05/19 13:01:56 southa Exp $
  * $Log: mushGL.h,v $
+ * Revision 1.29  2005/05/19 13:01:56  southa
+ * Mac release work
+ *
  * Revision 1.28  2005/02/13 22:44:06  southa
  * Tesseract stuff
  *

@@ -7,7 +7,7 @@
  *
  * File: src/Adanaxis/AdanaxisClient.h
  *
- * Copyright: Andy Southgate 2005
+ * Copyright: Andy Southgate 2005-2006
  *
  * This file may be used and distributed under the terms of the Mushware
  * software licence version 1.0, under the terms for 'Proprietary original
@@ -19,10 +19,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } dgEyZOkB4lnjQNWnekhMcA
+//%Header } dEGQSzy9MNmgk9nhWF0jlQ
 /*
- * $Id: AdanaxisClient.h,v 1.1 2005/06/16 10:49:57 southa Exp $
+ * $Id: AdanaxisClient.h,v 1.2 2005/06/20 14:30:33 southa Exp $
  * $Log: AdanaxisClient.h,v $
+ * Revision 1.2  2005/06/20 14:30:33  southa
+ * Adanaxis work
+ *
  * Revision 1.1  2005/06/16 10:49:57  southa
  * Client/server work
  *

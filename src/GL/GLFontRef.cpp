@@ -3,7 +3,7 @@
  *
  * File: src/GL/GLFontRef.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 03m51tzRRZ4J/ClESPY1sA
+//%Header } whchnVzTJQaeDptNYMtI+w
 /*
- * $Id: GLFontRef.cpp,v 1.16 2005/06/30 12:34:58 southa Exp $
+ * $Id: GLFontRef.cpp,v 1.17 2005/07/02 00:42:37 southa Exp $
  * $Log: GLFontRef.cpp,v $
+ * Revision 1.17  2005/07/02 00:42:37  southa
+ * Conditioning tweaks
+ *
  * Revision 1.16  2005/06/30 12:34:58  southa
  * Mesh and source conditioner work
  *

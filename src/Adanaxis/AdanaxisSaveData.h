@@ -7,7 +7,7 @@
  *
  * File: src/Adanaxis/AdanaxisSaveData.h
  *
- * Copyright: Andy Southgate 2005
+ * Copyright: Andy Southgate 2005-2006
  *
  * This file may be used and distributed under the terms of the Mushware
  * software licence version 1.0, under the terms for 'Proprietary original
@@ -19,10 +19,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } lP1KYvwjO8U4fVO07cIsNw
+//%Header } yuUu61uMVhUeaS8L1dPsHA
 /*
- * $Id: AdanaxisSaveData.h,v 1.9 2005/07/29 14:59:49 southa Exp $
+ * $Id: AdanaxisSaveData.h,v 1.10 2005/08/01 13:09:57 southa Exp $
  * $Log: AdanaxisSaveData.h,v $
+ * Revision 1.10  2005/08/01 13:09:57  southa
+ * Collision messaging
+ *
  * Revision 1.9  2005/07/29 14:59:49  southa
  * Maptor access
  *

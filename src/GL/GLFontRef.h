@@ -7,7 +7,7 @@
  *
  * File: src/GL/GLFontRef.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } r1FHucV07VBBiradUIkD9g
+//%Header } LMk5grjZT/qvEfNZZlx9NA
 /*
-* $Id: GLFontRef.h,v 1.14 2005/05/19 13:01:59 southa Exp $
+* $Id: GLFontRef.h,v 1.15 2005/06/20 14:30:33 southa Exp $
 * $Log: GLFontRef.h,v $
+* Revision 1.15  2005/06/20 14:30:33  southa
+* Adanaxis work
+*
 * Revision 1.14  2005/05/19 13:01:59  southa
 * Mac release work
 *

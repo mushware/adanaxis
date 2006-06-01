@@ -3,7 +3,7 @@
  *
  * File: src/Mushcore/MushcoreInfo.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 4Q+1esVw8Geiozlz+++zGw
+//%Header } 5lg0E50TjXUNYniSnhL53Q
 /*
- * $Id: MushcoreInfo.cpp,v 1.8 2004/01/02 21:13:12 southa Exp $
+ * $Id: MushcoreInfo.cpp,v 1.9 2005/05/19 13:02:15 southa Exp $
  * $Log: MushcoreInfo.cpp,v $
+ * Revision 1.9  2005/05/19 13:02:15  southa
+ * Mac release work
+ *
  * Revision 1.8  2004/01/02 21:13:12  southa
  * Source conditioning
  *

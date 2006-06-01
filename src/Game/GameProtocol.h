@@ -7,7 +7,7 @@
  *
  * File: src/Game/GameProtocol.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } K29i9Qmy8bhfz0v2xpacyw
+//%Header } ebYOhDpgpOqCLg6CWn8wcQ
 /*
- * $Id: GameProtocol.h,v 1.17 2004/01/06 20:46:50 southa Exp $
+ * $Id: GameProtocol.h,v 1.18 2005/05/19 13:02:02 southa Exp $
  * $Log: GameProtocol.h,v $
+ * Revision 1.18  2005/05/19 13:02:02  southa
+ * Mac release work
+ *
  * Revision 1.17  2004/01/06 20:46:50  southa
  * Build fixes
  *

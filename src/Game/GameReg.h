@@ -7,7 +7,7 @@
  *
  * File: src/Game/GameReg.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 7/HRE/AT2v6+wN5oGaaHMg
+//%Header } kI2/VnN3HauJmOszZyUHyQ
 /*
- * $Id: GameReg.h,v 1.3 2005/05/19 13:02:03 southa Exp $
+ * $Id: GameReg.h,v 1.4 2005/06/20 14:30:34 southa Exp $
  * $Log: GameReg.h,v $
+ * Revision 1.4  2005/06/20 14:30:34  southa
+ * Adanaxis work
+ *
  * Revision 1.3  2005/05/19 13:02:03  southa
  * Mac release work
  *

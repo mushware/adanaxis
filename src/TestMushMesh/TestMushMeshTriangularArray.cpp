@@ -3,7 +3,7 @@
  *
  * File: src/TestMushMesh/TestMushMeshTriangularArray.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 6Av5Y4GrzQmjaLnY7dkE+Q
+//%Header } 5ErlVY7E1ohPJ3OL5WLAvw
 /*
- * $Id: TestMushMeshTriangularArray.cpp,v 1.3 2004/01/05 20:13:15 southa Exp $
+ * $Id: TestMushMeshTriangularArray.cpp,v 1.4 2005/05/19 13:02:23 southa Exp $
  * $Log: TestMushMeshTriangularArray.cpp,v $
+ * Revision 1.4  2005/05/19 13:02:23  southa
+ * Mac release work
+ *
  * Revision 1.3  2004/01/05 20:13:15  southa
  * Target and test updates
  *

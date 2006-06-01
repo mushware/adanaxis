@@ -3,7 +3,7 @@
  *
  * File: src/TestMushcore/TestMushcoreObjectSub.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } bzZeP1dl7EEAL/nNQRoAFg
+//%Header } N1n0OV2TY7cTjcFA3hHy3Q
 /*
- * $Id: TestMushcoreObjectSub.cpp,v 1.6 2005/06/20 14:30:39 southa Exp $
+ * $Id: TestMushcoreObjectSub.cpp,v 1.7 2005/07/02 00:42:39 southa Exp $
  * $Log: TestMushcoreObjectSub.cpp,v $
+ * Revision 1.7  2005/07/02 00:42:39  southa
+ * Conditioning tweaks
+ *
  * Revision 1.6  2005/06/20 14:30:39  southa
  * Adanaxis work
  *

@@ -7,7 +7,7 @@
  *
  * File: src/MushMesh/MushMeshPreMatrix.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 7Y7qw9fXK5qyxNASaSz7KA
+//%Header } 6OuwykWsvewQ1swLAxzegQ
 /*
- * $Id: MushMeshPreMatrix.h,v 1.11 2005/07/19 10:07:06 southa Exp $
+ * $Id: MushMeshPreMatrix.h,v 1.12 2005/08/01 17:58:31 southa Exp $
  * $Log: MushMeshPreMatrix.h,v $
+ * Revision 1.12  2005/08/01 17:58:31  southa
+ * Object explosion
+ *
  * Revision 1.11  2005/07/19 10:07:06  southa
  * Adanaxis work
  *

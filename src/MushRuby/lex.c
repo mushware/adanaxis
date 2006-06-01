@@ -1,7 +1,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushRuby/lex.c
+ * File: src/MushRuby/lex.c (ruby)
  *
  * This file has been taken the ruby distribution and may have been modified.
  * For more information on the original see http://www.ruby-lang.org/.
@@ -21,7 +21,7 @@
  * Mushware Limited.
  *
  ****************************************************************************/
-//%Header } PraBifP+35Dzscr7UYPAMQ
+//%Header } FTwDZJXO9q8ChVyLtBL6xg
 /* C code produced by gperf version 2.7.2 */
 /* Command-line: gperf -p -j1 -i 1 -g -o -t -N rb_reserved_word -k'1,3,$' ./keywords  */
 struct kwtable {char *name; int id[2]; enum lex_state state;};

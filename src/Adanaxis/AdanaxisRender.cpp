@@ -3,7 +3,7 @@
  *
  * File: src/Adanaxis/AdanaxisRender.cpp
  *
- * Copyright: Andy Southgate 2005
+ * Copyright: Andy Southgate 2005-2006
  *
  * This file may be used and distributed under the terms of the Mushware
  * software licence version 1.0, under the terms for 'Proprietary original
@@ -15,10 +15,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } eomVoawiv9P4VcOw5CYHSg
+//%Header } Hr8bvS7fc+x0pR9DrFcIZw
 /*
- * $Id: AdanaxisRender.cpp,v 1.22 2005/09/05 17:14:22 southa Exp $
+ * $Id: AdanaxisRender.cpp,v 1.23 2005/09/06 12:15:35 southa Exp $
  * $Log: AdanaxisRender.cpp,v $
+ * Revision 1.23  2005/09/06 12:15:35  southa
+ * Texture and rendering work
+ *
  * Revision 1.22  2005/09/05 17:14:22  southa
  * Solid rendering
  *

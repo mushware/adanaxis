@@ -7,7 +7,7 @@
  *
  * File: src/GL/GLTest.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } kQBjYcd4ovW+XNtn96SRhQ
+//%Header } vxXVFNc7B2KxTHII8ckCvA
 /*
- * $Id: GLTest.h,v 1.11 2004/01/02 21:13:05 southa Exp $
+ * $Id: GLTest.h,v 1.12 2005/05/19 13:02:00 southa Exp $
  * $Log: GLTest.h,v $
+ * Revision 1.12  2005/05/19 13:02:00  southa
+ * Mac release work
+ *
  * Revision 1.11  2004/01/02 21:13:05  southa
  * Source conditioning
  *

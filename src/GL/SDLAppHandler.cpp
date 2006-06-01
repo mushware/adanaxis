@@ -3,7 +3,7 @@
  *
  * File: src/GL/SDLAppHandler.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } +lRBy3tXEG1uAcp7BgEAGg
+//%Header } X577BrzUUfCyG/exJzzEYQ
 /*
- * $Id: SDLAppHandler.cpp,v 1.48 2005/07/08 12:07:07 southa Exp $
+ * $Id: SDLAppHandler.cpp,v 1.49 2005/07/14 12:50:30 southa Exp $
  * $Log: SDLAppHandler.cpp,v $
+ * Revision 1.49  2005/07/14 12:50:30  southa
+ * Extrusion work
+ *
  * Revision 1.48  2005/07/08 12:07:07  southa
  * MushGaem control work
  *

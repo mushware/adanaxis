@@ -3,7 +3,7 @@
  *
  * File: src/Maurheen/MaurheenWorm.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 8RATDHaCv7EXyR3j1VCphw
+//%Header } uKWW6YpLXI8sGgYmUXtlaw
 /*
- * $Id: MaurheenWorm.cpp,v 1.2 2004/03/07 20:33:54 southa Exp $
+ * $Id: MaurheenWorm.cpp,v 1.3 2005/05/19 13:02:07 southa Exp $
  * $Log: MaurheenWorm.cpp,v $
+ * Revision 1.3  2005/05/19 13:02:07  southa
+ * Mac release work
+ *
  * Revision 1.2  2004/03/07 20:33:54  southa
  * Graphics tuning
  *

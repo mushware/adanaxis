@@ -7,7 +7,7 @@
  *
  * File: src/MushGL/MushGLWorkSpec.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } Tcvr8t/02ON4PA2mIz92sQ
+//%Header } d0PLtMuUJJgR2LEeb5ey+g
 /*
- * $Id: MushGLWorkSpec.h,v 1.2 2005/08/31 23:57:27 southa Exp $
+ * $Id: MushGLWorkSpec.h,v 1.3 2005/09/05 17:14:23 southa Exp $
  * $Log: MushGLWorkSpec.h,v $
+ * Revision 1.3  2005/09/05 17:14:23  southa
+ * Solid rendering
+ *
  * Revision 1.2  2005/08/31 23:57:27  southa
  * Texture coordinate work
  *

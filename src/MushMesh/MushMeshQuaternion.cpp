@@ -3,7 +3,7 @@
  *
  * File: src/MushMesh/MushMeshQuaternion.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } Wc0ts+CDYnDxl4MlXVjGxg
+//%Header } TXx5LSOWNzgUUE/Vb1ysXA
 /*
- * $Id: MushMeshQuaternion.cpp,v 1.1 2004/01/04 17:02:30 southa Exp $
+ * $Id: MushMeshQuaternion.cpp,v 1.2 2005/05/19 13:02:10 southa Exp $
  * $Log: MushMeshQuaternion.cpp,v $
+ * Revision 1.2  2005/05/19 13:02:10  southa
+ * Mac release work
+ *
  * Revision 1.1  2004/01/04 17:02:30  southa
  * MushPie extras and MushcoreIO fixes
  *

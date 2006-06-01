@@ -7,7 +7,7 @@
  *
  * File: src/MushGame/MushGameConfigBase.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } j/wJD6ZNYDz23r5gwEHYfw
+//%Header } j+QdgpgaMWOYWMDzkr6iXg
 /*
- * $Id$
- * $Log$
+ * $Id: MushGameConfigBase.h,v 1.1 2005/06/14 20:39:41 southa Exp $
+ * $Log: MushGameConfigBase.h,v $
+ * Revision 1.1  2005/06/14 20:39:41  southa
+ * Adanaxis work
+ *
  */
 
 #include "MushGameStandard.h"

@@ -7,7 +7,7 @@
  *
  * File: src/TesseractTrainer/TesseractTrainerSTL.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } vxxu+Tll8kzzviZUGUd5Jw
+//%Header } l2uyRaFsbRM0K5hQGSxIbw
 /*
- * $Id: TesseractTrainerSTL.h,v 1.1 2005/02/03 15:47:01 southa Exp $
+ * $Id: TesseractTrainerSTL.h,v 1.2 2005/05/19 13:02:22 southa Exp $
  * $Log: TesseractTrainerSTL.h,v $
+ * Revision 1.2  2005/05/19 13:02:22  southa
+ * Mac release work
+ *
  * Revision 1.1  2005/02/03 15:47:01  southa
  * Quaternion work
  *

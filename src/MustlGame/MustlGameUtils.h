@@ -7,7 +7,7 @@
  *
  * File: src/MustlGame/MustlGameUtils.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } eg+yp5AI3vkNGhv2FSdm0w
+//%Header } sZjg31qgPYhJAJ8OLHkuMA
 /*
- * $Id: MustlGameUtils.h,v 1.3 2004/01/06 20:46:52 southa Exp $
+ * $Id: MustlGameUtils.h,v 1.4 2005/05/19 13:02:21 southa Exp $
  * $Log: MustlGameUtils.h,v $
+ * Revision 1.4  2005/05/19 13:02:21  southa
+ * Mac release work
+ *
  * Revision 1.3  2004/01/06 20:46:52  southa
  * Build fixes
  *

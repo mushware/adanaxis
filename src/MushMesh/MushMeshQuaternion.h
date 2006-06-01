@@ -7,7 +7,7 @@
  *
  * File: src/MushMesh/MushMeshQuaternion.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } il7Yy3B6XrnFCBgRdzgKNA
+//%Header } Y0cteuk9W7W+QeEoBh1joA
 /*
- * $Id: MushMeshQuaternion.h,v 1.11 2005/07/18 13:13:36 southa Exp $
+ * $Id: MushMeshQuaternion.h,v 1.12 2005/07/19 10:07:06 southa Exp $
  * $Log: MushMeshQuaternion.h,v $
+ * Revision 1.12  2005/07/19 10:07:06  southa
+ * Adanaxis work
+ *
  * Revision 1.11  2005/07/18 13:13:36  southa
  * Extrude to point and projectile mesh
  *

@@ -7,7 +7,7 @@
  *
  * File: src/MushMesh/MushMeshQuaternionPair.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 5+xwz0v1Mv1OTeaDe83ISg
+//%Header } agje8R8XMktBLfLA1CPa/g
 /*
- * $Id: MushMeshQuaternionPair.h,v 1.11 2005/07/30 19:06:15 southa Exp $
+ * $Id: MushMeshQuaternionPair.h,v 1.12 2005/08/01 17:58:25 southa Exp $
  * $Log: MushMeshQuaternionPair.h,v $
+ * Revision 1.12  2005/08/01 17:58:25  southa
+ * Object explosion
+ *
  * Revision 1.11  2005/07/30 19:06:15  southa
  * Collision checking
  *

@@ -3,7 +3,7 @@
  *
  * File: src/Game/GameCommandHandler.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } Cs6Xs3C7C/AOl8tCFJhipg
+//%Header } PMe9tcdK+gyaRddssClULw
 /*
- * $Id: GameCommandHandler.cpp,v 1.24 2004/01/06 20:46:49 southa Exp $
+ * $Id: GameCommandHandler.cpp,v 1.25 2005/05/19 13:02:01 southa Exp $
  * $Log: GameCommandHandler.cpp,v $
+ * Revision 1.25  2005/05/19 13:02:01  southa
+ * Mac release work
+ *
  * Revision 1.24  2004/01/06 20:46:49  southa
  * Build fixes
  *

@@ -3,7 +3,7 @@
  *
  * File: src/Game/GameAppHandler.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } JC9xJmCNs84Qp81sTfdcsw
+//%Header } UR7ck0WDr1290ME0NAb0JA
 /*
- * $Id: GameAppHandler.cpp,v 1.59 2005/04/10 00:09:22 southa Exp $
+ * $Id: GameAppHandler.cpp,v 1.60 2005/05/19 13:02:01 southa Exp $
  * $Log: GameAppHandler.cpp,v $
+ * Revision 1.60  2005/05/19 13:02:01  southa
+ * Mac release work
+ *
  * Revision 1.59  2005/04/10 00:09:22  southa
  * Registration
  *

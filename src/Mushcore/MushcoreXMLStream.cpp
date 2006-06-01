@@ -3,7 +3,7 @@
  *
  * File: src/Mushcore/MushcoreXMLStream.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } fZlyF8Izx+qzIkGqAGQA/w
+//%Header } arVc2fNBDQgE+Jsx1EDe6w
 /*
- * $Id: MushcoreXMLStream.cpp,v 1.6 2005/05/18 15:53:27 southa Exp $
+ * $Id: MushcoreXMLStream.cpp,v 1.7 2005/05/19 13:02:17 southa Exp $
  * $Log: MushcoreXMLStream.cpp,v $
+ * Revision 1.7  2005/05/19 13:02:17  southa
+ * Mac release work
+ *
  * Revision 1.6  2005/05/18 15:53:27  southa
  * Made buildable using gcc 4.0/Mac OS X 10.4
  *

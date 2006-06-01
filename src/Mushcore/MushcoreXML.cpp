@@ -3,7 +3,7 @@
  *
  * File: src/Mushcore/MushcoreXML.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } EYf11LoiemBhUvn/dRAG/w
+//%Header } 4IK9hhgJmFW8/OgBU1BZhQ
 /*
- * $Id: MushcoreXML.cpp,v 1.10 2005/04/20 22:18:25 southa Exp $
+ * $Id: MushcoreXML.cpp,v 1.11 2005/05/19 13:02:17 southa Exp $
  * $Log: MushcoreXML.cpp,v $
+ * Revision 1.11  2005/05/19 13:02:17  southa
+ * Mac release work
+ *
  * Revision 1.10  2005/04/20 22:18:25  southa
  * Mac OS X build fixes
  *

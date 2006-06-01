@@ -3,7 +3,7 @@
  *
  * File: src/MushGL/MushGLWorkSpec.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } Wpgv8RTp/irSWsiiI5S6xA
+//%Header } B/Uhyb8oyTGYwsbcQe79PQ
 /*
- * $Id: MushGLWorkSpec.cpp,v 1.6 2005/09/06 12:15:35 southa Exp $
+ * $Id: MushGLWorkSpec.cpp,v 1.7 2006/04/11 23:30:08 southa Exp $
  * $Log: MushGLWorkSpec.cpp,v $
+ * Revision 1.7  2006/04/11 23:30:08  southa
+ * Created MushRuby from ruby-1.8.4
+ *
  * Revision 1.6  2005/09/06 12:15:35  southa
  * Texture and rendering work
  *

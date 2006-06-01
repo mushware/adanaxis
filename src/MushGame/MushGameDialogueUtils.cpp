@@ -3,7 +3,7 @@
  *
  * File: src/MushGame/MushGameDialogueUtils.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 2t6lltphzQUJeOzpRat1Fg
+//%Header } RQQs1JsLGnc5eUT1J6jhDw
 /*
- * $Id$
- * $Log$
+ * $Id: MushGameDialogueUtils.cpp,v 1.1 2005/06/14 20:39:41 southa Exp $
+ * $Log: MushGameDialogueUtils.cpp,v $
+ * Revision 1.1  2005/06/14 20:39:41  southa
+ * Adanaxis work
+ *
  */
 
 #include "MushGameDialogueUtils.h"

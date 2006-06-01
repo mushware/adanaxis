@@ -7,7 +7,7 @@
  *
  * File: src/MushGL/MushGLV.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 7iEHHdeOPdV1ZH7aSJ/mHA
+//%Header } JUBCCFXz/CzIx64ACD8wjA
 /*
- * $Id: MushGLV.h,v 1.14 2005/08/31 23:57:27 southa Exp $
+ * $Id: MushGLV.h,v 1.15 2005/09/05 17:14:23 southa Exp $
  * $Log: MushGLV.h,v $
+ * Revision 1.15  2005/09/05 17:14:23  southa
+ * Solid rendering
+ *
  * Revision 1.14  2005/08/31 23:57:27  southa
  * Texture coordinate work
  *
@@ -101,10 +104,14 @@ public:
     void *MapBuffer(GLenum target, GLenum access) const { if (m_fpMapBuffer != NULL) return m_fpMapBuffer(target, access); else throw MushcoreLogicFail("MushGLV::MapBuffer"); }
     
     bool UnmapBuffer(GLenum target) const { if (m_fpUnmapBuffer != NULL) return (m_fpUnmapBuffer(target) != GL_FALSE); else return true; }
-    
+
+	void GetBufferParameteriv(GLenum target, GLenum value, GLint *data) const { if (m_fpGetBufferParameteriv != NULL) return m_fpGetBufferParameteriv(target, value, data); else throw MushcoreLogicFail("MushGLV::GetBufferParameteriv"); }
+	
 protected:
     void ContextValidAssert(void) const;
-    
+    void DrawArraysVerify(GLenum inMode, GLint inFirst, GLsizei inCount) const;
+    void BufferValidate(Mushware::U32 inSize) const;
+	
 private:
     bool m_hasVertexBuffer;
     typedef void (MUSHCORE_APIENTRY *tfpBindBuffer)(GLenum target, GLuint buffer);
@@ -121,6 +128,8 @@ private:
     tfpMapBuffer m_fpMapBuffer; // :fnpointer
     typedef GLboolean (MUSHCORE_APIENTRY *tfpUnmapBuffer)(GLenum target);
     tfpUnmapBuffer m_fpUnmapBuffer; // :fnpointer
+    typedef void (MUSHCORE_APIENTRY *tfpGetBufferParameteriv)(GLenum target, GLenum value, GLint *data);
+    tfpGetBufferParameteriv m_fpGetBufferParameteriv; // :fnpointer
         
     void *GetProcAddressWithARB(const std::string& inName) const;
     
@@ -145,6 +154,9 @@ public:
 inline void
 MushGLV::DrawArrays(GLenum inMode, GLint inFirst, GLsizei inCount)
 {
+#ifndef NDEBUG
+	DrawArraysVerify(inMode, inFirst, inCount);
+#endif
     glDrawArrays(inMode, inFirst, inCount);
 }
 

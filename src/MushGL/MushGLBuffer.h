@@ -7,7 +7,7 @@
  *
  * File: src/MushGL/MushGLBuffer.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 7OpR3zTj9YNW6vQRFe5IfA
+//%Header } KE/xel5H3Q0XfrvIBfYk6A
 /*
- * $Id: MushGLBuffer.h,v 1.7 2005/07/04 15:59:00 southa Exp $
+ * $Id: MushGLBuffer.h,v 1.8 2005/07/05 13:52:22 southa Exp $
  * $Log: MushGLBuffer.h,v $
+ * Revision 1.8  2005/07/05 13:52:22  southa
+ * Adanaxis work
+ *
  * Revision 1.7  2005/07/04 15:59:00  southa
  * Adanaxis work
  *
@@ -86,7 +89,7 @@ private:
     void MapBuffer(GLenum inType);
 
     GLuint m_handle;
-    bool m_isVertexBuffer;
+    bool m_isVertexBuffer; //:read
     bool m_mapped;
     bool m_allocated;
     Mushware::tSize m_size; //:read
@@ -96,8 +99,9 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
 //%classPrototypes {
 public:
+    const bool& IsVertexBuffer(void) const { return m_isVertexBuffer; }
     const Mushware::tSize& Size(void) const { return m_size; }
-//%classPrototypes } jazfCOGeY7DCFjd3s5jseg
+//%classPrototypes } 7Y3EQjYL6GdV4Omjmsmm5g
 };
 
 template <class T>

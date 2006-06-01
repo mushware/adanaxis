@@ -3,7 +3,7 @@
  *
  * File: src/Media/MediaAudioCommandHandler.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } prTllXwitkqZgo79W+/ADg
+//%Header } 6psFWSm/ua5Ezx8XGj2WDg
 /*
- * $Id: MediaAudioCommandHandler.cpp,v 1.22 2004/01/06 20:46:51 southa Exp $
+ * $Id: MediaAudioCommandHandler.cpp,v 1.23 2005/05/19 13:02:08 southa Exp $
  * $Log: MediaAudioCommandHandler.cpp,v $
+ * Revision 1.23  2005/05/19 13:02:08  southa
+ * Mac release work
+ *
  * Revision 1.22  2004/01/06 20:46:51  southa
  * Build fixes
  *

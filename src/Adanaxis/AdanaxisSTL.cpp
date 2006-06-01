@@ -3,7 +3,7 @@
  *
  * File: src/Adanaxis/AdanaxisSTL.cpp
  *
- * Copyright: Andy Southgate 2005
+ * Copyright: Andy Southgate 2005-2006
  *
  * This file may be used and distributed under the terms of the Mushware
  * software licence version 1.0, under the terms for 'Proprietary original
@@ -15,10 +15,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } k2LUmURp13wepByxczBDNA
+//%Header } YpHmZQVjPLDxTRU/jRLPBg
 /*
- * $Id: AdanaxisSTL.cpp,v 1.1 2005/06/13 17:34:55 southa Exp $
+ * $Id: AdanaxisSTL.cpp,v 1.2 2005/06/14 13:25:33 southa Exp $
  * $Log: AdanaxisSTL.cpp,v $
+ * Revision 1.2  2005/06/14 13:25:33  southa
+ * Adanaxis work
+ *
  * Revision 1.1  2005/06/13 17:34:55  southa
  * Adanaxis creation
  *

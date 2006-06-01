@@ -3,7 +3,7 @@
  *
  * File: src/Mushcore/MushcoreXMLIStream.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } Dnly+DMhb+GJRvHlCxnkFA
+//%Header } rdYojx13YYIWomCDMArN/g
 /*
- * $Id: MushcoreXMLIStream.cpp,v 1.23 2005/06/14 13:25:35 southa Exp $
+ * $Id: MushcoreXMLIStream.cpp,v 1.24 2005/06/24 10:30:14 southa Exp $
  * $Log: MushcoreXMLIStream.cpp,v $
+ * Revision 1.24  2005/06/24 10:30:14  southa
+ * MushGame camera work
+ *
  * Revision 1.23  2005/06/14 13:25:35  southa
  * Adanaxis work
  *

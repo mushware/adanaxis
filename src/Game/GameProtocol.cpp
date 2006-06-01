@@ -3,7 +3,7 @@
  *
  * File: src/Game/GameProtocol.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } YbGuXz0TJBJ9lrIOnrFa5Q
+//%Header } 71FgUo3TR/9ImqHfInJ0xw
 /*
- * $Id: GameProtocol.cpp,v 1.19 2005/03/13 00:34:46 southa Exp $
+ * $Id: GameProtocol.cpp,v 1.20 2005/05/19 13:02:02 southa Exp $
  * $Log: GameProtocol.cpp,v $
+ * Revision 1.20  2005/05/19 13:02:02  southa
+ * Mac release work
+ *
  * Revision 1.19  2005/03/13 00:34:46  southa
  * Build fixes, key support and stereo
  *

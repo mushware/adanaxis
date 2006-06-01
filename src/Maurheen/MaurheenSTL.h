@@ -7,7 +7,7 @@
  *
  * File: src/Maurheen/MaurheenSTL.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } XmT3gTHwgxJ9JPuvpX2tpg
+//%Header } L9ITl9Scs12cS+SUiMwGQw
 /*
- * $Id: MaurheenSTL.h,v 1.1 2004/03/06 14:01:42 southa Exp $
+ * $Id: MaurheenSTL.h,v 1.2 2005/05/19 13:02:07 southa Exp $
  * $Log: MaurheenSTL.h,v $
+ * Revision 1.2  2005/05/19 13:02:07  southa
+ * Mac release work
+ *
  * Revision 1.1  2004/03/06 14:01:42  southa
  * Maurheen created
  *

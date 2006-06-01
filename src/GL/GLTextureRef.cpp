@@ -3,7 +3,7 @@
  *
  * File: src/GL/GLTextureRef.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } asw/Xtq8JFLwPuHWwCzSHA
+//%Header } yLVw8gmUs4UIPRaO/DIaMw
 /*
- * $Id: GLTextureRef.cpp,v 1.24 2005/06/30 14:26:35 southa Exp $
+ * $Id: GLTextureRef.cpp,v 1.25 2005/07/02 00:42:37 southa Exp $
  * $Log: GLTextureRef.cpp,v $
+ * Revision 1.25  2005/07/02 00:42:37  southa
+ * Conditioning tweaks
+ *
  * Revision 1.24  2005/06/30 14:26:35  southa
  * Adanaxis work
  *

@@ -7,7 +7,7 @@
  *
  * File: src/TestMushMesh/TestMushMeshMattress.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } Az7VtuAmBCwaaeTrmGBnCg
+//%Header } 2FTJOAccW3sgmLRma1kGJw
 /*
- * $Id$
- * $Log$
+ * $Id: TestMushMeshMattress.h,v 1.1 2005/07/02 00:42:39 southa Exp $
+ * $Log: TestMushMeshMattress.h,v $
+ * Revision 1.1  2005/07/02 00:42:39  southa
+ * Conditioning tweaks
+ *
  */
 
 #include "TestMushMeshStandard.h"

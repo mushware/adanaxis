@@ -3,7 +3,7 @@
  *
  * File: src/Main/SDLApp/SecondaryMain.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } JIKO91mA9Mdkoz7baUMSZQ
+//%Header } GWXXnrKpknyTferjr2TZPQ
 /*
- * $Id: SecondaryMain.cpp,v 1.5 2005/05/19 13:02:07 southa Exp $
+ * $Id: SecondaryMain.cpp,v 1.6 2005/06/04 13:18:46 southa Exp $
  * $Log: SecondaryMain.cpp,v $
+ * Revision 1.6  2005/06/04 13:18:46  southa
+ * Updates for Mac OS Release 0.1.2
+ *
  * Revision 1.5  2005/05/19 13:02:07  southa
  * Mac release work
  *

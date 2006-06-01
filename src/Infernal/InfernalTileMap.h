@@ -7,7 +7,7 @@
  *
  * File: src/Infernal/InfernalTileMap.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } HjHSDP8NpFYVkyRQM+gvUg
+//%Header } owL1C8ubttwfSmIwBfWuUw
 /*
- * $Id: InfernalTileMap.h,v 1.5 2004/01/06 20:46:51 southa Exp $
+ * $Id: InfernalTileMap.h,v 1.6 2005/05/19 13:02:06 southa Exp $
  * $Log: InfernalTileMap.h,v $
+ * Revision 1.6  2005/05/19 13:02:06  southa
+ * Mac release work
+ *
  * Revision 1.5  2004/01/06 20:46:51  southa
  * Build fixes
  *

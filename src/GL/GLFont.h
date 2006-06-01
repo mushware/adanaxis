@@ -7,7 +7,7 @@
  *
  * File: src/GL/GLFont.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } Z4CslF0dEqsW4lc5DM7+FA
+//%Header } J46vMOpK5Ed4g8LdM+S06w
 /*
- * $Id: GLFont.h,v 1.14 2004/01/06 20:46:49 southa Exp $
+ * $Id: GLFont.h,v 1.15 2005/05/19 13:01:58 southa Exp $
  * $Log: GLFont.h,v $
+ * Revision 1.15  2005/05/19 13:01:58  southa
+ * Mac release work
+ *
  * Revision 1.14  2004/01/06 20:46:49  southa
  * Build fixes
  *

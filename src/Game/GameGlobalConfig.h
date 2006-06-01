@@ -7,7 +7,7 @@
  *
  * File: src/Game/GameGlobalConfig.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } RfB/zUWO/LyHg/RelLv97Q
+//%Header } VIerJbW/diHo61Aaa02A2g
 /*
- * $Id: GameGlobalConfig.h,v 1.14 2004/01/06 20:46:50 southa Exp $
+ * $Id: GameGlobalConfig.h,v 1.15 2005/05/19 13:02:02 southa Exp $
  * $Log: GameGlobalConfig.h,v $
+ * Revision 1.15  2005/05/19 13:02:02  southa
+ * Mac release work
+ *
  * Revision 1.14  2004/01/06 20:46:50  southa
  * Build fixes
  *

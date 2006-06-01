@@ -3,7 +3,7 @@
  *
  * File: src/Game/GameDialogue.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } mPmCGCmDmQ75caXxvc1Qow
+//%Header } 4xqdhFCU1OwTEJubgm2zbA
 /*
- * $Id: GameDialogue.cpp,v 1.33 2005/07/02 00:42:37 southa Exp $
+ * $Id: GameDialogue.cpp,v 1.34 2005/07/04 15:59:00 southa Exp $
  * $Log: GameDialogue.cpp,v $
+ * Revision 1.34  2005/07/04 15:59:00  southa
+ * Adanaxis work
+ *
  * Revision 1.33  2005/07/02 00:42:37  southa
  * Conditioning tweaks
  *

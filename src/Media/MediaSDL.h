@@ -7,7 +7,7 @@
  *
  * File: src/Media/MediaSDL.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } VTRm8wZFSdKmR9HvYVSD2w
+//%Header } T42h8hBf49T+dFOol6izVQ
 /*
- * $Id: MediaSDL.h,v 1.25 2005/05/26 16:05:29 southa Exp $
+ * $Id: MediaSDL.h,v 1.26 2005/05/27 19:25:24 southa Exp $
  * $Log: MediaSDL.h,v $
+ * Revision 1.26  2005/05/27 19:25:24  southa
+ * win32 build fixes
+ *
  * Revision 1.25  2005/05/26 16:05:29  southa
  * win32 support
  *

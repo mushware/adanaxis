@@ -3,7 +3,7 @@
  *
  * File: src/MushGame/MushGameStandard.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } KHcCpXwK/1mpxswse1epug
+//%Header } ukkGY9SDuBoPeLe5IQYRnA
 /*
- * $Id: MushGameStandard.cpp,v 1.1 2005/06/14 13:25:34 southa Exp $
+ * $Id: MushGameStandard.cpp,v 1.2 2005/07/01 10:36:46 southa Exp $
  * $Log: MushGameStandard.cpp,v $
+ * Revision 1.2  2005/07/01 10:36:46  southa
+ * MushRender work
+ *
  * Revision 1.1  2005/06/14 13:25:34  southa
  * Adanaxis work
  *

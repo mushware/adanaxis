@@ -3,7 +3,7 @@
  *
  * File: src/GL/GLFont.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } EcMxw0EWJcHL25Wvjp15fw
+//%Header } TrXq01XHkTj6//+ax4MPuQ
 /*
- * $Id: GLFont.cpp,v 1.22 2004/01/02 21:13:05 southa Exp $
+ * $Id: GLFont.cpp,v 1.23 2005/05/19 13:01:58 southa Exp $
  * $Log: GLFont.cpp,v $
+ * Revision 1.23  2005/05/19 13:01:58  southa
+ * Mac release work
+ *
  * Revision 1.22  2004/01/02 21:13:05  southa
  * Source conditioning
  *

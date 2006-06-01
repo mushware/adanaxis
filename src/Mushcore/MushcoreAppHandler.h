@@ -7,7 +7,7 @@
  *
  * File: src/Mushcore/MushcoreAppHandler.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } TWHN35KxIbvn5e+khHkDoA
+//%Header } i+XL0Lx00Vu7TzgYWs51uw
 /*
- * $Id: MushcoreAppHandler.h,v 1.8 2004/01/02 21:13:11 southa Exp $
+ * $Id: MushcoreAppHandler.h,v 1.9 2005/05/19 13:02:14 southa Exp $
  * $Log: MushcoreAppHandler.h,v $
+ * Revision 1.9  2005/05/19 13:02:14  southa
+ * Mac release work
+ *
  * Revision 1.8  2004/01/02 21:13:11  southa
  * Source conditioning
  *

@@ -3,7 +3,7 @@
  *
  * File: src/Infernal/InfernalRouter.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } bmlSsC0a62s/ni0fCn9nPw
+//%Header } dJ/wTuI3rS3GLKspuawyFQ
 /*
- * $Id: InfernalRouter.cpp,v 1.5 2004/01/10 20:29:34 southa Exp $
+ * $Id: InfernalRouter.cpp,v 1.6 2005/05/19 13:02:06 southa Exp $
  * $Log: InfernalRouter.cpp,v $
+ * Revision 1.6  2005/05/19 13:02:06  southa
+ * Mac release work
+ *
  * Revision 1.5  2004/01/10 20:29:34  southa
  * Form and rendering work
  *

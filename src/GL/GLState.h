@@ -7,7 +7,7 @@
  *
  * File: src/GL/GLState.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,11 +21,14 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } IwFY+vEV1v39vptrGOffNA
+//%Header } gVjHmMjwczZaoPVkRCvpXw
 
 /*
- * $Id: GLState.h,v 1.16 2005/05/19 13:02:00 southa Exp $
+ * $Id: GLState.h,v 1.17 2005/09/06 12:15:35 southa Exp $
  * $Log: GLState.h,v $
+ * Revision 1.17  2005/09/06 12:15:35  southa
+ * Texture and rendering work
+ *
  * Revision 1.16  2005/05/19 13:02:00  southa
  * Mac release work
  *
@@ -381,7 +384,7 @@ GLState::Reset(void)
     glEnableClientState(GL_TEXTURE_COORD_ARRAY); // Always enabled
     glEnableClientState(GL_NORMAL_ARRAY); // Always enabled
 }
-    
+
 inline void
 GLState::UseLightingSet(bool inValue)
 {

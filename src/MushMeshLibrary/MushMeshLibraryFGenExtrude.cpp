@@ -3,7 +3,7 @@
  *
  * File: src/MushMeshLibrary/MushMeshLibraryFGenExtrude.cpp
  *
- * Copyright: Andy Southgate 2005
+ * Copyright: Andy Southgate 2005-2006
  *
  * This file may be used and distributed under the terms of the Mushware
  * software licence version 1.0, under the terms for 'Proprietary original
@@ -15,10 +15,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 5mXJjsgE9FySBp3B30JsGw
+//%Header } 70tr8r+7E9EfOI+CfsPhBA
 /*
- * $Id: MushMeshLibraryFGenExtrude.cpp,v 1.8 2005/09/06 12:15:35 southa Exp $
+ * $Id: MushMeshLibraryFGenExtrude.cpp,v 1.9 2006/04/11 23:30:08 southa Exp $
  * $Log: MushMeshLibraryFGenExtrude.cpp,v $
+ * Revision 1.9  2006/04/11 23:30:08  southa
+ * Created MushRuby from ruby-1.8.4
+ *
  * Revision 1.8  2005/09/06 12:15:35  southa
  * Texture and rendering work
  *

@@ -7,7 +7,7 @@
  *
  * File: src/TestMushMesh/TestMushMesh4Library.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } jW6Oi1JwZY3pjneo2dVfLg
+//%Header } lOuaFEcTRWLdBWnuKy9Kiw
 /*
- * $Id$
- * $Log$
+ * $Id: TestMushMesh4Library.h,v 1.1 2005/06/30 12:04:56 southa Exp $
+ * $Log: TestMushMesh4Library.h,v $
+ * Revision 1.1  2005/06/30 12:04:56  southa
+ * Mesh work
+ *
  */
 
 #include "TestMushMeshStandard.h"

@@ -7,7 +7,7 @@
  *
  * File: src/Mushcore/MushcoreObject.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } VXA0CUUGG5axRoHXULuA2w
+//%Header } Df9VGTxSfcuFL+B2WRJ5wg
 /*
- * $Id: MushcoreObject.h,v 1.5 2004/01/18 18:25:29 southa Exp $
+ * $Id: MushcoreObject.h,v 1.6 2005/05/19 13:02:16 southa Exp $
  * $Log: MushcoreObject.h,v $
+ * Revision 1.6  2005/05/19 13:02:16  southa
+ * Mac release work
+ *
  * Revision 1.5  2004/01/18 18:25:29  southa
  * XML stream upgrades
  *

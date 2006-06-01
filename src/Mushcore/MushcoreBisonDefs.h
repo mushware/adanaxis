@@ -7,7 +7,7 @@
  *
  * File: src/Mushcore/MushcoreBisonDefs.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,7 +21,7 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } uS4cXQigMOT91KkAjsP0MA
+//%Header } b4Oo3mXmT/9ebr6z3M1NJQ
 #define	NUMBER	257
 #define	VARIABLE	258
 #define	IDENTIFIER	259

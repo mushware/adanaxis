@@ -3,7 +3,7 @@
  *
  * File: src/MushMesh/MushMesh4VertexGenerator.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } lKjjH34iBYdclYOEpFucxw
+//%Header } 34FbVMtPWc07y88Qgltxog
 /*
- * $Id$
- * $Log$
+ * $Id: MushMesh4VertexGenerator.cpp,v 1.1 2005/07/12 20:39:05 southa Exp $
+ * $Log: MushMesh4VertexGenerator.cpp,v $
+ * Revision 1.1  2005/07/12 20:39:05  southa
+ * Mesh library work
+ *
  */
 
 #include "MushMesh4VertexGenerator.h"

@@ -3,7 +3,7 @@
  *
  * File: src/Main/PrimaryMain.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } Y3Jz85bppSYhbff1eUOaTg
+//%Header } KxuU1xe9B2cXSguXQDNP2Q
 /*
- * $Id: PrimaryMain.cpp,v 1.1 2004/01/05 14:27:40 southa Exp $
+ * $Id: PrimaryMain.cpp,v 1.2 2005/05/19 13:02:07 southa Exp $
  * $Log: PrimaryMain.cpp,v $
+ * Revision 1.2  2005/05/19 13:02:07  southa
+ * Mac release work
+ *
  * Revision 1.1  2004/01/05 14:27:40  southa
  * MushPie work and build fixes
  *

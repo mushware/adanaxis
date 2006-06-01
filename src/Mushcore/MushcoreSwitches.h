@@ -7,7 +7,7 @@
  *
  * File: src/Mushcore/MushcoreSwitches.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } H2pgO0Z2uw1STSVyJvnilw
+//%Header } dIwzBF8DOOpjXxofsNAblw
 /*
- * $Id: MushcoreSwitches.h,v 1.10 2005/08/01 17:58:12 southa Exp $
+ * $Id: MushcoreSwitches.h,v 1.11 2005/08/02 17:11:28 southa Exp $
  * $Log: MushcoreSwitches.h,v $
+ * Revision 1.11  2005/08/02 17:11:28  southa
+ * win32 build fixes
+ *
  * Revision 1.10  2005/08/01 17:58:12  southa
  * Object explosion
  *

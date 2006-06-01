@@ -3,7 +3,7 @@
  *
  * File: src/GL/GLRenderable.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 3lA+kfvW1aQORIPIFmGN9A
+//%Header } PjKjLHckQHA0m0JhenO/ow
 /*
- * $Id: GLRenderable.cpp,v 1.10 2004/01/02 21:13:05 southa Exp $
+ * $Id: GLRenderable.cpp,v 1.11 2005/05/19 13:01:59 southa Exp $
  * $Log: GLRenderable.cpp,v $
+ * Revision 1.11  2005/05/19 13:01:59  southa
+ * Mac release work
+ *
  * Revision 1.10  2004/01/02 21:13:05  southa
  * Source conditioning
  *

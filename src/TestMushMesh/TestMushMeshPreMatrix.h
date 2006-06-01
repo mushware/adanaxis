@@ -7,7 +7,7 @@
  *
  * File: src/TestMushMesh/TestMushMeshPreMatrix.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } NGnEl6o7J31akTEifjsOQg
+//%Header } r1fNDDcCweCduj1qYOqFvA
 /*
- * $Id: TestMushMeshPreMatrix.h,v 1.1 2004/10/31 09:22:51 southa Exp $
+ * $Id: TestMushMeshPreMatrix.h,v 1.2 2005/05/19 13:02:23 southa Exp $
  * $Log: TestMushMeshPreMatrix.h,v $
+ * Revision 1.2  2005/05/19 13:02:23  southa
+ * Mac release work
+ *
  * Revision 1.1  2004/10/31 09:22:51  southa
  * Added MushMeshPreMatrix
  *

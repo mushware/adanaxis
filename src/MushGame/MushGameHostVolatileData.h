@@ -7,7 +7,7 @@
  *
  * File: src/MushGame/MushGameHostVolatileData.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } f9mSKLtY4rgl74+hGwreFg
+//%Header } qo+yHqSWxBrwVLitsgE9aA
 /*
- * $Id: MushGameHostVolatileData.h,v 1.1 2005/06/21 15:57:47 southa Exp $
+ * $Id: MushGameHostVolatileData.h,v 1.2 2005/07/11 14:48:46 southa Exp $
  * $Log: MushGameHostVolatileData.h,v $
+ * Revision 1.2  2005/07/11 14:48:46  southa
+ * Uplink work
+ *
  * Revision 1.1  2005/06/21 15:57:47  southa
  * MushGame work
  *

@@ -3,7 +3,7 @@
  *
  * File: src/Platform/X11/PlatformMiscUtils.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } JQniDXhOkxyip6Yh+nRoeQ
+//%Header } IvAhPSVPf1x+MLMRSmlIow
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.24 2005/06/06 15:07:10 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.25 2005/06/08 20:59:52 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.25  2005/06/08 20:59:52  southa
+ * X11 release
+ *
  * Revision 1.24  2005/06/06 15:07:10  southa
  * X11 work
  *

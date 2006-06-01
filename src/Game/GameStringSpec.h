@@ -7,7 +7,7 @@
  *
  * File: src/Game/GameStringSpec.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 9Me/nJIZR1YxOvHlqu+ysw
+//%Header } cCXc/mX/0MpJBzgASxaNGw
 /*
- * $Id: GameStringSpec.h,v 1.4 2005/06/20 14:30:34 southa Exp $
+ * $Id: GameStringSpec.h,v 1.5 2005/07/04 15:59:00 southa Exp $
  * $Log: GameStringSpec.h,v $
+ * Revision 1.5  2005/07/04 15:59:00  southa
+ * Adanaxis work
+ *
  * Revision 1.4  2005/06/20 14:30:34  southa
  * Adanaxis work
  *

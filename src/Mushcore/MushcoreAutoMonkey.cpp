@@ -3,7 +3,7 @@
  *
  * File: src/Mushcore/MushcoreAutoMonkey.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } FwGIMg2frgpqY4SiiHc3oA
+//%Header } aEvMGCmLAVy9Yp7e8dHvdQ
 /*
- * $Id: MushcoreAutoMonkey.cpp,v 1.6 2004/01/02 21:13:12 southa Exp $
+ * $Id: MushcoreAutoMonkey.cpp,v 1.7 2005/05/19 13:02:14 southa Exp $
  * $Log: MushcoreAutoMonkey.cpp,v $
+ * Revision 1.7  2005/05/19 13:02:14  southa
+ * Mac release work
+ *
  * Revision 1.6  2004/01/02 21:13:12  southa
  * Source conditioning
  *

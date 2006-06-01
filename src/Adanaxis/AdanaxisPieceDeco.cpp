@@ -3,7 +3,7 @@
  *
  * File: src/Adanaxis/AdanaxisPieceDeco.cpp
  *
- * Copyright: Andy Southgate 2005
+ * Copyright: Andy Southgate 2005-2006
  *
  * This file may be used and distributed under the terms of the Mushware
  * software licence version 1.0, under the terms for 'Proprietary original
@@ -15,10 +15,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } sexYl99zeFqxCTpAO8DLNQ
+//%Header } Kb73MSBnaByz2lwXVLGZkA
 /*
- * $Id: AdanaxisPieceDeco.cpp,v 1.12 2005/08/01 20:24:15 southa Exp $
+ * $Id: AdanaxisPieceDeco.cpp,v 1.13 2005/08/02 11:11:47 southa Exp $
  * $Log: AdanaxisPieceDeco.cpp,v $
+ * Revision 1.13  2005/08/02 11:11:47  southa
+ * Adanaxis control demo work
+ *
  * Revision 1.12  2005/08/01 20:24:15  southa
  * Backdrop and build fixes
  *

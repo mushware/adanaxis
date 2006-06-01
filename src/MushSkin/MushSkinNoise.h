@@ -7,7 +7,7 @@
  *
  * File: src/MushSkin/MushSkinNoise.h
  *
- * Copyright: Andy Southgate 2005
+ * Copyright: Andy Southgate 2005-2006
  *
  * This file may be used and distributed under the terms of the Mushware
  * software licence version 1.0, under the terms for 'Proprietary original
@@ -19,10 +19,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } pANJJVmLPGcMk9qN06cXdg
+//%Header } 6q27LhICivKGlt/6CoYfvA
 /*
- * $Id$
- * $Log$
+ * $Id: MushSkinNoise.h,v 1.1 2005/08/29 18:40:57 southa Exp $
+ * $Log: MushSkinNoise.h,v $
+ * Revision 1.1  2005/08/29 18:40:57  southa
+ * Solid rendering work
+ *
  */
 
 #include "MushSkinStandard.h"

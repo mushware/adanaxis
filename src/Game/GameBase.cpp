@@ -3,7 +3,7 @@
  *
  * File: src/Game/GameBase.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } TRCAr6rDtcL6+I7Dmz3z5Q
+//%Header } qNtiP8KZ6QfdreN3B5rs4g
 /*
- * $Id: GameBase.cpp,v 1.7 2004/03/06 13:13:42 southa Exp $
+ * $Id: GameBase.cpp,v 1.8 2005/05/19 13:02:01 southa Exp $
  * $Log: GameBase.cpp,v $
+ * Revision 1.8  2005/05/19 13:02:01  southa
+ * Mac release work
+ *
  * Revision 1.7  2004/03/06 13:13:42  southa
  * Maurheen created
  *

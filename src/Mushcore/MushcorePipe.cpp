@@ -3,7 +3,7 @@
  *
  * File: src/Mushcore/MushcorePipe.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 9CYqWRU3elOSQapS7D1gtw
+//%Header } qmGmkL0O1v7rwj/SNc2MCA
 /*
- * $Id$
- * $Log$
+ * $Id: MushcorePipe.cpp,v 1.1 2005/06/13 14:25:46 southa Exp $
+ * $Log: MushcorePipe.cpp,v $
+ * Revision 1.1  2005/06/13 14:25:46  southa
+ * Pipe and ordered data work
+ *
  */
 
 #include "MushcorePipe.h"

@@ -7,7 +7,7 @@
  *
  * File: src/Adanaxis/AdanaxisGame.h
  *
- * Copyright: Andy Southgate 2005
+ * Copyright: Andy Southgate 2005-2006
  *
  * This file may be used and distributed under the terms of the Mushware
  * software licence version 1.0, under the terms for 'Proprietary original
@@ -19,10 +19,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } TlcXhfM+VEvZ0twh8kZG0Q
+//%Header } wOXl6eoMycMTXcUsBJ4Pgg
 /*
- * $Id: AdanaxisGame.h,v 1.10 2005/07/06 19:08:26 southa Exp $
+ * $Id: AdanaxisGame.h,v 1.11 2005/08/02 14:37:44 southa Exp $
  * $Log: AdanaxisGame.h,v $
+ * Revision 1.11  2005/08/02 14:37:44  southa
+ * Adanaxis control demo work
+ *
  * Revision 1.10  2005/07/06 19:08:26  southa
  * Adanaxis control work
  *

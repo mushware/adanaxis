@@ -3,7 +3,7 @@
  *
  * File: src/Mustl/MustlClient.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } n0VAgcjyZnlRBcENYgMhGg
+//%Header } AFt0LYqVRSdLY18dYBor9g
 /*
- * $Id: MustlClient.cpp,v 1.16 2004/09/28 23:05:54 southa Exp $
+ * $Id: MustlClient.cpp,v 1.17 2005/05/19 13:02:17 southa Exp $
  * $Log: MustlClient.cpp,v $
+ * Revision 1.17  2005/05/19 13:02:17  southa
+ * Mac release work
+ *
  * Revision 1.16  2004/09/28 23:05:54  southa
  * MSVC build of ic2
  *

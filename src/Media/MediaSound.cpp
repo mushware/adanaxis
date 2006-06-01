@@ -3,7 +3,7 @@
  *
  * File: src/Media/MediaSound.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } eyFyRRwAJGHklPvS1D6HFQ
+//%Header } me924xa0+Lyfst6KDBi6wg
 /*
- * $Id: MediaSound.cpp,v 1.21 2004/01/02 21:13:10 southa Exp $
+ * $Id: MediaSound.cpp,v 1.22 2005/05/19 13:02:08 southa Exp $
  * $Log: MediaSound.cpp,v $
+ * Revision 1.22  2005/05/19 13:02:08  southa
+ * Mac release work
+ *
  * Revision 1.21  2004/01/02 21:13:10  southa
  * Source conditioning
  *

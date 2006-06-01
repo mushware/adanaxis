@@ -3,7 +3,7 @@
  *
  * File: src/MushGame/MushGameConfigBase.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } zlEUQXfSjpEXuKmYV4vLFg
+//%Header } WGW0jWLT0tHoC21nwBZAtQ
 /*
- * $Id: MushGameConfigBase.cpp,v 1.1 2005/06/14 20:39:41 southa Exp $
+ * $Id: MushGameConfigBase.cpp,v 1.2 2005/07/02 00:42:37 southa Exp $
  * $Log: MushGameConfigBase.cpp,v $
+ * Revision 1.2  2005/07/02 00:42:37  southa
+ * Conditioning tweaks
+ *
  * Revision 1.1  2005/06/14 20:39:41  southa
  * Adanaxis work
  *

@@ -7,7 +7,7 @@
  *
  * File: src/Media/MediaAudioSDL.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,12 +21,15 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } brb5f72vpP0V3HF8rMlgOg
+//%Header } vvu0jaD31bFVZCLJ1xDZzg
 /* Name changed from MediaAudio to MediaAudioSDL 2002/08/23 */
 
 /*
- * $Id: MediaAudioSDL.h,v 1.11 2005/04/19 23:25:41 southa Exp $
+ * $Id: MediaAudioSDL.h,v 1.12 2005/05/19 13:02:08 southa Exp $
  * $Log: MediaAudioSDL.h,v $
+ * Revision 1.12  2005/05/19 13:02:08  southa
+ * Mac release work
+ *
  * Revision 1.11  2005/04/19 23:25:41  southa
  * Mode switching and recognition
  *

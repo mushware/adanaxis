@@ -3,27 +3,27 @@ Please report bugs or request support at http://www.mushware.com/
 Platform-specific details can be found in README.linux, README.win32 and
 README.macosx files.
 
-To compile and install Adanaxis Control Demo from this distribution:
+To compile and install Snapshot from this distribution:
 
 Unix/POSIX/Linux/FreeBSD
 ========================
 
 Download and unpack the source and data files and build thus:
 
-tar xvzf adanaxiscontroldemo-0.0.1.tar.gz
-cd adanaxiscontroldemo-0.0.1
+tar xvzf snapshot-0.0.1.tar.gz
+cd snapshot-0.0.1
 ./configure
 # (spend a few days getting the libraries that configure asks for)
 make
 make install
-adanaxiscontroldemo
+snapshot
 
 Alternatively, the application can be started without installing, but
 this must be done from the system directory.
 
 make
-cd data-adanaxiscontroldemo
-../../src/adanaxiscontroldemobinary
+cd data-snapshot
+../../src/snapshotbinary
 
 MacOS X
 =======

@@ -3,7 +3,7 @@
  *
  * File: src/Mushcore/MushcoreFactory.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } x2zaHORqMzaHy+z0sz5CIg
+//%Header } etKlc9esHdAAS8KLARdcnA
 /*
- * $Id: MushcoreFactory.cpp,v 1.6 2005/05/19 13:02:15 southa Exp $
+ * $Id: MushcoreFactory.cpp,v 1.7 2005/06/21 13:10:52 southa Exp $
  * $Log: MushcoreFactory.cpp,v $
+ * Revision 1.7  2005/06/21 13:10:52  southa
+ * MushGame work
+ *
  * Revision 1.6  2005/05/19 13:02:15  southa
  * Mac release work
  *

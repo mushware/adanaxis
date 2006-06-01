@@ -3,7 +3,7 @@
  *
  * File: src/Game/GameEvent.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 6B/kFowR8BdClEORgzrkdA
+//%Header } h9ipPUm+VNfJr9NihzxNvw
 /*
- * $Id: GameEvent.cpp,v 1.2 2004/01/02 21:13:07 southa Exp $
+ * $Id: GameEvent.cpp,v 1.3 2005/05/19 13:02:02 southa Exp $
  * $Log: GameEvent.cpp,v $
+ * Revision 1.3  2005/05/19 13:02:02  southa
+ * Mac release work
+ *
  * Revision 1.2  2004/01/02 21:13:07  southa
  * Source conditioning
  *

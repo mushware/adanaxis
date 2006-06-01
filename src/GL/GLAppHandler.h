@@ -7,7 +7,7 @@
  *
  * File: src/GL/GLAppHandler.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } SqyVyfS1ZdPjvWXinM57nQ
+//%Header } TPx6ydKbT+Ng+tUVZS0gZA
 /*
- * $Id: GLAppHandler.h,v 1.31 2005/05/27 12:48:36 southa Exp $
+ * $Id: GLAppHandler.h,v 1.32 2005/07/05 13:52:22 southa Exp $
  * $Log: GLAppHandler.h,v $
+ * Revision 1.32  2005/07/05 13:52:22  southa
+ * Adanaxis work
+ *
  * Revision 1.31  2005/05/27 12:48:36  southa
  * Registration box tweaks
  *

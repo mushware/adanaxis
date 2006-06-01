@@ -7,7 +7,7 @@
  *
  * File: src/GL/GLTexture.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } SEV/7L2fX2x2aB0YP4YDXA
+//%Header } hrmu59ErUslNbFUHwMvwLg
 /*
- * $Id: GLTexture.h,v 1.21 2005/02/13 22:44:06 southa Exp $
+ * $Id: GLTexture.h,v 1.22 2005/05/19 13:02:00 southa Exp $
  * $Log: GLTexture.h,v $
+ * Revision 1.22  2005/05/19 13:02:00  southa
+ * Mac release work
+ *
  * Revision 1.21  2005/02/13 22:44:06  southa
  * Tesseract stuff
  *

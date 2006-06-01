@@ -3,7 +3,7 @@
  *
  * File: src/Adanaxis/AdanaxisPieceProjectile.cpp
  *
- * Copyright: Andy Southgate 2005
+ * Copyright: Andy Southgate 2005-2006
  *
  * This file may be used and distributed under the terms of the Mushware
  * software licence version 1.0, under the terms for 'Proprietary original
@@ -15,10 +15,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } cKEASf8ImtK3tzSM6fwREw
+//%Header } JmMTx0XAPATtkBANlQg8tA
 /*
- * $Id: AdanaxisPieceProjectile.cpp,v 1.3 2005/07/19 10:08:06 southa Exp $
+ * $Id: AdanaxisPieceProjectile.cpp,v 1.4 2005/08/01 13:09:57 southa Exp $
  * $Log: AdanaxisPieceProjectile.cpp,v $
+ * Revision 1.4  2005/08/01 13:09:57  southa
+ * Collision messaging
+ *
  * Revision 1.3  2005/07/19 10:08:06  southa
  * Adanaxis work
  *

@@ -7,7 +7,7 @@
  *
  * File: src/Infernal/InfernalStandard.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } OU/NWm/UbvqmHjVsUjPpHw
+//%Header } Y8G6xEx6ewg96vnxkuxEcg
 /*
- * $Id: InfernalStandard.h,v 1.2 2004/01/10 20:29:34 southa Exp $
+ * $Id: InfernalStandard.h,v 1.3 2005/05/19 13:02:06 southa Exp $
  * $Log: InfernalStandard.h,v $
+ * Revision 1.3  2005/05/19 13:02:06  southa
+ * Mac release work
+ *
  * Revision 1.2  2004/01/10 20:29:34  southa
  * Form and rendering work
  *

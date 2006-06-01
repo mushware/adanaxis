@@ -3,7 +3,7 @@
  *
  * File: src/MushGame/MushGameMessageControlInfo.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } w1/s8yA5XXvqhMRSZQYCrg
+//%Header } kjtpGq3pCUzxXKu2JQ/iFw
 /*
- * $Id$
- * $Log$
+ * $Id: MushGameMessageControlInfo.cpp,v 1.1 2005/07/06 19:08:27 southa Exp $
+ * $Log: MushGameMessageControlInfo.cpp,v $
+ * Revision 1.1  2005/07/06 19:08:27  southa
+ * Adanaxis control work
+ *
  */
 
 #include "MushGameMessageControlInfo.h"

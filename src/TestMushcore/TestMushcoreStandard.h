@@ -7,7 +7,7 @@
  *
  * File: src/TestMushcore/TestMushcoreStandard.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } Wt2xMi+gNRWzdxr37ARTiA
+//%Header } p7HPyvKUSnWuXa6DxXdzYQ
 /*
- * $Id: TestMushcoreStandard.h,v 1.6 2004/01/07 11:14:15 southa Exp $
+ * $Id: TestMushcoreStandard.h,v 1.7 2005/05/19 13:02:24 southa Exp $
  * $Log: TestMushcoreStandard.h,v $
+ * Revision 1.7  2005/05/19 13:02:24  southa
+ * Mac release work
+ *
  * Revision 1.6  2004/01/07 11:14:15  southa
  * Snapshot fixes
  *

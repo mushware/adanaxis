@@ -7,7 +7,7 @@
  *
  * File: src/MushGL/MushGLBuffers.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } DbBqjjQLEDRD5N83MupJQQ
+//%Header } VHo9mynYvrLNNxNizz2I6g
 /*
- * $Id: MushGLBuffers.h,v 1.6 2005/09/05 12:54:30 southa Exp $
+ * $Id: MushGLBuffers.h,v 1.7 2005/09/06 12:15:35 southa Exp $
  * $Log: MushGLBuffers.h,v $
+ * Revision 1.7  2005/09/06 12:15:35  southa
+ * Texture and rendering work
+ *
  * Revision 1.6  2005/09/05 12:54:30  southa
  * Solid rendering work
  *

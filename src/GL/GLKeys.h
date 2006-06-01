@@ -7,7 +7,7 @@
  *
  * File: src/GL/GLKeys.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 9IFiQ0brOhQKES+BNzDKMA
+//%Header } JULuY8zijzl3gSY8zJcPUA
 /*
- * $Id: GLKeys.h,v 1.16 2005/07/06 19:08:26 southa Exp $
+ * $Id: GLKeys.h,v 1.17 2005/07/08 12:07:07 southa Exp $
  * $Log: GLKeys.h,v $
+ * Revision 1.17  2005/07/08 12:07:07  southa
+ * MushGaem control work
+ *
  * Revision 1.16  2005/07/06 19:08:26  southa
  * Adanaxis control work
  *

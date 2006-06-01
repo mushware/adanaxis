@@ -7,7 +7,7 @@
  *
  * File: src/Mushcore/MushcoreXMLIStream.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } QZNov6vf1irc8tAhC1nh9g
+//%Header } FTjMuoWgWldTNGYATLOOjw
 /*
- * $Id: MushcoreXMLIStream.h,v 1.30 2005/07/01 14:59:00 southa Exp $
+ * $Id: MushcoreXMLIStream.h,v 1.31 2005/07/06 19:08:27 southa Exp $
  * $Log: MushcoreXMLIStream.h,v $
+ * Revision 1.31  2005/07/06 19:08:27  southa
+ * Adanaxis control work
+ *
  * Revision 1.30  2005/07/01 14:59:00  southa
  * Mushcore auto_ptr and binary string fixes
  *

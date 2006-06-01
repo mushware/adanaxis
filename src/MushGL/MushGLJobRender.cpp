@@ -3,7 +3,7 @@
  *
  * File: src/MushGL/MushGLJobRender.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } X47iPT+8iMD/6mUj/Cr/qg
+//%Header } FhldoK+rPKGab09yIIQtMw
 /*
- * $Id: MushGLJobRender.cpp,v 1.1 2005/07/04 11:10:43 southa Exp $
+ * $Id: MushGLJobRender.cpp,v 1.2 2005/09/05 17:14:22 southa Exp $
  * $Log: MushGLJobRender.cpp,v $
+ * Revision 1.2  2005/09/05 17:14:22  southa
+ * Solid rendering
+ *
  * Revision 1.1  2005/07/04 11:10:43  southa
  * Rendering pipeline
  *

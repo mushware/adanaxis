@@ -7,7 +7,7 @@
  *
  * File: src/Infernal/InfernalFacetContext.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } CDbgvA4tSMWmMJpHdOog6g
+//%Header } L6yMLpvZOetMOlW4KDcE9g
 /*
- * $Id: InfernalFacetContext.h,v 1.4 2005/05/19 13:02:04 southa Exp $
+ * $Id: InfernalFacetContext.h,v 1.5 2005/06/20 14:30:35 southa Exp $
  * $Log: InfernalFacetContext.h,v $
+ * Revision 1.5  2005/06/20 14:30:35  southa
+ * Adanaxis work
+ *
  * Revision 1.4  2005/05/19 13:02:04  southa
  * Mac release work
  *

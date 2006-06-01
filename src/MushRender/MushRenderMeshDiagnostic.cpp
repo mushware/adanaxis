@@ -3,7 +3,7 @@
  *
  * File: src/MushRender/MushRenderMeshDiagnostic.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } J0UI+16d74Ka/SXeExniNg
+//%Header } jMGvnnd1/YcpmfZ5naKXKg
 /*
- * $Id$
- * $Log$
+ * $Id: MushRenderMeshDiagnostic.cpp,v 1.1 2005/07/16 14:22:59 southa Exp $
+ * $Log: MushRenderMeshDiagnostic.cpp,v $
+ * Revision 1.1  2005/07/16 14:22:59  southa
+ * Added diagnostic renderer
+ *
  */
 
 #include "MushRenderMeshDiagnostic.h"

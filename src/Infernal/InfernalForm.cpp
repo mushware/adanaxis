@@ -3,7 +3,7 @@
  *
  * File: src/Infernal/InfernalForm.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } a8fQWtiAU9Jz7lV1nxPnhA
+//%Header } P/z/CV5Q9TZnvaHznnrz7Q
 /*
- * $Id: InfernalForm.cpp,v 1.7 2005/06/20 14:30:35 southa Exp $
+ * $Id: InfernalForm.cpp,v 1.8 2005/07/02 00:42:37 southa Exp $
  * $Log: InfernalForm.cpp,v $
+ * Revision 1.8  2005/07/02 00:42:37  southa
+ * Conditioning tweaks
+ *
  * Revision 1.7  2005/06/20 14:30:35  southa
  * Adanaxis work
  *

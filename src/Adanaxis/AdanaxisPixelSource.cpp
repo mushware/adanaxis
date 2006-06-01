@@ -3,7 +3,7 @@
  *
  * File: src/Adanaxis/AdanaxisPixelSource.cpp
  *
- * Copyright: Andy Southgate 2005
+ * Copyright: Andy Southgate 2005-2006
  *
  * This file may be used and distributed under the terms of the Mushware
  * software licence version 1.0, under the terms for 'Proprietary original
@@ -15,10 +15,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } do/pC4WFtsQItE9mWclSaw
+//%Header } 3//V3VslT3AgDmXVCXXBtg
 /*
- * $Id: AdanaxisPixelSource.cpp,v 1.5 2005/07/02 00:42:36 southa Exp $
+ * $Id: AdanaxisPixelSource.cpp,v 1.6 2005/08/28 22:41:51 southa Exp $
  * $Log: AdanaxisPixelSource.cpp,v $
+ * Revision 1.6  2005/08/28 22:41:51  southa
+ * MushGLTexture work
+ *
  * Revision 1.5  2005/07/02 00:42:36  southa
  * Conditioning tweaks
  *

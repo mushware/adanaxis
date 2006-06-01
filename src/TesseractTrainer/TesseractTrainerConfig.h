@@ -7,7 +7,7 @@
  *
  * File: src/TesseractTrainer/TesseractTrainerConfig.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 1cPm6Hnox103xUM9gkbzFw
+//%Header } Y9BQIWB2wMPLUwNGkHFvrA
 /*
- * $Id: TesseractTrainerConfig.h,v 1.6 2005/06/20 14:30:39 southa Exp $
+ * $Id: TesseractTrainerConfig.h,v 1.7 2005/07/02 00:42:38 southa Exp $
  * $Log: TesseractTrainerConfig.h,v $
+ * Revision 1.7  2005/07/02 00:42:38  southa
+ * Conditioning tweaks
+ *
  * Revision 1.6  2005/06/20 14:30:39  southa
  * Adanaxis work
  *

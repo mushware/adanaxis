@@ -7,7 +7,7 @@
  *
  * File: src/GL/GLAppSignal.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } +jtQjhh0MjE7AsiOTYWrQw
+//%Header } l+eCMpM1jwRsigcFyg3h3g
 /*
- * $Id: GLAppSignal.h,v 1.16 2005/05/19 13:01:58 southa Exp $
+ * $Id: GLAppSignal.h,v 1.17 2005/07/06 19:08:26 southa Exp $
  * $Log: GLAppSignal.h,v $
+ * Revision 1.17  2005/07/06 19:08:26  southa
+ * Adanaxis control work
+ *
  * Revision 1.16  2005/05/19 13:01:58  southa
  * Mac release work
  *

@@ -3,7 +3,7 @@
  *
  * File: src/TestMushMesh/TestMushMeshOps.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } UA5RwuZjX0m+afzns7WaJw
+//%Header } TX3clP1jfPmyVB6vOmHYzw
 /*
- * $Id: TestMushMeshOps.cpp,v 1.2 2004/11/30 00:18:06 southa Exp $
+ * $Id: TestMushMeshOps.cpp,v 1.3 2005/05/19 13:02:23 southa Exp $
  * $Log: TestMushMeshOps.cpp,v $
+ * Revision 1.3  2005/05/19 13:02:23  southa
+ * Mac release work
+ *
  * Revision 1.2  2004/11/30 00:18:06  southa
  * Additional vector operations
  *

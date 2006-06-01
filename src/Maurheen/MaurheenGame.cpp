@@ -3,7 +3,7 @@
  *
  * File: src/Maurheen/MaurheenGame.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } ZbqDA500q75IjTv/A4Bk6Q
+//%Header } z4OLfrn/sHuFDYwFFHiBnA
 /*
- * $Id: MaurheenGame.cpp,v 1.15 2005/06/20 14:30:35 southa Exp $
+ * $Id: MaurheenGame.cpp,v 1.16 2005/07/02 00:42:37 southa Exp $
  * $Log: MaurheenGame.cpp,v $
+ * Revision 1.16  2005/07/02 00:42:37  southa
+ * Conditioning tweaks
+ *
  * Revision 1.15  2005/06/20 14:30:35  southa
  * Adanaxis work
  *

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } IqSxvqRd3OSDd+9vhv6sYw
 /*
- * $Id: MushGLVertexBuffer.h,v 1.9 2005/09/03 17:05:36 southa Exp $
+ * $Id: MushGLVertexBuffer.h,v 1.10 2006/05/11 10:43:16 southa Exp $
  * $Log: MushGLVertexBuffer.h,v $
+ * Revision 1.10  2006/05/11 10:43:16  southa
+ * Project updates
+ *
  * Revision 1.9  2005/09/03 17:05:36  southa
  * Material work
  *
@@ -94,7 +97,7 @@ private:
     void Deallocate();
     
     GLuint m_handle;
-    bool m_isVertexBuffer;
+    bool m_isVertexBuffer; //:read
     bool m_mapped;
     bool m_allocated;
     Mushware::tSize m_size; //:read
@@ -104,11 +107,12 @@ private:
 public:
 //%classPrototypes {
 public:
+    const bool& IsVertexBuffer(void) const { return m_isVertexBuffer; }
     const Mushware::tSize& Size(void) const { return m_size; }
     void AutoPrint(std::ostream& ioOut) const;
     bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } 0xz9VyEM1/KbY14QiQ5KQQ
+//%classPrototypes } iPdNbJXyU5lCpczH82lmtw
 };
 
 template <class T>

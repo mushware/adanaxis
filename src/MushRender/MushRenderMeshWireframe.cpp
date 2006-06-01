@@ -3,7 +3,7 @@
  *
  * File: src/MushRender/MushRenderMeshWireframe.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } nnreRrgtAG1/ZKElYmX31w
+//%Header } GBnKh1xP//zYsMvzXoAYTg
 /*
- * $Id: MushRenderMeshWireframe.cpp,v 1.4 2005/07/05 16:35:53 southa Exp $
+ * $Id: MushRenderMeshWireframe.cpp,v 1.5 2005/07/06 19:08:27 southa Exp $
  * $Log: MushRenderMeshWireframe.cpp,v $
+ * Revision 1.5  2005/07/06 19:08:27  southa
+ * Adanaxis control work
+ *
  * Revision 1.4  2005/07/05 16:35:53  southa
  * Adanaxis work
  *

@@ -3,7 +3,7 @@
  *
  * File: src/MushMesh/MushMeshOps.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } ALTYrsUnRmh8nIy3s/p33Q
+//%Header } HaLoYu5we87ZVmvqmawJFQ
 /*
- * $Id: MushMeshOps.cpp,v 1.6 2005/07/04 15:59:00 southa Exp $
+ * $Id: MushMeshOps.cpp,v 1.7 2005/07/18 13:13:36 southa Exp $
  * $Log: MushMeshOps.cpp,v $
+ * Revision 1.7  2005/07/18 13:13:36  southa
+ * Extrude to point and projectile mesh
+ *
  * Revision 1.6  2005/07/04 15:59:00  southa
  * Adanaxis work
  *

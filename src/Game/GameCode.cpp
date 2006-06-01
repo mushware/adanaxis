@@ -3,7 +3,7 @@
  *
  * File: src/Game/GameCode.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } jhdo/VCXESdIVB/METBPYg
+//%Header } 73wVusdYgam7eQ8fPQmEWw
 /*
- * $Id: GameCode.cpp,v 1.4 2005/06/20 14:30:34 southa Exp $
+ * $Id: GameCode.cpp,v 1.5 2005/07/02 00:42:37 southa Exp $
  * $Log: GameCode.cpp,v $
+ * Revision 1.5  2005/07/02 00:42:37  southa
+ * Conditioning tweaks
+ *
  * Revision 1.4  2005/06/20 14:30:34  southa
  * Adanaxis work
  *

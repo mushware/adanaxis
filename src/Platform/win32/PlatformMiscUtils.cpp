@@ -3,7 +3,7 @@
  *
  * File: src/Platform/win32/PlatformMiscUtils.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } Wq62GzmuN/a+v2SYEo+oxg
+//%Header } dAboIY5Kp9P01iutrXBmlw
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.33 2005/05/26 00:46:41 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.34 2005/05/26 16:05:29 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.34  2005/05/26 16:05:29  southa
+ * win32 support
+ *
  * Revision 1.33  2005/05/26 00:46:41  southa
  * Made buildable on win32
  *

@@ -1,7 +1,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushRuby/dmyext.c
+ * File: src/MushRuby/dmyext.c (ruby)
  *
  * This file has been taken the ruby distribution and may have been modified.
  * For more information on the original see http://www.ruby-lang.org/.
@@ -21,7 +21,7 @@
  * Mushware Limited.
  *
  ****************************************************************************/
-//%Header } 78R4O7duYVsosNqf4e5akA
+//%Header } D4LUBDuO3VbPKg3wMlgPSQ
 void
 Init_ext()
 {

@@ -7,7 +7,7 @@
  *
  * File: src/Media/MediaSoundStream.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } rpoC1accwI2UlrYhM1CWiQ
+//%Header } sPuyCP3r99Gc00myo/BA1Q
 /*
- * $Id: MediaSoundStream.h,v 1.12 2005/04/19 23:25:41 southa Exp $
+ * $Id: MediaSoundStream.h,v 1.13 2005/05/19 13:02:08 southa Exp $
  * $Log: MediaSoundStream.h,v $
+ * Revision 1.13  2005/05/19 13:02:08  southa
+ * Mac release work
+ *
  * Revision 1.12  2005/04/19 23:25:41  southa
  * Mode switching and recognition
  *

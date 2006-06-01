@@ -1,9 +1,13 @@
+//%includeGuardStart {
+#ifndef MUSHMUSHRUBY_H
+#define MUSHMUSHRUBY_H
+//%includeGuardStart } W0E0cHhjD+mclVXeqelUBw
 //%Header {
 /*****************************************************************************
  *
  * File: src/API/mushMushRuby.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,7 +21,7 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } /FFUpbdSMF6ue2Qg1RDTpQ
+//%Header } z2xkoq+HLBk53o2o1LCS/Q
 
 #ifdef HAVE_CONFIG_H
 #include "config.h"
@@ -30,3 +34,6 @@
 #else
 #include "MushRuby/MushRuby.h"
 #endif
+//%includeGuardEnd {
+#endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

@@ -7,7 +7,7 @@
  *
  * File: src/MushGame/MushGameAddress.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } zusmqz/Suh1Iq3SH28slRQ
+//%Header } iS+4snq1fCZHJspcXX7qxg
 /*
- * $Id: MushGameAddress.h,v 1.1 2005/06/22 20:01:58 southa Exp $
+ * $Id: MushGameAddress.h,v 1.2 2005/06/23 11:58:28 southa Exp $
  * $Log: MushGameAddress.h,v $
+ * Revision 1.2  2005/06/23 11:58:28  southa
+ * MushGame link work
+ *
  * Revision 1.1  2005/06/22 20:01:58  southa
  * MushGame link work
  *

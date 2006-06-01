@@ -7,7 +7,7 @@
  *
  * File: src/Adanaxis/AdanaxisData.h
  *
- * Copyright: Andy Southgate 2005
+ * Copyright: Andy Southgate 2005-2006
  *
  * This file may be used and distributed under the terms of the Mushware
  * software licence version 1.0, under the terms for 'Proprietary original
@@ -19,10 +19,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } N3CygUGTlVxVuEPmZL52Iw
+//%Header } +zh+9tPkjkUpEbJXPezilg
 /*
- * $Id$
- * $Log$
+ * $Id: AdanaxisData.h,v 1.1 2005/08/01 13:09:57 southa Exp $
+ * $Log: AdanaxisData.h,v $
+ * Revision 1.1  2005/08/01 13:09:57  southa
+ * Collision messaging
+ *
  */
 
 #include "AdanaxisStandard.h"

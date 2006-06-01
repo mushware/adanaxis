@@ -3,7 +3,7 @@
  *
  * File: src/MushGL/MushGLUtil.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } Hm/jgQBgeXz0hS5/I5GpkA
+//%Header } vl7jY3WxF4VnrsvzzFB2Cw
 /*
- * $Id$
- * $Log$
+ * $Id: MushGLUtil.cpp,v 1.1 2005/07/05 13:52:22 southa Exp $
+ * $Log: MushGLUtil.cpp,v $
+ * Revision 1.1  2005/07/05 13:52:22  southa
+ * Adanaxis work
+ *
  */
 
 #include "MushGLUtil.h"
@@ -29,6 +32,8 @@
 
 using namespace Mushware;
 using namespace std;
+
+Mushware::U32 MushGLUtil::m_glErrorCount = 0;
 
 MushGLAppHandler&
 MushGLUtil::AppHandler(void)
@@ -133,4 +138,100 @@ MushGLUtil::LongestScreenAxis(void)
     {
         return screenSize.Y();
     }
-}  
+}
+
+
+void
+MushGLUtil::ThrowGLError(GLenum inGLErr)
+{
+	ThrowGLError(inGLErr, "");
+}
+
+void
+MushGLUtil::ThrowGLError(GLenum inGLErr, const std::string& inMessage)
+{
+	if (inMessage == "")
+	{
+		throw MushcoreDeviceFail(GLErrorString(inGLErr));
+	}
+	else
+	{
+		throw MushcoreDeviceFail(inMessage+": "+GLErrorString(inGLErr));
+	}
+}
+
+void
+MushGLUtil::GLErrorWriteToLog(GLenum inGLErr)
+{
+	GLErrorWriteToLog(inGLErr, "");
+}
+
+void
+MushGLUtil::GLErrorWriteToLog(GLenum inGLErr, const std::string& inMessage)
+{
+	if (m_glErrorCount == 100)
+	{
+		MushcoreLog::Sgl().WarningLog() << "(No more GL errors will be reported)";
+	}
+	else if (m_glErrorCount < 100)
+	{
+		if (inMessage == "")
+		{
+			MushcoreLog::Sgl().WarningLog() << GLErrorString(inGLErr);
+		}
+		else
+		{
+			MushcoreLog::Sgl().WarningLog() << inMessage << ": " << GLErrorString(inGLErr);
+		}		
+	}
+	++m_glErrorCount;
+}
+
+std::string
+MushGLUtil::GLErrorString(const GLenum inGLErr)
+{
+	std::string errorString;
+	
+    switch (inGLErr)
+    {
+        case GL_NO_ERROR:
+            break;
+			
+        case GL_INVALID_ENUM:
+            errorString = "GL invalid enum";
+            break;
+			
+        case GL_INVALID_VALUE:
+            errorString = "GL invalid value";
+            break;
+			
+        case GL_INVALID_OPERATION:
+            errorString = "GL invalid operation";
+            break;
+			
+        case GL_STACK_OVERFLOW:
+            errorString = "GL stack overflow";
+            break;
+			
+        case GL_STACK_UNDERFLOW:
+            errorString = "GL stack underflow";
+            break;
+			
+        case GL_OUT_OF_MEMORY:
+            errorString = "GL out of memory";
+            break;
+			
+        case GL_TABLE_TOO_LARGE:
+            errorString = "GL table too large";
+            break;
+			
+        default:
+		{
+			std::ostringstream messageStream;
+            messageStream << "Unknown GL error " << inGLErr;
+			errorString = messageStream.str();
+		}
+        break;
+    }
+	return errorString;
+}

@@ -3,7 +3,7 @@
  *
  * File: src/MushGL/MushGLState.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } tWGKT6xf6h2OQMzlKKglYA
+//%Header } bWOmRsKwsaFHaJtZXjt8HA
 /*
- * $Id: MushGLState.cpp,v 1.3 2005/09/05 17:14:22 southa Exp $
+ * $Id: MushGLState.cpp,v 1.4 2005/09/06 12:15:35 southa Exp $
  * $Log: MushGLState.cpp,v $
+ * Revision 1.4  2005/09/06 12:15:35  southa
+ * Texture and rendering work
+ *
  * Revision 1.3  2005/09/05 17:14:22  southa
  * Solid rendering
  *
@@ -34,8 +37,12 @@
 
 #include "MushGLState.h"
 
+#include "MushGLUtil.h"
+
 MUSHCORE_SINGLETON_INSTANCE(MushGLState);
 
+using namespace Mushware;
+using namespace std;
 
 MushGLState::MushGLState()
 {
@@ -54,8 +61,11 @@ MushGLState::InvalidateAll(void)
         m_texCoordArrays[i] = kStateNone;
     }
     m_vertexArray = kStateNone;
-    m_activeTexNum = ~0;
-    m_clientActiveTexNum = ~0;
+    m_activeTexNum = 0;
+    m_clientActiveTexNum = 0;
+	m_pCurrentColourBuffer = NULL;
+	m_pCurrentTexCoordBuffer = NULL;
+	m_pCurrentVertexBuffer = NULL;
 }
 
 void
@@ -68,6 +78,23 @@ MushGLState::Reset(void)
     }
     ActiveTextureZeroBased(0);
     ClientActiveTextureZeroBased(0);
+}
+
+void
+MushGLState::ResetWriteAll(void)
+{
+	InvalidateAll();
+	Reset();
+
+    // Make sure that all available texture units are disabled
+	for (U32 i=0; i < MushGLV::Sgl().NumTextureUnits(); ++i)
+	{
+        ActiveTextureZeroBased(i);
+        glDisable(GL_TEXTURE_2D);
+		ClientActiveTextureZeroBased(i);
+		glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+	}
+	MushGLUtil::CheckGLError();
 }
 
 void
@@ -187,6 +214,7 @@ MushGLState::DisableClientTextureState(Mushware::U32 inTexNum)
         glDisableClientState(GL_TEXTURE_COORD_ARRAY);
     }
     m_texCoordArrays[inTexNum] = kStateFalse;
+	m_pCurrentTexCoordBuffer = NULL;
 }
 
 void
@@ -201,6 +229,7 @@ MushGLState::ColourArraySetTrue(MushGLVertexBuffer<Mushware::t4GLVal>& ioBuffer)
         glEnableClientState(GL_COLOR_ARRAY);
         m_colourArray = kStateTrue;
     }
+	m_pCurrentColourBuffer = &ioBuffer;
 }
 
 void
@@ -222,6 +251,7 @@ MushGLState::TexCoordArraySetTrue(MushGLVertexBuffer<Mushware::tGLTexCoord>& ioB
         glEnableClientState(GL_TEXTURE_COORD_ARRAY);
         m_texCoordArrays[inTexNum] = kStateTrue;
     }
+	m_pCurrentTexCoordBuffer = &ioBuffer;
 }
 
 void
@@ -236,6 +266,7 @@ MushGLState::VertexArraySetTrue(MushGLVertexBuffer<Mushware::t4GLVal>& ioBuffer)
         glEnableClientState(GL_VERTEX_ARRAY);
         m_vertexArray = kStateTrue;
     }
+	m_pCurrentVertexBuffer = &ioBuffer;
 }
 
 void
@@ -302,7 +333,31 @@ MushGLState::AutoPrint(std::ostream& ioOut) const
     ioOut << "texCoordArrays=" << m_texCoordArrays << ", ";
     ioOut << "textureStates=" << m_textureStates << ", ";
     ioOut << "activeTexNum=" << m_activeTexNum << ", ";
-    ioOut << "clientActiveTexNum=" << m_clientActiveTexNum;
+    ioOut << "clientActiveTexNum=" << m_clientActiveTexNum << ", ";
+    if (m_pCurrentColourBuffer == NULL)
+    {
+        ioOut << "pCurrentColourBuffer=NULL"  << ", ";
+    }
+    else
+    {
+        ioOut << "pCurrentColourBuffer=" << *m_pCurrentColourBuffer << ", ";
+    }
+    if (m_pCurrentTexCoordBuffer == NULL)
+    {
+        ioOut << "pCurrentTexCoordBuffer=NULL"  << ", ";
+    }
+    else
+    {
+        ioOut << "pCurrentTexCoordBuffer=" << *m_pCurrentTexCoordBuffer << ", ";
+    }
+    if (m_pCurrentVertexBuffer == NULL)
+    {
+        ioOut << "pCurrentVertexBuffer=NULL" ;
+    }
+    else
+    {
+        ioOut << "pCurrentVertexBuffer=" << *m_pCurrentVertexBuffer;
+    }
     ioOut << "]";
 }
 bool
@@ -350,6 +405,18 @@ MushGLState::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inT
     {
         ioIn >> m_clientActiveTexNum;
     }
+    else if (inTagStr == "pCurrentColourBuffer")
+    {
+        ioIn >> m_pCurrentColourBuffer;
+    }
+    else if (inTagStr == "pCurrentTexCoordBuffer")
+    {
+        ioIn >> m_pCurrentTexCoordBuffer;
+    }
+    else if (inTagStr == "pCurrentVertexBuffer")
+    {
+        ioIn >> m_pCurrentVertexBuffer;
+    }
     else 
     {
         return false;
@@ -377,5 +444,11 @@ MushGLState::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_activeTexNum;
     ioOut.TagSet("clientActiveTexNum");
     ioOut << m_clientActiveTexNum;
+    ioOut.TagSet("pCurrentColourBuffer");
+    ioOut << m_pCurrentColourBuffer;
+    ioOut.TagSet("pCurrentTexCoordBuffer");
+    ioOut << m_pCurrentTexCoordBuffer;
+    ioOut.TagSet("pCurrentVertexBuffer");
+    ioOut << m_pCurrentVertexBuffer;
 }
-//%outOfLineFunctions } 2GhLUqy6+S5xHfcvSi3sMA
+//%outOfLineFunctions } lcyoYzM/ReMUty0vOw9OTA

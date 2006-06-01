@@ -7,7 +7,7 @@
  *
  * File: src/MushGame/MushGameCamera.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } iR1nzzDghU7XG/JS99oDQQ
+//%Header } lsHtNJKYG2fgi6Muwtd8AQ
 /*
- * $Id: MushGameCamera.h,v 1.4 2005/07/04 15:59:00 southa Exp $
+ * $Id: MushGameCamera.h,v 1.5 2005/08/01 20:23:24 southa Exp $
  * $Log: MushGameCamera.h,v $
+ * Revision 1.5  2005/08/01 20:23:24  southa
+ * Backdrop and build fixes
+ *
  * Revision 1.4  2005/07/04 15:59:00  southa
  * Adanaxis work
  *

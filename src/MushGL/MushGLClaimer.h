@@ -7,7 +7,7 @@
  *
  * File: src/MushGL/MushGLClaimer.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } UTm+lqxmBpXRamcZhOG4vw
+//%Header } UQsydd3AgkasB2lW0UWYNg
 /*
- * $Id$
- * $Log$
+ * $Id: MushGLClaimer.h,v 1.1 2005/07/04 11:10:43 southa Exp $
+ * $Log: MushGLClaimer.h,v $
+ * Revision 1.1  2005/07/04 11:10:43  southa
+ * Rendering pipeline
+ *
  */
 
 #include "MushGLStandard.h"

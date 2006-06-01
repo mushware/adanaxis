@@ -7,7 +7,7 @@
  *
  * File: src/Infernal/InfernalForm.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } rsuFpRZmb7Y0Qqq+tToTYg
+//%Header } D4zCxdHnWiRZVl3nkStO1w
 /*
- * $Id: InfernalForm.h,v 1.5 2005/05/19 13:02:05 southa Exp $
+ * $Id: InfernalForm.h,v 1.6 2005/06/20 14:30:35 southa Exp $
  * $Log: InfernalForm.h,v $
+ * Revision 1.6  2005/06/20 14:30:35  southa
+ * Adanaxis work
+ *
  * Revision 1.5  2005/05/19 13:02:05  southa
  * Mac release work
  *

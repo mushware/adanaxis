@@ -7,7 +7,7 @@
  *
  * File: src/Mustl/MustlIDNull.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } q8owiYBfW+7uXqB3hQ0IHA
+//%Header } noMZCulS5sAJtEKOIbYUdw
 /*
- * $Id: MustlIDNull.h,v 1.6 2004/01/02 21:13:15 southa Exp $
+ * $Id: MustlIDNull.h,v 1.7 2005/05/19 13:02:18 southa Exp $
  * $Log: MustlIDNull.h,v $
+ * Revision 1.7  2005/05/19 13:02:18  southa
+ * Mac release work
+ *
  * Revision 1.6  2004/01/02 21:13:15  southa
  * Source conditioning
  *

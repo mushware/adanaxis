@@ -7,7 +7,7 @@
  *
  * File: src/MushMesh/MushMeshMushcoreIO.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } aUq+QSvZRfOfhgcnyKOkvQ
+//%Header } +z8tKG3CNyPCOI44zt+rBQ
 /*
- * $Id: MushMeshMushcoreIO.h,v 1.2 2004/01/06 20:46:52 southa Exp $
+ * $Id: MushMeshMushcoreIO.h,v 1.3 2005/05/19 13:02:10 southa Exp $
  * $Log: MushMeshMushcoreIO.h,v $
+ * Revision 1.3  2005/05/19 13:02:10  southa
+ * Mac release work
+ *
  * Revision 1.2  2004/01/06 20:46:52  southa
  * Build fixes
  *

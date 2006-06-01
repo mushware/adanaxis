@@ -7,7 +7,7 @@
  *
  * File: src/Mushcore/MushcorePipe.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } V673evBt8atoG2oqzRL1Hg
+//%Header } KUzHv489SsVYczDFnyrULg
 /*
- * $Id: MushcorePipe.h,v 1.2 2005/06/20 16:14:31 southa Exp $
+ * $Id: MushcorePipe.h,v 1.3 2005/07/01 14:59:00 southa Exp $
  * $Log: MushcorePipe.h,v $
+ * Revision 1.3  2005/07/01 14:59:00  southa
+ * Mushcore auto_ptr and binary string fixes
+ *
  * Revision 1.2  2005/06/20 16:14:31  southa
  * Adanaxis work
  *

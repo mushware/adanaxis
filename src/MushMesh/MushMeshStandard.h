@@ -7,7 +7,7 @@
  *
  * File: src/MushMesh/MushMeshStandard.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,7 +21,7 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } fcfZQkJ0n6H3RuQo1GIc7A
+//%Header } a1KbBdT/6zEtzcMsDCSmOA
 
 #ifdef HAVE_CONFIG_H
 #include "config.h"

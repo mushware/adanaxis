@@ -3,7 +3,7 @@
  *
  * File: src/Adanaxis/AdanaxisServer.cpp
  *
- * Copyright: Andy Southgate 2005
+ * Copyright: Andy Southgate 2005-2006
  *
  * This file may be used and distributed under the terms of the Mushware
  * software licence version 1.0, under the terms for 'Proprietary original
@@ -15,10 +15,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 5jSH/Xb6MEG+qzzvWN1AjA
+//%Header } /cFHKVWKmOPN+53rc8CvnQ
 /*
- * $Id: AdanaxisServer.cpp,v 1.5 2005/06/23 13:56:57 southa Exp $
+ * $Id: AdanaxisServer.cpp,v 1.6 2005/07/02 00:42:36 southa Exp $
  * $Log: AdanaxisServer.cpp,v $
+ * Revision 1.6  2005/07/02 00:42:36  southa
+ * Conditioning tweaks
+ *
  * Revision 1.5  2005/06/23 13:56:57  southa
  * MushGame link work
  *

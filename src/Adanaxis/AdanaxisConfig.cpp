@@ -3,7 +3,7 @@
  *
  * File: src/Adanaxis/AdanaxisConfig.cpp
  *
- * Copyright: Andy Southgate 2005
+ * Copyright: Andy Southgate 2005-2006
  *
  * This file may be used and distributed under the terms of the Mushware
  * software licence version 1.0, under the terms for 'Proprietary original
@@ -15,10 +15,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } G3+dIgQrIeaNRuZ7DQOVuQ
+//%Header } OOi2UXPQf+WlFT25nv19jA
 /*
- * $Id: AdanaxisConfig.cpp,v 1.11 2005/08/02 14:37:44 southa Exp $
+ * $Id: AdanaxisConfig.cpp,v 1.12 2005/08/02 17:11:28 southa Exp $
  * $Log: AdanaxisConfig.cpp,v $
+ * Revision 1.12  2005/08/02 17:11:28  southa
+ * win32 build fixes
+ *
  * Revision 1.11  2005/08/02 14:37:44  southa
  * Adanaxis control demo work
  *

@@ -3,7 +3,7 @@
  *
  * File: src/Adanaxis/AdanaxisCommandHandler.cpp
  *
- * Copyright: Andy Southgate 2005
+ * Copyright: Andy Southgate 2005-2006
  *
  * This file may be used and distributed under the terms of the Mushware
  * software licence version 1.0, under the terms for 'Proprietary original
@@ -15,10 +15,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } G+AEROct3bvbv3fqFEAz7A
+//%Header } egy5H2OAhNECMmQ2Glz/3g
 /*
- * $Id: AdanaxisCommandHandler.cpp,v 1.2 2005/06/14 13:25:32 southa Exp $
+ * $Id: AdanaxisCommandHandler.cpp,v 1.3 2005/07/06 19:08:26 southa Exp $
  * $Log: AdanaxisCommandHandler.cpp,v $
+ * Revision 1.3  2005/07/06 19:08:26  southa
+ * Adanaxis control work
+ *
  * Revision 1.2  2005/06/14 13:25:32  southa
  * Adanaxis work
  *

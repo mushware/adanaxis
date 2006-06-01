@@ -7,7 +7,7 @@
  *
  * File: src/MushGame/MushGameRefPlayer.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } SMj7RZxMAshsGD/gkM/X5g
+//%Header } YjlUEq64eQ5HbaRM7KM04g
 /*
- * $Id: MushcoreDataRef.h,v 1.16 2005/06/21 13:10:52 southa Exp $
- * $Log: MushcoreDataRef.h,v $
+ * $Id: MushGameRefPlayer.h,v 1.1 2005/06/29 09:07:56 southa Exp $
+ * $Log: MushGameRefPlayer.h,v $
+ * Revision 1.1  2005/06/29 09:07:56  southa
+ * MushGame camera work
+ *
  */
 
 #include "MushGameStandard.h"

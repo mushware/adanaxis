@@ -3,7 +3,7 @@
  *
  * File: src/Mushcore/MushcoreLog.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } S1ShkioeDeCMuA2XF/bV/g
+//%Header } SS7f07ZxAqPFhgfU05q65Q
 /*
- * $Id: MushcoreLog.cpp,v 1.5 2005/06/23 13:56:59 southa Exp $
+ * $Id: MushcoreLog.cpp,v 1.6 2005/07/14 16:55:09 southa Exp $
  * $Log: MushcoreLog.cpp,v $
+ * Revision 1.6  2005/07/14 16:55:09  southa
+ * Mesh library work
+ *
  * Revision 1.5  2005/06/23 13:56:59  southa
  * MushGame link work
  *

@@ -7,7 +7,7 @@
  *
  * File: src/Maurheen/MaurheenHypersphere.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } YzLUbTeATe485uHjrSPIWA
+//%Header } HSvTrskFzA7tL4+8tAx4FQ
 /*
- * $Id: MaurheenHypersphere.h,v 1.3 2005/02/01 13:40:37 southa Exp $
+ * $Id: MaurheenHypersphere.h,v 1.4 2005/05/19 13:02:07 southa Exp $
  * $Log: MaurheenHypersphere.h,v $
+ * Revision 1.4  2005/05/19 13:02:07  southa
+ * Mac release work
+ *
  * Revision 1.3  2005/02/01 13:40:37  southa
  * Rotating spheres and hypercube
  *

@@ -7,7 +7,7 @@
  *
  * File: src/MushMesh/MushMeshPostMatrix.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } fI0WsoHuercGBXLtlsT3Lg
+//%Header } x2al8qWSxGY4FYbR4YhRMQ
 /*
- * $Id: MushMeshPostMatrix.h,v 1.3 2005/05/19 13:02:10 southa Exp $
+ * $Id: MushMeshPostMatrix.h,v 1.4 2005/07/01 10:03:30 southa Exp $
  * $Log: MushMeshPostMatrix.h,v $
+ * Revision 1.4  2005/07/01 10:03:30  southa
+ * Projection work
+ *
  * Revision 1.3  2005/05/19 13:02:10  southa
  * Mac release work
  *

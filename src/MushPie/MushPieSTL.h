@@ -7,7 +7,7 @@
  *
  * File: src/MushPie/MushPieSTL.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } ocOc2Ypo11ROEhyk+9X82A
+//%Header } oMEssSpVSqwtp5aJk2MMew
 /*
- * $Id: MushPieSTL.h,v 1.3 2004/01/07 18:01:19 southa Exp $
+ * $Id: MushPieSTL.h,v 1.4 2005/05/19 13:02:13 southa Exp $
  * $Log: MushPieSTL.h,v $
+ * Revision 1.4  2005/05/19 13:02:13  southa
+ * Mac release work
+ *
  * Revision 1.3  2004/01/07 18:01:19  southa
  * MushModel and Infernal work
  *

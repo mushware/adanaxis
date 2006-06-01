@@ -7,7 +7,7 @@
  *
  * File: src/Mustl/Mustl.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } XM97by5njbBakyVKyRefsQ
+//%Header } 928xBDjfVWPtJ4JXY2EpWA
 /*
- * $Id: Mustl.h,v 1.11 2004/01/02 21:13:14 southa Exp $
+ * $Id: Mustl.h,v 1.12 2005/05/19 13:02:17 southa Exp $
  * $Log: Mustl.h,v $
+ * Revision 1.12  2005/05/19 13:02:17  southa
+ * Mac release work
+ *
  * Revision 1.11  2004/01/02 21:13:14  southa
  * Source conditioning
  *

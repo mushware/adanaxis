@@ -7,7 +7,7 @@
  *
  * File: src/GL/GLString.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } DaYQX3PnltFXkiFcLZ26YQ
+//%Header } Sh42gtEYYWZFoFo1QlvT+w
 /*
- * $Id: GLString.h,v 1.16 2005/05/19 13:02:00 southa Exp $
+ * $Id: GLString.h,v 1.17 2005/06/20 14:30:33 southa Exp $
  * $Log: GLString.h,v $
+ * Revision 1.17  2005/06/20 14:30:33  southa
+ * Adanaxis work
+ *
  * Revision 1.16  2005/05/19 13:02:00  southa
  * Mac release work
  *

@@ -3,7 +3,7 @@
  *
  * File: src/MushGL/MushGLV.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } k7YzD6cuxRNSZv9q4zzcpw
+//%Header } NYmv5MZn7NEYPYHpc3JV8Q
 /*
- * $Id: MushGLV.cpp,v 1.10 2005/08/29 18:40:57 southa Exp $
+ * $Id: MushGLV.cpp,v 1.11 2005/08/31 23:57:27 southa Exp $
  * $Log: MushGLV.cpp,v $
+ * Revision 1.11  2005/08/31 23:57:27  southa
+ * Texture coordinate work
+ *
  * Revision 1.10  2005/08/29 18:40:57  southa
  * Solid rendering work
  *
@@ -55,8 +58,10 @@
 
 #include "MushGLV.h"
 
+#include "MushGLBuffers.h"
 #include "MushGLStandard.h"
 #include "MushGLState.h"
+#include "MushGLUtil.h"
 
 #include "mushPlatform.h"
 
@@ -87,9 +92,9 @@ MushGLV::GetProcAddressWithARB(const std::string& inName) const
     if (!PlatformMiscUtils::FunctionPointerGetIfExists(fnPtr, inName))
     {
     	if (!PlatformMiscUtils::FunctionPointerGetIfExists(fnPtr, inName+"ARB"))
-	{
-	    throw MushcoreRequestFail("Unknown symbol '"+inName+"'/'"+inName+"ARB'");
-	}
+		{
+			throw MushcoreRequestFail("Unknown symbol '"+inName+"'/'"+inName+"ARB'");
+		}
     }
     return fnPtr;
 }
@@ -131,6 +136,7 @@ MushGLV::Acquaint()
             m_fpGenBuffers = (tfpGenBuffers) GetProcAddressWithARB("glGenBuffers");
             m_fpMapBuffer = (tfpMapBuffer) GetProcAddressWithARB("glMapBuffer");
             m_fpUnmapBuffer = (tfpUnmapBuffer) GetProcAddressWithARB("glUnmapBuffer");
+            m_fpGetBufferParameteriv = (tfpGetBufferParameteriv) GetProcAddressWithARB("glGetBufferParameteriv");
 
             m_hasVertexBuffer = true;
         }
@@ -143,6 +149,95 @@ MushGLV::Acquaint()
     m_contextValid = true;
     MushGLState::Sgl().ResetWriteAll();
 }
+
+void
+MushGLV::BufferValidate(Mushware::U32 inSize) const
+{
+	GLint bufferSize = 0;
+	GetBufferParameteriv(GL_ARRAY_BUFFER, GL_BUFFER_SIZE, &bufferSize);
+	MushGLUtil::ThrowIfGLError();
+	MUSHCOREASSERT(inSize <= static_cast<U32>(bufferSize));
+}
+
+void
+MushGLV::DrawArraysVerify(GLenum inMode, GLint inFirst, GLsizei inCount) const
+{
+	MushGLUtil::CheckGLError(); // Discard any outstanding errors
+	
+	GLvoid *pVertexArray, *pColourArray, *pTexCoordArray;
+	glGetPointerv(GL_VERTEX_ARRAY_POINTER, &pVertexArray);
+	MushGLUtil::ThrowIfGLError();
+	glGetPointerv(GL_COLOR_ARRAY_POINTER, &pColourArray);
+	MushGLUtil::ThrowIfGLError();
+	glGetPointerv(GL_TEXTURE_COORD_ARRAY_POINTER, &pTexCoordArray);
+	MushGLUtil::ThrowIfGLError();
+
+	if (MushGLState::Sgl().VertexArray())
+	{
+		MushGLState::tVertexArrayBuffer *pVertexBuffer = MushGLState::Sgl().DebugVertexBuffer();
+		MUSHCOREASSERT(pVertexBuffer != NULL);
+		
+		if (pVertexBuffer->IsVertexBuffer())
+		{
+			U32 requiredSize = reinterpret_cast<U32>(pVertexArray) + inFirst + inCount;
+			// cout << "pVertexArray=" << pVertexArray << ", inFirst=" << inFirst << ", inCount=" << inCount << ", Size()=" << pVertexBuffer->Size() << endl;
+		    MUSHCOREASSERT(requiredSize <= pVertexBuffer->Size());
+			
+			pVertexBuffer->Bind();
+			BufferValidate(sizeof(MushGLBuffers::tVertex) * requiredSize);
+		}
+		else
+		{
+			throw MushcoreRequestFail("Debug check not supported");	
+		}
+	}
+
+	if (MushGLState::Sgl().ColourArray())
+	{
+		MushGLState::tColourArrayBuffer *pColourBuffer = MushGLState::Sgl().DebugColourBuffer();
+		MUSHCOREASSERT(pColourBuffer != NULL);
+		
+		if (pColourBuffer->IsVertexBuffer())
+		{
+			U32 requiredSize = reinterpret_cast<U32>(pColourArray) + inFirst + inCount;
+
+			// cout << "pColourArray=" << pColourArray << ", inFirst=" << inFirst << ", inCount=" << inCount << ", Size()=" << pColourBuffer->Size() << endl;
+		    MUSHCOREASSERT(reinterpret_cast<U32>(pColourArray) + inFirst + inCount <= pColourBuffer->Size());
+
+			pColourBuffer->Bind();
+			BufferValidate(sizeof(MushGLBuffers::tColour) * requiredSize);
+		}
+		else
+		{
+			throw MushcoreRequestFail("Debug check not supported");	
+		}
+	}
+
+	for (U32 i=0; i < MushGLState::Sgl().NumTexCoordArrays(); ++i)
+	{
+		if (MushGLState::Sgl().TexCoordArray(i))
+		{
+			U32 requiredSize = reinterpret_cast<U32>(pTexCoordArray) + inFirst + inCount;
+
+			MushGLState::tTexCoordArrayBuffer *pTexCoordBuffer = MushGLState::Sgl().DebugTexCoordBuffer();
+			MUSHCOREASSERT(pTexCoordBuffer != NULL);
+			
+			if (pTexCoordBuffer->IsVertexBuffer())
+			{
+				// cout << "pTexCoordArray=" << pTexCoordArray << ", inFirst=" << inFirst << ", inCount=" << inCount << ", Size()=" << pTexCoordBuffer->Size() << endl;
+				MUSHCOREASSERT(reinterpret_cast<U32>(pTexCoordArray) + inFirst + inCount <= pTexCoordBuffer->Size());
+				pTexCoordBuffer->Bind();
+				BufferValidate(sizeof(MushGLBuffers::tTexCoord) * requiredSize);
+			}
+			else
+			{
+				throw MushcoreRequestFail("Debug check not supported");	
+			}
+		}
+	}
+	
+	//MUSHCOREASSERT(false);
+}	
 
 //%outOfLineFunctions {
 void
@@ -157,6 +252,7 @@ MushGLV::AutoPrint(std::ostream& ioOut) const
     ioOut << "fpGenBuffers=" << (void *)m_fpGenBuffers << ", ";
     ioOut << "fpMapBuffer=" << (void *)m_fpMapBuffer << ", ";
     ioOut << "fpUnmapBuffer=" << (void *)m_fpUnmapBuffer << ", ";
+    ioOut << "fpGetBufferParameteriv=" << (void *)m_fpGetBufferParameteriv << ", ";
     ioOut << "vendor=" << m_vendor << ", ";
     ioOut << "renderer=" << m_renderer << ", ";
     ioOut << "version=" << m_version << ", ";
@@ -166,4 +262,4 @@ MushGLV::AutoPrint(std::ostream& ioOut) const
     ioOut << "contextValid=" << m_contextValid;
     ioOut << "]";
 }
-//%outOfLineFunctions } fsdoU922o2TPyocrPnWuOQ
+//%outOfLineFunctions } Cwa89sZ0/lDhTr4LgJx2vA

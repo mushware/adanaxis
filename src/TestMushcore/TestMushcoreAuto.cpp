@@ -3,7 +3,7 @@
  *
  * File: src/TestMushcore/TestMushcoreAuto.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } KK7io9uf110YEoDRq4ooEg
+//%Header } ovTf9vomYON0jPQJOZcRsg
 /*
- * $Id: TestMushcoreAuto.cpp,v 1.7 2005/05/19 13:02:24 southa Exp $
+ * $Id: TestMushcoreAuto.cpp,v 1.8 2005/07/12 20:39:05 southa Exp $
  * $Log: TestMushcoreAuto.cpp,v $
+ * Revision 1.8  2005/07/12 20:39:05  southa
+ * Mesh library work
+ *
  * Revision 1.7  2005/05/19 13:02:24  southa
  * Mac release work
  *

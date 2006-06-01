@@ -3,7 +3,7 @@
  *
  * File: src/MushCollision/MushCollision.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 8xpxfaO8Q26O4CWafJcI5A
+//%Header } DEEKV9pxH9aDuvQTr1GeXQ
 /*
- * $Id$
- * $Log$
+ * $Id: MushCollision.cpp,v 1.1 2005/07/27 18:09:59 southa Exp $
+ * $Log: MushCollision.cpp,v $
+ * Revision 1.1  2005/07/27 18:09:59  southa
+ * Collision checking
+ *
  */
 
 #include "MushCollision.h"

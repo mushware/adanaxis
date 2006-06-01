@@ -7,7 +7,7 @@
  *
  * File: src/Mustl/MustlServer.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } +0sP6llrzySYwODIm8+OCA
+//%Header } W9Kty7zDn3NoTBwb+b7evA
 /*
- * $Id: MustlServer.h,v 1.12 2004/01/06 20:46:52 southa Exp $
+ * $Id: MustlServer.h,v 1.13 2005/05/19 13:02:19 southa Exp $
  * $Log: MustlServer.h,v $
+ * Revision 1.13  2005/05/19 13:02:19  southa
+ * Mac release work
+ *
  * Revision 1.12  2004/01/06 20:46:52  southa
  * Build fixes
  *

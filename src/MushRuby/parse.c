@@ -1,7 +1,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushRuby/parse.c
+ * File: src/MushRuby/parse.c (ruby)
  *
  * This file has been taken the ruby distribution and may have been modified.
  * For more information on the original see http://www.ruby-lang.org/.
@@ -21,7 +21,7 @@
  * Mushware Limited.
  *
  ****************************************************************************/
-//%Header } Jor9z96VNYnV7InOAAKMQw
+//%Header } 21zz/coWBumzl9xQDFvVtg
 /* A Bison parser, made from parse.y
    by GNU bison 1.35.  */
 

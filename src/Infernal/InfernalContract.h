@@ -7,7 +7,7 @@
  *
  * File: src/Infernal/InfernalContract.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } FeFArv+OWW6dLJUa28/4kA
+//%Header } g6QyRRsNZsxAmr5+crPQTg
 /*
- * $Id: InfernalContract.h,v 1.10 2005/05/19 13:02:04 southa Exp $
+ * $Id: InfernalContract.h,v 1.11 2005/06/20 14:30:35 southa Exp $
  * $Log: InfernalContract.h,v $
+ * Revision 1.11  2005/06/20 14:30:35  southa
+ * Adanaxis work
+ *
  * Revision 1.10  2005/05/19 13:02:04  southa
  * Mac release work
  *

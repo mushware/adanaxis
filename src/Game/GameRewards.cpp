@@ -3,7 +3,7 @@
  *
  * File: src/Game/GameRewards.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } icF6qNAP5O9Ky05Bxh1qsA
+//%Header } /W/JR3NEJIWylMj5mO//OQ
 /*
- * $Id: GameRewards.cpp,v 1.18 2004/01/02 21:13:07 southa Exp $
+ * $Id: GameRewards.cpp,v 1.19 2005/05/19 13:02:03 southa Exp $
  * $Log: GameRewards.cpp,v $
+ * Revision 1.19  2005/05/19 13:02:03  southa
+ * Mac release work
+ *
  * Revision 1.18  2004/01/02 21:13:07  southa
  * Source conditioning
  *

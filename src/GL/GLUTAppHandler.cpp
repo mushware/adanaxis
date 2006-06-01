@@ -3,7 +3,7 @@
  *
  * File: src/GL/GLUTAppHandler.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } lbPTAujD4dgzuk4FLq3GVw
+//%Header } XsObqg03xnn+UNbK/DtrSg
 /*
- * $Id: GLUTAppHandler.cpp,v 1.26 2005/02/03 21:02:51 southa Exp $
+ * $Id: GLUTAppHandler.cpp,v 1.27 2005/05/19 13:02:01 southa Exp $
  * $Log: GLUTAppHandler.cpp,v $
+ * Revision 1.27  2005/05/19 13:02:01  southa
+ * Mac release work
+ *
  * Revision 1.26  2005/02/03 21:02:51  southa
  * Build fixes
  *

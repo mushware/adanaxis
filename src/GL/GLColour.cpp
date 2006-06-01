@@ -3,7 +3,7 @@
  *
  * File: src/GL/GLColour.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } jP7up+iUAScpnl1R88RV6Q
+//%Header } olJ5+nm402PlQIoiaKRuNw
 /*
- * $Id: GLColour.cpp,v 1.15 2004/01/02 21:13:04 southa Exp $
+ * $Id: GLColour.cpp,v 1.16 2005/05/19 13:01:58 southa Exp $
  * $Log: GLColour.cpp,v $
+ * Revision 1.16  2005/05/19 13:01:58  southa
+ * Mac release work
+ *
  * Revision 1.15  2004/01/02 21:13:04  southa
  * Source conditioning
  *

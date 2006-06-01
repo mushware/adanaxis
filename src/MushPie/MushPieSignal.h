@@ -7,7 +7,7 @@
  *
  * File: src/MushPie/MushPieSignal.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } pJ3Ndkz2M6+Snlv4VP0kBw
+//%Header } H4wrp/5Tjsea1Jc0ECRcNw
 /*
- * $Id: MushPieSignal.h,v 1.3 2005/05/19 13:02:13 southa Exp $
+ * $Id: MushPieSignal.h,v 1.4 2005/06/20 14:30:37 southa Exp $
  * $Log: MushPieSignal.h,v $
+ * Revision 1.4  2005/06/20 14:30:37  southa
+ * Adanaxis work
+ *
  * Revision 1.3  2005/05/19 13:02:13  southa
  * Mac release work
  *

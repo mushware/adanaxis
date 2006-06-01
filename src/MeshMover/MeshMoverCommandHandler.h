@@ -7,7 +7,7 @@
  *
  * File: src/MeshMover/MeshMoverCommandHandler.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 6GtFA9bLpTRwWe5sT9dKCg
+//%Header } OFUfuyvnItaHPILNE6CmlA
 /*
- * $Id: MeshMoverCommandHandler.h,v 1.3 2004/01/06 20:46:51 southa Exp $
+ * $Id: MeshMoverCommandHandler.h,v 1.4 2005/05/19 13:02:08 southa Exp $
  * $Log: MeshMoverCommandHandler.h,v $
+ * Revision 1.4  2005/05/19 13:02:08  southa
+ * Mac release work
+ *
  * Revision 1.3  2004/01/06 20:46:51  southa
  * Build fixes
  *

@@ -7,7 +7,7 @@
  *
  * File: src/API/mushAppPrefix.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } lLel0sP7AN55YxmmADEuYg
+//%Header } xrMJ0hToLYxF4dyGOGNYLA
 /*
- * $Id$
- * $Log$
+ * $Id: mushAppPrefix.h,v 1.1 2005/07/01 10:03:30 southa Exp $
+ * $Log: mushAppPrefix.h,v $
+ * Revision 1.1  2005/07/01 10:03:30  southa
+ * Projection work
+ *
  */
 
 // For use as precompiled header for application builds

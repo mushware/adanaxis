@@ -7,7 +7,7 @@
  *
  * File: src/MushMesh/MushMeshArray.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } CMAbsfWUKn4bEfUeIQQR7g
+//%Header } OUrsdMKmDzlOvnIe7f209A
 /*
- * $Id: MushMeshArray.h,v 1.16 2005/05/19 13:02:09 southa Exp $
+ * $Id: MushMeshArray.h,v 1.17 2005/07/04 15:59:00 southa Exp $
  * $Log: MushMeshArray.h,v $
+ * Revision 1.17  2005/07/04 15:59:00  southa
+ * Adanaxis work
+ *
  * Revision 1.16  2005/05/19 13:02:09  southa
  * Mac release work
  *

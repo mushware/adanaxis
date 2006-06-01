@@ -3,7 +3,7 @@
  *
  * File: src/Game/GameGraphicSprite.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } ueJ1Bc0PYwHuvFIQgjvdVw
+//%Header } frfPsBubvKAG20Kcgd5uvg
 /*
- * $Id: GameGraphicSprite.cpp,v 1.23 2004/01/02 11:56:59 southa Exp $
+ * $Id: GameGraphicSprite.cpp,v 1.24 2005/05/19 13:02:02 southa Exp $
  * $Log: GameGraphicSprite.cpp,v $
+ * Revision 1.24  2005/05/19 13:02:02  southa
+ * Mac release work
+ *
  * Revision 1.23  2004/01/02 11:56:59  southa
  * MushPie created
  *

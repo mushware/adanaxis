@@ -3,7 +3,7 @@
  *
  * File: src/Infernal/InfernalAppHandler.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } qEKzkDDSG7ZROztf+xl76w
+//%Header } aadlJEpld3VtTG0z/IrO7g
 /*
- * $Id: InfernalAppHandler.cpp,v 1.7 2004/09/28 23:05:53 southa Exp $
+ * $Id: InfernalAppHandler.cpp,v 1.8 2005/05/19 13:02:04 southa Exp $
  * $Log: InfernalAppHandler.cpp,v $
+ * Revision 1.8  2005/05/19 13:02:04  southa
+ * Mac release work
+ *
  * Revision 1.7  2004/09/28 23:05:53  southa
  * MSVC build of ic2
  *

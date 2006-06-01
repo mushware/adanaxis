@@ -7,7 +7,7 @@
  *
  * File: src/Mustl/MustlConfigDefMenuString.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } c7+GJ34Gi3pZwsRT+pC7WQ
+//%Header } 7ay2i1OKrnk74m7xKqzmKQ
 /*
- * $Id: MustlConfigDefMenuString.h,v 1.5 2004/01/02 21:13:14 southa Exp $
+ * $Id: MustlConfigDefMenuString.h,v 1.6 2005/05/19 13:02:18 southa Exp $
  * $Log: MustlConfigDefMenuString.h,v $
+ * Revision 1.6  2005/05/19 13:02:18  southa
+ * Mac release work
+ *
  * Revision 1.5  2004/01/02 21:13:14  southa
  * Source conditioning
  *

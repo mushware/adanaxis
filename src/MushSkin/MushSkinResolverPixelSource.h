@@ -7,7 +7,7 @@
  *
  * File: src/MushSkin/MushSkinResolverPixelSource.h
  *
- * Copyright: Andy Southgate 2005
+ * Copyright: Andy Southgate 2005-2006
  *
  * This file may be used and distributed under the terms of the Mushware
  * software licence version 1.0, under the terms for 'Proprietary original
@@ -19,10 +19,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 1tXANyMrO1JkkLm5vXV9Sg
+//%Header } v3MrgrO4JsvAn3uDUG6X7g
 /*
- * $Id$
- * $Log$
+ * $Id: MushSkinResolverPixelSource.h,v 1.1 2006/04/11 23:30:11 southa Exp $
+ * $Log: MushSkinResolverPixelSource.h,v $
+ * Revision 1.1  2006/04/11 23:30:11  southa
+ * Created MushRuby from ruby-1.8.4
+ *
  */
 
 #include "MushSkinStandard.h"

@@ -7,7 +7,7 @@
  *
  * File: src/MushMeshLibrary/MushMeshLibraryFGenExtrude.h
  *
- * Copyright: Andy Southgate 2005
+ * Copyright: Andy Southgate 2005-2006
  *
  * This file may be used and distributed under the terms of the Mushware
  * software licence version 1.0, under the terms for 'Proprietary original
@@ -19,10 +19,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 7hoBfMd6UMaY2+MEoWD3tQ
+//%Header } fQyatxYrEauRpS5OsgCTxw
 /*
- * $Id: MushMeshLibraryFGenExtrude.h,v 1.3 2005/07/14 12:50:31 southa Exp $
+ * $Id: MushMeshLibraryFGenExtrude.h,v 1.4 2005/07/18 13:13:36 southa Exp $
  * $Log: MushMeshLibraryFGenExtrude.h,v $
+ * Revision 1.4  2005/07/18 13:13:36  southa
+ * Extrude to point and projectile mesh
+ *
  * Revision 1.3  2005/07/14 12:50:31  southa
  * Extrusion work
  *

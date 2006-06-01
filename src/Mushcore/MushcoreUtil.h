@@ -7,7 +7,7 @@
  *
  * File: src/Mushcore/MushcoreUtil.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } p0lCEz9EKwWFMt2/eD0agg
+//%Header } UnB9uf8apNzKRsWTAe+c1w
 /*
- * $Id: MushcoreUtil.h,v 1.24 2005/07/29 11:53:41 southa Exp $
+ * $Id: MushcoreUtil.h,v 1.25 2005/08/01 17:58:18 southa Exp $
  * $Log: MushcoreUtil.h,v $
+ * Revision 1.25  2005/08/01 17:58:18  southa
+ * Object explosion
+ *
  * Revision 1.24  2005/07/29 11:53:41  southa
  * MushcoreMaptor created
  *

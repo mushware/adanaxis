@@ -3,7 +3,7 @@
  *
  * File: src/MushRender/MushRenderUtil.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } gOZzQnYYxHja7kvZTMxNtg
+//%Header } iznO6ltXIRiBH4VWAhbKkw
 /*
- * $Id$
- * $Log$
+ * $Id: MushRenderUtil.cpp,v 1.1 2005/07/04 15:59:01 southa Exp $
+ * $Log: MushRenderUtil.cpp,v $
+ * Revision 1.1  2005/07/04 15:59:01  southa
+ * Adanaxis work
+ *
  */
 
 #include "MushRenderUtil.h"

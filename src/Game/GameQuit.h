@@ -7,7 +7,7 @@
  *
  * File: src/Game/GameQuit.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } VLxpFpdgyVCv0Dlmip6apg
+//%Header } VGoAZIEViP+5NoSfUxzlSg
 /*
- * $Id: GameQuit.h,v 1.13 2005/05/19 13:02:02 southa Exp $
+ * $Id: GameQuit.h,v 1.14 2005/06/20 14:30:34 southa Exp $
  * $Log: GameQuit.h,v $
+ * Revision 1.14  2005/06/20 14:30:34  southa
+ * Adanaxis work
+ *
  * Revision 1.13  2005/05/19 13:02:02  southa
  * Mac release work
  *

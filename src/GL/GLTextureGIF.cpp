@@ -3,7 +3,7 @@
  *
  * File: src/GL/GLTextureGIF.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } x1YzGtAw3FWxsQMqga4EYA
+//%Header } YelwW2Z4LRYNclejPTMTWw
 /*
- * $Id: GLTextureGIF.cpp,v 1.21 2004/09/27 22:42:08 southa Exp $
+ * $Id: GLTextureGIF.cpp,v 1.22 2005/05/19 13:02:00 southa Exp $
  * $Log: GLTextureGIF.cpp,v $
+ * Revision 1.22  2005/05/19 13:02:00  southa
+ * Mac release work
+ *
  * Revision 1.21  2004/09/27 22:42:08  southa
  * MSVC compilation fixes
  *

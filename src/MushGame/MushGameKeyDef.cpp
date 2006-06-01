@@ -3,7 +3,7 @@
  *
  * File: src/MushGame/MushGameKeyDef.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } ELWNhqMwV/JJQ5DULmtq2A
+//%Header } cC+qoCB7VQVSsmwgWq6ijQ
 /*
- * $Id$
- * $Log$
+ * $Id: MushGameKeyDef.cpp,v 1.1 2005/07/11 16:37:46 southa Exp $
+ * $Log: MushGameKeyDef.cpp,v $
+ * Revision 1.1  2005/07/11 16:37:46  southa
+ * Uplink control work
+ *
  */
 
 #include "MushGameKeyDef.h"

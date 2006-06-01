@@ -3,7 +3,7 @@
  *
  * File: src/Maurheen/MaurheenHypersphere.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 3IERJhGpq5n4MLPZRagLTA
+//%Header } ihg5Fg7UOX7pKslEL0Cqmw
 /*
- * $Id: MaurheenHypersphere.cpp,v 1.5 2005/02/03 21:02:57 southa Exp $
+ * $Id: MaurheenHypersphere.cpp,v 1.6 2005/05/19 13:02:07 southa Exp $
  * $Log: MaurheenHypersphere.cpp,v $
+ * Revision 1.6  2005/05/19 13:02:07  southa
+ * Mac release work
+ *
  * Revision 1.5  2005/02/03 21:02:57  southa
  * Build fixes
  *

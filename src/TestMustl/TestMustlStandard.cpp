@@ -3,7 +3,7 @@
  *
  * File: src/TestMustl/TestMustlStandard.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } w5m00eHt0o4tfteYnNSvLA
+//%Header } H7da0JMA/4/RmYTLeX00kQ
 /*
- * $Id: TestMustlStandard.cpp,v 1.4 2004/01/02 21:13:18 southa Exp $
+ * $Id: TestMustlStandard.cpp,v 1.5 2005/05/19 13:02:25 southa Exp $
  * $Log: TestMustlStandard.cpp,v $
+ * Revision 1.5  2005/05/19 13:02:25  southa
+ * Mac release work
+ *
  * Revision 1.4  2004/01/02 21:13:18  southa
  * Source conditioning
  *

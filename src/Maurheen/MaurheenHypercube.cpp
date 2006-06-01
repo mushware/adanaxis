@@ -3,7 +3,7 @@
  *
  * File: src/Maurheen/MaurheenHypercube.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 9XEZgaPrnVUghPL8AvtpGQ
+//%Header } DE8mK1Wa7MI24f9QNtiCvQ
 /*
- * $Id: MaurheenHypercube.cpp,v 1.7 2005/02/10 12:34:02 southa Exp $
+ * $Id: MaurheenHypercube.cpp,v 1.8 2005/05/19 13:02:07 southa Exp $
  * $Log: MaurheenHypercube.cpp,v $
+ * Revision 1.8  2005/05/19 13:02:07  southa
+ * Mac release work
+ *
  * Revision 1.7  2005/02/10 12:34:02  southa
  * Template fixes
  *

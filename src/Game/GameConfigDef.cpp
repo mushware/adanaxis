@@ -3,7 +3,7 @@
  *
  * File: src/Game/GameConfigDef.cpp
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } gkz+SiuL8qsDnWV1h4JEtg
+//%Header } /ixL+VHS/X24qFxhNVjocQ
 /*
- * $Id: GameConfigDef.cpp,v 1.21 2005/03/13 00:34:46 southa Exp $
+ * $Id: GameConfigDef.cpp,v 1.22 2005/05/19 13:02:01 southa Exp $
  * $Log: GameConfigDef.cpp,v $
+ * Revision 1.22  2005/05/19 13:02:01  southa
+ * Mac release work
+ *
  * Revision 1.21  2005/03/13 00:34:46  southa
  * Build fixes, key support and stereo
  *

@@ -7,7 +7,7 @@
  *
  * File: src/MushGame/MushGameRender.h
  *
- * Author: Andy Southgate 2002-2005
+ * Author: Andy Southgate 2002-2006
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 758vG5RYBv9QjPDnAkLDSw
+//%Header } enN/2yMMLp9+iHXmBKi3mw
 /*
- * $Id: MushGameRender.h,v 1.2 2005/07/02 00:42:38 southa Exp $
+ * $Id: MushGameRender.h,v 1.3 2005/08/01 20:23:18 southa Exp $
  * $Log: MushGameRender.h,v $
+ * Revision 1.3  2005/08/01 20:23:18  southa
+ * Backdrop and build fixes
+ *
  * Revision 1.2  2005/07/02 00:42:38  southa
  * Conditioning tweaks
  *
