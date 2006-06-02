@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } vl7jY3WxF4VnrsvzzFB2Cw
 /*
- * $Id: MushGLUtil.cpp,v 1.2 2006/06/01 15:39:18 southa Exp $
+ * $Id: MushGLUtil.cpp,v 1.3 2006/06/01 20:12:59 southa Exp $
  * $Log: MushGLUtil.cpp,v $
+ * Revision 1.3  2006/06/01 20:12:59  southa
+ * Initial texture caching
+ *
  * Revision 1.2  2006/06/01 15:39:18  southa
  * DrawArray verification and fixes
  *
@@ -239,8 +242,3 @@ MushGLUtil::GLErrorString(const GLenum inGLErr)
 	return errorString;
 }
 
-std::string
-MushGLUtil::TextureCacheFilename(const std::string& inName)
-{
-	return MushcoreEnv::Sgl().VariableGet("GLOBAL_CACHE_PATH").StringGet()+"/"+inName+".tiff";
-}

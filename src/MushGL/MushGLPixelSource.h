@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } vzsiY9MwPTZIFsQ1nPV4fA
 /*
- * $Id: MushGLPixelSource.h,v 1.4 2006/04/11 23:30:08 southa Exp $
+ * $Id: MushGLPixelSource.h,v 1.5 2006/05/02 17:32:13 southa Exp $
  * $Log: MushGLPixelSource.h,v $
+ * Revision 1.5  2006/05/02 17:32:13  southa
+ * Texturing
+ *
  * Revision 1.4  2006/04/11 23:30:08  southa
  * Created MushRuby from ruby-1.8.4
  *
@@ -65,8 +68,10 @@ public:
         kParamPaletteName,
         kParamPaletteStartX,
         kParamPaletteStartY,
-        kParamPaletteVectorX,
-        kParamPaletteVectorY,
+        kParamPaletteVector1X,
+        kParamPaletteVector1Y,
+        kParamPaletteVector2X,
+        kParamPaletteVector2Y,
         kParamBaseNext
     };
     

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } AYQWMxoJ+uDPAQUnlwSk/w
 /*
- * $Id: MushGLTexture.h,v 1.3 2005/09/05 12:54:30 southa Exp $
+ * $Id: MushGLTexture.h,v 1.4 2006/05/02 17:32:13 southa Exp $
  * $Log: MushGLTexture.h,v $
+ * Revision 1.4  2006/05/02 17:32:13  southa
+ * Texturing
+ *
  * Revision 1.3  2005/09/05 12:54:30  southa
  * Solid rendering work
  *
@@ -50,6 +53,8 @@ public:
         m_bindingNameValid(false),
         m_pixelType(kPixelTypeNone),
         m_storageType(kStorageTypeNone),
+		m_cacheSaveRequired(false),
+		m_compress(false),
         m_made(false)
     {}
 
@@ -81,7 +86,9 @@ private:
 
     void PixelDataGLRGBAUse(void *pData);
     void PixelDataU8RGBAUse(void *pData);
-    
+    void ToCacheSave(void);
+	bool FromCacheLoad(void);
+	
     std::vector<Mushware::U8> m_u8Data;
     std::vector<Mushware::tVal> m_valData;
     Mushware::t4U32 m_size; //:readwrite
@@ -91,6 +98,9 @@ private:
     Mushware::U32 m_pixelType;
     Mushware::U32 m_storageType;
     std::string m_srcName; //:readwrite
+    std::string m_cacheFilename;
+	bool m_cacheSaveRequired;
+	bool m_compress;
     bool m_made;
     
 //%classPrototypes {

@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } p+qloydajE1rCLfMhFW9wg
 /*
- * $Id: MushSkinPixelSourceNoise.h,v 1.2 2006/04/11 23:30:11 southa Exp $
+ * $Id: MushSkinPixelSourceNoise.h,v 1.3 2006/05/02 17:32:13 southa Exp $
  * $Log: MushSkinPixelSourceNoise.h,v $
+ * Revision 1.3  2006/05/02 17:32:13  southa
+ * Texturing
+ *
  * Revision 1.2  2006/04/11 23:30:11  southa
  * Created MushRuby from ruby-1.8.4
  *
@@ -50,15 +53,17 @@ public:
 protected:
     virtual void TileLineGenerate(Mushware::U8 *inpTileData, const MushMesh4Mesh::tTextureTile& inTileRef,
                                   Mushware::U32 inNumPixels, Mushware::t4Val inStartPos, Mushware::t4Val inEndPos);
+
+    Mushware::t2Val m_paletteStart;    
+    Mushware::t2Val m_paletteVector1;
+    Mushware::t2Val m_paletteVector2;
+    MushGLTexture *m_pPaletteTexture; // Not owned by this object
     
 private:
     Mushware::U32 m_xSize;
     Mushware::U32 m_ySize;
     std::string m_sourceName;
     std::string m_paletteName;
-    Mushware::t2Val m_paletteStart;    
-    Mushware::t2Val m_paletteVector;
-    MushGLTexture *m_pPaletteTexture; // Not owned by this object
     
 //%classPrototypes {
 public:

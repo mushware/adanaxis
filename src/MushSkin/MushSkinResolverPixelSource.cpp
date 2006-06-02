@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } JKEnx9FBo7lsZ4SNGVymjg
 /*
- * $Id: MushSkinResolverPixelSource.cpp,v 1.2 2006/05/01 17:39:01 southa Exp $
+ * $Id: MushSkinResolverPixelSource.cpp,v 1.3 2006/05/02 17:32:13 southa Exp $
  * $Log: MushSkinResolverPixelSource.cpp,v $
+ * Revision 1.3  2006/05/02 17:32:13  southa
+ * Texturing
+ *
  * Revision 1.2  2006/05/01 17:39:01  southa
  * Texture generation
  *
@@ -30,6 +33,7 @@
 #include "MushSkinResolverPixelSource.h"
 
 #include "MushSkinPixelSourceNoise.h"
+#include "MushSkinPixelSourceNoisePerlin.h"
 
 using namespace Mushware;
 using namespace std;
@@ -39,10 +43,12 @@ MushSkinResolverPixelSource::Resolve(const std::string& inSrcName)
 {
     MushcoreRegExp regExp;
     MushcoreRegExp::tMatches matches;
-    regExp.SearchPatternSet("\\btype=noise\\b");
+    regExp.SearchPatternSet("\\btype=(noise|perlin)\\b");
     if (regExp.Search(matches, inSrcName))
     {
-        MUSHCOREASSERT(matches.size() == 0);
+        MUSHCOREASSERT(matches.size() == 1);
+		std::string noiseType = matches[0];
+		
         regExp.SearchPatternSet("\\bname=\"([^\"]*)\"");
         if (!regExp.Search(matches, inSrcName))
         {
@@ -87,8 +93,8 @@ MushSkinResolverPixelSource::Resolve(const std::string& inSrcName)
             xmlVecStream >> paletteStart;
         }
         
-        t2Val paletteVector = t2Val(1, 0);
-        regExp.SearchPatternSet("\\bpalettevector=\"([^\"]*)\"");
+        t2Val paletteVector1 = t2Val(1, 0);
+        regExp.SearchPatternSet("\\bpalettevector1=\"([^\"]*)\"");
         
         if (regExp.Search(matches, inSrcName))
         {
@@ -96,18 +102,40 @@ MushSkinResolverPixelSource::Resolve(const std::string& inSrcName)
             std::istringstream vecStream(matches[0]);
             MushcoreXMLIStream xmlVecStream(vecStream);
             
-            xmlVecStream >> paletteVector;
+            xmlVecStream >> paletteVector1;
         }
         
-        std::auto_ptr<MushSkinPixelSourceNoise> aResolver(new MushSkinPixelSourceNoise);
+        t2Val paletteVector2 = t2Val(0, 0);
+        regExp.SearchPatternSet("\\bpalettevector2=\"([^\"]*)\"");
+        
+        if (regExp.Search(matches, inSrcName))
+        {
+            MUSHCOREASSERT(matches.size() == 1);
+            std::istringstream vecStream(matches[0]);
+            MushcoreXMLIStream xmlVecStream(vecStream);
+            
+            xmlVecStream >> paletteVector2;
+        }
+        
+        std::auto_ptr<MushSkinPixelSourceNoise> aResolver;
+		if (noiseType == "noise")
+		{
+			aResolver.reset(new MushSkinPixelSourceNoise);
+		}
+		else
+		{
+			aResolver.reset(new MushSkinPixelSourceNoisePerlin);
+		}
         aResolver->StringParameterSet(MushGLPixelSource::kParamSourceName, nameStr);
         aResolver->ValueParameterSet(MushGLPixelSource::kParamXSize, sizeVec[0]);
         aResolver->ValueParameterSet(MushGLPixelSource::kParamYSize, sizeVec[1]);
         aResolver->StringParameterSet(MushGLPixelSource::kParamPaletteName, paletteName);
         aResolver->ValueParameterSet(MushGLPixelSource::kParamPaletteStartX, paletteStart.X());
         aResolver->ValueParameterSet(MushGLPixelSource::kParamPaletteStartY, paletteStart.Y());
-        aResolver->ValueParameterSet(MushGLPixelSource::kParamPaletteVectorX, paletteVector.X());
-        aResolver->ValueParameterSet(MushGLPixelSource::kParamPaletteVectorY, paletteVector.Y());
+        aResolver->ValueParameterSet(MushGLPixelSource::kParamPaletteVector1X, paletteVector1.X());
+        aResolver->ValueParameterSet(MushGLPixelSource::kParamPaletteVector1Y, paletteVector1.Y());
+        aResolver->ValueParameterSet(MushGLPixelSource::kParamPaletteVector2X, paletteVector2.X());
+        aResolver->ValueParameterSet(MushGLPixelSource::kParamPaletteVector2Y, paletteVector2.Y());
 
         MushcoreData<MushGLPixelSource>::Sgl().Give(inSrcName, aResolver.release());
     }

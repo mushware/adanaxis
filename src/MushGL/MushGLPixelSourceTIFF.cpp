@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } SaBXzXzmz9pA2fL3GoZFMQ
 /*
- * $Id: MushGLPixelSourceTIFF.cpp,v 1.2 2005/08/29 18:40:56 southa Exp $
+ * $Id: MushGLPixelSourceTIFF.cpp,v 1.3 2006/05/02 17:32:13 southa Exp $
  * $Log: MushGLPixelSourceTIFF.cpp,v $
+ * Revision 1.3  2006/05/02 17:32:13  southa
+ * Texturing
+ *
  * Revision 1.2  2005/08/29 18:40:56  southa
  * Solid rendering work
  *
@@ -72,8 +75,13 @@ MushGLPixelSourceTIFF::ToTextureCreate(MushGLTexture& outTexture)
 {
     tiffio::uint32 *pTIFFData = NULL;
 
-    tiffio::TIFF* pTIFF = tiffio::TIFFOpen(m_filename.c_str(), "r");
+	// Suppress error message on stderr
+    tiffio::TIFFErrorHandler currentHandler = tiffio::TIFFSetErrorHandler(NULL);
+	
+	tiffio::TIFF* pTIFF = tiffio::TIFFOpen(m_filename.c_str(), "r");
     
+	tiffio::TIFFSetErrorHandler(currentHandler);
+	
     if (pTIFF == NULL)
     {
         throw MushcoreFileFail(m_filename, "Could not open file");
@@ -89,6 +97,9 @@ MushGLPixelSourceTIFF::ToTextureCreate(MushGLTexture& outTexture)
             tiffio::TIFFGetField(pTIFF, TIFFTAG_IMAGEWIDTH, &width);
             tiffio::TIFFGetField(pTIFF, TIFFTAG_IMAGELENGTH, &height);            
             
+			// Change the orientation so that we vertically flip the image as we load it
+			tiffio::TIFFSetField(pTIFF, TIFFTAG_ORIENTATION, ORIENTATION_BOTLEFT);
+
             U32 numPixels=width*height;
             pTIFFData = reinterpret_cast<tiffio::uint32 *>(tiffio::_TIFFmalloc(sizeof(tiffio::uint32)*width*height));
             
