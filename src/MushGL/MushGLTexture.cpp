@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } vh/xCnesmbXGxXqZK5YEaA
 /*
- * $Id: MushGLTexture.cpp,v 1.4 2006/06/01 20:12:59 southa Exp $
+ * $Id: MushGLTexture.cpp,v 1.5 2006/06/02 18:14:36 southa Exp $
  * $Log: MushGLTexture.cpp,v $
+ * Revision 1.5  2006/06/02 18:14:36  southa
+ * Texture caching
+ *
  * Revision 1.4  2006/06/01 20:12:59  southa
  * Initial texture caching
  *
@@ -288,7 +291,6 @@ MushGLTexture::U8RGBALookup(Mushware::t2Val inPos)
         throw MushcoreRequestFail(message.str());
     }
     
-    
     // Input values spanning the texture in the range 0 < x < 1
     tVal x = inPos.X();
     tVal y = inPos.Y();
@@ -312,9 +314,16 @@ MushGLTexture::U8RGBALookup(Mushware::t2Val inPos)
     xFrac = std::modf(std::fmod(m_size.X()*x, m_size.X()), &xInteger);
     yFrac = std::modf(std::fmod(m_size.Y()*y, m_size.Y()), &yInteger);
 
+	
+	if (xInteger < 0) xInteger = 0;
+	if (yInteger < 0) yInteger = 0;
+	
     U32 x0 = static_cast<U32>(xInteger);
     U32 y0 = static_cast<U32>(yInteger);
     
+	MUSHCOREASSERT(x0 < m_size.X());
+	MUSHCOREASSERT(y0 < m_size.Y());
+	
     U32 x1 = x0+1;
     if (x1 >= m_size.X()) x1 = 0;
     U32 y1 = y0+1;
@@ -329,7 +338,7 @@ MushGLTexture::U8RGBALookup(Mushware::t2Val inPos)
     MUSHCOREASSERT(p10 >= &m_u8Data[0] && p10 < &m_u8Data[m_u8Data.size()]);
     MUSHCOREASSERT(p01 >= &m_u8Data[0] && p01 < &m_u8Data[m_u8Data.size()]);
     MUSHCOREASSERT(p11 >= &m_u8Data[0] && p11 < &m_u8Data[m_u8Data.size()]);
-    
+	
     t4Val col00 = t4Val(p00[0], p00[1], p00[2], p00[3]);
     t4Val col10 = t4Val(p10[0], p10[1], p10[2], p10[3]);
     t4Val col01 = t4Val(p01[0], p01[1], p01[2], p01[3]);

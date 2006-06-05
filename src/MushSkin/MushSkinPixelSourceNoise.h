@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } p+qloydajE1rCLfMhFW9wg
 /*
- * $Id: MushSkinPixelSourceNoise.h,v 1.3 2006/05/02 17:32:13 southa Exp $
+ * $Id: MushSkinPixelSourceNoise.h,v 1.4 2006/06/02 18:14:36 southa Exp $
  * $Log: MushSkinPixelSourceNoise.h,v $
+ * Revision 1.4  2006/06/02 18:14:36  southa
+ * Texture caching
+ *
  * Revision 1.3  2006/05/02 17:32:13  southa
  * Texturing
  *
@@ -62,11 +65,13 @@ protected:
 private:
     Mushware::U32 m_xSize;
     Mushware::U32 m_ySize;
-    std::string m_sourceName;
-    std::string m_paletteName;
+    std::string m_sourceName; //:read
+    std::string m_paletteName; //:read
     
 //%classPrototypes {
 public:
+    const std::string& SourceName(void) const { return m_sourceName; }
+    const std::string& PaletteName(void) const { return m_paletteName; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -74,7 +79,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } 1oBgFruy5qHAaudtV+Hcmg
+//%classPrototypes } hNp9sR/1oLVBPc7uQnaDNw
 };
 //%inlineHeader {
 inline std::ostream&

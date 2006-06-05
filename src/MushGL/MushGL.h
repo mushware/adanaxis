@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } glfKswkbeoueNs++v5RKqA
 /*
- * $Id: MushGL.h,v 1.11 2006/04/11 23:30:08 southa Exp $
+ * $Id: MushGL.h,v 1.12 2006/06/01 15:39:16 southa Exp $
  * $Log: MushGL.h,v $
+ * Revision 1.12  2006/06/01 15:39:16  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.11  2006/04/11 23:30:08  southa
  * Created MushRuby from ruby-1.8.4
  *
@@ -64,8 +67,10 @@
 #include "MushGLArrays.h"
 #include "MushGLBuffer.h"
 #include "MushGLBuffers.h"
+#include "MushGLCacheControl.h"
 #include "MushGLClaimer.h"
 #include "MushGLControl.h"
+#include "MushGLFont.h"
 #include "MushGLJob.h"
 #include "MushGLJobRender.h"
 #include "MushGLMaterial.h"
@@ -77,6 +82,7 @@
 #include "MushGLState.h"
 #include "MushGLTexture.h"
 #include "MushGLUtil.h"
+#include "MushGLTIFFUtil.h"
 #include "MushGLV.h"
 #include "MushGLVertexBuffer.h"
 #include "MushGLWorkSpec.h"

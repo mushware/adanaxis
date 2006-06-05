@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } JKEnx9FBo7lsZ4SNGVymjg
 /*
- * $Id: MushSkinResolverPixelSource.cpp,v 1.3 2006/05/02 17:32:13 southa Exp $
+ * $Id: MushSkinResolverPixelSource.cpp,v 1.4 2006/06/02 18:14:37 southa Exp $
  * $Log: MushSkinResolverPixelSource.cpp,v $
+ * Revision 1.4  2006/06/02 18:14:37  southa
+ * Texture caching
+ *
  * Revision 1.3  2006/05/02 17:32:13  southa
  * Texturing
  *
@@ -34,6 +37,7 @@
 
 #include "MushSkinPixelSourceNoise.h"
 #include "MushSkinPixelSourceNoisePerlin.h"
+#include "MushSkinPixelSourceTest.h"
 
 using namespace Mushware;
 using namespace std;
@@ -43,7 +47,7 @@ MushSkinResolverPixelSource::Resolve(const std::string& inSrcName)
 {
     MushcoreRegExp regExp;
     MushcoreRegExp::tMatches matches;
-    regExp.SearchPatternSet("\\btype=(noise|perlin)\\b");
+    regExp.SearchPatternSet("\\btype=(noise|perlin|test)\\b");
     if (regExp.Search(matches, inSrcName))
     {
         MUSHCOREASSERT(matches.size() == 1);
@@ -117,8 +121,12 @@ MushSkinResolverPixelSource::Resolve(const std::string& inSrcName)
             xmlVecStream >> paletteVector2;
         }
         
-        std::auto_ptr<MushSkinPixelSourceNoise> aResolver;
-		if (noiseType == "noise")
+        std::auto_ptr<MushGLPixelSource> aResolver;
+		if (noiseType == "test")
+		{
+			aResolver.reset(new MushSkinPixelSourceTest);
+		}
+		else if (noiseType == "noise")
 		{
 			aResolver.reset(new MushSkinPixelSourceNoise);
 		}

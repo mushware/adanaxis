@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } HwAE/QIL5vyQn3et9Ekwtg
 /*
- * $Id: MushMeshVector.h,v 1.25 2005/08/01 17:58:25 southa Exp $
+ * $Id: MushMeshVector.h,v 1.26 2006/05/02 17:32:13 southa Exp $
  * $Log: MushMeshVector.h,v $
+ * Revision 1.26  2006/05/02 17:32:13  southa
+ * Texturing
+ *
  * Revision 1.25  2005/08/01 17:58:25  southa
  * Object explosion
  *
@@ -162,7 +165,9 @@ public:
     void InPlaceNormalise(void);
     void ToAdditiveIdentitySet(void);
     void ToMultiplicativeIdentitySet(void);
-    
+    tThis Floor(void) const;
+	tThis Ceil(void) const;
+	
     static const tThis AdditiveIdentity(void);
     static const tThis MultiplicativeIdentity(void);
     
@@ -504,6 +509,30 @@ MushMeshVector<T, D>::ToAdditiveIdentitySet(void)
     {
         m_value[i] = 0;
     }
+}
+
+template <class T, Mushware::U32 D>
+inline MushMeshVector<T, D>
+MushMeshVector<T, D>::Floor(void) const
+{
+	MushMeshVector<T, D> retVal;
+    for (Mushware::U32 i=0; i<D; ++i)
+    {
+        retVal.Set(std::floor(Get(i)), i);
+    }
+	return retVal;
+}
+
+template <class T, Mushware::U32 D>
+inline MushMeshVector<T, D>
+MushMeshVector<T, D>::Ceil(void) const
+{
+	tThis retVal;
+    for (Mushware::U32 i=0; i<D; ++i)
+    {
+        retVal[i] = std::ceil(m_value[i]);
+    }
+	return retVal;
 }
 
 template <class T, Mushware::U32 D>
