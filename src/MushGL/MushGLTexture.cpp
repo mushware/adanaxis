@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } vh/xCnesmbXGxXqZK5YEaA
 /*
- * $Id: MushGLTexture.cpp,v 1.5 2006/06/02 18:14:36 southa Exp $
+ * $Id: MushGLTexture.cpp,v 1.6 2006/06/05 11:48:25 southa Exp $
  * $Log: MushGLTexture.cpp,v $
+ * Revision 1.6  2006/06/05 11:48:25  southa
+ * Noise textures
+ *
  * Revision 1.5  2006/06/02 18:14:36  southa
  * Texture caching
  *
@@ -406,10 +409,25 @@ MushGLTexture::Texture(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
     return MushcoreScalar(0);
 }
 
+Mushware::tRubyValue
+MushGLTexture::RubyDefine(Mushware::tRubyArgC inArgC, Mushware::tRubyValue *inpArgV, Mushware::tRubyValue inSelf)
+{
+	MushcoreLog::Sgl().InfoLog() << "RubyDefine called" << endl;
+	return Qnil;
+}
+
+void
+MushGLTexture::RubyInstall(void)
+{
+	Mushware::tRubyValue klass = MushRubyUtil::ClassDefine("MushGLTexture");
+	MushRubyUtil::SingletonMethodDefine(klass, "cRubyDefine", RubyDefine);
+}	
+
 void
 MushGLTexture::Install(void)
 {
     MushcoreInterpreter::Sgl().HandlerAdd("mushgltexture", Texture);
+	MushRubyInstall::Sgl().Add(RubyInstall);
 }
 
 //%outOfLineFunctions {

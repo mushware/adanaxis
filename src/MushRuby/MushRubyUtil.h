@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } ZnwDjEM1+TPkZ9HrL5mg7A
 /*
- * $Id$
- * $Log$
+ * $Id: MushRubyUtil.h,v 1.1 2006/04/21 00:10:43 southa Exp $
+ * $Log: MushRubyUtil.h,v $
+ * Revision 1.1  2006/04/21 00:10:43  southa
+ * MushGLFont ruby module
+ *
  */
 
 
@@ -33,12 +36,16 @@
 class MushRubyUtil
 {
 public:
+	static Mushware::tRubyID Intern(const std::string& inName);
     static void ValueConvert(std::string& outString, Mushware::tRubyValue inValue);
     static void ValueConvert(Mushware::tVal& outVal, Mushware::tRubyValue inValue);
     static Mushware::tRubyValue ParamPop(Mushware::tRubyArgC& ioArgC, Mushware::tRubyValue *& ioArgV);
     static void IVGet(Mushware::tVal& outVal, const std::string& inName, Mushware::tRubyValue inSelf);
+    static Mushware::tRubyValue Class(const std::string& inName);
     static Mushware::tRubyValue ClassDefine(const std::string& inName);
     static void MethodDefine(Mushware::tRubyValue inKlass, const std::string& inName,
+                             Mushware::tfpRubyMethod infpMethod);
+    static void SingletonMethodDefine(Mushware::tRubyValue inKlass, const std::string& inName,
                              Mushware::tfpRubyMethod infpMethod);
 };
 

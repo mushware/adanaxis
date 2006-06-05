@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } AYQWMxoJ+uDPAQUnlwSk/w
 /*
- * $Id: MushGLTexture.h,v 1.4 2006/05/02 17:32:13 southa Exp $
+ * $Id: MushGLTexture.h,v 1.5 2006/06/02 18:14:36 southa Exp $
  * $Log: MushGLTexture.h,v $
+ * Revision 1.5  2006/06/02 18:14:36  southa
+ * Texture caching
+ *
  * Revision 1.4  2006/05/02 17:32:13  southa
  * Texturing
  *
@@ -40,6 +43,8 @@
  */
 
 #include "MushGLStandard.h"
+
+#include "mushMushRuby.h"
 
 //:generate virtual standard ostream xml1 nocopy
 class MushGLTexture : public MushcoreVirtualObject
@@ -70,7 +75,10 @@ public:
     
     static MushcoreScalar Texture(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
     static void Install(void);
+    static void RubyInstall(void);
 
+	static Mushware::tRubyValue RubyDefine(Mushware::tRubyArgC inArgC, Mushware::tRubyValue *inpArgV, Mushware::tRubyValue inSelf);
+		
 private:
     enum 
     {

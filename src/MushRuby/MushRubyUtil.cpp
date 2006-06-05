@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } gSaMBKSS/9FVf/ypP8x5kA
 /*
- * $Id$
- * $Log$
+ * $Id: MushRubyUtil.cpp,v 1.1 2006/04/21 00:10:43 southa Exp $
+ * $Log: MushRubyUtil.cpp,v $
+ * Revision 1.1  2006/04/21 00:10:43  southa
+ * MushGLFont ruby module
+ *
  */
 
 #include "MushRubyUtil.h"
@@ -30,6 +33,19 @@
 
 using namespace Mushware;
 using namespace std;
+
+Mushware::tRubyID
+MushRubyUtil::Intern(const std::string& inName)
+{
+	tRubyID retID = rb_intern(inName.c_str());
+	
+	if (retID == Qnil)
+	{
+		throw MushRubyFail("Unknown internal name '"+inName+"'");
+	}
+	
+	return retID;
+}
 
 void
 MushRubyUtil::IVGet(Mushware::tVal& outVal, const std::string& inName, Mushware::tRubyValue inSelf)
@@ -74,9 +90,24 @@ MushRubyUtil::ClassDefine(const std::string& inName)
     return klass;
 }
 
+Mushware::tRubyValue
+MushRubyUtil::Class(const std::string& inName)
+{
+    tRubyValue klass = rb_define_class(inName.c_str(), rb_cObject);
+    return klass;
+}
+
 void
 MushRubyUtil::MethodDefine(Mushware::tRubyValue inKlass, const std::string& inName,
                          tfpRubyMethod infpMethod)
 {
     rb_define_method(inKlass, inName.c_str(), RUBY_METHOD_FUNC(infpMethod), -1);
 }
+
+void
+MushRubyUtil::SingletonMethodDefine(Mushware::tRubyValue inKlass, const std::string& inName,
+						   tfpRubyMethod infpMethod)
+{
+    rb_define_singleton_method(inKlass, inName.c_str(), RUBY_METHOD_FUNC(infpMethod), -1);
+}
+
