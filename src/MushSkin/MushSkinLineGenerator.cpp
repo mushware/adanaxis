@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } /ogEinXWaS3ZU9x1JORYXA
 /*
- * $Id$
- * $Log$
+ * $Id: MushSkinLineGenerator.cpp,v 1.1 2006/06/05 11:48:25 southa Exp $
+ * $Log: MushSkinLineGenerator.cpp,v $
+ * Revision 1.1  2006/06/05 11:48:25  southa
+ * Noise textures
+ *
  */
 
 #include "MushSkinLineGenerator.h"
@@ -43,8 +46,44 @@ MushSkinLineGenerator::CellNoiseInitialise(Mushware::U32 inSeed)
 		m_cellNoiseHash[i] = seed & 0xff;
 		m_cellNoiseHash[i+kHashSize] = seed & 0xff;
 	}
-	MushcoreLog::Sgl().InfoLog() << "m_cellNoiseHash=" << m_cellNoiseHash << endl;
 }
+
+void
+MushSkinLineGenerator::OctavedCellNoiseLineGenerate(
+	std::vector<Mushware::tVal>& outData, Mushware::U32 inNumPixels,
+	const Mushware::t4Val& inStartPos, const Mushware::t4Val& inEndPos, Mushware::U32 numOctaves)
+{
+	MUSHCOREASSERT(outData.size() >= inNumPixels);
+	
+	for (U32 i=0; i<inNumPixels; ++i)
+	{
+		outData[i] = 0;
+	}
+	
+	tVal spaceMultiplier = 1;
+	tVal amplitude = 1;
+	tVal cumulativeAmplitude = 0;
+	for (U32 octave=0; octave < numOctaves; ++octave)
+	{
+		std::vector<tVal> octaveData(inNumPixels);
+		CellNoiseLineGenerate(octaveData, inNumPixels, spaceMultiplier * inStartPos,
+							  spaceMultiplier * inEndPos);
+		
+		for (U32 i=0; i<inNumPixels; ++i)
+		{
+			outData[i] += amplitude * octaveData[i];
+		}
+		cumulativeAmplitude += amplitude;
+		amplitude /= 2;
+		spaceMultiplier *= 2;
+	}
+	
+	for (U32 i=0; i<inNumPixels; ++i)
+	{
+		outData[i] /= cumulativeAmplitude;
+	}
+}
+
 
 //%outOfLineFunctions {
 

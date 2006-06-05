@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } JKEnx9FBo7lsZ4SNGVymjg
 /*
- * $Id: MushSkinResolverPixelSource.cpp,v 1.4 2006/06/02 18:14:37 southa Exp $
+ * $Id: MushSkinResolverPixelSource.cpp,v 1.5 2006/06/05 11:48:26 southa Exp $
  * $Log: MushSkinResolverPixelSource.cpp,v $
+ * Revision 1.5  2006/06/05 11:48:26  southa
+ * Noise textures
+ *
  * Revision 1.4  2006/06/02 18:14:37  southa
  * Texture caching
  *
@@ -36,7 +39,7 @@
 #include "MushSkinResolverPixelSource.h"
 
 #include "MushSkinPixelSourceNoise.h"
-#include "MushSkinPixelSourceNoisePerlin.h"
+#include "MushSkinPixelSourceNoiseCell.h"
 #include "MushSkinPixelSourceTest.h"
 
 using namespace Mushware;
@@ -47,7 +50,7 @@ MushSkinResolverPixelSource::Resolve(const std::string& inSrcName)
 {
     MushcoreRegExp regExp;
     MushcoreRegExp::tMatches matches;
-    regExp.SearchPatternSet("\\btype=(noise|perlin|test)\\b");
+    regExp.SearchPatternSet("\\btype=(NoiseCell|Test)\\b");
     if (regExp.Search(matches, inSrcName))
     {
         MUSHCOREASSERT(matches.size() == 1);
@@ -122,17 +125,21 @@ MushSkinResolverPixelSource::Resolve(const std::string& inSrcName)
         }
         
         std::auto_ptr<MushGLPixelSource> aResolver;
-		if (noiseType == "test")
+		if (noiseType == "Test")
 		{
 			aResolver.reset(new MushSkinPixelSourceTest);
 		}
-		else if (noiseType == "noise")
+		else if (noiseType == "Noise")
 		{
 			aResolver.reset(new MushSkinPixelSourceNoise);
 		}
+		else if (noiseType == "NoiseCell")
+		{
+			aResolver.reset(new MushSkinPixelSourceNoiseCell);
+		}
 		else
 		{
-			aResolver.reset(new MushSkinPixelSourceNoisePerlin);
+			MUSHCOREASSERT(false);	
 		}
         aResolver->StringParameterSet(MushGLPixelSource::kParamSourceName, nameStr);
         aResolver->ValueParameterSet(MushGLPixelSource::kParamXSize, sizeVec[0]);

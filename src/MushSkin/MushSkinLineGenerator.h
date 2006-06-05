@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } tuTK6NcDPsNibg7CubVnHw
 /*
- * $Id$
- * $Log$
+ * $Id: MushSkinLineGenerator.h,v 1.1 2006/06/05 11:48:26 southa Exp $
+ * $Log: MushSkinLineGenerator.h,v $
+ * Revision 1.1  2006/06/05 11:48:26  southa
+ * Noise textures
+ *
  */
 
 #include "MushSkinStandard.h"
@@ -40,6 +43,9 @@ public:
 	void CellNoiseInitialise(Mushware::U32 inSeed);
 	void CellNoiseLineGenerate(std::vector<Mushware::tVal>& outData, Mushware::U32 inNumPixels,
 							   const Mushware::t4Val& inStartPos, const Mushware::t4Val& inEndPos);
+	void OctavedCellNoiseLineGenerate(std::vector<Mushware::tVal>& outData, Mushware::U32 inNumPixels,
+									  const Mushware::t4Val& inStartPos, const Mushware::t4Val& inEndPos,
+									  Mushware::U32 numOctaves);
 
 private:
 	Mushware::t4U32 HashValues(const Mushware::t4Val& inVec);
@@ -76,24 +82,14 @@ MushSkinLineGenerator::HashValues(const Mushware::t4Val& inVec)
 inline Mushware::t4Val 
 MushSkinLineGenerator::FadeValues(const Mushware::t4Val& inVec)
 {
-	/* Each element x becomes x*x*x*(x*(x*6-15)+10)
+	/* Each element x becomes x*x*(3-x*2)
 	 * Vector-at-a-time to take advantage of SIMD instructions
 	*/
 	Mushware::t4Val retVal;
-	
-#if 0
-	retVal = inVec * 6 - 15;
-	retVal *= inVec;
-	retVal += 10;
-	retVal *= inVec;
-	retVal *= inVec;
-	retVal *= inVec;
-#endif
+
 	retVal = inVec * -2 + 3;
 	retVal *= inVec;
 	retVal *= inVec;
-	
-//	retVal = inVec;
 	return retVal;
 }
 
@@ -140,31 +136,9 @@ MushSkinLineGenerator::CellNoiseGenerate(const Mushware::t4Val& inPos)
 	Mushware::tVal p1011 = MUSH_HASH_SCALE(1,0,1,1);
 	Mushware::tVal p0111 = MUSH_HASH_SCALE(0,1,1,1);
 	Mushware::tVal p1111 = MUSH_HASH_SCALE(1,1,1,1);
+
+#undef MUSH_HASH_SCAL	
 	
-	static Mushware::U32 ctr=0;
-	++ctr;
-	
-	
-	if (ctr==100)
-	MushcoreLog::Sgl().InfoLog()
-		<< "p0000=" << p0000 << ","
-		<< "p1000=" << p1000 << ","
-		<< "p0100=" << p0100 << ","
-		<< "p1100=" << p1100 << ","
-		<< "p0010=" << p0010 << ","
-		<< "p1010=" << p1010 << ","
-		<< "p0110=" << p0110 << ","
-		<< "p1110=" << p1110 << ","
-		<< "p0001=" << p0001 << ","
-		<< "p1001=" << p1001 << ","
-		<< "p0101=" << p0101 << ","
-		<< "p1101=" << p1101 << ","
-		<< "p0011=" << p0011 << ","
-		<< "p1011=" << p1011 << ","
-		<< "p0111=" << p0111 << ","
-		<< "p1111=" << p1111 << ","
-		
-		<< std::endl;
 	// Quadrilinear interpolation of hash values
 	
 	Mushware::tVal retVal = 
@@ -186,11 +160,6 @@ MushSkinLineGenerator::CellNoiseGenerate(const Mushware::t4Val& inPos)
 					   )
 				  )
 			 );
-	if (ctr==100)
-	{
-	MushcoreLog::Sgl().InfoLog() << "inPos=" << inPos << ", cubeVec=" << cubeVec << ", floorVec=" << floorVec;
-	MushcoreLog::Sgl().InfoLog() << "fadeVec=" << fadeVec << ", retVal=" << retVal << std::endl;
-	}
 	return retVal;
 }
 
