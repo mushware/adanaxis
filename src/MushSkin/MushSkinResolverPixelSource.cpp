@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } JKEnx9FBo7lsZ4SNGVymjg
 /*
- * $Id: MushSkinResolverPixelSource.cpp,v 1.5 2006/06/05 11:48:26 southa Exp $
+ * $Id: MushSkinResolverPixelSource.cpp,v 1.6 2006/06/05 14:37:52 southa Exp $
  * $Log: MushSkinResolverPixelSource.cpp,v $
+ * Revision 1.6  2006/06/05 14:37:52  southa
+ * Texture generation
+ *
  * Revision 1.5  2006/06/05 11:48:26  southa
  * Noise textures
  *
@@ -166,6 +169,8 @@ namespace
     void Install(void)
     {
         MushGLResolverPixelSource::SingletonMutate(new MushSkinResolverPixelSource);
+		MushGLResolverPixelSource::Sgl().PrefixAdd("MushGLPixelSource");
+		MushGLResolverPixelSource::Sgl().PrefixAdd("MushSkinPixelSource");
     }
     MushcoreInstaller Installer(Install);
 } // end anonymous namespace

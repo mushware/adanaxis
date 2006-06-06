@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 5BOLwI3DhgfDHotOLswDpg
 /*
- * $Id$
- * $Log$
+ * $Id: MushRubyValue.h,v 1.1 2006/06/06 10:29:52 southa Exp $
+ * $Log: MushRubyValue.h,v $
+ * Revision 1.1  2006/06/06 10:29:52  southa
+ * Ruby texture definitions
+ *
  */
 
 #include "MushRubyStandard.h"
@@ -36,7 +39,8 @@ public:
 	MushRubyValue();
 	explicit MushRubyValue(Mushware::tRubyValue inValue) : m_value(inValue) {}
 	std::string String(void) const;
-	
+	std::vector<Mushware::tVal> ValVector(void) const;
+		
 private:
 	Mushware::tRubyValue m_value; //:read
 //%classPrototypes {

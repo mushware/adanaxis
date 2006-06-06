@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } IHi2qaicNzVbb+bqL7ZTVw
 /*
- * $Id: MushSkinPixelSourceNoise.cpp,v 1.6 2006/06/01 20:13:00 southa Exp $
+ * $Id: MushSkinPixelSourceNoise.cpp,v 1.7 2006/06/02 18:14:36 southa Exp $
  * $Log: MushSkinPixelSourceNoise.cpp,v $
+ * Revision 1.7  2006/06/02 18:14:36  southa
+ * Texture caching
+ *
  * Revision 1.6  2006/06/01 20:13:00  southa
  * Initial texture caching
  *
@@ -49,14 +52,7 @@ MushSkinPixelSourceNoise::ValueParameterSet(Mushware::U32 inNum, Mushware::tLong
 {
     switch (inNum)
     {
-        case kParamXSize:
-            m_xSize = static_cast<U32>(inVal);
-            break;
-            
-        case kParamYSize:
-            m_ySize = static_cast<U32>(inVal);
-            break;
-            
+
         case kParamPaletteStartX:
             m_paletteStart.XSet(inVal);
             break;
@@ -93,7 +89,7 @@ MushSkinPixelSourceNoise::StringParameterSet(Mushware::U32 inNum, const std::str
     switch (inNum)
     {
         case kParamSourceName:
-            m_sourceName = inStr;
+            m_meshName = inStr;
             break;
             
         case kParamPaletteName:
@@ -104,6 +100,34 @@ MushSkinPixelSourceNoise::StringParameterSet(Mushware::U32 inNum, const std::str
             MushGLPixelSource::StringParameterSet(inNum, inStr);
             break;
     }
+}
+
+
+void
+MushSkinPixelSourceNoise::ParamDecode(const MushRubyValue& inName, const MushRubyValue& inValue)
+{
+	std::string nameStr = inName.String();
+	
+	if (nameStr == "meshname")
+    {
+		m_meshName = inValue.String();
+	}
+	else if (nameStr == "palette")
+    {
+		m_paletteName = inValue.String();
+	}
+	else if (nameStr == "palettestart")
+	{
+		m_paletteStart = t2Val(inValue.ValVector());
+	}
+	else if (nameStr == "palettevector")
+	{
+		m_paletteVector1 = t2Val(inValue.ValVector());
+	}
+	else
+	{
+		MushGLPixelSource::ParamDecode(inName, inValue);
+	}
 }
 
 void 
@@ -163,10 +187,10 @@ MushSkinPixelSourceNoise::TileLineGenerate(Mushware::U8 *inpTileData, const Mush
 void
 MushSkinPixelSourceNoise::ToTextureCreate(MushGLTexture& outTexture)
 {
-    U32 pixelDataSize = 4*m_xSize*m_ySize;
+    U32 pixelDataSize = 4*Size().X()*Size().Y();
     std::vector<U8> pixelData(pixelDataSize, 0);
     
-    MushMesh4Mesh *p4Mesh = MushcoreData<MushMesh4Mesh>::Sgl().Get(m_sourceName);
+    MushMesh4Mesh *p4Mesh = MushcoreData<MushMesh4Mesh>::Sgl().Get(m_meshName);
     
     const MushMesh4Mesh::tTextureTiles& texTilesRef = p4Mesh->TextureTiles();
     U32 numTexTiles = texTilesRef.size();
@@ -189,24 +213,24 @@ MushSkinPixelSourceNoise::ToTextureCreate(MushGLTexture& outTexture)
         
         t2Val startPoint = tileRef.TileBox().Start();
         t2Val endPoint = tileRef.TileBox().End();
-        U32 startX = static_cast<U32>(startPoint.X() * m_xSize);
-        U32 startY = static_cast<U32>(startPoint.Y() * m_ySize);
-        U32 endX = static_cast<U32>(endPoint.X() * m_xSize);
-        U32 endY = static_cast<U32>(endPoint.Y() * m_ySize);
+        U32 startX = static_cast<U32>(startPoint.X() * Size().X());
+        U32 startY = static_cast<U32>(startPoint.Y() * Size().Y());
+        U32 endX = static_cast<U32>(endPoint.X() * Size().X());
+        U32 endY = static_cast<U32>(endPoint.Y() * Size().Y());
         MUSHCOREASSERT(endX >= startX);
         MUSHCOREASSERT(endY >= startY);
             
         for (U32 y=startY; y<endY; ++y)
         {
-            U32 pixelOffset = 4*(startX+y*m_ySize);
+            U32 pixelOffset = 4*(startX+y*Size().Y());
             if (pixelOffset + 4*(endX - startX) > pixelDataSize)
             {
                 throw MushcoreDataFail("Pixel data overrun");
             }
             U8 *pTileData = &pixelData[pixelOffset];
 
-            tileRef.Transform(objectPos, t2Val(static_cast<tVal>(startX) / m_xSize, static_cast<tVal>(y) / m_ySize));
-            tileRef.Transform(objectEndPos, t2Val(static_cast<tVal>(endX) / m_xSize, static_cast<tVal>(y) / m_ySize));
+            tileRef.Transform(objectPos, t2Val(static_cast<tVal>(startX) / Size().X(), static_cast<tVal>(y) / Size().Y()));
+            tileRef.Transform(objectEndPos, t2Val(static_cast<tVal>(endX) / Size().X(), static_cast<tVal>(y) / Size().Y()));
             
             if (endX > startX)
             {
@@ -229,7 +253,7 @@ MushSkinPixelSourceNoise::ToTextureCreate(MushGLTexture& outTexture)
     m_pPaletteTexture = NULL;
     
     // Bind the texture
-    outTexture.SizeSet(t4U32(m_xSize, m_ySize, 1, 1));
+    outTexture.SizeSet(t4U32(Size().X(), Size().Y(), 1, 1));
     outTexture.PixelTypeRGBASet();
     outTexture.StorageTypeGLSet();
     outTexture.PixelDataUse(&pixelData[0]);
@@ -279,9 +303,7 @@ MushSkinPixelSourceNoise::AutoPrint(std::ostream& ioOut) const
     {
         ioOut << "pPaletteTexture=" << *m_pPaletteTexture << ", ";
     }
-    ioOut << "xSize=" << m_xSize << ", ";
-    ioOut << "ySize=" << m_ySize << ", ";
-    ioOut << "sourceName=" << m_sourceName << ", ";
+    ioOut << "meshName=" << m_meshName << ", ";
     ioOut << "paletteName=" << m_paletteName;
     ioOut << "]";
 }
@@ -310,17 +332,9 @@ MushSkinPixelSourceNoise::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std
     {
         ioIn >> m_pPaletteTexture;
     }
-    else if (inTagStr == "xSize")
+    else if (inTagStr == "meshName")
     {
-        ioIn >> m_xSize;
-    }
-    else if (inTagStr == "ySize")
-    {
-        ioIn >> m_ySize;
-    }
-    else if (inTagStr == "sourceName")
-    {
-        ioIn >> m_sourceName;
+        ioIn >> m_meshName;
     }
     else if (inTagStr == "paletteName")
     {
@@ -343,13 +357,10 @@ MushSkinPixelSourceNoise::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_paletteVector2;
     ioOut.TagSet("pPaletteTexture");
     ioOut << m_pPaletteTexture;
-    ioOut.TagSet("xSize");
-    ioOut << m_xSize;
-    ioOut.TagSet("ySize");
-    ioOut << m_ySize;
-    ioOut.TagSet("sourceName");
-    ioOut << m_sourceName;
+    ioOut.TagSet("meshName");
+    ioOut << m_meshName;
     ioOut.TagSet("paletteName");
     ioOut << m_paletteName;
 }
-//%outOfLineFunctions } GSR4FJHExEoQ6GCVlwDcGA
+//%outOfLineFunctions } OS6PtKYB0iRl5hMCEN66YA
+

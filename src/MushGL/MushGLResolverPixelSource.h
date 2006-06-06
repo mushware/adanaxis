@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 8D+czxodqWkqx/95U0bYng
 /*
- * $Id: MushGLResolverPixelSource.h,v 1.3 2006/06/01 15:39:18 southa Exp $
+ * $Id: MushGLResolverPixelSource.h,v 1.4 2006/06/06 10:29:51 southa Exp $
  * $Log: MushGLResolverPixelSource.h,v $
+ * Revision 1.4  2006/06/06 10:29:51  southa
+ * Ruby texture definitions
+ *
  * Revision 1.3  2006/06/01 15:39:18  southa
  * DrawArray verification and fixes
  *
@@ -44,17 +47,19 @@
 class MushGLResolverPixelSource : public MushcoreVirtualObject, public MushcoreSingleton<MushGLResolverPixelSource>
 {
 public:
+	MushGLResolverPixelSource();
+	explicit MushGLResolverPixelSource(const MushGLResolverPixelSource *inpPixelSource);
     virtual void Resolve(const std::string& inSrcName);
-   	virtual void ParamHashResolve(const Mushware::tRubyHash& inHash);
-			
+   	virtual std::string ParamHashResolve(const Mushware::tRubyHash& inHash);
+	virtual void PrefixAdd(const std::string& inStr) { m_sourcePrefixes.push_front(inStr); }
+
 private:
-	virtual void ParamDecode(MushGLPixelSource& outSource, 
-							 const MushRubyValue& inName, const MushRubyValue& inValue);
-	virtual void ParamHashDecode(MushGLPixelSource& outSource, const Mushware::tRubyHash& inHash);
-	
-		
+	typedef std::list<std::string> tSourcePrefixes;
+	tSourcePrefixes m_sourcePrefixes; //:read
+
 //%classPrototypes {
 public:
+    const tSourcePrefixes& SourcePrefixes(void) const { return m_sourcePrefixes; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -62,7 +67,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } 1oBgFruy5qHAaudtV+Hcmg
+//%classPrototypes } RHRo0QzPzZ0v0cARvEM4vw
 };
 //%inlineHeader {
 inline std::ostream&

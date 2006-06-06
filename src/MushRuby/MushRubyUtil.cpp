@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } gSaMBKSS/9FVf/ypP8x5kA
 /*
- * $Id: MushRubyUtil.cpp,v 1.2 2006/06/05 16:54:44 southa Exp $
+ * $Id: MushRubyUtil.cpp,v 1.3 2006/06/06 10:29:51 southa Exp $
  * $Log: MushRubyUtil.cpp,v $
+ * Revision 1.3  2006/06/06 10:29:51  southa
+ * Ruby texture definitions
+ *
  * Revision 1.2  2006/06/05 16:54:44  southa
  * Ruby textures
  *
@@ -128,11 +131,16 @@ MushRubyUtil::HashHandler(Mushware::tRubyValue inArray, Mushware::tRubyValue inA
 	return Qtrue;
 }
 
-void MushRubyUtil::HashConvert(Mushware::tRubyHash& outHash, const MushRubyValue& inHash)
+void
+MushRubyUtil::HashConvert(Mushware::tRubyHash& outHash, const MushRubyValue& inHash)
 {
 	m_pHash = &outHash;
 	rb_iterate(rb_each, inHash.Value(), RUBY_METHOD_FUNC(HashHandler), Qnil);
 	m_pHash = NULL;
 }
 
-
+void
+MushRubyUtil::Raise(const std::string& inStr)
+{
+	rb_raise(rb_eException, "%s", inStr.c_str());
+}

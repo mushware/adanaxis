@@ -1277,6 +1277,8 @@
 		7A71A45005AC5A0800B315B0 /* MushModelMaterial.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A71A44E05AC5A0800B315B0 /* MushModelMaterial.cpp */; };
 		7A71A48C05AC5B4700B315B0 /* MushModelIO.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A71A48A05AC5B4700B315B0 /* MushModelIO.h */; };
 		7A71A48D05AC5B4700B315B0 /* MushModelIO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A71A48B05AC5B4700B315B0 /* MushModelIO.cpp */; };
+		7A7C1B060A35E56B00212A11 /* MushConfig.rb in Resources */ = {isa = PBXBuildFile; fileRef = 7A7C1B050A35E56B00212A11 /* MushConfig.rb */; };
+		7A7C1BC00A35EEAE00212A11 /* MushHelpers.rb in Resources */ = {isa = PBXBuildFile; fileRef = 7A7C1BBF0A35EEAE00212A11 /* MushHelpers.rb */; };
 		7A7DE93A08157EE300CB5432 /* TesseractTrainerConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A7DE93808157EE300CB5432 /* TesseractTrainerConfig.h */; };
 		7A7DE93B08157EE300CB5432 /* TesseractTrainerConfig.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A7DE93908157EE300CB5432 /* TesseractTrainerConfig.cpp */; };
 		7A8040EB086AE085007B0F20 /* MushGameJobAdmission.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A8040E9086AE085007B0F20 /* MushGameJobAdmission.h */; };
@@ -3363,6 +3365,8 @@
 		7A71A44E05AC5A0800B315B0 /* MushModelMaterial.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushModelMaterial.cpp; sourceTree = "<group>"; };
 		7A71A48A05AC5B4700B315B0 /* MushModelIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushModelIO.h; sourceTree = "<group>"; };
 		7A71A48B05AC5B4700B315B0 /* MushModelIO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushModelIO.cpp; sourceTree = "<group>"; };
+		7A7C1B050A35E56B00212A11 /* MushConfig.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = MushConfig.rb; sourceTree = "<group>"; };
+		7A7C1BBF0A35EEAE00212A11 /* MushHelpers.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = MushHelpers.rb; sourceTree = "<group>"; };
 		7A7DE93808157EE300CB5432 /* TesseractTrainerConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TesseractTrainerConfig.h; sourceTree = "<group>"; };
 		7A7DE93908157EE300CB5432 /* TesseractTrainerConfig.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TesseractTrainerConfig.cpp; sourceTree = "<group>"; };
 		7A8040E9086AE085007B0F20 /* MushGameJobAdmission.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushGameJobAdmission.h; sourceTree = "<group>"; };
@@ -5674,8 +5678,10 @@
 			children = (
 				7ACEFB3109F6EF6700E38865 /* init.rb */,
 				7ACEFB4F09F6FE8F00E38865 /* TopMenu.rb */,
+				7A7C1B050A35E56B00212A11 /* MushConfig.rb */,
 				7ACED0E109F84F2400055E66 /* MushGLFont.rb */,
 				7A1FF5F60A3489930023C4E2 /* MushGLTexture.rb */,
+				7A7C1BBF0A35EEAE00212A11 /* MushHelpers.rb */,
 				7A1FF5FE0A348B4A0023C4E2 /* Level1.rb */,
 			);
 			path = ruby;
@@ -8056,6 +8062,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7A7C1B060A35E56B00212A11 /* MushConfig.rb in Resources */,
+				7A7C1BC00A35EEAE00212A11 /* MushHelpers.rb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

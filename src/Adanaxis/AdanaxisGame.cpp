@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } DEX6Sh9oUk/bih2GXm2coA
 /*
- * $Id: AdanaxisGame.cpp,v 1.26 2006/05/01 17:39:00 southa Exp $
+ * $Id: AdanaxisGame.cpp,v 1.27 2006/06/05 16:54:43 southa Exp $
  * $Log: AdanaxisGame.cpp,v $
+ * Revision 1.27  2006/06/05 16:54:43  southa
+ * Ruby textures
+ *
  * Revision 1.26  2006/05/01 17:39:00  southa
  * Texture generation
  *
@@ -250,8 +253,6 @@ AdanaxisGame::Init(GameAppHandler& inAppHandler)
 #endif
     
 	MushRubyExec::Sgl().Call("level1.mInit");
-	
-	MUSHCOREASSERT(false);
 	
     MushcoreInterpreter::Sgl().Execute("loadsoundstream('adanaxis-music1')");
     if (m_config.PlayMusic())

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } UpB+98ShDY+5JMJVLGBArQ
 /*
- * $Id$
- * $Log$
+ * $Id: MushRubyExec.h,v 1.1 2006/04/20 00:22:45 southa Exp $
+ * $Log: MushRubyExec.h,v $
+ * Revision 1.1  2006/04/20 00:22:45  southa
+ * Added ruby executive
+ *
  */
 
 #include "MushRubyStandard.h"
@@ -41,11 +44,13 @@ public:
     Mushware::tRubyValue Eval(const std::string& inStr);
     Mushware::tRubyValue Call(const std::string& inRecv, const std::string& inFunc);
     Mushware::tRubyValue Call(const std::string& inStr);
+    Mushware::tRubyValue Call(Mushware::tRubyValue inRecv,  const std::string& inFunc);
     void Require(const std::string& inStr);
     
 protected:
     void Initialise(void);
-    
+    void ConfigSet(void);
+	
     Mushware::tRubyValue WrapProtect(Mushware::tRubyValue inValue);
     
     static Mushware::tRubyValue StaticWrapProtect(Mushware::tRubyValue inValue);

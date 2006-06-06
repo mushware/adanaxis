@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } MLe+9IO+KhBjFrt79ygTPg
 /*
- * $Id: MushGLResolverPixelSource.cpp,v 1.3 2006/05/02 17:32:13 southa Exp $
+ * $Id: MushGLResolverPixelSource.cpp,v 1.4 2006/06/06 10:29:51 southa Exp $
  * $Log: MushGLResolverPixelSource.cpp,v $
+ * Revision 1.4  2006/06/06 10:29:51  southa
+ * Ruby texture definitions
+ *
  * Revision 1.3  2006/05/02 17:32:13  southa
  * Texturing
  *
@@ -42,24 +45,12 @@ MUSHCORE_SINGLETON_INSTANCE(MushGLResolverPixelSource);
 using namespace Mushware;
 using namespace std;
 
-void
-MushGLResolverPixelSource::ParamDecode(MushGLPixelSource& outSource, 
-									   const MushRubyValue& inName, const MushRubyValue& inValue)
+MushGLResolverPixelSource::MushGLResolverPixelSource()
 {
-	MushcoreLog::Sgl().InfoLog() << "Param name " << inName << "=" << inValue << endl;
-}	
-
-void
-MushGLResolverPixelSource::ParamHashDecode(MushGLPixelSource& outSource, const Mushware::tRubyHash& inHash)
-{
-    tRubyHash::const_iterator endIter = inHash.end();
-    for (tRubyHash::const_iterator p = inHash.begin(); p != endIter; ++p)
-    {
-		ParamDecode(outSource, p->first, p->second);
-	}
+	m_sourcePrefixes.push_front("");	
 }
 
-void
+std::string
 MushGLResolverPixelSource::ParamHashResolve(const Mushware::tRubyHash& inHash)
 {
 	std::auto_ptr<MushGLPixelSource> aResolver(NULL);
@@ -70,15 +61,24 @@ MushGLResolverPixelSource::ParamHashResolve(const Mushware::tRubyHash& inHash)
     {
 		if (p->first.String() == "type")
 		{
-			try
+			bool found = false;
+
+			for (tSourcePrefixes::const_iterator q = m_sourcePrefixes.begin();
+				 !found && q != m_sourcePrefixes.end(); ++q)
 			{
-				aResolver.reset(dynamic_cast<MushGLPixelSource *>(
-					MushcoreFactory::Sgl().ObjectCreate("MushGLPixelSource"+p->second.String())
-																));
+				std::string className = *q + p->second.String();
+
+				if (MushcoreFactory::Sgl().Exists(className))
+				{
+					aResolver.reset(dynamic_cast<MushGLPixelSource *>(
+						MushcoreFactory::Sgl().ObjectCreate(className)));
+					found = true;
+				}
 			}
-			catch (MushcoreFail& e)
+			
+			if (!found || aResolver.get() == NULL)
 			{
-			    throw MushcoreRequestFail("Unknown texture type '"+p->first.String()+"': "+e.what());;		
+				throw MushcoreRequestFail("Unknown texture type '"+p->second.String()+"'");
 			}
 		}
 		
@@ -86,7 +86,6 @@ MushGLResolverPixelSource::ParamHashResolve(const Mushware::tRubyHash& inHash)
 		{
 			textureName = p->second.String();
 		}
-		
 	}
 	
 	if (textureName == "")
@@ -98,7 +97,14 @@ MushGLResolverPixelSource::ParamHashResolve(const Mushware::tRubyHash& inHash)
 		throw MushcoreRequestFail("No 'type' parameter specified for texture");		
 	}
 	
+	// Let the new pixel source process the parameter hash
+	aResolver->ParamHashDecode(inHash);
+	
+	/* Keep this at the end, so that any exceptions delete the texture
+	 * partially constructed texture via the auto_ptr
+	 */
 	MushcoreData<MushGLPixelSource>::Sgl().Give(textureName, aResolver.release());
+	return textureName;
 }
 
 void
@@ -164,6 +170,7 @@ void
 MushGLResolverPixelSource::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
+    ioOut << "sourcePrefixes=" << m_sourcePrefixes;
     ioOut << "]";
 }
 bool
@@ -175,6 +182,10 @@ MushGLResolverPixelSource::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const st
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
     }
+    else if (inTagStr == "sourcePrefixes")
+    {
+        ioIn >> m_sourcePrefixes;
+    }
     else 
     {
         return false;
@@ -184,5 +195,7 @@ MushGLResolverPixelSource::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const st
 void
 MushGLResolverPixelSource::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
+    ioOut.TagSet("sourcePrefixes");
+    ioOut << m_sourcePrefixes;
 }
-//%outOfLineFunctions } qoplTn4svQXPIwDeos01Bw
+//%outOfLineFunctions } crTFBe8DHkTzdc6ybmiMbA

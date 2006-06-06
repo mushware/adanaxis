@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } AYQWMxoJ+uDPAQUnlwSk/w
 /*
- * $Id: MushGLTexture.h,v 1.5 2006/06/02 18:14:36 southa Exp $
+ * $Id: MushGLTexture.h,v 1.6 2006/06/05 16:54:44 southa Exp $
  * $Log: MushGLTexture.h,v $
+ * Revision 1.6  2006/06/05 16:54:44  southa
+ * Ruby textures
+ *
  * Revision 1.5  2006/06/02 18:14:36  southa
  * Texture caching
  *
@@ -105,7 +108,8 @@ private:
     GLuint m_bindingName;
     Mushware::U32 m_pixelType;
     Mushware::U32 m_storageType;
-    std::string m_srcName; //:readwrite
+    std::string m_uniqueIdentifier; //:readwrite
+	std::string m_name; //:readwrite
     std::string m_cacheFilename;
 	bool m_cacheSaveRequired;
 	bool m_compress;
@@ -115,8 +119,10 @@ private:
 public:
     const Mushware::t4U32& Size(void) const { return m_size; }
     void SizeSet(const Mushware::t4U32& inValue) { m_size=inValue; }
-    const std::string& SrcName(void) const { return m_srcName; }
-    void SrcNameSet(const std::string& inValue) { m_srcName=inValue; }
+    const std::string& UniqueIdentifier(void) const { return m_uniqueIdentifier; }
+    void UniqueIdentifierSet(const std::string& inValue) { m_uniqueIdentifier=inValue; }
+    const std::string& Name(void) const { return m_name; }
+    void NameSet(const std::string& inValue) { m_name=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -124,7 +130,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } dMBsMFRK5iAZwViDEknjPg
+//%classPrototypes } 6bizgCKLKBqCKM0zmpiMQg
 };
 //%inlineHeader {
 inline std::ostream&

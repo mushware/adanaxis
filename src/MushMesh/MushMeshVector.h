@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } HwAE/QIL5vyQn3et9Ekwtg
 /*
- * $Id: MushMeshVector.h,v 1.26 2006/05/02 17:32:13 southa Exp $
+ * $Id: MushMeshVector.h,v 1.27 2006/06/05 11:48:25 southa Exp $
  * $Log: MushMeshVector.h,v $
+ * Revision 1.27  2006/06/05 11:48:25  southa
+ * Noise textures
+ *
  * Revision 1.26  2006/05/02 17:32:13  southa
  * Texturing
  *
@@ -140,7 +143,8 @@ public:
         m_value[2] = in2;
         m_value[3] = in3;
     }
-
+    explicit MushMeshVector(const std::vector<T>& inVec);
+	
     const T& Get(Mushware::U32 inIndex) const { BoundsCheck(inIndex); return m_value[inIndex]; }
     void Set(const T& inValue, Mushware::U32 inIndex) { BoundsCheck(inIndex); m_value[inIndex] = inValue; }
     
@@ -207,6 +211,23 @@ private:
     template <class fnT, Mushware::U32 fnD> friend const MushMeshVector<fnT, fnD> operator-(const MushMeshVector<fnT, fnD>& a);
 #endif
 };
+
+template <class T, Mushware::U32 D>
+MushMeshVector<T, D>::MushMeshVector(const std::vector<T>& inVec)
+{
+	Mushware::U32 vecSize = inVec.size();
+	for (Mushware::U32 i=0; i<D; ++i)
+    {
+		if (i < vecSize)
+		{
+			m_value[i] = inVec[i];	
+		}
+		else
+		{
+			m_value[i] = T();	
+		}
+	}
+}
 
 // Operator helper functions
 

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } ZcziFKLJA7zY/8U6Ju48NA
 /*
- * $Id: MushRubyExec.cpp,v 1.1 2006/04/20 00:22:45 southa Exp $
+ * $Id: MushRubyExec.cpp,v 1.2 2006/04/21 00:10:43 southa Exp $
  * $Log: MushRubyExec.cpp,v $
+ * Revision 1.2  2006/04/21 00:10:43  southa
+ * MushGLFont ruby module
+ *
  * Revision 1.1  2006/04/20 00:22:45  southa
  * Added ruby executive
  *
@@ -105,6 +108,24 @@ MushRubyExec::Call(const std::string& inStr)
     return retVal;
 }    
 
+Mushware::tRubyValue
+MushRubyExec::Call(Mushware::tRubyValue inRecv,  const std::string& inFunc)
+{
+	tRubyValue retVal;
+    tRubyError rubyError;
+    
+    m_callReceiver = inRecv;
+    m_callFunction = rb_intern(inFunc.c_str());
+    
+    retVal = rb_protect(StaticWrapProtect, 0, &rubyError);
+    
+    if (rubyError)
+    {
+        throw MushRubyFail();
+    }
+    return retVal;
+}
+
 void
 MushRubyExec::Require(const std::string& inStr)
 {
@@ -112,9 +133,20 @@ MushRubyExec::Require(const std::string& inStr)
 }
 
 void
+MushRubyExec::ConfigSet(void)
+{
+	tRubyValue configHash = rb_hash_new();
+	
+	rb_hash_aset(configHash, rb_str_new2("APPLPATH"), rb_str_new2(MushcoreEnv::Sgl().VariableGet("APPLPATH").StringGet().c_str()));					   
+	
+    rb_gv_set("$MUSHCONFIG", configHash);
+}
+
+void
 MushRubyExec::Initialise(void)
 {
     ruby_init();
+	ConfigSet();
     ruby_script("init.rb");
     
     MushcoreScalar rubyPath;

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } ZnwDjEM1+TPkZ9HrL5mg7A
 /*
- * $Id: MushRubyUtil.h,v 1.2 2006/06/05 16:54:44 southa Exp $
+ * $Id: MushRubyUtil.h,v 1.3 2006/06/06 10:29:51 southa Exp $
  * $Log: MushRubyUtil.h,v $
+ * Revision 1.3  2006/06/06 10:29:51  southa
+ * Ruby texture definitions
+ *
  * Revision 1.2  2006/06/05 16:54:44  southa
  * Ruby textures
  *
@@ -53,7 +56,8 @@ public:
     static void SingletonMethodDefine(Mushware::tRubyValue inKlass, const std::string& inName,
                              Mushware::tfpRubyMethod infpMethod);
 	static void HashConvert(Mushware::tRubyHash& outHash, const MushRubyValue& inHash);
-
+	static void Raise(const std::string& inStr);
+	
 private:
 	static Mushware::tRubyValue HashHandler(Mushware::tRubyValue inArray, Mushware::tRubyValue inArg);
 

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } vz1knUYnzwX5FNm6RC5EZw
 /*
- * $Id: MushGLPixelSource.cpp,v 1.5 2005/08/28 22:41:51 southa Exp $
+ * $Id: MushGLPixelSource.cpp,v 1.6 2006/05/02 17:32:13 southa Exp $
  * $Log: MushGLPixelSource.cpp,v $
+ * Revision 1.6  2006/05/02 17:32:13  southa
+ * Texturing
+ *
  * Revision 1.5  2005/08/28 22:41:51  southa
  * MushGLTexture work
  *
@@ -40,10 +43,14 @@
 
 #include "MushGLPixelSource.h"
 
-MUSHCORE_DATA_INSTANCE(MushGLPixelSource);
+#include "MushGLResolverPixelSource.h"
 
 using namespace Mushware;
 using namespace std;
+
+MUSHCORE_DATA_INSTANCE(MushGLPixelSource);
+
+MUSHCORE_INSTALLER(MushGLPixelSource::Install);
 
 MushGLPixelSource::MushGLPixelSource() :
     m_storageType("GL")
@@ -76,6 +83,39 @@ MushGLPixelSource::StringParameterSet(Mushware::U32 inNum, const std::string& in
 }
 
 void
+MushGLPixelSource::ParamDecode(const MushRubyValue& inName, const MushRubyValue& inValue)
+{
+	std::string nameStr = inName.String();
+	
+	if (nameStr == "name" || nameStr == "type")
+    {
+		// Ignore - already handled by the resolver
+	}
+	else if (nameStr == "storagetype")
+	{
+		m_storageType = inValue.String();
+	}
+	else if (nameStr == "size")
+	{
+		m_size = t4Val(inValue.ValVector());
+	}
+	else
+	{
+	    throw MushcoreSyntaxFail("Texture parameter '"+nameStr+"' not known by this texture type");	
+	}
+}
+
+void
+MushGLPixelSource::ParamHashDecode(const Mushware::tRubyHash& inHash)
+{
+    tRubyHash::const_iterator endIter = inHash.end();
+    for (tRubyHash::const_iterator p = inHash.begin(); p != endIter; ++p)
+    {
+		ParamDecode(p->first, p->second);
+	}
+}
+
+void
 MushGLPixelSource::BufferFill(Mushware::U32 * const outPtr, const Mushware::t2U32 inSize) const
 {
     throw MushcoreRequestFail("Cannot fill buffer from this pixel source");
@@ -87,12 +127,19 @@ MushGLPixelSource::ToTextureCreate(MushGLTexture& outTexture)
     throw MushcoreRequestFail("Cannot create texture from this pixel source");
 }
 
+void
+MushGLPixelSource::Install(void)
+{
+	MushGLResolverPixelSource::Sgl().PrefixAdd("MushGLPixelSource");
+}
+
 //%outOfLineFunctions {
 void
 MushGLPixelSource::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
-    ioOut << "storageType=" << m_storageType;
+    ioOut << "storageType=" << m_storageType << ", ";
+    ioOut << "size=" << m_size;
     ioOut << "]";
 }
 bool
@@ -108,6 +155,10 @@ MushGLPixelSource::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::strin
     {
         ioIn >> m_storageType;
     }
+    else if (inTagStr == "size")
+    {
+        ioIn >> m_size;
+    }
     else 
     {
         return false;
@@ -119,5 +170,7 @@ MushGLPixelSource::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
     ioOut.TagSet("storageType");
     ioOut << m_storageType;
+    ioOut.TagSet("size");
+    ioOut << m_size;
 }
-//%outOfLineFunctions } /w4B3nnFlHBRbHWp95KRKQ
+//%outOfLineFunctions } YbNcJD9YtJWUOuroVDIZmQ

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } vzsiY9MwPTZIFsQ1nPV4fA
 /*
- * $Id: MushGLPixelSource.h,v 1.5 2006/05/02 17:32:13 southa Exp $
+ * $Id: MushGLPixelSource.h,v 1.6 2006/06/02 18:14:35 southa Exp $
  * $Log: MushGLPixelSource.h,v $
+ * Revision 1.6  2006/06/02 18:14:35  southa
+ * Texture caching
+ *
  * Revision 1.5  2006/05/02 17:32:13  southa
  * Texturing
  *
@@ -43,6 +46,8 @@
  */
 
 #include "MushGLStandard.h"
+
+#include "MushRuby.h"
 
 class MushGLTexture;
 
@@ -79,19 +84,26 @@ public:
     virtual ~MushGLPixelSource() {}
     virtual void ValueParameterSet(const Mushware::U32 inNum, const Mushware::tLongVal inVal);
     virtual void StringParameterSet(const Mushware::U32 inNum, const std::string& inStr);
+	virtual void ParamDecode(const MushRubyValue& inName, const MushRubyValue& inValue);
+	virtual void ParamHashDecode(const Mushware::tRubyHash& inHash);
     virtual void BufferFill(Mushware::U32 * const outPtr, const Mushware::t2U32 inSize) const; // Deprecated
     virtual void ToTextureCreate(MushGLTexture& outTexture);
-        
+	
+	static void Install(void);
+	
 private:
     std::string m_storageType; //:read
-    
+	Mushware::t4Val m_size; //:readwrite
+	
 //%classPrototypes {
 public:
     const std::string& StorageType(void) const { return m_storageType; }
+    const Mushware::t4Val& Size(void) const { return m_size; }
+    void SizeSet(const Mushware::t4Val& inValue) { m_size=inValue; }
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } k2al8Mq61cURRl7hNk+xaw
+//%classPrototypes } bigR9g4GeWmOH21ytqM/EQ
 };
 //%inlineHeader {
 inline std::ostream&

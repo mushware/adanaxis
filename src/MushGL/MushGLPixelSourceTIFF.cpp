@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } SaBXzXzmz9pA2fL3GoZFMQ
 /*
- * $Id: MushGLPixelSourceTIFF.cpp,v 1.3 2006/05/02 17:32:13 southa Exp $
+ * $Id: MushGLPixelSourceTIFF.cpp,v 1.4 2006/06/02 18:14:35 southa Exp $
  * $Log: MushGLPixelSourceTIFF.cpp,v $
+ * Revision 1.4  2006/06/02 18:14:35  southa
+ * Texture caching
+ *
  * Revision 1.3  2006/05/02 17:32:13  southa
  * Texturing
  *
@@ -146,6 +149,21 @@ MushGLPixelSourceTIFF::ToTextureCreate(MushGLTexture& outTexture)
         throw;
     }
     tiffio::TIFFClose(pTIFF);
+}
+
+void
+MushGLPixelSourceTIFF::ParamDecode(const MushRubyValue& inName, const MushRubyValue& inValue)
+{
+	std::string nameStr = inName.String();
+	
+	if (nameStr == "filename")
+    {
+		m_filename = inValue.String();
+	}
+	else
+	{
+		MushGLPixelSource::ParamDecode(inName, inValue);
+	}
 }
 
 //%outOfLineFunctions {

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } PrawP4g9KR4/8l4yzD6HLg
 /*
- * $Id: MushcoreInstaller.h,v 1.8 2005/05/19 13:02:15 southa Exp $
+ * $Id: MushcoreInstaller.h,v 1.9 2006/06/01 15:39:45 southa Exp $
  * $Log: MushcoreInstaller.h,v $
+ * Revision 1.9  2006/06/01 15:39:45  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.8  2005/05/19 13:02:15  southa
  * Mac release work
  *
@@ -82,6 +85,8 @@
  */
 
 #include "MushcoreStandard.h"
+
+#define MUSHCORE_INSTALLER(fnName) namespace { MushcoreInstaller a(fnName); }
 
 // Functions passed to MushcoreUninstaller are called with the global
 // constructors at application startup

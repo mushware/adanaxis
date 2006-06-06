@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } p+qloydajE1rCLfMhFW9wg
 /*
- * $Id: MushSkinPixelSourceNoise.h,v 1.4 2006/06/02 18:14:36 southa Exp $
+ * $Id: MushSkinPixelSourceNoise.h,v 1.5 2006/06/05 11:48:26 southa Exp $
  * $Log: MushSkinPixelSourceNoise.h,v $
+ * Revision 1.5  2006/06/05 11:48:26  southa
+ * Noise textures
+ *
  * Revision 1.4  2006/06/02 18:14:36  southa
  * Texture caching
  *
@@ -44,15 +47,14 @@ class MushSkinPixelSourceNoise : public MushGLPixelSource
 {
 public:
     MushSkinPixelSourceNoise() :
-        m_xSize(0),
-        m_ySize(0),
         m_pPaletteTexture(NULL)
     {}
     
     virtual void ValueParameterSet(const Mushware::U32 inNum, const Mushware::tLongVal inVal);
     virtual void StringParameterSet(const Mushware::U32 inNum, const std::string& inStr);
     virtual void ToTextureCreate(MushGLTexture& outTexture);
-    
+    virtual void ParamDecode(const MushRubyValue& inName, const MushRubyValue& inValue);
+
 protected:
     virtual void TileLineGenerate(Mushware::U8 *inpTileData, const MushMesh4Mesh::tTextureTile& inTileRef,
                                   Mushware::U32 inNumPixels, Mushware::t4Val inStartPos, Mushware::t4Val inEndPos);
@@ -63,14 +65,12 @@ protected:
     MushGLTexture *m_pPaletteTexture; // Not owned by this object
     
 private:
-    Mushware::U32 m_xSize;
-    Mushware::U32 m_ySize;
-    std::string m_sourceName; //:read
+    std::string m_meshName; //:read
     std::string m_paletteName; //:read
     
 //%classPrototypes {
 public:
-    const std::string& SourceName(void) const { return m_sourceName; }
+    const std::string& SourceName(void) const { return m_meshName; }
     const std::string& PaletteName(void) const { return m_paletteName; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
