@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } MLe+9IO+KhBjFrt79ygTPg
 /*
- * $Id: MushGLResolverPixelSource.cpp,v 1.2 2005/08/29 18:40:57 southa Exp $
+ * $Id: MushGLResolverPixelSource.cpp,v 1.3 2006/05/02 17:32:13 southa Exp $
  * $Log: MushGLResolverPixelSource.cpp,v $
+ * Revision 1.3  2006/05/02 17:32:13  southa
+ * Texturing
+ *
  * Revision 1.2  2005/08/29 18:40:57  southa
  * Solid rendering work
  *
@@ -38,6 +41,65 @@ MUSHCORE_SINGLETON_INSTANCE(MushGLResolverPixelSource);
 
 using namespace Mushware;
 using namespace std;
+
+void
+MushGLResolverPixelSource::ParamDecode(MushGLPixelSource& outSource, 
+									   const MushRubyValue& inName, const MushRubyValue& inValue)
+{
+	MushcoreLog::Sgl().InfoLog() << "Param name " << inName << "=" << inValue << endl;
+}	
+
+void
+MushGLResolverPixelSource::ParamHashDecode(MushGLPixelSource& outSource, const Mushware::tRubyHash& inHash)
+{
+    tRubyHash::const_iterator endIter = inHash.end();
+    for (tRubyHash::const_iterator p = inHash.begin(); p != endIter; ++p)
+    {
+		ParamDecode(outSource, p->first, p->second);
+	}
+}
+
+void
+MushGLResolverPixelSource::ParamHashResolve(const Mushware::tRubyHash& inHash)
+{
+	std::auto_ptr<MushGLPixelSource> aResolver(NULL);
+	std::string textureName;
+	
+    tRubyHash::const_iterator endIter = inHash.end();
+    for (tRubyHash::const_iterator p = inHash.begin(); p != endIter; ++p)
+    {
+		if (p->first.String() == "type")
+		{
+			try
+			{
+				aResolver.reset(dynamic_cast<MushGLPixelSource *>(
+					MushcoreFactory::Sgl().ObjectCreate("MushGLPixelSource"+p->second.String())
+																));
+			}
+			catch (MushcoreFail& e)
+			{
+			    throw MushcoreRequestFail("Unknown texture type '"+p->first.String()+"': "+e.what());;		
+			}
+		}
+		
+		if (p->first.String() == "name")
+		{
+			textureName = p->second.String();
+		}
+		
+	}
+	
+	if (textureName == "")
+	{
+		throw MushcoreRequestFail("No 'name' parameter specified for texture");		
+	}
+	if (aResolver.get() == NULL)
+	{
+		throw MushcoreRequestFail("No 'type' parameter specified for texture");		
+	}
+	
+	MushcoreData<MushGLPixelSource>::Sgl().Give(textureName, aResolver.release());
+}
 
 void
 MushGLResolverPixelSource::Resolve(const std::string& inSrcName)

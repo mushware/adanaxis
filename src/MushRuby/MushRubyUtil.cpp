@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } gSaMBKSS/9FVf/ypP8x5kA
 /*
- * $Id: MushRubyUtil.cpp,v 1.1 2006/04/21 00:10:43 southa Exp $
+ * $Id: MushRubyUtil.cpp,v 1.2 2006/06/05 16:54:44 southa Exp $
  * $Log: MushRubyUtil.cpp,v $
+ * Revision 1.2  2006/06/05 16:54:44  southa
+ * Ruby textures
+ *
  * Revision 1.1  2006/04/21 00:10:43  southa
  * MushGLFont ruby module
  *
@@ -30,9 +33,13 @@
 
 #include "MushRubyFail.h"
 #include "MushRubyRuby.h"
+#include "MushRubySTL.h"
+#include "MushRubyValue.h"
 
 using namespace Mushware;
 using namespace std;
+
+Mushware::tRubyHash *MushRubyUtil::m_pHash = NULL;
 
 Mushware::tRubyID
 MushRubyUtil::Intern(const std::string& inName)
@@ -110,4 +117,22 @@ MushRubyUtil::SingletonMethodDefine(Mushware::tRubyValue inKlass, const std::str
 {
     rb_define_singleton_method(inKlass, inName.c_str(), RUBY_METHOD_FUNC(infpMethod), -1);
 }
+
+Mushware::tRubyValue
+MushRubyUtil::HashHandler(Mushware::tRubyValue inArray, Mushware::tRubyValue inArg)
+{
+	MUSHCOREASSERT(m_pHash != NULL);
+    MushRubyValue keyValue(rb_ary_entry(inArray, 0));
+    MushRubyValue hashValue(rb_ary_entry(inArray, 1));
+	(*m_pHash)[keyValue] = hashValue;
+	return Qtrue;
+}
+
+void MushRubyUtil::HashConvert(Mushware::tRubyHash& outHash, const MushRubyValue& inHash)
+{
+	m_pHash = &outHash;
+	rb_iterate(rb_each, inHash.Value(), RUBY_METHOD_FUNC(HashHandler), Qnil);
+	m_pHash = NULL;
+}
+
 

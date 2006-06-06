@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } ZnwDjEM1+TPkZ9HrL5mg7A
 /*
- * $Id: MushRubyUtil.h,v 1.1 2006/04/21 00:10:43 southa Exp $
+ * $Id: MushRubyUtil.h,v 1.2 2006/06/05 16:54:44 southa Exp $
  * $Log: MushRubyUtil.h,v $
+ * Revision 1.2  2006/06/05 16:54:44  southa
+ * Ruby textures
+ *
  * Revision 1.1  2006/04/21 00:10:43  southa
  * MushGLFont ruby module
  *
@@ -32,6 +35,8 @@
 
 
 #include "MushRubyStandard.h"
+
+#include "MushRubyValue.h"
 
 class MushRubyUtil
 {
@@ -47,6 +52,13 @@ public:
                              Mushware::tfpRubyMethod infpMethod);
     static void SingletonMethodDefine(Mushware::tRubyValue inKlass, const std::string& inName,
                              Mushware::tfpRubyMethod infpMethod);
+	static void HashConvert(Mushware::tRubyHash& outHash, const MushRubyValue& inHash);
+
+private:
+	static Mushware::tRubyValue HashHandler(Mushware::tRubyValue inArray, Mushware::tRubyValue inArg);
+
+	// Static variable - not thread safe
+	static Mushware::tRubyHash *m_pHash;
 };
 
 //%includeGuardEnd {

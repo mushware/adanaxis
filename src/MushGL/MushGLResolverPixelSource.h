@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 8D+czxodqWkqx/95U0bYng
 /*
- * $Id: MushGLResolverPixelSource.h,v 1.2 2006/04/11 23:30:08 southa Exp $
+ * $Id: MushGLResolverPixelSource.h,v 1.3 2006/06/01 15:39:18 southa Exp $
  * $Log: MushGLResolverPixelSource.h,v $
+ * Revision 1.3  2006/06/01 15:39:18  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.2  2006/04/11 23:30:08  southa
  * Created MushRuby from ruby-1.8.4
  *
@@ -35,12 +38,21 @@
 
 #include "MushGLStandard.h"
 
+#include "mushMushRuby.h"
+
 //:generate virtual standard ostream xml1 nocopy
 class MushGLResolverPixelSource : public MushcoreVirtualObject, public MushcoreSingleton<MushGLResolverPixelSource>
 {
 public:
     virtual void Resolve(const std::string& inSrcName);
-    
+   	virtual void ParamHashResolve(const Mushware::tRubyHash& inHash);
+			
+private:
+	virtual void ParamDecode(MushGLPixelSource& outSource, 
+							 const MushRubyValue& inName, const MushRubyValue& inValue);
+	virtual void ParamHashDecode(MushGLPixelSource& outSource, const Mushware::tRubyHash& inHash);
+	
+		
 //%classPrototypes {
 public:
     virtual const char *AutoName(void) const;

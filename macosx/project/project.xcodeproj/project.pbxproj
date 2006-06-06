@@ -108,6 +108,8 @@
 		7A532C09089A3CE80090B78C /* TestMushcoreMaptor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A532C07089A3CE80090B78C /* TestMushcoreMaptor.cpp */; };
 		7A561DA20A2F592500E5EC7F /* MushGLTIFFUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A561DA00A2F592500E5EC7F /* MushGLTIFFUtil.h */; };
 		7A561DA30A2F592500E5EC7F /* MushGLTIFFUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A561DA10A2F592500E5EC7F /* MushGLTIFFUtil.cpp */; };
+		7A57282E0A357682000470D8 /* MushRubyValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A57282C0A357682000470D8 /* MushRubyValue.h */; };
+		7A57282F0A357682000470D8 /* MushRubyValue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A57282D0A357682000470D8 /* MushRubyValue.cpp */; };
 		7A57EB640A332A6C004F1E44 /* MushSkinLineGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A57EB620A332A6C004F1E44 /* MushSkinLineGenerator.h */; };
 		7A57EB650A332A6C004F1E44 /* MushSkinLineGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A57EB630A332A6C004F1E44 /* MushSkinLineGenerator.cpp */; };
 		7A57EB870A33404B004F1E44 /* MushSkinUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A57EB850A33404B004F1E44 /* MushSkinUtil.h */; };
@@ -2641,6 +2643,8 @@
 		7A5353C705AE013000097C96 /* BaseMaterials.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = BaseMaterials.xml; sourceTree = "<group>"; };
 		7A561DA00A2F592500E5EC7F /* MushGLTIFFUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushGLTIFFUtil.h; sourceTree = "<group>"; };
 		7A561DA10A2F592500E5EC7F /* MushGLTIFFUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushGLTIFFUtil.cpp; sourceTree = "<group>"; };
+		7A57282C0A357682000470D8 /* MushRubyValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushRubyValue.h; sourceTree = "<group>"; };
+		7A57282D0A357682000470D8 /* MushRubyValue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushRubyValue.cpp; sourceTree = "<group>"; };
 		7A57EB620A332A6C004F1E44 /* MushSkinLineGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushSkinLineGenerator.h; sourceTree = "<group>"; };
 		7A57EB630A332A6C004F1E44 /* MushSkinLineGenerator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushSkinLineGenerator.cpp; sourceTree = "<group>"; };
 		7A57EB850A33404B004F1E44 /* MushSkinUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushSkinUtil.h; sourceTree = "<group>"; };
@@ -5721,6 +5725,8 @@
 				7ACEFB5909F7052600E38865 /* MushRubySTL.h */,
 				7ACED0D509F8416300055E66 /* MushRubyUtil.cpp */,
 				7ACED0D409F8416300055E66 /* MushRubyUtil.h */,
+				7A57282D0A357682000470D8 /* MushRubyValue.cpp */,
+				7A57282C0A357682000470D8 /* MushRubyValue.h */,
 				7AD1AA6109EC59480059879A /* array.c */,
 				7AD1AA6209EC59480059879A /* bignum.c */,
 				7AD1AA6309EC59480059879A /* class.c */,
@@ -7163,6 +7169,7 @@
 				7ACEFB5B09F7052600E38865 /* MushRubySTL.h in Headers */,
 				7ACED0D009F83ED500055E66 /* MushRubyInstall.h in Headers */,
 				7ACED0D609F8416400055E66 /* MushRubyUtil.h in Headers */,
+				7A57282E0A357682000470D8 /* MushRubyValue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9379,6 +9386,7 @@
 				7ACEFB5C09F7052600E38865 /* MushRubySTL.cpp in Sources */,
 				7ACED0D109F83ED500055E66 /* MushRubyInstall.cpp in Sources */,
 				7ACED0D709F8416400055E66 /* MushRubyUtil.cpp in Sources */,
+				7A57282F0A357682000470D8 /* MushRubyValue.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

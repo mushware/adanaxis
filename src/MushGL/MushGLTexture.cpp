@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } vh/xCnesmbXGxXqZK5YEaA
 /*
- * $Id: MushGLTexture.cpp,v 1.6 2006/06/05 11:48:25 southa Exp $
+ * $Id: MushGLTexture.cpp,v 1.7 2006/06/05 16:54:44 southa Exp $
  * $Log: MushGLTexture.cpp,v $
+ * Revision 1.7  2006/06/05 16:54:44  southa
+ * Ruby textures
+ *
  * Revision 1.6  2006/06/05 11:48:25  southa
  * Noise textures
  *
@@ -412,7 +415,18 @@ MushGLTexture::Texture(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 Mushware::tRubyValue
 MushGLTexture::RubyDefine(Mushware::tRubyArgC inArgC, Mushware::tRubyValue *inpArgV, Mushware::tRubyValue inSelf)
 {
-	MushcoreLog::Sgl().InfoLog() << "RubyDefine called" << endl;
+	if (inArgC != 1)
+	{
+	    throw MushRubyFail("Wrong number of parameters to RubyDefine");	
+	}
+
+	Mushware::tRubyHash paramHash;
+	MushRubyUtil::HashConvert(paramHash, MushRubyValue(inpArgV[0]));
+	
+	MushcoreLog::Sgl().InfoLog() << "RubyDefine called with params " << paramHash << endl;
+	
+	MushGLResolverPixelSource::Sgl().ParamHashResolve(paramHash);
+	
 	return Qnil;
 }
 
