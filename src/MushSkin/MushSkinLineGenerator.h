@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } tuTK6NcDPsNibg7CubVnHw
 /*
- * $Id: MushSkinLineGenerator.h,v 1.2 2006/06/05 14:37:52 southa Exp $
+ * $Id: MushSkinLineGenerator.h,v 1.3 2006/06/07 12:15:20 southa Exp $
  * $Log: MushSkinLineGenerator.h,v $
+ * Revision 1.3  2006/06/07 12:15:20  southa
+ * Grid and test textures
+ *
  * Revision 1.2  2006/06/05 14:37:52  southa
  * Texture generation
  *
@@ -62,13 +65,13 @@ private:
 	Mushware::tVal GridGenerate(const Mushware::t4Val& inPos);
 	
 	std::vector<Mushware::U8> m_cellNoiseHash;
-	Mushware::t4Val m_gridRatio; //:readwrite;
+	Mushware::t4Val m_gridRatioOver2; //:readwrite;
 	Mushware::t4Val m_gridSharpness; //:readwrite;
 	
 //%classPrototypes {
 public:
-    const Mushware::t4Val& GridRatio(void) const { return m_gridRatio; }
-    void GridRatioSet(const Mushware::t4Val& inValue) { m_gridRatio=inValue; }
+    const Mushware::t4Val& GridRatioOver2(void) const { return m_gridRatioOver2; }
+    void GridRatioOver2Set(const Mushware::t4Val& inValue) { m_gridRatioOver2=inValue; }
     const Mushware::t4Val& GridSharpness(void) const { return m_gridSharpness; }
     void GridSharpnessSet(const Mushware::t4Val& inValue) { m_gridSharpness=inValue; }
     const char *AutoName(void) const;
@@ -78,7 +81,7 @@ public:
     void AutoPrint(std::ostream& ioOut) const;
     bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } Y0y376oIVqgz9UiKRsSLsw
+//%classPrototypes } 9t15v7S3CkK1VrM/RZxJUA
 };
 
 inline Mushware::t4U32
@@ -195,42 +198,57 @@ MushSkinLineGenerator::CellNoiseLineGenerate(std::vector<Mushware::tVal>& outDat
 inline Mushware::tVal
 MushSkinLineGenerator::GridGenerate(const Mushware::t4Val& inPos)
 {
-	Mushware::t4Val floorVec = inPos.Floor();        // Floor of input position
-	Mushware::t4Val cubeVec = inPos - floorVec;      // Fractional offsets into this cube
-	Mushware::t4Val gridVec = cubeVec - m_gridRatio; // Offset from the grid boundary
-	
 	Mushware::tVal lowestMultiplier = 1;
 
 	for (Mushware::U32 i=0; i<4; ++i)
 	{
-		if (gridVec[i] <= 0)
+		Mushware::tVal multiplier = 1;
+		
+		// Get fractional part of coordinate
+		double dummy;
+		Mushware::tVal x = std::modf(inPos[i], &dummy);
+		
+		// If greater than half way, reflect into the first half
+		if (x < 0) x = -x;
+		if (x > 0.5) x = 1-x;
+		
+		MUSHCOREASSERT(x >= 0);
+		MUSHCOREASSERT(x <= 0.5);
+		
+		if (m_gridSharpness[i] > 0.999999)
 		{
-		    // Point is within the grid boundary
-			Mushware::tVal multiplier;
-			if (m_gridSharpness[i] < 1.0)
-			{
-				multiplier = gridVec[i] / (1 - m_gridSharpness[i]);
-				if (multiplier > 1)
-				{
-					multiplier = 1;	
-				}
-				else
-				{
-					multiplier = multiplier*multiplier*(3-2*multiplier);
-				}
-			}
-			else
+			multiplier = (x >= m_gridRatioOver2[i])?1:0;
+		}
+		else
+		{
+			
+			Mushware::tVal sharpness = m_gridSharpness[i];
+			
+			sharpness = std::tan((M_PI/2)*sharpness);
+            
+			Mushware::tVal t = (x - m_gridRatioOver2[i]) * sharpness + 0.5;
+			
+			if (t <= 0)
 			{
 				multiplier = 0;	
 			}
-			if (lowestMultiplier > multiplier)
+			else if (t >= 1)
 			{
-				lowestMultiplier = multiplier;
+				multiplier = 1;
 			}
+			else
+			{
+				multiplier = t*t*(3-2*t);
+			}
+		}
+			
+		if (lowestMultiplier > multiplier)
+		{
+			lowestMultiplier = multiplier;
 		}
 	}
 	
-	return lowestMultiplier;
+	return 1-lowestMultiplier;
 }
 
 inline void

@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } 04zVh+OEPDlIVf3XywyElw
 /*
- * $Id$
- * $Log$
+ * $Id: MushSkinPixelSourceGrid.cpp,v 1.1 2006/06/07 12:15:21 southa Exp $
+ * $Log: MushSkinPixelSourceGrid.cpp,v $
+ * Revision 1.1  2006/06/07 12:15:21  southa
+ * Grid and test textures
+ *
  */
 
 #include "MushSkinPixelSourceGrid.h"
@@ -54,7 +57,7 @@ MushSkinPixelSourceGrid::ParamDecode(const MushRubyValue& inName, const MushRuby
 void
 MushSkinPixelSourceGrid::LineGenerate(Mushware::U8 *outpTileData, Mushware::U32 inNumPixels, Mushware::t4Val inStartPos, Mushware::t4Val inEndPos)
 {
-	m_lineGenerator.GridRatioSet(GridRatio());
+	m_lineGenerator.GridRatioOver2Set(GridRatio() / 2);
 	m_lineGenerator.GridSharpnessSet(GridSharpness());
 	
     if (PaletteTextureValid())

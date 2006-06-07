@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } /ogEinXWaS3ZU9x1JORYXA
 /*
- * $Id: MushSkinLineGenerator.cpp,v 1.2 2006/06/05 14:37:52 southa Exp $
+ * $Id: MushSkinLineGenerator.cpp,v 1.3 2006/06/07 12:15:20 southa Exp $
  * $Log: MushSkinLineGenerator.cpp,v $
+ * Revision 1.3  2006/06/07 12:15:20  southa
+ * Grid and test textures
+ *
  * Revision 1.2  2006/06/05 14:37:52  southa
  * Texture generation
  *
@@ -123,7 +126,7 @@ MushSkinLineGenerator::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
     ioOut << "cellNoiseHash=" << m_cellNoiseHash << ", ";
-    ioOut << "gridRatio=" << m_gridRatio << ", ";
+    ioOut << "gridRatioOver2=" << m_gridRatioOver2 << ", ";
     ioOut << "gridSharpness=" << m_gridSharpness;
     ioOut << "]";
 }
@@ -134,9 +137,9 @@ MushSkinLineGenerator::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::s
     {
         ioIn >> m_cellNoiseHash;
     }
-    else if (inTagStr == "gridRatio")
+    else if (inTagStr == "gridRatioOver2")
     {
-        ioIn >> m_gridRatio;
+        ioIn >> m_gridRatioOver2;
     }
     else if (inTagStr == "gridSharpness")
     {
@@ -153,9 +156,9 @@ MushSkinLineGenerator::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
     ioOut.TagSet("cellNoiseHash");
     ioOut << m_cellNoiseHash;
-    ioOut.TagSet("gridRatio");
-    ioOut << m_gridRatio;
+    ioOut.TagSet("gridRatioOver2");
+    ioOut << m_gridRatioOver2;
     ioOut.TagSet("gridSharpness");
     ioOut << m_gridSharpness;
 }
-//%outOfLineFunctions } +uK6H4IySNK2N5Whf0Vz2w
+//%outOfLineFunctions } +CUv04aNXKzlqn+1hLDi2A

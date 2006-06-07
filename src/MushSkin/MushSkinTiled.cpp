@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } xkvbVCXm8pXCDWV4BdLGFQ
 /*
- * $Id: MushSkinTiled.cpp,v 1.5 2006/05/03 00:58:43 southa Exp $
+ * $Id: MushSkinTiled.cpp,v 1.1 2006/06/07 12:15:22 southa Exp $
  * $Log: MushSkinTiled.cpp,v $
+ * Revision 1.1  2006/06/07 12:15:22  southa
+ * Grid and test textures
+ *
  * Revision 1.5  2006/05/03 00:58:43  southa
  * Texturing updates
  *
@@ -42,7 +45,7 @@ using namespace Mushware;
 using namespace std;
 
 MushSkinTiled::MushSkinTiled() :
-    m_pullInRatio(1.0)
+    m_pullInRatio(0.97)
 {
 }
 
@@ -104,7 +107,7 @@ MushSkinTiled::MultiplierForTile(Mushware::U32 inNumVertices)
         MUSHCOREASSERT(multiplier <= 1.0);
         MUSHCOREASSERT(multiplier >= 0.0);
     }
-    return multiplier;
+    return m_pullInRatio * multiplier;
 }
 
 void

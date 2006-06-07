@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } vYDFvfnYgaI4ZFA13k+Usg
 /*
- * $Id$
- * $Log$
+ * $Id: MushGLCacheControl.cpp,v 1.1 2006/06/05 11:48:24 southa Exp $
+ * $Log: MushGLCacheControl.cpp,v $
+ * Revision 1.1  2006/06/05 11:48:24  southa
+ * Noise textures
+ *
  */
 
 #include "MushGLCacheControl.h"
@@ -52,7 +55,13 @@ MushGLCacheControl::MushGLCacheControl() :
 	{
 		m_permitCache = textureCache.BoolGet();
 	}
-
+	
+	MushcoreScalar textureCompression;
+	if (MushcoreEnv::Sgl().VariableGetIfExists(textureCompression, "MUSHGL_TEXTURE_COMPRESSION"))
+	{
+		m_permitCompression = textureCompression.BoolGet();
+	}
+	
 	m_hashSeed = std::string(kFilenameHashLength, 'A');
 	m_hashSeed = HashedFilenameMake(MushcoreInfo::Sgl().PackageID());
 	MUSHCOREASSERT(m_hashSeed.size() == kFilenameHashLength);
