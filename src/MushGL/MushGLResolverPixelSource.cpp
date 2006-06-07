@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } MLe+9IO+KhBjFrt79ygTPg
 /*
- * $Id: MushGLResolverPixelSource.cpp,v 1.4 2006/06/06 10:29:51 southa Exp $
+ * $Id: MushGLResolverPixelSource.cpp,v 1.5 2006/06/06 17:58:32 southa Exp $
  * $Log: MushGLResolverPixelSource.cpp,v $
+ * Revision 1.5  2006/06/06 17:58:32  southa
+ * Ruby texture definition
+ *
  * Revision 1.4  2006/06/06 10:29:51  southa
  * Ruby texture definitions
  *
@@ -50,7 +53,7 @@ MushGLResolverPixelSource::MushGLResolverPixelSource()
 	m_sourcePrefixes.push_front("");	
 }
 
-std::string
+MushGLPixelSource&
 MushGLResolverPixelSource::ParamHashResolve(const Mushware::tRubyHash& inHash)
 {
 	std::auto_ptr<MushGLPixelSource> aResolver(NULL);
@@ -103,38 +106,10 @@ MushGLResolverPixelSource::ParamHashResolve(const Mushware::tRubyHash& inHash)
 	/* Keep this at the end, so that any exceptions delete the texture
 	 * partially constructed texture via the auto_ptr
 	 */
-	MushcoreData<MushGLPixelSource>::Sgl().Give(textureName, aResolver.release());
-	return textureName;
-}
-
-void
-MushGLResolverPixelSource::Resolve(const std::string& inSrcName)
-{
-    MushcoreRegExp regExp;
-    MushcoreRegExp::tMatches matches;
-    regExp.SearchPatternSet("file=\"([^\"]+\\.tiff?)\"");
-    if (regExp.Search(matches, inSrcName))
-    {
-        MUSHCOREASSERT(matches.size() == 1);
-        std::string filenameStr = matches[0];
-        
-        std::string storageType = "GL";
-        regExp.SearchPatternSet("\\bstoragetype=\"([^\"]*)\"");
-        if (regExp.Search(matches, inSrcName))
-        {
-            MUSHCOREASSERT(matches.size() == 1);
-            storageType = matches[0];
-        }
-
-        std::auto_ptr<MushGLPixelSourceTIFF> aResolver(new MushGLPixelSourceTIFF);
-        aResolver->StringParameterSet(MushGLPixelSource::kParamFilename, filenameStr);
-        aResolver->StringParameterSet(MushGLPixelSource::kParamStorageType, storageType);
-        MushcoreData<MushGLPixelSource>::Sgl().Give(inSrcName, aResolver.release());
-    }
-    else
-    {
-        throw MushcoreRequestFail("Cannot resolve pixel source for '"+inSrcName+"'");   
-    }
+	MushGLPixelSource *pPixelSource = MushcoreData<MushGLPixelSource>::Sgl().Give(textureName, aResolver.release());
+	pPixelSource->NameSet(textureName);
+	
+	return *pPixelSource;
 }
 
 //%outOfLineFunctions {

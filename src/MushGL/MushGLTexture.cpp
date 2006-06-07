@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } vh/xCnesmbXGxXqZK5YEaA
 /*
- * $Id: MushGLTexture.cpp,v 1.8 2006/06/06 10:29:51 southa Exp $
+ * $Id: MushGLTexture.cpp,v 1.9 2006/06/06 17:58:32 southa Exp $
  * $Log: MushGLTexture.cpp,v $
+ * Revision 1.9  2006/06/06 17:58:32  southa
+ * Ruby texture definition
+ *
  * Revision 1.8  2006/06/06 10:29:51  southa
  * Ruby texture definitions
  *
@@ -68,7 +71,7 @@ void
 MushGLTexture::Make(void)
 {	
 	// This cache load should still happen if m_made is true
-	if (MushGLCacheControl::Sgl().PermitCache())
+	if (m_cacheable && MushGLCacheControl::Sgl().PermitCache())
 	{
 		m_compress = MushGLCacheControl::Sgl().PermitCompression();
         if (FromCacheLoad())
@@ -95,9 +98,10 @@ MushGLTexture::Make(void)
 			throw MushcoreRequestFail("MushGLTexture::Make failure");
 		}
 		pSrc->ToTextureCreate(*this);
+		m_cacheable = pSrc->Cacheable();
 		
 		// Built this texture the hard way, so save to cache
-		m_cacheSaveRequired = true;
+		m_cacheSaveRequired = m_cacheable;
 		m_made = true;
 	}
 }
@@ -120,7 +124,7 @@ MushGLTexture::Bind(void)
 	if (m_cacheSaveRequired)
 	{
 		m_cacheSaveRequired = false;
-		if (MushGLCacheControl::Sgl().PermitCache())
+		if (m_cacheable && MushGLCacheControl::Sgl().PermitCache())
 		{
 		    ToCacheSave();
 			
@@ -155,7 +159,7 @@ MushGLTexture::FromCacheLoad(void)
 	m_cacheFilename = MushGLCacheControl::Sgl().TextureCacheFilenameMake(m_uniqueIdentifier);
     MushGLPixelSourceTIFF pixelSourceTIFF;
 	
-	pixelSourceTIFF.StringParameterSet(MushGLPixelSourceTIFF::kParamFilename, m_cacheFilename);
+	pixelSourceTIFF.FilenameSet(m_cacheFilename);
 	
 	try
 	{
@@ -285,7 +289,7 @@ MushGLTexture::PixelDataU8RGBAUse(void *pData)
 }        
 
 Mushware::t4Val
-MushGLTexture::U8RGBALookup(Mushware::t2Val inPos)
+MushGLTexture::U8RGBALookup(Mushware::t2Val inPos) const
 {
     if (m_pixelType != kPixelTypeRGBA || m_storageType != kStorageTypeU8Data)
     {
@@ -331,10 +335,10 @@ MushGLTexture::U8RGBALookup(Mushware::t2Val inPos)
     U32 y1 = y0+1;
     if (y1 >= m_size.Y()) y1 = 0;
 
-    U8 *p00 = &m_u8Data[4*(y0*m_size.X()+x0)];
-    U8 *p10 = &m_u8Data[4*(y0*m_size.X()+x1)];
-    U8 *p01 = &m_u8Data[4*(y1*m_size.X()+x0)];
-    U8 *p11 = &m_u8Data[4*(y1*m_size.X()+x1)];
+    const U8 *p00 = &m_u8Data[4*(y0*m_size.X()+x0)];
+    const U8 *p10 = &m_u8Data[4*(y0*m_size.X()+x1)];
+    const U8 *p01 = &m_u8Data[4*(y1*m_size.X()+x0)];
+    const U8 *p11 = &m_u8Data[4*(y1*m_size.X()+x1)];
     
     MUSHCOREASSERT(p00 >= &m_u8Data[0] && p00 < &m_u8Data[m_u8Data.size()]);
     MUSHCOREASSERT(p10 >= &m_u8Data[0] && p10 < &m_u8Data[m_u8Data.size()]);
@@ -402,14 +406,38 @@ MushGLTexture::RubyDefine(Mushware::tRubyArgC inArgC, Mushware::tRubyValue *inpA
 		Mushware::tRubyHash paramHash;
 		MushRubyUtil::HashConvert(paramHash, MushRubyValue(inpArgV[0]));
 		
-		std::string textureName = MushGLResolverPixelSource::Sgl().ParamHashResolve(paramHash);
+		MushGLPixelSource& pixelSource = MushGLResolverPixelSource::Sgl().ParamHashResolve(paramHash);
+		std::string textureName = pixelSource.Name();
 		
 		MushGLTexture *pTexture = MushcoreData<MushGLTexture>::Sgl().Give(textureName, new MushGLTexture);
 		pTexture->NameSet(textureName);
-		
+		pTexture->CacheableSet(pixelSource.Cacheable());
 		std::ostringstream hashStream;
 		hashStream << paramHash;
 		pTexture->UniqueIdentifierSet(hashStream.str());
+	}
+	catch (MushcoreFail& e)
+	{
+		MushRubyUtil::Raise(e.what());
+	}
+
+	return Qnil;
+}
+
+Mushware::tRubyValue
+MushGLTexture::RubyPreCache(Mushware::tRubyArgC inArgC, Mushware::tRubyValue *inpArgV, Mushware::tRubyValue inSelf)
+{
+	try
+	{
+		if (inArgC != 1)
+		{
+			throw MushRubyFail("Wrong number of parameters to RubyPreCache");	
+		}
+		
+		std::string textureName = MushRubyValue(inpArgV[0]).String();
+		
+		MushGLTexture *pTexture = MushcoreData<MushGLTexture>::Sgl().Get(textureName);
+		pTexture->Make();
 	}
 	catch (MushcoreFail& e)
 	{
@@ -424,6 +452,7 @@ MushGLTexture::RubyInstall(void)
 {
 	Mushware::tRubyValue klass = MushRubyUtil::ClassDefine("MushGLTexture");
 	MushRubyUtil::SingletonMethodDefine(klass, "cRubyDefine", RubyDefine);
+	MushRubyUtil::SingletonMethodDefine(klass, "cRubyPreCache", RubyPreCache);
 }	
 
 void
@@ -476,6 +505,7 @@ MushGLTexture::AutoPrint(std::ostream& ioOut) const
     ioOut << "uniqueIdentifier=" << m_uniqueIdentifier << ", ";
     ioOut << "name=" << m_name << ", ";
     ioOut << "cacheFilename=" << m_cacheFilename << ", ";
+    ioOut << "cacheable=" << m_cacheable << ", ";
     ioOut << "cacheSaveRequired=" << m_cacheSaveRequired << ", ";
     ioOut << "compress=" << m_compress << ", ";
     ioOut << "made=" << m_made;
@@ -534,6 +564,10 @@ MushGLTexture::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& i
     {
         ioIn >> m_cacheFilename;
     }
+    else if (inTagStr == "cacheable")
+    {
+        ioIn >> m_cacheable;
+    }
     else if (inTagStr == "cacheSaveRequired")
     {
         ioIn >> m_cacheSaveRequired;
@@ -577,6 +611,8 @@ MushGLTexture::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_name;
     ioOut.TagSet("cacheFilename");
     ioOut << m_cacheFilename;
+    ioOut.TagSet("cacheable");
+    ioOut << m_cacheable;
     ioOut.TagSet("cacheSaveRequired");
     ioOut << m_cacheSaveRequired;
     ioOut.TagSet("compress");
@@ -584,5 +620,5 @@ MushGLTexture::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("made");
     ioOut << m_made;
 }
-//%outOfLineFunctions } M9HTEDU2LiGFj3/itY4N8w
+//%outOfLineFunctions } pUkR0/hDh/dqtnswoKsjwA
 

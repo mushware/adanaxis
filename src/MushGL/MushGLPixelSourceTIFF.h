@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } X9s3DG6Wa+Mqj2Ej2rZniA
 /*
- * $Id: MushGLPixelSourceTIFF.h,v 1.3 2006/06/01 15:39:18 southa Exp $
+ * $Id: MushGLPixelSourceTIFF.h,v 1.4 2006/06/06 17:58:32 southa Exp $
  * $Log: MushGLPixelSourceTIFF.h,v $
+ * Revision 1.4  2006/06/06 17:58:32  southa
+ * Ruby texture definition
+ *
  * Revision 1.3  2006/06/01 15:39:18  southa
  * DrawArray verification and fixes
  *
@@ -46,8 +49,7 @@ class MushGLTexture;
 class MushGLPixelSourceTIFF : public MushGLPixelSource
 {
 public:
-    virtual void ValueParameterSet(const Mushware::U32 inNum, const Mushware::tLongVal inVal);
-    virtual void StringParameterSet(const Mushware::U32 inNum, const std::string& inStr);
+	MushGLPixelSourceTIFF();
     virtual void ToTextureCreate(MushGLTexture& outTexture);
 	virtual void ParamDecode(const MushRubyValue& inName, const MushRubyValue& inValue);
 

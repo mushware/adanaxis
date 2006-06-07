@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } AYQWMxoJ+uDPAQUnlwSk/w
 /*
- * $Id: MushGLTexture.h,v 1.6 2006/06/05 16:54:44 southa Exp $
+ * $Id: MushGLTexture.h,v 1.7 2006/06/06 17:58:32 southa Exp $
  * $Log: MushGLTexture.h,v $
+ * Revision 1.7  2006/06/06 17:58:32  southa
+ * Ruby texture definition
+ *
  * Revision 1.6  2006/06/05 16:54:44  southa
  * Ruby textures
  *
@@ -61,6 +64,7 @@ public:
         m_bindingNameValid(false),
         m_pixelType(kPixelTypeNone),
         m_storageType(kStorageTypeNone),
+		m_cacheable(true),
 		m_cacheSaveRequired(false),
 		m_compress(false),
         m_made(false)
@@ -74,13 +78,14 @@ public:
     void StorageTypeSet(const std::string& inType);
     
     void PixelDataUse(void *pData);
-    Mushware::t4Val U8RGBALookup(Mushware::t2Val inPos);
+    Mushware::t4Val U8RGBALookup(Mushware::t2Val inPos) const;
     
     static MushcoreScalar Texture(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
     static void Install(void);
     static void RubyInstall(void);
 
 	static Mushware::tRubyValue RubyDefine(Mushware::tRubyArgC inArgC, Mushware::tRubyValue *inpArgV, Mushware::tRubyValue inSelf);
+	static Mushware::tRubyValue RubyPreCache(Mushware::tRubyArgC inArgC, Mushware::tRubyValue *inpArgV, Mushware::tRubyValue inSelf);
 		
 private:
     enum 
@@ -111,6 +116,7 @@ private:
     std::string m_uniqueIdentifier; //:readwrite
 	std::string m_name; //:readwrite
     std::string m_cacheFilename;
+	bool m_cacheable; //:readwrite
 	bool m_cacheSaveRequired;
 	bool m_compress;
     bool m_made;
@@ -123,6 +129,8 @@ public:
     void UniqueIdentifierSet(const std::string& inValue) { m_uniqueIdentifier=inValue; }
     const std::string& Name(void) const { return m_name; }
     void NameSet(const std::string& inValue) { m_name=inValue; }
+    const bool& Cacheable(void) const { return m_cacheable; }
+    void CacheableSet(const bool& inValue) { m_cacheable=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -130,7 +138,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } 6bizgCKLKBqCKM0zmpiMQg
+//%classPrototypes } xxvBSh7lmZEnD7hXEoNqeQ
 };
 //%inlineHeader {
 inline std::ostream&

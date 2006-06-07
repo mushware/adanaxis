@@ -1,7 +1,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushSkin/MushSkinPixelSourceNoise.cpp
+ * File: src/MushSkin/MushSkinPixelSourceProc.cpp
  *
  * Copyright: Andy Southgate 2005-2006
  *
@@ -15,96 +15,30 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } IHi2qaicNzVbb+bqL7ZTVw
+//%Header } egP3K/f7OY+i7tZkXjr5gg
 /*
- * $Id: MushSkinPixelSourceNoise.cpp,v 1.7 2006/06/02 18:14:36 southa Exp $
- * $Log: MushSkinPixelSourceNoise.cpp,v $
- * Revision 1.7  2006/06/02 18:14:36  southa
- * Texture caching
- *
- * Revision 1.6  2006/06/01 20:13:00  southa
- * Initial texture caching
- *
- * Revision 1.5  2006/05/03 00:58:44  southa
- * Texturing updates
- *
- * Revision 1.4  2006/05/02 17:32:13  southa
- * Texturing
- *
- * Revision 1.3  2006/05/01 17:39:01  southa
- * Texture generation
- *
- * Revision 1.2  2006/04/11 23:30:11  southa
- * Created MushRuby from ruby-1.8.4
- *
- * Revision 1.1  2005/09/06 12:15:35  southa
- * Texture and rendering work
- *
+ * $Id$
+ * $Log$
  */
 
-#include "MushSkinPixelSourceNoise.h"
+#include "MushSkinPixelSourceProc.h"
 
 using namespace Mushware;
 using namespace std;
 
-void
-MushSkinPixelSourceNoise::ValueParameterSet(Mushware::U32 inNum, Mushware::tLongVal inVal)
-{
-    switch (inNum)
-    {
 
-        case kParamPaletteStartX:
-            m_paletteStart.XSet(inVal);
-            break;
-            
-        case kParamPaletteStartY:
-            m_paletteStart.YSet(inVal);
-            break;
-            
-        case kParamPaletteVector1X:
-            m_paletteVector1.XSet(inVal);
-            break;
-            
-        case kParamPaletteVector1Y:
-            m_paletteVector1.YSet(inVal);
-            break;
-            
-        case kParamPaletteVector2X:
-            m_paletteVector2.XSet(inVal);
-            break;
-            
-        case kParamPaletteVector2Y:
-            m_paletteVector2.YSet(inVal);
-            break;
-            
-        default:
-            MushGLPixelSource::ValueParameterSet(inNum, inVal);
-            break;
-    }
-}
+MushSkinPixelSourceProc::MushSkinPixelSourceProc() :
+    m_pPaletteTexture(NULL),
+    m_paletteStart(0,0),
+    m_paletteVector1(1,0),
+    m_scale(1,1,1,1),
+    m_offset(0,0,0,0),
+    m_numOctaves(1),
+    m_octaveRatio(0.5)
+{}
 
 void
-MushSkinPixelSourceNoise::StringParameterSet(Mushware::U32 inNum, const std::string& inStr)
-{
-    switch (inNum)
-    {
-        case kParamSourceName:
-            m_meshName = inStr;
-            break;
-            
-        case kParamPaletteName:
-            m_paletteName = inStr;
-            break;
-            
-        default:
-            MushGLPixelSource::StringParameterSet(inNum, inStr);
-            break;
-    }
-}
-
-
-void
-MushSkinPixelSourceNoise::ParamDecode(const MushRubyValue& inName, const MushRubyValue& inValue)
+MushSkinPixelSourceProc::ParamDecode(const MushRubyValue& inName, const MushRubyValue& inValue)
 {
 	std::string nameStr = inName.String();
 	
@@ -124,6 +58,22 @@ MushSkinPixelSourceNoise::ParamDecode(const MushRubyValue& inName, const MushRub
 	{
 		m_paletteVector1 = t2Val(inValue.ValVector());
 	}
+	else if (nameStr == "scale")
+	{
+		m_scale = t4Val(inValue.ValVector());
+	}	
+	else if (nameStr == "offset")
+	{
+		m_offset = t4Val(inValue.ValVector());
+	}	
+	else if (nameStr == "numoctaves")
+	{
+		m_numOctaves = inValue.U32();
+	}	
+	else if (nameStr == "octaveratio")
+	{
+		m_octaveRatio = inValue.Val();
+	}	
 	else
 	{
 		MushGLPixelSource::ParamDecode(inName, inValue);
@@ -131,42 +81,20 @@ MushSkinPixelSourceNoise::ParamDecode(const MushRubyValue& inName, const MushRub
 }
 
 void 
-MushSkinPixelSourceNoise::TileLineGenerate(Mushware::U8 *inpTileData, const MushMesh4Mesh::tTextureTile& inTileRef,
-                                           Mushware::U32 inNumPixels, Mushware::t4Val inStartPos, Mushware::t4Val inEndPos)
+MushSkinPixelSourceProc::LineGenerate(Mushware::U8 *inpTileData, Mushware::U32 inNumPixels, Mushware::t4Val inStartPos, Mushware::t4Val inEndPos)
 {
     U8 *pTileData = inpTileData;
-    t4Val objectPos = inStartPos;
-    t4Val objectPosStep;
-    
-    objectPosStep = (inEndPos - inStartPos) / inNumPixels;
-        
-    if (m_pPaletteTexture != NULL)
+
+    if (PaletteTextureValid())
     {
         for (U32 i=0; i<inNumPixels; ++i)
-        {
-            tVal paletteValue1 =
-				0.5*pow(sin(2*objectPos.X()), 2) +
-            	0.5*pow(sin(2*objectPos.Y()), 2)
-            ;
+        {	
+            t4Val pixelCol = PaletteTexture().U8RGBALookup(m_paletteStart);
 
-			
-            tVal paletteValue2 = 
-				0.5*pow(sin(2*objectPos.Z()), 2) +
-				0.5*pow(sin(2*objectPos.W()), 2)
-				;
-			
-            t4Val pixelCol = m_pPaletteTexture->U8RGBALookup(m_paletteStart +
-															 paletteValue1 * m_paletteVector1 +
-															 paletteValue2 * m_paletteVector2);
-            
-            // if (tileSourceFace < 6) pixelCol.WSet(0);
-            
             *pTileData++ = static_cast<U8>(pixelCol.X()); // Red
             *pTileData++ = static_cast<U8>(pixelCol.Y()); // Green
             *pTileData++ = static_cast<U8>(pixelCol.Z()); // Blue
             *pTileData++ = static_cast<U8>(pixelCol.W()); // Alpha
-            
-            objectPos += objectPosStep;
         }
     }
     else
@@ -176,16 +104,14 @@ MushSkinPixelSourceNoise::TileLineGenerate(Mushware::U8 *inpTileData, const Mush
             *pTileData++ = 255; // Red
             *pTileData++ = 255; // Green
             *pTileData++ = 255; // Blue
-            *pTileData++ = (static_cast<U32>(objectPos.X()+objectPos.Y()+objectPos.Z()+objectPos.W()) % 8 == 0)?255:0; // Alpha
-            objectPos += objectPosStep;
+            *pTileData++ = 255; // Alpha
         }            
     }
-    
     MUSHCOREASSERT(pTileData <= inpTileData + 4*inNumPixels);
 }
 
 void
-MushSkinPixelSourceNoise::ToTextureCreate(MushGLTexture& outTexture)
+MushSkinPixelSourceProc::ToTextureCreate(MushGLTexture& outTexture)
 {
     U32 pixelDataSize = 4*Size().X()*Size().Y();
     std::vector<U8> pixelData(pixelDataSize, 0);
@@ -219,7 +145,7 @@ MushSkinPixelSourceNoise::ToTextureCreate(MushGLTexture& outTexture)
         U32 endY = static_cast<U32>(endPoint.Y() * Size().Y());
         MUSHCOREASSERT(endX >= startX);
         MUSHCOREASSERT(endY >= startY);
-            
+		
         for (U32 y=startY; y<endY; ++y)
         {
             U32 pixelOffset = 4*(startX+y*Size().Y());
@@ -228,28 +154,19 @@ MushSkinPixelSourceNoise::ToTextureCreate(MushGLTexture& outTexture)
                 throw MushcoreDataFail("Pixel data overrun");
             }
             U8 *pTileData = &pixelData[pixelOffset];
-
+			
             tileRef.Transform(objectPos, t2Val(static_cast<tVal>(startX) / Size().X(), static_cast<tVal>(y) / Size().Y()));
             tileRef.Transform(objectEndPos, t2Val(static_cast<tVal>(endX) / Size().X(), static_cast<tVal>(y) / Size().Y()));
             
             if (endX > startX)
             {
-                {
-                    static U32 ctr=1;
-                    if (ctr==0)
-                    {
-                        MushcoreLog::Sgl().InfoLog() << "objectPos=" << objectPos << ", objectEndPos=" << objectEndPos << endl;;
-                    }
-                    ++ctr;
-                }
-                
-                TileLineGenerate(pTileData, tileRef, endX - startX, objectPos, objectEndPos);
+                LineGenerate(pTileData, endX - startX, objectPos, objectEndPos);
             }
             
             MUSHCOREASSERT(pTileData <= &pixelData[pixelDataSize]);
         }
     }
-
+	
     m_pPaletteTexture = NULL;
     
     // Bind the texture
@@ -259,62 +176,98 @@ MushSkinPixelSourceNoise::ToTextureCreate(MushGLTexture& outTexture)
     outTexture.PixelDataUse(&pixelData[0]);
 }
 
+void
+MushSkinPixelSourceProc::PaletteResolve(void) const
+{
+	if (m_paletteName != "")
+	{
+		if (!MushcoreData<MushGLTexture>::Sgl().GetIfExists(m_pPaletteTexture, m_paletteName))
+		{
+			throw MushcoreDataFail("Non-existent palette '"+m_paletteName+"'");
+		}
+		m_pPaletteTexture->Make();
+	}
+}
+
+// Add this class prefix to those searched by the resolver
+namespace
+{
+    void Install(void)
+    {
+		MushGLResolverPixelSource::Sgl().PrefixAdd("MushSkinPixelSource");
+    }
+    MushcoreInstaller install(Install);
+} // end anonymous namespace
+
 //%outOfLineFunctions {
 
-const char *MushSkinPixelSourceNoise::AutoName(void) const
+const char *MushSkinPixelSourceProc::AutoName(void) const
 {
-    return "MushSkinPixelSourceNoise";
+    return "MushSkinPixelSourceProc";
 }
 
-MushcoreVirtualObject *MushSkinPixelSourceNoise::AutoClone(void) const
+MushcoreVirtualObject *MushSkinPixelSourceProc::AutoClone(void) const
 {
-    return new MushSkinPixelSourceNoise(*this);
+    return new MushSkinPixelSourceProc(*this);
 }
 
-MushcoreVirtualObject *MushSkinPixelSourceNoise::AutoCreate(void) const
+MushcoreVirtualObject *MushSkinPixelSourceProc::AutoCreate(void) const
 {
-    return new MushSkinPixelSourceNoise;
+    return new MushSkinPixelSourceProc;
 }
 
-MushcoreVirtualObject *MushSkinPixelSourceNoise::AutoVirtualFactory(void)
+MushcoreVirtualObject *MushSkinPixelSourceProc::AutoVirtualFactory(void)
 {
-    return new MushSkinPixelSourceNoise;
+    return new MushSkinPixelSourceProc;
 }
 namespace
 {
 void AutoInstall(void)
 {
-    MushcoreFactory::Sgl().FactoryAdd("MushSkinPixelSourceNoise", MushSkinPixelSourceNoise::AutoVirtualFactory);
+    MushcoreFactory::Sgl().FactoryAdd("MushSkinPixelSourceProc", MushSkinPixelSourceProc::AutoVirtualFactory);
 }
 MushcoreInstaller AutoInstaller(AutoInstall);
 } // end anonymous namespace
 void
-MushSkinPixelSourceNoise::AutoPrint(std::ostream& ioOut) const
+MushSkinPixelSourceProc::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
+    MushGLPixelSource::AutoPrint(ioOut);
+    ioOut << "meshName=" << m_meshName << ", ";
+    ioOut << "paletteName=" << m_paletteName << ", ";
     ioOut << "paletteStart=" << m_paletteStart << ", ";
     ioOut << "paletteVector1=" << m_paletteVector1 << ", ";
     ioOut << "paletteVector2=" << m_paletteVector2 << ", ";
+    ioOut << "scale=" << m_scale << ", ";
+    ioOut << "offset=" << m_offset << ", ";
+    ioOut << "numOctaves=" << m_numOctaves << ", ";
+    ioOut << "octaveRatio=" << m_octaveRatio << ", ";
     if (m_pPaletteTexture == NULL)
     {
-        ioOut << "pPaletteTexture=NULL"  << ", ";
+        ioOut << "pPaletteTexture=NULL" ;
     }
     else
     {
-        ioOut << "pPaletteTexture=" << *m_pPaletteTexture << ", ";
+        ioOut << "pPaletteTexture=" << *m_pPaletteTexture;
     }
-    ioOut << "meshName=" << m_meshName << ", ";
-    ioOut << "paletteName=" << m_paletteName;
     ioOut << "]";
 }
 bool
-MushSkinPixelSourceNoise::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr)
+MushSkinPixelSourceProc::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr)
 {
     if (inTagStr == "obj")
     {
         AutoInputPrologue(ioIn);
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
+    }
+    else if (inTagStr == "meshName")
+    {
+        ioIn >> m_meshName;
+    }
+    else if (inTagStr == "paletteName")
+    {
+        ioIn >> m_paletteName;
     }
     else if (inTagStr == "paletteStart")
     {
@@ -328,17 +281,29 @@ MushSkinPixelSourceNoise::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std
     {
         ioIn >> m_paletteVector2;
     }
+    else if (inTagStr == "scale")
+    {
+        ioIn >> m_scale;
+    }
+    else if (inTagStr == "offset")
+    {
+        ioIn >> m_offset;
+    }
+    else if (inTagStr == "numOctaves")
+    {
+        ioIn >> m_numOctaves;
+    }
+    else if (inTagStr == "octaveRatio")
+    {
+        ioIn >> m_octaveRatio;
+    }
     else if (inTagStr == "pPaletteTexture")
     {
         ioIn >> m_pPaletteTexture;
     }
-    else if (inTagStr == "meshName")
+    else if (MushGLPixelSource::AutoXMLDataProcess(ioIn, inTagStr))
     {
-        ioIn >> m_meshName;
-    }
-    else if (inTagStr == "paletteName")
-    {
-        ioIn >> m_paletteName;
+        // Tag consumed by base class
     }
     else 
     {
@@ -347,20 +312,28 @@ MushSkinPixelSourceNoise::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std
     return true;
 }
 void
-MushSkinPixelSourceNoise::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
+MushSkinPixelSourceProc::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
+    MushGLPixelSource::AutoXMLPrint(ioOut);
+    ioOut.TagSet("meshName");
+    ioOut << m_meshName;
+    ioOut.TagSet("paletteName");
+    ioOut << m_paletteName;
     ioOut.TagSet("paletteStart");
     ioOut << m_paletteStart;
     ioOut.TagSet("paletteVector1");
     ioOut << m_paletteVector1;
     ioOut.TagSet("paletteVector2");
     ioOut << m_paletteVector2;
+    ioOut.TagSet("scale");
+    ioOut << m_scale;
+    ioOut.TagSet("offset");
+    ioOut << m_offset;
+    ioOut.TagSet("numOctaves");
+    ioOut << m_numOctaves;
+    ioOut.TagSet("octaveRatio");
+    ioOut << m_octaveRatio;
     ioOut.TagSet("pPaletteTexture");
     ioOut << m_pPaletteTexture;
-    ioOut.TagSet("meshName");
-    ioOut << m_meshName;
-    ioOut.TagSet("paletteName");
-    ioOut << m_paletteName;
 }
-//%outOfLineFunctions } OS6PtKYB0iRl5hMCEN66YA
-
+//%outOfLineFunctions } yrpD3Ktw+LcLr5h/ag5Euw

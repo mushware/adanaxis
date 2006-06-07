@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } H/Wo7NBFscBfkm/QQCtznw
 /*
- * $Id$
- * $Log$
+ * $Id: MushSkinUtil.h,v 1.1 2006/06/05 11:48:26 southa Exp $
+ * $Log: MushSkinUtil.h,v $
+ * Revision 1.1  2006/06/05 11:48:26  southa
+ * Noise textures
+ *
  */
 
 #include "MushSkinStandard.h"
@@ -31,7 +34,7 @@ class MushSkinUtil
 {
 public:
 	static void PalettedToRGBA(Mushware::U8 *outpData, const Mushware::tVal *inpData,
-							   Mushware::U32 inNumPixels, MushGLTexture& ioTexture,
+							   Mushware::U32 inNumPixels, const MushGLTexture& ioTexture,
 							   const Mushware::t2Val& inStartPos, const Mushware::t2Val& inVec);
 	
 private:

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } vzsiY9MwPTZIFsQ1nPV4fA
 /*
- * $Id: MushGLPixelSource.h,v 1.6 2006/06/02 18:14:35 southa Exp $
+ * $Id: MushGLPixelSource.h,v 1.7 2006/06/06 17:58:32 southa Exp $
  * $Log: MushGLPixelSource.h,v $
+ * Revision 1.7  2006/06/06 17:58:32  southa
+ * Ruby texture definition
+ *
  * Revision 1.6  2006/06/02 18:14:35  southa
  * Texture caching
  *
@@ -51,39 +54,12 @@
 
 class MushGLTexture;
 
-//:generate virtual ostream xml1
+//:generate virtual standard ostream xml1
 class MushGLPixelSource : public MushcoreVirtualObject
 {
-public:
-    enum
-    {
-        kParamInvalid,
-        kParamNone,
-        kParamStorageType,
-        kParamFrameTime,
-        kParamRed,
-        kParamGreen,
-        kParamBlue,
-        kParamAlpha,
-        kParamSeed,
-        kParamFilename,
-        kParamXSize,
-        kParamYSize,
-        kParamSourceName,
-        kParamPaletteName,
-        kParamPaletteStartX,
-        kParamPaletteStartY,
-        kParamPaletteVector1X,
-        kParamPaletteVector1Y,
-        kParamPaletteVector2X,
-        kParamPaletteVector2Y,
-        kParamBaseNext
-    };
-    
+public:    
     MushGLPixelSource();
     virtual ~MushGLPixelSource() {}
-    virtual void ValueParameterSet(const Mushware::U32 inNum, const Mushware::tLongVal inVal);
-    virtual void StringParameterSet(const Mushware::U32 inNum, const std::string& inStr);
 	virtual void ParamDecode(const MushRubyValue& inName, const MushRubyValue& inValue);
 	virtual void ParamHashDecode(const Mushware::tRubyHash& inHash);
     virtual void BufferFill(Mushware::U32 * const outPtr, const Mushware::t2U32 inSize) const; // Deprecated
@@ -92,18 +68,28 @@ public:
 	static void Install(void);
 	
 private:
+	std::string m_name; //:readwrite
     std::string m_storageType; //:read
 	Mushware::t4Val m_size; //:readwrite
+	bool m_cacheable; //:readwrite
 	
 //%classPrototypes {
 public:
+    const std::string& Name(void) const { return m_name; }
+    void NameSet(const std::string& inValue) { m_name=inValue; }
     const std::string& StorageType(void) const { return m_storageType; }
     const Mushware::t4Val& Size(void) const { return m_size; }
     void SizeSet(const Mushware::t4Val& inValue) { m_size=inValue; }
+    const bool& Cacheable(void) const { return m_cacheable; }
+    void CacheableSet(const bool& inValue) { m_cacheable=inValue; }
+    virtual const char *AutoName(void) const;
+    virtual MushcoreVirtualObject *AutoClone(void) const;
+    virtual MushcoreVirtualObject *AutoCreate(void) const;
+    static MushcoreVirtualObject *AutoVirtualFactory(void);
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } bigR9g4GeWmOH21ytqM/EQ
+//%classPrototypes } 9topVqodGHfeRJ9i+LEUHA
 };
 //%inlineHeader {
 inline std::ostream&

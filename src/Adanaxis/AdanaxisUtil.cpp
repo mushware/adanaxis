@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } gq3ekJ+T4/5Q9GxsUU01+w
 /*
- * $Id: AdanaxisUtil.cpp,v 1.20 2005/09/05 12:54:29 southa Exp $
+ * $Id: AdanaxisUtil.cpp,v 1.21 2006/05/03 00:58:43 southa Exp $
  * $Log: AdanaxisUtil.cpp,v $
+ * Revision 1.21  2006/05/03 00:58:43  southa
+ * Texturing updates
+ *
  * Revision 1.20  2005/09/05 12:54:29  southa
  * Solid rendering work
  *
@@ -250,27 +253,27 @@ void
 AdanaxisUtil::TestSkinsCreate(AdanaxisLogic& ioLogic)
 {
     MushMesh4Mesh *p4Mesh = NULL;
-    MushSkinNoise skinNoise;
+    MushSkinTiled skinTiled;
     
     p4Mesh = MushcoreData<MushMesh4Mesh>::Sgl().Give("tesseract", new MushMesh4Mesh);
     AdanaxisMeshLibrary::AdanaxisSgl().TesseractCreate(*p4Mesh);
     
-    skinNoise.TextureGenerate(*p4Mesh);
-    skinNoise.TexCoordsGenerate(*p4Mesh);
+    skinTiled.TextureGenerate(*p4Mesh);
+    skinTiled.TexCoordsGenerate(*p4Mesh);
     MushcoreData<MushGLBuffers>::Sgl().GetOrCreate("tesseract");
       
     p4Mesh = MushcoreData<MushMesh4Mesh>::Sgl().Give("attendant", new MushMesh4Mesh);
     AdanaxisMeshLibrary::AdanaxisSgl().AttendantCreate(*p4Mesh);
     
-    skinNoise.TextureGenerate(*p4Mesh);
-    skinNoise.TexCoordsGenerate(*p4Mesh);
+    skinTiled.TextureGenerate(*p4Mesh);
+    skinTiled.TexCoordsGenerate(*p4Mesh);
     MushcoreData<MushGLBuffers>::Sgl().GetOrCreate("attendant");
     
     p4Mesh = MushcoreData<MushMesh4Mesh>::Sgl().Give("projectile", new MushMesh4Mesh);
     AdanaxisMeshLibrary::AdanaxisSgl().ProjectileCreate(*p4Mesh);
     
-    skinNoise.TextureGenerate(*p4Mesh);
-    skinNoise.TexCoordsGenerate(*p4Mesh);
+    skinTiled.TextureGenerate(*p4Mesh);
+    skinTiled.TexCoordsGenerate(*p4Mesh);
     MushcoreData<MushGLBuffers>::Sgl().GetOrCreate("projectile");
 }
 

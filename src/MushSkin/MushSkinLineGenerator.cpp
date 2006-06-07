@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } /ogEinXWaS3ZU9x1JORYXA
 /*
- * $Id: MushSkinLineGenerator.cpp,v 1.1 2006/06/05 11:48:25 southa Exp $
+ * $Id: MushSkinLineGenerator.cpp,v 1.2 2006/06/05 14:37:52 southa Exp $
  * $Log: MushSkinLineGenerator.cpp,v $
+ * Revision 1.2  2006/06/05 14:37:52  southa
+ * Texture generation
+ *
  * Revision 1.1  2006/06/05 11:48:25  southa
  * Noise textures
  *
@@ -51,7 +54,8 @@ MushSkinLineGenerator::CellNoiseInitialise(Mushware::U32 inSeed)
 void
 MushSkinLineGenerator::OctavedCellNoiseLineGenerate(
 	std::vector<Mushware::tVal>& outData, Mushware::U32 inNumPixels,
-	const Mushware::t4Val& inStartPos, const Mushware::t4Val& inEndPos, Mushware::U32 numOctaves)
+	const Mushware::t4Val& inStartPos, const Mushware::t4Val& inEndPos,
+	Mushware::U32 inNumOctaves, Mushware::tVal inOctaveRatio)
 {
 	MUSHCOREASSERT(outData.size() >= inNumPixels);
 	
@@ -63,7 +67,8 @@ MushSkinLineGenerator::OctavedCellNoiseLineGenerate(
 	tVal spaceMultiplier = 1;
 	tVal amplitude = 1;
 	tVal cumulativeAmplitude = 0;
-	for (U32 octave=0; octave < numOctaves; ++octave)
+	
+	for (U32 octave=0; octave < inNumOctaves; ++octave)
 	{
 		std::vector<tVal> octaveData(inNumPixels);
 		CellNoiseLineGenerate(octaveData, inNumPixels, spaceMultiplier * inStartPos,
@@ -74,7 +79,7 @@ MushSkinLineGenerator::OctavedCellNoiseLineGenerate(
 			outData[i] += amplitude * octaveData[i];
 		}
 		cumulativeAmplitude += amplitude;
-		amplitude /= 2;
+		amplitude *= inOctaveRatio;
 		spaceMultiplier *= 2;
 	}
 	
@@ -83,7 +88,6 @@ MushSkinLineGenerator::OctavedCellNoiseLineGenerate(
 		outData[i] /= cumulativeAmplitude;
 	}
 }
-
 
 //%outOfLineFunctions {
 
@@ -118,7 +122,9 @@ void
 MushSkinLineGenerator::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
-    ioOut << "cellNoiseHash=" << m_cellNoiseHash;
+    ioOut << "cellNoiseHash=" << m_cellNoiseHash << ", ";
+    ioOut << "gridRatio=" << m_gridRatio << ", ";
+    ioOut << "gridSharpness=" << m_gridSharpness;
     ioOut << "]";
 }
 bool
@@ -127,6 +133,14 @@ MushSkinLineGenerator::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::s
     if (inTagStr == "cellNoiseHash")
     {
         ioIn >> m_cellNoiseHash;
+    }
+    else if (inTagStr == "gridRatio")
+    {
+        ioIn >> m_gridRatio;
+    }
+    else if (inTagStr == "gridSharpness")
+    {
+        ioIn >> m_gridSharpness;
     }
     else 
     {
@@ -139,5 +153,9 @@ MushSkinLineGenerator::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
     ioOut.TagSet("cellNoiseHash");
     ioOut << m_cellNoiseHash;
+    ioOut.TagSet("gridRatio");
+    ioOut << m_gridRatio;
+    ioOut.TagSet("gridSharpness");
+    ioOut << m_gridSharpness;
 }
-//%outOfLineFunctions } 9v76OG1vOKDgtg1eBbFSEg
+//%outOfLineFunctions } +uK6H4IySNK2N5Whf0Vz2w

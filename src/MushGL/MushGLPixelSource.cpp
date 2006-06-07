@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } vz1knUYnzwX5FNm6RC5EZw
 /*
- * $Id: MushGLPixelSource.cpp,v 1.6 2006/05/02 17:32:13 southa Exp $
+ * $Id: MushGLPixelSource.cpp,v 1.7 2006/06/06 17:58:32 southa Exp $
  * $Log: MushGLPixelSource.cpp,v $
+ * Revision 1.7  2006/06/06 17:58:32  southa
+ * Ruby texture definition
+ *
  * Revision 1.6  2006/05/02 17:32:13  southa
  * Texturing
  *
@@ -53,33 +56,9 @@ MUSHCORE_DATA_INSTANCE(MushGLPixelSource);
 MUSHCORE_INSTALLER(MushGLPixelSource::Install);
 
 MushGLPixelSource::MushGLPixelSource() :
-    m_storageType("GL")
+    m_storageType("GL"),
+	m_cacheable(true)
 {
-}
-
-void
-MushGLPixelSource::ValueParameterSet(Mushware::U32 inNum, Mushware::tLongVal inVal)
-{
-    ostringstream message;
-    message << "MushGLPixelSource::ValueParameterSet: Unknown parameter: " << inNum;
-    throw MushcoreRequestFail(message.str());
-}
-
-void
-MushGLPixelSource::StringParameterSet(Mushware::U32 inNum, const std::string& inStr)
-{
-    switch (inNum)
-    {
-        case kParamStorageType:
-            m_storageType = inStr;
-            break;
-            
-        default:   
-            ostringstream message;
-            message << "MushGLPixelSource::StringParameterSet: Unknown parameter: " << inNum;
-            throw MushcoreRequestFail(message.str());
-            break;
-    }
 }
 
 void
@@ -98,6 +77,10 @@ MushGLPixelSource::ParamDecode(const MushRubyValue& inName, const MushRubyValue&
 	else if (nameStr == "size")
 	{
 		m_size = t4Val(inValue.ValVector());
+	}
+	else if (nameStr == "cache")
+	{
+		m_cacheable = inValue.Bool();
 	}
 	else
 	{
@@ -134,12 +117,42 @@ MushGLPixelSource::Install(void)
 }
 
 //%outOfLineFunctions {
+
+const char *MushGLPixelSource::AutoName(void) const
+{
+    return "MushGLPixelSource";
+}
+
+MushcoreVirtualObject *MushGLPixelSource::AutoClone(void) const
+{
+    return new MushGLPixelSource(*this);
+}
+
+MushcoreVirtualObject *MushGLPixelSource::AutoCreate(void) const
+{
+    return new MushGLPixelSource;
+}
+
+MushcoreVirtualObject *MushGLPixelSource::AutoVirtualFactory(void)
+{
+    return new MushGLPixelSource;
+}
+namespace
+{
+void AutoInstall(void)
+{
+    MushcoreFactory::Sgl().FactoryAdd("MushGLPixelSource", MushGLPixelSource::AutoVirtualFactory);
+}
+MushcoreInstaller AutoInstaller(AutoInstall);
+} // end anonymous namespace
 void
 MushGLPixelSource::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
+    ioOut << "name=" << m_name << ", ";
     ioOut << "storageType=" << m_storageType << ", ";
-    ioOut << "size=" << m_size;
+    ioOut << "size=" << m_size << ", ";
+    ioOut << "cacheable=" << m_cacheable;
     ioOut << "]";
 }
 bool
@@ -151,6 +164,10 @@ MushGLPixelSource::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::strin
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
     }
+    else if (inTagStr == "name")
+    {
+        ioIn >> m_name;
+    }
     else if (inTagStr == "storageType")
     {
         ioIn >> m_storageType;
@@ -158,6 +175,10 @@ MushGLPixelSource::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::strin
     else if (inTagStr == "size")
     {
         ioIn >> m_size;
+    }
+    else if (inTagStr == "cacheable")
+    {
+        ioIn >> m_cacheable;
     }
     else 
     {
@@ -168,9 +189,13 @@ MushGLPixelSource::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::strin
 void
 MushGLPixelSource::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
+    ioOut.TagSet("name");
+    ioOut << m_name;
     ioOut.TagSet("storageType");
     ioOut << m_storageType;
     ioOut.TagSet("size");
     ioOut << m_size;
+    ioOut.TagSet("cacheable");
+    ioOut << m_cacheable;
 }
-//%outOfLineFunctions } YbNcJD9YtJWUOuroVDIZmQ
+//%outOfLineFunctions } H426C0uPz7+vi8NVW5PDrg

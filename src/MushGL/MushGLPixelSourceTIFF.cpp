@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } SaBXzXzmz9pA2fL3GoZFMQ
 /*
- * $Id: MushGLPixelSourceTIFF.cpp,v 1.4 2006/06/02 18:14:35 southa Exp $
+ * $Id: MushGLPixelSourceTIFF.cpp,v 1.5 2006/06/06 17:58:32 southa Exp $
  * $Log: MushGLPixelSourceTIFF.cpp,v $
+ * Revision 1.5  2006/06/06 17:58:32  southa
+ * Ruby texture definition
+ *
  * Revision 1.4  2006/06/02 18:14:35  southa
  * Texture caching
  *
@@ -47,30 +50,10 @@ namespace tiffio
 using namespace Mushware;
 using namespace std;
 
-void
-MushGLPixelSourceTIFF::ValueParameterSet(Mushware::U32 inNum, Mushware::tLongVal inVal)
+MushGLPixelSourceTIFF::MushGLPixelSourceTIFF()
 {
-    switch (inNum)
-    {
-        default:
-            MushGLPixelSource::ValueParameterSet(inNum, inVal);
-            break;
-    }
-}
-
-void
-MushGLPixelSourceTIFF::StringParameterSet(Mushware::U32 inNum, const std::string& inStr)
-{
-    switch (inNum)
-    {
-        case kParamFilename:
-            m_filename = inStr;
-            break;
-
-        default:
-            MushGLPixelSource::StringParameterSet(inNum, inStr);
-            break;
-    }
+	// Don't cache TIFFs by default
+	CacheableSet(false);	
 }
 
 void

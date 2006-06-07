@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 8D+czxodqWkqx/95U0bYng
 /*
- * $Id: MushGLResolverPixelSource.h,v 1.4 2006/06/06 10:29:51 southa Exp $
+ * $Id: MushGLResolverPixelSource.h,v 1.5 2006/06/06 17:58:32 southa Exp $
  * $Log: MushGLResolverPixelSource.h,v $
+ * Revision 1.5  2006/06/06 17:58:32  southa
+ * Ruby texture definition
+ *
  * Revision 1.4  2006/06/06 10:29:51  southa
  * Ruby texture definitions
  *
@@ -43,14 +46,15 @@
 
 #include "mushMushRuby.h"
 
+class MushGLPixelSource;
+
 //:generate virtual standard ostream xml1 nocopy
 class MushGLResolverPixelSource : public MushcoreVirtualObject, public MushcoreSingleton<MushGLResolverPixelSource>
 {
 public:
 	MushGLResolverPixelSource();
 	explicit MushGLResolverPixelSource(const MushGLResolverPixelSource *inpPixelSource);
-    virtual void Resolve(const std::string& inSrcName);
-   	virtual std::string ParamHashResolve(const Mushware::tRubyHash& inHash);
+   	virtual MushGLPixelSource& ParamHashResolve(const Mushware::tRubyHash& inHash);
 	virtual void PrefixAdd(const std::string& inStr) { m_sourcePrefixes.push_front(inStr); }
 
 private:

@@ -21,14 +21,17 @@
  ****************************************************************************/
 //%Header } iSYoQ/Dev9AAdIImPBbrVw
 /*
- * $Id: MushSkin.h,v 1.1 2005/08/29 18:40:57 southa Exp $
+ * $Id: MushSkin.h,v 1.2 2006/06/01 15:39:40 southa Exp $
  * $Log: MushSkin.h,v $
+ * Revision 1.2  2006/06/01 15:39:40  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.1  2005/08/29 18:40:57  southa
  * Solid rendering work
  *
  */
 
-#include "MushSkinNoise.h"
+#include "MushSkinTiled.h"
 
 //%includeGuardEnd {
 #endif

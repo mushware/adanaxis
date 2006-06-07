@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } hwIlNOCEH5GsgwGY+rP1Kg
 /*
- * $Id: MushRubyValue.cpp,v 1.1 2006/06/06 10:29:52 southa Exp $
+ * $Id: MushRubyValue.cpp,v 1.2 2006/06/06 17:58:34 southa Exp $
  * $Log: MushRubyValue.cpp,v $
+ * Revision 1.2  2006/06/06 17:58:34  southa
+ * Ruby texture definition
+ *
  * Revision 1.1  2006/06/06 10:29:52  southa
  * Ruby texture definitions
  *
@@ -85,9 +88,34 @@ MushRubyValue::ValVector(void) const
 	}
 	Mushware::tRubyValue sizeValue = MushRubyExec::Sgl().Call(tempValue, "size");
 	
-	for (U32 i=0; i<NUM2UINT(sizeValue); ++i)
+	for (Mushware::U32 i=0; i<NUM2UINT(sizeValue); ++i)
 	{
 	    retVal.push_back(NUM2DBL(rb_ary_entry(tempValue, i)));
 	}
 	return retVal;
 }
+
+bool
+MushRubyValue::Bool(void) const
+{
+	Mushware::tRubyValue tempValue = m_value; // Avoid const problem
+	
+	return (NUM2UINT(tempValue) != 0);
+}
+
+Mushware::U32
+MushRubyValue::U32(void) const
+{
+	Mushware::tRubyValue tempValue = m_value; // Avoid const problem
+	
+	return NUM2UINT(tempValue);
+}
+
+Mushware::tVal
+MushRubyValue::Val(void) const
+{
+	Mushware::tRubyValue tempValue = m_value; // Avoid const problem
+	
+	return NUM2DBL(tempValue);
+}
+

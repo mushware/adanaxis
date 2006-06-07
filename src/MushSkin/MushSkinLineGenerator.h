@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } tuTK6NcDPsNibg7CubVnHw
 /*
- * $Id: MushSkinLineGenerator.h,v 1.1 2006/06/05 11:48:26 southa Exp $
+ * $Id: MushSkinLineGenerator.h,v 1.2 2006/06/05 14:37:52 southa Exp $
  * $Log: MushSkinLineGenerator.h,v $
+ * Revision 1.2  2006/06/05 14:37:52  southa
+ * Texture generation
+ *
  * Revision 1.1  2006/06/05 11:48:26  southa
  * Noise textures
  *
@@ -45,19 +48,29 @@ public:
 							   const Mushware::t4Val& inStartPos, const Mushware::t4Val& inEndPos);
 	void OctavedCellNoiseLineGenerate(std::vector<Mushware::tVal>& outData, Mushware::U32 inNumPixels,
 									  const Mushware::t4Val& inStartPos, const Mushware::t4Val& inEndPos,
-									  Mushware::U32 numOctaves);
+									  Mushware::U32 inNumOctaves, Mushware::tVal inOctaveRatio);
+	void GridLineGenerate(std::vector<Mushware::tVal>& outData, Mushware::U32 inNumPixels,
+						  const Mushware::t4Val& inStartPos, const Mushware::t4Val& inEndPos);
 
 private:
 	Mushware::t4U32 HashValues(const Mushware::t4Val& inVec);
 	Mushware::t4Val FadeValues(const Mushware::t4Val& inVec);
-	Mushware::tVal CellNoiseGenerate(const Mushware::t4Val& inPos);
 	Mushware::tVal HashScale(Mushware::U8 inValue);
 	Mushware::tVal Lerp(Mushware::tVal inProp, Mushware::tVal inA, Mushware::tVal inB);
 	
+	Mushware::tVal CellNoiseGenerate(const Mushware::t4Val& inPos);
+	Mushware::tVal GridGenerate(const Mushware::t4Val& inPos);
+	
 	std::vector<Mushware::U8> m_cellNoiseHash;
+	Mushware::t4Val m_gridRatio; //:readwrite;
+	Mushware::t4Val m_gridSharpness; //:readwrite;
 	
 //%classPrototypes {
 public:
+    const Mushware::t4Val& GridRatio(void) const { return m_gridRatio; }
+    void GridRatioSet(const Mushware::t4Val& inValue) { m_gridRatio=inValue; }
+    const Mushware::t4Val& GridSharpness(void) const { return m_gridSharpness; }
+    void GridSharpnessSet(const Mushware::t4Val& inValue) { m_gridSharpness=inValue; }
     const char *AutoName(void) const;
     MushcoreVirtualObject *AutoClone(void) const;
     MushcoreVirtualObject *AutoCreate(void) const;
@@ -65,7 +78,7 @@ public:
     void AutoPrint(std::ostream& ioOut) const;
     bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } oLR0tLUUWStTX02QfMX/OA
+//%classPrototypes } Y0y376oIVqgz9UiKRsSLsw
 };
 
 inline Mushware::t4U32
@@ -137,7 +150,7 @@ MushSkinLineGenerator::CellNoiseGenerate(const Mushware::t4Val& inPos)
 	Mushware::tVal p0111 = MUSH_HASH_SCALE(0,1,1,1);
 	Mushware::tVal p1111 = MUSH_HASH_SCALE(1,1,1,1);
 
-#undef MUSH_HASH_SCAL	
+#undef MUSH_HASH_SCALE
 	
 	// Quadrilinear interpolation of hash values
 	
@@ -178,6 +191,64 @@ MushSkinLineGenerator::CellNoiseLineGenerate(std::vector<Mushware::tVal>& outDat
 		objectPos += objectPosStep;
 	}
 }
+
+inline Mushware::tVal
+MushSkinLineGenerator::GridGenerate(const Mushware::t4Val& inPos)
+{
+	Mushware::t4Val floorVec = inPos.Floor();        // Floor of input position
+	Mushware::t4Val cubeVec = inPos - floorVec;      // Fractional offsets into this cube
+	Mushware::t4Val gridVec = cubeVec - m_gridRatio; // Offset from the grid boundary
+	
+	Mushware::tVal lowestMultiplier = 1;
+
+	for (Mushware::U32 i=0; i<4; ++i)
+	{
+		if (gridVec[i] <= 0)
+		{
+		    // Point is within the grid boundary
+			Mushware::tVal multiplier;
+			if (m_gridSharpness[i] < 1.0)
+			{
+				multiplier = gridVec[i] / (1 - m_gridSharpness[i]);
+				if (multiplier > 1)
+				{
+					multiplier = 1;	
+				}
+				else
+				{
+					multiplier = multiplier*multiplier*(3-2*multiplier);
+				}
+			}
+			else
+			{
+				multiplier = 0;	
+			}
+			if (lowestMultiplier > multiplier)
+			{
+				lowestMultiplier = multiplier;
+			}
+		}
+	}
+	
+	return lowestMultiplier;
+}
+
+inline void
+MushSkinLineGenerator::GridLineGenerate(std::vector<Mushware::tVal>& outData, Mushware::U32 inNumPixels,
+										const Mushware::t4Val& inStartPos, const Mushware::t4Val& inEndPos)
+{
+	MUSHCOREASSERT(outData.size() >= inNumPixels);;
+	
+    Mushware::t4Val objectPos = inStartPos;
+    Mushware::t4Val objectPosStep = (inEndPos - inStartPos) / inNumPixels;
+	
+	for (Mushware::U32 i=0; i<inNumPixels; ++i)
+	{
+		outData[i] = GridGenerate(objectPos);
+		objectPos += objectPosStep;
+	}
+}
+
 
 //%inlineHeader {
 inline std::ostream&

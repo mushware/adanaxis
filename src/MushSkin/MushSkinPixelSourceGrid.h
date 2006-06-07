@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef MUSHSKINPIXELSOURCETEST_H
-#define MUSHSKINPIXELSOURCETEST_H
-//%includeGuardStart } f0Svt4agKJBECQvN71XmnQ
+#ifndef MUSHSKINPIXELSOURCEGRID_H
+#define MUSHSKINPIXELSOURCEGRID_H
+//%includeGuardStart } k6UFlIjPy676Mn0sG2CiBg
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushSkin/MushSkinPixelSourceTest.h
+ * File: src/MushSkin/MushSkinPixelSourceGrid.h
  *
  * Copyright: Andy Southgate 2005-2006
  *
@@ -19,13 +19,10 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } DCgOpQQAdiwGFko3kpjm3g
+//%Header } yj8BUsHejGHRPAbHSw5T4A
 /*
- * $Id: MushSkinPixelSourceTest.h,v 1.1 2006/06/05 14:37:52 southa Exp $
- * $Log: MushSkinPixelSourceTest.h,v $
- * Revision 1.1  2006/06/05 14:37:52  southa
- * Texture generation
- *
+ * $Id$
+ * $Log$
  */
 
 #include "MushSkinStandard.h"
@@ -36,32 +33,24 @@
 
 //:xml1base MushSkinPixelSourceProc
 //:generate virtual standard ostream xml1
-class MushSkinPixelSourceTest : public MushSkinPixelSourceProc
+class MushSkinPixelSourceGrid : public MushSkinPixelSourceProc
 {
 public:
-    MushSkinPixelSourceTest();
-	virtual ~MushSkinPixelSourceTest();
+    MushSkinPixelSourceGrid();
+    virtual void ParamDecode(const MushRubyValue& inName, const MushRubyValue& inValue);
+	virtual void LineGenerate(Mushware::U8 *inpTileData, Mushware::U32 inNumPixels, Mushware::t4Val inStartPos, Mushware::t4Val inEndPos);
 	
-	virtual void ToTextureCreate(MushGLTexture& outTexture);
-
-	// Delegate everything else
-	virtual void ParamDecode(const MushRubyValue& inName, const MushRubyValue& inValue);
-	virtual void LineGenerate(Mushware::U8 *inpTileData, Mushware::U32 inNumPixels, Mushware::t4Val inStartPos, Mushware::t4Val inEndPos)
-	{
-		PixelSource().LineGenerate(inpTileData, inNumPixels, inStartPos, inEndPos);
-	}
-	virtual void PaletteResolve(void) const
-	{
-		PixelSource().PaletteResolve();
-	}
+protected:
 	
 private:
-	MushSkinPixelSourceProc& PixelSource(void) const;
-
-	MushGLPixelSource *m_pPixelSource;
+	MushSkinLineGenerator m_lineGenerator;
+	Mushware::t4Val m_gridRatio; //:read
+	Mushware::t4Val m_gridSharpness; //:read
 	
 //%classPrototypes {
 public:
+    const Mushware::t4Val& GridRatio(void) const { return m_gridRatio; }
+    const Mushware::t4Val& GridSharpness(void) const { return m_gridSharpness; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -69,16 +58,16 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } 1oBgFruy5qHAaudtV+Hcmg
+//%classPrototypes } Cf0wz5bRerLg8GJgsZInDg
 };
 //%inlineHeader {
 inline std::ostream&
-operator<<(std::ostream& ioOut, const MushSkinPixelSourceTest& inObj)
+operator<<(std::ostream& ioOut, const MushSkinPixelSourceGrid& inObj)
 {
     inObj.AutoPrint(ioOut);
     return ioOut;
 }
-//%inlineHeader } FcjVs5dyLxHsUAkyB2zX0w
+//%inlineHeader } b2odhGqixUXBRE0br53koQ
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

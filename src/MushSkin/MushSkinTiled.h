@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef MUSHSKINRESOLVERPIXELSOURCE_H
-#define MUSHSKINRESOLVERPIXELSOURCE_H
-//%includeGuardStart } tv2DLLCkkHUWcypzYDGXNQ
+#ifndef MUSHSKINTILED_H
+#define MUSHSKINTILED_H
+//%includeGuardStart } kZD0CEqivw3yeKDiSUrmlA
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushSkin/MushSkinResolverPixelSource.h
+ * File: src/MushSkin/MushSkinTiled.h
  *
  * Copyright: Andy Southgate 2005-2006
  *
@@ -19,26 +19,36 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } v3MrgrO4JsvAn3uDUG6X7g
+//%Header } wyD7bsStwCgye5e+C10+aw
 /*
- * $Id: MushSkinResolverPixelSource.h,v 1.1 2006/04/11 23:30:11 southa Exp $
- * $Log: MushSkinResolverPixelSource.h,v $
- * Revision 1.1  2006/04/11 23:30:11  southa
- * Created MushRuby from ruby-1.8.4
+ * $Id: MushSkinTiled.h,v 1.2 2006/06/01 15:39:40 southa Exp $
+ * $Log: MushSkinTiled.h,v $
+ * Revision 1.2  2006/06/01 15:39:40  southa
+ * DrawArray verification and fixes
+ *
+ * Revision 1.1  2005/08/29 18:40:57  southa
+ * Solid rendering work
  *
  */
 
 #include "MushSkinStandard.h"
 
-//:generate virtual standard ostream xml1 nocopy
-class MushSkinResolverPixelSource : public MushGLResolverPixelSource
+//:generate virtual standard ostream xml1
+class MushSkinTiled : public MushcoreVirtualObject
 {
 public:
-    virtual void Resolve(const std::string& inSrcName);
+    MushSkinTiled();
     
+    virtual void DivideSize(Mushware::t2U32& outSizes, Mushware::U32 inNumFacets);
+    virtual void TextureGenerate(MushMesh4Mesh& ioMesh);
+    virtual void TexCoordsGenerate(MushMesh4Mesh& ioMesh);
+ 
+protected:
+    Mushware::tVal MultiplierForTile(Mushware::U32 inNumVertices);
+
 private:
-    
-    
+    Mushware::tVal m_pullInRatio;
+        
 //%classPrototypes {
 public:
     virtual const char *AutoName(void) const;
@@ -52,12 +62,12 @@ public:
 };
 //%inlineHeader {
 inline std::ostream&
-operator<<(std::ostream& ioOut, const MushSkinResolverPixelSource& inObj)
+operator<<(std::ostream& ioOut, const MushSkinTiled& inObj)
 {
     inObj.AutoPrint(ioOut);
     return ioOut;
 }
-//%inlineHeader } TUFnZyEz8EQYO/tzUv6vZg
+//%inlineHeader } G5CINZQknhQNvC3mkG1rWg
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw
