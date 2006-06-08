@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } xkvbVCXm8pXCDWV4BdLGFQ
 /*
- * $Id: MushSkinTiled.cpp,v 1.1 2006/06/07 12:15:22 southa Exp $
+ * $Id: MushSkinTiled.cpp,v 1.2 2006/06/07 14:25:56 southa Exp $
  * $Log: MushSkinTiled.cpp,v $
+ * Revision 1.2  2006/06/07 14:25:56  southa
+ * Grid texture fixes
+ *
  * Revision 1.1  2006/06/07 12:15:22  southa
  * Grid and test textures
  *
@@ -274,7 +277,7 @@ MushSkinTiled::TexCoordsGenerate(MushMesh4Mesh& ioMesh)
                 texTileWRef.Transform(resultVec, uvPos);
                 
                 expectedVec = verticesRef[vlRef[vertexBase+i]];
-         
+				
                 if (!expectedVec.ApproxEqual(resultVec, ioMesh.BoundingRadius() / 100))
                 {
                     if (textureError)
@@ -289,7 +292,7 @@ MushSkinTiled::TexCoordsGenerate(MushMesh4Mesh& ioMesh)
                         {
                             MushcoreLog::Sgl().InfoLog() << "Vertex " << vlRef[vertexBase+j] << " = " << verticesRef[vlRef[vertexBase+j]] << endl;
                         }
-                        MushcoreLog::Sgl().XMLInfoLog() << faceWRef;
+                        // MushcoreLog::Sgl().XMLInfoLog() << faceWRef;
                         // MushcoreLog::Sgl().XMLInfoLog() << texCoordsWRef;
                         MushcoreLog::Sgl().XMLInfoLog() << texTileWRef;
                         
@@ -320,6 +323,8 @@ MushSkinTiled::TexCoordsGenerate(MushMesh4Mesh& ioMesh)
             " in " << texTilesWRef.size() << " tiles" << endl;
     }
     
+	
+#if 0
     for (U32 j=0; j<8; ++j)
     {
         MushcoreLog::Sgl().InfoLog() << "Vertex " << j << " = " << verticesRef[j] << endl;
@@ -334,6 +339,8 @@ MushSkinTiled::TexCoordsGenerate(MushMesh4Mesh& ioMesh)
     {
         MushcoreLog::Sgl().XMLInfoLog() << texTilesWRef[i];
     }
+	
+#endif
 }
 
 void

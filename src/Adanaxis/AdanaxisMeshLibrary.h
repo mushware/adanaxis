@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } pAnBImGOeVSA1w9soZXoNg
 /*
- * $Id: AdanaxisMeshLibrary.h,v 1.2 2005/09/05 12:54:29 southa Exp $
+ * $Id: AdanaxisMeshLibrary.h,v 1.3 2006/05/03 00:58:43 southa Exp $
  * $Log: AdanaxisMeshLibrary.h,v $
+ * Revision 1.3  2006/05/03 00:58:43  southa
+ * Texturing updates
+ *
  * Revision 1.2  2005/09/05 12:54:29  southa
  * Solid rendering work
  *
@@ -47,16 +50,21 @@ public:
 
     virtual void AttendantVerticesSet(MushMesh4Mesh& ioMesh, Mushware::tVal inAnim) const;
     virtual void AttendantCreate(MushMesh4Mesh& ioMesh) const;
-
+	
+    virtual void TestObjectVerticesSet(MushMesh4Mesh& ioMesh, Mushware::tVal inAnim) const;
+    virtual void TestObjectCreate(MushMesh4Mesh& ioMesh) const;
+	
     static AdanaxisMeshLibrary& AdanaxisSgl(void);
     
 protected:
-    virtual void AttendantExtrusionContext(MushMeshLibraryExtrusionContext& outContext, const MushMesh4Mesh& inMesh, Mushware::tVal inAnim) const;
+	virtual void AttendantExtrusionContext(MushMeshLibraryExtrusionContext& outContext, const MushMesh4Mesh& inMesh, Mushware::tVal inAnim) const;
+    virtual void TestObjectExtrusionContext(MushMeshLibraryExtrusionContext& outContext, const MushMesh4Mesh& inMesh, Mushware::tVal inAnim) const;
     
 private:
     enum
     {
-        kAttendantLODFactor = 5
+        kAttendantLODFactor = 5,
+		kTestObjectLODFactor = 3
     };
         
 //%classPrototypes {

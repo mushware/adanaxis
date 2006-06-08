@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } VP8fay9XgM+kqodf58ym6g
 /*
- * $Id: MushMeshTools.h,v 1.7 2005/07/19 10:07:06 southa Exp $
+ * $Id: MushMeshTools.h,v 1.8 2006/06/01 15:39:32 southa Exp $
  * $Log: MushMeshTools.h,v $
+ * Revision 1.8  2006/06/01 15:39:32  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.7  2005/07/19 10:07:06  southa
  * Adanaxis work
  *
@@ -72,7 +75,12 @@ public:
     static Mushware::tQValPair QuaternionRotateInAxis(Mushware::U32 inAxis, Mushware::tVal inAngle);
     static Mushware::tQValPair RandomOrientation(void);
     static Mushware::tVal Random(const Mushware::tVal inMin, const Mushware::tVal inMax);
+    static Mushware::t4Val RandomVector(const Mushware::tVal inMin, const Mushware::tVal inMax);
     static void RandomAngularVelocityMake(Mushware::tQValPair& outPair, Mushware::tVal inAmount);
+	
+	static Mushware::tQValPair QuaternionRotateToXAxis(const Mushware::t4Val &inVec);
+	static Mushware::tQValPair QuaternionRotateToXYPlane(const Mushware::t4Val &inVec);
+	static Mushware::tQValPair QuaternionRotateVectorPairToXYPlane(const Mushware::t4Val &inVec1, const Mushware::t4Val &inVec2);
 };
 //%includeGuardEnd {
 #endif

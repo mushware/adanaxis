@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } s/ATdwJmdoQd9jSw8sBfiA
 /*
- * $Id: AdanaxisMeshLibrary.cpp,v 1.2 2005/09/05 12:54:29 southa Exp $
+ * $Id: AdanaxisMeshLibrary.cpp,v 1.3 2006/05/03 00:58:43 southa Exp $
  * $Log: AdanaxisMeshLibrary.cpp,v $
+ * Revision 1.3  2006/05/03 00:58:43  southa
+ * Texturing updates
+ *
  * Revision 1.2  2005/09/05 12:54:29  southa
  * Solid rendering work
  *
@@ -110,6 +113,54 @@ AdanaxisMeshLibrary::AttendantCreate(MushMesh4Mesh& ioMesh) const
     
     AttendantVerticesSet(ioMesh, 1.0);
 }    
+
+void
+AdanaxisMeshLibrary::TestObjectExtrusionContext(MushMeshLibraryExtrusionContext& outContext, const MushMesh4Mesh& inMesh, Mushware::tVal inAnim) const
+{
+    U32 number = 1;
+    
+    MushMeshDisplacement disp(t4Val(0,0,0,-5), tQValPair::RotationIdentity(), 0.5);
+	
+    //disp.RotationWRef().OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis(1, 0));
+    //MushMeshTools::QuaternionRotateInAxis(1, 0).VectorRotate(offset);
+    outContext.DispSet(disp);
+    outContext.ScaleVelocitySet(1.0);    
+}    
+
+void
+AdanaxisMeshLibrary::TestObjectVerticesSet(MushMesh4Mesh& ioMesh, tVal inAnim) const
+{
+    U32 number = 1;
+	
+    MushMeshLibraryExtrusionContext extrusionContext;
+    TestObjectExtrusionContext(extrusionContext, ioMesh, inAnim);
+    
+    MushMeshLibraryVGenExtrude vertexExtrude;
+    extrusionContext.ResetNewFace(0);
+    vertexExtrude.FaceExtrude(ioMesh, extrusionContext, number);
+}    
+
+void
+AdanaxisMeshLibrary::TestObjectCreate(MushMesh4Mesh& ioMesh) const
+{
+    MushMeshLibraryExtrusionContext extrusionContext;
+    TestObjectExtrusionContext(extrusionContext, ioMesh, 1.0);
+	
+    MushMeshLibraryFGenExtrude faceExtrude;
+    
+    MushMeshLibraryBase::Sgl().PolygonPrismCreate(ioMesh, t4Val(2,2,2,2), 4);            
+	
+    extrusionContext.ResetNewFace(0);
+    faceExtrude.FaceExtrude(ioMesh, extrusionContext, 1);
+	
+#if 0
+    extrusionContext.ResetNewFace(1);
+    faceExtrude.FaceExtrude(ioMesh, extrusionContext, number);
+#endif
+	
+    TestObjectVerticesSet(ioMesh, 1.0);
+}    
+
 
 //%outOfLineFunctions {
 

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } cQoVIV2DdH4LiqrKzfp8tw
 /*
- * $Id: MushMeshTools.cpp,v 1.6 2005/07/18 13:13:36 southa Exp $
+ * $Id: MushMeshTools.cpp,v 1.7 2006/05/01 17:39:01 southa Exp $
  * $Log: MushMeshTools.cpp,v $
+ * Revision 1.7  2006/05/01 17:39:01  southa
+ * Texture generation
+ *
  * Revision 1.6  2005/07/18 13:13:36  southa
  * Extrude to point and projectile mesh
  *
@@ -206,6 +209,24 @@ MushMeshTools::Random(const Mushware::tVal inMin, const Mushware::tVal inMax)
     return inMin + (inMax - inMin) * static_cast<double>(std::rand())/RAND_MAX;
 }
 
+Mushware::t4Val
+MushMeshTools::RandomVector(const Mushware::tVal inMin, const Mushware::tVal inMax)
+{
+	t4Val retVal;
+    for (U32 i=0; i<4; ++i)
+	{
+		if (Random(-1,1) > 0)
+		{
+			retVal.Set(Random(inMin, inMax), i);			
+		}
+		else
+		{
+			retVal.Set(-Random(inMin, inMax), i);
+		}
+	}
+	return retVal;
+}
+
 void
 MushMeshTools::RandomAngularVelocityMake(Mushware::tQValPair& outPair, Mushware::tVal inAmount)
 {
@@ -222,5 +243,57 @@ MushMeshTools::RandomAngularVelocityMake(Mushware::tQValPair& outPair, Mushware:
                                                     (1, MushMeshTools::Random(-inAmount, inAmount)));
     
     outPair.OuterMultiplyBy(orientation.Conjugate());
+}
+
+Mushware::tQValPair
+MushMeshTools::QuaternionRotateToXAxis(const Mushware::t4Val &inVec)
+{
+	// Generates a rotation which aligns the supplied vector with the x axis
+    t4Val rotVec(inVec);
+	
+	tQValPair retVal = QuaternionRotateInAxis(kAxisXW, -std::atan2(rotVec.W(), rotVec.X()));
+	retVal.VectorRotate(rotVec);
+	
+	tQValPair rotXZ = QuaternionRotateInAxis(kAxisXZ, -std::atan2(rotVec.Z(), rotVec.X()));
+	rotXZ.VectorRotate(rotVec);
+	retVal.OuterMultiplyBy(rotXZ);
+	
+	tQValPair rotXY = QuaternionRotateInAxis(kAxisXY, -std::atan2(rotVec.Y(), rotVec.X()));
+    retVal.OuterMultiplyBy(rotXY);
+    
+	return retVal;
+}
+
+Mushware::tQValPair
+MushMeshTools::QuaternionRotateToXYPlane(const Mushware::t4Val &inVec)
+{
+	/* Generates a rotation which moves the supplied vector into the xy plane
+	 * without using any rotations which change x
+	 */
+    t4Val rotVec(inVec);
+	
+	tQValPair retVal = QuaternionRotateInAxis(kAxisYW, -std::atan2(rotVec.W(), rotVec.Y()));
+	retVal.VectorRotate(rotVec);
+	
+	tQValPair rotYZ = QuaternionRotateInAxis(kAxisYZ, -std::atan2(rotVec.Z(), rotVec.Y()));
+    retVal.OuterMultiplyBy(rotYZ);
+    
+	return retVal;
+}
+
+Mushware::tQValPair
+MushMeshTools::QuaternionRotateVectorPairToXYPlane(const Mushware::t4Val &inVec1, const Mushware::t4Val &inVec2)
+{
+	/* Generates a rotation which moves the first vector to the x axis, and the second
+	 * vector into the xy plane.  Details are in the 'Projection and Rendering 1'
+	 * document (2006-06-08 version) at mushware.com, in the texture generation section
+	 */
+	
+	tQValPair qR1 = QuaternionRotateToXAxis(inVec1); // R1 matrix
+	tQValPair qR2 = QuaternionRotateToXYPlane(qR1.RotatedVector(inVec2));
+	
+	qR1.OuterMultiplyBy(qR2); // qR1 now the final rotation
+	
+	return qR1;
 }
 
