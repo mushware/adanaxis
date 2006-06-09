@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } KWHuQYUWapEShhv17q+wBA
 /*
- * $Id: MushMeshBox.h,v 1.5 2005/05/19 13:02:10 southa Exp $
+ * $Id: MushMeshBox.h,v 1.6 2006/05/01 17:39:00 southa Exp $
  * $Log: MushMeshBox.h,v $
+ * Revision 1.6  2006/05/01 17:39:00  southa
+ * Texture generation
+ *
  * Revision 1.5  2005/05/19 13:02:10  southa
  * Mac release work
  *
@@ -58,6 +61,7 @@ public:
     MushMeshBox(const T& inStartX, const T& inStartY, const T& inEndX, const T& inEndY);
 
     const tPoint SizeGet(void) const { return m_end - m_start; }
+    const tPoint Size(void) const { return m_end - m_start; }
 
     bool RegularIs(void);
     void RegularMake(void);

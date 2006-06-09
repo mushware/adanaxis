@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } I//vP+u23kIqhtgoUF+l4Q
 /*
- * $Id$
- * $Log$
+ * $Id: TestMushMeshTools.h,v 1.1 2006/06/08 20:17:32 southa Exp $
+ * $Log: TestMushMeshTools.h,v $
+ * Revision 1.1  2006/06/08 20:17:32  southa
+ * Texture tile generation method 2
+ *
  */
 
 #include "TestMushMeshStandard.h"
@@ -33,6 +36,7 @@ class TestMushMeshTools
 {
 public:
     static bool ApproxEquals(Mushware::t4Val inVec1, Mushware::t4Val inVec2);
+	static void TestFacetTransform(void);
     static MushcoreScalar TestTools(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
     static void Install(void);
 };

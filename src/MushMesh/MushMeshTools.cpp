@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } cQoVIV2DdH4LiqrKzfp8tw
 /*
- * $Id: MushMeshTools.cpp,v 1.7 2006/05/01 17:39:01 southa Exp $
+ * $Id: MushMeshTools.cpp,v 1.8 2006/06/08 20:17:31 southa Exp $
  * $Log: MushMeshTools.cpp,v $
+ * Revision 1.8  2006/06/08 20:17:31  southa
+ * Texture tile generation method 2
+ *
  * Revision 1.7  2006/05/01 17:39:01  southa
  * Texture generation
  *
@@ -47,6 +50,7 @@
 #include "MushMeshTools.h"
 
 #include "MushMeshSTL.h"
+#include "MushMesh4TextureTile.h"
 
 using namespace Mushware;
 using namespace std;
@@ -297,3 +301,172 @@ MushMeshTools::QuaternionRotateVectorPairToXYPlane(const Mushware::t4Val &inVec1
 	return qR1;
 }
 
+Mushware::t4Val
+MushMeshTools::EdgeFromVertices(const tFacetVertices& inVertices, Mushware::U32 inNum)
+{
+	MUSHCOREASSERT(inNum < inVertices.size());
+
+	U32 numVertices = inVertices.size();
+	U32 nextVertex = inNum+1;
+	if (nextVertex >= numVertices) nextVertex = 0;
+
+	return inVertices[nextVertex] - inVertices[inNum];
+}
+
+
+Mushware::U32
+MushMeshTools::LongestEdgeSelect(const tFacetVertices& inVertices)
+{
+    tVal greatestLengthSquared = 0;
+	U32 longestEdge = 0;
+	U32 numVertices = inVertices.size();
+	
+	for (U32 i=0; i<numVertices; ++i)
+	{
+		t4Val edgeVec = EdgeFromVertices(inVertices, i);
+		
+		tVal lengthSquared = edgeVec * edgeVec;
+		
+		if (lengthSquared > greatestLengthSquared)
+		{
+			greatestLengthSquared = lengthSquared;
+			longestEdge = i;
+		}
+	}
+	return longestEdge;		
+}
+
+Mushware::U32
+MushMeshTools::MostOrthogonalEdgeSelect(const tFacetVertices& inVertices, const Mushware::t4Val& inVec)
+{
+	// Returns the edge with the largest orthogonal component
+    tVal greatestOrthoComp = 0;
+	U32 mostOrthoEdge = 0;
+	tVal vecLength = inVec.Magnitude();
+	
+	MUSHCOREASSERT(vecLength > 0);
+	
+	U32 numVertices = inVertices.size();
+	
+	for (U32 i=0; i<numVertices; ++i)
+	{
+		t4Val edgeVec = EdgeFromVertices(inVertices, i);
+
+		tVal edgeVecLength = edgeVec.Magnitude();
+		
+		if (edgeVecLength > 0) // Ignore degenerate edges
+		{
+			tVal cosAngle = (inVec * edgeVec) / (vecLength * edgeVecLength);
+			MUSHCOREASSERT(cosAngle > -1.001 && cosAngle < 1.001);
+			
+			tVal cosAngleSquared = cosAngle * cosAngle;
+			
+			if (cosAngleSquared > 1) cosAngleSquared = 1;
+			
+			tVal sinAngle = std::sqrt(1 - cosAngleSquared);
+			
+			tVal orthoComp = sinAngle * edgeVecLength;
+			
+			if (orthoComp > greatestOrthoComp)
+			{
+				greatestOrthoComp = orthoComp;
+				mostOrthoEdge = i;
+			}
+		}
+	}
+	return mostOrthoEdge;
+}
+
+void
+MushMeshTools::BoundingVectorsMake(Mushware::t4Val& outMin, Mushware::t4Val& outMax, const tFacetVertices& inVertices)
+{
+	MUSHCOREASSERT(inVertices.size() > 0);
+	outMin = inVertices[0];
+	outMax = inVertices[0];
+	
+	U32 numVertices = inVertices.size();
+	
+	for (U32 i=1; i<numVertices; ++i)
+	{
+		const t4Val& vertRef = inVertices[i];
+		
+		for (U32 j=0; j<4; ++j)
+		{
+			if (vertRef.Get(j) < outMin.Get(j))
+			{
+			    outMin.Set(vertRef.Get(j), j);
+			}
+			if (vertRef.Get(j) > outMax.Get(j))
+			{
+			    outMax.Set(vertRef.Get(j), j);
+			}
+		}
+	}
+}
+
+void
+MushMeshTools::FacetToTextureTransformMake(MushMesh4TextureTile& ioTile, const tFacetVertices& inVertices)
+{
+	U32 longestEdge = MushMeshTools::LongestEdgeSelect(inVertices);
+	
+	t4Val longestEdgeVec = EdgeFromVertices(inVertices, longestEdge);
+	
+	U32 orthoEdge = MushMeshTools::MostOrthogonalEdgeSelect(inVertices, longestEdgeVec);
+	
+	t4Val orthoEdgeVec = EdgeFromVertices(inVertices, orthoEdge);
+	
+	tQValPair qR = QuaternionRotateVectorPairToXYPlane(longestEdgeVec, orthoEdgeVec);
+	
+	tFacetVertices rotatedVertices(inVertices);
+	
+	for (U32 i=0; i<rotatedVertices.size(); ++i)
+	{
+		qR.VectorRotate(rotatedVertices[i]);	
+	}
+    
+	t4Val minVec, maxVec;
+	BoundingVectorsMake(minVec, maxVec, rotatedVertices);
+	
+	t4Val spanVec = maxVec - minVec;
+	
+	if (spanVec.X() <= 0 || spanVec.Y() <= 0)
+	{
+		/* Degenerate facet which will not be rendered.  Use default values to
+		 * prevent division by zero
+		 */
+		spanVec.XSet(1);
+		spanVec.YSet(1);
+	}
+	
+#ifdef MUSHCORE_DEBUG
+	/* If the facet is planar the rotation should map all vertices to the xy plane.
+	 * If extent in z or w is more than 10% of extent in x and y, generate a warning
+	 */
+	if (std::fabs(spanVec.X()) + std::fabs(spanVec.Y()) < 0.1 * std::fabs(spanVec.Z()) + std::fabs(spanVec.W()))
+	{
+		MushcoreLog::Sgl().WarningLog() << "Significantly non-planar facet passed to MushMeshTools::FacetToTextureTransformMake" << endl;
+	}
+#endif
+	
+	const t2BoxVal& tileBox = ioTile.TileBox();
+	t2Val tileSize = tileBox.Size();
+	
+	t4Val vS = ioTile.SK() * t4Val(tileSize.X() / spanVec.X(), tileSize.Y() / spanVec.Y(), 0, 0);
+
+	if (vS.X() <= 0 || vS.Y() <= 0)
+	{
+		throw MushcoreDataFail("Degenerate tile passed to FacetToTextureTransformMake");
+	}
+	
+	t4Val vT = t4Val( (tileBox.Start().X() + tileBox.End().X() - vS.X() * (minVec.X() + maxVec.X())) / 2,
+					  (tileBox.Start().Y() + tileBox.End().Y() - vS.Y() * (minVec.Y() + maxVec.Y())) / 2,
+					  0,0);
+	
+	ioTile.QRSet(qR);
+	ioTile.VSSet(vS);
+	ioTile.VTSet(vT);
+	
+	ioTile.QRInverseSet(qR.Conjugate());
+	ioTile.VSInverseSet(t4Val(1 / vS.X(), 1 / vS.Y(), 0, 0));
+	ioTile.FacetTransformValidSet(true);
+}

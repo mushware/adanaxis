@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 1kCIwS/JA8VtB31OUyUq8Q
 /*
- * $Id: MushMesh4TextureTile.cpp,v 1.1 2006/05/01 17:39:00 southa Exp $
+ * $Id: MushMesh4TextureTile.cpp,v 1.2 2006/05/02 17:32:13 southa Exp $
  * $Log: MushMesh4TextureTile.cpp,v $
+ * Revision 1.2  2006/05/02 17:32:13  southa
+ * Texturing
+ *
  * Revision 1.1  2006/05/01 17:39:00  southa
  * Texture generation
  *
@@ -96,6 +99,7 @@ MushMesh4TextureTile::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
     ioOut << "tileBox=" << m_tileBox << ", ";
+    ioOut << "sourceFace=" << m_sourceFace << ", ";
     ioOut << "tileP0=" << m_tileP0 << ", ";
     ioOut << "tileV0=" << m_tileV0 << ", ";
     ioOut << "tileV1=" << m_tileV1 << ", ";
@@ -105,7 +109,13 @@ MushMesh4TextureTile::AutoPrint(std::ostream& ioOut) const
     ioOut << "constant=" << m_constant << ", ";
     ioOut << "uFactor=" << m_uFactor << ", ";
     ioOut << "vFactor=" << m_vFactor << ", ";
-    ioOut << "sourceFace=" << m_sourceFace;
+    ioOut << "sK=" << m_sK << ", ";
+    ioOut << "qR=" << m_qR << ", ";
+    ioOut << "vS=" << m_vS << ", ";
+    ioOut << "vT=" << m_vT << ", ";
+    ioOut << "qRInverse=" << m_qRInverse << ", ";
+    ioOut << "vSInverse=" << m_vSInverse << ", ";
+    ioOut << "facetTransformValid=" << m_facetTransformValid;
     ioOut << "]";
 }
 bool
@@ -120,6 +130,10 @@ MushMesh4TextureTile::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::st
     else if (inTagStr == "tileBox")
     {
         ioIn >> m_tileBox;
+    }
+    else if (inTagStr == "sourceFace")
+    {
+        ioIn >> m_sourceFace;
     }
     else if (inTagStr == "tileP0")
     {
@@ -157,9 +171,33 @@ MushMesh4TextureTile::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::st
     {
         ioIn >> m_vFactor;
     }
-    else if (inTagStr == "sourceFace")
+    else if (inTagStr == "sK")
     {
-        ioIn >> m_sourceFace;
+        ioIn >> m_sK;
+    }
+    else if (inTagStr == "qR")
+    {
+        ioIn >> m_qR;
+    }
+    else if (inTagStr == "vS")
+    {
+        ioIn >> m_vS;
+    }
+    else if (inTagStr == "vT")
+    {
+        ioIn >> m_vT;
+    }
+    else if (inTagStr == "qRInverse")
+    {
+        ioIn >> m_qRInverse;
+    }
+    else if (inTagStr == "vSInverse")
+    {
+        ioIn >> m_vSInverse;
+    }
+    else if (inTagStr == "facetTransformValid")
+    {
+        ioIn >> m_facetTransformValid;
     }
     else 
     {
@@ -172,6 +210,8 @@ MushMesh4TextureTile::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
     ioOut.TagSet("tileBox");
     ioOut << m_tileBox;
+    ioOut.TagSet("sourceFace");
+    ioOut << m_sourceFace;
     ioOut.TagSet("tileP0");
     ioOut << m_tileP0;
     ioOut.TagSet("tileV0");
@@ -190,7 +230,19 @@ MushMesh4TextureTile::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_uFactor;
     ioOut.TagSet("vFactor");
     ioOut << m_vFactor;
-    ioOut.TagSet("sourceFace");
-    ioOut << m_sourceFace;
+    ioOut.TagSet("sK");
+    ioOut << m_sK;
+    ioOut.TagSet("qR");
+    ioOut << m_qR;
+    ioOut.TagSet("vS");
+    ioOut << m_vS;
+    ioOut.TagSet("vT");
+    ioOut << m_vT;
+    ioOut.TagSet("qRInverse");
+    ioOut << m_qRInverse;
+    ioOut.TagSet("vSInverse");
+    ioOut << m_vSInverse;
+    ioOut.TagSet("facetTransformValid");
+    ioOut << m_facetTransformValid;
 }
-//%outOfLineFunctions } wd/cV+Xz/5o25589swP2rw
+//%outOfLineFunctions } VWh76cdFN0/gg1hIrFduDA

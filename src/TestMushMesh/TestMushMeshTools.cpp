@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } Z5M+0kNmdF0ldv1BT2B0fQ
 /*
- * $Id$
- * $Log$
+ * $Id: TestMushMeshTools.cpp,v 1.1 2006/06/08 20:17:32 southa Exp $
+ * $Log: TestMushMeshTools.cpp,v $
+ * Revision 1.1  2006/06/08 20:17:32  southa
+ * Texture tile generation method 2
+ *
  */
 
 #include "TestMushMeshTools.h"
@@ -42,6 +45,130 @@ TestMushMeshTools::ApproxEquals(Mushware::t4Val inVec1, Mushware::t4Val inVec2)
         }
     }
     return retVal;
+}
+
+void
+TestMushMeshTools::TestFacetTransform(void)
+{
+	for (U32 i=0; i<100; ++i)
+	{	
+		MushMeshTools::tFacetVertices vertices;
+		vertices.push_back(t4Val(3,4,0,0)); // edge 0 = (-1,-3, 0, 0)
+		vertices.push_back(t4Val(2,1,0,0)); // edge 1 = (-1, 0, 0, 0)
+		vertices.push_back(t4Val(1,1,0,0)); // edge 2 = ( 0, 2, 0, 0)
+		vertices.push_back(t4Val(1,3,0,0)); // edge 3 = ( 2, 1, 0, 0)
+		
+		if (i == 0)
+		{
+			t4Val minVec, maxVec;
+			
+			MushMeshTools::BoundingVectorsMake(minVec, maxVec, vertices);
+			
+			if (minVec != t4Val(1,1,0,0) || maxVec != t4Val(3,4,0,0))
+			{
+				std::ostringstream message;
+				message << "BoundingVectorsMake failed: calculated bounds were " << minVec << "," << maxVec << " from vertex list " << vertices;
+				throw MushcoreCommandFail(message.str());
+			}
+			
+		}
+		else
+		{
+			tQValPair rotation = MushMeshTools::RandomOrientation();
+		
+			for (U32 j=0; j<vertices.size(); ++j)
+			{
+				rotation.VectorRotate(vertices[j]);
+			}
+		}
+		
+		U32 longestEdge = MushMeshTools::LongestEdgeSelect(vertices);
+		
+		if (longestEdge != 0)
+		{
+			std::ostringstream message;
+			message << "LongestEdgeSelect failed: selected edge " << longestEdge << " from vertex list " << vertices;
+			throw MushcoreCommandFail(message.str());
+		}
+		
+		t4Val longestEdgeVec = vertices[ (longestEdge + 1) % vertices.size() ] - vertices[longestEdge];
+		
+		U32 mostOrthoEdge = MushMeshTools::MostOrthogonalEdgeSelect(vertices, longestEdgeVec);
+
+		if (mostOrthoEdge != 3)
+		{
+			std::ostringstream message;
+			message << "MostOrthogonalEdgeSelect failed: selected edge " << mostOrthoEdge << " from vertex list " << vertices;
+			throw MushcoreCommandFail(message.str());
+		}
+		
+	}
+	
+	for (U32 i=0; i<5; ++i)
+	{
+		MushMesh4TextureTile texTile;
+		
+		t2Val boxSize(MushMeshTools::Random(0.1,1), MushMeshTools::Random(0.1,1));
+		t2Val boxStart(MushMeshTools::Random(0, 1-boxSize.X()), MushMeshTools::Random(0, 1-boxSize.Y()));
+		t2Val boxEnd = boxStart+boxSize;
+		
+		texTile.TileBoxSet(t2BoxVal(boxStart, boxEnd));
+		
+		MushMeshTools::tFacetVertices vertices;
+		vertices.push_back(t4Val(MushMeshTools::Random(-10,10),MushMeshTools::Random(-10,10),0,0));
+		vertices.push_back(t4Val(MushMeshTools::Random(-10,10),MushMeshTools::Random(-10,10),0,0));
+		vertices.push_back(t4Val(MushMeshTools::Random(-10,10),MushMeshTools::Random(-10,10),0,0));
+		vertices.push_back(t4Val(MushMeshTools::Random(-10,10),MushMeshTools::Random(-10,10),0,0));
+		U32 numVertices = vertices.size();
+		
+		{
+			tQValPair rotation = MushMeshTools::RandomOrientation();
+			
+			for (U32 j=0; j<vertices.size(); ++j)
+			{
+				rotation.VectorRotate(vertices[j]);
+			}
+		}
+		
+		MushMeshTools::FacetToTextureTransformMake(texTile, vertices);
+		
+		std::vector<Mushware::t2Val> transVert(numVertices);
+		std::vector<Mushware::t4Val> trans4Vert(numVertices);
+		
+		for (Mushware::U32 j=0; j<numVertices; ++j)
+		{
+			texTile.FacetToTexture(transVert[j], vertices[j]);
+			t4Val reverseVec;
+			texTile.TextureToFacet(reverseVec, transVert[j]);
+			
+			if (!ApproxEquals(reverseVec, vertices[j]))
+			{
+				std::ostringstream message;
+				message << "FacetToTextureToFacet failed: expected " << vertices[j] << ", got " << reverseVec <<
+					"(texture position " << transVert[j] << ")";
+				throw MushcoreCommandFail(message.str());
+			}
+			trans4Vert[j] = t4Val(transVert[j].X(), transVert[j].Y(), 0, 0);
+		}
+		
+		t4Val minVec, maxVec;
+		
+		MushMeshTools::BoundingVectorsMake(minVec, maxVec, trans4Vert);
+
+		if (!ApproxEquals(minVec, t4Val(boxStart.X(), boxStart.Y(), 0, 0)))
+		{
+			std::ostringstream message;
+			message << "Tile minimum mismatch: expected " << boxStart << ", got " << minVec;
+			throw MushcoreCommandFail(message.str());
+		}
+			
+		if (!ApproxEquals(maxVec, t4Val(boxEnd.X(), boxEnd.Y(), 0, 0)))
+		{
+			std::ostringstream message;
+			message << "Tile minimum mismatch: expected " << boxEnd << ", got " << maxVec;
+			throw MushcoreCommandFail(message.str());
+		}
+	}
 }
 
 MushcoreScalar
@@ -141,6 +268,8 @@ TestMushMeshTools::TestTools(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 			}
 		}
     }
+	
+	TestFacetTransform();
 	
     return MushcoreScalar(0);
 }

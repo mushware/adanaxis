@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } Gpt6onVQ6MJeAFRAfWsomw
 /*
- * $Id: MushMesh4TextureTile.h,v 1.1 2006/05/01 17:39:00 southa Exp $
+ * $Id: MushMesh4TextureTile.h,v 1.2 2006/05/02 17:32:13 southa Exp $
  * $Log: MushMesh4TextureTile.h,v $
+ * Revision 1.2  2006/05/02 17:32:13  southa
+ * Texturing
+ *
  * Revision 1.1  2006/05/01 17:39:00  southa
  * Texture generation
  *
@@ -33,6 +36,7 @@
 #include "MushMeshStandard.h"
 
 #include "MushMeshBox.h"
+#include "MushMeshQuaternionPair.h"
 #include "MushMeshVector.h"
 
 //:generate virtual standard ostream xml1
@@ -40,11 +44,18 @@ class MushMesh4TextureTile : public MushcoreVirtualObject
 {
 public:
     typedef Mushware::t4Val tVertex;
-    void Transform(Mushware::t4Val& outVec, const Mushware::t2Val& inVec) const;
+	MushMesh4TextureTile() : m_sK(1), m_facetTransformValid(false) {}
+    void Transform(Mushware::t4Val& outVec, const Mushware::t2Val& inVec) const; // Method 1
+	void FacetToTexture(Mushware::t2Val& outVec, const Mushware::t4Val& inVec) const; // Method 2
+	void TextureToFacet(Mushware::t4Val& outVec, const Mushware::t2Val& inVec) const; // Method 2
+	
     void Make(void);
-    
+
 private:
-    Mushware::t2BoxVal m_tileBox; //:readwrite
+    Mushware::t2BoxVal m_tileBox; //:readwrite	
+    Mushware::U32 m_sourceFace; //:readwrite
+	
+	// Method 1 values
     Mushware::t2Val m_tileP0; //:readwrite
     Mushware::t2Val m_tileV0; //:readwrite
     Mushware::t2Val m_tileV1; //:readwrite
@@ -55,13 +66,26 @@ private:
     Mushware::t4Val m_constant; //:readwrite
     Mushware::t4Val m_uFactor; //:readwrite
     Mushware::t4Val m_vFactor; //:readwrite
-    
-    Mushware::U32 m_sourceFace; //:readwrite
-    
+
+	// Method 2 values
+	Mushware::tVal m_sK; //:readwrite
+
+	Mushware::tQValPair m_qR; //:readwrite
+	Mushware::t4Val m_vS; //:readwrite
+	Mushware::t4Val m_vT; //:readwrite
+	
+	Mushware::tQValPair m_qRInverse; //:readwrite
+	Mushware::t4Val m_vSInverse; //:readwrite
+    // m_vTInverse can be achieved by subtracting m_vT
+	
+	bool m_facetTransformValid; //:readwrite
+	
 //%classPrototypes {
 public:
     const Mushware::t2BoxVal& TileBox(void) const { return m_tileBox; }
     void TileBoxSet(const Mushware::t2BoxVal& inValue) { m_tileBox=inValue; }
+    const Mushware::U32& SourceFace(void) const { return m_sourceFace; }
+    void SourceFaceSet(const Mushware::U32& inValue) { m_sourceFace=inValue; }
     const Mushware::t2Val& TileP0(void) const { return m_tileP0; }
     void TileP0Set(const Mushware::t2Val& inValue) { m_tileP0=inValue; }
     const Mushware::t2Val& TileV0(void) const { return m_tileV0; }
@@ -80,8 +104,20 @@ public:
     void UFactorSet(const Mushware::t4Val& inValue) { m_uFactor=inValue; }
     const Mushware::t4Val& VFactor(void) const { return m_vFactor; }
     void VFactorSet(const Mushware::t4Val& inValue) { m_vFactor=inValue; }
-    const Mushware::U32& SourceFace(void) const { return m_sourceFace; }
-    void SourceFaceSet(const Mushware::U32& inValue) { m_sourceFace=inValue; }
+    const Mushware::tVal& SK(void) const { return m_sK; }
+    void SKSet(const Mushware::tVal& inValue) { m_sK=inValue; }
+    const Mushware::tQValPair& QR(void) const { return m_qR; }
+    void QRSet(const Mushware::tQValPair& inValue) { m_qR=inValue; }
+    const Mushware::t4Val& VS(void) const { return m_vS; }
+    void VSSet(const Mushware::t4Val& inValue) { m_vS=inValue; }
+    const Mushware::t4Val& VT(void) const { return m_vT; }
+    void VTSet(const Mushware::t4Val& inValue) { m_vT=inValue; }
+    const Mushware::tQValPair& QRInverse(void) const { return m_qRInverse; }
+    void QRInverseSet(const Mushware::tQValPair& inValue) { m_qRInverse=inValue; }
+    const Mushware::t4Val& VSInverse(void) const { return m_vSInverse; }
+    void VSInverseSet(const Mushware::t4Val& inValue) { m_vSInverse=inValue; }
+    const bool& FacetTransformValid(void) const { return m_facetTransformValid; }
+    void FacetTransformValidSet(const bool& inValue) { m_facetTransformValid=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -89,13 +125,33 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } G/Ll8tk2m9FtmMfiWmZPdw
+//%classPrototypes } M6CgAHrum31XdyHIhMx8ZA
 };
 
 inline void
 MushMesh4TextureTile::Transform(Mushware::t4Val& outVec, const Mushware::t2Val& inVec) const
 {
     outVec = m_constant + inVec.X() * m_uFactor + inVec.Y() * m_vFactor;
+}
+
+inline void
+MushMesh4TextureTile::FacetToTexture(Mushware::t2Val& outVec, const Mushware::t4Val& inVec) const
+{
+	MUSHCOREASSERT(m_facetTransformValid);
+	Mushware::t4Val rotVec = m_qR.RotatedVector(inVec);
+	rotVec *= m_vS;
+	rotVec += m_vT;
+	outVec = Mushware::t2Val(rotVec.X(), rotVec.Y());
+}
+
+inline void
+MushMesh4TextureTile::TextureToFacet(Mushware::t4Val& outVec, const Mushware::t2Val& inVec) const
+{
+	MUSHCOREASSERT(m_facetTransformValid);
+	outVec = Mushware::t4Val(inVec.X(), inVec.Y(), 0, 0);
+	outVec -= m_vT;
+	outVec *= m_vSInverse;
+	outVec = m_qRInverse.RotatedVector(outVec);	
 }
 
 //%inlineHeader {

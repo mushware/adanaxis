@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } VP8fay9XgM+kqodf58ym6g
 /*
- * $Id: MushMeshTools.h,v 1.8 2006/06/01 15:39:32 southa Exp $
+ * $Id: MushMeshTools.h,v 1.9 2006/06/08 20:17:31 southa Exp $
  * $Log: MushMeshTools.h,v $
+ * Revision 1.9  2006/06/08 20:17:31  southa
+ * Texture tile generation method 2
+ *
  * Revision 1.8  2006/06/01 15:39:32  southa
  * DrawArray verification and fixes
  *
@@ -57,6 +60,8 @@
 #include "MushMeshQuaternionPair.h"
 #include "MushMeshPreMatrix.h"
 
+class MushMesh4TextureTile;
+
 class MushMeshTools
 {
 public:
@@ -70,6 +75,8 @@ public:
         kAxisYZ = 5
     };
     
+	typedef std::vector<Mushware::t4Val> tFacetVertices;
+	
     static Mushware::t3x3Val RotateInXY(Mushware::tVal inAngle);
     static Mushware::t4x4Val MatrixRotateInAxis(Mushware::U32 inAxis, Mushware::tVal inAngle);
     static Mushware::tQValPair QuaternionRotateInAxis(Mushware::U32 inAxis, Mushware::tVal inAngle);
@@ -81,6 +88,13 @@ public:
 	static Mushware::tQValPair QuaternionRotateToXAxis(const Mushware::t4Val &inVec);
 	static Mushware::tQValPair QuaternionRotateToXYPlane(const Mushware::t4Val &inVec);
 	static Mushware::tQValPair QuaternionRotateVectorPairToXYPlane(const Mushware::t4Val &inVec1, const Mushware::t4Val &inVec2);
+	
+	static Mushware::t4Val EdgeFromVertices(const tFacetVertices& inVertices, Mushware::U32 inNum);
+	static Mushware::U32 LongestEdgeSelect(const tFacetVertices& inVertices);
+	static Mushware::U32 MostOrthogonalEdgeSelect(const tFacetVertices& inVertices, const Mushware::t4Val& inVec);
+	static void BoundingVectorsMake(Mushware::t4Val& outMin, Mushware::t4Val& outMax, const tFacetVertices& inVertices);
+
+	static void FacetToTextureTransformMake(MushMesh4TextureTile& ioTile, const std::vector<Mushware::t4Val>& inVertices);
 };
 //%includeGuardEnd {
 #endif
