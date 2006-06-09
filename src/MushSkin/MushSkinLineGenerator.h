@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } tuTK6NcDPsNibg7CubVnHw
 /*
- * $Id: MushSkinLineGenerator.h,v 1.3 2006/06/07 12:15:20 southa Exp $
+ * $Id: MushSkinLineGenerator.h,v 1.4 2006/06/07 14:25:56 southa Exp $
  * $Log: MushSkinLineGenerator.h,v $
+ * Revision 1.4  2006/06/07 14:25:56  southa
+ * Grid texture fixes
+ *
  * Revision 1.3  2006/06/07 12:15:20  southa
  * Grid and test textures
  *
@@ -54,7 +57,9 @@ public:
 									  Mushware::U32 inNumOctaves, Mushware::tVal inOctaveRatio);
 	void GridLineGenerate(std::vector<Mushware::tVal>& outData, Mushware::U32 inNumPixels,
 						  const Mushware::t4Val& inStartPos, const Mushware::t4Val& inEndPos);
-
+	void TileShowLineGenerate(std::vector<Mushware::tVal>& outData, Mushware::U32 inNumPixels,
+							  const std::vector<Mushware::t4Val>& inTexCoords,
+							  const Mushware::t4Val& inStartUV, const Mushware::t4Val& inEndUV);
 private:
 	Mushware::t4U32 HashValues(const Mushware::t4Val& inVec);
 	Mushware::t4Val FadeValues(const Mushware::t4Val& inVec);
@@ -63,7 +68,10 @@ private:
 	
 	Mushware::tVal CellNoiseGenerate(const Mushware::t4Val& inPos);
 	Mushware::tVal GridGenerate(const Mushware::t4Val& inPos);
-	
+	inline Mushware::tVal TileShowGenerate(const Mushware::t4Val& inPos,
+										   const std::vector<Mushware::t2Val>& inStartPoints,
+										   const std::vector<Mushware::t2Val>& inEdges);
+
 	std::vector<Mushware::U8> m_cellNoiseHash;
 	Mushware::t4Val m_gridRatioOver2; //:readwrite;
 	Mushware::t4Val m_gridSharpness; //:readwrite;
@@ -267,6 +275,69 @@ MushSkinLineGenerator::GridLineGenerate(std::vector<Mushware::tVal>& outData, Mu
 	}
 }
 
+inline Mushware::tVal
+MushSkinLineGenerator::TileShowGenerate(const Mushware::t4Val& inPos,
+										const std::vector<Mushware::t2Val>& inStartPoints,
+										const std::vector<Mushware::t2Val>& inEdges)
+{
+	Mushware::U32 numEdges = inEdges.size();
+	
+	bool positive = false;
+	bool negative = false;
+	
+	for (Mushware::U32 i=0; i<numEdges; ++i)
+	{
+		Mushware::t2Val startToPos = Mushware::t2Val(inPos.X(), inPos.Y()) - inStartPoints[i];
+		Mushware::tVal sign = startToPos.X() * inEdges[i].Y() - startToPos.Y() * inEdges[i].X();
+		if (sign >= 0)
+		{
+			positive = true;
+		}
+		else
+		{
+			negative = true;
+		}	
+	}
+	Mushware::tVal retVal;
+	if (positive && negative)
+	{
+		retVal = 0; // Outside of tile	
+	}
+	else
+	{
+		retVal = 1;	
+	}
+	return retVal;
+}	
+
+inline void
+MushSkinLineGenerator::TileShowLineGenerate(std::vector<Mushware::tVal>& outData, Mushware::U32 inNumPixels,
+											const std::vector<Mushware::t4Val>& inTexCoords,
+											const Mushware::t4Val& inStartUV, const Mushware::t4Val& inEndUV)
+{
+	MUSHCOREASSERT(outData.size() >= inNumPixels);;
+	
+    Mushware::t4Val uvPos = inStartUV;
+    Mushware::t4Val uvPosStep = (inEndUV - inStartUV) / inNumPixels;
+		
+	Mushware::U32 texCoordsSize = inTexCoords.size();
+	
+	std::vector<Mushware::t2Val> startVectors(texCoordsSize);
+	std::vector<Mushware::t2Val> edgeVectors(texCoordsSize);
+	
+	for (Mushware::U32 i=0; i<texCoordsSize; ++i)
+	{
+		startVectors[i] = Mushware::t2Val(inTexCoords[i].X(), inTexCoords[i].Y());
+		Mushware::t4Val edge = inTexCoords[ (i+1) % texCoordsSize ] - inTexCoords[i];
+		edgeVectors[i] = Mushware::t2Val(edge.X(), edge.Y());
+	}
+	
+	for (Mushware::U32 i=0; i<inNumPixels; ++i)
+	{
+		outData[i] = TileShowGenerate(uvPos, startVectors, edgeVectors);
+		uvPos += uvPosStep;
+	}
+}
 
 //%inlineHeader {
 inline std::ostream&

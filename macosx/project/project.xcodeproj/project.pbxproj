@@ -92,6 +92,10 @@
 		7A45EABC07F46BE500773CF6 /* GameSoundStreamSpec.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A45EAB807F46BE500773CF6 /* GameSoundStreamSpec.h */; };
 		7A45EABD07F46BE500773CF6 /* GameSoundStreamSpec.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A45EAB907F46BE500773CF6 /* GameSoundStreamSpec.cpp */; };
 		7A47C7D8083CEB5D00FE6EF4 /* PlatformMiscUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B8D005A49D05002A5F1C /* PlatformMiscUtils.cpp */; };
+		7A492DF90A39ACA200EE1835 /* MushSkinPixelSourceTileShow.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A492DF70A39ACA200EE1835 /* MushSkinPixelSourceTileShow.h */; };
+		7A492DFA0A39ACA200EE1835 /* MushSkinPixelSourceTileShow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A492DF80A39ACA200EE1835 /* MushSkinPixelSourceTileShow.cpp */; };
+		7A492F300A39CB6D00EE1835 /* MushSkinTiledMethod1.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A492F2E0A39CB6D00EE1835 /* MushSkinTiledMethod1.h */; };
+		7A492F310A39CB6D00EE1835 /* MushSkinTiledMethod1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A492F2F0A39CB6D00EE1835 /* MushSkinTiledMethod1.cpp */; };
 		7A4D63CE0A36056C00CCE430 /* MushSkinPixelSourceProc.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A4D63CC0A36056C00CCE430 /* MushSkinPixelSourceProc.h */; };
 		7A4D63CF0A36056C00CCE430 /* MushSkinPixelSourceProc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A4D63CD0A36056C00CCE430 /* MushSkinPixelSourceProc.cpp */; };
 		7A4FA60705F9F0FE00297E23 /* MaurheenGame.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A4FA60305F9F0FE00297E23 /* MaurheenGame.h */; };
@@ -2626,6 +2630,10 @@
 		7A45EAB107F46A9900773CF6 /* GameSoundSpec.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameSoundSpec.cpp; sourceTree = "<group>"; };
 		7A45EAB807F46BE500773CF6 /* GameSoundStreamSpec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSoundStreamSpec.h; sourceTree = "<group>"; };
 		7A45EAB907F46BE500773CF6 /* GameSoundStreamSpec.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameSoundStreamSpec.cpp; sourceTree = "<group>"; };
+		7A492DF70A39ACA200EE1835 /* MushSkinPixelSourceTileShow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushSkinPixelSourceTileShow.h; sourceTree = "<group>"; };
+		7A492DF80A39ACA200EE1835 /* MushSkinPixelSourceTileShow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushSkinPixelSourceTileShow.cpp; sourceTree = "<group>"; };
+		7A492F2E0A39CB6D00EE1835 /* MushSkinTiledMethod1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushSkinTiledMethod1.h; sourceTree = "<group>"; };
+		7A492F2F0A39CB6D00EE1835 /* MushSkinTiledMethod1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushSkinTiledMethod1.cpp; sourceTree = "<group>"; };
 		7A4D63CC0A36056C00CCE430 /* MushSkinPixelSourceProc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushSkinPixelSourceProc.h; sourceTree = "<group>"; };
 		7A4D63CD0A36056C00CCE430 /* MushSkinPixelSourceProc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushSkinPixelSourceProc.cpp; sourceTree = "<group>"; };
 		7A4FA55C05F9EBCA00297E23 /* start.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = start.txt; sourceTree = "<group>"; };
@@ -3264,8 +3272,6 @@
 		7A70CEB8085DF1C50055C6FB /* AdanaxisGame.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = AdanaxisGame.h; sourceTree = "<group>"; };
 		7A70CEB9085DF1C50055C6FB /* AdanaxisInfo.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = AdanaxisInfo.cpp; sourceTree = "<group>"; };
 		7A70CEBA085DF1C50055C6FB /* AdanaxisInfo.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = AdanaxisInfo.h; sourceTree = "<group>"; };
-		7A70CEBB085DF1C50055C6FB /* AdanaxisPixelSource.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = AdanaxisPixelSource.cpp; sourceTree = "<group>"; };
-		7A70CEBC085DF1C50055C6FB /* AdanaxisPixelSource.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = AdanaxisPixelSource.h; sourceTree = "<group>"; };
 		7A70CEBD085DF1C50055C6FB /* AdanaxisStandard.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = AdanaxisStandard.cpp; sourceTree = "<group>"; };
 		7A70CEBE085DF1C50055C6FB /* AdanaxisStandard.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = AdanaxisStandard.h; sourceTree = "<group>"; };
 		7A70CEBF085DF1C50055C6FB /* AdanaxisSTL.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = AdanaxisSTL.cpp; sourceTree = "<group>"; };
@@ -5135,8 +5141,6 @@
 				7AFB11E2088C052000F097A3 /* AdanaxisPieceKhazi.h */,
 				7AD1864B0883DC4D00F5459F /* AdanaxisPieceProjectile.cpp */,
 				7AD1864A0883DC4D00F5459F /* AdanaxisPieceProjectile.h */,
-				7A70CEBB085DF1C50055C6FB /* AdanaxisPixelSource.cpp */,
-				7A70CEBC085DF1C50055C6FB /* AdanaxisPixelSource.h */,
 				7AD42BF60866FAB0002348BD /* AdanaxisPlayer.cpp */,
 				7AD42BF50866FAB0002348BD /* AdanaxisPlayer.h */,
 				7A218C3A08729E8900EEA4E1 /* AdanaxisRender.cpp */,
@@ -5694,6 +5698,8 @@
 				7A57EB620A332A6C004F1E44 /* MushSkinLineGenerator.h */,
 				7ACF536C08C35E3600BBEB7E /* MushSkinTiled.cpp */,
 				7ACF536B08C35E3600BBEB7E /* MushSkinTiled.h */,
+				7A492F2F0A39CB6D00EE1835 /* MushSkinTiledMethod1.cpp */,
+				7A492F2E0A39CB6D00EE1835 /* MushSkinTiledMethod1.h */,
 				7A38D5C20A30AF2900B790E2 /* MushSkinPixelSourceCellNoise.cpp */,
 				7A38D5C10A30AF2900B790E2 /* MushSkinPixelSourceCellNoise.h */,
 				7A578EC30A36DC9B00CB3F1C /* MushSkinPixelSourceGrid.cpp */,
@@ -5702,6 +5708,8 @@
 				7A4D63CC0A36056C00CCE430 /* MushSkinPixelSourceProc.h */,
 				7A3C5D510A34427300BC1598 /* MushSkinPixelSourceTest.cpp */,
 				7A3C5D500A34427300BC1598 /* MushSkinPixelSourceTest.h */,
+				7A492DF80A39ACA200EE1835 /* MushSkinPixelSourceTileShow.cpp */,
+				7A492DF70A39ACA200EE1835 /* MushSkinPixelSourceTileShow.h */,
 				7ACF535808C35D1300BBEB7E /* MushSkinStandard.cpp */,
 				7ACF535908C35D1300BBEB7E /* MushSkinStandard.h */,
 				7A57EB860A33404B004F1E44 /* MushSkinUtil.cpp */,
@@ -6819,6 +6827,8 @@
 				7A3C5D520A34427300BC1598 /* MushSkinPixelSourceTest.h in Headers */,
 				7A4D63CE0A36056C00CCE430 /* MushSkinPixelSourceProc.h in Headers */,
 				7A578EC40A36DC9B00CB3F1C /* MushSkinPixelSourceGrid.h in Headers */,
+				7A492DF90A39ACA200EE1835 /* MushSkinPixelSourceTileShow.h in Headers */,
+				7A492F300A39CB6D00EE1835 /* MushSkinTiledMethod1.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9092,6 +9102,8 @@
 				7A3C5D530A34427300BC1598 /* MushSkinPixelSourceTest.cpp in Sources */,
 				7A4D63CF0A36056C00CCE430 /* MushSkinPixelSourceProc.cpp in Sources */,
 				7A578EC50A36DC9B00CB3F1C /* MushSkinPixelSourceGrid.cpp in Sources */,
+				7A492DFA0A39ACA200EE1835 /* MushSkinPixelSourceTileShow.cpp in Sources */,
+				7A492F310A39CB6D00EE1835 /* MushSkinTiledMethod1.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9786,6 +9798,7 @@
 				MUSH_FRAMEWORK_HEADERS = "../../src ../../src/API";
 				MUSH_FRAMEWORK_INSTALL_PATH = "@executable_path/../Frameworks";
 				PREBINDING = NO;
+				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO;
 				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 			};
 			name = Development;
@@ -9832,6 +9845,7 @@
 				MUSH_FRAMEWORK_HEADERS = "../../src ../../src/API";
 				MUSH_FRAMEWORK_INSTALL_PATH = "@executable_path/../Frameworks";
 				PREBINDING = NO;
+				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO;
 				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 			};
 			name = Deployment;

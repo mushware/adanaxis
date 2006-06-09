@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef MUSHSKINTILED_H
-#define MUSHSKINTILED_H
-//%includeGuardStart } kZD0CEqivw3yeKDiSUrmlA
+#ifndef MUSHSKINPIXELSOURCETILESHOW_H
+#define MUSHSKINPIXELSOURCETILESHOW_H
+//%includeGuardStart } eUJQoAykO9ARdk6mWyAhDw
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushSkin/MushSkinTiled.h
+ * File: src/MushSkin/MushSkinPixelSourceTileShow.h
  *
  * Copyright: Andy Southgate 2005-2006
  *
@@ -19,37 +19,32 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } wyD7bsStwCgye5e+C10+aw
+//%Header } wZmoCsViltQDVTzpLXEYAw
 /*
- * $Id: MushSkinTiled.h,v 1.1 2006/06/07 12:15:22 southa Exp $
- * $Log: MushSkinTiled.h,v $
- * Revision 1.1  2006/06/07 12:15:22  southa
- * Grid and test textures
- *
- * Revision 1.2  2006/06/01 15:39:40  southa
- * DrawArray verification and fixes
- *
- * Revision 1.1  2005/08/29 18:40:57  southa
- * Solid rendering work
- *
+ * $Id$
+ * $Log$
  */
 
-#include "MushSkinStandard.h"
+#include "MushSkinLineGenerator.h"
+#include "MushSkinPixelSourceProc.h"
+#include "MushSkinUtil.h"
 
+//:xml1base MushSkinPixelSourceProc
 //:generate virtual standard ostream xml1
-class MushSkinTiled : public MushcoreVirtualObject
+class MushSkinPixelSourceTileShow : public MushSkinPixelSourceProc
 {
 public:
-    MushSkinTiled();
-    
-    virtual void DivideSize(Mushware::t2U32& outSizes, Mushware::U32 inNumFacets);
-    virtual void TexCoordsGenerate(MushMesh4Mesh& ioMesh);
- 
+    MushSkinPixelSourceTileShow();
+    virtual void ParamDecode(const MushRubyValue& inName, const MushRubyValue& inValue);
+	virtual void ToTextureCreate(MushGLTexture& outTexture);
+	virtual void TileShowLineGenerate(Mushware::U8 *outpTileData,
+									  Mushware::U32 inNumPixels, const std::vector<Mushware::t4Val>& texCoords,
+									  const Mushware::t4Val& inStartUV, const Mushware::t4Val& inEndUV);
+	
 protected:
-
+		
 private:
-    Mushware::tVal m_pullInRatio;
-        
+	MushSkinLineGenerator m_lineGenerator;
 //%classPrototypes {
 public:
     virtual const char *AutoName(void) const;
@@ -63,12 +58,12 @@ public:
 };
 //%inlineHeader {
 inline std::ostream&
-operator<<(std::ostream& ioOut, const MushSkinTiled& inObj)
+operator<<(std::ostream& ioOut, const MushSkinPixelSourceTileShow& inObj)
 {
     inObj.AutoPrint(ioOut);
     return ioOut;
 }
-//%inlineHeader } G5CINZQknhQNvC3mkG1rWg
+//%inlineHeader } fNt+LMtJ3yA7duDJ7wAmKg
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

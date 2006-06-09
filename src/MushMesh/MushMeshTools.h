@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } VP8fay9XgM+kqodf58ym6g
 /*
- * $Id: MushMeshTools.h,v 1.9 2006/06/08 20:17:31 southa Exp $
+ * $Id: MushMeshTools.h,v 1.10 2006/06/09 11:43:03 southa Exp $
  * $Log: MushMeshTools.h,v $
+ * Revision 1.10  2006/06/09 11:43:03  southa
+ * Facet to texture transformation
+ *
  * Revision 1.9  2006/06/08 20:17:31  southa
  * Texture tile generation method 2
  *
@@ -60,6 +63,7 @@
 #include "MushMeshQuaternionPair.h"
 #include "MushMeshPreMatrix.h"
 
+class MushMesh4Mesh;
 class MushMesh4TextureTile;
 
 class MushMeshTools
@@ -95,6 +99,10 @@ public:
 	static void BoundingVectorsMake(Mushware::t4Val& outMin, Mushware::t4Val& outMax, const tFacetVertices& inVertices);
 
 	static void FacetToTextureTransformMake(MushMesh4TextureTile& ioTile, const std::vector<Mushware::t4Val>& inVertices);
+	static void VerticesForFacet(std::vector<Mushware::t4Val>& outVertices, const MushMesh4Mesh& inMesh,
+								 Mushware::U32 inFaceNum, Mushware::U32 inFacetNum);
+	static void TextureCoordsForFacet(std::vector<Mushware::t4Val>& outTexCoords, const MushMesh4Mesh& inMesh,
+									  Mushware::U32 inFaceNum, Mushware::U32 inFacetNum);
 };
 //%includeGuardEnd {
 #endif

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } vh/xCnesmbXGxXqZK5YEaA
 /*
- * $Id: MushGLTexture.cpp,v 1.9 2006/06/06 17:58:32 southa Exp $
+ * $Id: MushGLTexture.cpp,v 1.10 2006/06/07 12:15:19 southa Exp $
  * $Log: MushGLTexture.cpp,v $
+ * Revision 1.10  2006/06/07 12:15:19  southa
+ * Grid and test textures
+ *
  * Revision 1.9  2006/06/06 17:58:32  southa
  * Ruby texture definition
  *
@@ -438,6 +441,7 @@ MushGLTexture::RubyPreCache(Mushware::tRubyArgC inArgC, Mushware::tRubyValue *in
 		
 		MushGLTexture *pTexture = MushcoreData<MushGLTexture>::Sgl().Get(textureName);
 		pTexture->Make();
+		pTexture->Bind();
 	}
 	catch (MushcoreFail& e)
 	{

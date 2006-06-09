@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } iSYoQ/Dev9AAdIImPBbrVw
 /*
- * $Id: MushSkin.h,v 1.2 2006/06/01 15:39:40 southa Exp $
+ * $Id: MushSkin.h,v 1.3 2006/06/07 12:15:20 southa Exp $
  * $Log: MushSkin.h,v $
+ * Revision 1.3  2006/06/07 12:15:20  southa
+ * Grid and test textures
+ *
  * Revision 1.2  2006/06/01 15:39:40  southa
  * DrawArray verification and fixes
  *
@@ -32,6 +35,7 @@
  */
 
 #include "MushSkinTiled.h"
+#include "MushSkinTiledMethod1.h"
 
 //%includeGuardEnd {
 #endif

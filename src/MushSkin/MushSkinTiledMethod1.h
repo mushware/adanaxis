@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef MUSHSKINTILED_H
-#define MUSHSKINTILED_H
-//%includeGuardStart } kZD0CEqivw3yeKDiSUrmlA
+#ifndef MUSHSKINTILEDMETHOD1_H
+#define MUSHSKINTILEDMETHOD1_H
+//%includeGuardStart } cTc3qAvpCZwye3sv8x+3Hw
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushSkin/MushSkinTiled.h
+ * File: src/MushSkin/MushSkinTiledMethod1.h
  *
  * Copyright: Andy Southgate 2005-2006
  *
@@ -19,37 +19,28 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } wyD7bsStwCgye5e+C10+aw
+//%Header } aHnvyOApKjpaerdRTvCeEA
 /*
- * $Id: MushSkinTiled.h,v 1.1 2006/06/07 12:15:22 southa Exp $
- * $Log: MushSkinTiled.h,v $
- * Revision 1.1  2006/06/07 12:15:22  southa
- * Grid and test textures
- *
- * Revision 1.2  2006/06/01 15:39:40  southa
- * DrawArray verification and fixes
- *
- * Revision 1.1  2005/08/29 18:40:57  southa
- * Solid rendering work
- *
+ * $Id$
+ * $Log$
  */
 
 #include "MushSkinStandard.h"
 
 //:generate virtual standard ostream xml1
-class MushSkinTiled : public MushcoreVirtualObject
+class MushSkinTiledMethod1 : public MushcoreVirtualObject
 {
 public:
-    MushSkinTiled();
+    MushSkinTiledMethod1();
     
     virtual void DivideSize(Mushware::t2U32& outSizes, Mushware::U32 inNumFacets);
     virtual void TexCoordsGenerate(MushMesh4Mesh& ioMesh);
- 
+	
 protected:
-
+	Mushware::tVal MultiplierForTile(Mushware::U32 inNumVertices);
+	
 private:
-    Mushware::tVal m_pullInRatio;
-        
+	Mushware::tVal m_pullInRatio;
 //%classPrototypes {
 public:
     virtual const char *AutoName(void) const;
@@ -63,12 +54,12 @@ public:
 };
 //%inlineHeader {
 inline std::ostream&
-operator<<(std::ostream& ioOut, const MushSkinTiled& inObj)
+operator<<(std::ostream& ioOut, const MushSkinTiledMethod1& inObj)
 {
     inObj.AutoPrint(ioOut);
     return ioOut;
 }
-//%inlineHeader } G5CINZQknhQNvC3mkG1rWg
+//%inlineHeader } nMbCcXUqKAWlVwtq0NV/vw
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

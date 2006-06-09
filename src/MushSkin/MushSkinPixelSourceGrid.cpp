@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } 04zVh+OEPDlIVf3XywyElw
 /*
- * $Id: MushSkinPixelSourceGrid.cpp,v 1.1 2006/06/07 12:15:21 southa Exp $
+ * $Id: MushSkinPixelSourceGrid.cpp,v 1.2 2006/06/07 14:25:56 southa Exp $
  * $Log: MushSkinPixelSourceGrid.cpp,v $
+ * Revision 1.2  2006/06/07 14:25:56  southa
+ * Grid texture fixes
+ *
  * Revision 1.1  2006/06/07 12:15:21  southa
  * Grid and test textures
  *
@@ -62,12 +65,12 @@ MushSkinPixelSourceGrid::LineGenerate(Mushware::U8 *outpTileData, Mushware::U32 
 	
     if (PaletteTextureValid())
     {
-		std::vector<tVal> noiseValues(inNumPixels);
+		std::vector<tVal> colourValues(inNumPixels);
 		
-		m_lineGenerator.GridLineGenerate(noiseValues, inNumPixels,
+		m_lineGenerator.GridLineGenerate(colourValues, inNumPixels,
 										 PositionTransform(inStartPos), PositionTransform(inEndPos));
 		
-		MushSkinUtil::PalettedToRGBA(outpTileData, &noiseValues[0], inNumPixels,
+		MushSkinUtil::PalettedToRGBA(outpTileData, &colourValues[0], inNumPixels,
 									 PaletteTexture(), PaletteStart(), PaletteVector1());																					
 	}
 }

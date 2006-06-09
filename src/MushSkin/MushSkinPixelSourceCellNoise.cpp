@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } qhEdbIEwQwu5Qbsnsh682Q
 /*
- * $Id: MushSkinPixelSourceCellNoise.cpp,v 1.1 2006/06/05 14:37:52 southa Exp $
+ * $Id: MushSkinPixelSourceCellNoise.cpp,v 1.1 2006/06/07 12:15:20 southa Exp $
  * $Log: MushSkinPixelSourceCellNoise.cpp,v $
+ * Revision 1.1  2006/06/07 12:15:20  southa
+ * Grid and test textures
+ *
  * Revision 1.1  2006/06/05 14:37:52  southa
  * Texture generation
  *
@@ -42,13 +45,13 @@ MushSkinPixelSourceCellNoise::LineGenerate(Mushware::U8 *outpTileData,
 {
     if (PaletteTextureValid())
     {
-		std::vector<tVal> noiseValues(inNumPixels);
+		std::vector<tVal> colourValues(inNumPixels);
 		
-		m_lineGenerator.OctavedCellNoiseLineGenerate(noiseValues, inNumPixels,
+		m_lineGenerator.OctavedCellNoiseLineGenerate(colourValues, inNumPixels,
 													 PositionTransform(inStartPos), PositionTransform(inEndPos),
 													 NumOctaves(), OctaveRatio());
 
-		MushSkinUtil::PalettedToRGBA(outpTileData, &noiseValues[0], inNumPixels,
+		MushSkinUtil::PalettedToRGBA(outpTileData, &colourValues[0], inNumPixels,
 									 PaletteTexture(), PaletteStart(), PaletteVector1());																					
 	}
 }

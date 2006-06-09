@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } egP3K/f7OY+i7tZkXjr5gg
 /*
- * $Id$
- * $Log$
+ * $Id: MushSkinPixelSourceProc.cpp,v 1.1 2006/06/07 12:15:21 southa Exp $
+ * $Log: MushSkinPixelSourceProc.cpp,v $
+ * Revision 1.1  2006/06/07 12:15:21  southa
+ * Grid and test textures
+ *
  */
 
 #include "MushSkinPixelSourceProc.h"
@@ -28,13 +31,15 @@ using namespace std;
 
 
 MushSkinPixelSourceProc::MushSkinPixelSourceProc() :
-    m_pPaletteTexture(NULL),
     m_paletteStart(0,0),
     m_paletteVector1(1,0),
     m_scale(1,1,1,1),
     m_offset(0,0,0,0),
     m_numOctaves(1),
-    m_octaveRatio(0.5)
+    m_octaveRatio(0.5),
+	m_pPaletteTexture(NULL),
+	m_pMesh(NULL)
+
 {}
 
 void
@@ -116,22 +121,9 @@ MushSkinPixelSourceProc::ToTextureCreate(MushGLTexture& outTexture)
     U32 pixelDataSize = 4*Size().X()*Size().Y();
     std::vector<U8> pixelData(pixelDataSize, 0);
     
-    MushMesh4Mesh *p4Mesh = MushcoreData<MushMesh4Mesh>::Sgl().Get(m_meshName);
-    
-    const MushMesh4Mesh::tTextureTiles& texTilesRef = p4Mesh->TextureTiles();
+    const MushMesh4Mesh::tTextureTiles& texTilesRef = Mesh().TextureTiles();
     U32 numTexTiles = texTilesRef.size();
     t4Val objectPos, objectEndPos;
-    
-    m_pPaletteTexture = NULL;
-    
-    if (m_paletteName != "")
-    {
-        if (!MushcoreData<MushGLTexture>::Sgl().GetIfExists(m_pPaletteTexture, m_paletteName))
-        {
-            throw MushcoreDataFail("Non-existent palette '"+m_paletteName+"'");
-        }
-        m_pPaletteTexture->Make();
-    }
 
     for (U32 tileIndex = 0; tileIndex < numTexTiles; ++tileIndex)
     {
@@ -155,9 +147,13 @@ MushSkinPixelSourceProc::ToTextureCreate(MushGLTexture& outTexture)
             }
             U8 *pTileData = &pixelData[pixelOffset];
 			
+#if 0
             tileRef.Transform(objectPos, t2Val(static_cast<tVal>(startX) / Size().X(), static_cast<tVal>(y) / Size().Y()));
             tileRef.Transform(objectEndPos, t2Val(static_cast<tVal>(endX) / Size().X(), static_cast<tVal>(y) / Size().Y()));
-            
+#else
+			tileRef.TextureToFacet(objectPos, t2Val(static_cast<tVal>(startX) / Size().X(), static_cast<tVal>(y) / Size().Y()));
+            tileRef.TextureToFacet(objectEndPos, t2Val(static_cast<tVal>(endX) / Size().X(), static_cast<tVal>(y) / Size().Y()));
+#endif
             if (endX > startX)
             {
                 LineGenerate(pTileData, endX - startX, objectPos, objectEndPos);
@@ -167,8 +163,9 @@ MushSkinPixelSourceProc::ToTextureCreate(MushGLTexture& outTexture)
         }
     }
 	
-    m_pPaletteTexture = NULL;
-    
+	PaletteTextureInvalidate();
+	MeshInvalidate();
+	
     // Bind the texture
     outTexture.SizeSet(t4U32(Size().X(), Size().Y(), 1, 1));
     outTexture.PixelTypeRGBASet();
@@ -186,6 +183,18 @@ MushSkinPixelSourceProc::PaletteResolve(void) const
 			throw MushcoreDataFail("Non-existent palette '"+m_paletteName+"'");
 		}
 		m_pPaletteTexture->Make();
+	}
+}
+
+void
+MushSkinPixelSourceProc::MeshResolve(void) const
+{
+	if (m_meshName != "")
+	{
+		if (!MushcoreData<MushMesh4Mesh>::Sgl().GetIfExists(m_pMesh, m_meshName))
+		{
+			throw MushcoreDataFail("Non-existent palette '"+m_meshName+"'");
+		}
 	}
 }
 
@@ -244,11 +253,19 @@ MushSkinPixelSourceProc::AutoPrint(std::ostream& ioOut) const
     ioOut << "octaveRatio=" << m_octaveRatio << ", ";
     if (m_pPaletteTexture == NULL)
     {
-        ioOut << "pPaletteTexture=NULL" ;
+        ioOut << "pPaletteTexture=NULL"  << ", ";
     }
     else
     {
-        ioOut << "pPaletteTexture=" << *m_pPaletteTexture;
+        ioOut << "pPaletteTexture=" << *m_pPaletteTexture << ", ";
+    }
+    if (m_pMesh == NULL)
+    {
+        ioOut << "pMesh=NULL" ;
+    }
+    else
+    {
+        ioOut << "pMesh=" << *m_pMesh;
     }
     ioOut << "]";
 }
@@ -301,6 +318,10 @@ MushSkinPixelSourceProc::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std:
     {
         ioIn >> m_pPaletteTexture;
     }
+    else if (inTagStr == "pMesh")
+    {
+        ioIn >> m_pMesh;
+    }
     else if (MushGLPixelSource::AutoXMLDataProcess(ioIn, inTagStr))
     {
         // Tag consumed by base class
@@ -335,5 +356,7 @@ MushSkinPixelSourceProc::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_octaveRatio;
     ioOut.TagSet("pPaletteTexture");
     ioOut << m_pPaletteTexture;
+    ioOut.TagSet("pMesh");
+    ioOut << m_pMesh;
 }
-//%outOfLineFunctions } yrpD3Ktw+LcLr5h/ag5Euw
+//%outOfLineFunctions } Veymhd0262A77TM4uXGO4Q

@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } +kUGpDFYk7ZjU2sY++utkg
 /*
- * $Id$
- * $Log$
+ * $Id: MushSkinPixelSourceProc.h,v 1.1 2006/06/07 12:15:21 southa Exp $
+ * $Log: MushSkinPixelSourceProc.h,v $
+ * Revision 1.1  2006/06/07 12:15:21  southa
+ * Grid and test textures
+ *
  */
 
 #include "MushSkinStandard.h"
@@ -46,14 +49,27 @@ public:
 	}
     const MushGLTexture& PaletteTexture(void) const;
 	void PaletteTextureInvalidate(void) const { m_pPaletteTexture = NULL; }
-	virtual void LineGenerate(Mushware::U8 *inpTileData, Mushware::U32 inNumPixels, Mushware::t4Val inStartPos, Mushware::t4Val inEndPos);
 	virtual void PaletteResolve(void) const;
+
+	bool MeshValid(void) const
+	{
+		if (m_pMesh == NULL)
+		{
+			MeshResolve();	
+		}
+		return m_pMesh != NULL;
+	}
+	const MushMesh4Mesh& Mesh(void) const;
+	void MeshInvalidate(void) { m_pMesh = NULL; }
+	virtual void MeshResolve(void) const;
+
+	virtual void LineGenerate(Mushware::U8 *inpTileData, Mushware::U32 inNumPixels, Mushware::t4Val inStartPos, Mushware::t4Val inEndPos);
 	Mushware::t4Val PositionTransform(const Mushware::t4Val& inPos) { return inPos.ElementwiseProduct(m_scale) + m_offset; }
 	
 protected:
 	
 private:
-	std::string m_meshName; //:read
+	std::string m_meshName; //:readwrite
     std::string m_paletteName; //:read
 	Mushware::t2Val m_paletteStart;   //:read 
     Mushware::t2Val m_paletteVector1; //:read
@@ -64,10 +80,12 @@ private:
 	Mushware::tVal m_octaveRatio; //:read
 	
     mutable MushGLTexture *m_pPaletteTexture; //Not owned by this object
+	mutable MushMesh4Mesh *m_pMesh; //:read
 	
 //%classPrototypes {
 public:
     const std::string& MeshName(void) const { return m_meshName; }
+    void MeshNameSet(const std::string& inValue) { m_meshName=inValue; }
     const std::string& PaletteName(void) const { return m_paletteName; }
     const Mushware::t2Val& PaletteStart(void) const { return m_paletteStart; }
     const Mushware::t2Val& PaletteVector1(void) const { return m_paletteVector1; }
@@ -76,6 +94,7 @@ public:
     const Mushware::t4Val& Offset(void) const { return m_offset; }
     const Mushware::U32& NumOctaves(void) const { return m_numOctaves; }
     const Mushware::tVal& OctaveRatio(void) const { return m_octaveRatio; }
+    const MushMesh4Mesh& PMesh(void) const { return *m_pMesh; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -83,7 +102,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } su++rvSm8fROLzldsIHyNw
+//%classPrototypes } zCIEMLUMgqNAtQZIC6vhGQ
 };
 
 inline const MushGLTexture&
@@ -98,6 +117,20 @@ MushSkinPixelSourceProc::PaletteTexture(void) const
 		}
 	}
 	return *m_pPaletteTexture;
+}
+
+inline const MushMesh4Mesh&
+MushSkinPixelSourceProc::Mesh(void) const
+{
+	if (m_pMesh == NULL)
+	{
+		MeshResolve();
+		if (m_pMesh == NULL)
+		{		
+			throw MushcoreLogicFail("Access to NULL mesh");
+		}
+	}
+	return *m_pMesh;
 }
 
 //%inlineHeader {

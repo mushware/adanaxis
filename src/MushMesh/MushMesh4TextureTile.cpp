@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 1kCIwS/JA8VtB31OUyUq8Q
 /*
- * $Id: MushMesh4TextureTile.cpp,v 1.2 2006/05/02 17:32:13 southa Exp $
+ * $Id: MushMesh4TextureTile.cpp,v 1.3 2006/06/09 11:43:02 southa Exp $
  * $Log: MushMesh4TextureTile.cpp,v $
+ * Revision 1.3  2006/06/09 11:43:02  southa
+ * Facet to texture transformation
+ *
  * Revision 1.2  2006/05/02 17:32:13  southa
  * Texturing
  *
@@ -99,7 +102,8 @@ MushMesh4TextureTile::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
     ioOut << "tileBox=" << m_tileBox << ", ";
-    ioOut << "sourceFace=" << m_sourceFace << ", ";
+    ioOut << "sourceFaceNum=" << m_sourceFaceNum << ", ";
+    ioOut << "sourceFacetNum=" << m_sourceFacetNum << ", ";
     ioOut << "tileP0=" << m_tileP0 << ", ";
     ioOut << "tileV0=" << m_tileV0 << ", ";
     ioOut << "tileV1=" << m_tileV1 << ", ";
@@ -131,9 +135,13 @@ MushMesh4TextureTile::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::st
     {
         ioIn >> m_tileBox;
     }
-    else if (inTagStr == "sourceFace")
+    else if (inTagStr == "sourceFaceNum")
     {
-        ioIn >> m_sourceFace;
+        ioIn >> m_sourceFaceNum;
+    }
+    else if (inTagStr == "sourceFacetNum")
+    {
+        ioIn >> m_sourceFacetNum;
     }
     else if (inTagStr == "tileP0")
     {
@@ -210,8 +218,10 @@ MushMesh4TextureTile::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
     ioOut.TagSet("tileBox");
     ioOut << m_tileBox;
-    ioOut.TagSet("sourceFace");
-    ioOut << m_sourceFace;
+    ioOut.TagSet("sourceFaceNum");
+    ioOut << m_sourceFaceNum;
+    ioOut.TagSet("sourceFacetNum");
+    ioOut << m_sourceFacetNum;
     ioOut.TagSet("tileP0");
     ioOut << m_tileP0;
     ioOut.TagSet("tileV0");
@@ -245,4 +255,4 @@ MushMesh4TextureTile::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("facetTransformValid");
     ioOut << m_facetTransformValid;
 }
-//%outOfLineFunctions } VWh76cdFN0/gg1hIrFduDA
+//%outOfLineFunctions } Y0AJ+dKcfWarhjpxdSa/Aw

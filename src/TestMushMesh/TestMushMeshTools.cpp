@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } Z5M+0kNmdF0ldv1BT2B0fQ
 /*
- * $Id: TestMushMeshTools.cpp,v 1.1 2006/06/08 20:17:32 southa Exp $
+ * $Id: TestMushMeshTools.cpp,v 1.2 2006/06/09 11:43:04 southa Exp $
  * $Log: TestMushMeshTools.cpp,v $
+ * Revision 1.2  2006/06/09 11:43:04  southa
+ * Facet to texture transformation
+ *
  * Revision 1.1  2006/06/08 20:17:32  southa
  * Texture tile generation method 2
  *
@@ -53,6 +56,7 @@ TestMushMeshTools::TestFacetTransform(void)
 	for (U32 i=0; i<100; ++i)
 	{	
 		MushMeshTools::tFacetVertices vertices;
+
 		vertices.push_back(t4Val(3,4,0,0)); // edge 0 = (-1,-3, 0, 0)
 		vertices.push_back(t4Val(2,1,0,0)); // edge 1 = (-1, 0, 0, 0)
 		vertices.push_back(t4Val(1,1,0,0)); // edge 2 = ( 0, 2, 0, 0)
@@ -104,7 +108,7 @@ TestMushMeshTools::TestFacetTransform(void)
 		
 	}
 	
-	for (U32 i=0; i<5; ++i)
+	for (U32 i=0; i<100; ++i)
 	{
 		MushMesh4TextureTile texTile;
 		
@@ -115,12 +119,26 @@ TestMushMeshTools::TestFacetTransform(void)
 		texTile.TileBoxSet(t2BoxVal(boxStart, boxEnd));
 		
 		MushMeshTools::tFacetVertices vertices;
-		vertices.push_back(t4Val(MushMeshTools::Random(-10,10),MushMeshTools::Random(-10,10),0,0));
-		vertices.push_back(t4Val(MushMeshTools::Random(-10,10),MushMeshTools::Random(-10,10),0,0));
-		vertices.push_back(t4Val(MushMeshTools::Random(-10,10),MushMeshTools::Random(-10,10),0,0));
-		vertices.push_back(t4Val(MushMeshTools::Random(-10,10),MushMeshTools::Random(-10,10),0,0));
+
+		if (i < 2)
+		{
+			// Pathological case			
+			vertices.push_back(t4Val(0.5,0,-0.5,-0.5));
+			vertices.push_back(t4Val(0,0.5,-0.5,-0.5));
+			vertices.push_back(t4Val(-0.5,0,-0.5,-0.5));
+			vertices.push_back(t4Val(0,-0.5,-0.5,-0.5));
+		}
+		else
+		{
+			vertices.push_back(t4Val(MushMeshTools::Random(-10,10),MushMeshTools::Random(-10,10),0,0));
+			vertices.push_back(t4Val(MushMeshTools::Random(-10,10),MushMeshTools::Random(-10,10),0,0));
+			vertices.push_back(t4Val(MushMeshTools::Random(-10,10),MushMeshTools::Random(-10,10),0,0));
+			vertices.push_back(t4Val(MushMeshTools::Random(-10,10),MushMeshTools::Random(-10,10),0,0));
+		}
+		
 		U32 numVertices = vertices.size();
 		
+		if (i > 0)
 		{
 			tQValPair rotation = MushMeshTools::RandomOrientation();
 			
@@ -143,12 +161,13 @@ TestMushMeshTools::TestFacetTransform(void)
 			
 			if (!ApproxEquals(reverseVec, vertices[j]))
 			{
+				MushcoreLog::Sgl().InfoLog() << texTile << endl;
 				std::ostringstream message;
-				message << "FacetToTextureToFacet failed: expected " << vertices[j] << ", got " << reverseVec <<
+				message << "FacetToTextureToFacet failed: (j=" << j << ") expected " << vertices[j] << ", got " << reverseVec <<
 					"(texture position " << transVert[j] << ")";
-				throw MushcoreCommandFail(message.str());
+                throw MushcoreCommandFail(message.str());
 			}
-			trans4Vert[j] = t4Val(transVert[j].X(), transVert[j].Y(), 0, 0);
+			trans4Vert[j] = t4Val(transVert[j].X(), transVert[j].Y(), 0, 0);	
 		}
 		
 		t4Val minVec, maxVec;
@@ -165,7 +184,7 @@ TestMushMeshTools::TestFacetTransform(void)
 		if (!ApproxEquals(maxVec, t4Val(boxEnd.X(), boxEnd.Y(), 0, 0)))
 		{
 			std::ostringstream message;
-			message << "Tile minimum mismatch: expected " << boxEnd << ", got " << maxVec;
+			message << "Tile maximum mismatch: expected " << boxEnd << ", got " << maxVec;
 			throw MushcoreCommandFail(message.str());
 		}
 	}

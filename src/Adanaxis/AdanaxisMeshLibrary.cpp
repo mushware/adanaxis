@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } s/ATdwJmdoQd9jSw8sBfiA
 /*
- * $Id: AdanaxisMeshLibrary.cpp,v 1.3 2006/05/03 00:58:43 southa Exp $
+ * $Id: AdanaxisMeshLibrary.cpp,v 1.4 2006/06/08 20:17:30 southa Exp $
  * $Log: AdanaxisMeshLibrary.cpp,v $
+ * Revision 1.4  2006/06/08 20:17:30  southa
+ * Texture tile generation method 2
+ *
  * Revision 1.3  2006/05/03 00:58:43  southa
  * Texturing updates
  *
@@ -111,14 +114,12 @@ AdanaxisMeshLibrary::AttendantCreate(MushMesh4Mesh& ioMesh) const
     extrusionContext.ResetNewFace(1);
     faceExtrude.FaceExtrude(ioMesh, extrusionContext, number);
     
-    AttendantVerticesSet(ioMesh, 1.0);
-}    
+    AttendantVerticesSet(ioMesh, 1);
+}
 
 void
 AdanaxisMeshLibrary::TestObjectExtrusionContext(MushMeshLibraryExtrusionContext& outContext, const MushMesh4Mesh& inMesh, Mushware::tVal inAnim) const
 {
-    U32 number = 1;
-    
     MushMeshDisplacement disp(t4Val(0,0,0,-5), tQValPair::RotationIdentity(), 0.5);
 	
     //disp.RotationWRef().OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis(1, 0));
@@ -148,7 +149,7 @@ AdanaxisMeshLibrary::TestObjectCreate(MushMesh4Mesh& ioMesh) const
 	
     MushMeshLibraryFGenExtrude faceExtrude;
     
-    MushMeshLibraryBase::Sgl().PolygonPrismCreate(ioMesh, t4Val(2,2,2,2), 4);            
+    MushMeshLibraryBase::Sgl().PolygonPrismCreate(ioMesh, t4Val(2,2,2,2), 5);            
 	
     extrusionContext.ResetNewFace(0);
     faceExtrude.FaceExtrude(ioMesh, extrusionContext, 1);

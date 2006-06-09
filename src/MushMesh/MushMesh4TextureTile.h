@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } Gpt6onVQ6MJeAFRAfWsomw
 /*
- * $Id: MushMesh4TextureTile.h,v 1.2 2006/05/02 17:32:13 southa Exp $
+ * $Id: MushMesh4TextureTile.h,v 1.3 2006/06/09 11:43:03 southa Exp $
  * $Log: MushMesh4TextureTile.h,v $
+ * Revision 1.3  2006/06/09 11:43:03  southa
+ * Facet to texture transformation
+ *
  * Revision 1.2  2006/05/02 17:32:13  southa
  * Texturing
  *
@@ -53,7 +56,8 @@ public:
 
 private:
     Mushware::t2BoxVal m_tileBox; //:readwrite	
-    Mushware::U32 m_sourceFace; //:readwrite
+    Mushware::U32 m_sourceFaceNum; //:readwrite
+    Mushware::U32 m_sourceFacetNum; //:readwrite
 	
 	// Method 1 values
     Mushware::t2Val m_tileP0; //:readwrite
@@ -84,8 +88,10 @@ private:
 public:
     const Mushware::t2BoxVal& TileBox(void) const { return m_tileBox; }
     void TileBoxSet(const Mushware::t2BoxVal& inValue) { m_tileBox=inValue; }
-    const Mushware::U32& SourceFace(void) const { return m_sourceFace; }
-    void SourceFaceSet(const Mushware::U32& inValue) { m_sourceFace=inValue; }
+    const Mushware::U32& SourceFaceNum(void) const { return m_sourceFaceNum; }
+    void SourceFaceNumSet(const Mushware::U32& inValue) { m_sourceFaceNum=inValue; }
+    const Mushware::U32& SourceFacetNum(void) const { return m_sourceFacetNum; }
+    void SourceFacetNumSet(const Mushware::U32& inValue) { m_sourceFacetNum=inValue; }
     const Mushware::t2Val& TileP0(void) const { return m_tileP0; }
     void TileP0Set(const Mushware::t2Val& inValue) { m_tileP0=inValue; }
     const Mushware::t2Val& TileV0(void) const { return m_tileV0; }
@@ -125,7 +131,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } M6CgAHrum31XdyHIhMx8ZA
+//%classPrototypes } MIs3j/euzdiuzoKcWiDYMA
 };
 
 inline void

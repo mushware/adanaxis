@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } cQoVIV2DdH4LiqrKzfp8tw
 /*
- * $Id: MushMeshTools.cpp,v 1.8 2006/06/08 20:17:31 southa Exp $
+ * $Id: MushMeshTools.cpp,v 1.9 2006/06/09 11:43:03 southa Exp $
  * $Log: MushMeshTools.cpp,v $
+ * Revision 1.9  2006/06/09 11:43:03  southa
+ * Facet to texture transformation
+ *
  * Revision 1.8  2006/06/08 20:17:31  southa
  * Texture tile generation method 2
  *
@@ -50,6 +53,7 @@
 #include "MushMeshTools.h"
 
 #include "MushMeshSTL.h"
+#include "MushMesh4Mesh.h"
 #include "MushMesh4TextureTile.h"
 
 using namespace Mushware;
@@ -409,7 +413,10 @@ MushMeshTools::FacetToTextureTransformMake(MushMesh4TextureTile& ioTile, const t
 {
 	U32 longestEdge = MushMeshTools::LongestEdgeSelect(inVertices);
 	
+	t4Val p0 = inVertices[longestEdge];
+
 	t4Val longestEdgeVec = EdgeFromVertices(inVertices, longestEdge);
+	// longestEdgeVec starts at p0 and ends at p0+longestEdgeVec
 	
 	U32 orthoEdge = MushMeshTools::MostOrthogonalEdgeSelect(inVertices, longestEdgeVec);
 	
@@ -421,9 +428,10 @@ MushMeshTools::FacetToTextureTransformMake(MushMesh4TextureTile& ioTile, const t
 	
 	for (U32 i=0; i<rotatedVertices.size(); ++i)
 	{
+		rotatedVertices[i] -= p0;
 		qR.VectorRotate(rotatedVertices[i]);	
 	}
-    
+	
 	t4Val minVec, maxVec;
 	BoundingVectorsMake(minVec, maxVec, rotatedVertices);
 	
@@ -451,7 +459,7 @@ MushMeshTools::FacetToTextureTransformMake(MushMesh4TextureTile& ioTile, const t
 	const t2BoxVal& tileBox = ioTile.TileBox();
 	t2Val tileSize = tileBox.Size();
 	
-	t4Val vS = ioTile.SK() * t4Val(tileSize.X() / spanVec.X(), tileSize.Y() / spanVec.Y(), 0, 0);
+	t4Val vS = ioTile.SK() * t4Val(tileSize.X() / spanVec.X(), tileSize.Y() / spanVec.Y(), 1, 1);
 
 	if (vS.X() <= 0 || vS.Y() <= 0)
 	{
@@ -461,12 +469,63 @@ MushMeshTools::FacetToTextureTransformMake(MushMesh4TextureTile& ioTile, const t
 	t4Val vT = t4Val( (tileBox.Start().X() + tileBox.End().X() - vS.X() * (minVec.X() + maxVec.X())) / 2,
 					  (tileBox.Start().Y() + tileBox.End().Y() - vS.Y() * (minVec.Y() + maxVec.Y())) / 2,
 					  0,0);
+	vT -= vS.ElementwiseProduct(qR.RotatedVector(p0));
 	
 	ioTile.QRSet(qR);
 	ioTile.VSSet(vS);
 	ioTile.VTSet(vT);
 	
 	ioTile.QRInverseSet(qR.Conjugate());
-	ioTile.VSInverseSet(t4Val(1 / vS.X(), 1 / vS.Y(), 0, 0));
+	ioTile.VSInverseSet(t4Val(1 / vS.X(), 1 / vS.Y(), 1, 1));
 	ioTile.FacetTransformValidSet(true);
 }
+
+void
+MushMeshTools::VerticesForFacet(std::vector<Mushware::t4Val>& outVertices, const MushMesh4Mesh& inMesh,
+								Mushware::U32 inFaceNum, Mushware::U32 inFacetNum)
+{
+    const MushMesh4Face& faceRef = inMesh.Face(inFaceNum);
+	const MushMesh4Face::tVertexList& vertexList = faceRef.VertexList();
+    const MushMesh4Mesh::tVertices& vertices = inMesh.Vertices();
+	
+    U32 facetStart, facetEnd;
+	faceRef.FacetLimitsGet(facetStart, facetEnd, inFacetNum);
+	
+	outVertices.resize(0);
+	
+	MUSHCOREASSERT(facetEnd <= vertexList.size());
+	
+	for (U32 i=facetStart; i < facetEnd; ++i)
+	{
+		U32 vertexNum = vertexList[i];
+		MUSHCOREASSERT(vertexNum <= vertices.size());
+		
+		outVertices.push_back(vertices[vertexNum]);
+	}
+}
+
+void
+MushMeshTools::TextureCoordsForFacet(std::vector<Mushware::t4Val>& outTexCoords, const MushMesh4Mesh& inMesh,
+   									 Mushware::U32 inFaceNum, Mushware::U32 inFacetNum)
+{
+    const MushMesh4Face& faceRef = inMesh.Face(inFaceNum);
+	const MushMesh4Face::tTexCoordList& texCoordList = faceRef.TexCoordList();
+    const MushMesh4Mesh::tTexCoords& texCoords = inMesh.TexCoords();
+
+    U32 facetStart, facetEnd;
+	faceRef.FacetLimitsGet(facetStart, facetEnd, inFacetNum);
+	
+	outTexCoords.resize(0);
+	
+	MUSHCOREASSERT(facetEnd <= texCoordList.size());
+				   
+	for (U32 i=facetStart; i < facetEnd; ++i)
+	{
+		U32 texCoordNum = texCoordList[i];
+		MUSHCOREASSERT(texCoordNum <= texCoords.size());
+		
+		outTexCoords.push_back(texCoords[texCoordNum]);
+	}
+}
+
+
