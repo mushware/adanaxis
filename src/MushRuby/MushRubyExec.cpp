@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } ZcziFKLJA7zY/8U6Ju48NA
 /*
- * $Id: MushRubyExec.cpp,v 1.2 2006/04/21 00:10:43 southa Exp $
+ * $Id: MushRubyExec.cpp,v 1.3 2006/06/06 17:58:33 southa Exp $
  * $Log: MushRubyExec.cpp,v $
+ * Revision 1.3  2006/06/06 17:58:33  southa
+ * Ruby texture definition
+ *
  * Revision 1.2  2006/04/21 00:10:43  southa
  * MushGLFont ruby module
  *
@@ -33,6 +36,7 @@
 
 #include "MushRubyFail.h"
 #include "MushRubyInstall.h"
+#include "MushRubyRuby.h"
 #include "MushRubySTL.h"
 
 using namespace Mushware;
@@ -146,6 +150,9 @@ void
 MushRubyExec::Initialise(void)
 {
     ruby_init();
+#ifdef MUSHCORE_DEBUG
+	ruby_init_loadpath();
+#endif
 	ConfigSet();
     ruby_script("init.rb");
     

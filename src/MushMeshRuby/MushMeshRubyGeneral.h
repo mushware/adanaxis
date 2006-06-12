@@ -1,7 +1,11 @@
+//%includeGuardStart {
+#ifndef MUSHMESHRUBYGENERAL_H
+#define MUSHMESHRUBYGENERAL_H
+//%includeGuardStart } VVHApDOZH3PU/qQ3A1sVzA
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushRuby/MushRuby.cpp
+ * File: src/MushMeshRuby/MushMeshRubyGeneral.h
  *
  * Author: Andy Southgate 2002-2006
  *
@@ -17,19 +21,24 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 8GiZpL69FVNYsmGUBy94qA
+//%Header } RG5RWJFSVZIksTCtLKBYvQ
 /*
- * $Id: MushRuby.cpp,v 1.1 2006/04/19 20:21:34 southa Exp $
- * $Log: MushRuby.cpp,v $
- * Revision 1.1  2006/04/19 20:21:34  southa
- * Added Ruby framework
- *
+ * $Id$
+ * $Log$
  */
 
-#include "MushRuby.h"
+#include "MushMeshRubyStandard.h"
 
-#include "MushRubyRuby.h"
+class MushMeshRubyGeneral : public MushcoreSingleton<MushMeshRubyGeneral>
+{
+public:
+	static void RubyInstall(void);
+	
+private:
+};
 
-const Mushware::tRubyValue MushRuby::QNil = Qnil;
-const Mushware::tRubyValue MushRuby::QFalse = Qfalse;
-const Mushware::tRubyValue MushRuby::QTrue = Qtrue;
+
+
+//%includeGuardEnd {
+#endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

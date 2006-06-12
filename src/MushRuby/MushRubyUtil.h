@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } ZnwDjEM1+TPkZ9HrL5mg7A
 /*
- * $Id: MushRubyUtil.h,v 1.3 2006/06/06 10:29:51 southa Exp $
+ * $Id: MushRubyUtil.h,v 1.4 2006/06/06 17:58:33 southa Exp $
  * $Log: MushRubyUtil.h,v $
+ * Revision 1.4  2006/06/06 17:58:33  southa
+ * Ruby texture definition
+ *
  * Revision 1.3  2006/06/06 10:29:51  southa
  * Ruby texture definitions
  *
@@ -51,12 +54,20 @@ public:
     static void IVGet(Mushware::tVal& outVal, const std::string& inName, Mushware::tRubyValue inSelf);
     static Mushware::tRubyValue Class(const std::string& inName);
     static Mushware::tRubyValue ClassDefine(const std::string& inName);
+    static Mushware::tRubyValue AllocatedClassDefine(const std::string& inName, Mushware::tfpRubyAllocFunc inAllocFunc);
     static void MethodDefine(Mushware::tRubyValue inKlass, const std::string& inName,
                              Mushware::tfpRubyMethod infpMethod);
+	static void MethodDefineNoParams(Mushware::tRubyValue inKlass, const std::string& inName,
+									 Mushware::tfpRubyMethodNoParams infpMethod);
+	static void MethodDefineOneParam(Mushware::tRubyValue inKlass, const std::string& inName,
+									 Mushware::tfpRubyMethodOneParam infpMethod);
+	static void MethodDefineFourParams(Mushware::tRubyValue inKlass, const std::string& inName,
+									 Mushware::tfpRubyMethodFourParams infpMethod);
     static void SingletonMethodDefine(Mushware::tRubyValue inKlass, const std::string& inName,
                              Mushware::tfpRubyMethod infpMethod);
 	static void HashConvert(Mushware::tRubyHash& outHash, const MushRubyValue& inHash);
 	static void Raise(const std::string& inStr);
+	static bool SameDataType(Mushware::tRubyValue inA, Mushware::tRubyValue inB);
 	
 private:
 	static Mushware::tRubyValue HashHandler(Mushware::tRubyValue inArray, Mushware::tRubyValue inArg);

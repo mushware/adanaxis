@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } hwIlNOCEH5GsgwGY+rP1Kg
 /*
- * $Id: MushRubyValue.cpp,v 1.2 2006/06/06 17:58:34 southa Exp $
+ * $Id: MushRubyValue.cpp,v 1.3 2006/06/07 12:15:20 southa Exp $
  * $Log: MushRubyValue.cpp,v $
+ * Revision 1.3  2006/06/07 12:15:20  southa
+ * Grid and test textures
+ *
  * Revision 1.2  2006/06/06 17:58:34  southa
  * Ruby texture definition
  *
@@ -73,6 +76,13 @@ MushRubyValue::String(void) const
 	}
 			 
 	return retVal;
+}
+
+bool
+MushRubyValue::CanBeValVector(void) const
+{
+	Mushware::tRubyValue tempValue = m_value; // Avoid const problem
+	return rb_obj_is_instance_of(tempValue, rb_cArray);
 }
 
 std::vector<Mushware::tVal>

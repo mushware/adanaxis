@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } xkvbVCXm8pXCDWV4BdLGFQ
 /*
- * $Id: MushSkinTiled.cpp,v 1.3 2006/06/08 20:17:31 southa Exp $
+ * $Id: MushSkinTiled.cpp,v 1.4 2006/06/09 21:07:14 southa Exp $
  * $Log: MushSkinTiled.cpp,v $
+ * Revision 1.4  2006/06/09 21:07:14  southa
+ * Tiled skin generation
+ *
  * Revision 1.3  2006/06/08 20:17:31  southa
  * Texture tile generation method 2
  *
@@ -155,19 +158,7 @@ MushSkinTiled::TexCoordsGenerate(MushMesh4Mesh& ioMesh)
 				texTileWRef.FacetToTexture(uvVector, facetVertices[i]);
                 
 				t4Val testVec;
-				texTileWRef.TextureToFacet(testVec, uvVector);
-				
-				if (!testVec.ApproxEqual(facetVertices[i], ioMesh.BoundingRadius() / 100))
-				{
-					
-					MushcoreLog::Sgl().InfoLog() << "Texture coordinate check failed:" << endl;
-					MushcoreLog::Sgl().InfoLog() << "i=" << i << ", uvPos=" << uvVector << ", resultVec=" << testVec <<
-					", expectedVec=" << facetVertices[i] << endl;
-					MushcoreLog::Sgl().InfoLog() << "facetVertices=" << facetVertices << endl;
-					MushcoreLog::Sgl().InfoLog() << "texTile=" << texTileWRef << endl;
-
-				}
-				
+				texTileWRef.TextureToFacet(testVec, uvVector);				
 				
                 MUSHCOREASSERT(uvVector.X() > -0.01 && uvVector.X() < 1.01);
                 MUSHCOREASSERT(uvVector.Y() > -0.01 && uvVector.Y() < 1.01);
@@ -202,7 +193,7 @@ MushSkinTiled::TexCoordsGenerate(MushMesh4Mesh& ioMesh)
                 
                 expectedVec = facetVertices[i];
 				
-                if (!expectedVec.ApproxEqual(resultVec, ioMesh.BoundingRadius() / 100))
+                if (!expectedVec.ApproxEqual(resultVec, ioMesh.BoundingRadius() / 10))
                 {
 					++textureErrorCount;
                     if (textureErrorCount < 10)

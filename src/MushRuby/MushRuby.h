@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } Wr9YgRvUclXifNHyxB/v3A
 /*
- * $Id: MushRuby.h,v 1.2 2006/04/20 00:22:45 southa Exp $
+ * $Id: MushRuby.h,v 1.3 2006/04/21 00:10:43 southa Exp $
  * $Log: MushRuby.h,v $
+ * Revision 1.3  2006/04/21 00:10:43  southa
+ * MushGLFont ruby module
+ *
  * Revision 1.2  2006/04/20 00:22:45  southa
  * Added ruby executive
  *
@@ -38,6 +41,14 @@
 #include "MushRubyInstall.h"
 #include "MushRubyStandard.h"
 #include "MushRubyUtil.h"
+
+class MushRuby
+{
+public:
+	static const Mushware::tRubyValue QNil;
+	static const Mushware::tRubyValue QFalse;
+	static const Mushware::tRubyValue QTrue;
+};
 
 //%includeGuardEnd {
 #endif

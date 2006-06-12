@@ -23,19 +23,17 @@
  ****************************************************************************/
 //%Header } UpB+98ShDY+5JMJVLGBArQ
 /*
- * $Id: MushRubyExec.h,v 1.1 2006/04/20 00:22:45 southa Exp $
+ * $Id: MushRubyExec.h,v 1.2 2006/06/06 17:58:33 southa Exp $
  * $Log: MushRubyExec.h,v $
+ * Revision 1.2  2006/06/06 17:58:33  southa
+ * Ruby texture definition
+ *
  * Revision 1.1  2006/04/20 00:22:45  southa
  * Added ruby executive
  *
  */
 
 #include "MushRubyStandard.h"
-
-extern "C"
-{
-#include "ruby.h"
-}
 
 class MushRubyExec : public MushcoreSingleton<MushRubyExec>
 {

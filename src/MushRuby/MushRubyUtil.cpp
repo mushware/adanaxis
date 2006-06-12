@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } gSaMBKSS/9FVf/ypP8x5kA
 /*
- * $Id: MushRubyUtil.cpp,v 1.3 2006/06/06 10:29:51 southa Exp $
+ * $Id: MushRubyUtil.cpp,v 1.4 2006/06/06 17:58:33 southa Exp $
  * $Log: MushRubyUtil.cpp,v $
+ * Revision 1.4  2006/06/06 17:58:33  southa
+ * Ruby texture definition
+ *
  * Revision 1.3  2006/06/06 10:29:51  southa
  * Ruby texture definitions
  *
@@ -94,6 +97,13 @@ MushRubyUtil::ValueConvert(Mushware::tVal& outVal, Mushware::tRubyValue inValue)
 }
 
 Mushware::tRubyValue
+MushRubyUtil::Class(const std::string& inName)
+{
+    tRubyValue klass = rb_define_class(inName.c_str(), rb_cObject);
+    return klass;
+}
+
+Mushware::tRubyValue
 MushRubyUtil::ClassDefine(const std::string& inName)
 {
     tRubyValue klass = rb_define_class(inName.c_str(), rb_cObject);
@@ -101,17 +111,39 @@ MushRubyUtil::ClassDefine(const std::string& inName)
 }
 
 Mushware::tRubyValue
-MushRubyUtil::Class(const std::string& inName)
+MushRubyUtil::AllocatedClassDefine(const std::string& inName, Mushware::tfpRubyAllocFunc inAllocFunc)
 {
-    tRubyValue klass = rb_define_class(inName.c_str(), rb_cObject);
+    tRubyValue klass = ClassDefine(inName);
+	rb_define_alloc_func(klass, inAllocFunc);
     return klass;
 }
 
 void
 MushRubyUtil::MethodDefine(Mushware::tRubyValue inKlass, const std::string& inName,
-                         tfpRubyMethod infpMethod)
+						   tfpRubyMethod infpMethod)
 {
     rb_define_method(inKlass, inName.c_str(), RUBY_METHOD_FUNC(infpMethod), -1);
+}
+
+void
+MushRubyUtil::MethodDefineNoParams(Mushware::tRubyValue inKlass, const std::string& inName,
+						           Mushware::tfpRubyMethodNoParams infpMethod)
+{
+    rb_define_method(inKlass, inName.c_str(), RUBY_METHOD_FUNC(infpMethod), 0);
+}
+
+void
+MushRubyUtil::MethodDefineOneParam(Mushware::tRubyValue inKlass, const std::string& inName,
+						           Mushware::tfpRubyMethodOneParam infpMethod)
+{
+    rb_define_method(inKlass, inName.c_str(), RUBY_METHOD_FUNC(infpMethod), 1);
+}
+
+void
+MushRubyUtil::MethodDefineFourParams(Mushware::tRubyValue inKlass, const std::string& inName,
+						           Mushware::tfpRubyMethodFourParams infpMethod)
+{
+    rb_define_method(inKlass, inName.c_str(), RUBY_METHOD_FUNC(infpMethod), 4);
 }
 
 void
@@ -143,4 +175,12 @@ void
 MushRubyUtil::Raise(const std::string& inStr)
 {
 	rb_raise(rb_eException, "%s", inStr.c_str());
+}
+
+bool
+MushRubyUtil::SameDataType(Mushware::tRubyValue inA, Mushware::tRubyValue inB)
+{
+    return (TYPE(inA) == T_DATA &&
+			TYPE(inB) == T_DATA &&
+			RDATA(inA)->dfree == RDATA(inB)->dfree);
 }

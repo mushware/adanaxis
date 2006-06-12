@@ -32,8 +32,6 @@
 		7A1F79750885312E009BFCCA /* MushMesh4LinkFaceFace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A1F79730885312E009BFCCA /* MushMesh4LinkFaceFace.cpp */; };
 		7A1F7979088535C1009BFCCA /* MushMesh4LinkFaceFace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A1F79730885312E009BFCCA /* MushMesh4LinkFaceFace.cpp */; };
 		7A1F797A088535C2009BFCCA /* MushMesh4LinkFaceFace.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A1F79720885312E009BFCCA /* MushMesh4LinkFaceFace.h */; };
-		7A1FF5F70A3489930023C4E2 /* MushGLTexture.rb in Resources */ = {isa = PBXBuildFile; fileRef = 7A1FF5F60A3489930023C4E2 /* MushGLTexture.rb */; };
-		7A1FF5FF0A348B4A0023C4E2 /* Level1.rb in Resources */ = {isa = PBXBuildFile; fileRef = 7A1FF5FE0A348B4A0023C4E2 /* Level1.rb */; };
 		7A218C3108729CAA00EEA4E1 /* MushGameRender.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A218C2F08729CAA00EEA4E1 /* MushGameRender.h */; };
 		7A218C3208729CAA00EEA4E1 /* MushGameRender.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A218C3008729CAA00EEA4E1 /* MushGameRender.cpp */; };
 		7A218C3308729CAA00EEA4E1 /* MushGameRender.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A218C2F08729CAA00EEA4E1 /* MushGameRender.h */; };
@@ -124,6 +122,16 @@
 		7A58111F089A5E32000A1C04 /* MushcoreMaptorIterator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A58111D089A5E32000A1C04 /* MushcoreMaptorIterator.cpp */; };
 		7A581158089A6CCE000A1C04 /* MushcoreMaptorConstIterator.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A581156089A6CCE000A1C04 /* MushcoreMaptorConstIterator.h */; };
 		7A581159089A6CCE000A1C04 /* MushcoreMaptorConstIterator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A581157089A6CCE000A1C04 /* MushcoreMaptorConstIterator.cpp */; };
+		7A58F1780A3D680C00B7AE0E /* MushMeshRuby.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A58F1760A3D680C00B7AE0E /* MushMeshRuby.cpp */; };
+		7A58F1790A3D680C00B7AE0E /* MushMeshRuby.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A58F1770A3D680C00B7AE0E /* MushMeshRuby.h */; };
+		7A58F1D80A3D68EA00B7AE0E /* MushMeshRubyStandard.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A58F1D60A3D68EA00B7AE0E /* MushMeshRubyStandard.h */; };
+		7A58F1D90A3D68EA00B7AE0E /* MushMeshRubyStandard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A58F1D70A3D68EA00B7AE0E /* MushMeshRubyStandard.cpp */; };
+		7A58F1E30A3D69C300B7AE0E /* MushMeshRubyGeneral.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A58F1E10A3D69C300B7AE0E /* MushMeshRubyGeneral.h */; };
+		7A58F1E40A3D69C300B7AE0E /* MushMeshRubyGeneral.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A58F1E20A3D69C300B7AE0E /* MushMeshRubyGeneral.cpp */; };
+		7A58F1EC0A3D6B3B00B7AE0E /* MushMeshRubyVector.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A58F1EA0A3D6B3B00B7AE0E /* MushMeshRubyVector.h */; };
+		7A58F1ED0A3D6B3B00B7AE0E /* MushMeshRubyVector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A58F1EB0A3D6B3B00B7AE0E /* MushMeshRubyVector.cpp */; };
+		7A58F1F60A3D6DF800B7AE0E /* MushMeshRubyRuby.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A58F1F40A3D6DF700B7AE0E /* MushMeshRubyRuby.h */; };
+		7A58F1F70A3D6DF800B7AE0E /* MushMeshRubyRuby.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A58F1F50A3D6DF800B7AE0E /* MushMeshRubyRuby.cpp */; };
 		7A5BE6EF07FB53DA00306E18 /* libjpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A5BE6EE07FB53DA00306E18 /* libjpeg.a */; };
 		7A5BE6F007FB53DA00306E18 /* libjpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A5BE6EE07FB53DA00306E18 /* libjpeg.a */; };
 		7A5C9EF9080979900017E78B /* CodeGenCommands.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A5C9EF5080979900017E78B /* CodeGenCommands.cpp */; };
@@ -2592,6 +2600,8 @@
 		7A0D469A07357AA800D06F24 /* MaurheenHypercube.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MaurheenHypercube.cpp; sourceTree = "<group>"; };
 		7A0D78B107358A2B00D06F24 /* MushMeshTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushMeshTools.h; sourceTree = "<group>"; };
 		7A0D78B207358A2B00D06F24 /* MushMeshTools.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushMeshTools.cpp; sourceTree = "<group>"; };
+		7A1D060A0A3D89CD00DB5646 /* test_Mush4Val.rb */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.ruby; path = test_Mush4Val.rb; sourceTree = "<group>"; };
+		7A1D06290A3D8B9900DB5646 /* run_tests.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = run_tests.rb; sourceTree = "<group>"; };
 		7A1F79720885312E009BFCCA /* MushMesh4LinkFaceFace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushMesh4LinkFaceFace.h; sourceTree = "<group>"; };
 		7A1F79730885312E009BFCCA /* MushMesh4LinkFaceFace.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushMesh4LinkFaceFace.cpp; sourceTree = "<group>"; };
 		7A1FF5F60A3489930023C4E2 /* MushGLTexture.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = MushGLTexture.rb; sourceTree = "<group>"; };
@@ -2663,6 +2673,18 @@
 		7A58111D089A5E32000A1C04 /* MushcoreMaptorIterator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushcoreMaptorIterator.cpp; sourceTree = "<group>"; };
 		7A581156089A6CCE000A1C04 /* MushcoreMaptorConstIterator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushcoreMaptorConstIterator.h; sourceTree = "<group>"; };
 		7A581157089A6CCE000A1C04 /* MushcoreMaptorConstIterator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushcoreMaptorConstIterator.cpp; sourceTree = "<group>"; };
+		7A58F1760A3D680C00B7AE0E /* MushMeshRuby.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = MushMeshRuby.cpp; sourceTree = "<group>"; };
+		7A58F1770A3D680C00B7AE0E /* MushMeshRuby.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = MushMeshRuby.h; sourceTree = "<group>"; };
+		7A58F1D60A3D68EA00B7AE0E /* MushMeshRubyStandard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushMeshRubyStandard.h; sourceTree = "<group>"; };
+		7A58F1D70A3D68EA00B7AE0E /* MushMeshRubyStandard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushMeshRubyStandard.cpp; sourceTree = "<group>"; };
+		7A58F1E10A3D69C300B7AE0E /* MushMeshRubyGeneral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushMeshRubyGeneral.h; sourceTree = "<group>"; };
+		7A58F1E20A3D69C300B7AE0E /* MushMeshRubyGeneral.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushMeshRubyGeneral.cpp; sourceTree = "<group>"; };
+		7A58F1EA0A3D6B3B00B7AE0E /* MushMeshRubyVector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushMeshRubyVector.h; sourceTree = "<group>"; };
+		7A58F1EB0A3D6B3B00B7AE0E /* MushMeshRubyVector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushMeshRubyVector.cpp; sourceTree = "<group>"; };
+		7A58F1F40A3D6DF700B7AE0E /* MushMeshRubyRuby.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushMeshRubyRuby.h; sourceTree = "<group>"; };
+		7A58F1F50A3D6DF800B7AE0E /* MushMeshRubyRuby.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushMeshRubyRuby.cpp; sourceTree = "<group>"; };
+		7A58F2070A3D725400B7AE0E /* AdanaxisMeshLibrary.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AdanaxisMeshLibrary.rb; sourceTree = "<group>"; };
+		7A58F2EC0A3D839700B7AE0E /* Mush4Val.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = Mush4Val.rb; sourceTree = "<group>"; };
 		7A5BE6EE07FB53DA00306E18 /* libjpeg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libjpeg.a; path = /usr/local/lib/libjpeg.a; sourceTree = "<absolute>"; };
 		7A5BE75807FB56AF00306E18 /* font-mono1.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "font-mono1.tiff"; sourceTree = "<group>"; };
 		7A5BE75907FB56AF00306E18 /* plane-target1.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "plane-target1.tiff"; sourceTree = "<group>"; };
@@ -4057,6 +4079,15 @@
 			name = "External Frameworks and Libraries";
 			sourceTree = "<group>";
 		};
+		7A1D06090A3D89CD00DB5646 /* test */ = {
+			isa = PBXGroup;
+			children = (
+				7A1D060A0A3D89CD00DB5646 /* test_Mush4Val.rb */,
+				7A1D06290A3D8B9900DB5646 /* run_tests.rb */,
+			);
+			path = test;
+			sourceTree = "<group>";
+		};
 		7A224D95088E788F0078A295 /* MushCollision */ = {
 			isa = PBXGroup;
 			children = (
@@ -4095,6 +4126,23 @@
 				7A4FA55C05F9EBCA00297E23 /* start.txt */,
 			);
 			path = system;
+			sourceTree = "<group>";
+		};
+		7A58F1750A3D680C00B7AE0E /* MushMeshRuby */ = {
+			isa = PBXGroup;
+			children = (
+				7A58F1760A3D680C00B7AE0E /* MushMeshRuby.cpp */,
+				7A58F1770A3D680C00B7AE0E /* MushMeshRuby.h */,
+				7A58F1E20A3D69C300B7AE0E /* MushMeshRubyGeneral.cpp */,
+				7A58F1E10A3D69C300B7AE0E /* MushMeshRubyGeneral.h */,
+				7A58F1F50A3D6DF800B7AE0E /* MushMeshRubyRuby.cpp */,
+				7A58F1F40A3D6DF700B7AE0E /* MushMeshRubyRuby.h */,
+				7A58F1D70A3D68EA00B7AE0E /* MushMeshRubyStandard.cpp */,
+				7A58F1D60A3D68EA00B7AE0E /* MushMeshRubyStandard.h */,
+				7A58F1EB0A3D6B3B00B7AE0E /* MushMeshRubyVector.cpp */,
+				7A58F1EA0A3D6B3B00B7AE0E /* MushMeshRubyVector.h */,
+			);
+			path = MushMeshRuby;
 			sourceTree = "<group>";
 		};
 		7A5BE6DD07FB503B00306E18 /* libjpeg */ = {
@@ -4161,6 +4209,7 @@
 				7A66E36805FB240500135328 /* MushGL */,
 				7A62B84905A49D05002A5F1C /* MushMesh */,
 				7AA0FAF20884305600997505 /* MushMeshLibrary */,
+				7A58F1750A3D680C00B7AE0E /* MushMeshRuby */,
 				7A71A33D05AC547E00B315B0 /* MushModel */,
 				7A62B87005A49D05002A5F1C /* MushPie */,
 				7A85875B08754D4100ED67ED /* MushRender */,
@@ -5678,12 +5727,15 @@
 		7ACEFB3009F6EF6700E38865 /* ruby */ = {
 			isa = PBXGroup;
 			children = (
+				7A1D06090A3D89CD00DB5646 /* test */,
+				7A58F2070A3D725400B7AE0E /* AdanaxisMeshLibrary.rb */,
 				7ACEFB3109F6EF6700E38865 /* init.rb */,
 				7ACEFB4F09F6FE8F00E38865 /* TopMenu.rb */,
 				7A7C1B050A35E56B00212A11 /* MushConfig.rb */,
 				7ACED0E109F84F2400055E66 /* MushGLFont.rb */,
 				7A1FF5F60A3489930023C4E2 /* MushGLTexture.rb */,
 				7A7C1BBF0A35EEAE00212A11 /* MushHelpers.rb */,
+				7A58F2EC0A3D839700B7AE0E /* Mush4Val.rb */,
 				7A1FF5FE0A348B4A0023C4E2 /* Level1.rb */,
 			);
 			path = ruby;
@@ -6829,6 +6881,11 @@
 				7A578EC40A36DC9B00CB3F1C /* MushSkinPixelSourceGrid.h in Headers */,
 				7A492DF90A39ACA200EE1835 /* MushSkinPixelSourceTileShow.h in Headers */,
 				7A492F300A39CB6D00EE1835 /* MushSkinTiledMethod1.h in Headers */,
+				7A58F1790A3D680C00B7AE0E /* MushMeshRuby.h in Headers */,
+				7A58F1D80A3D68EA00B7AE0E /* MushMeshRubyStandard.h in Headers */,
+				7A58F1E30A3D69C300B7AE0E /* MushMeshRubyGeneral.h in Headers */,
+				7A58F1EC0A3D6B3B00B7AE0E /* MushMeshRubyVector.h in Headers */,
+				7A58F1F60A3D6DF800B7AE0E /* MushMeshRubyRuby.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8022,8 +8079,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				7AD0140108A379C300D2D2DE /* adanaxis_app.icns in Resources */,
-				7A1FF5F70A3489930023C4E2 /* MushGLTexture.rb in Resources */,
-				7A1FF5FF0A348B4A0023C4E2 /* Level1.rb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9104,6 +9159,11 @@
 				7A578EC50A36DC9B00CB3F1C /* MushSkinPixelSourceGrid.cpp in Sources */,
 				7A492DFA0A39ACA200EE1835 /* MushSkinPixelSourceTileShow.cpp in Sources */,
 				7A492F310A39CB6D00EE1835 /* MushSkinTiledMethod1.cpp in Sources */,
+				7A58F1780A3D680C00B7AE0E /* MushMeshRuby.cpp in Sources */,
+				7A58F1D90A3D68EA00B7AE0E /* MushMeshRubyStandard.cpp in Sources */,
+				7A58F1E40A3D69C300B7AE0E /* MushMeshRubyGeneral.cpp in Sources */,
+				7A58F1ED0A3D6B3B00B7AE0E /* MushMeshRubyVector.cpp in Sources */,
+				7A58F1F70A3D6DF800B7AE0E /* MushMeshRubyRuby.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

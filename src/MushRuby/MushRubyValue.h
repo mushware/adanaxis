@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 5BOLwI3DhgfDHotOLswDpg
 /*
- * $Id: MushRubyValue.h,v 1.2 2006/06/06 17:58:34 southa Exp $
+ * $Id: MushRubyValue.h,v 1.3 2006/06/07 12:15:20 southa Exp $
  * $Log: MushRubyValue.h,v $
+ * Revision 1.3  2006/06/07 12:15:20  southa
+ * Grid and test textures
+ *
  * Revision 1.2  2006/06/06 17:58:34  southa
  * Ruby texture definition
  *
@@ -42,10 +45,12 @@ public:
 	MushRubyValue();
 	explicit MushRubyValue(Mushware::tRubyValue inValue) : m_value(inValue) {}
 	std::string String(void) const;
+	bool CanBeValVector(void) const;
 	std::vector<Mushware::tVal> ValVector(void) const;
 	bool Bool(void) const;
 	Mushware::U32 U32(void) const;
 	Mushware::tVal Val(void) const;
+	
 	
 private:
 	Mushware::tRubyValue m_value; //:read
