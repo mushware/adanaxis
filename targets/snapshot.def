@@ -1,6 +1,9 @@
 # Target definition file
-# $Id: snapshot.def,v 1.11 2005/08/29 18:40:57 southa Exp $
+# $Id: snapshot.def,v 1.12 2006/06/01 15:40:06 southa Exp $
 # $Log: snapshot.def,v $
+# Revision 1.12  2006/06/01 15:40:06  southa
+# DrawArray verification and fixes
+#
 # Revision 1.11  2005/08/29 18:40:57  southa
 # Solid rendering work
 #
@@ -70,7 +73,7 @@ Use: targets/sdl_app.spec as snapshot.spec.generic
 Create: src/Makefile.am
 
 Program: all
-Modules: Adanaxis API Game GL Infernal Main Main/SDLApp Maurheen Media MeshMover MushCollision Mushcore MushGame MushGL MushMesh MushMeshLibrary MushModel MushPie MushRender MushRuby MushSkin Mustl MustlGame Platform Support TesseractTrainer TestMushcore TestMushMesh TestMushPie TestMustl
+Modules: Adanaxis API Game GL Infernal Main Main/SDLApp Maurheen Media MeshMover MushCollision Mushcore MushGame MushGL MushMesh MushMeshLibrary MushMeshRuby MushModel MushPie MushRender MushRuby MushSkin Mustl MustlGame Platform Support TesseractTrainer TestMushcore TestMushMesh TestMushPie TestMustl
 
 ExtraDist:
 Modules: Main/CommandLineApp Platform/MacOSX Platform/win32 Platform/X11 +.*\.y$ +.*\.mkf$ +.*\.flex$
