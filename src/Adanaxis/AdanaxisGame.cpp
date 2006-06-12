@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } DEX6Sh9oUk/bih2GXm2coA
 /*
- * $Id: AdanaxisGame.cpp,v 1.28 2006/06/06 17:58:31 southa Exp $
+ * $Id: AdanaxisGame.cpp,v 1.29 2006/06/07 12:15:18 southa Exp $
  * $Log: AdanaxisGame.cpp,v $
+ * Revision 1.29  2006/06/07 12:15:18  southa
+ * Grid and test textures
+ *
  * Revision 1.28  2006/06/06 17:58:31  southa
  * Ruby texture definition
  *
@@ -237,6 +240,8 @@ AdanaxisGame::Init(GameAppHandler& inAppHandler)
 
     UpdateFromConfig();
     
+	MushRubyExec::Sgl().Call("level1.mMeshInit");
+	
     AdanaxisUtil::TestSkinsCreate(Logic());
     AdanaxisUtil::TestDecoCreate(Logic());
     AdanaxisUtil::TestPiecesCreate(Logic());

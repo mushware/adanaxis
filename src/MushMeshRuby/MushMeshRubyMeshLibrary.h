@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef MUSHMESHRUBYSTANDARD_H
-#define MUSHMESHRUBYSTANDARD_H
-//%includeGuardStart } sxR91hM3031V/dSSOaL+ww
+#ifndef MUSHMESHRUBYMESHLIBRARY_H
+#define MUSHMESHRUBYMESHLIBRARY_H
+//%includeGuardStart } OWfNjvbuyIJia3w+S6S/pA
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushMeshRuby/MushMeshRubyStandard.h
+ * File: src/MushMeshRuby/MushMeshRubyMeshLibrary.h
  *
  * Author: Andy Southgate 2002-2006
  *
@@ -21,20 +21,26 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } Uy1HTQVXLgs68GmjEsgKkQ
+//%Header } qIHPu+oGp+u9ov1VjlaopA
 /*
- * $Id: MushMeshRubyStandard.h,v 1.1 2006/06/12 11:59:39 southa Exp $
- * $Log: MushMeshRubyStandard.h,v $
- * Revision 1.1  2006/06/12 11:59:39  southa
- * Ruby wrapper for MushMeshVector
- *
+ * $Id$
+ * $Log$
  */
 
-#include "API/mushMushcore.h"
-#include "API/mushMushMesh.h"
-#include "API/mushMushMeshLibrary.h"
-#include "API/mushMushRuby.h"
+#include "MushMeshRubyStandard.h"
 
+class MushMeshMeshLibrary;
+
+class MushMeshRubyMeshLibrary
+{
+public:
+	static void RubyInstall(void);
+	
+private:
+	static Mushware::tRubyValue PolygonPrismCreate(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg1,
+											Mushware::tRubyValue inArg2, Mushware::tRubyValue inArg3);
+	static Mushware::tRubyValue m_meshLibraryKlass;
+};
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

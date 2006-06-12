@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } gSaMBKSS/9FVf/ypP8x5kA
 /*
- * $Id: MushRubyUtil.cpp,v 1.4 2006/06/06 17:58:33 southa Exp $
+ * $Id: MushRubyUtil.cpp,v 1.5 2006/06/12 11:59:40 southa Exp $
  * $Log: MushRubyUtil.cpp,v $
+ * Revision 1.5  2006/06/12 11:59:40  southa
+ * Ruby wrapper for MushMeshVector
+ *
  * Revision 1.4  2006/06/06 17:58:33  southa
  * Ruby texture definition
  *
@@ -148,9 +151,16 @@ MushRubyUtil::MethodDefineFourParams(Mushware::tRubyValue inKlass, const std::st
 
 void
 MushRubyUtil::SingletonMethodDefine(Mushware::tRubyValue inKlass, const std::string& inName,
-						   tfpRubyMethod infpMethod)
+									tfpRubyMethod infpMethod)
 {
     rb_define_singleton_method(inKlass, inName.c_str(), RUBY_METHOD_FUNC(infpMethod), -1);
+}
+
+void
+MushRubyUtil::SingletonMethodDefineThreeParams(Mushware::tRubyValue inKlass, const std::string& inName,
+									tfpRubyMethodThreeParams infpMethod)
+{
+    rb_define_singleton_method(inKlass, inName.c_str(), RUBY_METHOD_FUNC(infpMethod), 3);
 }
 
 Mushware::tRubyValue
@@ -183,4 +193,13 @@ MushRubyUtil::SameDataType(Mushware::tRubyValue inA, Mushware::tRubyValue inB)
     return (TYPE(inA) == T_DATA &&
 			TYPE(inB) == T_DATA &&
 			RDATA(inA)->dfree == RDATA(inB)->dfree);
+}
+
+void
+MushRubyUtil::RaiseUnlessInstanceOf(Mushware::tRubyValue inValue, Mushware::tRubyValue inKlass)
+{
+	if (!rb_obj_is_instance_of(inValue, inKlass))
+	{
+		Raise("Object is of wrong type");	
+	}
 }

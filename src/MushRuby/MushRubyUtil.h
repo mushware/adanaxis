@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } ZnwDjEM1+TPkZ9HrL5mg7A
 /*
- * $Id: MushRubyUtil.h,v 1.4 2006/06/06 17:58:33 southa Exp $
+ * $Id: MushRubyUtil.h,v 1.5 2006/06/12 11:59:40 southa Exp $
  * $Log: MushRubyUtil.h,v $
+ * Revision 1.5  2006/06/12 11:59:40  southa
+ * Ruby wrapper for MushMeshVector
+ *
  * Revision 1.4  2006/06/06 17:58:33  southa
  * Ruby texture definition
  *
@@ -64,10 +67,13 @@ public:
 	static void MethodDefineFourParams(Mushware::tRubyValue inKlass, const std::string& inName,
 									 Mushware::tfpRubyMethodFourParams infpMethod);
     static void SingletonMethodDefine(Mushware::tRubyValue inKlass, const std::string& inName,
-                             Mushware::tfpRubyMethod infpMethod);
+									  Mushware::tfpRubyMethod infpMethod);
+    static void SingletonMethodDefineThreeParams(Mushware::tRubyValue inKlass, const std::string& inName,
+									  Mushware::tfpRubyMethodThreeParams infpMethod);
 	static void HashConvert(Mushware::tRubyHash& outHash, const MushRubyValue& inHash);
 	static void Raise(const std::string& inStr);
 	static bool SameDataType(Mushware::tRubyValue inA, Mushware::tRubyValue inB);
+	static void RaiseUnlessInstanceOf(Mushware::tRubyValue inValue, Mushware::tRubyValue inKlass);
 	
 private:
 	static Mushware::tRubyValue HashHandler(Mushware::tRubyValue inArray, Mushware::tRubyValue inArg);

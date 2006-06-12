@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } gq3ekJ+T4/5Q9GxsUU01+w
 /*
- * $Id: AdanaxisUtil.cpp,v 1.23 2006/06/08 20:17:30 southa Exp $
+ * $Id: AdanaxisUtil.cpp,v 1.24 2006/06/09 21:07:12 southa Exp $
  * $Log: AdanaxisUtil.cpp,v $
+ * Revision 1.24  2006/06/09 21:07:12  southa
+ * Tiled skin generation
+ *
  * Revision 1.23  2006/06/08 20:17:30  southa
  * Texture tile generation method 2
  *
@@ -248,9 +251,11 @@ AdanaxisUtil::TestPiecesCreate(AdanaxisLogic& ioLogic)
             khaziRef.PostWRef().AngVelWRef().OuterMultiplyBy(orientation.Conjugate());
         }
 
+		khaziRef.MeshWRef() = *MushcoreData<MushMesh4Mesh>::Sgl().Get("attendant");
+#if 0
         AdanaxisMeshLibrary::AdanaxisSgl().AttendantCreate(khaziRef.MeshWRef());
 		AdanaxisMeshLibrary::AdanaxisSgl().AttendantVerticesSet(khaziRef.MeshWRef(), 1);
-
+#endif
         //AdanaxisMeshLibrary::AdanaxisSgl().TesseractCreate(khaziRef.MeshWRef());
         khaziRef.MeshWRef().TexCoordDelegateSet(MushMesh4Mesh::tDataRef("attendant"));
         khaziRef.TexCoordBuffersNameSet("attendant");
@@ -269,10 +274,11 @@ AdanaxisUtil::TestSkinsCreate(AdanaxisLogic& ioLogic)
     skinTiled.TexCoordsGenerate(*p4Mesh);
     MushcoreData<MushGLBuffers>::Sgl().GetOrCreate("tesseract");
       
-    p4Mesh = MushcoreData<MushMesh4Mesh>::Sgl().Give("attendant", new MushMesh4Mesh);
+    p4Mesh = MushcoreData<MushMesh4Mesh>::Sgl().GetOrCreate("attendant");
+#if 0
     AdanaxisMeshLibrary::AdanaxisSgl().AttendantCreate(*p4Mesh);
-    
 	AdanaxisMeshLibrary::AdanaxisSgl().AttendantVerticesSet(*p4Mesh, 1);
+#endif
 
     skinTiled.TexCoordsGenerate(*p4Mesh);
     MushcoreData<MushGLBuffers>::Sgl().GetOrCreate("attendant");

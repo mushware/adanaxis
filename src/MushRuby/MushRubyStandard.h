@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } Yh+jb7Kt8ubaZEY+Q2v/cg
 /*
- * $Id: MushRubyStandard.h,v 1.2 2006/04/21 00:10:43 southa Exp $
+ * $Id: MushRubyStandard.h,v 1.3 2006/06/12 11:59:40 southa Exp $
  * $Log: MushRubyStandard.h,v $
+ * Revision 1.3  2006/06/12 11:59:40  southa
+ * Ruby wrapper for MushMeshVector
+ *
  * Revision 1.2  2006/04/21 00:10:43  southa
  * MushGLFont ruby module
  *
@@ -53,6 +56,8 @@ namespace Mushware
     typedef tRubyValue (*tfpRubyMethod)(tRubyArgC inArgC, tRubyValue *inpArgV, tRubyValue inSelf);
 	typedef tRubyValue (*tfpRubyMethodNoParams)(tRubyValue inSelf);
 	typedef tRubyValue (*tfpRubyMethodOneParam)(tRubyValue inSelf, tRubyValue inArg1);
+	typedef tRubyValue (*tfpRubyMethodTwoParams)(tRubyValue inSelf, tRubyValue inArg1, tRubyValue inArg2);
+	typedef tRubyValue (*tfpRubyMethodThreeParams)(tRubyValue inSelf, tRubyValue inArg1, tRubyValue inArg2, tRubyValue inArg3);
 	typedef tRubyValue (*tfpRubyMethodFourParams)(tRubyValue inSelf, tRubyValue inArg1, tRubyValue inArg2, tRubyValue inArg3, tRubyValue inArg4);
 	typedef tRubyValue (*tfpRubyAllocFunc)(tRubyValue);
 }

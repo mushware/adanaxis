@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef MUSHMESHRUBYSTANDARD_H
-#define MUSHMESHRUBYSTANDARD_H
-//%includeGuardStart } sxR91hM3031V/dSSOaL+ww
+#ifndef MUSHMESHRUBYDISPLACEMENT_H
+#define MUSHMESHRUBYDISPLACEMENT_H
+//%includeGuardStart } wA/o7FTWPUZkSPtLetn3sA
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushMeshRuby/MushMeshRubyStandard.h
+ * File: src/MushMeshRuby/MushMeshRubyDisplacement.h
  *
  * Author: Andy Southgate 2002-2006
  *
@@ -21,20 +21,30 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } Uy1HTQVXLgs68GmjEsgKkQ
+//%Header } RqIYygnsvbiaEc0+PyskZQ
 /*
- * $Id: MushMeshRubyStandard.h,v 1.1 2006/06/12 11:59:39 southa Exp $
- * $Log: MushMeshRubyStandard.h,v $
- * Revision 1.1  2006/06/12 11:59:39  southa
- * Ruby wrapper for MushMeshVector
- *
+ * $Id$
+ * $Log$
  */
 
-#include "API/mushMushcore.h"
-#include "API/mushMushMesh.h"
-#include "API/mushMushMeshLibrary.h"
-#include "API/mushMushRuby.h"
+#include "MushMeshRubyStandard.h"
 
+class MushMeshDisplacement;
+
+class MushMeshRubyDisplacement
+{
+public:
+	static Mushware::tRubyValue MushDisplacementAllocate(Mushware::tRubyValue inKlass);
+	static void MushDisplacementFree(void *inPtr);			
+	static MushMeshDisplacement& RefObj(Mushware::tRubyValue inSelf);
+	static Mushware::tRubyValue MushDisplacementInitialize(Mushware::tRubyArgC inArgC, Mushware::tRubyValue *inpArgV, Mushware::tRubyValue inSelf);
+	static Mushware::tRubyValue MushDisplacementInitializeCopy(Mushware::tRubyValue inCopy, Mushware::tRubyValue inOrig);
+	static Mushware::tRubyValue MushDisplacement_to_s(Mushware::tRubyValue inSelf);
+	static void RubyInstall(void);
+	
+private:
+	static Mushware::tRubyValue m_DisplacementKlass;
+};
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw
