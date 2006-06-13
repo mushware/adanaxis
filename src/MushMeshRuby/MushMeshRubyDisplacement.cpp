@@ -19,95 +19,63 @@
  ****************************************************************************/
 //%Header } r4uJt7qAeGRBys+BB5eEWg
 /*
- * $Id$
- * $Log$
+ * $Id: MushMeshRubyDisplacement.cpp,v 1.1 2006/06/12 16:01:23 southa Exp $
+ * $Log: MushMeshRubyDisplacement.cpp,v $
+ * Revision 1.1  2006/06/12 16:01:23  southa
+ * Ruby mesh generation
+ *
  */
 
 #include "MushMeshRubyDisplacement.h"
+
+#include "MushMeshRubyRotation.h"
+#include "MushMeshRubyVector.h"
 
 #include "MushMeshRubyRuby.h"
 
 using namespace Mushware;
 using namespace std;
 
-Mushware::tRubyValue MushMeshRubyDisplacement::m_DisplacementKlass = Qnil;
+MUSHRUBYOBJ_INSTANCE(MushMeshDisplacement);
 
-void
-MushMeshRubyDisplacement::MushDisplacementFree(void *inPtr)
+MUSHRUBYOBJ_INITIALIZE(MushMeshDisplacement)(Mushware::tRubyArgC inArgC, Mushware::tRubyValue *inpArgV, Mushware::tRubyValue inSelf)
 {
-	delete reinterpret_cast<MushMeshDisplacement *>(inPtr);
-}
-
-Mushware::tRubyValue
-MushMeshRubyDisplacement::MushDisplacementAllocate(Mushware::tRubyValue inKlass)
-{
-	return Data_Wrap_Struct(inKlass, 0, MushDisplacementFree, new MushMeshDisplacement);
-}
-
-
-MushMeshDisplacement&
-MushMeshRubyDisplacement::RefObj(Mushware::tRubyValue inSelf)
-{
-	MushMeshDisplacement *pValue = NULL;
-	Data_Get_Struct(inSelf, MushMeshDisplacement, pValue);
-	MUSHCOREASSERT(pValue != NULL);
-	return *pValue;
-}
-
-Mushware::tRubyValue
-MushMeshRubyDisplacement::MushDisplacementInitialize(Mushware::tRubyArgC inArgC, Mushware::tRubyValue *inpArgV, Mushware::tRubyValue inSelf)
-{
-	try
+	switch (inArgC)
 	{
-	}
-	catch (MushcoreFail& e)
-	{
-		MushRubyUtil::Raise(e.what());
+	    case 0:
+			// Uninitialised
+			break;
+			
+		case 3:
+		{
+			if (!MushMeshRubyVector::IsInstanceOf(inpArgV[0]))
+			{
+				MushRubyUtil::Raise("First parameter to MushDisplacement.new must be Mush4Val");
+			}
+			if (!MushMeshRubyRotation::IsInstanceOf(inpArgV[1]))
+			{
+				MushRubyUtil::Raise("Second parameter to MushDisplacement.new must be MushRotation");
+			}
+			MushRubyValue param2(inpArgV[2]);
+			
+			WRef(inSelf).OffsetSet(MushMeshRubyVector::Ref(inpArgV[0]));
+			WRef(inSelf).RotationSet(MushMeshRubyRotation::Ref(inpArgV[1]));
+			WRef(inSelf).ScaleSet(param2.Val());
+		}		
+		break;
+			
+		default:
+			MushRubyUtil::Raise("Wrong number of parameters to MushDisplacement.new(offset, rotation, scale)");
+			break;
+			
 	}
 	return inSelf;
-}
-
-Mushware::tRubyValue
-MushMeshRubyDisplacement::MushDisplacementInitializeCopy(Mushware::tRubyValue inCopy, Mushware::tRubyValue inOrig)
-{
-	if (inCopy != inOrig)
-	{
-		if (MushRubyUtil::SameDataType(inCopy, inOrig))
-		{
-		    RefObj(inCopy) = RefObj(inOrig);
-		}
-		else
-		{
-			MushRubyUtil::Raise("Cannot copy to MushDisplacement from different type");
-		}
-	}
-    return inCopy;
-}
-
-Mushware::tRubyValue
-MushMeshRubyDisplacement::MushDisplacement_to_s(Mushware::tRubyValue inSelf)
-{
-	std::ostringstream objStream;
-	objStream << RefObj(inSelf);
-	
-	return rb_str_new(objStream.str().data(), objStream.str().size());
 }
 
 void
 MushMeshRubyDisplacement::RubyInstall(void)
 {
-	m_DisplacementKlass = MushRubyUtil::AllocatedClassDefine("MushDisplacement", MushDisplacementAllocate);
-	
-	MushRubyUtil::MethodDefine(m_DisplacementKlass, "initialize", MushDisplacementInitialize);
-	MushRubyUtil::MethodDefineOneParam(m_DisplacementKlass, "initialize_copy", MushDisplacementInitializeCopy);
-	MushRubyUtil::MethodDefineNoParams(m_DisplacementKlass, "to_s", MushDisplacement_to_s);
+	ObjInstall("MushDisplacement");
 }
 
-namespace
-{
-	void Install(void)
-	{
-		MushRubyInstall::Sgl().Add(MushMeshRubyDisplacement::RubyInstall);
-	}
-	MushcoreInstaller install(Install);
-}
+MUSHRUBY_INSTALL(MushMeshRubyDisplacement);

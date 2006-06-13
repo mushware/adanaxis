@@ -23,15 +23,18 @@
  ****************************************************************************/
 //%Header } qIHPu+oGp+u9ov1VjlaopA
 /*
- * $Id$
- * $Log$
+ * $Id: MushMeshRubyMeshLibrary.h,v 1.1 2006/06/12 16:01:23 southa Exp $
+ * $Log: MushMeshRubyMeshLibrary.h,v $
+ * Revision 1.1  2006/06/12 16:01:23  southa
+ * Ruby mesh generation
+ *
  */
 
 #include "MushMeshRubyStandard.h"
 
 class MushMeshMeshLibrary;
 
-class MushMeshRubyMeshLibrary
+class MushMeshRubyMeshLibrary : public MushRubyObj<MushMeshLibraryBase>
 {
 public:
 	static void RubyInstall(void);
@@ -39,7 +42,6 @@ public:
 private:
 	static Mushware::tRubyValue PolygonPrismCreate(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg1,
 											Mushware::tRubyValue inArg2, Mushware::tRubyValue inArg3);
-	static Mushware::tRubyValue m_meshLibraryKlass;
 };
 //%includeGuardEnd {
 #endif

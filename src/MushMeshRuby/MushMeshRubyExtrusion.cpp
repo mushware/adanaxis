@@ -1,11 +1,7 @@
-//%includeGuardStart {
-#ifndef MUSHMESHRUBYMESH_H
-#define MUSHMESHRUBYMESH_H
-//%includeGuardStart } 0fz+h5HaFSFoFE3/de8MLg
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushMeshRuby/MushMeshRubyMesh.h
+ * File: src/MushMeshRuby/MushMeshRubyExtrusion.cpp
  *
  * Author: Andy Southgate 2002-2006
  *
@@ -21,29 +17,30 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } hSrHx4/wCdfB19VcRmiYhw
+//%Header } /kiEURAeyvrOK+Fzi1sNTg
 /*
- * $Id: MushMeshRubyMesh.h,v 1.2 2006/06/13 10:35:04 southa Exp $
- * $Log: MushMeshRubyMesh.h,v $
- * Revision 1.2  2006/06/13 10:35:04  southa
- * Ruby data objects
- *
- * Revision 1.1  2006/06/12 16:01:23  southa
- * Ruby mesh generation
- *
+ * $Id$
+ * $Log$
  */
 
-#include "MushMeshRubyStandard.h"
+#include "MushMeshRubyExtrusion.h"
 
-class MushMeshMesh;
+#include "MushMeshRubyRuby.h"
 
-class MushMeshRubyMesh : public MushRubyDataObj<MushMesh4Mesh>
+using namespace Mushware;
+using namespace std;
+
+MUSHRUBYOBJ_INSTANCE(MushMeshLibraryExtrusionContext);
+
+MUSHRUBYOBJ_INITIALIZE(MushMeshLibraryExtrusionContext)(Mushware::tRubyArgC inArgC, Mushware::tRubyValue *inpArgV, Mushware::tRubyValue inSelf)
 {
-public:
-	static void RubyInstall(void);
-private:
-};
+	return inSelf;
+}
 
-//%includeGuardEnd {
-#endif
-//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw
+void
+MushMeshRubyExtrusion::RubyInstall(void)
+{
+	ObjInstall("MushExtrusion");
+}
+
+MUSHRUBY_INSTALL(MushMeshRubyExtrusion);

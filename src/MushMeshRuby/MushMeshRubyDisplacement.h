@@ -23,28 +23,24 @@
  ****************************************************************************/
 //%Header } RqIYygnsvbiaEc0+PyskZQ
 /*
- * $Id$
- * $Log$
+ * $Id: MushMeshRubyDisplacement.h,v 1.1 2006/06/12 16:01:23 southa Exp $
+ * $Log: MushMeshRubyDisplacement.h,v $
+ * Revision 1.1  2006/06/12 16:01:23  southa
+ * Ruby mesh generation
+ *
  */
 
 #include "MushMeshRubyStandard.h"
 
 class MushMeshDisplacement;
 
-class MushMeshRubyDisplacement
+class MushMeshRubyDisplacement : public MushRubyObj<MushMeshDisplacement>
 {
 public:
-	static Mushware::tRubyValue MushDisplacementAllocate(Mushware::tRubyValue inKlass);
-	static void MushDisplacementFree(void *inPtr);			
-	static MushMeshDisplacement& RefObj(Mushware::tRubyValue inSelf);
-	static Mushware::tRubyValue MushDisplacementInitialize(Mushware::tRubyArgC inArgC, Mushware::tRubyValue *inpArgV, Mushware::tRubyValue inSelf);
-	static Mushware::tRubyValue MushDisplacementInitializeCopy(Mushware::tRubyValue inCopy, Mushware::tRubyValue inOrig);
-	static Mushware::tRubyValue MushDisplacement_to_s(Mushware::tRubyValue inSelf);
-	static void RubyInstall(void);
-	
+	static void RubyInstall(void);	
 private:
-	static Mushware::tRubyValue m_DisplacementKlass;
 };
+
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } jdgFb5i3vyCl+/NcIHhqAQ
 /*
- * $Id$
- * $Log$
+ * $Id: MushRubyInstall.h,v 1.1 2006/04/21 00:10:43 southa Exp $
+ * $Log: MushRubyInstall.h,v $
+ * Revision 1.1  2006/04/21 00:10:43  southa
+ * MushGLFont ruby module
+ *
  */
 
 #include "MushRubyStandard.h"
@@ -40,6 +43,17 @@ private:
     
     std::vector<tpInstallFunction> m_installFunctions;
 };
+
+#define MUSHRUBY_INSTALL(a) \
+namespace \
+{ \
+	void Install(void) \
+	{ \
+		MushRubyInstall::Sgl().Add(a::RubyInstall); \
+	} \
+	MushcoreInstaller install(Install); \
+}
+
 
 //%includeGuardEnd {
 #endif

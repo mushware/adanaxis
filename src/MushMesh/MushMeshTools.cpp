@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } cQoVIV2DdH4LiqrKzfp8tw
 /*
- * $Id: MushMeshTools.cpp,v 1.9 2006/06/09 11:43:03 southa Exp $
+ * $Id: MushMeshTools.cpp,v 1.10 2006/06/09 21:07:13 southa Exp $
  * $Log: MushMeshTools.cpp,v $
+ * Revision 1.10  2006/06/09 21:07:13  southa
+ * Tiled skin generation
+ *
  * Revision 1.9  2006/06/09 11:43:03  southa
  * Facet to texture transformation
  *
@@ -529,3 +532,11 @@ MushMeshTools::TextureCoordsForFacet(std::vector<Mushware::t4Val>& outTexCoords,
 }
 
 
+//%outOfLineFunctions {
+void
+MushMeshTools::AutoPrint(std::ostream& ioOut) const
+{
+    ioOut << "[";
+    ioOut << "]";
+}
+//%outOfLineFunctions } hMGdAkgc9dXApXeZiSV+HA

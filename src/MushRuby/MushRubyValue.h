@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 5BOLwI3DhgfDHotOLswDpg
 /*
- * $Id: MushRubyValue.h,v 1.3 2006/06/07 12:15:20 southa Exp $
+ * $Id: MushRubyValue.h,v 1.4 2006/06/12 11:59:40 southa Exp $
  * $Log: MushRubyValue.h,v $
+ * Revision 1.4  2006/06/12 11:59:40  southa
+ * Ruby wrapper for MushMeshVector
+ *
  * Revision 1.3  2006/06/07 12:15:20  southa
  * Grid and test textures
  *
@@ -50,7 +53,6 @@ public:
 	bool Bool(void) const;
 	Mushware::U32 U32(void) const;
 	Mushware::tVal Val(void) const;
-	
 	
 private:
 	Mushware::tRubyValue m_value; //:read

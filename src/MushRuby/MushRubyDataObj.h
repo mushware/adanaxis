@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } px78SUrna42uj+15fa2T7w
 /*
- * $Id$
- * $Log$
+ * $Id: MushRubyDataObj.h,v 1.1 2006/06/13 10:35:05 southa Exp $
+ * $Log: MushRubyDataObj.h,v $
+ * Revision 1.1  2006/06/13 10:35:05  southa
+ * Ruby data objects
+ *
  */
 
 #include "MushRubyStandard.h"
@@ -38,17 +41,22 @@ public:
 	typedef MushcoreData<T> tDataObjData;
 	typedef MushcoreDataRef<T> tDataObjRef;
 	
-	
 	static const tDataObjBase& Ref(Mushware::tRubyValue inSelf);
 	static tDataObjBase& WRef(Mushware::tRubyValue inSelf);
+	static bool IsInstanceOf(Mushware::tRubyValue inValue);
 
 protected:
 	static tDataObjRef& DataObjRef(Mushware::tRubyValue inSelf);
 	static tDataObjBase& DataObjBase(Mushware::tRubyValue inSelf);
 	static Mushware::tRubyValue DataObjKlass(void) { return m_dataObjKlass; }
 	static Mushware::tRubyValue DataObjAllocate(Mushware::tRubyValue inKlass);		
+	static Mushware::tRubyValue DataObjInitialize(Mushware::tRubyArgC inArgC, Mushware::tRubyValue *inpArgV, Mushware::tRubyValue inSelf);
+	static Mushware::tRubyValue DataObjInitializeCopy(Mushware::tRubyValue inCopy, Mushware::tRubyValue inOrig);
 	static Mushware::tRubyValue DataObj_to_s(Mushware::tRubyValue inSelf);
 	static void DataObjInstall(const std::string &inName);
+	
+	// Initialize must be overriden to permit object creation
+	static Mushware::tRubyValue Initialize(Mushware::tRubyArgC inArgC, Mushware::tRubyValue *inpArgV, Mushware::tRubyValue inSelf);
 	
 private:
 	static void DataObjFree(void *inPtr);			
@@ -58,6 +66,11 @@ private:
 
 #define MUSHRUBYDATAOBJ_INSTANCE(T) \
 template <> Mushware::tRubyValue MushRubyDataObj<T>::m_dataObjKlass = MushRuby::QNil
+
+#define MUSHRUBYDATAOBJ_INITIALIZE(T) \
+template <> \
+Mushware::tRubyValue \
+MushRubyDataObj<T>::Initialize
 
 template <class T>
 void
@@ -108,6 +121,54 @@ MushRubyDataObj<T>::WRef(Mushware::tRubyValue inSelf)
 }
 
 template <class T>
+bool
+MushRubyDataObj<T>::IsInstanceOf(Mushware::tRubyValue inValue)
+{
+	return MushRubyUtil::IsInstanceOf(inValue, m_dataObjKlass);
+}
+
+template <class T>
+Mushware::tRubyValue
+MushRubyDataObj<T>::Initialize(Mushware::tRubyArgC inArgC, Mushware::tRubyValue *inpArgV, Mushware::tRubyValue inSelf)
+{
+	throw MushcoreLogicFail("MushRubyDataObj::Initialize must be overriden by derived class to permit object creation");
+}
+
+template <class T>
+Mushware::tRubyValue
+MushRubyDataObj<T>::DataObjInitialize(Mushware::tRubyArgC inArgC, Mushware::tRubyValue *inpArgV, Mushware::tRubyValue inSelf)
+{
+	Mushware::tRubyValue retVal;
+	try
+	{
+		retVal = Initialize(inArgC, inpArgV, inSelf);
+	}
+	catch (MushcoreFail& e)
+	{
+		MushRubyUtil::Raise(e.what());
+	}
+	return retVal;
+}
+
+template <class T>
+Mushware::tRubyValue
+MushRubyDataObj<T>::DataObjInitializeCopy(Mushware::tRubyValue inCopy, Mushware::tRubyValue inOrig)
+{
+	if (inCopy != inOrig)
+	{
+		if (MushRubyUtil::SameDataType(inCopy, inOrig))
+		{
+		    WRef(inCopy) = Ref(inOrig);
+		}
+		else
+		{
+			MushRubyUtil::Raise("Cannot copy from different type");
+		}
+	}
+    return inCopy;
+}
+
+template <class T>
 Mushware::tRubyValue
 MushRubyDataObj<T>::DataObj_to_s(Mushware::tRubyValue inSelf)
 {
@@ -122,6 +183,8 @@ void
 MushRubyDataObj<T>::DataObjInstall(const std::string &inName)
 {
 	m_dataObjKlass = MushRubyUtil::AllocatedClassDefine(inName, DataObjAllocate);
+	MushRubyUtil::MethodDefine(DataObjKlass(), "initialize", DataObjInitialize);
+	MushRubyUtil::MethodDefineOneParam(DataObjKlass(), "initialize_copy", DataObjInitializeCopy);
 	MushRubyUtil::MethodDefineNoParams(DataObjKlass(), "to_s", DataObj_to_s);
 }
 

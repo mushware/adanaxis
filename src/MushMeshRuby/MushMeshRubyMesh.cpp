@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } oR7WPhSKmfGQldTVFg6TpQ
 /*
- * $Id: MushMeshRubyMesh.cpp,v 1.1 2006/06/12 16:01:23 southa Exp $
+ * $Id: MushMeshRubyMesh.cpp,v 1.2 2006/06/13 10:35:04 southa Exp $
  * $Log: MushMeshRubyMesh.cpp,v $
+ * Revision 1.2  2006/06/13 10:35:04  southa
+ * Ruby data objects
+ *
  * Revision 1.1  2006/06/12 16:01:23  southa
  * Ruby mesh generation
  *
@@ -35,44 +38,24 @@ MUSHRUBYDATAOBJ_INSTANCE(MushMesh4Mesh);
 using namespace Mushware;
 using namespace std;
 
-Mushware::tRubyValue
-MushMeshRubyMesh::MushMeshInitialize(Mushware::tRubyArgC inArgC, Mushware::tRubyValue *inpArgV, Mushware::tRubyValue inSelf)
+MUSHRUBYDATAOBJ_INITIALIZE(MushMesh4Mesh)(Mushware::tRubyArgC inArgC, Mushware::tRubyValue *inpArgV, Mushware::tRubyValue inSelf)
 {
-	try
+	if (inArgC != 1)
 	{
-		if (inArgC != 1)
-		{
-			MushRubyUtil::Raise("MushMesh constructor requires one parameter <mesh name>");
-		}
-		MushRubyValue nameValue(inpArgV[0]);
-		std::string nameStr = nameValue.String();
-		DataObjRef(inSelf).NameSet(nameStr);
-		tDataObjData::Sgl().GetOrCreate(nameStr); // Create mesh if it doesn't exist
+		MushRubyUtil::Raise("MushMesh constructor requires one parameter <mesh name>");
 	}
-	catch (MushcoreFail& e)
-	{
-		MushRubyUtil::Raise(e.what());
-	}
-	return inSelf;
-}
+	MushRubyValue nameValue(inpArgV[0]);
+	std::string nameStr = nameValue.String();
+	DataObjRef(inSelf).NameSet(nameStr);
+	tDataObjData::Sgl().GetOrCreate(nameStr); // Create mesh if it doesn't exist
 
-Mushware::tRubyValue
-MushMeshRubyMesh::MushMeshInitializeCopy(Mushware::tRubyValue inCopy, Mushware::tRubyValue inOrig)
-{
-	if (inCopy != inOrig)
-	{
-		MushRubyUtil::Raise("Cannot clone or dup MushMesh");
-	}
-    return inCopy;
+	return inSelf;
 }
 
 void
 MushMeshRubyMesh::RubyInstall(void)
 {
 	DataObjInstall("MushMesh");
-	
-	MushRubyUtil::MethodDefine(DataObjKlass(), "initialize", MushMeshInitialize);
-	MushRubyUtil::MethodDefineOneParam(DataObjKlass(), "initialize_copy", MushMeshInitializeCopy);
 }
 
 namespace

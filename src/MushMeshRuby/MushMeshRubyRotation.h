@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef MUSHMESHRUBYGENERAL_H
-#define MUSHMESHRUBYGENERAL_H
-//%includeGuardStart } VVHApDOZH3PU/qQ3A1sVzA
+#ifndef MUSHMESHRUBYROTATION_H
+#define MUSHMESHRUBYROTATION_H
+//%includeGuardStart } hXr+yjZg5zElUUq0RZNB4g
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushMeshRuby/MushMeshRubyGeneral.h
+ * File: src/MushMeshRuby/MushMeshRubyRotation.h
  *
  * Author: Andy Southgate 2002-2006
  *
@@ -21,23 +21,25 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } RG5RWJFSVZIksTCtLKBYvQ
+//%Header } NU6ZSof2ssS4JvX3KgPtTw
 /*
  * $Id$
  * $Log$
  */
 
+
 #include "MushMeshRubyStandard.h"
 
-class MushMeshRubyGeneral : public MushcoreSingleton<MushMeshRubyGeneral>
+class MushMeshRubyRotation : public MushRubyObj<Mushware::tQValPair>
 {
 public:
 	static void RubyInstall(void);
 	
+protected:
+	static Mushware::tRubyValue Rotate(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
+	
 private:
 };
-
-
 
 //%includeGuardEnd {
 #endif

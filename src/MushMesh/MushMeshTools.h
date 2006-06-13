@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } VP8fay9XgM+kqodf58ym6g
 /*
- * $Id: MushMeshTools.h,v 1.10 2006/06/09 11:43:03 southa Exp $
+ * $Id: MushMeshTools.h,v 1.11 2006/06/09 21:07:13 southa Exp $
  * $Log: MushMeshTools.h,v $
+ * Revision 1.11  2006/06/09 21:07:13  southa
+ * Tiled skin generation
+ *
  * Revision 1.10  2006/06/09 11:43:03  southa
  * Facet to texture transformation
  *
@@ -66,6 +69,7 @@
 class MushMesh4Mesh;
 class MushMesh4TextureTile;
 
+//:generate ostream
 class MushMeshTools
 {
 public:
@@ -79,6 +83,7 @@ public:
         kAxisYZ = 5
     };
     
+	virtual ~MushMeshTools() {}
 	typedef std::vector<Mushware::t4Val> tFacetVertices;
 	
     static Mushware::t3x3Val RotateInXY(Mushware::tVal inAngle);
@@ -103,7 +108,19 @@ public:
 								 Mushware::U32 inFaceNum, Mushware::U32 inFacetNum);
 	static void TextureCoordsForFacet(std::vector<Mushware::t4Val>& outTexCoords, const MushMesh4Mesh& inMesh,
 									  Mushware::U32 inFaceNum, Mushware::U32 inFacetNum);
+//%classPrototypes {
+public:
+    virtual void AutoPrint(std::ostream& ioOut) const;
+//%classPrototypes } b86DSDsq8lQQbiM0rrNtkg
 };
+//%inlineHeader {
+inline std::ostream&
+operator<<(std::ostream& ioOut, const MushMeshTools& inObj)
+{
+    inObj.AutoPrint(ioOut);
+    return ioOut;
+}
+//%inlineHeader } NPgu1rRspSnV7PLxN0kaAg
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

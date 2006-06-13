@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef MUSHMESHRUBYMESH_H
-#define MUSHMESHRUBYMESH_H
-//%includeGuardStart } 0fz+h5HaFSFoFE3/de8MLg
+#ifndef MUSHMESHRUBYTOOLS_H
+#define MUSHMESHRUBYTOOLS_H
+//%includeGuardStart } AhDIfg56yXx3qhiZE8dkOA
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushMeshRuby/MushMeshRubyMesh.h
+ * File: src/MushMeshRuby/MushMeshRubyTools.h
  *
  * Author: Andy Southgate 2002-2006
  *
@@ -21,29 +21,31 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } hSrHx4/wCdfB19VcRmiYhw
+//%Header } bXehXXY7VVdSW1knmNpOqw
 /*
- * $Id: MushMeshRubyMesh.h,v 1.2 2006/06/13 10:35:04 southa Exp $
- * $Log: MushMeshRubyMesh.h,v $
- * Revision 1.2  2006/06/13 10:35:04  southa
- * Ruby data objects
- *
- * Revision 1.1  2006/06/12 16:01:23  southa
- * Ruby mesh generation
- *
+ * $Id$
+ * $Log$
  */
 
 #include "MushMeshRubyStandard.h"
 
-class MushMeshMesh;
-
-class MushMeshRubyMesh : public MushRubyDataObj<MushMesh4Mesh>
+class MushMeshRubyTools : public MushRubyObj<MushMeshTools>
 {
 public:
 	static void RubyInstall(void);
+	
+protected:
+	static Mushware::tRubyValue RotationInAxis(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0,
+											   Mushware::tRubyValue inArg1);
+	static Mushware::tRubyValue RotationInXYPlane(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
+	static Mushware::tRubyValue RotationInZWPlane(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
+	static Mushware::tRubyValue RotationInXZPlane(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
+	static Mushware::tRubyValue RotationInYWPlane(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
+	static Mushware::tRubyValue RotationInXWPlane(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
+	static Mushware::tRubyValue RotationInYZPlane(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
+
 private:
 };
-
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

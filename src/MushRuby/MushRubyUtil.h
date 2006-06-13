@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } ZnwDjEM1+TPkZ9HrL5mg7A
 /*
- * $Id: MushRubyUtil.h,v 1.6 2006/06/12 16:01:24 southa Exp $
+ * $Id: MushRubyUtil.h,v 1.7 2006/06/13 10:35:06 southa Exp $
  * $Log: MushRubyUtil.h,v $
+ * Revision 1.7  2006/06/13 10:35:06  southa
+ * Ruby data objects
+ *
  * Revision 1.6  2006/06/12 16:01:24  southa
  * Ruby mesh generation
  *
@@ -66,19 +69,33 @@ public:
 									 Mushware::tfpRubyMethodNoParams infpMethod);
 	static void MethodDefineOneParam(Mushware::tRubyValue inKlass, const std::string& inName,
 									 Mushware::tfpRubyMethodOneParam infpMethod);
+	static void MethodDefineTwoParams(Mushware::tRubyValue inKlass, const std::string& inName,
+									   Mushware::tfpRubyMethodTwoParams infpMethod);
+	static void MethodDefineThreeParams(Mushware::tRubyValue inKlass, const std::string& inName,
+									   Mushware::tfpRubyMethodThreeParams infpMethod);
 	static void MethodDefineFourParams(Mushware::tRubyValue inKlass, const std::string& inName,
-									 Mushware::tfpRubyMethodFourParams infpMethod);
+									   Mushware::tfpRubyMethodFourParams infpMethod);
     static void SingletonMethodDefine(Mushware::tRubyValue inKlass, const std::string& inName,
 									  Mushware::tfpRubyMethod infpMethod);
+    static void SingletonMethodDefineNoParams(Mushware::tRubyValue inKlass, const std::string& inName,
+												 Mushware::tfpRubyMethodNoParams infpMethod);
+    static void SingletonMethodDefineOneParam(Mushware::tRubyValue inKlass, const std::string& inName,
+												 Mushware::tfpRubyMethodOneParam infpMethod);
+    static void SingletonMethodDefineTwoParams(Mushware::tRubyValue inKlass, const std::string& inName,
+												 Mushware::tfpRubyMethodTwoParams infpMethod);
     static void SingletonMethodDefineThreeParams(Mushware::tRubyValue inKlass, const std::string& inName,
-									  Mushware::tfpRubyMethodThreeParams infpMethod);
+												 Mushware::tfpRubyMethodThreeParams infpMethod);
+    static void SingletonMethodDefineFourParams(Mushware::tRubyValue inKlass, const std::string& inName,
+												 Mushware::tfpRubyMethodFourParams infpMethod);
 	static void HashConvert(Mushware::tRubyHash& outHash, const MushRubyValue& inHash);
 	static void Raise(const std::string& inStr);
 	static bool SameDataType(Mushware::tRubyValue inA, Mushware::tRubyValue inB);
+	static bool IsInstanceOf(Mushware::tRubyValue inValue, Mushware::tRubyID inKlass);
 	static void RaiseUnlessInstanceOf(Mushware::tRubyValue inValue, Mushware::tRubyValue inKlass);
 	static Mushware::tRubyValue DataWrapStruct(Mushware::tRubyValue inSelf, Mushware::tfpRubyDataFunc infpMark, Mushware::tfpRubyDataFunc infpFree, void *inpData);
 	static void *DataGetStruct(Mushware::tRubyValue inSelf);
     static Mushware::tRubyValue StringNew(const std::string& inStr);
+	static Mushware::tRubyValue ClassNewInstance(Mushware::tRubyID inID);
 	
 private:
 	static Mushware::tRubyValue HashHandler(Mushware::tRubyValue inArray, Mushware::tRubyValue inArg);

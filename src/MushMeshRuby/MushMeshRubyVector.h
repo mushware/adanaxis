@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 2J8UOQdZFzDY6iljFrjmCg
 /*
- * $Id: MushMeshRubyVector.h,v 1.2 2006/06/12 16:01:24 southa Exp $
+ * $Id: MushMeshRubyVector.h,v 1.3 2006/06/13 10:35:04 southa Exp $
  * $Log: MushMeshRubyVector.h,v $
+ * Revision 1.3  2006/06/13 10:35:04  southa
+ * Ruby data objects
+ *
  * Revision 1.2  2006/06/12 16:01:24  southa
  * Ruby mesh generation
  *
@@ -35,25 +38,16 @@
 
 #include "MushMeshRubyStandard.h"
 
-class MushMeshRubyVector
+class MushMeshRubyVector : public MushRubyObj<Mushware::t4Val>
 {
 public:
 	static void RubyInstall(void);
-	static const Mushware::t4Val& Ref(Mushware::tRubyValue inSelf);
-	static Mushware::t4Val& WRef(Mushware::tRubyValue inSelf);
 	
 private:
-	static Mushware::tRubyValue Mush4ValAllocate(Mushware::tRubyValue inKlass);
-	static void Mush4ValFree(void *inPtr);			
-	static Mushware::t4Val& RefObj(Mushware::tRubyValue inSelf);
-	static Mushware::tRubyValue Mush4ValInitialize(Mushware::tRubyArgC inArgC, Mushware::tRubyValue *inpArgV, Mushware::tRubyValue inSelf);
-	static Mushware::tRubyValue Mush4ValInitializeCopy(Mushware::tRubyValue inCopy, Mushware::tRubyValue inOrig);
-	static Mushware::tRubyValue Mush4Val_to_s(Mushware::tRubyValue inSelf);
 	static Mushware::tRubyValue Mush4ValInPlaceAdd(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg1);
 	static Mushware::tRubyValue Mush4ValAdd(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg1);
 	static Mushware::tRubyValue Mush4ValIsEqual(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg1);
-
-	static Mushware::tRubyValue m_t4ValKlass;
+	static Mushware::tRubyValue ApproxEqual(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0, Mushware::tRubyValue inArg1);
 };
 
 //%includeGuardEnd {

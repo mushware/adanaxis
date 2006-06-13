@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 0xPG/7jmGTzjaD0AmAZyzw
 /*
- * $Id: MushMeshRubyVector.cpp,v 1.2 2006/06/12 16:01:23 southa Exp $
+ * $Id: MushMeshRubyVector.cpp,v 1.3 2006/06/13 10:35:04 southa Exp $
  * $Log: MushMeshRubyVector.cpp,v $
+ * Revision 1.3  2006/06/13 10:35:04  southa
+ * Ruby data objects
+ *
  * Revision 1.2  2006/06/12 16:01:23  southa
  * Ruby mesh generation
  *
@@ -36,109 +39,45 @@
 using namespace Mushware;
 using namespace std;
 
-Mushware::tRubyValue MushMeshRubyVector::m_t4ValKlass = Qnil;
+MUSHRUBYOBJ_INSTANCE(Mushware::t4Val);
 
-void
-MushMeshRubyVector::Mush4ValFree(void *inPtr)
+MUSHRUBYOBJ_INITIALIZE(Mushware::t4Val)(Mushware::tRubyArgC inArgC, Mushware::tRubyValue *inpArgV, Mushware::tRubyValue inSelf)
 {
-	delete reinterpret_cast<Mushware::t4Val *>(inPtr);
-}
-
-Mushware::tRubyValue
-MushMeshRubyVector::Mush4ValAllocate(Mushware::tRubyValue inKlass)
-{
-	return Data_Wrap_Struct(inKlass, 0, Mush4ValFree, new Mushware::t4Val);
-}
-
-
-Mushware::t4Val&
-MushMeshRubyVector::RefObj(Mushware::tRubyValue inSelf)
-{
-	Mushware::t4Val *pVal = NULL;
-	Data_Get_Struct(inSelf, Mushware::t4Val, pVal);
-	MUSHCOREASSERT(pVal != NULL);
-	return *pVal;
-}
-
-const Mushware::t4Val&
-MushMeshRubyVector::Ref(Mushware::tRubyValue inSelf)
-{
-	MushRubyUtil::RaiseUnlessInstanceOf(inSelf, m_t4ValKlass);
-	return RefObj(inSelf);
-}
-
-Mushware::t4Val&
-MushMeshRubyVector::WRef(Mushware::tRubyValue inSelf)
-{
-	MushRubyUtil::RaiseUnlessInstanceOf(inSelf, m_t4ValKlass);
-	return RefObj(inSelf);
-}
-
-Mushware::tRubyValue
-MushMeshRubyVector::Mush4ValInitialize(Mushware::tRubyArgC inArgC, Mushware::tRubyValue *inpArgV, Mushware::tRubyValue inSelf)
-{
-	try
+	switch (inArgC)
 	{
-		if (inArgC == 0)
-		{
+		case 0:
 			// Leave uninitialised	
-		}
-		else if (inArgC == 1)
+			break;
+	
+		case 1:
 		{
 			MushRubyValue param0(inpArgV[0]);
-			RefObj(inSelf) = t4Val(param0.ValVector());
+			WRef(inSelf) = t4Val(param0.ValVector());
 		}
-		else if (inArgC == 4)
+		break;
+			
+		case 4:
 		{
 			MushRubyValue param0(inpArgV[0]);
 			MushRubyValue param1(inpArgV[1]);
 			MushRubyValue param2(inpArgV[2]);
 			MushRubyValue param3(inpArgV[3]);
+		
+			WRef(inSelf) = t4Val(param0.Val(), param1.Val(), param2.Val(), param3.Val());
+		}
+		break;
 			
-			RefObj(inSelf) = t4Val(param0.Val(), param1.Val(), param2.Val(), param3.Val());
-		}
-		else
-		{
-			MushRubyUtil::Raise("Wrong number of parameters to Mush4Val.intialise (must be 0, 1 array or 4 values)");	
-		}
-	}
-	catch (MushcoreFail& e)
-	{
-			MushRubyUtil::Raise(e.what());
+		default:
+			MushRubyUtil::Raise("Wrong number of parameters to Mush4Val.initialize (must be 0, 1 array or 4 values)");	
+			break;
 	}
 	return inSelf;
 }
 
 Mushware::tRubyValue
-MushMeshRubyVector::Mush4ValInitializeCopy(Mushware::tRubyValue inCopy, Mushware::tRubyValue inOrig)
-{
-	if (inCopy != inOrig)
-	{
-		if (MushRubyUtil::SameDataType(inCopy, inOrig))
-		{
-		    RefObj(inCopy) = RefObj(inOrig);
-		}
-		else
-		{
-			MushRubyUtil::Raise("Cannot copy to Mush4Val from different type");
-		}
-	}
-    return inCopy;
-}
-
-Mushware::tRubyValue
-MushMeshRubyVector::Mush4Val_to_s(Mushware::tRubyValue inSelf)
-{
-	std::ostringstream objStream;
-	objStream << RefObj(inSelf);
-	
-	return rb_str_new(objStream.str().data(), objStream.str().size());
-}
-
-Mushware::tRubyValue
 MushMeshRubyVector::Mush4ValInPlaceAdd(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg1)
 {
-	RefObj(inSelf) += RefObj(inArg1);
+	WRef(inSelf) += Ref(inArg1);
 	
 	return inSelf;
 }
@@ -146,8 +85,8 @@ MushMeshRubyVector::Mush4ValInPlaceAdd(Mushware::tRubyValue inSelf, Mushware::tR
 Mushware::tRubyValue
 MushMeshRubyVector::Mush4ValAdd(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg1)
 {
-	tRubyValue retVal = rb_class_new_instance(0, 0, m_t4ValKlass);
-    RefObj(retVal) = RefObj(inSelf);
+	tRubyValue retVal = MushRubyUtil::ClassNewInstance(ObjKlass());
+    WRef(retVal) = Ref(inSelf);
 	Mush4ValInPlaceAdd(retVal, inArg1);
 	
 	return retVal;
@@ -157,7 +96,7 @@ Mushware::tRubyValue
 MushMeshRubyVector::Mush4ValIsEqual(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg1)
 {
 	tRubyValue retVal;
-	if (RefObj(inSelf) == RefObj(inArg1))
+	if (Ref(inSelf) == Ref(inArg1))
 	{
 		retVal = MushRuby::QTrue;	
 	}
@@ -168,24 +107,25 @@ MushMeshRubyVector::Mush4ValIsEqual(Mushware::tRubyValue inSelf, Mushware::tRuby
 	return retVal;
 }
 
+Mushware::tRubyValue
+MushMeshRubyVector::ApproxEqual(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0, Mushware::tRubyValue inArg1)
+{
+	if (!MushRubyUtil::IsInstanceOf(inArg0, ObjKlass()))
+	{
+		MushRubyUtil::Raise("Cannot compare vector with different type");
+	}
+	return Ref(inSelf).ApproxEqual(Ref(inArg0), MushRubyValue(inArg1).Val());
+}
+
 void
 MushMeshRubyVector::RubyInstall(void)
 {
-	m_t4ValKlass = MushRubyUtil::AllocatedClassDefine("Mush4Val", Mush4ValAllocate);
-	
-	MushRubyUtil::MethodDefine(m_t4ValKlass, "initialize", Mush4ValInitialize);
-	MushRubyUtil::MethodDefineOneParam(m_t4ValKlass, "initialize_copy", Mush4ValInitializeCopy);
-	MushRubyUtil::MethodDefineNoParams(m_t4ValKlass, "to_s", Mush4Val_to_s);
-	MushRubyUtil::MethodDefineOneParam(m_t4ValKlass, "+=", Mush4ValInPlaceAdd);
-	MushRubyUtil::MethodDefineOneParam(m_t4ValKlass, "+", Mush4ValAdd);
-	MushRubyUtil::MethodDefineOneParam(m_t4ValKlass, "==", Mush4ValIsEqual);
+	ObjInstall("Mush4Val");
+
+	MushRubyUtil::MethodDefineOneParam(ObjKlass(), "+=", Mush4ValInPlaceAdd);
+	MushRubyUtil::MethodDefineOneParam(ObjKlass(), "+", Mush4ValAdd);
+	MushRubyUtil::MethodDefineOneParam(ObjKlass(), "==", Mush4ValIsEqual);
+	MushRubyUtil::MethodDefineTwoParams(ObjKlass(), "mApproxEqual", ApproxEqual);
 }
 
-namespace
-{
-	void Install(void)
-	{
-		MushRubyInstall::Sgl().Add(MushMeshRubyVector::RubyInstall);
-	}
-	MushcoreInstaller install(Install);
-}
+MUSHRUBY_INSTALL(MushMeshRubyVector);

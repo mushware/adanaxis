@@ -1,7 +1,11 @@
+//%includeGuardStart {
+#ifndef MUSHMESHRUBYEXTRUSION_H
+#define MUSHMESHRUBYEXTRUSION_H
+//%includeGuardStart } t+bX7G1nRyEz5SiSm5doaA
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushMeshRuby/MushMeshRubyGeneral.cpp
+ * File: src/MushMeshRuby/MushMeshRubyExtrusion.h
  *
  * Author: Andy Southgate 2002-2006
  *
@@ -17,27 +21,23 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } jfH8wCx+KTItK+X0KxYCBg
+//%Header } 2nQn7oUvVXh81hR42GfkRw
 /*
  * $Id$
  * $Log$
  */
 
-#include "MushMeshRubyGeneral.h"
+#include "MushMeshRubyStandard.h"
 
-MUSHCORE_SINGLETON_INSTANCE(MushMeshRubyGeneral);
+class MushMeshExtrusion;
 
-void
-MushMeshRubyGeneral::RubyInstall(void)
+class MushMeshRubyExtrusion : public MushRubyObj<MushMeshLibraryExtrusionContext>
 {
+public:
+	static void RubyInstall(void);
 	
-}
-
-namespace
-{
-	void Install(void)
-	{
-		MushRubyInstall::Sgl().Add(MushMeshRubyGeneral::RubyInstall);
-	}
-	MushcoreInstaller install(Install);
-}
+private:
+};
+//%includeGuardEnd {
+#endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

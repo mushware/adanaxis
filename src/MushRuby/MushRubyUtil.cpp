@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } gSaMBKSS/9FVf/ypP8x5kA
 /*
- * $Id: MushRubyUtil.cpp,v 1.6 2006/06/12 16:01:24 southa Exp $
+ * $Id: MushRubyUtil.cpp,v 1.7 2006/06/13 10:35:06 southa Exp $
  * $Log: MushRubyUtil.cpp,v $
+ * Revision 1.7  2006/06/13 10:35:06  southa
+ * Ruby data objects
+ *
  * Revision 1.6  2006/06/12 16:01:24  southa
  * Ruby mesh generation
  *
@@ -133,8 +136,22 @@ MushRubyUtil::MethodDefineOneParam(Mushware::tRubyValue inKlass, const std::stri
 }
 
 void
+MushRubyUtil::MethodDefineTwoParams(Mushware::tRubyValue inKlass, const std::string& inName,
+									 Mushware::tfpRubyMethodTwoParams infpMethod)
+{
+    rb_define_method(inKlass, inName.c_str(), RUBY_METHOD_FUNC(infpMethod), 2);
+}
+
+void
+MushRubyUtil::MethodDefineThreeParams(Mushware::tRubyValue inKlass, const std::string& inName,
+									 Mushware::tfpRubyMethodThreeParams infpMethod)
+{
+    rb_define_method(inKlass, inName.c_str(), RUBY_METHOD_FUNC(infpMethod), 3);
+}
+
+void
 MushRubyUtil::MethodDefineFourParams(Mushware::tRubyValue inKlass, const std::string& inName,
-						           Mushware::tfpRubyMethodFourParams infpMethod)
+									 Mushware::tfpRubyMethodFourParams infpMethod)
 {
     rb_define_method(inKlass, inName.c_str(), RUBY_METHOD_FUNC(infpMethod), 4);
 }
@@ -147,10 +164,38 @@ MushRubyUtil::SingletonMethodDefine(Mushware::tRubyValue inKlass, const std::str
 }
 
 void
+MushRubyUtil::SingletonMethodDefineNoParams(Mushware::tRubyValue inKlass, const std::string& inName,
+									tfpRubyMethodNoParams infpMethod)
+{
+    rb_define_singleton_method(inKlass, inName.c_str(), RUBY_METHOD_FUNC(infpMethod), 0);
+}
+
+void
+MushRubyUtil::SingletonMethodDefineOneParam(Mushware::tRubyValue inKlass, const std::string& inName,
+											   tfpRubyMethodOneParam infpMethod)
+{
+    rb_define_singleton_method(inKlass, inName.c_str(), RUBY_METHOD_FUNC(infpMethod), 1);
+}
+
+void
+MushRubyUtil::SingletonMethodDefineTwoParams(Mushware::tRubyValue inKlass, const std::string& inName,
+											   tfpRubyMethodTwoParams infpMethod)
+{
+    rb_define_singleton_method(inKlass, inName.c_str(), RUBY_METHOD_FUNC(infpMethod), 2);
+}
+
+void
 MushRubyUtil::SingletonMethodDefineThreeParams(Mushware::tRubyValue inKlass, const std::string& inName,
-									tfpRubyMethodThreeParams infpMethod)
+											   tfpRubyMethodThreeParams infpMethod)
 {
     rb_define_singleton_method(inKlass, inName.c_str(), RUBY_METHOD_FUNC(infpMethod), 3);
+}
+
+void
+MushRubyUtil::SingletonMethodDefineFourParams(Mushware::tRubyValue inKlass, const std::string& inName,
+											   tfpRubyMethodFourParams infpMethod)
+{
+    rb_define_singleton_method(inKlass, inName.c_str(), RUBY_METHOD_FUNC(infpMethod), 2);
 }
 
 Mushware::tRubyValue
@@ -185,10 +230,16 @@ MushRubyUtil::SameDataType(Mushware::tRubyValue inA, Mushware::tRubyValue inB)
 			RDATA(inA)->dfree == RDATA(inB)->dfree);
 }
 
+bool
+MushRubyUtil::IsInstanceOf(Mushware::tRubyValue inValue, Mushware::tRubyID inKlass)
+{
+	return rb_obj_is_instance_of(inValue, inKlass);
+}
+
 void
 MushRubyUtil::RaiseUnlessInstanceOf(Mushware::tRubyValue inValue, Mushware::tRubyValue inKlass)
 {
-	if (!rb_obj_is_instance_of(inValue, inKlass))
+	if (!IsInstanceOf(inValue, inKlass))
 	{
 		Raise("Object is of wrong type");	
 	}
@@ -214,4 +265,10 @@ Mushware::tRubyValue
 MushRubyUtil::StringNew(const std::string& inStr)
 {
     return rb_str_new(inStr.data(), inStr.size());
+}
+
+Mushware::tRubyValue
+MushRubyUtil::ClassNewInstance(Mushware::tRubyID inID)
+{
+    return rb_class_new_instance(0, 0, inID);
 }

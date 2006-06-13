@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 7po3niQtybBuVvnFyMOO2w
 /*
- * $Id: MushMeshRubyMeshLibrary.cpp,v 1.1 2006/06/12 16:01:23 southa Exp $
+ * $Id: MushMeshRubyMeshLibrary.cpp,v 1.2 2006/06/13 10:35:04 southa Exp $
  * $Log: MushMeshRubyMeshLibrary.cpp,v $
+ * Revision 1.2  2006/06/13 10:35:04  southa
+ * Ruby data objects
+ *
  * Revision 1.1  2006/06/12 16:01:23  southa
  * Ruby mesh generation
  *
@@ -37,7 +40,7 @@
 using namespace Mushware;
 using namespace std;
 
-Mushware::tRubyValue MushMeshRubyMeshLibrary::m_meshLibraryKlass = Qnil;
+MUSHRUBYOBJ_INSTANCE(MushMeshLibraryBase);
 
 Mushware::tRubyValue
 MushMeshRubyMeshLibrary::PolygonPrismCreate(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg1,
@@ -50,22 +53,14 @@ MushMeshRubyMeshLibrary::PolygonPrismCreate(Mushware::tRubyValue inSelf, Mushwar
 	MushMeshLibraryBase::Sgl().PolygonPrismCreate(meshRef, scaleRef, orderValue.U32());
 	
 	return inSelf;
-}
-											
+}											
 											
 void
 MushMeshRubyMeshLibrary::RubyInstall(void)
 {
-	m_meshLibraryKlass = MushRubyUtil::ClassDefine("MushMeshLibrary");
+	ObjInstall("MushMeshLibrary");
 	
-	MushRubyUtil::SingletonMethodDefineThreeParams(m_meshLibraryKlass, "sPolygonPrismCreate", PolygonPrismCreate);
+	MushRubyUtil::SingletonMethodDefineThreeParams(ObjKlass(), "sPolygonPrismCreate", PolygonPrismCreate);
 }
 
-namespace
-{
-	void Install(void)
-	{
-		MushRubyInstall::Sgl().Add(MushMeshRubyMeshLibrary::RubyInstall);
-	}
-	MushcoreInstaller install(Install);
-}
+MUSHRUBY_INSTALL(MushMeshRubyMeshLibrary);
