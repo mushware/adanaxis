@@ -19,9 +19,24 @@
  ****************************************************************************/
 //%Header } cAZ5yAFm+lHtMzO/urDaSg
 /*
- * $Id$
- * $Log$
+ * $Id: MushRubyStandard.cpp,v 1.2 2006/04/21 00:10:43 southa Exp $
+ * $Log: MushRubyStandard.cpp,v $
+ * Revision 1.2  2006/04/21 00:10:43  southa
+ * MushGLFont ruby module
+ *
  */
 
 #include "MushRubyStandard.h"
 
+#include "MushRubyRuby.h"
+
+namespace Mushware
+{
+	const Mushware::tRubyValue kRubyQnil = Qnil;
+	const Mushware::tRubyValue kRubyQfalse = Qfalse;
+	const Mushware::tRubyValue kRubyQtrue = Qtrue;	
+}
+
+const Mushware::tRubyValue MushRuby::QNil = Qnil;
+const Mushware::tRubyValue MushRuby::QFalse = Qfalse;
+const Mushware::tRubyValue MushRuby::QTrue = Qtrue;

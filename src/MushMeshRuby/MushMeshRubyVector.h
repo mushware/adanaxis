@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 2J8UOQdZFzDY6iljFrjmCg
 /*
- * $Id: MushMeshRubyVector.h,v 1.1 2006/06/12 11:59:39 southa Exp $
+ * $Id: MushMeshRubyVector.h,v 1.2 2006/06/12 16:01:24 southa Exp $
  * $Log: MushMeshRubyVector.h,v $
+ * Revision 1.2  2006/06/12 16:01:24  southa
+ * Ruby mesh generation
+ *
  * Revision 1.1  2006/06/12 11:59:39  southa
  * Ruby wrapper for MushMeshVector
  *
@@ -36,7 +39,8 @@ class MushMeshRubyVector
 {
 public:
 	static void RubyInstall(void);
-	static Mushware::t4Val& Ref(Mushware::tRubyValue inSelf);
+	static const Mushware::t4Val& Ref(Mushware::tRubyValue inSelf);
+	static Mushware::t4Val& WRef(Mushware::tRubyValue inSelf);
 	
 private:
 	static Mushware::tRubyValue Mush4ValAllocate(Mushware::tRubyValue inKlass);

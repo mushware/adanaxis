@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } hwIlNOCEH5GsgwGY+rP1Kg
 /*
- * $Id: MushRubyValue.cpp,v 1.3 2006/06/07 12:15:20 southa Exp $
+ * $Id: MushRubyValue.cpp,v 1.4 2006/06/12 11:59:40 southa Exp $
  * $Log: MushRubyValue.cpp,v $
+ * Revision 1.4  2006/06/12 11:59:40  southa
+ * Ruby wrapper for MushMeshVector
+ *
  * Revision 1.3  2006/06/07 12:15:20  southa
  * Grid and test textures
  *
@@ -35,6 +38,7 @@
 #include "MushRubyValue.h"
 
 #include "MushRubyExec.h"
+#include "MushRubyIntern.h"
 #include "MushRubyRuby.h"
 
 using namespace Mushware;
@@ -65,13 +69,13 @@ MushRubyValue::String(void) const
 	}
 	else if (rb_obj_is_instance_of(tempValue, rb_cArray))
 	{
-		Mushware::tRubyValue stringValue = MushRubyExec::Sgl().Call(tempValue, "cToPrint");
+		Mushware::tRubyValue stringValue = MushRubyExec::Sgl().Call(tempValue, MushRubyIntern::cToPrint());
 		
 		retVal = std::string(RSTRING(stringValue)->ptr, RSTRING(stringValue)->ptr + RSTRING(stringValue)->len);	
 	}
 	else
 	{
-		Mushware::tRubyValue stringValue = MushRubyExec::Sgl().Call(tempValue, "to_s");
+		Mushware::tRubyValue stringValue = MushRubyExec::Sgl().Call(tempValue, MushRubyIntern::to_s());
 		retVal = std::string(RSTRING(stringValue)->ptr, RSTRING(stringValue)->ptr + RSTRING(stringValue)->len);	
 	}
 			 
@@ -96,7 +100,7 @@ MushRubyValue::ValVector(void) const
 	{
 		throw MushcoreDataFail("Cannot generate vector from non-array ruby type");
 	}
-	Mushware::tRubyValue sizeValue = MushRubyExec::Sgl().Call(tempValue, "size");
+	Mushware::tRubyValue sizeValue = MushRubyExec::Sgl().Call(tempValue, MushRubyIntern::size());
 	
 	for (Mushware::U32 i=0; i<NUM2UINT(sizeValue); ++i)
 	{

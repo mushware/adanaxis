@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef MUSHRUBY_H
-#define MUSHRUBY_H
-//%includeGuardStart } U/64qX501i9BXUFwLOFhbQ
+#ifndef MUSHRUBYINTERN_H
+#define MUSHRUBYINTERN_H
+//%includeGuardStart } NDIj5SmGti5C1xMEp5xZHg
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushRuby/MushRuby.h
+ * File: src/MushRuby/MushRubyIntern.h
  *
  * Author: Andy Southgate 2002-2006
  *
@@ -21,32 +21,33 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } Wr9YgRvUclXifNHyxB/v3A
+//%Header } n1eaCj2fb8dNPgbT0uOuEQ
 /*
- * $Id: MushRuby.h,v 1.4 2006/06/12 11:59:40 southa Exp $
- * $Log: MushRuby.h,v $
- * Revision 1.4  2006/06/12 11:59:40  southa
- * Ruby wrapper for MushMeshVector
- *
- * Revision 1.3  2006/04/21 00:10:43  southa
- * MushGLFont ruby module
- *
- * Revision 1.2  2006/04/20 00:22:45  southa
- * Added ruby executive
- *
- * Revision 1.1  2006/04/19 20:21:34  southa
- * Added Ruby framework
- *
+ * $Id$
+ * $Log$
  */
 
-#include "MushRubyDataObj.h"
-#include "MushRubyExec.h"
-#include "MushRubyFail.h"
-#include "MushRubyInstall.h"
 #include "MushRubyStandard.h"
-#include "MushRubyUtil.h"
+
+#define MUSHRUBYINTERN_DECLARE(a) \
+public: \
+static Mushware::tRubyID a(void) { return m_##a; } \
+private: \
+static Mushware::tRubyID m_##a
 
 
+class MushRubyIntern
+{
+public:
+	static void Initialise(void);
+	MUSHRUBYINTERN_DECLARE(backtrace);
+	MUSHRUBYINTERN_DECLARE(cToPrint);
+	MUSHRUBYINTERN_DECLARE(size);
+	MUSHRUBYINTERN_DECLARE(to_ary);
+	MUSHRUBYINTERN_DECLARE(to_s);
+};
+
+#undef MUSHRUBYINTERN_DECLARE
 
 //%includeGuardEnd {
 #endif

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 0xPG/7jmGTzjaD0AmAZyzw
 /*
- * $Id: MushMeshRubyVector.cpp,v 1.1 2006/06/12 11:59:39 southa Exp $
+ * $Id: MushMeshRubyVector.cpp,v 1.2 2006/06/12 16:01:23 southa Exp $
  * $Log: MushMeshRubyVector.cpp,v $
+ * Revision 1.2  2006/06/12 16:01:23  southa
+ * Ruby mesh generation
+ *
  * Revision 1.1  2006/06/12 11:59:39  southa
  * Ruby wrapper for MushMeshVector
  *
@@ -57,8 +60,15 @@ MushMeshRubyVector::RefObj(Mushware::tRubyValue inSelf)
 	return *pVal;
 }
 
-Mushware::t4Val&
+const Mushware::t4Val&
 MushMeshRubyVector::Ref(Mushware::tRubyValue inSelf)
+{
+	MushRubyUtil::RaiseUnlessInstanceOf(inSelf, m_t4ValKlass);
+	return RefObj(inSelf);
+}
+
+Mushware::t4Val&
+MushMeshRubyVector::WRef(Mushware::tRubyValue inSelf)
 {
 	MushRubyUtil::RaiseUnlessInstanceOf(inSelf, m_t4ValKlass);
 	return RefObj(inSelf);

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 7po3niQtybBuVvnFyMOO2w
 /*
- * $Id$
- * $Log$
+ * $Id: MushMeshRubyMeshLibrary.cpp,v 1.1 2006/06/12 16:01:23 southa Exp $
+ * $Log: MushMeshRubyMeshLibrary.cpp,v $
+ * Revision 1.1  2006/06/12 16:01:23  southa
+ * Ruby mesh generation
+ *
  */
 
 #include "MushMeshRubyMeshLibrary.h"
@@ -40,8 +43,8 @@ Mushware::tRubyValue
 MushMeshRubyMeshLibrary::PolygonPrismCreate(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg1,
 											Mushware::tRubyValue inArg2, Mushware::tRubyValue inArg3)
 {
-	MushMesh4Mesh& meshRef = MushMeshRubyMesh::Ref(inArg1);
-	Mushware::t4Val scaleRef = MushMeshRubyVector::Ref(inArg2);
+	MushMesh4Mesh& meshRef = MushMeshRubyMesh::WRef(inArg1);
+	Mushware::t4Val scaleRef = MushMeshRubyVector::WRef(inArg2);
 	MushRubyValue orderValue(inArg3);
 	
 	MushMeshLibraryBase::Sgl().PolygonPrismCreate(meshRef, scaleRef, orderValue.U32());

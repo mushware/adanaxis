@@ -19,12 +19,16 @@
  ****************************************************************************/
 //%Header } 0SQZFcFDmoiv6tz5ra2xUQ
 /*
- * $Id$
- * $Log$
+ * $Id: MushRubyFail.cpp,v 1.1 2006/04/20 00:22:45 southa Exp $
+ * $Log: MushRubyFail.cpp,v $
+ * Revision 1.1  2006/04/20 00:22:45  southa
+ * Added ruby executive
+ *
  */
 
 #include "MushRubyFail.h"
 
+#include "MushRubyIntern.h"
 #include "MushRubyRuby.h"
 
 using namespace Mushware;
@@ -56,7 +60,7 @@ MushRubyFail::ExceptionInfo(void)
     if(!NIL_P(ruby_errinfo))
     {
         message << std::endl;
-        tRubyValue ary = rb_funcall(ruby_errinfo, rb_intern("backtrace"), 0);
+        tRubyValue ary = rb_funcall(ruby_errinfo, MushRubyIntern::backtrace(), 0);
         for (S32 i=0; i<RARRAY(ary)->len; i++)
         {
             message << "\tfrom " << RSTRING(RARRAY(ary)->ptr[i])->ptr << std::endl;

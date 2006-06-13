@@ -23,34 +23,24 @@
  ****************************************************************************/
 //%Header } hSrHx4/wCdfB19VcRmiYhw
 /*
- * $Id$
- * $Log$
+ * $Id: MushMeshRubyMesh.h,v 1.1 2006/06/12 16:01:23 southa Exp $
+ * $Log: MushMeshRubyMesh.h,v $
+ * Revision 1.1  2006/06/12 16:01:23  southa
+ * Ruby mesh generation
+ *
  */
 
 #include "MushMeshRubyStandard.h"
 
 class MushMeshMesh;
 
-class MushMeshRubyMesh
+class MushMeshRubyMesh : public MushRubyDataObj<MushMesh4Mesh>
 {
 public:
-	typedef MushMesh4Mesh tBase;
-	typedef MushcoreDataRef<tBase> tContainer;
-	
 	static void RubyInstall(void);
-	
-	static tBase& Ref(Mushware::tRubyValue inSelf);
-	
 private:
-	static Mushware::tRubyValue MushMeshAllocate(Mushware::tRubyValue inKlass);
-	static void MushMeshFree(void *inPtr);			
-	static tContainer& ContainerObj(Mushware::tRubyValue inSelf);
-	static tBase& RefObj(Mushware::tRubyValue inSelf);
 	static Mushware::tRubyValue MushMeshInitialize(Mushware::tRubyArgC inArgC, Mushware::tRubyValue *inpArgV, Mushware::tRubyValue inSelf);
 	static Mushware::tRubyValue MushMeshInitializeCopy(Mushware::tRubyValue inCopy, Mushware::tRubyValue inOrig);
-	static Mushware::tRubyValue MushMesh_to_s(Mushware::tRubyValue inSelf);
-
-	static Mushware::tRubyValue m_meshKlass;
 };
 
 //%includeGuardEnd {

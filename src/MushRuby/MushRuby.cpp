@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 8GiZpL69FVNYsmGUBy94qA
 /*
- * $Id: MushRuby.cpp,v 1.1 2006/04/19 20:21:34 southa Exp $
+ * $Id: MushRuby.cpp,v 1.2 2006/06/12 11:59:39 southa Exp $
  * $Log: MushRuby.cpp,v $
+ * Revision 1.2  2006/06/12 11:59:39  southa
+ * Ruby wrapper for MushMeshVector
+ *
  * Revision 1.1  2006/04/19 20:21:34  southa
  * Added Ruby framework
  *
@@ -28,8 +31,3 @@
 
 #include "MushRuby.h"
 
-#include "MushRubyRuby.h"
-
-const Mushware::tRubyValue MushRuby::QNil = Qnil;
-const Mushware::tRubyValue MushRuby::QFalse = Qfalse;
-const Mushware::tRubyValue MushRuby::QTrue = Qtrue;

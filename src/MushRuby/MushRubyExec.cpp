@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } ZcziFKLJA7zY/8U6Ju48NA
 /*
- * $Id: MushRubyExec.cpp,v 1.3 2006/06/06 17:58:33 southa Exp $
+ * $Id: MushRubyExec.cpp,v 1.4 2006/06/12 11:59:40 southa Exp $
  * $Log: MushRubyExec.cpp,v $
+ * Revision 1.4  2006/06/12 11:59:40  southa
+ * Ruby wrapper for MushMeshVector
+ *
  * Revision 1.3  2006/06/06 17:58:33  southa
  * Ruby texture definition
  *
@@ -36,6 +39,7 @@
 
 #include "MushRubyFail.h"
 #include "MushRubyInstall.h"
+#include "MushRubyIntern.h"
 #include "MushRubyRuby.h"
 #include "MushRubySTL.h"
 
@@ -130,6 +134,24 @@ MushRubyExec::Call(Mushware::tRubyValue inRecv,  const std::string& inFunc)
     return retVal;
 }
 
+Mushware::tRubyValue
+MushRubyExec::Call(Mushware::tRubyValue inRecv,  Mushware::tRubyID inFunc)
+{
+	tRubyValue retVal;
+    tRubyError rubyError;
+    
+    m_callReceiver = inRecv;
+    m_callFunction = inFunc;
+    
+    retVal = rb_protect(StaticWrapProtect, 0, &rubyError);
+    
+    if (rubyError)
+    {
+        throw MushRubyFail();
+    }
+    return retVal;
+}
+
 void
 MushRubyExec::Require(const std::string& inStr)
 {
@@ -153,6 +175,8 @@ MushRubyExec::Initialise(void)
 #ifdef MUSHCORE_DEBUG
 	ruby_init_loadpath();
 #endif
+	MushRubyIntern::Initialise();
+	
 	ConfigSet();
     ruby_script("init.rb");
     

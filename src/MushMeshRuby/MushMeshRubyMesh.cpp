@@ -19,55 +19,21 @@
  ****************************************************************************/
 //%Header } oR7WPhSKmfGQldTVFg6TpQ
 /*
- * $Id$
- * $Log$
+ * $Id: MushMeshRubyMesh.cpp,v 1.1 2006/06/12 16:01:23 southa Exp $
+ * $Log: MushMeshRubyMesh.cpp,v $
+ * Revision 1.1  2006/06/12 16:01:23  southa
+ * Ruby mesh generation
+ *
  */
 
 #include "MushMeshRubyMesh.h"
 
 #include "MushMeshRubyRuby.h"
 
+MUSHRUBYDATAOBJ_INSTANCE(MushMesh4Mesh);
+
 using namespace Mushware;
 using namespace std;
-
-Mushware::tRubyValue MushMeshRubyMesh::m_meshKlass = Qnil;
-
-void
-MushMeshRubyMesh::MushMeshFree(void *inPtr)
-{
-	delete reinterpret_cast<tContainer *>(inPtr);
-}
-
-Mushware::tRubyValue
-MushMeshRubyMesh::MushMeshAllocate(Mushware::tRubyValue inKlass)
-{
-	return Data_Wrap_Struct(inKlass, 0, MushMeshFree, new tContainer);
-}
-
-MushMeshRubyMesh::tContainer&
-MushMeshRubyMesh::ContainerObj(Mushware::tRubyValue inSelf)
-{
-	tContainer *pValue = NULL;
-	Data_Get_Struct(inSelf, tContainer, pValue);
-	MUSHCOREASSERT(pValue != NULL);
-	return *pValue;
-}
-
-MushMeshRubyMesh::tBase&
-MushMeshRubyMesh::RefObj(Mushware::tRubyValue inSelf)
-{
-	tContainer *pValue = NULL;
-	Data_Get_Struct(inSelf, tContainer, pValue);
-	MUSHCOREASSERT(pValue != NULL);
-	return pValue->WRef();
-}
-
-MushMeshRubyMesh::tBase&
-MushMeshRubyMesh::Ref(Mushware::tRubyValue inSelf)
-{
-	MushRubyUtil::RaiseUnlessInstanceOf(inSelf, m_meshKlass);
-	return RefObj(inSelf);
-}
 
 Mushware::tRubyValue
 MushMeshRubyMesh::MushMeshInitialize(Mushware::tRubyArgC inArgC, Mushware::tRubyValue *inpArgV, Mushware::tRubyValue inSelf)
@@ -80,8 +46,8 @@ MushMeshRubyMesh::MushMeshInitialize(Mushware::tRubyArgC inArgC, Mushware::tRuby
 		}
 		MushRubyValue nameValue(inpArgV[0]);
 		std::string nameStr = nameValue.String();
-		ContainerObj(inSelf).NameSet(nameStr);
-		MushcoreData<tBase>::Sgl().GetOrCreate(nameStr); // Create mesh if it doesn't exist
+		DataObjRef(inSelf).NameSet(nameStr);
+		tDataObjData::Sgl().GetOrCreate(nameStr); // Create mesh if it doesn't exist
 	}
 	catch (MushcoreFail& e)
 	{
@@ -100,23 +66,13 @@ MushMeshRubyMesh::MushMeshInitializeCopy(Mushware::tRubyValue inCopy, Mushware::
     return inCopy;
 }
 
-Mushware::tRubyValue
-MushMeshRubyMesh::MushMesh_to_s(Mushware::tRubyValue inSelf)
-{
-	std::ostringstream objStream;
-	objStream << RefObj(inSelf);
-	
-	return rb_str_new(objStream.str().data(), objStream.str().size());
-}
-
 void
 MushMeshRubyMesh::RubyInstall(void)
 {
-	m_meshKlass = MushRubyUtil::AllocatedClassDefine("MushMesh", MushMeshAllocate);
+	DataObjInstall("MushMesh");
 	
-	MushRubyUtil::MethodDefine(m_meshKlass, "initialize", MushMeshInitialize);
-	MushRubyUtil::MethodDefineOneParam(m_meshKlass, "initialize_copy", MushMeshInitializeCopy);
-	MushRubyUtil::MethodDefineNoParams(m_meshKlass, "to_s", MushMesh_to_s);
+	MushRubyUtil::MethodDefine(DataObjKlass(), "initialize", MushMeshInitialize);
+	MushRubyUtil::MethodDefineOneParam(DataObjKlass(), "initialize_copy", MushMeshInitializeCopy);
 }
 
 namespace

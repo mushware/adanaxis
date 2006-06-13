@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } gSaMBKSS/9FVf/ypP8x5kA
 /*
- * $Id: MushRubyUtil.cpp,v 1.5 2006/06/12 11:59:40 southa Exp $
+ * $Id: MushRubyUtil.cpp,v 1.6 2006/06/12 16:01:24 southa Exp $
  * $Log: MushRubyUtil.cpp,v $
+ * Revision 1.6  2006/06/12 16:01:24  southa
+ * Ruby mesh generation
+ *
  * Revision 1.5  2006/06/12 11:59:40  southa
  * Ruby wrapper for MushMeshVector
  *
@@ -49,19 +52,6 @@ using namespace Mushware;
 using namespace std;
 
 Mushware::tRubyHash *MushRubyUtil::m_pHash = NULL;
-
-Mushware::tRubyID
-MushRubyUtil::Intern(const std::string& inName)
-{
-	tRubyID retID = rb_intern(inName.c_str());
-	
-	if (retID == Qnil)
-	{
-		throw MushRubyFail("Unknown internal name '"+inName+"'");
-	}
-	
-	return retID;
-}
 
 void
 MushRubyUtil::IVGet(Mushware::tVal& outVal, const std::string& inName, Mushware::tRubyValue inSelf)
@@ -202,4 +192,26 @@ MushRubyUtil::RaiseUnlessInstanceOf(Mushware::tRubyValue inValue, Mushware::tRub
 	{
 		Raise("Object is of wrong type");	
 	}
+}
+
+Mushware::tRubyValue
+MushRubyUtil::DataWrapStruct(Mushware::tRubyValue inSelf, tfpRubyDataFunc infpMark, tfpRubyDataFunc infpFree, void *inpData)
+{
+	// Use ruby macro
+	return Data_Wrap_Struct(inSelf, infpMark, infpFree, inpData);	
+}
+
+void *
+MushRubyUtil::DataGetStruct(Mushware::tRubyValue inSelf)
+{
+	void *pRetVal;
+	Data_Get_Struct(inSelf, void, pRetVal);
+	return pRetVal;
+}
+
+
+Mushware::tRubyValue
+MushRubyUtil::StringNew(const std::string& inStr)
+{
+    return rb_str_new(inStr.data(), inStr.size());
 }

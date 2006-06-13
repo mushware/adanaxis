@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } ZnwDjEM1+TPkZ9HrL5mg7A
 /*
- * $Id: MushRubyUtil.h,v 1.5 2006/06/12 11:59:40 southa Exp $
+ * $Id: MushRubyUtil.h,v 1.6 2006/06/12 16:01:24 southa Exp $
  * $Log: MushRubyUtil.h,v $
+ * Revision 1.6  2006/06/12 16:01:24  southa
+ * Ruby mesh generation
+ *
  * Revision 1.5  2006/06/12 11:59:40  southa
  * Ruby wrapper for MushMeshVector
  *
@@ -50,7 +53,6 @@
 class MushRubyUtil
 {
 public:
-	static Mushware::tRubyID Intern(const std::string& inName);
     static void ValueConvert(std::string& outString, Mushware::tRubyValue inValue);
     static void ValueConvert(Mushware::tVal& outVal, Mushware::tRubyValue inValue);
     static Mushware::tRubyValue ParamPop(Mushware::tRubyArgC& ioArgC, Mushware::tRubyValue *& ioArgV);
@@ -74,6 +76,9 @@ public:
 	static void Raise(const std::string& inStr);
 	static bool SameDataType(Mushware::tRubyValue inA, Mushware::tRubyValue inB);
 	static void RaiseUnlessInstanceOf(Mushware::tRubyValue inValue, Mushware::tRubyValue inKlass);
+	static Mushware::tRubyValue DataWrapStruct(Mushware::tRubyValue inSelf, Mushware::tfpRubyDataFunc infpMark, Mushware::tfpRubyDataFunc infpFree, void *inpData);
+	static void *DataGetStruct(Mushware::tRubyValue inSelf);
+    static Mushware::tRubyValue StringNew(const std::string& inStr);
 	
 private:
 	static Mushware::tRubyValue HashHandler(Mushware::tRubyValue inArray, Mushware::tRubyValue inArg);

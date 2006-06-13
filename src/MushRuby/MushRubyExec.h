@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } UpB+98ShDY+5JMJVLGBArQ
 /*
- * $Id: MushRubyExec.h,v 1.2 2006/06/06 17:58:33 southa Exp $
+ * $Id: MushRubyExec.h,v 1.3 2006/06/12 11:59:40 southa Exp $
  * $Log: MushRubyExec.h,v $
+ * Revision 1.3  2006/06/12 11:59:40  southa
+ * Ruby wrapper for MushMeshVector
+ *
  * Revision 1.2  2006/06/06 17:58:33  southa
  * Ruby texture definition
  *
@@ -43,6 +46,7 @@ public:
     Mushware::tRubyValue Call(const std::string& inRecv, const std::string& inFunc);
     Mushware::tRubyValue Call(const std::string& inStr);
     Mushware::tRubyValue Call(Mushware::tRubyValue inRecv,  const std::string& inFunc);
+    Mushware::tRubyValue Call(Mushware::tRubyValue inRecv,  Mushware::tRubyID inFunc);
     void Require(const std::string& inStr);
     
 protected:

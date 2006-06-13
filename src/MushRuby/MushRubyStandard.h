@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } Yh+jb7Kt8ubaZEY+Q2v/cg
 /*
- * $Id: MushRubyStandard.h,v 1.3 2006/06/12 11:59:40 southa Exp $
+ * $Id: MushRubyStandard.h,v 1.4 2006/06/12 16:01:24 southa Exp $
  * $Log: MushRubyStandard.h,v $
+ * Revision 1.4  2006/06/12 16:01:24  southa
+ * Ruby mesh generation
+ *
  * Revision 1.3  2006/06/12 11:59:40  southa
  * Ruby wrapper for MushMeshVector
  *
@@ -60,7 +63,23 @@ namespace Mushware
 	typedef tRubyValue (*tfpRubyMethodThreeParams)(tRubyValue inSelf, tRubyValue inArg1, tRubyValue inArg2, tRubyValue inArg3);
 	typedef tRubyValue (*tfpRubyMethodFourParams)(tRubyValue inSelf, tRubyValue inArg1, tRubyValue inArg2, tRubyValue inArg3, tRubyValue inArg4);
 	typedef tRubyValue (*tfpRubyAllocFunc)(tRubyValue);
+	typedef void (*tfpRubyDataFunc)(void *);
+
+    extern const Mushware::tRubyValue kRubyQnil;
+	extern const Mushware::tRubyValue kRubyQfalse;
+	extern const Mushware::tRubyValue kRubyQtrue;
 }
+
+class MushRuby
+{
+public:
+	static const Mushware::tRubyValue QNil;
+	static const Mushware::tRubyValue QFalse;
+	static const Mushware::tRubyValue QTrue;
+};
+
+
+
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

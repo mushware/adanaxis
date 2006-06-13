@@ -1,11 +1,7 @@
-//%includeGuardStart {
-#ifndef MUSHRUBY_H
-#define MUSHRUBY_H
-//%includeGuardStart } U/64qX501i9BXUFwLOFhbQ
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushRuby/MushRuby.h
+ * File: src/MushRuby/MushRubyIntern.cpp
  *
  * Author: Andy Southgate 2002-2006
  *
@@ -21,33 +17,31 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } Wr9YgRvUclXifNHyxB/v3A
+//%Header } lqALCPGBahbk4ibyVPO8LQ
 /*
- * $Id: MushRuby.h,v 1.4 2006/06/12 11:59:40 southa Exp $
- * $Log: MushRuby.h,v $
- * Revision 1.4  2006/06/12 11:59:40  southa
- * Ruby wrapper for MushMeshVector
- *
- * Revision 1.3  2006/04/21 00:10:43  southa
- * MushGLFont ruby module
- *
- * Revision 1.2  2006/04/20 00:22:45  southa
- * Added ruby executive
- *
- * Revision 1.1  2006/04/19 20:21:34  southa
- * Added Ruby framework
- *
+ * $Id$
+ * $Log$
  */
 
-#include "MushRubyDataObj.h"
-#include "MushRubyExec.h"
-#include "MushRubyFail.h"
-#include "MushRubyInstall.h"
-#include "MushRubyStandard.h"
-#include "MushRubyUtil.h"
+#include "MushRubyIntern.h"
 
+#include "MushRubyRuby.h"
 
+#define MUSHRUBYINTERN_DEFINE(a) Mushware::tRubyID MushRubyIntern::m_##a = 0
+#define MUSHRUBYINTERN_INIT(a) m_##a = rb_intern(#a)
 
-//%includeGuardEnd {
-#endif
-//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw
+MUSHRUBYINTERN_DEFINE(backtrace);
+MUSHRUBYINTERN_DEFINE(cToPrint);
+MUSHRUBYINTERN_DEFINE(size);
+MUSHRUBYINTERN_DEFINE(to_ary);
+MUSHRUBYINTERN_DEFINE(to_s);
+
+void
+MushRubyIntern::Initialise(void)
+{
+	MUSHRUBYINTERN_INIT(backtrace);
+	MUSHRUBYINTERN_INIT(cToPrint);
+	MUSHRUBYINTERN_INIT(size);
+	MUSHRUBYINTERN_INIT(to_ary);
+	MUSHRUBYINTERN_INIT(to_s);
+}
