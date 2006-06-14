@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef MUSHMESH4EXTRUDER_H
-#define MUSHMESH4EXTRUDER_H
-//%includeGuardStart } swauch7vHRnanxOh3oyOqg
+#ifndef MUSHMESH4MAKER_H
+#define MUSHMESH4MAKER_H
+//%includeGuardStart } ZP8CKcDc2On8BZqMaC7oLg
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushMesh/MushMesh4Extruder.h
+ * File: src/MushMesh/MushMesh4Maker.h
  *
  * Author: Andy Southgate 2002-2006
  *
@@ -21,38 +21,26 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } L9JUlzl6DpRuJVKF3iNIfA
+//%Header } TOsh5JcMd1L85/Q5VLLjVg
 /*
- * $Id: MushMesh4Extruder.h,v 1.1 2006/06/14 11:20:07 southa Exp $
- * $Log: MushMesh4Extruder.h,v $
- * Revision 1.1  2006/06/14 11:20:07  southa
- * Ruby mesh generation
- *
+ * $Id$
+ * $Log$
  */
 
 #include "MushMeshStandard.h"
 
-#include "MushMeshDisplacement.h"
+#include "MushMesh4Mesh.h"
 
 //:generate virtual standard ostream xml1
-class MushMesh4Extruder : public MushcoreVirtualObject
+class MushMesh4Maker : public MushcoreVirtualObject, public MushcoreSingleton<MushMesh4Maker>
 {
 public:
-	MushMesh4Extruder();
+    virtual void Make(MushMesh4Mesh& ioMesh);
 	
 private:
-	Mushware::U32 m_sourceFaceNum; //:readwrite
-	MushMeshDisplacement m_disp; //:readwrite
-	MushMeshDisplacement m_dispVel; //:readwrite
-	
+
 //%classPrototypes {
 public:
-    const Mushware::U32& SourceFaceNum(void) const { return m_sourceFaceNum; }
-    void SourceFaceNumSet(const Mushware::U32& inValue) { m_sourceFaceNum=inValue; }
-    const MushMeshDisplacement& Disp(void) const { return m_disp; }
-    void DispSet(const MushMeshDisplacement& inValue) { m_disp=inValue; }
-    const MushMeshDisplacement& DispVel(void) const { return m_dispVel; }
-    void DispVelSet(const MushMeshDisplacement& inValue) { m_dispVel=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -60,16 +48,16 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } 8u/pCsDC4CKiIbasahQaSg
+//%classPrototypes } 1oBgFruy5qHAaudtV+Hcmg
 };
 //%inlineHeader {
 inline std::ostream&
-operator<<(std::ostream& ioOut, const MushMesh4Extruder& inObj)
+operator<<(std::ostream& ioOut, const MushMesh4Maker& inObj)
 {
     inObj.AutoPrint(ioOut);
     return ioOut;
 }
-//%inlineHeader } ogKS66zaSz1vnzxF7zhfvA
+//%inlineHeader } c003AhGwzl0KPceZDL7t2g
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

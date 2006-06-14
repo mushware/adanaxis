@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } gq3ekJ+T4/5Q9GxsUU01+w
 /*
- * $Id: AdanaxisUtil.cpp,v 1.24 2006/06/09 21:07:12 southa Exp $
+ * $Id: AdanaxisUtil.cpp,v 1.25 2006/06/12 16:01:21 southa Exp $
  * $Log: AdanaxisUtil.cpp,v $
+ * Revision 1.25  2006/06/12 16:01:21  southa
+ * Ruby mesh generation
+ *
  * Revision 1.24  2006/06/09 21:07:12  southa
  * Tiled skin generation
  *
@@ -166,7 +169,7 @@ AdanaxisUtil::TestDecoCreate(AdanaxisLogic& ioLogic)
         MushMeshLibraryVGenExtrude vertexExtrude;
         tQValPair rotation;
         rotation.ToRotationIdentitySet();
-        MushMeshDisplacement disp(t4Val(0,0,0,1), rotation, 1);
+        MushMeshDisplacement disp(t4Val(0,0,0,1), rotation, t4Val(1,1,1,1));
         
         MushMeshLibraryExtrusionContext extrusionContext(disp, 0);
         switch (i % 30)

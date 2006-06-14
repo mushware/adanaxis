@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } YrK9KiG4XjKqbWo1rVGU4w
 /*
- * $Id: MushMesh4Mesh.h,v 1.14 2006/05/01 17:39:00 southa Exp $
+ * $Id: MushMesh4Mesh.h,v 1.15 2006/06/14 11:20:07 southa Exp $
  * $Log: MushMesh4Mesh.h,v $
+ * Revision 1.15  2006/06/14 11:20:07  southa
+ * Ruby mesh generation
+ *
  * Revision 1.14  2006/05/01 17:39:00  southa
  * Texture generation
  *
@@ -144,7 +147,8 @@ public:
     void Prebuild(void);
 	
 	void ExtruderGive(MushMesh4Extruder *pExtruder); // Takes ownership of the extruder
-    
+    void Make(void);
+	
 private:
     // Minimal representation
     tVertices m_vertices; //:readwrite :wref

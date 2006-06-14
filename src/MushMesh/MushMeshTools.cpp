@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } cQoVIV2DdH4LiqrKzfp8tw
 /*
- * $Id: MushMeshTools.cpp,v 1.10 2006/06/09 21:07:13 southa Exp $
+ * $Id: MushMeshTools.cpp,v 1.11 2006/06/13 19:30:36 southa Exp $
  * $Log: MushMeshTools.cpp,v $
+ * Revision 1.11  2006/06/13 19:30:36  southa
+ * Ruby mesh generation
+ *
  * Revision 1.10  2006/06/09 21:07:13  southa
  * Tiled skin generation
  *
@@ -533,10 +536,57 @@ MushMeshTools::TextureCoordsForFacet(std::vector<Mushware::t4Val>& outTexCoords,
 
 
 //%outOfLineFunctions {
+
+const char *MushMeshTools::AutoName(void) const
+{
+    return "MushMeshTools";
+}
+
+MushcoreVirtualObject *MushMeshTools::AutoClone(void) const
+{
+    return new MushMeshTools(*this);
+}
+
+MushcoreVirtualObject *MushMeshTools::AutoCreate(void) const
+{
+    return new MushMeshTools;
+}
+
+MushcoreVirtualObject *MushMeshTools::AutoVirtualFactory(void)
+{
+    return new MushMeshTools;
+}
+namespace
+{
+void AutoInstall(void)
+{
+    MushcoreFactory::Sgl().FactoryAdd("MushMeshTools", MushMeshTools::AutoVirtualFactory);
+}
+MushcoreInstaller AutoInstaller(AutoInstall);
+} // end anonymous namespace
 void
 MushMeshTools::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
     ioOut << "]";
 }
-//%outOfLineFunctions } hMGdAkgc9dXApXeZiSV+HA
+bool
+MushMeshTools::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr)
+{
+    if (inTagStr == "obj")
+    {
+        AutoInputPrologue(ioIn);
+        ioIn >> *this;
+        AutoInputEpilogue(ioIn);
+    }
+    else 
+    {
+        return false;
+    }
+    return true;
+}
+void
+MushMeshTools::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
+{
+}
+//%outOfLineFunctions } 6E13GIuks5BCTLln+2etFw

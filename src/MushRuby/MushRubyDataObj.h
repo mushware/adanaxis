@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } px78SUrna42uj+15fa2T7w
 /*
- * $Id: MushRubyDataObj.h,v 1.2 2006/06/13 19:30:39 southa Exp $
+ * $Id: MushRubyDataObj.h,v 1.3 2006/06/14 11:20:09 southa Exp $
  * $Log: MushRubyDataObj.h,v $
+ * Revision 1.3  2006/06/14 11:20:09  southa
+ * Ruby mesh generation
+ *
  * Revision 1.2  2006/06/13 19:30:39  southa
  * Ruby mesh generation
  *
@@ -47,6 +50,7 @@ public:
 	static const tDataObjBase& Ref(Mushware::tRubyValue inSelf);
 	static tDataObjBase& WRef(Mushware::tRubyValue inSelf);
 	static bool IsInstanceOf(Mushware::tRubyValue inValue);
+	static bool IsInstanceOf(MushRubyValue inValue) { return IsInstanceOf(inValue.Value()); }
 
 protected:
 	static tDataObjRef& DataObjRef(Mushware::tRubyValue inSelf);

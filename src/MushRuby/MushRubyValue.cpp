@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } hwIlNOCEH5GsgwGY+rP1Kg
 /*
- * $Id: MushRubyValue.cpp,v 1.5 2006/06/13 10:35:06 southa Exp $
+ * $Id: MushRubyValue.cpp,v 1.6 2006/06/14 11:20:10 southa Exp $
  * $Log: MushRubyValue.cpp,v $
+ * Revision 1.6  2006/06/14 11:20:10  southa
+ * Ruby mesh generation
+ *
  * Revision 1.5  2006/06/13 10:35:06  southa
  * Ruby data objects
  *
@@ -84,6 +87,13 @@ MushRubyValue::String(void) const
 	}
 			 
 	return retVal;
+}
+
+bool
+MushRubyValue::IsArray(void) const
+{
+	Mushware::tRubyValue tempValue = m_value; // Avoid const problem
+	return rb_obj_is_instance_of(tempValue, rb_cArray);
 }
 
 bool

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } oYzojPrY+iq5d6Z2oF715A
 /*
- * $Id: MushMesh4Mesh.cpp,v 1.14 2006/05/01 17:39:00 southa Exp $
+ * $Id: MushMesh4Mesh.cpp,v 1.15 2006/06/14 11:20:07 southa Exp $
  * $Log: MushMesh4Mesh.cpp,v $
+ * Revision 1.15  2006/06/14 11:20:07  southa
+ * Ruby mesh generation
+ *
  * Revision 1.14  2006/05/01 17:39:00  southa
  * Texture generation
  *
@@ -67,6 +70,7 @@
 
 #include "MushMesh4Mesh.h"
 
+#include "MushMesh4Maker.h"
 #include "MushMeshMushcoreIO.h"
 #include "MushMeshSTL.h"
 
@@ -494,6 +498,12 @@ void
 MushMesh4Mesh::ExtruderGive(MushMesh4Extruder *pExtruder)
 {
 	m_extruders.push_back(MushcoreAutoClonePtr<MushMesh4Extruder>(pExtruder));
+}
+
+void
+MushMesh4Mesh::Make(void)
+{
+	MushMesh4Maker::Sgl().Make(*this);	
 }
 
 //%outOfLineFunctions {

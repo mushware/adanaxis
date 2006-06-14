@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 5BOLwI3DhgfDHotOLswDpg
 /*
- * $Id: MushRubyValue.h,v 1.5 2006/06/13 19:30:39 southa Exp $
+ * $Id: MushRubyValue.h,v 1.6 2006/06/14 11:20:10 southa Exp $
  * $Log: MushRubyValue.h,v $
+ * Revision 1.6  2006/06/14 11:20:10  southa
+ * Ruby mesh generation
+ *
  * Revision 1.5  2006/06/13 19:30:39  southa
  * Ruby mesh generation
  *
@@ -53,6 +56,7 @@ public:
 	MushRubyValue();
 	explicit MushRubyValue(Mushware::tRubyValue inValue) : m_value(inValue) {}
 	std::string String(void) const;
+	bool IsArray(void) const;
 	bool CanBeValVector(void) const;
 	std::vector<Mushware::tVal> ValVector(void) const;
 	bool Bool(void) const;

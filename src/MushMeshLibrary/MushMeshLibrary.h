@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } 8PuXReApzRmzSrw4yrK5ow
 /*
- * $Id: MushMeshLibrary.h,v 1.3 2006/06/01 15:39:33 southa Exp $
+ * $Id: MushMeshLibrary.h,v 1.4 2006/06/14 11:20:08 southa Exp $
  * $Log: MushMeshLibrary.h,v $
+ * Revision 1.4  2006/06/14 11:20:08  southa
+ * Ruby mesh generation
+ *
  * Revision 1.3  2006/06/01 15:39:33  southa
  * DrawArray verification and fixes
  *
@@ -38,6 +41,7 @@
 #include "MushMeshLibraryExtruder.h"
 #include "MushMeshLibraryExtrusionContext.h"
 #include "MushMeshLibraryFGenExtrude.h"
+#include "MushMeshLibraryMaker.h"
 #include "MushMeshLibraryStandard.h"
 #include "MushMeshLibraryVGenExtrude.h"
 

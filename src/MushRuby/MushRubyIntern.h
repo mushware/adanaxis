@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } n1eaCj2fb8dNPgbT0uOuEQ
 /*
- * $Id: MushRubyIntern.h,v 1.1 2006/06/13 10:35:06 southa Exp $
+ * $Id: MushRubyIntern.h,v 1.2 2006/06/14 11:20:09 southa Exp $
  * $Log: MushRubyIntern.h,v $
+ * Revision 1.2  2006/06/14 11:20:09  southa
+ * Ruby mesh generation
+ *
  * Revision 1.1  2006/06/13 10:35:06  southa
  * Ruby data objects
  *
@@ -47,6 +50,8 @@ public:
 	MUSHRUBYINTERN_DECLARE(cToPrint);
 	MUSHRUBYINTERN_DECLARE(displacement);
 	MUSHRUBYINTERN_DECLARE(displacement_velocity);
+	MUSHRUBYINTERN_DECLARE(offset);
+	MUSHRUBYINTERN_DECLARE(rotation);
 	MUSHRUBYINTERN_DECLARE(scale);
 	MUSHRUBYINTERN_DECLARE(scale_velocity);
 	MUSHRUBYINTERN_DECLARE(size);

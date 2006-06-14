@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 0xPG/7jmGTzjaD0AmAZyzw
 /*
- * $Id: MushMeshRubyVector.cpp,v 1.3 2006/06/13 10:35:04 southa Exp $
+ * $Id: MushMeshRubyVector.cpp,v 1.4 2006/06/13 19:30:38 southa Exp $
  * $Log: MushMeshRubyVector.cpp,v $
+ * Revision 1.4  2006/06/13 19:30:38  southa
+ * Ruby mesh generation
+ *
  * Revision 1.3  2006/06/13 10:35:04  southa
  * Ruby data objects
  *
@@ -68,14 +71,14 @@ MUSHRUBYOBJ_INITIALIZE(Mushware::t4Val)(Mushware::tRubyArgC inArgC, Mushware::tR
 		break;
 			
 		default:
-			MushRubyUtil::Raise("Wrong number of parameters to Mush4Val.initialize (must be 0, 1 array or 4 values)");	
+			MushRubyUtil::Raise("Wrong number of parameters to MushVector.initialize (must be 0, 1 array or 4 values)");	
 			break;
 	}
 	return inSelf;
 }
 
 Mushware::tRubyValue
-MushMeshRubyVector::Mush4ValInPlaceAdd(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg1)
+MushMeshRubyVector::MushVectorInPlaceAdd(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg1)
 {
 	WRef(inSelf) += Ref(inArg1);
 	
@@ -83,17 +86,17 @@ MushMeshRubyVector::Mush4ValInPlaceAdd(Mushware::tRubyValue inSelf, Mushware::tR
 }
 
 Mushware::tRubyValue
-MushMeshRubyVector::Mush4ValAdd(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg1)
+MushMeshRubyVector::MushVectorAdd(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg1)
 {
 	tRubyValue retVal = MushRubyUtil::ClassNewInstance(ObjKlass());
     WRef(retVal) = Ref(inSelf);
-	Mush4ValInPlaceAdd(retVal, inArg1);
+	MushVectorInPlaceAdd(retVal, inArg1);
 	
 	return retVal;
 }
 
 Mushware::tRubyValue
-MushMeshRubyVector::Mush4ValIsEqual(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg1)
+MushMeshRubyVector::MushVectorIsEqual(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg1)
 {
 	tRubyValue retVal;
 	if (Ref(inSelf) == Ref(inArg1))
@@ -120,11 +123,11 @@ MushMeshRubyVector::ApproxEqual(Mushware::tRubyValue inSelf, Mushware::tRubyValu
 void
 MushMeshRubyVector::RubyInstall(void)
 {
-	ObjInstall("Mush4Val");
+	ObjInstall("MushVector");
 
-	MushRubyUtil::MethodDefineOneParam(ObjKlass(), "+=", Mush4ValInPlaceAdd);
-	MushRubyUtil::MethodDefineOneParam(ObjKlass(), "+", Mush4ValAdd);
-	MushRubyUtil::MethodDefineOneParam(ObjKlass(), "==", Mush4ValIsEqual);
+	MushRubyUtil::MethodDefineOneParam(ObjKlass(), "+=", MushVectorInPlaceAdd);
+	MushRubyUtil::MethodDefineOneParam(ObjKlass(), "+", MushVectorAdd);
+	MushRubyUtil::MethodDefineOneParam(ObjKlass(), "==", MushVectorIsEqual);
 	MushRubyUtil::MethodDefineTwoParams(ObjKlass(), "mApproxEqual", ApproxEqual);
 }
 

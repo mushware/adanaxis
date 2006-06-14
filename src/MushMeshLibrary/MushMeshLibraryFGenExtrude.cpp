@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } 70tr8r+7E9EfOI+CfsPhBA
 /*
- * $Id: MushMeshLibraryFGenExtrude.cpp,v 1.9 2006/04/11 23:30:08 southa Exp $
+ * $Id: MushMeshLibraryFGenExtrude.cpp,v 1.10 2006/06/01 15:39:34 southa Exp $
  * $Log: MushMeshLibraryFGenExtrude.cpp,v $
+ * Revision 1.10  2006/06/01 15:39:34  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.9  2006/04/11 23:30:08  southa
  * Created MushRuby from ruby-1.8.4
  *
@@ -208,14 +211,14 @@ MushMeshLibraryFGenExtrude::FaceExtrude(MushMesh4Mesh& ioMesh, MushMeshLibraryEx
     for (U32 i=0; i<inNum; ++i)
     {
         bool toPoint;
-        toPoint = (ioContext.RollingDisp().Scale() <= 0);
+        toPoint = (ioContext.RollingDisp().Scale().X() <= 0 &&
+				   ioContext.RollingDisp().Scale().Y() <= 0 &&
+				   ioContext.RollingDisp().Scale().Z() <= 0 &&
+				   ioContext.RollingDisp().Scale().W() <= 0);
 
         FaceExtrudeOne(ioMesh, ioContext.RollingFaceNumWRef(), toPoint);
         
-        if (ioContext.RollingDisp().Scale() <= 0)
-        {
-            break;
-        }
+        if (toPoint) break;
         
         ioContext.VelocityAdd();
     }

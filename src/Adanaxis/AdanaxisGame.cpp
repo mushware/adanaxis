@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } DEX6Sh9oUk/bih2GXm2coA
 /*
- * $Id: AdanaxisGame.cpp,v 1.29 2006/06/07 12:15:18 southa Exp $
+ * $Id: AdanaxisGame.cpp,v 1.30 2006/06/12 16:01:21 southa Exp $
  * $Log: AdanaxisGame.cpp,v $
+ * Revision 1.30  2006/06/12 16:01:21  southa
+ * Ruby mesh generation
+ *
  * Revision 1.29  2006/06/07 12:15:18  southa
  * Grid and test textures
  *
@@ -121,6 +124,8 @@
 #include "API/mushMedia.h"
 #include "API/mushMushGL.h"
 #include "API/mushMushGame.h"
+#include "API/mushMushMesh.h"
+#include "API/mushMushMeshLibrary.h"
 #include "API/mushMushRuby.h"
 
 using namespace Mushware;
@@ -221,6 +226,7 @@ AdanaxisGame::Init(GameAppHandler& inAppHandler)
     // MushRubyExec::Sgl().Call("topMenu.render");
     
     MushMeshLibraryBase::SingletonMutate(new AdanaxisMeshLibrary);
+    MushMesh4Maker::SingletonMutate(new MushMeshLibraryMaker);
 
     std::srand(time(NULL));
     

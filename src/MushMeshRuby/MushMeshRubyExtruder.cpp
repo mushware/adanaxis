@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } Ibp5f6SYWiVWQmey0t+DVA
 /*
- * $Id$
- * $Log$
+ * $Id: MushMeshRubyExtruder.cpp,v 1.1 2006/06/14 11:20:08 southa Exp $
+ * $Log: MushMeshRubyExtruder.cpp,v $
+ * Revision 1.1  2006/06/14 11:20:08  southa
+ * Ruby mesh generation
+ *
  */
 
 #include "MushMeshRubyExtruder.h"
@@ -36,6 +39,8 @@ MUSHRUBYOBJ_INSTANCE(MushMeshLibraryExtruder);
 
 MUSHRUBYOBJ_INITIALIZE(MushMeshLibraryExtruder)(Mushware::tRubyArgC inArgC, Mushware::tRubyValue *inpArgV, Mushware::tRubyValue inSelf)
 {
+	MushMeshLibraryExtruder& extruder = WRef(inSelf);
+    
 	switch (inArgC)
 	{
 		case 0:
@@ -43,7 +48,6 @@ MUSHRUBYOBJ_INITIALIZE(MushMeshLibraryExtruder)(Mushware::tRubyArgC inArgC, Mush
 			
 		case 1:
 		{
-			MushMeshLibraryExtruder& extruder = WRef(inSelf);
 			Mushware::tRubyHash paramHash = MushRubyValue(inpArgV[0]).Hash();
 			for (Mushware::tRubyHash::iterator p = paramHash.begin(); p != paramHash.end(); ++p)
 			{
@@ -59,14 +63,6 @@ MUSHRUBYOBJ_INITIALIZE(MushMeshLibraryExtruder)(Mushware::tRubyArgC inArgC, Mush
 				else if (symbol == MushRubyIntern::displacement_velocity())
 				{
 					extruder.DispVelSet(MushMeshRubyDisplacement::Ref(p->second.Value()));
-				}
-				else if (symbol == MushRubyIntern::scale())
-				{
-					extruder.ScaleSet(p->second.Val());
-				}
-				else if (symbol == MushRubyIntern::scale_velocity())
-				{
-					extruder.ScaleVelSet(p->second.Val());
 				}
 				else
 				{

@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } Zw6OcSp8cveFgQgWqsgmKA
 /*
- * $Id: MushMeshLibraryExtrusionContext.h,v 1.3 2005/07/18 13:13:36 southa Exp $
+ * $Id: MushMeshLibraryExtrusionContext.h,v 1.4 2006/06/01 15:39:34 southa Exp $
  * $Log: MushMeshLibraryExtrusionContext.h,v $
+ * Revision 1.4  2006/06/01 15:39:34  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.3  2005/07/18 13:13:36  southa
  * Extrude to point and projectile mesh
  *
@@ -70,9 +73,9 @@ public:
     void VelocityAdd(void)
     {
         
-        Mushware::tVal newScale = m_rollingDisp.Scale() + m_scaleVelocity;
-        if (newScale < 0) newScale = 0;
-        m_rollingDisp.ScaleSet(newScale);
+        Mushware::t4Val newScale = m_rollingDisp.Scale() + m_scaleVelocity;
+        
+		m_rollingDisp.ScaleSet(newScale);
         
         m_rollingDisp.Rotation().VectorRotate(m_rollingDisp.OffsetWRef());
     }

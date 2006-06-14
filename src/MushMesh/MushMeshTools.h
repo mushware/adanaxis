@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } VP8fay9XgM+kqodf58ym6g
 /*
- * $Id: MushMeshTools.h,v 1.11 2006/06/09 21:07:13 southa Exp $
+ * $Id: MushMeshTools.h,v 1.12 2006/06/13 19:30:36 southa Exp $
  * $Log: MushMeshTools.h,v $
+ * Revision 1.12  2006/06/13 19:30:36  southa
+ * Ruby mesh generation
+ *
  * Revision 1.11  2006/06/09 21:07:13  southa
  * Tiled skin generation
  *
@@ -69,8 +72,8 @@
 class MushMesh4Mesh;
 class MushMesh4TextureTile;
 
-//:generate ostream
-class MushMeshTools
+//:generate standard ostream xml1
+class MushMeshTools : public MushcoreVirtualObject
 {
 public:
     enum
@@ -110,8 +113,14 @@ public:
 									  Mushware::U32 inFaceNum, Mushware::U32 inFacetNum);
 //%classPrototypes {
 public:
+    virtual const char *AutoName(void) const;
+    virtual MushcoreVirtualObject *AutoClone(void) const;
+    virtual MushcoreVirtualObject *AutoCreate(void) const;
+    static MushcoreVirtualObject *AutoVirtualFactory(void);
     virtual void AutoPrint(std::ostream& ioOut) const;
-//%classPrototypes } b86DSDsq8lQQbiM0rrNtkg
+    virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
+    virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
+//%classPrototypes } 1oBgFruy5qHAaudtV+Hcmg
 };
 //%inlineHeader {
 inline std::ostream&

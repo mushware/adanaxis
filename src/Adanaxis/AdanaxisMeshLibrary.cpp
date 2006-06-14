@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } s/ATdwJmdoQd9jSw8sBfiA
 /*
- * $Id: AdanaxisMeshLibrary.cpp,v 1.4 2006/06/08 20:17:30 southa Exp $
+ * $Id: AdanaxisMeshLibrary.cpp,v 1.5 2006/06/09 21:07:12 southa Exp $
  * $Log: AdanaxisMeshLibrary.cpp,v $
+ * Revision 1.5  2006/06/09 21:07:12  southa
+ * Tiled skin generation
+ *
  * Revision 1.4  2006/06/08 20:17:30  southa
  * Texture tile generation method 2
  *
@@ -53,7 +56,7 @@ AdanaxisMeshLibrary::ProjectileCreate(MushMesh4Mesh& ioMesh) const
     MushMeshLibraryFGenExtrude faceExtrude;
     MushMeshLibraryVGenExtrude vertexExtrude;
 
-    MushMeshDisplacement disp(t4Val(0,0,0,-1), tQValPair::RotationIdentity(), 0);
+    MushMeshDisplacement disp(t4Val(0,0,0,-1), tQValPair::RotationIdentity(), t4Val(0,0,0,0));
     
     MushMeshLibraryExtrusionContext extrusionContext(disp, 0);
     
@@ -68,7 +71,7 @@ AdanaxisMeshLibrary::AttendantExtrusionContext(MushMeshLibraryExtrusionContext& 
 {
     U32 number = kAttendantLODFactor * inMesh.LevelOfDetail();
     
-    MushMeshDisplacement disp(t4Val(0,0,0,1), tQValPair::RotationIdentity(), 0.5);
+    MushMeshDisplacement disp(t4Val(0,0,0,1), tQValPair::RotationIdentity(), t4Val(0.5,0.5,0.5,0.5));
     t4Val offset(0,0,0,-1);
 
     disp.RotationWRef().OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis
@@ -120,7 +123,7 @@ AdanaxisMeshLibrary::AttendantCreate(MushMesh4Mesh& ioMesh) const
 void
 AdanaxisMeshLibrary::TestObjectExtrusionContext(MushMeshLibraryExtrusionContext& outContext, const MushMesh4Mesh& inMesh, Mushware::tVal inAnim) const
 {
-    MushMeshDisplacement disp(t4Val(0,0,0,-5), tQValPair::RotationIdentity(), 0.5);
+    MushMeshDisplacement disp(t4Val(0,0,0,-5), tQValPair::RotationIdentity(), t4Val(0.5, 0.5, 0.5, 0.5));
 	
     //disp.RotationWRef().OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis(1, 0));
     //MushMeshTools::QuaternionRotateInAxis(1, 0).VectorRotate(offset);

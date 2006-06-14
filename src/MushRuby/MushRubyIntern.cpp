@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } lqALCPGBahbk4ibyVPO8LQ
 /*
- * $Id: MushRubyIntern.cpp,v 1.1 2006/06/13 10:35:05 southa Exp $
+ * $Id: MushRubyIntern.cpp,v 1.2 2006/06/14 11:20:09 southa Exp $
  * $Log: MushRubyIntern.cpp,v $
+ * Revision 1.2  2006/06/14 11:20:09  southa
+ * Ruby mesh generation
+ *
  * Revision 1.1  2006/06/13 10:35:05  southa
  * Ruby data objects
  *
@@ -37,6 +40,8 @@ MUSHRUBYINTERN_DEFINE(backtrace);
 MUSHRUBYINTERN_DEFINE(cToPrint);
 MUSHRUBYINTERN_DEFINE(displacement);
 MUSHRUBYINTERN_DEFINE(displacement_velocity);
+MUSHRUBYINTERN_DEFINE(offset);
+MUSHRUBYINTERN_DEFINE(rotation);
 MUSHRUBYINTERN_DEFINE(scale);
 MUSHRUBYINTERN_DEFINE(scale_velocity);MUSHRUBYINTERN_DEFINE(size);
 MUSHRUBYINTERN_DEFINE(sourceface);
@@ -50,6 +55,8 @@ MushRubyIntern::Initialise(void)
 	MUSHRUBYINTERN_INIT(cToPrint);
 	MUSHRUBYINTERN_INIT(displacement);
 	MUSHRUBYINTERN_INIT(displacement_velocity);
+	MUSHRUBYINTERN_INIT(offset);
+	MUSHRUBYINTERN_INIT(rotation);
 	MUSHRUBYINTERN_INIT(scale);
 	MUSHRUBYINTERN_INIT(scale_velocity);
 	MUSHRUBYINTERN_INIT(size);

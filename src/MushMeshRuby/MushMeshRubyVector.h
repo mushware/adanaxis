@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 2J8UOQdZFzDY6iljFrjmCg
 /*
- * $Id: MushMeshRubyVector.h,v 1.3 2006/06/13 10:35:04 southa Exp $
+ * $Id: MushMeshRubyVector.h,v 1.4 2006/06/13 19:30:38 southa Exp $
  * $Log: MushMeshRubyVector.h,v $
+ * Revision 1.4  2006/06/13 19:30:38  southa
+ * Ruby mesh generation
+ *
  * Revision 1.3  2006/06/13 10:35:04  southa
  * Ruby data objects
  *
@@ -44,9 +47,9 @@ public:
 	static void RubyInstall(void);
 	
 private:
-	static Mushware::tRubyValue Mush4ValInPlaceAdd(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg1);
-	static Mushware::tRubyValue Mush4ValAdd(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg1);
-	static Mushware::tRubyValue Mush4ValIsEqual(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg1);
+	static Mushware::tRubyValue MushVectorInPlaceAdd(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg1);
+	static Mushware::tRubyValue MushVectorAdd(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg1);
+	static Mushware::tRubyValue MushVectorIsEqual(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg1);
 	static Mushware::tRubyValue ApproxEqual(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0, Mushware::tRubyValue inArg1);
 };
 

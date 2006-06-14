@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 9JPXJ2bpwRb+KLjiunD82Q
 /*
- * $Id$
- * $Log$
+ * $Id: MushMesh4Extruder.cpp,v 1.1 2006/06/14 11:20:07 southa Exp $
+ * $Log: MushMesh4Extruder.cpp,v $
+ * Revision 1.1  2006/06/14 11:20:07  southa
+ * Ruby mesh generation
+ *
  */
 
 #include "MushMesh4Extruder.h"
@@ -28,9 +31,7 @@
 MushMesh4Extruder::MushMesh4Extruder() :
 	m_sourceFaceNum(0),
 	m_disp(MushMeshDisplacement::Identity()),
-	m_dispVel(MushMeshDisplacement::Identity()),
-	m_scale(1),
-	m_scaleVel(1)
+	m_dispVel(MushMeshDisplacement::Identity())
 {
 }
 
@@ -69,9 +70,7 @@ MushMesh4Extruder::AutoPrint(std::ostream& ioOut) const
     ioOut << "[";
     ioOut << "sourceFaceNum=" << m_sourceFaceNum << ", ";
     ioOut << "disp=" << m_disp << ", ";
-    ioOut << "dispVel=" << m_dispVel << ", ";
-    ioOut << "scale=" << m_scale << ", ";
-    ioOut << "scaleVel=" << m_scaleVel;
+    ioOut << "dispVel=" << m_dispVel;
     ioOut << "]";
 }
 bool
@@ -95,14 +94,6 @@ MushMesh4Extruder::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::strin
     {
         ioIn >> m_dispVel;
     }
-    else if (inTagStr == "scale")
-    {
-        ioIn >> m_scale;
-    }
-    else if (inTagStr == "scaleVel")
-    {
-        ioIn >> m_scaleVel;
-    }
     else 
     {
         return false;
@@ -118,9 +109,5 @@ MushMesh4Extruder::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_disp;
     ioOut.TagSet("dispVel");
     ioOut << m_dispVel;
-    ioOut.TagSet("scale");
-    ioOut << m_scale;
-    ioOut.TagSet("scaleVel");
-    ioOut << m_scaleVel;
 }
-//%outOfLineFunctions } OwLwtMvYeKmX+d0WnjyidA
+//%outOfLineFunctions } KTwsvpv/gjAz5GQnmxDFdQ

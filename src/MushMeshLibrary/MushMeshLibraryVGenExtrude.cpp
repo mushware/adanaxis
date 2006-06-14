@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } 1XpIVIgiHvKJLMjMoray6A
 /*
- * $Id: MushMeshLibraryVGenExtrude.cpp,v 1.4 2005/07/14 16:55:09 southa Exp $
+ * $Id: MushMeshLibraryVGenExtrude.cpp,v 1.5 2006/06/01 15:39:34 southa Exp $
  * $Log: MushMeshLibraryVGenExtrude.cpp,v $
+ * Revision 1.5  2006/06/01 15:39:34  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.4  2005/07/14 16:55:09  southa
  * Mesh library work
  *
@@ -71,7 +74,7 @@ MushMeshLibraryVGenExtrude::FaceExtrudeOne(MushMesh4Mesh& ioMesh, const MushMesh
             
             t4Val newVertex = verticesRef[oldVertexNum];
             
-            newVertex = inDisp.Scale() * (newVertex - centroid);
+            newVertex = inDisp.Scale().ElementwiseProduct((newVertex - centroid));
             inDisp.Rotation().VectorRotate(newVertex);
             newVertex += inDisp.Offset();
             newVertex += centroid;

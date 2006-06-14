@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } kjx6juFzwsH41luLhCyMIQ
 /*
- * $Id: MushRubyObj.h,v 1.1 2006/06/13 19:30:39 southa Exp $
+ * $Id: MushRubyObj.h,v 1.2 2006/06/14 11:20:09 southa Exp $
  * $Log: MushRubyObj.h,v $
+ * Revision 1.2  2006/06/14 11:20:09  southa
+ * Ruby mesh generation
+ *
  * Revision 1.1  2006/06/13 19:30:39  southa
  * Ruby mesh generation
  *
@@ -41,6 +44,7 @@ public:
 	static T& WRef(Mushware::tRubyValue inSelf);
 	static Mushware::tRubyValue NewInstance(void) { return MushRubyUtil::ClassNewInstance(ObjKlass()); }
 	static bool IsInstanceOf(Mushware::tRubyValue inValue);
+	static bool IsInstanceOf(MushRubyValue inValue) { return IsInstanceOf(inValue.Value()); }
 	
 protected:
 	static T& ObjRef(Mushware::tRubyValue inSelf);

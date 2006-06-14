@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } cwZJKyFY1QFkq3q40herNg
 /*
- * $Id: MushMesh.h,v 1.28 2006/05/01 17:39:00 southa Exp $
+ * $Id: MushMesh.h,v 1.29 2006/06/14 11:20:06 southa Exp $
  * $Log: MushMesh.h,v $
+ * Revision 1.29  2006/06/14 11:20:06  southa
+ * Ruby mesh generation
+ *
  * Revision 1.28  2006/05/01 17:39:00  southa
  * Texture generation
  *
@@ -116,6 +119,7 @@
 #include "MushMesh4Face.h"
 #include "MushMesh4FaceGenerator.h"
 #include "MushMesh4LinkFaceFace.h"
+#include "MushMesh4Maker.h"
 #include "MushMesh4Mesh.h"
 #include "MushMesh4TextureTile.h"
 #include "MushMesh4VertexGenerator.h"
