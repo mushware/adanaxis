@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef MUSHMESHRUBYMESH_H
-#define MUSHMESHRUBYMESH_H
-//%includeGuardStart } 0fz+h5HaFSFoFE3/de8MLg
+#ifndef MUSHMESHRUBYEXTRUDER_H
+#define MUSHMESHRUBYEXTRUDER_H
+//%includeGuardStart } s31XL8hpWOP9g7HFyI6Pjg
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushMeshRuby/MushMeshRubyMesh.h
+ * File: src/MushMeshRuby/MushMeshRubyExtruder.h
  *
  * Author: Andy Southgate 2002-2006
  *
@@ -21,36 +21,21 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } hSrHx4/wCdfB19VcRmiYhw
+//%Header } S7V3kxLWibt3+09EwtVFFQ
 /*
- * $Id: MushMeshRubyMesh.h,v 1.3 2006/06/13 19:30:37 southa Exp $
- * $Log: MushMeshRubyMesh.h,v $
- * Revision 1.3  2006/06/13 19:30:37  southa
- * Ruby mesh generation
- *
- * Revision 1.2  2006/06/13 10:35:04  southa
- * Ruby data objects
- *
- * Revision 1.1  2006/06/12 16:01:23  southa
- * Ruby mesh generation
- *
+ * $Id$
+ * $Log$
  */
 
 #include "MushMeshRubyStandard.h"
 
-class MushMeshMesh;
-
-class MushMeshRubyMesh : public MushRubyDataObj<MushMesh4Mesh>
+class MushMeshRubyExtruder : public MushRubyObj<MushMeshLibraryExtruder>
 {
 public:
 	static void RubyInstall(void);
 	
-protected:
-	static Mushware::tRubyValue ExtruderAdd(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
-
 private:
 };
-
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

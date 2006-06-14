@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } kjx6juFzwsH41luLhCyMIQ
 /*
- * $Id$
- * $Log$
+ * $Id: MushRubyObj.h,v 1.1 2006/06/13 19:30:39 southa Exp $
+ * $Log: MushRubyObj.h,v $
+ * Revision 1.1  2006/06/13 19:30:39  southa
+ * Ruby mesh generation
+ *
  */
 
 #include "MushRubyStandard.h"
@@ -44,6 +47,7 @@ protected:
 	static Mushware::tRubyValue ObjKlass(void) { return m_objKlass; }
 	static Mushware::tRubyValue ObjAllocate(Mushware::tRubyValue inKlass);		
 	static Mushware::tRubyValue Obj_to_s(Mushware::tRubyValue inSelf);
+	static Mushware::tRubyValue Obj_to_xml(Mushware::tRubyValue inSelf);
 	static Mushware::tRubyValue ObjInitialize(Mushware::tRubyArgC inArgC, Mushware::tRubyValue *inpArgV, Mushware::tRubyValue inSelf);
 	static Mushware::tRubyValue ObjInitializeCopy(Mushware::tRubyValue inCopy, Mushware::tRubyValue inOrig);
 	static void ObjInstall(const std::string &inName);
@@ -164,6 +168,19 @@ MushRubyObj<T>::Obj_to_s(Mushware::tRubyValue inSelf)
 	return MushRubyUtil::StringNew(objStream.str());
 }
 
+
+template <class T>
+Mushware::tRubyValue
+MushRubyObj<T>::Obj_to_xml(Mushware::tRubyValue inSelf)
+{
+	std::ostringstream objStream;
+	MushcoreXMLOStream xmlStream(objStream);
+	xmlStream << ObjRef(inSelf);
+	
+	return MushRubyUtil::StringNew(objStream.str());
+}
+
+
 template <class T>
 void
 MushRubyObj<T>::ObjInstall(const std::string &inName)
@@ -172,6 +189,7 @@ MushRubyObj<T>::ObjInstall(const std::string &inName)
 	MushRubyUtil::MethodDefine(ObjKlass(), "initialize", ObjInitialize);
 	MushRubyUtil::MethodDefineOneParam(ObjKlass(), "initialize_copy", ObjInitializeCopy);
 	MushRubyUtil::MethodDefineNoParams(ObjKlass(), "to_s", Obj_to_s);
+	MushRubyUtil::MethodDefineNoParams(ObjKlass(), "to_xml", Obj_to_xml);
 }
 
 //%includeGuardEnd {

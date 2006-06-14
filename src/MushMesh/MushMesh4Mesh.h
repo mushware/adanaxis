@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } YrK9KiG4XjKqbWo1rVGU4w
 /*
- * $Id: MushMesh4Mesh.h,v 1.13 2005/09/05 12:54:30 southa Exp $
+ * $Id: MushMesh4Mesh.h,v 1.14 2006/05/01 17:39:00 southa Exp $
  * $Log: MushMesh4Mesh.h,v $
+ * Revision 1.14  2006/05/01 17:39:00  southa
+ * Texture generation
+ *
  * Revision 1.13  2005/09/05 12:54:30  southa
  * Solid rendering work
  *
@@ -70,6 +73,7 @@
 
 #include "MushMeshMesh.h"
 #include "MushMesh4Chunk.h"
+#include "MushMesh4Extruder.h"
 #include "MushMesh4Face.h"
 #include "MushMesh4FaceGenerator.h"
 #include "MushMesh4TextureTile.h"
@@ -98,7 +102,8 @@ public:
     typedef MushcoreDataRef<MushMesh4Mesh> tDataRef;
     typedef MushMesh4TextureTile tTextureTile;
     typedef std::vector<tTextureTile> tTextureTiles;
-    
+    typedef std::vector< MushcoreAutoClonePtr<MushMesh4Extruder> > tExtruders;
+	
     MushMesh4Mesh();
     virtual ~MushMesh4Mesh() {}
 
@@ -137,6 +142,8 @@ public:
     void AllTouch(void); // Called from constructor
     void VerticesTouch(void); // Called from constructor
     void Prebuild(void);
+	
+	void ExtruderGive(MushMesh4Extruder *pExtruder); // Takes ownership of the extruder
     
 private:
     // Minimal representation
@@ -155,6 +162,7 @@ private:
     Mushware::U32 m_texCoordCounter; //:readwrite :wref
     MushcoreAutoClonePtr<MushMesh4FaceGenerator> m_faceGenerator; //:readwrite :wref
     MushcoreAutoClonePtr<MushMesh4VertexGenerator> m_vertexGenerator; //:readwrite :wref
+    tExtruders m_extruders; //:read :wref
     tTextureTiles m_textureTiles; //:readwrite :wref
     
     // Collision
@@ -218,6 +226,9 @@ public:
     void VertexGeneratorSet(const MushcoreAutoClonePtr<MushMesh4VertexGenerator>& inValue) { m_vertexGenerator=inValue; }
     // Writable reference for m_vertexGenerator
     MushcoreAutoClonePtr<MushMesh4VertexGenerator>& VertexGeneratorWRef(void) { return m_vertexGenerator; }
+    const tExtruders& Extruders(void) const { return m_extruders; }
+    // Writable reference for m_extruders
+    tExtruders& ExtrudersWRef(void) { return m_extruders; }
     const tTextureTiles& TextureTiles(void) const { return m_textureTiles; }
     void TextureTilesSet(const tTextureTiles& inValue) { m_textureTiles=inValue; }
     // Writable reference for m_textureTiles
@@ -233,7 +244,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } N/sjRJiPIgFRIZwOgTVN1w
+//%classPrototypes } QDwOKYpuABM0xVhR5tqqHw
 };
 
 inline const MushMesh4Mesh::tCentroid&

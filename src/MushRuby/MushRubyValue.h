@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 5BOLwI3DhgfDHotOLswDpg
 /*
- * $Id: MushRubyValue.h,v 1.4 2006/06/12 11:59:40 southa Exp $
+ * $Id: MushRubyValue.h,v 1.5 2006/06/13 19:30:39 southa Exp $
  * $Log: MushRubyValue.h,v $
+ * Revision 1.5  2006/06/13 19:30:39  southa
+ * Ruby mesh generation
+ *
  * Revision 1.4  2006/06/12 11:59:40  southa
  * Ruby wrapper for MushMeshVector
  *
@@ -45,6 +48,8 @@
 class MushRubyValue
 {
 public:
+	typedef std::map<MushRubyValue, MushRubyValue> tRubyHash;
+	
 	MushRubyValue();
 	explicit MushRubyValue(Mushware::tRubyValue inValue) : m_value(inValue) {}
 	std::string String(void) const;
@@ -53,6 +58,8 @@ public:
 	bool Bool(void) const;
 	Mushware::U32 U32(void) const;
 	Mushware::tVal Val(void) const;
+	tRubyHash Hash(void) const;
+	Mushware::tRubyID Symbol(void) const;
 	
 private:
 	Mushware::tRubyValue m_value; //:read
@@ -61,6 +68,11 @@ public:
     const Mushware::tRubyValue& Value(void) const { return m_value; }
 //%classPrototypes } 5uVSaGlp6OQXEWYc+ngbCQ
 };
+
+namespace Mushware
+{
+	typedef MushRubyValue::tRubyHash tRubyHash;
+}
 
 inline std::ostream&
 operator<<(std::ostream& ioOut, const MushRubyValue& inObj)
@@ -76,10 +88,6 @@ operator<(const MushRubyValue& inA, const MushRubyValue& inB)
     return inA.Value() < inB.Value();	
 }
 
-namespace Mushware
-{
-	typedef std::map<MushRubyValue, MushRubyValue> tRubyHash;
-};
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

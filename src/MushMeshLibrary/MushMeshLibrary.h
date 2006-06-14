@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } 8PuXReApzRmzSrw4yrK5ow
 /*
- * $Id: MushMeshLibrary.h,v 1.2 2005/07/14 12:50:31 southa Exp $
+ * $Id: MushMeshLibrary.h,v 1.3 2006/06/01 15:39:33 southa Exp $
  * $Log: MushMeshLibrary.h,v $
+ * Revision 1.3  2006/06/01 15:39:33  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.2  2005/07/14 12:50:31  southa
  * Extrusion work
  *
@@ -32,6 +35,7 @@
  */
 
 #include "MushMeshLibraryBase.h"
+#include "MushMeshLibraryExtruder.h"
 #include "MushMeshLibraryExtrusionContext.h"
 #include "MushMeshLibraryFGenExtrude.h"
 #include "MushMeshLibraryStandard.h"

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } oYzojPrY+iq5d6Z2oF715A
 /*
- * $Id: MushMesh4Mesh.cpp,v 1.13 2005/09/05 12:54:30 southa Exp $
+ * $Id: MushMesh4Mesh.cpp,v 1.14 2006/05/01 17:39:00 southa Exp $
  * $Log: MushMesh4Mesh.cpp,v $
+ * Revision 1.14  2006/05/01 17:39:00  southa
+ * Texture generation
+ *
  * Revision 1.13  2005/09/05 12:54:30  southa
  * Solid rendering work
  *
@@ -487,6 +490,12 @@ MushMesh4Mesh::ChunkCentroidBuild(Mushware::U32 inChunkNum) const
     chunkRef.CentroidSet(centroid / uniqueVertexListSize);
 }
 
+void
+MushMesh4Mesh::ExtruderGive(MushMesh4Extruder *pExtruder)
+{
+	m_extruders.push_back(MushcoreAutoClonePtr<MushMesh4Extruder>(pExtruder));
+}
+
 //%outOfLineFunctions {
 
 const char *MushMesh4Mesh::AutoName(void) const
@@ -532,6 +541,7 @@ MushMesh4Mesh::AutoPrint(std::ostream& ioOut) const
     ioOut << "texCoordCounter=" << m_texCoordCounter << ", ";
     ioOut << "faceGenerator=" << m_faceGenerator << ", ";
     ioOut << "vertexGenerator=" << m_vertexGenerator << ", ";
+    ioOut << "extruders=" << m_extruders << ", ";
     ioOut << "textureTiles=" << m_textureTiles << ", ";
     ioOut << "chunks=" << m_chunks << ", ";
     ioOut << "normals=" << m_normals << ", ";
@@ -601,6 +611,10 @@ MushMesh4Mesh::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& i
     else if (inTagStr == "vertexGenerator")
     {
         ioIn >> m_vertexGenerator;
+    }
+    else if (inTagStr == "extruders")
+    {
+        ioIn >> m_extruders;
     }
     else if (inTagStr == "textureTiles")
     {
@@ -698,6 +712,8 @@ MushMesh4Mesh::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_faceGenerator;
     ioOut.TagSet("vertexGenerator");
     ioOut << m_vertexGenerator;
+    ioOut.TagSet("extruders");
+    ioOut << m_extruders;
     ioOut.TagSet("textureTiles");
     ioOut << m_textureTiles;
     ioOut.TagSet("chunks");
@@ -729,4 +745,4 @@ MushMesh4Mesh::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("numFacetsValid");
     ioOut << m_numFacetsValid;
 }
-//%outOfLineFunctions } Z92dFJhIMoy6k6OFQ8dAUA
+//%outOfLineFunctions } jMl6EkHlrOYWUR6c2srJkA

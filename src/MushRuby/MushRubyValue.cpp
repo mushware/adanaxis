@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } hwIlNOCEH5GsgwGY+rP1Kg
 /*
- * $Id: MushRubyValue.cpp,v 1.4 2006/06/12 11:59:40 southa Exp $
+ * $Id: MushRubyValue.cpp,v 1.5 2006/06/13 10:35:06 southa Exp $
  * $Log: MushRubyValue.cpp,v $
+ * Revision 1.5  2006/06/13 10:35:06  southa
+ * Ruby data objects
+ *
  * Revision 1.4  2006/06/12 11:59:40  southa
  * Ruby wrapper for MushMeshVector
  *
@@ -40,6 +43,7 @@
 #include "MushRubyExec.h"
 #include "MushRubyIntern.h"
 #include "MushRubyRuby.h"
+#include "MushRubyUtil.h"
 
 using namespace Mushware;
 using namespace std;
@@ -133,3 +137,27 @@ MushRubyValue::Val(void) const
 	return NUM2DBL(tempValue);
 }
 
+Mushware::tRubyHash
+MushRubyValue::Hash(void) const
+{
+	Mushware::tRubyValue tempValue = m_value; // Avoid const problem
+	
+	if (!rb_obj_is_instance_of(tempValue, rb_cHash))
+	{
+		throw MushcoreDataFail("Cannot generate hash from non-hash ruby type");
+	}
+	
+	Mushware::tRubyHash retHash;
+	MushRubyUtil::HashConvert(retHash, tempValue);
+	return retHash;
+}
+
+Mushware::tRubyID
+MushRubyValue::Symbol(void) const
+{
+	if (!SYMBOL_P(m_value))	
+	{
+		throw MushcoreDataFail("Cannot generate symbol from non-symbol ruby type");
+	}
+	return SYM2ID(m_value);
+}

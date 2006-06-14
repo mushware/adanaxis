@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } r4uJt7qAeGRBys+BB5eEWg
 /*
- * $Id: MushMeshRubyDisplacement.cpp,v 1.1 2006/06/12 16:01:23 southa Exp $
+ * $Id: MushMeshRubyDisplacement.cpp,v 1.2 2006/06/13 19:30:37 southa Exp $
  * $Log: MushMeshRubyDisplacement.cpp,v $
+ * Revision 1.2  2006/06/13 19:30:37  southa
+ * Ruby mesh generation
+ *
  * Revision 1.1  2006/06/12 16:01:23  southa
  * Ruby mesh generation
  *
@@ -43,7 +46,7 @@ MUSHRUBYOBJ_INITIALIZE(MushMeshDisplacement)(Mushware::tRubyArgC inArgC, Mushwar
 	switch (inArgC)
 	{
 	    case 0:
-			// Uninitialised
+			WRef(inSelf) = MushMeshDisplacement::Identity();
 			break;
 			
 		case 3:

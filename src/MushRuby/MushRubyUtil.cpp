@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } gSaMBKSS/9FVf/ypP8x5kA
 /*
- * $Id: MushRubyUtil.cpp,v 1.7 2006/06/13 10:35:06 southa Exp $
+ * $Id: MushRubyUtil.cpp,v 1.8 2006/06/13 19:30:39 southa Exp $
  * $Log: MushRubyUtil.cpp,v $
+ * Revision 1.8  2006/06/13 19:30:39  southa
+ * Ruby mesh generation
+ *
  * Revision 1.7  2006/06/13 10:35:06  southa
  * Ruby data objects
  *
@@ -209,11 +212,17 @@ MushRubyUtil::HashHandler(Mushware::tRubyValue inArray, Mushware::tRubyValue inA
 }
 
 void
-MushRubyUtil::HashConvert(Mushware::tRubyHash& outHash, const MushRubyValue& inHash)
+MushRubyUtil::HashConvert(Mushware::tRubyHash& outHash, Mushware::tRubyValue inHash)
 {
 	m_pHash = &outHash;
-	rb_iterate(rb_each, inHash.Value(), RUBY_METHOD_FUNC(HashHandler), Qnil);
+	rb_iterate(rb_each, inHash, RUBY_METHOD_FUNC(HashHandler), Qnil);
 	m_pHash = NULL;
+}
+
+void
+MushRubyUtil::HashConvert(Mushware::tRubyHash& outHash, const MushRubyValue& inHash)
+{
+	HashConvert(outHash, inHash.Value());
 }
 
 void

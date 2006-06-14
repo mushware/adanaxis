@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } ZnwDjEM1+TPkZ9HrL5mg7A
 /*
- * $Id: MushRubyUtil.h,v 1.7 2006/06/13 10:35:06 southa Exp $
+ * $Id: MushRubyUtil.h,v 1.8 2006/06/13 19:30:39 southa Exp $
  * $Log: MushRubyUtil.h,v $
+ * Revision 1.8  2006/06/13 19:30:39  southa
+ * Ruby mesh generation
+ *
  * Revision 1.7  2006/06/13 10:35:06  southa
  * Ruby data objects
  *
@@ -88,6 +91,7 @@ public:
     static void SingletonMethodDefineFourParams(Mushware::tRubyValue inKlass, const std::string& inName,
 												 Mushware::tfpRubyMethodFourParams infpMethod);
 	static void HashConvert(Mushware::tRubyHash& outHash, const MushRubyValue& inHash);
+	static void HashConvert(Mushware::tRubyHash& outHash, Mushware::tRubyValue inHash);
 	static void Raise(const std::string& inStr);
 	static bool SameDataType(Mushware::tRubyValue inA, Mushware::tRubyValue inB);
 	static bool IsInstanceOf(Mushware::tRubyValue inValue, Mushware::tRubyID inKlass);

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } n1eaCj2fb8dNPgbT0uOuEQ
 /*
- * $Id$
- * $Log$
+ * $Id: MushRubyIntern.h,v 1.1 2006/06/13 10:35:06 southa Exp $
+ * $Log: MushRubyIntern.h,v $
+ * Revision 1.1  2006/06/13 10:35:06  southa
+ * Ruby data objects
+ *
  */
 
 #include "MushRubyStandard.h"
@@ -42,7 +45,12 @@ public:
 	static void Initialise(void);
 	MUSHRUBYINTERN_DECLARE(backtrace);
 	MUSHRUBYINTERN_DECLARE(cToPrint);
+	MUSHRUBYINTERN_DECLARE(displacement);
+	MUSHRUBYINTERN_DECLARE(displacement_velocity);
+	MUSHRUBYINTERN_DECLARE(scale);
+	MUSHRUBYINTERN_DECLARE(scale_velocity);
 	MUSHRUBYINTERN_DECLARE(size);
+	MUSHRUBYINTERN_DECLARE(sourceface);
 	MUSHRUBYINTERN_DECLARE(to_ary);
 	MUSHRUBYINTERN_DECLARE(to_s);
 };

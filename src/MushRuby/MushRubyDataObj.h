@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } px78SUrna42uj+15fa2T7w
 /*
- * $Id: MushRubyDataObj.h,v 1.1 2006/06/13 10:35:05 southa Exp $
+ * $Id: MushRubyDataObj.h,v 1.2 2006/06/13 19:30:39 southa Exp $
  * $Log: MushRubyDataObj.h,v $
+ * Revision 1.2  2006/06/13 19:30:39  southa
+ * Ruby mesh generation
+ *
  * Revision 1.1  2006/06/13 10:35:05  southa
  * Ruby data objects
  *
@@ -53,6 +56,7 @@ protected:
 	static Mushware::tRubyValue DataObjInitialize(Mushware::tRubyArgC inArgC, Mushware::tRubyValue *inpArgV, Mushware::tRubyValue inSelf);
 	static Mushware::tRubyValue DataObjInitializeCopy(Mushware::tRubyValue inCopy, Mushware::tRubyValue inOrig);
 	static Mushware::tRubyValue DataObj_to_s(Mushware::tRubyValue inSelf);
+	static Mushware::tRubyValue DataObj_to_xml(Mushware::tRubyValue inSelf);
 	static void DataObjInstall(const std::string &inName);
 	
 	// Initialize must be overriden to permit object creation
@@ -179,6 +183,17 @@ MushRubyDataObj<T>::DataObj_to_s(Mushware::tRubyValue inSelf)
 }
 
 template <class T>
+Mushware::tRubyValue
+MushRubyDataObj<T>::DataObj_to_xml(Mushware::tRubyValue inSelf)
+{
+	std::ostringstream objStream;
+	MushcoreXMLOStream xmlStream(objStream);
+	xmlStream << DataObjBase(inSelf);
+	
+	return MushRubyUtil::StringNew(objStream.str());
+}
+
+template <class T>
 void
 MushRubyDataObj<T>::DataObjInstall(const std::string &inName)
 {
@@ -186,6 +201,7 @@ MushRubyDataObj<T>::DataObjInstall(const std::string &inName)
 	MushRubyUtil::MethodDefine(DataObjKlass(), "initialize", DataObjInitialize);
 	MushRubyUtil::MethodDefineOneParam(DataObjKlass(), "initialize_copy", DataObjInitializeCopy);
 	MushRubyUtil::MethodDefineNoParams(DataObjKlass(), "to_s", DataObj_to_s);
+	MushRubyUtil::MethodDefineNoParams(DataObjKlass(), "to_xml", DataObj_to_xml);
 }
 
 

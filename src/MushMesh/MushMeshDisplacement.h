@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } ruys+ZX2qsJuGCAeFCx8eg
 /*
- * $Id: MushMeshDisplacement.h,v 1.2 2005/07/14 12:50:31 southa Exp $
+ * $Id: MushMeshDisplacement.h,v 1.3 2006/06/01 15:39:29 southa Exp $
  * $Log: MushMeshDisplacement.h,v $
+ * Revision 1.3  2006/06/01 15:39:29  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.2  2005/07/14 12:50:31  southa
  * Extrusion work
  *
@@ -47,7 +50,13 @@ public:
         m_offset(inOffset), m_rotation(inRotation), m_scale(inScale) {}
     
     void ToIdentitySet(void) { m_rotation.ToRotationIdentitySet(); m_offset.ToAdditiveIdentitySet(); m_scale = 1;}
-    
+    static MushMeshDisplacement Identity(void)
+    {
+		return MushMeshDisplacement(Mushware::t4Val::AdditiveIdentity(),
+									Mushware::tQValPair::RotationIdentity(),
+                                    1); 
+	}
+
 private:
     Mushware::t4Val m_offset; //:readwrite :wref
     Mushware::tQValPair m_rotation; //:readwrite :wref

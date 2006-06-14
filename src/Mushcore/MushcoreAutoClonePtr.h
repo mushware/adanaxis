@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } AtI7Zm+isB7x0vb4EGBGvg
 /*
- * $Id: MushcoreAutoClonePtr.h,v 1.1 2005/07/12 20:39:05 southa Exp $
+ * $Id: MushcoreAutoClonePtr.h,v 1.2 2006/06/01 15:39:41 southa Exp $
  * $Log: MushcoreAutoClonePtr.h,v $
+ * Revision 1.2  2006/06/01 15:39:41  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.1  2005/07/12 20:39:05  southa
  * Mesh library work
  *
@@ -42,7 +45,7 @@ class MushcoreAutoClonePtr
 {
 public:
     explicit MushcoreAutoClonePtr(T *inpObj = NULL) : m_ptr(inpObj) {}
-    explicit MushcoreAutoClonePtr(const MushcoreAutoClonePtr& inClonePtr);
+    MushcoreAutoClonePtr(const MushcoreAutoClonePtr& inClonePtr);
     virtual ~MushcoreAutoClonePtr() { delete m_ptr; }
     
     MushcoreAutoClonePtr& operator=(const MushcoreAutoClonePtr& inClonePtr);

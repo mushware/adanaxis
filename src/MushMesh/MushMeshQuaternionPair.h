@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } agje8R8XMktBLfLA1CPa/g
 /*
- * $Id: MushMeshQuaternionPair.h,v 1.12 2005/08/01 17:58:25 southa Exp $
+ * $Id: MushMeshQuaternionPair.h,v 1.13 2006/06/01 15:39:32 southa Exp $
  * $Log: MushMeshQuaternionPair.h,v $
+ * Revision 1.13  2006/06/01 15:39:32  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.12  2005/08/01 17:58:25  southa
  * Object explosion
  *
@@ -90,7 +93,7 @@ public:
     MushMeshQuaternionPair<T> Conjugate(void) const;
     void InPlaceConjugate(void);
         
-    static MushMeshQuaternionPair AdditiveIdentity()
+    static MushMeshQuaternionPair AdditiveIdentity(void)
     {
         return MushMeshQuaternionPair(MushMeshQuaternion<T>::AdditiveIdentity(),
                                       MushMeshQuaternion<T>::AdditiveIdentity());
@@ -100,7 +103,7 @@ public:
         return MushMeshQuaternionPair(MushMeshQuaternion<T>::MultiplicativeIdentity(),
                                       MushMeshQuaternion<T>::MultiplicativeIdentity());
     }
-    static MushMeshQuaternionPair RotationIdentity()
+    static MushMeshQuaternionPair RotationIdentity(void)
     {
         return MultiplicativeIdentity();
     }

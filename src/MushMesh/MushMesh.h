@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } cwZJKyFY1QFkq3q40herNg
 /*
- * $Id: MushMesh.h,v 1.27 2005/07/19 13:44:26 southa Exp $
+ * $Id: MushMesh.h,v 1.28 2006/05/01 17:39:00 southa Exp $
  * $Log: MushMesh.h,v $
+ * Revision 1.28  2006/05/01 17:39:00  southa
+ * Texture generation
+ *
  * Revision 1.27  2005/07/19 13:44:26  southa
  * MushMesh4Chunk work
  *
@@ -109,6 +112,7 @@
  */
 
 #include "MushMesh4Chunk.h"
+#include "MushMesh4Extruder.h"
 #include "MushMesh4Face.h"
 #include "MushMesh4FaceGenerator.h"
 #include "MushMesh4LinkFaceFace.h"

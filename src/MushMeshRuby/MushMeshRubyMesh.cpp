@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } oR7WPhSKmfGQldTVFg6TpQ
 /*
- * $Id: MushMeshRubyMesh.cpp,v 1.2 2006/06/13 10:35:04 southa Exp $
+ * $Id: MushMeshRubyMesh.cpp,v 1.3 2006/06/13 19:30:37 southa Exp $
  * $Log: MushMeshRubyMesh.cpp,v $
+ * Revision 1.3  2006/06/13 19:30:37  southa
+ * Ruby mesh generation
+ *
  * Revision 1.2  2006/06/13 10:35:04  southa
  * Ruby data objects
  *
@@ -31,6 +34,7 @@
 
 #include "MushMeshRubyMesh.h"
 
+#include "MushMeshRubyExtruder.h"
 #include "MushMeshRubyRuby.h"
 
 MUSHRUBYDATAOBJ_INSTANCE(MushMesh4Mesh);
@@ -52,10 +56,23 @@ MUSHRUBYDATAOBJ_INITIALIZE(MushMesh4Mesh)(Mushware::tRubyArgC inArgC, Mushware::
 	return inSelf;
 }
 
+Mushware::tRubyValue
+MushMeshRubyMesh::ExtruderAdd(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0)
+{
+	if (!MushMeshRubyExtruder::IsInstanceOf(inArg0))
+	{
+		MushRubyUtil::Raise("Wrong type for ExtruderAdd - must be MushExtruder");
+	}
+	WRef(inSelf).ExtruderGive(new MushMeshLibraryExtruder(MushMeshRubyExtruder::Ref(inArg0)));
+	
+	return inSelf;
+}
+
 void
 MushMeshRubyMesh::RubyInstall(void)
 {
 	DataObjInstall("MushMesh");
+	MushRubyUtil::MethodDefineOneParam(DataObjKlass(), "mExtruderAdd", ExtruderAdd);
 }
 
 namespace
