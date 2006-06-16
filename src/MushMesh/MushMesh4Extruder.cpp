@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 9JPXJ2bpwRb+KLjiunD82Q
 /*
- * $Id: MushMesh4Extruder.cpp,v 1.1 2006/06/14 11:20:07 southa Exp $
+ * $Id: MushMesh4Extruder.cpp,v 1.2 2006/06/14 18:45:47 southa Exp $
  * $Log: MushMesh4Extruder.cpp,v $
+ * Revision 1.2  2006/06/14 18:45:47  southa
+ * Ruby mesh generation
+ *
  * Revision 1.1  2006/06/14 11:20:07  southa
  * Ruby mesh generation
  *
@@ -31,7 +34,9 @@
 MushMesh4Extruder::MushMesh4Extruder() :
 	m_sourceFaceNum(0),
 	m_disp(MushMeshDisplacement::Identity()),
-	m_dispVel(MushMeshDisplacement::Identity())
+	m_dispVel(MushMeshDisplacement::Identity()),
+    m_numIterations(1),
+    m_toPoint(false)
 {
 }
 
@@ -70,7 +75,9 @@ MushMesh4Extruder::AutoPrint(std::ostream& ioOut) const
     ioOut << "[";
     ioOut << "sourceFaceNum=" << m_sourceFaceNum << ", ";
     ioOut << "disp=" << m_disp << ", ";
-    ioOut << "dispVel=" << m_dispVel;
+    ioOut << "dispVel=" << m_dispVel << ", ";
+    ioOut << "numIterations=" << m_numIterations << ", ";
+    ioOut << "toPoint=" << m_toPoint;
     ioOut << "]";
 }
 bool
@@ -94,6 +101,14 @@ MushMesh4Extruder::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::strin
     {
         ioIn >> m_dispVel;
     }
+    else if (inTagStr == "numIterations")
+    {
+        ioIn >> m_numIterations;
+    }
+    else if (inTagStr == "toPoint")
+    {
+        ioIn >> m_toPoint;
+    }
     else 
     {
         return false;
@@ -109,5 +124,9 @@ MushMesh4Extruder::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_disp;
     ioOut.TagSet("dispVel");
     ioOut << m_dispVel;
+    ioOut.TagSet("numIterations");
+    ioOut << m_numIterations;
+    ioOut.TagSet("toPoint");
+    ioOut << m_toPoint;
 }
-//%outOfLineFunctions } KTwsvpv/gjAz5GQnmxDFdQ
+//%outOfLineFunctions } flIOLpK70OsY8k91i87k0A

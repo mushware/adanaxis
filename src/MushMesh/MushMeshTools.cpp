@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } cQoVIV2DdH4LiqrKzfp8tw
 /*
- * $Id: MushMeshTools.cpp,v 1.11 2006/06/13 19:30:36 southa Exp $
+ * $Id: MushMeshTools.cpp,v 1.12 2006/06/14 18:45:48 southa Exp $
  * $Log: MushMeshTools.cpp,v $
+ * Revision 1.12  2006/06/14 18:45:48  southa
+ * Ruby mesh generation
+ *
  * Revision 1.11  2006/06/13 19:30:36  southa
  * Ruby mesh generation
  *
@@ -354,7 +357,10 @@ MushMeshTools::MostOrthogonalEdgeSelect(const tFacetVertices& inVertices, const 
 	U32 mostOrthoEdge = 0;
 	tVal vecLength = inVec.Magnitude();
 	
-	MUSHCOREASSERT(vecLength > 0);
+	if (vecLength <= 0)
+	{
+		throw MushcoreDataFail("Object contains zero-length edges - cannot create skin");
+	}
 	
 	U32 numVertices = inVertices.size();
 	

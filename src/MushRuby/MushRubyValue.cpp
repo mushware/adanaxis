@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } hwIlNOCEH5GsgwGY+rP1Kg
 /*
- * $Id: MushRubyValue.cpp,v 1.6 2006/06/14 11:20:10 southa Exp $
+ * $Id: MushRubyValue.cpp,v 1.7 2006/06/14 18:45:50 southa Exp $
  * $Log: MushRubyValue.cpp,v $
+ * Revision 1.7  2006/06/14 18:45:50  southa
+ * Ruby mesh generation
+ *
  * Revision 1.6  2006/06/14 11:20:10  southa
  * Ruby mesh generation
  *
@@ -90,6 +93,19 @@ MushRubyValue::String(void) const
 }
 
 bool
+MushRubyValue::IsU32(void) const
+{
+	return FIXNUM_P(m_value);
+}
+
+bool
+MushRubyValue::IsHash(void) const
+{
+	Mushware::tRubyValue tempValue = m_value; // Avoid const problem
+	return rb_obj_is_instance_of(tempValue, rb_cHash);
+}
+
+bool
 MushRubyValue::IsArray(void) const
 {
 	Mushware::tRubyValue tempValue = m_value; // Avoid const problem
@@ -126,9 +142,20 @@ MushRubyValue::ValVector(void) const
 bool
 MushRubyValue::Bool(void) const
 {
-	Mushware::tRubyValue tempValue = m_value; // Avoid const problem
-	
-	return (NUM2UINT(tempValue) != 0);
+	bool retVal;
+	if (m_value == Qtrue)
+	{
+		retVal = true;	
+	}
+	else if (m_value == Qfalse)
+	{
+		retVal = false;
+	}
+	else
+	{
+		retVal = (NUM2UINT(m_value) != 0);
+	}
+	return retVal;
 }
 
 Mushware::U32

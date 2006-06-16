@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } xkvbVCXm8pXCDWV4BdLGFQ
 /*
- * $Id: MushSkinTiled.cpp,v 1.4 2006/06/09 21:07:14 southa Exp $
+ * $Id: MushSkinTiled.cpp,v 1.5 2006/06/12 11:59:40 southa Exp $
  * $Log: MushSkinTiled.cpp,v $
+ * Revision 1.5  2006/06/12 11:59:40  southa
+ * Ruby wrapper for MushMeshVector
+ *
  * Revision 1.4  2006/06/09 21:07:14  southa
  * Tiled skin generation
  *
@@ -160,8 +163,10 @@ MushSkinTiled::TexCoordsGenerate(MushMesh4Mesh& ioMesh)
 				t4Val testVec;
 				texTileWRef.TextureToFacet(testVec, uvVector);				
 				
-                MUSHCOREASSERT(uvVector.X() > -0.01 && uvVector.X() < 1.01);
-                MUSHCOREASSERT(uvVector.Y() > -0.01 && uvVector.Y() < 1.01);
+                if (uvVector.X() < -0.01 || uvVector.X() > 1.01 || uvVector.Y() < -0.01 || uvVector.Y() > 1.01)
+				{
+					MushcoreLog::Sgl().WarningLog()  << "Bad uv coordinates generated: " << uvVector << endl;
+				}
                 
                 // Add the new texture coordinate to mesh
                 if (texCoordNum >= texCoordsWRef.size())

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } cwZJKyFY1QFkq3q40herNg
 /*
- * $Id: MushMesh.h,v 1.29 2006/06/14 11:20:06 southa Exp $
+ * $Id: MushMesh.h,v 1.30 2006/06/14 18:45:47 southa Exp $
  * $Log: MushMesh.h,v $
+ * Revision 1.30  2006/06/14 18:45:47  southa
+ * Ruby mesh generation
+ *
  * Revision 1.29  2006/06/14 11:20:06  southa
  * Ruby mesh generation
  *
@@ -114,6 +117,7 @@
  *
  */
 
+#include "MushMesh4Base.h"
 #include "MushMesh4Chunk.h"
 #include "MushMesh4Extruder.h"
 #include "MushMesh4Face.h"

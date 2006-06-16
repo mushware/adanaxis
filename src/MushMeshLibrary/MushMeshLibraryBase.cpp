@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } lKuxq2tc2FqBaZd4TQuE+A
 /*
- * $Id: MushMeshLibraryBase.cpp,v 1.5 2005/08/01 17:58:44 southa Exp $
+ * $Id: MushMeshLibraryBase.cpp,v 1.6 2006/06/01 15:39:33 southa Exp $
  * $Log: MushMeshLibraryBase.cpp,v $
+ * Revision 1.6  2006/06/01 15:39:33  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.5  2005/08/01 17:58:44  southa
  * Object explosion
  *
@@ -187,15 +190,15 @@ MushMeshLibraryBase::PolygonPrismVerticesCreate(MushMesh4Mesh& ioMesh, const Mus
     
     t4Val scale = inScale / 2;
     
-    // Vertices
+    // Vertices.  Face 2 should be in the x=k hyperplane for convenient extrusion
     for (U32 i=0; i<4; ++i)
     {
         for (U32 j=0; j<inOrder; ++j)
         {
             MushMesh4Mesh::tVertex& vertex = verticesRef[vertexNum];
             
-            vertex.XSet(scale.X() * cos(angularStep * j));
-            vertex.YSet(scale.Y() * sin(angularStep * j));
+            vertex.XSet(scale.X() * cos(angularStep * (j-0.5)));
+            vertex.YSet(scale.Y() * sin(angularStep * (j-0.5)));
             vertex.ZSet(((i & 1) == 0)?-scale.Z():scale.Z());
             vertex.WSet(((i & 2) == 0)?-scale.W():scale.W());
             
@@ -205,8 +208,6 @@ MushMeshLibraryBase::PolygonPrismVerticesCreate(MushMesh4Mesh& ioMesh, const Mus
     MUSHCOREASSERT(vertexNum == numVertices);
     ioMesh.VertexCounterSet(numVertices);
 }
-
-
 
 void
 MushMeshLibraryBase::PolygonPrismCreate(MushMesh4Mesh& ioMesh, const Mushware::t4Val& inScale, Mushware::U32 inOrder) const

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } oR7WPhSKmfGQldTVFg6TpQ
 /*
- * $Id: MushMeshRubyMesh.cpp,v 1.4 2006/06/14 11:20:08 southa Exp $
+ * $Id: MushMeshRubyMesh.cpp,v 1.5 2006/06/14 18:45:49 southa Exp $
  * $Log: MushMeshRubyMesh.cpp,v $
+ * Revision 1.5  2006/06/14 18:45:49  southa
+ * Ruby mesh generation
+ *
  * Revision 1.4  2006/06/14 11:20:08  southa
  * Ruby mesh generation
  *
@@ -37,6 +40,8 @@
 
 #include "MushMeshRubyMesh.h"
 
+#include "MushMeshRubyBasePrism.h"
+#include "MushMeshRubyDisplacement.h"
 #include "MushMeshRubyExtruder.h"
 #include "MushMeshRubyRuby.h"
 
@@ -56,6 +61,42 @@ MUSHRUBYDATAOBJ_INITIALIZE(MushMesh4Mesh)(Mushware::tRubyArgC inArgC, Mushware::
 	DataObjRef(inSelf).NameSet(nameStr);
 	tDataObjData::Sgl().GetOrCreate(nameStr); // Create mesh if it doesn't exist
 
+	return inSelf;
+}
+
+Mushware::tRubyValue
+MushMeshRubyMesh::BaseAdd(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0)
+{
+	if (!MushMeshRubyBasePrism::IsInstanceOf(inArg0))
+	{
+		MushRubyUtil::Raise("Wrong type for ExtruderAdd - must be MushExtruder");
+	}
+	try
+	{
+		WRef(inSelf).BaseGive(new MushMeshLibraryPrism(MushMeshRubyBasePrism::Ref(inArg0)));
+	}
+	catch (std::exception& e)
+	{
+		MushRubyUtil::Raise(e.what());
+	}
+	return inSelf;
+}
+
+Mushware::tRubyValue
+MushMeshRubyMesh::BaseDisplacementAdd(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0)
+{
+	if (!MushMeshRubyDisplacement::IsInstanceOf(inArg0))
+	{
+		MushRubyUtil::Raise("Wrong type for BaseDisplacementAdd - must be MushDisplacement");
+	}
+	try
+	{
+		WRef(inSelf).BaseDisplacementSet(MushMeshRubyDisplacement::Ref(inArg0));
+	}
+	catch (std::exception& e)
+	{
+		MushRubyUtil::Raise(e.what());
+	}
 	return inSelf;
 }
 
@@ -95,6 +136,8 @@ void
 MushMeshRubyMesh::RubyInstall(void)
 {
 	DataObjInstall("MushMesh");
+	MushRubyUtil::MethodDefineOneParam(DataObjKlass(), "mBaseAdd", BaseAdd);
+	MushRubyUtil::MethodDefineOneParam(DataObjKlass(), "mBaseDisplacementAdd", BaseDisplacementAdd);
 	MushRubyUtil::MethodDefineOneParam(DataObjKlass(), "mExtruderAdd", ExtruderAdd);
 	MushRubyUtil::MethodDefineNoParams(DataObjKlass(), "mMake", Make);
 }

@@ -2310,6 +2310,12 @@
 		7ADEF6F20876CB7A00820697 /* MushGLClaimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7ADEF6F00876CB7A00820697 /* MushGLClaimer.cpp */; };
 		7ADEF6F30876CB7A00820697 /* MushGLClaimer.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ADEF6EF0876CB7A00820697 /* MushGLClaimer.h */; };
 		7ADEF6F40876CB7A00820697 /* MushGLClaimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7ADEF6F00876CB7A00820697 /* MushGLClaimer.cpp */; };
+		7AE6978B0A420D24004D7B75 /* MushMesh4Base.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AE697890A420D24004D7B75 /* MushMesh4Base.h */; };
+		7AE6978C0A420D24004D7B75 /* MushMesh4Base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AE6978A0A420D24004D7B75 /* MushMesh4Base.cpp */; };
+		7AE697930A420EA3004D7B75 /* MushMeshLibraryPrism.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AE697910A420EA3004D7B75 /* MushMeshLibraryPrism.h */; };
+		7AE697940A420EA3004D7B75 /* MushMeshLibraryPrism.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AE697920A420EA3004D7B75 /* MushMeshLibraryPrism.cpp */; };
+		7AE697D20A42129E004D7B75 /* MushMeshRubyBasePrism.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AE697D00A42129E004D7B75 /* MushMeshRubyBasePrism.h */; };
+		7AE697D30A42129E004D7B75 /* MushMeshRubyBasePrism.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AE697D10A42129E004D7B75 /* MushMeshRubyBasePrism.cpp */; };
 		7AFB11E4088C052000F097A3 /* AdanaxisPieceKhazi.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AFB11E2088C052000F097A3 /* AdanaxisPieceKhazi.h */; };
 		7AFB11E5088C052000F097A3 /* AdanaxisPieceKhazi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AFB11E3088C052000F097A3 /* AdanaxisPieceKhazi.cpp */; };
 		7AFB11E6088C052000F097A3 /* AdanaxisPieceKhazi.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AFB11E2088C052000F097A3 /* AdanaxisPieceKhazi.h */; };
@@ -2335,139 +2341,6 @@
 		7AFFFF3C085DBA2800999549 /* TestMushcoreCounter.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AFFFF3A085DBA2800999549 /* TestMushcoreCounter.h */; };
 		7AFFFF3D085DBA2800999549 /* TestMushcoreCounter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AFFFF3B085DBA2800999549 /* TestMushcoreCounter.cpp */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXBuildStyle section */
-		4A9504C5FFE6A39111CA0CBA /* Development */ = {
-			isa = PBXBuildStyle;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				DEBUGGING_SYMBOLS = YES;
-				GCC_ALTIVEC_EXTENSIONS = YES;
-				GCC_AUTO_VECTORIZATION = YES;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_MODEL_CPU = G4;
-				GCC_OPTIMIZATION_LEVEL = 1;
-				GCC_PFE_FILE_C_DIALECTS = "c++";
-				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = YES;
-				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
-				GCC_WARN_EFFECTIVE_CPLUSPLUS_VIOLATIONS = NO;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
-				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
-				GCC_WARN_MISSING_PARENTHESES = YES;
-				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
-				GCC_WARN_SHADOW = YES;
-				GCC_WARN_SIGN_COMPARE = YES;
-				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNKNOWN_PRAGMAS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_LABEL = YES;
-				GCC_WARN_UNUSED_VALUE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					../../src,
-					../../src/API,
-				);
-				MACOSX_DEPLOYMENT_TARGET = "";
-				WARNING_CFLAGS = "-Wall";
-				ZERO_LINK = YES;
-			};
-			name = Development;
-		};
-		4A9504C6FFE6A39111CA0CBA /* Deployment */ = {
-			isa = PBXBuildStyle;
-			buildSettings = {
-				COPY_PHASE_STRIP = YES;
-				DEAD_CODE_STRIPPING = NO;
-				GCC_ALTIVEC_EXTENSIONS = YES;
-				GCC_AUTO_VECTORIZATION = YES;
-				GCC_DEBUGGING_SYMBOLS = default;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_FAST_MATH = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
-				GCC_OPTIMIZATION_LEVEL = 3;
-				GCC_PFE_FILE_C_DIALECTS = "c++";
-				GCC_STRICT_ALIASING = YES;
-				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
-				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
-				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
-				GCC_WARN_MISSING_PARENTHESES = YES;
-				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
-				GCC_WARN_SHADOW = YES;
-				GCC_WARN_SIGN_COMPARE = YES;
-				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_LABEL = YES;
-				GCC_WARN_UNUSED_PARAMETER = NO;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					../../src,
-					../../src/API,
-				);
-				LIBRARY_SEARCH_PATHS = /usr/local/lib;
-				MACOSX_DEPLOYMENT_TARGET = 10.2;
-				PRESERVE_DEAD_CODE_INITS_AND_TERMS = NO;
-				ZERO_LINK = NO;
-			};
-			name = Deployment;
-		};
-		7A490353083B9D05000775B1 /* Development 10.2.7 */ = {
-			isa = PBXBuildStyle;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				DEBUGGING_SYMBOLS = YES;
-				GCC_ALTIVEC_EXTENSIONS = YES;
-				GCC_AUTO_VECTORIZATION = YES;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_FAST_MATH = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_MODEL_CPU = "";
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PFE_FILE_C_DIALECTS = "c++";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_STRICT_ALIASING = YES;
-				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = YES;
-				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
-				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
-				GCC_WARN_MISSING_PARENTHESES = YES;
-				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
-				GCC_WARN_SHADOW = YES;
-				GCC_WARN_SIGN_COMPARE = YES;
-				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = NO;
-				GCC_WARN_UNKNOWN_PRAGMAS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_LABEL = YES;
-				GCC_WARN_UNUSED_VALUE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					../../src,
-					../../src/API,
-				);
-				LIBRARY_SEARCH_PATHS = /usr/local/lib;
-				LIBRARY_STYLE = DYNAMIC;
-				MACOSX_DEPLOYMENT_TARGET = 10.2;
-				WARNING_CFLAGS = "-Wall";
-				ZERO_LINK = NO;
-			};
-			name = "Development 10.2.7";
-		};
-/* End PBXBuildStyle section */
 
 /* Begin PBXContainerItemProxy section */
 		7A23840E05F9E98000505F59 /* PBXContainerItemProxy */ = {
@@ -3885,6 +3758,16 @@
 		7ADEF6F00876CB7A00820697 /* MushGLClaimer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushGLClaimer.cpp; sourceTree = "<group>"; };
 		7AE2756D083C88B200F22CA3 /* tesseracttrainer.def */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = tesseracttrainer.def; sourceTree = "<group>"; };
 		7AE27570083C892C00F22CA3 /* tesseracttrainer.Makefile.am */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = tesseracttrainer.Makefile.am; sourceTree = "<group>"; };
+		7AE697890A420D24004D7B75 /* MushMesh4Base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushMesh4Base.h; sourceTree = "<group>"; };
+		7AE6978A0A420D24004D7B75 /* MushMesh4Base.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushMesh4Base.cpp; sourceTree = "<group>"; };
+		7AE697910A420EA3004D7B75 /* MushMeshLibraryPrism.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushMeshLibraryPrism.h; sourceTree = "<group>"; };
+		7AE697920A420EA3004D7B75 /* MushMeshLibraryPrism.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushMeshLibraryPrism.cpp; sourceTree = "<group>"; };
+		7AE697D00A42129E004D7B75 /* MushMeshRubyBasePrism.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushMeshRubyBasePrism.h; sourceTree = "<group>"; };
+		7AE697D10A42129E004D7B75 /* MushMeshRubyBasePrism.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushMeshRubyBasePrism.cpp; sourceTree = "<group>"; };
+		7AE697DB0A421497004D7B75 /* MushBasePrism.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = MushBasePrism.rb; sourceTree = "<group>"; };
+		7AE697E20A42165E004D7B75 /* tc_MushBasePrism.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = tc_MushBasePrism.rb; sourceTree = "<group>"; };
+		7AE698760A421B8E004D7B75 /* MushMesh.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = MushMesh.rb; sourceTree = "<group>"; };
+		7AE699650A42300B004D7B75 /* MushBase.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = MushBase.rb; sourceTree = "<group>"; };
 		7AF19B9A0A41658500BFE452 /* index.html */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
 		7AFB11E2088C052000F097A3 /* AdanaxisPieceKhazi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdanaxisPieceKhazi.h; sourceTree = "<group>"; };
 		7AFB11E3088C052000F097A3 /* AdanaxisPieceKhazi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AdanaxisPieceKhazi.cpp; sourceTree = "<group>"; };
@@ -4149,6 +4032,7 @@
 		7A1D06090A3D89CD00DB5646 /* test */ = {
 			isa = PBXGroup;
 			children = (
+				7AE697E20A42165E004D7B75 /* tc_MushBasePrism.rb */,
 				7A5F16D10A3DA8C000B46F5F /* tc_MushDisplacement.rb */,
 				7A5F16E10A3DAADA00B46F5F /* tc_MushExtrusion.rb */,
 				7A5C9AAA0A4013C100A80527 /* tc_MushExtruder.rb */,
@@ -4207,6 +4091,8 @@
 			children = (
 				7A58F1760A3D680C00B7AE0E /* MushMeshRuby.cpp */,
 				7A58F1770A3D680C00B7AE0E /* MushMeshRuby.h */,
+				7AE697D10A42129E004D7B75 /* MushMeshRubyBasePrism.cpp */,
+				7AE697D00A42129E004D7B75 /* MushMeshRubyBasePrism.h */,
 				7A5F16C40A3DA6B800B46F5F /* MushMeshRubyDisplacement.cpp */,
 				7A5F16C30A3DA6B800B46F5F /* MushMeshRubyDisplacement.h */,
 				7A5C9AA10A4012F300A80527 /* MushMeshRubyExtruder.cpp */,
@@ -4738,6 +4624,8 @@
 		7A62B84905A49D05002A5F1C /* MushMesh */ = {
 			isa = PBXGroup;
 			children = (
+				7AE6978A0A420D24004D7B75 /* MushMesh4Base.cpp */,
+				7AE697890A420D24004D7B75 /* MushMesh4Base.h */,
 				7AD10D3F088D0ABC00AEDC48 /* MushMesh4Chunk.cpp */,
 				7AD10D3E088D0ABC00AEDC48 /* MushMesh4Chunk.h */,
 				7A5C9A8A0A400D4900A80527 /* MushMesh4Extruder.cpp */,
@@ -5586,6 +5474,8 @@
 				7AA0FB8A08844AF100997505 /* MushMeshLibraryFGenExtrude.h */,
 				7AD26F7A0A40877E0037F084 /* MushMeshLibraryMaker.cpp */,
 				7AD26F790A40877E0037F084 /* MushMeshLibraryMaker.h */,
+				7AE697920A420EA3004D7B75 /* MushMeshLibraryPrism.cpp */,
+				7AE697910A420EA3004D7B75 /* MushMeshLibraryPrism.h */,
 				7AA0FAFE0884308900997505 /* MushMeshLibraryStandard.cpp */,
 				7AA0FAFD0884308900997505 /* MushMeshLibraryStandard.h */,
 				7AD10DD6088D2B2800AEDC48 /* MushMeshLibraryUtil.cpp */,
@@ -5826,18 +5716,21 @@
 				7A5F18250A3DC12700B46F5F /* Adanaxis.rb */,
 				7A58F2070A3D725400B7AE0E /* AdanaxisMeshLibrary.rb */,
 				7ACEFB3109F6EF6700E38865 /* init.rb */,
-				7A58F2EC0A3D839700B7AE0E /* MushVector.rb */,
+				7AE699650A42300B004D7B75 /* MushBase.rb */,
+				7AE697DB0A421497004D7B75 /* MushBasePrism.rb */,
 				7A7C1B050A35E56B00212A11 /* MushConfig.rb */,
 				7A5F16CE0A3DA87F00B46F5F /* MushDisplacement.rb */,
 				7A5C9AAE0A40140C00A80527 /* MushExtruder.rb */,
 				7ACED0E109F84F2400055E66 /* MushGLFont.rb */,
 				7A1FF5F60A3489930023C4E2 /* MushGLTexture.rb */,
 				7A7C1BBF0A35EEAE00212A11 /* MushHelpers.rb */,
+				7AE698760A421B8E004D7B75 /* MushMesh.rb */,
 				7A5F71350A3F24AD006F24A8 /* MushRotation.rb */,
+				7A5F71930A3F35D8006F24A8 /* MushTools.rb */,
+				7A58F2EC0A3D839700B7AE0E /* MushVector.rb */,
 				7A5F18200A3DC0E300B46F5F /* Mushware.rb */,
 				7A1FF5FE0A348B4A0023C4E2 /* Level1.rb */,
 				7ACEFB4F09F6FE8F00E38865 /* TopMenu.rb */,
-				7A5F71930A3F35D8006F24A8 /* MushTools.rb */,
 				7A5725120A41648A00D99536 /* MakeDocs.sh */,
 			);
 			path = ruby;
@@ -6706,6 +6599,7 @@
 				7ACF4CE20A065AE600830BCC /* MushMesh4TextureTile.h in Headers */,
 				7A5C9A8B0A400D4900A80527 /* MushMesh4Extruder.h in Headers */,
 				7AD26F190A407E7C0037F084 /* MushMesh4Maker.h in Headers */,
+				7AE6978B0A420D24004D7B75 /* MushMesh4Base.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7012,6 +6906,8 @@
 				7A5C9A820A40094C00A80527 /* MushMeshLibraryExtruder.h in Headers */,
 				7A5C9AA20A4012F300A80527 /* MushMeshRubyExtruder.h in Headers */,
 				7AD26F7B0A40877E0037F084 /* MushMeshLibraryMaker.h in Headers */,
+				7AE697930A420EA3004D7B75 /* MushMeshLibraryPrism.h in Headers */,
+				7AE697D20A42129E004D7B75 /* MushMeshRubyBasePrism.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7388,50 +7284,11 @@
 			);
 			buildRules = (
 			);
-			buildSettings = {
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ../../src/Mushcore/Mushcore.h;
-				HEADER_SEARCH_PATHS = (
-					../../src,
-					../../src/API,
-				);
-				INFOPLIST_FILE = All.Info.plist;
-				INSTALL_PATH = "$(USER_APPS_DIR)";
-				LIBRARY_SEARCH_PATHS = /usr/lib/gcc/darwin/3.3;
-				PRODUCT_NAME = ic2;
-			};
 			dependencies = (
 			);
 			name = All;
 			productName = All;
 			productReference = 7A62B6F905A49C0B002A5F1C /* All.app */;
-			productSettingsXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
-<!DOCTYPE plist PUBLIC \"-//Apple Computer//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">
-<plist version=\"1.0\">
-<dict>
-	<key>CFBundleDevelopmentRegion</key>
-	<string>English</string>
-	<key>CFBundleExecutable</key>
-	<string>All</string>
-	<key>CFBundleGetInfoString</key>
-	<string></string>
-	<key>CFBundleIconFile</key>
-	<string></string>
-	<key>CFBundleIdentifier</key>
-	<string>com.MySoftwareCompany.All</string>
-	<key>CFBundleInfoDictionaryVersion</key>
-	<string>6.0</string>
-	<key>CFBundlePackageType</key>
-	<string>APPL</string>
-	<key>CFBundleShortVersionString</key>
-	<string></string>
-	<key>CFBundleSignature</key>
-	<string>????</string>
-	<key>CFBundleVersion</key>
-	<string>1.0.0d1</string>
-</dict>
-</plist>
-";
 			productType = "com.apple.product-type.application";
 		};
 		7A657E6B05A9CC4100E727F8 /* TestMushPie */ = {
@@ -7448,50 +7305,12 @@
 			);
 			buildRules = (
 			);
-			buildSettings = {
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ../../src/Mushcore/Mushcore.h;
-				INFOPLIST_FILE = "TestMushPie-Info.plist";
-				INSTALL_PATH = "$(USER_APPS_DIR)";
-				OTHER_CFLAGS = "";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = TestMushPie;
-				REZ_EXECUTABLE = NO;
-				SECTORDER_FLAGS = "";
-			};
 			dependencies = (
 				7A657EED05A9CDF200E727F8 /* PBXTargetDependency */,
 			);
 			name = TestMushPie;
 			productName = TestMushcore;
 			productReference = 7A657E8605A9CC4100E727F8 /* TestMushPie.app */;
-			productSettingsXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
-<!DOCTYPE plist PUBLIC \"-//Apple Computer//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">
-<plist version=\"1.0\">
-<dict>
-	<key>CFBundleDevelopmentRegion</key>
-	<string>English</string>
-	<key>CFBundleExecutable</key>
-	<string>TestMushcore</string>
-	<key>CFBundleGetInfoString</key>
-	<string></string>
-	<key>CFBundleIconFile</key>
-	<string></string>
-	<key>CFBundleIdentifier</key>
-	<string>com.MySoftwareCompany.TestMushcore</string>
-	<key>CFBundleInfoDictionaryVersion</key>
-	<string>6.0</string>
-	<key>CFBundlePackageType</key>
-	<string>APPL</string>
-	<key>CFBundleShortVersionString</key>
-	<string></string>
-	<key>CFBundleSignature</key>
-	<string>????</string>
-	<key>CFBundleVersion</key>
-	<string>1.0.0d1</string>
-</dict>
-</plist>
-";
 			productType = "com.apple.product-type.application";
 		};
 		7A657E8905A9CD1C00E727F8 /* MushPie */ = {
@@ -7506,24 +7325,6 @@
 			);
 			buildRules = (
 			);
-			buildSettings = {
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				FRAMEWORK_VERSION = A;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
-				GCC_WARN_UNKNOWN_PRAGMAS = NO;
-				INFOPLIST_FILE = "MushPie-Info.plist";
-				INSTALL_PATH = "@executable_path/../Frameworks";
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = (
-					"-seg1addr",
-					0x2b800000,
-				);
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = MushPie;
-				REZ_EXECUTABLE = NO;
-				SECTORDER_FLAGS = "";
-			};
 			dependencies = (
 				7A65817305A9D21500E727F8 /* PBXTargetDependency */,
 				7A65817505A9D21500E727F8 /* PBXTargetDependency */,
@@ -7531,31 +7332,6 @@
 			name = MushPie;
 			productName = Mushcore;
 			productReference = 7A657EE905A9CD1C00E727F8 /* MushPie.framework */;
-			productSettingsXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
-<!DOCTYPE plist PUBLIC \"-//Apple Computer//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">
-<plist version=\"1.0\">
-<dict>
-	<key>CFBundleDevelopmentRegion</key>
-	<string>English</string>
-	<key>CFBundleExecutable</key>
-	<string>Mushcore</string>
-	<key>CFBundleGetInfoString</key>
-	<string></string>
-	<key>CFBundleIdentifier</key>
-	<string>com.MySoftwareCompany.Mushcore</string>
-	<key>CFBundleInfoDictionaryVersion</key>
-	<string>6.0</string>
-	<key>CFBundlePackageType</key>
-	<string>FMWK</string>
-	<key>CFBundleShortVersionString</key>
-	<string></string>
-	<key>CFBundleSignature</key>
-	<string>????</string>
-	<key>CFBundleVersion</key>
-	<string>1.0.0d1</string>
-</dict>
-</plist>
-";
 			productType = "com.apple.product-type.framework";
 		};
 		7A65812905A9D09700E727F8 /* TestMushMesh */ = {
@@ -7571,52 +7347,12 @@
 			);
 			buildRules = (
 			);
-			buildSettings = {
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ../../src/Mushcore/Mushcore.h;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
-				GCC_WARN_UNKNOWN_PRAGMAS = NO;
-				INFOPLIST_FILE = "TestMushMesh-Info.plist";
-				INSTALL_PATH = "$(USER_APPS_DIR)";
-				OTHER_CFLAGS = "";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = TestMushMesh;
-				REZ_EXECUTABLE = NO;
-				SECTORDER_FLAGS = "";
-			};
 			dependencies = (
 				7A65837305A9D43D00E727F8 /* PBXTargetDependency */,
 			);
 			name = TestMushMesh;
 			productName = TestMushcore;
 			productReference = 7A65813605A9D09700E727F8 /* TestMushMesh.app */;
-			productSettingsXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
-<!DOCTYPE plist PUBLIC \"-//Apple Computer//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">
-<plist version=\"1.0\">
-<dict>
-	<key>CFBundleDevelopmentRegion</key>
-	<string>English</string>
-	<key>CFBundleExecutable</key>
-	<string>TestMushcore</string>
-	<key>CFBundleGetInfoString</key>
-	<string></string>
-	<key>CFBundleIconFile</key>
-	<string></string>
-	<key>CFBundleIdentifier</key>
-	<string>com.MySoftwareCompany.TestMushcore</string>
-	<key>CFBundleInfoDictionaryVersion</key>
-	<string>6.0</string>
-	<key>CFBundlePackageType</key>
-	<string>APPL</string>
-	<key>CFBundleShortVersionString</key>
-	<string></string>
-	<key>CFBundleSignature</key>
-	<string>????</string>
-	<key>CFBundleVersion</key>
-	<string>1.0.0d1</string>
-</dict>
-</plist>
-";
 			productType = "com.apple.product-type.application";
 		};
 		7A65813905A9D09C00E727F8 /* MushMesh */ = {
@@ -7631,57 +7367,12 @@
 			);
 			buildRules = (
 			);
-			buildSettings = {
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				FRAMEWORK_VERSION = A;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ../../src/API/mushMushcore.h;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
-				GCC_WARN_UNKNOWN_PRAGMAS = NO;
-				INFOPLIST_FILE = "MushMesh-Info.plist";
-				INSTALL_PATH = "@executable_path/../Frameworks";
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = (
-					"-seg1addr",
-					0x2b000000,
-				);
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = MushMesh;
-				REZ_EXECUTABLE = NO;
-				SECTORDER_FLAGS = "";
-			};
 			dependencies = (
 				7A65817B05A9D22700E727F8 /* PBXTargetDependency */,
 			);
 			name = MushMesh;
 			productName = Mushcore;
 			productReference = 7A65815405A9D09C00E727F8 /* MushMesh.framework */;
-			productSettingsXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
-<!DOCTYPE plist PUBLIC \"-//Apple Computer//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">
-<plist version=\"1.0\">
-<dict>
-	<key>CFBundleDevelopmentRegion</key>
-	<string>English</string>
-	<key>CFBundleExecutable</key>
-	<string>Mushcore</string>
-	<key>CFBundleGetInfoString</key>
-	<string></string>
-	<key>CFBundleIdentifier</key>
-	<string>com.MySoftwareCompany.Mushcore</string>
-	<key>CFBundleInfoDictionaryVersion</key>
-	<string>6.0</string>
-	<key>CFBundlePackageType</key>
-	<string>FMWK</string>
-	<key>CFBundleShortVersionString</key>
-	<string></string>
-	<key>CFBundleSignature</key>
-	<string>????</string>
-	<key>CFBundleVersion</key>
-	<string>1.0.0d1</string>
-</dict>
-</plist>
-";
 			productType = "com.apple.product-type.framework";
 		};
 		7A70CD4B085DEE2D0055C6FB /* Adanaxis */ = {
@@ -7699,23 +7390,6 @@
 			);
 			buildRules = (
 			);
-			buildSettings = {
-				DEAD_CODE_STRIPPING = YES;
-				DSTROOT = "";
-				GCC_ALTIVEC_EXTENSIONS = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ../../src/API/mushAppPrefix.h;
-				HEADER_SEARCH_PATHS = (
-					../../src,
-					../../src/API,
-				);
-				INFOPLIST_FILE = "/Users/southa/core-app/macosx/project/Adanaxis-Info.plist";
-				INSTALL_PATH = "$(USER_APPS_DIR)";
-				LIBRARY_SEARCH_PATHS = /usr/lib/gcc/darwin/3.3;
-				PRODUCT_NAME = Adanaxis;
-			};
 			dependencies = (
 				7A70CD4C085DEE2D0055C6FB /* PBXTargetDependency */,
 				7A70CD4D085DEE2D0055C6FB /* PBXTargetDependency */,
@@ -7724,33 +7398,6 @@
 			name = Adanaxis;
 			productName = All;
 			productReference = 7A70CE7E085DEE2D0055C6FB /* Adanaxis Control Demo.app */;
-			productSettingsXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
-<!DOCTYPE plist PUBLIC \"-//Apple Computer//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">
-<plist version=\"1.0\">
-<dict>
-	<key>CFBundleDevelopmentRegion</key>
-	<string>English</string>
-	<key>CFBundleExecutable</key>
-	<string>All</string>
-	<key>CFBundleGetInfoString</key>
-	<string></string>
-	<key>CFBundleIconFile</key>
-	<string></string>
-	<key>CFBundleIdentifier</key>
-	<string>com.MySoftwareCompany.All</string>
-	<key>CFBundleInfoDictionaryVersion</key>
-	<string>6.0</string>
-	<key>CFBundlePackageType</key>
-	<string>APPL</string>
-	<key>CFBundleShortVersionString</key>
-	<string></string>
-	<key>CFBundleSignature</key>
-	<string>????</string>
-	<key>CFBundleVersion</key>
-	<string>1.0.0d1</string>
-</dict>
-</plist>
-";
 			productType = "com.apple.product-type.application";
 		};
 		7A7194EC05A998B900C42A20 /* Mushcore */ = {
@@ -7766,54 +7413,11 @@
 			);
 			buildRules = (
 			);
-			buildSettings = {
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				FRAMEWORK_VERSION = A;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
-				GCC_WARN_UNKNOWN_PRAGMAS = NO;
-				INFOPLIST_FILE = "Mushcore-Info.plist";
-				INSTALL_PATH = "@executable_path/../Frameworks";
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = (
-					"-seg1addr",
-					0x2a000000,
-				);
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = Mushcore;
-				REZ_EXECUTABLE = NO;
-				SECTORDER_FLAGS = "";
-			};
 			dependencies = (
 			);
 			name = Mushcore;
 			productName = Mushcore;
 			productReference = 7A7194ED05A998B900C42A20 /* Mushcore.framework */;
-			productSettingsXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
-<!DOCTYPE plist PUBLIC \"-//Apple Computer//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">
-<plist version=\"1.0\">
-<dict>
-	<key>CFBundleDevelopmentRegion</key>
-	<string>English</string>
-	<key>CFBundleExecutable</key>
-	<string>Mushcore</string>
-	<key>CFBundleGetInfoString</key>
-	<string></string>
-	<key>CFBundleIdentifier</key>
-	<string>com.MySoftwareCompany.Mushcore</string>
-	<key>CFBundleInfoDictionaryVersion</key>
-	<string>6.0</string>
-	<key>CFBundlePackageType</key>
-	<string>FMWK</string>
-	<key>CFBundleShortVersionString</key>
-	<string></string>
-	<key>CFBundleSignature</key>
-	<string>????</string>
-	<key>CFBundleVersion</key>
-	<string>1.0.0d1</string>
-</dict>
-</plist>
-";
 			productType = "com.apple.product-type.framework";
 		};
 		7A71998A05A99B6700C42A20 /* TestMushcore */ = {
@@ -7829,52 +7433,12 @@
 			);
 			buildRules = (
 			);
-			buildSettings = {
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ../../src/API/mushMushcore.h;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
-				GCC_WARN_UNKNOWN_PRAGMAS = NO;
-				INFOPLIST_FILE = "TestMushcore-Info.plist";
-				INSTALL_PATH = "$(USER_APPS_DIR)";
-				OTHER_CFLAGS = "";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = TestMushcore;
-				REZ_EXECUTABLE = NO;
-				SECTORDER_FLAGS = "";
-			};
 			dependencies = (
 				7A7199A605A99BDE00C42A20 /* PBXTargetDependency */,
 			);
 			name = TestMushcore;
 			productName = TestMushcore;
 			productReference = 7A71998B05A99B6700C42A20 /* TestMushcore.app */;
-			productSettingsXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
-<!DOCTYPE plist PUBLIC \"-//Apple Computer//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">
-<plist version=\"1.0\">
-<dict>
-	<key>CFBundleDevelopmentRegion</key>
-	<string>English</string>
-	<key>CFBundleExecutable</key>
-	<string>TestMushcore</string>
-	<key>CFBundleGetInfoString</key>
-	<string></string>
-	<key>CFBundleIconFile</key>
-	<string></string>
-	<key>CFBundleIdentifier</key>
-	<string>com.MySoftwareCompany.TestMushcore</string>
-	<key>CFBundleInfoDictionaryVersion</key>
-	<string>6.0</string>
-	<key>CFBundlePackageType</key>
-	<string>APPL</string>
-	<key>CFBundleShortVersionString</key>
-	<string></string>
-	<key>CFBundleSignature</key>
-	<string>????</string>
-	<key>CFBundleVersion</key>
-	<string>1.0.0d1</string>
-</dict>
-</plist>
-";
 			productType = "com.apple.product-type.application";
 		};
 		7AAE6BAC07AFC4250085C60F /* Tesseract Trainer */ = {
@@ -7892,22 +7456,6 @@
 			);
 			buildRules = (
 			);
-			buildSettings = {
-				DEAD_CODE_STRIPPING = YES;
-				DSTROOT = "";
-				GCC_ALTIVEC_EXTENSIONS = YES;
-				GCC_OPTIMIZATION_LEVEL = 1;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ../../src/Mushcore/Mushcore.h;
-				HEADER_SEARCH_PATHS = (
-					../../src,
-					../../src/API,
-				);
-				INFOPLIST_FILE = "/Users/southa/core-app/macosx/project/TesseractTrainer.plist";
-				INSTALL_PATH = "$(USER_APPS_DIR)";
-				LIBRARY_SEARCH_PATHS = /usr/lib/gcc/darwin/3.3;
-				PRODUCT_NAME = "Tesseract Trainer";
-			};
 			dependencies = (
 				7AAE6BAD07AFC4250085C60F /* PBXTargetDependency */,
 				7AAE6BAE07AFC4250085C60F /* PBXTargetDependency */,
@@ -7916,33 +7464,6 @@
 			name = "Tesseract Trainer";
 			productName = All;
 			productReference = 7AAE6CD807AFC4250085C60F /* Tesseract Trainer.app */;
-			productSettingsXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
-<!DOCTYPE plist PUBLIC \"-//Apple Computer//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">
-<plist version=\"1.0\">
-<dict>
-	<key>CFBundleDevelopmentRegion</key>
-	<string>English</string>
-	<key>CFBundleExecutable</key>
-	<string>All</string>
-	<key>CFBundleGetInfoString</key>
-	<string></string>
-	<key>CFBundleIconFile</key>
-	<string></string>
-	<key>CFBundleIdentifier</key>
-	<string>com.MySoftwareCompany.All</string>
-	<key>CFBundleInfoDictionaryVersion</key>
-	<string>6.0</string>
-	<key>CFBundlePackageType</key>
-	<string>APPL</string>
-	<key>CFBundleShortVersionString</key>
-	<string></string>
-	<key>CFBundleSignature</key>
-	<string>????</string>
-	<key>CFBundleVersion</key>
-	<string>1.0.0d1</string>
-</dict>
-</plist>
-";
 			productType = "com.apple.product-type.application";
 		};
 		7AB650A105F9E0A0003E2845 /* Mustl */ = {
@@ -7957,55 +7478,12 @@
 			);
 			buildRules = (
 			);
-			buildSettings = {
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				FRAMEWORK_VERSION = A;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
-				GCC_WARN_UNKNOWN_PRAGMAS = NO;
-				INFOPLIST_FILE = "Mustl-Info.plist";
-				INSTALL_PATH = "@executable_path/../Frameworks";
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = (
-					"-seg1addr",
-					0x2c000000,
-				);
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = Mustl;
-				REZ_EXECUTABLE = NO;
-				SECTORDER_FLAGS = "";
-			};
 			dependencies = (
 				7AB650A205F9E0A0003E2845 /* PBXTargetDependency */,
 			);
 			name = Mustl;
 			productName = Mushcore;
 			productReference = 7AB650D705F9E0A0003E2845 /* Mustl.framework */;
-			productSettingsXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
-<!DOCTYPE plist PUBLIC \"-//Apple Computer//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">
-<plist version=\"1.0\">
-<dict>
-	<key>CFBundleDevelopmentRegion</key>
-	<string>English</string>
-	<key>CFBundleExecutable</key>
-	<string>Mushcore</string>
-	<key>CFBundleGetInfoString</key>
-	<string></string>
-	<key>CFBundleIdentifier</key>
-	<string>com.MySoftwareCompany.Mushcore</string>
-	<key>CFBundleInfoDictionaryVersion</key>
-	<string>6.0</string>
-	<key>CFBundlePackageType</key>
-	<string>FMWK</string>
-	<key>CFBundleShortVersionString</key>
-	<string></string>
-	<key>CFBundleSignature</key>
-	<string>????</string>
-	<key>CFBundleVersion</key>
-	<string>1.0.0d1</string>
-</dict>
-</plist>
-";
 			productType = "com.apple.product-type.framework";
 		};
 		7AB652C505F9E1FF003E2845 /* TestMustl */ = {
@@ -8022,50 +7500,12 @@
 			);
 			buildRules = (
 			);
-			buildSettings = {
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ../../src/Mushcore/Mushcore.h;
-				INFOPLIST_FILE = "TestMustl-Info.plist";
-				INSTALL_PATH = "$(USER_APPS_DIR)";
-				OTHER_CFLAGS = "";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = TestMustl;
-				REZ_EXECUTABLE = NO;
-				SECTORDER_FLAGS = "";
-			};
 			dependencies = (
 				7AB6531E05F9E278003E2845 /* PBXTargetDependency */,
 			);
 			name = TestMustl;
 			productName = TestMushcore;
 			productReference = 7AB652D805F9E1FF003E2845 /* TestMustl.app */;
-			productSettingsXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
-<!DOCTYPE plist PUBLIC \"-//Apple Computer//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">
-<plist version=\"1.0\">
-<dict>
-	<key>CFBundleDevelopmentRegion</key>
-	<string>English</string>
-	<key>CFBundleExecutable</key>
-	<string>TestMushcore</string>
-	<key>CFBundleGetInfoString</key>
-	<string></string>
-	<key>CFBundleIconFile</key>
-	<string></string>
-	<key>CFBundleIdentifier</key>
-	<string>com.MySoftwareCompany.TestMushcore</string>
-	<key>CFBundleInfoDictionaryVersion</key>
-	<string>6.0</string>
-	<key>CFBundlePackageType</key>
-	<string>APPL</string>
-	<key>CFBundleShortVersionString</key>
-	<string></string>
-	<key>CFBundleSignature</key>
-	<string>????</string>
-	<key>CFBundleVersion</key>
-	<string>1.0.0d1</string>
-</dict>
-</plist>
-";
 			productType = "com.apple.product-type.application";
 		};
 		7AD1AAD409EC598E0059879A /* MushRuby */ = {
@@ -8081,54 +7521,11 @@
 			);
 			buildRules = (
 			);
-			buildSettings = {
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				FRAMEWORK_VERSION = A;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
-				GCC_WARN_UNKNOWN_PRAGMAS = NO;
-				INFOPLIST_FILE = "Mushcore-Info.plist";
-				INSTALL_PATH = "@executable_path/../Frameworks";
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = (
-					"-seg1addr",
-					0x2a000000,
-				);
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = Mushcore;
-				REZ_EXECUTABLE = NO;
-				SECTORDER_FLAGS = "";
-			};
 			dependencies = (
 			);
 			name = MushRuby;
 			productName = Mushcore;
 			productReference = 7AD1AB4D09EC598E0059879A /* MushRuby.framework */;
-			productSettingsXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
-<!DOCTYPE plist PUBLIC \"-//Apple Computer//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">
-<plist version=\"1.0\">
-<dict>
-	<key>CFBundleDevelopmentRegion</key>
-	<string>English</string>
-	<key>CFBundleExecutable</key>
-	<string>Mushcore</string>
-	<key>CFBundleGetInfoString</key>
-	<string></string>
-	<key>CFBundleIdentifier</key>
-	<string>com.MySoftwareCompany.Mushcore</string>
-	<key>CFBundleInfoDictionaryVersion</key>
-	<string>6.0</string>
-	<key>CFBundlePackageType</key>
-	<string>FMWK</string>
-	<key>CFBundleShortVersionString</key>
-	<string></string>
-	<key>CFBundleSignature</key>
-	<string>????</string>
-	<key>CFBundleVersion</key>
-	<string>1.0.0d1</string>
-</dict>
-</plist>
-";
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -8137,13 +7534,6 @@
 		20286C28FDCF999611CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			buildConfigurationList = 7A19619A0899A34800B8B840 /* Build configuration list for PBXProject "project" */;
-			buildSettings = {
-			};
-			buildStyles = (
-				4A9504C5FFE6A39111CA0CBA /* Development */,
-				7A490353083B9D05000775B1 /* Development 10.2.7 */,
-				4A9504C6FFE6A39111CA0CBA /* Deployment */,
-			);
 			hasScannedForEncodings = 1;
 			mainGroup = 20286C29FDCF999611CA2CEA /* project */;
 			projectDirPath = "";
@@ -9077,6 +8467,7 @@
 				7ACF4CE30A065AE600830BCC /* MushMesh4TextureTile.cpp in Sources */,
 				7A5C9A8C0A400D4900A80527 /* MushMesh4Extruder.cpp in Sources */,
 				7AD26F1A0A407E7C0037F084 /* MushMesh4Maker.cpp in Sources */,
+				7AE6978C0A420D24004D7B75 /* MushMesh4Base.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9303,6 +8694,8 @@
 				7A5C9A830A40094C00A80527 /* MushMeshLibraryExtruder.cpp in Sources */,
 				7A5C9AA30A4012F300A80527 /* MushMeshRubyExtruder.cpp in Sources */,
 				7AD26F7C0A40877E0037F084 /* MushMeshLibraryMaker.cpp in Sources */,
+				7AE697940A420EA3004D7B75 /* MushMeshLibraryPrism.cpp in Sources */,
+				7AE697D30A42129E004D7B75 /* MushMeshRubyBasePrism.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

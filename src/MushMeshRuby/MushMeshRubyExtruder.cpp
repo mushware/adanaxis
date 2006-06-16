@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } Ibp5f6SYWiVWQmey0t+DVA
 /*
- * $Id: MushMeshRubyExtruder.cpp,v 1.1 2006/06/14 11:20:08 southa Exp $
+ * $Id: MushMeshRubyExtruder.cpp,v 1.2 2006/06/14 18:45:49 southa Exp $
  * $Log: MushMeshRubyExtruder.cpp,v $
+ * Revision 1.2  2006/06/14 18:45:49  southa
+ * Ruby mesh generation
+ *
  * Revision 1.1  2006/06/14 11:20:08  southa
  * Ruby mesh generation
  *
@@ -63,6 +66,14 @@ MUSHRUBYOBJ_INITIALIZE(MushMeshLibraryExtruder)(Mushware::tRubyArgC inArgC, Mush
 				else if (symbol == MushRubyIntern::displacement_velocity())
 				{
 					extruder.DispVelSet(MushMeshRubyDisplacement::Ref(p->second.Value()));
+				}
+				else if (symbol == MushRubyIntern::num_iterations())
+				{
+					extruder.NumIterationsSet(p->second.U32());
+				}
+				else if (symbol == MushRubyIntern::to_point())
+				{
+					extruder.ToPointSet(p->second.Bool());
 				}
 				else
 				{

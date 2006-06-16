@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } oYzojPrY+iq5d6Z2oF715A
 /*
- * $Id: MushMesh4Mesh.cpp,v 1.15 2006/06/14 11:20:07 southa Exp $
+ * $Id: MushMesh4Mesh.cpp,v 1.16 2006/06/14 18:45:47 southa Exp $
  * $Log: MushMesh4Mesh.cpp,v $
+ * Revision 1.16  2006/06/14 18:45:47  southa
+ * Ruby mesh generation
+ *
  * Revision 1.15  2006/06/14 11:20:07  southa
  * Ruby mesh generation
  *
@@ -83,7 +86,8 @@ MushMesh4Mesh::MushMesh4Mesh() :
     m_levelOfDetail(1),
     m_vertexCounter(0),
     m_faceCounter(0),
-    m_texCoordCounter(0)
+    m_texCoordCounter(0),
+	m_baseDisplacement(MushMeshDisplacement::Identity())
 {
     AllTouch();
 }
@@ -495,9 +499,68 @@ MushMesh4Mesh::ChunkCentroidBuild(Mushware::U32 inChunkNum) const
 }
 
 void
+MushMesh4Mesh::BaseGive(MushMesh4Base *pBase)
+{
+	m_base.Reset(pBase);
+}
+
+const MushMesh4Base *
+MushMesh4Mesh::BaseGet(void) const
+{
+	if (m_base.Get() == NULL)
+	{
+		throw MushcoreRequestFail("Mesh has no base object - cannot get");	
+	}
+	return m_base.Get();
+}
+
+MushMesh4Base *
+MushMesh4Mesh::BaseWGet(void)
+{
+	if (m_base.Get() == NULL)
+	{
+		throw MushcoreRequestFail("Mesh has no base object - cannot get");	
+	}
+	return m_base.Get();
+}
+
+void
 MushMesh4Mesh::ExtruderGive(MushMesh4Extruder *pExtruder)
 {
 	m_extruders.push_back(MushcoreAutoClonePtr<MushMesh4Extruder>(pExtruder));
+}
+
+const MushMesh4Extruder *
+MushMesh4Mesh::ExtruderGet(Mushware::U32 inNum) const
+{
+	MushcoreUtil::BoundsCheck(inNum, m_extruders.size());
+
+	return m_extruders[inNum].Get();
+}
+
+MushMesh4Extruder *
+MushMesh4Mesh::ExtruderWGet(Mushware::U32 inNum)
+{
+	MushcoreUtil::BoundsCheck(inNum, m_extruders.size());
+	
+	return m_extruders[inNum].Get();
+}
+
+Mushware::U32
+MushMesh4Mesh::NumExtruders(void) const
+{
+	return m_extruders.size();
+}
+
+void
+MushMesh4Mesh::Apply(const MushMeshDisplacement& inDisp)
+{
+	U32 verticesSize = m_vertices.size();
+    for (U32 i=0; i<verticesSize; ++i)
+    {
+		inDisp.Displace(m_vertices[i]);
+	}
+	VerticesTouch();
 }
 
 void
@@ -551,6 +614,8 @@ MushMesh4Mesh::AutoPrint(std::ostream& ioOut) const
     ioOut << "texCoordCounter=" << m_texCoordCounter << ", ";
     ioOut << "faceGenerator=" << m_faceGenerator << ", ";
     ioOut << "vertexGenerator=" << m_vertexGenerator << ", ";
+    ioOut << "base=" << m_base << ", ";
+    ioOut << "baseDisplacement=" << m_baseDisplacement << ", ";
     ioOut << "extruders=" << m_extruders << ", ";
     ioOut << "textureTiles=" << m_textureTiles << ", ";
     ioOut << "chunks=" << m_chunks << ", ";
@@ -621,6 +686,14 @@ MushMesh4Mesh::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& i
     else if (inTagStr == "vertexGenerator")
     {
         ioIn >> m_vertexGenerator;
+    }
+    else if (inTagStr == "base")
+    {
+        ioIn >> m_base;
+    }
+    else if (inTagStr == "baseDisplacement")
+    {
+        ioIn >> m_baseDisplacement;
     }
     else if (inTagStr == "extruders")
     {
@@ -722,6 +795,10 @@ MushMesh4Mesh::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_faceGenerator;
     ioOut.TagSet("vertexGenerator");
     ioOut << m_vertexGenerator;
+    ioOut.TagSet("base");
+    ioOut << m_base;
+    ioOut.TagSet("baseDisplacement");
+    ioOut << m_baseDisplacement;
     ioOut.TagSet("extruders");
     ioOut << m_extruders;
     ioOut.TagSet("textureTiles");
@@ -755,4 +832,4 @@ MushMesh4Mesh::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("numFacetsValid");
     ioOut << m_numFacetsValid;
 }
-//%outOfLineFunctions } jMl6EkHlrOYWUR6c2srJkA
+//%outOfLineFunctions } mnHWLlAAWPQZQRiUUOu8/g

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } ruys+ZX2qsJuGCAeFCx8eg
 /*
- * $Id: MushMeshDisplacement.h,v 1.4 2006/06/14 11:20:07 southa Exp $
+ * $Id: MushMeshDisplacement.h,v 1.5 2006/06/14 18:45:48 southa Exp $
  * $Log: MushMeshDisplacement.h,v $
+ * Revision 1.5  2006/06/14 18:45:48  southa
+ * Ruby mesh generation
+ *
  * Revision 1.4  2006/06/14 11:20:07  southa
  * Ruby mesh generation
  *
@@ -56,11 +59,18 @@ public:
 	
     void ToIdentitySet(void) { m_rotation.ToRotationIdentitySet(); m_offset.ToAdditiveIdentitySet(); m_scale.ToMultiplicativeIdentitySet();}
 	
+	void Displace(Mushware::t4Val& ioVec) const
+    {
+		m_rotation.VectorRotate(ioVec);
+		ioVec.InPlaceElementwiseMultiply(m_scale);
+		ioVec += m_offset;
+	}
+	
 	static MushMeshDisplacement Identity(void)
     {
 		return MushMeshDisplacement(Mushware::t4Val::AdditiveIdentity(),
 									Mushware::tQValPair::RotationIdentity(),
-                                    Mushware::t4Val(1,1,1,1)); 
+                                    Mushware::t4Val::MultiplicativeIdentity()); 
 	}
 
 private:

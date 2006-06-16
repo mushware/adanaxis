@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } YrK9KiG4XjKqbWo1rVGU4w
 /*
- * $Id: MushMesh4Mesh.h,v 1.15 2006/06/14 11:20:07 southa Exp $
+ * $Id: MushMesh4Mesh.h,v 1.16 2006/06/14 18:45:47 southa Exp $
  * $Log: MushMesh4Mesh.h,v $
+ * Revision 1.16  2006/06/14 18:45:47  southa
+ * Ruby mesh generation
+ *
  * Revision 1.15  2006/06/14 11:20:07  southa
  * Ruby mesh generation
  *
@@ -75,12 +78,15 @@
 #include "MushMeshStandard.h"
 
 #include "MushMeshMesh.h"
+
+#include "MushMesh4Base.h"
 #include "MushMesh4Chunk.h"
 #include "MushMesh4Extruder.h"
 #include "MushMesh4Face.h"
 #include "MushMesh4FaceGenerator.h"
 #include "MushMesh4TextureTile.h"
 #include "MushMesh4VertexGenerator.h"
+#include "MushMeshDisplacement.h"
 #include "MushMeshVector.h"
 
 //:xml1base MushMeshMesh
@@ -146,8 +152,17 @@ public:
     void VerticesTouch(void); // Called from constructor
     void Prebuild(void);
 	
+	void BaseGive(MushMesh4Base *pBase); // Takes ownership of the base generator
+	const MushMesh4Base *BaseGet(void) const;
+	MushMesh4Base *BaseWGet(void);
+	
 	void ExtruderGive(MushMesh4Extruder *pExtruder); // Takes ownership of the extruder
-    void Make(void);
+	const MushMesh4Extruder *ExtruderGet(Mushware::U32 inNum) const;
+	MushMesh4Extruder *ExtruderWGet(Mushware::U32 inNum);
+	Mushware::U32 NumExtruders(void) const;
+	
+	void Apply(const MushMeshDisplacement& inDisp);
+	void Make(void);
 	
 private:
     // Minimal representation
@@ -166,6 +181,8 @@ private:
     Mushware::U32 m_texCoordCounter; //:readwrite :wref
     MushcoreAutoClonePtr<MushMesh4FaceGenerator> m_faceGenerator; //:readwrite :wref
     MushcoreAutoClonePtr<MushMesh4VertexGenerator> m_vertexGenerator; //:readwrite :wref
+    MushcoreAutoClonePtr<MushMesh4Base> m_base; //:readwrite :wref
+	MushMeshDisplacement m_baseDisplacement; //:readwrite :wref
     tExtruders m_extruders; //:read :wref
     tTextureTiles m_textureTiles; //:readwrite :wref
     
@@ -230,6 +247,14 @@ public:
     void VertexGeneratorSet(const MushcoreAutoClonePtr<MushMesh4VertexGenerator>& inValue) { m_vertexGenerator=inValue; }
     // Writable reference for m_vertexGenerator
     MushcoreAutoClonePtr<MushMesh4VertexGenerator>& VertexGeneratorWRef(void) { return m_vertexGenerator; }
+    const MushcoreAutoClonePtr<MushMesh4Base>& Base(void) const { return m_base; }
+    void BaseSet(const MushcoreAutoClonePtr<MushMesh4Base>& inValue) { m_base=inValue; }
+    // Writable reference for m_base
+    MushcoreAutoClonePtr<MushMesh4Base>& BaseWRef(void) { return m_base; }
+    const MushMeshDisplacement& BaseDisplacement(void) const { return m_baseDisplacement; }
+    void BaseDisplacementSet(const MushMeshDisplacement& inValue) { m_baseDisplacement=inValue; }
+    // Writable reference for m_baseDisplacement
+    MushMeshDisplacement& BaseDisplacementWRef(void) { return m_baseDisplacement; }
     const tExtruders& Extruders(void) const { return m_extruders; }
     // Writable reference for m_extruders
     tExtruders& ExtrudersWRef(void) { return m_extruders; }
@@ -248,7 +273,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } QDwOKYpuABM0xVhR5tqqHw
+//%classPrototypes } DjIIJKkZQLAmTBFPMvyBKA
 };
 
 inline const MushMesh4Mesh::tCentroid&

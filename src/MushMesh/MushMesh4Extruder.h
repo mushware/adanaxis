@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } L9JUlzl6DpRuJVKF3iNIfA
 /*
- * $Id: MushMesh4Extruder.h,v 1.1 2006/06/14 11:20:07 southa Exp $
+ * $Id: MushMesh4Extruder.h,v 1.2 2006/06/14 18:45:47 southa Exp $
  * $Log: MushMesh4Extruder.h,v $
+ * Revision 1.2  2006/06/14 18:45:47  southa
+ * Ruby mesh generation
+ *
  * Revision 1.1  2006/06/14 11:20:07  southa
  * Ruby mesh generation
  *
@@ -44,6 +47,8 @@ private:
 	Mushware::U32 m_sourceFaceNum; //:readwrite
 	MushMeshDisplacement m_disp; //:readwrite
 	MushMeshDisplacement m_dispVel; //:readwrite
+	Mushware::U32 m_numIterations; //:readwrite
+	bool m_toPoint; //:readwrite
 	
 //%classPrototypes {
 public:
@@ -53,6 +58,10 @@ public:
     void DispSet(const MushMeshDisplacement& inValue) { m_disp=inValue; }
     const MushMeshDisplacement& DispVel(void) const { return m_dispVel; }
     void DispVelSet(const MushMeshDisplacement& inValue) { m_dispVel=inValue; }
+    const Mushware::U32& NumIterations(void) const { return m_numIterations; }
+    void NumIterationsSet(const Mushware::U32& inValue) { m_numIterations=inValue; }
+    const bool& ToPoint(void) const { return m_toPoint; }
+    void ToPointSet(const bool& inValue) { m_toPoint=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -60,7 +69,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } 8u/pCsDC4CKiIbasahQaSg
+//%classPrototypes } batB7iGiqX5YLX7lT829ig
 };
 //%inlineHeader {
 inline std::ostream&

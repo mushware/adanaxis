@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } kjx6juFzwsH41luLhCyMIQ
 /*
- * $Id: MushRubyObj.h,v 1.2 2006/06/14 11:20:09 southa Exp $
+ * $Id: MushRubyObj.h,v 1.3 2006/06/14 18:45:50 southa Exp $
  * $Log: MushRubyObj.h,v $
+ * Revision 1.3  2006/06/14 18:45:50  southa
+ * Ruby mesh generation
+ *
  * Revision 1.2  2006/06/14 11:20:09  southa
  * Ruby mesh generation
  *
@@ -54,7 +57,9 @@ protected:
 	static Mushware::tRubyValue Obj_to_xml(Mushware::tRubyValue inSelf);
 	static Mushware::tRubyValue ObjInitialize(Mushware::tRubyArgC inArgC, Mushware::tRubyValue *inpArgV, Mushware::tRubyValue inSelf);
 	static Mushware::tRubyValue ObjInitializeCopy(Mushware::tRubyValue inCopy, Mushware::tRubyValue inOrig);
+	static void MethodsInstall(void);
 	static void ObjInstall(const std::string &inName);
+	static void ObjInstallSubclass(const std::string &inName, const std::string& inSuperclass);
 
 	// Initialize must be overriden to permit object creation
 	static Mushware::tRubyValue Initialize(Mushware::tRubyArgC inArgC, Mushware::tRubyValue *inpArgV, Mushware::tRubyValue inSelf);
@@ -187,13 +192,28 @@ MushRubyObj<T>::Obj_to_xml(Mushware::tRubyValue inSelf)
 
 template <class T>
 void
-MushRubyObj<T>::ObjInstall(const std::string &inName)
+MushRubyObj<T>::MethodsInstall(void)
 {
-	m_objKlass = MushRubyUtil::AllocatedClassDefine(inName, ObjAllocate);
 	MushRubyUtil::MethodDefine(ObjKlass(), "initialize", ObjInitialize);
 	MushRubyUtil::MethodDefineOneParam(ObjKlass(), "initialize_copy", ObjInitializeCopy);
 	MushRubyUtil::MethodDefineNoParams(ObjKlass(), "to_s", Obj_to_s);
 	MushRubyUtil::MethodDefineNoParams(ObjKlass(), "to_xml", Obj_to_xml);
+}
+
+template <class T>
+void
+MushRubyObj<T>::ObjInstall(const std::string &inName)
+{
+	m_objKlass = MushRubyUtil::AllocatedClassDefine(inName, ObjAllocate);
+	MethodsInstall();
+}
+
+template <class T>
+void
+MushRubyObj<T>::ObjInstallSubclass(const std::string &inName, const std::string &inSubclass)
+{
+	m_objKlass = MushRubyUtil::AllocatedSubclassDefine(inName, inSubclass, ObjAllocate);
+	MethodsInstall();
 }
 
 //%includeGuardEnd {
