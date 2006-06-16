@@ -21,9 +21,14 @@
  ****************************************************************************/
 //%Header } Ml/2/8tT8IqVa9XZ007oFQ
 /*
- * $Id$
- * $Log$
+ * $Id: MushMeshLibraryPrism.h,v 1.1 2006/06/16 01:02:32 southa Exp $
+ * $Log: MushMeshLibraryPrism.h,v $
+ * Revision 1.1  2006/06/16 01:02:32  southa
+ * Ruby mesh generation
+ *
  */
+
+#include "MushMeshLibraryStandard.h"
 
 //:xml1base MushMesh4Base
 //:generate virtual standard ostream xml1

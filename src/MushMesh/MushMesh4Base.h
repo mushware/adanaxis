@@ -23,9 +23,14 @@
  ****************************************************************************/
 //%Header } mTUSfnwZ/uUdjYx2B9Edvg
 /*
- * $Id$
- * $Log$
+ * $Id: MushMesh4Base.h,v 1.1 2006/06/16 01:02:31 southa Exp $
+ * $Log: MushMesh4Base.h,v $
+ * Revision 1.1  2006/06/16 01:02:31  southa
+ * Ruby mesh generation
+ *
  */
+
+#include "MushMeshStandard.h"
 
 class MushMesh4Mesh;
 

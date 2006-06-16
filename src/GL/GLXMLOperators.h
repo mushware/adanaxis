@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } vGQlymfouKr/B/ABxXbF2g
 /*
- * $Id: GLXMLOperators.h,v 1.5 2005/05/19 13:02:01 southa Exp $
+ * $Id: GLXMLOperators.h,v 1.6 2006/06/01 15:38:55 southa Exp $
  * $Log: GLXMLOperators.h,v $
+ * Revision 1.6  2006/06/01 15:38:55  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.5  2005/05/19 13:02:01  southa
  * Mac release work
  *
@@ -44,7 +47,7 @@
 
 #include "GLStandard.h"
 
-#ifndef HAVE_GLENUM_IS_UNSIGNED_INT
+#if 0
 
 inline void
 operator>>(MushcoreXMLIStream& ioIn, GLenum& outObj)

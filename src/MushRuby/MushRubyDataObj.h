@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } px78SUrna42uj+15fa2T7w
 /*
- * $Id: MushRubyDataObj.h,v 1.3 2006/06/14 11:20:09 southa Exp $
+ * $Id: MushRubyDataObj.h,v 1.4 2006/06/14 18:45:50 southa Exp $
  * $Log: MushRubyDataObj.h,v $
+ * Revision 1.4  2006/06/14 18:45:50  southa
+ * Ruby mesh generation
+ *
  * Revision 1.3  2006/06/14 11:20:09  southa
  * Ruby mesh generation
  *
@@ -51,17 +54,21 @@ public:
 	static tDataObjBase& WRef(Mushware::tRubyValue inSelf);
 	static bool IsInstanceOf(Mushware::tRubyValue inValue);
 	static bool IsInstanceOf(MushRubyValue inValue) { return IsInstanceOf(inValue.Value()); }
+	static Mushware::tRubyValue Klass(void);
+	static void RubyInstall(void) {} // Override this
 
 protected:
 	static tDataObjRef& DataObjRef(Mushware::tRubyValue inSelf);
 	static tDataObjBase& DataObjBase(Mushware::tRubyValue inSelf);
-	static Mushware::tRubyValue DataObjKlass(void) { return m_dataObjKlass; }
+	static Mushware::tRubyValue DataObjKlass(void) { return m_rubyKlass; }
 	static Mushware::tRubyValue DataObjAllocate(Mushware::tRubyValue inKlass);		
 	static Mushware::tRubyValue DataObjInitialize(Mushware::tRubyArgC inArgC, Mushware::tRubyValue *inpArgV, Mushware::tRubyValue inSelf);
 	static Mushware::tRubyValue DataObjInitializeCopy(Mushware::tRubyValue inCopy, Mushware::tRubyValue inOrig);
 	static Mushware::tRubyValue DataObj_to_s(Mushware::tRubyValue inSelf);
 	static Mushware::tRubyValue DataObj_to_xml(Mushware::tRubyValue inSelf);
+	static void DataObjMethodsInstall(void);
 	static void DataObjInstall(const std::string &inName);
+	static void DataObjInstallSubclass(const std::string &inName, Mushware::tRubyValue inSuperclass);
 	
 	// Initialize must be overriden to permit object creation
 	static Mushware::tRubyValue Initialize(Mushware::tRubyArgC inArgC, Mushware::tRubyValue *inpArgV, Mushware::tRubyValue inSelf);
@@ -69,11 +76,11 @@ protected:
 private:
 	static void DataObjFree(void *inPtr);			
 	
-	static Mushware::tRubyValue m_dataObjKlass;	
+	static Mushware::tRubyValue m_rubyKlass;	
 };
 
 #define MUSHRUBYDATAOBJ_INSTANCE(T) \
-template <> Mushware::tRubyValue MushRubyDataObj<T>::m_dataObjKlass = MushRuby::QNil
+template <> Mushware::tRubyValue MushRubyDataObj<T>::m_rubyKlass = Mushware::kRubyQnil
 
 #define MUSHRUBYDATAOBJ_INITIALIZE(T) \
 template <> \
@@ -81,7 +88,7 @@ Mushware::tRubyValue \
 MushRubyDataObj<T>::Initialize
 
 template <class T>
-void
+inline void
 MushRubyDataObj<T>::DataObjFree(void *inPtr)
 {
 	tDataObjRef *pRef = reinterpret_cast<tDataObjRef *>(inPtr);
@@ -90,14 +97,14 @@ MushRubyDataObj<T>::DataObjFree(void *inPtr)
 }
 
 template <class T>
-Mushware::tRubyValue
+inline Mushware::tRubyValue
 MushRubyDataObj<T>::DataObjAllocate(Mushware::tRubyValue inKlass)
 {
 	return MushRubyUtil::DataWrapStruct(inKlass, 0, DataObjFree, new tDataObjRef);
 }
 
 template <class T>
-typename MushRubyDataObj<T>::tDataObjRef&
+inline typename MushRubyDataObj<T>::tDataObjRef&
 MushRubyDataObj<T>::DataObjRef(Mushware::tRubyValue inSelf)
 {
 	tDataObjRef *pRetVal = reinterpret_cast<tDataObjRef *>(MushRubyUtil::DataGetStruct(inSelf));
@@ -106,44 +113,59 @@ MushRubyDataObj<T>::DataObjRef(Mushware::tRubyValue inSelf)
 }
 
 template <class T>
-typename MushRubyDataObj<T>::tDataObjBase&
+inline typename MushRubyDataObj<T>::tDataObjBase&
 MushRubyDataObj<T>::DataObjBase(Mushware::tRubyValue inSelf)
 {
 	return DataObjRef(inSelf).WRef();
 }
 
 template <class T>
-const typename MushRubyDataObj<T>::tDataObjBase&
+inline const typename MushRubyDataObj<T>::tDataObjBase&
 MushRubyDataObj<T>::Ref(Mushware::tRubyValue inSelf)
 {
-	MushRubyUtil::RaiseUnlessInstanceOf(inSelf, m_dataObjKlass);
+	MushRubyUtil::RaiseUnlessInstanceOf(inSelf, m_rubyKlass);
 	return DataObjBase(inSelf);
 }
 
 template <class T>
-typename MushRubyDataObj<T>::tDataObjBase&
+inline typename MushRubyDataObj<T>::tDataObjBase&
 MushRubyDataObj<T>::WRef(Mushware::tRubyValue inSelf)
 {
-	MushRubyUtil::RaiseUnlessInstanceOf(inSelf, m_dataObjKlass);
+	MushRubyUtil::RaiseUnlessInstanceOf(inSelf, m_rubyKlass);
 	return DataObjBase(inSelf);
 }
 
 template <class T>
-bool
+inline bool
 MushRubyDataObj<T>::IsInstanceOf(Mushware::tRubyValue inValue)
 {
-	return MushRubyUtil::IsInstanceOf(inValue, m_dataObjKlass);
+	return MushRubyUtil::IsInstanceOf(inValue, m_rubyKlass);
 }
 
 template <class T>
-Mushware::tRubyValue
+inline Mushware::tRubyValue
+MushRubyDataObj<T>::Klass(void)
+{
+	if (m_rubyKlass == Mushware::kRubyQnil)
+	{
+		RubyInstall();	
+	}
+	if (m_rubyKlass == Mushware::kRubyQnil)
+	{
+		throw MushcoreLogicFail("RubyInstall function not provided for ruby object");
+	}
+	return m_rubyKlass;
+}
+
+template <class T>
+inline Mushware::tRubyValue
 MushRubyDataObj<T>::Initialize(Mushware::tRubyArgC inArgC, Mushware::tRubyValue *inpArgV, Mushware::tRubyValue inSelf)
 {
 	throw MushcoreLogicFail("MushRubyDataObj::Initialize must be overriden by derived class to permit object creation");
 }
 
 template <class T>
-Mushware::tRubyValue
+inline Mushware::tRubyValue
 MushRubyDataObj<T>::DataObjInitialize(Mushware::tRubyArgC inArgC, Mushware::tRubyValue *inpArgV, Mushware::tRubyValue inSelf)
 {
 	Mushware::tRubyValue retVal;
@@ -159,7 +181,7 @@ MushRubyDataObj<T>::DataObjInitialize(Mushware::tRubyArgC inArgC, Mushware::tRub
 }
 
 template <class T>
-Mushware::tRubyValue
+inline Mushware::tRubyValue
 MushRubyDataObj<T>::DataObjInitializeCopy(Mushware::tRubyValue inCopy, Mushware::tRubyValue inOrig)
 {
 	if (inCopy != inOrig)
@@ -177,7 +199,7 @@ MushRubyDataObj<T>::DataObjInitializeCopy(Mushware::tRubyValue inCopy, Mushware:
 }
 
 template <class T>
-Mushware::tRubyValue
+inline Mushware::tRubyValue
 MushRubyDataObj<T>::DataObj_to_s(Mushware::tRubyValue inSelf)
 {
 	std::ostringstream objStream;
@@ -187,7 +209,7 @@ MushRubyDataObj<T>::DataObj_to_s(Mushware::tRubyValue inSelf)
 }
 
 template <class T>
-Mushware::tRubyValue
+inline Mushware::tRubyValue
 MushRubyDataObj<T>::DataObj_to_xml(Mushware::tRubyValue inSelf)
 {
 	std::ostringstream objStream;
@@ -198,16 +220,36 @@ MushRubyDataObj<T>::DataObj_to_xml(Mushware::tRubyValue inSelf)
 }
 
 template <class T>
-void
-MushRubyDataObj<T>::DataObjInstall(const std::string &inName)
+inline void
+MushRubyDataObj<T>::DataObjMethodsInstall(void)
 {
-	m_dataObjKlass = MushRubyUtil::AllocatedClassDefine(inName, DataObjAllocate);
 	MushRubyUtil::MethodDefine(DataObjKlass(), "initialize", DataObjInitialize);
 	MushRubyUtil::MethodDefineOneParam(DataObjKlass(), "initialize_copy", DataObjInitializeCopy);
 	MushRubyUtil::MethodDefineNoParams(DataObjKlass(), "to_s", DataObj_to_s);
 	MushRubyUtil::MethodDefineNoParams(DataObjKlass(), "to_xml", DataObj_to_xml);
 }
 
+template <class T>
+inline void
+MushRubyDataObj<T>::DataObjInstall(const std::string &inName)
+{
+	if (m_rubyKlass == Mushware::kRubyQnil)
+	{
+		m_rubyKlass = MushRubyUtil::AllocatedClassDefine(inName, DataObjAllocate);
+		DataObjMethodsInstall();
+	}
+}
+
+template <class T>
+inline void
+MushRubyDataObj<T>::DataObjInstallSubclass(const std::string &inName, Mushware::tRubyValue inSuperclass)
+{
+	if (m_rubyKlass == Mushware::kRubyQnil)
+	{
+		m_rubyKlass = MushRubyUtil::AllocatedSubclassDefine(inName, inSuperclass, DataObjAllocate);
+		DataObjMethodsInstall();
+	}
+}
 
 //%includeGuardEnd {
 #endif

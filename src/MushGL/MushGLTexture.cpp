@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } vh/xCnesmbXGxXqZK5YEaA
 /*
- * $Id: MushGLTexture.cpp,v 1.11 2006/06/09 21:07:13 southa Exp $
+ * $Id: MushGLTexture.cpp,v 1.12 2006/06/12 11:59:38 southa Exp $
  * $Log: MushGLTexture.cpp,v $
+ * Revision 1.12  2006/06/12 11:59:38  southa
+ * Ruby wrapper for MushMeshVector
+ *
  * Revision 1.11  2006/06/09 21:07:13  southa
  * Tiled skin generation
  *
@@ -427,7 +430,7 @@ MushGLTexture::RubyDefine(Mushware::tRubyArgC inArgC, Mushware::tRubyValue *inpA
 		MushRubyUtil::Raise(e.what());
 	}
 
-	return MushRuby::QNil;
+	return Mushware::kRubyQnil;
 }
 
 Mushware::tRubyValue
@@ -451,7 +454,7 @@ MushGLTexture::RubyPreCache(Mushware::tRubyArgC inArgC, Mushware::tRubyValue *in
 		MushRubyUtil::Raise(e.what());
 	}
 
-	return MushRuby::QNil;
+	return Mushware::kRubyQnil;
 }
 
 void

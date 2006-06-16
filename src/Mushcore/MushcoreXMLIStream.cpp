@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } rdYojx13YYIWomCDMArN/g
 /*
- * $Id: MushcoreXMLIStream.cpp,v 1.24 2005/06/24 10:30:14 southa Exp $
+ * $Id: MushcoreXMLIStream.cpp,v 1.25 2006/06/01 15:39:49 southa Exp $
  * $Log: MushcoreXMLIStream.cpp,v $
+ * Revision 1.25  2006/06/01 15:39:49  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.24  2005/06/24 10:30:14  southa
  * MushGame camera work
  *
@@ -291,6 +294,17 @@ MushcoreXMLIStream::ObjectRead(string& outStr)
     outStr = MushcoreUtil::XMLMetaRemove(outStr);
 
     ByteTake(); // Remove the quote
+}
+
+void
+MushcoreXMLIStream::ObjectRead(unsigned long& outU32)
+{
+    string dataStr = DataUntilTake(",)=<");
+    istringstream dataStream(dataStr);
+    if (!(dataStream >> outU32))
+    {
+        Throw("Read unsigned failed");
+    }
 }
 
 void

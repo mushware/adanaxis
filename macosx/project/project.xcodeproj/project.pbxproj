@@ -1647,6 +1647,12 @@
 		7AAE6CCF07AFC4250085C60F /* MushMesh.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A65815405A9D09C00E727F8 /* MushMesh.framework */; };
 		7AAE6CD307AFC4250085C60F /* Mushcore.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7A7194ED05A998B900C42A20 /* Mushcore.framework */; };
 		7AAE6CD407AFC4250085C60F /* MushMesh.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7A65815405A9D09C00E727F8 /* MushMesh.framework */; };
+		7AB5ACFF0A42C21700D62CA1 /* MushRubyEmptyObj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AB5ACF60A42BCB200D62CA1 /* MushRubyEmptyObj.cpp */; };
+		7AB5AD000A42C21700D62CA1 /* MushRubyEmptyObj.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AB5ACF50A42BCB200D62CA1 /* MushRubyEmptyObj.h */; };
+		7AB5AD0C0A42C2A900D62CA1 /* MushMeshRubyBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AB5AD0A0A42C2A900D62CA1 /* MushMeshRubyBase.h */; };
+		7AB5AD0D0A42C2A900D62CA1 /* MushMeshRubyBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AB5AD0B0A42C2A900D62CA1 /* MushMeshRubyBase.cpp */; };
+		7AB5AD300A42CB6500D62CA1 /* MushRubyObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AB5AD2E0A42CB6500D62CA1 /* MushRubyObject.h */; };
+		7AB5AD310A42CB6500D62CA1 /* MushRubyObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AB5AD2F0A42CB6500D62CA1 /* MushRubyObject.cpp */; };
 		7AB64DD805F9DE95003E2845 /* MaurheenAppHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AB64DD005F9DE94003E2845 /* MaurheenAppHandler.cpp */; };
 		7AB64DD905F9DE95003E2845 /* MaurheenAppHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AB64DD105F9DE94003E2845 /* MaurheenAppHandler.h */; };
 		7AB64DDA05F9DE95003E2845 /* MaurheenCommandHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AB64DD205F9DE94003E2845 /* MaurheenCommandHandler.cpp */; };
@@ -3384,6 +3390,12 @@
 		7AAE6BAA07AFC36C0085C60F /* TesseractTrainerSTL.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = TesseractTrainerSTL.cpp; sourceTree = "<group>"; };
 		7AAE6BAB07AFC36C0085C60F /* TesseractTrainerSTL.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = TesseractTrainerSTL.h; sourceTree = "<group>"; };
 		7AAE6CD807AFC4250085C60F /* Tesseract Trainer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tesseract Trainer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7AB5ACF50A42BCB200D62CA1 /* MushRubyEmptyObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushRubyEmptyObj.h; sourceTree = "<group>"; };
+		7AB5ACF60A42BCB200D62CA1 /* MushRubyEmptyObj.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushRubyEmptyObj.cpp; sourceTree = "<group>"; };
+		7AB5AD0A0A42C2A900D62CA1 /* MushMeshRubyBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushMeshRubyBase.h; sourceTree = "<group>"; };
+		7AB5AD0B0A42C2A900D62CA1 /* MushMeshRubyBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushMeshRubyBase.cpp; sourceTree = "<group>"; };
+		7AB5AD2E0A42CB6500D62CA1 /* MushRubyObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushRubyObject.h; sourceTree = "<group>"; };
+		7AB5AD2F0A42CB6500D62CA1 /* MushRubyObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushRubyObject.cpp; sourceTree = "<group>"; };
 		7AB627CA07D0D4D00035D7F1 /* TesseractTrainerPlanePair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TesseractTrainerPlanePair.h; sourceTree = "<group>"; };
 		7AB627CB07D0D4D00035D7F1 /* TesseractTrainerPlanePair.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TesseractTrainerPlanePair.cpp; sourceTree = "<group>"; };
 		7AB6287F07D0EB6A0035D7F1 /* TesseractTrainerPlaneSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TesseractTrainerPlaneSet.h; sourceTree = "<group>"; };
@@ -4091,6 +4103,8 @@
 			children = (
 				7A58F1760A3D680C00B7AE0E /* MushMeshRuby.cpp */,
 				7A58F1770A3D680C00B7AE0E /* MushMeshRuby.h */,
+				7AB5AD0B0A42C2A900D62CA1 /* MushMeshRubyBase.cpp */,
+				7AB5AD0A0A42C2A900D62CA1 /* MushMeshRubyBase.h */,
 				7AE697D10A42129E004D7B75 /* MushMeshRubyBasePrism.cpp */,
 				7AE697D00A42129E004D7B75 /* MushMeshRubyBasePrism.h */,
 				7A5F16C40A3DA6B800B46F5F /* MushMeshRubyDisplacement.cpp */,
@@ -5772,6 +5786,8 @@
 				7AD399C609F6CD57000BE1C1 /* MushRuby.h */,
 				7A5F01790A3EB2E40086C680 /* MushRubyDataObj.cpp */,
 				7A5F01780A3EB2E40086C680 /* MushRubyDataObj.h */,
+				7AB5ACF60A42BCB200D62CA1 /* MushRubyEmptyObj.cpp */,
+				7AB5ACF50A42BCB200D62CA1 /* MushRubyEmptyObj.h */,
 				7ACEFB1909F6E98700E38865 /* MushRubyExec.cpp */,
 				7ACEFB1809F6E98700E38865 /* MushRubyExec.h */,
 				7ACEFB3C09F6F7DB00E38865 /* MushRubyFail.cpp */,
@@ -5782,6 +5798,8 @@
 				7A5F017F0A3EB59B0086C680 /* MushRubyIntern.h */,
 				7A5F704A0A3F0C2D006F24A8 /* MushRubyObj.cpp */,
 				7A5F70490A3F0C2D006F24A8 /* MushRubyObj.h */,
+				7AB5AD2F0A42CB6500D62CA1 /* MushRubyObject.cpp */,
+				7AB5AD2E0A42CB6500D62CA1 /* MushRubyObject.h */,
 				7ACEFB4609F6F9CA00E38865 /* MushRubyRuby.cpp */,
 				7ACEFB4509F6F9CA00E38865 /* MushRubyRuby.h */,
 				7ACEFB2209F6EB0400E38865 /* MushRubyStandard.cpp */,
@@ -6908,6 +6926,7 @@
 				7AD26F7B0A40877E0037F084 /* MushMeshLibraryMaker.h in Headers */,
 				7AE697930A420EA3004D7B75 /* MushMeshLibraryPrism.h in Headers */,
 				7AE697D20A42129E004D7B75 /* MushMeshRubyBasePrism.h in Headers */,
+				7AB5AD0C0A42C2A900D62CA1 /* MushMeshRubyBase.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7263,6 +7282,8 @@
 				7A5F017A0A3EB2E40086C680 /* MushRubyDataObj.h in Headers */,
 				7A5F01810A3EB59B0086C680 /* MushRubyIntern.h in Headers */,
 				7A5F704B0A3F0C2D006F24A8 /* MushRubyObj.h in Headers */,
+				7AB5AD000A42C21700D62CA1 /* MushRubyEmptyObj.h in Headers */,
+				7AB5AD300A42CB6500D62CA1 /* MushRubyObject.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8696,6 +8717,7 @@
 				7AD26F7C0A40877E0037F084 /* MushMeshLibraryMaker.cpp in Sources */,
 				7AE697940A420EA3004D7B75 /* MushMeshLibraryPrism.cpp in Sources */,
 				7AE697D30A42129E004D7B75 /* MushMeshRubyBasePrism.cpp in Sources */,
+				7AB5AD0D0A42C2A900D62CA1 /* MushMeshRubyBase.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8994,6 +9016,8 @@
 				7A5F017B0A3EB2E40086C680 /* MushRubyDataObj.cpp in Sources */,
 				7A5F01820A3EB59B0086C680 /* MushRubyIntern.cpp in Sources */,
 				7A5F704C0A3F0C2D006F24A8 /* MushRubyObj.cpp in Sources */,
+				7AB5ACFF0A42C21700D62CA1 /* MushRubyEmptyObj.cpp in Sources */,
+				7AB5AD310A42CB6500D62CA1 /* MushRubyObject.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9144,7 +9168,10 @@
 		7A1961690899A34800B8B840 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				GCC_PREFIX_HEADER = ../../src/API/mushAppPrefix.h;
+				GCC_ENABLE_SYMBOL_SEPARATION = NO;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = "/Users/southa/core-app/macosx/project/Adanaxis-Info.plist";
 				INSTALL_PATH = "$(MUSH_APP_INSTALL_PATH)";
 				PRODUCT_NAME = "Adanaxis Control Demo";
@@ -9155,7 +9182,10 @@
 		7A19616B0899A34800B8B840 /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				GCC_PREFIX_HEADER = ../../src/API/mushAppPrefix.h;
+				GCC_ENABLE_SYMBOL_SEPARATION = NO;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = "/Users/southa/core-app/macosx/project/Adanaxis-Info.plist";
 				INSTALL_PATH = "$(MUSH_APP_INSTALL_PATH)";
 				PRODUCT_NAME = "Adanaxis Control Demo";

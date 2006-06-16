@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } kjx6juFzwsH41luLhCyMIQ
 /*
- * $Id: MushRubyObj.h,v 1.3 2006/06/14 18:45:50 southa Exp $
+ * $Id: MushRubyObj.h,v 1.4 2006/06/16 01:02:33 southa Exp $
  * $Log: MushRubyObj.h,v $
+ * Revision 1.4  2006/06/16 01:02:33  southa
+ * Ruby mesh generation
+ *
  * Revision 1.3  2006/06/14 18:45:50  southa
  * Ruby mesh generation
  *
@@ -48,10 +51,12 @@ public:
 	static Mushware::tRubyValue NewInstance(void) { return MushRubyUtil::ClassNewInstance(ObjKlass()); }
 	static bool IsInstanceOf(Mushware::tRubyValue inValue);
 	static bool IsInstanceOf(MushRubyValue inValue) { return IsInstanceOf(inValue.Value()); }
+	static Mushware::tRubyValue Klass(void);
+	static void RubyInstall(void) {} // Override this
 	
 protected:
 	static T& ObjRef(Mushware::tRubyValue inSelf);
-	static Mushware::tRubyValue ObjKlass(void) { return m_objKlass; }
+	static Mushware::tRubyValue ObjKlass(void) { return m_rubyKlass; }
 	static Mushware::tRubyValue ObjAllocate(Mushware::tRubyValue inKlass);		
 	static Mushware::tRubyValue Obj_to_s(Mushware::tRubyValue inSelf);
 	static Mushware::tRubyValue Obj_to_xml(Mushware::tRubyValue inSelf);
@@ -59,7 +64,7 @@ protected:
 	static Mushware::tRubyValue ObjInitializeCopy(Mushware::tRubyValue inCopy, Mushware::tRubyValue inOrig);
 	static void MethodsInstall(void);
 	static void ObjInstall(const std::string &inName);
-	static void ObjInstallSubclass(const std::string &inName, const std::string& inSuperclass);
+	static void ObjInstallSubclass(const std::string &inName, Mushware::tRubyValue inSuperclass);
 
 	// Initialize must be overriden to permit object creation
 	static Mushware::tRubyValue Initialize(Mushware::tRubyArgC inArgC, Mushware::tRubyValue *inpArgV, Mushware::tRubyValue inSelf);
@@ -67,11 +72,11 @@ protected:
 private:
 	static void ObjFree(void *inPtr);			
 	
-	static Mushware::tRubyValue m_objKlass;	
+	static Mushware::tRubyValue m_rubyKlass;	
 };
 
 #define MUSHRUBYOBJ_INSTANCE(T) \
-template <> Mushware::tRubyValue MushRubyObj<T>::m_objKlass = MushRuby::QNil
+template <> Mushware::tRubyValue MushRubyObj<T>::m_rubyKlass = Mushware::kRubyQnil
 
 #define MUSHRUBYOBJ_INITIALIZE(T) \
 template <> \
@@ -79,7 +84,7 @@ Mushware::tRubyValue \
 MushRubyObj<T>::Initialize
 
 template <class T>
-void
+inline void
 MushRubyObj<T>::ObjFree(void *inPtr)
 {
 	T *pRef = reinterpret_cast<T *>(inPtr);
@@ -88,14 +93,14 @@ MushRubyObj<T>::ObjFree(void *inPtr)
 }
 
 template <class T>
-Mushware::tRubyValue
+inline Mushware::tRubyValue
 MushRubyObj<T>::ObjAllocate(Mushware::tRubyValue inKlass)
 {
 	return MushRubyUtil::DataWrapStruct(inKlass, 0, ObjFree, new T);
 }
 
 template <class T>
-T&
+inline T&
 MushRubyObj<T>::ObjRef(Mushware::tRubyValue inSelf)
 {
 	T *pRetVal = reinterpret_cast<T *>(MushRubyUtil::DataGetStruct(inSelf));
@@ -104,37 +109,52 @@ MushRubyObj<T>::ObjRef(Mushware::tRubyValue inSelf)
 }
 
 template <class T>
-const T&
+inline const T&
 MushRubyObj<T>::Ref(Mushware::tRubyValue inSelf)
 {
-	MushRubyUtil::RaiseUnlessInstanceOf(inSelf, m_objKlass);
+	MushRubyUtil::RaiseUnlessInstanceOf(inSelf, m_rubyKlass);
 	return ObjRef(inSelf);
 }
 
 template <class T>
-T&
+inline T&
 MushRubyObj<T>::WRef(Mushware::tRubyValue inSelf)
 {
-	MushRubyUtil::RaiseUnlessInstanceOf(inSelf, m_objKlass);
+	MushRubyUtil::RaiseUnlessInstanceOf(inSelf, m_rubyKlass);
 	return ObjRef(inSelf);
 }
 
 template <class T>
-bool
+inline bool
 MushRubyObj<T>::IsInstanceOf(Mushware::tRubyValue inValue)
 {
-	return MushRubyUtil::IsInstanceOf(inValue, m_objKlass);
+	return MushRubyUtil::IsInstanceOf(inValue, m_rubyKlass);
 }
 
 template <class T>
-Mushware::tRubyValue
+inline Mushware::tRubyValue
+MushRubyObj<T>::Klass(void)
+{
+	if (m_rubyKlass == Mushware::kRubyQnil)
+	{
+		RubyInstall();	
+	}
+	if (m_rubyKlass == Mushware::kRubyQnil)
+	{
+		throw MushcoreLogicFail("RubyInstall function not provided for ruby object");
+	}
+	return m_rubyKlass;
+}
+
+template <class T>
+inline Mushware::tRubyValue
 MushRubyObj<T>::Initialize(Mushware::tRubyArgC inArgC, Mushware::tRubyValue *inpArgV, Mushware::tRubyValue inSelf)
 {
 	throw MushcoreLogicFail("MushRubyObj::Initialize must be overriden by derived class to permit object creation");
 }
 
 template <class T>
-Mushware::tRubyValue
+inline Mushware::tRubyValue
 MushRubyObj<T>::ObjInitialize(Mushware::tRubyArgC inArgC, Mushware::tRubyValue *inpArgV, Mushware::tRubyValue inSelf)
 {
 	Mushware::tRubyValue retVal;
@@ -150,7 +170,7 @@ MushRubyObj<T>::ObjInitialize(Mushware::tRubyArgC inArgC, Mushware::tRubyValue *
 }
 
 template <class T>
-Mushware::tRubyValue
+inline Mushware::tRubyValue
 MushRubyObj<T>::ObjInitializeCopy(Mushware::tRubyValue inCopy, Mushware::tRubyValue inOrig)
 {
 	if (inCopy != inOrig)
@@ -168,7 +188,7 @@ MushRubyObj<T>::ObjInitializeCopy(Mushware::tRubyValue inCopy, Mushware::tRubyVa
 }
 
 template <class T>
-Mushware::tRubyValue
+inline Mushware::tRubyValue
 MushRubyObj<T>::Obj_to_s(Mushware::tRubyValue inSelf)
 {
 	std::ostringstream objStream;
@@ -179,7 +199,7 @@ MushRubyObj<T>::Obj_to_s(Mushware::tRubyValue inSelf)
 
 
 template <class T>
-Mushware::tRubyValue
+inline Mushware::tRubyValue
 MushRubyObj<T>::Obj_to_xml(Mushware::tRubyValue inSelf)
 {
 	std::ostringstream objStream;
@@ -189,9 +209,8 @@ MushRubyObj<T>::Obj_to_xml(Mushware::tRubyValue inSelf)
 	return MushRubyUtil::StringNew(objStream.str());
 }
 
-
 template <class T>
-void
+inline void
 MushRubyObj<T>::MethodsInstall(void)
 {
 	MushRubyUtil::MethodDefine(ObjKlass(), "initialize", ObjInitialize);
@@ -201,19 +220,25 @@ MushRubyObj<T>::MethodsInstall(void)
 }
 
 template <class T>
-void
+inline void
 MushRubyObj<T>::ObjInstall(const std::string &inName)
 {
-	m_objKlass = MushRubyUtil::AllocatedClassDefine(inName, ObjAllocate);
-	MethodsInstall();
+	if (m_rubyKlass == Mushware::kRubyQnil)
+	{
+		m_rubyKlass = MushRubyUtil::AllocatedClassDefine(inName, ObjAllocate);
+		MethodsInstall();
+	}
 }
 
 template <class T>
-void
-MushRubyObj<T>::ObjInstallSubclass(const std::string &inName, const std::string &inSubclass)
+inline void
+MushRubyObj<T>::ObjInstallSubclass(const std::string &inName, Mushware::tRubyValue inSuperclass)
 {
-	m_objKlass = MushRubyUtil::AllocatedSubclassDefine(inName, inSubclass, ObjAllocate);
-	MethodsInstall();
+	if (m_rubyKlass == Mushware::kRubyQnil)
+	{
+		m_rubyKlass = MushRubyUtil::AllocatedSubclassDefine(inName, inSuperclass, ObjAllocate);
+		MethodsInstall();
+	}
 }
 
 //%includeGuardEnd {

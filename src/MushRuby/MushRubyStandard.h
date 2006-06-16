@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } Yh+jb7Kt8ubaZEY+Q2v/cg
 /*
- * $Id: MushRubyStandard.h,v 1.4 2006/06/12 16:01:24 southa Exp $
+ * $Id: MushRubyStandard.h,v 1.5 2006/06/13 10:35:06 southa Exp $
  * $Log: MushRubyStandard.h,v $
+ * Revision 1.5  2006/06/13 10:35:06  southa
+ * Ruby data objects
+ *
  * Revision 1.4  2006/06/12 16:01:24  southa
  * Ruby mesh generation
  *
@@ -69,16 +72,6 @@ namespace Mushware
 	extern const Mushware::tRubyValue kRubyQfalse;
 	extern const Mushware::tRubyValue kRubyQtrue;
 }
-
-class MushRuby
-{
-public:
-	static const Mushware::tRubyValue QNil;
-	static const Mushware::tRubyValue QFalse;
-	static const Mushware::tRubyValue QTrue;
-};
-
-
 
 //%includeGuardEnd {
 #endif

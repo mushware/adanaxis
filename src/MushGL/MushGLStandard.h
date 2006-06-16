@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 4aNrDWDcHhvbi/ZjV2ZFxA
 /*
- * $Id: MushGLStandard.h,v 1.12 2006/06/01 15:39:18 southa Exp $
+ * $Id: MushGLStandard.h,v 1.13 2006/06/01 20:12:59 southa Exp $
  * $Log: MushGLStandard.h,v $
+ * Revision 1.13  2006/06/01 20:12:59  southa
+ * Initial texture caching
+ *
  * Revision 1.12  2006/06/01 15:39:18  southa
  * DrawArray verification and fixes
  *
@@ -144,6 +147,8 @@ typedef ptrdiff_t GLintptr;
 #endif
 
 #include "API/mushMushcore.h"
+#include "API/mushMushcoreIO.h"
+#include "API/mushMushcoreSTL.h"
 #include "API/mushMushMesh.h"
  
 #include <cmath>

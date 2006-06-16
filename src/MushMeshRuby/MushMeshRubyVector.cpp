@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 0xPG/7jmGTzjaD0AmAZyzw
 /*
- * $Id: MushMeshRubyVector.cpp,v 1.4 2006/06/13 19:30:38 southa Exp $
+ * $Id: MushMeshRubyVector.cpp,v 1.5 2006/06/14 18:45:50 southa Exp $
  * $Log: MushMeshRubyVector.cpp,v $
+ * Revision 1.5  2006/06/14 18:45:50  southa
+ * Ruby mesh generation
+ *
  * Revision 1.4  2006/06/13 19:30:38  southa
  * Ruby mesh generation
  *
@@ -101,11 +104,11 @@ MushMeshRubyVector::MushVectorIsEqual(Mushware::tRubyValue inSelf, Mushware::tRu
 	tRubyValue retVal;
 	if (Ref(inSelf) == Ref(inArg1))
 	{
-		retVal = MushRuby::QTrue;	
+		retVal = Mushware::kRubyQtrue;	
 	}
 	else
 	{
-		retVal = MushRuby::QFalse;	
+		retVal = Mushware::kRubyQfalse;	
 	}
 	return retVal;
 }

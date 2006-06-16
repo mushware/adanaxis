@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } ZnwDjEM1+TPkZ9HrL5mg7A
 /*
- * $Id: MushRubyUtil.h,v 1.9 2006/06/14 11:20:09 southa Exp $
+ * $Id: MushRubyUtil.h,v 1.10 2006/06/16 01:02:34 southa Exp $
  * $Log: MushRubyUtil.h,v $
+ * Revision 1.10  2006/06/16 01:02:34  southa
+ * Ruby mesh generation
+ *
  * Revision 1.9  2006/06/14 11:20:09  southa
  * Ruby mesh generation
  *
@@ -68,9 +71,9 @@ public:
     static void IVGet(Mushware::tVal& outVal, const std::string& inName, Mushware::tRubyValue inSelf);
     static Mushware::tRubyValue Class(const std::string& inName);
     static Mushware::tRubyValue ClassDefine(const std::string& inName);
-    static Mushware::tRubyValue SubclassDefine(const std::string& inName, const std::string& inSuperclass);
+    static Mushware::tRubyValue SubclassDefine(const std::string& inName, Mushware::tRubyValue inSuperclass);
     static Mushware::tRubyValue AllocatedClassDefine(const std::string& inName, Mushware::tfpRubyAllocFunc inAllocFunc);
-    static Mushware::tRubyValue AllocatedSubclassDefine(const std::string& inName, const std::string& inSuperclass, Mushware::tfpRubyAllocFunc inAllocFunc);
+    static Mushware::tRubyValue AllocatedSubclassDefine(const std::string& inName, Mushware::tRubyValue inSuperclass, Mushware::tfpRubyAllocFunc inAllocFunc);
     static void MethodDefine(Mushware::tRubyValue inKlass, const std::string& inName,
                              Mushware::tfpRubyMethod infpMethod);
 	static void MethodDefineNoParams(Mushware::tRubyValue inKlass, const std::string& inName,

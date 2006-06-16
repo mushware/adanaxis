@@ -1,7 +1,11 @@
+//%includeGuardStart {
+#ifndef MUSHRUBYOBJECT_H
+#define MUSHRUBYOBJECT_H
+//%includeGuardStart } xHqxdIndLRouJD8Rk8IjdA
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushRuby/MushRubyStandard.cpp
+ * File: src/MushRuby/MushRubyObject.h
  *
  * Author: Andy Southgate 2002-2006
  *
@@ -17,25 +21,27 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } cAZ5yAFm+lHtMzO/urDaSg
+//%Header } z319/qRNcOqAbb1a8HrjtA
 /*
- * $Id: MushRubyStandard.cpp,v 1.3 2006/06/13 10:35:06 southa Exp $
- * $Log: MushRubyStandard.cpp,v $
- * Revision 1.3  2006/06/13 10:35:06  southa
- * Ruby data objects
- *
- * Revision 1.2  2006/04/21 00:10:43  southa
- * MushGLFont ruby module
- *
+ * $Id$
+ * $Log$
  */
 
 #include "MushRubyStandard.h"
 
-#include "MushRubyRuby.h"
+#include "MushRubyEmptyObj.h"
 
-namespace Mushware
+class MushRubyObject : public MushRubyEmptyObj<1>
 {
-	const Mushware::tRubyValue kRubyQnil = Qnil;
-	const Mushware::tRubyValue kRubyQfalse = Qfalse;
-	const Mushware::tRubyValue kRubyQtrue = Qtrue;	
+public:
+private:
+};
+
+MUSHRUBYEMPTYOBJ_INSTALL(1)(void)
+{
+	EmptyInstall("MushObject");
 }
+
+//%includeGuardEnd {
+#endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

@@ -1,7 +1,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushRuby/MushRubyStandard.cpp
+ * File: src/MushRuby/MushRubyEmptyObj.cpp
  *
  * Author: Andy Southgate 2002-2006
  *
@@ -17,25 +17,11 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } cAZ5yAFm+lHtMzO/urDaSg
+//%Header } ZNRvpjePwmmt38S4LkC9tg
 /*
- * $Id: MushRubyStandard.cpp,v 1.3 2006/06/13 10:35:06 southa Exp $
- * $Log: MushRubyStandard.cpp,v $
- * Revision 1.3  2006/06/13 10:35:06  southa
- * Ruby data objects
- *
- * Revision 1.2  2006/04/21 00:10:43  southa
- * MushGLFont ruby module
- *
+ * $Id$
+ * $Log$
  */
 
-#include "MushRubyStandard.h"
+#include "MushRubyEmptyObj.h"
 
-#include "MushRubyRuby.h"
-
-namespace Mushware
-{
-	const Mushware::tRubyValue kRubyQnil = Qnil;
-	const Mushware::tRubyValue kRubyQfalse = Qfalse;
-	const Mushware::tRubyValue kRubyQtrue = Qtrue;	
-}

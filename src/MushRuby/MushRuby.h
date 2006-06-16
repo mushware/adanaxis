@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } Wr9YgRvUclXifNHyxB/v3A
 /*
- * $Id: MushRuby.h,v 1.6 2006/06/13 19:30:39 southa Exp $
+ * $Id: MushRuby.h,v 1.7 2006/06/14 11:20:09 southa Exp $
  * $Log: MushRuby.h,v $
+ * Revision 1.7  2006/06/14 11:20:09  southa
+ * Ruby mesh generation
+ *
  * Revision 1.6  2006/06/13 19:30:39  southa
  * Ruby mesh generation
  *
@@ -46,11 +49,13 @@
  */
 
 #include "MushRubyDataObj.h"
+#include "MushRubyEmptyObj.h"
 #include "MushRubyExec.h"
 #include "MushRubyFail.h"
 #include "MushRubyInstall.h"
 #include "MushRubyIntern.h"
 #include "MushRubyObj.h"
+#include "MushRubyObject.h"
 #include "MushRubyStandard.h"
 #include "MushRubyUtil.h"
 

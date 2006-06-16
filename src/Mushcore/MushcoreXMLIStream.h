@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } FTjMuoWgWldTNGYATLOOjw
 /*
- * $Id: MushcoreXMLIStream.h,v 1.31 2005/07/06 19:08:27 southa Exp $
+ * $Id: MushcoreXMLIStream.h,v 1.32 2006/06/01 15:39:49 southa Exp $
  * $Log: MushcoreXMLIStream.h,v $
+ * Revision 1.32  2006/06/01 15:39:49  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.31  2005/07/06 19:08:27  southa
  * Adanaxis control work
  *
@@ -158,7 +161,9 @@ public:
     void ObjectRead(Mushware::tXMLVal& outObj);
     void ObjectRead(std::string& outStr);
 
-    bool CompositePrologue(void);
+    void ObjectRead(unsigned long& outObj);
+    
+	bool CompositePrologue(void);
     void CompositeEpilogue(bool inHasTag);
     
     void Throw(const std::string& inMessage) const;
@@ -245,6 +250,12 @@ operator>>(MushcoreXMLIStream& ioIn, bool& outObj)
 
 inline void
 operator>>(MushcoreXMLIStream& ioIn, std::string& outObj)
+{
+    ioIn.ObjectRead(outObj);
+}
+
+inline void
+operator>>(MushcoreXMLIStream& ioIn, unsigned long& outObj)
 {
     ioIn.ObjectRead(outObj);
 }

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } gSaMBKSS/9FVf/ypP8x5kA
 /*
- * $Id: MushRubyUtil.cpp,v 1.9 2006/06/14 11:20:09 southa Exp $
+ * $Id: MushRubyUtil.cpp,v 1.10 2006/06/16 01:02:33 southa Exp $
  * $Log: MushRubyUtil.cpp,v $
+ * Revision 1.10  2006/06/16 01:02:33  southa
+ * Ruby mesh generation
+ *
  * Revision 1.9  2006/06/14 11:20:09  southa
  * Ruby mesh generation
  *
@@ -113,10 +116,9 @@ MushRubyUtil::ClassDefine(const std::string& inName)
 }
 
 Mushware::tRubyValue
-MushRubyUtil::SubclassDefine(const std::string& inName, const std::string& inSuperclass)
+MushRubyUtil::SubclassDefine(const std::string& inName, Mushware::tRubyValue  inSuperclass)
 {
-	tRubyValue superclass = ClassDefine(inSuperclass); // Limits us to one level of inheritance
-    tRubyValue klass = rb_define_class(inName.c_str(), superclass);
+    tRubyValue klass = rb_define_class(inName.c_str(), inSuperclass);
     return klass;
 }
 
@@ -129,7 +131,7 @@ MushRubyUtil::AllocatedClassDefine(const std::string& inName, Mushware::tfpRubyA
 }
 
 Mushware::tRubyValue
-MushRubyUtil::AllocatedSubclassDefine(const std::string& inName, const std::string& inSuperclass, Mushware::tfpRubyAllocFunc inAllocFunc)
+MushRubyUtil::AllocatedSubclassDefine(const std::string& inName, Mushware::tRubyValue inSuperclass, Mushware::tfpRubyAllocFunc inAllocFunc)
 {
     tRubyValue klass = SubclassDefine(inName, inSuperclass);
 	rb_define_alloc_func(klass, inAllocFunc);

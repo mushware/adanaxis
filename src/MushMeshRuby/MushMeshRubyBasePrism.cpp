@@ -19,11 +19,16 @@
  ****************************************************************************/
 //%Header } ceyqk6w3RyXgPXeMYSSUcQ
 /*
- * $Id$
- * $Log$
+ * $Id: MushMeshRubyBasePrism.cpp,v 1.1 2006/06/16 01:02:33 southa Exp $
+ * $Log: MushMeshRubyBasePrism.cpp,v $
+ * Revision 1.1  2006/06/16 01:02:33  southa
+ * Ruby mesh generation
+ *
  */
 
 #include "MushMeshRubyBasePrism.h"
+
+#include "MushMeshRubyBase.h"
 
 using namespace Mushware;
 using namespace std;
@@ -38,8 +43,7 @@ MUSHRUBYOBJ_INITIALIZE(MushMeshLibraryPrism)(Mushware::tRubyArgC inArgC, Mushwar
 	{
 		case 1:
 		{
-			MushRubyValue param0(inpArgV[0]);
-			
+			MushRubyValue param0(inpArgV[0]);				
 			if (param0.IsU32())
 			{
 				basePrism.OrderSet(param0.U32());
@@ -74,7 +78,7 @@ MUSHRUBYOBJ_INITIALIZE(MushMeshLibraryPrism)(Mushware::tRubyArgC inArgC, Mushwar
 void
 MushMeshRubyBasePrism::RubyInstall(void)
 {
-	ObjInstallSubclass("MushBasePrism", "MushBase");
+	ObjInstallSubclass("MushBasePrism", MushMeshRubyBase::Klass());
 }
 
 MUSHRUBY_INSTALL(MushMeshRubyBasePrism);
