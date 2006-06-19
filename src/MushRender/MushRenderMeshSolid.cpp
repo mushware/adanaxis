@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } A/GPso4jrQBD0hPDpi3qXg
 /*
- * $Id: MushRenderMeshSolid.cpp,v 1.6 2005/09/06 12:15:35 southa Exp $
+ * $Id: MushRenderMeshSolid.cpp,v 1.7 2006/06/01 15:39:38 southa Exp $
  * $Log: MushRenderMeshSolid.cpp,v $
+ * Revision 1.7  2006/06/01 15:39:38  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.6  2005/09/06 12:15:35  southa
  * Texture and rendering work
  *
@@ -61,22 +64,41 @@ MushRenderMeshSolid::MushRenderMeshSolid() :
 void
 MushRenderMeshSolid::MeshRender(const MushRenderSpec& inSpec, const MushMeshMesh& inMesh)
 {
-    if (!OutputBufferGenerate(inSpec, inMesh))
-    {
-        if (!OutputBufferGenerate(inSpec, inMesh))
-        {
-            throw MushcoreDeviceFail("Double fault when unmapping vertex buffer");
-        }
-    }
-    
-    MushGLJobRender jobRender;
-    MushGLWorkSpec& workSpecRef = jobRender.WorkSpecNew();
-    
-    jobRender.BuffersRefSet(inSpec.BuffersRef());
-    jobRender.TexCoordBuffersRefSet(inSpec.TexCoordBuffersRef());
-    workSpecRef.RenderTypeSet(MushGLWorkSpec::kRenderTypeTriangles);
-    
-    jobRender.Execute();
+	try
+	{
+		const MushMesh4Mesh& meshRef = dynamic_cast<const MushMesh4Mesh&>(inMesh);
+		
+		if (!OutputBufferGenerate(inSpec, inMesh))
+		{
+			if (!OutputBufferGenerate(inSpec, inMesh))
+			{
+				throw MushcoreDeviceFail("Double fault when unmapping vertex buffer");
+			}
+		}
+		
+		MushGLJobRender jobRender;
+		MushGLWorkSpec& workSpecRef = jobRender.WorkSpecNew();
+		
+		jobRender.BuffersRefSet(inSpec.BuffersRef());
+		jobRender.TexCoordBuffersRefSet(inSpec.TexCoordBuffersRef());
+		workSpecRef.RenderTypeSet(MushGLWorkSpec::kRenderTypeTriangles);
+
+		if (meshRef.NumMaterials() > 0)
+		{
+			const MushGLMaterial& materialRef = dynamic_cast<const MushGLMaterial&>(meshRef.MaterialRef(0));
+            workSpecRef.TexturePtrSet(&const_cast<MushGLMaterial&>(materialRef).TexWRef(0));
+		}
+		jobRender.Execute();
+	}
+	catch (std::exception& e)
+	{
+		static U32 ctr = 0;
+		if (ctr < 100)
+		{
+			++ctr;
+			throw MushcoreDataFail(std::string("Cannot decode texture reference: ")+e.what());
+	    }
+	}
 }
 
 inline void

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } B/Uhyb8oyTGYwsbcQe79PQ
 /*
- * $Id: MushGLWorkSpec.cpp,v 1.7 2006/04/11 23:30:08 southa Exp $
+ * $Id: MushGLWorkSpec.cpp,v 1.8 2006/06/01 15:39:19 southa Exp $
  * $Log: MushGLWorkSpec.cpp,v $
+ * Revision 1.8  2006/06/01 15:39:19  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.7  2006/04/11 23:30:08  southa
  * Created MushRuby from ruby-1.8.4
  *
@@ -91,9 +94,9 @@ MushGLWorkSpec::Execute(MushGLBuffers::tDataRef& ioDataRef, MushGLBuffers::tShar
                 {
                     throw MushcoreDataFail("Sizes of vertex and texture coordinate buffers do not match");
                 }
-                static MushcoreDataRef<MushGLTexture> texRef("tex2");
-                
-                texRef.WRef().Bind();
+                MUSHCOREASSERT(m_pTexture != NULL);
+				
+                m_pTexture->Bind();
                 stateRef.TexCoordArraySetTrue(texCoordBuffersRef.TexCoordBufferWRef(i), i);
                 stateRef.TextureEnable2D(i);
             }
@@ -163,7 +166,15 @@ void
 MushGLWorkSpec::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
-    ioOut << "renderType=" << m_renderType;
+    ioOut << "renderType=" << m_renderType << ", ";
+    if (m_pTexture == NULL)
+    {
+        ioOut << "pTexture=NULL" ;
+    }
+    else
+    {
+        ioOut << "pTexture=" << *m_pTexture;
+    }
     ioOut << "]";
 }
 bool
@@ -179,6 +190,10 @@ MushGLWorkSpec::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
     {
         ioIn >> m_renderType;
     }
+    else if (inTagStr == "pTexture")
+    {
+        ioIn >> m_pTexture;
+    }
     else 
     {
         return false;
@@ -190,5 +205,7 @@ MushGLWorkSpec::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
     ioOut.TagSet("renderType");
     ioOut << m_renderType;
+    ioOut.TagSet("pTexture");
+    ioOut << m_pTexture;
 }
-//%outOfLineFunctions } SluKYptWzn2XpYyCJv1AwQ
+//%outOfLineFunctions } eiSvgnrdvGSdGmKniSgq4A

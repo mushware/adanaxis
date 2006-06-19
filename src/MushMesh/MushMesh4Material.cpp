@@ -1,7 +1,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushMesh/MushMeshMaterialRef.cpp
+ * File: src/MushMesh/MushMesh4Material.cpp
  *
  * Author: Andy Southgate 2002-2006
  *
@@ -17,63 +17,64 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 8GMBckdEbWXBFMxF4lkmEA
+//%Header } rKxqFRDUQ+hPECsMm6L1IA
 /*
- * $Id: MushMeshMaterialRef.cpp,v 1.2 2005/07/02 00:42:38 southa Exp $
- * $Log: MushMeshMaterialRef.cpp,v $
- * Revision 1.2  2005/07/02 00:42:38  southa
- * Conditioning tweaks
- *
- * Revision 1.1  2005/06/30 12:04:55  southa
- * Mesh work
- *
+ * $Id$
+ * $Log$
  */
 
-#include "MushMeshMaterialRef.h"
+#include "MushMesh4Material.h"
+
+MUSHCORE_DATA_INSTANCE(MushMesh4Material);
 
 //%outOfLineFunctions {
 
-const char *MushMeshMaterialRef::AutoName(void) const
+const char *MushMesh4Material::AutoName(void) const
 {
-    return "MushMeshMaterialRef";
+    return "MushMesh4Material";
 }
 
-MushcoreVirtualObject *MushMeshMaterialRef::AutoClone(void) const
+MushcoreVirtualObject *MushMesh4Material::AutoClone(void) const
 {
-    return new MushMeshMaterialRef(*this);
+    return new MushMesh4Material(*this);
 }
 
-MushcoreVirtualObject *MushMeshMaterialRef::AutoCreate(void) const
+MushcoreVirtualObject *MushMesh4Material::AutoCreate(void) const
 {
-    return new MushMeshMaterialRef;
+    return new MushMesh4Material;
 }
 
-MushcoreVirtualObject *MushMeshMaterialRef::AutoVirtualFactory(void)
+MushcoreVirtualObject *MushMesh4Material::AutoVirtualFactory(void)
 {
-    return new MushMeshMaterialRef;
+    return new MushMesh4Material;
 }
 namespace
 {
 void AutoInstall(void)
 {
-    MushcoreFactory::Sgl().FactoryAdd("MushMeshMaterialRef", MushMeshMaterialRef::AutoVirtualFactory);
+    MushcoreFactory::Sgl().FactoryAdd("MushMesh4Material", MushMesh4Material::AutoVirtualFactory);
 }
 MushcoreInstaller AutoInstaller(AutoInstall);
 } // end anonymous namespace
 void
-MushMeshMaterialRef::AutoPrint(std::ostream& ioOut) const
+MushMesh4Material::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
+    ioOut << "name=" << m_name;
     ioOut << "]";
 }
 bool
-MushMeshMaterialRef::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr)
+MushMesh4Material::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr)
 {
     if (inTagStr == "obj")
     {
         AutoInputPrologue(ioIn);
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
+    }
+    else if (inTagStr == "name")
+    {
+        ioIn >> m_name;
     }
     else 
     {
@@ -82,7 +83,9 @@ MushMeshMaterialRef::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::str
     return true;
 }
 void
-MushMeshMaterialRef::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
+MushMesh4Material::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
+    ioOut.TagSet("name");
+    ioOut << m_name;
 }
-//%outOfLineFunctions } DyIwh0bXkCOC9IcLYzJGzw
+//%outOfLineFunctions } qjtGfw8Jp+t7x8ZpyLUBOg

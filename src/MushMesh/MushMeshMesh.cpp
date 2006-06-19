@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } F+vVCutfXCZOYBmPmuwLKA
 /*
- * $Id: MushMeshMesh.cpp,v 1.2 2005/07/02 00:42:38 southa Exp $
+ * $Id: MushMeshMesh.cpp,v 1.3 2006/06/01 15:39:30 southa Exp $
  * $Log: MushMeshMesh.cpp,v $
+ * Revision 1.3  2006/06/01 15:39:30  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.2  2005/07/02 00:42:38  southa
  * Conditioning tweaks
  *
@@ -72,7 +75,6 @@ void
 MushMeshMesh::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
-    ioOut << "materialRef=" << m_materialRef;
     ioOut << "]";
 }
 bool
@@ -84,10 +86,6 @@ MushMeshMesh::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& in
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
     }
-    else if (inTagStr == "materialRef")
-    {
-        ioIn >> m_materialRef;
-    }
     else 
     {
         return false;
@@ -97,7 +95,5 @@ MushMeshMesh::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& in
 void
 MushMeshMesh::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
-    ioOut.TagSet("materialRef");
-    ioOut << m_materialRef;
 }
-//%outOfLineFunctions } RiAIJv1YEYjRk9D44S7YrQ
+//%outOfLineFunctions } wTkzluhiBp14xt5f8qFrHg

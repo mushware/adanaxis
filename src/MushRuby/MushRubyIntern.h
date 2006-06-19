@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } n1eaCj2fb8dNPgbT0uOuEQ
 /*
- * $Id: MushRubyIntern.h,v 1.3 2006/06/14 18:45:50 southa Exp $
+ * $Id: MushRubyIntern.h,v 1.4 2006/06/16 01:02:33 southa Exp $
  * $Log: MushRubyIntern.h,v $
+ * Revision 1.4  2006/06/16 01:02:33  southa
+ * Ruby mesh generation
+ *
  * Revision 1.3  2006/06/14 18:45:50  southa
  * Ruby mesh generation
  *
@@ -54,6 +57,7 @@ public:
 	MUSHRUBYINTERN_DECLARE(displacement);
 	MUSHRUBYINTERN_DECLARE(displacement_velocity);
 	MUSHRUBYINTERN_DECLARE(num_iterations);
+	MUSHRUBYINTERN_DECLARE(name);
 	MUSHRUBYINTERN_DECLARE(offset);
 	MUSHRUBYINTERN_DECLARE(order);
 	MUSHRUBYINTERN_DECLARE(rotation);
@@ -61,6 +65,7 @@ public:
 	MUSHRUBYINTERN_DECLARE(scale_velocity);
 	MUSHRUBYINTERN_DECLARE(size);
 	MUSHRUBYINTERN_DECLARE(sourceface);
+	MUSHRUBYINTERN_DECLARE(texture_name);
 	MUSHRUBYINTERN_DECLARE(to_ary);
 	MUSHRUBYINTERN_DECLARE(to_s);
 	MUSHRUBYINTERN_DECLARE(to_point);

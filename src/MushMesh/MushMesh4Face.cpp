@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } p0GuLXistjNnwtBEutxN2Q
 /*
- * $Id: MushMesh4Face.cpp,v 1.7 2005/07/14 12:50:31 southa Exp $
+ * $Id: MushMesh4Face.cpp,v 1.8 2006/06/01 15:39:28 southa Exp $
  * $Log: MushMesh4Face.cpp,v $
+ * Revision 1.8  2006/06/01 15:39:28  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.7  2005/07/14 12:50:31  southa
  * Extrusion work
  *
@@ -275,7 +278,7 @@ MushMesh4Face::AutoPrint(std::ostream& ioOut) const
     ioOut << "vertexList=" << m_vertexList << ", ";
     ioOut << "vertexGroupSize=" << m_vertexGroupSize << ", ";
     ioOut << "texCoordList=" << m_texCoordList << ", ";
-    ioOut << "faceMaterialRef=" << m_faceMaterialRef << ", ";
+    ioOut << "materialNum=" << m_materialNum << ", ";
     ioOut << "edgeSmoothness=" << m_edgeSmoothness << ", ";
     ioOut << "internal=" << m_internal << ", ";
     ioOut << "extrusionMap=" << m_extrusionMap << ", ";
@@ -319,9 +322,9 @@ MushMesh4Face::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& i
     {
         ioIn >> m_texCoordList;
     }
-    else if (inTagStr == "faceMaterialRef")
+    else if (inTagStr == "materialNum")
     {
-        ioIn >> m_faceMaterialRef;
+        ioIn >> m_materialNum;
     }
     else if (inTagStr == "edgeSmoothness")
     {
@@ -409,8 +412,8 @@ MushMesh4Face::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_vertexGroupSize;
     ioOut.TagSet("texCoordList");
     ioOut << m_texCoordList;
-    ioOut.TagSet("faceMaterialRef");
-    ioOut << m_faceMaterialRef;
+    ioOut.TagSet("materialNum");
+    ioOut << m_materialNum;
     ioOut.TagSet("edgeSmoothness");
     ioOut << m_edgeSmoothness;
     ioOut.TagSet("internal");
@@ -444,4 +447,4 @@ MushMesh4Face::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("numVertexConnections");
     ioOut << m_numVertexConnections;
 }
-//%outOfLineFunctions } SbAUcuENn1t3J6X5sLsxfA
+//%outOfLineFunctions } a9fTTBiJdyFWz2iy30PGPg

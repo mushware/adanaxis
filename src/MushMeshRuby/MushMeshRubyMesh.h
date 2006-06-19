@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } hSrHx4/wCdfB19VcRmiYhw
 /*
- * $Id: MushMeshRubyMesh.h,v 1.5 2006/06/14 18:45:49 southa Exp $
+ * $Id: MushMeshRubyMesh.h,v 1.6 2006/06/16 01:02:33 southa Exp $
  * $Log: MushMeshRubyMesh.h,v $
+ * Revision 1.6  2006/06/16 01:02:33  southa
+ * Ruby mesh generation
+ *
  * Revision 1.5  2006/06/14 18:45:49  southa
  * Ruby mesh generation
  *
@@ -55,6 +58,7 @@ protected:
 	static Mushware::tRubyValue BaseAdd(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
 	static Mushware::tRubyValue BaseDisplacementAdd(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
 	static Mushware::tRubyValue ExtruderAdd(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
+	static Mushware::tRubyValue MaterialAdd(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
 	static Mushware::tRubyValue Make(Mushware::tRubyValue inSelf);
 
 private:

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } yyGH2nvFnzrMau3Fpl5qfQ
 /*
- * $Id: MushGLMaterial.cpp,v 1.2 2005/09/05 12:54:30 southa Exp $
+ * $Id: MushGLMaterial.cpp,v 1.3 2006/06/01 15:39:18 southa Exp $
  * $Log: MushGLMaterial.cpp,v $
+ * Revision 1.3  2006/06/01 15:39:18  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.2  2005/09/05 12:54:30  southa
  * Solid rendering work
  *
@@ -30,6 +33,133 @@
  */
 
 #include "MushGLMaterial.h"
+
+#include "API/mushMushRuby.h"
+
+using namespace Mushware;
+using namespace std;
+
+void
+MushGLMaterial::TexNameSet(const std::string& inName, Mushware::U32 inIndex)
+{
+    if (m_texRefs.size() <= inIndex)
+	{
+		m_texRefs.resize(inIndex + 1);	
+	}
+	m_texRefs[inIndex].NameSet(inName);
+}
+
+MushGLTexture&
+MushGLMaterial::TexRef(Mushware::U32 inIndex)
+{
+	if (inIndex >= m_texRefs.size())
+	{
+		std::ostringstream message;
+		message << "Texture '" << Name() << "' has " << m_texRefs.size() << " textures but index " << inIndex << " requested";
+		throw MushcoreRequestFail(message.str());
+	}
+	return m_texRefs[inIndex].WRef();
+}
+
+MushGLTexture&
+MushGLMaterial::TexWRef(Mushware::U32 inIndex)
+{
+	if (inIndex >= m_texRefs.size())
+	{
+		std::ostringstream message;
+		message << "Texture '" << Name() << "' has " << m_texRefs.size() << " textures but index " << inIndex << " requested";
+		throw MushcoreRequestFail(message.str());
+	}
+	return m_texRefs[inIndex].WRef();
+}
+
+Mushware::tRubyValue
+MushGLMaterial::RubyDefine(Mushware::tRubyArgC inArgC, Mushware::tRubyValue *inpArgV, Mushware::tRubyValue inSelf)
+{
+	try
+	{
+		if (inArgC != 1)
+		{
+			throw MushRubyFail("Wrong number of parameters to RubyDefine (must be a hash)");	
+		}
+		
+		Mushware::tRubyHash paramHash;
+		MushRubyUtil::HashConvert(paramHash, MushRubyValue(inpArgV[0]));
+
+		std::string materialName = "";
+		std::string textureName = "";
+		
+		tRubyHash::const_iterator endIter = paramHash.end();
+		for (tRubyHash::const_iterator p = paramHash.begin(); p != endIter; ++p)
+		{
+			tRubyID symbol = p->first.Symbol();
+			if (symbol == MushRubyIntern::name())
+			{
+				materialName = p->second.String();
+			}
+			else if (symbol == MushRubyIntern::texture_name())
+			{
+				textureName = p->second.String();
+			}
+			else
+			{
+				MushRubyUtil::Raise("Unknown name in parameter hash '"+p->first.String()+"'");	
+			}
+		}			
+				
+		if (materialName == "" || textureName == "")
+		{
+			MushRubyUtil::Raise("Both :name and :texture_name paramters must be supplied");	
+			
+		}
+		
+		MushGLMaterial *pMaterial = dynamic_cast<MushGLMaterial *>(MushcoreData<MushMesh4Material>::Sgl().Give(materialName, new MushGLMaterial));
+		pMaterial->NameSet(materialName);
+		pMaterial->TexNameSet(textureName);
+	}
+	catch (MushcoreFail& e)
+	{
+		MushRubyUtil::Raise(e.what());
+	}
+
+	return Mushware::kRubyQnil;
+}
+
+Mushware::tRubyValue
+MushGLMaterial::Rubyto_xml(Mushware::tRubyValue inSelf)
+{
+	try
+	{
+		std::ostringstream objStream;
+		MushcoreXMLOStream xmlStream(objStream);
+		xmlStream << MushcoreData<MushMesh4Material>::Sgl();
+		
+		return MushRubyUtil::StringNew(objStream.str());
+	}
+	catch (MushcoreFail& e)
+	{
+		MushRubyUtil::Raise(e.what());
+	}
+
+	return Mushware::kRubyQnil;
+}
+
+void
+MushGLMaterial::RubyInstall(void)
+{
+	Mushware::tRubyValue klass = MushRubyUtil::ClassDefine("MushMaterial");
+	MushRubyUtil::SingletonMethodDefine(klass, "cRubyDefine", RubyDefine);
+	MushRubyUtil::SingletonMethodDefineNoParams(klass, "cRubyto_xml", Rubyto_xml);
+}
+
+namespace
+{
+	void Install(void)
+	{
+		MushRubyInstall::Sgl().Add(MushGLMaterial::RubyInstall);
+	}
+	MUSHCORE_INSTALLER(Install);
+}
 
 //%outOfLineFunctions {
 
@@ -64,7 +194,7 @@ void
 MushGLMaterial::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
-    ioOut << "textureHandles=" << m_textureHandles;
+    ioOut << "texRefs=" << m_texRefs;
     ioOut << "]";
 }
 bool
@@ -76,9 +206,9 @@ MushGLMaterial::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
     }
-    else if (inTagStr == "textureHandles")
+    else if (inTagStr == "texRefs")
     {
-        ioIn >> m_textureHandles;
+        ioIn >> m_texRefs;
     }
     else 
     {
@@ -89,7 +219,7 @@ MushGLMaterial::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
 void
 MushGLMaterial::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
-    ioOut.TagSet("textureHandles");
-    ioOut << m_textureHandles;
+    ioOut.TagSet("texRefs");
+    ioOut << m_texRefs;
 }
-//%outOfLineFunctions } iZG9tKYk5DXBuXrkz3Qydg
+//%outOfLineFunctions } x3xh/JbLnzza669EngaO5g

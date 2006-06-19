@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } Ph0uMhoM5NBsrdR1fYXcQw
 /*
- * $Id: MushMesh4Face.h,v 1.7 2005/08/29 18:40:57 southa Exp $
+ * $Id: MushMesh4Face.h,v 1.8 2006/06/01 15:39:28 southa Exp $
  * $Log: MushMesh4Face.h,v $
+ * Revision 1.8  2006/06/01 15:39:28  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.7  2005/08/29 18:40:57  southa
  * Solid rendering work
  *
@@ -52,7 +55,6 @@
 
 #include "MushMeshFace.h"
 #include "MushMesh4LinkFaceFace.h"
-#include "MushMeshMaterialRef.h"
 #include "MushMeshVector.h"
 
 //:xml1base MushMeshFace
@@ -112,7 +114,7 @@ private:
     tVertexList m_vertexList; //:readwrite :wref
     tVertexGroupSize m_vertexGroupSize; //:readwrite :wref
     tTexCoordList m_texCoordList; //:readwrite :wref
-    MushMeshMaterialRef m_faceMaterialRef; //:readwrite
+	Mushware::U32 m_materialNum; //:readwrite
     std::vector<Mushware::U8> m_edgeSmoothness; //:readwrite
     bool m_internal; //:readwrite
     
@@ -149,8 +151,8 @@ public:
     void TexCoordListSet(const tTexCoordList& inValue) { m_texCoordList=inValue; }
     // Writable reference for m_texCoordList
     tTexCoordList& TexCoordListWRef(void) { return m_texCoordList; }
-    const MushMeshMaterialRef& FaceMaterialRef(void) const { return m_faceMaterialRef; }
-    void FaceMaterialRefSet(const MushMeshMaterialRef& inValue) { m_faceMaterialRef=inValue; }
+    const Mushware::U32& MaterialNum(void) const { return m_materialNum; }
+    void MaterialNumSet(const Mushware::U32& inValue) { m_materialNum=inValue; }
     const std::vector<Mushware::U8>& EdgeSmoothness(void) const { return m_edgeSmoothness; }
     void EdgeSmoothnessSet(const std::vector<Mushware::U8>& inValue) { m_edgeSmoothness=inValue; }
     const bool& Internal(void) const { return m_internal; }
@@ -178,7 +180,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } XaY/rP9lvmQoTOGcDuIitA
+//%classPrototypes } oBd8y8M4v4t77bAPV/mKxA
 };
 
 inline const MushMesh4Face::tVertexList&

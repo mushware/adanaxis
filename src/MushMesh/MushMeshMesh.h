@@ -24,16 +24,17 @@
 //%Header } zu4vnvFL3Sw0qRayn8Pdlw
 
 /*
- * $Id: MushMeshMesh.h,v 1.1 2005/06/30 12:04:56 southa Exp $
+ * $Id: MushMeshMesh.h,v 1.2 2006/06/01 15:39:30 southa Exp $
  * $Log: MushMeshMesh.h,v $
+ * Revision 1.2  2006/06/01 15:39:30  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.1  2005/06/30 12:04:56  southa
  * Mesh work
  *
  */
 
 #include "MushMeshStandard.h"
-
-#include "MushMeshMaterialRef.h"
 
 //:generate virtual standard ostream xml1
 class MushMeshMesh : public MushcoreVirtualObject
@@ -43,11 +44,9 @@ public:
     virtual ~MushMeshMesh();
     
 private:
-    MushMeshMaterialRef m_materialRef; //:readwrite
+
 //%classPrototypes {
 public:
-    const MushMeshMaterialRef& MaterialRef(void) const { return m_materialRef; }
-    void MaterialRefSet(const MushMeshMaterialRef& inValue) { m_materialRef=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -55,7 +54,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } 9Q2BNrtEErDEZYN7fMrSiQ
+//%classPrototypes } 1oBgFruy5qHAaudtV+Hcmg
 };
 //%inlineHeader {
 inline std::ostream&

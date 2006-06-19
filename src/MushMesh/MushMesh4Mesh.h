@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } YrK9KiG4XjKqbWo1rVGU4w
 /*
- * $Id: MushMesh4Mesh.h,v 1.16 2006/06/14 18:45:47 southa Exp $
+ * $Id: MushMesh4Mesh.h,v 1.17 2006/06/16 01:02:32 southa Exp $
  * $Log: MushMesh4Mesh.h,v $
+ * Revision 1.17  2006/06/16 01:02:32  southa
+ * Ruby mesh generation
+ *
  * Revision 1.16  2006/06/14 18:45:47  southa
  * Ruby mesh generation
  *
@@ -84,6 +87,7 @@
 #include "MushMesh4Extruder.h"
 #include "MushMesh4Face.h"
 #include "MushMesh4FaceGenerator.h"
+#include "MushMesh4Material.h"
 #include "MushMesh4TextureTile.h"
 #include "MushMesh4VertexGenerator.h"
 #include "MushMeshDisplacement.h"
@@ -112,6 +116,8 @@ public:
     typedef MushMesh4TextureTile tTextureTile;
     typedef std::vector<tTextureTile> tTextureTiles;
     typedef std::vector< MushcoreAutoClonePtr<MushMesh4Extruder> > tExtruders;
+	typedef MushcoreDataRef<MushMesh4Material> tMaterialRef;
+	typedef std::vector<tMaterialRef> tMaterials;
 	
     MushMesh4Mesh();
     virtual ~MushMesh4Mesh() {}
@@ -161,6 +167,14 @@ public:
 	MushMesh4Extruder *ExtruderWGet(Mushware::U32 inNum);
 	Mushware::U32 NumExtruders(void) const;
 	
+	void MaterialNameSet(const std::string& inName, Mushware::U32 inIndex);
+	const MushMesh4Material& MaterialRef(Mushware::U32 inIndex) const
+	{
+		MushcoreUtil::DebugBoundsCheck(inIndex, m_materials.size());
+		return m_materials[inIndex].Ref();
+	}
+	Mushware::U32 NumMaterials(void) const { return m_materials.size(); }
+	
 	void Apply(const MushMeshDisplacement& inDisp);
 	void Make(void);
 	
@@ -169,8 +183,8 @@ private:
     tVertices m_vertices; //:readwrite :wref
     tTexCoords m_texCoords; //:readwrite :wref
     tFaces m_faces; //:readwrite :wref
-    Mushware::U32 m_materialNum; //:readwrite
-    Mushware::U32 m_levelOfDetail; //:readwrite
+	tMaterials m_materials; //:readwrite :wref;
+	Mushware::U32 m_levelOfDetail; //:readwrite
     
     // Delegates
     tDataRef m_texCoordDelegate; //:readwrite :wref
@@ -219,8 +233,10 @@ public:
     void FacesSet(const tFaces& inValue) { m_faces=inValue; }
     // Writable reference for m_faces
     tFaces& FacesWRef(void) { return m_faces; }
-    const Mushware::U32& MaterialNum(void) const { return m_materialNum; }
-    void MaterialNumSet(const Mushware::U32& inValue) { m_materialNum=inValue; }
+    const tMaterials& Materials(void) const { return m_materials; }
+    void MaterialsSet(const tMaterials& inValue) { m_materials=inValue; }
+    // Writable reference for m_materials
+    tMaterials& MaterialsWRef(void) { return m_materials; }
     const Mushware::U32& LevelOfDetail(void) const { return m_levelOfDetail; }
     void LevelOfDetailSet(const Mushware::U32& inValue) { m_levelOfDetail=inValue; }
     const tDataRef& TexCoordDelegate(void) const { return m_texCoordDelegate; }
@@ -273,7 +289,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } DjIIJKkZQLAmTBFPMvyBKA
+//%classPrototypes } CHfSjrwEJAt7P9KU0d6BFA
 };
 
 inline const MushMesh4Mesh::tCentroid&

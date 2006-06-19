@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } oR7WPhSKmfGQldTVFg6TpQ
 /*
- * $Id: MushMeshRubyMesh.cpp,v 1.5 2006/06/14 18:45:49 southa Exp $
+ * $Id: MushMeshRubyMesh.cpp,v 1.6 2006/06/16 01:02:33 southa Exp $
  * $Log: MushMeshRubyMesh.cpp,v $
+ * Revision 1.6  2006/06/16 01:02:33  southa
+ * Ruby mesh generation
+ *
  * Revision 1.5  2006/06/14 18:45:49  southa
  * Ruby mesh generation
  *
@@ -108,12 +111,28 @@ MushMeshRubyMesh::ExtruderAdd(Mushware::tRubyValue inSelf, Mushware::tRubyValue 
 		MushRubyUtil::Raise("Wrong type for ExtruderAdd - must be MushExtruder");
 	}
 	try
+{
+	WRef(inSelf).ExtruderGive(new MushMeshLibraryExtruder(MushMeshRubyExtruder::Ref(inArg0)));
+}
+catch (std::exception& e)
+{
+	MushRubyUtil::Raise(e.what());
+}
+return inSelf;
+}
+
+Mushware::tRubyValue
+MushMeshRubyMesh::MaterialAdd(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0)
+{
+	try
 	{
-		WRef(inSelf).ExtruderGive(new MushMeshLibraryExtruder(MushMeshRubyExtruder::Ref(inArg0)));
+		MushRubyValue param0(inArg0);
+		std::string materialName = param0.String();
+		WRef(inSelf).MaterialNameSet(materialName, 0);
 	}
 	catch (std::exception& e)
 	{
-			MushRubyUtil::Raise(e.what());
+		MushRubyUtil::Raise(e.what());
 	}
 	return inSelf;
 }
@@ -139,6 +158,7 @@ MushMeshRubyMesh::RubyInstall(void)
 	MushRubyUtil::MethodDefineOneParam(DataObjKlass(), "mBaseAdd", BaseAdd);
 	MushRubyUtil::MethodDefineOneParam(DataObjKlass(), "mBaseDisplacementAdd", BaseDisplacementAdd);
 	MushRubyUtil::MethodDefineOneParam(DataObjKlass(), "mExtruderAdd", ExtruderAdd);
+	MushRubyUtil::MethodDefineOneParam(DataObjKlass(), "mMaterialAdd", MaterialAdd);
 	MushRubyUtil::MethodDefineNoParams(DataObjKlass(), "mMake", Make);
 }
 

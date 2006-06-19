@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef MUSHMESHMATERIALREF_H
-#define MUSHMESHMATERIALREF_H
-//%includeGuardStart } EUnshaHBGH4gk82biwSWfQ
+#ifndef MUSHMESH4MATERIAL_H
+#define MUSHMESH4MATERIAL_H
+//%includeGuardStart } A3b7aNTGEOECii2HGCN0kg
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushMesh/MushMeshMaterialRef.h
+ * File: src/MushMesh/MushMesh4Material.h
  *
  * Author: Andy Southgate 2002-2006
  *
@@ -21,26 +21,25 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } LXos/axZiDRkZBOgrV8ePQ
+//%Header } 7UvikX8idpVAxy72TO4JQw
 /*
- * $Id: MushMeshMaterialRef.h,v 1.1 2005/06/30 12:04:55 southa Exp $
- * $Log: MushMeshMaterialRef.h,v $
- * Revision 1.1  2005/06/30 12:04:55  southa
- * Mesh work
- *
+ * $Id$
+ * $Log$
  */
 
 #include "MushMeshStandard.h"
 
 //:generate virtual standard ostream xml1
-class MushMeshMaterialRef : public MushcoreVirtualObject
+class MushMesh4Material : public MushcoreVirtualObject
 {
 public:
-    virtual ~MushMeshMaterialRef() {}
-    
 private:
+	std::string m_name; //:readwrite
+	
 //%classPrototypes {
 public:
+    const std::string& Name(void) const { return m_name; }
+    void NameSet(const std::string& inValue) { m_name=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -48,17 +47,16 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } 1oBgFruy5qHAaudtV+Hcmg
+//%classPrototypes } 6kS7zAtgsEBxzZKpMEtoHg
 };
 //%inlineHeader {
 inline std::ostream&
-operator<<(std::ostream& ioOut, const MushMeshMaterialRef& inObj)
+operator<<(std::ostream& ioOut, const MushMesh4Material& inObj)
 {
     inObj.AutoPrint(ioOut);
     return ioOut;
 }
-//%inlineHeader } Tpr/aAsZz0Vg+4HXGla0Ww
-
+//%inlineHeader } Yi/YS2Nl89AC612pXhszJw
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw
