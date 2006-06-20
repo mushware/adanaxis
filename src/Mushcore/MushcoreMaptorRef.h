@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } oYaclGAzf6mPo2JW/S6SXA
 /*
- * $Id: MushcoreMaptorRef.h,v 1.1 2005/07/29 14:59:50 southa Exp $
+ * $Id: MushcoreMaptorRef.h,v 1.2 2006/05/11 10:43:18 southa Exp $
  * $Log: MushcoreMaptorRef.h,v $
+ * Revision 1.2  2006/05/11 10:43:18  southa
+ * Project updates
+ *
  * Revision 1.1  2005/07/29 14:59:50  southa
  * Maptor access
  *
@@ -39,7 +42,7 @@
 #include "MushcoreXMLOStream.h"
 
 //:generate nonvirtual inline ostream
-template<class T, class K = Mushware::U32, class C = MushcoreMaptor<K, T> >
+template<class T, class K = Mushware::U32, class C = MushcoreMaptor<T, K> >
 class MushcoreMaptorRef
 {
 public:
@@ -58,12 +61,14 @@ public:
     T& operator*() const { return *Dereference(); }
     T *operator->() const { return Dereference(); }
 
+	void MaptorSet(const C& inMaptor) { m_pContainer = &inMaptor; }
+	
 protected:
     T *Dereference(void) const;
 
 private:
     K m_key; //:readwrite
-    const C *m_pContainer; //:readwrite
+    const C *m_pContainer; //:read
     mutable K m_sequenceNum;
     mutable T *m_ptr;
     
@@ -72,9 +77,8 @@ public:
     const K& Key(void) const { return m_key; }
     void KeySet(const K& inValue) { m_key=inValue; }
     const C& PContainer(void) const { return *m_pContainer; }
-    void PContainerSet(const C& inValue) { *m_pContainer=inValue; }
     void AutoPrint(std::ostream& ioOut) const;
-//%classPrototypes } cfe+PhuGfqVh4nM0orsVtg
+//%classPrototypes } AVHwg8rIQ9tkq9xdBfGYtg
 };
 
 template<class T, class K, class C>

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } yyGH2nvFnzrMau3Fpl5qfQ
 /*
- * $Id: MushGLMaterial.cpp,v 1.3 2006/06/01 15:39:18 southa Exp $
+ * $Id: MushGLMaterial.cpp,v 1.4 2006/06/19 15:57:17 southa Exp $
  * $Log: MushGLMaterial.cpp,v $
+ * Revision 1.4  2006/06/19 15:57:17  southa
+ * Materials
+ *
  * Revision 1.3  2006/06/01 15:39:18  southa
  * DrawArray verification and fixes
  *
@@ -50,7 +53,7 @@ MushGLMaterial::TexNameSet(const std::string& inName, Mushware::U32 inIndex)
 }
 
 MushGLTexture&
-MushGLMaterial::TexRef(Mushware::U32 inIndex)
+MushGLMaterial::TexRef(Mushware::U32 inIndex) const
 {
 	if (inIndex >= m_texRefs.size())
 	{

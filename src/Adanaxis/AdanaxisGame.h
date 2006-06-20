@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } wOXl6eoMycMTXcUsBJ4Pgg
 /*
- * $Id: AdanaxisGame.h,v 1.11 2005/08/02 14:37:44 southa Exp $
+ * $Id: AdanaxisGame.h,v 1.12 2006/06/01 15:38:47 southa Exp $
  * $Log: AdanaxisGame.h,v $
+ * Revision 1.12  2006/06/01 15:38:47  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.11  2005/08/02 14:37:44  southa
  * Adanaxis control demo work
  *
@@ -107,6 +110,9 @@ private:
     MushcoreDataRef<MushGameLogic> m_logicRef;
     
     AdanaxisConfig m_config;
+	
+	Mushware::tRubyValue m_rubyGame;
+	Mushware::tRubyValue m_rubySpace;
     
 //%classPrototypes {
 public:

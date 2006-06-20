@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } ChL6aTElKIc1rPHNw0/j3A
 /*
- * $Id: MushcoreMaptor.h,v 1.4 2005/08/01 13:09:58 southa Exp $
+ * $Id: MushcoreMaptor.h,v 1.5 2006/06/01 15:39:45 southa Exp $
  * $Log: MushcoreMaptor.h,v $
+ * Revision 1.5  2006/06/01 15:39:45  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.4  2005/08/01 13:09:58  southa
  * Collision messaging
  *
@@ -95,6 +98,7 @@ public:
     // Give/Get/Delete/Clear interface
     void Give(T *inpObj, const K& inKey);
     T& Get(const K& inKey) const;
+    T& GetOrCreate(const K& inKey);
     bool GetIfExists(T *& outpObj, const K& inKey) const;
     void Delete(const iterator& inIter) { erase(inIter.MapIter()); }
     void Delete(const K& inKey);
@@ -320,6 +324,30 @@ MushcoreMaptor<T, K, C>::Get(const K& inKey) const
         throw MushcoreDataFail("MushcoreMaptor::Get() called on NULL object");
     }
     return *(p->second);
+}
+
+template<class T, class K, class C>
+inline T&
+MushcoreMaptor<T, K, C>::GetOrCreate(const K& inKey)
+{
+	T *retPtr = NULL;
+    tMapIter p = m_data.find(inKey);
+    if (p == m_data.end())
+    {
+		retPtr = new T;
+        m_data[inKey] = retPtr;
+    }
+	else if (p->second == NULL)
+    {
+		retPtr = new T;
+		p->second = retPtr;
+    }
+	else
+	{
+		retPtr = p->second;	
+	}
+	MUSHCOREASSERT(retPtr != NULL);
+    return *retPtr;
 }
 
 template<class T, class K, class C>

@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef MUSHMESHRUBYROTATION_H
-#define MUSHMESHRUBYROTATION_H
-//%includeGuardStart } hXr+yjZg5zElUUq0RZNB4g
+#ifndef MUSHMESHRUBYPOST_H
+#define MUSHMESHRUBYPOST_H
+//%includeGuardStart } LENY2n19YIp+tUhqba3KBg
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushMeshRuby/MushMeshRubyRotation.h
+ * File: src/MushMeshRuby/MushMeshRubyPost.h
  *
  * Author: Andy Southgate 2002-2006
  *
@@ -21,26 +21,28 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } NU6ZSof2ssS4JvX3KgPtTw
+//%Header } 8FzYvsWq+cS7o0eZA6da1Q
 /*
- * $Id: MushMeshRubyRotation.h,v 1.1 2006/06/13 19:30:38 southa Exp $
- * $Log: MushMeshRubyRotation.h,v $
- * Revision 1.1  2006/06/13 19:30:38  southa
- * Ruby mesh generation
- *
+ * $Id$
+ * $Log$
  */
-
 
 #include "MushMeshRubyStandard.h"
 
-class MushMeshRubyRotation : public MushRubyObj<Mushware::tQValPair>
+class MushMeshRubyPost : public MushRubyObj<MushMeshPosticity>
 {
 public:
 	static void RubyInstall(void);
 	
 protected:
-	static Mushware::tRubyValue Rotate(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
-	static Mushware::tRubyValue IsEqual(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg1);
+	static Mushware::tRubyValue position(Mushware::tRubyValue inSelf);
+	static Mushware::tRubyValue velocity(Mushware::tRubyValue inSelf);
+	static Mushware::tRubyValue angular_position(Mushware::tRubyValue inSelf);
+	static Mushware::tRubyValue angular_velocity(Mushware::tRubyValue inSelf);
+	static Mushware::tRubyValue position_equal(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);	
+	static Mushware::tRubyValue velocity_equal(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);	
+	static Mushware::tRubyValue angular_position_equal(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);	
+	static Mushware::tRubyValue angular_velocity_equal(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);	
 private:
 };
 

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } IYs87CodIcNWOTBfGGVoeQ
 /*
- * $Id$
- * $Log$
+ * $Id: MushMeshRubyRotation.cpp,v 1.1 2006/06/13 19:30:38 southa Exp $
+ * $Log: MushMeshRubyRotation.cpp,v $
+ * Revision 1.1  2006/06/13 19:30:38  southa
+ * Ruby mesh generation
+ *
  */
 
 #include "MushMeshRubyRotation.h"
@@ -43,10 +46,25 @@ MUSHRUBYOBJ_INITIALIZE(Mushware::tQValPair)(Mushware::tRubyArgC inArgC, Mushware
 			break;
 			
 		default:
-			MushRubyUtil::Raise("Wrong number of parameters to MushRotation (must be 0)");	
+			MushRubyUtil::Raise("Wrong number of parameters to MushRotation.new (must be 0)");	
 			break;
 	}
 	return inSelf;
+}
+
+Mushware::tRubyValue
+MushMeshRubyRotation::IsEqual(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg1)
+{
+	tRubyValue retVal;
+	if (Ref(inSelf) == Ref(inArg1))
+	{
+		retVal = Mushware::kRubyQtrue;	
+	}
+	else
+	{
+		retVal = Mushware::kRubyQfalse;	
+	}
+	return retVal;
 }
 
 Mushware::tRubyValue
@@ -68,6 +86,7 @@ void
 MushMeshRubyRotation::RubyInstall(void)
 {
 	ObjInstall("MushRotation");
+	MushRubyUtil::MethodDefineOneParam(ObjKlass(), "==", IsEqual);
 	MushRubyUtil::MethodDefineOneParam(ObjKlass(), "mRotate", Rotate);
 }
 

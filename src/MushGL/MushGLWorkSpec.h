@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } d0PLtMuUJJgR2LEeb5ey+g
 /*
- * $Id: MushGLWorkSpec.h,v 1.4 2006/06/01 15:39:19 southa Exp $
+ * $Id: MushGLWorkSpec.h,v 1.5 2006/06/19 15:57:17 southa Exp $
  * $Log: MushGLWorkSpec.h,v $
+ * Revision 1.5  2006/06/19 15:57:17  southa
+ * Materials
+ *
  * Revision 1.4  2006/06/01 15:39:19  southa
  * DrawArray verification and fixes
  *
@@ -54,21 +57,23 @@ public:
         kRenderTypeTriangles = GL_TRIANGLES,
     };
     
-    MushGLWorkSpec() : m_renderType(0), m_pTexture(NULL) {}
+    MushGLWorkSpec() : m_renderType(0) {}
     virtual ~MushGLWorkSpec() {}
 
     void Execute(MushGLBuffers::tDataRef& ioDataRef, MushGLBuffers::tSharedDataRef& ioSharedDataRef);
-    void TexturePtrSet(MushGLTexture *inpTexture) { m_pTexture = inpTexture; }
+    void TextureSet(MushGLTexture *inpTexture, Mushware::U32 inNum);
+    MushGLTexture& Texture(Mushware::U32 inNum);
+	Mushware::U32 NumTextures(void) const { return m_textures.size(); }
+	bool IsValidTexture(Mushware::U32 inNum) const;
 	
 private:
     Mushware::U32 m_renderType; //:readwrite
-	MushGLTexture *m_pTexture; //:read
+	std::vector<MushGLTexture *> m_textures; // Object doesn't own these
 
 //%classPrototypes {
 public:
     const Mushware::U32& RenderType(void) const { return m_renderType; }
     void RenderTypeSet(const Mushware::U32& inValue) { m_renderType=inValue; }
-    const MushGLTexture& PTexture(void) const { return *m_pTexture; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -76,8 +81,36 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } uBUpvbLDBiimko40bQjLiQ
+//%classPrototypes } PSOTfAbS2nVFuLJMprN9Yg
 };
+
+inline void
+MushGLWorkSpec::TextureSet(MushGLTexture *inpTexture, Mushware::U32 inNum)
+{
+	if (inNum >= m_textures.size())
+	{
+		m_textures.resize(inNum+1, NULL);
+	}
+	m_textures[inNum] = inpTexture;
+}
+
+inline MushGLTexture&
+MushGLWorkSpec::Texture(Mushware::U32 inNum)
+{
+	MushcoreUtil::DebugBoundsCheck(inNum, m_textures.size());
+	if (m_textures[inNum] == NULL)
+	{
+		throw MushcoreRequestFail("Access to non-existent texture");	
+	}
+	return *m_textures[inNum];
+}
+
+inline bool
+MushGLWorkSpec::IsValidTexture(Mushware::U32 inNum) const
+{
+	return inNum < NumTextures() && m_textures[inNum] != NULL;	
+}
+
 //%inlineHeader {
 inline std::ostream&
 operator<<(std::ostream& ioOut, const MushGLWorkSpec& inObj)

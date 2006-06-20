@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } A/GPso4jrQBD0hPDpi3qXg
 /*
- * $Id: MushRenderMeshSolid.cpp,v 1.7 2006/06/01 15:39:38 southa Exp $
+ * $Id: MushRenderMeshSolid.cpp,v 1.8 2006/06/19 15:57:19 southa Exp $
  * $Log: MushRenderMeshSolid.cpp,v $
+ * Revision 1.8  2006/06/19 15:57:19  southa
+ * Materials
+ *
  * Revision 1.7  2006/06/01 15:39:38  southa
  * DrawArray verification and fixes
  *
@@ -83,20 +86,20 @@ MushRenderMeshSolid::MeshRender(const MushRenderSpec& inSpec, const MushMeshMesh
 		jobRender.TexCoordBuffersRefSet(inSpec.TexCoordBuffersRef());
 		workSpecRef.RenderTypeSet(MushGLWorkSpec::kRenderTypeTriangles);
 
-		if (meshRef.NumMaterials() > 0)
+		for (U32 i=0; i < meshRef.NumMaterials(); ++i)
 		{
-			const MushGLMaterial& materialRef = dynamic_cast<const MushGLMaterial&>(meshRef.MaterialRef(0));
-            workSpecRef.TexturePtrSet(&const_cast<MushGLMaterial&>(materialRef).TexWRef(0));
+			const MushGLMaterial& materialRef = dynamic_cast<const MushGLMaterial&>(meshRef.MaterialRef(i));
+			MushGLTexture *pTexture = &materialRef.TexRef(i);
+            workSpecRef.TextureSet(pTexture, i);
 		}
 		jobRender.Execute();
 	}
 	catch (std::exception& e)
 	{
 		static U32 ctr = 0;
-		if (ctr < 100)
+		if (++ctr < 100)
 		{
-			++ctr;
-			throw MushcoreDataFail(std::string("Cannot decode texture reference: ")+e.what());
+			throw MushcoreDataFail(std::string("Cannot render mesh: ")+e.what());
 	    }
 	}
 }

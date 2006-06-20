@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } t1Ub7qKwTGZ73wEUmUwLzw
 /*
- * $Id: MushMeshPosticity.h,v 1.4 2005/07/19 10:07:00 southa Exp $
+ * $Id: MushMeshPosticity.h,v 1.5 2006/06/01 15:39:31 southa Exp $
  * $Log: MushMeshPosticity.h,v $
+ * Revision 1.5  2006/06/01 15:39:31  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.4  2005/07/19 10:07:00  southa
  * Adanaxis work
  *
@@ -48,6 +51,7 @@
 class MushMeshPosticity : public MushcoreVirtualObject
 {
 public:
+    MushMeshPosticity() : m_timeValid(false) {}
     virtual ~MushMeshPosticity() {}
     
     inline void ToIdentitySet(void);

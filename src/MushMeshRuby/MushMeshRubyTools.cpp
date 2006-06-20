@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } oKuIr5eVL2esfxDutcXp9Q
 /*
- * $Id$
- * $Log$
+ * $Id: MushMeshRubyTools.cpp,v 1.1 2006/06/13 19:30:38 southa Exp $
+ * $Log: MushMeshRubyTools.cpp,v $
+ * Revision 1.1  2006/06/13 19:30:38  southa
+ * Ruby mesh generation
+ *
  */
 
 #include "MushMeshRubyTools.h"
@@ -99,13 +102,13 @@ MushMeshRubyTools::RubyInstall(void)
 {
 	ObjInstall("MushTools");
 
-	MushRubyUtil::SingletonMethodDefineTwoParams(ObjKlass(), "sRotationInPlane", RotationInAxis);
-	MushRubyUtil::SingletonMethodDefineOneParam(ObjKlass(), "sRotationInXYPlane", RotationInXYPlane);
-	MushRubyUtil::SingletonMethodDefineOneParam(ObjKlass(), "sRotationInZWPlane", RotationInZWPlane);
-	MushRubyUtil::SingletonMethodDefineOneParam(ObjKlass(), "sRotationInXZPlane", RotationInXZPlane);
-	MushRubyUtil::SingletonMethodDefineOneParam(ObjKlass(), "sRotationInYWPlane", RotationInYWPlane);
-	MushRubyUtil::SingletonMethodDefineOneParam(ObjKlass(), "sRotationInXWPlane", RotationInXWPlane);
-	MushRubyUtil::SingletonMethodDefineOneParam(ObjKlass(), "sRotationInYZPlane", RotationInYZPlane);
+	MushRubyUtil::SingletonMethodDefineTwoParams(ObjKlass(), "cRotationInPlane", RotationInAxis);
+	MushRubyUtil::SingletonMethodDefineOneParam(ObjKlass(), "cRotationInXYPlane", RotationInXYPlane);
+	MushRubyUtil::SingletonMethodDefineOneParam(ObjKlass(), "cRotationInZWPlane", RotationInZWPlane);
+	MushRubyUtil::SingletonMethodDefineOneParam(ObjKlass(), "cRotationInXZPlane", RotationInXZPlane);
+	MushRubyUtil::SingletonMethodDefineOneParam(ObjKlass(), "cRotationInYWPlane", RotationInYWPlane);
+	MushRubyUtil::SingletonMethodDefineOneParam(ObjKlass(), "cRotationInXWPlane", RotationInXWPlane);
+	MushRubyUtil::SingletonMethodDefineOneParam(ObjKlass(), "cRotationInYZPlane", RotationInYZPlane);
 }
 
 MUSHRUBY_INSTALL(MushMeshRubyTools);

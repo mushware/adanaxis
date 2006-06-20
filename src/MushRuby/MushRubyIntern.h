@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } n1eaCj2fb8dNPgbT0uOuEQ
 /*
- * $Id: MushRubyIntern.h,v 1.4 2006/06/16 01:02:33 southa Exp $
+ * $Id: MushRubyIntern.h,v 1.5 2006/06/19 15:57:20 southa Exp $
  * $Log: MushRubyIntern.h,v $
+ * Revision 1.5  2006/06/19 15:57:20  southa
+ * Materials
+ *
  * Revision 1.4  2006/06/16 01:02:33  southa
  * Ruby mesh generation
  *
@@ -52,6 +55,8 @@ class MushRubyIntern
 {
 public:
 	static void Initialise(void);
+	MUSHRUBYINTERN_DECLARE(angular_position);
+	MUSHRUBYINTERN_DECLARE(angular_velocity);
 	MUSHRUBYINTERN_DECLARE(backtrace);
 	MUSHRUBYINTERN_DECLARE(cToPrint);
 	MUSHRUBYINTERN_DECLARE(displacement);
@@ -60,6 +65,7 @@ public:
 	MUSHRUBYINTERN_DECLARE(name);
 	MUSHRUBYINTERN_DECLARE(offset);
 	MUSHRUBYINTERN_DECLARE(order);
+	MUSHRUBYINTERN_DECLARE(position);
 	MUSHRUBYINTERN_DECLARE(rotation);
 	MUSHRUBYINTERN_DECLARE(scale);
 	MUSHRUBYINTERN_DECLARE(scale_velocity);
@@ -69,6 +75,7 @@ public:
 	MUSHRUBYINTERN_DECLARE(to_ary);
 	MUSHRUBYINTERN_DECLARE(to_s);
 	MUSHRUBYINTERN_DECLARE(to_point);
+	MUSHRUBYINTERN_DECLARE(velocity);
 };
 
 #undef MUSHRUBYINTERN_DECLARE

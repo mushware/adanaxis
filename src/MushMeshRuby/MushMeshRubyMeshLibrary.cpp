@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 7po3niQtybBuVvnFyMOO2w
 /*
- * $Id: MushMeshRubyMeshLibrary.cpp,v 1.2 2006/06/13 10:35:04 southa Exp $
+ * $Id: MushMeshRubyMeshLibrary.cpp,v 1.3 2006/06/13 19:30:38 southa Exp $
  * $Log: MushMeshRubyMeshLibrary.cpp,v $
+ * Revision 1.3  2006/06/13 19:30:38  southa
+ * Ruby mesh generation
+ *
  * Revision 1.2  2006/06/13 10:35:04  southa
  * Ruby data objects
  *
@@ -60,7 +63,7 @@ MushMeshRubyMeshLibrary::RubyInstall(void)
 {
 	ObjInstall("MushMeshLibrary");
 	
-	MushRubyUtil::SingletonMethodDefineThreeParams(ObjKlass(), "sPolygonPrismCreate", PolygonPrismCreate);
+	MushRubyUtil::SingletonMethodDefineThreeParams(ObjKlass(), "cPolygonPrismCreate", PolygonPrismCreate);
 }
 
 MUSHRUBY_INSTALL(MushMeshRubyMeshLibrary);

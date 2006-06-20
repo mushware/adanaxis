@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } B/Uhyb8oyTGYwsbcQe79PQ
 /*
- * $Id: MushGLWorkSpec.cpp,v 1.8 2006/06/01 15:39:19 southa Exp $
+ * $Id: MushGLWorkSpec.cpp,v 1.9 2006/06/19 15:57:17 southa Exp $
  * $Log: MushGLWorkSpec.cpp,v $
+ * Revision 1.9  2006/06/19 15:57:17  southa
+ * Materials
+ *
  * Revision 1.8  2006/06/01 15:39:19  southa
  * DrawArray verification and fixes
  *
@@ -94,11 +97,13 @@ MushGLWorkSpec::Execute(MushGLBuffers::tDataRef& ioDataRef, MushGLBuffers::tShar
                 {
                     throw MushcoreDataFail("Sizes of vertex and texture coordinate buffers do not match");
                 }
-                MUSHCOREASSERT(m_pTexture != NULL);
-				
-                m_pTexture->Bind();
-                stateRef.TexCoordArraySetTrue(texCoordBuffersRef.TexCoordBufferWRef(i), i);
-                stateRef.TextureEnable2D(i);
+				if (IsValidTexture(i))
+				{
+					stateRef.ActiveTextureZeroBased(i);
+					Texture(i).Bind();
+					stateRef.TexCoordArraySetTrue(texCoordBuffersRef.TexCoordBufferWRef(i), i);
+					stateRef.TextureEnable2D(i);
+				}
             }
         }
     }
@@ -131,7 +136,6 @@ MushGLWorkSpec::Execute(MushGLBuffers::tDataRef& ioDataRef, MushGLBuffers::tShar
     stateRef.TexturesDisable();
     stateRef.ArraysDisable();
 }
-
 
 //%outOfLineFunctions {
 
@@ -167,14 +171,7 @@ MushGLWorkSpec::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
     ioOut << "renderType=" << m_renderType << ", ";
-    if (m_pTexture == NULL)
-    {
-        ioOut << "pTexture=NULL" ;
-    }
-    else
-    {
-        ioOut << "pTexture=" << *m_pTexture;
-    }
+    ioOut << "textures=" << m_textures;
     ioOut << "]";
 }
 bool
@@ -190,9 +187,9 @@ MushGLWorkSpec::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
     {
         ioIn >> m_renderType;
     }
-    else if (inTagStr == "pTexture")
+    else if (inTagStr == "textures")
     {
-        ioIn >> m_pTexture;
+        ioIn >> m_textures;
     }
     else 
     {
@@ -205,7 +202,7 @@ MushGLWorkSpec::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
     ioOut.TagSet("renderType");
     ioOut << m_renderType;
-    ioOut.TagSet("pTexture");
-    ioOut << m_pTexture;
+    ioOut.TagSet("textures");
+    ioOut << m_textures;
 }
-//%outOfLineFunctions } eiSvgnrdvGSdGmKniSgq4A
+//%outOfLineFunctions } 3mmaHloPf9Z7s/VceIeseg

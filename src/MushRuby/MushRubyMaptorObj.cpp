@@ -1,11 +1,7 @@
-//%includeGuardStart {
-#ifndef MUSHMESHRUBYEXTRUSION_H
-#define MUSHMESHRUBYEXTRUSION_H
-//%includeGuardStart } t+bX7G1nRyEz5SiSm5doaA
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushMeshRuby/MushMeshRubyExtrusion.h
+ * File: src/MushRuby/MushRubyMaptorObj.cpp
  *
  * Author: Andy Southgate 2002-2006
  *
@@ -21,23 +17,11 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 2nQn7oUvVXh81hR42GfkRw
+//%Header } R4fRtPwz4XzGgRK/SgSJUw
 /*
  * $Id$
  * $Log$
  */
 
-#include "MushMeshRubyStandard.h"
+#include "MushRubyMaptorObj.h"
 
-class MushMeshExtrusion;
-
-class MushMeshRubyExtrusion : public MushRubyObj<MushMeshLibraryExtrusionContext>
-{
-public:
-	static void RubyInstall(void);
-	
-private:
-};
-//%includeGuardEnd {
-#endif
-//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

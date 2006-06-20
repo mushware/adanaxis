@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } DEX6Sh9oUk/bih2GXm2coA
 /*
- * $Id: AdanaxisGame.cpp,v 1.30 2006/06/12 16:01:21 southa Exp $
+ * $Id: AdanaxisGame.cpp,v 1.31 2006/06/14 18:45:45 southa Exp $
  * $Log: AdanaxisGame.cpp,v $
+ * Revision 1.31  2006/06/14 18:45:45  southa
+ * Ruby mesh generation
+ *
  * Revision 1.30  2006/06/12 16:01:21  southa
  * Ruby mesh generation
  *
@@ -116,6 +119,7 @@
 #include "AdanaxisAppHandler.h"
 #include "AdanaxisClient.h"
 #include "AdanaxisMeshLibrary.h"
+#include "AdanaxisRuby.h"
 #include "AdanaxisSaveData.h"
 #include "AdanaxisServer.h"
 #include "AdanaxisUtil.h"
@@ -133,7 +137,9 @@ using namespace std;
 
 AdanaxisGame::AdanaxisGame(const std::string& inName) :
     m_inited(false),
-    m_name(inName)
+    m_name(inName),
+	m_rubyGame(Mushware::kRubyQnil),
+	m_rubySpace(Mushware::kRubyQnil)
 {
 }
 
@@ -216,15 +222,13 @@ AdanaxisGame::LocalGameCreate(GameAppHandler& inAppHandler)
     m_saveDataRef.NameSet(m_name);
     m_volatileDataRef.NameSet(m_name);
     m_logicRef.NameSet(m_name);
+	AdanaxisRuby::LogicNameSet(m_name);
     MushGameUtil::LocalGameJobsCreate(m_logicRef.WRef());
 }
 
 void
 AdanaxisGame::Init(GameAppHandler& inAppHandler)
-{
-    
-    // MushRubyExec::Sgl().Call("topMenu.render");
-    
+{    
     MushMeshLibraryBase::SingletonMutate(new AdanaxisMeshLibrary);
     MushMesh4Maker::SingletonMutate(new MushMeshLibraryMaker);
 
@@ -246,25 +250,13 @@ AdanaxisGame::Init(GameAppHandler& inAppHandler)
 
     UpdateFromConfig();
     
-	MushRubyExec::Sgl().Call("level1.mMeshInit");
+	m_rubyGame = MushRubyExec::Sgl().Call("$currentGame.mLoad");
+	m_rubySpace = MushRubyExec::Sgl().Call("$currentGame.space");
+	MushRubyExec::Sgl().Call(m_rubySpace, "mInitialPiecesCreate");
 	
     AdanaxisUtil::TestSkinsCreate(Logic());
     AdanaxisUtil::TestDecoCreate(Logic());
     AdanaxisUtil::TestPiecesCreate(Logic());
-    
-    {
-        // MushcoreXMLOStream xmlOut(std::cout);
-        // xmlOut << VolatileData();
-    }
-    
-#if 0
-    cout << ";=" <<(U32)';' << endl;
-    
-    for (U32 i='a'; i<'z'; ++i)
-    {
-        cout << (U8)i << "=" << i << endl;
-    }
-#endif
     
     MushcoreInterpreter::Sgl().Execute("loadsoundstream('adanaxis-music1')");
     if (m_config.PlayMusic())
@@ -323,8 +315,6 @@ AdanaxisGame::SwapIn(GameAppHandler& inAppHandler)
     m_modeKeypressMsec = 0;
     m_newMode = m_config.DisplayMode();
     Logic().RecordTimeSet(m_config.RecordTime());
-	
-	MushRubyExec::Sgl().Call("level1.mInit");
 }
 
 void
@@ -389,7 +379,9 @@ AdanaxisGame::AutoPrint(std::ostream& ioOut) const
     ioOut << "clientRef=" << m_clientRef << ", ";
     ioOut << "serverRef=" << m_serverRef << ", ";
     ioOut << "logicRef=" << m_logicRef << ", ";
-    ioOut << "config=" << m_config;
+    ioOut << "config=" << m_config << ", ";
+    ioOut << "rubyGame=" << m_rubyGame << ", ";
+    ioOut << "rubySpace=" << m_rubySpace;
     ioOut << "]";
 }
 bool
@@ -437,6 +429,14 @@ AdanaxisGame::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& in
     {
         ioIn >> m_config;
     }
+    else if (inTagStr == "rubyGame")
+    {
+        ioIn >> m_rubyGame;
+    }
+    else if (inTagStr == "rubySpace")
+    {
+        ioIn >> m_rubySpace;
+    }
     else 
     {
         return false;
@@ -464,5 +464,9 @@ AdanaxisGame::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_logicRef;
     ioOut.TagSet("config");
     ioOut << m_config;
+    ioOut.TagSet("rubyGame");
+    ioOut << m_rubyGame;
+    ioOut.TagSet("rubySpace");
+    ioOut << m_rubySpace;
 }
-//%outOfLineFunctions } OXfsVqwWbNjOhix/C82ggw
+//%outOfLineFunctions } y3R7S3Xddx3Lcnej/pDAMA

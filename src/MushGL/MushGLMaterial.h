@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } pVNnocdRpPu4/VVhDtWttw
 /*
- * $Id: MushGLMaterial.h,v 1.3 2006/06/01 15:39:18 southa Exp $
+ * $Id: MushGLMaterial.h,v 1.4 2006/06/19 15:57:17 southa Exp $
  * $Log: MushGLMaterial.h,v $
+ * Revision 1.4  2006/06/19 15:57:17  southa
+ * Materials
+ *
  * Revision 1.3  2006/06/01 15:39:18  southa
  * DrawArray verification and fixes
  *
@@ -47,7 +50,7 @@ public:
 	typedef MushcoreDataRef<MushGLMaterial> tDataRef;
 
 	virtual void TexNameSet(const std::string& inName, Mushware::U32 inIndex = 0);
-	virtual MushGLTexture& TexRef(Mushware::U32 inIndex);
+	virtual MushGLTexture& TexRef(Mushware::U32 inIndex) const;
 	virtual MushGLTexture& MushGLMaterial::TexWRef(Mushware::U32 inIndex);
 
 	static Mushware::tRubyValue RubyDefine(Mushware::tRubyArgC inArgC, Mushware::tRubyValue *inpArgV, Mushware::tRubyValue inSelf);

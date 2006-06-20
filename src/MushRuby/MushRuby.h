@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } Wr9YgRvUclXifNHyxB/v3A
 /*
- * $Id: MushRuby.h,v 1.7 2006/06/14 11:20:09 southa Exp $
+ * $Id: MushRuby.h,v 1.8 2006/06/16 12:11:05 southa Exp $
  * $Log: MushRuby.h,v $
+ * Revision 1.8  2006/06/16 12:11:05  southa
+ * Ruby subclasses
+ *
  * Revision 1.7  2006/06/14 11:20:09  southa
  * Ruby mesh generation
  *
@@ -54,6 +57,7 @@
 #include "MushRubyFail.h"
 #include "MushRubyInstall.h"
 #include "MushRubyIntern.h"
+#include "MushRubyMaptorObj.h"
 #include "MushRubyObj.h"
 #include "MushRubyObject.h"
 #include "MushRubyStandard.h"
