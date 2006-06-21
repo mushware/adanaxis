@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } zxudYl+J614B+ona+VDSzQ
 /*
- * $Id: AdanaxisPieceKhazi.h,v 1.6 2005/09/05 12:54:29 southa Exp $
+ * $Id: AdanaxisPieceKhazi.h,v 1.7 2006/06/01 15:38:47 southa Exp $
  * $Log: AdanaxisPieceKhazi.h,v $
+ * Revision 1.7  2006/06/01 15:38:47  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.6  2005/09/05 12:54:29  southa
  * Solid rendering work
  *
@@ -79,7 +82,7 @@ private:
     MushMesh4Mesh m_mesh; //:readwrite :wref
     MushGLBuffers::tDataRef m_buffersRef; //:readwrite
     MushGLBuffers::tSharedDataRef m_texCoordBuffersRef; //:readwrite
-        
+
 //%classPrototypes {
 public:
     const std::string& Id(void) const { return m_id; }

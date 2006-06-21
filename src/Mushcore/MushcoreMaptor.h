@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } ChL6aTElKIc1rPHNw0/j3A
 /*
- * $Id: MushcoreMaptor.h,v 1.5 2006/06/01 15:39:45 southa Exp $
+ * $Id: MushcoreMaptor.h,v 1.6 2006/06/20 19:06:55 southa Exp $
  * $Log: MushcoreMaptor.h,v $
+ * Revision 1.6  2006/06/20 19:06:55  southa
+ * Object creation
+ *
  * Revision 1.5  2006/06/01 15:39:45  southa
  * DrawArray verification and fixes
  *
@@ -104,6 +107,10 @@ public:
     void Delete(const K& inKey);
     bool DeleteIfExists(const K& inKey) { return (erase(inKey) != 0); }
     void Clear(void) { clear(); }
+	
+	// Key helper
+	K NextKey(void) { return m_nextKey++; } // If used, K must have ++ operator
+	
     // XML operations
     void XMLRead(MushcoreXMLIStream& ioIn);
     void XMLPrint(MushcoreXMLOStream& ioOut) const;
@@ -117,7 +124,8 @@ protected:
 private:
     C m_data; //:readwrite
     Mushware::U32 m_sequenceNum; //:read Incremented when anything is deleted
-    
+    K m_nextKey;
+	
 //%classPrototypes {
 public:
     const C& Data(void) const { return m_data; }
@@ -130,7 +138,8 @@ public:
 template<class T, class K, class C>
 inline
 MushcoreMaptor<T, K, C>::MushcoreMaptor() :
-    m_sequenceNum(0)
+    m_sequenceNum(0),
+    m_nextKey(K())
 {
 }
 
@@ -425,10 +434,11 @@ MushcoreMaptor<T, K, C>::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
     ioOut << "data=" << m_data << ", ";
-    ioOut << "sequenceNum=" << m_sequenceNum;
+    ioOut << "sequenceNum=" << m_sequenceNum << ", ";
+    ioOut << "nextKey=" << m_nextKey;
     ioOut << "]";
 }
-//%inlineHeader } PFIQhglLnuKb2VKYgJq36Q
+//%inlineHeader } T8DNonMs0TjvuKI67DPdAw
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

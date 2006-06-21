@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } 0edG1wrkU5hKeWbu3l1MQA
 /*
- * $Id: AdanaxisPlayer.cpp,v 1.15 2005/08/02 14:37:44 southa Exp $
+ * $Id: AdanaxisPlayer.cpp,v 1.16 2006/06/01 15:38:48 southa Exp $
  * $Log: AdanaxisPlayer.cpp,v $
+ * Revision 1.16  2006/06/01 15:38:48  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.15  2005/08/02 14:37:44  southa
  * Adanaxis control demo work
  *
@@ -82,7 +85,8 @@ using namespace Mushware;
 using namespace std;
 
 AdanaxisPlayer::AdanaxisPlayer(const std::string& inPlayerID) :
-    MushGamePlayer(inPlayerID)
+    MushGamePlayer(inPlayerID),
+	m_projectileMeshRef("projectile")
 {
     PostWRef().PosSet(t4Val(0,0,0,55));
 }
@@ -283,7 +287,8 @@ AdanaxisPlayer::FirePieceCreate(MushGameLogic& ioLogic, const MushGameMessageFir
     projectileRef.PostWRef().AngVelSet(angVel);
     
     // Create the mesh for this object
-    AdanaxisUtil::MeshLibrary().ProjectileCreate(projectileRef.MeshWRef());
+    projectileRef.MeshWRef() = m_projectileMeshRef.Ref();
+	projectileRef.TexCoordBuffersNameSet(m_projectileMeshRef.Name());
 }
 
 void
@@ -331,7 +336,8 @@ AdanaxisPlayer::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
     MushGamePlayer::AutoPrint(ioOut);
-    ioOut << "lastAxes=" << m_lastAxes;
+    ioOut << "lastAxes=" << m_lastAxes << ", ";
+    ioOut << "projectileMeshRef=" << m_projectileMeshRef;
     ioOut << "]";
 }
 bool
@@ -346,6 +352,10 @@ AdanaxisPlayer::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
     else if (inTagStr == "lastAxes")
     {
         ioIn >> m_lastAxes;
+    }
+    else if (inTagStr == "projectileMeshRef")
+    {
+        ioIn >> m_projectileMeshRef;
     }
     else if (MushGamePlayer::AutoXMLDataProcess(ioIn, inTagStr))
     {
@@ -363,5 +373,7 @@ AdanaxisPlayer::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     MushGamePlayer::AutoXMLPrint(ioOut);
     ioOut.TagSet("lastAxes");
     ioOut << m_lastAxes;
+    ioOut.TagSet("projectileMeshRef");
+    ioOut << m_projectileMeshRef;
 }
-//%outOfLineFunctions } db2HxbL5n1vrtyu4ZQLaRw
+//%outOfLineFunctions } XwoTRjO+3AZqJ0A2xJSzTg

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } oYaclGAzf6mPo2JW/S6SXA
 /*
- * $Id: MushcoreMaptorRef.h,v 1.2 2006/05/11 10:43:18 southa Exp $
+ * $Id: MushcoreMaptorRef.h,v 1.3 2006/06/20 19:06:55 southa Exp $
  * $Log: MushcoreMaptorRef.h,v $
+ * Revision 1.3  2006/06/20 19:06:55  southa
+ * Object creation
+ *
  * Revision 1.2  2006/05/11 10:43:18  southa
  * Project updates
  *
@@ -51,7 +54,7 @@ public:
         m_sequenceNum(0),
         m_ptr(NULL)
     {}
-    explicit MushcoreMaptorRef(const C& inContainer, const K& inKey = K()) :
+    explicit MushcoreMaptorRef(C& inContainer, const K& inKey = K()) :
         m_key(inKey),
         m_pContainer(&inContainer),
         m_sequenceNum(0),
@@ -61,14 +64,15 @@ public:
     T& operator*() const { return *Dereference(); }
     T *operator->() const { return Dereference(); }
 
-	void MaptorSet(const C& inMaptor) { m_pContainer = &inMaptor; }
+	void MaptorSet(C& inMaptor) { m_pContainer = &inMaptor; }
+	T *GetOrCreate(void) const;
 	
 protected:
     T *Dereference(void) const;
 
 private:
     K m_key; //:readwrite
-    const C *m_pContainer; //:read
+    C *m_pContainer;
     mutable K m_sequenceNum;
     mutable T *m_ptr;
     
@@ -76,16 +80,15 @@ private:
 public:
     const K& Key(void) const { return m_key; }
     void KeySet(const K& inValue) { m_key=inValue; }
-    const C& PContainer(void) const { return *m_pContainer; }
     void AutoPrint(std::ostream& ioOut) const;
-//%classPrototypes } AVHwg8rIQ9tkq9xdBfGYtg
+//%classPrototypes } oT5CcgdwKy07OfZ37Sh+8Q
 };
 
 template<class T, class K, class C>
 inline T *
 MushcoreMaptorRef<T, K, C>::Dereference(void) const
 {
-    if (dynamic_cast<const C *>(m_pContainer) == NULL)
+    if (dynamic_cast<C *>(m_pContainer) == NULL)
     {
         if (m_pContainer == NULL)
         {
@@ -100,6 +103,26 @@ MushcoreMaptorRef<T, K, C>::Dereference(void) const
     }
     return m_ptr;
 }
+
+template<class T, class K, class C>
+inline T *
+MushcoreMaptorRef<T, K, C>::GetOrCreate(void) const
+{
+	if (dynamic_cast<C *>(m_pContainer) == NULL)
+    {
+        if (m_pContainer == NULL)
+        {
+            throw MushcoreDataFail("Cannot dereference MaptorRef whilst container is NULL");
+        }
+        throw MushcoreLogicFail("Container for MaptorRef deleted or wrong type");
+    }
+    if (m_ptr == NULL || m_sequenceNum != m_pContainer->SequenceNum())
+    {
+        m_ptr = &m_pContainer->GetOrCreate(m_key);
+        m_sequenceNum = m_pContainer->SequenceNum();
+    }
+    return m_ptr;
+}	
 
 //%inlineHeader {
 template<class T, class K, class C>

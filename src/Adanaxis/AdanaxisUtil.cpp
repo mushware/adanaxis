@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } gq3ekJ+T4/5Q9GxsUU01+w
 /*
- * $Id: AdanaxisUtil.cpp,v 1.25 2006/06/12 16:01:21 southa Exp $
+ * $Id: AdanaxisUtil.cpp,v 1.26 2006/06/14 18:45:46 southa Exp $
  * $Log: AdanaxisUtil.cpp,v $
+ * Revision 1.26  2006/06/14 18:45:46  southa
+ * Ruby mesh generation
+ *
  * Revision 1.25  2006/06/12 16:01:21  southa
  * Ruby mesh generation
  *
@@ -129,6 +132,21 @@ AdanaxisUtil::MeshLibrary(void)
         throw MushcoreRequestFail("MeshLibrary of wrong type for AdanaxisMeshLibrary");
     }
     return *pMeshLibrary;
+}
+
+void
+AdanaxisUtil::MissingSkinsCreate(AdanaxisLogic& ioLogic)
+{
+    MushSkinTiled skinTiled;
+    
+	typedef MushcoreData<MushMesh4Mesh> tMeshData;
+	
+	tMeshData::iterator endIter = tMeshData::Sgl().end();
+	for (tMeshData::iterator p = tMeshData::Sgl().begin(); p != endIter; ++p)
+	{
+		skinTiled.TexCoordsGenerate(*p->second);
+		MushcoreData<MushGLBuffers>::Sgl().GetOrCreate(p->first);
+	}
 }
 
 void

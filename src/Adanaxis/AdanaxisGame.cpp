@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } DEX6Sh9oUk/bih2GXm2coA
 /*
- * $Id: AdanaxisGame.cpp,v 1.31 2006/06/14 18:45:45 southa Exp $
+ * $Id: AdanaxisGame.cpp,v 1.32 2006/06/20 19:06:51 southa Exp $
  * $Log: AdanaxisGame.cpp,v $
+ * Revision 1.32  2006/06/20 19:06:51  southa
+ * Object creation
+ *
  * Revision 1.31  2006/06/14 18:45:45  southa
  * Ruby mesh generation
  *
@@ -254,9 +257,11 @@ AdanaxisGame::Init(GameAppHandler& inAppHandler)
 	m_rubySpace = MushRubyExec::Sgl().Call("$currentGame.space");
 	MushRubyExec::Sgl().Call(m_rubySpace, "mInitialPiecesCreate");
 	
-    AdanaxisUtil::TestSkinsCreate(Logic());
+	AdanaxisUtil::MissingSkinsCreate(Logic());
+	
+    // AdanaxisUtil::TestSkinsCreate(Logic());
     AdanaxisUtil::TestDecoCreate(Logic());
-    AdanaxisUtil::TestPiecesCreate(Logic());
+    // AdanaxisUtil::TestPiecesCreate(Logic());
     
     MushcoreInterpreter::Sgl().Execute("loadsoundstream('adanaxis-music1')");
     if (m_config.PlayMusic())

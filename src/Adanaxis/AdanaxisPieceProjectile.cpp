@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } JmMTx0XAPATtkBANlQg8tA
 /*
- * $Id: AdanaxisPieceProjectile.cpp,v 1.4 2005/08/01 13:09:57 southa Exp $
+ * $Id: AdanaxisPieceProjectile.cpp,v 1.5 2006/06/01 15:38:48 southa Exp $
  * $Log: AdanaxisPieceProjectile.cpp,v $
+ * Revision 1.5  2006/06/01 15:38:48  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.4  2005/08/01 13:09:57  southa
  * Collision messaging
  *
@@ -64,6 +67,7 @@ AdanaxisPieceProjectile::Render(MushGameLogic& ioLogic, MushRenderMesh& inRender
 {
     MushRenderSpec renderSpec;
     renderSpec.BuffersRefSet(m_buffersRef);
+    renderSpec.TexCoordBuffersRefSet(m_texCoordBuffersRef);
     
     MushMeshOps::PosticityToMattress(renderSpec.ModelWRef(), Post());
     MushMeshOps::PosticityToMattress(renderSpec.ViewWRef(), inCamera.Post());
@@ -138,7 +142,8 @@ AdanaxisPieceProjectile::AutoPrint(std::ostream& ioOut) const
     ioOut << "expiryMsec=" << m_expiryMsec << ", ";
     ioOut << "expireFlag=" << m_expireFlag << ", ";
     ioOut << "mesh=" << m_mesh << ", ";
-    ioOut << "buffersRef=" << m_buffersRef;
+    ioOut << "buffersRef=" << m_buffersRef << ", ";
+    ioOut << "texCoordBuffersRef=" << m_texCoordBuffersRef;
     ioOut << "]";
 }
 bool
@@ -182,6 +187,10 @@ AdanaxisPieceProjectile::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std:
     {
         ioIn >> m_buffersRef;
     }
+    else if (inTagStr == "texCoordBuffersRef")
+    {
+        ioIn >> m_texCoordBuffersRef;
+    }
     else if (MushGamePiece::AutoXMLDataProcess(ioIn, inTagStr))
     {
         // Tag consumed by base class
@@ -212,5 +221,7 @@ AdanaxisPieceProjectile::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_mesh;
     ioOut.TagSet("buffersRef");
     ioOut << m_buffersRef;
+    ioOut.TagSet("texCoordBuffersRef");
+    ioOut << m_texCoordBuffersRef;
 }
-//%outOfLineFunctions } cH84tCwMy+3SYNZp2iw3ew
+//%outOfLineFunctions } skZsNlXl9lR7ktKkkXgPJA

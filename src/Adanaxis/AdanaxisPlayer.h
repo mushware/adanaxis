@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } hi3ujI4Vfz2nY7QFnANQWA
 /*
- * $Id: AdanaxisPlayer.h,v 1.8 2005/07/18 13:13:36 southa Exp $
+ * $Id: AdanaxisPlayer.h,v 1.9 2006/06/01 15:38:48 southa Exp $
  * $Log: AdanaxisPlayer.h,v $
+ * Revision 1.9  2006/06/01 15:38:48  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.8  2005/07/18 13:13:36  southa
  * Extrude to point and projectile mesh
  *
@@ -71,7 +74,8 @@ public:
 
 private:
     std::vector<Mushware::tVal> m_lastAxes;
-        
+	MushcoreDataRef<MushMesh4Mesh> m_projectileMeshRef;
+	
 //%classPrototypes {
 public:
     virtual const char *AutoName(void) const;

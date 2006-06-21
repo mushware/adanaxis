@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef MUSHMESHRUBY_H
-#define MUSHMESHRUBY_H
-//%includeGuardStart } RKl2QL4WSjdeSyfOCwy0vA
+#ifndef MUSHMUSHMESHRUBY_H
+#define MUSHMUSHMESHRUBY_H
+//%includeGuardStart } GnQTkG4Tnr2+fTZuExoa+Q
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushMeshRuby/MushMeshRuby.h
+ * File: src/API/mushMushMeshRuby.h
  *
  * Author: Andy Southgate 2002-2006
  *
@@ -21,27 +21,24 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } W0cKUfOSC2OQawh30P8bUQ
+//%Header } Jn6ULH+4b8ouqTBpeZ9mPQ
 /*
- * $Id: MushMeshRuby.h,v 1.1 2006/06/12 11:59:38 southa Exp $
- * $Log: MushMeshRuby.h,v $
- * Revision 1.1  2006/06/12 11:59:38  southa
- * Ruby wrapper for MushMeshVector
- *
+ * $Id$
+ * $Log$
  */
 
-#include "MushMeshRubyBase.h"
-#include "MushMeshRubyBasePrism.h"
-#include "MushMeshRubyDisplacement.h"
-#include "MushMeshRubyExtruder.h"
-#include "MushMeshRubyMesh.h"
-#include "MushMeshRubyMeshLibrary.h"
-#include "MushMeshRubyPost.h"
-#include "MushMeshRubyRotation.h"
-// Not MushMeshRubyRuby, as that includes ruby.h, etc.
-#include "MushMeshRubyStandard.h"
-#include "MushMeshRubyTools.h"
-#include "MushMeshRubyVector.h"
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
+
+#if defined(HAVE_MUSHMESHRUBY_MUSHMESHRUBY_H)
+#include <MushMeshLibrary/MushMeshLibrary.h>
+#elif defined(HAVE_MUSHMESHRUBY_H)
+#include <MushMeshLibrary.h>
+#else
+#include "MushMeshRuby/MushMeshRuby.h"
+#endif
+ 
 
 //%includeGuardEnd {
 #endif

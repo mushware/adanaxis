@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } Z+ifTSkKrl4GVRxP2YKNlg
 /*
- * $Id: AdanaxisPieceKhazi.cpp,v 1.6 2005/09/05 12:54:29 southa Exp $
+ * $Id: AdanaxisPieceKhazi.cpp,v 1.7 2006/06/01 15:38:47 southa Exp $
  * $Log: AdanaxisPieceKhazi.cpp,v $
+ * Revision 1.7  2006/06/01 15:38:47  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.6  2005/09/05 12:54:29  southa
  * Solid rendering work
  *
@@ -168,6 +171,9 @@ AdanaxisPieceKhazi::Explode(MushGameLogic& ioLogic, const MushGameMessageCollisi
             
             // Create the mesh for this object
             MushMesh4Util::ChunkCopy(projectileRef.MeshWRef(), Mesh(), i);
+			
+			// Can't texture this one yet
+			// projectileRef.TexCoordBuffersRefSet(m_texCoordBuffersRef);
         }
     }
 }

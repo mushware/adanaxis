@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } n1eaCj2fb8dNPgbT0uOuEQ
 /*
- * $Id: MushRubyIntern.h,v 1.5 2006/06/19 15:57:20 southa Exp $
+ * $Id: MushRubyIntern.h,v 1.6 2006/06/20 19:06:55 southa Exp $
  * $Log: MushRubyIntern.h,v $
+ * Revision 1.6  2006/06/20 19:06:55  southa
+ * Object creation
+ *
  * Revision 1.5  2006/06/19 15:57:20  southa
  * Materials
  *
@@ -61,11 +64,13 @@ public:
 	MUSHRUBYINTERN_DECLARE(cToPrint);
 	MUSHRUBYINTERN_DECLARE(displacement);
 	MUSHRUBYINTERN_DECLARE(displacement_velocity);
+	MUSHRUBYINTERN_DECLARE(mesh_name);
 	MUSHRUBYINTERN_DECLARE(num_iterations);
 	MUSHRUBYINTERN_DECLARE(name);
 	MUSHRUBYINTERN_DECLARE(offset);
 	MUSHRUBYINTERN_DECLARE(order);
 	MUSHRUBYINTERN_DECLARE(position);
+	MUSHRUBYINTERN_DECLARE(post);
 	MUSHRUBYINTERN_DECLARE(rotation);
 	MUSHRUBYINTERN_DECLARE(scale);
 	MUSHRUBYINTERN_DECLARE(scale_velocity);

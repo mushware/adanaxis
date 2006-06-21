@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } oR7WPhSKmfGQldTVFg6TpQ
 /*
- * $Id: MushMeshRubyMesh.cpp,v 1.6 2006/06/16 01:02:33 southa Exp $
+ * $Id: MushMeshRubyMesh.cpp,v 1.7 2006/06/19 15:57:19 southa Exp $
  * $Log: MushMeshRubyMesh.cpp,v $
+ * Revision 1.7  2006/06/19 15:57:19  southa
+ * Materials
+ *
  * Revision 1.6  2006/06/16 01:02:33  southa
  * Ruby mesh generation
  *
@@ -63,6 +66,8 @@ MUSHRUBYDATAOBJ_INITIALIZE(MushMesh4Mesh)(Mushware::tRubyArgC inArgC, Mushware::
 	std::string nameStr = nameValue.String();
 	DataObjRef(inSelf).NameSet(nameStr);
 	tDataObjData::Sgl().GetOrCreate(nameStr); // Create mesh if it doesn't exist
+
+	WRef(inSelf).TexCoordDelegateSet(MushMesh4Mesh::tDataRef(nameStr));
 
 	return inSelf;
 }

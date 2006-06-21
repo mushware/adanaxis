@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } lqALCPGBahbk4ibyVPO8LQ
 /*
- * $Id: MushRubyIntern.cpp,v 1.5 2006/06/19 15:57:19 southa Exp $
+ * $Id: MushRubyIntern.cpp,v 1.6 2006/06/20 19:06:54 southa Exp $
  * $Log: MushRubyIntern.cpp,v $
+ * Revision 1.6  2006/06/20 19:06:54  southa
+ * Object creation
+ *
  * Revision 1.5  2006/06/19 15:57:19  southa
  * Materials
  *
@@ -51,11 +54,13 @@ MUSHRUBYINTERN_DEFINE(backtrace);
 MUSHRUBYINTERN_DEFINE(cToPrint);
 MUSHRUBYINTERN_DEFINE(displacement);
 MUSHRUBYINTERN_DEFINE(displacement_velocity);
+MUSHRUBYINTERN_DEFINE(mesh_name);
 MUSHRUBYINTERN_DEFINE(name);
 MUSHRUBYINTERN_DEFINE(num_iterations);
 MUSHRUBYINTERN_DEFINE(offset);
 MUSHRUBYINTERN_DEFINE(order);
 MUSHRUBYINTERN_DEFINE(position);
+MUSHRUBYINTERN_DEFINE(post);
 MUSHRUBYINTERN_DEFINE(rotation);
 MUSHRUBYINTERN_DEFINE(scale);
 MUSHRUBYINTERN_DEFINE(scale_velocity);MUSHRUBYINTERN_DEFINE(size);
@@ -75,10 +80,12 @@ MushRubyIntern::Initialise(void)
 	MUSHRUBYINTERN_INIT(cToPrint);
 	MUSHRUBYINTERN_INIT(displacement);
 	MUSHRUBYINTERN_INIT(displacement_velocity);
+	MUSHRUBYINTERN_INIT(mesh_name);
 	MUSHRUBYINTERN_INIT(name);
 	MUSHRUBYINTERN_INIT(num_iterations);
 	MUSHRUBYINTERN_INIT(offset);
 	MUSHRUBYINTERN_INIT(order);
+	MUSHRUBYINTERN_INIT(post);
 	MUSHRUBYINTERN_INIT(position);
 	MUSHRUBYINTERN_INIT(rotation);
 	MUSHRUBYINTERN_INIT(scale);

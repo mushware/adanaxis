@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } MSkxQTbR3Y9MJ8AQN1Lzjw
 /*
- * $Id: AdanaxisUtil.h,v 1.7 2005/09/05 12:54:29 southa Exp $
+ * $Id: AdanaxisUtil.h,v 1.8 2006/06/01 15:38:49 southa Exp $
  * $Log: AdanaxisUtil.h,v $
+ * Revision 1.8  2006/06/01 15:38:49  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.7  2005/09/05 12:54:29  southa
  * Solid rendering work
  *
@@ -56,6 +59,7 @@ class AdanaxisMeshLibrary;
 class AdanaxisUtil
 {
 public:
+    static void MissingSkinsCreate(AdanaxisLogic& ioLogic);
     static void TestPiecesCreate(AdanaxisLogic& ioLogic);
     static void TestDecoCreate(AdanaxisLogic& ioLogic);
     static void TestSkinsCreate(AdanaxisLogic& ioLogic);
