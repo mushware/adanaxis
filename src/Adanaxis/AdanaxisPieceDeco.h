@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } 6GdOb3M8gmTP56sPCf1YGA
 /*
- * $Id: AdanaxisPieceDeco.h,v 1.5 2005/07/12 12:18:17 southa Exp $
+ * $Id: AdanaxisPieceDeco.h,v 1.6 2006/06/01 15:38:47 southa Exp $
  * $Log: AdanaxisPieceDeco.h,v $
+ * Revision 1.6  2006/06/01 15:38:47  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.5  2005/07/12 12:18:17  southa
  * Projectile work
  *
@@ -57,10 +60,13 @@ public:
     
     virtual void Render(MushGameLogic& ioLogic, MushRenderMesh& inRender, const MushGameCamera& inCamera);
     
+    virtual void TexCoordBuffersNameSet(const std::string& inName) { m_texCoordBuffersRef.NameSet(inName); }
+    
 private:
     std::string m_id;
     MushMesh4Mesh m_mesh; //:readwrite :wref
     MushGLBuffers::tDataRef m_buffersRef; //:readwrite
+    MushGLBuffers::tSharedDataRef m_texCoordBuffersRef; //:readwrite
     
 //%classPrototypes {
 public:
@@ -70,6 +76,8 @@ public:
     MushMesh4Mesh& MeshWRef(void) { return m_mesh; }
     const MushGLBuffers::tDataRef& BuffersRef(void) const { return m_buffersRef; }
     void BuffersRefSet(const MushGLBuffers::tDataRef& inValue) { m_buffersRef=inValue; }
+    const MushGLBuffers::tSharedDataRef& TexCoordBuffersRef(void) const { return m_texCoordBuffersRef; }
+    void TexCoordBuffersRefSet(const MushGLBuffers::tSharedDataRef& inValue) { m_texCoordBuffersRef=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -77,7 +85,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } M39FVg2TvHcPuJT29BZkpg
+//%classPrototypes } nRxow55pBICnEm4KzNz7NQ
 };
 //%inlineHeader {
 inline std::ostream&

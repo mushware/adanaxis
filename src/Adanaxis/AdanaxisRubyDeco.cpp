@@ -1,7 +1,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/Adanaxis/AdanaxisRubyKhazi.cpp
+ * File: src/Adanaxis/AdanaxisRubyDeco.cpp
  *
  * Copyright: Andy Southgate 2005-2006
  *
@@ -15,42 +15,35 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } jfvLAljTAeaaaEtw9b858w
+//%Header } r5rNdYDyBUZExmiHMjHIWA
 /*
- * $Id: AdanaxisRubyKhazi.cpp,v 1.1 2006/06/21 12:17:56 southa Exp $
- * $Log: AdanaxisRubyKhazi.cpp,v $
- * Revision 1.1  2006/06/21 12:17:56  southa
- * Ruby object generation
- *
+ * $Id$
+ * $Log$
  */
 
-#include "AdanaxisRubyKhazi.h"
+#include "AdanaxisRubyDeco.h"
 
 #include "AdanaxisRuby.h"
-#include "AdanaxisSaveData.h"
+#include "AdanaxisVolatileData.h"
 
 #include "API/mushMushGame.h"
 #include "API/mushMushMeshRuby.h"
 
-MUSHRUBYMAPTOROBJ_INSTANCE(AdanaxisPieceKhazi);
+MUSHRUBYMAPTOROBJ_INSTANCE(AdanaxisPieceDeco);
 
 using namespace Mushware;
 using namespace std;
 
-MUSHRUBYMAPTOROBJ_INITIALIZE(AdanaxisPieceKhazi)(Mushware::tRubyArgC inArgC, Mushware::tRubyValue *inpArgV, Mushware::tRubyValue inSelf)
+MUSHRUBYMAPTOROBJ_INITIALIZE(AdanaxisPieceDeco)(Mushware::tRubyArgC inArgC, Mushware::tRubyValue *inpArgV, Mushware::tRubyValue inSelf)
 {
 	tMaptorObjRef& refRef = MaptorObjRef(inSelf);
-	tMaptorObjData& dataRef = AdanaxisRuby::SaveData().KhaziListWRef();
+	tMaptorObjData& dataRef = AdanaxisRuby::VolatileData().DecoListWRef();
 	
-	/* This object contains a reference (MushcoreMaptorRef) to an object
-	 * in SaveData().KhaziList(), which is a MushcoreMaptor<AdanaxisPieceKhazi>.
-	 * The next line points the MushcoreMaptorRef at that MushcoreMaptor
-	 */
 	refRef.MaptorSet(dataRef);
 	
 	refRef.KeySet(dataRef.NextKey());
-	AdanaxisPieceKhazi& khaziRef = *refRef.GetOrCreate();
-
+	AdanaxisPieceDeco& khaziRef = *refRef.GetOrCreate();
+	
 	std::string meshName = "";
 	
 	switch (inArgC)
@@ -60,7 +53,7 @@ MUSHRUBYMAPTOROBJ_INITIALIZE(AdanaxisPieceKhazi)(Mushware::tRubyArgC inArgC, Mus
 			MushRubyValue param0(inpArgV[0]);
 			if (!param0.IsHash())
 			{
-				MushRubyUtil::Raise("Parameters to AdanaxisKhazi.new must be in hash form");	
+				MushRubyUtil::Raise("Parameters to AdanaxisDeco.new must be in hash form");	
 			}
 			else
 			{
@@ -79,7 +72,7 @@ MUSHRUBYMAPTOROBJ_INITIALIZE(AdanaxisPieceKhazi)(Mushware::tRubyArgC inArgC, Mus
 					}
 					else
 					{
-						MushRubyUtil::Raise("Unknown name in AdanaxisKhazi parameter hash '"+p->first.String()+"'");	
+						MushRubyUtil::Raise("Unknown name in AdanaxisDeco parameter hash '"+p->first.String()+"'");	
 					}
 				}
 			}
@@ -87,8 +80,9 @@ MUSHRUBYMAPTOROBJ_INITIALIZE(AdanaxisPieceKhazi)(Mushware::tRubyArgC inArgC, Mus
 		break;
 			
 		default:
-			MushRubyUtil::Raise("AdanaxisRubyKhazi constructor requires a parameter hash");
-			break;			
+			MushRubyUtil::Raise("AdanaxisRubyDeco constructor requires a parameter hash");
+			break;
+			
 	}
 	
 	if (meshName != "")
@@ -98,14 +92,14 @@ MUSHRUBYMAPTOROBJ_INITIALIZE(AdanaxisPieceKhazi)(Mushware::tRubyArgC inArgC, Mus
 	}
     else
 	{
-			MushcoreLog::Sgl().WarningLog() << "Creating AdanaxisKhazi object without a valid mesh_name parameter" << endl;	
+		MushcoreLog::Sgl().WarningLog() << "Creating AdanaxisDeco object without a valid mesh_name parameter" << endl;	
 	}
-
+	
 	return inSelf;
 }
 
 Mushware::tRubyValue
-AdanaxisRubyKhazi::post(Mushware::tRubyValue inSelf)
+AdanaxisRubyDeco::post(Mushware::tRubyValue inSelf)
 {
 	Mushware::tRubyValue retVal = MushMeshRubyPost::NewInstance();
 	MushMeshRubyPost::WRef(retVal) = Ref(inSelf).Post();
@@ -113,16 +107,16 @@ AdanaxisRubyKhazi::post(Mushware::tRubyValue inSelf)
 }
 
 Mushware::tRubyValue
-AdanaxisRubyKhazi::post_equal(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0)
+AdanaxisRubyDeco::post_equal(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0)
 {
 	WRef(inSelf).PostSet(MushMeshRubyPost::Ref(inArg0));
 	return inSelf;
 }
 
 void
-AdanaxisRubyKhazi::RubyInstall(void)
+AdanaxisRubyDeco::RubyInstall(void)
 {
-	MaptorObjInstall("AdanaxisKhazi");
+	MaptorObjInstall("AdanaxisDeco");
 	MushRubyUtil::MethodDefineNoParams(Klass(), "post", post);
 	MushRubyUtil::MethodDefineOneParam(Klass(), "post=", post_equal);
 }
@@ -131,7 +125,7 @@ namespace
 {
 	void Install(void)
 	{
-		MushRubyInstall::Sgl().Add(AdanaxisRubyKhazi::RubyInstall);
+		MushRubyInstall::Sgl().Add(AdanaxisRubyDeco::RubyInstall);
 	}
 	MushcoreInstaller install(Install);
 }

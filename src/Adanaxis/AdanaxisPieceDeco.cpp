@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } Kb73MSBnaByz2lwXVLGZkA
 /*
- * $Id: AdanaxisPieceDeco.cpp,v 1.13 2005/08/02 11:11:47 southa Exp $
+ * $Id: AdanaxisPieceDeco.cpp,v 1.14 2006/06/01 15:38:47 southa Exp $
  * $Log: AdanaxisPieceDeco.cpp,v $
+ * Revision 1.14  2006/06/01 15:38:47  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.13  2005/08/02 11:11:47  southa
  * Adanaxis control demo work
  *
@@ -78,6 +81,8 @@ AdanaxisPieceDeco::Render(MushGameLogic& ioLogic, MushRenderMesh& inRender, cons
 {
     bool visible = true;
     t4Val objNormal = Post().Pos();
+	tVal objDist = objNormal.Magnitude();
+	
     objNormal.InPlaceNormalise();
     t4Val viewNormal = t4Val(0,0,0,-1);
     
@@ -85,7 +90,7 @@ AdanaxisPieceDeco::Render(MushGameLogic& ioLogic, MushRenderMesh& inRender, cons
     
     visible = (objNormal * viewNormal > 0.9);
     
-    if (visible)
+    if (visible, 1)
     {
         PostWRef().InPlaceVelocityAdd();
 
@@ -94,6 +99,7 @@ AdanaxisPieceDeco::Render(MushGameLogic& ioLogic, MushRenderMesh& inRender, cons
 
         MushRenderSpec renderSpec;
         renderSpec.BuffersRefSet(m_buffersRef);
+		renderSpec.TexCoordBuffersRefSet(m_texCoordBuffersRef);
 
         MushMeshOps::PosticityToMattress(renderSpec.ModelWRef(), Post());
         MushMeshOps::PosticityToMattress(renderSpec.ViewWRef(), newCamera.Post());
@@ -141,7 +147,8 @@ AdanaxisPieceDeco::AutoPrint(std::ostream& ioOut) const
     MushGamePiece::AutoPrint(ioOut);
     ioOut << "id=" << m_id << ", ";
     ioOut << "mesh=" << m_mesh << ", ";
-    ioOut << "buffersRef=" << m_buffersRef;
+    ioOut << "buffersRef=" << m_buffersRef << ", ";
+    ioOut << "texCoordBuffersRef=" << m_texCoordBuffersRef;
     ioOut << "]";
 }
 bool
@@ -165,6 +172,10 @@ AdanaxisPieceDeco::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::strin
     {
         ioIn >> m_buffersRef;
     }
+    else if (inTagStr == "texCoordBuffersRef")
+    {
+        ioIn >> m_texCoordBuffersRef;
+    }
     else if (MushGamePiece::AutoXMLDataProcess(ioIn, inTagStr))
     {
         // Tag consumed by base class
@@ -185,5 +196,7 @@ AdanaxisPieceDeco::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_mesh;
     ioOut.TagSet("buffersRef");
     ioOut << m_buffersRef;
+    ioOut.TagSet("texCoordBuffersRef");
+    ioOut << m_texCoordBuffersRef;
 }
-//%outOfLineFunctions } 8IECvxeHlwRBQh1H5NuTiQ
+//%outOfLineFunctions } tY7M/V7zlUR5BP0B9KOKJQ

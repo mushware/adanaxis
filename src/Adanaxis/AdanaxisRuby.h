@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } MK0axjVPaZ5W542QBYpvFg
 /*
- * $Id$
- * $Log$
+ * $Id: AdanaxisRuby.h,v 1.1 2006/06/21 12:17:56 southa Exp $
+ * $Log: AdanaxisRuby.h,v $
+ * Revision 1.1  2006/06/21 12:17:56  southa
+ * Ruby object generation
+ *
  */
 
 #include "AdanaxisStandard.h"
@@ -37,6 +40,7 @@ public:
 	static void AdanaxisInstall(void);
 	
 	static AdanaxisSaveData& SaveData(void);
+	static AdanaxisVolatileData& VolatileData(void);
 	static void LogicNameSet(const std::string& inName) { s_logicRef.NameSet(inName); }
 	
 private:
@@ -58,6 +62,17 @@ AdanaxisRuby::SaveData(void)
         throw MushcoreLogicFail(std::string("AdanaxisLogic of wrong type '")+s_logicRef.Ref().AutoName()+"'");
     }
 	return pLogic->SaveData();
+}
+
+inline AdanaxisVolatileData&
+AdanaxisRuby::VolatileData(void)
+{
+	AdanaxisLogic *pLogic = dynamic_cast<AdanaxisLogic *>(&s_logicRef.WRef());
+    if (pLogic == NULL)
+    {
+        throw MushcoreLogicFail(std::string("AdanaxisLogic of wrong type '")+s_logicRef.Ref().AutoName()+"'");
+    }
+	return pLogic->VolatileData();
 }
 
 //%includeGuardEnd {

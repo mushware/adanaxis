@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } DEX6Sh9oUk/bih2GXm2coA
 /*
- * $Id: AdanaxisGame.cpp,v 1.32 2006/06/20 19:06:51 southa Exp $
+ * $Id: AdanaxisGame.cpp,v 1.33 2006/06/21 12:17:54 southa Exp $
  * $Log: AdanaxisGame.cpp,v $
+ * Revision 1.33  2006/06/21 12:17:54  southa
+ * Ruby object generation
+ *
  * Revision 1.32  2006/06/20 19:06:51  southa
  * Object creation
  *
@@ -260,7 +263,7 @@ AdanaxisGame::Init(GameAppHandler& inAppHandler)
 	AdanaxisUtil::MissingSkinsCreate(Logic());
 	
     // AdanaxisUtil::TestSkinsCreate(Logic());
-    AdanaxisUtil::TestDecoCreate(Logic());
+    // AdanaxisUtil::TestDecoCreate(Logic());
     // AdanaxisUtil::TestPiecesCreate(Logic());
     
     MushcoreInterpreter::Sgl().Execute("loadsoundstream('adanaxis-music1')");

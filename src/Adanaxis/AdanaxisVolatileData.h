@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } lXOhNHrEv7a8Ndh1gy3P5A
 /*
- * $Id: AdanaxisVolatileData.h,v 1.2 2005/07/01 16:42:54 southa Exp $
+ * $Id: AdanaxisVolatileData.h,v 1.3 2006/06/01 15:38:49 southa Exp $
  * $Log: AdanaxisVolatileData.h,v $
+ * Revision 1.3  2006/06/01 15:38:49  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.2  2005/07/01 16:42:54  southa
  * Render work
  *
@@ -43,12 +46,12 @@ class AdanaxisVolatileData : public MushGameVolatileData
 {
 public:
     typedef AdanaxisPieceDeco tDeco;
-    typedef std::list<tDeco> tDecoList;
+    typedef MushcoreMaptor<tDeco> tDecoList;
     AdanaxisVolatileData();
     virtual ~AdanaxisVolatileData() {}
     
 private:
-    tDecoList m_decoList; //:readwrite :wref
+    tDecoList m_decoList; //:read :wref
     Mushware::tMsec m_modeKeypressMsec; //:readwrite
     Mushware::tMsec m_newMode; //:readwrite
     std::auto_ptr<MushRenderMesh> m_aRenderMesh; //:read :wref
@@ -56,7 +59,6 @@ private:
 //%classPrototypes {
 public:
     const tDecoList& DecoList(void) const { return m_decoList; }
-    void DecoListSet(const tDecoList& inValue) { m_decoList=inValue; }
     // Writable reference for m_decoList
     tDecoList& DecoListWRef(void) { return m_decoList; }
     const Mushware::tMsec& ModeKeypressMsec(void) const { return m_modeKeypressMsec; }
@@ -73,7 +75,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } aoxAeEjBISuc6I+8Wp8r+A
+//%classPrototypes } noohmk76cSY0Zlu+gETU9A
 };
 //%inlineHeader {
 inline std::ostream&

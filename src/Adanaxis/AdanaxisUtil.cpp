@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } gq3ekJ+T4/5Q9GxsUU01+w
 /*
- * $Id: AdanaxisUtil.cpp,v 1.26 2006/06/14 18:45:46 southa Exp $
+ * $Id: AdanaxisUtil.cpp,v 1.27 2006/06/21 12:17:56 southa Exp $
  * $Log: AdanaxisUtil.cpp,v $
+ * Revision 1.27  2006/06/21 12:17:56  southa
+ * Ruby object generation
+ *
  * Revision 1.26  2006/06/14 18:45:46  southa
  * Ruby mesh generation
  *
@@ -157,7 +160,7 @@ AdanaxisUtil::TestDecoCreate(AdanaxisLogic& ioLogic)
     tVal rotMin = -0.002;
     tVal rotMax = 0.002;
     
-    for (U32 i=0; i<1000; ++i)
+    for (U32 i=0; i<100; ++i)
     {
         decoListRef.push_back(AdanaxisPieceDeco("decoObj1"));
         AdanaxisVolatileData::tDeco& objRef = decoListRef.back();

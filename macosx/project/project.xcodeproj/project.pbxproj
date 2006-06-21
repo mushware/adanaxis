@@ -1377,6 +1377,10 @@
 		7A8FBC9707F4566700BAAFBE /* MushPie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A657EE905A9CD1C00E727F8 /* MushPie.framework */; };
 		7A8FBC9B07F4572E00BAAFBE /* mushMushPie.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A8FBC9A07F4572E00BAAFBE /* mushMushPie.h */; };
 		7A8FBC9C07F4572E00BAAFBE /* mushMushPie.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A8FBC9A07F4572E00BAAFBE /* mushMushPie.h */; };
+		7A9502BD0A498BC100F4CE37 /* AdanaxisRubyDeco.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A9502BB0A498BC100F4CE37 /* AdanaxisRubyDeco.h */; };
+		7A9502BE0A498BC100F4CE37 /* AdanaxisRubyDeco.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A9502BC0A498BC100F4CE37 /* AdanaxisRubyDeco.cpp */; };
+		7A9502BF0A498BC100F4CE37 /* AdanaxisRubyDeco.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A9502BB0A498BC100F4CE37 /* AdanaxisRubyDeco.h */; };
+		7A9502C00A498BC100F4CE37 /* AdanaxisRubyDeco.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A9502BC0A498BC100F4CE37 /* AdanaxisRubyDeco.cpp */; };
 		7AA0FACD08841B5E00997505 /* MushcoreAutoClonePtr.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AA0FACB08841B5E00997505 /* MushcoreAutoClonePtr.h */; };
 		7AA0FACE08841B5E00997505 /* MushcoreAutoClonePtr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AA0FACC08841B5E00997505 /* MushcoreAutoClonePtr.cpp */; };
 		7AA0FACF08841B5E00997505 /* MushcoreAutoClonePtr.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AA0FACB08841B5E00997505 /* MushcoreAutoClonePtr.h */; };
@@ -3373,6 +3377,8 @@
 		7A8FBB1F07F43A3900BAAFBE /* GameDialogue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameDialogue.h; sourceTree = "<group>"; };
 		7A8FBB2007F43A3900BAAFBE /* GameDialogue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameDialogue.cpp; sourceTree = "<group>"; };
 		7A8FBC9A07F4572E00BAAFBE /* mushMushPie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mushMushPie.h; sourceTree = "<group>"; };
+		7A9502BB0A498BC100F4CE37 /* AdanaxisRubyDeco.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdanaxisRubyDeco.h; sourceTree = "<group>"; };
+		7A9502BC0A498BC100F4CE37 /* AdanaxisRubyDeco.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AdanaxisRubyDeco.cpp; sourceTree = "<group>"; };
 		7A9778FD089E9BA500802242 /* adanaxis.ChangeLog */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = adanaxis.ChangeLog; sourceTree = "<group>"; };
 		7A9778FE089E9BA500802242 /* adanaxis.def */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = adanaxis.def; sourceTree = "<group>"; };
 		7AA0FACB08841B5E00997505 /* MushcoreAutoClonePtr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushcoreAutoClonePtr.h; sourceTree = "<group>"; };
@@ -5233,6 +5239,8 @@
 				7A218C3908729E8900EEA4E1 /* AdanaxisRender.h */,
 				7A3E0DCA0A48387C0078B650 /* AdanaxisRuby.cpp */,
 				7A3E0DC90A48387C0078B650 /* AdanaxisRuby.h */,
+				7A9502BC0A498BC100F4CE37 /* AdanaxisRubyDeco.cpp */,
+				7A9502BB0A498BC100F4CE37 /* AdanaxisRubyDeco.h */,
 				7A3E0F8D0A4859E70078B650 /* AdanaxisRubyKhazi.cpp */,
 				7A3E0F8C0A4859E70078B650 /* AdanaxisRubyKhazi.h */,
 				7AD3B5E0085F403C00512DB1 /* AdanaxisSaveData.cpp */,
@@ -6563,6 +6571,7 @@
 				7AD1AACB09EC594A0059879A /* util.h in Headers */,
 				7AD1AACE09EC594A0059879A /* version.h in Headers */,
 				7A5BA7DD0A494B8B00DC847A /* mushMushMeshRuby.h in Headers */,
+				7A9502BF0A498BC100F4CE37 /* AdanaxisRubyDeco.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6992,6 +7001,7 @@
 				7A3E0DD10A4839500078B650 /* MushMeshRubyPost.h in Headers */,
 				7A3E0F8E0A4859E70078B650 /* AdanaxisRubyKhazi.h in Headers */,
 				7A5BA7DC0A494B8B00DC847A /* mushMushMeshRuby.h in Headers */,
+				7A9502BD0A498BC100F4CE37 /* AdanaxisRubyDeco.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8444,6 +8454,7 @@
 				7AD1AACA09EC594A0059879A /* util.c in Sources */,
 				7AD1AACC09EC594A0059879A /* variable.c in Sources */,
 				7AD1AACD09EC594A0059879A /* version.c in Sources */,
+				7A9502C00A498BC100F4CE37 /* AdanaxisRubyDeco.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8787,6 +8798,7 @@
 				7A3E0DCC0A48387C0078B650 /* AdanaxisRuby.cpp in Sources */,
 				7A3E0DD20A4839500078B650 /* MushMeshRubyPost.cpp in Sources */,
 				7A3E0F8F0A4859E70078B650 /* AdanaxisRubyKhazi.cpp in Sources */,
+				7A9502BE0A498BC100F4CE37 /* AdanaxisRubyDeco.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9502,10 +9514,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = (
-					ppc,
-					i386,
-				);
+				ARCHS = ppc;
 				GCC_ALTIVEC_EXTENSIONS = YES;
 				GCC_AUTO_VECTORIZATION = YES;
 				GCC_FAST_MATH = YES;

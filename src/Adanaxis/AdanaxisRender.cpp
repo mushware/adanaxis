@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } Hr8bvS7fc+x0pR9DrFcIZw
 /*
- * $Id: AdanaxisRender.cpp,v 1.23 2005/09/06 12:15:35 southa Exp $
+ * $Id: AdanaxisRender.cpp,v 1.24 2006/06/01 15:38:48 southa Exp $
  * $Log: AdanaxisRender.cpp,v $
+ * Revision 1.24  2006/06/01 15:38:48  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.23  2005/09/06 12:15:35  southa
  * Texture and rendering work
  *
@@ -170,12 +173,12 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
     
     camera.ProjectionSet(m_projection);
     
+    renderMesh.ColourZMiddleSet(t4Val(1.0,1.0,1.0,0.3));
+    renderMesh.ColourZLeftSet(t4Val(1.0,1.0,1.0,0.0));
+    renderMesh.ColourZRightSet(t4Val(1.0,1.0,1.0,0.0));
+
     if (!m_scannerOn)
     {
-        renderMesh.ColourZMiddleSet(t4Val(0.5,0.0,1.0,0.2));
-        renderMesh.ColourZLeftSet(t4Val(0,0.0,1.0,0.0));
-        renderMesh.ColourZRightSet(t4Val(0,0.5,1.0,0.0));
-
         tDecoList::iterator decoEndIter = pVolData->DecoListWRef().end();
         for (tDecoList::iterator p = pVolData->DecoListWRef().begin(); p != decoEndIter; ++p)
         {
@@ -183,10 +186,10 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
         }
     }
     
+
     renderMesh.ColourZMiddleSet(t4Val(1.0,1.0,1.0,0.3));
     renderMesh.ColourZLeftSet(t4Val(1.0,0.7,0.7,0.0));
     renderMesh.ColourZRightSet(t4Val(0.7,1.0,0.7,0.0));
-
     typedef AdanaxisSaveData::tProjectileList tProjectileList;
     
     tProjectileList::iterator projectileEndIter = pSaveData->ProjectileListWRef().end();
