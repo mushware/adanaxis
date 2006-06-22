@@ -23,7 +23,8 @@
  ****************************************************************************/
 //%Header } a1KbBdT/6zEtzcMsDCSmOA
 
-#ifdef HAVE_CONFIG_H
+#if defined(HAVE_CONFIG_H)  && !defined(MUSHWARE_CONFIG_H)
+#define MUSHWARE_CONFIG_H 1
 #include "config.h"
 #endif
 

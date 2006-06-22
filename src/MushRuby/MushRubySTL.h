@@ -23,11 +23,15 @@
  ****************************************************************************/
 //%Header } aoFZfqUq5FiuS/KAQV7brQ
 /*
- * $Id$
- * $Log$
+ * $Id: MushRubySTL.h,v 1.1 2006/04/20 00:22:45 southa Exp $
+ * $Log: MushRubySTL.h,v $
+ * Revision 1.1  2006/04/20 00:22:45  southa
+ * Added ruby executive
+ *
  */
 
-#ifdef HAVE_CONFIG_H
+#if defined(HAVE_CONFIG_H)  && !defined(MUSHWARE_CONFIG_H)
+#define MUSHWARE_CONFIG_H 1
 #include "config.h"
 #endif
 

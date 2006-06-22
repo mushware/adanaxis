@@ -23,14 +23,17 @@
  ****************************************************************************/
 //%Header } BDv148ulZqdoaionPA9Ngg
 /*
- * $Id$
- * $Log$
+ * $Id: MushMeshRubyRuby.h,v 1.1 2006/06/12 11:59:39 southa Exp $
+ * $Log: MushMeshRubyRuby.h,v $
+ * Revision 1.1  2006/06/12 11:59:39  southa
+ * Ruby wrapper for MushMeshVector
+ *
  *
  */
 
 extern "C"
 {
-#include "ruby.h"
+#include "MushRuby/ruby.h"
 }
 //%includeGuardEnd {
 #endif

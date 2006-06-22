@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } o+BSM01bjQYGzqTGFYVwpg
 /*
- * $Id: MushGameStandard.h,v 1.4 2005/07/27 18:07:25 southa Exp $
+ * $Id: MushGameStandard.h,v 1.5 2006/06/01 15:39:27 southa Exp $
  * $Log: MushGameStandard.h,v $
+ * Revision 1.5  2006/06/01 15:39:27  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.4  2005/07/27 18:07:25  southa
  * Collision checking
  *
@@ -39,10 +42,11 @@
  *
  */
 
-#ifdef HAVE_CONFIG_H
+#if defined(HAVE_CONFIG_H)  && !defined(MUSHWARE_CONFIG_H)
+#define MUSHWARE_CONFIG_H 1
 #include "config.h"
 #endif
- 
+
 #if defined(HAVE_MUSHCORE_MUSHCORE_H)
 #include <Mushcore/Mushcore.h>
 #elif defined(HAVE_MUSHCORE_H)

@@ -23,14 +23,18 @@
  ****************************************************************************/
 //%Header } yNUF5b6WPZpORyUVzkEZFQ
 /*
- * $Id: mushMushCollision.h,v 1.1 2005/07/27 18:08:44 southa Exp $
+ * $Id: mushMushCollision.h,v 1.2 2006/06/01 15:38:45 southa Exp $
  * $Log: mushMushCollision.h,v $
+ * Revision 1.2  2006/06/01 15:38:45  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.1  2005/07/27 18:08:44  southa
  * Collision checking
  *
  */
 
-#ifdef HAVE_CONFIG_H
+#if defined(HAVE_CONFIG_H)  && !defined(MUSHWARE_CONFIG_H)
+#define MUSHWARE_CONFIG_H 1
 #include "config.h"
 #endif
 

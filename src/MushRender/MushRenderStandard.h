@@ -23,17 +23,21 @@
  ****************************************************************************/
 //%Header } cQK70tZbs58VnRPH/LervQ
 /*
- * $Id: MushRenderStandard.h,v 1.1 2005/07/01 10:36:46 southa Exp $
+ * $Id: MushRenderStandard.h,v 1.2 2006/06/01 15:39:39 southa Exp $
  * $Log: MushRenderStandard.h,v $
+ * Revision 1.2  2006/06/01 15:39:39  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.1  2005/07/01 10:36:46  southa
  * MushRender work
  *
  */
 
-#ifdef HAVE_CONFIG_H
+#if defined(HAVE_CONFIG_H)  && !defined(MUSHWARE_CONFIG_H)
+#define MUSHWARE_CONFIG_H 1
 #include "config.h"
 #endif
- 
+
 #if defined(HAVE_MUSHCORE_MUSHCORE_H)
 #include <Mushcore/Mushcore.h>
 #elif defined(HAVE_MUSHCORE_H)

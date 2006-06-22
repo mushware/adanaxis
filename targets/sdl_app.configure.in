@@ -25,6 +25,7 @@ SDL_EXTRA_LIBS=""
 
 dnl Checks for programs.
 AC_PROG_MAKE_SET
+AC_PROG_CC
 AC_PROG_CXX
 AC_PROG_CXXCPP
 AC_PROG_INSTALL
@@ -60,7 +61,8 @@ else
     AC_MSG_NOTICE([sdl-config set LIBS to $LIBS])
 fi
 
-CPPFLAGS="$CPPFLAGS -I\${srcdir} -I\${srcdir}/API"
+CFLAGS="$CFLAGS -O3 -I\${srcdir} -I\${srcdir}/API"
+CPPFLAGS="$CPPFLAGS -O3 -I\${srcdir} -I\${srcdir}/API"
 
 dnl Checks for libraries.
 AC_CHECK_HEADER(windows.h)

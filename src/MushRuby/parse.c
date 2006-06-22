@@ -7357,6 +7357,10 @@ here_document(here)
     return tSTRING_CONTENT;
 }
 
+/* Mushware add in - Andy Southgate 2006-06-22 */
+#define MUSHWARE_COMPILE_LEX_C
+/* End Mushware add-in */
+
 #include "lex.c"
 
 static void

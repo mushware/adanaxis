@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } SLoOL9XEfqG2IV7Nrhg6HQ
 /*
- * $Id: TesseractTrainerStandard.h,v 1.2 2005/05/19 13:02:22 southa Exp $
+ * $Id: TesseractTrainerStandard.h,v 1.3 2006/06/01 15:40:00 southa Exp $
  * $Log: TesseractTrainerStandard.h,v $
+ * Revision 1.3  2006/06/01 15:40:00  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.2  2005/05/19 13:02:22  southa
  * Mac release work
  *
@@ -33,7 +36,8 @@
  *
  */
 
-#ifdef HAVE_CONFIG_H
+#if defined(HAVE_CONFIG_H)  && !defined(MUSHWARE_CONFIG_H)
+#define MUSHWARE_CONFIG_H 1
 #include "config.h"
 #endif
 

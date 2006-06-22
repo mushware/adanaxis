@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } 3FW9PuwIFHnzspT7c6Qddw
 /*
- * $Id: MushSkinStandard.h,v 1.2 2005/08/31 23:57:27 southa Exp $
+ * $Id: MushSkinStandard.h,v 1.3 2006/06/01 15:39:40 southa Exp $
  * $Log: MushSkinStandard.h,v $
+ * Revision 1.3  2006/06/01 15:39:40  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.2  2005/08/31 23:57:27  southa
  * Texture coordinate work
  *
@@ -31,7 +34,8 @@
  *
  */
 
-#ifdef HAVE_CONFIG_H
+#if defined(HAVE_CONFIG_H)  && !defined(MUSHWARE_CONFIG_H)
+#define MUSHWARE_CONFIG_H 1
 #include "config.h"
 #endif
 

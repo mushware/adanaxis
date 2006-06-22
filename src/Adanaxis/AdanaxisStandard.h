@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } hRi0iLhiqWJuLzfUh1uUcQ
 /*
- * $Id: AdanaxisStandard.h,v 1.3 2005/06/30 14:26:35 southa Exp $
+ * $Id: AdanaxisStandard.h,v 1.4 2006/06/01 15:38:49 southa Exp $
  * $Log: AdanaxisStandard.h,v $
+ * Revision 1.4  2006/06/01 15:38:49  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.3  2005/06/30 14:26:35  southa
  * Adanaxis work
  *
@@ -34,7 +37,8 @@
  *
  */
 
-#ifdef HAVE_CONFIG_H
+#if defined(HAVE_CONFIG_H)  && !defined(MUSHWARE_CONFIG_H)
+#define MUSHWARE_CONFIG_H 1
 #include "config.h"
 #endif
 

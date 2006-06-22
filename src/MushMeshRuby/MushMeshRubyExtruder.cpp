@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } Ibp5f6SYWiVWQmey0t+DVA
 /*
- * $Id: MushMeshRubyExtruder.cpp,v 1.2 2006/06/14 18:45:49 southa Exp $
+ * $Id: MushMeshRubyExtruder.cpp,v 1.3 2006/06/16 01:02:33 southa Exp $
  * $Log: MushMeshRubyExtruder.cpp,v $
+ * Revision 1.3  2006/06/16 01:02:33  southa
+ * Ruby mesh generation
+ *
  * Revision 1.2  2006/06/14 18:45:49  southa
  * Ruby mesh generation
  *
@@ -32,7 +35,7 @@
 #include "MushMeshRubyExtruder.h"
 
 #include "MushMeshRubyDisplacement.h"
-#include "MushMeshRubyRuby.h"
+// #include "MushMeshRubyRuby.h"
 #include "MushMeshRubyVector.h"
 
 using namespace Mushware;

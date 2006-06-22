@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } c34/teN4Up44TZa0Iis9Hg
 /*
- * $Id: InfernalSTL.h,v 1.4 2005/05/19 13:02:06 southa Exp $
+ * $Id: InfernalSTL.h,v 1.5 2006/06/01 15:39:05 southa Exp $
  * $Log: InfernalSTL.h,v $
+ * Revision 1.5  2006/06/01 15:39:05  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.4  2005/05/19 13:02:06  southa
  * Mac release work
  *
@@ -51,7 +54,8 @@
  *
  */
 
-#ifdef HAVE_CONFIG_H
+#if defined(HAVE_CONFIG_H)  && !defined(MUSHWARE_CONFIG_H)
+#define MUSHWARE_CONFIG_H 1
 #include "config.h"
 #endif
 

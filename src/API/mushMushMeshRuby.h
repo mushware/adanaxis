@@ -23,11 +23,15 @@
  ****************************************************************************/
 //%Header } Jn6ULH+4b8ouqTBpeZ9mPQ
 /*
- * $Id$
- * $Log$
+ * $Id: mushMushMeshRuby.h,v 1.1 2006/06/21 12:17:54 southa Exp $
+ * $Log: mushMushMeshRuby.h,v $
+ * Revision 1.1  2006/06/21 12:17:54  southa
+ * Ruby object generation
+ *
  */
 
-#ifdef HAVE_CONFIG_H
+#if defined(HAVE_CONFIG_H)  && !defined(MUSHWARE_CONFIG_H)
+#define MUSHWARE_CONFIG_H 1
 #include "config.h"
 #endif
 

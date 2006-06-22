@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } +z8tKG3CNyPCOI44zt+rBQ
 /*
- * $Id: MushMeshMushcoreIO.h,v 1.3 2005/05/19 13:02:10 southa Exp $
+ * $Id: MushMeshMushcoreIO.h,v 1.4 2006/06/01 15:39:30 southa Exp $
  * $Log: MushMeshMushcoreIO.h,v $
+ * Revision 1.4  2006/06/01 15:39:30  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.3  2005/05/19 13:02:10  southa
  * Mac release work
  *
@@ -36,7 +39,8 @@
  *
  */
 
-#ifdef HAVE_CONFIG_H
+#if defined(HAVE_CONFIG_H)  && !defined(MUSHWARE_CONFIG_H)
+#define MUSHWARE_CONFIG_H 1
 #include "config.h"
 #endif
 

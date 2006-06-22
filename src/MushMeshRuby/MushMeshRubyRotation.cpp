@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } IYs87CodIcNWOTBfGGVoeQ
 /*
- * $Id: MushMeshRubyRotation.cpp,v 1.1 2006/06/13 19:30:38 southa Exp $
+ * $Id: MushMeshRubyRotation.cpp,v 1.2 2006/06/20 19:06:53 southa Exp $
  * $Log: MushMeshRubyRotation.cpp,v $
+ * Revision 1.2  2006/06/20 19:06:53  southa
+ * Object creation
+ *
  * Revision 1.1  2006/06/13 19:30:38  southa
  * Ruby mesh generation
  *
@@ -28,7 +31,7 @@
 
 #include "MushMeshRubyRotation.h"
 
-#include "MushMeshRubyRuby.h"
+// #include "MushMeshRubyRuby.h"
 #include "MushMeshRubyVector.h"
 
 

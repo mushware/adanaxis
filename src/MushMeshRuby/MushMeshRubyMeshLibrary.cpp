@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 7po3niQtybBuVvnFyMOO2w
 /*
- * $Id: MushMeshRubyMeshLibrary.cpp,v 1.3 2006/06/13 19:30:38 southa Exp $
+ * $Id: MushMeshRubyMeshLibrary.cpp,v 1.4 2006/06/20 19:06:53 southa Exp $
  * $Log: MushMeshRubyMeshLibrary.cpp,v $
+ * Revision 1.4  2006/06/20 19:06:53  southa
+ * Object creation
+ *
  * Revision 1.3  2006/06/13 19:30:38  southa
  * Ruby mesh generation
  *
@@ -35,7 +38,7 @@
 #include "MushMeshRubyMeshLibrary.h"
 
 #include "MushMeshRubyMesh.h"
-#include "MushMeshRubyRuby.h"
+// #include "MushMeshRubyRuby.h"
 #include "MushMeshRubyVector.h"
 
 #include "API/mushMushMeshLibrary.h"

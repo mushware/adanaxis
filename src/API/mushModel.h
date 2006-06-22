@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } tQM17skmkpVVkA769LrhmQ
 /*
- * $Id: mushModel.h,v 1.3 2005/06/14 13:25:32 southa Exp $
+ * $Id: mushModel.h,v 1.4 2006/06/01 15:38:45 southa Exp $
  * $Log: mushModel.h,v $
+ * Revision 1.4  2006/06/01 15:38:45  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.3  2005/06/14 13:25:32  southa
  * Adanaxis work
  *
@@ -36,7 +39,8 @@
  *
  */
 
-#ifdef HAVE_CONFIG_H
+#if defined(HAVE_CONFIG_H)  && !defined(MUSHWARE_CONFIG_H)
+#define MUSHWARE_CONFIG_H 1
 #include "config.h"
 #endif
 

@@ -8,8 +8,11 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-# $Id: autogen.pl,v 1.9 2005/06/04 13:45:11 southa Exp $
+# $Id: autogen.pl,v 1.10 2005/06/08 20:59:50 southa Exp $
 # $Log: autogen.pl,v $
+# Revision 1.10  2005/06/08 20:59:50  southa
+# X11 release
+#
 # Revision 1.9  2005/06/04 13:45:11  southa
 # Release 0.1.2 tweaks
 #
@@ -96,10 +99,10 @@ sub FilenamesGet($$$$)
         }
         elsif ( -f $filename )
         {
-	    if ($filename =~ /~$/ || $filename =~ /^\./)
-	    {
-	        # Discard
-	    }
+            if ($filename =~ /~$/ || $suffix =~ /^\./)
+            {
+                # Discard
+            }
             elsif ($filename =~ $regExp)
             {
                 push @$outputRef, $filename;
@@ -187,7 +190,7 @@ sub Modules($$)
             {
                 # Module is a single file
                 $searchExp = quotemeta $moduleExp;
-	        print "Single file without path\n" if ($gVerbose);
+	            print "Single file without path\n" if ($gVerbose);
             }
             elsif ( -f "$modulePath/$moduleExp" )
             {
@@ -195,14 +198,14 @@ sub Modules($$)
                 $searchExp = quotemeta $moduleExp;
                 print "Single file with path '$modulePath'\n" if ($gVerbose);
             }
-	    else
-	    {
-	        print "Directory '$modulePath'\n" if ($gVerbose);
-		if ($moduleExp ne "")
-		{
-		    die "No file named '$moduleName'";
-		}
-	    }
+            else
+            {
+                print "Directory '$modulePath'\n" if ($gVerbose);
+                if ($moduleExp ne "")
+                {
+                    die "No file named '$moduleName'";
+                }
+            }
             # print "modulePath=$modulePath, moduleExp=$moduleExp, searchExp=$searchExp\n";
             unless ( $modulePath eq "" || -d $modulePath )
             {
@@ -211,24 +214,25 @@ sub Modules($$)
             
             if ($searchExp ne "")
             {
-	        print "Searching in '$modulePath' using expression '$searchExp'\n" if ($gVerbose);
+	            print "Searching in '$modulePath' using expression '$searchExp'\n" if ($gVerbose);
 
                 FilenamesGet(\@sourceFiles, $modulePath, "$searchExp", $recurse);
             }
             else
             {
-	        if ($gTargetType == TARGETTYPE_LIBRARY ||
-		    $gTargetType == TARGETTYPE_PROGRAM)
-		{
-	            print "Source searching in '$modulePath'\n" if ($gVerbose);
-                    FilenamesGet(\@sourceFiles, $modulePath, '/.*\.cpp', $recurse);
-                    FilenamesGet(\@headerFiles, $modulePath, '/.*\.h', $recurse);
-		}
-		else
-		{
-	            print "Wide searching in '$modulePath'\n" if ($gVerbose);
-		    FilenamesGet(\@sourceFiles, $modulePath, '/.*', $recurse);
-		}
+                if ($gTargetType == TARGETTYPE_LIBRARY ||
+                $gTargetType == TARGETTYPE_PROGRAM)
+				{
+						print "Source searching in '$modulePath'\n" if ($gVerbose);
+						FilenamesGet(\@sourceFiles, $modulePath, '/.*\.cpp\b', $recurse);
+						FilenamesGet(\@sourceFiles, $modulePath, '/.*\.c\b', $recurse);
+							FilenamesGet(\@headerFiles, $modulePath, '/.*\.h\b', $recurse);
+				}
+				else
+				{
+						print "Wide searching in '$modulePath'\n" if ($gVerbose);
+					FilenamesGet(\@sourceFiles, $modulePath, '/.*', $recurse);
+				}
             }
             if ($gVerbose)
             {

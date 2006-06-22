@@ -9,8 +9,11 @@
 #
 ##############################################################################
 #
-# $Id: MakeRelease.sh,v 1.8 2005/06/04 13:53:58 southa Exp $
+# $Id: MakeRelease.sh,v 1.9 2005/08/02 14:37:44 southa Exp $
 # $Log: MakeRelease.sh,v $
+# Revision 1.9  2005/08/02 14:37:44  southa
+# Adanaxis control demo work
+#
 # Revision 1.8  2005/06/04 13:53:58  southa
 # Release tweaks
 #
@@ -58,7 +61,7 @@ SetFile="/Developer/Tools/SetFile"
 echo "Building MacOS X release for project '$name' version '$version'"
 echo "from '$builddir' and '$datadir' to '$releasedir'"
 
-echo 'This scripts expects that the ProjectBuilder application is built and'
+echo 'This scripts expects that the XCode application is built and'
 echo 'installed in the data directory, and the macosxlibs checkout is present.'
 
 rm -rf "$appdir"
@@ -72,6 +75,8 @@ find "$releasedir" -type d -name 'CVS' -prune -exec rm -rf "{}" \;
 find "$releasedir" -name '.DS_Store' -exec rm -f "{}" \;
 find "$releasedir" -name 'Makefile*' -exec rm -f "{}" \;
 
+rm -rf "$releasedir/mushware-cache"
+
 cp "$releasedir/system/start.txt" "$releasedir/system/start_backup.txt"
 
 mkdir -p "$readmedir"
@@ -82,14 +87,16 @@ done
 
 cp COPYING "${readmedir}/Licence.txt"
 cp ChangeLog "${readmedir}/ChangeLog.txt"
-cp "$package-$version.tar.gz" "$releasedir/system/$package-src-$version.tar.gz"
+
+# Copy the source tar archive, removing the data directory in the pipe
+gunzip -c "$package-$version.tar.gz" | tar --delete "$package-$version/data-*" | GZIP=--best gzip > "$releasedir/system/$package-src-$version.tar.gz"
 
 ditto -xz -rsrc "macosx/Mushware web site.webloc.cpgz" "${releasedir}"
 cp "macosx/Start_in_Recovery_Mode.app" "${releasedir}/Start in Recovery Mode.app"
 
 echo Fixing up file types
-find "${releaseDir}" -name '*.txt' -exec $SetFile -a E "{}" \;
-find "${releaseDir}" -name '*.pdf' -exec echo $SetFile -a E "{}" \;
+find "${releasedir}" -name '*.txt' -exec $SetFile -a E "{}" \;
+find "${releasedir}" -name '*.pdf' -exec echo $SetFile -a E "{}" \;
 # find ${releasedir} -name '*.url' -exec $SetFile -a E -t LINK -c MSIE {} \;
 ln -s "system/$name.app" "${releasedir}/$name.app"
 echo Setting permissions

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } p7HPyvKUSnWuXa6DxXdzYQ
 /*
- * $Id: TestMushcoreStandard.h,v 1.7 2005/05/19 13:02:24 southa Exp $
+ * $Id: TestMushcoreStandard.h,v 1.8 2006/06/01 15:40:05 southa Exp $
  * $Log: TestMushcoreStandard.h,v $
+ * Revision 1.8  2006/06/01 15:40:05  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.7  2005/05/19 13:02:24  southa
  * Mac release work
  *
@@ -50,7 +53,8 @@
 
 // Include everything we might need to keep things simple
 
-#ifdef HAVE_CONFIG_H
+#if defined(HAVE_CONFIG_H)  && !defined(MUSHWARE_CONFIG_H)
+#define MUSHWARE_CONFIG_H 1
 #include "config.h"
 #endif
 

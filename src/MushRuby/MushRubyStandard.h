@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } Yh+jb7Kt8ubaZEY+Q2v/cg
 /*
- * $Id: MushRubyStandard.h,v 1.5 2006/06/13 10:35:06 southa Exp $
+ * $Id: MushRubyStandard.h,v 1.6 2006/06/16 12:11:06 southa Exp $
  * $Log: MushRubyStandard.h,v $
+ * Revision 1.6  2006/06/16 12:11:06  southa
+ * Ruby subclasses
+ *
  * Revision 1.5  2006/06/13 10:35:06  southa
  * Ruby data objects
  *
@@ -42,7 +45,8 @@
  *
  */
 
-#ifdef HAVE_CONFIG_H
+#if defined(HAVE_CONFIG_H)  && !defined(MUSHWARE_CONFIG_H)
+#define MUSHWARE_CONFIG_H 1
 #include "config.h"
 #endif
 

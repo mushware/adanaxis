@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } xkvbVCXm8pXCDWV4BdLGFQ
 /*
- * $Id: MushSkinTiled.cpp,v 1.5 2006/06/12 11:59:40 southa Exp $
+ * $Id: MushSkinTiled.cpp,v 1.6 2006/06/16 01:02:34 southa Exp $
  * $Log: MushSkinTiled.cpp,v $
+ * Revision 1.6  2006/06/16 01:02:34  southa
+ * Ruby mesh generation
+ *
  * Revision 1.5  2006/06/12 11:59:40  southa
  * Ruby wrapper for MushMeshVector
  *
@@ -148,6 +151,7 @@ MushSkinTiled::TexCoordsGenerate(MushMesh4Mesh& ioMesh)
 			texTileWRef.TileBoxSet(t2BoxVal(uvBase, uvBase + uvScale));
             texTileWRef.SourceFaceNumSet(faceNum);
             texTileWRef.SourceFacetNumSet(facetNum);
+			texTileWRef.SKSet(1); // FIXME
 			
 			// Generate the facet-to-texture transformation
 			MushMeshTools::FacetToTextureTransformMake(texTileWRef, facetVertices);

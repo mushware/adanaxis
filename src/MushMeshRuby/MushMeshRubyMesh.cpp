@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } oR7WPhSKmfGQldTVFg6TpQ
 /*
- * $Id: MushMeshRubyMesh.cpp,v 1.7 2006/06/19 15:57:19 southa Exp $
+ * $Id: MushMeshRubyMesh.cpp,v 1.8 2006/06/21 12:17:58 southa Exp $
  * $Log: MushMeshRubyMesh.cpp,v $
+ * Revision 1.8  2006/06/21 12:17:58  southa
+ * Ruby object generation
+ *
  * Revision 1.7  2006/06/19 15:57:19  southa
  * Materials
  *
@@ -49,7 +52,7 @@
 #include "MushMeshRubyBasePrism.h"
 #include "MushMeshRubyDisplacement.h"
 #include "MushMeshRubyExtruder.h"
-#include "MushMeshRubyRuby.h"
+// #include "MushMeshRubyRuby.h"
 
 MUSHRUBYDATAOBJ_INSTANCE(MushMesh4Mesh);
 

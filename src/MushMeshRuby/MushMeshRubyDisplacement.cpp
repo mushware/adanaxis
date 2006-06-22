@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } r4uJt7qAeGRBys+BB5eEWg
 /*
- * $Id: MushMeshRubyDisplacement.cpp,v 1.3 2006/06/14 11:20:08 southa Exp $
+ * $Id: MushMeshRubyDisplacement.cpp,v 1.4 2006/06/14 18:45:49 southa Exp $
  * $Log: MushMeshRubyDisplacement.cpp,v $
+ * Revision 1.4  2006/06/14 18:45:49  southa
+ * Ruby mesh generation
+ *
  * Revision 1.3  2006/06/14 11:20:08  southa
  * Ruby mesh generation
  *
@@ -37,7 +40,7 @@
 #include "MushMeshRubyRotation.h"
 #include "MushMeshRubyVector.h"
 
-#include "MushMeshRubyRuby.h"
+// #include "MushMeshRubyRuby.h"
 
 using namespace Mushware;
 using namespace std;

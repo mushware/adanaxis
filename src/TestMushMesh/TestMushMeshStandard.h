@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } WjwZx+5O3dIPPPzYljoASQ
 /*
- * $Id: TestMushMeshStandard.h,v 1.7 2005/07/19 13:44:26 southa Exp $
+ * $Id: TestMushMeshStandard.h,v 1.8 2006/06/01 15:40:02 southa Exp $
  * $Log: TestMushMeshStandard.h,v $
+ * Revision 1.8  2006/06/01 15:40:02  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.7  2005/07/19 13:44:26  southa
  * MushMesh4Chunk work
  *
@@ -50,7 +53,8 @@
 
 // Include everything we might need to keep things simple
 
-#ifdef HAVE_CONFIG_H
+#if defined(HAVE_CONFIG_H)  && !defined(MUSHWARE_CONFIG_H)
+#define MUSHWARE_CONFIG_H 1
 #include "config.h"
 #endif
 

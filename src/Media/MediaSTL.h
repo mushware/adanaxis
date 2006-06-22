@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } L1ClAj5w8rlyPPja0Y2Ojg
 /*
- * $Id: MediaSTL.h,v 1.6 2005/05/19 13:02:08 southa Exp $
+ * $Id: MediaSTL.h,v 1.7 2006/06/01 15:39:14 southa Exp $
  * $Log: MediaSTL.h,v $
+ * Revision 1.7  2006/06/01 15:39:14  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.6  2005/05/19 13:02:08  southa
  * Mac release work
  *
@@ -45,7 +48,8 @@
  *
  */
 
-#ifdef HAVE_CONFIG_H
+#if defined(HAVE_CONFIG_H)  && !defined(MUSHWARE_CONFIG_H)
+#define MUSHWARE_CONFIG_H 1
 #include "config.h"
 #endif
 

@@ -23,14 +23,18 @@
  ****************************************************************************/
 //%Header } IcUnI1sc5orBlNHNKNjpJw
 /*
- * $Id: mushMushRender.h,v 1.2 2005/07/12 20:39:04 southa Exp $
+ * $Id: mushMushRender.h,v 1.3 2006/06/01 15:38:45 southa Exp $
  * $Log: mushMushRender.h,v $
+ * Revision 1.3  2006/06/01 15:38:45  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.2  2005/07/12 20:39:04  southa
  * Mesh library work
  *
  */
 
-#ifdef HAVE_CONFIG_H
+#if defined(HAVE_CONFIG_H)  && !defined(MUSHWARE_CONFIG_H)
+#define MUSHWARE_CONFIG_H 1
 #include "config.h"
 #endif
 

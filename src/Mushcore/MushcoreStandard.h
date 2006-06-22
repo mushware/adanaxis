@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 4s7wY1aMgDZVh+3QUWPOuQ
 /*
- * $Id: MushcoreStandard.h,v 1.27 2005/08/02 17:11:28 southa Exp $
+ * $Id: MushcoreStandard.h,v 1.28 2006/06/01 15:39:47 southa Exp $
  * $Log: MushcoreStandard.h,v $
+ * Revision 1.28  2006/06/01 15:39:47  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.27  2005/08/02 17:11:28  southa
  * win32 build fixes
  *
@@ -210,7 +213,8 @@
  *
  */
 
-#ifdef HAVE_CONFIG_H
+#if defined(HAVE_CONFIG_H)  && !defined(MUSHWARE_CONFIG_H)
+#define MUSHWARE_CONFIG_H 1
 #include "config.h"
 #endif
 

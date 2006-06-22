@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 0xPG/7jmGTzjaD0AmAZyzw
 /*
- * $Id: MushMeshRubyVector.cpp,v 1.5 2006/06/14 18:45:50 southa Exp $
+ * $Id: MushMeshRubyVector.cpp,v 1.6 2006/06/16 12:11:05 southa Exp $
  * $Log: MushMeshRubyVector.cpp,v $
+ * Revision 1.6  2006/06/16 12:11:05  southa
+ * Ruby subclasses
+ *
  * Revision 1.5  2006/06/14 18:45:50  southa
  * Ruby mesh generation
  *
@@ -40,7 +43,7 @@
 
 #include "MushMeshRubyVector.h"
 
-#include "MushMeshRubyRuby.h"
+// #include "MushMeshRubyRuby.h"
 
 using namespace Mushware;
 using namespace std;

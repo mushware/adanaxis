@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } GWXXnrKpknyTferjr2TZPQ
 /*
- * $Id: SecondaryMain.cpp,v 1.6 2005/06/04 13:18:46 southa Exp $
+ * $Id: SecondaryMain.cpp,v 1.7 2006/06/01 15:39:11 southa Exp $
  * $Log: SecondaryMain.cpp,v $
+ * Revision 1.7  2006/06/01 15:39:11  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.6  2005/06/04 13:18:46  southa
  * Updates for Mac OS Release 0.1.2
  *
@@ -143,7 +146,8 @@
 #include "mushMushcore.h"
 #include "mushPlatform.h"
 
-#ifdef HAVE_CONFIG_H
+#if defined(HAVE_CONFIG_H)  && !defined(MUSHWARE_CONFIG_H)
+#define MUSHWARE_CONFIG_H 1
 #include "config.h"
 #endif
 

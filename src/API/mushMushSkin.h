@@ -23,14 +23,18 @@
  ****************************************************************************/
 //%Header } qAMyEcGuwRRbhvdkUaBVeQ
 /*
- * $Id: mushMushSkin.h,v 1.1 2005/08/29 18:40:56 southa Exp $
+ * $Id: mushMushSkin.h,v 1.2 2006/06/01 15:38:45 southa Exp $
  * $Log: mushMushSkin.h,v $
+ * Revision 1.2  2006/06/01 15:38:45  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.1  2005/08/29 18:40:56  southa
  * Solid rendering work
  *
  */
 
-#ifdef HAVE_CONFIG_H
+#if defined(HAVE_CONFIG_H)  && !defined(MUSHWARE_CONFIG_H)
+#define MUSHWARE_CONFIG_H 1
 #include "config.h"
 #endif
 

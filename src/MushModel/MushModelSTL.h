@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } KK4dTaBHqzmU8pSFkZ2GvA
 /*
- * $Id: MushModelSTL.h,v 1.2 2005/05/19 13:02:12 southa Exp $
+ * $Id: MushModelSTL.h,v 1.3 2006/06/01 15:39:35 southa Exp $
  * $Log: MushModelSTL.h,v $
+ * Revision 1.3  2006/06/01 15:39:35  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.2  2005/05/19 13:02:12  southa
  * Mac release work
  *
@@ -33,7 +36,8 @@
  *
  */
 
-#ifdef HAVE_CONFIG_H
+#if defined(HAVE_CONFIG_H)  && !defined(MUSHWARE_CONFIG_H)
+#define MUSHWARE_CONFIG_H 1
 #include "config.h"
 #endif
 

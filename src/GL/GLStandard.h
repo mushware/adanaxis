@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 0R+Ye4SBf8jdvaM7l0X5uA
 /*
- * $Id: GLStandard.h,v 1.26 2006/06/01 15:38:52 southa Exp $
+ * $Id: GLStandard.h,v 1.27 2006/06/01 20:12:58 southa Exp $
  * $Log: GLStandard.h,v $
+ * Revision 1.27  2006/06/01 20:12:58  southa
+ * Initial texture caching
+ *
  * Revision 1.26  2006/06/01 15:38:52  southa
  * DrawArray verification and fixes
  *
@@ -132,7 +135,8 @@
  *
  */
 
-#ifdef HAVE_CONFIG_H
+#if defined(HAVE_CONFIG_H)  && !defined(MUSHWARE_CONFIG_H)
+#define MUSHWARE_CONFIG_H 1
 #include "config.h"
 #endif
 

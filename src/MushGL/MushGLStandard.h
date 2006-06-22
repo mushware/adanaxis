@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 4aNrDWDcHhvbi/ZjV2ZFxA
 /*
- * $Id: MushGLStandard.h,v 1.13 2006/06/01 20:12:59 southa Exp $
+ * $Id: MushGLStandard.h,v 1.14 2006/06/16 12:11:03 southa Exp $
  * $Log: MushGLStandard.h,v $
+ * Revision 1.14  2006/06/16 12:11:03  southa
+ * Ruby subclasses
+ *
  * Revision 1.13  2006/06/01 20:12:59  southa
  * Initial texture caching
  *
@@ -66,10 +69,11 @@
  *
  */
 
-#ifdef HAVE_CONFIG_H
+#if defined(HAVE_CONFIG_H)  && !defined(MUSHWARE_CONFIG_H)
+#define MUSHWARE_CONFIG_H 1
 #include "config.h"
 #endif
- 
+
 #if defined(HAVE_WINDOWS_H) || defined (_MSC_VER)
 #define NOMINMAX
 #include <windows.h>

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } CtY0XSn9EvowgE/wyOqT9Q
 /*
- * $Id: MeshMoverSTL.h,v 1.4 2005/05/19 13:02:09 southa Exp $
+ * $Id: MeshMoverSTL.h,v 1.5 2006/06/01 15:39:15 southa Exp $
  * $Log: MeshMoverSTL.h,v $
+ * Revision 1.5  2006/06/01 15:39:15  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.4  2005/05/19 13:02:09  southa
  * Mac release work
  *
@@ -39,7 +42,8 @@
  *
  */
 
-#ifdef HAVE_CONFIG_H
+#if defined(HAVE_CONFIG_H)  && !defined(MUSHWARE_CONFIG_H)
+#define MUSHWARE_CONFIG_H 1
 #include "config.h"
 #endif
 

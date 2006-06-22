@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } vzsiY9MwPTZIFsQ1nPV4fA
 /*
- * $Id: MushGLPixelSource.h,v 1.7 2006/06/06 17:58:32 southa Exp $
+ * $Id: MushGLPixelSource.h,v 1.8 2006/06/07 12:15:19 southa Exp $
  * $Log: MushGLPixelSource.h,v $
+ * Revision 1.8  2006/06/07 12:15:19  southa
+ * Grid and test textures
+ *
  * Revision 1.7  2006/06/06 17:58:32  southa
  * Ruby texture definition
  *
@@ -50,7 +53,7 @@
 
 #include "MushGLStandard.h"
 
-#include "MushRuby.h"
+#include "API/mushMushRuby.h"
 
 class MushGLTexture;
 

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } YgY2xz10I/tOK3mTABcO7A
 /*
- * $Id: PlatformSTL.h,v 1.6 2005/05/19 13:02:21 southa Exp $
+ * $Id: PlatformSTL.h,v 1.7 2006/06/01 15:39:57 southa Exp $
  * $Log: PlatformSTL.h,v $
+ * Revision 1.7  2006/06/01 15:39:57  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.6  2005/05/19 13:02:21  southa
  * Mac release work
  *
@@ -45,7 +48,8 @@
  *
  */
 
-#ifdef HAVE_CONFIG_H
+#if defined(HAVE_CONFIG_H)  && !defined(MUSHWARE_CONFIG_H)
+#define MUSHWARE_CONFIG_H 1
 #include "config.h"
 #endif
 

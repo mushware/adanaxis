@@ -22,12 +22,22 @@
  *
  ****************************************************************************/
 //%Header } SpLH9TRN7PEF62tmk9Ql1w
+
+
+/*****************************************************************************
+ *
+ * This file has been edited from the Ruby original to allow scripts to be
+ * loaded where the path includes a world-writable directory
+ * 2006-06-22 Andy Southgate
+ *
+ ****************************************************************************/
+
 /**********************************************************************
 
   file.c -
 
  
-  $Date: 2006/04/11 23:30:09 $
+  $Date: 2006/04/21 00:10:44 $
   created at: Mon Nov 15 12:24:34 JST 1993
 
   Copyright (C) 1993-2003 Yukihiro Matsumoto
@@ -4114,6 +4124,9 @@ static int
 fpath_check(path)
     char *path;
 {
+	/* Mushware add-in 2006-06-22 */
+	return 1;
+	/* End Mushware add-in */
 #ifndef DOSISH
     return path_check_0(rb_str_new2(path), Qfalse);
 #else
@@ -4125,6 +4138,9 @@ int
 rb_path_check(path)
     char *path;
 {
+	/* Mushware add-in 2006-06-22 */
+	return 1;
+	/* End Mushware add-in */
 #ifndef DOSISH
     char *p0, *p, *pend;
     const char sep = PATH_SEP_CHAR;
@@ -4241,7 +4257,10 @@ rb_find_file(path)
     if (f[0] == '~') {
 	path = rb_file_expand_path(path, Qnil);
 	if (rb_safe_level() >= 1 && OBJ_TAINTED(path)) {
-	    rb_raise(rb_eSecurityError, "loading from unsafe path %s", f);
+		/* Mushware add-in (removed line) 2006-06-22 */
+        /* 	    rb_raise(rb_eSecurityError, "loading from unsafe path %s", f); */
+
+		/* End Mushware add-in */
 	}
 	OBJ_FREEZE(path);
 	f = StringValueCStr(path);

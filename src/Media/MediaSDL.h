@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } T42h8hBf49T+dFOol6izVQ
 /*
- * $Id: MediaSDL.h,v 1.26 2005/05/27 19:25:24 southa Exp $
+ * $Id: MediaSDL.h,v 1.27 2006/06/01 15:39:13 southa Exp $
  * $Log: MediaSDL.h,v $
+ * Revision 1.27  2006/06/01 15:39:13  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.26  2005/05/27 19:25:24  southa
  * win32 build fixes
  *
@@ -105,8 +108,8 @@
  *
  */
 
-// config.h
-#ifdef HAVE_CONFIG_H
+#if defined(HAVE_CONFIG_H)  && !defined(MUSHWARE_CONFIG_H)
+#define MUSHWARE_CONFIG_H 1
 #include "config.h"
 #endif
 

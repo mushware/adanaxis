@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } PtMFkwiJdU2SIxnonsU3jQ
 /*
- * $Id: MushcoreRegExp.cpp,v 1.8 2006/04/11 23:30:12 southa Exp $
+ * $Id: MushcoreRegExp.cpp,v 1.9 2006/06/01 15:39:46 southa Exp $
  * $Log: MushcoreRegExp.cpp,v $
+ * Revision 1.9  2006/06/01 15:39:46  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.8  2006/04/11 23:30:12  southa
  * Created MushRuby from ruby-1.8.4
  *
@@ -83,7 +86,8 @@
 
 #include "MushcoreSTL.h"
 
-#ifdef HAVE_CONFIG_H
+#if defined(HAVE_CONFIG_H)  && !defined(MUSHWARE_CONFIG_H)
+#define MUSHWARE_CONFIG_H 1
 #include "config.h"
 #endif
 

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } ybQRXB7nInMXm+ng00VQQw
 /*
- * $Id: mushMushGame.h,v 1.2 2005/06/14 20:39:40 southa Exp $
+ * $Id: mushMushGame.h,v 1.3 2006/06/01 15:38:45 southa Exp $
  * $Log: mushMushGame.h,v $
+ * Revision 1.3  2006/06/01 15:38:45  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.2  2005/06/14 20:39:40  southa
  * Adanaxis work
  *
@@ -33,7 +36,8 @@
  *
  */
 
-#ifdef HAVE_CONFIG_H
+#if defined(HAVE_CONFIG_H)  && !defined(MUSHWARE_CONFIG_H)
+#define MUSHWARE_CONFIG_H 1
 #include "config.h"
 #endif
 
