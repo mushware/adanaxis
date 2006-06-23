@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } dAboIY5Kp9P01iutrXBmlw
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.34 2005/05/26 16:05:29 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.35 2006/06/01 15:39:58 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.35  2006/06/01 15:39:58  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.34  2005/05/26 16:05:29  southa
  * win32 support
  *
@@ -214,7 +217,30 @@ PlatformMiscUtils::DirectoryExists(const string& inName)
 }
 
 void
-PlatformMiscUtils::MakeDirectory(const string& inName)
+PlatformMiscUtils::MakePublicDirectory(const string& inName)
+{
+    SECURITY_ATTRIBUTES sa;
+    SECURITY_DESCRIPTOR sd;
+
+    InitializeSecurityDescriptor(&sd, SECURITY_DESCRIPTOR_REVISION);
+    SetSecurityDescriptorDacl(&sd, true, NULL, false);
+    SetSecurityDescriptorGroup(&sd, NULL, false); 
+    SetSecurityDescriptorSacl(&sd, false, NULL, false);
+
+    sa.nLength = sizeof(SECURITY_ATTRIBUTES);
+    sa.lpSecurityDescriptor = &sd;
+    sa.bInheritHandle = TRUE;
+
+    if (CreateDirectory(inName.c_str(), &sa) == 0)
+    {
+	ostringstream message;
+	message << "mkdir " << inName << " failed: " << GetLastError(); 
+        throw(MushcoreCommandFail(message.str()));
+    }
+}
+
+void
+PlatformMiscUtils::MakePrivateDirectory(const string& inName)
 {
     if (CreateDirectory(inName.c_str(), NULL) == 0)
     {
