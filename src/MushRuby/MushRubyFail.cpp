@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 0SQZFcFDmoiv6tz5ra2xUQ
 /*
- * $Id: MushRubyFail.cpp,v 1.1 2006/04/20 00:22:45 southa Exp $
+ * $Id: MushRubyFail.cpp,v 1.2 2006/06/13 10:35:05 southa Exp $
  * $Log: MushRubyFail.cpp,v $
+ * Revision 1.2  2006/06/13 10:35:05  southa
+ * Ruby data objects
+ *
  * Revision 1.1  2006/04/20 00:22:45  southa
  * Added ruby executive
  *
@@ -30,6 +33,7 @@
 
 #include "MushRubyIntern.h"
 #include "MushRubyRuby.h"
+#include "MushRubySTL.h"
 
 using namespace Mushware;
 using namespace std;

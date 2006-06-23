@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 4aNrDWDcHhvbi/ZjV2ZFxA
 /*
- * $Id: MushGLStandard.h,v 1.14 2006/06/16 12:11:03 southa Exp $
+ * $Id: MushGLStandard.h,v 1.15 2006/06/22 19:07:31 southa Exp $
  * $Log: MushGLStandard.h,v $
+ * Revision 1.15  2006/06/22 19:07:31  southa
+ * Build fixes
+ *
  * Revision 1.14  2006/06/16 12:11:03  southa
  * Ruby subclasses
  *
@@ -80,7 +83,7 @@
 #endif
 
 #ifdef _MSC_VER
-#undef HAVE_SDL_OPENGL_H 1
+#undef HAVE_SDL_OPENGL_H
 #define HAVE_SDL_OPENGL_H 1
 #endif
 

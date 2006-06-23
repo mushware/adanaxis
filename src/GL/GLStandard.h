@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 0R+Ye4SBf8jdvaM7l0X5uA
 /*
- * $Id: GLStandard.h,v 1.27 2006/06/01 20:12:58 southa Exp $
+ * $Id: GLStandard.h,v 1.28 2006/06/22 19:07:29 southa Exp $
  * $Log: GLStandard.h,v $
+ * Revision 1.28  2006/06/22 19:07:29  southa
+ * Build fixes
+ *
  * Revision 1.27  2006/06/01 20:12:58  southa
  * Initial texture caching
  *
@@ -147,7 +150,7 @@
 #endif
 
 #ifdef _MSC_VER
-#undef HAVE_SDL_OPENGL_H 1
+#undef HAVE_SDL_OPENGL_H
 #define HAVE_SDL_OPENGL_H 1
 #endif
 

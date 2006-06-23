@@ -24,8 +24,11 @@
 //%Header } HWdr1tMx52TaaVUbwMcnig
 
 /*
- * $Id: MushcoreDataRef.h,v 1.16 2005/06/21 13:10:52 southa Exp $
+ * $Id: MushcoreDataRef.h,v 1.17 2006/06/01 15:39:43 southa Exp $
  * $Log: MushcoreDataRef.h,v $
+ * Revision 1.17  2006/06/01 15:39:43  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.16  2005/06/21 13:10:52  southa
  * MushGame work
  *
@@ -105,6 +108,9 @@
 #include "MushcoreStandard.h"
 #include "MushcoreXMLIStream.h"
 #include "MushcoreXMLOStream.h"
+
+// Undesirable include
+#include "MushcoreSTL.h"
 
 template<class RefType, class KeyType = std::string>
 class MushcoreDataRef

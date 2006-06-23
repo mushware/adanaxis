@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } NYmv5MZn7NEYPYHpc3JV8Q
 /*
- * $Id: MushGLV.cpp,v 1.12 2006/06/01 15:39:19 southa Exp $
+ * $Id: MushGLV.cpp,v 1.13 2006/06/01 20:12:59 southa Exp $
  * $Log: MushGLV.cpp,v $
+ * Revision 1.13  2006/06/01 20:12:59  southa
+ * Initial texture caching
+ *
  * Revision 1.12  2006/06/01 15:39:19  southa
  * DrawArray verification and fixes
  *
@@ -82,6 +85,9 @@ MushGLV::MushGLV() :
     m_fpGenBuffers(NULL),
     m_fpMapBuffer(NULL),
     m_fpUnmapBuffer(NULL),
+    m_hasActiveTexture(false),
+    m_fpActiveTexture(NULL),
+    m_fpClientActiveTexture(NULL),
     m_numTextureUnits(0),
     m_hasS3TC(false),
     m_contextNum(0),
@@ -143,6 +149,21 @@ MushGLV::Acquaint()
             m_fpGetBufferParameteriv = (tfpGetBufferParameteriv) GetProcAddressWithARB("glGetBufferParameteriv");
 
             m_hasVertexBuffer = true;
+        }
+        catch (MushcoreNonFatalFail &e)
+        {
+            MushcoreLog::Sgl().InfoLog() << "OpenGL symbol missing: " << e.what() << endl;
+        }
+    }
+    
+    if (!safeMode && m_extensions.find(" GL_ARB_multitexture ") != string::npos)
+    {
+        try
+        {   
+            m_fpActiveTexture = (tfpActiveTexture) GetProcAddressWithARB("glActiveTexture");
+            m_fpClientActiveTexture = (tfpClientActiveTexture) GetProcAddressWithARB("glClientActiveTexture");
+
+            m_hasActiveTexture = true;
         }
         catch (MushcoreNonFatalFail &e)
         {
@@ -266,6 +287,9 @@ MushGLV::AutoPrint(std::ostream& ioOut) const
     ioOut << "fpMapBuffer=" << (void *)m_fpMapBuffer << ", ";
     ioOut << "fpUnmapBuffer=" << (void *)m_fpUnmapBuffer << ", ";
     ioOut << "fpGetBufferParameteriv=" << (void *)m_fpGetBufferParameteriv << ", ";
+    ioOut << "hasActiveTexture=" << m_hasActiveTexture << ", ";
+    ioOut << "fpActiveTexture=" << (void *)m_fpActiveTexture << ", ";
+    ioOut << "fpClientActiveTexture=" << (void *)m_fpClientActiveTexture << ", ";
     ioOut << "vendor=" << m_vendor << ", ";
     ioOut << "renderer=" << m_renderer << ", ";
     ioOut << "version=" << m_version << ", ";
@@ -276,4 +300,4 @@ MushGLV::AutoPrint(std::ostream& ioOut) const
     ioOut << "contextValid=" << m_contextValid;
     ioOut << "]";
 }
-//%outOfLineFunctions } lvH9cLlevM8m/ID/Hl+Oyw
+//%outOfLineFunctions } Y3RNvFGT1cWxEFFkOnxnaQ

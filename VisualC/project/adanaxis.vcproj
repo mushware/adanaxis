@@ -53,7 +53,7 @@
 			<Tool
 				Name="VCPreBuildEventTool"
 				Description="Runs SourceConditioner.pm, which handles code autogeneration within the source files"
-				CommandLine="cd ..\.. &amp;&amp; echo This build event is not essential &amp;&amp; echo Remove it if it causes trouble &amp;&amp; perl -w SourceConditioner.pl"/>
+				CommandLine="cd ..\.. &amp;&amp; echo This build event is not essential.  Remove it if it causes trouble &amp;&amp; C:\cygwin\bin\perl -w SourceConditioner.pl"/>
 			<Tool
 				Name="VCPreLinkEventTool"/>
 			<Tool
@@ -113,8 +113,8 @@
 				Name="VCPostBuildEventTool"/>
 			<Tool
 				Name="VCPreBuildEventTool"
-				Description="Running SourceConditioner.pl, which handles code autogeneration within the source files"
-				CommandLine="cd ..\.. &amp;&amp; echo This build event is not essential.  Remove it if it causes trouble &amp;&amp; perl -w SourceConditioner.pl"/>
+				Description="Runs SourceConditioner.pm, which handles code autogeneration within the source files"
+				CommandLine="cd ..\.. &amp;&amp; echo This build event is not essential.  Remove it if it causes trouble &amp;&amp; C:\cygwin\bin\perl -w SourceConditioner.pl"/>
 			<Tool
 				Name="VCPreLinkEventTool"/>
 			<Tool
@@ -534,10 +534,22 @@
 					RelativePath="..\..\src\MushMesh\MushMesh.h">
 				</File>
 				<File
+					RelativePath="..\..\src\MushMesh\MushMesh4Base.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMesh\MushMesh4Base.h">
+				</File>
+				<File
 					RelativePath="..\..\src\MushMesh\MushMesh4Chunk.cpp">
 				</File>
 				<File
 					RelativePath="..\..\src\MushMesh\MushMesh4Chunk.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMesh\MushMesh4Extruder.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMesh\MushMesh4Extruder.h">
 				</File>
 				<File
 					RelativePath="..\..\src\MushMesh\MushMesh4Face.cpp">
@@ -564,10 +576,28 @@
 					RelativePath="..\..\src\MushMesh\MushMesh4LinkFaceFace.h">
 				</File>
 				<File
+					RelativePath="..\..\src\MushMesh\MushMesh4Maker.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMesh\MushMesh4Maker.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMesh\MushMesh4Material.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMesh\MushMesh4Material.h">
+				</File>
+				<File
 					RelativePath="..\..\src\MushMesh\MushMesh4Mesh.cpp">
 				</File>
 				<File
 					RelativePath="..\..\src\MushMesh\MushMesh4Mesh.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMesh\MushMesh4TextureTile.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMesh\MushMesh4TextureTile.h">
 				</File>
 				<File
 					RelativePath="..\..\src\MushMesh\MushMesh4Util.cpp">
@@ -622,12 +652,6 @@
 				</File>
 				<File
 					RelativePath="..\..\src\MushMesh\MushMeshGroup.h">
-				</File>
-				<File
-					RelativePath="..\..\src\MushMesh\MushMeshMaterialRef.cpp">
-				</File>
-				<File
-					RelativePath="..\..\src\MushMesh\MushMeshMaterialRef.h">
 				</File>
 				<File
 					RelativePath="..\..\src\MushMesh\MushMeshMattress.cpp">
@@ -848,12 +872,6 @@
 				</File>
 				<File
 					RelativePath="..\..\src\Adanaxis\AdanaxisPieceProjectile.h">
-				</File>
-				<File
-					RelativePath="..\..\src\Adanaxis\AdanaxisPixelSource.cpp">
-				</File>
-				<File
-					RelativePath="..\..\src\Adanaxis\AdanaxisPixelSource.h">
 				</File>
 				<File
 					RelativePath="..\..\src\Adanaxis\AdanaxisPlayer.cpp">
@@ -2060,6 +2078,182 @@
 				</File>
 				<File
 					RelativePath="..\..\src\MushGame\MushGameVolatileData.h">
+				</File>
+			</Filter>
+			<Filter
+				Name="MushRuby"
+				Filter="">
+				<File
+					RelativePath="..\..\src\MushRuby\MushRuby.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushRuby\MushRuby.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushRuby\MushRubyDataObj.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushRuby\MushRubyDataObj.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushRuby\MushRubyEmptyObj.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushRuby\MushRubyEmptyObj.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushRuby\MushRubyExec.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushRuby\MushRubyExec.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushRuby\MushRubyFail.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushRuby\MushRubyFail.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushRuby\MushRubyInstall.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushRuby\MushRubyInstall.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushRuby\MushRubyIntern.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushRuby\MushRubyIntern.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushRuby\MushRubyMaptorObj.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushRuby\MushRubyMaptorObj.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushRuby\MushRubyObj.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushRuby\MushRubyObj.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushRuby\MushRubyObject.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushRuby\MushRubyObject.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushRuby\MushRubyRuby.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushRuby\MushRubyRuby.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushRuby\MushRubyStandard.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushRuby\MushRubyStandard.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushRuby\MushRubySTL.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushRuby\MushRubySTL.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushRuby\MushRubyUtil.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushRuby\MushRubyUtil.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushRuby\MushRubyValue.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushRuby\MushRubyValue.h">
+				</File>
+			</Filter>
+			<Filter
+				Name="MushMeshRuby"
+				Filter="">
+				<File
+					RelativePath="..\..\src\MushMeshRuby\MushMeshRuby.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMeshRuby\MushMeshRuby.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMeshRuby\MushMeshRubyBase.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMeshRuby\MushMeshRubyBase.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMeshRuby\MushMeshRubyBasePrism.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMeshRuby\MushMeshRubyBasePrism.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMeshRuby\MushMeshRubyDisplacement.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMeshRuby\MushMeshRubyDisplacement.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMeshRuby\MushMeshRubyExtruder.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMeshRuby\MushMeshRubyExtruder.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMeshRuby\MushMeshRubyMesh.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMeshRuby\MushMeshRubyMesh.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMeshRuby\MushMeshRubyMeshLibrary.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMeshRuby\MushMeshRubyMeshLibrary.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMeshRuby\MushMeshRubyPost.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMeshRuby\MushMeshRubyPost.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMeshRuby\MushMeshRubyRotation.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMeshRuby\MushMeshRubyRotation.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMeshRuby\MushMeshRubyRuby.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMeshRuby\MushMeshRubyRuby.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMeshRuby\MushMeshRubyStandard.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMeshRuby\MushMeshRubyStandard.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMeshRuby\MushMeshRubyTools.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMeshRuby\MushMeshRubyTools.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMeshRuby\MushMeshRubyVector.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMeshRuby\MushMeshRubyVector.h">
 				</File>
 			</Filter>
 		</Filter>

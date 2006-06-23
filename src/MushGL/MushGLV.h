@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } JUBCCFXz/CzIx64ACD8wjA
 /*
- * $Id: MushGLV.h,v 1.16 2006/06/01 15:39:19 southa Exp $
+ * $Id: MushGLV.h,v 1.17 2006/06/01 20:13:00 southa Exp $
  * $Log: MushGLV.h,v $
+ * Revision 1.17  2006/06/01 20:13:00  southa
+ * Initial texture caching
+ *
  * Revision 1.16  2006/06/01 15:39:19  southa
  * DrawArray verification and fixes
  *
@@ -134,6 +137,12 @@ private:
     typedef void (MUSHCORE_APIENTRY *tfpGetBufferParameteriv)(GLenum target, GLenum value, GLint *data);
     tfpGetBufferParameteriv m_fpGetBufferParameteriv; // :fnpointer
         
+    bool m_hasActiveTexture;
+    typedef void (MUSHCORE_APIENTRY *tfpActiveTexture)(GLenum texture);
+    tfpActiveTexture m_fpActiveTexture; // :fnpointer
+    typedef void (MUSHCORE_APIENTRY *tfpClientActiveTexture)(GLenum texture);
+    tfpClientActiveTexture m_fpClientActiveTexture; // :fnpointer
+
     void *GetProcAddressWithARB(const std::string& inName) const;
     
     std::string m_vendor;
@@ -178,26 +187,34 @@ inline void
 MushGLV::ActiveTextureZeroBased(Mushware::U32 inTexNum)
 {
     ContextValidAssert();
-    if (inTexNum >= m_numTextureUnits)
+    if (m_hasActiveTexture)
     {
-        std::ostringstream message;
-        message << "Texture number too high (" << inTexNum << " >= " << m_numTextureUnits << ")";
-        throw MushcoreRequestFail(message.str());
+        if (inTexNum >= m_numTextureUnits)
+        {
+            std::ostringstream message;
+            message << "Texture number too high (" << inTexNum << " >= " << m_numTextureUnits << ")";
+            throw MushcoreRequestFail(message.str());
+        }
+        MUSHCOREASSERT(m_fpActiveTexture != NULL);
+        m_fpActiveTexture(GL_TEXTURE0 + inTexNum);
     }
-    glActiveTexture(GL_TEXTURE0 + inTexNum);
 }
 
 inline void
 MushGLV::ClientActiveTextureZeroBased(Mushware::U32 inTexNum)
 {
     ContextValidAssert();
-    if (inTexNum >= m_numTextureUnits)
+    if (m_hasActiveTexture)
     {
-        std::ostringstream message;
-        message << "Texture number too high (" << inTexNum << " >= " << m_numTextureUnits << ")";
-        throw MushcoreRequestFail(message.str());
+        if (inTexNum >= m_numTextureUnits)
+        {
+            std::ostringstream message;
+            message << "Texture number too high (" << inTexNum << " >= " << m_numTextureUnits << ")";
+            throw MushcoreRequestFail(message.str());
+        }
+        MUSHCOREASSERT(m_fpClientActiveTexture != NULL);
+        m_fpClientActiveTexture(GL_TEXTURE0 + inTexNum);
     }
-    glClientActiveTexture(GL_TEXTURE0 + inTexNum);
 }
 
 //%inlineHeader {

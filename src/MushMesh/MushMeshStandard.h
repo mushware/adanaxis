@@ -40,6 +40,8 @@
 #define MUSHMESH_DEBUG 1
 #endif
 
+#include <cmath>
+
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw
