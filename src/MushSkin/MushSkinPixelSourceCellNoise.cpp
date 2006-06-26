@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } qhEdbIEwQwu5Qbsnsh682Q
 /*
- * $Id: MushSkinPixelSourceCellNoise.cpp,v 1.1 2006/06/07 12:15:20 southa Exp $
+ * $Id: MushSkinPixelSourceCellNoise.cpp,v 1.2 2006/06/09 21:07:14 southa Exp $
  * $Log: MushSkinPixelSourceCellNoise.cpp,v $
+ * Revision 1.2  2006/06/09 21:07:14  southa
+ * Tiled skin generation
+ *
  * Revision 1.1  2006/06/07 12:15:20  southa
  * Grid and test textures
  *
@@ -123,4 +126,4 @@ MushSkinPixelSourceCellNoise::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("lineGenerator");
     ioOut << m_lineGenerator;
 }
-//%outOfLineFunctions } 5BjyTN5ScQopcCwppf2vdA
+//%outOfLineFunctions } HoFX78ezU6IrW0Fxjm2wJQ

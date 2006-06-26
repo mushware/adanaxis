@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } zgMr56yyswRXPZpU6DBKUg
 /*
- * $Id: MushSkinPixelSourceCellNoise.h,v 1.1 2006/06/05 14:37:52 southa Exp $
+ * $Id: MushSkinPixelSourceCellNoise.h,v 1.1 2006/06/07 12:15:20 southa Exp $
  * $Log: MushSkinPixelSourceCellNoise.h,v $
+ * Revision 1.1  2006/06/07 12:15:20  southa
+ * Grid and test textures
+ *
  * Revision 1.1  2006/06/05 14:37:52  southa
  * Texture generation
  *
@@ -66,7 +69,7 @@ operator<<(std::ostream& ioOut, const MushSkinPixelSourceCellNoise& inObj)
     inObj.AutoPrint(ioOut);
     return ioOut;
 }
-//%inlineHeader } 6xoQJWzYokddAJOpBAfOEg
+//%inlineHeader } xnk8wOly3PaWcGzqM26juA
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

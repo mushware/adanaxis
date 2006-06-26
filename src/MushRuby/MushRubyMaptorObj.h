@@ -1,6 +1,6 @@
 //%includeGuardStart {
-#ifndef MushRubyMaptorObjOBJ_H
-#define MushRubyMaptorObjOBJ_H
+#ifndef MUSHRUBYMAPTOROBJ_H
+#define MUSHRUBYMAPTOROBJ_H
 //%includeGuardStart } 42RBOxF3mBmiO2XA/1oDFQ
 //%Header {
 /*****************************************************************************
@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } KVevXoKx2+IG7g9mAD78DQ
 /*
- * $Id$
- * $Log$
+ * $Id: MushRubyMaptorObj.h,v 1.1 2006/06/20 19:06:55 southa Exp $
+ * $Log: MushRubyMaptorObj.h,v $
+ * Revision 1.1  2006/06/20 19:06:55  southa
+ * Object creation
+ *
  */
 
 

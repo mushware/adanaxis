@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } vFMISa2849VX/N6vU3bn2g
 /*
- * $Id: MushGLState.h,v 1.5 2005/09/06 12:15:35 southa Exp $
+ * $Id: MushGLState.h,v 1.6 2006/06/01 15:39:18 southa Exp $
  * $Log: MushGLState.h,v $
+ * Revision 1.6  2006/06/01 15:39:18  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.5  2005/09/06 12:15:35  southa
  * Texture and rendering work
  *
@@ -143,7 +146,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } tO7bdQQzNBsFVPCMwFt0ng
+//%classPrototypes } 1oBgFruy5qHAaudtV+Hcmg
 };
 
 //%inlineHeader {
