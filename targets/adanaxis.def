@@ -1,6 +1,9 @@
 # Target definition file
-# $Id: adanaxis.def,v 1.4 2005/08/29 18:40:57 southa Exp $
+# $Id: adanaxis.def,v 1.5 2006/06/22 19:07:39 southa Exp $
 # $Log: adanaxis.def,v $
+# Revision 1.5  2006/06/22 19:07:39  southa
+# Build fixes
+#
 # Revision 1.4  2005/08/29 18:40:57  southa
 # Solid rendering work
 #
@@ -58,7 +61,7 @@ Modules: Platform/MacOSX Platform/win32 +.*\.c$ Platform/X11 +.*\.y$ +.*\.mkf$ +
 Append: Makefile.am
 
 ExtraDist:
-Modules: prebuild.sh adanaxiscontroldemo\.spec\.* macosx/project/.*\.plist README\.* .*\.pl .*\.pm macosx/project/project.xcodeproj/.*pbx(proj|user) macosx/MakeRelease.sh macosx/Start_in_Recovery_Mode.(app|scpt) macosx/adanaxis_app.icns win32/adanaxiscontroldemo.*\.ico win32/MakeInstaller.sh win32/installer.nsi VisualC/project/adanaxiscontroldemo.*\.(sln|aps|rc|vcproj|ico) x11/icons/adanaxiscontroldemo\..*\.png$
+Modules: prebuild.sh adanaxiscontroldemo\.spec\.* macosx/project/.*\.plist README\.* .*\.pl .*\.pm macosx/project/project.xcodeproj/.*pbx(proj|user) macosx/MakeRelease.sh macosx/Start_in_Recovery_Mode.(app|scpt) macosx/adanaxis_app.icns win32/adanaxiscontroldemo.*\.ico win32/MakeInstaller.sh win32/installer.nsi win32/FileListToNSI.rb VisualC/project/adanaxiscontroldemo.*\.(sln|aps|rc|vcproj|ico) x11/icons/adanaxiscontroldemo\..*\.png$
 Manual:
 Modules: x11/man/adanaxiscontroldemo.*
 

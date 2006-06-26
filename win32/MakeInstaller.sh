@@ -4,15 +4,18 @@
 #
 # This file contains original work by Andy Southgate.  Contact details can be
 # found at http://www.mushware.co.uk.  This file was placed in the Public
-# Domain by Andy Southgate and Mushware Limited in 2002.
+# Domain by Andy Southgate and Mushware Limited 2002-2006.
 #
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
 
 #
-# $Id: MakeInstaller.sh,v 1.5 2005/08/05 10:33:38 southa Exp $
+# $Id: MakeInstaller.sh,v 1.6 2006/06/26 12:55:13 southa Exp $
 # $Log: MakeInstaller.sh,v $
+# Revision 1.6  2006/06/26 12:55:13  southa
+# win32 installer updates
+#
 # Revision 1.5  2005/08/05 10:33:38  southa
 # win32 build fixes
 #
@@ -51,7 +54,7 @@ echo "from '$builddir' and '$datadir' to '$releasedir'"
 
 cp -pR "$builddir/$package.exe" "$appdir"
 
-for filename in VisualC/visualclibs/*.dll
+for filename in VisualC/visualclibs/*.dll VisualC/ruby/Release/mushruby.dll
 do
 cp "$filename" "${appdir}"
 done
@@ -63,6 +66,7 @@ cp -pR "$datadir" "$releasedir"
 find "$releasedir" -type d -name 'CVS' -prune -exec rm -rf "{}" \;
 find "$releasedir" -name '.DS_Store' -exec rm -f "{}" \;
 find "$releasedir" -name 'Makefile*' -exec rm -f "{}" \;
+find "$releasedir" -name 'mushware-cache' -exec rm -f "{}" \;
 
 cp "$releasedir/system/start.txt" "$releasedir/system/start_backup.txt"
 
@@ -74,7 +78,9 @@ done
 
 cp COPYING "${readmedir}/Licence.txt"
 cp ChangeLog "${readmedir}/ChangeLog.txt"
-cp "$package-$version.tar.gz" "$releasedir/system/$package-src-$version.tar.gz"
+
+# Copy the source tar archive, removing the data directory in the pipe
+gunzip -c "$package-$version.tar.gz" | tar --delete "$package-$version/data-*" | GZIP=--best gzip > "$releasedir/system/$package-src-$version.tar.gz"
 
 echo 'Converting text and XML file to DOS line endings'
 find "$releasedir" \( -iname '*.xml' -o -iname '*.txt' \) -exec unix2dos {} \;
