@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } dAboIY5Kp9P01iutrXBmlw
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.35 2006/06/01 15:39:58 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.36 2006/06/23 00:35:28 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.36  2006/06/23 00:35:28  southa
+ * win32 build fixes
+ *
  * Revision 1.35  2006/06/01 15:39:58  southa
  * DrawArray verification and fixes
  *
@@ -135,6 +138,8 @@
 #include <direct.h>
 #include <windows.h>
 #include <shellapi.h>
+#include <shlobj.h>
+#include <strsafe.h>
 
 using namespace Mushware;
 using namespace std;
@@ -196,6 +201,16 @@ PlatformMiscUtils::GetSystemPath(int argc, char *argv[])
         appPath.replace(0, 11, appPath.substr(10,1)+":");
     }
     return appPath;
+}
+
+string
+PlatformMiscUtils::GetUserDataPath(int argc, char *argv[])
+{
+    TCHAR userPath[MAX_PATH];
+
+    SHGetFolderPathA(NULL, CSIDL_LOCAL_APPDATA, NULL, SHGFP_TYPE_CURRENT, userPath);
+
+    return std::string(userPath) + "\\mushware\\" + MushcoreInfo::Sgl().PackageNameGet();
 }
 
 void

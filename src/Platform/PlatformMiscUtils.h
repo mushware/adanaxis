@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } nsV76GW3owDjusQMHIpipw
 /*
- * $Id: PlatformMiscUtils.h,v 1.28 2006/06/01 15:39:57 southa Exp $
+ * $Id: PlatformMiscUtils.h,v 1.29 2006/06/01 20:13:01 southa Exp $
  * $Log: PlatformMiscUtils.h,v $
+ * Revision 1.29  2006/06/01 20:13:01  southa
+ * Initial texture caching
+ *
  * Revision 1.28  2006/06/01 15:39:57  southa
  * DrawArray verification and fixes
  *
@@ -97,6 +100,7 @@ class PlatformMiscUtils
 public:
     static std::string GetApplPath(int argc, char *argv[]);
     static std::string GetSystemPath(int argc, char *argv[]);
+    static std::string GetUserDataPath(int argc, char *argv[]);
     static void TweakArgs(std::string& ioString);
     static void Initialise(void);
     static bool DirectoryExists(const std::string& inName);

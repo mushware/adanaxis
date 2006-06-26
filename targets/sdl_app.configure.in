@@ -95,6 +95,7 @@ dnl         AC_CHECK_LIB(glut32, main,, AC_MSG_ERROR([Cannot survive without Ope
             AC_CHECK_LIB(wsock32, main,, AC_MSG_ERROR([Not configured to build without wsock32 library]))
             AC_CHECK_LIB(winmm, main,, AC_MSG_ERROR([Not configured to build without winmm library]))
             AC_CHECK_LIB(iphlpapi, main,, AC_MSG_ERROR([Not configured to build without iphlpapi library]))
+            CFLAGS="$CFLAGS -I\${srcdir}/Platform/win32"
             CPPFLAGS="$CPPFLAGS -I\${srcdir}/Platform/win32"
         else
             AC_MSG_NOTICE([* Assuming generic X Windows platform.])
@@ -104,8 +105,9 @@ dnl         AC_CHECK_LIB(glut32, main,, AC_MSG_ERROR([Cannot survive without Ope
 
             dnl We need the following for GL to link
             AC_PATH_XTRA
+            CFLAGS="$CFLAGS"
             CPPFLAGS="$CPPFLAGS $X_CFLAGS"
-            LDFLAGS="$LDFLAGS -L/usr/local/lib"
+            LDFLAGS="$LDFLAGS"
             LIBS="$LIBS $X_LIBS $X_PRE_LIBS -lX11 $X_EXTRA_LIBS"
             AC_CHECK_LIB(m, main)
             AC_CHECK_LIB(Xext, main)

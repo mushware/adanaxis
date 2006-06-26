@@ -11,8 +11,11 @@
 ##############################################################################
 
 #
-# $Id: MakeInstaller.sh,v 1.4 2005/05/27 19:25:24 southa Exp $
+# $Id: MakeInstaller.sh,v 1.5 2005/08/05 10:33:38 southa Exp $
 # $Log: MakeInstaller.sh,v $
+# Revision 1.5  2005/08/05 10:33:38  southa
+# win32 build fixes
+#
 # Revision 1.4  2005/05/27 19:25:24  southa
 # win32 build fixes
 #
@@ -82,6 +85,7 @@ echo 'Building win32 installer'
 cp 'win32/Mushware web site.url' "$releasedir"
 
 cd win32
-makensis installer.nsi
+c:/ruby/bin/ruby FileListToNSI.rb installer.nsi installer_new.nsi "$name"
+makensis installer_new.nsi
 
 echo 'Done'
