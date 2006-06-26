@@ -19,18 +19,21 @@
 			CharacterSet="2">
 			<Tool
 				Name="VCCLCompilerTool"
-				Optimization="0"
+				Optimization="2"
+				InlineFunctionExpansion="0"
+				FavorSizeOrSpeed="1"
+				OptimizeForProcessor="3"
 				AdditionalIncludeDirectories="..\..\src;..\..\src\API;C:\msvclibs\GnuWin32\include;&quot;C:\msvclibs\Expat-1.95.8\Source\lib&quot;;&quot;C:\msvclibs\SDL-1.2.8\include&quot;;&quot;C:\msvclibs\SDL_mixer-1.2.6\include&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_CONSOLE"
 				MinimalRebuild="TRUE"
-				BasicRuntimeChecks="3"
+				BasicRuntimeChecks="0"
 				RuntimeLibrary="2"
 				RuntimeTypeInfo="TRUE"
 				UsePrecompiledHeader="2"
 				BrowseInformation="1"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="TRUE"
-				DebugInformationFormat="4"/>
+				DebugInformationFormat="3"/>
 			<Tool
 				Name="VCCustomBuildTool"/>
 			<Tool
@@ -886,6 +889,24 @@
 					RelativePath="..\..\src\Adanaxis\AdanaxisRender.h">
 				</File>
 				<File
+					RelativePath="..\..\src\Adanaxis\AdanaxisRuby.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\Adanaxis\AdanaxisRuby.h">
+				</File>
+				<File
+					RelativePath="..\..\src\Adanaxis\AdanaxisRubyDeco.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\Adanaxis\AdanaxisRubyDeco.h">
+				</File>
+				<File
+					RelativePath="..\..\src\Adanaxis\AdanaxisRubyKhazi.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\Adanaxis\AdanaxisRubyKhazi.h">
+				</File>
+				<File
 					RelativePath="..\..\src\Adanaxis\AdanaxisSaveData.cpp">
 				</File>
 				<File
@@ -965,10 +986,19 @@
 					RelativePath="..\..\src\Api\mushMushMeshLibrary.h">
 				</File>
 				<File
+					RelativePath="..\..\src\Api\mushMushMeshRuby.h">
+				</File>
+				<File
 					RelativePath="..\..\src\Api\mushMushPie.h">
 				</File>
 				<File
 					RelativePath="..\..\src\Api\mushMushRender.h">
+				</File>
+				<File
+					RelativePath="..\..\src\Api\mushMushRuby.h">
+				</File>
+				<File
+					RelativePath="..\..\src\Api\mushMushSkin.h">
 				</File>
 				<File
 					RelativePath="..\..\src\Api\mushMustl.h">
@@ -1072,6 +1102,12 @@
 					RelativePath="..\..\src\MushGL\MushGLBuffers.h">
 				</File>
 				<File
+					RelativePath="..\..\src\MushGL\MushGLCacheControl.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushGL\MushGLCacheControl.h">
+				</File>
+				<File
 					RelativePath="..\..\src\MushGL\MushGLClaimer.cpp">
 				</File>
 				<File
@@ -1082,6 +1118,12 @@
 				</File>
 				<File
 					RelativePath="..\..\src\MushGL\MushGLControl.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushGL\MushGLFont.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushGL\MushGLFont.h">
 				</File>
 				<File
 					RelativePath="..\..\src\MushGL\MushGLJob.cpp">
@@ -1096,16 +1138,34 @@
 					RelativePath="..\..\src\MushGL\MushGLJobRender.h">
 				</File>
 				<File
+					RelativePath="..\..\src\MushGL\MushGLMaterial.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushGL\MushGLMaterial.h">
+				</File>
+				<File
 					RelativePath="..\..\src\MushGL\MushGLPixelSource.cpp">
 				</File>
 				<File
 					RelativePath="..\..\src\MushGL\MushGLPixelSource.h">
 				</File>
 				<File
+					RelativePath="..\..\src\MushGL\MushGLPixelSourceTIFF.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushGL\MushGLPixelSourceTIFF.h">
+				</File>
+				<File
 					RelativePath="..\..\src\MushGL\MushGLProjection.cpp">
 				</File>
 				<File
 					RelativePath="..\..\src\MushGL\MushGLProjection.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushGL\MushGLResolverPixelSource.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushGL\MushGLResolverPixelSource.h">
 				</File>
 				<File
 					RelativePath="..\..\src\MushGL\MushGLStandard.cpp">
@@ -1118,6 +1178,18 @@
 				</File>
 				<File
 					RelativePath="..\..\src\MushGL\MushGLState.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushGL\MushGLTexture.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushGL\MushGLTexture.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushGL\MushGLTIFFUtil.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushGL\MushGLTIFFUtil.h">
 				</File>
 				<File
 					RelativePath="..\..\src\MushGL\MushGLUtil.cpp">
@@ -1170,6 +1242,12 @@
 				</File>
 				<File
 					RelativePath="..\..\src\MushRender\MushRenderMeshDiagnostic.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushRender\MushRenderMeshSolid.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushRender\MushRenderMeshSolid.h">
 				</File>
 				<File
 					RelativePath="..\..\src\MushRender\MushRenderMeshWireframe.cpp">
@@ -1752,6 +1830,12 @@
 					RelativePath="..\..\src\MushMeshLibrary\MushMeshLibraryBase.h">
 				</File>
 				<File
+					RelativePath="..\..\src\MushMeshLibrary\MushMeshLibraryExtruder.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMeshLibrary\MushMeshLibraryExtruder.h">
+				</File>
+				<File
 					RelativePath="..\..\src\MushMeshLibrary\MushMeshLibraryExtrusionContext.cpp">
 				</File>
 				<File
@@ -1762,6 +1846,18 @@
 				</File>
 				<File
 					RelativePath="..\..\src\MushMeshLibrary\MushMeshLibraryFGenExtrude.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMeshLibrary\MushMeshLibraryMaker.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMeshLibrary\MushMeshLibraryMaker.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMeshLibrary\MushMeshLibraryPrism.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMeshLibrary\MushMeshLibraryPrism.h">
 				</File>
 				<File
 					RelativePath="..\..\src\MushMeshLibrary\MushMeshLibraryStandard.cpp">
@@ -2254,6 +2350,82 @@
 				</File>
 				<File
 					RelativePath="..\..\src\MushMeshRuby\MushMeshRubyVector.h">
+				</File>
+			</Filter>
+			<Filter
+				Name="MushSkin"
+				Filter="">
+				<File
+					RelativePath="..\..\src\MushSkin\MushSkin.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushSkin\MushSkin.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushSkin\MushSkinLineGenerator.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushSkin\MushSkinLineGenerator.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushSkin\MushSkinMaterial.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushSkin\MushSkinMaterial.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushSkin\MushSkinPixelSourceCellNoise.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushSkin\MushSkinPixelSourceCellNoise.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushSkin\MushSkinPixelSourceGrid.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushSkin\MushSkinPixelSourceGrid.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushSkin\MushSkinPixelSourceProc.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushSkin\MushSkinPixelSourceProc.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushSkin\MushSkinPixelSourceTest.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushSkin\MushSkinPixelSourceTest.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushSkin\MushSkinPixelSourceTileShow.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushSkin\MushSkinPixelSourceTileShow.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushSkin\MushSkinStandard.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushSkin\MushSkinStandard.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushSkin\MushSkinTiled.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushSkin\MushSkinTiled.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushSkin\MushSkinTiledMethod1.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushSkin\MushSkinTiledMethod1.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushSkin\MushSkinUtil.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushSkin\MushSkinUtil.h">
 				</File>
 			</Filter>
 		</Filter>
