@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } px78SUrna42uj+15fa2T7w
 /*
- * $Id: MushRubyDataObj.h,v 1.4 2006/06/14 18:45:50 southa Exp $
+ * $Id: MushRubyDataObj.h,v 1.5 2006/06/16 12:11:05 southa Exp $
  * $Log: MushRubyDataObj.h,v $
+ * Revision 1.5  2006/06/16 12:11:05  southa
+ * Ruby subclasses
+ *
  * Revision 1.4  2006/06/14 18:45:50  southa
  * Ruby mesh generation
  *
@@ -176,6 +179,7 @@ MushRubyDataObj<T>::DataObjInitialize(Mushware::tRubyArgC inArgC, Mushware::tRub
 	catch (MushcoreFail& e)
 	{
 		MushRubyUtil::Raise(e.what());
+        retVal = 0; // Prevent warning
 	}
 	return retVal;
 }

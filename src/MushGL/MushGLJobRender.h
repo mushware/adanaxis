@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } niNk52AMovUz2uwLdjDeFg
 /*
- * $Id: MushGLJobRender.h,v 1.2 2005/09/05 17:14:22 southa Exp $
+ * $Id: MushGLJobRender.h,v 1.3 2006/06/01 15:39:17 southa Exp $
  * $Log: MushGLJobRender.h,v $
+ * Revision 1.3  2006/06/01 15:39:17  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.2  2005/09/05 17:14:22  southa
  * Solid rendering
  *
@@ -51,7 +54,7 @@ public:
     virtual MushGLWorkSpec& WorkSpecNew(void);
     
 private:
-    MushGLJobRender(const MushGLJobRender&) {}
+    MushGLJobRender(const MushGLJobRender&) : MushGLJob() {}
     
     std::vector<MushGLWorkSpec *> m_workSpecs; //:read
     

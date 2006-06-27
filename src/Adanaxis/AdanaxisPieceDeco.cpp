@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } Kb73MSBnaByz2lwXVLGZkA
 /*
- * $Id: AdanaxisPieceDeco.cpp,v 1.14 2006/06/01 15:38:47 southa Exp $
+ * $Id: AdanaxisPieceDeco.cpp,v 1.15 2006/06/21 16:52:28 southa Exp $
  * $Log: AdanaxisPieceDeco.cpp,v $
+ * Revision 1.15  2006/06/21 16:52:28  southa
+ * Deco objects
+ *
  * Revision 1.14  2006/06/01 15:38:47  southa
  * DrawArray verification and fixes
  *
@@ -81,7 +84,6 @@ AdanaxisPieceDeco::Render(MushGameLogic& ioLogic, MushRenderMesh& inRender, cons
 {
     bool visible = true;
     t4Val objNormal = Post().Pos();
-	tVal objDist = objNormal.Magnitude();
 	
     objNormal.InPlaceNormalise();
     t4Val viewNormal = t4Val(0,0,0,-1);

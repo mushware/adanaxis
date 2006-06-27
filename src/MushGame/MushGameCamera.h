@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } lsHtNJKYG2fgi6Muwtd8AQ
 /*
- * $Id: MushGameCamera.h,v 1.5 2005/08/01 20:23:24 southa Exp $
+ * $Id: MushGameCamera.h,v 1.6 2006/06/01 15:39:20 southa Exp $
  * $Log: MushGameCamera.h,v $
+ * Revision 1.6  2006/06/01 15:39:20  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.5  2005/08/01 20:23:24  southa
  * Backdrop and build fixes
  *
@@ -56,7 +59,7 @@ class MushGameCamera : public MushcoreVirtualObject
 {
 public:
     MushGameCamera();
-    MushGameCamera(const MushGameCamera& inCamera)
+    MushGameCamera(const MushGameCamera& inCamera) : MushcoreVirtualObject()
     {
         // Deep copy
         m_post = inCamera.m_post;

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 5BOLwI3DhgfDHotOLswDpg
 /*
- * $Id: MushRubyValue.h,v 1.7 2006/06/14 18:45:51 southa Exp $
+ * $Id: MushRubyValue.h,v 1.8 2006/06/16 01:02:34 southa Exp $
  * $Log: MushRubyValue.h,v $
+ * Revision 1.8  2006/06/16 01:02:34  southa
+ * Ruby mesh generation
+ *
  * Revision 1.7  2006/06/14 18:45:51  southa
  * Ruby mesh generation
  *
@@ -64,6 +67,7 @@ public:
 	bool IsArray(void) const;
 	bool CanBeValVector(void) const;
 	std::vector<Mushware::tVal> ValVector(void) const;
+	std::vector<Mushware::U32> U32Vector(void) const;
 	bool Bool(void) const;
 	Mushware::U32 U32(void) const;
 	Mushware::tVal Val(void) const;

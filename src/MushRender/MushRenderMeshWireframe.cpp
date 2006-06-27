@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } GBnKh1xP//zYsMvzXoAYTg
 /*
- * $Id: MushRenderMeshWireframe.cpp,v 1.5 2005/07/06 19:08:27 southa Exp $
+ * $Id: MushRenderMeshWireframe.cpp,v 1.6 2006/06/01 15:39:38 southa Exp $
  * $Log: MushRenderMeshWireframe.cpp,v $
+ * Revision 1.6  2006/06/01 15:39:38  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.5  2005/07/06 19:08:27  southa
  * Adanaxis control work
  *
@@ -204,15 +207,6 @@ MushRenderMeshWireframe::OutputBufferGenerate(const MushRenderSpec& inSpec, cons
             {
                 throw MushcoreDataFail("Self-connection fault in connectivity data");
             }
-        }
-    }
-    
-    static U32 ctr=0;
-    if (++ctr < 0)
-    {
-        for (U32 i=0; i<destVertexIndex; ++i)
-        {
-            cout << destVertices.Ref(i) << endl;
         }
     }
     

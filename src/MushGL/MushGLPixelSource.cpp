@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } vz1knUYnzwX5FNm6RC5EZw
 /*
- * $Id: MushGLPixelSource.cpp,v 1.7 2006/06/06 17:58:32 southa Exp $
+ * $Id: MushGLPixelSource.cpp,v 1.8 2006/06/07 12:15:19 southa Exp $
  * $Log: MushGLPixelSource.cpp,v $
+ * Revision 1.8  2006/06/07 12:15:19  southa
+ * Grid and test textures
+ *
  * Revision 1.7  2006/06/06 17:58:32  southa
  * Ruby texture definition
  *
@@ -76,7 +79,7 @@ MushGLPixelSource::ParamDecode(const MushRubyValue& inName, const MushRubyValue&
 	}
 	else if (nameStr == "size")
 	{
-		m_size = t4Val(inValue.ValVector());
+		m_size = t4U32(inValue.U32Vector());
 	}
 	else if (nameStr == "cache")
 	{

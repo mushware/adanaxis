@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } kjx6juFzwsH41luLhCyMIQ
 /*
- * $Id: MushRubyObj.h,v 1.4 2006/06/16 01:02:33 southa Exp $
+ * $Id: MushRubyObj.h,v 1.5 2006/06/16 12:11:05 southa Exp $
  * $Log: MushRubyObj.h,v $
+ * Revision 1.5  2006/06/16 12:11:05  southa
+ * Ruby subclasses
+ *
  * Revision 1.4  2006/06/16 01:02:33  southa
  * Ruby mesh generation
  *
@@ -165,6 +168,7 @@ MushRubyObj<T>::ObjInitialize(Mushware::tRubyArgC inArgC, Mushware::tRubyValue *
 	catch (MushcoreFail& e)
 	{
 		MushRubyUtil::Raise(e.what());
+        retVal = 0; // Prevent warning
 	}
 	return retVal;
 }

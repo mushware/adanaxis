@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } h1Go2vLqhxcDo4G+8KTIWw
 /*
- * $Id$
- * $Log$
+ * $Id: MushGLTIFFUtil.cpp,v 1.1 2006/06/05 11:48:25 southa Exp $
+ * $Log: MushGLTIFFUtil.cpp,v $
+ * Revision 1.1  2006/06/05 11:48:25  southa
+ * Noise textures
+ *
  */
 
 #include "MushGLTIFFUtil.h"
@@ -124,9 +127,9 @@ MushGLTIFFUtil::ValSave(const std::string& inFilename, const std::string& inDesc
 		tVal value = inpData[i];
 		if (value < 0.0) value = 0.0;
 		if (value > 1.0) value = 1.0;
-		*pData++ = value*255; // red
-		*pData++ = value*255; // green
-		*pData++ = value*255; // blue
+		*pData++ = static_cast<U8>(value*255); // red
+		*pData++ = static_cast<U8>(value*255); // green
+		*pData++ = static_cast<U8>(value*255); // blue
 		*pData++ = 255;       // alpha
 	}
 	

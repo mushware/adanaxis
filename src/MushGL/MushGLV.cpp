@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } NYmv5MZn7NEYPYHpc3JV8Q
 /*
- * $Id: MushGLV.cpp,v 1.13 2006/06/01 20:12:59 southa Exp $
+ * $Id: MushGLV.cpp,v 1.14 2006/06/23 00:35:05 southa Exp $
  * $Log: MushGLV.cpp,v $
+ * Revision 1.14  2006/06/23 00:35:05  southa
+ * win32 build fixes
+ *
  * Revision 1.13  2006/06/01 20:12:59  southa
  * Initial texture caching
  *
@@ -213,7 +216,7 @@ MushGLV::DrawArraysVerify(GLenum inMode, GLint inFirst, GLsizei inCount) const
 		
 		if (pVertexBuffer->IsVertexBuffer())
 		{
-			U32 requiredSize = reinterpret_cast<U32>(pVertexArray) + inFirst + inCount;
+			U32 requiredSize = inFirst + inCount;
 			// cout << "pVertexArray=" << pVertexArray << ", inFirst=" << inFirst << ", inCount=" << inCount << ", Size()=" << pVertexBuffer->Size() << endl;
 		    MUSHCOREASSERT(requiredSize <= pVertexBuffer->Size());
 			
@@ -233,10 +236,10 @@ MushGLV::DrawArraysVerify(GLenum inMode, GLint inFirst, GLsizei inCount) const
 		
 		if (pColourBuffer->IsVertexBuffer())
 		{
-			U32 requiredSize = reinterpret_cast<U32>(pColourArray) + inFirst + inCount;
+			U32 requiredSize = inFirst + inCount;
 
 			// cout << "pColourArray=" << pColourArray << ", inFirst=" << inFirst << ", inCount=" << inCount << ", Size()=" << pColourBuffer->Size() << endl;
-		    MUSHCOREASSERT(reinterpret_cast<U32>(pColourArray) + inFirst + inCount <= pColourBuffer->Size());
+		    MUSHCOREASSERT(requiredSize <= pColourBuffer->Size());
 
 			pColourBuffer->Bind();
 			BufferValidate(sizeof(MushGLBuffers::tColour) * requiredSize);
@@ -251,7 +254,7 @@ MushGLV::DrawArraysVerify(GLenum inMode, GLint inFirst, GLsizei inCount) const
 	{
 		if (MushGLState::Sgl().TexCoordArray(i))
 		{
-			U32 requiredSize = reinterpret_cast<U32>(pTexCoordArray) + inFirst + inCount;
+			U32 requiredSize = inFirst + inCount;
 
 			MushGLState::tTexCoordArrayBuffer *pTexCoordBuffer = MushGLState::Sgl().DebugTexCoordBuffer();
 			MUSHCOREASSERT(pTexCoordBuffer != NULL);
@@ -259,7 +262,7 @@ MushGLV::DrawArraysVerify(GLenum inMode, GLint inFirst, GLsizei inCount) const
 			if (pTexCoordBuffer->IsVertexBuffer())
 			{
 				// cout << "pTexCoordArray=" << pTexCoordArray << ", inFirst=" << inFirst << ", inCount=" << inCount << ", Size()=" << pTexCoordBuffer->Size() << endl;
-				MUSHCOREASSERT(reinterpret_cast<U32>(pTexCoordArray) + inFirst + inCount <= pTexCoordBuffer->Size());
+				MUSHCOREASSERT(requiredSize <= pTexCoordBuffer->Size());
 				pTexCoordBuffer->Bind();
 				BufferValidate(sizeof(MushGLBuffers::tTexCoord) * requiredSize);
 			}

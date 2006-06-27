@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } hwIlNOCEH5GsgwGY+rP1Kg
 /*
- * $Id: MushRubyValue.cpp,v 1.7 2006/06/14 18:45:50 southa Exp $
+ * $Id: MushRubyValue.cpp,v 1.8 2006/06/16 01:02:34 southa Exp $
  * $Log: MushRubyValue.cpp,v $
+ * Revision 1.8  2006/06/16 01:02:34  southa
+ * Ruby mesh generation
+ *
  * Revision 1.7  2006/06/14 18:45:50  southa
  * Ruby mesh generation
  *
@@ -135,6 +138,26 @@ MushRubyValue::ValVector(void) const
 	for (Mushware::U32 i=0; i<NUM2UINT(sizeValue); ++i)
 	{
 	    retVal.push_back(NUM2DBL(rb_ary_entry(tempValue, i)));
+	}
+	return retVal;
+}
+
+std::vector<Mushware::U32>
+MushRubyValue::U32Vector(void) const
+{
+	std::vector<Mushware::U32> retVal;
+	
+	Mushware::tRubyValue tempValue = m_value; // Avoid const problem
+	
+    if (!rb_obj_is_instance_of(tempValue, rb_cArray))
+	{
+		throw MushcoreDataFail("Cannot generate vector from non-array ruby type");
+	}
+	Mushware::tRubyValue sizeValue = MushRubyExec::Sgl().Call(tempValue, MushRubyIntern::size());
+	
+	for (Mushware::U32 i=0; i<NUM2UINT(sizeValue); ++i)
+	{
+	    retVal.push_back(NUM2UINT(rb_ary_entry(tempValue, i)));
 	}
 	return retVal;
 }

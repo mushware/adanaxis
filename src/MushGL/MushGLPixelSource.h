@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } vzsiY9MwPTZIFsQ1nPV4fA
 /*
- * $Id: MushGLPixelSource.h,v 1.8 2006/06/07 12:15:19 southa Exp $
+ * $Id: MushGLPixelSource.h,v 1.9 2006/06/22 19:07:31 southa Exp $
  * $Log: MushGLPixelSource.h,v $
+ * Revision 1.9  2006/06/22 19:07:31  southa
+ * Build fixes
+ *
  * Revision 1.8  2006/06/07 12:15:19  southa
  * Grid and test textures
  *
@@ -73,7 +76,7 @@ public:
 private:
 	std::string m_name; //:readwrite
     std::string m_storageType; //:read
-	Mushware::t4Val m_size; //:readwrite
+	Mushware::t4U32 m_size; //:readwrite
 	bool m_cacheable; //:readwrite
 	
 //%classPrototypes {
@@ -81,8 +84,8 @@ public:
     const std::string& Name(void) const { return m_name; }
     void NameSet(const std::string& inValue) { m_name=inValue; }
     const std::string& StorageType(void) const { return m_storageType; }
-    const Mushware::t4Val& Size(void) const { return m_size; }
-    void SizeSet(const Mushware::t4Val& inValue) { m_size=inValue; }
+    const Mushware::t4U32& Size(void) const { return m_size; }
+    void SizeSet(const Mushware::t4U32& inValue) { m_size=inValue; }
     const bool& Cacheable(void) const { return m_cacheable; }
     void CacheableSet(const bool& inValue) { m_cacheable=inValue; }
     virtual const char *AutoName(void) const;
@@ -92,7 +95,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } 9topVqodGHfeRJ9i+LEUHA
+//%classPrototypes } LNTgufECfai/ePQ6iZCBmA
 };
 //%inlineHeader {
 inline std::ostream&

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } KVevXoKx2+IG7g9mAD78DQ
 /*
- * $Id: MushRubyMaptorObj.h,v 1.1 2006/06/20 19:06:55 southa Exp $
+ * $Id: MushRubyMaptorObj.h,v 1.2 2006/06/26 17:03:14 southa Exp $
  * $Log: MushRubyMaptorObj.h,v $
+ * Revision 1.2  2006/06/26 17:03:14  southa
+ * win32 installer tweaks
+ *
  * Revision 1.1  2006/06/20 19:06:55  southa
  * Object creation
  *
@@ -168,6 +171,7 @@ MushRubyMaptorObj<T>::MaptorObjInitialize(Mushware::tRubyArgC inArgC, Mushware::
 	catch (MushcoreFail& e)
 	{
 		MushRubyUtil::Raise(e.what());
+        retVal = 0; // Prevent warning
 	}
 	return retVal;
 }

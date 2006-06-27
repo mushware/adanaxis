@@ -23,7 +23,7 @@
  ****************************************************************************/
 //%Header } 756M8M47RwhK0niyavwifw
 /*
- * $Id: MushGameMessage.h,v 1.4 2005/06/23 11:58:29 southa Exp $
+ * $Id: MushGameMessage.h,v 1.5 2006/06/01 15:39:24 southa Exp $
  * $Log
  */
 
@@ -37,7 +37,7 @@ class MushGameMessage : public MushcoreVirtualObject
 public:
     explicit MushGameMessage(const std::string& inID = "") : m_id(inID) { ++m_instanceCounter; }
     
-    MushGameMessage(const MushGameMessage& inObj) :
+    MushGameMessage(const MushGameMessage& inObj) : MushcoreVirtualObject(),
         m_srcAddrRef(inObj.m_srcAddrRef),
         m_id(inObj.m_id)    
     {

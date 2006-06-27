@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } jMGvnnd1/YcpmfZ5naKXKg
 /*
- * $Id: MushRenderMeshDiagnostic.cpp,v 1.1 2005/07/16 14:22:59 southa Exp $
+ * $Id: MushRenderMeshDiagnostic.cpp,v 1.2 2006/06/01 15:39:38 southa Exp $
  * $Log: MushRenderMeshDiagnostic.cpp,v $
+ * Revision 1.2  2006/06/01 15:39:38  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.1  2005/07/16 14:22:59  southa
  * Added diagnostic renderer
  *
@@ -262,15 +265,6 @@ MushRenderMeshDiagnostic::OutputBufferGenerate(const MushRenderSpec& inSpec, con
                 } 
             }
             srcFaceVertexIndex += srcGroupSizeRef[facetNum];
-        }
-    }
-    
-    static U32 ctr=0;
-    if (++ctr < 0)
-    {
-        for (U32 i=0; i<destVertexIndex; ++i)
-        {
-            cout << destVertices.Ref(i) << endl;
         }
     }
     
