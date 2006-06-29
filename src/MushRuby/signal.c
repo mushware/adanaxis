@@ -27,7 +27,7 @@
   signal.c -
 
  
-  $Date: 2006/04/11 23:30:11 $
+  $Date: 2006/04/21 00:10:44 $
   created at: Tue Dec 20 10:13:44 JST 1994
 
   Copyright (C) 1993-2003 Yukihiro Matsumoto
@@ -223,6 +223,13 @@ ruby_signal_name(no)
     return signo2signm(no);
 }
 
+/* Mushware change - remove all signal functions
+ * Andy Southgate 2006-06-29
+ */
+#define MACOS_UNUSE_SIGNAL 1
+#ifdef MUSHWARE_RUBY_SIGNALS
+/* End Mushware change */
+
 /*
  *  call-seq:
  *     Process.kill(signal, pid, ...)    => fixnum
@@ -323,6 +330,13 @@ rb_f_kill(argc, argv)
     return INT2FIX(i-1);
 }
 
+/* Mushware change - remove all signal functions
+ * Andy Southgate 2006-06-29
+ */
+#endif /* MUSHWARE_RUBY_SIGNALS */
+/* End Mushware change */
+
+
 static struct {
     VALUE cmd;
     int safe;
@@ -344,6 +358,13 @@ rb_gc_mark_trap_list()
     }
 #endif /* MACOS_UNUSE_SIGNAL */
 }
+
+/* Mushware change - remove all signal functions
+ * Andy Southgate 2006-06-29
+ */
+#ifdef MUSHWARE_RUBY_SIGNALS
+/* End Mushware change */
+
 
 #ifdef __dietlibc__
 #define sighandler_t sh_t
@@ -482,6 +503,12 @@ sigpipe(sig)
 }
 #endif
 
+/* Mushware change - remove all signal functions
+ * Andy Southgate 2006-06-29
+ */
+#endif /* MUSHWARE_RUBY_SIGNALS */
+/* End Mushware change */
+
 void
 rb_trap_exit()
 {
@@ -510,6 +537,12 @@ rb_trap_exec()
 #endif /* MACOS_UNUSE_SIGNAL */
     rb_trap_pending = 0;
 }
+
+/* Mushware change - remove all signal functions
+ * Andy Southgate 2006-06-29
+ */
+#ifdef MUSHWARE_RUBY_SIGNALS
+/* End Mushware change */
 
 struct trap_arg {
 #ifndef _WIN32
@@ -838,6 +871,13 @@ init_sigchld(sig)
 #endif
 }
 
+
+/* Mushware change - remove all signal functions
+ * Andy Southgate 2006-06-29
+ */
+#endif /* MUSHWARE_RUBY_SIGNALS */
+/* End Mushware change */
+
 /*
  * Many operating systems allow signals to be sent to running
  * processes. Some signals have a defined effect on the process, while
@@ -921,3 +961,24 @@ Init_signal()
 
 #endif /* MACOS_UNUSE_SIGNAL */
 }
+
+
+/* Mushware change - remove all signal functions
+ * Andy Southgate 2006-06-29
+ */
+#ifndef MUSHWARE_RUBY_SIGNALS
+
+void
+rb_trap_restore_mask()
+{
+}
+
+VALUE
+rb_f_kill(argc, argv)
+    int argc;
+    VALUE *argv;
+{
+}
+
+#endif
+/* End Mushware change */

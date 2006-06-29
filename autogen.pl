@@ -8,8 +8,11 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-# $Id: autogen.pl,v 1.10 2005/06/08 20:59:50 southa Exp $
+# $Id: autogen.pl,v 1.11 2006/06/22 19:07:24 southa Exp $
 # $Log: autogen.pl,v $
+# Revision 1.11  2006/06/22 19:07:24  southa
+# Build fixes
+#
 # Revision 1.10  2005/06/08 20:59:50  southa
 # X11 release
 #
@@ -546,6 +549,16 @@ sub Main()
             die "Command '$command' failed";
         }
     }
+
+    foreach my $command('chmod +x install-sh')
+    {
+        print "Running $command...\n" if ($gVerbose);
+        if (system($command) != 0)
+        {
+            warn "Command '$command' failed";
+        }
+    }
+
     print "Done.\n";
 }
 
