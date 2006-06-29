@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } Yh+jb7Kt8ubaZEY+Q2v/cg
 /*
- * $Id: MushRubyStandard.h,v 1.6 2006/06/16 12:11:06 southa Exp $
+ * $Id: MushRubyStandard.h,v 1.7 2006/06/22 19:07:35 southa Exp $
  * $Log: MushRubyStandard.h,v $
+ * Revision 1.7  2006/06/22 19:07:35  southa
+ * Build fixes
+ *
  * Revision 1.6  2006/06/16 12:11:06  southa
  * Ruby subclasses
  *
@@ -62,7 +65,7 @@ namespace Mushware
 {
     typedef unsigned long tRubyValue;
     typedef unsigned long tRubyID;
-    typedef int tRubyError, tRubyArgC;
+    typedef int tRubyArgC, tRubyError;
     typedef tRubyValue (*tfpRubyMethod)(tRubyArgC inArgC, tRubyValue *inpArgV, tRubyValue inSelf);
 	typedef tRubyValue (*tfpRubyMethodNoParams)(tRubyValue inSelf);
 	typedef tRubyValue (*tfpRubyMethodOneParam)(tRubyValue inSelf, tRubyValue inArg1);

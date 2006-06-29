@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 0SQZFcFDmoiv6tz5ra2xUQ
 /*
- * $Id: MushRubyFail.cpp,v 1.2 2006/06/13 10:35:05 southa Exp $
+ * $Id: MushRubyFail.cpp,v 1.3 2006/06/23 00:35:07 southa Exp $
  * $Log: MushRubyFail.cpp,v $
+ * Revision 1.3  2006/06/23 00:35:07  southa
+ * win32 build fixes
+ *
  * Revision 1.2  2006/06/13 10:35:05  southa
  * Ruby data objects
  *
@@ -53,8 +56,8 @@ MushRubyFail::ExceptionInfo(void)
 {
     ostringstream message;
     
-    tRubyError lasterr = rb_gv_get("$!");
-        
+    tRubyValue lasterr = rb_gv_get("$!");
+
     tRubyValue klassStr = rb_class_path(CLASS_OF(lasterr));
     message << RSTRING(klassStr)->ptr << ": "; 
         

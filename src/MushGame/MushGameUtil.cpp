@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } eAXK2shReRuPxk9ARzaGHA
 /*
- * $Id: MushGameUtil.cpp,v 1.11 2005/08/01 13:09:58 southa Exp $
+ * $Id: MushGameUtil.cpp,v 1.12 2006/06/01 15:39:27 southa Exp $
  * $Log: MushGameUtil.cpp,v $
+ * Revision 1.12  2006/06/01 15:39:27  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.11  2005/08/01 13:09:58  southa
  * Collision messaging
  *
@@ -178,7 +181,7 @@ MushGameUtil::KeyFromString(const std::string& inStr)
     {
         throw MushcoreDataFail("Message ID '"+inStr+"' too short to extract key");
     }
-    Mushware::U32 barPos = inStr.find("|");
+    string::size_type barPos = inStr.find("|");
     if (barPos == inStr.npos || barPos < 2)
     {
         return inStr.substr(2);
@@ -203,7 +206,7 @@ MushGameUtil::ReplyIDFromMessage(const MushGameMessage& inMessage)
     {
         throw MushcoreDataFail("Message ID '"+idRef+"' too short to extract key");
     }
-    Mushware::U32 barPos = idRef.find("|");
+    string::size_type barPos = idRef.find("|");
     if (barPos == idRef.npos)
     {
         barPos = 0;
