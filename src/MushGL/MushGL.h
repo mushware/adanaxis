@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } glfKswkbeoueNs++v5RKqA
 /*
- * $Id: MushGL.h,v 1.12 2006/06/01 15:39:16 southa Exp $
+ * $Id: MushGL.h,v 1.13 2006/06/05 11:48:24 southa Exp $
  * $Log: MushGL.h,v $
+ * Revision 1.13  2006/06/05 11:48:24  southa
+ * Noise textures
+ *
  * Revision 1.12  2006/06/01 15:39:16  southa
  * DrawArray verification and fixes
  *
@@ -86,7 +89,7 @@
 #include "MushGLV.h"
 #include "MushGLVertexBuffer.h"
 #include "MushGLWorkSpec.h"
-#include "MushGLWorkSpace.h"
+#include "MushGLWorkspace.h"
 
 //%includeGuardEnd {
 #endif

@@ -27,7 +27,7 @@
   process.c -
 
  
-  $Date: 2006/04/11 23:30:10 $
+  $Date: 2006/04/21 00:10:44 $
   created at: Tue Aug 10 14:30:50 JST 1993
 
   Copyright (C) 1993-2003 Yukihiro Matsumoto
@@ -1376,6 +1376,11 @@ void
 rb_syswait(pid)
     int pid;
 {
+/* Change by Andy Southgate 2006-06-28 */
+    rb_notimplement();
+#if 0
+/* End change by Andy Southgate 2006-06-28 */
+
     static int overriding;
 #ifdef SIGHUP
     RETSIGTYPE (*hfunc)_((int));
@@ -1413,6 +1418,11 @@ rb_syswait(pid)
 	signal(SIGINT, ifunc);
 	overriding = Qfalse;
     }
+
+/* Change by Andy Southgate 2006-06-28 */
+#endif
+/* End change by Andy Southgate 2006-06-28 */
+
 }
 
 /*

@@ -108,15 +108,8 @@
 #define DEFAULT_KCODE KCODE_NONE
 #define DLEXT ".so"
 #define DLEXT2 ".dll"
-#define RUBY_LIB "/lib/ruby/RUBY_VERSION_MAJOR.RUBY_VERSION_MINOR"
-#define RUBY_SITE_LIB "/lib/ruby/site_ruby"
-#define RUBY_SITE_LIB2 "/lib/ruby/site_ruby/RUBY_VERSION_MAJOR.RUBY_VERSION_MINOR"
-#define RUBY_PLATFORM "i386-mswin32"
-#define RUBY_ARCHLIB "/lib/ruby/RUBY_VERSION_MAJOR.RUBY_VERSION_MINOR/i386-mswin32"
-#define RUBY_SITE_ARCHLIB "/lib/ruby/site_ruby/RUBY_VERSION_MAJOR.RUBY_VERSION_MINOR/i386-mushruby"
 
-
-#else
+#elsif defined(MACOSX)
 /* MAC OS X version */
 #define PACKAGE_NAME ""
 #define PACKAGE_TARNAME ""
@@ -227,13 +220,13 @@
 #define HAVE_LINK 1
 #define HAVE_READLINK 1
 #define HAVE_SETITIMER 1
-#define HAVE_SETRUID 1
-#define HAVE_SETEUID 1
-#define HAVE_SETREUID 1
-#define HAVE_SETRGID 1
-#define HAVE_SETEGID 1
-#define HAVE_SETREGID 1
-#define HAVE_ISSETUGID 1
+#define HAVE_SETRUID 0
+#define HAVE_SETEUID 0
+#define HAVE_SETREUID 0
+#define HAVE_SETRGID 0
+#define HAVE_SETEGID 0
+#define HAVE_SETREGID 0
+#define HAVE_ISSETUGID 0
 #define HAVE_PAUSE 1
 #define HAVE_LCHOWN 1
 #define HAVE_GETPGRP 1
@@ -267,7 +260,9 @@
 #define NEGATIVE_TIME_T 1
 #define POSIX_SIGNAL 1
 #define GETPGRP_VOID 1
+#ifdef __BIGENDIAN__
 #define WORDS_BIGENDIAN 1
+#endif
 #define RSHIFT(x,y) ((x)>>(int)y)
 #define FILE_COUNT _r
 #define FILE_READPTR _p
@@ -279,11 +274,23 @@
 #define HAVE_NANOSLEEP 1
 #define DEFAULT_KCODE KCODE_NONE
 #define DLEXT ".bundle"
-#define RUBY_LIB "/usr/local/lib/ruby/1.8"
-#define RUBY_SITE_LIB "/usr/local/lib/ruby/site_ruby"
-#define RUBY_SITE_LIB2 "/usr/local/lib/ruby/site_ruby/1.8"
-#define RUBY_PLATFORM "powerpc-darwin8.6.0"
-#define RUBY_ARCHLIB "/usr/local/lib/ruby/1.8/powerpc-darwin8.6.0"
-#define RUBY_SITE_ARCHLIB "/usr/local/lib/ruby/site_ruby/1.8/powerpc-darwin8.6.0"
 
+#else
+/* X11 configuration.  Use the top level config.h */
+#include "../../config.h"
+
+#define GETGROUPS_T int
+
+#define HAVE_STDARG_PROTOTYPES 1
+#define TOKEN_PASTE(x,y) x##y
+#define DLEXT ".so"
+#define RSHIFT(x,y) ((x)>>(int)y)
 #endif
+
+/* Common definitions */
+#define RUBY_LIB ""
+#define RUBY_SITE_LIB ""
+#define RUBY_SITE_LIB2 ""
+#define RUBY_PLATFORM ""
+#define RUBY_ARCHLIB ""
+#define RUBY_SITE_ARCHLIB ""

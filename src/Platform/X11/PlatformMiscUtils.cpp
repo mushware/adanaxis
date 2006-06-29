@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } IvAhPSVPf1x+MLMRSmlIow
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.25 2005/06/08 20:59:52 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.26 2006/06/01 15:39:58 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.26  2006/06/01 15:39:58  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.25  2005/06/08 20:59:52  southa
  * X11 release
  *
@@ -200,10 +203,20 @@ PlatformMiscUtils::DirectoryExists(const string& inName)
 }
 
 void
-PlatformMiscUtils::MakeDirectory(const string& inName)
+PlatformMiscUtils::MakePrivateDirectory(const string& inName)
 {
     errno=0;
     if (mkdir(inName.c_str(), 0700) != 0)
+    {
+        throw(MushcoreCommandFail("mkdir "+inName+" failed: "+strerror(errno)));
+    }
+}
+
+void
+PlatformMiscUtils::MakePublicDirectory(const string& inName)
+{
+    errno=0;
+    if (mkdir(inName.c_str(), 0777) != 0)
     {
         throw(MushcoreCommandFail("mkdir "+inName+" failed: "+strerror(errno)));
     }
