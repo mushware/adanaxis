@@ -111,7 +111,9 @@ dnl         AC_CHECK_LIB(glut32, main,, AC_MSG_ERROR([Cannot survive without Ope
             LIBS="$LIBS $X_LIBS $X_PRE_LIBS -lX11 $X_EXTRA_LIBS"
             AC_CHECK_LIB(m, main)
             AC_CHECK_LIB(Xext, main)
-            
+            AC_CHECK_LIB(dl, dlopen)
+            AC_CHECK_LIB(crypt, crypt)
+
             AC_ARG_WITH(mesa, [  --with-mesa             Use MesaGL libs instead of GL LIBS], [
 dnl Use Mesa
                 AC_CHECK_LIB(MesaGL, main,, AC_MSG_ERROR([Cannot find and link MesaGL]))
@@ -156,11 +158,23 @@ AC_CHECK_HEADERS(valarray,,[
 AC_MSG_WARN([valarray not found.  Will fall back to vector])
 ])
 
-AC_CHECK_HEADERS(unistd.h)
-AC_CHECK_HEADERS(sys/wait.h)
-AC_CHECK_HEADERS(sys/param.h)
-AC_CHECK_HEADERS(sys/types.h)
+AC_HEADER_DIRENT
+AC_HEADER_STDC
+AC_HEADER_SYS_WAIT
+AC_CHECK_HEADERS(stdlib.h string.h unistd.h limits.h sys/file.h sys/ioctl.h sys/syscall.h fcntl.h sys/fcntl.h sys/select.h sys/time.h sys/times.h sys/param.h syscall.h pwd.h utime.h memory.h direct.h)
 
+AC_CHECK_SIZEOF(int, 4)
+AC_CHECK_SIZEOF(short, 2)
+AC_CHECK_SIZEOF(long, 4)
+AC_CHECK_SIZEOF(long long, 0)
+AC_CHECK_SIZEOF(void*, 4)
+AC_CHECK_SIZEOF(float, 4)
+AC_CHECK_SIZEOF(double, 8)
+AC_CHECK_SIZEOF(time_t, 0)
+
+AC_FUNC_MEMCMP
+AC_REPLACE_FUNCS(dup2 memmove strcasecmp strncasecmp strerror strftime strchr strstr strtoul crypt flock acosh erf)
+AC_CHECK_FUNCS(getcwd fcntl lockf symlink pause dlopen telldir seekdir mktime timegm cosh sinh tanh)
 AC_CHECK_HEADERS(pcre.h,, [AC_CHECK_HEADERS(pcre/pcre.h,, AC_MSG_ERROR([Cannot find pcre.h header]))])
 AC_CHECK_HEADERS(expat.h,, [AC_CHECK_HEADERS(expat/expat.h,, AC_MSG_ERROR([Cannot find expat.h header]))])
 AC_CHECK_HEADERS(SDL.h,, [AC_CHECK_HEADERS(SDL/SDL.h,, AC_MSG_ERROR([Cannot find SDL.h header]))])
