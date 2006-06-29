@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } mB9QjJV8u3zi19snMUpGsA
 /*
- * $Id: TesseractTrainerPixelSource.h,v 1.4 2005/07/02 00:42:39 southa Exp $
+ * $Id: TesseractTrainerPixelSource.h,v 1.5 2006/06/01 15:40:00 southa Exp $
  * $Log: TesseractTrainerPixelSource.h,v $
+ * Revision 1.5  2006/06/01 15:40:00  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.4  2005/07/02 00:42:39  southa
  * Conditioning tweaks
  *
@@ -48,27 +51,14 @@
 class TesseractTrainerPixelSource : public MushGLPixelSource
 {
 public:
-    enum
-    {
-        kParamSpare = kParamBaseNext
-    };
     virtual ~TesseractTrainerPixelSource() {}
     virtual void ParameterSet(const Mushware::U32 inNum, const Mushware::tLongVal inVal);
     virtual void BufferFill(Mushware::U32 * const outPtr, const Mushware::t2U32 inSize) const;
 
 private:
-    Mushware::tLongVal m_frameTime; //:readwrite
-    Mushware::t4Val m_colour; //:readwrite
-    Mushware::tLongVal m_seed; //:readwrite
         
 //%classPrototypes {
 public:
-    const Mushware::tLongVal& FrameTime(void) const { return m_frameTime; }
-    void FrameTimeSet(const Mushware::tLongVal& inValue) { m_frameTime=inValue; }
-    const Mushware::t4Val& Colour(void) const { return m_colour; }
-    void ColourSet(const Mushware::t4Val& inValue) { m_colour=inValue; }
-    const Mushware::tLongVal& Seed(void) const { return m_seed; }
-    void SeedSet(const Mushware::tLongVal& inValue) { m_seed=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -76,7 +66,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } 03HVpbGkUkG1vQNs27aIZA
+//%classPrototypes } 1oBgFruy5qHAaudtV+Hcmg
 };
 //%inlineHeader {
 inline std::ostream&

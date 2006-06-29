@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 8tMCfPZonLS7CeXZGLc+9g
 /*
- * $Id: TesseractTrainerPixelSource.cpp,v 1.6 2005/07/02 00:42:39 southa Exp $
+ * $Id: TesseractTrainerPixelSource.cpp,v 1.7 2006/06/01 15:40:00 southa Exp $
  * $Log: TesseractTrainerPixelSource.cpp,v $
+ * Revision 1.7  2006/06/01 15:40:00  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.6  2005/07/02 00:42:39  southa
  * Conditioning tweaks
  *
@@ -51,30 +54,6 @@ TesseractTrainerPixelSource::ParameterSet(Mushware::U32 inNum, Mushware::tLongVa
 {
     switch (inNum)
     {
-        case kParamRed:
-            m_colour.XSet(inVal);
-            break;
-            
-        case kParamGreen:
-            m_colour.YSet(inVal);
-            break;
-            
-        case kParamBlue:
-            m_colour.ZSet(inVal);
-            break;
-            
-        case kParamAlpha:
-            m_colour.WSet(inVal);
-            break;
-            
-        case kParamSeed:
-            m_seed = inVal;
-            break;
-            
-        case kParamFrameTime:
-            m_frameTime = inVal;
-            break;
-            
         default:
         {
             ostringstream msg;
@@ -163,9 +142,6 @@ TesseractTrainerPixelSource::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
     MushGLPixelSource::AutoPrint(ioOut);
-    ioOut << "frameTime=" << m_frameTime << ", ";
-    ioOut << "colour=" << m_colour << ", ";
-    ioOut << "seed=" << m_seed;
     ioOut << "]";
 }
 bool
@@ -176,18 +152,6 @@ TesseractTrainerPixelSource::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const 
         AutoInputPrologue(ioIn);
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
-    }
-    else if (inTagStr == "frameTime")
-    {
-        ioIn >> m_frameTime;
-    }
-    else if (inTagStr == "colour")
-    {
-        ioIn >> m_colour;
-    }
-    else if (inTagStr == "seed")
-    {
-        ioIn >> m_seed;
     }
     else if (MushGLPixelSource::AutoXMLDataProcess(ioIn, inTagStr))
     {
@@ -203,11 +167,5 @@ void
 TesseractTrainerPixelSource::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
     MushGLPixelSource::AutoXMLPrint(ioOut);
-    ioOut.TagSet("frameTime");
-    ioOut << m_frameTime;
-    ioOut.TagSet("colour");
-    ioOut << m_colour;
-    ioOut.TagSet("seed");
-    ioOut << m_seed;
 }
-//%outOfLineFunctions } Q5ZbjsYggaAO+p0VchLWpA
+//%outOfLineFunctions } azR1vFwZm7vQkaqCyXVHCg

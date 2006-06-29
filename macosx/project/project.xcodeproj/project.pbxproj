@@ -149,6 +149,123 @@
 		7A5BA7DC0A494B8B00DC847A /* mushMushMeshRuby.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A5BA7DB0A494B8B00DC847A /* mushMushMeshRuby.h */; };
 		7A5BA7DD0A494B8B00DC847A /* mushMushMeshRuby.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A5BA7DB0A494B8B00DC847A /* mushMushMeshRuby.h */; };
 		7A5BA8280A4955C400DC847A /* AdanaxisKhazi.rb in Resources */ = {isa = PBXBuildFile; fileRef = 7A5BA8260A4955C400DC847A /* AdanaxisKhazi.rb */; };
+		7A5BAA890A54610E00B30CAC /* MushGLAppHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AD164D3087A8BE60071C752 /* MushGLAppHandler.cpp */; };
+		7A5BAA8A0A54610F00B30CAC /* MushGLAppHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD164D2087A8BE60071C752 /* MushGLAppHandler.h */; };
+		7A5BAA8B0A54611000B30CAC /* MushGLBuffers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AD298E80876907500367963 /* MushGLBuffers.cpp */; };
+		7A5BAA8C0A54611100B30CAC /* MushGLBuffers.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD298E70876907400367963 /* MushGLBuffers.h */; };
+		7A5BAA8D0A54611200B30CAC /* MushGLCacheControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A38D0F10A30642100B790E2 /* MushGLCacheControl.cpp */; };
+		7A5BAA8E0A54611200B30CAC /* MushGLCacheControl.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A38D0F00A30642100B790E2 /* MushGLCacheControl.h */; };
+		7A5BAA8F0A54611300B30CAC /* MushGLClaimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7ADEF6F00876CB7A00820697 /* MushGLClaimer.cpp */; };
+		7A5BAA900A54611400B30CAC /* MushGLClaimer.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ADEF6EF0876CB7A00820697 /* MushGLClaimer.h */; };
+		7A5BAA910A54611700B30CAC /* MushGLMaterial.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD2CDE308CA0BFD0088E9AD /* MushGLMaterial.h */; };
+		7A5BAA920A54611700B30CAC /* MushGLMaterial.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AD2CDE408CA0BFD0088E9AD /* MushGLMaterial.cpp */; };
+		7A5BAA930A54611800B30CAC /* MushGLJobRender.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD299010876949A00367963 /* MushGLJobRender.h */; };
+		7A5BAA940A54611900B30CAC /* MushGLJobRender.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AD299020876949A00367963 /* MushGLJobRender.cpp */; };
+		7A5BAA950A54611A00B30CAC /* MushGLJob.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD299090876952D00367963 /* MushGLJob.h */; };
+		7A5BAA960A54611A00B30CAC /* MushGLJob.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AD2990A0876952D00367963 /* MushGLJob.cpp */; };
+		7A5BAA970A54611B00B30CAC /* MushGLFont.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ACED0DA09F8429700055E66 /* MushGLFont.h */; };
+		7A5BAA980A54611D00B30CAC /* MushGLFont.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7ACED0DB09F8429700055E66 /* MushGLFont.cpp */; };
+		7A5BAA990A54611E00B30CAC /* MushGLPixelSourceTIFF.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7ACF103F08C25FB70050F369 /* MushGLPixelSourceTIFF.cpp */; };
+		7A5BAA9A0A54611E00B30CAC /* MushGLPixelSourceTIFF.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ACF103E08C25FB70050F369 /* MushGLPixelSourceTIFF.h */; };
+		7A5BAA9B0A54611F00B30CAC /* MushGLProjection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AD25BD00875348800560382 /* MushGLProjection.cpp */; };
+		7A5BAA9C0A54612000B30CAC /* MushGLProjection.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD25BCF0875348800560382 /* MushGLProjection.h */; };
+		7A5BAA9D0A54612100B30CAC /* MushGLResolverPixelSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7ACF141608BE530E00A78938 /* MushGLResolverPixelSource.cpp */; };
+		7A5BAA9E0A54612100B30CAC /* MushGLResolverPixelSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ACF141508BE530E00A78938 /* MushGLResolverPixelSource.h */; };
+		7A5BAA9F0A54612300B30CAC /* MushGLUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD164CA087A891B0071C752 /* MushGLUtil.h */; };
+		7A5BAAA00A54612400B30CAC /* MushGLUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AD164CB087A891B0071C752 /* MushGLUtil.cpp */; };
+		7A5BAAA10A54612400B30CAC /* MushGLTIFFUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A561DA00A2F592500E5EC7F /* MushGLTIFFUtil.h */; };
+		7A5BAAA20A54612500B30CAC /* MushGLTIFFUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A561DA10A2F592500E5EC7F /* MushGLTIFFUtil.cpp */; };
+		7A5BAAA30A54612600B30CAC /* MushGLTexture.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ACF140A08BE4BB700A78938 /* MushGLTexture.h */; };
+		7A5BAAA40A54612700B30CAC /* MushGLTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7ACF140B08BE4BB700A78938 /* MushGLTexture.cpp */; };
+		7A5BAAA50A54612800B30CAC /* MushGLState.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD2991D0876BE2300367963 /* MushGLState.h */; };
+		7A5BAAA60A54612900B30CAC /* MushGLState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AD2991E0876BE2300367963 /* MushGLState.cpp */; };
+		7A5BAAA70A54612C00B30CAC /* MushGLWorkSpec.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AD2991408769B9200367963 /* MushGLWorkSpec.cpp */; };
+		7A5BAAA80A54612D00B30CAC /* MushGLWorkSpec.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD2991308769B9200367963 /* MushGLWorkSpec.h */; };
+		7A5BAAA90A54612E00B30CAC /* MushGLWorkspace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AC6AB79087964F60078A331 /* MushGLWorkspace.cpp */; };
+		7A5BAAAA0A54612F00B30CAC /* MushGLWorkspace.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AC6AB78087964F60078A331 /* MushGLWorkspace.h */; };
+		7A5BAAAB0A54613600B30CAC /* version.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD1AA9709EC594A0059879A /* version.h */; };
+		7A5BAAAC0A54613800B30CAC /* version.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA9609EC59490059879A /* version.c */; };
+		7A5BAAAD0A54613800B30CAC /* variable.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA9509EC59490059879A /* variable.c */; };
+		7A5BAAAE0A54613900B30CAC /* util.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD1AA9409EC59490059879A /* util.h */; };
+		7A5BAAAF0A54613A00B30CAC /* util.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA9309EC59490059879A /* util.c */; };
+		7A5BAAB00A54613B00B30CAC /* time.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA9209EC59490059879A /* time.c */; };
+		7A5BAAB10A54613B00B30CAC /* struct.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA9109EC59490059879A /* struct.c */; };
+		7A5BAAB20A54613C00B30CAC /* string.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA9009EC59490059879A /* string.c */; };
+		7A5BAAB30A54613E00B30CAC /* st.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD1AA8F09EC59490059879A /* st.h */; };
+		7A5BAAB40A54613E00B30CAC /* st.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA8E09EC59490059879A /* st.c */; };
+		7A5BAAB50A54613E00B30CAC /* sprintf.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA8D09EC59490059879A /* sprintf.c */; };
+		7A5BAAB60A54613F00B30CAC /* signal.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA8C09EC59490059879A /* signal.c */; };
+		7A5BAAB70A54614000B30CAC /* rubyconfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD1AA6509EC59480059879A /* rubyconfig.h */; };
+		7A5BAAB80A54614200B30CAC /* rubysig.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD1AA8B09EC59490059879A /* rubysig.h */; };
+		7A5BAAB90A54614200B30CAC /* rubyio.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD1AA8A09EC59490059879A /* rubyio.h */; };
+		7A5BAABA0A54614300B30CAC /* ruby.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD1AA8909EC59490059879A /* ruby.h */; };
+		7A5BAABB0A54614500B30CAC /* ruby.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA8809EC59490059879A /* ruby.c */; };
+		7A5BAABC0A54614600B30CAC /* regex.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD1AA8709EC59490059879A /* regex.h */; };
+		7A5BAABD0A54614600B30CAC /* regex.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA8609EC59490059879A /* regex.c */; };
+		7A5BAABE0A54614700B30CAC /* re.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD1AA8509EC59490059879A /* re.h */; };
+		7A5BAABF0A54614800B30CAC /* re.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA8409EC59490059879A /* re.c */; };
+		7A5BAAC00A54614900B30CAC /* range.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA8309EC59490059879A /* range.c */; };
+		7A5BAAC10A54614900B30CAC /* random.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA8209EC59490059879A /* random.c */; };
+		7A5BAAC20A54614B00B30CAC /* process.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA8109EC59490059879A /* process.c */; };
+		7A5BAAC30A54614F00B30CAC /* prec.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA8009EC59490059879A /* prec.c */; };
+		7A5BAAC40A54615000B30CAC /* parse.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA7F09EC59490059879A /* parse.c */; };
+		7A5BAAC50A54615100B30CAC /* pack.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA7E09EC59490059879A /* pack.c */; };
+		7A5BAAC60A54615100B30CAC /* object.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA7D09EC59490059879A /* object.c */; };
+		7A5BAAC70A54615200B30CAC /* numeric.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA7C09EC59490059879A /* numeric.c */; };
+		7A5BAAC80A54615300B30CAC /* node.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD1AA7B09EC59480059879A /* node.h */; };
+		7A5BAAC90A54615300B30CAC /* missing.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD1AA7A09EC59480059879A /* missing.h */; };
+		7A5BAACA0A54615500B30CAC /* math.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA7909EC59480059879A /* math.c */; };
+		7A5BAACB0A54615700B30CAC /* marshal.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA7809EC59480059879A /* marshal.c */; };
+		7A5BAACC0A54615800B30CAC /* lex.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A519DB109EC72CE001DC0A0 /* lex.c */; };
+		7A5BAACD0A54615900B30CAC /* io.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA7509EC59480059879A /* io.c */; };
+		7A5BAACE0A54615A00B30CAC /* intern.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD1AA7409EC59480059879A /* intern.h */; };
+		7A5BAACF0A54615A00B30CAC /* inits.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA7309EC59480059879A /* inits.c */; };
+		7A5BAAD00A54615A00B30CAC /* hash.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA7209EC59480059879A /* hash.c */; };
+		7A5BAAD10A54615C00B30CAC /* gc.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA7109EC59480059879A /* gc.c */; };
+		7A5BAAD20A54615D00B30CAC /* file.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA7009EC59480059879A /* file.c */; };
+		7A5BAAD30A54615F00B30CAC /* eval.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA6F09EC59480059879A /* eval.c */; };
+		7A5BAAD40A54615F00B30CAC /* error.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA6E09EC59480059879A /* error.c */; };
+		7A5BAAD50A54616000B30CAC /* env.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD1AA6D09EC59480059879A /* env.h */; };
+		7A5BAAD60A54616000B30CAC /* enum.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA6C09EC59480059879A /* enum.c */; };
+		7A5BAAD70A54616000B30CAC /* dmyext.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA6B09EC59480059879A /* dmyext.c */; };
+		7A5BAAD80A54616200B30CAC /* dln.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD1AA6909EC59480059879A /* dln.h */; };
+		7A5BAAD90A54616300B30CAC /* dln.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA6809EC59480059879A /* dln.c */; };
+		7A5BAADA0A54616300B30CAC /* dir.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA6709EC59480059879A /* dir.c */; };
+		7A5BAADB0A54616500B30CAC /* defines.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD1AA6609EC59480059879A /* defines.h */; };
+		7A5BAADC0A54616500B30CAC /* compar.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA6409EC59480059879A /* compar.c */; };
+		7A5BAADD0A54616500B30CAC /* class.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA6309EC59480059879A /* class.c */; };
+		7A5BAADE0A54616800B30CAC /* bignum.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA6209EC59480059879A /* bignum.c */; };
+		7A5BAADF0A54616800B30CAC /* array.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AD1AA6109EC59480059879A /* array.c */; };
+		7A5BAAE00A54616900B30CAC /* MushRubyValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A57282C0A357682000470D8 /* MushRubyValue.h */; };
+		7A5BAAE10A54616A00B30CAC /* MushRubyValue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A57282D0A357682000470D8 /* MushRubyValue.cpp */; };
+		7A5BAAE20A54616A00B30CAC /* MushRubyUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ACED0D409F8416300055E66 /* MushRubyUtil.h */; };
+		7A5BAAE30A54616C00B30CAC /* MushRubyUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7ACED0D509F8416300055E66 /* MushRubyUtil.cpp */; };
+		7A5BAAE40A54616C00B30CAC /* MushRubySTL.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ACEFB5909F7052600E38865 /* MushRubySTL.h */; };
+		7A5BAAE50A54616D00B30CAC /* MushRubySTL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7ACEFB5A09F7052600E38865 /* MushRubySTL.cpp */; };
+		7A5BAAE60A54616F00B30CAC /* MushRubyStandard.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ACEFB2109F6EB0400E38865 /* MushRubyStandard.h */; };
+		7A5BAAE70A54616F00B30CAC /* MushRubyStandard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7ACEFB2209F6EB0400E38865 /* MushRubyStandard.cpp */; };
+		7A5BAAE80A54616F00B30CAC /* MushRubyRuby.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ACEFB4509F6F9CA00E38865 /* MushRubyRuby.h */; };
+		7A5BAAE90A54617100B30CAC /* MushRubyRuby.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7ACEFB4609F6F9CA00E38865 /* MushRubyRuby.cpp */; };
+		7A5BAAEA0A54617300B30CAC /* MushRubyObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AB5AD2E0A42CB6500D62CA1 /* MushRubyObject.h */; };
+		7A5BAAEB0A54617300B30CAC /* MushRubyObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AB5AD2F0A42CB6500D62CA1 /* MushRubyObject.cpp */; };
+		7A5BAAEC0A54617600B30CAC /* MushRubyObj.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A5F70490A3F0C2D006F24A8 /* MushRubyObj.h */; };
+		7A5BAAED0A54617600B30CAC /* MushRubyObj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A5F704A0A3F0C2D006F24A8 /* MushRubyObj.cpp */; };
+		7A5BAAEE0A54617600B30CAC /* MushRubyMaptorObj.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A3E0F980A485F530078B650 /* MushRubyMaptorObj.h */; };
+		7A5BAAEF0A54617600B30CAC /* MushRubyMaptorObj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A3E0F990A485F530078B650 /* MushRubyMaptorObj.cpp */; };
+		7A5BAAF00A54617900B30CAC /* MushRubyIntern.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A5F017F0A3EB59B0086C680 /* MushRubyIntern.h */; };
+		7A5BAAF10A54617B00B30CAC /* MushRubyIntern.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A5F01800A3EB59B0086C680 /* MushRubyIntern.cpp */; };
+		7A5BAAF20A54617C00B30CAC /* MushRubyInstall.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ACED0CE09F83ED500055E66 /* MushRubyInstall.h */; };
+		7A5BAAF30A54617E00B30CAC /* MushRubyInstall.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7ACED0CF09F83ED500055E66 /* MushRubyInstall.cpp */; };
+		7A5BAAF40A54617E00B30CAC /* MushRubyFail.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ACEFB3B09F6F7DB00E38865 /* MushRubyFail.h */; };
+		7A5BAAF50A54617F00B30CAC /* MushRubyFail.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7ACEFB3C09F6F7DB00E38865 /* MushRubyFail.cpp */; };
+		7A5BAAF60A54617F00B30CAC /* MushRubyExec.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ACEFB1809F6E98700E38865 /* MushRubyExec.h */; };
+		7A5BAAF70A54618100B30CAC /* MushRubyExec.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7ACEFB1909F6E98700E38865 /* MushRubyExec.cpp */; };
+		7A5BAAF80A54618100B30CAC /* MushRubyEmptyObj.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AB5ACF50A42BCB200D62CA1 /* MushRubyEmptyObj.h */; };
+		7A5BAAF90A54618200B30CAC /* MushRubyEmptyObj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AB5ACF60A42BCB200D62CA1 /* MushRubyEmptyObj.cpp */; };
+		7A5BAAFA0A54618400B30CAC /* MushRubyDataObj.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A5F01780A3EB2E40086C680 /* MushRubyDataObj.h */; };
+		7A5BAAFB0A54618500B30CAC /* MushRubyDataObj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A5F01790A3EB2E40086C680 /* MushRubyDataObj.cpp */; };
+		7A5BAAFC0A54618500B30CAC /* MushRuby.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD399C609F6CD57000BE1C1 /* MushRuby.h */; };
+		7A5BAAFD0A54618800B30CAC /* MushRuby.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AD399C709F6CD58000BE1C1 /* MushRuby.cpp */; };
 		7A5BE6EF07FB53DA00306E18 /* libjpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A5BE6EE07FB53DA00306E18 /* libjpeg.a */; };
 		7A5BE6F007FB53DA00306E18 /* libjpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A5BE6EE07FB53DA00306E18 /* libjpeg.a */; };
 		7A5C9A820A40094C00A80527 /* MushMeshLibraryExtruder.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A5C9A800A40094C00A80527 /* MushMeshLibraryExtruder.h */; };
@@ -1072,23 +1189,15 @@
 		7A70CECF085DF1C50055C6FB /* AdanaxisSTL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A70CEBF085DF1C50055C6FB /* AdanaxisSTL.cpp */; };
 		7A70CED0085DF1C50055C6FB /* AdanaxisSTL.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A70CEC0085DF1C50055C6FB /* AdanaxisSTL.h */; };
 		7A710CC005A4A15700A58F05 /* libexpat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A710CBF05A4A15700A58F05 /* libexpat.a */; };
-		7A710CC805A4A18B00A58F05 /* libogg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A710CC305A4A18B00A58F05 /* libogg.a */; };
 		7A710CC905A4A18B00A58F05 /* libpcre.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A710CC405A4A18B00A58F05 /* libpcre.a */; };
 		7A710CCA05A4A18B00A58F05 /* libtiff.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A710CC505A4A18B00A58F05 /* libtiff.a */; };
-		7A710CCC05A4A18B00A58F05 /* libvorbis.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A710CC705A4A18B00A58F05 /* libvorbis.a */; };
 		7A710D5205A4A26800A58F05 /* expat.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D1705A4A26700A58F05 /* expat.h */; };
-		7A710D5405A4A26800A58F05 /* config_types.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D1A05A4A26700A58F05 /* config_types.h */; };
-		7A710D5505A4A26800A58F05 /* ogg.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D1B05A4A26700A58F05 /* ogg.h */; };
-		7A710D5605A4A26800A58F05 /* os_types.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D1C05A4A26700A58F05 /* os_types.h */; };
 		7A710D5705A4A26800A58F05 /* pcre.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D1D05A4A26700A58F05 /* pcre.h */; };
 		7A710D5805A4A26800A58F05 /* pcreposix.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D1E05A4A26700A58F05 /* pcreposix.h */; };
 		7A710D8205A4A26800A58F05 /* tiff.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D4A05A4A26700A58F05 /* tiff.h */; };
 		7A710D8305A4A26800A58F05 /* tiffconf.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D4B05A4A26700A58F05 /* tiffconf.h */; };
 		7A710D8405A4A26800A58F05 /* tiffio.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D4C05A4A26700A58F05 /* tiffio.h */; };
 		7A710D8505A4A26800A58F05 /* tiffvers.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D4D05A4A26700A58F05 /* tiffvers.h */; };
-		7A710D8605A4A26800A58F05 /* codec.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D4F05A4A26700A58F05 /* codec.h */; };
-		7A710D8705A4A26800A58F05 /* vorbisenc.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D5005A4A26700A58F05 /* vorbisenc.h */; };
-		7A710D8805A4A26800A58F05 /* vorbisfile.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D5105A4A26700A58F05 /* vorbisfile.h */; };
 		7A710F6205A4A97500A58F05 /* PlatformUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B8DB05A49D05002A5F1C /* PlatformUtils.h */; };
 		7A71952F05A99A0500C42A20 /* mushMustlGame.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B71005A49D04002A5F1C /* mushMustlGame.h */; };
 		7A71953105A99A0600C42A20 /* mushMedia.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B70F05A49D04002A5F1C /* mushMedia.h */; };
@@ -1431,18 +1540,12 @@
 		7AAE6C0007AFC4250085C60F /* PlatformMiscUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B8D605A49D05002A5F1C /* PlatformMiscUtils.h */; };
 		7AAE6C0107AFC4250085C60F /* PlatformSTL.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B8D905A49D05002A5F1C /* PlatformSTL.h */; };
 		7AAE6C0207AFC4250085C60F /* PlatformVideoUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B8DC05A49D05002A5F1C /* PlatformVideoUtils.h */; };
-		7AAE6C0507AFC4250085C60F /* config_types.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D1A05A4A26700A58F05 /* config_types.h */; };
-		7AAE6C0607AFC4250085C60F /* ogg.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D1B05A4A26700A58F05 /* ogg.h */; };
-		7AAE6C0707AFC4250085C60F /* os_types.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D1C05A4A26700A58F05 /* os_types.h */; };
 		7AAE6C0807AFC4250085C60F /* pcre.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D1D05A4A26700A58F05 /* pcre.h */; };
 		7AAE6C0907AFC4250085C60F /* pcreposix.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D1E05A4A26700A58F05 /* pcreposix.h */; };
 		7AAE6C3307AFC4250085C60F /* tiff.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D4A05A4A26700A58F05 /* tiff.h */; };
 		7AAE6C3407AFC4250085C60F /* tiffconf.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D4B05A4A26700A58F05 /* tiffconf.h */; };
 		7AAE6C3507AFC4250085C60F /* tiffio.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D4C05A4A26700A58F05 /* tiffio.h */; };
 		7AAE6C3607AFC4250085C60F /* tiffvers.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D4D05A4A26700A58F05 /* tiffvers.h */; };
-		7AAE6C3707AFC4250085C60F /* codec.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D4F05A4A26700A58F05 /* codec.h */; };
-		7AAE6C3807AFC4250085C60F /* vorbisenc.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D5005A4A26700A58F05 /* vorbisenc.h */; };
-		7AAE6C3907AFC4250085C60F /* vorbisfile.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A710D5105A4A26700A58F05 /* vorbisfile.h */; };
 		7AAE6C3A07AFC4250085C60F /* PlatformUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B8DB05A49D05002A5F1C /* PlatformUtils.h */; };
 		7AAE6C3B07AFC4250085C60F /* mushMustlGame.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B71005A49D04002A5F1C /* mushMustlGame.h */; };
 		7AAE6C3C07AFC4250085C60F /* mushMedia.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B70F05A49D04002A5F1C /* mushMedia.h */; };
@@ -1540,10 +1643,8 @@
 		7AAE6CB707AFC4250085C60F /* MushGLBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A620FCC07ABA3DD00347A99 /* MushGLBuffer.cpp */; };
 		7AAE6CB807AFC4250085C60F /* MushGLVertexBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A643D7D07AEB25D006E88DD /* MushGLVertexBuffer.cpp */; };
 		7AAE6CBA07AFC4250085C60F /* PlatformBoxes.r in Rez */ = {isa = PBXBuildFile; fileRef = 7A62B8CE05A49D05002A5F1C /* PlatformBoxes.r */; };
-		7AAE6CBD07AFC4250085C60F /* libogg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A710CC305A4A18B00A58F05 /* libogg.a */; };
 		7AAE6CBE07AFC4250085C60F /* libpcre.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A710CC405A4A18B00A58F05 /* libpcre.a */; };
 		7AAE6CBF07AFC4250085C60F /* libtiff.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A710CC505A4A18B00A58F05 /* libtiff.a */; };
-		7AAE6CC107AFC4250085C60F /* libvorbis.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A710CC705A4A18B00A58F05 /* libvorbis.a */; };
 		7AAE6CC907AFC4250085C60F /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A9504C8FFE6A3BC11CA0CBA /* ApplicationServices.framework */; };
 		7AAE6CCA07AFC4250085C60F /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20286C33FDCF999611CA2CEA /* Carbon.framework */; };
 		7AAE6CCB07AFC4250085C60F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ACC2F3A05AB0FCC001A0873 /* Foundation.framework */; };
@@ -3174,23 +3275,15 @@
 		7A70D1F6085DF8870055C6FB /* start_safe.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = start_safe.txt; sourceTree = "<group>"; };
 		7A70D212085DF9BD0055C6FB /* Adanaxis-Info.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; path = "Adanaxis-Info.plist"; sourceTree = "<group>"; };
 		7A710CBF05A4A15700A58F05 /* libexpat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libexpat.a; path = /usr/local/lib/libexpat.a; sourceTree = "<absolute>"; };
-		7A710CC305A4A18B00A58F05 /* libogg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libogg.a; path = /usr/local/lib/libogg.a; sourceTree = "<absolute>"; };
 		7A710CC405A4A18B00A58F05 /* libpcre.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpcre.a; path = /usr/local/lib/libpcre.a; sourceTree = "<absolute>"; };
 		7A710CC505A4A18B00A58F05 /* libtiff.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libtiff.a; path = /usr/local/lib/libtiff.a; sourceTree = "<absolute>"; };
-		7A710CC705A4A18B00A58F05 /* libvorbis.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libvorbis.a; path = /usr/local/lib/libvorbis.a; sourceTree = "<absolute>"; };
 		7A710D1705A4A26700A58F05 /* expat.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = expat.h; path = /usr/local/include/expat.h; sourceTree = "<absolute>"; };
-		7A710D1A05A4A26700A58F05 /* config_types.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = config_types.h; sourceTree = "<group>"; };
-		7A710D1B05A4A26700A58F05 /* ogg.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = ogg.h; sourceTree = "<group>"; };
-		7A710D1C05A4A26700A58F05 /* os_types.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = os_types.h; sourceTree = "<group>"; };
 		7A710D1D05A4A26700A58F05 /* pcre.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = pcre.h; path = /usr/local/include/pcre.h; sourceTree = "<absolute>"; };
 		7A710D1E05A4A26700A58F05 /* pcreposix.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = pcreposix.h; path = /usr/local/include/pcreposix.h; sourceTree = "<absolute>"; };
 		7A710D4A05A4A26700A58F05 /* tiff.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = tiff.h; path = /usr/local/include/tiff.h; sourceTree = "<absolute>"; };
 		7A710D4B05A4A26700A58F05 /* tiffconf.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = tiffconf.h; path = /usr/local/include/tiffconf.h; sourceTree = "<absolute>"; };
 		7A710D4C05A4A26700A58F05 /* tiffio.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = tiffio.h; path = /usr/local/include/tiffio.h; sourceTree = "<absolute>"; };
 		7A710D4D05A4A26700A58F05 /* tiffvers.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = tiffvers.h; path = /usr/local/include/tiffvers.h; sourceTree = "<absolute>"; };
-		7A710D4F05A4A26700A58F05 /* codec.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = codec.h; sourceTree = "<group>"; };
-		7A710D5005A4A26700A58F05 /* vorbisenc.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = vorbisenc.h; sourceTree = "<group>"; };
-		7A710D5105A4A26700A58F05 /* vorbisfile.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = vorbisfile.h; sourceTree = "<group>"; };
 		7A7194ED05A998B900C42A20 /* Mushcore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Mushcore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A71998B05A99B6700C42A20 /* TestMushcore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestMushcore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A719ACB05A9A01200C42A20 /* SecondaryMain.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = SecondaryMain.cpp; sourceTree = "<group>"; };
@@ -3738,10 +3831,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				7A710CC005A4A15700A58F05 /* libexpat.a in Frameworks */,
-				7A710CC805A4A18B00A58F05 /* libogg.a in Frameworks */,
 				7A710CC905A4A18B00A58F05 /* libpcre.a in Frameworks */,
 				7A710CCA05A4A18B00A58F05 /* libtiff.a in Frameworks */,
-				7A710CCC05A4A18B00A58F05 /* libvorbis.a in Frameworks */,
 				7ACC29DC05AB0DF3001A0873 /* OpenGL.framework in Frameworks */,
 				7ACC2BE305AB0EB4001A0873 /* ApplicationServices.framework in Frameworks */,
 				7ACC2BE705AB0ED7001A0873 /* Carbon.framework in Frameworks */,
@@ -3837,10 +3928,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7AAE6CBD07AFC4250085C60F /* libogg.a in Frameworks */,
 				7AAE6CBE07AFC4250085C60F /* libpcre.a in Frameworks */,
 				7AAE6CBF07AFC4250085C60F /* libtiff.a in Frameworks */,
-				7AAE6CC107AFC4250085C60F /* libvorbis.a in Frameworks */,
 				7AAE6CC907AFC4250085C60F /* ApplicationServices.framework in Frameworks */,
 				7AAE6CCA07AFC4250085C60F /* Carbon.framework in Frameworks */,
 				7AAE6CCB07AFC4250085C60F /* Foundation.framework in Frameworks */,
@@ -3944,7 +4033,6 @@
 				7A5BE6DD07FB503B00306E18 /* libjpeg */,
 				7A710CA405A4A07700A58F05 /* expat */,
 				7A710CA705A4A07B00A58F05 /* libtiff */,
-				7A710CAA05A4A08100A58F05 /* libvorbis */,
 				7A710CB005A4A08C00A58F05 /* pcre */,
 				7A710CA105A4A06100A58F05 /* SDL_mixer */,
 				7A710C7E05A49FF500A58F05 /* SDL */,
@@ -5228,15 +5316,6 @@
 			name = libtiff;
 			sourceTree = "<group>";
 		};
-		7A710CAA05A4A08100A58F05 /* libvorbis */ = {
-			isa = PBXGroup;
-			children = (
-				7A710D4E05A4A26700A58F05 /* vorbis */,
-				7A710D1905A4A26700A58F05 /* ogg */,
-			);
-			name = libvorbis;
-			sourceTree = "<group>";
-		};
 		7A710CB005A4A08C00A58F05 /* pcre */ = {
 			isa = PBXGroup;
 			children = (
@@ -5246,30 +5325,6 @@
 			);
 			name = pcre;
 			sourceTree = "<group>";
-		};
-		7A710D1905A4A26700A58F05 /* ogg */ = {
-			isa = PBXGroup;
-			children = (
-				7A710D1A05A4A26700A58F05 /* config_types.h */,
-				7A710D1B05A4A26700A58F05 /* ogg.h */,
-				7A710D1C05A4A26700A58F05 /* os_types.h */,
-				7A710CC305A4A18B00A58F05 /* libogg.a */,
-			);
-			name = ogg;
-			path = /usr/local/include/ogg;
-			sourceTree = "<absolute>";
-		};
-		7A710D4E05A4A26700A58F05 /* vorbis */ = {
-			isa = PBXGroup;
-			children = (
-				7A710D4F05A4A26700A58F05 /* codec.h */,
-				7A710D5005A4A26700A58F05 /* vorbisenc.h */,
-				7A710D5105A4A26700A58F05 /* vorbisfile.h */,
-				7A710CC705A4A18B00A58F05 /* libvorbis.a */,
-			);
-			name = vorbis;
-			path = /usr/local/include/vorbis;
-			sourceTree = "<absolute>";
 		};
 		7A7193EE05A98FA600C42A20 /* TestMushPie */ = {
 			isa = PBXGroup;
@@ -6163,18 +6218,12 @@
 				7A62BB1305A49D06002A5F1C /* TestMustlPostHandler.h in Headers */,
 				7A62BB1505A49D06002A5F1C /* TestMustlStandard.h in Headers */,
 				7A710D5205A4A26800A58F05 /* expat.h in Headers */,
-				7A710D5405A4A26800A58F05 /* config_types.h in Headers */,
-				7A710D5505A4A26800A58F05 /* ogg.h in Headers */,
-				7A710D5605A4A26800A58F05 /* os_types.h in Headers */,
 				7A710D5705A4A26800A58F05 /* pcre.h in Headers */,
 				7A710D5805A4A26800A58F05 /* pcreposix.h in Headers */,
 				7A710D8205A4A26800A58F05 /* tiff.h in Headers */,
 				7A710D8305A4A26800A58F05 /* tiffconf.h in Headers */,
 				7A710D8405A4A26800A58F05 /* tiffio.h in Headers */,
 				7A710D8505A4A26800A58F05 /* tiffvers.h in Headers */,
-				7A710D8605A4A26800A58F05 /* codec.h in Headers */,
-				7A710D8705A4A26800A58F05 /* vorbisenc.h in Headers */,
-				7A710D8805A4A26800A58F05 /* vorbisfile.h in Headers */,
 				7A710F6205A4A97500A58F05 /* PlatformUtils.h in Headers */,
 				7A5FA8CC05A4CC2000AA22E5 /* MushPie.h in Headers */,
 				7A6CE13605A5899B00777D9B /* MushPiePiece.h in Headers */,
@@ -6986,18 +7035,12 @@
 				7AAE6C0007AFC4250085C60F /* PlatformMiscUtils.h in Headers */,
 				7AAE6C0107AFC4250085C60F /* PlatformSTL.h in Headers */,
 				7AAE6C0207AFC4250085C60F /* PlatformVideoUtils.h in Headers */,
-				7AAE6C0507AFC4250085C60F /* config_types.h in Headers */,
-				7AAE6C0607AFC4250085C60F /* ogg.h in Headers */,
-				7AAE6C0707AFC4250085C60F /* os_types.h in Headers */,
 				7AAE6C0807AFC4250085C60F /* pcre.h in Headers */,
 				7AAE6C0907AFC4250085C60F /* pcreposix.h in Headers */,
 				7AAE6C3307AFC4250085C60F /* tiff.h in Headers */,
 				7AAE6C3407AFC4250085C60F /* tiffconf.h in Headers */,
 				7AAE6C3507AFC4250085C60F /* tiffio.h in Headers */,
 				7AAE6C3607AFC4250085C60F /* tiffvers.h in Headers */,
-				7AAE6C3707AFC4250085C60F /* codec.h in Headers */,
-				7AAE6C3807AFC4250085C60F /* vorbisenc.h in Headers */,
-				7AAE6C3907AFC4250085C60F /* vorbisfile.h in Headers */,
 				7AAE6C3A07AFC4250085C60F /* PlatformUtils.h in Headers */,
 				7AAE6C3B07AFC4250085C60F /* mushMustlGame.h in Headers */,
 				7AAE6C3C07AFC4250085C60F /* mushMedia.h in Headers */,
@@ -7042,6 +7085,53 @@
 				7A8177B70A134B5F005C1108 /* TesseractTrainerConfig.h in Headers */,
 				7A8177B90A134B62005C1108 /* TesseractTrainerCommandHandler.h in Headers */,
 				7A8177BB0A134B64005C1108 /* TesseractTrainerAppHandler.h in Headers */,
+				7A5BAA8A0A54610F00B30CAC /* MushGLAppHandler.h in Headers */,
+				7A5BAA8C0A54611100B30CAC /* MushGLBuffers.h in Headers */,
+				7A5BAA8E0A54611200B30CAC /* MushGLCacheControl.h in Headers */,
+				7A5BAA900A54611400B30CAC /* MushGLClaimer.h in Headers */,
+				7A5BAA910A54611700B30CAC /* MushGLMaterial.h in Headers */,
+				7A5BAA930A54611800B30CAC /* MushGLJobRender.h in Headers */,
+				7A5BAA950A54611A00B30CAC /* MushGLJob.h in Headers */,
+				7A5BAA970A54611B00B30CAC /* MushGLFont.h in Headers */,
+				7A5BAA9A0A54611E00B30CAC /* MushGLPixelSourceTIFF.h in Headers */,
+				7A5BAA9C0A54612000B30CAC /* MushGLProjection.h in Headers */,
+				7A5BAA9E0A54612100B30CAC /* MushGLResolverPixelSource.h in Headers */,
+				7A5BAA9F0A54612300B30CAC /* MushGLUtil.h in Headers */,
+				7A5BAAA10A54612400B30CAC /* MushGLTIFFUtil.h in Headers */,
+				7A5BAAA30A54612600B30CAC /* MushGLTexture.h in Headers */,
+				7A5BAAA50A54612800B30CAC /* MushGLState.h in Headers */,
+				7A5BAAA80A54612D00B30CAC /* MushGLWorkSpec.h in Headers */,
+				7A5BAAAA0A54612F00B30CAC /* MushGLWorkspace.h in Headers */,
+				7A5BAAAB0A54613600B30CAC /* version.h in Headers */,
+				7A5BAAAE0A54613900B30CAC /* util.h in Headers */,
+				7A5BAAB30A54613E00B30CAC /* st.h in Headers */,
+				7A5BAAB70A54614000B30CAC /* rubyconfig.h in Headers */,
+				7A5BAAB80A54614200B30CAC /* rubysig.h in Headers */,
+				7A5BAAB90A54614200B30CAC /* rubyio.h in Headers */,
+				7A5BAABA0A54614300B30CAC /* ruby.h in Headers */,
+				7A5BAABC0A54614600B30CAC /* regex.h in Headers */,
+				7A5BAABE0A54614700B30CAC /* re.h in Headers */,
+				7A5BAAC80A54615300B30CAC /* node.h in Headers */,
+				7A5BAAC90A54615300B30CAC /* missing.h in Headers */,
+				7A5BAACE0A54615A00B30CAC /* intern.h in Headers */,
+				7A5BAAD50A54616000B30CAC /* env.h in Headers */,
+				7A5BAAD80A54616200B30CAC /* dln.h in Headers */,
+				7A5BAADB0A54616500B30CAC /* defines.h in Headers */,
+				7A5BAAE00A54616900B30CAC /* MushRubyValue.h in Headers */,
+				7A5BAAE20A54616A00B30CAC /* MushRubyUtil.h in Headers */,
+				7A5BAAE40A54616C00B30CAC /* MushRubySTL.h in Headers */,
+				7A5BAAE60A54616F00B30CAC /* MushRubyStandard.h in Headers */,
+				7A5BAAE80A54616F00B30CAC /* MushRubyRuby.h in Headers */,
+				7A5BAAEA0A54617300B30CAC /* MushRubyObject.h in Headers */,
+				7A5BAAEC0A54617600B30CAC /* MushRubyObj.h in Headers */,
+				7A5BAAEE0A54617600B30CAC /* MushRubyMaptorObj.h in Headers */,
+				7A5BAAF00A54617900B30CAC /* MushRubyIntern.h in Headers */,
+				7A5BAAF20A54617C00B30CAC /* MushRubyInstall.h in Headers */,
+				7A5BAAF40A54617E00B30CAC /* MushRubyFail.h in Headers */,
+				7A5BAAF60A54617F00B30CAC /* MushRubyExec.h in Headers */,
+				7A5BAAF80A54618100B30CAC /* MushRubyEmptyObj.h in Headers */,
+				7A5BAAFA0A54618400B30CAC /* MushRubyDataObj.h in Headers */,
+				7A5BAAFC0A54618500B30CAC /* MushRuby.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7716,7 +7806,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "date\ncd ../..\n/bin/sh ./prebuild.sh";
+			shellScript = "date\ncd ../..\n/bin/sh ./prebuild.sh\n";
 		};
 		7AAE6CD707AFC4250085C60F /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -8762,6 +8852,76 @@
 				7A8177B80A134B60005C1108 /* TesseractTrainerConfig.cpp in Sources */,
 				7A8177BA0A134B64005C1108 /* TesseractTrainerCommandHandler.cpp in Sources */,
 				7A8177BC0A134B65005C1108 /* TesseractTrainerAppHandler.cpp in Sources */,
+				7A5BAA890A54610E00B30CAC /* MushGLAppHandler.cpp in Sources */,
+				7A5BAA8B0A54611000B30CAC /* MushGLBuffers.cpp in Sources */,
+				7A5BAA8D0A54611200B30CAC /* MushGLCacheControl.cpp in Sources */,
+				7A5BAA8F0A54611300B30CAC /* MushGLClaimer.cpp in Sources */,
+				7A5BAA920A54611700B30CAC /* MushGLMaterial.cpp in Sources */,
+				7A5BAA940A54611900B30CAC /* MushGLJobRender.cpp in Sources */,
+				7A5BAA960A54611A00B30CAC /* MushGLJob.cpp in Sources */,
+				7A5BAA980A54611D00B30CAC /* MushGLFont.cpp in Sources */,
+				7A5BAA990A54611E00B30CAC /* MushGLPixelSourceTIFF.cpp in Sources */,
+				7A5BAA9B0A54611F00B30CAC /* MushGLProjection.cpp in Sources */,
+				7A5BAA9D0A54612100B30CAC /* MushGLResolverPixelSource.cpp in Sources */,
+				7A5BAAA00A54612400B30CAC /* MushGLUtil.cpp in Sources */,
+				7A5BAAA20A54612500B30CAC /* MushGLTIFFUtil.cpp in Sources */,
+				7A5BAAA40A54612700B30CAC /* MushGLTexture.cpp in Sources */,
+				7A5BAAA60A54612900B30CAC /* MushGLState.cpp in Sources */,
+				7A5BAAA70A54612C00B30CAC /* MushGLWorkSpec.cpp in Sources */,
+				7A5BAAA90A54612E00B30CAC /* MushGLWorkspace.cpp in Sources */,
+				7A5BAAAC0A54613800B30CAC /* version.c in Sources */,
+				7A5BAAAD0A54613800B30CAC /* variable.c in Sources */,
+				7A5BAAAF0A54613A00B30CAC /* util.c in Sources */,
+				7A5BAAB00A54613B00B30CAC /* time.c in Sources */,
+				7A5BAAB10A54613B00B30CAC /* struct.c in Sources */,
+				7A5BAAB20A54613C00B30CAC /* string.c in Sources */,
+				7A5BAAB40A54613E00B30CAC /* st.c in Sources */,
+				7A5BAAB50A54613E00B30CAC /* sprintf.c in Sources */,
+				7A5BAAB60A54613F00B30CAC /* signal.c in Sources */,
+				7A5BAABB0A54614500B30CAC /* ruby.c in Sources */,
+				7A5BAABD0A54614600B30CAC /* regex.c in Sources */,
+				7A5BAABF0A54614800B30CAC /* re.c in Sources */,
+				7A5BAAC00A54614900B30CAC /* range.c in Sources */,
+				7A5BAAC10A54614900B30CAC /* random.c in Sources */,
+				7A5BAAC20A54614B00B30CAC /* process.c in Sources */,
+				7A5BAAC30A54614F00B30CAC /* prec.c in Sources */,
+				7A5BAAC40A54615000B30CAC /* parse.c in Sources */,
+				7A5BAAC50A54615100B30CAC /* pack.c in Sources */,
+				7A5BAAC60A54615100B30CAC /* object.c in Sources */,
+				7A5BAAC70A54615200B30CAC /* numeric.c in Sources */,
+				7A5BAACA0A54615500B30CAC /* math.c in Sources */,
+				7A5BAACB0A54615700B30CAC /* marshal.c in Sources */,
+				7A5BAACC0A54615800B30CAC /* lex.c in Sources */,
+				7A5BAACD0A54615900B30CAC /* io.c in Sources */,
+				7A5BAACF0A54615A00B30CAC /* inits.c in Sources */,
+				7A5BAAD00A54615A00B30CAC /* hash.c in Sources */,
+				7A5BAAD10A54615C00B30CAC /* gc.c in Sources */,
+				7A5BAAD20A54615D00B30CAC /* file.c in Sources */,
+				7A5BAAD30A54615F00B30CAC /* eval.c in Sources */,
+				7A5BAAD40A54615F00B30CAC /* error.c in Sources */,
+				7A5BAAD60A54616000B30CAC /* enum.c in Sources */,
+				7A5BAAD70A54616000B30CAC /* dmyext.c in Sources */,
+				7A5BAAD90A54616300B30CAC /* dln.c in Sources */,
+				7A5BAADA0A54616300B30CAC /* dir.c in Sources */,
+				7A5BAADC0A54616500B30CAC /* compar.c in Sources */,
+				7A5BAADD0A54616500B30CAC /* class.c in Sources */,
+				7A5BAADE0A54616800B30CAC /* bignum.c in Sources */,
+				7A5BAADF0A54616800B30CAC /* array.c in Sources */,
+				7A5BAAE10A54616A00B30CAC /* MushRubyValue.cpp in Sources */,
+				7A5BAAE30A54616C00B30CAC /* MushRubyUtil.cpp in Sources */,
+				7A5BAAE50A54616D00B30CAC /* MushRubySTL.cpp in Sources */,
+				7A5BAAE70A54616F00B30CAC /* MushRubyStandard.cpp in Sources */,
+				7A5BAAE90A54617100B30CAC /* MushRubyRuby.cpp in Sources */,
+				7A5BAAEB0A54617300B30CAC /* MushRubyObject.cpp in Sources */,
+				7A5BAAED0A54617600B30CAC /* MushRubyObj.cpp in Sources */,
+				7A5BAAEF0A54617600B30CAC /* MushRubyMaptorObj.cpp in Sources */,
+				7A5BAAF10A54617B00B30CAC /* MushRubyIntern.cpp in Sources */,
+				7A5BAAF30A54617E00B30CAC /* MushRubyInstall.cpp in Sources */,
+				7A5BAAF50A54617F00B30CAC /* MushRubyFail.cpp in Sources */,
+				7A5BAAF70A54618100B30CAC /* MushRubyExec.cpp in Sources */,
+				7A5BAAF90A54618200B30CAC /* MushRubyEmptyObj.cpp in Sources */,
+				7A5BAAFB0A54618500B30CAC /* MushRubyDataObj.cpp in Sources */,
+				7A5BAAFD0A54618800B30CAC /* MushRuby.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9248,16 +9408,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				ARCHS = ppc;
 				GCC_ALTIVEC_EXTENSIONS = YES;
 				GCC_AUTO_VECTORIZATION = YES;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_FAST_MATH = YES;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
+				GCC_MODEL_PPC64 = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 1;
 				GCC_PFE_FILE_C_DIALECTS = "c++";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = "MACOSX=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "";
 				GCC_STRICT_ALIASING = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -9310,10 +9472,7 @@
 				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_PFE_FILE_C_DIALECTS = "c++";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"MACOSX=1",
-					"NDEBUG=1",
-				);
+				GCC_PREPROCESSOR_DEFINITIONS = "NDEBUG=1";
 				GCC_STRICT_ALIASING = YES;
 				GCC_VERSION_i386 = 4.0;
 				GCC_VERSION_ppc = 3.3;

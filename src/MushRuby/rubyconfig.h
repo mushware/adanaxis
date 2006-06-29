@@ -219,13 +219,6 @@
 #define HAVE_LINK 1
 #define HAVE_READLINK 1
 #define HAVE_SETITIMER 1
-#define HAVE_SETRUID 0
-#define HAVE_SETEUID 0
-#define HAVE_SETREUID 0
-#define HAVE_SETRGID 0
-#define HAVE_SETEGID 0
-#define HAVE_SETREGID 0
-#define HAVE_ISSETUGID 0
 #define HAVE_PAUSE 1
 #define HAVE_GETPGRP 1
 #define HAVE_SETPGRP 1
@@ -256,7 +249,7 @@
 #define HAVE_STRUCT_TM_TM_GMTOFF 1
 #define HAVE_DAYLIGHT 1
 #define NEGATIVE_TIME_T 1
-#define POSIX_SIGNAL 1
+// #define POSIX_SIGNAL 1
 #define GETPGRP_VOID 1
 #ifdef __BIGENDIAN__
 #define WORDS_BIGENDIAN 1
