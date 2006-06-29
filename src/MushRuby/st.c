@@ -26,7 +26,7 @@
 
 /* static	char	sccsid[] = "@(#) st.c 5.1 89/12/14 Crucible"; */
 
-#include "config.h"
+#include "rubyconfig.h"
 #include "defines.h"
 #include <stdio.h>
 #ifdef HAVE_STDLIB_H

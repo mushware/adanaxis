@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } Kac74/+eQQWSj2q5xmYuFA
 /*
- * $Id: MustlWebLink.cpp,v 1.28 2005/05/19 13:02:20 southa Exp $
+ * $Id: MustlWebLink.cpp,v 1.29 2006/06/01 15:39:55 southa Exp $
  * $Log: MustlWebLink.cpp,v $
+ * Revision 1.29  2006/06/01 15:39:55  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.28  2005/05/19 13:02:20  southa
  * Mac release work
  *
@@ -513,7 +516,7 @@ MustlWebLink::SendFile(const string& inFilename)
     MustlHTTP http;
     http.Reply200();
 
-    U32 dotPos = inFilename.rfind('.');
+    string::size_type dotPos = inFilename.rfind('.');
     if (dotPos == string::npos)
     {
         throw(MustlFail("Unknown file type: "+inFilename));

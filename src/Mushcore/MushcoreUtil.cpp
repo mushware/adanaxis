@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } ZI0Hun17ShjHoXjyZsJaeA
 /*
- * $Id: MushcoreUtil.cpp,v 1.22 2005/07/04 15:59:01 southa Exp $
+ * $Id: MushcoreUtil.cpp,v 1.23 2006/06/01 15:39:48 southa Exp $
  * $Log: MushcoreUtil.cpp,v $
+ * Revision 1.23  2006/06/01 15:39:48  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.22  2005/07/04 15:59:01  southa
  * Adanaxis work
  *
@@ -183,7 +186,7 @@ string
 MushcoreUtil::XMLMetaRemove(const string& inStr)
 {
     string retStr(inStr);
-    U32 replacePos;
+    string::size_type replacePos;
 
     replacePos = 0;
     while (replacePos = retStr.find("&lt;", replacePos), replacePos != string::npos)
@@ -206,7 +209,7 @@ MushcoreUtil::XMLMetaRemove(const string& inStr)
     replacePos = 0;
     while (replacePos = retStr.find("&#", replacePos), replacePos != string::npos)
     {
-        U32 semicolonPos = retStr.find(";", replacePos);
+        string::size_type semicolonPos = retStr.find(";", replacePos);
         std::string valueStr(1, '\0');
         
         if (semicolonPos == string::npos)

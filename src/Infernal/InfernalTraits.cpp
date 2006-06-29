@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } UI2Qh7JV27Si9XZhFEhdIg
 /*
- * $Id: InfernalTraits.cpp,v 1.4 2005/05/19 13:02:06 southa Exp $
+ * $Id: InfernalTraits.cpp,v 1.5 2006/06/01 15:39:07 southa Exp $
  * $Log: InfernalTraits.cpp,v $
+ * Revision 1.5  2006/06/01 15:39:07  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.4  2005/05/19 13:02:06  southa
  * Mac release work
  *
@@ -156,8 +159,8 @@ void
 InfernalTraits::HandleBaseEnd(MushcoreXML& inXML)
 {
     string inStr(inXML.TopData());
-    U32 start=0;
-    U32 end=0;
+    string::size_type start=0;
+    string::size_type end=0;
     while (end != string::npos && start < inStr.size())
     {
         end=inStr.find(',', start);

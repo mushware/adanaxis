@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } rdYojx13YYIWomCDMArN/g
 /*
- * $Id: MushcoreXMLIStream.cpp,v 1.25 2006/06/01 15:39:49 southa Exp $
+ * $Id: MushcoreXMLIStream.cpp,v 1.26 2006/06/16 12:11:06 southa Exp $
  * $Log: MushcoreXMLIStream.cpp,v $
+ * Revision 1.26  2006/06/16 12:11:06  southa
+ * Ruby subclasses
+ *
  * Revision 1.25  2006/06/01 15:39:49  southa
  * DrawArray verification and fixes
  *
@@ -328,12 +331,12 @@ MushcoreXMLIStream::InputFetch(void)
             Throw("Read failure");
         }
         
-		std::size_t startPos;
+		string::size_type startPos;
         while (startPos = newStr.find("<!--"), startPos != string::npos)
         {
             m_contentStr += newStr.substr(0, startPos);
         
-			std::size_t endPos;
+			string::size_type endPos;
             
             while (endPos = newStr.find("-->", startPos), endPos == string::npos)
             {
@@ -362,7 +365,7 @@ MushcoreXMLIStream::InputFetch(void)
 string
 MushcoreXMLIStream::DataUntilTake(const string& inStr)
 {
-    U32 endPos;
+    string::size_type endPos;
 
     while (endPos = m_contentStr.find_first_of(inStr, m_contentStart), endPos == string::npos)
     {
@@ -381,9 +384,9 @@ MushcoreXMLIStream::DataUntilTake(const string& inStr)
 U32
 MushcoreXMLIStream::TagGet(string& outTag, const string& inStr, U32 inPos)
 {
-	std::size_t startPos = inStr.find('<', inPos);
+	string::size_type startPos = inStr.find('<', inPos);
     if (startPos == string::npos) return 0;
-    std::size_t endPos = inStr.find('>', startPos);
+    string::size_type endPos = inStr.find('>', startPos);
     if (endPos == string::npos)
     {
         Throw("Unclosed tag");

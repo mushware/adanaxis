@@ -45,7 +45,7 @@ extern "C" {
 #endif
 #endif
 
-#include "config.h"
+#include "rubyconfig.h"
 #include "defines.h"
 
 #ifdef HAVE_STDLIB_H

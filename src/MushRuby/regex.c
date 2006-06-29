@@ -45,7 +45,7 @@
 /* Perl5 extension added by matz <matz@caelum.co.jp> */
 /* UTF-8 extension added Jan 16 1999 by Yoshida Masato  <yoshidam@tau.bekkoame.ne.jp> */
 
-#include "config.h"
+#include "rubyconfig.h"
 
 #ifdef HAVE_STRING_H
 # include <string.h>

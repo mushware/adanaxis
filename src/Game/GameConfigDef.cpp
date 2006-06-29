@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } /ixL+VHS/X24qFxhNVjocQ
 /*
- * $Id: GameConfigDef.cpp,v 1.22 2005/05/19 13:02:01 southa Exp $
+ * $Id: GameConfigDef.cpp,v 1.23 2006/06/01 15:38:56 southa Exp $
  * $Log: GameConfigDef.cpp,v $
+ * Revision 1.23  2006/06/01 15:38:56  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.22  2005/05/19 13:02:01  southa
  * Mac release work
  *
@@ -217,9 +220,9 @@ GameConfigDefString::WebInputPrint(ostream& ioOut, const string& inName)
         U32 currentPos=0;
         while (currentPos < endPos)
         {
-            U32 equalsPos=m_menu.find('=', currentPos);
+            string::size_type equalsPos=m_menu.find('=', currentPos);
             if (equalsPos == m_menu.npos) break;
-            U32 ampPos=m_menu.find('&', equalsPos);
+            string::size_type ampPos=m_menu.find('&', equalsPos);
             if (ampPos == m_menu.npos) ampPos = endPos+1; // Where the ampersand would be
             
             SelectOption(ioOut,

@@ -1,5 +1,137 @@
 README for MacOS X
 
+Building universal binaries on Mac OS X 10.4
+============================================
+
+Install the Developer Tools, including gcc 3.3 and the Mac OS 10.2 and X11 SDKs.
+
+Download the files <app name>-<version>.tar.gz into your home directory.  Open
+a terminal (Applications->Utilities->Terminal).
+
+tar xvzf <app name>-<version>.tar.gz
+cd <app name>-<version>
+./configure
+
+Configure will complain about the absence of various libraries.  The
+following procedure was necessary to get the software to build:
+
+# Activate prebinding.  This setenv needs to be present when each of the libraries
+# is built.  See http://developer.apple.com/techpubs/macosx/ReleaseNotes/Prebinding.html
+
+# For bash
+export LD_PREBIND=1
+# For csh: setenv LD_PREBIND
+
+# Ensure that /usr/local/bin is in you PATH
+PATH="$PATH:/usr/local/bin"
+
+# The perl commands alter libtool so that it generates libraries which are searched for
+# releative to the executable.  If you don't want this behaviour the perl can be removed.
+#
+# Some work can be avoided by using the ports collection at http://darwinports.opendarwin.org/
+
+# Install pkg-config from http://pkgconfig.sourceforge.net/
+tar xvzf pkg-config-0.20.tar.gz
+cd pkg-config-0.20
+./configure
+make install
+
+# Download the SDL 1.2.11 from http://www.libsdl.org/
+tar xvzf SDL-1.2.11.tar.gz
+cd SDL-1.2.11
+# Copy gcc-fat.sh to a directory in your PATH for later use
+sudo cp gcc-fat.sh /usr/local/bin
+
+# Edit fatbuild.sh to add the perl lines below
+#
+### -----------------
+#
+# Build the PowerPC binary
+#
+if test x$configure_ppc = xyes; then
+    (cd build/ppc && \
+     sh ../../configure $CONFIG_PPC CC="$CC_PPC" CXX="$CXX_PPC" CFLAGS="$CFLAGS $CFLAGS_PPC" CPPFLAGS="$CPPFLAGS_PPC" LDFLAGS="$LFLAGS_PPC") || exit 2
+     perl -p -i.original -e 's#-install_name \\$rpath#-prebind -seg1addr 0x12000000 -install_name \@executable_path/../Frameworks#g' build/ppc/libtool
+fi
+if test x$make_ppc = xyes; then
+    (cd build/ppc && ls include && make -j$NJOB) || exit 3
+fi
+
+#
+# Build the Intel binary
+#
+if test x$configure_x86 = xyes; then
+    (cd build/x86 && \
+     sh ../../configure $CONFIG_X86 CC="$CC_X86" CXX="$CXX_X86" CFLAGS="$CFLAGS $CFLAGS_X86" CPPFLAGS="$CPPFLAGS_X86" LDFLAGS="$LFLAGS_X86") || exit 2
+     perl -p -i.original -e 's#-install_name \\$rpath#-seg1addr 0x12000000 -install_name \@executable_path/../Frameworks#g' build/x86/libtool
+fi
+if test x$make_x86 = xyes; then
+    (cd build/x86 && make -j$NJOB) || exit 3
+fi
+
+### -----------------
+
+build-scripts/fatbuild.sh
+sudo build-scripts/fatbuild.sh install
+
+# Download  ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-6.6.tar.gz
+tar xvzf pcre-6.6.tar.gz
+cd pcre-6.6
+./configure CC="sh gcc-fat.sh" --enable-shared=no
+make
+sudo make install
+
+# Download expat-2.0.0.tar.gz from http://sourceforge.net/projects/expat/
+tar xvzf expat-2.0.0.tar.gz
+cd expat-2.0.0
+./configure CC="sh gcc-fat.sh" --enable-shared=no
+make
+sudo make install
+
+# Download http://www.ijg.org/files/jpegsrc.v6b.tar.gz
+tar xvzf jpegsrc.v6b.tar.gz
+cd jpeg-6b
+cp ../SDL-1.2.11/build-scripts/config.guess .
+cp ../SDL-1.2.11/build-scripts/config.sub .
+./configure --enable-static CC="sh gcc-fat.sh"
+make
+sudo make install-lib
+
+# Download ftp://ftp.remotesensing.org/pub/libtiff/tiff-v3.7.3.tar.gz
+tar xvzf tiff-v3.8.2.tar.gz
+cd tiff-v3.8.2
+./configure --enable-shared=no CC="sh gcc-fat.sh" --with-jpeg-include-dir=/usr/local/include --with-jpeg-lib-dir=/usr/local/lib
+
+# Edit libtiff/tif_config.h so that the test for WORDS_BIGENDIAN looks like this:
+#ifdef __BIG_ENDIAN__
+#define WORDS_BIGENDIAN 1
+#endif
+
+make
+sudo make install
+
+# Download http://downloads.xiph.org/releases/ogg/libogg-1.1.3.tar.gz
+tar xvzf libogg-1.1.3.tar.gz
+cd libogg-1.1.3
+./configure --enable-shared=no CC="sh gcc-fat.sh"
+make
+sudo make install
+
+# Download http://downloads.xiph.org/releases/vorbis/libvorbis-1.1.2.tar.gz
+tar xvzf libvorbis-1.1.2.tar.gz
+cd libvorbis-1.1.2
+./configure --enable-shared=no CC="sh gcc-fat.sh"
+make
+sudo make install
+
+# Download http://www.libsdl.org/projects/SDL_mixer/release/SDL_mixer-1.2.5.tar.gz
+tar xvzf SDL_mixer-1.2.7.tar.gz
+cd SDL_mixer-1.2.7
+./configure --enable-static=no --enable-music-ogg-shared=no --enable-music-mp3=no CC="sh gcc-fat.sh"
+perl -p -i.original -e 's#-install_name \\\$rpath#-prebind -seg1addr 0x14000000 -install_name \@executable_path/../Frameworks#g' libtool
+make
+sudo make install
+
 Building from source on Mac OS X 10.4
 =====================================
 

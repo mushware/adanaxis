@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } GWXXnrKpknyTferjr2TZPQ
 /*
- * $Id: SecondaryMain.cpp,v 1.7 2006/06/01 15:39:11 southa Exp $
+ * $Id: SecondaryMain.cpp,v 1.8 2006/06/22 19:07:30 southa Exp $
  * $Log: SecondaryMain.cpp,v $
+ * Revision 1.8  2006/06/22 19:07:30  southa
+ * Build fixes
+ *
  * Revision 1.7  2006/06/01 15:39:11  southa
  * DrawArray verification and fixes
  *
@@ -149,6 +152,11 @@
 #if defined(HAVE_CONFIG_H)  && !defined(MUSHWARE_CONFIG_H)
 #define MUSHWARE_CONFIG_H 1
 #include "config.h"
+#endif
+
+#if defined(__APPLE__) || defined(MACOSX)
+#undef HAVE_SDL_SDL_MAIN_H
+#define HAVE_SDL_SDL_MAIN_H 1
 #endif
 
 // SDL_main.h #defines main so must be included if present

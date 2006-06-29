@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } T42h8hBf49T+dFOol6izVQ
 /*
- * $Id: MediaSDL.h,v 1.27 2006/06/01 15:39:13 southa Exp $
+ * $Id: MediaSDL.h,v 1.28 2006/06/22 19:07:30 southa Exp $
  * $Log: MediaSDL.h,v $
+ * Revision 1.28  2006/06/22 19:07:30  southa
+ * Build fixes
+ *
  * Revision 1.27  2006/06/01 15:39:13  southa
  * DrawArray verification and fixes
  *
@@ -111,6 +114,13 @@
 #if defined(HAVE_CONFIG_H)  && !defined(MUSHWARE_CONFIG_H)
 #define MUSHWARE_CONFIG_H 1
 #include "config.h"
+#endif
+
+#if defined(__APPLE__) || defined(MACOSX)
+#undef HAVE_SDL_SDL_H
+#undef HAVE_SDL_SDL_MIXER_H
+#define HAVE_SDL_SDL_H 1
+#define HAVE_SDL_SDL_MIXER_H 1
 #endif
 
 #if defined(HAVE_SDL_SDL_H)

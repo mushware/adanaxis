@@ -28,13 +28,17 @@
   	      for missing timeval struct
 
  
-  $Date: 2006/04/11 23:30:10 $
+  $Date: 2006/04/21 00:10:44 $
   created at: Sat May 11 23:46:03 JST 2002
 
 ************************************************/
 
 #ifndef MISSING_H
 #define MISSING_H
+
+/* Mushware change 2006-06-29 Andy Southgate */
+#include "rubyconfig.h"
+/* End Mushware change */
 
 #if defined(HAVE_SYS_TIME_H)
 #  include <sys/time.h>

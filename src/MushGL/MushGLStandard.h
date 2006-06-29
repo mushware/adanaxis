@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 4aNrDWDcHhvbi/ZjV2ZFxA
 /*
- * $Id: MushGLStandard.h,v 1.15 2006/06/22 19:07:31 southa Exp $
+ * $Id: MushGLStandard.h,v 1.16 2006/06/23 00:35:05 southa Exp $
  * $Log: MushGLStandard.h,v $
+ * Revision 1.16  2006/06/23 00:35:05  southa
+ * win32 build fixes
+ *
  * Revision 1.15  2006/06/22 19:07:31  southa
  * Build fixes
  *
@@ -90,8 +93,10 @@
 #if defined(__APPLE__) || defined(MACOSX)
 #undef HAVE_OPENGL_GL_H
 #undef HAVE_OPENGL_GLU_H
-#define HAVE_OPENGL_GL_H
-#define HAVE_OPENGL_GLU_H
+#undef HAVE_SDL_SDL_OPENGL_H
+#define HAVE_OPENGL_GL_H 1
+#define HAVE_OPENGL_GLU_H 1
+#define HAVE_SDL_SDL_OPENGL_H 1
 #endif
 
 #ifdef HAVE_GL_GL_H

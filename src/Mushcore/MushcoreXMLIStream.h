@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } FTjMuoWgWldTNGYATLOOjw
 /*
- * $Id: MushcoreXMLIStream.h,v 1.32 2006/06/01 15:39:49 southa Exp $
+ * $Id: MushcoreXMLIStream.h,v 1.33 2006/06/16 12:11:06 southa Exp $
  * $Log: MushcoreXMLIStream.h,v $
+ * Revision 1.33  2006/06/16 12:11:06  southa
+ * Ruby subclasses
+ *
  * Revision 1.32  2006/06/01 15:39:49  southa
  * DrawArray verification and fixes
  *
@@ -185,7 +188,7 @@ private:
     std::string m_contentStr;
     std::string m_indentStr;
     std::string m_tagData;
-    Mushware::U32 m_contentStart;
+    std::string::size_type m_contentStart;
     Mushware::U32 m_contentLineNum;
 };
 

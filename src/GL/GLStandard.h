@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 0R+Ye4SBf8jdvaM7l0X5uA
 /*
- * $Id: GLStandard.h,v 1.28 2006/06/22 19:07:29 southa Exp $
+ * $Id: GLStandard.h,v 1.29 2006/06/23 00:35:04 southa Exp $
  * $Log: GLStandard.h,v $
+ * Revision 1.29  2006/06/23 00:35:04  southa
+ * win32 build fixes
+ *
  * Revision 1.28  2006/06/22 19:07:29  southa
  * Build fixes
  *
@@ -157,8 +160,10 @@
 #if defined(__APPLE__) || defined(MACOSX)
 #undef HAVE_OPENGL_GL_H
 #undef HAVE_OPENGL_GLU_H
-#define HAVE_OPENGL_GL_H
-#define HAVE_OPENGL_GLU_H
+#undef HAVE_SDL_SDL_OPENGL_H
+#define HAVE_OPENGL_GL_H 1
+#define HAVE_OPENGL_GLU_H 1
+#define HAVE_SDL_SDL_OPENGL_H 1
 #endif
 
 #ifdef HAVE_GL_GL_H
