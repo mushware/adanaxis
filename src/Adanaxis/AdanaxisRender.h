@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } jpyq9WjuLQC6cyA1T6bbWw
 /*
- * $Id: AdanaxisRender.h,v 1.5 2005/08/02 11:11:47 southa Exp $
+ * $Id: AdanaxisRender.h,v 1.6 2006/06/01 15:38:48 southa Exp $
  * $Log: AdanaxisRender.h,v $
+ * Revision 1.6  2006/06/01 15:38:48  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.5  2005/08/02 11:11:47  southa
  * Adanaxis control demo work
  *
@@ -54,12 +57,14 @@ public:
     
     virtual void FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCamera);
     virtual void Overplot(MushGameLogic& ioLogic, const MushGameCamera& inCamera);
+    virtual void RenderPreludeSet(Mushware::U32 inValue = 3) { m_renderPrelude = inValue; }
     
 protected:
     MushGLProjection m_projection;
     Mushware::tVal m_halfAngle; //:readwrite
     Mushware::tVal m_halfAngleAttractor; //:readwrite
     bool m_scannerOn; //:readwrite
+    Mushware::U32 m_renderPrelude;
     
 private:
 //%classPrototypes {

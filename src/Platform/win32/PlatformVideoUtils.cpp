@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } HfHgcDcZFYWXROWCCS7SCQ
 /*
- * $Id: PlatformVideoUtils.cpp,v 1.21 2005/06/03 23:25:11 southa Exp $
+ * $Id: PlatformVideoUtils.cpp,v 1.22 2006/06/01 15:39:58 southa Exp $
  * $Log: PlatformVideoUtils.cpp,v $
+ * Revision 1.22  2006/06/01 15:39:58  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.21  2005/06/03 23:25:11  southa
  * Tweaks for win32 release 0.1.1.
  *
@@ -301,6 +304,10 @@ PlatformVideoUtils::ModeChangeEpilogue(void)
 	    m_threadAttached = false;
     }
 #endif
+    
+#if (SDL_MAJOR_VERSION >= 1) && (SDL_MINOR_VERSION >= 2) && (SDL_PATCHLEVEL >= 10)
+    // Beyond version 1.2.10 SDL handles this for us using the SDL_GL_SWAP_CONTROL attribute
+#else
     typedef void (APIENTRY * WGLSWAPINTERVALEXT) (int);
 
     WGLSWAPINTERVALEXT wglSwapIntervalEXT = (WGLSWAPINTERVALEXT) wglGetProcAddress("wglSwapIntervalEXT");
@@ -309,6 +316,7 @@ PlatformVideoUtils::ModeChangeEpilogue(void)
     {
         wglSwapIntervalEXT(1);
     }
+#endif
 }
 
 

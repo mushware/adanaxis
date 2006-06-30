@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } bWOmRsKwsaFHaJtZXjt8HA
 /*
- * $Id: MushGLState.cpp,v 1.4 2005/09/06 12:15:35 southa Exp $
+ * $Id: MushGLState.cpp,v 1.5 2006/06/01 15:39:18 southa Exp $
  * $Log: MushGLState.cpp,v $
+ * Revision 1.5  2006/06/01 15:39:18  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.4  2005/09/06 12:15:35  southa
  * Texture and rendering work
  *
@@ -83,8 +86,8 @@ MushGLState::Reset(void)
 void
 MushGLState::ResetWriteAll(void)
 {
-	InvalidateAll();
 	Reset();
+	InvalidateAll();
 
     // Make sure that all available texture units are disabled
 	for (U32 i=0; i < MushGLV::Sgl().NumTextureUnits(); ++i)
@@ -94,6 +97,8 @@ MushGLState::ResetWriteAll(void)
 		ClientActiveTextureZeroBased(i);
 		glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 	}
+    ActiveTextureZeroBased(0);
+    ClientActiveTextureZeroBased(0);
 	MushGLUtil::CheckGLError();
 }
 
@@ -102,6 +107,18 @@ MushGLState::RenderStateSet(Mushware::U32 inRenderState)
 {
     switch (inRenderState)
     {
+        case kRenderState2D:
+            glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+            glEnable(GL_BLEND);
+            glDisable(GL_CULL_FACE);
+            glDisable(GL_POLYGON_SMOOTH);
+            glDisable(GL_DEPTH_TEST);
+            glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+            glDisable(GL_LIGHTING);
+            glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR_MIPMAP_LINEAR);
+            glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
+            break;
+            
         case kRenderState4D:
             glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
             glEnable(GL_BLEND);

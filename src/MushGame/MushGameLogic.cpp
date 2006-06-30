@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } o9Dxm/e8GypZNPSRXLgJNQ
 /*
- * $Id: MushGameLogic.cpp,v 1.21 2006/06/01 15:39:23 southa Exp $
+ * $Id: MushGameLogic.cpp,v 1.22 2006/06/30 15:05:35 southa Exp $
  * $Log: MushGameLogic.cpp,v $
+ * Revision 1.22  2006/06/30 15:05:35  southa
+ * Texture and buffer purge
+ *
  * Revision 1.21  2006/06/01 15:39:23  southa
  * DrawArray verification and fixes
  *
@@ -583,9 +586,7 @@ void
 MushGameLogic::ClientNewPlayerHandle(const std::string& inPlayerName)
 {
     MushGameCamera *pCamera = SaveData().CamerasWRef().GetOrCreate("default-camera");
-                          
-    // MushcoreDataRef<MushGamePlayer>(inPlayerName, SaveData().PlayersWRef());
-    
+                              
     MushGameRefPlayer playerRef(inPlayerName, &SaveData().PlayersWRef());
     pCamera->TiedRefCopy(&playerRef);
 }

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } vFMISa2849VX/N6vU3bn2g
 /*
- * $Id: MushGLState.h,v 1.6 2006/06/01 15:39:18 southa Exp $
+ * $Id: MushGLState.h,v 1.7 2006/06/26 17:03:13 southa Exp $
  * $Log: MushGLState.h,v $
+ * Revision 1.7  2006/06/26 17:03:13  southa
+ * win32 installer tweaks
+ *
  * Revision 1.6  2006/06/01 15:39:18  southa
  * DrawArray verification and fixes
  *
@@ -68,6 +71,7 @@ public:
     
     enum
     {
+        kRenderState2D,
         kRenderState4D
     };
     

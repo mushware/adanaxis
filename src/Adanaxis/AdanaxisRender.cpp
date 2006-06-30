@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } Hr8bvS7fc+x0pR9DrFcIZw
 /*
- * $Id: AdanaxisRender.cpp,v 1.25 2006/06/21 16:52:28 southa Exp $
+ * $Id: AdanaxisRender.cpp,v 1.26 2006/06/30 15:05:32 southa Exp $
  * $Log: AdanaxisRender.cpp,v $
+ * Revision 1.26  2006/06/30 15:05:32  southa
+ * Texture and buffer purge
+ *
  * Revision 1.25  2006/06/21 16:52:28  southa
  * Deco objects
  *
@@ -115,7 +118,8 @@ using namespace std;
 AdanaxisRender::AdanaxisRender() :
     m_halfAngle(M_PI/12),
     m_halfAngleAttractor(M_PI/12),
-    m_scannerOn(false)
+    m_scannerOn(false),
+    m_renderPrelude(0)
 {
 }
 
@@ -162,62 +166,70 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
     
     GLColour(0.8,0.8,0.8,0.5).Apply();
     
-    MushGLUtil::IdentityPrologue();
-    
-    MushGLState::Sgl().RenderStateSet(MushGLState::kRenderState4D);
-    
-    typedef AdanaxisVolatileData::tDecoList tDecoList;
-    
-    //MushRenderMeshDiagnostic renderMesh;
-    //MushRenderMeshWireframe renderMesh;
-    MushRenderMeshSolid renderMesh;
-    
-    MushGameCamera camera(inCamera);
-    
-    camera.ProjectionSet(m_projection);
-    
-    renderMesh.ColourZMiddleSet(t4Val(1.0,1.0,1.0,0.3));
-    renderMesh.ColourZLeftSet(t4Val(1.0,1.0,1.0,0.0));
-    renderMesh.ColourZRightSet(t4Val(1.0,1.0,1.0,0.0));
-
-    if (!m_scannerOn)
+    if (m_renderPrelude == 0)
     {
-        tDecoList::iterator decoEndIter = pVolData->DecoListWRef().end();
-        for (tDecoList::iterator p = pVolData->DecoListWRef().begin(); p != decoEndIter; ++p)
+        MushGLUtil::IdentityPrologue();
+        
+        MushGLState::Sgl().RenderStateSet(MushGLState::kRenderState4D);
+        
+        typedef AdanaxisVolatileData::tDecoList tDecoList;
+        
+        //MushRenderMeshDiagnostic renderMesh;
+        //MushRenderMeshWireframe renderMesh;
+        MushRenderMeshSolid renderMesh;
+        
+        MushGameCamera camera(inCamera);
+        
+        camera.ProjectionSet(m_projection);
+        
+
+        renderMesh.ColourZMiddleSet(t4Val(1.0,1.0,1.0,0.3));
+        renderMesh.ColourZLeftSet(t4Val(1.0,1.0,1.0,0.0));
+        renderMesh.ColourZRightSet(t4Val(1.0,1.0,1.0,0.0));
+
+        if (!m_scannerOn)
+        {
+            tDecoList::iterator decoEndIter = pVolData->DecoListWRef().end();
+            for (tDecoList::iterator p = pVolData->DecoListWRef().begin(); p != decoEndIter; ++p)
+            {
+                p->Render(ioLogic, renderMesh, camera);
+            }
+        }
+        
+
+        renderMesh.ColourZMiddleSet(t4Val(1.0,1.0,1.0,0.3));
+        renderMesh.ColourZLeftSet(t4Val(1.0,0.7,0.7,0.0));
+        renderMesh.ColourZRightSet(t4Val(0.7,1.0,0.7,0.0));
+        typedef AdanaxisSaveData::tProjectileList tProjectileList;
+        
+        tProjectileList::iterator projectileEndIter = pSaveData->ProjectileListWRef().end();
+        for (tProjectileList::iterator p = pSaveData->ProjectileListWRef().begin(); p != projectileEndIter; ++p)
         {
             p->Render(ioLogic, renderMesh, camera);
-        }
+        }    
+        
+        typedef AdanaxisSaveData::tKhaziList tKhaziList;
+        
+        tKhaziList::iterator khaziEndIter = pSaveData->KhaziListWRef().end();
+        for (tKhaziList::iterator p = pSaveData->KhaziListWRef().begin(); p != khaziEndIter; ++p)
+        {
+            p->Render(ioLogic, renderMesh, camera);
+        }    
+        
+        MushGLUtil::IdentityEpilogue();
     }
     
-
-    renderMesh.ColourZMiddleSet(t4Val(1.0,1.0,1.0,0.3));
-    renderMesh.ColourZLeftSet(t4Val(1.0,0.7,0.7,0.0));
-    renderMesh.ColourZRightSet(t4Val(0.7,1.0,0.7,0.0));
-    typedef AdanaxisSaveData::tProjectileList tProjectileList;
-    
-    tProjectileList::iterator projectileEndIter = pSaveData->ProjectileListWRef().end();
-    for (tProjectileList::iterator p = pSaveData->ProjectileListWRef().begin(); p != projectileEndIter; ++p)
-    {
-        p->Render(ioLogic, renderMesh, camera);
-    }    
-    
-    typedef AdanaxisSaveData::tKhaziList tKhaziList;
-    
-    tKhaziList::iterator khaziEndIter = pSaveData->KhaziListWRef().end();
-    for (tKhaziList::iterator p = pSaveData->KhaziListWRef().begin(); p != khaziEndIter; ++p)
-    {
-        p->Render(ioLogic, renderMesh, camera);
-    }    
-    
-    MushGLUtil::IdentityEpilogue();
-    
+    MushGLState::Sgl().ResetWriteAll();
     GLState::ContextReset();
+
+    MushGLState::Sgl().RenderStateSet(MushGLState::kRenderState2D);
+
+    MushGLUtil::IdentityPrologue();
 
     MushGameDialogueUtils::MoveAndRender(pSaveData->DialoguesWRef(), AdanaxisUtil::AppHandler());
     
-    
     MushGLUtil::OrthoPrologue();
-    
+
     Overplot(ioLogic, inCamera);
     
     if (pVolData->ModeKeypressMsec() != 0)
@@ -227,7 +239,13 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
 
     MushGLUtil::OrthoEpilogue();
     
+    MushGLUtil::IdentityEpilogue();
     MushGLUtil::DisplayEpilogue();
+    
+    if (m_renderPrelude > 0)
+    {
+        --m_renderPrelude;   
+    }
 }
 
 void
@@ -238,60 +256,72 @@ AdanaxisRender::Overplot(MushGameLogic& ioLogic, const MushGameCamera& inCamera)
     
     AdanaxisLogic &logicRef = dynamic_cast<AdanaxisLogic &>(ioLogic);
     
-    if (m_scannerOn)
+    if (m_renderPrelude != 0)
     {
-        orthoGL.MoveToEdge(0,1);
+        orthoGL.MoveToEdge(0,0);
+        GLString glStr("Loading", GLFontRef("font-mono1", 0.03), 0);
+        glStr.Render();
         orthoGL.MoveRelative(0, -0.08);
-        GLString glStr("Fish-eye scanner", GLFontRef("font-mono1", 0.02), 0);
-        glStr.Render();
+        GLString glStr2("(This may take some time)", GLFontRef("font-mono1", 0.02), 0);
+        glStr2.Render();
     }
-    
+    else
     {
-        orthoGL.MoveToEdge(-1,1);
-        orthoGL.MoveRelative(0.01, -0.04);
-        ostringstream message;
-        message << logicRef.KhaziCount() << " left";
-        GLString glStr(message.str(), GLFontRef("font-mono1", 0.02), -1);
-        glStr.Render();
-    }
-    {
-        orthoGL.MoveToEdge(1,1);
-        orthoGL.MoveRelative(-0.01, -0.04);
-        ostringstream message;
-        message << GameTimer::MsecToLongString(logicRef.EndTime() - logicRef.StartTime());
-        GLString glStr(message.str(), GLFontRef("font-mono1", 0.02), 1);
-        glStr.Render();
-    }
-    {
-        orthoGL.MoveToEdge(0,-1);
-        orthoGL.MoveRelative(0, 0.04);
-        GLString glStr(AdanaxisUtil::AppHandler().AxisNames(), GLFontRef("font-mono1", 0.02), 0);
-        glStr.Render();
-    }
-    
-    if (logicRef.KhaziCount() == 0)
-    {
+        if (m_scannerOn)
         {
-            orthoGL.MoveTo(0, 0.04);
-            ostringstream message;
-            message << "Time:   " << GameTimer::MsecToLongString(logicRef.EndTime() - logicRef.StartTime());
-            GLString glStr(message.str(), GLFontRef("font-mono1", 0.03), 0);
-            glStr.Render();        
+            orthoGL.MoveToEdge(0,1);
+            orthoGL.MoveRelative(0, -0.08);
+            GLString glStr("Fish-eye scanner", GLFontRef("font-mono1", 0.02), 0);
+            glStr.Render();
         }
-        if (logicRef.RecordTime() != 0)
+        
         {
-            orthoGL.MoveTo(0, -0.04);
+            orthoGL.MoveToEdge(-1,1);
+            orthoGL.MoveRelative(0.01, -0.04);
             ostringstream message;
-            message << "Record: " << GameTimer::MsecToLongString(logicRef.RecordTime());
-            GLString glStr(message.str(), GLFontRef("font-mono1", 0.03), 0);
-            glStr.Render();        
+            message << logicRef.KhaziCount() << " left";
+            GLString glStr(message.str(), GLFontRef("font-mono1", 0.02), -1);
+            glStr.Render();
         }
         {
-            orthoGL.MoveTo(0, -0.2);
+            orthoGL.MoveToEdge(1,1);
+            orthoGL.MoveRelative(-0.01, -0.04);
             ostringstream message;
-            message << "(Esc to exit)";
-            GLString glStr(message.str(), GLFontRef("font-mono1", 0.02), 0);
-            glStr.Render();        
+            message << GameTimer::MsecToLongString(logicRef.EndTime() - logicRef.StartTime());
+            GLString glStr(message.str(), GLFontRef("font-mono1", 0.02), 1);
+            glStr.Render();
+        }
+        {
+            orthoGL.MoveToEdge(0,-1);
+            orthoGL.MoveRelative(0, 0.04);
+            GLString glStr(AdanaxisUtil::AppHandler().AxisNames(), GLFontRef("font-mono1", 0.02), 0);
+            glStr.Render();
+        }
+        
+        if (logicRef.KhaziCount() == 0)
+        {
+            {
+                orthoGL.MoveTo(0, 0.04);
+                ostringstream message;
+                message << "Time:   " << GameTimer::MsecToLongString(logicRef.EndTime() - logicRef.StartTime());
+                GLString glStr(message.str(), GLFontRef("font-mono1", 0.03), 0);
+                glStr.Render();        
+            }
+            if (logicRef.RecordTime() != 0)
+            {
+                orthoGL.MoveTo(0, -0.04);
+                ostringstream message;
+                message << "Record: " << GameTimer::MsecToLongString(logicRef.RecordTime());
+                GLString glStr(message.str(), GLFontRef("font-mono1", 0.03), 0);
+                glStr.Render();        
+            }
+            {
+                orthoGL.MoveTo(0, -0.2);
+                ostringstream message;
+                message << "(Esc to exit)";
+                GLString glStr(message.str(), GLFontRef("font-mono1", 0.02), 0);
+                glStr.Render();        
+            }
         }
     }
     orthoGL.MoveTo(0, 0);
@@ -333,7 +363,8 @@ AdanaxisRender::AutoPrint(std::ostream& ioOut) const
     ioOut << "projection=" << m_projection << ", ";
     ioOut << "halfAngle=" << m_halfAngle << ", ";
     ioOut << "halfAngleAttractor=" << m_halfAngleAttractor << ", ";
-    ioOut << "scannerOn=" << m_scannerOn;
+    ioOut << "scannerOn=" << m_scannerOn << ", ";
+    ioOut << "renderPrelude=" << m_renderPrelude;
     ioOut << "]";
 }
 bool
@@ -361,6 +392,10 @@ AdanaxisRender::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
     {
         ioIn >> m_scannerOn;
     }
+    else if (inTagStr == "renderPrelude")
+    {
+        ioIn >> m_renderPrelude;
+    }
     else 
     {
         return false;
@@ -378,5 +413,7 @@ AdanaxisRender::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_halfAngleAttractor;
     ioOut.TagSet("scannerOn");
     ioOut << m_scannerOn;
+    ioOut.TagSet("renderPrelude");
+    ioOut << m_renderPrelude;
 }
-//%outOfLineFunctions } FzYzr+Y85we+EGcomKAJOA
+//%outOfLineFunctions } N2BqhZJl9F8dB+TKB8MuNA

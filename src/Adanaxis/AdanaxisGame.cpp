@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } DEX6Sh9oUk/bih2GXm2coA
 /*
- * $Id: AdanaxisGame.cpp,v 1.34 2006/06/21 16:52:28 southa Exp $
+ * $Id: AdanaxisGame.cpp,v 1.35 2006/06/30 15:05:31 southa Exp $
  * $Log: AdanaxisGame.cpp,v $
+ * Revision 1.35  2006/06/30 15:05:31  southa
+ * Texture and buffer purge
+ *
  * Revision 1.34  2006/06/21 16:52:28  southa
  * Deco objects
  *
@@ -128,6 +131,7 @@
 #include "AdanaxisAppHandler.h"
 #include "AdanaxisClient.h"
 #include "AdanaxisMeshLibrary.h"
+#include "AdanaxisRender.h"
 #include "AdanaxisRuby.h"
 #include "AdanaxisSaveData.h"
 #include "AdanaxisServer.h"
@@ -279,10 +283,6 @@ AdanaxisGame::Init(MushGameAppHandler& inAppHandler)
 	MushRubyExec::Sgl().Call(m_rubySpace, "mInitialPiecesCreate");
 	
 	AdanaxisUtil::MissingSkinsCreate(Logic());
-	
-    // AdanaxisUtil::TestSkinsCreate(Logic());
-    // AdanaxisUtil::TestDecoCreate(Logic());
-    // AdanaxisUtil::TestPiecesCreate(Logic());
     
     MushcoreInterpreter::Sgl().Execute("loadsoundstream('adanaxis-music1')");
     if (m_config.PlayMusic())
@@ -339,10 +339,12 @@ AdanaxisGame::SwapIn(MushGameAppHandler& inAppHandler)
     
     GLUtils::CheckGLError();
     //tVal msecNow = inAppHandler.MillisecondsGet();
-   
+       
     m_modeKeypressMsec = 0;
     m_newMode = m_config.DisplayMode();
     Logic().RecordTimeSet(m_config.RecordTime());
+
+    dynamic_cast<AdanaxisRender&>(SaveData().RenderRef().WRef()).RenderPreludeSet();
 }
 
 void

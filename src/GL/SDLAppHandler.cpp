@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } X577BrzUUfCyG/exJzzEYQ
 /*
- * $Id: SDLAppHandler.cpp,v 1.49 2005/07/14 12:50:30 southa Exp $
+ * $Id: SDLAppHandler.cpp,v 1.50 2006/06/01 15:38:55 southa Exp $
  * $Log: SDLAppHandler.cpp,v $
+ * Revision 1.50  2006/06/01 15:38:55  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.49  2005/07/14 12:50:30  southa
  * Extrusion work
  *
@@ -316,8 +319,13 @@ SDLAppHandler::EnterScreen(const GLModeDef& inDef)
     SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
     
 #if defined(SDL_GL_MULTISAMPLEBUFFERS) && defined(SDL_GL_MULTISAMPLESAMPLES)
-    SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 0);
+    SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 1);
     SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 4);
+#endif
+    
+#if (SDL_MAJOR_VERSION >= 1) && (SDL_MINOR_VERSION >= 2) && (SDL_PATCHLEVEL >= 10)
+    // Attributes supported from SDL version 1.2.10 onwards
+    SDL_GL_SetAttribute(SDL_GL_SWAP_CONTROL, 1);
 #endif
     
     m_width=inDef.WidthGet();
@@ -349,6 +357,7 @@ SDLAppHandler::EnterScreen(const GLModeDef& inDef)
         SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 5);
         surface=SDL_SetVideoMode(m_width, m_height, m_bpp, sdlFlags|SDL_ANYFORMAT);
     }
+    
     PlatformVideoUtils::Sgl().ModeChangeEpilogue();
     if (surface == NULL) throw(MushcoreDeviceFail("Could not select a video mode"));
 
