@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } RQQs1JsLGnc5eUT1J6jhDw
 /*
- * $Id: MushGameDialogueUtils.cpp,v 1.1 2005/06/14 20:39:41 southa Exp $
+ * $Id: MushGameDialogueUtils.cpp,v 1.2 2006/06/01 15:39:21 southa Exp $
  * $Log: MushGameDialogueUtils.cpp,v $
+ * Revision 1.2  2006/06/01 15:39:21  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.1  2005/06/14 20:39:41  southa
  * Adanaxis work
  *
@@ -48,7 +51,7 @@ MushGameDialogueUtils::NamedDialoguesAdd(
 
 void
 MushGameDialogueUtils::MoveAndRender(MushcoreData<MushGameDialogue>& ioDialogues,
-                                     GameAppHandler& inAppHandler)
+                                     MushGameAppHandler& inAppHandler)
 {
     GLUtils::OrthoPrologue();
     

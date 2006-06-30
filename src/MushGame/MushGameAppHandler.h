@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } rqKVCOMdajoYPgaQgbClmg
 /*
- * $Id: MushGameAppHandler.h,v 1.5 2005/08/05 10:33:33 southa Exp $
+ * $Id: MushGameAppHandler.h,v 1.6 2006/06/01 15:39:20 southa Exp $
  * $Log: MushGameAppHandler.h,v $
+ * Revision 1.6  2006/06/01 15:39:20  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.5  2005/08/05 10:33:33  southa
  * win32 build fixes
  *
@@ -45,29 +48,52 @@
 #include "MushGameStandard.h"
 
 #include "MushGameAxisDef.h"
+#include "MushGameBase.h"
 #include "MushGameKeyDef.h"
 #include "MushGameMailbox.h"
 
 #include "API/mushGame.h"
 
 //:generate
-class MushGameAppHandler : public GameAppHandler
+class MushGameAppHandler : public MushGLAppHandler
 {
 public:
     MushGameAppHandler(const std::string& inName = "");
     
+    virtual void Display(void);
+    virtual void Idle(void);
+    virtual void GameIdle(void);
+    virtual void GameModeEnter(bool inResume);
+    virtual void QuitModeEnter(void);
+    
     virtual void GroupingNameSet(const std::string& inName);
     virtual void AxisDefSet(const MushGameAxisDef& inAxisDef, Mushware::U32 inAxisNum);
     virtual void KeyDefSet(const MushGameKeyDef& inKeyDef, Mushware::U32 inKeyNum);
-    virtual void Idle(void);
-    
+
 protected:
+    enum tAppState
+    {
+        kAppStateInvalid,
+        kAppStateStartup,
+        kAppStateGame,
+        kAppStateQuit
+    };
+    
+    virtual bool StateGameIs(void) const { return (m_appState == kAppStateGame); }
+    virtual void StateGameSet(void) { m_appState=kAppStateGame; }
+    virtual void CurrentSwapOut(void);
+    virtual void CurrentSwapIn(const std::string& inName);
+    
     virtual void AxisFromDeviceUpdate(MushGameAxisDef& ioAxisDef, Mushware::tVal inAmount);
     virtual void AxisTicker(Mushware::tMsec inTimeslice);    
     virtual void KeyTicker(Mushware::tMsec inTimeslice);    
     virtual void FillControlPipe(void);
+    virtual void KeyboardSignal(const GLKeyboardSignal& inSignal);
     
 private:
+    tAppState m_appState; //:readwrite
+    MushcoreDataRef<MushGameBase> m_currentRef;
+    
     std::string m_groupingName;
     std::vector<MushGameAxisDef> m_axisDefs;
     std::vector<MushGameKeyDef> m_keyDefs;
@@ -75,13 +101,16 @@ private:
     MushcoreDataRef<MushGameMailbox> m_controlMailboxRef; //:read
     bool m_lastAxesValid; //:readwrite
     std::string m_axisNames; //:read
+    
 //%classPrototypes {
 public:
+    const tAppState& AppState(void) const { return m_appState; }
+    void AppStateSet(const tAppState& inValue) { m_appState=inValue; }
     const MushcoreDataRef<MushGameMailbox>& ControlMailboxRef(void) const { return m_controlMailboxRef; }
     const bool& LastAxesValid(void) const { return m_lastAxesValid; }
     void LastAxesValidSet(const bool& inValue) { m_lastAxesValid=inValue; }
     const std::string& AxisNames(void) const { return m_axisNames; }
-//%classPrototypes } /Xz87dsou8RJtLplwowKtw
+//%classPrototypes } 6gtVEQp10KpMF0xzAPw9xQ
 };
 
 //%includeGuardEnd {

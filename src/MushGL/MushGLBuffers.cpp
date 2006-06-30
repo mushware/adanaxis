@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } L06e6NX/2+gGtbTD1R/Lmg
 /*
- * $Id: MushGLBuffers.cpp,v 1.5 2005/09/05 12:54:30 southa Exp $
+ * $Id: MushGLBuffers.cpp,v 1.6 2006/06/01 15:39:17 southa Exp $
  * $Log: MushGLBuffers.cpp,v $
+ * Revision 1.6  2006/06/01 15:39:17  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.5  2005/09/05 12:54:30  southa
  * Solid rendering work
  *
@@ -46,7 +49,28 @@ MUSHCORE_KEYED_DATA_INSTANCE(MushGLBuffers, Mushware::U32);
 // Named data for shared buffers
 MUSHCORE_DATA_INSTANCE(MushGLBuffers);
 
+using namespace Mushware;
+using namespace std;
+
 Mushware::U32 MushGLBuffers::m_nextBufferNum = 1;
+
+void
+MushGLBuffers::Purge(void)
+{
+    m_vertexContextNum = 0;
+    m_colourContextNum = 0;
+    m_texCoordContextNum = 0;
+    m_triangleListContextNum = 0;    
+    m_vertexBuffer.Purge();
+    m_colourBuffer.Purge();
+    
+    MUSHCOREASSERT(m_numTexCoordBuffers < kNumTexCoordBuffers);
+    
+    for (U32 i=0; i<m_numTexCoordBuffers; ++i)
+    {
+        m_texCoordBuffers[i].Purge();
+    }
+}
 
 //%outOfLineFunctions {
 

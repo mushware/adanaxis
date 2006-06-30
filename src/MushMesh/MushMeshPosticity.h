@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } t1Ub7qKwTGZ73wEUmUwLzw
 /*
- * $Id: MushMeshPosticity.h,v 1.5 2006/06/01 15:39:31 southa Exp $
+ * $Id: MushMeshPosticity.h,v 1.6 2006/06/20 19:06:52 southa Exp $
  * $Log: MushMeshPosticity.h,v $
+ * Revision 1.6  2006/06/20 19:06:52  southa
+ * Object creation
+ *
  * Revision 1.5  2006/06/01 15:39:31  southa
  * DrawArray verification and fixes
  *
@@ -58,6 +61,8 @@ public:
     inline void InPlaceVelocityAdd(void);
     const MushMeshPosticity Inverse(void) const;
     void InPlaceInvert(void);
+    
+    static const MushMeshPosticity Identity(void);
     
 private:
     Mushware::tQValPair m_angPos; //:readwrite :wref
@@ -108,6 +113,14 @@ MushMeshPosticity::ToIdentitySet(void)
     m_pos.ToAdditiveIdentitySet();
     m_vel.ToAdditiveIdentitySet();
     m_timeValid = false;
+}
+
+inline const MushMeshPosticity
+MushMeshPosticity::Identity(void)
+{
+    MushMeshPosticity retVal;
+    retVal.ToIdentitySet();
+    return retVal;
 }
 
 inline void

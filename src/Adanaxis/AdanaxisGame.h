@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } wOXl6eoMycMTXcUsBJ4Pgg
 /*
- * $Id: AdanaxisGame.h,v 1.12 2006/06/01 15:38:47 southa Exp $
+ * $Id: AdanaxisGame.h,v 1.13 2006/06/20 19:06:51 southa Exp $
  * $Log: AdanaxisGame.h,v $
+ * Revision 1.13  2006/06/20 19:06:51  southa
+ * Object creation
+ *
  * Revision 1.12  2006/06/01 15:38:47  southa
  * DrawArray verification and fixes
  *
@@ -73,24 +76,24 @@
 #include "API/mushMushGame.h"
 
 //:generate virtual standard ostream xml1
-class AdanaxisGame : public GameBase
+class AdanaxisGame : public MushGameBase
 {
 public:
     explicit AdanaxisGame(const std::string& inName="anon-adanaxis");
     virtual ~AdanaxisGame();
-    virtual void Process(GameAppHandler& inAppHandler);
-    virtual void Display(GameAppHandler& inAppHandler);
-    virtual void ScriptFunction(const std::string& inName, GameAppHandler& inAppHandler) const;
-    virtual void SwapIn(GameAppHandler& inAppHandler);
-    virtual void SwapOut(GameAppHandler& inAppHandler);
-    virtual void Init(GameAppHandler& inAppHandler);
+    virtual void Process(MushGameAppHandler& inAppHandler);
+    virtual void Display(MushGameAppHandler& inAppHandler);
+    virtual void ScriptFunction(const std::string& inName, MushGameAppHandler& inAppHandler) const;
+    virtual void SwapIn(MushGameAppHandler& inAppHandler);
+    virtual void SwapOut(MushGameAppHandler& inAppHandler);
+    virtual void Init(MushGameAppHandler& inAppHandler);
     
     virtual void UpdateFromConfig(void);
     
     static void Install(void);
     
 protected:
-    virtual void LocalGameCreate(GameAppHandler& inAppHandler);
+    virtual void LocalGameCreate(MushGameAppHandler& inAppHandler);
         
 private:
     AdanaxisSaveData& SaveData();

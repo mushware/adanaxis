@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } AYQWMxoJ+uDPAQUnlwSk/w
 /*
- * $Id: MushGLTexture.h,v 1.7 2006/06/06 17:58:32 southa Exp $
+ * $Id: MushGLTexture.h,v 1.8 2006/06/07 12:15:19 southa Exp $
  * $Log: MushGLTexture.h,v $
+ * Revision 1.8  2006/06/07 12:15:19  southa
+ * Grid and test textures
+ *
  * Revision 1.7  2006/06/06 17:58:32  southa
  * Ruby texture definition
  *
@@ -72,6 +75,7 @@ public:
 
     void Make(void);
     void Bind(void);
+    void Purge(void);
     
     void PixelTypeRGBASet(void) { m_pixelType = kPixelTypeRGBA; }
     void StorageTypeGLSet(void) { m_storageType = kStorageTypeGL; }

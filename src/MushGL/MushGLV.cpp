@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } NYmv5MZn7NEYPYHpc3JV8Q
 /*
- * $Id: MushGLV.cpp,v 1.14 2006/06/23 00:35:05 southa Exp $
+ * $Id: MushGLV.cpp,v 1.15 2006/06/27 11:58:09 southa Exp $
  * $Log: MushGLV.cpp,v $
+ * Revision 1.15  2006/06/27 11:58:09  southa
+ * Warning fixes
+ *
  * Revision 1.14  2006/06/23 00:35:05  southa
  * win32 build fixes
  *
@@ -93,7 +96,7 @@ MushGLV::MushGLV() :
     m_fpClientActiveTexture(NULL),
     m_numTextureUnits(0),
     m_hasS3TC(false),
-    m_contextNum(0),
+    m_contextNum(1),
     m_contextValid(false)
 {
 }
@@ -113,7 +116,7 @@ MushGLV::GetProcAddressWithARB(const std::string& inName) const
 }
 
 void
-MushGLV::Acquaint()
+MushGLV::Acquaint(void)
 {
     bool safeMode = false;
     const MushcoreScalar *pScalar = NULL;
@@ -185,6 +188,13 @@ MushGLV::Acquaint()
 	
     m_contextValid = true;
     MushGLState::Sgl().ResetWriteAll();
+}
+
+void
+MushGLV::Purge(void)
+{
+    m_contextValid = false;
+    m_contextNum++;
 }
 
 void
@@ -272,8 +282,6 @@ MushGLV::DrawArraysVerify(GLenum inMode, GLint inFirst, GLsizei inCount) const
 			}
 		}
 	}
-	
-	//MUSHCOREASSERT(false);
 }	
 
 //%outOfLineFunctions {

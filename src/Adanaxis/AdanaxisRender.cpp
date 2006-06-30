@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } Hr8bvS7fc+x0pR9DrFcIZw
 /*
- * $Id: AdanaxisRender.cpp,v 1.24 2006/06/01 15:38:48 southa Exp $
+ * $Id: AdanaxisRender.cpp,v 1.25 2006/06/21 16:52:28 southa Exp $
  * $Log: AdanaxisRender.cpp,v $
+ * Revision 1.25  2006/06/21 16:52:28  southa
+ * Deco objects
+ *
  * Revision 1.24  2006/06/01 15:38:48  southa
  * DrawArray verification and fixes
  *
@@ -210,7 +213,7 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
     
     GLState::ContextReset();
 
-    MushGameDialogueUtils::MoveAndRender(pSaveData->DialoguesWRef(), GameUtils::AppHandler());
+    MushGameDialogueUtils::MoveAndRender(pSaveData->DialoguesWRef(), AdanaxisUtil::AppHandler());
     
     
     MushGLUtil::OrthoPrologue();

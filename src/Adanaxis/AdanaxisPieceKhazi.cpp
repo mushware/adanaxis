@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } Z+ifTSkKrl4GVRxP2YKNlg
 /*
- * $Id: AdanaxisPieceKhazi.cpp,v 1.7 2006/06/01 15:38:47 southa Exp $
+ * $Id: AdanaxisPieceKhazi.cpp,v 1.8 2006/06/21 12:17:55 southa Exp $
  * $Log: AdanaxisPieceKhazi.cpp,v $
+ * Revision 1.8  2006/06/21 12:17:55  southa
+ * Ruby object generation
+ *
  * Revision 1.7  2006/06/01 15:38:47  southa
  * DrawArray verification and fixes
  *
@@ -52,12 +55,8 @@ using namespace Mushware;
 using namespace std;
 
 AdanaxisPieceKhazi::AdanaxisPieceKhazi(const std::string& inID) :
-    m_id(inID),
-    m_expireFlag(false)
+    MushGamePiece(inID)
 {
-    PostWRef().ToIdentitySet();
-    m_buffersRef.NameSet(MushGLBuffers::NextBufferNumAdvance());
-    MushGLBuffers::tData::Sgl().GetOrCreate(m_buffersRef.Name());
 }  
 
 void
@@ -70,8 +69,8 @@ void
 AdanaxisPieceKhazi::Render(MushGameLogic& ioLogic, MushRenderMesh& inRender, const MushGameCamera& inCamera)
 {
     MushRenderSpec renderSpec;
-    renderSpec.BuffersRefSet(m_buffersRef);
-    renderSpec.TexCoordBuffersRefSet(m_texCoordBuffersRef);
+    renderSpec.BuffersRefSet(BuffersRef());
+    renderSpec.TexCoordBuffersRefSet(TexCoordBuffersRef());
 
     MushMeshOps::PosticityToMattress(renderSpec.ModelWRef(), Post());
     MushMeshOps::PosticityToMattress(renderSpec.ViewWRef(), inCamera.Post());
@@ -79,7 +78,7 @@ AdanaxisPieceKhazi::Render(MushGameLogic& ioLogic, MushRenderMesh& inRender, con
     
     renderSpec.ProjectionSet(inCamera.Projection());
     
-    inRender.MeshRender(renderSpec, m_mesh);
+    inRender.MeshRender(renderSpec, Mesh());
 }
 
 void
@@ -212,11 +211,6 @@ AdanaxisPieceKhazi::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
     MushGamePiece::AutoPrint(ioOut);
-    ioOut << "id=" << m_id << ", ";
-    ioOut << "expireFlag=" << m_expireFlag << ", ";
-    ioOut << "mesh=" << m_mesh << ", ";
-    ioOut << "buffersRef=" << m_buffersRef << ", ";
-    ioOut << "texCoordBuffersRef=" << m_texCoordBuffersRef;
     ioOut << "]";
 }
 bool
@@ -227,26 +221,6 @@ AdanaxisPieceKhazi::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::stri
         AutoInputPrologue(ioIn);
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
-    }
-    else if (inTagStr == "id")
-    {
-        ioIn >> m_id;
-    }
-    else if (inTagStr == "expireFlag")
-    {
-        ioIn >> m_expireFlag;
-    }
-    else if (inTagStr == "mesh")
-    {
-        ioIn >> m_mesh;
-    }
-    else if (inTagStr == "buffersRef")
-    {
-        ioIn >> m_buffersRef;
-    }
-    else if (inTagStr == "texCoordBuffersRef")
-    {
-        ioIn >> m_texCoordBuffersRef;
     }
     else if (MushGamePiece::AutoXMLDataProcess(ioIn, inTagStr))
     {
@@ -262,15 +236,5 @@ void
 AdanaxisPieceKhazi::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
     MushGamePiece::AutoXMLPrint(ioOut);
-    ioOut.TagSet("id");
-    ioOut << m_id;
-    ioOut.TagSet("expireFlag");
-    ioOut << m_expireFlag;
-    ioOut.TagSet("mesh");
-    ioOut << m_mesh;
-    ioOut.TagSet("buffersRef");
-    ioOut << m_buffersRef;
-    ioOut.TagSet("texCoordBuffersRef");
-    ioOut << m_texCoordBuffersRef;
 }
-//%outOfLineFunctions } D6JDYxKGRjbu54jREvOUTg
+//%outOfLineFunctions } UJRpiKhuu/YO//32wwZeSw

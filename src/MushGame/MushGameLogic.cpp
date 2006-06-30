@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } o9Dxm/e8GypZNPSRXLgJNQ
 /*
- * $Id: MushGameLogic.cpp,v 1.20 2005/08/01 13:09:58 southa Exp $
+ * $Id: MushGameLogic.cpp,v 1.21 2006/06/01 15:39:23 southa Exp $
  * $Log: MushGameLogic.cpp,v $
+ * Revision 1.21  2006/06/01 15:39:23  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.20  2005/08/01 13:09:58  southa
  * Collision messaging
  *
@@ -86,14 +89,13 @@
 #include "MushGameLogic.h"
 
 #include "MushGameAddress.h"
+#include "MushGameAppHandler.h"
 #include "MushGameAnimPostManip.h"
 #include "MushGameJob.h"
 #include "MushGameLink.h"
 #include "MushGameMessageWake.h"
 #include "MushGameRefPlayer.h"
 #include "MushGameUtil.h"
-
-#include "API/mushGame.h"
 
 MUSHCORE_DATA_INSTANCE(MushGameLogic);
 
@@ -103,14 +105,15 @@ using namespace std;
 Mushware::U32
 MushGameLogic::GameMsec(void) const
 {
-    GameAppHandler *pGameAppHandler=dynamic_cast<GameAppHandler *>(&MushcoreAppHandler::Sgl());
-    if (pGameAppHandler == NULL)
+    MushGameAppHandler *pAppHandler=dynamic_cast<MushGameAppHandler *>(&MushcoreAppHandler::Sgl());
+    if (pAppHandler == NULL)
     {
+        MushcoreLog::Sgl().WarningLog() << "Cannot get game time" << endl;
         return 0;
     }
     else
     {
-        return pGameAppHandler->MillisecondsGet();
+        return pAppHandler->MillisecondsGet();
     }
 }
 

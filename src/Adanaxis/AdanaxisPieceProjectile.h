@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } AFo2vzl87aFxQx3VFVpFzA
 /*
- * $Id: AdanaxisPieceProjectile.h,v 1.4 2006/06/01 15:38:48 southa Exp $
+ * $Id: AdanaxisPieceProjectile.h,v 1.5 2006/06/21 12:17:55 southa Exp $
  * $Log: AdanaxisPieceProjectile.h,v $
+ * Revision 1.5  2006/06/21 12:17:55  southa
+ * Ruby object generation
+ *
  * Revision 1.4  2006/06/01 15:38:48  southa
  * DrawArray verification and fixes
  *
@@ -59,21 +62,14 @@ public:
     virtual void CollisionFatalConsume(MushGameLogic& ioLogic, const MushGameMessageCollisionFatal& inMessage);
     virtual void MessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage);
 
-    virtual const MushMesh4Mesh& CollisionMesh(void) const { return m_mesh; }
+    virtual const MushMesh4Mesh& CollisionMesh(void) const { return Mesh(); }
     virtual const MushMeshPosticity& CollisionPost(void) const { return Post(); }
 
-	virtual void TexCoordBuffersNameSet(const std::string& inName) { m_texCoordBuffersRef.NameSet(inName); }
-
 private:
-    std::string m_id;
     std::string m_owner; //:readwrite
     Mushware::tVal m_initialVelocity; //:readwrite
     Mushware::tMsec m_lifeMsec; //:readwrite
     Mushware::tMsec m_expiryMsec; //:readwrite
-    bool m_expireFlag; //:readwrite
-    MushMesh4Mesh m_mesh; //:readwrite :wref
-    MushGLBuffers::tDataRef m_buffersRef; //:readwrite
-    MushGLBuffers::tSharedDataRef m_texCoordBuffersRef; //:readwrite
     
 //%classPrototypes {
 public:
@@ -85,16 +81,6 @@ public:
     void LifeMsecSet(const Mushware::tMsec& inValue) { m_lifeMsec=inValue; }
     const Mushware::tMsec& ExpiryMsec(void) const { return m_expiryMsec; }
     void ExpiryMsecSet(const Mushware::tMsec& inValue) { m_expiryMsec=inValue; }
-    const bool& ExpireFlag(void) const { return m_expireFlag; }
-    void ExpireFlagSet(const bool& inValue) { m_expireFlag=inValue; }
-    const MushMesh4Mesh& Mesh(void) const { return m_mesh; }
-    void MeshSet(const MushMesh4Mesh& inValue) { m_mesh=inValue; }
-    // Writable reference for m_mesh
-    MushMesh4Mesh& MeshWRef(void) { return m_mesh; }
-    const MushGLBuffers::tDataRef& BuffersRef(void) const { return m_buffersRef; }
-    void BuffersRefSet(const MushGLBuffers::tDataRef& inValue) { m_buffersRef=inValue; }
-    const MushGLBuffers::tSharedDataRef& TexCoordBuffersRef(void) const { return m_texCoordBuffersRef; }
-    void TexCoordBuffersRefSet(const MushGLBuffers::tSharedDataRef& inValue) { m_texCoordBuffersRef=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -102,7 +88,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } k+sD5ZtdQnNaiwrEzFKudQ
+//%classPrototypes } rkJVCCgUhPodpSI00aAOLg
 };
 //%inlineHeader {
 inline std::ostream&

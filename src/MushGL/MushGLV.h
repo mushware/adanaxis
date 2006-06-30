@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } JUBCCFXz/CzIx64ACD8wjA
 /*
- * $Id: MushGLV.h,v 1.17 2006/06/01 20:13:00 southa Exp $
+ * $Id: MushGLV.h,v 1.18 2006/06/23 00:35:06 southa Exp $
  * $Log: MushGLV.h,v $
+ * Revision 1.18  2006/06/23 00:35:06  southa
+ * win32 build fixes
+ *
  * Revision 1.17  2006/06/01 20:13:00  southa
  * Initial texture caching
  *
@@ -87,10 +90,12 @@ class MushGLV : public MushcoreSingleton<MushGLV>
 public:
     MushGLV();
     virtual ~MushGLV() {};
-    virtual void Acquaint();
+    virtual void Acquaint(void);
+    virtual void Purge(void);
     
     void DrawArrays(GLenum inMode, GLint inFirst, GLsizei inCount);
     void BindTexture2D(GLuint inBindingName) { glBindTexture(GL_TEXTURE_2D, inBindingName); }
+    void DeleteTexture(GLuint inBindingName) { glDeleteTextures(1, &inBindingName); }
     void ActiveTextureZeroBased(Mushware::U32 inTexNum);
     void ClientActiveTextureZeroBased(Mushware::U32 inTexNum);
     

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } VHo9mynYvrLNNxNizz2I6g
 /*
- * $Id: MushGLBuffers.h,v 1.7 2005/09/06 12:15:35 southa Exp $
+ * $Id: MushGLBuffers.h,v 1.8 2006/06/01 15:39:17 southa Exp $
  * $Log: MushGLBuffers.h,v $
+ * Revision 1.8  2006/06/01 15:39:17  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.7  2005/09/06 12:15:35  southa
  * Texture and rendering work
  *
@@ -77,6 +80,7 @@ public:
     
     typedef MushcoreData<MushGLBuffers, Mushware::U32> tData;
     typedef MushcoreDataRef<MushGLBuffers, Mushware::U32> tDataRef;
+    typedef MushcoreData<MushGLBuffers> tSharedData;
     typedef MushcoreDataRef<MushGLBuffers> tSharedDataRef;
     
     MushGLBuffers() :
@@ -101,6 +105,8 @@ public:
     void Claim(Mushware::U8 inOwner = kOwnerOther);
     void Release(Mushware::U8 inOwner = kOwnerOther);
     void Decache(void) {}
+    
+    void Purge(void);
     
     static Mushware::U32 NextBufferNumAdvance(void) { return ++m_nextBufferNum; }
     

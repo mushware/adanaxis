@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } qKw8sPtc3ciNf46/evJgCA
 /*
- * $Id: MushGame.h,v 1.14 2005/08/01 13:09:58 southa Exp $
+ * $Id: MushGame.h,v 1.15 2006/06/01 15:39:19 southa Exp $
  * $Log: MushGame.h,v $
+ * Revision 1.15  2006/06/01 15:39:19  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.14  2005/08/01 13:09:58  southa
  * Collision messaging
  *
@@ -73,6 +76,7 @@
 #include "MushGameAnimPostManip.h"
 #include "MushGameAppHandler.h"
 #include "MushGameAxisDef.h"
+#include "MushGameBase.h"
 #include "MushGameClient.h"
 #include "MushGameConfigBase.h"
 #include "MushGameConfigUtils.h"

@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } egy5H2OAhNECMmQ2Glz/3g
 /*
- * $Id: AdanaxisCommandHandler.cpp,v 1.3 2005/07/06 19:08:26 southa Exp $
+ * $Id: AdanaxisCommandHandler.cpp,v 1.4 2006/06/01 15:38:46 southa Exp $
  * $Log: AdanaxisCommandHandler.cpp,v $
+ * Revision 1.4  2006/06/01 15:38:46  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.3  2005/07/06 19:08:26  southa
  * Adanaxis control work
  *
@@ -49,8 +52,9 @@ AdanaxisCommandHandler::Adanaxis(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
     MushcoreInfo::SingletonMutate(new AdanaxisInfo);
 
     AdanaxisAppHandler *pAppHandler = new AdanaxisAppHandler("adanaxis");
-    MushcoreAppHandler::Sgl().Mutate(pAppHandler);
     
+    MushcoreAppHandler::Sgl().Mutate(pAppHandler);
+
     MushcoreLog::Sgl().PackageHasChanged();
     
     return MushcoreScalar(0);

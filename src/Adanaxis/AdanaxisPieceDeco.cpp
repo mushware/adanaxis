@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } Kb73MSBnaByz2lwXVLGZkA
 /*
- * $Id: AdanaxisPieceDeco.cpp,v 1.15 2006/06/21 16:52:28 southa Exp $
+ * $Id: AdanaxisPieceDeco.cpp,v 1.16 2006/06/27 11:58:08 southa Exp $
  * $Log: AdanaxisPieceDeco.cpp,v $
+ * Revision 1.16  2006/06/27 11:58:08  southa
+ * Warning fixes
+ *
  * Revision 1.15  2006/06/21 16:52:28  southa
  * Deco objects
  *
@@ -72,11 +75,8 @@ using namespace Mushware;
 using namespace std;
 
 AdanaxisPieceDeco::AdanaxisPieceDeco(const std::string& inID) :
-    m_id(inID)
+    MushGamePiece(inID)
 {
-    PostWRef().ToIdentitySet();
-    m_buffersRef.NameSet(MushGLBuffers::NextBufferNumAdvance());
-    MushGLBuffers::tData::Sgl().GetOrCreate(m_buffersRef.Name());    
 }
 
 void
@@ -100,8 +100,8 @@ AdanaxisPieceDeco::Render(MushGameLogic& ioLogic, MushRenderMesh& inRender, cons
         newCamera.PostWRef().PosWRef().ToAdditiveIdentitySet();
 
         MushRenderSpec renderSpec;
-        renderSpec.BuffersRefSet(m_buffersRef);
-		renderSpec.TexCoordBuffersRefSet(m_texCoordBuffersRef);
+        renderSpec.BuffersRefSet(BuffersRef());
+		renderSpec.TexCoordBuffersRefSet(TexCoordBuffersRef());
 
         MushMeshOps::PosticityToMattress(renderSpec.ModelWRef(), Post());
         MushMeshOps::PosticityToMattress(renderSpec.ViewWRef(), newCamera.Post());
@@ -109,7 +109,7 @@ AdanaxisPieceDeco::Render(MushGameLogic& ioLogic, MushRenderMesh& inRender, cons
         
         renderSpec.ProjectionSet(inCamera.Projection());
         
-        inRender.MeshRender(renderSpec, m_mesh);
+        inRender.MeshRender(renderSpec, Mesh());
     }
 }
 
@@ -147,10 +147,6 @@ AdanaxisPieceDeco::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
     MushGamePiece::AutoPrint(ioOut);
-    ioOut << "id=" << m_id << ", ";
-    ioOut << "mesh=" << m_mesh << ", ";
-    ioOut << "buffersRef=" << m_buffersRef << ", ";
-    ioOut << "texCoordBuffersRef=" << m_texCoordBuffersRef;
     ioOut << "]";
 }
 bool
@@ -161,22 +157,6 @@ AdanaxisPieceDeco::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::strin
         AutoInputPrologue(ioIn);
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
-    }
-    else if (inTagStr == "id")
-    {
-        ioIn >> m_id;
-    }
-    else if (inTagStr == "mesh")
-    {
-        ioIn >> m_mesh;
-    }
-    else if (inTagStr == "buffersRef")
-    {
-        ioIn >> m_buffersRef;
-    }
-    else if (inTagStr == "texCoordBuffersRef")
-    {
-        ioIn >> m_texCoordBuffersRef;
     }
     else if (MushGamePiece::AutoXMLDataProcess(ioIn, inTagStr))
     {
@@ -192,13 +172,5 @@ void
 AdanaxisPieceDeco::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
     MushGamePiece::AutoXMLPrint(ioOut);
-    ioOut.TagSet("id");
-    ioOut << m_id;
-    ioOut.TagSet("mesh");
-    ioOut << m_mesh;
-    ioOut.TagSet("buffersRef");
-    ioOut << m_buffersRef;
-    ioOut.TagSet("texCoordBuffersRef");
-    ioOut << m_texCoordBuffersRef;
 }
-//%outOfLineFunctions } tY7M/V7zlUR5BP0B9KOKJQ
+//%outOfLineFunctions } C4QJXOg4sML405P71FzJlQ

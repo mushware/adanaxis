@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } vl7jY3WxF4VnrsvzzFB2Cw
 /*
- * $Id: MushGLUtil.cpp,v 1.3 2006/06/01 20:12:59 southa Exp $
+ * $Id: MushGLUtil.cpp,v 1.4 2006/06/02 18:14:36 southa Exp $
  * $Log: MushGLUtil.cpp,v $
+ * Revision 1.4  2006/06/02 18:14:36  southa
+ * Texture caching
+ *
  * Revision 1.3  2006/06/01 20:12:59  southa
  * Initial texture caching
  *
@@ -33,6 +36,9 @@
  */
 
 #include "MushGLUtil.h"
+
+#include "MushGLBuffers.h"
+#include "MushGLTexture.h"
 
 #include "API/mushPlatform.h"
 
@@ -240,5 +246,40 @@ MushGLUtil::GLErrorString(const GLenum inGLErr)
         break;
     }
 	return errorString;
+}
+
+void
+MushGLUtil::BufferPurge(void)
+{
+    for (MushGLBuffers::tData::iterator p = MushGLBuffers::tData::Sgl().begin();
+         p != MushGLBuffers::tData::Sgl().end(); ++p)
+    {
+        MUSHCOREASSERT(p->second != NULL);
+        p->second->Purge();   
+    }
+    for (MushGLBuffers::tSharedData::iterator p = MushGLBuffers::tSharedData::Sgl().begin();
+         p != MushGLBuffers::tSharedData::Sgl().end(); ++p)
+    {
+        MUSHCOREASSERT(p->second != NULL);
+        p->second->Purge();   
+    }
+}
+
+void
+MushGLUtil::TexturePurge(void)
+{
+    typedef MushcoreData<MushGLTexture> tData;
+    for (tData::iterator p = tData::Sgl().begin(); p != tData::Sgl().end(); ++p)
+    {
+        MUSHCOREASSERT(p->second != NULL);
+        p->second->Purge();   
+    }
+}
+
+void
+MushGLUtil::Purge(void)
+{
+    BufferPurge();
+    TexturePurge();
 }
 

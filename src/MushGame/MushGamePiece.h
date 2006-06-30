@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } QiW5KaWfX1mBGolg1jxMIg
 /*
- * $Id: MushGamePiece.h,v 1.8 2005/07/27 18:07:31 southa Exp $
+ * $Id: MushGamePiece.h,v 1.9 2006/06/01 15:39:25 southa Exp $
  * $Log: MushGamePiece.h,v $
+ * Revision 1.9  2006/06/01 15:39:25  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.8  2005/07/27 18:07:31  southa
  * Collision checking
  *
@@ -57,27 +60,49 @@ class MushGameLogic;
 class MushGameMessage;
 
 #include "API/mushMushMesh.h"
+#include "API/mushMushGL.h"
 
 //:generate virtual standard ostream xml1
 class MushGamePiece : public virtual MushcoreVirtualObject
 {
 public:
-    MushGamePiece();
+    MushGamePiece(const std::string& inId = "");
     virtual ~MushGamePiece() {}
     virtual void PreControl(MushGameLogic& ioLogic) {}
     virtual void Move(MushGameLogic& ioLogic, const Mushware::tVal inFrameslice) {}
     
     virtual void MessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage);
 
+    virtual void TexCoordBuffersNameSet(const std::string& inName) { m_texCoordBuffersRef.NameSet(inName); }
+
 private:
+    std::string m_id; //:readwrite
     MushMeshPosticity m_post; //:readwrite :wref
+    MushMesh4Mesh m_mesh; //:read :wref
+    bool m_expireFlag; //:readwrite    
     
+    MushGLBuffers::tDataRef m_buffersRef; //:read :wref
+    MushGLBuffers::tSharedDataRef m_texCoordBuffersRef; //:read :wref
+
 //%classPrototypes {
 public:
+    const std::string& Id(void) const { return m_id; }
+    void IdSet(const std::string& inValue) { m_id=inValue; }
     const MushMeshPosticity& Post(void) const { return m_post; }
     void PostSet(const MushMeshPosticity& inValue) { m_post=inValue; }
     // Writable reference for m_post
     MushMeshPosticity& PostWRef(void) { return m_post; }
+    const MushMesh4Mesh& Mesh(void) const { return m_mesh; }
+    // Writable reference for m_mesh
+    MushMesh4Mesh& MeshWRef(void) { return m_mesh; }
+    const bool& ExpireFlag(void) const { return m_expireFlag; }
+    void ExpireFlagSet(const bool& inValue) { m_expireFlag=inValue; }
+    const MushGLBuffers::tDataRef& BuffersRef(void) const { return m_buffersRef; }
+    // Writable reference for m_buffersRef
+    MushGLBuffers::tDataRef& BuffersRefWRef(void) { return m_buffersRef; }
+    const MushGLBuffers::tSharedDataRef& TexCoordBuffersRef(void) const { return m_texCoordBuffersRef; }
+    // Writable reference for m_texCoordBuffersRef
+    MushGLBuffers::tSharedDataRef& TexCoordBuffersRefWRef(void) { return m_texCoordBuffersRef; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -85,7 +110,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } xgYH1Kh+PR9uvdS4XNL1+w
+//%classPrototypes } TB6vPLT5ryIZFPTFO5l/ig
 };
 //%inlineHeader {
 inline std::ostream&

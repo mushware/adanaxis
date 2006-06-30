@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } vh/xCnesmbXGxXqZK5YEaA
 /*
- * $Id: MushGLTexture.cpp,v 1.12 2006/06/12 11:59:38 southa Exp $
+ * $Id: MushGLTexture.cpp,v 1.13 2006/06/16 12:11:04 southa Exp $
  * $Log: MushGLTexture.cpp,v $
+ * Revision 1.13  2006/06/16 12:11:04  southa
+ * Ruby subclasses
+ *
  * Revision 1.12  2006/06/12 11:59:38  southa
  * Ruby wrapper for MushMeshVector
  *
@@ -144,6 +147,18 @@ MushGLTexture::Bind(void)
 			}
 		}
 	}
+}
+
+void
+MushGLTexture::Purge(void)
+{
+    if (m_bindingNameValid)
+    {
+        MushGLV::Sgl().DeleteTexture(m_bindingName);
+        m_bindingNameValid = false;
+        m_made = false;
+        m_bound = false;
+    }
 }
 
 void

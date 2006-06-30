@@ -146,6 +146,12 @@
 		7A5B54FF0A5293D200780DEA /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A5B54FD0A5293D200780DEA /* libz.dylib */; };
 		7A5B55000A5293D200780DEA /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A5B54FD0A5293D200780DEA /* libz.dylib */; };
 		7A5B55720A52DC2F00780DEA /* lex.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A519DB109EC72CE001DC0A0 /* lex.c */; };
+		7A5B7AB70A55375C00EE2E02 /* MushGameBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A5B7AB50A55375C00EE2E02 /* MushGameBase.h */; };
+		7A5B7AB80A55375C00EE2E02 /* MushGameBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A5B7AB60A55375C00EE2E02 /* MushGameBase.cpp */; };
+		7A5B7AB90A55375C00EE2E02 /* MushGameBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A5B7AB50A55375C00EE2E02 /* MushGameBase.h */; };
+		7A5B7ABA0A55375C00EE2E02 /* MushGameBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A5B7AB60A55375C00EE2E02 /* MushGameBase.cpp */; };
+		7A5B7ABB0A55375C00EE2E02 /* MushGameBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A5B7AB50A55375C00EE2E02 /* MushGameBase.h */; };
+		7A5B7ABC0A55375C00EE2E02 /* MushGameBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A5B7AB60A55375C00EE2E02 /* MushGameBase.cpp */; };
 		7A5BA7DC0A494B8B00DC847A /* mushMushMeshRuby.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A5BA7DB0A494B8B00DC847A /* mushMushMeshRuby.h */; };
 		7A5BA7DD0A494B8B00DC847A /* mushMushMeshRuby.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A5BA7DB0A494B8B00DC847A /* mushMushMeshRuby.h */; };
 		7A5BA8280A4955C400DC847A /* AdanaxisKhazi.rb in Resources */ = {isa = PBXBuildFile; fileRef = 7A5BA8260A4955C400DC847A /* AdanaxisKhazi.rb */; };
@@ -1062,7 +1068,6 @@
 		7A70CDE0085DEE2D0055C6FB /* mushMushGL.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A66E42505FB25C500135328 /* mushMushGL.h */; };
 		7A70CDE1085DEE2D0055C6FB /* MushGL.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A66E44005FB260600135328 /* MushGL.h */; };
 		7A70CDE2085DEE2D0055C6FB /* MushGLV.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AC5D50906FF502E00EF3984 /* MushGLV.h */; };
-		7A70CDE3085DEE2D0055C6FB /* MushGLBuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A620FCB07ABA3DD00347A99 /* MushGLBuffer.h */; };
 		7A70CDE4085DEE2D0055C6FB /* MushGLVertexBuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A643D7C07AEB25D006E88DD /* MushGLVertexBuffer.h */; };
 		7A70CDED085DEE2D0055C6FB /* MushGLPixelSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62BCF307BE2C9D00C05896 /* MushGLPixelSource.h */; };
 		7A70CDEF085DEE2D0055C6FB /* GLTextureProc.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62BD0707BE355100C05896 /* GLTextureProc.h */; };
@@ -1148,7 +1153,6 @@
 		7A70CE45085DEE2D0055C6FB /* MushGLStandard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A66E40205FB256A00135328 /* MushGLStandard.cpp */; };
 		7A70CE46085DEE2D0055C6FB /* MushGL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A66E44105FB260600135328 /* MushGL.cpp */; };
 		7A70CE47085DEE2D0055C6FB /* MushGLV.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AC5D50A06FF502E00EF3984 /* MushGLV.cpp */; };
-		7A70CE48085DEE2D0055C6FB /* MushGLBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A620FCC07ABA3DD00347A99 /* MushGLBuffer.cpp */; };
 		7A70CE49085DEE2D0055C6FB /* MushGLVertexBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A643D7D07AEB25D006E88DD /* MushGLVertexBuffer.cpp */; };
 		7A70CE52085DEE2D0055C6FB /* MushGLPixelSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62BCF407BE2C9D00C05896 /* MushGLPixelSource.cpp */; };
 		7A70CE54085DEE2D0055C6FB /* GLTextureProc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62BD0807BE355100C05896 /* GLTextureProc.cpp */; };
@@ -2623,6 +2627,8 @@
 		7A5B54ED0A52828600780DEA /* libSDL-1.2.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL-1.2.0.dylib"; path = "/usr/local/lib/libSDL-1.2.0.dylib"; sourceTree = "<absolute>"; };
 		7A5B54FD0A5293D200780DEA /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = /usr/lib/libz.dylib; sourceTree = "<absolute>"; };
 		7A5B55400A52D5C700780DEA /* gcc-select.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = "gcc-select.rb"; path = "../gcc-select.rb"; sourceTree = SOURCE_ROOT; };
+		7A5B7AB50A55375C00EE2E02 /* MushGameBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushGameBase.h; sourceTree = "<group>"; };
+		7A5B7AB60A55375C00EE2E02 /* MushGameBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushGameBase.cpp; sourceTree = "<group>"; };
 		7A5BA7DB0A494B8B00DC847A /* mushMushMeshRuby.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mushMushMeshRuby.h; sourceTree = "<group>"; };
 		7A5BA8260A4955C400DC847A /* AdanaxisKhazi.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AdanaxisKhazi.rb; sourceTree = "<group>"; };
 		7A5BE6EE07FB53DA00306E18 /* libjpeg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libjpeg.a; path = /usr/local/lib/libjpeg.a; sourceTree = "<absolute>"; };
@@ -5874,6 +5880,8 @@
 				7AD2BA1B087C0E2400DB2E4B /* MushGameAppHandler.h */,
 				7AD2BA3A087C0F8A00DB2E4B /* MushGameAxisDef.cpp */,
 				7AD2BA39087C0F8A00DB2E4B /* MushGameAxisDef.h */,
+				7A5B7AB60A55375C00EE2E02 /* MushGameBase.cpp */,
+				7A5B7AB50A55375C00EE2E02 /* MushGameBase.h */,
 				7ACFC876086C05CB00B0E7E4 /* MushGameCamera.cpp */,
 				7ACFC875086C05CB00B0E7E4 /* MushGameCamera.h */,
 				7AD3B5FA08617F9B00512DB1 /* MushGameClient.cpp */,
@@ -6449,6 +6457,7 @@
 				7AD1AACE09EC594A0059879A /* version.h in Headers */,
 				7A5BA7DD0A494B8B00DC847A /* mushMushMeshRuby.h in Headers */,
 				7A9502BF0A498BC100F4CE37 /* AdanaxisRubyDeco.h in Headers */,
+				7A5B7ABB0A55375C00EE2E02 /* MushGameBase.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6671,7 +6680,6 @@
 				7A70CDE0085DEE2D0055C6FB /* mushMushGL.h in Headers */,
 				7A70CDE1085DEE2D0055C6FB /* MushGL.h in Headers */,
 				7A70CDE2085DEE2D0055C6FB /* MushGLV.h in Headers */,
-				7A70CDE3085DEE2D0055C6FB /* MushGLBuffer.h in Headers */,
 				7A70CDE4085DEE2D0055C6FB /* MushGLVertexBuffer.h in Headers */,
 				7A70CDED085DEE2D0055C6FB /* MushGLPixelSource.h in Headers */,
 				7A70CDEF085DEE2D0055C6FB /* GLTextureProc.h in Headers */,
@@ -6871,6 +6879,7 @@
 				7A789E7A0A52E5870036F93F /* SDL_types.h in Headers */,
 				7A789E7B0A52E5870036F93F /* SDL_version.h in Headers */,
 				7A789E7C0A52E5870036F93F /* SDL_video.h in Headers */,
+				7A5B7AB70A55375C00EE2E02 /* MushGameBase.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7132,6 +7141,7 @@
 				7A5BAAF80A54618100B30CAC /* MushRubyEmptyObj.h in Headers */,
 				7A5BAAFA0A54618400B30CAC /* MushRubyDataObj.h in Headers */,
 				7A5BAAFC0A54618500B30CAC /* MushRuby.h in Headers */,
+				7A5B7AB90A55375C00EE2E02 /* MushGameBase.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8322,6 +8332,7 @@
 				7AD1AACC09EC594A0059879A /* variable.c in Sources */,
 				7AD1AACD09EC594A0059879A /* version.c in Sources */,
 				7A9502C00A498BC100F4CE37 /* AdanaxisRubyDeco.cpp in Sources */,
+				7A5B7ABC0A55375C00EE2E02 /* MushGameBase.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8514,7 +8525,6 @@
 				7A70CE45085DEE2D0055C6FB /* MushGLStandard.cpp in Sources */,
 				7A70CE46085DEE2D0055C6FB /* MushGL.cpp in Sources */,
 				7A70CE47085DEE2D0055C6FB /* MushGLV.cpp in Sources */,
-				7A70CE48085DEE2D0055C6FB /* MushGLBuffer.cpp in Sources */,
 				7A70CE49085DEE2D0055C6FB /* MushGLVertexBuffer.cpp in Sources */,
 				7A70CE52085DEE2D0055C6FB /* MushGLPixelSource.cpp in Sources */,
 				7A70CE54085DEE2D0055C6FB /* GLTextureProc.cpp in Sources */,
@@ -8665,6 +8675,7 @@
 				7A3E0DD20A4839500078B650 /* MushMeshRubyPost.cpp in Sources */,
 				7A3E0F8F0A4859E70078B650 /* AdanaxisRubyKhazi.cpp in Sources */,
 				7A9502BE0A498BC100F4CE37 /* AdanaxisRubyDeco.cpp in Sources */,
+				7A5B7AB80A55375C00EE2E02 /* MushGameBase.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8922,6 +8933,7 @@
 				7A5BAAF90A54618200B30CAC /* MushRubyEmptyObj.cpp in Sources */,
 				7A5BAAFB0A54618500B30CAC /* MushRubyDataObj.cpp in Sources */,
 				7A5BAAFD0A54618800B30CAC /* MushRuby.cpp in Sources */,
+				7A5B7ABA0A55375C00EE2E02 /* MushGameBase.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9414,7 +9426,7 @@
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_FAST_MATH = YES;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
-				GCC_MODEL_PPC64 = YES;
+				GCC_MODEL_PPC64 = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 1;
 				GCC_PFE_FILE_C_DIALECTS = "c++";

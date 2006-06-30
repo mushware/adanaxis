@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } rVCNunlW+wZoonHnGB5a7Q
 /*
- * $Id: MushGamePiece.cpp,v 1.5 2005/07/06 19:08:27 southa Exp $
+ * $Id: MushGamePiece.cpp,v 1.6 2006/06/01 15:39:25 southa Exp $
  * $Log: MushGamePiece.cpp,v $
+ * Revision 1.6  2006/06/01 15:39:25  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.5  2005/07/06 19:08:27  southa
  * Adanaxis control work
  *
@@ -44,9 +47,13 @@
 
 MUSHCORE_DATA_INSTANCE(MushGamePiece);
 
-MushGamePiece::MushGamePiece()
+MushGamePiece::MushGamePiece(const std::string& inID) :
+    m_id(inID),
+    m_post(MushMeshPosticity::Identity()),
+    m_expireFlag(false)
 {
-    m_post.ToIdentitySet();
+    m_buffersRef.NameSet(MushGLBuffers::NextBufferNumAdvance());
+    MushGLBuffers::tData::Sgl().GetOrCreate(m_buffersRef.Name());    
 }
 
 void
@@ -88,7 +95,12 @@ void
 MushGamePiece::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
-    ioOut << "post=" << m_post;
+    ioOut << "id=" << m_id << ", ";
+    ioOut << "post=" << m_post << ", ";
+    ioOut << "mesh=" << m_mesh << ", ";
+    ioOut << "expireFlag=" << m_expireFlag << ", ";
+    ioOut << "buffersRef=" << m_buffersRef << ", ";
+    ioOut << "texCoordBuffersRef=" << m_texCoordBuffersRef;
     ioOut << "]";
 }
 bool
@@ -100,9 +112,29 @@ MushGamePiece::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& i
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
     }
+    else if (inTagStr == "id")
+    {
+        ioIn >> m_id;
+    }
     else if (inTagStr == "post")
     {
         ioIn >> m_post;
+    }
+    else if (inTagStr == "mesh")
+    {
+        ioIn >> m_mesh;
+    }
+    else if (inTagStr == "expireFlag")
+    {
+        ioIn >> m_expireFlag;
+    }
+    else if (inTagStr == "buffersRef")
+    {
+        ioIn >> m_buffersRef;
+    }
+    else if (inTagStr == "texCoordBuffersRef")
+    {
+        ioIn >> m_texCoordBuffersRef;
     }
     else 
     {
@@ -113,7 +145,17 @@ MushGamePiece::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& i
 void
 MushGamePiece::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
+    ioOut.TagSet("id");
+    ioOut << m_id;
     ioOut.TagSet("post");
     ioOut << m_post;
+    ioOut.TagSet("mesh");
+    ioOut << m_mesh;
+    ioOut.TagSet("expireFlag");
+    ioOut << m_expireFlag;
+    ioOut.TagSet("buffersRef");
+    ioOut << m_buffersRef;
+    ioOut.TagSet("texCoordBuffersRef");
+    ioOut << m_texCoordBuffersRef;
 }
-//%outOfLineFunctions } FmY+VRhBiBMRCR5fji3QdQ
+//%outOfLineFunctions } ybZ//iBAiGgaKl809fN/3A

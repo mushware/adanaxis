@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } hhlc46CpbGBzeGpOc3nWpA
 /*
- * $Id: MushGameDialogueUtils.h,v 1.1 2005/06/14 20:39:41 southa Exp $
+ * $Id: MushGameDialogueUtils.h,v 1.2 2006/06/01 15:39:21 southa Exp $
  * $Log: MushGameDialogueUtils.h,v $
+ * Revision 1.2  2006/06/01 15:39:21  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.1  2005/06/14 20:39:41  southa
  * Adanaxis work
  *
@@ -32,9 +35,8 @@
 
 #include "MushGameStandard.h"
 
+#include "MushGameAppHandler.h"
 #include "MushGameDialogue.h"
-
-#include "API/mushGame.h"
 
 class MushGameDialogueUtils
 {
@@ -42,7 +44,7 @@ public:
     static void NamedDialoguesAdd(MushcoreData<MushGameDialogue>& outDialogues,
                                   const std::string& inRegExp);
     static void MoveAndRender(MushcoreData<MushGameDialogue>& ioDialogues,
-                              GameAppHandler& inAppHandler);
+                              MushGameAppHandler& inAppHandler);
 };
 
 //%includeGuardEnd {

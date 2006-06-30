@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 0OQkM+NcUqCBag3zq+cczA
 /*
- * $Id: MushGLUtil.h,v 1.2 2006/06/01 15:39:18 southa Exp $
+ * $Id: MushGLUtil.h,v 1.3 2006/06/01 20:12:59 southa Exp $
  * $Log: MushGLUtil.h,v $
+ * Revision 1.3  2006/06/01 20:12:59  southa
+ * Initial texture caching
+ *
  * Revision 1.2  2006/06/01 15:39:18  southa
  * DrawArray verification and fixes
  *
@@ -62,6 +65,10 @@ public:
 	
 	static std::string TextureCacheFilename(const std::string& inName);
 	
+    static void BufferPurge(void);
+    static void TexturePurge(void);
+    static void Purge(void);
+    
 private:
 	static void ThrowGLError(GLenum inGLErr);
 	static void ThrowGLError(GLenum inGLErr, const std::string& inMessage);

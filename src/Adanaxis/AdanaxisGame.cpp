@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } DEX6Sh9oUk/bih2GXm2coA
 /*
- * $Id: AdanaxisGame.cpp,v 1.33 2006/06/21 12:17:54 southa Exp $
+ * $Id: AdanaxisGame.cpp,v 1.34 2006/06/21 16:52:28 southa Exp $
  * $Log: AdanaxisGame.cpp,v $
+ * Revision 1.34  2006/06/21 16:52:28  southa
+ * Deco objects
+ *
  * Revision 1.33  2006/06/21 12:17:54  southa
  * Ruby object generation
  *
@@ -153,7 +156,7 @@ AdanaxisGame::~AdanaxisGame()
 {}
 
 void
-AdanaxisGame::Process(GameAppHandler& inAppHandler)
+AdanaxisGame::Process(MushGameAppHandler& inAppHandler)
 {    
     U32 msecNow = inAppHandler.MillisecondsGet();
 
@@ -201,6 +204,21 @@ AdanaxisGame::Process(GameAppHandler& inAppHandler)
         m_modeKeypressMsec=0;
     }
     
+    if (inAppHandler.LatchedKeyStateTake('.'))
+    {
+        MushGLUtil::BufferPurge();
+    }
+    if (inAppHandler.LatchedKeyStateTake('/'))
+    {
+        MushGLUtil::TexturePurge();
+    }
+    if (inAppHandler.LatchedKeyStateTake(','))
+    {
+        MushGLUtil::Purge();
+        MushGLV::Sgl().Purge();
+        MushGLV::Sgl().Acquaint();
+    }
+    
     m_logicRef.WRef().PerFrameProcessing();
     Logic().MainSequence();
         
@@ -208,7 +226,7 @@ AdanaxisGame::Process(GameAppHandler& inAppHandler)
 }
 
 void
-AdanaxisGame::Display(GameAppHandler& inAppHandler)
+AdanaxisGame::Display(MushGameAppHandler& inAppHandler)
 {    
     //tVal msecNow = inAppHandler.MillisecondsGet();
     
@@ -216,11 +234,11 @@ AdanaxisGame::Display(GameAppHandler& inAppHandler)
 }
 
 void
-AdanaxisGame::ScriptFunction(const std::string& inName, GameAppHandler& inAppHandler) const
+AdanaxisGame::ScriptFunction(const std::string& inName, MushGameAppHandler& inAppHandler) const
 {}
 
 void 
-AdanaxisGame::LocalGameCreate(GameAppHandler& inAppHandler)
+AdanaxisGame::LocalGameCreate(MushGameAppHandler& inAppHandler)
 {
     MushGameUtil::LocalGameCreate("adanaxis", "Adanaxis");
     m_clientRef.NameSet(m_name);
@@ -233,7 +251,7 @@ AdanaxisGame::LocalGameCreate(GameAppHandler& inAppHandler)
 }
 
 void
-AdanaxisGame::Init(GameAppHandler& inAppHandler)
+AdanaxisGame::Init(MushGameAppHandler& inAppHandler)
 {    
     MushMeshLibraryBase::SingletonMutate(new AdanaxisMeshLibrary);
     MushMesh4Maker::SingletonMutate(new MushMeshLibraryMaker);
@@ -292,8 +310,10 @@ AdanaxisGame::UpdateFromConfig(void)
 }
 
 void
-AdanaxisGame::SwapIn(GameAppHandler& inAppHandler)
+AdanaxisGame::SwapIn(MushGameAppHandler& inAppHandler)
 {
+    MushGameBase::SwapIn(inAppHandler);
+    
     AdanaxisAppHandler& appHandler = AdanaxisUtil::AppHandler();
     appHandler.LastAxesValidSet(false);
 
@@ -326,9 +346,10 @@ AdanaxisGame::SwapIn(GameAppHandler& inAppHandler)
 }
 
 void
-AdanaxisGame::SwapOut(GameAppHandler& inAppHandler)
+AdanaxisGame::SwapOut(MushGameAppHandler& inAppHandler)
 {
-    
+    MushGameBase::SwapOut(inAppHandler);
+
     tMsec gameTime = Logic().EndTime() - Logic().StartTime();
     
     if (m_config.RecordTime() == 0 || gameTime < m_config.RecordTime())

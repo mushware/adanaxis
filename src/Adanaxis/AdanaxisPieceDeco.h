@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } 6GdOb3M8gmTP56sPCf1YGA
 /*
- * $Id: AdanaxisPieceDeco.h,v 1.6 2006/06/01 15:38:47 southa Exp $
+ * $Id: AdanaxisPieceDeco.h,v 1.7 2006/06/21 16:52:28 southa Exp $
  * $Log: AdanaxisPieceDeco.h,v $
+ * Revision 1.7  2006/06/21 16:52:28  southa
+ * Deco objects
+ *
  * Revision 1.6  2006/06/01 15:38:47  southa
  * DrawArray verification and fixes
  *
@@ -56,28 +59,12 @@ class AdanaxisPieceDeco : public MushGamePiece
 {
 public:
     explicit AdanaxisPieceDeco(const std::string& inID = "");
-    virtual ~AdanaxisPieceDeco() {}
     
     virtual void Render(MushGameLogic& ioLogic, MushRenderMesh& inRender, const MushGameCamera& inCamera);
-    
-    virtual void TexCoordBuffersNameSet(const std::string& inName) { m_texCoordBuffersRef.NameSet(inName); }
-    
 private:
-    std::string m_id;
-    MushMesh4Mesh m_mesh; //:readwrite :wref
-    MushGLBuffers::tDataRef m_buffersRef; //:readwrite
-    MushGLBuffers::tSharedDataRef m_texCoordBuffersRef; //:readwrite
     
 //%classPrototypes {
 public:
-    const MushMesh4Mesh& Mesh(void) const { return m_mesh; }
-    void MeshSet(const MushMesh4Mesh& inValue) { m_mesh=inValue; }
-    // Writable reference for m_mesh
-    MushMesh4Mesh& MeshWRef(void) { return m_mesh; }
-    const MushGLBuffers::tDataRef& BuffersRef(void) const { return m_buffersRef; }
-    void BuffersRefSet(const MushGLBuffers::tDataRef& inValue) { m_buffersRef=inValue; }
-    const MushGLBuffers::tSharedDataRef& TexCoordBuffersRef(void) const { return m_texCoordBuffersRef; }
-    void TexCoordBuffersRefSet(const MushGLBuffers::tSharedDataRef& inValue) { m_texCoordBuffersRef=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -85,7 +72,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } nRxow55pBICnEm4KzNz7NQ
+//%classPrototypes } 1oBgFruy5qHAaudtV+Hcmg
 };
 //%inlineHeader {
 inline std::ostream&

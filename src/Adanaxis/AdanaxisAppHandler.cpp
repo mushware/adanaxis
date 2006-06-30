@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } oSmLZ+XD56LtO8LoKCgFfg
 /*
- * $Id: AdanaxisAppHandler.cpp,v 1.4 2005/07/06 19:08:26 southa Exp $
+ * $Id: AdanaxisAppHandler.cpp,v 1.5 2006/06/01 15:38:46 southa Exp $
  * $Log: AdanaxisAppHandler.cpp,v $
+ * Revision 1.5  2006/06/01 15:38:46  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.4  2005/07/06 19:08:26  southa
  * Adanaxis control work
  *
@@ -57,19 +60,13 @@ AdanaxisAppHandler::~AdanaxisAppHandler()
 }
 
 void
-AdanaxisAppHandler::SetupModeEnter(void)
-{
-    GameModeEnter(false);
-}
-
-void
 AdanaxisAppHandler::GameModeEnter(bool inResume)
 {
     if (!StateGameIs())
     {
         CurrentSwapOut();
         
-        if (!inResume || !MushcoreData<GameBase>::Sgl().Exists("adanaxis"))
+        if (!inResume || !MushcoreData<MushGameBase>::Sgl().Exists("adanaxis"))
         {
             PrepareNewGame();
         }
@@ -81,28 +78,13 @@ AdanaxisAppHandler::GameModeEnter(bool inResume)
 void
 AdanaxisAppHandler::PrepareNewGame(void)
 {
-    
-    MushcoreData<GameBase>::Sgl().Give("adanaxis", new AdanaxisGame("adanaxis"));
+    MushcoreData<MushGameBase>::Sgl().Give("adanaxis", new AdanaxisGame("adanaxis"));
 }
 
 void
 AdanaxisAppHandler::CurrentGameEnd(void)
 {
     QuitModeEnter();
-    MushcoreData<GameBase>::Sgl().Delete("adanaxis");
+    MushcoreData<MushGameBase>::Sgl().Delete("adanaxis");
 }
 
-void
-AdanaxisAppHandler::KeyboardSignal(const GLKeyboardSignal& inSignal)
-{
-    bool keyHandled=false;
-    if (inSignal.keyValue.ValueGet() == 27 && inSignal.keyDown)
-    {
-        QuitModeEnter();
-        keyHandled=true;
-    }
-    if (!keyHandled)
-    {
-        GameAppHandler::KeyboardSignal(inSignal);
-    }
-}

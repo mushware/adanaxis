@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } C/16EW0GDk97fUG+f75bUQ
 /*
- * $Id: AdanaxisAppHandler.h,v 1.3 2005/07/06 19:08:26 southa Exp $
+ * $Id: AdanaxisAppHandler.h,v 1.4 2006/06/01 15:38:46 southa Exp $
  * $Log: AdanaxisAppHandler.h,v $
+ * Revision 1.4  2006/06/01 15:38:46  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.3  2005/07/06 19:08:26  southa
  * Adanaxis control work
  *
@@ -43,16 +46,17 @@ class AdanaxisAppHandler : public MushGameAppHandler
 public:
     AdanaxisAppHandler(const std::string& inName = "");
     virtual ~AdanaxisAppHandler();
-    virtual void SetupModeEnter(void);
+    
     virtual void GameModeEnter(bool inResume);
     virtual void CurrentGameEnd(void);
-    virtual void KeyboardSignal(const GLKeyboardSignal& inSignal);
+    
 protected:
     virtual void PrepareNewGame(void);
 
 private:
-    MushcoreDataRef<GameBase> m_gameRef;
+    MushcoreDataRef<MushGameBase> m_gameRef;
 };
+
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

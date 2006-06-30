@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } IqSxvqRd3OSDd+9vhv6sYw
 /*
- * $Id: MushGLVertexBuffer.h,v 1.10 2006/05/11 10:43:16 southa Exp $
+ * $Id: MushGLVertexBuffer.h,v 1.11 2006/06/01 15:39:19 southa Exp $
  * $Log: MushGLVertexBuffer.h,v $
+ * Revision 1.11  2006/06/01 15:39:19  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.10  2006/05/11 10:43:16  southa
  * Project updates
  *
@@ -70,10 +73,7 @@ public:
     
     MushGLVertexBuffer();
     explicit MushGLVertexBuffer(const Mushware::tSize inSize);
-    
-private:
-    //MushGLVertexBuffer(const MushGLVertexBuffer& inBuffer) { throw MushcoreLogicFail("Forbiddden copy constructor"); }
-    //const MushGLVertexBuffer& operator=(const MushGLVertexBuffer& inBuffer) { throw MushcoreLogicFail("Forbiddden assignment"); }
+
 public:
     
     virtual ~MushGLVertexBuffer();
@@ -87,8 +87,8 @@ public:
     void *AddrForGLGet(const Mushware::tSize inIndex = 0);
     
     void ClearAndResize(const Mushware::tSize inSize);
-    void Decache(void);
-    
+    void Purge(void);
+
     GLuint GLName() const { return m_handle; }
     
 private:  
@@ -183,9 +183,13 @@ MushGLVertexBuffer<T>::Deallocate()
     {
         if (m_contextNum == MushGLV::Sgl().ContextNum())
         {
+            MushGLV::Sgl().DeleteBuffers(1, &m_handle);
+        }
+        else
+        {
             // Mustn't delete if the context has changed, as the old buffers are already gone
             // and we might delete a new one
-            MushGLV::Sgl().DeleteBuffers(1, &m_handle);
+            MushcoreLog::Sgl().WarningLog() << "Couldn't delete buffer - context mismatch" << std::endl;
         }
     }
     else
@@ -203,7 +207,7 @@ MushGLVertexBuffer<T>::Deallocate()
 
 template <class T>
 inline void
-MushGLVertexBuffer<T>::Decache(void)
+MushGLVertexBuffer<T>::Purge(void)
 {
     if (m_allocated)
     {
@@ -211,19 +215,23 @@ MushGLVertexBuffer<T>::Decache(void)
     }
 }
 
-
-
 template <class T>
 inline void
 MushGLVertexBuffer<T>::Validate(void)
 {
+    if (!m_allocated)
+    {
+        Allocate(m_size);   
+    }
     if (m_contextNum != MushGLV::Sgl().ContextNum())
     {
+        MushcoreLog::Sgl().WarningLog() << "Reallocating vertex buffer - context mismatch" << std::endl;
+
         Deallocate();
         Allocate(m_size);
     }
 }
-    
+
 template <class T>
 inline void
 MushGLVertexBuffer<T>::Bind(void)
@@ -253,9 +261,12 @@ MushGLVertexBuffer<T>::MapReadWrite(void)
         {
             GLenum glErr = glGetError();
             
+            // As we're indicating failure, don't leave the buffer mapped
+            m_mapped = false;
+            MushGLV::Sgl().UnmapBuffer(GL_ARRAY_BUFFER);
+            
             if (glErr == GL_INVALID_OPERATION)
             {
-                // m_pData still valid
                 throw MushcoreRequestFail("MushGLVertexBuffer buffer already mapped");
             }
             else if (glErr == GL_OUT_OF_MEMORY)

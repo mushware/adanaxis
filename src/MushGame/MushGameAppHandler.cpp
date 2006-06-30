@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } bC49LKe3G5tsyGqAVa5gyw
 /*
- * $Id: MushGameAppHandler.cpp,v 1.4 2005/08/02 11:11:48 southa Exp $
+ * $Id: MushGameAppHandler.cpp,v 1.5 2006/06/01 15:39:20 southa Exp $
  * $Log: MushGameAppHandler.cpp,v $
+ * Revision 1.5  2006/06/01 15:39:20  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.4  2005/08/02 11:11:48  southa
  * Adanaxis control demo work
  *
@@ -39,15 +42,66 @@
 
 #include "MushGameMessageControlInfo.h"
 
+#include "API/mushPlatform.h"
+
 using namespace Mushware;
 using namespace std;
 
 MushGameAppHandler::MushGameAppHandler(const std::string& inName) :
-    GameAppHandler(),
+    MushGLAppHandler(),
+    m_appState(kAppStateStartup),
     m_lastTickerMsec(0),
     m_lastAxesValid(false)
 {
     GroupingNameSet(inName);
+}
+
+void
+MushGameAppHandler::Display(void)
+{
+    if (m_currentRef.Exists())
+    {
+        m_currentRef.RefGet().Display(*this);
+    }
+    MushGLAppHandler::Display();
+}
+
+void
+MushGameAppHandler::CurrentSwapOut(void)
+{
+    if (m_currentRef.Exists())
+    {
+        m_currentRef.Get()->SwapOut(*this);
+    }
+}
+
+void
+MushGameAppHandler::CurrentSwapIn(const std::string& inName)
+{
+    try
+    {   
+        m_currentRef.NameSet(inName);
+        m_currentRef.RefGet().SwapIn(*this);
+    }
+    catch (exception& e)
+    {
+        cerr << "Exception during start sequence: " << e.what() << endl;
+        
+        PlatformMiscUtils::ErrorBox(string("Error: ") + e.what());
+        QuitModeEnter();
+    }
+}
+
+
+void
+MushGameAppHandler::QuitModeEnter(void)
+{
+    if (m_appState != kAppStateQuit)
+    {
+        CurrentSwapOut();
+        m_appState = kAppStateQuit;
+        AppQuit(); // Quit immediately
+    }
 }
 
 void
@@ -263,7 +317,7 @@ MushGameAppHandler::KeyTicker(Mushware::tMsec inTimeslice)
 }
 
 void
-MushGameAppHandler::Idle(void)
+MushGameAppHandler::GameIdle(void)
 {
     tMsec msecNow = MillisecondsGet();
     
@@ -283,6 +337,74 @@ MushGameAppHandler::Idle(void)
         m_lastTickerMsec = msecNow;
     }
     
-    GameAppHandler::Idle();
+    try
+    {
+        if (m_currentRef.Exists())
+        {
+            m_currentRef.RefGet().Process(*this);
+        }
+        else
+        {
+            // Lost game - nothing to do but quit
+            QuitModeEnter();
+        }
+    }
+    catch (exception& e)
+    {
+            MushcoreLog::Sgl().ErrorLog() << "Exception in idle handler: " << e.what() << endl;
+            
+            PlatformMiscUtils::ErrorBox(string("Error: ") + e.what());
+            QuitModeEnter();
+    }
 }
 
+void
+MushGameAppHandler::Idle(void)
+{
+    switch (m_appState)
+    {
+        case kAppStateStartup:
+        {
+            GameModeEnter(false);
+            
+            if (m_appState == kAppStateStartup)
+            {
+                MushcoreLog::Sgl().ErrorLog() << "GameModeEnter didn't change AppState; quitting" << endl;
+                QuitModeEnter();
+            }
+        }
+        break;
+            
+        case kAppStateGame:
+        {
+            GameIdle();
+        }
+        break;
+            
+        default:
+            break;
+    }
+    MushGLAppHandler::Idle();
+}
+
+void
+MushGameAppHandler::GameModeEnter(bool inResume)
+{
+    MushcoreLog::Sgl().ErrorLog() << "MushGameAppHandler::GameModeEnter not overriden; quitting" << endl;
+    QuitModeEnter();
+}
+
+void
+MushGameAppHandler::KeyboardSignal(const GLKeyboardSignal& inSignal)
+{
+    bool keyHandled=false;
+    if (inSignal.keyValue.ValueGet() == 27 && inSignal.keyDown)
+    {
+        QuitModeEnter();
+        keyHandled=true;
+    }
+    if (!keyHandled)
+    {
+        MushGLAppHandler::KeyboardSignal(inSignal);
+    }
+}

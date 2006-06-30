@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } /wSadtds/cjY84Wo6nUjMA
 /*
- * $Id: MushGLAppHandler.h,v 1.2 2005/07/06 19:08:26 southa Exp $
+ * $Id: MushGLAppHandler.h,v 1.3 2006/06/01 15:39:16 southa Exp $
  * $Log: MushGLAppHandler.h,v $
+ * Revision 1.3  2006/06/01 15:39:16  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.2  2005/07/06 19:08:26  southa
  * Adanaxis control work
  *
@@ -35,7 +38,7 @@
 
 #include "API/mushGL.h"
 
-typedef GLAppHandler MushGLAppHandler;
+typedef SDLAppHandler MushGLAppHandler;
 
 //%includeGuardEnd {
 #endif
