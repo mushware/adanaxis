@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } lqALCPGBahbk4ibyVPO8LQ
 /*
- * $Id: MushRubyIntern.cpp,v 1.6 2006/06/20 19:06:54 southa Exp $
+ * $Id: MushRubyIntern.cpp,v 1.7 2006/06/21 12:17:58 southa Exp $
  * $Log: MushRubyIntern.cpp,v $
+ * Revision 1.7  2006/06/21 12:17:58  southa
+ * Ruby object generation
+ *
  * Revision 1.6  2006/06/20 19:06:54  southa
  * Object creation
  *
@@ -54,6 +57,8 @@ MUSHRUBYINTERN_DEFINE(backtrace);
 MUSHRUBYINTERN_DEFINE(cToPrint);
 MUSHRUBYINTERN_DEFINE(displacement);
 MUSHRUBYINTERN_DEFINE(displacement_velocity);
+MUSHRUBYINTERN_DEFINE(divide);
+MUSHRUBYINTERN_DEFINE(extent);
 MUSHRUBYINTERN_DEFINE(mesh_name);
 MUSHRUBYINTERN_DEFINE(name);
 MUSHRUBYINTERN_DEFINE(num_iterations);
@@ -63,7 +68,8 @@ MUSHRUBYINTERN_DEFINE(position);
 MUSHRUBYINTERN_DEFINE(post);
 MUSHRUBYINTERN_DEFINE(rotation);
 MUSHRUBYINTERN_DEFINE(scale);
-MUSHRUBYINTERN_DEFINE(scale_velocity);MUSHRUBYINTERN_DEFINE(size);
+MUSHRUBYINTERN_DEFINE(scale_velocity);
+MUSHRUBYINTERN_DEFINE(size);
 MUSHRUBYINTERN_DEFINE(sourceface);
 MUSHRUBYINTERN_DEFINE(texture_name);
 MUSHRUBYINTERN_DEFINE(to_ary);
@@ -80,6 +86,8 @@ MushRubyIntern::Initialise(void)
 	MUSHRUBYINTERN_INIT(cToPrint);
 	MUSHRUBYINTERN_INIT(displacement);
 	MUSHRUBYINTERN_INIT(displacement_velocity);
+	MUSHRUBYINTERN_INIT(divide);
+	MUSHRUBYINTERN_INIT(extent);
 	MUSHRUBYINTERN_INIT(mesh_name);
 	MUSHRUBYINTERN_INIT(name);
 	MUSHRUBYINTERN_INIT(num_iterations);

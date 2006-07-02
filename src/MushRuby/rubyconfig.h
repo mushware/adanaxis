@@ -279,9 +279,24 @@
 #endif
 
 /* Common definitions */
+
+#define RUBY_PLATFORM "unknown-unknown"
+
+#ifndef NDEBUG
+
+/* Debugging version has access to libraries for testing */
+#define RUBY_LIB "/usr/local/lib/ruby/1.8"
+#define RUBY_SITE_LIB "/usr/local/lib/ruby/site_ruby"
+#define RUBY_SITE_LIB2 "/usr/local/lib/ruby/site_ruby/1.8"
+#define RUBY_ARCHLIB "/usr/local/lib/ruby/1.8/powerpc-darwin8.6.0"
+#define RUBY_SITE_ARCHLIB "/usr/local/lib/ruby/site_ruby/1.8/powerpc-darwin8.6.0"
+
+#else
+
 #define RUBY_LIB ""
 #define RUBY_SITE_LIB ""
 #define RUBY_SITE_LIB2 ""
-#define RUBY_PLATFORM ""
 #define RUBY_ARCHLIB ""
 #define RUBY_SITE_ARCHLIB ""
+
+#endif

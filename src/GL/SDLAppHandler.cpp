@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } X577BrzUUfCyG/exJzzEYQ
 /*
- * $Id: SDLAppHandler.cpp,v 1.50 2006/06/01 15:38:55 southa Exp $
+ * $Id: SDLAppHandler.cpp,v 1.51 2006/06/30 17:26:10 southa Exp $
  * $Log: SDLAppHandler.cpp,v $
+ * Revision 1.51  2006/06/30 17:26:10  southa
+ * Render prelude
+ *
  * Revision 1.50  2006/06/01 15:38:55  southa
  * DrawArray verification and fixes
  *
@@ -318,7 +321,7 @@ SDLAppHandler::EnterScreen(const GLModeDef& inDef)
     SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 16);
     SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
     
-#if defined(SDL_GL_MULTISAMPLEBUFFERS) && defined(SDL_GL_MULTISAMPLESAMPLES)
+#if (SDL_MAJOR_VERSION >= 1) && (SDL_MINOR_VERSION >= 2) && (SDL_PATCHLEVEL >= 6)
     SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 1);
     SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 4);
 #endif

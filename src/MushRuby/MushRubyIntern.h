@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } n1eaCj2fb8dNPgbT0uOuEQ
 /*
- * $Id: MushRubyIntern.h,v 1.6 2006/06/20 19:06:55 southa Exp $
+ * $Id: MushRubyIntern.h,v 1.7 2006/06/21 12:17:59 southa Exp $
  * $Log: MushRubyIntern.h,v $
+ * Revision 1.7  2006/06/21 12:17:59  southa
+ * Ruby object generation
+ *
  * Revision 1.6  2006/06/20 19:06:55  southa
  * Object creation
  *
@@ -64,6 +67,8 @@ public:
 	MUSHRUBYINTERN_DECLARE(cToPrint);
 	MUSHRUBYINTERN_DECLARE(displacement);
 	MUSHRUBYINTERN_DECLARE(displacement_velocity);
+	MUSHRUBYINTERN_DECLARE(divide);
+	MUSHRUBYINTERN_DECLARE(extent);
 	MUSHRUBYINTERN_DECLARE(mesh_name);
 	MUSHRUBYINTERN_DECLARE(num_iterations);
 	MUSHRUBYINTERN_DECLARE(name);

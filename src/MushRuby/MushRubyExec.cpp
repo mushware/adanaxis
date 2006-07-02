@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } ZcziFKLJA7zY/8U6Ju48NA
 /*
- * $Id: MushRubyExec.cpp,v 1.4 2006/06/12 11:59:40 southa Exp $
+ * $Id: MushRubyExec.cpp,v 1.5 2006/06/13 10:35:05 southa Exp $
  * $Log: MushRubyExec.cpp,v $
+ * Revision 1.5  2006/06/13 10:35:05  southa
+ * Ruby data objects
+ *
  * Revision 1.4  2006/06/12 11:59:40  southa
  * Ruby wrapper for MushMeshVector
  *
@@ -165,6 +168,12 @@ MushRubyExec::ConfigSet(void)
 	
 	rb_hash_aset(configHash, rb_str_new2("APPLPATH"), rb_str_new2(MushcoreEnv::Sgl().VariableGet("APPLPATH").StringGet().c_str()));					   
 	
+#ifdef MUSHCORE_DEBUG
+	rb_hash_aset(configHash, rb_str_new2("DEBUG"), Mushware::kRubyQtrue);					   
+#else
+	rb_hash_aset(configHash, rb_str_new2("DEBUG"), Mushware::kRubyQfalse);					      
+#endif
+    
     rb_gv_set("$MUSHCONFIG", configHash);
 }
 
@@ -172,9 +181,11 @@ void
 MushRubyExec::Initialise(void)
 {
     ruby_init();
+
 #ifdef MUSHCORE_DEBUG
 	ruby_init_loadpath();
 #endif
+
 	MushRubyIntern::Initialise();
 	
 	ConfigSet();

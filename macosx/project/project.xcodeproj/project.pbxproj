@@ -136,6 +136,12 @@
 		7A58F1D90A3D68EA00B7AE0E /* MushMeshRubyStandard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A58F1D70A3D68EA00B7AE0E /* MushMeshRubyStandard.cpp */; };
 		7A58F1EC0A3D6B3B00B7AE0E /* MushMeshRubyVector.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A58F1EA0A3D6B3B00B7AE0E /* MushMeshRubyVector.h */; };
 		7A58F1ED0A3D6B3B00B7AE0E /* MushMeshRubyVector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A58F1EB0A3D6B3B00B7AE0E /* MushMeshRubyVector.cpp */; };
+		7A5B14F70A57B1230047BD0B /* MushGLRubyFont.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A5B14F50A57B1230047BD0B /* MushGLRubyFont.h */; };
+		7A5B14F80A57B1230047BD0B /* MushGLRubyFont.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A5B14F60A57B1230047BD0B /* MushGLRubyFont.cpp */; };
+		7A5B14F90A57B1230047BD0B /* MushGLRubyFont.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A5B14F50A57B1230047BD0B /* MushGLRubyFont.h */; };
+		7A5B14FA0A57B1230047BD0B /* MushGLRubyFont.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A5B14F60A57B1230047BD0B /* MushGLRubyFont.cpp */; };
+		7A5B14FB0A57B1230047BD0B /* MushGLRubyFont.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A5B14F50A57B1230047BD0B /* MushGLRubyFont.h */; };
+		7A5B14FC0A57B1230047BD0B /* MushGLRubyFont.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A5B14F60A57B1230047BD0B /* MushGLRubyFont.cpp */; };
 		7A5B54E90A52823400780DEA /* libSDL_mixer-1.2.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A5B54E80A52823400780DEA /* libSDL_mixer-1.2.0.dylib */; };
 		7A5B54EA0A52823400780DEA /* libSDL_mixer-1.2.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A5B54E80A52823400780DEA /* libSDL_mixer-1.2.0.dylib */; };
 		7A5B54EB0A52823400780DEA /* libSDL_mixer-1.2.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A5B54E80A52823400780DEA /* libSDL_mixer-1.2.0.dylib */; };
@@ -2380,6 +2386,13 @@
 			remoteGlobalIDString = 7A65813905A9D09C00E727F8;
 			remoteInfo = MushMesh;
 		};
+		7A5B166A0A57C3CC0047BD0B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 20286C28FDCF999611CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7A7194EC05A998B900C42A20;
+			remoteInfo = Mushcore;
+		};
 		7A632D410816D43D00637D49 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 20286C28FDCF999611CA2CEA /* Project object */;
@@ -2618,6 +2631,11 @@
 		7A58F1F50A3D6DF800B7AE0E /* MushMeshRubyRuby.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushMeshRubyRuby.cpp; sourceTree = "<group>"; };
 		7A58F2070A3D725400B7AE0E /* AdanaxisMeshLibrary.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AdanaxisMeshLibrary.rb; sourceTree = "<group>"; };
 		7A58F2EC0A3D839700B7AE0E /* MushVector.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = MushVector.rb; sourceTree = "<group>"; };
+		7A5B14F20A57AF580047BD0B /* AdanaxisRender.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AdanaxisRender.rb; sourceTree = "<group>"; };
+		7A5B14F50A57B1230047BD0B /* MushGLRubyFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushGLRubyFont.h; sourceTree = "<group>"; };
+		7A5B14F60A57B1230047BD0B /* MushGLRubyFont.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushGLRubyFont.cpp; sourceTree = "<group>"; };
+		7A5B15170A57B5FA0047BD0B /* AdanaxisFontLibrary.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AdanaxisFontLibrary.rb; sourceTree = "<group>"; };
+		7A5B15F90A57BECA0047BD0B /* tc_MushGLFont.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = tc_MushGLFont.rb; sourceTree = "<group>"; };
 		7A5B54E80A52823400780DEA /* libSDL_mixer-1.2.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL_mixer-1.2.0.dylib"; path = "/usr/local/lib/libSDL_mixer-1.2.0.dylib"; sourceTree = "<absolute>"; };
 		7A5B54ED0A52828600780DEA /* libSDL-1.2.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL-1.2.0.dylib"; path = "/usr/local/lib/libSDL-1.2.0.dylib"; sourceTree = "<absolute>"; };
 		7A5B54FD0A5293D200780DEA /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = /usr/lib/libz.dylib; sourceTree = "<absolute>"; };
@@ -4052,6 +4070,7 @@
 				7AE697E20A42165E004D7B75 /* tc_MushBasePrism.rb */,
 				7A5F16D10A3DA8C000B46F5F /* tc_MushDisplacement.rb */,
 				7A5C9AAA0A4013C100A80527 /* tc_MushExtruder.rb */,
+				7A5B15F90A57BECA0047BD0B /* tc_MushGLFont.rb */,
 				7AAFEFF10A46DCAF0005F57F /* tc_MushMaterial.rb */,
 				7A5F16F60A3DAF7900B46F5F /* tc_MushMesh.rb */,
 				7A5F17B00A3DBC9100B46F5F /* tc_MushMeshLibrary.rb */,
@@ -5147,6 +5166,8 @@
 				7AD25BCF0875348800560382 /* MushGLProjection.h */,
 				7ACF141608BE530E00A78938 /* MushGLResolverPixelSource.cpp */,
 				7ACF141508BE530E00A78938 /* MushGLResolverPixelSource.h */,
+				7A5B14F60A57B1230047BD0B /* MushGLRubyFont.cpp */,
+				7A5B14F50A57B1230047BD0B /* MushGLRubyFont.h */,
 				7A66E40205FB256A00135328 /* MushGLStandard.cpp */,
 				7A66E40105FB256A00135328 /* MushGLStandard.h */,
 				7AD2991E0876BE2300367963 /* MushGLState.cpp */,
@@ -5711,9 +5732,11 @@
 				7A35AEFB0A481B5F00DB00A1 /* AdanaxisGame.rb */,
 				7A5BA8260A4955C400DC847A /* AdanaxisKhazi.rb */,
 				7A3E0D230A4822460078B650 /* AdanaxisSpace.rb */,
+				7A5B14F20A57AF580047BD0B /* AdanaxisRender.rb */,
 				7AAFF09E0A46E7A30005F57F /* AdanaxisMaterialLibrary.rb */,
 				7A58F2070A3D725400B7AE0E /* AdanaxisMeshLibrary.rb */,
 				7AAFF0A60A46E84F0005F57F /* AdanaxisTextureLibrary.rb */,
+				7A5B15170A57B5FA0047BD0B /* AdanaxisFontLibrary.rb */,
 				7ACEFB3109F6EF6700E38865 /* init.rb */,
 				7AE699650A42300B004D7B75 /* MushBase.rb */,
 				7AE697DB0A421497004D7B75 /* MushBasePrism.rb */,
@@ -5838,9 +5861,9 @@
 				7AD1AA8709EC59490059879A /* regex.h */,
 				7AD1AA8809EC59490059879A /* ruby.c */,
 				7AD1AA8909EC59490059879A /* ruby.h */,
+				7AD1AA6509EC59480059879A /* rubyconfig.h */,
 				7AD1AA8A09EC59490059879A /* rubyio.h */,
 				7AD1AA8B09EC59490059879A /* rubysig.h */,
-				7AD1AA6509EC59480059879A /* rubyconfig.h */,
 				7AD1AA8C09EC59490059879A /* signal.c */,
 				7AD1AA8D09EC59490059879A /* sprintf.c */,
 				7AD1AA8E09EC59490059879A /* st.c */,
@@ -6447,6 +6470,7 @@
 				7A5BA7DD0A494B8B00DC847A /* mushMushMeshRuby.h in Headers */,
 				7A9502BF0A498BC100F4CE37 /* AdanaxisRubyDeco.h in Headers */,
 				7A5B7ABB0A55375C00EE2E02 /* MushGameBase.h in Headers */,
+				7A5B14F90A57B1230047BD0B /* MushGLRubyFont.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6869,6 +6893,7 @@
 				7A789E7B0A52E5870036F93F /* SDL_version.h in Headers */,
 				7A789E7C0A52E5870036F93F /* SDL_video.h in Headers */,
 				7A5B7AB70A55375C00EE2E02 /* MushGameBase.h in Headers */,
+				7A5B14F70A57B1230047BD0B /* MushGLRubyFont.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7130,6 +7155,7 @@
 				7A5BAAFA0A54618400B30CAC /* MushRubyDataObj.h in Headers */,
 				7A5BAAFC0A54618500B30CAC /* MushRuby.h in Headers */,
 				7A5B7AB90A55375C00EE2E02 /* MushGameBase.h in Headers */,
+				7A5B14FB0A57B1230047BD0B /* MushGLRubyFont.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7486,6 +7512,7 @@
 				7A5B552F0A52D29700780DEA /* PBXBuildRule */,
 			);
 			dependencies = (
+				7A5B166B0A57C3CC0047BD0B /* PBXTargetDependency */,
 			);
 			name = MushRuby;
 			productName = Mushcore;
@@ -8320,6 +8347,7 @@
 				7AD1AACD09EC594A0059879A /* version.c in Sources */,
 				7A9502C00A498BC100F4CE37 /* AdanaxisRubyDeco.cpp in Sources */,
 				7A5B7ABC0A55375C00EE2E02 /* MushGameBase.cpp in Sources */,
+				7A5B14FA0A57B1230047BD0B /* MushGLRubyFont.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8663,6 +8691,7 @@
 				7A3E0F8F0A4859E70078B650 /* AdanaxisRubyKhazi.cpp in Sources */,
 				7A9502BE0A498BC100F4CE37 /* AdanaxisRubyDeco.cpp in Sources */,
 				7A5B7AB80A55375C00EE2E02 /* MushGameBase.cpp in Sources */,
+				7A5B14F80A57B1230047BD0B /* MushGLRubyFont.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8920,6 +8949,7 @@
 				7A5BAAFB0A54618500B30CAC /* MushRubyDataObj.cpp in Sources */,
 				7A5BAAFD0A54618800B30CAC /* MushRuby.cpp in Sources */,
 				7A5B7ABA0A55375C00EE2E02 /* MushGameBase.cpp in Sources */,
+				7A5B14FC0A57B1230047BD0B /* MushGLRubyFont.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9041,6 +9071,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		7A5B166B0A57C3CC0047BD0B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7A7194EC05A998B900C42A20 /* Mushcore */;
+			targetProxy = 7A5B166A0A57C3CC0047BD0B /* PBXContainerItemProxy */;
+		};
 		7A632D420816D43D00637D49 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 7A657E8905A9CD1C00E727F8 /* MushPie */;

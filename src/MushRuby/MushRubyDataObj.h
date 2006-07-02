@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } px78SUrna42uj+15fa2T7w
 /*
- * $Id: MushRubyDataObj.h,v 1.5 2006/06/16 12:11:05 southa Exp $
+ * $Id: MushRubyDataObj.h,v 1.6 2006/06/27 11:58:10 southa Exp $
  * $Log: MushRubyDataObj.h,v $
+ * Revision 1.6  2006/06/27 11:58:10  southa
+ * Warning fixes
+ *
  * Revision 1.5  2006/06/16 12:11:05  southa
  * Ruby subclasses
  *
@@ -89,6 +92,11 @@ template <> Mushware::tRubyValue MushRubyDataObj<T>::m_rubyKlass = Mushware::kRu
 template <> \
 Mushware::tRubyValue \
 MushRubyDataObj<T>::Initialize
+
+#define MUSHRUBYDATAOBJ_INSTALL(D) \
+template <> \
+inline void \
+MushRubyDataObj<D>::RubyInstall
 
 template <class T>
 inline void

@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } Hr8bvS7fc+x0pR9DrFcIZw
 /*
- * $Id: AdanaxisRender.cpp,v 1.26 2006/06/30 15:05:32 southa Exp $
+ * $Id: AdanaxisRender.cpp,v 1.27 2006/06/30 17:26:10 southa Exp $
  * $Log: AdanaxisRender.cpp,v $
+ * Revision 1.27  2006/06/30 17:26:10  southa
+ * Render prelude
+ *
  * Revision 1.26  2006/06/30 15:05:32  southa
  * Texture and buffer purge
  *
@@ -183,7 +186,7 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
         camera.ProjectionSet(m_projection);
         
 
-        renderMesh.ColourZMiddleSet(t4Val(1.0,1.0,1.0,0.3));
+        renderMesh.ColourZMiddleSet(t4Val(1.0,1.0,1.0,0.1));
         renderMesh.ColourZLeftSet(t4Val(1.0,1.0,1.0,0.0));
         renderMesh.ColourZRightSet(t4Val(1.0,1.0,1.0,0.0));
 
@@ -198,8 +201,8 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
         
 
         renderMesh.ColourZMiddleSet(t4Val(1.0,1.0,1.0,0.3));
-        renderMesh.ColourZLeftSet(t4Val(1.0,0.7,0.7,0.0));
-        renderMesh.ColourZRightSet(t4Val(0.7,1.0,0.7,0.0));
+        renderMesh.ColourZLeftSet(t4Val(1.0,0.3,0.3,0.0));
+        renderMesh.ColourZRightSet(t4Val(0.3,1.0,0.3,0.0));
         typedef AdanaxisSaveData::tProjectileList tProjectileList;
         
         tProjectileList::iterator projectileEndIter = pSaveData->ProjectileListWRef().end();
@@ -258,12 +261,20 @@ AdanaxisRender::Overplot(MushGameLogic& ioLogic, const MushGameCamera& inCamera)
     
     if (m_renderPrelude != 0)
     {
+        orthoGL.MoveToEdge(1,-1);
+        orthoGL.MoveRelative(-0.08, 0.08);
+        GLString glStr1(MushcoreInfo::Sgl().PackageID(), GLFontRef("font-mono1", 0.015), 1);
+        glStr1.Render();
         orthoGL.MoveToEdge(0,0);
-        GLString glStr("Loading", GLFontRef("font-mono1", 0.03), 0);
-        glStr.Render();
-        orthoGL.MoveRelative(0, -0.08);
-        GLString glStr2("(This may take some time)", GLFontRef("font-mono1", 0.02), 0);
+        GLString glStr2("Generating texture cache", GLFontRef("font-mono1", 0.03), 0);
         glStr2.Render();
+        
+        if (MushcoreGlobalConfig::Sgl().Exists("FIRST_RUN"))
+        {
+            orthoGL.MoveRelative(0, -0.08);
+            GLString glStr3("(This may take a minute or two)", GLFontRef("font-mono1", 0.02), 0);
+            glStr3.Render();
+        }
     }
     else
     {

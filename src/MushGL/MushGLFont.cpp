@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } Zq+IM0uOYEygMymunhBN6w
 /*
- * $Id$
- * $Log$
+ * $Id: MushGLFont.cpp,v 1.1 2006/04/21 00:10:43 southa Exp $
+ * $Log: MushGLFont.cpp,v $
+ * Revision 1.1  2006/04/21 00:10:43  southa
+ * MushGLFont ruby module
+ *
  */
 
 #include "MushGLFont.h"
@@ -30,43 +33,80 @@
 using namespace Mushware;
 using namespace std;
 
+MUSHCORE_DATA_INSTANCE(MushGLFont);
+//%outOfLineFunctions {
+
+const char *MushGLFont::AutoName(void) const
+{
+    return "MushGLFont";
+}
+
+MushcoreVirtualObject *MushGLFont::AutoClone(void) const
+{
+    return new MushGLFont(*this);
+}
+
+MushcoreVirtualObject *MushGLFont::AutoCreate(void) const
+{
+    return new MushGLFont;
+}
+
+MushcoreVirtualObject *MushGLFont::AutoVirtualFactory(void)
+{
+    return new MushGLFont;
+}
 namespace
 {
-MushcoreInstaller Installer(MushGLFont::Install);
-}
-
-tRubyValue
-MushGLFont::RubyRender(tRubyArgC inArgC, tRubyValue *inpArgV, tRubyValue inSelf)
+void AutoInstall(void)
 {
-    tVal fontSize = 0;
-    
-    MushRubyUtil::IVGet(fontSize, "@fontSize", inSelf);
-    
-    tVal xPos, yPos;
-    std::string textString;
-    
-    tRubyArgC rubyArgC = inArgC;
-    tRubyValue *pRubyArgV = inpArgV;
-    
-    MushRubyUtil::ValueConvert(xPos, MushRubyUtil::ParamPop(rubyArgC, pRubyArgV));
-    MushRubyUtil::ValueConvert(yPos, MushRubyUtil::ParamPop(rubyArgC, pRubyArgV));
-    MushRubyUtil::ValueConvert(textString, MushRubyUtil::ParamPop(rubyArgC, pRubyArgV));
-    
-    cout << "***Render called, fontSize=" << fontSize;
-    cout << ", xPos=" << xPos << ", yPos=" << yPos;
-    cout << ", textString='" << textString << "'" << endl;
-    return 0;
+    MushcoreFactory::Sgl().FactoryAdd("MushGLFont", MushGLFont::AutoVirtualFactory);
 }
-
+MushcoreInstaller AutoInstaller(AutoInstall);
+} // end anonymous namespace
 void
-MushGLFont::RubyInstall(void)
+MushGLFont::AutoPrint(std::ostream& ioOut) const
 {
-    tRubyValue klass = MushRubyUtil::ClassDefine("MushGLFont");
-    MushRubyUtil::MethodDefine(klass, "cRender", RubyRender);
+    ioOut << "[";
+    ioOut << "textureRef=" << m_textureRef << ", ";
+    ioOut << "divide=" << m_divide << ", ";
+    ioOut << "extent=" << m_extent;
+    ioOut << "]";
 }
-
+bool
+MushGLFont::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr)
+{
+    if (inTagStr == "obj")
+    {
+        AutoInputPrologue(ioIn);
+        ioIn >> *this;
+        AutoInputEpilogue(ioIn);
+    }
+    else if (inTagStr == "textureRef")
+    {
+        ioIn >> m_textureRef;
+    }
+    else if (inTagStr == "divide")
+    {
+        ioIn >> m_divide;
+    }
+    else if (inTagStr == "extent")
+    {
+        ioIn >> m_extent;
+    }
+    else 
+    {
+        return false;
+    }
+    return true;
+}
 void
-MushGLFont::Install(void)
+MushGLFont::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
-    MushRubyInstall::Sgl().Add(RubyInstall);
+    ioOut.TagSet("textureRef");
+    ioOut << m_textureRef;
+    ioOut.TagSet("divide");
+    ioOut << m_divide;
+    ioOut.TagSet("extent");
+    ioOut << m_extent;
 }
+//%outOfLineFunctions } yxsjyVD4hkOYSzd3O476iw
