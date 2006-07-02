@@ -2627,8 +2627,6 @@
 		7A58F1D70A3D68EA00B7AE0E /* MushMeshRubyStandard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushMeshRubyStandard.cpp; sourceTree = "<group>"; };
 		7A58F1EA0A3D6B3B00B7AE0E /* MushMeshRubyVector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushMeshRubyVector.h; sourceTree = "<group>"; };
 		7A58F1EB0A3D6B3B00B7AE0E /* MushMeshRubyVector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushMeshRubyVector.cpp; sourceTree = "<group>"; };
-		7A58F1F40A3D6DF700B7AE0E /* MushMeshRubyRuby.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushMeshRubyRuby.h; sourceTree = "<group>"; };
-		7A58F1F50A3D6DF800B7AE0E /* MushMeshRubyRuby.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushMeshRubyRuby.cpp; sourceTree = "<group>"; };
 		7A58F2070A3D725400B7AE0E /* AdanaxisMeshLibrary.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AdanaxisMeshLibrary.rb; sourceTree = "<group>"; };
 		7A58F2EC0A3D839700B7AE0E /* MushVector.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = MushVector.rb; sourceTree = "<group>"; };
 		7A5B14F20A57AF580047BD0B /* AdanaxisRender.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AdanaxisRender.rb; sourceTree = "<group>"; };
@@ -4160,8 +4158,6 @@
 				7A3E0DCF0A4839500078B650 /* MushMeshRubyPost.h */,
 				7A5F71110A3F21B0006F24A8 /* MushMeshRubyRotation.cpp */,
 				7A5F71100A3F21B0006F24A8 /* MushMeshRubyRotation.h */,
-				7A58F1F50A3D6DF800B7AE0E /* MushMeshRubyRuby.cpp */,
-				7A58F1F40A3D6DF700B7AE0E /* MushMeshRubyRuby.h */,
 				7A58F1D70A3D68EA00B7AE0E /* MushMeshRubyStandard.cpp */,
 				7A58F1D60A3D68EA00B7AE0E /* MushMeshRubyStandard.h */,
 				7A5F717A0A3F2669006F24A8 /* MushMeshRubyTools.cpp */,

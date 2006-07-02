@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } ZcziFKLJA7zY/8U6Ju48NA
 /*
- * $Id: MushRubyExec.cpp,v 1.5 2006/06/13 10:35:05 southa Exp $
+ * $Id: MushRubyExec.cpp,v 1.6 2006/07/02 09:43:28 southa Exp $
  * $Log: MushRubyExec.cpp,v $
+ * Revision 1.6  2006/07/02 09:43:28  southa
+ * MushGLFont work
+ *
  * Revision 1.5  2006/06/13 10:35:05  southa
  * Ruby data objects
  *
@@ -195,6 +198,7 @@ MushRubyExec::Initialise(void)
     if (MushcoreEnv::Sgl().VariableGetIfExists(rubyPath, "RUBY_PATH"))
     {
         Eval("$LOAD_PATH.push('"+rubyPath.StringGet()+"')");
+        Eval("$LOAD_PATH.push('"+rubyPath.StringGet()+"/../mushruby')");
     }
     rb_set_safe_level(2);
     MushRubyInstall::Sgl().Execute();
