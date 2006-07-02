@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } GszAZNIc4XTjBhyVnPxI7g
 /*
- * $Id: MushGLFont.h,v 1.1 2006/04/21 00:10:43 southa Exp $
+ * $Id: MushGLFont.h,v 1.2 2006/07/02 09:43:27 southa Exp $
  * $Log: MushGLFont.h,v $
+ * Revision 1.2  2006/07/02 09:43:27  southa
+ * MushGLFont work
+ *
  * Revision 1.1  2006/04/21 00:10:43  southa
  * MushGLFont ruby module
  *
@@ -41,11 +44,13 @@ class MushGLFont : public MushcoreVirtualObject
 {
 public:
     void TextureNameSet(const std::string& inName) { m_textureRef.NameSet(inName); }
+    void Render(const std::string& inStr) const;
     
 private:
     MushGLTexture::tDataRef m_textureRef; //:read
     Mushware::t2U32 m_divide; //:readwrite
     Mushware::t2Val m_extent; //:readwrite
+    Mushware::t2Val m_size; //:readwrite
     
 //%classPrototypes {
 public:
@@ -54,6 +59,8 @@ public:
     void DivideSet(const Mushware::t2U32& inValue) { m_divide=inValue; }
     const Mushware::t2Val& Extent(void) const { return m_extent; }
     void ExtentSet(const Mushware::t2Val& inValue) { m_extent=inValue; }
+    const Mushware::t2Val& Size(void) const { return m_size; }
+    void SizeSet(const Mushware::t2Val& inValue) { m_size=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -61,7 +68,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } C3s0M+p5fcmi8zpAft3Njw
+//%classPrototypes } w+P2RY7PGy6iK8DU4ykf0g
 };
 //%inlineHeader {
 inline std::ostream&

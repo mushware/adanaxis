@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } Zq+IM0uOYEygMymunhBN6w
 /*
- * $Id: MushGLFont.cpp,v 1.1 2006/04/21 00:10:43 southa Exp $
+ * $Id: MushGLFont.cpp,v 1.2 2006/07/02 09:43:27 southa Exp $
  * $Log: MushGLFont.cpp,v $
+ * Revision 1.2  2006/07/02 09:43:27  southa
+ * MushGLFont work
+ *
  * Revision 1.1  2006/04/21 00:10:43  southa
  * MushGLFont ruby module
  *
@@ -28,12 +31,69 @@
 
 #include "MushGLFont.h"
 
+#include "MushGLState.h"
+
 #include "mushMushRuby.h"
 
 using namespace Mushware;
 using namespace std;
 
 MUSHCORE_DATA_INSTANCE(MushGLFont);
+
+void
+MushGLFont::Render(const std::string& inStr) const
+{
+    U32 strSize = inStr.size();
+
+    MushGLState::Sgl().TextureEnable2D(0); // Enable texture 0
+    m_textureRef.WRef().Bind();
+    
+    t4U32 texSize = m_textureRef.WRef().Size();
+    
+    // Already expect to be in kRenderState2D    
+    glBegin(GL_QUADS);
+    
+    tVal xSize = m_size.X();
+    tVal ySize = m_size.Y();
+    
+    tVal xPos = 0;
+    tVal yPos = -ySize/2;
+    tVal uScale = m_extent.X() / texSize.X();
+    tVal vScale = m_extent.Y() / texSize.Y();
+    
+    for (U32 i=0; i < strSize; ++i)
+    {
+        U32 charValue = inStr[i];
+        
+        if (charValue < 32)
+        {
+            // Control character
+        }
+        else
+        {
+            if (charValue != 32) // Don't render spaces
+            {
+                charValue -= 32;
+            
+                tVal uPos = (charValue % m_divide.X()) * uScale;
+                tVal vPos = (1 + charValue / m_divide.X()) * vScale;
+                
+                glTexCoord2f(uPos, vPos);
+                glVertex2f(xPos, yPos);
+                glTexCoord2f(uPos + uScale, vPos);
+                glVertex2f(xPos + xSize, yPos);
+                glTexCoord2f(uPos + uScale, vPos - vScale);
+                glVertex2f(xPos + xSize, yPos + ySize);
+                glTexCoord2f(uPos, vPos - vScale);
+                glVertex2f(xPos, yPos + ySize);
+            }
+            xPos += xSize;
+        }
+    }
+    glEnd();
+}
+
+
 //%outOfLineFunctions {
 
 const char *MushGLFont::AutoName(void) const
@@ -69,7 +129,8 @@ MushGLFont::AutoPrint(std::ostream& ioOut) const
     ioOut << "[";
     ioOut << "textureRef=" << m_textureRef << ", ";
     ioOut << "divide=" << m_divide << ", ";
-    ioOut << "extent=" << m_extent;
+    ioOut << "extent=" << m_extent << ", ";
+    ioOut << "size=" << m_size;
     ioOut << "]";
 }
 bool
@@ -93,6 +154,10 @@ MushGLFont::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTa
     {
         ioIn >> m_extent;
     }
+    else if (inTagStr == "size")
+    {
+        ioIn >> m_size;
+    }
     else 
     {
         return false;
@@ -108,5 +173,7 @@ MushGLFont::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_divide;
     ioOut.TagSet("extent");
     ioOut << m_extent;
+    ioOut.TagSet("size");
+    ioOut << m_size;
 }
-//%outOfLineFunctions } yxsjyVD4hkOYSzd3O476iw
+//%outOfLineFunctions } 1z66tjSVil8HcxAD2qKSWQ

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } AYQWMxoJ+uDPAQUnlwSk/w
 /*
- * $Id: MushGLTexture.h,v 1.8 2006/06/07 12:15:19 southa Exp $
+ * $Id: MushGLTexture.h,v 1.9 2006/06/30 15:05:33 southa Exp $
  * $Log: MushGLTexture.h,v $
+ * Revision 1.9  2006/06/30 15:05:33  southa
+ * Texture and buffer purge
+ *
  * Revision 1.8  2006/06/07 12:15:19  southa
  * Grid and test textures
  *
@@ -62,7 +65,7 @@ public:
     typedef MushcoreDataRef<MushGLTexture> tDataRef;
     
     MushGLTexture() :
-        m_size(Mushware::t4U32(0,0,0)),
+        m_size(Mushware::t4U32(0,0,0,1)),
         m_bound(false),
         m_bindingNameValid(false),
         m_pixelType(kPixelTypeNone),

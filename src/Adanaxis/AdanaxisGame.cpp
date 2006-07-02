@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } DEX6Sh9oUk/bih2GXm2coA
 /*
- * $Id: AdanaxisGame.cpp,v 1.35 2006/06/30 15:05:31 southa Exp $
+ * $Id: AdanaxisGame.cpp,v 1.36 2006/06/30 17:26:09 southa Exp $
  * $Log: AdanaxisGame.cpp,v $
+ * Revision 1.36  2006/06/30 17:26:09  southa
+ * Render prelude
+ *
  * Revision 1.35  2006/06/30 15:05:31  southa
  * Texture and buffer purge
  *
@@ -150,9 +153,7 @@ using namespace std;
 
 AdanaxisGame::AdanaxisGame(const std::string& inName) :
     m_inited(false),
-    m_name(inName),
-	m_rubyGame(Mushware::kRubyQnil),
-	m_rubySpace(Mushware::kRubyQnil)
+    m_name(inName)
 {
 }
 
@@ -278,9 +279,9 @@ AdanaxisGame::Init(MushGameAppHandler& inAppHandler)
 
     UpdateFromConfig();
     
-	m_rubyGame = MushRubyExec::Sgl().Call("$currentGame.mLoad");
-	m_rubySpace = MushRubyExec::Sgl().Call("$currentGame.space");
-	MushRubyExec::Sgl().Call(m_rubySpace, "mInitialPiecesCreate");
+	VolatileData().RubyGameSet(MushRubyExec::Sgl().Call("$currentGame.mLoad"));
+	VolatileData().RubySpaceSet(MushRubyExec::Sgl().Call("$currentGame.space"));
+	MushRubyExec::Sgl().Call(VolatileData().RubySpace(), "mInitialPiecesCreate");
 	
 	AdanaxisUtil::MissingSkinsCreate(Logic());
     
@@ -410,9 +411,7 @@ AdanaxisGame::AutoPrint(std::ostream& ioOut) const
     ioOut << "clientRef=" << m_clientRef << ", ";
     ioOut << "serverRef=" << m_serverRef << ", ";
     ioOut << "logicRef=" << m_logicRef << ", ";
-    ioOut << "config=" << m_config << ", ";
-    ioOut << "rubyGame=" << m_rubyGame << ", ";
-    ioOut << "rubySpace=" << m_rubySpace;
+    ioOut << "config=" << m_config;
     ioOut << "]";
 }
 bool
@@ -460,14 +459,6 @@ AdanaxisGame::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& in
     {
         ioIn >> m_config;
     }
-    else if (inTagStr == "rubyGame")
-    {
-        ioIn >> m_rubyGame;
-    }
-    else if (inTagStr == "rubySpace")
-    {
-        ioIn >> m_rubySpace;
-    }
     else 
     {
         return false;
@@ -495,9 +486,5 @@ AdanaxisGame::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_logicRef;
     ioOut.TagSet("config");
     ioOut << m_config;
-    ioOut.TagSet("rubyGame");
-    ioOut << m_rubyGame;
-    ioOut.TagSet("rubySpace");
-    ioOut << m_rubySpace;
 }
-//%outOfLineFunctions } y3R7S3Xddx3Lcnej/pDAMA
+//%outOfLineFunctions } OXfsVqwWbNjOhix/C82ggw

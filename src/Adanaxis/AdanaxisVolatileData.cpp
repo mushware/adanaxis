@@ -17,19 +17,17 @@
  ****************************************************************************/
 //%Header } WOK6bg7pMfVL2uBwMmEFBQ
 /*
- *  AdanaxisVolatileData.cpp
- *  project
- *
- *  Created by Andy Southgate on 30/06/2005.
- *  Copyright 2005 __MyCompanyName__. All rights reserved.
- *
+ * $Id$
+ * $Log$
  */
 
 #include "AdanaxisVolatileData.h"
 
 AdanaxisVolatileData::AdanaxisVolatileData() :
     m_modeKeypressMsec(0),
-    m_newMode(0)
+    m_newMode(0),
+    m_rubyGame(Mushware::kRubyQnil),
+    m_rubySpace(Mushware::kRubyQnil)
 {
 }
 
@@ -70,7 +68,9 @@ AdanaxisVolatileData::AutoPrint(std::ostream& ioOut) const
     ioOut << "decoList=" << m_decoList << ", ";
     ioOut << "modeKeypressMsec=" << m_modeKeypressMsec << ", ";
     ioOut << "newMode=" << m_newMode << ", ";
-    ioOut << "aRenderMesh=" << m_aRenderMesh;
+    ioOut << "aRenderMesh=" << m_aRenderMesh << ", ";
+    ioOut << "rubyGame=" << m_rubyGame << ", ";
+    ioOut << "rubySpace=" << m_rubySpace;
     ioOut << "]";
 }
 bool
@@ -98,6 +98,14 @@ AdanaxisVolatileData::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::st
     {
         ioIn >> m_aRenderMesh;
     }
+    else if (inTagStr == "rubyGame")
+    {
+        ioIn >> m_rubyGame;
+    }
+    else if (inTagStr == "rubySpace")
+    {
+        ioIn >> m_rubySpace;
+    }
     else if (MushGameVolatileData::AutoXMLDataProcess(ioIn, inTagStr))
     {
         // Tag consumed by base class
@@ -120,5 +128,9 @@ AdanaxisVolatileData::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_newMode;
     ioOut.TagSet("aRenderMesh");
     ioOut << m_aRenderMesh;
+    ioOut.TagSet("rubyGame");
+    ioOut << m_rubyGame;
+    ioOut.TagSet("rubySpace");
+    ioOut << m_rubySpace;
 }
-//%outOfLineFunctions } WKuQrnfpDIjUvAn7Vh6j1Q
+//%outOfLineFunctions } 0jO0goSVOYYbkpUicClz8w

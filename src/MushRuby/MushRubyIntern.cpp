@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } lqALCPGBahbk4ibyVPO8LQ
 /*
- * $Id: MushRubyIntern.cpp,v 1.7 2006/06/21 12:17:58 southa Exp $
+ * $Id: MushRubyIntern.cpp,v 1.8 2006/07/02 09:43:28 southa Exp $
  * $Log: MushRubyIntern.cpp,v $
+ * Revision 1.8  2006/07/02 09:43:28  southa
+ * MushGLFont work
+ *
  * Revision 1.7  2006/06/21 12:17:58  southa
  * Ruby object generation
  *
@@ -60,6 +63,7 @@ MUSHRUBYINTERN_DEFINE(displacement_velocity);
 MUSHRUBYINTERN_DEFINE(divide);
 MUSHRUBYINTERN_DEFINE(extent);
 MUSHRUBYINTERN_DEFINE(mesh_name);
+MUSHRUBYINTERN_DEFINE(mRender);
 MUSHRUBYINTERN_DEFINE(name);
 MUSHRUBYINTERN_DEFINE(num_iterations);
 MUSHRUBYINTERN_DEFINE(offset);
@@ -89,6 +93,7 @@ MushRubyIntern::Initialise(void)
 	MUSHRUBYINTERN_INIT(divide);
 	MUSHRUBYINTERN_INIT(extent);
 	MUSHRUBYINTERN_INIT(mesh_name);
+	MUSHRUBYINTERN_INIT(mRender);
 	MUSHRUBYINTERN_INIT(name);
 	MUSHRUBYINTERN_INIT(num_iterations);
 	MUSHRUBYINTERN_INIT(offset);

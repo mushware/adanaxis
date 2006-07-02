@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } wOXl6eoMycMTXcUsBJ4Pgg
 /*
- * $Id: AdanaxisGame.h,v 1.13 2006/06/20 19:06:51 southa Exp $
+ * $Id: AdanaxisGame.h,v 1.14 2006/06/30 15:05:31 southa Exp $
  * $Log: AdanaxisGame.h,v $
+ * Revision 1.14  2006/06/30 15:05:31  southa
+ * Texture and buffer purge
+ *
  * Revision 1.13  2006/06/20 19:06:51  southa
  * Object creation
  *
@@ -113,9 +116,6 @@ private:
     MushcoreDataRef<MushGameLogic> m_logicRef;
     
     AdanaxisConfig m_config;
-	
-	Mushware::tRubyValue m_rubyGame;
-	Mushware::tRubyValue m_rubySpace;
     
 //%classPrototypes {
 public:

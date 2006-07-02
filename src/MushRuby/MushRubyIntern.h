@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } n1eaCj2fb8dNPgbT0uOuEQ
 /*
- * $Id: MushRubyIntern.h,v 1.7 2006/06/21 12:17:59 southa Exp $
+ * $Id: MushRubyIntern.h,v 1.8 2006/07/02 09:43:28 southa Exp $
  * $Log: MushRubyIntern.h,v $
+ * Revision 1.8  2006/07/02 09:43:28  southa
+ * MushGLFont work
+ *
  * Revision 1.7  2006/06/21 12:17:59  southa
  * Ruby object generation
  *
@@ -70,6 +73,7 @@ public:
 	MUSHRUBYINTERN_DECLARE(divide);
 	MUSHRUBYINTERN_DECLARE(extent);
 	MUSHRUBYINTERN_DECLARE(mesh_name);
+	MUSHRUBYINTERN_DECLARE(mRender);
 	MUSHRUBYINTERN_DECLARE(num_iterations);
 	MUSHRUBYINTERN_DECLARE(name);
 	MUSHRUBYINTERN_DECLARE(offset);

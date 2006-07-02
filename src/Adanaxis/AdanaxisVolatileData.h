@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } lXOhNHrEv7a8Ndh1gy3P5A
 /*
- * $Id: AdanaxisVolatileData.h,v 1.3 2006/06/01 15:38:49 southa Exp $
+ * $Id: AdanaxisVolatileData.h,v 1.4 2006/06/21 16:52:30 southa Exp $
  * $Log: AdanaxisVolatileData.h,v $
+ * Revision 1.4  2006/06/21 16:52:30  southa
+ * Deco objects
+ *
  * Revision 1.3  2006/06/01 15:38:49  southa
  * DrawArray verification and fixes
  *
@@ -55,6 +58,8 @@ private:
     Mushware::tMsec m_modeKeypressMsec; //:readwrite
     Mushware::tMsec m_newMode; //:readwrite
     std::auto_ptr<MushRenderMesh> m_aRenderMesh; //:read :wref
+    Mushware::tRubyValue m_rubyGame; //:readwrite
+	Mushware::tRubyValue m_rubySpace; //:readwrite
     
 //%classPrototypes {
 public:
@@ -68,6 +73,10 @@ public:
     const std::auto_ptr<MushRenderMesh>& ARenderMesh(void) const { return m_aRenderMesh; }
     // Writable reference for m_aRenderMesh
     std::auto_ptr<MushRenderMesh>& ARenderMeshWRef(void) { return m_aRenderMesh; }
+    const Mushware::tRubyValue& RubyGame(void) const { return m_rubyGame; }
+    void RubyGameSet(const Mushware::tRubyValue& inValue) { m_rubyGame=inValue; }
+    const Mushware::tRubyValue& RubySpace(void) const { return m_rubySpace; }
+    void RubySpaceSet(const Mushware::tRubyValue& inValue) { m_rubySpace=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -75,7 +84,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } noohmk76cSY0Zlu+gETU9A
+//%classPrototypes } c49rM3Z57cnlLWs35S7oXA
 };
 //%inlineHeader {
 inline std::ostream&
