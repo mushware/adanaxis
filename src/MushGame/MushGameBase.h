@@ -23,11 +23,20 @@
  ****************************************************************************/
 //%Header } auDv5KzHAtGChacJ2aS7ug
 /*
- * $Id$
- * $Log$
+ * $Id: MushGameBase.h,v 1.1 2006/06/30 15:05:35 southa Exp $
+ * $Log: MushGameBase.h,v $
+ * Revision 1.1  2006/06/30 15:05:35  southa
+ * Texture and buffer purge
+ *
  */
 
 #include "MushGameStandard.h"
+
+#include "MushGameSaveData.h"
+#include "MushGameVolatileData.h"
+#include "MushGameClient.h"
+#include "MushGameServer.h"
+#include "MushGameLogic.h"
 
 class MushGameAppHandler;
 
@@ -41,10 +50,33 @@ public:
     virtual void ScriptFunction(const std::string& inName, MushGameAppHandler& inHandler) const {}
     virtual void SwapIn(MushGameAppHandler& inHandler);
     virtual void SwapOut(MushGameAppHandler& inHandler);
+    // KeyboardSignal returns true if it consumed the keypress
+    virtual bool KeyboardSignal(const GLKeyboardSignal& inSignal, MushGameAppHandler& inHandler);
     
-private:        
+private:
+    MushcoreDataRef<MushGameSaveData> m_saveDataRef; //:read :wref
+    MushcoreDataRef<MushGameVolatileData> m_volatileDataRef; //:read :wref
+    MushcoreDataRef<MushGameClient> m_clientRef; //:read :wref
+    MushcoreDataRef<MushGameServer> m_serverRef; //:read :wref
+    MushcoreDataRef<MushGameLogic> m_logicRef; //:read :wref
+    
 //%classPrototypes {
 public:
+    const MushcoreDataRef<MushGameSaveData>& SaveDataRef(void) const { return m_saveDataRef; }
+    // Writable reference for m_saveDataRef
+    MushcoreDataRef<MushGameSaveData>& SaveDataRefWRef(void) { return m_saveDataRef; }
+    const MushcoreDataRef<MushGameVolatileData>& VolatileDataRef(void) const { return m_volatileDataRef; }
+    // Writable reference for m_volatileDataRef
+    MushcoreDataRef<MushGameVolatileData>& VolatileDataRefWRef(void) { return m_volatileDataRef; }
+    const MushcoreDataRef<MushGameClient>& ClientRef(void) const { return m_clientRef; }
+    // Writable reference for m_clientRef
+    MushcoreDataRef<MushGameClient>& ClientRefWRef(void) { return m_clientRef; }
+    const MushcoreDataRef<MushGameServer>& ServerRef(void) const { return m_serverRef; }
+    // Writable reference for m_serverRef
+    MushcoreDataRef<MushGameServer>& ServerRefWRef(void) { return m_serverRef; }
+    const MushcoreDataRef<MushGameLogic>& LogicRef(void) const { return m_logicRef; }
+    // Writable reference for m_logicRef
+    MushcoreDataRef<MushGameLogic>& LogicRefWRef(void) { return m_logicRef; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -52,7 +84,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } 1oBgFruy5qHAaudtV+Hcmg
+//%classPrototypes } DG4VbAAV5pmYR6lE9IQb2w
 };
 //%inlineHeader {
 inline std::ostream&

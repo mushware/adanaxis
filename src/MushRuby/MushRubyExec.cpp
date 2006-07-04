@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } ZcziFKLJA7zY/8U6Ju48NA
 /*
- * $Id: MushRubyExec.cpp,v 1.6 2006/07/02 09:43:28 southa Exp $
+ * $Id: MushRubyExec.cpp,v 1.7 2006/07/02 16:34:46 southa Exp $
  * $Log: MushRubyExec.cpp,v $
+ * Revision 1.7  2006/07/02 16:34:46  southa
+ * Ruby rearrangement
+ *
  * Revision 1.6  2006/07/02 09:43:28  southa
  * MushGLFont work
  *
@@ -53,7 +56,9 @@ using namespace Mushware;
 
 MUSHCORE_SINGLETON_INSTANCE(MushRubyExec);
 
-MushRubyExec::MushRubyExec()
+MushRubyExec::MushRubyExec() :
+    m_callArgs(kMaxArgs),
+    m_callNumArgs(0)
 {
     MushRubyExec::Initialise();    
 }
@@ -76,7 +81,7 @@ MushRubyExec::WrapProtect(tRubyValue inValue)
 {
     tRubyValue retVal;
     
-    retVal = rb_funcall(m_callReceiver, m_callFunction, 0);
+    retVal = rb_funcall3(m_callReceiver, m_callFunction, m_callNumArgs, &m_callArgs[0]);
     
     return retVal;
 }    
@@ -95,6 +100,7 @@ MushRubyExec::Call(const std::string& inRecv, const std::string& inFunc)
     
     m_callReceiver = rb_gv_get(inRecv.c_str());
     m_callFunction = rb_intern(inFunc.c_str());
+    m_callNumArgs = 0;
     
     retVal = rb_protect(StaticWrapProtect, 0, &rubyError);
     
@@ -130,6 +136,7 @@ MushRubyExec::Call(Mushware::tRubyValue inRecv,  const std::string& inFunc)
     
     m_callReceiver = inRecv;
     m_callFunction = rb_intern(inFunc.c_str());
+    m_callNumArgs = 0;
     
     retVal = rb_protect(StaticWrapProtect, 0, &rubyError);
     
@@ -148,6 +155,7 @@ MushRubyExec::Call(Mushware::tRubyValue inRecv,  Mushware::tRubyID inFunc)
     
     m_callReceiver = inRecv;
     m_callFunction = inFunc;
+    m_callNumArgs = 0;
     
     retVal = rb_protect(StaticWrapProtect, 0, &rubyError);
     
@@ -157,6 +165,31 @@ MushRubyExec::Call(Mushware::tRubyValue inRecv,  Mushware::tRubyID inFunc)
     }
     return retVal;
 }
+
+Mushware::tRubyValue
+MushRubyExec::Call(Mushware::tRubyValue inRecv, Mushware::tRubyID inFunc,
+                   MushRubyValue inArg0, MushRubyValue inArg1)
+{
+	tRubyValue retVal;
+    tRubyError rubyError;
+    
+    m_callReceiver = inRecv;
+    m_callFunction = inFunc;
+    MUSHCOREASSERT(m_callArgs.size() >= 2);
+    m_callArgs[0] = inArg0.Value();
+    m_callArgs[1] = inArg1.Value();
+    m_callNumArgs = 2;
+    
+    retVal = rb_protect(StaticWrapProtect, 0, &rubyError);
+    
+    if (rubyError)
+    {
+        throw MushRubyFail();
+    }
+    return retVal;
+}
+
+
 
 void
 MushRubyExec::Require(const std::string& inStr)

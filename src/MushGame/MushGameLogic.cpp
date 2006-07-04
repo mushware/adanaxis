@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } o9Dxm/e8GypZNPSRXLgJNQ
 /*
- * $Id: MushGameLogic.cpp,v 1.22 2006/06/30 15:05:35 southa Exp $
+ * $Id: MushGameLogic.cpp,v 1.23 2006/06/30 17:26:10 southa Exp $
  * $Log: MushGameLogic.cpp,v $
+ * Revision 1.23  2006/06/30 17:26:10  southa
+ * Render prelude
+ *
  * Revision 1.22  2006/06/30 15:05:35  southa
  * Texture and buffer purge
  *
@@ -542,6 +545,12 @@ MushGameLogic::CameraSequence(void)
 }
 
 void
+MushGameLogic::MenuSequence(void)
+{
+    
+}
+
+void
 MushGameLogic::RenderSequence(void)
 {
     typedef MushcoreData<MushGameCamera>::tIterator tIterator;
@@ -560,8 +569,11 @@ MushGameLogic::MainSequence(void)
     catch (MushcoreNonFatalFail& e) { ExceptionHandle(&e, "ReceiveSequence"); }
     try { SendSequence(); }
     catch (MushcoreNonFatalFail& e) { ExceptionHandle(&e, "SendSequence"); }
-    try { MoveSequence(); }
-    catch (MushcoreNonFatalFail& e) { ExceptionHandle(&e, "MoveSequence"); }
+    if (IsGameMode())
+    {
+        try { MoveSequence(); }
+        catch (MushcoreNonFatalFail& e) { ExceptionHandle(&e, "MoveSequence"); }
+    }
     try { CollideSequence(); }
     catch (MushcoreNonFatalFail& e) { ExceptionHandle(&e, "CollideSequence"); }
     try { TickerSequence(); }
@@ -572,8 +584,31 @@ MushGameLogic::MainSequence(void)
     catch (MushcoreNonFatalFail& e) { ExceptionHandle(&e, "SendSequence"); }
     try { CameraSequence(); }
     catch (MushcoreNonFatalFail& e) { ExceptionHandle(&e, "CameraSequence"); }
+    if (IsMenuMode())
+    {
+        try { MenuSequence(); }
+        catch (MushcoreNonFatalFail& e) { ExceptionHandle(&e, "MenuSequence"); }
+    }
     try { RenderSequence(); }
     catch (MushcoreNonFatalFail& e) { ExceptionHandle(&e, "RenderSequence"); }
+}
+
+bool
+MushGameLogic::IsGameMode(void) const
+{
+    return VolatileData().GameMode() == MushGameVolatileData::kGameModeGame;    
+}
+
+bool
+MushGameLogic::IsMenuMode(void) const
+{
+    return VolatileData().GameMode() == MushGameVolatileData::kGameModeMenu;    
+}
+
+void
+MushGameLogic::MenuModeEnter(void)
+{
+    VolatileData().GameModeSet(MushGameVolatileData::kGameModeMenu);
 }
 
 void

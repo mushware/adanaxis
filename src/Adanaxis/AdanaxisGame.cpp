@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } DEX6Sh9oUk/bih2GXm2coA
 /*
- * $Id: AdanaxisGame.cpp,v 1.36 2006/06/30 17:26:09 southa Exp $
+ * $Id: AdanaxisGame.cpp,v 1.37 2006/07/02 21:08:53 southa Exp $
  * $Log: AdanaxisGame.cpp,v $
+ * Revision 1.37  2006/07/02 21:08:53  southa
+ * Ruby menu work
+ *
  * Revision 1.36  2006/06/30 17:26:09  southa
  * Render prelude
  *
@@ -224,7 +227,7 @@ AdanaxisGame::Process(MushGameAppHandler& inAppHandler)
         MushGLV::Sgl().Acquaint();
     }
     
-    m_logicRef.WRef().PerFrameProcessing();
+    Logic().PerFrameProcessing();
     Logic().MainSequence();
         
     GLUtils::PostRedisplay();
@@ -246,13 +249,13 @@ void
 AdanaxisGame::LocalGameCreate(MushGameAppHandler& inAppHandler)
 {
     MushGameUtil::LocalGameCreate("adanaxis", "Adanaxis");
-    m_clientRef.NameSet(m_name);
-    m_serverRef.NameSet(m_name);
-    m_saveDataRef.NameSet(m_name);
-    m_volatileDataRef.NameSet(m_name);
-    m_logicRef.NameSet(m_name);
+    ClientRefWRef().NameSet(m_name);
+    ServerRefWRef().NameSet(m_name);
+    SaveDataRefWRef().NameSet(m_name);
+    VolatileDataRefWRef().NameSet(m_name);
+    LogicRefWRef().NameSet(m_name);
 	AdanaxisRuby::LogicNameSet(m_name);
-    MushGameUtil::LocalGameJobsCreate(m_logicRef.WRef());
+    MushGameUtil::LocalGameJobsCreate(Logic());
 }
 
 void
@@ -406,11 +409,6 @@ AdanaxisGame::AutoPrint(std::ostream& ioOut) const
     ioOut << "name=" << m_name << ", ";
     ioOut << "modeKeypressMsec=" << m_modeKeypressMsec << ", ";
     ioOut << "newMode=" << m_newMode << ", ";
-    ioOut << "saveDataRef=" << m_saveDataRef << ", ";
-    ioOut << "volatileDataRef=" << m_volatileDataRef << ", ";
-    ioOut << "clientRef=" << m_clientRef << ", ";
-    ioOut << "serverRef=" << m_serverRef << ", ";
-    ioOut << "logicRef=" << m_logicRef << ", ";
     ioOut << "config=" << m_config;
     ioOut << "]";
 }
@@ -435,26 +433,6 @@ AdanaxisGame::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& in
     {
         ioIn >> m_newMode;
     }
-    else if (inTagStr == "saveDataRef")
-    {
-        ioIn >> m_saveDataRef;
-    }
-    else if (inTagStr == "volatileDataRef")
-    {
-        ioIn >> m_volatileDataRef;
-    }
-    else if (inTagStr == "clientRef")
-    {
-        ioIn >> m_clientRef;
-    }
-    else if (inTagStr == "serverRef")
-    {
-        ioIn >> m_serverRef;
-    }
-    else if (inTagStr == "logicRef")
-    {
-        ioIn >> m_logicRef;
-    }
     else if (inTagStr == "config")
     {
         ioIn >> m_config;
@@ -474,17 +452,7 @@ AdanaxisGame::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_modeKeypressMsec;
     ioOut.TagSet("newMode");
     ioOut << m_newMode;
-    ioOut.TagSet("saveDataRef");
-    ioOut << m_saveDataRef;
-    ioOut.TagSet("volatileDataRef");
-    ioOut << m_volatileDataRef;
-    ioOut.TagSet("clientRef");
-    ioOut << m_clientRef;
-    ioOut.TagSet("serverRef");
-    ioOut << m_serverRef;
-    ioOut.TagSet("logicRef");
-    ioOut << m_logicRef;
     ioOut.TagSet("config");
     ioOut << m_config;
 }
-//%outOfLineFunctions } OXfsVqwWbNjOhix/C82ggw
+//%outOfLineFunctions } huIQnCJa8DiWjK7S/vB3qQ

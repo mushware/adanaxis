@@ -2649,7 +2649,6 @@
 		7A5B54E80A52823400780DEA /* libSDL_mixer-1.2.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL_mixer-1.2.0.dylib"; path = "/usr/local/lib/libSDL_mixer-1.2.0.dylib"; sourceTree = "<absolute>"; };
 		7A5B54ED0A52828600780DEA /* libSDL-1.2.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL-1.2.0.dylib"; path = "/usr/local/lib/libSDL-1.2.0.dylib"; sourceTree = "<absolute>"; };
 		7A5B54FD0A5293D200780DEA /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = /usr/lib/libz.dylib; sourceTree = "<absolute>"; };
-		7A5B55400A52D5C700780DEA /* gcc-select.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = "gcc-select.rb"; path = "../gcc-select.rb"; sourceTree = SOURCE_ROOT; };
 		7A5B7AB50A55375C00EE2E02 /* MushGameBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushGameBase.h; sourceTree = "<group>"; };
 		7A5B7AB60A55375C00EE2E02 /* MushGameBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushGameBase.cpp; sourceTree = "<group>"; };
 		7A5B7C870A585C28006CA73F /* run_tests.rb */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.ruby; path = run_tests.rb; sourceTree = "<group>"; };
@@ -4026,7 +4025,6 @@
 		20286C29FDCF999611CA2CEA /* project */ = {
 			isa = PBXGroup;
 			children = (
-				7A5B55400A52D5C700780DEA /* gcc-select.rb */,
 				7A70D1F2085DF8870055C6FB /* data-adanaxis */,
 				7A5BE75607FB56AF00306E18 /* data-tesseracttrainer */,
 				7A4FA55A05F9EBCA00297E23 /* maurheen */,
@@ -4279,8 +4277,8 @@
 			isa = PBXGroup;
 			children = (
 				7A70CEB0085DF1C40055C6FB /* Adanaxis */,
-				7A5C9EF4080979900017E78B /* CodeGen */,
 				7A62B70C05A49D04002A5F1C /* API */,
+				7A5C9EF4080979900017E78B /* CodeGen */,
 				7A62B71305A49D04002A5F1C /* Game */,
 				7A62B74305A49D04002A5F1C /* GL */,
 				7A62B78905A49D04002A5F1C /* Infernal */,

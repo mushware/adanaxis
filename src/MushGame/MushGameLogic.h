@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } pz9Ij69Gp+RQuOHP0yYqgg
 /*
- * $Id: MushGameLogic.h,v 1.14 2005/08/01 13:09:58 southa Exp $
+ * $Id: MushGameLogic.h,v 1.15 2006/06/01 15:39:23 southa Exp $
  * $Log: MushGameLogic.h,v $
+ * Revision 1.15  2006/06/01 15:39:23  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.14  2005/08/01 13:09:58  southa
  * Collision messaging
  *
@@ -126,9 +129,15 @@ public:
     virtual void TickerSequence(void);
     virtual void CameraMove(MushGameCamera& inCamera);
     virtual void CameraSequence(void);
+    virtual void MenuSequence(void);
     virtual void RenderSequence(void);
     virtual void MainSequence(void);
 
+    virtual bool IsGameMode(void) const;
+    virtual bool IsMenuMode(void) const;
+    virtual void MenuModeEnter(void);
+    
+    
     virtual void ClientNewPlayerHandle(const std::string& inPlayerName);
     
     virtual MushGamePlayer *PlayerNew(const MushGameMessage *inpMessage) { return new MushGamePlayer; }
@@ -142,8 +151,9 @@ public:
     virtual MushGameHostVolatileData& HostVolatileData(void) const { return m_hostDataRef.Ref().VolatileDataRef().WRef(); }
     
     virtual void ExceptionHandle(std::exception *inpFail, const std::string& inName) const;
-protected:
 
+protected:
+        
 private:
     MushcoreDataRef<MushGameData> m_dataRef; //:readwrite :wref
     MushcoreDataRef<MushGameHostData> m_hostDataRef; //:readwrite :wref

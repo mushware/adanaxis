@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } n1eaCj2fb8dNPgbT0uOuEQ
 /*
- * $Id: MushRubyIntern.h,v 1.8 2006/07/02 09:43:28 southa Exp $
+ * $Id: MushRubyIntern.h,v 1.9 2006/07/02 21:08:55 southa Exp $
  * $Log: MushRubyIntern.h,v $
+ * Revision 1.9  2006/07/02 21:08:55  southa
+ * Ruby menu work
+ *
  * Revision 1.8  2006/07/02 09:43:28  southa
  * MushGLFont work
  *
@@ -73,6 +76,7 @@ public:
 	MUSHRUBYINTERN_DECLARE(divide);
 	MUSHRUBYINTERN_DECLARE(extent);
 	MUSHRUBYINTERN_DECLARE(mesh_name);
+	MUSHRUBYINTERN_DECLARE(mKeypress);
 	MUSHRUBYINTERN_DECLARE(mRender);
 	MUSHRUBYINTERN_DECLARE(num_iterations);
 	MUSHRUBYINTERN_DECLARE(name);

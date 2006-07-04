@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } UpB+98ShDY+5JMJVLGBArQ
 /*
- * $Id: MushRubyExec.h,v 1.3 2006/06/12 11:59:40 southa Exp $
+ * $Id: MushRubyExec.h,v 1.4 2006/06/13 10:35:05 southa Exp $
  * $Log: MushRubyExec.h,v $
+ * Revision 1.4  2006/06/13 10:35:05  southa
+ * Ruby data objects
+ *
  * Revision 1.3  2006/06/12 11:59:40  southa
  * Ruby wrapper for MushMeshVector
  *
@@ -38,6 +41,8 @@
 
 #include "MushRubyStandard.h"
 
+#include "MushRubyValue.h"
+
 class MushRubyExec : public MushcoreSingleton<MushRubyExec>
 {
 public:
@@ -45,8 +50,10 @@ public:
     Mushware::tRubyValue Eval(const std::string& inStr);
     Mushware::tRubyValue Call(const std::string& inRecv, const std::string& inFunc);
     Mushware::tRubyValue Call(const std::string& inStr);
-    Mushware::tRubyValue Call(Mushware::tRubyValue inRecv,  const std::string& inFunc);
-    Mushware::tRubyValue Call(Mushware::tRubyValue inRecv,  Mushware::tRubyID inFunc);
+    Mushware::tRubyValue Call(Mushware::tRubyValue inRecv, const std::string& inFunc);
+    Mushware::tRubyValue Call(Mushware::tRubyValue inRecv, Mushware::tRubyID inFunc);
+    Mushware::tRubyValue Call(Mushware::tRubyValue inRecv, Mushware::tRubyID inFunc,
+                              MushRubyValue inArg0, MushRubyValue inArg1);
     void Require(const std::string& inStr);
     
 protected:
@@ -58,8 +65,15 @@ protected:
     static Mushware::tRubyValue StaticWrapProtect(Mushware::tRubyValue inValue);
     
 private:
+    enum
+    {
+        kMaxArgs = 4
+    };
+    
     Mushware::tRubyValue m_callReceiver;
     Mushware::tRubyID m_callFunction;
+    std::vector<Mushware::tRubyValue> m_callArgs;
+    Mushware::U32 m_callNumArgs;
 };
 //%includeGuardEnd {
 #endif

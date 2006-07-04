@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } WOK6bg7pMfVL2uBwMmEFBQ
 /*
- * $Id$
- * $Log$
+ * $Id: AdanaxisVolatileData.cpp,v 1.5 2006/07/02 21:08:54 southa Exp $
+ * $Log: AdanaxisVolatileData.cpp,v $
+ * Revision 1.5  2006/07/02 21:08:54  southa
+ * Ruby menu work
+ *
  */
 
 #include "AdanaxisVolatileData.h"
@@ -26,7 +29,6 @@
 AdanaxisVolatileData::AdanaxisVolatileData() :
     m_modeKeypressMsec(0),
     m_newMode(0),
-    m_rubyGame(Mushware::kRubyQnil),
     m_rubySpace(Mushware::kRubyQnil)
 {
 }
@@ -69,7 +71,6 @@ AdanaxisVolatileData::AutoPrint(std::ostream& ioOut) const
     ioOut << "modeKeypressMsec=" << m_modeKeypressMsec << ", ";
     ioOut << "newMode=" << m_newMode << ", ";
     ioOut << "aRenderMesh=" << m_aRenderMesh << ", ";
-    ioOut << "rubyGame=" << m_rubyGame << ", ";
     ioOut << "rubySpace=" << m_rubySpace;
     ioOut << "]";
 }
@@ -98,10 +99,6 @@ AdanaxisVolatileData::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::st
     {
         ioIn >> m_aRenderMesh;
     }
-    else if (inTagStr == "rubyGame")
-    {
-        ioIn >> m_rubyGame;
-    }
     else if (inTagStr == "rubySpace")
     {
         ioIn >> m_rubySpace;
@@ -128,9 +125,7 @@ AdanaxisVolatileData::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_newMode;
     ioOut.TagSet("aRenderMesh");
     ioOut << m_aRenderMesh;
-    ioOut.TagSet("rubyGame");
-    ioOut << m_rubyGame;
     ioOut.TagSet("rubySpace");
     ioOut << m_rubySpace;
 }
-//%outOfLineFunctions } 0jO0goSVOYYbkpUicClz8w
+//%outOfLineFunctions } zVkPiL9m8AbWVkOLkyKtWw

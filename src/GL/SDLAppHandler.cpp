@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } X577BrzUUfCyG/exJzzEYQ
 /*
- * $Id: SDLAppHandler.cpp,v 1.51 2006/06/30 17:26:10 southa Exp $
+ * $Id: SDLAppHandler.cpp,v 1.52 2006/07/02 09:43:27 southa Exp $
  * $Log: SDLAppHandler.cpp,v $
+ * Revision 1.52  2006/07/02 09:43:27  southa
+ * MushGLFont work
+ *
  * Revision 1.51  2006/06/30 17:26:10  southa
  * Render prelude
  *
@@ -719,10 +722,7 @@ SDLAppHandler::TranslateKey(void *inKeyEvent) const
             break;
             
         default:
-            if (keyValue > 0 && keyValue < 0x100)
-            {
-                retValue = keyValue;
-            }
+            retValue = keyValue;
             break;
     }
         

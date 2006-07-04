@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } lqALCPGBahbk4ibyVPO8LQ
 /*
- * $Id: MushRubyIntern.cpp,v 1.8 2006/07/02 09:43:28 southa Exp $
+ * $Id: MushRubyIntern.cpp,v 1.9 2006/07/02 21:08:55 southa Exp $
  * $Log: MushRubyIntern.cpp,v $
+ * Revision 1.9  2006/07/02 21:08:55  southa
+ * Ruby menu work
+ *
  * Revision 1.8  2006/07/02 09:43:28  southa
  * MushGLFont work
  *
@@ -63,6 +66,7 @@ MUSHRUBYINTERN_DEFINE(displacement_velocity);
 MUSHRUBYINTERN_DEFINE(divide);
 MUSHRUBYINTERN_DEFINE(extent);
 MUSHRUBYINTERN_DEFINE(mesh_name);
+MUSHRUBYINTERN_DEFINE(mKeypress);
 MUSHRUBYINTERN_DEFINE(mRender);
 MUSHRUBYINTERN_DEFINE(name);
 MUSHRUBYINTERN_DEFINE(num_iterations);
@@ -93,6 +97,7 @@ MushRubyIntern::Initialise(void)
 	MUSHRUBYINTERN_INIT(divide);
 	MUSHRUBYINTERN_INIT(extent);
 	MUSHRUBYINTERN_INIT(mesh_name);
+	MUSHRUBYINTERN_INIT(mKeypress);
 	MUSHRUBYINTERN_INIT(mRender);
 	MUSHRUBYINTERN_INIT(name);
 	MUSHRUBYINTERN_INIT(num_iterations);

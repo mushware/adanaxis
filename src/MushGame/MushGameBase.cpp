@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 72jYu/IZevqg7bsvRKLvxw
 /*
- * $Id$
- * $Log$
+ * $Id: MushGameBase.cpp,v 1.1 2006/06/30 15:05:34 southa Exp $
+ * $Log: MushGameBase.cpp,v $
+ * Revision 1.1  2006/06/30 15:05:34  southa
+ * Texture and buffer purge
+ *
  */
 
 #include "MushGameBase.h"
@@ -44,6 +47,27 @@ MushGameBase::SwapOut(MushGameAppHandler& inHandler)
     MushGLUtil::Purge();
     MushGLV::Sgl().Purge();
 }
+
+bool
+MushGameBase::KeyboardSignal(const GLKeyboardSignal& inSignal, MushGameAppHandler& inHandler)
+{
+    bool keyHandled = false;
+    if (LogicRef().Ref().IsMenuMode())
+    {
+        // Add keypress to the queue
+        MushRubyExec::Sgl().Call(VolatileDataRef().Ref().RubyGame(), MushRubyIntern::mKeypress(),
+                                 MushRubyValue(inSignal.keyValue.ValueGet()),
+                                 MushRubyValue(inSignal.keyDown));
+    }
+    else if (inSignal.keyValue.ValueGet() == 27 && inSignal.keyDown)
+    {
+        LogicRef().WRef().MenuModeEnter();
+        keyHandled = true;
+    }
+    return keyHandled;
+}
+
+
 //%outOfLineFunctions {
 
 const char *MushGameBase::AutoName(void) const
@@ -77,6 +101,11 @@ void
 MushGameBase::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
+    ioOut << "saveDataRef=" << m_saveDataRef << ", ";
+    ioOut << "volatileDataRef=" << m_volatileDataRef << ", ";
+    ioOut << "clientRef=" << m_clientRef << ", ";
+    ioOut << "serverRef=" << m_serverRef << ", ";
+    ioOut << "logicRef=" << m_logicRef;
     ioOut << "]";
 }
 bool
@@ -88,6 +117,26 @@ MushGameBase::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& in
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
     }
+    else if (inTagStr == "saveDataRef")
+    {
+        ioIn >> m_saveDataRef;
+    }
+    else if (inTagStr == "volatileDataRef")
+    {
+        ioIn >> m_volatileDataRef;
+    }
+    else if (inTagStr == "clientRef")
+    {
+        ioIn >> m_clientRef;
+    }
+    else if (inTagStr == "serverRef")
+    {
+        ioIn >> m_serverRef;
+    }
+    else if (inTagStr == "logicRef")
+    {
+        ioIn >> m_logicRef;
+    }
     else 
     {
         return false;
@@ -97,5 +146,16 @@ MushGameBase::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& in
 void
 MushGameBase::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
+    ioOut.TagSet("saveDataRef");
+    ioOut << m_saveDataRef;
+    ioOut.TagSet("volatileDataRef");
+    ioOut << m_volatileDataRef;
+    ioOut.TagSet("clientRef");
+    ioOut << m_clientRef;
+    ioOut.TagSet("serverRef");
+    ioOut << m_serverRef;
+    ioOut.TagSet("logicRef");
+    ioOut << m_logicRef;
 }
-//%outOfLineFunctions } 3yx1HCmGcBDPT0sFAvjmng
+//%outOfLineFunctions } hwWjLLy9iy8Vpe18UyWrHg
+ 

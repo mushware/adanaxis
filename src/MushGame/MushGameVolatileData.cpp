@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } mGoZWUiZsKFfWNio1FcVLw
 /*
- * $Id: MushGameVolatileData.cpp,v 1.5 2005/07/11 16:37:46 southa Exp $
+ * $Id: MushGameVolatileData.cpp,v 1.6 2006/06/01 15:39:27 southa Exp $
  * $Log: MushGameVolatileData.cpp,v $
+ * Revision 1.6  2006/06/01 15:39:27  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.5  2005/07/11 16:37:46  southa
  * Uplink control work
  *
@@ -46,7 +49,9 @@ MushGameVolatileData::MushGameVolatileData() :
     m_playerUplinkPeriodMsec(1000),
     m_lastPlayerUplinkMsec(0),
     m_quickPlayerUplinkRequired(false),
-    m_frameMsec(0)
+    m_frameMsec(0),
+    m_rubyGame(Mushware::kRubyQnil),
+    m_gameMode(kGameModeMenu)
 {
 }
 
@@ -86,7 +91,9 @@ MushGameVolatileData::AutoPrint(std::ostream& ioOut) const
     ioOut << "playerUplinkPeriodMsec=" << m_playerUplinkPeriodMsec << ", ";
     ioOut << "lastPlayerUplinkMsec=" << m_lastPlayerUplinkMsec << ", ";
     ioOut << "quickPlayerUplinkRequired=" << m_quickPlayerUplinkRequired << ", ";
-    ioOut << "frameMsec=" << m_frameMsec;
+    ioOut << "frameMsec=" << m_frameMsec << ", ";
+    ioOut << "rubyGame=" << m_rubyGame << ", ";
+    ioOut << "gameMode=" << m_gameMode;
     ioOut << "]";
 }
 bool
@@ -114,6 +121,14 @@ MushGameVolatileData::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::st
     {
         ioIn >> m_frameMsec;
     }
+    else if (inTagStr == "rubyGame")
+    {
+        ioIn >> m_rubyGame;
+    }
+    else if (inTagStr == "gameMode")
+    {
+        ioIn >> m_gameMode;
+    }
     else 
     {
         return false;
@@ -131,5 +146,9 @@ MushGameVolatileData::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_quickPlayerUplinkRequired;
     ioOut.TagSet("frameMsec");
     ioOut << m_frameMsec;
+    ioOut.TagSet("rubyGame");
+    ioOut << m_rubyGame;
+    ioOut.TagSet("gameMode");
+    ioOut << m_gameMode;
 }
-//%outOfLineFunctions } +mXl5Pds94gOY1axZ/S3bw
+//%outOfLineFunctions } Msl+qibr0ESUOt4atvmpOQ

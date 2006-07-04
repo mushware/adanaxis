@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } bC49LKe3G5tsyGqAVa5gyw
 /*
- * $Id: MushGameAppHandler.cpp,v 1.5 2006/06/01 15:39:20 southa Exp $
+ * $Id: MushGameAppHandler.cpp,v 1.6 2006/06/30 15:05:34 southa Exp $
  * $Log: MushGameAppHandler.cpp,v $
+ * Revision 1.6  2006/06/30 15:05:34  southa
+ * Texture and buffer purge
+ *
  * Revision 1.5  2006/06/01 15:39:20  southa
  * DrawArray verification and fixes
  *
@@ -398,11 +401,16 @@ void
 MushGameAppHandler::KeyboardSignal(const GLKeyboardSignal& inSignal)
 {
     bool keyHandled=false;
-    if (inSignal.keyValue.ValueGet() == 27 && inSignal.keyDown)
+    if (m_currentRef.Exists())
+    {
+        keyHandled = m_currentRef.RefGet().KeyboardSignal(inSignal, *this);
+    }
+    else if (inSignal.keyValue.ValueGet() == 27 && inSignal.keyDown)
     {
         QuitModeEnter();
         keyHandled=true;
     }
+    
     if (!keyHandled)
     {
         MushGLAppHandler::KeyboardSignal(inSignal);

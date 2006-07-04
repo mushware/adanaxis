@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } hwIlNOCEH5GsgwGY+rP1Kg
 /*
- * $Id: MushRubyValue.cpp,v 1.8 2006/06/16 01:02:34 southa Exp $
+ * $Id: MushRubyValue.cpp,v 1.9 2006/06/27 11:58:10 southa Exp $
  * $Log: MushRubyValue.cpp,v $
+ * Revision 1.9  2006/06/27 11:58:10  southa
+ * Warning fixes
+ *
  * Revision 1.8  2006/06/16 01:02:34  southa
  * Ruby mesh generation
  *
@@ -60,6 +63,23 @@ using namespace std;
 MushRubyValue::MushRubyValue() :
     m_value(Qnil)
 {
+}
+
+MushRubyValue::MushRubyValue(Mushware::U32 inValue) :
+m_value(UINT2NUM(inValue))
+{
+}
+
+MushRubyValue::MushRubyValue(bool inValue)
+{
+    if (inValue)
+    {
+        m_value = Qtrue;
+    }
+    else
+    {
+        m_value = Qfalse;
+    }
 }
 
 std::string

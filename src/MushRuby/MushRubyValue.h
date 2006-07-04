@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 5BOLwI3DhgfDHotOLswDpg
 /*
- * $Id: MushRubyValue.h,v 1.8 2006/06/16 01:02:34 southa Exp $
+ * $Id: MushRubyValue.h,v 1.9 2006/06/27 11:58:10 southa Exp $
  * $Log: MushRubyValue.h,v $
+ * Revision 1.9  2006/06/27 11:58:10  southa
+ * Warning fixes
+ *
  * Revision 1.8  2006/06/16 01:02:34  southa
  * Ruby mesh generation
  *
@@ -61,6 +64,8 @@ public:
 	
 	MushRubyValue();
 	explicit MushRubyValue(Mushware::tRubyValue inValue) : m_value(inValue) {}
+	explicit MushRubyValue(Mushware::U32 inValue);
+	explicit MushRubyValue(bool inValue);
 	std::string String(void) const;
 	bool IsU32(void) const;
 	bool IsHash(void) const;
