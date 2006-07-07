@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } zS6MRI08vU38Tp9aNbV8RQ
 /*
- * $Id: MushGameVolatileData.h,v 1.5 2006/06/01 15:39:27 southa Exp $
+ * $Id: MushGameVolatileData.h,v 1.6 2006/07/04 16:55:28 southa Exp $
  * $Log: MushGameVolatileData.h,v $
+ * Revision 1.6  2006/07/04 16:55:28  southa
+ * Ruby key handling
+ *
  * Revision 1.5  2006/06/01 15:39:27  southa
  * DrawArray verification and fixes
  *
@@ -70,6 +73,8 @@ private:
     Mushware::U32 m_playerUplinkPeriodMsec; //:readwrite
     Mushware::U32 m_lastPlayerUplinkMsec; //:readwrite
     bool m_quickPlayerUplinkRequired; //:readwrite
+    Mushware::tMsec m_gameMsec; //:readwrite
+    Mushware::tMsec m_lastGameMsec; //:readwrite
     Mushware::tMsec m_frameMsec; //:readwrite
     Mushware::tRubyValue m_rubyGame; //:readwrite
     Mushware::U32 m_gameMode; //:readwrite
@@ -82,6 +87,10 @@ public:
     void LastPlayerUplinkMsecSet(const Mushware::U32& inValue) { m_lastPlayerUplinkMsec=inValue; }
     const bool& QuickPlayerUplinkRequired(void) const { return m_quickPlayerUplinkRequired; }
     void QuickPlayerUplinkRequiredSet(const bool& inValue) { m_quickPlayerUplinkRequired=inValue; }
+    const Mushware::tMsec& GameMsec(void) const { return m_gameMsec; }
+    void GameMsecSet(const Mushware::tMsec& inValue) { m_gameMsec=inValue; }
+    const Mushware::tMsec& LastGameMsec(void) const { return m_lastGameMsec; }
+    void LastGameMsecSet(const Mushware::tMsec& inValue) { m_lastGameMsec=inValue; }
     const Mushware::tMsec& FrameMsec(void) const { return m_frameMsec; }
     void FrameMsecSet(const Mushware::tMsec& inValue) { m_frameMsec=inValue; }
     const Mushware::tRubyValue& RubyGame(void) const { return m_rubyGame; }
@@ -95,7 +104,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } MbY33A+fH7s5/dxROSZ6Jw
+//%classPrototypes } Vr1DmM/6WPvuORMLDORJVA
 };
 //%inlineHeader {
 inline std::ostream&

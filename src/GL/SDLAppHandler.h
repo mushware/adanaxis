@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } VUfBvm3qobPEj3YM/Njzcg
 /*
- * $Id: SDLAppHandler.h,v 1.27 2005/07/08 12:07:07 southa Exp $
+ * $Id: SDLAppHandler.h,v 1.28 2006/06/01 15:38:55 southa Exp $
  * $Log: SDLAppHandler.h,v $
+ * Revision 1.28  2006/06/01 15:38:55  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.27  2005/07/08 12:07:07  southa
  * MushGaem control work
  *
@@ -156,7 +159,6 @@ protected:
     virtual void KeyboardSignal(const GLKeyboardSignal& inSignal);
     virtual void Signal(const MushcoreAppSignal& inSignal);
     bool IsVisible(void) {return m_visible;}
-    GLKeys TranslateKey(/* SDL_KeyboardEvent */ void *inKeyEvent) const;
     
 private:
     enum

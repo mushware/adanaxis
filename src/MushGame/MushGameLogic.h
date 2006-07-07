@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } pz9Ij69Gp+RQuOHP0yYqgg
 /*
- * $Id: MushGameLogic.h,v 1.15 2006/06/01 15:39:23 southa Exp $
+ * $Id: MushGameLogic.h,v 1.16 2006/07/04 16:55:27 southa Exp $
  * $Log: MushGameLogic.h,v $
+ * Revision 1.16  2006/07/04 16:55:27  southa
+ * Ruby key handling
+ *
  * Revision 1.15  2006/06/01 15:39:23  southa
  * DrawArray verification and fixes
  *
@@ -113,6 +116,7 @@ public:
     
     virtual void ClientMailboxConsume(MushGameMailbox& inMailbox);
     virtual void ServerMailboxConsume(MushGameMailbox& inMailbox);
+    virtual void TimingSequence(void);
     virtual void ClientReceiveSequence(void);
     virtual void ServerReceiveSequence(void);
     virtual void ClientSendSequence(void);
@@ -135,6 +139,7 @@ public:
 
     virtual bool IsGameMode(void) const;
     virtual bool IsMenuMode(void) const;
+    virtual void GameModeEnter(void);
     virtual void MenuModeEnter(void);
     
     

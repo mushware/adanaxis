@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } oSmLZ+XD56LtO8LoKCgFfg
 /*
- * $Id: AdanaxisAppHandler.cpp,v 1.5 2006/06/01 15:38:46 southa Exp $
+ * $Id: AdanaxisAppHandler.cpp,v 1.6 2006/06/30 15:05:30 southa Exp $
  * $Log: AdanaxisAppHandler.cpp,v $
+ * Revision 1.6  2006/06/30 15:05:30  southa
+ * Texture and buffer purge
+ *
  * Revision 1.5  2006/06/01 15:38:46  southa
  * DrawArray verification and fixes
  *
@@ -55,36 +58,10 @@ AdanaxisAppHandler::AdanaxisAppHandler(const std::string& inName) :
 {
 }
 
-AdanaxisAppHandler::~AdanaxisAppHandler()
-{
-}
-
 void
-AdanaxisAppHandler::GameModeEnter(bool inResume)
+AdanaxisAppHandler::NewGameCreate(const std::string& inName)
 {
-    if (!StateGameIs())
-    {
-        CurrentSwapOut();
-        
-        if (!inResume || !MushcoreData<MushGameBase>::Sgl().Exists("adanaxis"))
-        {
-            PrepareNewGame();
-        }
-        CurrentSwapIn("adanaxis");
-        StateGameSet();
-    }
-}
-
-void
-AdanaxisAppHandler::PrepareNewGame(void)
-{
-    MushcoreData<MushGameBase>::Sgl().Give("adanaxis", new AdanaxisGame("adanaxis"));
-}
-
-void
-AdanaxisAppHandler::CurrentGameEnd(void)
-{
-    QuitModeEnter();
-    MushcoreData<MushGameBase>::Sgl().Delete("adanaxis");
+    MushcoreData<MushGameBase>::Sgl().Give(inName, new AdanaxisGame(inName));
+    m_gameRef.NameSet(inName);
 }
 

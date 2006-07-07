@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } JULuY8zijzl3gSY8zJcPUA
 /*
- * $Id: GLKeys.h,v 1.17 2005/07/08 12:07:07 southa Exp $
+ * $Id: GLKeys.h,v 1.18 2006/06/01 15:38:51 southa Exp $
  * $Log: GLKeys.h,v $
+ * Revision 1.18  2006/06/01 15:38:51  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.17  2005/07/08 12:07:07  southa
  * MushGaem control work
  *
@@ -114,7 +117,6 @@ public:
         kKeyMouse4,
         kKeyMouse5,
         kKeyCommand,
-        kKeyQuit,
         kNumberOfKeys
     };
     GLKeys() {}

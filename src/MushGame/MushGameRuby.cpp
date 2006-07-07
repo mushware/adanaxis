@@ -19,11 +19,17 @@
  ****************************************************************************/
 //%Header } yY7ZZkvIHHOoUzJzTAQPOQ
 /*
- * $Id$
- * $Log$
+ * $Id: MushGameRuby.cpp,v 1.1 2006/07/07 07:57:29 southa Exp $
+ * $Log: MushGameRuby.cpp,v $
+ * Revision 1.1  2006/07/07 07:57:29  southa
+ * Key translation
+ *
  */
 
 #include "MushGameRuby.h"
+
+#include "MushGameAppHandler.h"
+#include "MushGameUtil.h"
 
 #include "API/mushMedia.h"
 
@@ -41,8 +47,16 @@ MushGameRuby::KeySymbolToName(Mushware::tRubyValue inSelf, Mushware::tRubyValue 
     return MushRubyValue(MediaKeyboard::KeySymbolToName(keyValue.U32())).Value();
 }
 
+Mushware::tRubyValue
+MushGameRuby::GameModeEnter(Mushware::tRubyValue inSelf)
+{
+    MushGameUtil::LogicWRef().GameModeEnter();
+    return kRubyQnil;
+}
+
 void
 MushGameRuby::MethodsInstall(void)
 {
     MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cKeySymbolToName", KeySymbolToName);
+    MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cGameModeEnter", GameModeEnter);
 }

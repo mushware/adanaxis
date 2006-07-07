@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } bC49LKe3G5tsyGqAVa5gyw
 /*
- * $Id: MushGameAppHandler.cpp,v 1.6 2006/06/30 15:05:34 southa Exp $
+ * $Id: MushGameAppHandler.cpp,v 1.7 2006/07/04 16:55:27 southa Exp $
  * $Log: MushGameAppHandler.cpp,v $
+ * Revision 1.7  2006/07/04 16:55:27  southa
+ * Ruby key handling
+ *
  * Revision 1.6  2006/06/30 15:05:34  southa
  * Texture and buffer purge
  *
@@ -91,18 +94,18 @@ MushGameAppHandler::CurrentSwapIn(const std::string& inName)
         cerr << "Exception during start sequence: " << e.what() << endl;
         
         PlatformMiscUtils::ErrorBox(string("Error: ") + e.what());
-        QuitModeEnter();
+        QuitStateEnter();
     }
 }
 
 
 void
-MushGameAppHandler::QuitModeEnter(void)
+MushGameAppHandler::QuitStateEnter(void)
 {
-    if (m_appState != kAppStateQuit)
+    if (m_appState != kAppStateQuitting)
     {
         CurrentSwapOut();
-        m_appState = kAppStateQuit;
+        m_appState = kAppStateQuitting;
         AppQuit(); // Quit immediately
     }
 }
@@ -150,6 +153,8 @@ MushGameAppHandler::FillControlPipe(void)
     typedef MushGameMessageControlInfo tMessage;
     std::auto_ptr<MushGameMessageControlInfo> aControlInfo;
     
+    tMsec msecNow = LogicWRef().GameMsec();
+    
     for (U32 i=0; i<m_axisDefs.size(); ++i)
     {
         MushGameAxisDef& axisDefRef = m_axisDefs[i];
@@ -158,7 +163,7 @@ MushGameAppHandler::FillControlPipe(void)
             if (aControlInfo.get() == NULL)
             {
                 aControlInfo.reset(new MushGameMessageControlInfo);
-                aControlInfo->TimestampSet(MillisecondsGet());
+                aControlInfo->TimestampSet(msecNow);
             }
             aControlInfo->AxisEventsWRef().push_back(tMessage::tAxisEvent(i, axisDefRef.Pos()));
             axisDefRef.PosHasMovedSet(false);
@@ -173,7 +178,7 @@ MushGameAppHandler::FillControlPipe(void)
             if (aControlInfo.get() == NULL)
             {
                 aControlInfo.reset(new MushGameMessageControlInfo);
-                aControlInfo->TimestampSet(MillisecondsGet());
+                aControlInfo->TimestampSet(msecNow);
             }
             aControlInfo->KeyEventsWRef().push_back(tMessage::tKeyEvent(i, keyDefRef.State()));
             keyDefRef.StateHasChangedSet(false);
@@ -322,7 +327,7 @@ MushGameAppHandler::KeyTicker(Mushware::tMsec inTimeslice)
 void
 MushGameAppHandler::GameIdle(void)
 {
-    tMsec msecNow = MillisecondsGet();
+    tMsec msecNow = LogicWRef().GameMsec();
     
     tMsec timesliceMsec = msecNow - m_lastTickerMsec;
     
@@ -349,7 +354,7 @@ MushGameAppHandler::GameIdle(void)
         else
         {
             // Lost game - nothing to do but quit
-            QuitModeEnter();
+            QuitStateEnter();
         }
     }
     catch (exception& e)
@@ -357,8 +362,14 @@ MushGameAppHandler::GameIdle(void)
             MushcoreLog::Sgl().ErrorLog() << "Exception in idle handler: " << e.what() << endl;
             
             PlatformMiscUtils::ErrorBox(string("Error: ") + e.what());
-            QuitModeEnter();
+            QuitStateEnter();
     }
+}
+
+void
+MushGameAppHandler::NewGameCreate(const std::string& inName)
+{
+    throw MushcoreLogicFail("Replacement for MushGameAppHandler must override NewGameCreate");
 }
 
 void
@@ -368,17 +379,14 @@ MushGameAppHandler::Idle(void)
     {
         case kAppStateStartup:
         {
-            GameModeEnter(false);
-            
-            if (m_appState == kAppStateStartup)
-            {
-                MushcoreLog::Sgl().ErrorLog() << "GameModeEnter didn't change AppState; quitting" << endl;
-                QuitModeEnter();
-            }
+            CurrentSwapOut();
+            NewGameCreate(m_groupingName);
+            CurrentSwapIn(m_groupingName);
+            m_appState = kAppStateRunning;
         }
         break;
             
-        case kAppStateGame:
+        case kAppStateRunning:
         {
             GameIdle();
         }
@@ -391,25 +399,21 @@ MushGameAppHandler::Idle(void)
 }
 
 void
-MushGameAppHandler::GameModeEnter(bool inResume)
-{
-    MushcoreLog::Sgl().ErrorLog() << "MushGameAppHandler::GameModeEnter not overriden; quitting" << endl;
-    QuitModeEnter();
-}
-
-void
 MushGameAppHandler::KeyboardSignal(const GLKeyboardSignal& inSignal)
 {
     bool keyHandled=false;
+    
     if (m_currentRef.Exists())
     {
         keyHandled = m_currentRef.RefGet().KeyboardSignal(inSignal, *this);
     }
     else if (inSignal.keyValue.ValueGet() == 27 && inSignal.keyDown)
     {
-        QuitModeEnter();
+        // Used when there is no current game
+        QuitStateEnter();
         keyHandled=true;
     }
+
     
     if (!keyHandled)
     {

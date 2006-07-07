@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } JgUEg2PWk/gZRvvuC2bUHw
 /*
- * $Id: PlatformInputUtils.cpp,v 1.16 2005/05/19 13:02:21 southa Exp $
+ * $Id: PlatformInputUtils.cpp,v 1.17 2006/06/01 15:39:58 southa Exp $
  * $Log: PlatformInputUtils.cpp,v $
+ * Revision 1.17  2006/06/01 15:39:58  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.16  2005/05/19 13:02:21  southa
  * Mac release work
  *
@@ -106,23 +109,5 @@ bool
 PlatformInputUtils::TranslateKey(GLKeys& outKey, const U32 inKeyCode)
 {
     bool retVal = false;
-    switch (inKeyCode)
-    {
-        case 310:
-            // Command key
-            outKey = GLKeys::kKeyCommand;
-            retVal = true;
-            break;
-            
-        case 'q':
-            GLAppHandler& glAppHandler=dynamic_cast<GLAppHandler &>(MushcoreAppHandler::Sgl());
-
-            if (glAppHandler.KeyStateGet(GLKeys::kKeyCommand))
-            {
-                outKey = GLKeys::kKeyQuit;
-                retVal = true;
-            }
-            break;
-    }
     return retVal;
 }

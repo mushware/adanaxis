@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } rqKVCOMdajoYPgaQgbClmg
 /*
- * $Id: MushGameAppHandler.h,v 1.6 2006/06/01 15:39:20 southa Exp $
+ * $Id: MushGameAppHandler.h,v 1.7 2006/06/30 15:05:34 southa Exp $
  * $Log: MushGameAppHandler.h,v $
+ * Revision 1.7  2006/06/30 15:05:34  southa
+ * Texture and buffer purge
+ *
  * Revision 1.6  2006/06/01 15:39:20  southa
  * DrawArray verification and fixes
  *
@@ -63,24 +66,23 @@ public:
     virtual void Display(void);
     virtual void Idle(void);
     virtual void GameIdle(void);
-    virtual void GameModeEnter(bool inResume);
-    virtual void QuitModeEnter(void);
+    virtual void QuitStateEnter(void);
     
     virtual void GroupingNameSet(const std::string& inName);
     virtual void AxisDefSet(const MushGameAxisDef& inAxisDef, Mushware::U32 inAxisNum);
     virtual void KeyDefSet(const MushGameKeyDef& inKeyDef, Mushware::U32 inKeyNum);
 
+    virtual MushGameLogic& LogicWRef(void) const { return m_currentRef.Ref().LogicWRef(); }
+    
 protected:
     enum tAppState
     {
         kAppStateInvalid,
         kAppStateStartup,
-        kAppStateGame,
-        kAppStateQuit
+        kAppStateRunning,
+        kAppStateQuitting
     };
     
-    virtual bool StateGameIs(void) const { return (m_appState == kAppStateGame); }
-    virtual void StateGameSet(void) { m_appState=kAppStateGame; }
     virtual void CurrentSwapOut(void);
     virtual void CurrentSwapIn(const std::string& inName);
     
@@ -89,6 +91,8 @@ protected:
     virtual void KeyTicker(Mushware::tMsec inTimeslice);    
     virtual void FillControlPipe(void);
     virtual void KeyboardSignal(const GLKeyboardSignal& inSignal);
+    
+    virtual void NewGameCreate(const std::string& inName);
     
 private:
     tAppState m_appState; //:readwrite

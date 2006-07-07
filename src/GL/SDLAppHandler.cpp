@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } X577BrzUUfCyG/exJzzEYQ
 /*
- * $Id: SDLAppHandler.cpp,v 1.52 2006/07/02 09:43:27 southa Exp $
+ * $Id: SDLAppHandler.cpp,v 1.53 2006/07/04 16:55:27 southa Exp $
  * $Log: SDLAppHandler.cpp,v $
+ * Revision 1.53  2006/07/04 16:55:27  southa
+ * Ruby key handling
+ *
  * Revision 1.52  2006/07/02 09:43:27  southa
  * MushGLFont work
  *
@@ -234,7 +237,10 @@ void
 SDLAppHandler::KeyboardSignal(const GLKeyboardSignal& inSignal)
 {
     U32 keyValue = inSignal.keyValue.ValueGet();
-    MUSHCOREASSERT(keyValue < m_keyState.size());
+    if (keyValue >= m_keyState.size())
+    {
+        m_keyState.resize(keyValue+1, false);
+    }
 
     AddToControlBuffer(keyValue, inSignal.keyDown);
     
@@ -242,12 +248,6 @@ SDLAppHandler::KeyboardSignal(const GLKeyboardSignal& inSignal)
     if (inSignal.keyDown)
     {
         m_latchedKeyState[keyValue]=true;
-    }
-
-    if ((keyValue == 27 || keyValue == GLKeys::kKeyQuit) && inSignal.keyDown)
-    {
-        // Escape key pressed
-        MushcoreAppHandler::Sgl().Signal(MushcoreAppSignal(MushcoreAppSignal::kEscape));
     }
 }
 
@@ -381,7 +381,10 @@ SDLAppHandler::EnterScreen(const GLModeDef& inDef)
     SDL_WM_SetCaption(MushcoreInfo::Sgl().ApplicationNameGet().c_str(), (MushcoreInfo::Sgl().ApplicationNameGet()+".bmp").c_str());
 
     GLState::Reset();
-    m_keyState = vector<bool>(GLKeys::kNumberOfKeys, false);
+    for (U32 i=0; i<m_keyState.size(); ++i)
+    {
+        m_keyState[i] = false;
+    }
     m_modeDef=inDef;
     PlatformVideoUtils::AppActivate();
 }
@@ -454,6 +457,7 @@ SDLAppHandler::Signal(const MushcoreAppSignal& inSignal)
         break;
 
         default:
+        {
             if (inSignal.IsMushcoreAppSignal())
             {
                 MushcoreAppHandler::Signal(inSignal);
@@ -462,7 +466,8 @@ SDLAppHandler::Signal(const MushcoreAppSignal& inSignal)
             {
                 cerr << "Unhandled SDLAppHandler signal 0x" << hex << inSignal.SigNumberGet() << dec << endl;
             }
-            break;
+        }
+        break;
     }
 }    
 
@@ -514,7 +519,7 @@ SDLAppHandler::PollForControlEvents(void)
         {
             case SDL_KEYDOWN:
             case SDL_KEYUP:
-                Signal(GLKeyboardSignal((event.key.type==SDL_KEYDOWN), TranslateKey(&event.key), m_mouseX, m_mouseY));
+                Signal(GLKeyboardSignal((event.key.type==SDL_KEYDOWN), static_cast<U32>(event.key.keysym.sym), m_mouseX, m_mouseY));
                 break;
 
             case SDL_MOUSEMOTION:
@@ -629,110 +634,4 @@ SDLAppHandler::AppQuit(void)
     m_doQuit=true;
 }
 
-GLKeys
-SDLAppHandler::TranslateKey(void *inKeyEvent) const
-{
-    SDLKey keyValue=static_cast<SDL_KeyboardEvent *>(inKeyEvent)->keysym.sym;
-    GLKeys retValue = 0;
-
-    switch (keyValue)
-    {
-        case SDLK_F1:
-            retValue = GLKeys::kKeyF1;
-            break;
-
-        case SDLK_F2:
-            retValue = GLKeys::kKeyF2;
-            break;
-
-        case SDLK_F3:
-            retValue = GLKeys::kKeyF3;
-            break;
-
-        case SDLK_F4:
-            retValue = GLKeys::kKeyF4;
-            break;
-
-        case SDLK_F5:
-            retValue = GLKeys::kKeyF5;
-            break;
-
-        case SDLK_F6:
-            retValue = GLKeys::kKeyF6;
-            break;
-
-        case SDLK_F7:
-            retValue = GLKeys::kKeyF7;
-            break;
-
-        case SDLK_F8:
-            retValue = GLKeys::kKeyF8;
-            break;
-
-        case SDLK_F9:
-            retValue = GLKeys::kKeyF9;
-            break;
-
-        case SDLK_F10:
-            retValue = GLKeys::kKeyF10;
-            break;
-
-        case SDLK_F11:
-            retValue = GLKeys::kKeyF11;
-            break;
-
-        case SDLK_F12:
-            retValue = GLKeys::kKeyF12;
-            break;
-
-        case SDLK_LEFT:
-            retValue = GLKeys::kKeyLeft;
-            break;
-
-        case SDLK_UP:
-            retValue = GLKeys::kKeyUp;
-            break;
-
-        case SDLK_RIGHT:
-            retValue = GLKeys::kKeyRight;
-            break;
-
-        case SDLK_DOWN:
-            retValue = GLKeys::kKeyDown;
-            break;
-
-        case SDLK_PAGEUP:
-            retValue = GLKeys::kKeyPageUp;
-            break;
-
-        case SDLK_PAGEDOWN:
-            retValue = GLKeys::kKeyPageDown;
-            break;
-
-        case SDLK_HOME:
-            retValue = GLKeys::kKeyHome;
-            break;
-
-        case SDLK_END:
-            retValue = GLKeys::kKeyEnd;
-            break;
-
-        case SDLK_INSERT:
-            retValue = GLKeys::kKeyInsert;
-            break;
-            
-        default:
-            retValue = keyValue;
-            break;
-    }
-        
-    if (!PlatformInputUtils::TranslateKey(retValue, keyValue))
-    {
-        if (keyValue == 0)
-        {
-            cerr << "Ignored SDL key " << keyValue << endl;
-        }
-    }
-    return retValue;
-}
 

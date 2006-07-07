@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } o9Dxm/e8GypZNPSRXLgJNQ
 /*
- * $Id: MushGameLogic.cpp,v 1.23 2006/06/30 17:26:10 southa Exp $
+ * $Id: MushGameLogic.cpp,v 1.24 2006/07/04 16:55:27 southa Exp $
  * $Log: MushGameLogic.cpp,v $
+ * Revision 1.24  2006/07/04 16:55:27  southa
+ * Ruby key handling
+ *
  * Revision 1.23  2006/06/30 17:26:10  southa
  * Render prelude
  *
@@ -111,16 +114,7 @@ using namespace std;
 Mushware::U32
 MushGameLogic::GameMsec(void) const
 {
-    MushGameAppHandler *pAppHandler=dynamic_cast<MushGameAppHandler *>(&MushcoreAppHandler::Sgl());
-    if (pAppHandler == NULL)
-    {
-        MushcoreLog::Sgl().WarningLog() << "Cannot get game time" << endl;
-        return 0;
-    }
-    else
-    {
-        return pAppHandler->MillisecondsGet();
-    }
+    return VolatileData().GameMsec();
 }
 
 MushGamePiece&
@@ -373,6 +367,21 @@ MushGameLogic::ServerMailboxConsume(MushGameMailbox& inMailbox)
 }
 
 void
+MushGameLogic::TimingSequence(void)
+{
+    Mushware::U32 timeNow = MushGameUtil::AppHandler().MillisecondsGet();
+    Mushware::U32 timeDiff = timeNow - static_cast<U32>(VolatileData().LastGameMsec());
+    
+    if (IsGameMode() && timeDiff < 1e9)
+    {
+        VolatileData().GameMsecSet(VolatileData().GameMsec() + timeDiff);
+    }
+    
+    VolatileData().LastGameMsecSet(timeNow);
+    VolatileData().FrameMsecSet(VolatileData().GameMsec());
+}
+
+void
 MushGameLogic::ClientReceiveSequence(void)
 {
     // I am a client picking up messages from my server
@@ -564,7 +573,8 @@ MushGameLogic::RenderSequence(void)
 void
 MushGameLogic::MainSequence(void)
 {
-    VolatileData().FrameMsecSet(GameMsec());
+    try { TimingSequence(); }
+    catch (MushcoreNonFatalFail& e) { ExceptionHandle(&e, "TimingSequence"); }
     try { ReceiveSequence(); }
     catch (MushcoreNonFatalFail& e) { ExceptionHandle(&e, "ReceiveSequence"); }
     try { SendSequence(); }
@@ -593,6 +603,18 @@ MushGameLogic::MainSequence(void)
     catch (MushcoreNonFatalFail& e) { ExceptionHandle(&e, "RenderSequence"); }
 }
 
+void
+MushGameLogic::GameModeEnter(void)
+{
+    VolatileData().GameModeSet(MushGameVolatileData::kGameModeGame);
+}
+
+void
+MushGameLogic::MenuModeEnter(void)
+{
+    VolatileData().GameModeSet(MushGameVolatileData::kGameModeMenu);
+}
+
 bool
 MushGameLogic::IsGameMode(void) const
 {
@@ -603,12 +625,6 @@ bool
 MushGameLogic::IsMenuMode(void) const
 {
     return VolatileData().GameMode() == MushGameVolatileData::kGameModeMenu;    
-}
-
-void
-MushGameLogic::MenuModeEnter(void)
-{
-    VolatileData().GameModeSet(MushGameVolatileData::kGameModeMenu);
 }
 
 void

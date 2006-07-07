@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 72jYu/IZevqg7bsvRKLvxw
 /*
- * $Id: MushGameBase.cpp,v 1.1 2006/06/30 15:05:34 southa Exp $
+ * $Id: MushGameBase.cpp,v 1.2 2006/07/04 16:55:27 southa Exp $
  * $Log: MushGameBase.cpp,v $
+ * Revision 1.2  2006/07/04 16:55:27  southa
+ * Ruby key handling
+ *
  * Revision 1.1  2006/06/30 15:05:34  southa
  * Texture and buffer purge
  *
@@ -61,12 +64,14 @@ MushGameBase::KeyboardSignal(const GLKeyboardSignal& inSignal, MushGameAppHandle
     }
     else if (inSignal.keyValue.ValueGet() == 27 && inSignal.keyDown)
     {
-        LogicRef().WRef().MenuModeEnter();
+        if (LogicRef().Ref().IsGameMode())
+        {
+            LogicRef().WRef().MenuModeEnter();
+        }
         keyHandled = true;
     }
     return keyHandled;
 }
-
 
 //%outOfLineFunctions {
 

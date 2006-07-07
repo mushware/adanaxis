@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } DEX6Sh9oUk/bih2GXm2coA
 /*
- * $Id: AdanaxisGame.cpp,v 1.37 2006/07/02 21:08:53 southa Exp $
+ * $Id: AdanaxisGame.cpp,v 1.38 2006/07/04 16:55:26 southa Exp $
  * $Log: AdanaxisGame.cpp,v $
+ * Revision 1.38  2006/07/04 16:55:26  southa
+ * Ruby key handling
+ *
  * Revision 1.37  2006/07/02 21:08:53  southa
  * Ruby menu work
  *
@@ -236,9 +239,6 @@ AdanaxisGame::Process(MushGameAppHandler& inAppHandler)
 void
 AdanaxisGame::Display(MushGameAppHandler& inAppHandler)
 {    
-    //tVal msecNow = inAppHandler.MillisecondsGet();
-    
-
 }
 
 void
@@ -294,7 +294,7 @@ AdanaxisGame::Init(MushGameAppHandler& inAppHandler)
         MediaAudio::Sgl().MusicFadeIn(300);                    
     }
     
-    Logic().StartTimeSet(inAppHandler.MillisecondsGet());
+    Logic().StartTimeSet(Logic().GameMsec());
     m_inited = true;
 }
 
@@ -342,7 +342,6 @@ AdanaxisGame::SwapIn(MushGameAppHandler& inAppHandler)
     }
     
     GLUtils::CheckGLError();
-    //tVal msecNow = inAppHandler.MillisecondsGet();
        
     m_modeKeypressMsec = 0;
     m_newMode = m_config.DisplayMode();

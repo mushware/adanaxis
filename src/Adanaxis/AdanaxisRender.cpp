@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } Hr8bvS7fc+x0pR9DrFcIZw
 /*
- * $Id: AdanaxisRender.cpp,v 1.28 2006/07/02 09:43:26 southa Exp $
+ * $Id: AdanaxisRender.cpp,v 1.29 2006/07/02 21:08:54 southa Exp $
  * $Log: AdanaxisRender.cpp,v $
+ * Revision 1.29  2006/07/02 21:08:54  southa
+ * Ruby menu work
+ *
  * Revision 1.28  2006/07/02 09:43:26  southa
  * MushGLFont work
  *
@@ -247,12 +250,15 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
     
     MushGLUtil::IdentityEpilogue();
     
-    MushGLUtil::IdentityPrologue();
-    MushGLUtil::OrthoPrologue();
-    GLState::ColourSet(1.0,1.0,1.0,1.0);
-    MushRubyExec::Sgl().Call(pVolData->RubyGame(), MushRubyIntern::mRender());
-    MushGLUtil::OrthoEpilogue();
-    MushGLUtil::IdentityEpilogue();
+    if (ioLogic.IsMenuMode())
+    {
+        MushGLUtil::IdentityPrologue();
+        MushGLUtil::OrthoPrologue();
+        GLState::ColourSet(1.0,1.0,1.0,1.0);
+        MushRubyExec::Sgl().Call(pVolData->RubyGame(), MushRubyIntern::mRender());
+        MushGLUtil::OrthoEpilogue();
+        MushGLUtil::IdentityEpilogue();
+    }
     
     MushGLUtil::DisplayEpilogue();
     

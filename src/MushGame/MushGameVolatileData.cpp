@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } mGoZWUiZsKFfWNio1FcVLw
 /*
- * $Id: MushGameVolatileData.cpp,v 1.6 2006/06/01 15:39:27 southa Exp $
+ * $Id: MushGameVolatileData.cpp,v 1.7 2006/07/04 16:55:28 southa Exp $
  * $Log: MushGameVolatileData.cpp,v $
+ * Revision 1.7  2006/07/04 16:55:28  southa
+ * Ruby key handling
+ *
  * Revision 1.6  2006/06/01 15:39:27  southa
  * DrawArray verification and fixes
  *
@@ -49,6 +52,8 @@ MushGameVolatileData::MushGameVolatileData() :
     m_playerUplinkPeriodMsec(1000),
     m_lastPlayerUplinkMsec(0),
     m_quickPlayerUplinkRequired(false),
+    m_gameMsec(0),
+    m_lastGameMsec(0),
     m_frameMsec(0),
     m_rubyGame(Mushware::kRubyQnil),
     m_gameMode(kGameModeMenu)
@@ -91,6 +96,8 @@ MushGameVolatileData::AutoPrint(std::ostream& ioOut) const
     ioOut << "playerUplinkPeriodMsec=" << m_playerUplinkPeriodMsec << ", ";
     ioOut << "lastPlayerUplinkMsec=" << m_lastPlayerUplinkMsec << ", ";
     ioOut << "quickPlayerUplinkRequired=" << m_quickPlayerUplinkRequired << ", ";
+    ioOut << "gameMsec=" << m_gameMsec << ", ";
+    ioOut << "lastGameMsec=" << m_lastGameMsec << ", ";
     ioOut << "frameMsec=" << m_frameMsec << ", ";
     ioOut << "rubyGame=" << m_rubyGame << ", ";
     ioOut << "gameMode=" << m_gameMode;
@@ -116,6 +123,14 @@ MushGameVolatileData::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::st
     else if (inTagStr == "quickPlayerUplinkRequired")
     {
         ioIn >> m_quickPlayerUplinkRequired;
+    }
+    else if (inTagStr == "gameMsec")
+    {
+        ioIn >> m_gameMsec;
+    }
+    else if (inTagStr == "lastGameMsec")
+    {
+        ioIn >> m_lastGameMsec;
     }
     else if (inTagStr == "frameMsec")
     {
@@ -144,6 +159,10 @@ MushGameVolatileData::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_lastPlayerUplinkMsec;
     ioOut.TagSet("quickPlayerUplinkRequired");
     ioOut << m_quickPlayerUplinkRequired;
+    ioOut.TagSet("gameMsec");
+    ioOut << m_gameMsec;
+    ioOut.TagSet("lastGameMsec");
+    ioOut << m_lastGameMsec;
     ioOut.TagSet("frameMsec");
     ioOut << m_frameMsec;
     ioOut.TagSet("rubyGame");
@@ -151,4 +170,4 @@ MushGameVolatileData::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("gameMode");
     ioOut << m_gameMode;
 }
-//%outOfLineFunctions } Msl+qibr0ESUOt4atvmpOQ
+//%outOfLineFunctions } cbtoogNfAdf5ncGRHB90sA

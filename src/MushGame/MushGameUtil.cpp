@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } eAXK2shReRuPxk9ARzaGHA
 /*
- * $Id: MushGameUtil.cpp,v 1.12 2006/06/01 15:39:27 southa Exp $
+ * $Id: MushGameUtil.cpp,v 1.13 2006/06/29 11:40:40 southa Exp $
  * $Log: MushGameUtil.cpp,v $
+ * Revision 1.13  2006/06/29 11:40:40  southa
+ * X11 and 64 bit fixes
+ *
  * Revision 1.12  2006/06/01 15:39:27  southa
  * DrawArray verification and fixes
  *
@@ -223,6 +226,12 @@ MushGameUtil::AppHandler(void)
         throw MushcoreRequestFail("AppHandler of wrong type for MushGameAppHandler");
     }
     return *pAppHandler;
+}
+
+MushGameLogic&
+MushGameUtil::LogicWRef(void)
+{
+    return AppHandler().LogicWRef();    
 }
 
 std::string
