@@ -1,11 +1,7 @@
-//%includeGuardStart {
-#ifndef MUSHMESHRUBYBASE_H
-#define MUSHMESHRUBYBASE_H
-//%includeGuardStart } 9MiiRzYXUcDq4xuXNoK2NQ
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushMeshRuby/MushMeshRubyBase.h
+ * File: src/MushGame/MushGameRuby.cpp
  *
  * Author: Andy Southgate 2002-2006
  *
@@ -21,29 +17,32 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } YyHlro2+ToCGeor+kl6VKg
+//%Header } yY7ZZkvIHHOoUzJzTAQPOQ
 /*
- * $Id: MushMeshRubyBase.h,v 1.1 2006/06/16 12:11:04 southa Exp $
- * $Log: MushMeshRubyBase.h,v $
- * Revision 1.1  2006/06/16 12:11:04  southa
- * Ruby subclasses
- *
+ * $Id$
+ * $Log$
  */
 
-#include "MushMeshRubyStandard.h"
+#include "MushGameRuby.h"
 
-class MushMeshRubyBase : public MushRubyEmptyObj<1000>
-{
-public:
-private:
-};
+#include "API/mushMedia.h"
 
-MUSHRUBYEMPTYOBJ_INSTALL(1000)(void)
+MUSHRUBYEMPTYOBJ_INSTANCE(4000);
+
+MUSHRUBY_INSTALL(MushGameRuby);
+
+using namespace Mushware;
+using namespace std;
+
+Mushware::tRubyValue
+MushGameRuby::KeySymbolToName(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0)
 {
-	EmptyInstall("MushBase");
-    
+    MushRubyValue keyValue(inArg0);
+    return MushRubyValue(MediaKeyboard::KeySymbolToName(keyValue.U32())).Value();
 }
 
-//%includeGuardEnd {
-#endif
-//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw
+void
+MushGameRuby::MethodsInstall(void)
+{
+    MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cKeySymbolToName", KeySymbolToName);
+}

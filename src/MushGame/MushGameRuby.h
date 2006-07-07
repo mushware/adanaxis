@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef MUSHMESHRUBYBASE_H
-#define MUSHMESHRUBYBASE_H
-//%includeGuardStart } 9MiiRzYXUcDq4xuXNoK2NQ
+#ifndef MUSHGAMERUBY_H
+#define MUSHGAMERUBY_H
+//%includeGuardStart } umLUrnBd0VXdkb0HFndGjw
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushMeshRuby/MushMeshRubyBase.h
+ * File: src/MushGame/MushGameRuby.h
  *
  * Author: Andy Southgate 2002-2006
  *
@@ -21,27 +21,29 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } YyHlro2+ToCGeor+kl6VKg
+//%Header } abz8WfQdtsWpPxv12NZxhA
 /*
- * $Id: MushMeshRubyBase.h,v 1.1 2006/06/16 12:11:04 southa Exp $
- * $Log: MushMeshRubyBase.h,v $
- * Revision 1.1  2006/06/16 12:11:04  southa
- * Ruby subclasses
- *
+ * $Id$
+ * $Log$
  */
 
-#include "MushMeshRubyStandard.h"
+#include "MushGameStandard.h"
 
-class MushMeshRubyBase : public MushRubyEmptyObj<1000>
+#include "API/mushMushRuby.h"
+
+class MushGameRuby : public MushRubyEmptyObj<4000>
 {
 public:
+    static Mushware::tRubyValue KeySymbolToName(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
+    static void MethodsInstall(void);
+    
 private:
 };
 
-MUSHRUBYEMPTYOBJ_INSTALL(1000)(void)
+MUSHRUBYEMPTYOBJ_INSTALL(4000)(void)
 {
-	EmptyInstall("MushBase");
-    
+	EmptyInstallSubclass("MushGame", MushRubyObject::Klass());
+    MushGameRuby::MethodsInstall();
 }
 
 //%includeGuardEnd {

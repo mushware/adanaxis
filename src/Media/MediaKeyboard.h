@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef MUSHMESHRUBYBASE_H
-#define MUSHMESHRUBYBASE_H
-//%includeGuardStart } 9MiiRzYXUcDq4xuXNoK2NQ
+#ifndef MEDIAKEYBOARD_H
+#define MEDIAKEYBOARD_H
+//%includeGuardStart } k7XHuyG8inwFEqkSEnMHLQ
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushMeshRuby/MushMeshRubyBase.h
+ * File: src/Media/MediaKeyboard.h
  *
  * Author: Andy Southgate 2002-2006
  *
@@ -21,29 +21,19 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } YyHlro2+ToCGeor+kl6VKg
+//%Header } 8+s43zymtGuWatXc9oMynA
 /*
- * $Id: MushMeshRubyBase.h,v 1.1 2006/06/16 12:11:04 southa Exp $
- * $Log: MushMeshRubyBase.h,v $
- * Revision 1.1  2006/06/16 12:11:04  southa
- * Ruby subclasses
- *
+ * $Id$
+ * $Log$
  */
 
-#include "MushMeshRubyStandard.h"
+#include "MediaStandard.h"
 
-class MushMeshRubyBase : public MushRubyEmptyObj<1000>
+class MediaKeyboard
 {
 public:
-private:
+    static const char *KeySymbolToName(Mushware::U32 keyValue);
 };
-
-MUSHRUBYEMPTYOBJ_INSTALL(1000)(void)
-{
-	EmptyInstall("MushBase");
-    
-}
-
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

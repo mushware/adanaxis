@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 5BOLwI3DhgfDHotOLswDpg
 /*
- * $Id: MushRubyValue.h,v 1.9 2006/06/27 11:58:10 southa Exp $
+ * $Id: MushRubyValue.h,v 1.10 2006/07/04 16:55:29 southa Exp $
  * $Log: MushRubyValue.h,v $
+ * Revision 1.10  2006/07/04 16:55:29  southa
+ * Ruby key handling
+ *
  * Revision 1.9  2006/06/27 11:58:10  southa
  * Warning fixes
  *
@@ -66,6 +69,8 @@ public:
 	explicit MushRubyValue(Mushware::tRubyValue inValue) : m_value(inValue) {}
 	explicit MushRubyValue(Mushware::U32 inValue);
 	explicit MushRubyValue(bool inValue);
+	explicit MushRubyValue(const char *inValue);
+    explicit MushRubyValue(const std::string& inValue);
 	std::string String(void) const;
 	bool IsU32(void) const;
 	bool IsHash(void) const;

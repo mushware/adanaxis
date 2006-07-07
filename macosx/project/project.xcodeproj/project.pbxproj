@@ -316,6 +316,12 @@
 		7A5FA8CC05A4CC2000AA22E5 /* MushPie.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A5FA8CA05A4CC1F00AA22E5 /* MushPie.h */; };
 		7A6033AB07A6B23700350109 /* MushMeshGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A61B10A07A68FEA00C6B670 /* MushMeshGroup.h */; };
 		7A6033AC07A6B23800350109 /* MushMeshGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A61B10B07A68FEA00C6B670 /* MushMeshGroup.cpp */; };
+		7A6110D50A5D7C0F00D8F31F /* MushGameRuby.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A6110D30A5D7C0F00D8F31F /* MushGameRuby.h */; };
+		7A6110D60A5D7C0F00D8F31F /* MushGameRuby.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A6110D40A5D7C0F00D8F31F /* MushGameRuby.cpp */; };
+		7A6119F90A5E440100AE9F3A /* MediaKeyboard.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A6119F70A5E440100AE9F3A /* MediaKeyboard.h */; };
+		7A6119FA0A5E440100AE9F3A /* MediaKeyboard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A6119F80A5E440100AE9F3A /* MediaKeyboard.cpp */; };
+		7A6119FB0A5E440100AE9F3A /* MediaKeyboard.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A6119F70A5E440100AE9F3A /* MediaKeyboard.h */; };
+		7A6119FC0A5E440100AE9F3A /* MediaKeyboard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A6119F80A5E440100AE9F3A /* MediaKeyboard.cpp */; };
 		7A61B10E07A68FEA00C6B670 /* MushMeshGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A61B10A07A68FEA00C6B670 /* MushMeshGroup.h */; };
 		7A61B10F07A68FEA00C6B670 /* MushMeshGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A61B10B07A68FEA00C6B670 /* MushMeshGroup.cpp */; };
 		7A61E3EB05B0168900AFEB17 /* MushPieSignal.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A61E3E905B0168900AFEB17 /* MushPieSignal.h */; };
@@ -2707,6 +2713,11 @@
 		7A5F71960A3F3744006F24A8 /* tc_MushTools.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = tc_MushTools.rb; sourceTree = "<group>"; };
 		7A5FA8C905A4CC1F00AA22E5 /* MushPie.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = MushPie.cpp; sourceTree = "<group>"; };
 		7A5FA8CA05A4CC1F00AA22E5 /* MushPie.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = MushPie.h; sourceTree = "<group>"; };
+		7A6110CC0A5D79CF00D8F31F /* MushKeys.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = MushKeys.rb; sourceTree = "<group>"; };
+		7A6110D30A5D7C0F00D8F31F /* MushGameRuby.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushGameRuby.h; sourceTree = "<group>"; };
+		7A6110D40A5D7C0F00D8F31F /* MushGameRuby.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushGameRuby.cpp; sourceTree = "<group>"; };
+		7A6119F70A5E440100AE9F3A /* MediaKeyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaKeyboard.h; sourceTree = "<group>"; };
+		7A6119F80A5E440100AE9F3A /* MediaKeyboard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MediaKeyboard.cpp; sourceTree = "<group>"; };
 		7A61B10A07A68FEA00C6B670 /* MushMeshGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushMeshGroup.h; sourceTree = "<group>"; };
 		7A61B10B07A68FEA00C6B670 /* MushMeshGroup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushMeshGroup.cpp; sourceTree = "<group>"; };
 		7A61E3E905B0168900AFEB17 /* MushPieSignal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushPieSignal.h; sourceTree = "<group>"; };
@@ -4144,6 +4155,7 @@
 				7A4CAB050A582DF200AA934F /* MushHelpers.rb */,
 				7A4CAB060A582DF200AA934F /* MushMaterial.rb */,
 				7A4CAB070A582DF200AA934F /* MushMesh.rb */,
+				7A6110CC0A5D79CF00D8F31F /* MushKeys.rb */,
 				7A4CAB080A582DF200AA934F /* MushPost.rb */,
 				7A4CAB090A582DF200AA934F /* MushRotation.rb */,
 				7A4CAB0A0A582DF200AA934F /* MushTools.rb */,
@@ -4594,6 +4606,8 @@
 				7A62B7DA05A49D05002A5F1C /* MediaAudioNull.h */,
 				7A62B7DB05A49D05002A5F1C /* MediaAudioSDL.cpp */,
 				7A62B7DC05A49D05002A5F1C /* MediaAudioSDL.h */,
+				7A6119F80A5E440100AE9F3A /* MediaKeyboard.cpp */,
+				7A6119F70A5E440100AE9F3A /* MediaKeyboard.h */,
 				7A62B7DD05A49D05002A5F1C /* MediaSDL.cpp */,
 				7A62B7DE05A49D05002A5F1C /* MediaSDL.h */,
 				7A62B7DF05A49D05002A5F1C /* MediaSound.cpp */,
@@ -6007,6 +6021,8 @@
 				7AD1B879086CA3A20079FBCF /* MushGameRefPlayer.h */,
 				7A218C3008729CAA00EEA4E1 /* MushGameRender.cpp */,
 				7A218C2F08729CAA00EEA4E1 /* MushGameRender.h */,
+				7A6110D40A5D7C0F00D8F31F /* MushGameRuby.cpp */,
+				7A6110D30A5D7C0F00D8F31F /* MushGameRuby.h */,
 				7AC439260861E1C3006D73D3 /* MushGameSaveData.cpp */,
 				7AC439250861E1C3006D73D3 /* MushGameSaveData.h */,
 				7AD3B5F008617E6600512DB1 /* MushGameServer.cpp */,
@@ -6505,6 +6521,7 @@
 				7A9502BF0A498BC100F4CE37 /* AdanaxisRubyDeco.h in Headers */,
 				7A5B7ABB0A55375C00EE2E02 /* MushGameBase.h in Headers */,
 				7A5B14F90A57B1230047BD0B /* MushGLRubyFont.h in Headers */,
+				7A6119FB0A5E440100AE9F3A /* MediaKeyboard.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6928,6 +6945,8 @@
 				7A789E7C0A52E5870036F93F /* SDL_video.h in Headers */,
 				7A5B7AB70A55375C00EE2E02 /* MushGameBase.h in Headers */,
 				7A5B14F70A57B1230047BD0B /* MushGLRubyFont.h in Headers */,
+				7A6110D50A5D7C0F00D8F31F /* MushGameRuby.h in Headers */,
+				7A6119F90A5E440100AE9F3A /* MediaKeyboard.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8382,6 +8401,7 @@
 				7A9502C00A498BC100F4CE37 /* AdanaxisRubyDeco.cpp in Sources */,
 				7A5B7ABC0A55375C00EE2E02 /* MushGameBase.cpp in Sources */,
 				7A5B14FA0A57B1230047BD0B /* MushGLRubyFont.cpp in Sources */,
+				7A6119FC0A5E440100AE9F3A /* MediaKeyboard.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8726,6 +8746,8 @@
 				7A9502BE0A498BC100F4CE37 /* AdanaxisRubyDeco.cpp in Sources */,
 				7A5B7AB80A55375C00EE2E02 /* MushGameBase.cpp in Sources */,
 				7A5B14F80A57B1230047BD0B /* MushGLRubyFont.cpp in Sources */,
+				7A6110D60A5D7C0F00D8F31F /* MushGameRuby.cpp in Sources */,
+				7A6119FA0A5E440100AE9F3A /* MediaKeyboard.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

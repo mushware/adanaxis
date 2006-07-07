@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } hwIlNOCEH5GsgwGY+rP1Kg
 /*
- * $Id: MushRubyValue.cpp,v 1.9 2006/06/27 11:58:10 southa Exp $
+ * $Id: MushRubyValue.cpp,v 1.10 2006/07/04 16:55:28 southa Exp $
  * $Log: MushRubyValue.cpp,v $
+ * Revision 1.10  2006/07/04 16:55:28  southa
+ * Ruby key handling
+ *
  * Revision 1.9  2006/06/27 11:58:10  southa
  * Warning fixes
  *
@@ -66,7 +69,7 @@ MushRubyValue::MushRubyValue() :
 }
 
 MushRubyValue::MushRubyValue(Mushware::U32 inValue) :
-m_value(UINT2NUM(inValue))
+    m_value(UINT2NUM(inValue))
 {
 }
 
@@ -80,6 +83,16 @@ MushRubyValue::MushRubyValue(bool inValue)
     {
         m_value = Qfalse;
     }
+}
+
+MushRubyValue::MushRubyValue(const char *inValue)
+{
+    m_value = rb_str_new2(inValue);
+}
+
+MushRubyValue::MushRubyValue(const std::string& inValue)
+{
+    m_value = rb_str_new(inValue.data(), inValue.size());
 }
 
 std::string
