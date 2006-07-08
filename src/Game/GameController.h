@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } pv3fDE6YUE7iNTHhkqBv+w
 /*
- * $Id: GameController.h,v 1.17 2005/05/19 13:02:02 southa Exp $
+ * $Id: GameController.h,v 1.18 2006/06/01 15:38:57 southa Exp $
  * $Log: GameController.h,v $
+ * Revision 1.18  2006/06/01 15:38:57  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.17  2005/05/19 13:02:02  southa
  * Mac release work
  *
@@ -90,7 +93,7 @@ public:
     void StateGet(GameControlFrameDef& outDef, Mushware::U32 inAtMsec);
 
 private:
-    std::vector<GLKeys::tKeyValue> m_keysOfInterest;
+    std::vector<Mushware::U32> m_keysOfInterest;
     std::vector<bool> m_keyState;
     Mushware::tVal m_lastMouseX;
     Mushware::tVal m_lastMouseY;

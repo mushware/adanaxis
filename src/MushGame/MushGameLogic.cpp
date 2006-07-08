@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } o9Dxm/e8GypZNPSRXLgJNQ
 /*
- * $Id: MushGameLogic.cpp,v 1.24 2006/07/04 16:55:27 southa Exp $
+ * $Id: MushGameLogic.cpp,v 1.25 2006/07/07 18:13:58 southa Exp $
  * $Log: MushGameLogic.cpp,v $
+ * Revision 1.25  2006/07/07 18:13:58  southa
+ * Menu start and stop
+ *
  * Revision 1.24  2006/07/04 16:55:27  southa
  * Ruby key handling
  *
@@ -613,6 +616,13 @@ void
 MushGameLogic::MenuModeEnter(void)
 {
     VolatileData().GameModeSet(MushGameVolatileData::kGameModeMenu);
+}
+
+void
+MushGameLogic::QuitModeEnter(void)
+{
+    VolatileData().GameModeSet(MushGameVolatileData::kGameModeQuit);
+    MushGameUtil::AppHandler().QuitStateEnter();
 }
 
 bool

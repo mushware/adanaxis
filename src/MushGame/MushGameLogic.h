@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } pz9Ij69Gp+RQuOHP0yYqgg
 /*
- * $Id: MushGameLogic.h,v 1.16 2006/07/04 16:55:27 southa Exp $
+ * $Id: MushGameLogic.h,v 1.17 2006/07/07 18:13:58 southa Exp $
  * $Log: MushGameLogic.h,v $
+ * Revision 1.17  2006/07/07 18:13:58  southa
+ * Menu start and stop
+ *
  * Revision 1.16  2006/07/04 16:55:27  southa
  * Ruby key handling
  *
@@ -141,7 +144,7 @@ public:
     virtual bool IsMenuMode(void) const;
     virtual void GameModeEnter(void);
     virtual void MenuModeEnter(void);
-    
+    virtual void QuitModeEnter(void);
     
     virtual void ClientNewPlayerHandle(const std::string& inPlayerName);
     

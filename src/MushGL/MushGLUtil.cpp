@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } vl7jY3WxF4VnrsvzzFB2Cw
 /*
- * $Id: MushGLUtil.cpp,v 1.4 2006/06/02 18:14:36 southa Exp $
+ * $Id: MushGLUtil.cpp,v 1.5 2006/06/30 15:05:33 southa Exp $
  * $Log: MushGLUtil.cpp,v $
+ * Revision 1.5  2006/06/30 15:05:33  southa
+ * Texture and buffer purge
+ *
  * Revision 1.4  2006/06/02 18:14:36  southa
  * Texture caching
  *
@@ -281,5 +284,11 @@ MushGLUtil::Purge(void)
 {
     BufferPurge();
     TexturePurge();
+}
+
+void
+MushGLUtil::ColourSet(const Mushware::t4Val& inColour)
+{
+    glColor4f(inColour.X(), inColour.Y(), inColour.Z(), inColour.W());   
 }
 

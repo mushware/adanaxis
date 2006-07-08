@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } yq3t8FWGjnSmPpbktkRQTw
 /*
- * $Id: InfernalFloorDesigner.cpp,v 1.5 2005/05/19 13:02:04 southa Exp $
+ * $Id: InfernalFloorDesigner.cpp,v 1.6 2006/06/01 15:39:02 southa Exp $
  * $Log: InfernalFloorDesigner.cpp,v $
+ * Revision 1.6  2006/06/01 15:39:02  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.5  2005/05/19 13:02:04  southa
  * Mac release work
  *
@@ -322,16 +325,16 @@ InfernalFloorDesigner::Move(void)
     
     for (U32 i=0; i<m_floorMaps.size() && i<12 ; ++i)
     {
-        if (glHandler.KeyStateGet(GLKeys::kKeyF1+i))
+        if (glHandler.KeyStateGet(MediaKeyboard::kKey_F1+i))
         {
             m_currentMap=i;
         }
     }
     if (m_currentMap >= m_floorMaps.size()) m_currentMap=m_floorMaps.size();
     
-    bool primaryState(glHandler.KeyStateGet(GLKeys::kKeyMouse1));
-    bool secondaryState(glHandler.KeyStateGet(GLKeys::kKeyMouse3));
-    bool tertiaryState(glHandler.KeyStateGet(GLKeys::kKeyMouse2));
+    bool primaryState(glHandler.KeyStateGet(GLKeys::kKeyMouse0));
+    bool secondaryState(glHandler.KeyStateGet(GLKeys::kKeyMouse2));
+    bool tertiaryState(glHandler.KeyStateGet(GLKeys::kKeyMouse1));
 
     // Make all maps apart from 0 and 3 read-only
     if (m_currentMap != 0 && m_currentMap != 3)

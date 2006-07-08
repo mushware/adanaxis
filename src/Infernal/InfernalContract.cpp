@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } n6Q53F6zLlMZL/wQeMp7Sw
 /*
- * $Id: InfernalContract.cpp,v 1.18 2006/06/01 15:39:01 southa Exp $
+ * $Id: InfernalContract.cpp,v 1.19 2006/06/01 20:12:58 southa Exp $
  * $Log: InfernalContract.cpp,v $
+ * Revision 1.19  2006/06/01 20:12:58  southa
+ * Initial texture caching
+ *
  * Revision 1.18  2006/06/01 15:39:01  southa
  * DrawArray verification and fixes
  *
@@ -1080,7 +1083,7 @@ InfernalContract::GlobalKeyControl(void)
         GameConfig::Sgl().DisplayModeSet(m_newMode);
         m_modeKeypressTime=0;
     }
-    if (gameAppHandler.LatchedKeyStateTake(GLKeys::kKeyMouse1))
+    if (gameAppHandler.LatchedKeyStateTake(MediaKeyboard::kKeyMouse0))
     {
         MushcoreData<InfernalPiecePlayer>::tMapIterator playerIter = InfernalData::Sgl().PlayerGet().Begin();
         if (playerIter != InfernalData::Sgl().PlayerGet().End())

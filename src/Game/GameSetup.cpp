@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } jvWsLpd9yiZoqGOz/5hv2w
 /*
- * $Id: GameSetup.cpp,v 1.48 2005/07/02 00:42:37 southa Exp $
+ * $Id: GameSetup.cpp,v 1.49 2006/06/01 15:38:59 southa Exp $
  * $Log: GameSetup.cpp,v $
+ * Revision 1.49  2006/06/01 15:38:59  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.48  2005/07/02 00:42:37  southa
  * Conditioning tweaks
  *
@@ -339,7 +342,7 @@ void
 GameSetup::KeyControl(void)
 {
     GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Sgl());
-    if (gameAppHandler.LatchedKeyStateTake(GLKeys::kKeyMouse1))
+    if (gameAppHandler.LatchedKeyStateTake(MediaKeyboard::kKeyMouse0))
     {
 #ifdef MUSHWARE_USE_MUSTL
         if (!MustlWebServer::Sgl().IsConnected())

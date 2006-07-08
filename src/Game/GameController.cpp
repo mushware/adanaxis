@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 1vanRSF2ysIQQIzWD6lbiw
 /*
- * $Id: GameController.cpp,v 1.21 2005/05/19 13:02:02 southa Exp $
+ * $Id: GameController.cpp,v 1.22 2006/06/01 15:38:57 southa Exp $
  * $Log: GameController.cpp,v $
+ * Revision 1.22  2006/06/01 15:38:57  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.21  2005/05/19 13:02:02  southa
  * Mac release work
  *
@@ -92,6 +95,8 @@
 #include "GameControlFrameDef.h"
 #include "GameSTL.h"
 
+#include "API/mushMedia.h"
+
 using namespace Mushware;
 using namespace std;
 
@@ -99,10 +104,10 @@ GameController::GameController():
     m_keyState(4),
     m_lastMouseValid(false)
 {
-    m_keysOfInterest.push_back(GLKeys::kKeyLeft);
-    m_keysOfInterest.push_back(GLKeys::kKeyRight);
-    m_keysOfInterest.push_back(GLKeys::kKeyUp);
-    m_keysOfInterest.push_back(GLKeys::kKeyDown);
+    m_keysOfInterest.push_back(MediaKeyboard::kKey_LEFT);
+    m_keysOfInterest.push_back(MediaKeyboard::kKey_RIGHT);
+    m_keysOfInterest.push_back(MediaKeyboard::kKey_UP);
+    m_keysOfInterest.push_back(MediaKeyboard::kKey_DOWN);
 }
 
 void

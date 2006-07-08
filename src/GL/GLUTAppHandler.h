@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } epi4LkmFXux+k+N4ZNKRxg
 /*
- * $Id: GLUTAppHandler.h,v 1.26 2005/05/19 13:02:01 southa Exp $
+ * $Id: GLUTAppHandler.h,v 1.27 2006/06/01 15:38:55 southa Exp $
  * $Log: GLUTAppHandler.h,v $
+ * Revision 1.27  2006/06/01 15:38:55  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.26  2005/05/19 13:02:01  southa
  * Mac release work
  *
@@ -114,7 +117,6 @@
 #endif
 
 #include "GLAppHandler.h"
-#include "GLKeys.h"
 #include "GLModeDef.h"
 #include "mushMushcore.h"
 
@@ -127,8 +129,8 @@ class GLUTAppHandler : public GLAppHandler
 public:
     GLUTAppHandler();
     virtual ~GLUTAppHandler() {}
-    virtual bool KeyStateGet(const GLKeys& inKey) const;
-    virtual bool LatchedKeyStateTake(const GLKeys& inKey);
+    virtual bool KeyStateGet(Mushware::U32 inKey) const;
+    virtual bool LatchedKeyStateTake(Mushware::U32 inKey);
     virtual void MousePositionGet(Mushware::tVal& outX, Mushware::tVal& outY) const;
     virtual void UnboundedMousePositionGet(Mushware::S32& outX, Mushware::S32& outY) const;
     virtual void EnterScreen(const GLModeDef& inDef);

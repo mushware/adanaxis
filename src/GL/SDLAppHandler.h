@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } VUfBvm3qobPEj3YM/Njzcg
 /*
- * $Id: SDLAppHandler.h,v 1.28 2006/06/01 15:38:55 southa Exp $
+ * $Id: SDLAppHandler.h,v 1.29 2006/07/07 18:13:57 southa Exp $
  * $Log: SDLAppHandler.h,v $
+ * Revision 1.29  2006/07/07 18:13:57  southa
+ * Menu start and stop
+ *
  * Revision 1.28  2006/06/01 15:38:55  southa
  * DrawArray verification and fixes
  *
@@ -109,7 +112,6 @@
  */
 
 #include "GLAppHandler.h"
-#include "GLKeys.h"
 #include "GLModeDef.h"
 #include "mushMushcore.h"
 
@@ -131,8 +133,8 @@ class SDLAppHandler : public GLAppHandler
 public:
     SDLAppHandler();
     virtual ~SDLAppHandler() {}
-    virtual bool KeyStateGet(const GLKeys& inKey) const;
-    virtual bool LatchedKeyStateTake(const GLKeys& inKey);
+    virtual bool KeyStateGet(Mushware::U32 inKey) const;
+    virtual bool LatchedKeyStateTake(Mushware::U32 inKey);
     virtual void MousePositionGet(Mushware::tVal& outX, Mushware::tVal& outY) const;
     virtual void UnboundedMousePositionGet(Mushware::S32& outX, Mushware::S32& outY) const;
     virtual Mushware::tVal ScaledUnboundedMouseX(void) const;
@@ -148,7 +150,7 @@ public:
     virtual const GLModeDef& CurrentModeDefGet(void);
     virtual void PollForControlEvents(void);
     virtual void AppQuit(void);
-    virtual void KeysOfInterestSet(const std::vector<GLKeys::tKeyValue>& inKeyValues);
+    virtual void KeysOfInterestSet(const std::vector<Mushware::U32>& inKeyValues);
     virtual void ReadHistoricControlState(Mushware::S32& outUnboundedMouseX, Mushware::S32& outUnboundedMouseY, std::vector<bool>& outKeys, Mushware::tVal inMsec);
     
 protected:
@@ -184,7 +186,7 @@ private:
     GLModeDef m_modeDef;
     std::vector<SDLControlEntry> m_controlBuffer;
     Mushware::U32 m_controlBufferIndex;
-    std::vector<GLKeys::tKeyValue> m_keysOfInterest;
+    std::vector<Mushware::U32> m_keysOfInterest;
     bool m_firstDelta;
     bool m_doQuit;
 };

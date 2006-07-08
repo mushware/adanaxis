@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } jMGvnnd1/YcpmfZ5naKXKg
 /*
- * $Id: MushRenderMeshDiagnostic.cpp,v 1.2 2006/06/01 15:39:38 southa Exp $
+ * $Id: MushRenderMeshDiagnostic.cpp,v 1.3 2006/06/27 11:58:09 southa Exp $
  * $Log: MushRenderMeshDiagnostic.cpp,v $
+ * Revision 1.3  2006/06/27 11:58:09  southa
+ * Warning fixes
+ *
  * Revision 1.2  2006/06/01 15:39:38  southa
  * DrawArray verification and fixes
  *
@@ -33,6 +36,7 @@
 
 #include "MushRenderUtil.h"
 
+#include "API/mushMedia.h"
 #include "API/mushMushMesh.h"
 #include "API/mushMushGL.h"
 
@@ -52,28 +56,28 @@ MushRenderMeshDiagnostic::MushRenderMeshDiagnostic() :
 void
 MushRenderMeshDiagnostic::MeshRender(const MushRenderSpec& inSpec, const MushMeshMesh& inMesh)
 {
-    if (MushGLUtil::AppHandler().LatchedKeyStateTake(GLKeys::kKeyF1))
+    if (MushGLUtil::AppHandler().LatchedKeyStateTake(MediaKeyboard::kKey_F1))
     {
         m_highlightedFace = 0;
     }
-    if (MushGLUtil::AppHandler().LatchedKeyStateTake(GLKeys::kKeyF2))
+    if (MushGLUtil::AppHandler().LatchedKeyStateTake(MediaKeyboard::kKey_F2))
     {
         --m_highlightedFace;
     }
-    if (MushGLUtil::AppHandler().LatchedKeyStateTake(GLKeys::kKeyF3))
+    if (MushGLUtil::AppHandler().LatchedKeyStateTake(MediaKeyboard::kKey_F3))
     {
         ++m_highlightedFace;
     }
     
-    if (MushGLUtil::AppHandler().LatchedKeyStateTake(GLKeys::kKeyF5))
+    if (MushGLUtil::AppHandler().LatchedKeyStateTake(MediaKeyboard::kKey_F5))
     {
         m_highlightedFacet = 0;
     }
-    if (MushGLUtil::AppHandler().LatchedKeyStateTake(GLKeys::kKeyF6))
+    if (MushGLUtil::AppHandler().LatchedKeyStateTake(MediaKeyboard::kKey_F6))
     {
         --m_highlightedFacet;
     }
-    if (MushGLUtil::AppHandler().LatchedKeyStateTake(GLKeys::kKeyF7))
+    if (MushGLUtil::AppHandler().LatchedKeyStateTake(MediaKeyboard::kKey_F7))
     {
         ++m_highlightedFacet;
     }

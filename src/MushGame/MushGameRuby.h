@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } abz8WfQdtsWpPxv12NZxhA
 /*
- * $Id: MushGameRuby.h,v 1.1 2006/07/07 07:57:29 southa Exp $
+ * $Id: MushGameRuby.h,v 1.2 2006/07/07 18:13:59 southa Exp $
  * $Log: MushGameRuby.h,v $
+ * Revision 1.2  2006/07/07 18:13:59  southa
+ * Menu start and stop
+ *
  * Revision 1.1  2006/07/07 07:57:29  southa
  * Key translation
  *
@@ -39,6 +42,7 @@ class MushGameRuby : public MushRubyEmptyObj<4000>
 public:
     static Mushware::tRubyValue KeySymbolToName(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
     static Mushware::tRubyValue GameModeEnter(Mushware::tRubyValue inSelf);
+    static Mushware::tRubyValue Quit(Mushware::tRubyValue inSelf);
     static void MethodsInstall(void);
     
 private:

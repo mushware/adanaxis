@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } UR7ck0WDr1290ME0NAb0JA
 /*
- * $Id: GameAppHandler.cpp,v 1.60 2005/05/19 13:02:01 southa Exp $
+ * $Id: GameAppHandler.cpp,v 1.61 2006/06/01 15:38:55 southa Exp $
  * $Log: GameAppHandler.cpp,v $
+ * Revision 1.61  2006/06/01 15:38:55  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.60  2005/05/19 13:02:01  southa
  * Mac release work
  *
@@ -384,7 +387,7 @@ void
 GameAppHandler::KeyboardSignal(const GLKeyboardSignal& inSignal)
 {
     bool keyHandled=false;
-    if (inSignal.keyValue.ValueGet() == 27 && inSignal.keyDown)
+    if (inSignal.keyValue == 27 && inSignal.keyDown)
     {
         if (m_appState == kAppStateGame)
         {

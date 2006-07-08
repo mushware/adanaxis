@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } x7wDRgXhtyz4ur55Gakesw
 /*
- * $Id$
- * $Log$
+ * $Id: MushGLRubyFont.cpp,v 1.1 2006/07/02 21:08:54 southa Exp $
+ * $Log: MushGLRubyFont.cpp,v $
+ * Revision 1.1  2006/07/02 21:08:54  southa
+ * Ruby menu work
+ *
  */
 
 #include "MushGLRubyFont.h"
@@ -28,6 +31,8 @@
 MUSHRUBYDATAOBJ_INSTANCE(MushGLFont);
 
 MUSHRUBY_INSTALL(MushGLRubyFont);
+
+#include "API/mushMushMeshRuby.h"
 
 using namespace Mushware;
 using namespace std;
@@ -116,3 +121,44 @@ MushGLRubyFont::Render(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0)
 	Ref(inSelf).Render(MushRubyValue(inArg0).String());
 	return inSelf;
 }
+
+Mushware::tRubyValue
+MushGLRubyFont::RenderAt(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0,
+                         Mushware::tRubyValue inArg1, Mushware::tRubyValue inArg2)
+{
+	Ref(inSelf).RenderAt(
+                         MushRubyValue(inArg0).String(),
+                         t2Val(
+                               MushRubyValue(inArg1).Val(),
+                               MushRubyValue(inArg2).Val()
+                               )
+                         );
+	return inSelf;
+}
+
+Mushware::tRubyValue
+MushGLRubyFont::RenderAtSize(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0,
+                         Mushware::tRubyValue inArg1, Mushware::tRubyValue inArg2, Mushware::tRubyValue inArg3)
+{
+	Ref(inSelf).RenderAtSize(
+                             MushRubyValue(inArg0).String(),
+                             t2Val(
+                                   MushRubyValue(inArg1).Val(),
+                                   MushRubyValue(inArg2).Val()
+                                   ),
+                             t2Val(
+                                   MushRubyValue(inArg3).Val(),
+                                   MushRubyValue(inArg3).Val()
+                                   )
+                             );
+	return inSelf;
+}
+
+Mushware::tRubyValue
+MushGLRubyFont::ColourEquals(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0)
+{
+	WRef(inSelf).ColourSet(MushMeshRubyVector::Ref(inArg0));
+	return inSelf;
+}
+
+

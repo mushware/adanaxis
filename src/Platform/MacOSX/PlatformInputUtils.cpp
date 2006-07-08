@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } JgUEg2PWk/gZRvvuC2bUHw
 /*
- * $Id: PlatformInputUtils.cpp,v 1.17 2006/06/01 15:39:58 southa Exp $
+ * $Id: PlatformInputUtils.cpp,v 1.18 2006/07/07 18:14:00 southa Exp $
  * $Log: PlatformInputUtils.cpp,v $
+ * Revision 1.18  2006/07/07 18:14:00  southa
+ * Menu start and stop
+ *
  * Revision 1.17  2006/06/01 15:39:58  southa
  * DrawArray verification and fixes
  *
@@ -104,10 +107,3 @@ PlatformInputUtils::MouseDeltaOverrideGet(S32& ioXDelta, S32& ioYDelta)
     ioYDelta=yDelta;
 }
 
-
-bool
-PlatformInputUtils::TranslateKey(GLKeys& outKey, const U32 inKeyCode)
-{
-    bool retVal = false;
-    return retVal;
-}

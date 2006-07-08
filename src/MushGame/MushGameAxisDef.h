@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } NnTJcSPyQCJazbsDD4KfIg
 /*
- * $Id: MushGameAxisDef.h,v 1.2 2005/07/08 12:07:07 southa Exp $
+ * $Id: MushGameAxisDef.h,v 1.3 2006/06/01 15:39:20 southa Exp $
  * $Log: MushGameAxisDef.h,v $
+ * Revision 1.3  2006/06/01 15:39:20  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.2  2005/07/08 12:07:07  southa
  * MushGaem control work
  *
@@ -75,8 +78,8 @@ private:
     Mushware::tVal m_deviceSensitivity; //:readwrite
     Mushware::tVal m_deviceDamping; //:readwrite
     
-    GLKeys m_upKey; //:readwrite
-    GLKeys m_downKey; //:readwrite
+    Mushware::U32 m_upKey; //:readwrite
+    Mushware::U32 m_downKey; //:readwrite
     
     Mushware::U32 m_requiredKey; //:readwrite
     
@@ -111,10 +114,10 @@ public:
     void DeviceSensitivitySet(const Mushware::tVal& inValue) { m_deviceSensitivity=inValue; }
     const Mushware::tVal& DeviceDamping(void) const { return m_deviceDamping; }
     void DeviceDampingSet(const Mushware::tVal& inValue) { m_deviceDamping=inValue; }
-    const GLKeys& UpKey(void) const { return m_upKey; }
-    void UpKeySet(const GLKeys& inValue) { m_upKey=inValue; }
-    const GLKeys& DownKey(void) const { return m_downKey; }
-    void DownKeySet(const GLKeys& inValue) { m_downKey=inValue; }
+    const Mushware::U32& UpKey(void) const { return m_upKey; }
+    void UpKeySet(const Mushware::U32& inValue) { m_upKey=inValue; }
+    const Mushware::U32& DownKey(void) const { return m_downKey; }
+    void DownKeySet(const Mushware::U32& inValue) { m_downKey=inValue; }
     const Mushware::U32& RequiredKey(void) const { return m_requiredKey; }
     void RequiredKeySet(const Mushware::U32& inValue) { m_requiredKey=inValue; }
     const Mushware::tVal& MinBound(void) const { return m_minBound; }
@@ -139,7 +142,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } ZoGBtbVdD3Gl8+O+HLw+vw
+//%classPrototypes } goN8QtSgBLWXF0OhOgAcwg
 };
 //%inlineHeader {
 inline std::ostream&

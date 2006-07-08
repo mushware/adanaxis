@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } yY7ZZkvIHHOoUzJzTAQPOQ
 /*
- * $Id: MushGameRuby.cpp,v 1.1 2006/07/07 07:57:29 southa Exp $
+ * $Id: MushGameRuby.cpp,v 1.2 2006/07/07 18:13:59 southa Exp $
  * $Log: MushGameRuby.cpp,v $
+ * Revision 1.2  2006/07/07 18:13:59  southa
+ * Menu start and stop
+ *
  * Revision 1.1  2006/07/07 07:57:29  southa
  * Key translation
  *
@@ -54,9 +57,17 @@ MushGameRuby::GameModeEnter(Mushware::tRubyValue inSelf)
     return kRubyQnil;
 }
 
+Mushware::tRubyValue
+MushGameRuby::Quit(Mushware::tRubyValue inSelf)
+{
+    MushGameUtil::LogicWRef().QuitModeEnter();
+    return kRubyQnil;
+}
+
 void
 MushGameRuby::MethodsInstall(void)
 {
     MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cKeySymbolToName", KeySymbolToName);
     MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cGameModeEnter", GameModeEnter);
+    MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cQuit", Quit);
 }

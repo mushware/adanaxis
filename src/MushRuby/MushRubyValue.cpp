@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } hwIlNOCEH5GsgwGY+rP1Kg
 /*
- * $Id: MushRubyValue.cpp,v 1.10 2006/07/04 16:55:28 southa Exp $
+ * $Id: MushRubyValue.cpp,v 1.11 2006/07/07 07:57:29 southa Exp $
  * $Log: MushRubyValue.cpp,v $
+ * Revision 1.11  2006/07/07 07:57:29  southa
+ * Key translation
+ *
  * Revision 1.10  2006/07/04 16:55:28  southa
  * Ruby key handling
  *
@@ -69,6 +72,11 @@ MushRubyValue::MushRubyValue() :
 }
 
 MushRubyValue::MushRubyValue(Mushware::U32 inValue) :
+    m_value(UINT2NUM(inValue))
+{
+}
+
+MushRubyValue::MushRubyValue(Mushware::tVal inValue) :
     m_value(UINT2NUM(inValue))
 {
 }

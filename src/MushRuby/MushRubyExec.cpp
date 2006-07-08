@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } ZcziFKLJA7zY/8U6Ju48NA
 /*
- * $Id: MushRubyExec.cpp,v 1.7 2006/07/02 16:34:46 southa Exp $
+ * $Id: MushRubyExec.cpp,v 1.8 2006/07/04 16:55:28 southa Exp $
  * $Log: MushRubyExec.cpp,v $
+ * Revision 1.8  2006/07/04 16:55:28  southa
+ * Ruby key handling
+ *
  * Revision 1.7  2006/07/02 16:34:46  southa
  * Ruby rearrangement
  *
@@ -156,6 +159,28 @@ MushRubyExec::Call(Mushware::tRubyValue inRecv,  Mushware::tRubyID inFunc)
     m_callReceiver = inRecv;
     m_callFunction = inFunc;
     m_callNumArgs = 0;
+    
+    retVal = rb_protect(StaticWrapProtect, 0, &rubyError);
+    
+    if (rubyError)
+    {
+        throw MushRubyFail();
+    }
+    return retVal;
+}
+
+Mushware::tRubyValue
+MushRubyExec::Call(Mushware::tRubyValue inRecv, Mushware::tRubyID inFunc,
+                   MushRubyValue inArg0)
+{
+	tRubyValue retVal;
+    tRubyError rubyError;
+    
+    m_callReceiver = inRecv;
+    m_callFunction = inFunc;
+    MUSHCOREASSERT(m_callArgs.size() >= 1);
+    m_callArgs[0] = inArg0.Value();
+    m_callNumArgs = 1;
     
     retVal = rb_protect(StaticWrapProtect, 0, &rubyError);
     

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } zS6MRI08vU38Tp9aNbV8RQ
 /*
- * $Id: MushGameVolatileData.h,v 1.6 2006/07/04 16:55:28 southa Exp $
+ * $Id: MushGameVolatileData.h,v 1.7 2006/07/07 18:13:59 southa Exp $
  * $Log: MushGameVolatileData.h,v $
+ * Revision 1.7  2006/07/07 18:13:59  southa
+ * Menu start and stop
+ *
  * Revision 1.6  2006/07/04 16:55:28  southa
  * Ruby key handling
  *
@@ -59,6 +62,7 @@ public:
         kGameModeNone,
         kGameModeMenu,
         kGameModeGame,
+        kGameModeQuit,
         kGameModeNext
     };
     

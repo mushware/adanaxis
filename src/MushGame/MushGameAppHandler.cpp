@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } bC49LKe3G5tsyGqAVa5gyw
 /*
- * $Id: MushGameAppHandler.cpp,v 1.7 2006/07/04 16:55:27 southa Exp $
+ * $Id: MushGameAppHandler.cpp,v 1.8 2006/07/07 18:13:58 southa Exp $
  * $Log: MushGameAppHandler.cpp,v $
+ * Revision 1.8  2006/07/07 18:13:58  southa
+ * Menu start and stop
+ *
  * Revision 1.7  2006/07/04 16:55:27  southa
  * Ruby key handling
  *
@@ -248,8 +251,8 @@ MushGameAppHandler::AxisTicker(Mushware::tMsec inTimeslice)
         MushGameAxisDef& axisDefRef = m_axisDefs[i];
         if (axisDefRef.UseDevice())
         {
-            GLKeys requiredKey = axisDefRef.RequiredKey();
-            if (requiredKey.Value() != 0 && KeyStateGet(requiredKey))
+            U32 requiredKey = axisDefRef.RequiredKey();
+            if (requiredKey != 0 && KeyStateGet(requiredKey))
             {
                 AxisFromDeviceUpdate(axisDefRef, amount);
             }
@@ -314,7 +317,7 @@ MushGameAppHandler::KeyTicker(Mushware::tMsec inTimeslice)
     for (U32 i=0; i<m_keyDefs.size(); ++i)
     {
         MushGameKeyDef& keyDefRef = m_keyDefs[i];
-        GLKeys keyValue = keyDefRef.KeyValue();
+        U32 keyValue = keyDefRef.KeyValue();
         bool keyState = KeyStateGet(keyValue);
         if (keyState != keyDefRef.State())
         {
@@ -403,17 +406,24 @@ MushGameAppHandler::KeyboardSignal(const GLKeyboardSignal& inSignal)
 {
     bool keyHandled=false;
     
-    if (m_currentRef.Exists())
+    if (inSignal.KeyValue() == 27 &&
+        MediaKeyboard::HasModifier(inSignal.KeyModifier(), MediaKeyboard::kModCtrl) &&
+        inSignal.KeyDown())
+    {
+        // Emergency quit
+        QuitStateEnter();
+        keyHandled=true;
+    }
+    else if (m_currentRef.Exists())
     {
         keyHandled = m_currentRef.RefGet().KeyboardSignal(inSignal, *this);
     }
-    else if (inSignal.keyValue.ValueGet() == 27 && inSignal.keyDown)
+    else if (inSignal.KeyValue() == 27 && inSignal.KeyDown())
     {
         // Used when there is no current game
         QuitStateEnter();
         keyHandled=true;
     }
-
     
     if (!keyHandled)
     {

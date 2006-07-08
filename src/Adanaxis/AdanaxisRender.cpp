@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } Hr8bvS7fc+x0pR9DrFcIZw
 /*
- * $Id: AdanaxisRender.cpp,v 1.29 2006/07/02 21:08:54 southa Exp $
+ * $Id: AdanaxisRender.cpp,v 1.30 2006/07/07 18:13:57 southa Exp $
  * $Log: AdanaxisRender.cpp,v $
+ * Revision 1.30  2006/07/07 18:13:57  southa
+ * Menu start and stop
+ *
  * Revision 1.29  2006/07/02 21:08:54  southa
  * Ruby menu work
  *
@@ -255,7 +258,12 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
         MushGLUtil::IdentityPrologue();
         MushGLUtil::OrthoPrologue();
         GLState::ColourSet(1.0,1.0,1.0,1.0);
-        MushRubyExec::Sgl().Call(pVolData->RubyGame(), MushRubyIntern::mRender());
+        
+        U32 timeNow = AdanaxisUtil::AppHandler().MillisecondsGet();
+        
+        MushRubyExec::Sgl().Call(pVolData->RubyGame(),
+                                 MushRubyIntern::mRender(),
+                                 MushRubyValue(timeNow));
         MushGLUtil::OrthoEpilogue();
         MushGLUtil::IdentityEpilogue();
     }

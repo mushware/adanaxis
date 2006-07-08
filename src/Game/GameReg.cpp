@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } w2A217EHVnN/AC475uoR/A
 /*
- * $Id: GameReg.cpp,v 1.9 2005/07/02 00:42:37 southa Exp $
+ * $Id: GameReg.cpp,v 1.10 2006/06/01 15:38:59 southa Exp $
  * $Log: GameReg.cpp,v $
+ * Revision 1.10  2006/06/01 15:38:59  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.9  2005/07/02 00:42:37  southa
  * Conditioning tweaks
  *
@@ -58,6 +61,7 @@
 #include "GameUtils.h"
 
 #include "mushGL.h"
+#include "mushMedia.h"
 #include "mushPlatform.h"
 
 
@@ -75,7 +79,7 @@ GameReg::GameReg() :
 void
 GameReg::Process(GameAppHandler& inAppHandler)
 {
-    if (inAppHandler.LatchedKeyStateTake(GLKeys::kKeyMouse1))
+    if (inAppHandler.LatchedKeyStateTake(MediaKeyboard::kKeyMouse0))
     {
         try
         {

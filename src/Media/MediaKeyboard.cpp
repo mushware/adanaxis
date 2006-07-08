@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 7mgogG6D/5MIAEtL8RcBUQ
 /*
- * $Id$
- * $Log$
+ * $Id: MediaKeyboard.cpp,v 1.1 2006/07/07 07:57:29 southa Exp $
+ * $Log: MediaKeyboard.cpp,v $
+ * Revision 1.1  2006/07/07 07:57:29  southa
+ * Key translation
+ *
  */
 
 #include "MediaKeyboard.h"
@@ -33,5 +36,40 @@ using namespace std;
 const char *
 MediaKeyboard::KeySymbolToName(Mushware::U32 keyValue)
 {
-    return SDL_GetKeyName(static_cast<SDLKey>(keyValue));
+    const char *retVal = "unknown";
+    
+    if (keyValue < kKey_LAST)
+    {
+        retVal = SDL_GetKeyName(static_cast<SDLKey>(keyValue));
+    }
+    else
+    {
+        switch (keyValue)
+        {
+            case kKeyMouse0:
+                retVal = "mouse0";
+                break;
+                
+            case kKeyMouse1:
+                retVal = "mouse1";
+                break;
+                
+            case kKeyMouse2:
+                retVal = "mouse2";
+                break;
+                
+            case kKeyMouse3:
+                retVal = "mouse3";
+                break;
+                
+            case kKeyMouse4:
+                retVal = "mouse4";
+                break;
+
+            default:
+                // Leave as unknown
+                break;
+        }
+    }
+    return retVal;
 }

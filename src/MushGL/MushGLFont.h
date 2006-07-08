@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } GszAZNIc4XTjBhyVnPxI7g
 /*
- * $Id: MushGLFont.h,v 1.2 2006/07/02 09:43:27 southa Exp $
+ * $Id: MushGLFont.h,v 1.3 2006/07/02 21:08:54 southa Exp $
  * $Log: MushGLFont.h,v $
+ * Revision 1.3  2006/07/02 21:08:54  southa
+ * Ruby menu work
+ *
  * Revision 1.2  2006/07/02 09:43:27  southa
  * MushGLFont work
  *
@@ -43,14 +46,18 @@
 class MushGLFont : public MushcoreVirtualObject
 {
 public:
+    MushGLFont();
     void TextureNameSet(const std::string& inName) { m_textureRef.NameSet(inName); }
     void Render(const std::string& inStr) const;
+    void RenderAt(const std::string& inStr, const Mushware::t2Val& inCoords) const;
+    void RenderAtSize(const std::string& inStr, const Mushware::t2Val& inCoords, const Mushware::t2Val& inSize) const;
     
 private:
     MushGLTexture::tDataRef m_textureRef; //:read
     Mushware::t2U32 m_divide; //:readwrite
     Mushware::t2Val m_extent; //:readwrite
     Mushware::t2Val m_size; //:readwrite
+    Mushware::t4Val m_colour; //:readwrite
     
 //%classPrototypes {
 public:
@@ -61,6 +68,8 @@ public:
     void ExtentSet(const Mushware::t2Val& inValue) { m_extent=inValue; }
     const Mushware::t2Val& Size(void) const { return m_size; }
     void SizeSet(const Mushware::t2Val& inValue) { m_size=inValue; }
+    const Mushware::t4Val& Colour(void) const { return m_colour; }
+    void ColourSet(const Mushware::t4Val& inValue) { m_colour=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -68,7 +77,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } w+P2RY7PGy6iK8DU4ykf0g
+//%classPrototypes } xyixIJzuvxii+EvJypurYA
 };
 //%inlineHeader {
 inline std::ostream&

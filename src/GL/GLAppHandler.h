@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } TPx6ydKbT+Ng+tUVZS0gZA
 /*
- * $Id: GLAppHandler.h,v 1.32 2005/07/05 13:52:22 southa Exp $
+ * $Id: GLAppHandler.h,v 1.33 2006/06/01 15:38:49 southa Exp $
  * $Log: GLAppHandler.h,v $
+ * Revision 1.33  2006/06/01 15:38:49  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.32  2005/07/05 13:52:22  southa
  * Adanaxis work
  *
@@ -138,7 +141,6 @@
  *
  */
 
-#include "GLKeys.h"
 #include "mushMushcore.h"
 
 class GLModeDef;
@@ -147,8 +149,8 @@ class GLAppHandler : public MushcoreAppHandler
 {
 public:
     virtual ~GLAppHandler() {}
-    virtual bool KeyStateGet(const GLKeys& inKey) const = 0;
-    virtual bool LatchedKeyStateTake(const GLKeys& inKey) = 0;
+    virtual bool KeyStateGet(const Mushware::U32 inKey) const = 0;
+    virtual bool LatchedKeyStateTake(const Mushware::U32 inKey) = 0;
     virtual void MousePositionGet(Mushware::tVal& outX, Mushware::tVal& outY) const = 0;
     virtual void UnboundedMousePositionGet(Mushware::S32& outX, Mushware::S32& outY) const = 0;
     virtual void EnterScreen(const GLModeDef& inDef) = 0;
@@ -165,7 +167,7 @@ public:
     virtual const GLModeDef& CurrentModeDefGet(void) = 0;
     virtual void PollForControlEvents(void) = 0;
     virtual void AppQuit(void) = 0;
-    virtual void KeysOfInterestSet(const std::vector<GLKeys::tKeyValue>& inKeyValues) = 0;
+    virtual void KeysOfInterestSet(const std::vector<Mushware::U32>& inKeyValues) = 0;
     virtual void ReadHistoricControlState(Mushware::S32& outUnboundedMouseX, Mushware::S32& outUnboundedMouseY, std::vector<bool>& outKeys, Mushware::tVal inMsec) = 0;
 };
 //%includeGuardEnd {

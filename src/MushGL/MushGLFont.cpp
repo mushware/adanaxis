@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } Zq+IM0uOYEygMymunhBN6w
 /*
- * $Id: MushGLFont.cpp,v 1.2 2006/07/02 09:43:27 southa Exp $
+ * $Id: MushGLFont.cpp,v 1.3 2006/07/02 21:08:54 southa Exp $
  * $Log: MushGLFont.cpp,v $
+ * Revision 1.3  2006/07/02 21:08:54  southa
+ * Ruby menu work
+ *
  * Revision 1.2  2006/07/02 09:43:27  southa
  * MushGLFont work
  *
@@ -32,6 +35,7 @@
 #include "MushGLFont.h"
 
 #include "MushGLState.h"
+#include "MushGLUtil.h"
 
 #include "mushMushRuby.h"
 
@@ -40,8 +44,14 @@ using namespace std;
 
 MUSHCORE_DATA_INSTANCE(MushGLFont);
 
+MushGLFont::MushGLFont() :
+    m_colour(1,1,1,1)
+{
+}
+
 void
-MushGLFont::Render(const std::string& inStr) const
+MushGLFont::RenderAtSize(const std::string& inStr, const Mushware::t2Val& inCoords,
+                         const Mushware::t2Val& inSize) const
 {
     U32 strSize = inStr.size();
 
@@ -50,14 +60,16 @@ MushGLFont::Render(const std::string& inStr) const
     
     t4U32 texSize = m_textureRef.WRef().Size();
     
+    MushGLUtil::ColourSet(m_colour);
+    
     // Already expect to be in kRenderState2D    
     glBegin(GL_QUADS);
     
-    tVal xSize = m_size.X();
-    tVal ySize = m_size.Y();
+    tVal xSize = inSize.X();
+    tVal ySize = inSize.Y();
     
-    tVal xPos = 0;
-    tVal yPos = -ySize/2;
+    tVal xPos = inCoords.X();
+    tVal yPos = inCoords.Y() - ySize/2;
     tVal uScale = m_extent.X() / texSize.X();
     tVal vScale = m_extent.Y() / texSize.Y();
     
@@ -93,6 +105,17 @@ MushGLFont::Render(const std::string& inStr) const
     glEnd();
 }
 
+void
+MushGLFont::Render(const std::string& inStr) const
+{
+    RenderAtSize(inStr, t2Val(0,0), m_size);
+}
+
+void
+MushGLFont::RenderAt(const std::string& inStr, const Mushware::t2Val& inCoords) const
+{
+    RenderAtSize(inStr, inCoords, m_size);
+}
 
 //%outOfLineFunctions {
 
@@ -130,7 +153,8 @@ MushGLFont::AutoPrint(std::ostream& ioOut) const
     ioOut << "textureRef=" << m_textureRef << ", ";
     ioOut << "divide=" << m_divide << ", ";
     ioOut << "extent=" << m_extent << ", ";
-    ioOut << "size=" << m_size;
+    ioOut << "size=" << m_size << ", ";
+    ioOut << "colour=" << m_colour;
     ioOut << "]";
 }
 bool
@@ -158,6 +182,10 @@ MushGLFont::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTa
     {
         ioIn >> m_size;
     }
+    else if (inTagStr == "colour")
+    {
+        ioIn >> m_colour;
+    }
     else 
     {
         return false;
@@ -175,5 +203,7 @@ MushGLFont::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_extent;
     ioOut.TagSet("size");
     ioOut << m_size;
+    ioOut.TagSet("colour");
+    ioOut << m_colour;
 }
-//%outOfLineFunctions } 1z66tjSVil8HcxAD2qKSWQ
+//%outOfLineFunctions } IbezCX7S8o8eqM5hb6Jsbg

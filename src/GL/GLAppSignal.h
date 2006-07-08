@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } l+eCMpM1jwRsigcFyg3h3g
 /*
- * $Id: GLAppSignal.h,v 1.17 2005/07/06 19:08:26 southa Exp $
+ * $Id: GLAppSignal.h,v 1.18 2006/06/01 15:38:49 southa Exp $
  * $Log: GLAppSignal.h,v $
+ * Revision 1.18  2006/06/01 15:38:49  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.17  2005/07/06 19:08:26  southa
  * Adanaxis control work
  *
@@ -78,7 +81,6 @@
  *
  */
 
-#include "GLKeys.h"
 #include "mushMushcore.h"
 
 class GLAppSignal: public MushcoreAppSignal
@@ -97,21 +99,24 @@ public:
 class GLKeyboardSignal: public MushcoreAppSignal
 {
 public:
-    GLKeyboardSignal(bool inKeyDown, GLKeys inKeyValue, Mushware::tVal inMouseX, Mushware::tVal inMouseY):
+    GLKeyboardSignal(bool inKeyDown, Mushware::U32 inKeyValue, Mushware::U32 inKeyModifier, Mushware::tVal inMouseX, Mushware::tVal inMouseY):
         MushcoreAppSignal(GLAppSignal::kKeyboard),
         keyDown(inKeyDown),
         keyValue(inKeyValue),
+        keyModifier(inKeyModifier),
         mouseX(inMouseX),
         mouseY(inMouseY)
         {}
     
-    const bool& KeyDown(void) { return keyDown; }
-    const GLKeys& KeyValue(void) { return keyValue; }
-    const Mushware::tVal& MouseX(void) { return mouseX; }
-    const Mushware::tVal& MouseY(void) { return mouseY; }
+    bool KeyDown(void) const { return keyDown; }
+    Mushware::U32 KeyValue(void) const { return keyValue; }
+    Mushware::U32 KeyModifier(void) const { return keyModifier; }
+    Mushware::tVal MouseX(void) const { return mouseX; }
+    Mushware::tVal MouseY(void) const { return mouseY; }
     
     bool keyDown;
-    GLKeys keyValue;
+    Mushware::U32 keyValue;
+    Mushware::U32 keyModifier;
     Mushware::tVal mouseX;
     Mushware::tVal mouseY;
 };

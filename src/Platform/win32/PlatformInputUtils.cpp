@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } p/velz2TSLslKI8kFYOmIw
 /*
- * $Id: PlatformInputUtils.cpp,v 1.15 2005/05/26 00:46:40 southa Exp $
+ * $Id: PlatformInputUtils.cpp,v 1.16 2006/06/01 15:39:58 southa Exp $
  * $Log: PlatformInputUtils.cpp,v $
+ * Revision 1.16  2006/06/01 15:39:58  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.15  2005/05/26 00:46:40  southa
  * Made buildable on win32
  *
@@ -91,11 +94,4 @@ using namespace std;
 void
 PlatformInputUtils::MouseDeltaOverrideGet(S32& ioXDelta, S32& ioYDelta)
 {
-}
-
-bool
-PlatformInputUtils::TranslateKey(GLKeys& outKey, const U32 inKeyCode)
-{
-    bool retVal = false;
-    return retVal;
 }

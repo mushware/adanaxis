@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 73do2LMm7sjCSuxgk8yjpQ
 /*
- * $Id$
- * $Log$
+ * $Id: MushGLRubyFont.h,v 1.1 2006/07/02 21:08:55 southa Exp $
+ * $Log: MushGLRubyFont.h,v $
+ * Revision 1.1  2006/07/02 21:08:55  southa
+ * Ruby menu work
+ *
  */
 
 #include "MushGLStandard.h"
@@ -37,7 +40,11 @@ class MushGLRubyFont : public MushRubyDataObj<MushGLFont>
 {
 public:
     static Mushware::tRubyValue Render(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
-    
+    static Mushware::tRubyValue RenderAt(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0,
+                                         Mushware::tRubyValue inArg1, Mushware::tRubyValue inArg2);
+    static Mushware::tRubyValue RenderAtSize(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0,
+                                         Mushware::tRubyValue inArg1, Mushware::tRubyValue inArg2, Mushware::tRubyValue inArg3);
+    static Mushware::tRubyValue ColourEquals(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);    
 private:
 };
 
@@ -45,6 +52,9 @@ MUSHRUBYDATAOBJ_INSTALL(MushGLFont)(void)
 {
 	DataObjInstall("MushGLFont");
     MushRubyUtil::MethodDefineOneParam(Klass(), "mRender", MushGLRubyFont::Render);
+    MushRubyUtil::MethodDefineThreeParams(Klass(), "mRenderAt", MushGLRubyFont::RenderAt);
+    MushRubyUtil::MethodDefineFourParams(Klass(), "mRenderAtSize", MushGLRubyFont::RenderAtSize);
+    MushRubyUtil::MethodDefineOneParam(Klass(), "colour=", MushGLRubyFont::ColourEquals);
 }
 //%includeGuardEnd {
 #endif

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } UpB+98ShDY+5JMJVLGBArQ
 /*
- * $Id: MushRubyExec.h,v 1.4 2006/06/13 10:35:05 southa Exp $
+ * $Id: MushRubyExec.h,v 1.5 2006/07/04 16:55:28 southa Exp $
  * $Log: MushRubyExec.h,v $
+ * Revision 1.5  2006/07/04 16:55:28  southa
+ * Ruby key handling
+ *
  * Revision 1.4  2006/06/13 10:35:05  southa
  * Ruby data objects
  *
@@ -52,6 +55,8 @@ public:
     Mushware::tRubyValue Call(const std::string& inStr);
     Mushware::tRubyValue Call(Mushware::tRubyValue inRecv, const std::string& inFunc);
     Mushware::tRubyValue Call(Mushware::tRubyValue inRecv, Mushware::tRubyID inFunc);
+    Mushware::tRubyValue Call(Mushware::tRubyValue inRecv, Mushware::tRubyID inFunc,
+                              MushRubyValue inArg0);
     Mushware::tRubyValue Call(Mushware::tRubyValue inRecv, Mushware::tRubyID inFunc,
                               MushRubyValue inArg0, MushRubyValue inArg1);
     void Require(const std::string& inStr);

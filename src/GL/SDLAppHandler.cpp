@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } X577BrzUUfCyG/exJzzEYQ
 /*
- * $Id: SDLAppHandler.cpp,v 1.53 2006/07/04 16:55:27 southa Exp $
+ * $Id: SDLAppHandler.cpp,v 1.54 2006/07/07 18:13:57 southa Exp $
  * $Log: SDLAppHandler.cpp,v $
+ * Revision 1.54  2006/07/07 18:13:57  southa
+ * Menu start and stop
+ *
  * Revision 1.53  2006/07/04 16:55:27  southa
  * Ruby key handling
  *
@@ -201,8 +204,8 @@ using namespace std;
 SDLAppHandler::SDLAppHandler():
     m_redisplay(false),
     m_visible(true),
-    m_keyState(GLKeys::kNumberOfKeys, false),
-    m_latchedKeyState(GLKeys::kNumberOfKeys, false),
+    m_keyState(MediaKeyboard::kNumKeys, false),
+    m_latchedKeyState(MediaKeyboard::kNumKeys, false),
     m_mouseX(0),
     m_mouseY(0),
     m_unboundedMouseX(0),
@@ -236,7 +239,7 @@ SDLAppHandler::Display(void)
 void
 SDLAppHandler::KeyboardSignal(const GLKeyboardSignal& inSignal)
 {
-    U32 keyValue = inSignal.keyValue.ValueGet();
+    U32 keyValue = inSignal.KeyValue();
     if (keyValue >= m_keyState.size())
     {
         m_keyState.resize(keyValue+1, false);
@@ -252,30 +255,30 @@ SDLAppHandler::KeyboardSignal(const GLKeyboardSignal& inSignal)
 }
 
 bool
-SDLAppHandler::KeyStateGet(const GLKeys& inKey) const
+SDLAppHandler::KeyStateGet(const Mushware::U32 inKey) const
 {
-    if (inKey.ValueGet() >= m_keyState.size())
+    if (inKey >= m_keyState.size())
     {
         ostringstream message;
-        message << "Key number " << inKey.ValueGet() << " too large";
+        message << "Key number " << inKey << " too large";
         throw MushcoreDataFail(message.str());
     }
-    return m_keyState[inKey.ValueGet()];
+    return m_keyState[inKey];
 }
 
 bool
-SDLAppHandler::LatchedKeyStateTake(const GLKeys& inKey)
+SDLAppHandler::LatchedKeyStateTake(const Mushware::U32 inKey)
 {
-    if (inKey.ValueGet() >= m_keyState.size())
+    if (inKey >= m_keyState.size())
     {
         ostringstream message;
-        message << "Key number " << inKey.ValueGet() << " too large";
+        message << "Key number " << inKey << " too large";
         throw MushcoreDataFail(message.str());
     }
-    bool state=m_latchedKeyState[inKey.ValueGet()];
+    bool state=m_latchedKeyState[inKey];
     if (state)
     {
-        m_latchedKeyState[inKey.ValueGet()]=false;
+        m_latchedKeyState[inKey]=false;
     }
     return state;
 }
@@ -485,7 +488,7 @@ SDLAppHandler::MainLoop(void)
         }
         Idle();
     }
-    // Required for X11
+
     MediaSDL::Sgl().QuitVideoIfRequired();
 }
 
@@ -519,7 +522,7 @@ SDLAppHandler::PollForControlEvents(void)
         {
             case SDL_KEYDOWN:
             case SDL_KEYUP:
-                Signal(GLKeyboardSignal((event.key.type==SDL_KEYDOWN), static_cast<U32>(event.key.keysym.sym), m_mouseX, m_mouseY));
+                Signal(GLKeyboardSignal((event.key.type==SDL_KEYDOWN), static_cast<U32>(event.key.keysym.sym), static_cast<U32>(event.key.keysym.mod), m_mouseX, m_mouseY));
                 break;
 
             case SDL_MOUSEMOTION:
@@ -543,7 +546,7 @@ SDLAppHandler::PollForControlEvents(void)
             {
                 U32 button=event.button.button-1;
                 if (event.button.button < 1 ||
-                    button > (GLKeys::kKeyMouse5 - GLKeys::kKeyMouse1))
+                    button > (MediaKeyboard::kKeyMouse4 - MediaKeyboard::kKeyMouse0))
                 {
                     cerr << "Button index " << button << " ignored" << endl;
                     break;
@@ -551,7 +554,8 @@ SDLAppHandler::PollForControlEvents(void)
                 m_mouseX=event.button.x;
                 m_mouseY=event.button.y;
                 Signal(GLKeyboardSignal((event.button.state == SDL_PRESSED),
-                                        GLKeys(GLKeys::kKeyMouse1+button),
+                                        MediaKeyboard::kKeyMouse0+button,
+                                        0,
                                         event.button.x, event.button.y));
             }
             break;
@@ -566,7 +570,7 @@ SDLAppHandler::PollForControlEvents(void)
 }
 
 void
-SDLAppHandler::KeysOfInterestSet(const vector<GLKeys::tKeyValue>& inKeyValues)
+SDLAppHandler::KeysOfInterestSet(const vector<Mushware::U32>& inKeyValues)
 {
     m_keysOfInterest = inKeyValues;
 }

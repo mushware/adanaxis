@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 0OQkM+NcUqCBag3zq+cczA
 /*
- * $Id: MushGLUtil.h,v 1.3 2006/06/01 20:12:59 southa Exp $
+ * $Id: MushGLUtil.h,v 1.4 2006/06/30 15:05:33 southa Exp $
  * $Log: MushGLUtil.h,v $
+ * Revision 1.4  2006/06/30 15:05:33  southa
+ * Texture and buffer purge
+ *
  * Revision 1.3  2006/06/01 20:12:59  southa
  * Initial texture caching
  *
@@ -68,6 +71,7 @@ public:
     static void BufferPurge(void);
     static void TexturePurge(void);
     static void Purge(void);
+    static void ColourSet(const Mushware::t4Val& inColour);
     
 private:
 	static void ThrowGLError(GLenum inGLErr);

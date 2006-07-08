@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 0muLs39tLYXeMc8huJWOaw
 /*
- * $Id: PlatformInputUtils.h,v 1.17 2005/05/19 13:02:21 southa Exp $
+ * $Id: PlatformInputUtils.h,v 1.18 2006/06/01 15:39:57 southa Exp $
  * $Log: PlatformInputUtils.h,v $
+ * Revision 1.18  2006/06/01 15:39:57  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.17  2005/05/19 13:02:21  southa
  * Mac release work
  *
@@ -94,7 +97,6 @@ class PlatformInputUtils
 {
 public:
     static void MouseDeltaOverrideGet(Mushware::S32& ioXDelta, Mushware::S32& ioYDelta);
-    static bool TranslateKey(GLKeys& outKey, const Mushware::U32 inKeyCode);
 };
 
 
