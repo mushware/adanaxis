@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } bC49LKe3G5tsyGqAVa5gyw
 /*
- * $Id: MushGameAppHandler.cpp,v 1.8 2006/07/07 18:13:58 southa Exp $
+ * $Id: MushGameAppHandler.cpp,v 1.9 2006/07/08 16:05:58 southa Exp $
  * $Log: MushGameAppHandler.cpp,v $
+ * Revision 1.9  2006/07/08 16:05:58  southa
+ * Ruby menus and key handling
+ *
  * Revision 1.8  2006/07/07 18:13:58  southa
  * Menu start and stop
  *
@@ -120,6 +123,28 @@ MushGameAppHandler::GroupingNameSet(const std::string& inName)
     std::string controlMailboxName = inName+"-controlmailbox";
     MushcoreData<MushGameMailbox>::Sgl().GetOrCreate(controlMailboxName);
     m_controlMailboxRef.NameSet(controlMailboxName);
+}
+
+const MushGameAxisDef&
+MushGameAppHandler::AxisDef(Mushware::U32 inAxisNum)
+{
+    if (inAxisNum >= m_axisDefs.size())
+    {
+        throw MushcoreDataFail("Axis number too high");
+    }
+
+    return m_axisDefs[inAxisNum];
+}
+
+const MushGameKeyDef&
+MushGameAppHandler::KeyDef(Mushware::U32 inKeyNum)
+{
+    if (inKeyNum >= m_keyDefs.size())
+    {
+        throw MushcoreDataFail("Key number too high");
+    }
+
+    return m_keyDefs[inKeyNum];
 }
 
 void

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } abz8WfQdtsWpPxv12NZxhA
 /*
- * $Id: MushGameRuby.h,v 1.2 2006/07/07 18:13:59 southa Exp $
+ * $Id: MushGameRuby.h,v 1.3 2006/07/08 16:05:59 southa Exp $
  * $Log: MushGameRuby.h,v $
+ * Revision 1.3  2006/07/08 16:05:59  southa
+ * Ruby menus and key handling
+ *
  * Revision 1.2  2006/07/07 18:13:59  southa
  * Menu start and stop
  *
@@ -43,6 +46,7 @@ public:
     static Mushware::tRubyValue KeySymbolToName(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
     static Mushware::tRubyValue GameModeEnter(Mushware::tRubyValue inSelf);
     static Mushware::tRubyValue Quit(Mushware::tRubyValue inSelf);
+    static Mushware::tRubyValue AxisKeySymbol(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
     static void MethodsInstall(void);
     
 private:

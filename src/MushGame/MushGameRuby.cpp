@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } yY7ZZkvIHHOoUzJzTAQPOQ
 /*
- * $Id: MushGameRuby.cpp,v 1.2 2006/07/07 18:13:59 southa Exp $
+ * $Id: MushGameRuby.cpp,v 1.3 2006/07/08 16:05:59 southa Exp $
  * $Log: MushGameRuby.cpp,v $
+ * Revision 1.3  2006/07/08 16:05:59  southa
+ * Ruby menus and key handling
+ *
  * Revision 1.2  2006/07/07 18:13:59  southa
  * Menu start and stop
  *
@@ -32,6 +35,8 @@
 #include "MushGameRuby.h"
 
 #include "MushGameAppHandler.h"
+#include "MushGameAxisDef.h"
+#include "MushGameKeyDef.h"
 #include "MushGameUtil.h"
 
 #include "API/mushMedia.h"
@@ -64,10 +69,54 @@ MushGameRuby::Quit(Mushware::tRubyValue inSelf)
     return kRubyQnil;
 }
 
+Mushware::tRubyValue
+MushGameRuby::AxisKeySymbol(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0)
+{
+    MushRubyValue axisID(inArg0);
+    
+    U32 axisNum = axisID.U32() / 4;
+    U32 subType = axisID.U32() % 4;
+    
+    const MushGameAxisDef& axisRef = MushGameUtil::AppHandler().AxisDef(axisNum);
+    
+    U32 symbolValue = 0;
+    switch (subType)
+    {
+        case 0:
+        {
+            symbolValue = axisRef.DownKey();
+        }
+        break;
+            
+        case 1:
+        {
+            symbolValue = axisRef.UpKey();
+        }
+        break;
+        
+        case 2:
+        {
+            symbolValue = axisRef.RequiredKey();
+        }
+        break;
+            
+        default:
+        {
+            ostringstream message;
+            message << "Bad axis symbol number " << axisID.U32();
+            MushRubyUtil::Raise(message.str());
+        }
+        break;
+    }    
+
+    return MushRubyValue(symbolValue).Value();
+}
+
 void
 MushGameRuby::MethodsInstall(void)
 {
     MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cKeySymbolToName", KeySymbolToName);
     MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cGameModeEnter", GameModeEnter);
     MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cQuit", Quit);
+    MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cAxisKeySymbol", AxisKeySymbol);
 }

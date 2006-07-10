@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 7mgogG6D/5MIAEtL8RcBUQ
 /*
- * $Id: MediaKeyboard.cpp,v 1.1 2006/07/07 07:57:29 southa Exp $
+ * $Id: MediaKeyboard.cpp,v 1.2 2006/07/08 16:05:57 southa Exp $
  * $Log: MediaKeyboard.cpp,v $
+ * Revision 1.2  2006/07/08 16:05:57  southa
+ * Ruby menus and key handling
+ *
  * Revision 1.1  2006/07/07 07:57:29  southa
  * Key translation
  *
@@ -37,7 +40,7 @@ const char *
 MediaKeyboard::KeySymbolToName(Mushware::U32 keyValue)
 {
     const char *retVal = "unknown";
-    
+
     if (keyValue < kKey_LAST)
     {
         retVal = SDL_GetKeyName(static_cast<SDLKey>(keyValue));

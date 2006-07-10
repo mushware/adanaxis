@@ -2706,6 +2706,8 @@
 		7A6110D40A5D7C0F00D8F31F /* MushGameRuby.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushGameRuby.cpp; sourceTree = "<group>"; };
 		7A6119F70A5E440100AE9F3A /* MediaKeyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaKeyboard.h; sourceTree = "<group>"; };
 		7A6119F80A5E440100AE9F3A /* MediaKeyboard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MediaKeyboard.cpp; sourceTree = "<group>"; };
+		7A614A7D0A6280CD00E8FCEF /* AdanaxisMenu.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AdanaxisMenu.rb; sourceTree = "<group>"; };
+		7A614A980A62951900E8FCEF /* AdanaxisControl.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AdanaxisControl.rb; sourceTree = "<group>"; };
 		7A6168550A5FF25E0046188D /* MushMenu.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = MushMenu.rb; sourceTree = "<group>"; };
 		7A61B10A07A68FEA00C6B670 /* MushMeshGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushMeshGroup.h; sourceTree = "<group>"; };
 		7A61B10B07A68FEA00C6B670 /* MushMeshGroup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushMeshGroup.cpp; sourceTree = "<group>"; };
@@ -5760,8 +5762,10 @@
 			children = (
 				7AF19B980A41654900BFE452 /* doc */,
 				7A5F18250A3DC12700B46F5F /* Adanaxis.rb */,
+				7A614A980A62951900E8FCEF /* AdanaxisControl.rb */,
 				7A35AEFB0A481B5F00DB00A1 /* AdanaxisGame.rb */,
 				7A5BA8260A4955C400DC847A /* AdanaxisKhazi.rb */,
+				7A614A7D0A6280CD00E8FCEF /* AdanaxisMenu.rb */,
 				7A3E0D230A4822460078B650 /* AdanaxisSpace.rb */,
 				7A5B14F20A57AF580047BD0B /* AdanaxisRender.rb */,
 				7AAFF09E0A46E7A30005F57F /* AdanaxisMaterialLibrary.rb */,

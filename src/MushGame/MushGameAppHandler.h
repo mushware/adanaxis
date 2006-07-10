@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } rqKVCOMdajoYPgaQgbClmg
 /*
- * $Id: MushGameAppHandler.h,v 1.7 2006/06/30 15:05:34 southa Exp $
+ * $Id: MushGameAppHandler.h,v 1.8 2006/07/07 18:13:58 southa Exp $
  * $Log: MushGameAppHandler.h,v $
+ * Revision 1.8  2006/07/07 18:13:58  southa
+ * Menu start and stop
+ *
  * Revision 1.7  2006/06/30 15:05:34  southa
  * Texture and buffer purge
  *
@@ -69,6 +72,8 @@ public:
     virtual void QuitStateEnter(void);
     
     virtual void GroupingNameSet(const std::string& inName);
+    virtual const MushGameAxisDef& AxisDef(Mushware::U32 inAxisNum);
+    virtual const MushGameKeyDef& KeyDef(Mushware::U32 inKeyNum);
     virtual void AxisDefSet(const MushGameAxisDef& inAxisDef, Mushware::U32 inAxisNum);
     virtual void KeyDefSet(const MushGameKeyDef& inKeyDef, Mushware::U32 inKeyNum);
 
