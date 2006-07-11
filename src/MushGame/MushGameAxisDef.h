@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } NnTJcSPyQCJazbsDD4KfIg
 /*
- * $Id: MushGameAxisDef.h,v 1.3 2006/06/01 15:39:20 southa Exp $
+ * $Id: MushGameAxisDef.h,v 1.4 2006/07/08 16:05:59 southa Exp $
  * $Log: MushGameAxisDef.h,v $
+ * Revision 1.4  2006/07/08 16:05:59  southa
+ * Ruby menus and key handling
+ *
  * Revision 1.3  2006/06/01 15:39:20  southa
  * DrawArray verification and fixes
  *
@@ -45,12 +48,22 @@
 class MushGameAxisDef : public MushcoreVirtualObject
 {
 public:
+    enum
+    {
+        kDeviceNone   = 0,
+        kDeviceMouse0 = 1,
+        kDeviceMouse1 = 2,
+        kDeviceStick0 = 3,
+        kDeviceStick1 = 4
+    };
     MushGameAxisDef() :
-        m_useDevice(false),
-        m_useKeys(false),
         m_useBounds(false),
         m_integrate(false),
+        m_deviceNum(0),
+        m_deviceAxisNum(0),
         m_deviceSensitivity(1),
+        m_upKey(0),
+        m_downKey(0),
         m_requiredKey(0),
         m_pos(0),
         m_vel(0),
@@ -66,10 +79,11 @@ public:
     void ApplyIntegration(Mushware::tVal inAmount);
     void PosConstrainAndSet(Mushware::tVal inPos);
     
+    bool UseDevice(void) const { return m_deviceNum != 0; }
+    bool UseKeys(void) const { return m_upKey != 0 || m_downKey != 0; }
+    
 private:
     // Static configuration
-    bool m_useDevice; //:readwrite
-    bool m_useKeys; //:readwrite
     bool m_useBounds; //:readwrite
     bool m_integrate; //:readwrite
 
@@ -98,10 +112,6 @@ private:
     
 //%classPrototypes {
 public:
-    const bool& UseDevice(void) const { return m_useDevice; }
-    void UseDeviceSet(const bool& inValue) { m_useDevice=inValue; }
-    const bool& UseKeys(void) const { return m_useKeys; }
-    void UseKeysSet(const bool& inValue) { m_useKeys=inValue; }
     const bool& UseBounds(void) const { return m_useBounds; }
     void UseBoundsSet(const bool& inValue) { m_useBounds=inValue; }
     const bool& Integrate(void) const { return m_integrate; }
@@ -142,7 +152,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } goN8QtSgBLWXF0OhOgAcwg
+//%classPrototypes } 0CHrEvgRl1eEB9jmLt6Aog
 };
 //%inlineHeader {
 inline std::ostream&

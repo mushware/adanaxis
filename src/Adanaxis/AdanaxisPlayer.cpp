@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } 0edG1wrkU5hKeWbu3l1MQA
 /*
- * $Id: AdanaxisPlayer.cpp,v 1.16 2006/06/01 15:38:48 southa Exp $
+ * $Id: AdanaxisPlayer.cpp,v 1.17 2006/06/21 12:17:55 southa Exp $
  * $Log: AdanaxisPlayer.cpp,v $
+ * Revision 1.17  2006/06/21 12:17:55  southa
+ * Ruby object generation
+ *
  * Revision 1.16  2006/06/01 15:38:48  southa
  * DrawArray verification and fixes
  *
@@ -229,14 +232,7 @@ AdanaxisPlayer::ControlInfoConsume(MushGameLogic& ioLogic, const MushGameMessage
         U32 keyNum = inMessage.KeyEvents()[i].first;
         bool keyState = inMessage.KeyEvents()[i].second;
         
-        if (keyNum < AdanaxisConfig::kNumKeys)
-        {
-            KeyChangeHandle(ioLogic, keyState, keyNum);
-        }
-        else
-        {
-            throw MushcoreDataFail(std::string("Key number too high in")+AutoName());
-        }
+        KeyChangeHandle(ioLogic, keyState, keyNum);
     }
 }
 

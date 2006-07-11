@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 7mgogG6D/5MIAEtL8RcBUQ
 /*
- * $Id: MediaKeyboard.cpp,v 1.2 2006/07/08 16:05:57 southa Exp $
+ * $Id: MediaKeyboard.cpp,v 1.3 2006/07/10 16:01:19 southa Exp $
  * $Log: MediaKeyboard.cpp,v $
+ * Revision 1.3  2006/07/10 16:01:19  southa
+ * Control menu work
+ *
  * Revision 1.2  2006/07/08 16:05:57  southa
  * Ruby menus and key handling
  *
@@ -50,23 +53,27 @@ MediaKeyboard::KeySymbolToName(Mushware::U32 keyValue)
         switch (keyValue)
         {
             case kKeyMouse0:
-                retVal = "mouse0";
+#if defined(MACOSX) || defined(__APPLE__)
+                retVal = "mouse button";
+#else
+                retVal = "mouse left";
+#endif
                 break;
                 
             case kKeyMouse1:
-                retVal = "mouse1";
+                retVal = "mouse right";
                 break;
                 
             case kKeyMouse2:
-                retVal = "mouse2";
+                retVal = "mouse middle";
                 break;
                 
             case kKeyMouse3:
-                retVal = "mouse3";
+                retVal = "mouse 4";
                 break;
                 
             case kKeyMouse4:
-                retVal = "mouse4";
+                retVal = "mouse 5";
                 break;
 
             default:

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } MJLMNaraKdT0cf2Xdn+zyg
 /*
- * $Id: MushGameAxisDef.cpp,v 1.3 2005/07/08 12:07:07 southa Exp $
+ * $Id: MushGameAxisDef.cpp,v 1.4 2006/06/01 15:39:20 southa Exp $
  * $Log: MushGameAxisDef.cpp,v $
+ * Revision 1.4  2006/06/01 15:39:20  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.3  2005/07/08 12:07:07  southa
  * MushGaem control work
  *
@@ -160,8 +163,6 @@ void
 MushGameAxisDef::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
-    ioOut << "useDevice=" << m_useDevice << ", ";
-    ioOut << "useKeys=" << m_useKeys << ", ";
     ioOut << "useBounds=" << m_useBounds << ", ";
     ioOut << "integrate=" << m_integrate << ", ";
     ioOut << "deviceNum=" << m_deviceNum << ", ";
@@ -190,14 +191,6 @@ MushGameAxisDef::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string&
         AutoInputPrologue(ioIn);
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
-    }
-    else if (inTagStr == "useDevice")
-    {
-        ioIn >> m_useDevice;
-    }
-    else if (inTagStr == "useKeys")
-    {
-        ioIn >> m_useKeys;
     }
     else if (inTagStr == "useBounds")
     {
@@ -280,10 +273,6 @@ MushGameAxisDef::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string&
 void
 MushGameAxisDef::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
-    ioOut.TagSet("useDevice");
-    ioOut << m_useDevice;
-    ioOut.TagSet("useKeys");
-    ioOut << m_useKeys;
     ioOut.TagSet("useBounds");
     ioOut << m_useBounds;
     ioOut.TagSet("integrate");
@@ -321,4 +310,4 @@ MushGameAxisDef::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("deviceAccelerate");
     ioOut << m_deviceAccelerate;
 }
-//%outOfLineFunctions } 4WoWq4JMF1zjJT3cmoZKzg
+//%outOfLineFunctions } 3ZesDqLdcs9MCF3chKN60w

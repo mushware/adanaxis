@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } bC49LKe3G5tsyGqAVa5gyw
 /*
- * $Id: MushGameAppHandler.cpp,v 1.9 2006/07/08 16:05:58 southa Exp $
+ * $Id: MushGameAppHandler.cpp,v 1.10 2006/07/10 16:01:19 southa Exp $
  * $Log: MushGameAppHandler.cpp,v $
+ * Revision 1.10  2006/07/10 16:01:19  southa
+ * Control menu work
+ *
  * Revision 1.9  2006/07/08 16:05:58  southa
  * Ruby menus and key handling
  *
@@ -225,38 +228,42 @@ MushGameAppHandler::AxisFromDeviceUpdate(MushGameAxisDef& ioAxisDef, Mushware::t
     static tVal lastMouseX = 0;
     static tVal lastMouseY = 0;
     
-    if (ioAxisDef.DeviceNum() == 0)
+    switch (ioAxisDef.DeviceNum())
     {
-        // Mouse device
-        switch (ioAxisDef.DeviceAxisNum())
+        case MushGameAxisDef::kDeviceMouse0:
         {
-            case 0:
+            // Mouse device
+            switch (ioAxisDef.DeviceAxisNum())
             {
-                if (m_lastAxesValid)
+                case 0:
                 {
-                    ioAxisDef.DeviceAccelerate(inAmount * (ScaledUnboundedMouseX() - lastMouseX));
+                    if (m_lastAxesValid)
+                    {
+                        ioAxisDef.DeviceAccelerate(inAmount * (ScaledUnboundedMouseX() - lastMouseX));
+                    }
+                    lastMouseX = ScaledUnboundedMouseX();
                 }
-                lastMouseX = ScaledUnboundedMouseX();
-            }
-            break;
-                
-            case 1:
-            {
-                if (m_lastAxesValid)
+                break;
+                    
+                case 1:
                 {
-                    ioAxisDef.DeviceAccelerate(inAmount * (ScaledUnboundedMouseY() - lastMouseY));
+                    if (m_lastAxesValid)
+                    {
+                        ioAxisDef.DeviceAccelerate(inAmount * (ScaledUnboundedMouseY() - lastMouseY));
+                    }
+                    lastMouseY = ScaledUnboundedMouseY();
                 }
-                lastMouseY = ScaledUnboundedMouseY();
+                break;
+                    
+                default:
+                    throw MushcoreDataFail("Bad control axis number");
             }
-            break;
-                
-            default:
-                throw MushcoreDataFail("Bad control axis number");
         }
-    }
-    else
-    {
-        throw MushcoreDataFail("Bad control device number");
+        break;
+            
+        default:
+            throw MushcoreDataFail("Bad control device number");
+            break;
     }
 }    
 

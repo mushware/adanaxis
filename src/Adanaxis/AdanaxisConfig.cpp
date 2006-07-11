@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } OOi2UXPQf+WlFT25nv19jA
 /*
- * $Id: AdanaxisConfig.cpp,v 1.12 2005/08/02 17:11:28 southa Exp $
+ * $Id: AdanaxisConfig.cpp,v 1.13 2006/06/01 15:38:46 southa Exp $
  * $Log: AdanaxisConfig.cpp,v $
+ * Revision 1.13  2006/06/01 15:38:46  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.12  2005/08/02 17:11:28  southa
  * win32 build fixes
  *
@@ -106,7 +109,10 @@ AdanaxisConfig::AxesToDefaultSet(void)
         MushcoreLog::Sgl().ErrorLog() << "Failed to load default control axis configuration: " << e.what() << endl;
     }
     
-    m_axisDefs.resize(kNumAxes);
+    if (m_axisDefs.size() < kNumAxes)
+    {
+        m_axisDefs.resize(kNumAxes);
+    }
 }
 
 void
@@ -132,7 +138,10 @@ AdanaxisConfig::KeysToDefaultSet(void)
         MushcoreLog::Sgl().ErrorLog() << "Failed to load default control key configuration: " << e.what() << endl;
     }
     
-    m_keyDefs.resize(kNumKeys);
+    if (m_keyDefs.size() < kNumKeys)
+    {
+        m_keyDefs.resize(kNumKeys);
+    }
 }
 
 void
@@ -149,11 +158,11 @@ AdanaxisConfig::AutoInputPrologue(MushcoreXMLIStream& ioIn)
 void
 AdanaxisConfig::AutoInputEpilogue(MushcoreXMLIStream& ioIn)
 {
-    if (m_axisDefs.size() != kNumAxes)
+    if (m_axisDefs.size() < kNumAxes)
     {
         AxesToDefaultSet();
     }
-    if (m_keyDefs.size() != kNumKeys)
+    if (m_keyDefs.size() < kNumKeys)
     {
         KeysToDefaultSet();
     }
