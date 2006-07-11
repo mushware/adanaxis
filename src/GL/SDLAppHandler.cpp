@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } X577BrzUUfCyG/exJzzEYQ
 /*
- * $Id: SDLAppHandler.cpp,v 1.54 2006/07/07 18:13:57 southa Exp $
+ * $Id: SDLAppHandler.cpp,v 1.55 2006/07/08 16:05:55 southa Exp $
  * $Log: SDLAppHandler.cpp,v $
+ * Revision 1.55  2006/07/08 16:05:55  southa
+ * Ruby menus and key handling
+ *
  * Revision 1.54  2006/07/07 18:13:57  southa
  * Menu start and stop
  *
@@ -213,7 +216,13 @@ SDLAppHandler::SDLAppHandler():
     m_controlBuffer(kControlBufferSize, SDLControlEntry(0)),
     m_controlBufferIndex(0),
     m_firstDelta(true)
-{}
+{
+    m_deviceList.resize(kNumDevices);
+    for (U32 i=0; i<kNumDevices; ++i)
+    {
+        m_deviceList[i].resize(kAxesPerDevice, 0);
+    }
+}
 
 void
 SDLAppHandler::Initialise(void)
@@ -223,6 +232,7 @@ SDLAppHandler::Initialise(void)
     m_unboundedMouseX=0;
     m_unboundedMouseY=0;
     m_firstDelta=true;
+    MediaJoystick::Sgl();
 }
 
 void
@@ -522,7 +532,10 @@ SDLAppHandler::PollForControlEvents(void)
         {
             case SDL_KEYDOWN:
             case SDL_KEYUP:
-                Signal(GLKeyboardSignal((event.key.type==SDL_KEYDOWN), static_cast<U32>(event.key.keysym.sym), static_cast<U32>(event.key.keysym.mod), m_mouseX, m_mouseY));
+                Signal(GLKeyboardSignal((event.key.type==SDL_KEYDOWN),
+                                        static_cast<U32>(event.key.keysym.sym),
+                                        static_cast<U32>(event.key.keysym.mod),
+                                        m_mouseX, m_mouseY));
                 break;
 
             case SDL_MOUSEMOTION:
@@ -563,10 +576,87 @@ SDLAppHandler::PollForControlEvents(void)
             case SDL_QUIT:
                 m_doQuit=true;
                 break;
+                
+            case SDL_JOYAXISMOTION:
+            {
+                if (event.jaxis.which < kNumDevices && event.jaxis.axis < kAxesPerDevice)
+                {
+                    tVal axisValue = - event.jaxis.value / 32768.0;
+                    MushcoreUtil::Constrain<tVal>(axisValue, -1, 1);
+                    m_deviceList[event.jaxis.which][event.jaxis.axis] = axisValue;
+                }
+            }
+            break;
+            
+            case SDL_JOYBUTTONDOWN:
+            case SDL_JOYBUTTONUP:
+            {
+                if (event.jbutton.which < kNumDevices)
+                {
+                    U32 keyValue = MediaKeyboard::kKeyStick0 +
+                        MediaKeyboard::kKeyStickSpacing * event.jbutton.which +
+                        event.jbutton.button;
+                    Signal(GLKeyboardSignal((event.jbutton.state == SDL_PRESSED),
+                                            keyValue,
+                                            0,
+                                            m_mouseX, m_mouseY));
+                }
+            }
+            break;
+            
+            case SDL_JOYHATMOTION:
+            {
+                // Untested
+                if (event.jhat.which < kNumDevices)
+                {
+                    bool leftState = (event.jhat.value & SDL_HAT_LEFT) != 0;
+                    bool rightState = (event.jhat.value & SDL_HAT_RIGHT) != 0;
+                    bool upState = (event.jhat.value & SDL_HAT_UP) != 0;
+                    bool downState = (event.jhat.value & SDL_HAT_DOWN) != 0;
+                    
+                    U32 keyBase = MediaKeyboard::kKeyStick0 +
+                        MediaKeyboard::kKeyStickSpacing * event.jhat.which +
+                        MediaKeyboard::kKeyStickHat +
+                        4 * event.jhat.hat;
+                    Signal(GLKeyboardSignal(leftState,
+                                            keyBase + MediaKeyboard::kKeyStickHatLeft,
+                                            0,
+                                            m_mouseX, m_mouseY));
+                    Signal(GLKeyboardSignal(rightState,
+                                            keyBase + MediaKeyboard::kKeyStickHatRight,
+                                            0,
+                                            m_mouseX, m_mouseY));
+                    Signal(GLKeyboardSignal(upState,
+                                            keyBase + MediaKeyboard::kKeyStickHatUp,
+                                            0,
+                                            m_mouseX, m_mouseY));
+                    Signal(GLKeyboardSignal(downState,
+                                            keyBase + MediaKeyboard::kKeyStickHatDown,
+                                            0,
+                                            m_mouseX, m_mouseY));
+                }
+            }
+            break;    
+                
+            default:
+                // Ignore
+                break;
         }
         
         if (++loopCtr > 100) break;
     }    
+}
+
+Mushware::tVal
+SDLAppHandler::DeviceAxis(Mushware::U32 inDevice, Mushware::U32 inAxis)
+{
+    if (inDevice >= kNumDevices || inAxis >= kAxesPerDevice)
+    {
+        ostringstream message;
+        message << "Bad device (" << inDevice << ") or axis (" << inAxis << ") number";
+        throw MushcoreDataFail(message.str());
+    }
+    return m_deviceList[inDevice][inAxis];
 }
 
 void

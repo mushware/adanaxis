@@ -322,6 +322,8 @@
 		7A6119FA0A5E440100AE9F3A /* MediaKeyboard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A6119F80A5E440100AE9F3A /* MediaKeyboard.cpp */; };
 		7A6119FB0A5E440100AE9F3A /* MediaKeyboard.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A6119F70A5E440100AE9F3A /* MediaKeyboard.h */; };
 		7A6119FC0A5E440100AE9F3A /* MediaKeyboard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A6119F80A5E440100AE9F3A /* MediaKeyboard.cpp */; };
+		7A61AEEF0A63EB590053DE68 /* MediaJoystick.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A61AEED0A63EB590053DE68 /* MediaJoystick.h */; };
+		7A61AEF00A63EB590053DE68 /* MediaJoystick.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A61AEEE0A63EB590053DE68 /* MediaJoystick.cpp */; };
 		7A61B10E07A68FEA00C6B670 /* MushMeshGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A61B10A07A68FEA00C6B670 /* MushMeshGroup.h */; };
 		7A61B10F07A68FEA00C6B670 /* MushMeshGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A61B10B07A68FEA00C6B670 /* MushMeshGroup.cpp */; };
 		7A61E3EB05B0168900AFEB17 /* MushPieSignal.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A61E3E905B0168900AFEB17 /* MushPieSignal.h */; };
@@ -407,8 +409,6 @@
 		7A62B95F05A49D05002A5F1C /* GLFont.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B75005A49D04002A5F1C /* GLFont.h */; };
 		7A62B96005A49D05002A5F1C /* GLFontRef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B75105A49D04002A5F1C /* GLFontRef.cpp */; };
 		7A62B96105A49D05002A5F1C /* GLFontRef.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B75205A49D04002A5F1C /* GLFontRef.h */; };
-		7A62B96205A49D05002A5F1C /* GLKeys.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B75305A49D04002A5F1C /* GLKeys.cpp */; };
-		7A62B96305A49D05002A5F1C /* GLKeys.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B75405A49D04002A5F1C /* GLKeys.h */; };
 		7A62B96405A49D05002A5F1C /* GLLightDef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B75505A49D04002A5F1C /* GLLightDef.cpp */; };
 		7A62B96505A49D05002A5F1C /* GLLightDef.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B75605A49D04002A5F1C /* GLLightDef.h */; };
 		7A62B96605A49D05002A5F1C /* GLLights.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B75705A49D04002A5F1C /* GLLights.cpp */; };
@@ -1511,7 +1511,6 @@
 		7AAE6BD007AFC4250085C60F /* GLData.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B74E05A49D04002A5F1C /* GLData.h */; };
 		7AAE6BD107AFC4250085C60F /* GLFont.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B75005A49D04002A5F1C /* GLFont.h */; };
 		7AAE6BD207AFC4250085C60F /* GLFontRef.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B75205A49D04002A5F1C /* GLFontRef.h */; };
-		7AAE6BD307AFC4250085C60F /* GLKeys.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B75405A49D04002A5F1C /* GLKeys.h */; };
 		7AAE6BD407AFC4250085C60F /* GLLightDef.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B75605A49D04002A5F1C /* GLLightDef.h */; };
 		7AAE6BD507AFC4250085C60F /* GLLights.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B75805A49D04002A5F1C /* GLLights.h */; };
 		7AAE6BD607AFC4250085C60F /* GLLine.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A62B75A05A49D04002A5F1C /* GLLine.h */; };
@@ -1608,7 +1607,6 @@
 		7AAE6C7807AFC4250085C60F /* GLData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B74D05A49D04002A5F1C /* GLData.cpp */; };
 		7AAE6C7907AFC4250085C60F /* GLFont.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B74F05A49D04002A5F1C /* GLFont.cpp */; };
 		7AAE6C7A07AFC4250085C60F /* GLFontRef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B75105A49D04002A5F1C /* GLFontRef.cpp */; };
-		7AAE6C7B07AFC4250085C60F /* GLKeys.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B75305A49D04002A5F1C /* GLKeys.cpp */; };
 		7AAE6C7C07AFC4250085C60F /* GLLightDef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B75505A49D04002A5F1C /* GLLightDef.cpp */; };
 		7AAE6C7D07AFC4250085C60F /* GLLights.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B75705A49D04002A5F1C /* GLLights.cpp */; };
 		7AAE6C7E07AFC4250085C60F /* GLLine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A62B75905A49D04002A5F1C /* GLLine.cpp */; };
@@ -2709,6 +2707,8 @@
 		7A614A7D0A6280CD00E8FCEF /* AdanaxisMenu.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AdanaxisMenu.rb; sourceTree = "<group>"; };
 		7A614A980A62951900E8FCEF /* AdanaxisControl.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AdanaxisControl.rb; sourceTree = "<group>"; };
 		7A6168550A5FF25E0046188D /* MushMenu.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = MushMenu.rb; sourceTree = "<group>"; };
+		7A61AEED0A63EB590053DE68 /* MediaJoystick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaJoystick.h; sourceTree = "<group>"; };
+		7A61AEEE0A63EB590053DE68 /* MediaJoystick.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MediaJoystick.cpp; sourceTree = "<group>"; };
 		7A61B10A07A68FEA00C6B670 /* MushMeshGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushMeshGroup.h; sourceTree = "<group>"; };
 		7A61B10B07A68FEA00C6B670 /* MushMeshGroup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushMeshGroup.cpp; sourceTree = "<group>"; };
 		7A61E3E905B0168900AFEB17 /* MushPieSignal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushPieSignal.h; sourceTree = "<group>"; };
@@ -2794,8 +2794,6 @@
 		7A62B75005A49D04002A5F1C /* GLFont.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = GLFont.h; sourceTree = "<group>"; };
 		7A62B75105A49D04002A5F1C /* GLFontRef.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = GLFontRef.cpp; sourceTree = "<group>"; };
 		7A62B75205A49D04002A5F1C /* GLFontRef.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = GLFontRef.h; sourceTree = "<group>"; };
-		7A62B75305A49D04002A5F1C /* GLKeys.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = GLKeys.cpp; sourceTree = "<group>"; };
-		7A62B75405A49D04002A5F1C /* GLKeys.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = GLKeys.h; sourceTree = "<group>"; };
 		7A62B75505A49D04002A5F1C /* GLLightDef.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = GLLightDef.cpp; sourceTree = "<group>"; };
 		7A62B75605A49D04002A5F1C /* GLLightDef.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = GLLightDef.h; sourceTree = "<group>"; };
 		7A62B75705A49D04002A5F1C /* GLLights.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = GLLights.cpp; sourceTree = "<group>"; };
@@ -4409,8 +4407,6 @@
 				7A62B75005A49D04002A5F1C /* GLFont.h */,
 				7A62B75105A49D04002A5F1C /* GLFontRef.cpp */,
 				7A62B75205A49D04002A5F1C /* GLFontRef.h */,
-				7A62B75305A49D04002A5F1C /* GLKeys.cpp */,
-				7A62B75405A49D04002A5F1C /* GLKeys.h */,
 				7A62B75505A49D04002A5F1C /* GLLightDef.cpp */,
 				7A62B75605A49D04002A5F1C /* GLLightDef.h */,
 				7A62B75705A49D04002A5F1C /* GLLights.cpp */,
@@ -4579,6 +4575,8 @@
 				7A62B7DC05A49D05002A5F1C /* MediaAudioSDL.h */,
 				7A6119F80A5E440100AE9F3A /* MediaKeyboard.cpp */,
 				7A6119F70A5E440100AE9F3A /* MediaKeyboard.h */,
+				7A61AEEE0A63EB590053DE68 /* MediaJoystick.cpp */,
+				7A61AEED0A63EB590053DE68 /* MediaJoystick.h */,
 				7A62B7DD05A49D05002A5F1C /* MediaSDL.cpp */,
 				7A62B7DE05A49D05002A5F1C /* MediaSDL.h */,
 				7A62B7DF05A49D05002A5F1C /* MediaSound.cpp */,
@@ -6056,7 +6054,6 @@
 				7A62B95D05A49D05002A5F1C /* GLData.h in Headers */,
 				7A62B95F05A49D05002A5F1C /* GLFont.h in Headers */,
 				7A62B96105A49D05002A5F1C /* GLFontRef.h in Headers */,
-				7A62B96305A49D05002A5F1C /* GLKeys.h in Headers */,
 				7A62B96505A49D05002A5F1C /* GLLightDef.h in Headers */,
 				7A62B96705A49D05002A5F1C /* GLLights.h in Headers */,
 				7A62B96905A49D05002A5F1C /* GLLine.h in Headers */,
@@ -6918,6 +6915,7 @@
 				7A5B14F70A57B1230047BD0B /* MushGLRubyFont.h in Headers */,
 				7A6110D50A5D7C0F00D8F31F /* MushGameRuby.h in Headers */,
 				7A6119F90A5E440100AE9F3A /* MediaKeyboard.h in Headers */,
+				7A61AEEF0A63EB590053DE68 /* MediaJoystick.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7041,7 +7039,6 @@
 				7AAE6BD007AFC4250085C60F /* GLData.h in Headers */,
 				7AAE6BD107AFC4250085C60F /* GLFont.h in Headers */,
 				7AAE6BD207AFC4250085C60F /* GLFontRef.h in Headers */,
-				7AAE6BD307AFC4250085C60F /* GLKeys.h in Headers */,
 				7AAE6BD407AFC4250085C60F /* GLLightDef.h in Headers */,
 				7AAE6BD507AFC4250085C60F /* GLLights.h in Headers */,
 				7AAE6BD607AFC4250085C60F /* GLLine.h in Headers */,
@@ -7947,7 +7944,6 @@
 				7A62B95C05A49D05002A5F1C /* GLData.cpp in Sources */,
 				7A62B95E05A49D05002A5F1C /* GLFont.cpp in Sources */,
 				7A62B96005A49D05002A5F1C /* GLFontRef.cpp in Sources */,
-				7A62B96205A49D05002A5F1C /* GLKeys.cpp in Sources */,
 				7A62B96405A49D05002A5F1C /* GLLightDef.cpp in Sources */,
 				7A62B96605A49D05002A5F1C /* GLLights.cpp in Sources */,
 				7A62B96805A49D05002A5F1C /* GLLine.cpp in Sources */,
@@ -8718,6 +8714,7 @@
 				7A5B14F80A57B1230047BD0B /* MushGLRubyFont.cpp in Sources */,
 				7A6110D60A5D7C0F00D8F31F /* MushGameRuby.cpp in Sources */,
 				7A6119FA0A5E440100AE9F3A /* MediaKeyboard.cpp in Sources */,
+				7A61AEF00A63EB590053DE68 /* MediaJoystick.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8837,7 +8834,6 @@
 				7AAE6C7807AFC4250085C60F /* GLData.cpp in Sources */,
 				7AAE6C7907AFC4250085C60F /* GLFont.cpp in Sources */,
 				7AAE6C7A07AFC4250085C60F /* GLFontRef.cpp in Sources */,
-				7AAE6C7B07AFC4250085C60F /* GLKeys.cpp in Sources */,
 				7AAE6C7C07AFC4250085C60F /* GLLightDef.cpp in Sources */,
 				7AAE6C7D07AFC4250085C60F /* GLLights.cpp in Sources */,
 				7AAE6C7E07AFC4250085C60F /* GLLine.cpp in Sources */,

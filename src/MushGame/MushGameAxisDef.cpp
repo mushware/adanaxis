@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } MJLMNaraKdT0cf2Xdn+zyg
 /*
- * $Id: MushGameAxisDef.cpp,v 1.4 2006/06/01 15:39:20 southa Exp $
+ * $Id: MushGameAxisDef.cpp,v 1.5 2006/07/11 12:37:52 southa Exp $
  * $Log: MushGameAxisDef.cpp,v $
+ * Revision 1.5  2006/07/11 12:37:52  southa
+ * Control configuration
+ *
  * Revision 1.4  2006/06/01 15:39:20  southa
  * DrawArray verification and fixes
  *
@@ -97,6 +100,19 @@ MushGameAxisDef::DeviceAccelerate(Mushware::tVal inAmount)
     if (inAmount != 0)
     {
         m_deviceAccelerate = true;
+    }
+}
+
+void
+MushGameAxisDef::DeviceSet(Mushware::tVal inAmount)
+{
+    if (m_deviceSensitivity > 0)
+    {
+        m_vel = m_velLimit * inAmount;
+    }
+    else
+    {
+        m_vel = m_velLimit * inAmount;        
     }
 }
 

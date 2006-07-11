@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } wOXl6eoMycMTXcUsBJ4Pgg
 /*
- * $Id: AdanaxisGame.h,v 1.15 2006/07/02 21:08:54 southa Exp $
+ * $Id: AdanaxisGame.h,v 1.16 2006/07/04 16:55:26 southa Exp $
  * $Log: AdanaxisGame.h,v $
+ * Revision 1.16  2006/07/04 16:55:26  southa
+ * Ruby key handling
+ *
  * Revision 1.15  2006/07/02 21:08:54  southa
  * Ruby menu work
  *
@@ -95,6 +98,7 @@ public:
     virtual void Init(MushGameAppHandler& inAppHandler);
     
     virtual void UpdateFromConfig(void);
+    virtual void UpdateToConfig(void);
     
     static void Install(void);
     

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } NnTJcSPyQCJazbsDD4KfIg
 /*
- * $Id: MushGameAxisDef.h,v 1.4 2006/07/08 16:05:59 southa Exp $
+ * $Id: MushGameAxisDef.h,v 1.5 2006/07/11 12:37:52 southa Exp $
  * $Log: MushGameAxisDef.h,v $
+ * Revision 1.5  2006/07/11 12:37:52  southa
+ * Control configuration
+ *
  * Revision 1.4  2006/07/08 16:05:59  southa
  * Ruby menus and key handling
  *
@@ -56,6 +59,7 @@ public:
         kDeviceStick0 = 3,
         kDeviceStick1 = 4
     };
+    
     MushGameAxisDef() :
         m_useBounds(false),
         m_integrate(false),
@@ -75,6 +79,8 @@ public:
     
     void Accelerate(Mushware::tVal inAmount);
     void DeviceAccelerate(Mushware::tVal inAmount);
+    void DeviceSet(Mushware::tVal inAmount);
+            
     void Decelerate(Mushware::tVal inAmount);
     void ApplyIntegration(Mushware::tVal inAmount);
     void PosConstrainAndSet(Mushware::tVal inPos);

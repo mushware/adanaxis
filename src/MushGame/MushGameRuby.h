@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } abz8WfQdtsWpPxv12NZxhA
 /*
- * $Id: MushGameRuby.h,v 1.4 2006/07/10 16:01:19 southa Exp $
+ * $Id: MushGameRuby.h,v 1.5 2006/07/11 12:37:53 southa Exp $
  * $Log: MushGameRuby.h,v $
+ * Revision 1.5  2006/07/11 12:37:53  southa
+ * Control configuration
+ *
  * Revision 1.4  2006/07/10 16:01:19  southa
  * Control menu work
  *
@@ -48,12 +51,16 @@ class MushGameRuby : public MushRubyEmptyObj<4000>
 public:
     static Mushware::tRubyValue KeySymbolToName(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
     static Mushware::tRubyValue GameModeEnter(Mushware::tRubyValue inSelf);
+    static Mushware::tRubyValue NewGameEnter(Mushware::tRubyValue inSelf);
     static Mushware::tRubyValue Quit(Mushware::tRubyValue inSelf);
     static Mushware::tRubyValue AxisName(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
     static Mushware::tRubyValue AxisSymbol(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
+    static Mushware::tRubyValue AxisSet(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0, Mushware::tRubyValue inArg1);
     static Mushware::tRubyValue AxisKeySymbol(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
     static Mushware::tRubyValue AxisKeySet(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0, Mushware::tRubyValue inArg1);
     static Mushware::tRubyValue KeySymbol(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
+    static Mushware::tRubyValue KeySet(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0, Mushware::tRubyValue inArg1);
+    static Mushware::tRubyValue NumJoysticks(Mushware::tRubyValue inSelf);
     static void MethodsInstall(void);
     
 private:

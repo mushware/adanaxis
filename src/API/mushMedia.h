@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } xglA/S/dKRVjJ+0DXVQ5IQ
 /*
- * $Id: mushMedia.h,v 1.31 2006/06/01 15:38:45 southa Exp $
+ * $Id: mushMedia.h,v 1.32 2006/07/07 07:57:28 southa Exp $
  * $Log: mushMedia.h,v $
+ * Revision 1.32  2006/07/07 07:57:28  southa
+ * Key translation
+ *
  * Revision 1.31  2006/06/01 15:38:45  southa
  * DrawArray verification and fixes
  *
@@ -121,6 +124,7 @@
  */
 
 #include "Media/MediaAudio.h"
+#include "Media/MediaJoystick.h"
 #include "Media/MediaKeyboard.h"
 #include "Media/MediaSDL.h"
 #include "Media/MediaSound.h"

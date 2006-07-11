@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } XF1bjCN2eB/qdeJZOQQkxg
 /*
- * $Id: AdanaxisConfig.h,v 1.9 2005/08/02 14:37:44 southa Exp $
+ * $Id: AdanaxisConfig.h,v 1.10 2006/06/01 15:38:46 southa Exp $
  * $Log: AdanaxisConfig.h,v $
+ * Revision 1.10  2006/06/01 15:38:46  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.9  2005/08/02 14:37:44  southa
  * Adanaxis control demo work
  *
@@ -92,6 +95,8 @@ public:
     virtual void AutoOutputPrologue(MushcoreXMLOStream& ioOut) const;
     const MushGameAxisDef& AxisDefs(Mushware::U32 inAxisDefNum) const { MushcoreUtil::BoundsCheck(inAxisDefNum, m_axisDefs.size()); return m_axisDefs[inAxisDefNum]; }
     const MushGameKeyDef& KeyDefs(Mushware::U32 inKeyDefNum) const { MushcoreUtil::BoundsCheck(inKeyDefNum, m_keyDefs.size()); return m_keyDefs[inKeyDefNum]; }
+    void AxisDefSet(const MushGameAxisDef& inDef, Mushware::U32 inAxisDefNum) { MushcoreUtil::BoundsCheck(inAxisDefNum, m_axisDefs.size()); m_axisDefs[inAxisDefNum] = inDef; }
+    void KeyDefSet(const MushGameKeyDef& inDef, Mushware::U32 inKeyDefNum) { MushcoreUtil::BoundsCheck(inKeyDefNum, m_keyDefs.size()); m_keyDefs[inKeyDefNum] = inDef; }
 
 private:
     enum

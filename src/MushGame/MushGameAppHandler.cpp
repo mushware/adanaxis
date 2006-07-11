@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } bC49LKe3G5tsyGqAVa5gyw
 /*
- * $Id: MushGameAppHandler.cpp,v 1.10 2006/07/10 16:01:19 southa Exp $
+ * $Id: MushGameAppHandler.cpp,v 1.11 2006/07/11 12:37:52 southa Exp $
  * $Log: MushGameAppHandler.cpp,v $
+ * Revision 1.11  2006/07/11 12:37:52  southa
+ * Control configuration
+ *
  * Revision 1.10  2006/07/10 16:01:19  southa
  * Control menu work
  *
@@ -179,6 +182,35 @@ MushGameAppHandler::KeyDefSet(const MushGameKeyDef& inKeyDef, Mushware::U32 inKe
 }
 
 void
+MushGameAppHandler::AxisPurge(Mushware::U32 inDeviceNum, Mushware::U32 inAxisNum)
+{
+    for (U32 i=0; i < m_axisDefs.size(); ++i)
+    {
+        if (m_axisDefs[i].DeviceNum() == inDeviceNum &&
+            m_axisDefs[i].DeviceAxisNum() == inAxisNum)
+        {
+            m_axisDefs[i].DeviceNumSet(0);
+        }
+    }
+}
+
+void
+MushGameAppHandler::KeyPurge(Mushware::U32 inKeyNum)
+{
+    for (U32 i=0; i < m_axisDefs.size(); ++i)
+    {
+        if (m_axisDefs[i].UpKey() == inKeyNum) m_axisDefs[i].UpKeySet(0);
+        if (m_axisDefs[i].DownKey() == inKeyNum) m_axisDefs[i].DownKeySet(0);
+        if (m_axisDefs[i].RequiredKey() == inKeyNum) m_axisDefs[i].RequiredKeySet(0);
+    }
+    
+    for (U32 i=0; i < m_keyDefs.size(); ++i)
+    {
+        if (m_keyDefs[i].KeyValue() == inKeyNum) m_keyDefs[i].KeyValueSet(0);
+    }
+}    
+
+void
 MushGameAppHandler::FillControlPipe(void)
 {
     typedef MushGameMessageControlInfo tMessage;
@@ -261,6 +293,16 @@ MushGameAppHandler::AxisFromDeviceUpdate(MushGameAxisDef& ioAxisDef, Mushware::t
         }
         break;
             
+        case MushGameAxisDef::kDeviceStick0:
+        case MushGameAxisDef::kDeviceStick1:
+        {
+            U32 deviceNum = ioAxisDef.DeviceNum() - MushGameAxisDef::kDeviceStick0;
+            U32 axisNum = ioAxisDef.DeviceAxisNum();
+            tVal axisValue = DeviceAxis(deviceNum, axisNum);
+            ioAxisDef.DeviceSet(axisValue * std::fabs(axisValue));
+        }
+        break;
+            
         default:
             throw MushcoreDataFail("Bad control device number");
             break;
@@ -326,7 +368,7 @@ MushGameAppHandler::AxisTicker(Mushware::tMsec inTimeslice)
             AxisFromDeviceUpdate(axisDefRef, amount);
         } 
         
-        if (axisDefRef.Integrate())
+        if (axisDefRef.Integrate() || axisDefRef.DeviceNum() > 0)
         {
             axisDefRef.ApplyIntegration(amount);
         }
@@ -405,6 +447,15 @@ void
 MushGameAppHandler::NewGameCreate(const std::string& inName)
 {
     throw MushcoreLogicFail("Replacement for MushGameAppHandler must override NewGameCreate");
+}
+
+void
+MushGameAppHandler::GameRestart(void)
+{
+    CurrentSwapOut();
+    NewGameCreate(m_groupingName);
+    
+    CurrentSwapIn(m_groupingName);
 }
 
 void

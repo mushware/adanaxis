@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } rqKVCOMdajoYPgaQgbClmg
 /*
- * $Id: MushGameAppHandler.h,v 1.8 2006/07/07 18:13:58 southa Exp $
+ * $Id: MushGameAppHandler.h,v 1.9 2006/07/10 16:01:19 southa Exp $
  * $Log: MushGameAppHandler.h,v $
+ * Revision 1.9  2006/07/10 16:01:19  southa
+ * Control menu work
+ *
  * Revision 1.8  2006/07/07 18:13:58  southa
  * Menu start and stop
  *
@@ -70,13 +73,16 @@ public:
     virtual void Idle(void);
     virtual void GameIdle(void);
     virtual void QuitStateEnter(void);
+    virtual void GameRestart(void);
     
     virtual void GroupingNameSet(const std::string& inName);
     virtual const MushGameAxisDef& AxisDef(Mushware::U32 inAxisNum);
     virtual const MushGameKeyDef& KeyDef(Mushware::U32 inKeyNum);
     virtual void AxisDefSet(const MushGameAxisDef& inAxisDef, Mushware::U32 inAxisNum);
     virtual void KeyDefSet(const MushGameKeyDef& inKeyDef, Mushware::U32 inKeyNum);
-
+    virtual void AxisPurge(Mushware::U32 inDeviceNum, Mushware::U32 inAxisNum);
+    virtual void KeyPurge(Mushware::U32 inKeyNum);
+    
     virtual MushGameLogic& LogicWRef(void) const { return m_currentRef.Ref().LogicWRef(); }
     
 protected:

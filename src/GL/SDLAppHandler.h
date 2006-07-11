@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } VUfBvm3qobPEj3YM/Njzcg
 /*
- * $Id: SDLAppHandler.h,v 1.29 2006/07/07 18:13:57 southa Exp $
+ * $Id: SDLAppHandler.h,v 1.30 2006/07/08 16:05:56 southa Exp $
  * $Log: SDLAppHandler.h,v $
+ * Revision 1.30  2006/07/08 16:05:56  southa
+ * Ruby menus and key handling
+ *
  * Revision 1.29  2006/07/07 18:13:57  southa
  * Menu start and stop
  *
@@ -152,6 +155,8 @@ public:
     virtual void AppQuit(void);
     virtual void KeysOfInterestSet(const std::vector<Mushware::U32>& inKeyValues);
     virtual void ReadHistoricControlState(Mushware::S32& outUnboundedMouseX, Mushware::S32& outUnboundedMouseY, std::vector<bool>& outKeys, Mushware::tVal inMsec);
+    virtual Mushware::tVal DeviceAxis(Mushware::U32 inDevice, Mushware::U32 inAxis);
+    
     
 protected:
     virtual void Initialise(void);
@@ -163,9 +168,14 @@ protected:
     bool IsVisible(void) {return m_visible;}
     
 private:
+    typedef std::vector<Mushware::tVal> tDeviceAxes;
+    typedef std::vector<tDeviceAxes> tDeviceList;
+    
     enum
     {
-        kControlBufferSize=100
+        kControlBufferSize=100,
+        kNumDevices = 16,
+        kAxesPerDevice = 16
     };
 
     void AddToControlBuffer(Mushware::U32 inKeyValue, bool inKeyDirection);
@@ -189,6 +199,7 @@ private:
     std::vector<Mushware::U32> m_keysOfInterest;
     bool m_firstDelta;
     bool m_doQuit;
+    tDeviceList m_deviceList;
 };
 //%includeGuardEnd {
 #endif

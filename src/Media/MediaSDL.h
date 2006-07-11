@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } T42h8hBf49T+dFOol6izVQ
 /*
- * $Id: MediaSDL.h,v 1.28 2006/06/22 19:07:30 southa Exp $
+ * $Id: MediaSDL.h,v 1.29 2006/06/29 10:12:34 southa Exp $
  * $Log: MediaSDL.h,v $
+ * Revision 1.29  2006/06/29 10:12:34  southa
+ * 64 bit compatibility fixes
+ *
  * Revision 1.28  2006/06/22 19:07:30  southa
  * Build fixes
  *
@@ -157,7 +160,8 @@ public:
     void InitVideoIfRequired(void) { InitVideo(); }
     void QuitVideoIfRequired(void) { QuitIfRequired(SDL_INIT_VIDEO); }
     void InitAudio(void) { Init(SDL_INIT_AUDIO); }
-    
+    void InitJoystick(void) { Init(SDL_INIT_JOYSTICK); }
+    void QuitJoystick(void) { QuitIfRequired(SDL_INIT_JOYSTICK); }
 protected:
 
 private:

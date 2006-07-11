@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } yY7ZZkvIHHOoUzJzTAQPOQ
 /*
- * $Id: MushGameRuby.cpp,v 1.4 2006/07/10 16:01:19 southa Exp $
+ * $Id: MushGameRuby.cpp,v 1.5 2006/07/11 12:37:52 southa Exp $
  * $Log: MushGameRuby.cpp,v $
+ * Revision 1.5  2006/07/11 12:37:52  southa
+ * Control configuration
+ *
  * Revision 1.4  2006/07/10 16:01:19  southa
  * Control menu work
  *
@@ -76,6 +79,14 @@ MushGameRuby::GameModeEnter(Mushware::tRubyValue inSelf)
 }
 
 Mushware::tRubyValue
+MushGameRuby::NewGameEnter(Mushware::tRubyValue inSelf)
+{
+    MushGameUtil::AppHandler().GameRestart();
+    MushGameUtil::LogicWRef().GameModeEnter();
+    return kRubyQnil;
+}
+
+Mushware::tRubyValue
 MushGameRuby::Quit(Mushware::tRubyValue inSelf)
 {
     MushGameUtil::LogicWRef().QuitModeEnter();
@@ -100,6 +111,37 @@ MushGameRuby::AxisSymbol(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg
     }
     
     return MushRubyValue(axisID).Value();
+}
+
+Mushware::tRubyValue
+MushGameRuby::AxisSet(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0, Mushware::tRubyValue inArg1)
+{
+    try
+    {
+        MushRubyValue newAxis(inArg0);
+        U32 newDeviceNum = newAxis.U32() / 16;
+        U32 newAxisNum = newAxis.U32() % 16;
+        
+        MushRubyValue axisNum(inArg1);
+
+        MushGameAxisDef axisDef = MushGameUtil::AppHandler().AxisDef(axisNum.U32());
+        
+        axisDef.DeviceNumSet(newDeviceNum);
+        axisDef.DeviceAxisNumSet(newAxisNum);
+        
+        if (newDeviceNum > 0)
+        {
+            axisDef.RequiredKeySet(0);
+        }
+        
+        MushGameUtil::AppHandler().AxisDefSet(axisDef, axisNum.U32());
+    }
+    catch (std::exception& e)
+    {
+        MushRubyUtil::Raise(e.what());       
+    }
+    
+    return Mushware::kRubyQnil;
 }
 
 Mushware::tRubyValue
@@ -194,9 +236,12 @@ MushGameRuby::AxisKeySet(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg
     U32 axisNum = axisID.U32() / 4;
     U32 subType = axisID.U32() % 4;
     
+    U32 symbolValue = MushRubyValue(inArg0).U32();
+
+    MushGameUtil::AppHandler().KeyPurge(symbolValue);
+
     MushGameAxisDef axisDef = MushGameUtil::AppHandler().AxisDef(axisNum);
     
-    U32 symbolValue = MushRubyValue(inArg0).U32();
     switch (subType)
     {
         case 0:
@@ -235,7 +280,7 @@ MushGameRuby::KeySymbol(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0
         MushRubyValue keyID(inArg0);
         
         const MushGameKeyDef& keyRef = MushGameUtil::AppHandler().KeyDef(keyID.U32());  
-    
+        
         keySymbol = keyRef.KeyValue();
     }
     catch (std::exception& e)
@@ -246,15 +291,50 @@ MushGameRuby::KeySymbol(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0
     return MushRubyValue(keySymbol).Value();
 }
 
+Mushware::tRubyValue
+MushGameRuby::KeySet(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0, Mushware::tRubyValue inArg1)
+{
+    U32 symbolValue = MushRubyValue(inArg0).U32();
+    MushGameUtil::AppHandler().KeyPurge(symbolValue);
+    
+    try
+    {
+        MushRubyValue keyID(inArg1);
+        
+        MushGameKeyDef keyDef = MushGameUtil::AppHandler().KeyDef(keyID.U32());  
+        
+        keyDef.KeyValueSet(symbolValue);
+        
+        MushGameUtil::AppHandler().KeyDefSet(keyDef, keyID.U32());
+    }
+    catch (std::exception& e)
+    {
+        MushRubyUtil::Raise(e.what());       
+    }
+    
+    return Mushware::kRubyQnil;
+}
+
+Mushware::tRubyValue
+MushGameRuby::NumJoysticks(Mushware::tRubyValue inSelf)
+{
+    U32 numSticks = MediaJoystick::Sgl().NumJoysticks();
+    return MushRubyValue(numSticks).Value();
+}  
+
 void
 MushGameRuby::MethodsInstall(void)
 {
     MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cKeySymbolToName", KeySymbolToName);
     MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cGameModeEnter", GameModeEnter);
+    MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cNewGameEnter", NewGameEnter);
     MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cQuit", Quit);
     MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cAxisKeySymbol", AxisKeySymbol);
     MushRubyUtil::SingletonMethodDefineTwoParams(Klass(), "cAxisKeySet", AxisKeySet);
     MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cAxisSymbol", AxisSymbol);
+    MushRubyUtil::SingletonMethodDefineTwoParams(Klass(), "cAxisSet", AxisSet);
     MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cAxisName", AxisName);
     MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cKeySymbol", KeySymbol);
+    MushRubyUtil::SingletonMethodDefineTwoParams(Klass(), "cKeySet", KeySet);
+    MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cNumJoysticks", NumJoysticks);
 }

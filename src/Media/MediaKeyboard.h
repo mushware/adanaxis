@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 8+s43zymtGuWatXc9oMynA
 /*
- * $Id: MediaKeyboard.h,v 1.1 2006/07/07 07:57:29 southa Exp $
+ * $Id: MediaKeyboard.h,v 1.2 2006/07/08 16:05:57 southa Exp $
  * $Log: MediaKeyboard.h,v $
+ * Revision 1.2  2006/07/08 16:05:57  southa
+ * Ruby menus and key handling
+ *
  * Revision 1.1  2006/07/07 07:57:29  southa
  * Key translation
  *
@@ -279,6 +282,27 @@ public:
         kKeyMouse3 = 1003,
         kKeyMouse4 = 1004,
         
+        kKeyStickSpacing  = 100,
+        kKeyStickHat      = 50,
+        kKeyStickHatLeft  = 0,
+        kKeyStickHatRight = 1,
+        kKeyStickHatUp    = 2,
+        kKeyStickHatDown  = 3,
+        
+        kKeyStick0   = 1200,
+        kKeyStick0_0 = 1200,
+        kKeyStick0_1 = 1201,
+        kKeyStick0_2 = 1202,
+        kKeyStick0_3 = 1203,
+        
+        kKeyStick1   = 1300,
+        kKeyStick1_0 = 1300,
+        kKeyStick1_1 = 1301,
+        kKeyStick1_2 = 1302,
+        kKeyStick1_3 = 1303,
+
+        kKeyStick5   = 1700,
+        
         kNumKeys
     } tKeySymbol;
     
@@ -303,7 +327,7 @@ public:
         kModMeta  = kMod_LMETA  | kMod_RMETA,
     } tKeyModifier;
     
-    static const char *KeySymbolToName(Mushware::U32 keyValue);
+    static std::string KeySymbolToName(Mushware::U32 keyValue);
     static bool HasModifier(Mushware::U32 inModifier, tKeyModifier inMask) { return (inModifier & inMask) != 0; }
 };
 //%includeGuardEnd {

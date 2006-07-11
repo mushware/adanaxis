@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } DEX6Sh9oUk/bih2GXm2coA
 /*
- * $Id: AdanaxisGame.cpp,v 1.38 2006/07/04 16:55:26 southa Exp $
+ * $Id: AdanaxisGame.cpp,v 1.39 2006/07/07 18:13:57 southa Exp $
  * $Log: AdanaxisGame.cpp,v $
+ * Revision 1.39  2006/07/07 18:13:57  southa
+ * Menu start and stop
+ *
  * Revision 1.38  2006/07/04 16:55:26  southa
  * Ruby key handling
  *
@@ -314,6 +317,21 @@ AdanaxisGame::UpdateFromConfig(void)
 }
 
 void
+AdanaxisGame::UpdateToConfig(void)
+{
+    AdanaxisAppHandler& appHandler = AdanaxisUtil::AppHandler();
+    for (U32 i=0; i < m_config.AxisDefs().size(); ++i)
+    {
+        m_config.AxisDefSet(appHandler.AxisDef(i), i);
+    }
+    
+    for (U32 i=0; i < m_config.KeyDefs().size(); ++i)
+    {
+        m_config.KeyDefSet(appHandler.KeyDef(i), i);
+    }
+}
+
+void
 AdanaxisGame::SwapIn(MushGameAppHandler& inAppHandler)
 {
     MushGameBase::SwapIn(inAppHandler);
@@ -368,6 +386,7 @@ AdanaxisGame::SwapOut(MushGameAppHandler& inAppHandler)
     const MushcoreScalar *pScalar;    
     if (MushcoreEnv::Sgl().VariableGetIfExists(pScalar, "CONFIG_FILENAME"))
     {
+        UpdateToConfig();
         m_config.AutoFileSave(pScalar->StringGet());
     }
 }
