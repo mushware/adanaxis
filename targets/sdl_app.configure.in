@@ -61,8 +61,8 @@ else
     AC_MSG_NOTICE([sdl-config set LIBS to $LIBS])
 fi
 
-CFLAGS="$CFLAGS -O3 -I\${srcdir} -I\${srcdir}/API"
-CPPFLAGS="$CPPFLAGS -O3 -I\${srcdir} -I\${srcdir}/API"
+CFLAGS="$CFLAGS -I\${srcdir} -I\${srcdir}/API"
+CPPFLAGS="$CPPFLAGS -I\${srcdir} -I\${srcdir}/API"
 
 dnl Checks for libraries.
 AC_CHECK_HEADER(windows.h)
@@ -78,7 +78,7 @@ case "$target" in
     powerpc-apple-darwin*)
         AC_MSG_NOTICE([* Assuming Darwin platform is MacOS X.])
         AC_MSG_NOTICE([* Using platform pack from src/Platform/MacOSX.])
-        LIBS="$LIBS -lobjc -framework OpenGL -framework GLUT -framework ApplicationServices -framework QuickTime -framework Carbon"
+        LIBS="$LIBS -lz -lobjc -framework OpenGL -framework GLUT -framework ApplicationServices -framework QuickTime -framework Carbon"
         AC_CHECK_HEADERS(OpenGL/gl.h,, AC_MSG_ERROR([Cannot survive without OpenGL]))
         AC_CHECK_HEADERS(OpenGL/glu.h,, AC_MSG_ERROR([Cannot survive without OpenGL and GLU]))
         AC_CHECK_HEADERS(GLUT/glut.h,, AC_MSG_ERROR([Cannot survive without OpenGL and GLUT]))

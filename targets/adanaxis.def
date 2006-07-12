@@ -1,6 +1,9 @@
 # Target definition file
-# $Id: adanaxis.def,v 1.5 2006/06/22 19:07:39 southa Exp $
+# $Id: adanaxis.def,v 1.6 2006/06/26 17:03:35 southa Exp $
 # $Log: adanaxis.def,v $
+# Revision 1.6  2006/06/26 17:03:35  southa
+# win32 installer tweaks
+#
 # Revision 1.5  2006/06/22 19:07:39  southa
 # Build fixes
 #
@@ -67,6 +70,6 @@ Modules: x11/man/adanaxiscontroldemo.*
 
 Create: data-adanaxis/Makefile.am
 PkgData:
-Modules: pixels ruby spaces/local1 waves system/.*\.xml$ system/.*\.txt$
+Modules: pixels mushruby ruby spaces/local1 waves system/.*\.xml$ system/.*\.txt$
 ExtraDist:
 Modules: \.*pdf$
