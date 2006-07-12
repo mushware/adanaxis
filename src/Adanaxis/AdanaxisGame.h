@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } wOXl6eoMycMTXcUsBJ4Pgg
 /*
- * $Id: AdanaxisGame.h,v 1.16 2006/07/04 16:55:26 southa Exp $
+ * $Id: AdanaxisGame.h,v 1.17 2006/07/11 19:49:03 southa Exp $
  * $Log: AdanaxisGame.h,v $
+ * Revision 1.17  2006/07/11 19:49:03  southa
+ * Control menu
+ *
  * Revision 1.16  2006/07/04 16:55:26  southa
  * Ruby key handling
  *
@@ -96,6 +99,7 @@ public:
     virtual void SwapIn(MushGameAppHandler& inAppHandler);
     virtual void SwapOut(MushGameAppHandler& inAppHandler);
     virtual void Init(MushGameAppHandler& inAppHandler);
+    virtual void ControlsToDefaultSet(MushGameAppHandler& inHandler);
     
     virtual void UpdateFromConfig(void);
     virtual void UpdateToConfig(void);

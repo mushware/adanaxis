@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } XF1bjCN2eB/qdeJZOQQkxg
 /*
- * $Id: AdanaxisConfig.h,v 1.10 2006/06/01 15:38:46 southa Exp $
+ * $Id: AdanaxisConfig.h,v 1.11 2006/07/11 19:49:03 southa Exp $
  * $Log: AdanaxisConfig.h,v $
+ * Revision 1.11  2006/07/11 19:49:03  southa
+ * Control menu
+ *
  * Revision 1.10  2006/06/01 15:38:46  southa
  * DrawArray verification and fixes
  *
@@ -95,6 +98,8 @@ public:
     virtual void AutoOutputPrologue(MushcoreXMLOStream& ioOut) const;
     const MushGameAxisDef& AxisDefs(Mushware::U32 inAxisDefNum) const { MushcoreUtil::BoundsCheck(inAxisDefNum, m_axisDefs.size()); return m_axisDefs[inAxisDefNum]; }
     const MushGameKeyDef& KeyDefs(Mushware::U32 inKeyDefNum) const { MushcoreUtil::BoundsCheck(inKeyDefNum, m_keyDefs.size()); return m_keyDefs[inKeyDefNum]; }
+    MushGameAxisDef& AxisDefWRef(Mushware::U32 inAxisDefNum) { MushcoreUtil::BoundsCheck(inAxisDefNum, m_axisDefs.size()); return m_axisDefs[inAxisDefNum]; }
+    MushGameKeyDef& KeyDefWRef(Mushware::U32 inKeyDefNum) { MushcoreUtil::BoundsCheck(inKeyDefNum, m_keyDefs.size()); return m_keyDefs[inKeyDefNum]; }
     void AxisDefSet(const MushGameAxisDef& inDef, Mushware::U32 inAxisDefNum) { MushcoreUtil::BoundsCheck(inAxisDefNum, m_axisDefs.size()); m_axisDefs[inAxisDefNum] = inDef; }
     void KeyDefSet(const MushGameKeyDef& inDef, Mushware::U32 inKeyDefNum) { MushcoreUtil::BoundsCheck(inKeyDefNum, m_keyDefs.size()); m_keyDefs[inKeyDefNum] = inDef; }
 

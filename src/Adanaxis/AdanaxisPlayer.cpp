@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } 0edG1wrkU5hKeWbu3l1MQA
 /*
- * $Id: AdanaxisPlayer.cpp,v 1.17 2006/06/21 12:17:55 southa Exp $
+ * $Id: AdanaxisPlayer.cpp,v 1.18 2006/07/11 12:37:51 southa Exp $
  * $Log: AdanaxisPlayer.cpp,v $
+ * Revision 1.18  2006/07/11 12:37:51  southa
+ * Control configuration
+ *
  * Revision 1.17  2006/06/21 12:17:55  southa
  * Ruby object generation
  *
@@ -109,7 +112,7 @@ AdanaxisPlayer::Move(MushGameLogic& ioLogic, const tVal inFrameslice)
 
 void
 AdanaxisPlayer::AxisDeltaHandle(Mushware::tVal inDelta, Mushware::U32 inAxisNum)
-{    
+{
     if (inAxisNum <= AdanaxisConfig::kAxisW)
     {
         t4Val vel;
@@ -211,7 +214,7 @@ AdanaxisPlayer::ControlInfoConsume(MushGameLogic& ioLogic, const MushGameMessage
     }
     else
     {
-        m_lastAxes.resize(AdanaxisConfig::kNumAxes);
+        m_lastAxes.resize(AdanaxisConfig::kNumAxes, 0);
         lastAxesSize = m_lastAxes.size();
         for (U32 i=0; i<axisEventsSize; ++i)
         {

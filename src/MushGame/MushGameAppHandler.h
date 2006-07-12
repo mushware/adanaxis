@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } rqKVCOMdajoYPgaQgbClmg
 /*
- * $Id: MushGameAppHandler.h,v 1.9 2006/07/10 16:01:19 southa Exp $
+ * $Id: MushGameAppHandler.h,v 1.10 2006/07/11 19:49:05 southa Exp $
  * $Log: MushGameAppHandler.h,v $
+ * Revision 1.10  2006/07/11 19:49:05  southa
+ * Control menu
+ *
  * Revision 1.9  2006/07/10 16:01:19  southa
  * Control menu work
  *
@@ -74,10 +77,13 @@ public:
     virtual void GameIdle(void);
     virtual void QuitStateEnter(void);
     virtual void GameRestart(void);
-    
+    virtual void ControlsToDefaultSet(void); // Override this
+
     virtual void GroupingNameSet(const std::string& inName);
-    virtual const MushGameAxisDef& AxisDef(Mushware::U32 inAxisNum);
-    virtual const MushGameKeyDef& KeyDef(Mushware::U32 inKeyNum);
+    virtual const MushGameAxisDef& AxisDef(Mushware::U32 inAxisNum) const;
+    virtual const MushGameKeyDef& KeyDef(Mushware::U32 inKeyNum) const;
+    virtual MushGameAxisDef& AxisDefWRef(Mushware::U32 inAxisNum);
+    virtual MushGameKeyDef& KeyDefWRef(Mushware::U32 inKeyNum);
     virtual void AxisDefSet(const MushGameAxisDef& inAxisDef, Mushware::U32 inAxisNum);
     virtual void KeyDefSet(const MushGameKeyDef& inKeyDef, Mushware::U32 inKeyNum);
     virtual void AxisPurge(Mushware::U32 inDeviceNum, Mushware::U32 inAxisNum);

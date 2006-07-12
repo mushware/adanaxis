@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } NnTJcSPyQCJazbsDD4KfIg
 /*
- * $Id: MushGameAxisDef.h,v 1.5 2006/07/11 12:37:52 southa Exp $
+ * $Id: MushGameAxisDef.h,v 1.6 2006/07/11 19:49:06 southa Exp $
  * $Log: MushGameAxisDef.h,v $
+ * Revision 1.6  2006/07/11 19:49:06  southa
+ * Control menu
+ *
  * Revision 1.5  2006/07/11 12:37:52  southa
  * Control configuration
  *
@@ -85,6 +88,8 @@ public:
     void ApplyIntegration(Mushware::tVal inAmount);
     void PosConstrainAndSet(Mushware::tVal inPos);
     
+    void Reset(void);
+    
     bool UseDevice(void) const { return m_deviceNum != 0; }
     bool UseKeys(void) const { return m_upKey != 0 || m_downKey != 0; }
     
@@ -97,6 +102,8 @@ private:
     Mushware::U32 m_deviceAxisNum; //:readwrite
     Mushware::tVal m_deviceSensitivity; //:readwrite
     Mushware::tVal m_deviceDamping; //:readwrite
+    Mushware::tVal m_velLimit; //:readwrite
+    Mushware::tVal m_accel; //:readwrite
     
     Mushware::U32 m_upKey; //:readwrite
     Mushware::U32 m_downKey; //:readwrite
@@ -111,8 +118,6 @@ private:
     // Dynamic data
     Mushware::tVal m_pos; //:read
     Mushware::tVal m_vel; //:readwrite
-    Mushware::tVal m_accel; //:readwrite
-    Mushware::tVal m_velLimit; //:readwrite
     bool m_posHasMoved; //:readwrite
     bool m_deviceAccelerate;
     
@@ -130,6 +135,10 @@ public:
     void DeviceSensitivitySet(const Mushware::tVal& inValue) { m_deviceSensitivity=inValue; }
     const Mushware::tVal& DeviceDamping(void) const { return m_deviceDamping; }
     void DeviceDampingSet(const Mushware::tVal& inValue) { m_deviceDamping=inValue; }
+    const Mushware::tVal& VelLimit(void) const { return m_velLimit; }
+    void VelLimitSet(const Mushware::tVal& inValue) { m_velLimit=inValue; }
+    const Mushware::tVal& Accel(void) const { return m_accel; }
+    void AccelSet(const Mushware::tVal& inValue) { m_accel=inValue; }
     const Mushware::U32& UpKey(void) const { return m_upKey; }
     void UpKeySet(const Mushware::U32& inValue) { m_upKey=inValue; }
     const Mushware::U32& DownKey(void) const { return m_downKey; }
@@ -145,10 +154,6 @@ public:
     const Mushware::tVal& Pos(void) const { return m_pos; }
     const Mushware::tVal& Vel(void) const { return m_vel; }
     void VelSet(const Mushware::tVal& inValue) { m_vel=inValue; }
-    const Mushware::tVal& Accel(void) const { return m_accel; }
-    void AccelSet(const Mushware::tVal& inValue) { m_accel=inValue; }
-    const Mushware::tVal& VelLimit(void) const { return m_velLimit; }
-    void VelLimitSet(const Mushware::tVal& inValue) { m_velLimit=inValue; }
     const bool& PosHasMoved(void) const { return m_posHasMoved; }
     void PosHasMovedSet(const bool& inValue) { m_posHasMoved=inValue; }
     virtual const char *AutoName(void) const;
@@ -158,7 +163,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } 0CHrEvgRl1eEB9jmLt6Aog
+//%classPrototypes } ai3BdMHOajQ0xeGUPyc2HA
 };
 //%inlineHeader {
 inline std::ostream&

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } yY7ZZkvIHHOoUzJzTAQPOQ
 /*
- * $Id: MushGameRuby.cpp,v 1.5 2006/07/11 12:37:52 southa Exp $
+ * $Id: MushGameRuby.cpp,v 1.6 2006/07/11 19:49:06 southa Exp $
  * $Log: MushGameRuby.cpp,v $
+ * Revision 1.6  2006/07/11 19:49:06  southa
+ * Control menu
+ *
  * Revision 1.5  2006/07/11 12:37:52  southa
  * Control configuration
  *
@@ -322,6 +325,13 @@ MushGameRuby::NumJoysticks(Mushware::tRubyValue inSelf)
     return MushRubyValue(numSticks).Value();
 }  
 
+Mushware::tRubyValue
+MushGameRuby::ControlsToDefaultSet(Mushware::tRubyValue inSelf)
+{
+    MushGameUtil::AppHandler().ControlsToDefaultSet();
+    return Mushware::kRubyQnil;
+}  
+
 void
 MushGameRuby::MethodsInstall(void)
 {
@@ -337,4 +347,5 @@ MushGameRuby::MethodsInstall(void)
     MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cKeySymbol", KeySymbol);
     MushRubyUtil::SingletonMethodDefineTwoParams(Klass(), "cKeySet", KeySet);
     MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cNumJoysticks", NumJoysticks);
+    MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cControlsToDefaultSet", ControlsToDefaultSet);
 }

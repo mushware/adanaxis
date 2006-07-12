@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 72jYu/IZevqg7bsvRKLvxw
 /*
- * $Id: MushGameBase.cpp,v 1.3 2006/07/07 18:13:58 southa Exp $
+ * $Id: MushGameBase.cpp,v 1.4 2006/07/08 16:05:59 southa Exp $
  * $Log: MushGameBase.cpp,v $
+ * Revision 1.4  2006/07/08 16:05:59  southa
+ * Ruby menus and key handling
+ *
  * Revision 1.3  2006/07/07 18:13:58  southa
  * Menu start and stop
  *
@@ -74,6 +77,12 @@ MushGameBase::KeyboardSignal(const GLKeyboardSignal& inSignal, MushGameAppHandle
         keyHandled = true;
     }
     return keyHandled;
+}
+
+void
+MushGameBase::ControlsToDefaultSet(MushGameAppHandler& inHandler)
+{
+    // Override this
 }
 
 //%outOfLineFunctions {

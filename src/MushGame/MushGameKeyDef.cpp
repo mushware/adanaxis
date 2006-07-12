@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } cC+qoCB7VQVSsmwgWq6ijQ
 /*
- * $Id: MushGameKeyDef.cpp,v 1.1 2005/07/11 16:37:46 southa Exp $
+ * $Id: MushGameKeyDef.cpp,v 1.2 2006/06/01 15:39:22 southa Exp $
  * $Log: MushGameKeyDef.cpp,v $
+ * Revision 1.2  2006/06/01 15:39:22  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.1  2005/07/11 16:37:46  southa
  * Uplink control work
  *
@@ -32,6 +35,13 @@ MushGameKeyDef::MushGameKeyDef() :
     m_state(false),
     m_stateHasChanged(true)
 {
+}
+
+void
+MushGameKeyDef::Reset(void)
+{
+    m_state = false;
+    m_stateHasChanged = true;
 }
 
 //%outOfLineFunctions {

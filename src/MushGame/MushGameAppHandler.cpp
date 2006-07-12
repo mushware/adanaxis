@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } bC49LKe3G5tsyGqAVa5gyw
 /*
- * $Id: MushGameAppHandler.cpp,v 1.11 2006/07/11 12:37:52 southa Exp $
+ * $Id: MushGameAppHandler.cpp,v 1.12 2006/07/11 19:49:05 southa Exp $
  * $Log: MushGameAppHandler.cpp,v $
+ * Revision 1.12  2006/07/11 19:49:05  southa
+ * Control menu
+ *
  * Revision 1.11  2006/07/11 12:37:52  southa
  * Control configuration
  *
@@ -123,6 +126,15 @@ MushGameAppHandler::QuitStateEnter(void)
 }
 
 void
+MushGameAppHandler::ControlsToDefaultSet(void)
+{
+    if (m_currentRef.Exists())
+    {
+        m_currentRef.Get()->ControlsToDefaultSet(*this);
+    }
+}    
+
+void
 MushGameAppHandler::GroupingNameSet(const std::string& inName)
 {
     m_groupingName = inName;
@@ -132,24 +144,46 @@ MushGameAppHandler::GroupingNameSet(const std::string& inName)
 }
 
 const MushGameAxisDef&
-MushGameAppHandler::AxisDef(Mushware::U32 inAxisNum)
+MushGameAppHandler::AxisDef(Mushware::U32 inAxisNum) const
 {
     if (inAxisNum >= m_axisDefs.size())
     {
         throw MushcoreDataFail("Axis number too high");
     }
-
+    
     return m_axisDefs[inAxisNum];
 }
 
 const MushGameKeyDef&
-MushGameAppHandler::KeyDef(Mushware::U32 inKeyNum)
+MushGameAppHandler::KeyDef(Mushware::U32 inKeyNum) const
 {
     if (inKeyNum >= m_keyDefs.size())
     {
         throw MushcoreDataFail("Key number too high");
     }
+    
+    return m_keyDefs[inKeyNum];
+}
 
+MushGameAxisDef&
+MushGameAppHandler::AxisDefWRef(Mushware::U32 inAxisNum)
+{
+    if (inAxisNum >= m_axisDefs.size())
+    {
+        throw MushcoreDataFail("Axis number too high");
+    }
+    
+    return m_axisDefs[inAxisNum];
+}
+
+MushGameKeyDef&
+MushGameAppHandler::KeyDefWRef(Mushware::U32 inKeyNum)
+{
+    if (inKeyNum >= m_keyDefs.size())
+    {
+        throw MushcoreDataFail("Key number too high");
+    }
+    
     return m_keyDefs[inKeyNum];
 }
 
@@ -201,7 +235,7 @@ MushGameAppHandler::KeyPurge(Mushware::U32 inKeyNum)
     {
         if (m_axisDefs[i].UpKey() == inKeyNum) m_axisDefs[i].UpKeySet(0);
         if (m_axisDefs[i].DownKey() == inKeyNum) m_axisDefs[i].DownKeySet(0);
-        if (m_axisDefs[i].RequiredKey() == inKeyNum) m_axisDefs[i].RequiredKeySet(0);
+        // Required keys can be reused so don't get purged
     }
     
     for (U32 i=0; i < m_keyDefs.size(); ++i)

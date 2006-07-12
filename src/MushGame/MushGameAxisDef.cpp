@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } MJLMNaraKdT0cf2Xdn+zyg
 /*
- * $Id: MushGameAxisDef.cpp,v 1.5 2006/07/11 12:37:52 southa Exp $
+ * $Id: MushGameAxisDef.cpp,v 1.6 2006/07/11 19:49:05 southa Exp $
  * $Log: MushGameAxisDef.cpp,v $
+ * Revision 1.6  2006/07/11 19:49:05  southa
+ * Control menu
+ *
  * Revision 1.5  2006/07/11 12:37:52  southa
  * Control configuration
  *
@@ -106,14 +109,7 @@ MushGameAxisDef::DeviceAccelerate(Mushware::tVal inAmount)
 void
 MushGameAxisDef::DeviceSet(Mushware::tVal inAmount)
 {
-    if (m_deviceSensitivity > 0)
-    {
-        m_vel = m_velLimit * inAmount;
-    }
-    else
-    {
-        m_vel = m_velLimit * inAmount;        
-    }
+    m_vel = m_velLimit * inAmount;
 }
 
 void
@@ -145,6 +141,15 @@ MushGameAxisDef::ApplyIntegration(Mushware::tVal inAmount)
 {
     PosConstrainAndSet(m_pos + m_vel * inAmount);
 }    
+
+void
+MushGameAxisDef::Reset(void)
+{
+    m_pos = 0;
+    m_vel = 0;
+    m_posHasMoved = true;
+    m_deviceAccelerate = false;
+}
 
 //%outOfLineFunctions {
 
@@ -185,6 +190,8 @@ MushGameAxisDef::AutoPrint(std::ostream& ioOut) const
     ioOut << "deviceAxisNum=" << m_deviceAxisNum << ", ";
     ioOut << "deviceSensitivity=" << m_deviceSensitivity << ", ";
     ioOut << "deviceDamping=" << m_deviceDamping << ", ";
+    ioOut << "velLimit=" << m_velLimit << ", ";
+    ioOut << "accel=" << m_accel << ", ";
     ioOut << "upKey=" << m_upKey << ", ";
     ioOut << "downKey=" << m_downKey << ", ";
     ioOut << "requiredKey=" << m_requiredKey << ", ";
@@ -193,8 +200,6 @@ MushGameAxisDef::AutoPrint(std::ostream& ioOut) const
     ioOut << "axisName=" << m_axisName << ", ";
     ioOut << "pos=" << m_pos << ", ";
     ioOut << "vel=" << m_vel << ", ";
-    ioOut << "accel=" << m_accel << ", ";
-    ioOut << "velLimit=" << m_velLimit << ", ";
     ioOut << "posHasMoved=" << m_posHasMoved << ", ";
     ioOut << "deviceAccelerate=" << m_deviceAccelerate;
     ioOut << "]";
@@ -232,6 +237,14 @@ MushGameAxisDef::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string&
     {
         ioIn >> m_deviceDamping;
     }
+    else if (inTagStr == "velLimit")
+    {
+        ioIn >> m_velLimit;
+    }
+    else if (inTagStr == "accel")
+    {
+        ioIn >> m_accel;
+    }
     else if (inTagStr == "upKey")
     {
         ioIn >> m_upKey;
@@ -264,14 +277,6 @@ MushGameAxisDef::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string&
     {
         ioIn >> m_vel;
     }
-    else if (inTagStr == "accel")
-    {
-        ioIn >> m_accel;
-    }
-    else if (inTagStr == "velLimit")
-    {
-        ioIn >> m_velLimit;
-    }
     else if (inTagStr == "posHasMoved")
     {
         ioIn >> m_posHasMoved;
@@ -301,6 +306,10 @@ MushGameAxisDef::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_deviceSensitivity;
     ioOut.TagSet("deviceDamping");
     ioOut << m_deviceDamping;
+    ioOut.TagSet("velLimit");
+    ioOut << m_velLimit;
+    ioOut.TagSet("accel");
+    ioOut << m_accel;
     ioOut.TagSet("upKey");
     ioOut << m_upKey;
     ioOut.TagSet("downKey");
@@ -317,13 +326,9 @@ MushGameAxisDef::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_pos;
     ioOut.TagSet("vel");
     ioOut << m_vel;
-    ioOut.TagSet("accel");
-    ioOut << m_accel;
-    ioOut.TagSet("velLimit");
-    ioOut << m_velLimit;
     ioOut.TagSet("posHasMoved");
     ioOut << m_posHasMoved;
     ioOut.TagSet("deviceAccelerate");
     ioOut << m_deviceAccelerate;
 }
-//%outOfLineFunctions } 3ZesDqLdcs9MCF3chKN60w
+//%outOfLineFunctions } Cz5xcPnpleKY/DiQ4LWJCA

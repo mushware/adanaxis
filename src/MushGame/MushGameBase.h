@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } auDv5KzHAtGChacJ2aS7ug
 /*
- * $Id: MushGameBase.h,v 1.2 2006/07/04 16:55:27 southa Exp $
+ * $Id: MushGameBase.h,v 1.3 2006/07/07 18:13:58 southa Exp $
  * $Log: MushGameBase.h,v $
+ * Revision 1.3  2006/07/07 18:13:58  southa
+ * Menu start and stop
+ *
  * Revision 1.2  2006/07/04 16:55:27  southa
  * Ruby key handling
  *
@@ -55,6 +58,7 @@ public:
     virtual void SwapOut(MushGameAppHandler& inHandler);
     // KeyboardSignal returns true if it consumed the keypress
     virtual bool KeyboardSignal(const GLKeyboardSignal& inSignal, MushGameAppHandler& inHandler);
+    virtual void ControlsToDefaultSet(MushGameAppHandler& inHandler);
     virtual MushGameLogic& LogicWRef(void) const { return m_logicRef.WRef(); }
     
 private:

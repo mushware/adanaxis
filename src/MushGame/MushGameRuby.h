@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } abz8WfQdtsWpPxv12NZxhA
 /*
- * $Id: MushGameRuby.h,v 1.5 2006/07/11 12:37:53 southa Exp $
+ * $Id: MushGameRuby.h,v 1.6 2006/07/11 19:49:06 southa Exp $
  * $Log: MushGameRuby.h,v $
+ * Revision 1.6  2006/07/11 19:49:06  southa
+ * Control menu
+ *
  * Revision 1.5  2006/07/11 12:37:53  southa
  * Control configuration
  *
@@ -61,6 +64,7 @@ public:
     static Mushware::tRubyValue KeySymbol(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
     static Mushware::tRubyValue KeySet(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0, Mushware::tRubyValue inArg1);
     static Mushware::tRubyValue NumJoysticks(Mushware::tRubyValue inSelf);
+    static Mushware::tRubyValue ControlsToDefaultSet(Mushware::tRubyValue inSelf);
     static void MethodsInstall(void);
     
 private:

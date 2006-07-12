@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } DEX6Sh9oUk/bih2GXm2coA
 /*
- * $Id: AdanaxisGame.cpp,v 1.39 2006/07/07 18:13:57 southa Exp $
+ * $Id: AdanaxisGame.cpp,v 1.40 2006/07/11 19:49:03 southa Exp $
  * $Log: AdanaxisGame.cpp,v $
+ * Revision 1.40  2006/07/11 19:49:03  southa
+ * Control menu
+ *
  * Revision 1.39  2006/07/07 18:13:57  southa
  * Menu start and stop
  *
@@ -302,17 +305,28 @@ AdanaxisGame::Init(MushGameAppHandler& inAppHandler)
 }
 
 void
+AdanaxisGame::ControlsToDefaultSet(MushGameAppHandler& inHandler)
+{
+    MushGameBase::ControlsToDefaultSet(inHandler);
+    m_config.AxesToDefaultSet();
+    m_config.KeysToDefaultSet();
+    UpdateFromConfig();
+}
+
+void
 AdanaxisGame::UpdateFromConfig(void)
 {
     AdanaxisAppHandler& appHandler = AdanaxisUtil::AppHandler();
     for (U32 i=0; i < m_config.AxisDefs().size(); ++i)
     {
         appHandler.AxisDefSet(m_config.AxisDefs(i), i);
+        appHandler.AxisDefWRef(i).Reset();
     }
     
     for (U32 i=0; i < m_config.KeyDefs().size(); ++i)
     {
         appHandler.KeyDefSet(m_config.KeyDefs(i), i);
+        appHandler.KeyDefWRef(i).Reset();
     }
 }
 
@@ -323,11 +337,13 @@ AdanaxisGame::UpdateToConfig(void)
     for (U32 i=0; i < m_config.AxisDefs().size(); ++i)
     {
         m_config.AxisDefSet(appHandler.AxisDef(i), i);
+        m_config.AxisDefWRef(i).Reset();
     }
     
     for (U32 i=0; i < m_config.KeyDefs().size(); ++i)
     {
         m_config.KeyDefSet(appHandler.KeyDef(i), i);
+        m_config.KeyDefWRef(i).Reset();
     }
 }
 

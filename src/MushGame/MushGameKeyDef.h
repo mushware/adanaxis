@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 0XyESJoYf4vvwzHYpkSADw
 /*
- * $Id: MushGameKeyDef.h,v 1.2 2006/04/11 23:30:08 southa Exp $
+ * $Id: MushGameKeyDef.h,v 1.3 2006/06/01 15:39:23 southa Exp $
  * $Log: MushGameKeyDef.h,v $
+ * Revision 1.3  2006/06/01 15:39:23  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.2  2006/04/11 23:30:08  southa
  * Created MushRuby from ruby-1.8.4
  *
@@ -44,6 +47,8 @@ class MushGameKeyDef : public MushcoreVirtualObject
 public:
     MushGameKeyDef();
     virtual ~MushGameKeyDef() {}
+    
+    void Reset(void);
     
 private:
     Mushware::U32 m_keyValue; //:readwrite
