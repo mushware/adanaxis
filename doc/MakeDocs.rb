@@ -3,12 +3,43 @@
 class Docs
   def initialize
     @natDocsVarName = 'NATURALDOCS_PATH'
-    @natDocsPath = ENV[@natDocsVarName]
+    @natDocsPath = ENV[@natDocsVarName].dup
+    @natDocsPath.sub!(/\/$/, '')
     unless @natDocsPath : abort "Set the environment variable #{@natDocsVarName} to the directory NaturalDocs (www.naturaldocs.org) is installed in and try again"; end
-    @natDocsCommand = "perl #{@natDocsPath}/NaturalDocs"
+    @natDocsCommand = "perl '#{@natDocsPath}/NaturalDocs'"
+    @collectPath = Dir.pwd+'/collect'
     @outputPath = Dir.pwd+'/natdocs'
-    @genTypeIsFile = true
+    @genTypeIsFile = false
+    if ARGV.index('--file')
+      @genTypeIsFile = true
+    end
     @genTypeName = @genTypeIsFile ? 'file' : 'web'
+  end
+
+  def mCopy(fromName, toName)
+    content = []
+    File.open(fromName) do |file|
+      content = file.readlines
+    end
+    File.open(toName, "w") do |file|
+      content.each do |line|
+        unless @genTypeIsFile
+          line.sub!('file:', 'http://www.mushware.com/')
+        end
+        file << line
+      end
+    end
+  end
+     
+  def mGetFiles(inDirs)
+    Dir.mkdir @collectPath unless File.directory?(@collectPath)
+    inDirs.each do |dirName|
+      Dir.foreach(dirName) do |leafName|
+        if leafName =~ /.*\.rb/
+          mCopy(dirName+'/'+leafName, @collectPath+'/'+leafName)
+        end
+      end
+    end
   end
 
   def mBanner
@@ -18,14 +49,14 @@ class Docs
   def mDoxygen
     puts "Generating doxygen"
     system 'rm -rf doxygen'
-    system 'doxygen Doxyfie.txt'
+    system 'doxygen Doxyfile.txt'
     puts "Doxygen complete"
   end
 
   def mNaturalDocs(path, dataPaths)
     sourcePrefix = ' --input ';
-    sourceCommand = sourcePrefix + dataPaths.join(sourcePrefix)
-    command = "cd #{path}; #{@natDocsCommand} #{sourceCommand} --output FramedHTML #{@outputPath} --exclude-input doxygen --project #{@natDocsPath}/core-app --rebuild"
+    sourceCommand = " --input '#{@collectPath}' "
+    command = "cd '#{path}'; #{@natDocsCommand} #{sourceCommand} --output FramedHTML '#{@outputPath}' --project #{@natDocsPath}/core-app --rebuild"
     puts "command=#{command}"
 
     %w{files files2 index index.html javascript menu.html styles search doxygen}.each do |leafName|
@@ -65,9 +96,15 @@ end
 
 puts "Using data directories ", dataPaths.join(', ')
 
+docs.mGetFiles(dataPaths)
+
 unless ARGV.index('--nodox')
   docs.mDoxygen
 end
 docs.mNaturalDocs(topLevelPath, dataPaths)
+
+dateStr = Time.now.strftime('%Y-%m-%d')
+system "tar czf natdocs-#{dateStr}.tgz natdocs"
+system "tar czf doxygen-#{dateStr}.tgz doxygen"
 
 puts 'Done.'
