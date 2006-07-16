@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } xkvbVCXm8pXCDWV4BdLGFQ
 /*
- * $Id: MushSkinTiled.cpp,v 1.6 2006/06/16 01:02:34 southa Exp $
+ * $Id: MushSkinTiled.cpp,v 1.7 2006/06/22 19:07:36 southa Exp $
  * $Log: MushSkinTiled.cpp,v $
+ * Revision 1.7  2006/06/22 19:07:36  southa
+ * Build fixes
+ *
  * Revision 1.6  2006/06/16 01:02:34  southa
  * Ruby mesh generation
  *
@@ -153,9 +156,17 @@ MushSkinTiled::TexCoordsGenerate(MushMesh4Mesh& ioMesh)
             texTileWRef.SourceFacetNumSet(facetNum);
 			texTileWRef.SKSet(1); // FIXME
 			
-			// Generate the facet-to-texture transformation
-			MushMeshTools::FacetToTextureTransformMake(texTileWRef, facetVertices);
-			
+            try
+            {
+                // Generate the facet-to-texture transformation
+                MushMeshTools::FacetToTextureTransformMake(texTileWRef, facetVertices);
+			}
+            catch (std::exception& e)
+            {
+                MushcoreLog::Sgl().ErrorLog() << "Faulty mesh was:" << endl;
+                MushcoreLog::Sgl().XMLErrorLog() << ioMesh;
+                throw;
+            }
             U32 tileTexCoordBase = texCoordNum;
             
 			U32 numVertices = facetVertices.size();
