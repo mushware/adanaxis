@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } Hr8bvS7fc+x0pR9DrFcIZw
 /*
- * $Id: AdanaxisRender.cpp,v 1.30 2006/07/07 18:13:57 southa Exp $
+ * $Id: AdanaxisRender.cpp,v 1.31 2006/07/08 16:05:54 southa Exp $
  * $Log: AdanaxisRender.cpp,v $
+ * Revision 1.31  2006/07/08 16:05:54  southa
+ * Ruby menus and key handling
+ *
  * Revision 1.30  2006/07/07 18:13:57  southa
  * Menu start and stop
  *
@@ -195,9 +198,9 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
         camera.ProjectionSet(m_projection);
         
 
-        renderMesh.ColourZMiddleSet(t4Val(1.0,1.0,1.0,0.1));
-        renderMesh.ColourZLeftSet(t4Val(1.0,1.0,1.0,0.0));
-        renderMesh.ColourZRightSet(t4Val(1.0,1.0,1.0,0.0));
+        renderMesh.ColourZMiddleSet(t4Val(1.0,1.0,1.0,1.0));
+        renderMesh.ColourZLeftSet(t4Val(1.0,0.3,0.3,0.0));
+        renderMesh.ColourZRightSet(t4Val(0.3,1.0,0.3,0.0));
 
         if (!m_scannerOn)
         {

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } oR7WPhSKmfGQldTVFg6TpQ
 /*
- * $Id: MushMeshRubyMesh.cpp,v 1.9 2006/06/22 19:07:33 southa Exp $
+ * $Id: MushMeshRubyMesh.cpp,v 1.10 2006/07/16 09:19:47 southa Exp $
  * $Log: MushMeshRubyMesh.cpp,v $
+ * Revision 1.10  2006/07/16 09:19:47  southa
+ * Delete mesh before creating
+ *
  * Revision 1.9  2006/06/22 19:07:33  southa
  * Build fixes
  *
@@ -52,7 +55,9 @@
 
 #include "MushMeshRubyMesh.h"
 
+#include "MushMeshRubyBase.h"
 #include "MushMeshRubyBasePrism.h"
+#include "MushMeshRubyBaseSingleFacet.h"
 #include "MushMeshRubyDisplacement.h"
 #include "MushMeshRubyExtruder.h"
 // #include "MushMeshRubyRuby.h"
@@ -83,13 +88,20 @@ MUSHRUBYDATAOBJ_INITIALIZE(MushMesh4Mesh)(Mushware::tRubyArgC inArgC, Mushware::
 Mushware::tRubyValue
 MushMeshRubyMesh::BaseAdd(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0)
 {
-	if (!MushMeshRubyBasePrism::IsInstanceOf(inArg0))
-	{
-		MushRubyUtil::Raise("Wrong type for ExtruderAdd - must be MushExtruder");
-	}
 	try
 	{
-		WRef(inSelf).BaseGive(new MushMeshLibraryPrism(MushMeshRubyBasePrism::Ref(inArg0)));
+        if (MushMeshRubyBasePrism::IsInstanceOf(inArg0))
+        {
+		    WRef(inSelf).BaseGive(new MushMeshLibraryPrism(MushMeshRubyBasePrism::Ref(inArg0)));
+        }
+        else if (MushMeshRubyBaseSingleFacet::IsInstanceOf(inArg0))
+        {
+		    WRef(inSelf).BaseGive(new MushMeshLibrarySingleFacet(MushMeshRubyBaseSingleFacet::Ref(inArg0)));
+        }
+        else
+        {
+            MushRubyUtil::Raise("Wrong type for BaseAdd"); 
+        }
 	}
 	catch (std::exception& e)
 	{
@@ -117,6 +129,28 @@ MushMeshRubyMesh::BaseDisplacementAdd(Mushware::tRubyValue inSelf, Mushware::tRu
 }
 
 Mushware::tRubyValue
+MushMeshRubyMesh::BillboardSet(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0)
+{
+	try
+    {
+        MushRubyValue param0(inArg0);
+        if (param0.Bool())
+        {
+            WRef(inSelf).TransformTypeSet(MushMesh4Mesh::kTransformTypeBillboard);
+        }
+        else
+        {
+            WRef(inSelf).TransformTypeSet(MushMesh4Mesh::kTransformTypeNormal);
+        }
+    }
+    catch (std::exception& e)
+    {
+        MushRubyUtil::Raise(e.what());
+    }
+    return inSelf;
+}
+
+Mushware::tRubyValue
 MushMeshRubyMesh::ExtruderAdd(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0)
 {
 	if (!MushMeshRubyExtruder::IsInstanceOf(inArg0))
@@ -124,14 +158,14 @@ MushMeshRubyMesh::ExtruderAdd(Mushware::tRubyValue inSelf, Mushware::tRubyValue 
 		MushRubyUtil::Raise("Wrong type for ExtruderAdd - must be MushExtruder");
 	}
 	try
-{
-	WRef(inSelf).ExtruderGive(new MushMeshLibraryExtruder(MushMeshRubyExtruder::Ref(inArg0)));
-}
-catch (std::exception& e)
-{
-	MushRubyUtil::Raise(e.what());
-}
-return inSelf;
+    {
+        WRef(inSelf).ExtruderGive(new MushMeshLibraryExtruder(MushMeshRubyExtruder::Ref(inArg0)));
+    }
+    catch (std::exception& e)
+    {
+        MushRubyUtil::Raise(e.what());
+    }
+    return inSelf;
 }
 
 Mushware::tRubyValue
@@ -170,6 +204,7 @@ MushMeshRubyMesh::RubyInstall(void)
 	DataObjInstall("MushMesh");
 	MushRubyUtil::MethodDefineOneParam(DataObjKlass(), "mBaseAdd", BaseAdd);
 	MushRubyUtil::MethodDefineOneParam(DataObjKlass(), "mBaseDisplacementAdd", BaseDisplacementAdd);
+	MushRubyUtil::MethodDefineOneParam(DataObjKlass(), "mBillboardSet", BillboardSet);
 	MushRubyUtil::MethodDefineOneParam(DataObjKlass(), "mExtruderAdd", ExtruderAdd);
 	MushRubyUtil::MethodDefineOneParam(DataObjKlass(), "mMaterialAdd", MaterialAdd);
 	MushRubyUtil::MethodDefineNoParams(DataObjKlass(), "mMake", Make);

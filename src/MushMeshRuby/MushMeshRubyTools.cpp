@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } oKuIr5eVL2esfxDutcXp9Q
 /*
- * $Id: MushMeshRubyTools.cpp,v 1.1 2006/06/13 19:30:38 southa Exp $
+ * $Id: MushMeshRubyTools.cpp,v 1.2 2006/06/20 19:06:54 southa Exp $
  * $Log: MushMeshRubyTools.cpp,v $
+ * Revision 1.2  2006/06/20 19:06:54  southa
+ * Object creation
+ *
  * Revision 1.1  2006/06/13 19:30:38  southa
  * Ruby mesh generation
  *
@@ -29,6 +32,7 @@
 #include "MushMeshRubyTools.h"
 
 #include "MushMeshRubyRotation.h"
+#include "MushMeshRubyVector.h"
 
 using namespace Mushware;
 using namespace std;
@@ -97,6 +101,23 @@ MushMeshRubyTools::RotationInYZPlane(Mushware::tRubyValue inSelf, Mushware::tRub
 	return retVal;
 }
 
+Mushware::tRubyValue
+MushMeshRubyTools::RandomOrientation(Mushware::tRubyValue inSelf)
+{
+	Mushware::tRubyValue retVal = MushMeshRubyRotation::NewInstance();
+	MushMeshRubyRotation::WRef(retVal) = MushMeshTools::RandomOrientation();
+	return retVal;
+}
+
+Mushware::tRubyValue
+MushMeshRubyTools::RandomUnitVector(Mushware::tRubyValue inSelf)
+{
+	Mushware::tRubyValue retVal = MushMeshRubyVector::NewInstance();
+	MushMeshRubyVector::WRef(retVal) = MushMeshTools::RandomUnitVector();
+	return retVal;
+}
+
+
 void
 MushMeshRubyTools::RubyInstall(void)
 {
@@ -109,6 +130,8 @@ MushMeshRubyTools::RubyInstall(void)
 	MushRubyUtil::SingletonMethodDefineOneParam(ObjKlass(), "cRotationInYWPlane", RotationInYWPlane);
 	MushRubyUtil::SingletonMethodDefineOneParam(ObjKlass(), "cRotationInXWPlane", RotationInXWPlane);
 	MushRubyUtil::SingletonMethodDefineOneParam(ObjKlass(), "cRotationInYZPlane", RotationInYZPlane);
+	MushRubyUtil::SingletonMethodDefineNoParams(ObjKlass(), "cRandomOrientation", RandomOrientation);
+	MushRubyUtil::SingletonMethodDefineNoParams(ObjKlass(), "cRandomUnitVector", RandomUnitVector);
 }
 
 MUSHRUBY_INSTALL(MushMeshRubyTools);

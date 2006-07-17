@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } YrK9KiG4XjKqbWo1rVGU4w
 /*
- * $Id: MushMesh4Mesh.h,v 1.17 2006/06/16 01:02:32 southa Exp $
+ * $Id: MushMesh4Mesh.h,v 1.18 2006/06/19 15:57:18 southa Exp $
  * $Log: MushMesh4Mesh.h,v $
+ * Revision 1.18  2006/06/19 15:57:18  southa
+ * Materials
+ *
  * Revision 1.17  2006/06/16 01:02:32  southa
  * Ruby mesh generation
  *
@@ -119,6 +122,13 @@ public:
 	typedef MushcoreDataRef<MushMesh4Material> tMaterialRef;
 	typedef std::vector<tMaterialRef> tMaterials;
 	
+    enum
+    {
+        kTransformTypeInvalid = 0,
+        kTransformTypeNormal,
+        kTransformTypeBillboard
+    } tTransformType;
+    
     MushMesh4Mesh();
     virtual ~MushMesh4Mesh() {}
 
@@ -185,6 +195,7 @@ private:
     tFaces m_faces; //:readwrite :wref
 	tMaterials m_materials; //:readwrite :wref;
 	Mushware::U32 m_levelOfDetail; //:readwrite
+    Mushware::U32  m_transformType; //:readwrite
     
     // Delegates
     tDataRef m_texCoordDelegate; //:readwrite :wref
@@ -239,6 +250,8 @@ public:
     tMaterials& MaterialsWRef(void) { return m_materials; }
     const Mushware::U32& LevelOfDetail(void) const { return m_levelOfDetail; }
     void LevelOfDetailSet(const Mushware::U32& inValue) { m_levelOfDetail=inValue; }
+    const Mushware::U32& TransformType(void) const { return m_transformType; }
+    void TransformTypeSet(const Mushware::U32& inValue) { m_transformType=inValue; }
     const tDataRef& TexCoordDelegate(void) const { return m_texCoordDelegate; }
     void TexCoordDelegateSet(const tDataRef& inValue) { m_texCoordDelegate=inValue; }
     // Writable reference for m_texCoordDelegate
@@ -289,7 +302,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } CHfSjrwEJAt7P9KU0d6BFA
+//%classPrototypes } wiHO6BcqooUc9xVXHpfZBw
 };
 
 inline const MushMesh4Mesh::tCentroid&

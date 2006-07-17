@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 0xPG/7jmGTzjaD0AmAZyzw
 /*
- * $Id: MushMeshRubyVector.cpp,v 1.6 2006/06/16 12:11:05 southa Exp $
+ * $Id: MushMeshRubyVector.cpp,v 1.7 2006/06/22 19:07:34 southa Exp $
  * $Log: MushMeshRubyVector.cpp,v $
+ * Revision 1.7  2006/06/22 19:07:34  southa
+ * Build fixes
+ *
  * Revision 1.6  2006/06/16 12:11:05  southa
  * Ruby subclasses
  *
@@ -102,6 +105,48 @@ MushMeshRubyVector::MushVectorAdd(Mushware::tRubyValue inSelf, Mushware::tRubyVa
 }
 
 Mushware::tRubyValue
+MushMeshRubyVector::MushVectorInPlaceSubtract(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg1)
+{
+	WRef(inSelf) -= Ref(inArg1);
+	
+	return inSelf;
+}
+
+Mushware::tRubyValue
+MushMeshRubyVector::MushVectorSubtract(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg1)
+{
+	tRubyValue retVal = MushRubyUtil::ClassNewInstance(ObjKlass());
+    WRef(retVal) = Ref(inSelf);
+	MushVectorInPlaceSubtract(retVal, inArg1);
+	
+	return retVal;
+}
+
+Mushware::tRubyValue
+MushMeshRubyVector::MushVectorInPlaceMultiply(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg1)
+{
+    if (IsInstanceOf(inArg1))
+    {
+	    WRef(inSelf) *= Ref(inArg1);
+	}
+    else
+    {
+        WRef(inSelf) *= MushRubyValue(inArg1).Val();
+    }
+	return inSelf;
+}
+
+Mushware::tRubyValue
+MushMeshRubyVector::MushVectorMultiply(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg1)
+{
+	tRubyValue retVal = MushRubyUtil::ClassNewInstance(ObjKlass());
+    WRef(retVal) = Ref(inSelf);
+	MushVectorInPlaceMultiply(retVal, inArg1);
+	
+	return retVal;
+}
+
+Mushware::tRubyValue
 MushMeshRubyVector::MushVectorIsEqual(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg1)
 {
 	tRubyValue retVal;
@@ -133,6 +178,10 @@ MushMeshRubyVector::RubyInstall(void)
 
 	MushRubyUtil::MethodDefineOneParam(ObjKlass(), "+=", MushVectorInPlaceAdd);
 	MushRubyUtil::MethodDefineOneParam(ObjKlass(), "+", MushVectorAdd);
+	MushRubyUtil::MethodDefineOneParam(ObjKlass(), "-=", MushVectorInPlaceSubtract);
+	MushRubyUtil::MethodDefineOneParam(ObjKlass(), "-", MushVectorSubtract);
+	MushRubyUtil::MethodDefineOneParam(ObjKlass(), "*=", MushVectorInPlaceMultiply);
+	MushRubyUtil::MethodDefineOneParam(ObjKlass(), "*", MushVectorMultiply);
 	MushRubyUtil::MethodDefineOneParam(ObjKlass(), "==", MushVectorIsEqual);
 	MushRubyUtil::MethodDefineTwoParams(ObjKlass(), "mApproxEqual", ApproxEqual);
 }

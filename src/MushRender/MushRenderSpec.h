@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 6hLRNoZfeBvP570tKfB/gA
 /*
- * $Id: MushRenderSpec.h,v 1.9 2005/09/05 12:54:30 southa Exp $
+ * $Id: MushRenderSpec.h,v 1.10 2006/06/01 15:39:38 southa Exp $
  * $Log: MushRenderSpec.h,v $
+ * Revision 1.10  2006/06/01 15:39:38  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.9  2005/09/05 12:54:30  southa
  * Solid rendering work
  *
@@ -69,7 +72,9 @@ public:
     const tMattress ModelToEyeMattress(void) const { return m_view * m_model; }
     
     const tMattress ModelToClipMattress(void) const { return m_projection.Mattress() * ModelToEyeMattress(); }
-    
+
+    const tMattress ModelToClipBillboardMattress(void) const;
+
 private:
     MushGLProjection m_projection; //:readwrite :wref
     tMattress m_view; //:readwrite :wref
@@ -105,6 +110,16 @@ public:
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
 //%classPrototypes } eo6ShDpTtzBdvR+enEqYzw
 };
+
+inline const MushRenderSpec::tMattress
+MushRenderSpec::ModelToClipBillboardMattress(void) const
+{
+    tMattress billModel = ModelToEyeMattress();
+    
+    billModel.MatrixSet(MushMeshTools::MatrixRotateInAxis(MushMeshTools::kAxisXY, MushcoreUtil::RandomVal(0,2*M_PI)));    
+    return m_projection.Mattress() * billModel;
+}
+
 //%inlineHeader {
 inline std::ostream&
 operator<<(std::ostream& ioOut, const MushRenderSpec& inObj)

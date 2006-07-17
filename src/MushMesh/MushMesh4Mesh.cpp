@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } oYzojPrY+iq5d6Z2oF715A
 /*
- * $Id: MushMesh4Mesh.cpp,v 1.17 2006/06/16 01:02:31 southa Exp $
+ * $Id: MushMesh4Mesh.cpp,v 1.18 2006/06/19 15:57:18 southa Exp $
  * $Log: MushMesh4Mesh.cpp,v $
+ * Revision 1.18  2006/06/19 15:57:18  southa
+ * Materials
+ *
  * Revision 1.17  2006/06/16 01:02:31  southa
  * Ruby mesh generation
  *
@@ -87,6 +90,7 @@ using namespace std;
 
 MushMesh4Mesh::MushMesh4Mesh() :
     m_levelOfDetail(1),
+    m_transformType(kTransformTypeNormal),
     m_vertexCounter(0),
     m_faceCounter(0),
     m_texCoordCounter(0),
@@ -621,6 +625,7 @@ MushMesh4Mesh::AutoPrint(std::ostream& ioOut) const
     ioOut << "faces=" << m_faces << ", ";
     ioOut << "materials=" << m_materials << ", ";
     ioOut << "levelOfDetail=" << m_levelOfDetail << ", ";
+    ioOut << "transformType=" << m_transformType << ", ";
     ioOut << "texCoordDelegate=" << m_texCoordDelegate << ", ";
     ioOut << "vertexCounter=" << m_vertexCounter << ", ";
     ioOut << "faceCounter=" << m_faceCounter << ", ";
@@ -675,6 +680,10 @@ MushMesh4Mesh::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& i
     else if (inTagStr == "levelOfDetail")
     {
         ioIn >> m_levelOfDetail;
+    }
+    else if (inTagStr == "transformType")
+    {
+        ioIn >> m_transformType;
     }
     else if (inTagStr == "texCoordDelegate")
     {
@@ -796,6 +805,8 @@ MushMesh4Mesh::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_materials;
     ioOut.TagSet("levelOfDetail");
     ioOut << m_levelOfDetail;
+    ioOut.TagSet("transformType");
+    ioOut << m_transformType;
     ioOut.TagSet("texCoordDelegate");
     ioOut << m_texCoordDelegate;
     ioOut.TagSet("vertexCounter");
@@ -845,4 +856,4 @@ MushMesh4Mesh::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("numFacetsValid");
     ioOut << m_numFacetsValid;
 }
-//%outOfLineFunctions } VKPLJm3ty34OCE5bkLp7Dg
+//%outOfLineFunctions } y44J83r60Xfpr0avUX6ehA

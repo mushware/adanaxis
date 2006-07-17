@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } tuTK6NcDPsNibg7CubVnHw
 /*
- * $Id: MushSkinLineGenerator.h,v 1.4 2006/06/07 14:25:56 southa Exp $
+ * $Id: MushSkinLineGenerator.h,v 1.5 2006/06/09 21:07:14 southa Exp $
  * $Log: MushSkinLineGenerator.h,v $
+ * Revision 1.5  2006/06/09 21:07:14  southa
+ * Tiled skin generation
+ *
  * Revision 1.4  2006/06/07 14:25:56  southa
  * Grid texture fixes
  *
@@ -60,6 +63,12 @@ public:
 	void TileShowLineGenerate(std::vector<Mushware::tVal>& outData, Mushware::U32 inNumPixels,
 							  const std::vector<Mushware::t4Val>& inTexCoords,
 							  const Mushware::t4Val& inStartUV, const Mushware::t4Val& inEndUV);
+	void RadialInitialise(void) {}
+	void OctavedRadialLineGenerate(std::vector<Mushware::tVal>& outData, Mushware::U32 inNumPixels,
+                                   const Mushware::t4Val& inStartPos, const Mushware::t4Val& inEndPos,
+                                   Mushware::U32 inNumOctaves, Mushware::tVal inOctaveRatio);
+	void RadialLineGenerate(std::vector<Mushware::tVal>& outData, Mushware::U32 inNumPixels,
+							   const Mushware::t4Val& inStartPos, const Mushware::t4Val& inEndPos);
 private:
 	Mushware::t4U32 HashValues(const Mushware::t4Val& inVec);
 	Mushware::t4Val FadeValues(const Mushware::t4Val& inVec);
@@ -71,6 +80,7 @@ private:
 	inline Mushware::tVal TileShowGenerate(const Mushware::t4Val& inPos,
 										   const std::vector<Mushware::t2Val>& inStartPoints,
 										   const std::vector<Mushware::t2Val>& inEdges);
+	Mushware::tVal RadialGenerate(const Mushware::t4Val& inPos);
 
 	std::vector<Mushware::U8> m_cellNoiseHash;
 	Mushware::t4Val m_gridRatioOver2; //:readwrite;
@@ -336,6 +346,40 @@ MushSkinLineGenerator::TileShowLineGenerate(std::vector<Mushware::tVal>& outData
 	{
 		outData[i] = TileShowGenerate(uvPos, startVectors, edgeVectors);
 		uvPos += uvPosStep;
+	}
+}
+
+inline Mushware::tVal
+MushSkinLineGenerator::RadialGenerate(const Mushware::t4Val& inPos)
+{		
+    Mushware::tVal angle = std::atan2(inPos.Y(), inPos.X());
+    Mushware::tVal dist = std::sqrt(inPos.X()*inPos.X() + inPos.Y()*inPos.Y());
+    Mushware::tVal clampedDist = dist;
+    MushcoreUtil::Constrain<Mushware::tVal>(clampedDist, 0, 1);
+    Mushware::tVal clampedInvDist = 1 - clampedDist;
+
+    clampedInvDist *= MushcoreUtil::RandomVal(1, 1.01);
+    
+    Mushware::tVal retVal = 0.1*clampedInvDist * (pow(cos(angle*0)*cos(angle*0), 1)) +
+        pow(clampedInvDist, 2);
+    MushcoreUtil::Constrain<Mushware::tVal>(retVal, 0, 1);
+    
+	return retVal;
+}
+
+inline void
+MushSkinLineGenerator::RadialLineGenerate(std::vector<Mushware::tVal>& outData, Mushware::U32 inNumPixels,
+											 const Mushware::t4Val& inStartPos, const Mushware::t4Val& inEndPos)
+{
+	MUSHCOREASSERT(outData.size() >= inNumPixels);;
+	
+    Mushware::t4Val objectPos = inStartPos;
+    Mushware::t4Val objectPosStep = (inEndPos - inStartPos) / inNumPixels;
+	
+	for (Mushware::U32 i=0; i<inNumPixels; ++i)
+	{
+		outData[i] = RadialGenerate(objectPos);
+		objectPos += objectPosStep;
 	}
 }
 

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } A/GPso4jrQBD0hPDpi3qXg
 /*
- * $Id: MushRenderMeshSolid.cpp,v 1.8 2006/06/19 15:57:19 southa Exp $
+ * $Id: MushRenderMeshSolid.cpp,v 1.9 2006/06/20 19:06:54 southa Exp $
  * $Log: MushRenderMeshSolid.cpp,v $
+ * Revision 1.9  2006/06/20 19:06:54  southa
+ * Object creation
+ *
  * Revision 1.8  2006/06/19 15:57:19  southa
  * Materials
  *
@@ -294,8 +297,17 @@ MushRenderMeshSolid::OutputBufferGenerate(const MushRenderSpec& inSpec, const Mu
         glDestBuffersRef.ProjectedVerticesWRef(); // Projected vertex workspace
     MushMesh4Mesh::tVertices& projectedVertices = projectedWorkspace.DataWRef();
     // Create the projected vertices
-    MushRenderUtil::Transform(projectedVertices, srcVertices, inSpec.ModelToClipMattress());
-
+    switch (p4Mesh->TransformType())
+    {
+        case MushMesh4Mesh::kTransformTypeBillboard:
+            MushRenderUtil::Transform(projectedVertices, srcVertices, inSpec.ModelToClipBillboardMattress());
+            break;
+            
+        default:
+            MushRenderUtil::Transform(projectedVertices, srcVertices, inSpec.ModelToClipMattress());
+            break;
+    }
+    
     MushGLWorkspace<MushGLBuffers::tVertex>& eyeWorkspace =
         glDestBuffersRef.EyeVerticesWRef(); // Projected vertex workspace
     MushMesh4Mesh::tVertices& eyeVertices = eyeWorkspace.DataWRef();

@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } Kb73MSBnaByz2lwXVLGZkA
 /*
- * $Id: AdanaxisPieceDeco.cpp,v 1.16 2006/06/27 11:58:08 southa Exp $
+ * $Id: AdanaxisPieceDeco.cpp,v 1.17 2006/06/30 15:05:31 southa Exp $
  * $Log: AdanaxisPieceDeco.cpp,v $
+ * Revision 1.17  2006/06/30 15:05:31  southa
+ * Texture and buffer purge
+ *
  * Revision 1.16  2006/06/27 11:58:08  southa
  * Warning fixes
  *
@@ -92,7 +95,7 @@ AdanaxisPieceDeco::Render(MushGameLogic& ioLogic, MushRenderMesh& inRender, cons
     
     visible = (objNormal * viewNormal > 0.9);
     
-    if (visible, 1)
+    if (visible)
     {
         PostWRef().InPlaceVelocityAdd();
 

@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } JMQ6Bw79bYzUs+Ek4D1kZw
 /*
- * $Id: MushMeshLibraryBase.h,v 1.3 2005/07/19 13:44:26 southa Exp $
+ * $Id: MushMeshLibraryBase.h,v 1.4 2006/06/01 15:39:33 southa Exp $
  * $Log: MushMeshLibraryBase.h,v $
+ * Revision 1.4  2006/06/01 15:39:33  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.3  2005/07/19 13:44:26  southa
  * MushMesh4Chunk work
  *
@@ -47,6 +50,8 @@ public:
 
     virtual void PolygonPrismVerticesCreate(MushMesh4Mesh& ioMesh, const Mushware::t4Val& inScale, Mushware::U32 inOrder) const;
     virtual void PolygonPrismCreate(MushMesh4Mesh& ioMesh, const Mushware::t4Val& inScale, Mushware::U32 inOrder) const;
+    
+    virtual void SingleFacetCreate(MushMesh4Mesh& ioMesh, Mushware::U32 inOrder) const;
     
 protected:
     virtual void CongruentFacesJoin(MushMesh4Mesh& ioMesh, Mushware::U32 inFaceNum1, Mushware::U32 inFaceNum2) const;

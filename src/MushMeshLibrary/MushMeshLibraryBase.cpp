@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } lKuxq2tc2FqBaZd4TQuE+A
 /*
- * $Id: MushMeshLibraryBase.cpp,v 1.6 2006/06/01 15:39:33 southa Exp $
+ * $Id: MushMeshLibraryBase.cpp,v 1.7 2006/06/16 01:02:32 southa Exp $
  * $Log: MushMeshLibraryBase.cpp,v $
+ * Revision 1.7  2006/06/16 01:02:32  southa
+ * Ruby mesh generation
+ *
  * Revision 1.6  2006/06/01 15:39:33  southa
  * DrawArray verification and fixes
  *
@@ -301,6 +304,52 @@ MushMeshLibraryBase::CongruentFacesJoin(MushMesh4Mesh& ioMesh, Mushware::U32 inF
         }
         srcVertNum += groupSize;
     }
+}
+
+void
+MushMeshLibraryBase::SingleFacetCreate(MushMesh4Mesh& ioMesh, Mushware::U32 inOrder) const
+{
+    ioMesh.FaceCounterSet(0);
+    
+    MushMesh4Mesh::tFaces& facesRef = ioMesh.FacesWRef();
+    facesRef.resize(0);
+        
+    // Chunk.  All faces are placed in one chunk
+    MushMesh4Util::NewChunkCreate(ioMesh);
+    
+    MushMesh4Mesh::tVertices& verticesRef = ioMesh.VerticesWRef();
+
+    if (verticesRef.size() < inOrder)
+    {
+        verticesRef.resize(inOrder);
+    }
+    
+    tVal angularStep = M_PI * 2.0 / inOrder;
+    tVal scale = std::sqrt(2.0); // Scale for unit square
+    
+    for (U32 i=0; i < inOrder; ++i)
+    {
+        MushMesh4Mesh::tVertex& vertex = verticesRef[i];
+        
+        vertex.XSet(scale * cos(angularStep * (i-0.5)));
+        vertex.YSet(scale * sin(angularStep * (i-0.5)));
+        vertex.ZSet(0);
+        vertex.WSet(0);
+    }
+
+    ioMesh.VertexCounterSet(inOrder);
+    
+    MushMesh4Face *pFace = NULL;
+    MushMesh4Face::tVertexList *pVertexList = NULL;
+    MushMesh4Face::tVertexGroupSize *pVertexGroupSize = NULL;
+    
+    MushMesh4Util::NewFaceCreate(ioMesh, pFace, pVertexList, pVertexGroupSize);
+
+    for (U32 i=0; i<inOrder; ++i)
+    {
+        pVertexList->push_back(i);
+    }
+    pVertexGroupSize->push_back(inOrder);
 }
 
 //%outOfLineFunctions {

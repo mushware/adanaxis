@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } vh/xCnesmbXGxXqZK5YEaA
 /*
- * $Id: MushGLTexture.cpp,v 1.13 2006/06/16 12:11:04 southa Exp $
+ * $Id: MushGLTexture.cpp,v 1.14 2006/06/30 15:05:33 southa Exp $
  * $Log: MushGLTexture.cpp,v $
+ * Revision 1.14  2006/06/30 15:05:33  southa
+ * Texture and buffer purge
+ *
  * Revision 1.13  2006/06/16 12:11:04  southa
  * Ruby subclasses
  *
@@ -278,7 +281,7 @@ MushGLTexture::PixelDataGLRGBAUse(void *pData)
                                     );
         if (err != 0)
         {
-            throw MushcoreRequestFail(std::string("Error building mipmaps: ") + gluErrorString(err));
+            // throw MushcoreRequestFail(std::string("Error building mipmaps: ") + gluErrorString(err));
         }
 #endif
     }

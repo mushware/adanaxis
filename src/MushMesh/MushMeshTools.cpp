@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } cQoVIV2DdH4LiqrKzfp8tw
 /*
- * $Id: MushMeshTools.cpp,v 1.12 2006/06/14 18:45:48 southa Exp $
+ * $Id: MushMeshTools.cpp,v 1.13 2006/06/16 01:02:32 southa Exp $
  * $Log: MushMeshTools.cpp,v $
+ * Revision 1.13  2006/06/16 01:02:32  southa
+ * Ruby mesh generation
+ *
  * Revision 1.12  2006/06/14 18:45:48  southa
  * Ruby mesh generation
  *
@@ -243,6 +246,31 @@ MushMeshTools::RandomVector(const Mushware::tVal inMin, const Mushware::tVal inM
 	}
 	return retVal;
 }
+
+Mushware::t4Val
+MushMeshTools::RandomUnitVector(void)
+{
+	t4Val retVal;
+    U32 i;
+    for (i=0; i<1e6; ++i)
+    {
+        retVal = RandomVector(0, 1);
+        tVal magSquared = retVal.MagnitudeSquared();
+        if (magSquared > 0.01 && magSquared <= 1.0)
+        {
+            retVal.InPlaceNormalise();
+            break;
+        }
+    }
+    
+    if (i>=1e6)
+    {
+        MushcoreLog::Sgl().ErrorLog() << "RandomUnitVector didn't return a valid vector" << endl;
+    }
+	return retVal;
+}
+
+
 
 void
 MushMeshTools::RandomAngularVelocityMake(Mushware::tQValPair& outPair, Mushware::tVal inAmount)

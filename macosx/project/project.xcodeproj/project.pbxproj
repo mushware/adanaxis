@@ -322,6 +322,18 @@
 		7A6119FA0A5E440100AE9F3A /* MediaKeyboard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A6119F80A5E440100AE9F3A /* MediaKeyboard.cpp */; };
 		7A6119FB0A5E440100AE9F3A /* MediaKeyboard.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A6119F70A5E440100AE9F3A /* MediaKeyboard.h */; };
 		7A6119FC0A5E440100AE9F3A /* MediaKeyboard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A6119F80A5E440100AE9F3A /* MediaKeyboard.cpp */; };
+		7A61A2A10A6BA6BB00D70D05 /* MushMeshLibrarySingleFacet.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A61A29F0A6BA6BB00D70D05 /* MushMeshLibrarySingleFacet.h */; };
+		7A61A2A20A6BA6BB00D70D05 /* MushMeshLibrarySingleFacet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A61A2A00A6BA6BB00D70D05 /* MushMeshLibrarySingleFacet.cpp */; };
+		7A61A2A30A6BA6BB00D70D05 /* MushMeshLibrarySingleFacet.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A61A29F0A6BA6BB00D70D05 /* MushMeshLibrarySingleFacet.h */; };
+		7A61A2A40A6BA6BB00D70D05 /* MushMeshLibrarySingleFacet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A61A2A00A6BA6BB00D70D05 /* MushMeshLibrarySingleFacet.cpp */; };
+		7A61A2AF0A6BA9A300D70D05 /* MushMeshRubyBaseSingleFacet.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A61A2AD0A6BA9A300D70D05 /* MushMeshRubyBaseSingleFacet.h */; };
+		7A61A2B00A6BA9A300D70D05 /* MushMeshRubyBaseSingleFacet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A61A2AE0A6BA9A300D70D05 /* MushMeshRubyBaseSingleFacet.cpp */; };
+		7A61A2B10A6BA9A300D70D05 /* MushMeshRubyBaseSingleFacet.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A61A2AD0A6BA9A300D70D05 /* MushMeshRubyBaseSingleFacet.h */; };
+		7A61A2B20A6BA9A300D70D05 /* MushMeshRubyBaseSingleFacet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A61A2AE0A6BA9A300D70D05 /* MushMeshRubyBaseSingleFacet.cpp */; };
+		7A61A36E0A6BB8F000D70D05 /* MushSkinPixelSourceRadial.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A61A36C0A6BB8F000D70D05 /* MushSkinPixelSourceRadial.h */; };
+		7A61A36F0A6BB8F000D70D05 /* MushSkinPixelSourceRadial.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A61A36D0A6BB8F000D70D05 /* MushSkinPixelSourceRadial.cpp */; };
+		7A61A3700A6BB8F000D70D05 /* MushSkinPixelSourceRadial.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A61A36C0A6BB8F000D70D05 /* MushSkinPixelSourceRadial.h */; };
+		7A61A3710A6BB8F000D70D05 /* MushSkinPixelSourceRadial.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A61A36D0A6BB8F000D70D05 /* MushSkinPixelSourceRadial.cpp */; };
 		7A61AEEF0A63EB590053DE68 /* MediaJoystick.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A61AEED0A63EB590053DE68 /* MediaJoystick.h */; };
 		7A61AEF00A63EB590053DE68 /* MediaJoystick.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A61AEEE0A63EB590053DE68 /* MediaJoystick.cpp */; };
 		7A61B10E07A68FEA00C6B670 /* MushMeshGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A61B10A07A68FEA00C6B670 /* MushMeshGroup.h */; };
@@ -2707,6 +2719,12 @@
 		7A614A7D0A6280CD00E8FCEF /* AdanaxisMenu.rb */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = text.script.ruby; path = AdanaxisMenu.rb; sourceTree = "<group>"; tabWidth = 2; };
 		7A614A980A62951900E8FCEF /* AdanaxisControl.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AdanaxisControl.rb; sourceTree = "<group>"; };
 		7A6168550A5FF25E0046188D /* MushMenu.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = MushMenu.rb; sourceTree = "<group>"; };
+		7A61A29F0A6BA6BB00D70D05 /* MushMeshLibrarySingleFacet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushMeshLibrarySingleFacet.h; sourceTree = "<group>"; };
+		7A61A2A00A6BA6BB00D70D05 /* MushMeshLibrarySingleFacet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushMeshLibrarySingleFacet.cpp; sourceTree = "<group>"; };
+		7A61A2AD0A6BA9A300D70D05 /* MushMeshRubyBaseSingleFacet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushMeshRubyBaseSingleFacet.h; sourceTree = "<group>"; };
+		7A61A2AE0A6BA9A300D70D05 /* MushMeshRubyBaseSingleFacet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushMeshRubyBaseSingleFacet.cpp; sourceTree = "<group>"; };
+		7A61A36C0A6BB8F000D70D05 /* MushSkinPixelSourceRadial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushSkinPixelSourceRadial.h; sourceTree = "<group>"; };
+		7A61A36D0A6BB8F000D70D05 /* MushSkinPixelSourceRadial.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushSkinPixelSourceRadial.cpp; sourceTree = "<group>"; };
 		7A61AEED0A63EB590053DE68 /* MediaJoystick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaJoystick.h; sourceTree = "<group>"; };
 		7A61AEEE0A63EB590053DE68 /* MediaJoystick.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MediaJoystick.cpp; sourceTree = "<group>"; };
 		7A61B10A07A68FEA00C6B670 /* MushMeshGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushMeshGroup.h; sourceTree = "<group>"; };
@@ -3446,8 +3464,8 @@
 		7AAFEF370A46CD870005F57F /* MushMesh4Material.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushMesh4Material.cpp; sourceTree = "<group>"; };
 		7AAFEF480A46D0AB0005F57F /* MushSkinMaterial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushSkinMaterial.h; sourceTree = "<group>"; };
 		7AAFEF490A46D0AB0005F57F /* MushSkinMaterial.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushSkinMaterial.cpp; sourceTree = "<group>"; };
-		7AAFF09E0A46E7A30005F57F /* AdanaxisMaterialLibrary.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AdanaxisMaterialLibrary.rb; sourceTree = "<group>"; };
-		7AAFF0A60A46E84F0005F57F /* AdanaxisTextureLibrary.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AdanaxisTextureLibrary.rb; sourceTree = "<group>"; };
+		7AAFF09E0A46E7A30005F57F /* AdanaxisMaterialLibrary.rb */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = text.script.ruby; path = AdanaxisMaterialLibrary.rb; sourceTree = "<group>"; tabWidth = 2; };
+		7AAFF0A60A46E84F0005F57F /* AdanaxisTextureLibrary.rb */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = text.script.ruby; path = AdanaxisTextureLibrary.rb; sourceTree = "<group>"; tabWidth = 2; };
 		7AB5ACF50A42BCB200D62CA1 /* MushRubyEmptyObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushRubyEmptyObj.h; sourceTree = "<group>"; };
 		7AB5ACF60A42BCB200D62CA1 /* MushRubyEmptyObj.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushRubyEmptyObj.cpp; sourceTree = "<group>"; };
 		7AB5AD0A0A42C2A900D62CA1 /* MushMeshRubyBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushMeshRubyBase.h; sourceTree = "<group>"; };
@@ -4168,6 +4186,8 @@
 				7AB5AD0A0A42C2A900D62CA1 /* MushMeshRubyBase.h */,
 				7AE697D10A42129E004D7B75 /* MushMeshRubyBasePrism.cpp */,
 				7AE697D00A42129E004D7B75 /* MushMeshRubyBasePrism.h */,
+				7A61A2AE0A6BA9A300D70D05 /* MushMeshRubyBaseSingleFacet.cpp */,
+				7A61A2AD0A6BA9A300D70D05 /* MushMeshRubyBaseSingleFacet.h */,
 				7A5F16C40A3DA6B800B46F5F /* MushMeshRubyDisplacement.cpp */,
 				7A5F16C30A3DA6B800B46F5F /* MushMeshRubyDisplacement.h */,
 				7A5C9AA10A4012F300A80527 /* MushMeshRubyExtruder.cpp */,
@@ -5541,6 +5561,8 @@
 				7AD26F790A40877E0037F084 /* MushMeshLibraryMaker.h */,
 				7AE697920A420EA3004D7B75 /* MushMeshLibraryPrism.cpp */,
 				7AE697910A420EA3004D7B75 /* MushMeshLibraryPrism.h */,
+				7A61A2A00A6BA6BB00D70D05 /* MushMeshLibrarySingleFacet.cpp */,
+				7A61A29F0A6BA6BB00D70D05 /* MushMeshLibrarySingleFacet.h */,
 				7AA0FAFE0884308900997505 /* MushMeshLibraryStandard.cpp */,
 				7AA0FAFD0884308900997505 /* MushMeshLibraryStandard.h */,
 				7AD10DD6088D2B2800AEDC48 /* MushMeshLibraryUtil.cpp */,
@@ -5814,6 +5836,8 @@
 				7A578EC20A36DC9B00CB3F1C /* MushSkinPixelSourceGrid.h */,
 				7A4D63CD0A36056C00CCE430 /* MushSkinPixelSourceProc.cpp */,
 				7A4D63CC0A36056C00CCE430 /* MushSkinPixelSourceProc.h */,
+				7A61A36D0A6BB8F000D70D05 /* MushSkinPixelSourceRadial.cpp */,
+				7A61A36C0A6BB8F000D70D05 /* MushSkinPixelSourceRadial.h */,
 				7A3C5D510A34427300BC1598 /* MushSkinPixelSourceTest.cpp */,
 				7A3C5D500A34427300BC1598 /* MushSkinPixelSourceTest.h */,
 				7A492DF80A39ACA200EE1835 /* MushSkinPixelSourceTileShow.cpp */,
@@ -6501,6 +6525,9 @@
 				7A5B7ABB0A55375C00EE2E02 /* MushGameBase.h in Headers */,
 				7A5B14F90A57B1230047BD0B /* MushGLRubyFont.h in Headers */,
 				7A6119FB0A5E440100AE9F3A /* MediaKeyboard.h in Headers */,
+				7A61A2A10A6BA6BB00D70D05 /* MushMeshLibrarySingleFacet.h in Headers */,
+				7A61A2AF0A6BA9A300D70D05 /* MushMeshRubyBaseSingleFacet.h in Headers */,
+				7A61A36E0A6BB8F000D70D05 /* MushSkinPixelSourceRadial.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6926,6 +6953,9 @@
 				7A6110D50A5D7C0F00D8F31F /* MushGameRuby.h in Headers */,
 				7A6119F90A5E440100AE9F3A /* MediaKeyboard.h in Headers */,
 				7A61AEEF0A63EB590053DE68 /* MediaJoystick.h in Headers */,
+				7A61A2A30A6BA6BB00D70D05 /* MushMeshLibrarySingleFacet.h in Headers */,
+				7A61A2B10A6BA9A300D70D05 /* MushMeshRubyBaseSingleFacet.h in Headers */,
+				7A61A3700A6BB8F000D70D05 /* MushSkinPixelSourceRadial.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8379,6 +8409,9 @@
 				7A5B7ABC0A55375C00EE2E02 /* MushGameBase.cpp in Sources */,
 				7A5B14FA0A57B1230047BD0B /* MushGLRubyFont.cpp in Sources */,
 				7A6119FC0A5E440100AE9F3A /* MediaKeyboard.cpp in Sources */,
+				7A61A2A20A6BA6BB00D70D05 /* MushMeshLibrarySingleFacet.cpp in Sources */,
+				7A61A2B00A6BA9A300D70D05 /* MushMeshRubyBaseSingleFacet.cpp in Sources */,
+				7A61A36F0A6BB8F000D70D05 /* MushSkinPixelSourceRadial.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8725,6 +8758,9 @@
 				7A6110D60A5D7C0F00D8F31F /* MushGameRuby.cpp in Sources */,
 				7A6119FA0A5E440100AE9F3A /* MediaKeyboard.cpp in Sources */,
 				7A61AEF00A63EB590053DE68 /* MediaJoystick.cpp in Sources */,
+				7A61A2A40A6BA6BB00D70D05 /* MushMeshLibrarySingleFacet.cpp in Sources */,
+				7A61A2B20A6BA9A300D70D05 /* MushMeshRubyBaseSingleFacet.cpp in Sources */,
+				7A61A3710A6BB8F000D70D05 /* MushSkinPixelSourceRadial.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } X577BrzUUfCyG/exJzzEYQ
 /*
- * $Id: SDLAppHandler.cpp,v 1.55 2006/07/08 16:05:55 southa Exp $
+ * $Id: SDLAppHandler.cpp,v 1.56 2006/07/11 19:49:04 southa Exp $
  * $Log: SDLAppHandler.cpp,v $
+ * Revision 1.56  2006/07/11 19:49:04  southa
+ * Control menu
+ *
  * Revision 1.55  2006/07/08 16:05:55  southa
  * Ruby menus and key handling
  *
@@ -338,8 +341,8 @@ SDLAppHandler::EnterScreen(const GLModeDef& inDef)
     SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
     
 #if (SDL_MAJOR_VERSION >= 1) && (SDL_MINOR_VERSION >= 2) && (SDL_PATCHLEVEL >= 6)
-    SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 1);
-    SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 4);
+    //SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 1);
+    //SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 4);
 #endif
     
 #if (SDL_MAJOR_VERSION >= 1) && (SDL_MINOR_VERSION >= 2) && (SDL_PATCHLEVEL >= 10)

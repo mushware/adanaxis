@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } bXehXXY7VVdSW1knmNpOqw
 /*
- * $Id$
- * $Log$
+ * $Id: MushMeshRubyTools.h,v 1.1 2006/06/13 19:30:38 southa Exp $
+ * $Log: MushMeshRubyTools.h,v $
+ * Revision 1.1  2006/06/13 19:30:38  southa
+ * Ruby mesh generation
+ *
  */
 
 #include "MushMeshRubyStandard.h"
@@ -43,6 +46,8 @@ protected:
 	static Mushware::tRubyValue RotationInYWPlane(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
 	static Mushware::tRubyValue RotationInXWPlane(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
 	static Mushware::tRubyValue RotationInYZPlane(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
+	static Mushware::tRubyValue RandomOrientation(Mushware::tRubyValue inSelf);
+	static Mushware::tRubyValue RandomUnitVector(Mushware::tRubyValue inSelf);
 
 private:
 };
