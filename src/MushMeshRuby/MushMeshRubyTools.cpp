@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } oKuIr5eVL2esfxDutcXp9Q
 /*
- * $Id: MushMeshRubyTools.cpp,v 1.2 2006/06/20 19:06:54 southa Exp $
+ * $Id: MushMeshRubyTools.cpp,v 1.3 2006/07/17 14:43:41 southa Exp $
  * $Log: MushMeshRubyTools.cpp,v $
+ * Revision 1.3  2006/07/17 14:43:41  southa
+ * Billboarded deco objects
+ *
  * Revision 1.2  2006/06/20 19:06:54  southa
  * Object creation
  *
@@ -117,6 +120,13 @@ MushMeshRubyTools::RandomUnitVector(Mushware::tRubyValue inSelf)
 	return retVal;
 }
 
+Mushware::tRubyValue
+MushMeshRubyTools::RandomAngularVelocity(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0)
+{
+	Mushware::tRubyValue retVal = MushMeshRubyRotation::NewInstance();
+    MushMeshTools::RandomAngularVelocity(MushMeshRubyRotation::WRef(retVal), MushRubyValue(inArg0).Val());
+	return retVal;
+}
 
 void
 MushMeshRubyTools::RubyInstall(void)
@@ -132,6 +142,7 @@ MushMeshRubyTools::RubyInstall(void)
 	MushRubyUtil::SingletonMethodDefineOneParam(ObjKlass(), "cRotationInYZPlane", RotationInYZPlane);
 	MushRubyUtil::SingletonMethodDefineNoParams(ObjKlass(), "cRandomOrientation", RandomOrientation);
 	MushRubyUtil::SingletonMethodDefineNoParams(ObjKlass(), "cRandomUnitVector", RandomUnitVector);
+	MushRubyUtil::SingletonMethodDefineOneParam(ObjKlass(), "cRandomAngularVelocity", RandomAngularVelocity);
 }
 
 MUSHRUBY_INSTALL(MushMeshRubyTools);

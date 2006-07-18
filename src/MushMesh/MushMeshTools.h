@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } VP8fay9XgM+kqodf58ym6g
 /*
- * $Id: MushMeshTools.h,v 1.13 2006/06/14 18:45:48 southa Exp $
+ * $Id: MushMeshTools.h,v 1.14 2006/07/17 14:43:40 southa Exp $
  * $Log: MushMeshTools.h,v $
+ * Revision 1.14  2006/07/17 14:43:40  southa
+ * Billboarded deco objects
+ *
  * Revision 1.13  2006/06/14 18:45:48  southa
  * Ruby mesh generation
  *
@@ -99,7 +102,7 @@ public:
     static Mushware::tVal Random(const Mushware::tVal inMin, const Mushware::tVal inMax);
     static Mushware::t4Val RandomVector(const Mushware::tVal inMin, const Mushware::tVal inMax);
     static Mushware::t4Val RandomUnitVector(void);
-    static void RandomAngularVelocityMake(Mushware::tQValPair& outPair, Mushware::tVal inAmount);
+    static void RandomAngularVelocity(Mushware::tQValPair& outPair, Mushware::tVal inAmount);
 	
 	static Mushware::tQValPair QuaternionRotateToXAxis(const Mushware::t4Val &inVec);
 	static Mushware::tQValPair QuaternionRotateToXYPlane(const Mushware::t4Val &inVec);

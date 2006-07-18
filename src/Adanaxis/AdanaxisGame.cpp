@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } DEX6Sh9oUk/bih2GXm2coA
 /*
- * $Id: AdanaxisGame.cpp,v 1.40 2006/07/11 19:49:03 southa Exp $
+ * $Id: AdanaxisGame.cpp,v 1.41 2006/07/12 11:22:40 southa Exp $
  * $Log: AdanaxisGame.cpp,v $
+ * Revision 1.41  2006/07/12 11:22:40  southa
+ * Advanced control menu
+ *
  * Revision 1.40  2006/07/11 19:49:03  southa
  * Control menu
  *
@@ -293,6 +296,8 @@ AdanaxisGame::Init(MushGameAppHandler& inAppHandler)
 	MushRubyExec::Sgl().Call(VolatileData().RubySpace(), "mInitialPiecesCreate");
 	
 	AdanaxisUtil::MissingSkinsCreate(Logic());
+    
+    // MushcoreLog::Sgl().XMLInfoLog() << MushcoreData<MushMesh4Mesh>::Sgl().Get("attendant");
     
     MushcoreInterpreter::Sgl().Execute("loadsoundstream('adanaxis-music1')");
     if (m_config.PlayMusic())

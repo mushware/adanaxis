@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 6hLRNoZfeBvP570tKfB/gA
 /*
- * $Id: MushRenderSpec.h,v 1.10 2006/06/01 15:39:38 southa Exp $
+ * $Id: MushRenderSpec.h,v 1.11 2006/07/17 14:43:42 southa Exp $
  * $Log: MushRenderSpec.h,v $
+ * Revision 1.11  2006/07/17 14:43:42  southa
+ * Billboarded deco objects
+ *
  * Revision 1.10  2006/06/01 15:39:38  southa
  * DrawArray verification and fixes
  *
@@ -116,7 +119,9 @@ MushRenderSpec::ModelToClipBillboardMattress(void) const
 {
     tMattress billModel = ModelToEyeMattress();
     
-    billModel.MatrixSet(MushMeshTools::MatrixRotateInAxis(MushMeshTools::kAxisXY, MushcoreUtil::RandomVal(0,2*M_PI)));    
+    // billModel.MatrixSet(MushMeshTools::MatrixRotateInAxis(MushMeshTools::kAxisXY, MushcoreUtil::RandomVal(0,2*M_PI)));    
+    billModel.MatrixSet(Mushware::t4x4Val::Identity());
+    
     return m_projection.Mattress() * billModel;
 }
 

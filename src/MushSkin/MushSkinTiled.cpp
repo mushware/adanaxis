@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } xkvbVCXm8pXCDWV4BdLGFQ
 /*
- * $Id: MushSkinTiled.cpp,v 1.7 2006/06/22 19:07:36 southa Exp $
+ * $Id: MushSkinTiled.cpp,v 1.8 2006/07/16 09:19:48 southa Exp $
  * $Log: MushSkinTiled.cpp,v $
+ * Revision 1.8  2006/07/16 09:19:48  southa
+ * Delete mesh before creating
+ *
  * Revision 1.7  2006/06/22 19:07:36  southa
  * Build fixes
  *
@@ -154,7 +157,7 @@ MushSkinTiled::TexCoordsGenerate(MushMesh4Mesh& ioMesh)
 			texTileWRef.TileBoxSet(t2BoxVal(uvBase, uvBase + uvScale));
             texTileWRef.SourceFaceNumSet(faceNum);
             texTileWRef.SourceFacetNumSet(facetNum);
-			texTileWRef.SKSet(1); // FIXME
+			texTileWRef.SKSet(0.95); // FIXME
 			
             try
             {

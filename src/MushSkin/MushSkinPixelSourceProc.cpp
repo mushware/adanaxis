@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } egP3K/f7OY+i7tZkXjr5gg
 /*
- * $Id: MushSkinPixelSourceProc.cpp,v 1.1 2006/06/07 12:15:21 southa Exp $
+ * $Id: MushSkinPixelSourceProc.cpp,v 1.2 2006/06/09 21:07:14 southa Exp $
  * $Log: MushSkinPixelSourceProc.cpp,v $
+ * Revision 1.2  2006/06/09 21:07:14  southa
+ * Tiled skin generation
+ *
  * Revision 1.1  2006/06/07 12:15:21  southa
  * Grid and test textures
  *
@@ -137,7 +140,7 @@ MushSkinPixelSourceProc::ToTextureCreate(MushGLTexture& outTexture)
         U32 endY = static_cast<U32>(endPoint.Y() * Size().Y());
         MUSHCOREASSERT(endX >= startX);
         MUSHCOREASSERT(endY >= startY);
-		
+        
         for (U32 y=startY; y<endY; ++y)
         {
             U32 pixelOffset = 4*(startX+y*Size().Y());
@@ -147,12 +150,13 @@ MushSkinPixelSourceProc::ToTextureCreate(MushGLTexture& outTexture)
             }
             U8 *pTileData = &pixelData[pixelOffset];
 			
+            // objectEndPos is one pixel beyond the end of the generated data
 #if 0
-            tileRef.Transform(objectPos, t2Val(static_cast<tVal>(startX) / Size().X(), static_cast<tVal>(y) / Size().Y()));
-            tileRef.Transform(objectEndPos, t2Val(static_cast<tVal>(endX) / Size().X(), static_cast<tVal>(y) / Size().Y()));
+            tileRef.Transform(objectPos, t2Val((0.5+startX) / Size().X(), (0.5+y) / Size().Y()));
+            tileRef.Transform(objectEndPos, t2Val((0.5+endX) / Size().X(), (0.5+y) / Size().Y()));
 #else
-			tileRef.TextureToFacet(objectPos, t2Val(static_cast<tVal>(startX) / Size().X(), static_cast<tVal>(y) / Size().Y()));
-            tileRef.TextureToFacet(objectEndPos, t2Val(static_cast<tVal>(endX) / Size().X(), static_cast<tVal>(y) / Size().Y()));
+			tileRef.TextureToFacet(objectPos, t2Val((0.5+startX) / Size().X(), (0.5+y) / Size().Y()));
+            tileRef.TextureToFacet(objectEndPos, t2Val((0.5+endX) / Size().X(), (0.5+y) / Size().Y()));
 #endif
             if (endX > startX)
             {

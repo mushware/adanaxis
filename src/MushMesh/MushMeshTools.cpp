@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } cQoVIV2DdH4LiqrKzfp8tw
 /*
- * $Id: MushMeshTools.cpp,v 1.13 2006/06/16 01:02:32 southa Exp $
+ * $Id: MushMeshTools.cpp,v 1.14 2006/07/17 14:43:40 southa Exp $
  * $Log: MushMeshTools.cpp,v $
+ * Revision 1.14  2006/07/17 14:43:40  southa
+ * Billboarded deco objects
+ *
  * Revision 1.13  2006/06/16 01:02:32  southa
  * Ruby mesh generation
  *
@@ -273,7 +276,7 @@ MushMeshTools::RandomUnitVector(void)
 
 
 void
-MushMeshTools::RandomAngularVelocityMake(Mushware::tQValPair& outPair, Mushware::tVal inAmount)
+MushMeshTools::RandomAngularVelocity(Mushware::tQValPair& outPair, Mushware::tVal inAmount)
 {
     tQValPair orientation = MushMeshTools::RandomOrientation();
     outPair.ToRotationIdentitySet();
@@ -516,7 +519,7 @@ MushMeshTools::FacetToTextureTransformMake(MushMesh4TextureTile& ioTile, const t
 	ioTile.VTSet(vT);
 	
 	ioTile.QRInverseSet(qR.Conjugate());
-	ioTile.VSInverseSet(t4Val(1 / vS.X(), 1 / vS.Y(), 1, 1));
+	ioTile.VSInverseSet(t4Val(1 / vS.X(), 1 / vS.Y(), 1 / vS.Z(), 1 / vS.W()));
 	ioTile.FacetTransformValidSet(true);
 }
 

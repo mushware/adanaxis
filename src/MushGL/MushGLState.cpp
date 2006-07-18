@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } bWOmRsKwsaFHaJtZXjt8HA
 /*
- * $Id: MushGLState.cpp,v 1.5 2006/06/01 15:39:18 southa Exp $
+ * $Id: MushGLState.cpp,v 1.6 2006/06/30 17:26:10 southa Exp $
  * $Log: MushGLState.cpp,v $
+ * Revision 1.6  2006/06/30 17:26:10  southa
+ * Render prelude
+ *
  * Revision 1.5  2006/06/01 15:39:18  southa
  * DrawArray verification and fixes
  *
@@ -115,8 +118,13 @@ MushGLState::RenderStateSet(Mushware::U32 inRenderState)
             glDisable(GL_DEPTH_TEST);
             glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
             glDisable(GL_LIGHTING);
+#if 0
+            glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_NEAREST);
+            glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_NEAREST);
+#else
             glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR_MIPMAP_LINEAR);
             glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
+#endif
             break;
             
         case kRenderState4D:
@@ -127,9 +135,14 @@ MushGLState::RenderStateSet(Mushware::U32 inRenderState)
             glDisable(GL_DEPTH_TEST);
             glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
             glDisable(GL_LIGHTING);
+#if 0
+            glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_NEAREST);
+            glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_NEAREST);
+#else
             glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR_MIPMAP_LINEAR);
             glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
-            break;
+#endif
+    break;
             
         default:
             throw(MushcoreRequestFail("Invalid RenderState value"));

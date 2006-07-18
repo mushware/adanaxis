@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } bXehXXY7VVdSW1knmNpOqw
 /*
- * $Id: MushMeshRubyTools.h,v 1.1 2006/06/13 19:30:38 southa Exp $
+ * $Id: MushMeshRubyTools.h,v 1.2 2006/07/17 14:43:42 southa Exp $
  * $Log: MushMeshRubyTools.h,v $
+ * Revision 1.2  2006/07/17 14:43:42  southa
+ * Billboarded deco objects
+ *
  * Revision 1.1  2006/06/13 19:30:38  southa
  * Ruby mesh generation
  *
@@ -48,6 +51,7 @@ protected:
 	static Mushware::tRubyValue RotationInYZPlane(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
 	static Mushware::tRubyValue RandomOrientation(Mushware::tRubyValue inSelf);
 	static Mushware::tRubyValue RandomUnitVector(Mushware::tRubyValue inSelf);
+	static Mushware::tRubyValue RandomAngularVelocity(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
 
 private:
 };

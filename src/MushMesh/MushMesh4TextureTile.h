@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } Gpt6onVQ6MJeAFRAfWsomw
 /*
- * $Id: MushMesh4TextureTile.h,v 1.3 2006/06/09 11:43:03 southa Exp $
+ * $Id: MushMesh4TextureTile.h,v 1.4 2006/06/09 21:07:13 southa Exp $
  * $Log: MushMesh4TextureTile.h,v $
+ * Revision 1.4  2006/06/09 21:07:13  southa
+ * Tiled skin generation
+ *
  * Revision 1.3  2006/06/09 11:43:03  southa
  * Facet to texture transformation
  *
@@ -47,7 +50,7 @@ class MushMesh4TextureTile : public MushcoreVirtualObject
 {
 public:
     typedef Mushware::t4Val tVertex;
-	MushMesh4TextureTile() : m_sK(1), m_facetTransformValid(false) {}
+	MushMesh4TextureTile();
     void Transform(Mushware::t4Val& outVec, const Mushware::t2Val& inVec) const; // Method 1
 	void FacetToTexture(Mushware::t2Val& outVec, const Mushware::t4Val& inVec) const; // Method 2
 	void TextureToFacet(Mushware::t4Val& outVec, const Mushware::t2Val& inVec) const; // Method 2

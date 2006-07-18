@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } tuTK6NcDPsNibg7CubVnHw
 /*
- * $Id: MushSkinLineGenerator.h,v 1.5 2006/06/09 21:07:14 southa Exp $
+ * $Id: MushSkinLineGenerator.h,v 1.6 2006/07/17 14:43:42 southa Exp $
  * $Log: MushSkinLineGenerator.h,v $
+ * Revision 1.6  2006/07/17 14:43:42  southa
+ * Billboarded deco objects
+ *
  * Revision 1.5  2006/06/09 21:07:14  southa
  * Tiled skin generation
  *
@@ -356,12 +359,11 @@ MushSkinLineGenerator::RadialGenerate(const Mushware::t4Val& inPos)
     Mushware::tVal dist = std::sqrt(inPos.X()*inPos.X() + inPos.Y()*inPos.Y());
     Mushware::tVal clampedDist = dist;
     MushcoreUtil::Constrain<Mushware::tVal>(clampedDist, 0, 1);
-    Mushware::tVal clampedInvDist = 1 - clampedDist;
+    Mushware::tVal clampedInvDist = 1.0 - clampedDist;
 
-    clampedInvDist *= MushcoreUtil::RandomVal(1, 1.01);
+    // clampedInvDist *= MushcoreUtil::RandomVal(1, 1.01);
     
-    Mushware::tVal retVal = 0.1*clampedInvDist * (pow(cos(angle*0)*cos(angle*0), 1)) +
-        pow(clampedInvDist, 2);
+    Mushware::tVal retVal = clampedInvDist;
     MushcoreUtil::Constrain<Mushware::tVal>(retVal, 0, 1);
     
 	return retVal;
@@ -372,15 +374,15 @@ MushSkinLineGenerator::RadialLineGenerate(std::vector<Mushware::tVal>& outData, 
 											 const Mushware::t4Val& inStartPos, const Mushware::t4Val& inEndPos)
 {
 	MUSHCOREASSERT(outData.size() >= inNumPixels);;
-	
     Mushware::t4Val objectPos = inStartPos;
+
     Mushware::t4Val objectPosStep = (inEndPos - inStartPos) / inNumPixels;
-	
-	for (Mushware::U32 i=0; i<inNumPixels; ++i)
-	{
-		outData[i] = RadialGenerate(objectPos);
-		objectPos += objectPosStep;
-	}
+    
+    for (Mushware::U32 i=0; i<inNumPixels; ++i)
+    {
+        outData[i] = RadialGenerate(objectPos);
+        objectPos += objectPosStep;
+    }
 }
 
 //%inlineHeader {

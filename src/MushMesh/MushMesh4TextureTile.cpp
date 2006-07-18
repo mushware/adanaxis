@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 1kCIwS/JA8VtB31OUyUq8Q
 /*
- * $Id: MushMesh4TextureTile.cpp,v 1.3 2006/06/09 11:43:02 southa Exp $
+ * $Id: MushMesh4TextureTile.cpp,v 1.4 2006/06/09 21:07:13 southa Exp $
  * $Log: MushMesh4TextureTile.cpp,v $
+ * Revision 1.4  2006/06/09 21:07:13  southa
+ * Tiled skin generation
+ *
  * Revision 1.3  2006/06/09 11:43:02  southa
  * Facet to texture transformation
  *
@@ -36,6 +39,12 @@
 
 using namespace Mushware;
 using namespace std;
+
+MushMesh4TextureTile::MushMesh4TextureTile() :
+    m_sK(1),
+    m_facetTransformValid(false)
+{
+}
 
 void
 MushMesh4TextureTile::Make(void)
