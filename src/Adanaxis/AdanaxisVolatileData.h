@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } lXOhNHrEv7a8Ndh1gy3P5A
 /*
- * $Id: AdanaxisVolatileData.h,v 1.5 2006/07/02 21:08:54 southa Exp $
+ * $Id: AdanaxisVolatileData.h,v 1.6 2006/07/04 16:55:26 southa Exp $
  * $Log: AdanaxisVolatileData.h,v $
+ * Revision 1.6  2006/07/04 16:55:26  southa
+ * Ruby key handling
+ *
  * Revision 1.5  2006/07/02 21:08:54  southa
  * Ruby menu work
  *
@@ -42,6 +45,7 @@
 
 #include "AdanaxisStandard.h"
 #include "AdanaxisPieceDeco.h"
+#include "AdanaxisPieceWorld.h"
 
 #include "API/mushGame.h"
 #include "API/mushMushGame.h"
@@ -53,11 +57,14 @@ class AdanaxisVolatileData : public MushGameVolatileData
 public:
     typedef AdanaxisPieceDeco tDeco;
     typedef MushcoreMaptor<tDeco> tDecoList;
+    typedef AdanaxisPieceWorld tWorld;
+    typedef MushcoreMaptor<tWorld> tWorldList;
     AdanaxisVolatileData();
     virtual ~AdanaxisVolatileData() {}
     
 private:
     tDecoList m_decoList; //:read :wref
+    tWorldList m_worldList; //:read :wref
     Mushware::tMsec m_modeKeypressMsec; //:readwrite
     Mushware::tMsec m_newMode; //:readwrite
     std::auto_ptr<MushRenderMesh> m_aRenderMesh; //:read :wref
@@ -68,6 +75,9 @@ public:
     const tDecoList& DecoList(void) const { return m_decoList; }
     // Writable reference for m_decoList
     tDecoList& DecoListWRef(void) { return m_decoList; }
+    const tWorldList& WorldList(void) const { return m_worldList; }
+    // Writable reference for m_worldList
+    tWorldList& WorldListWRef(void) { return m_worldList; }
     const Mushware::tMsec& ModeKeypressMsec(void) const { return m_modeKeypressMsec; }
     void ModeKeypressMsecSet(const Mushware::tMsec& inValue) { m_modeKeypressMsec=inValue; }
     const Mushware::tMsec& NewMode(void) const { return m_newMode; }
@@ -84,7 +94,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } uqxUYZcyTlp/oVwxUO86Ug
+//%classPrototypes } PQ7++2CaajtZFIuKWDnkMw
 };
 //%inlineHeader {
 inline std::ostream&

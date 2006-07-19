@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } WOK6bg7pMfVL2uBwMmEFBQ
 /*
- * $Id: AdanaxisVolatileData.cpp,v 1.5 2006/07/02 21:08:54 southa Exp $
+ * $Id: AdanaxisVolatileData.cpp,v 1.6 2006/07/04 16:55:26 southa Exp $
  * $Log: AdanaxisVolatileData.cpp,v $
+ * Revision 1.6  2006/07/04 16:55:26  southa
+ * Ruby key handling
+ *
  * Revision 1.5  2006/07/02 21:08:54  southa
  * Ruby menu work
  *
@@ -68,6 +71,7 @@ AdanaxisVolatileData::AutoPrint(std::ostream& ioOut) const
     ioOut << "[";
     MushGameVolatileData::AutoPrint(ioOut);
     ioOut << "decoList=" << m_decoList << ", ";
+    ioOut << "worldList=" << m_worldList << ", ";
     ioOut << "modeKeypressMsec=" << m_modeKeypressMsec << ", ";
     ioOut << "newMode=" << m_newMode << ", ";
     ioOut << "aRenderMesh=" << m_aRenderMesh << ", ";
@@ -86,6 +90,10 @@ AdanaxisVolatileData::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::st
     else if (inTagStr == "decoList")
     {
         ioIn >> m_decoList;
+    }
+    else if (inTagStr == "worldList")
+    {
+        ioIn >> m_worldList;
     }
     else if (inTagStr == "modeKeypressMsec")
     {
@@ -119,6 +127,8 @@ AdanaxisVolatileData::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     MushGameVolatileData::AutoXMLPrint(ioOut);
     ioOut.TagSet("decoList");
     ioOut << m_decoList;
+    ioOut.TagSet("worldList");
+    ioOut << m_worldList;
     ioOut.TagSet("modeKeypressMsec");
     ioOut << m_modeKeypressMsec;
     ioOut.TagSet("newMode");
@@ -128,4 +138,4 @@ AdanaxisVolatileData::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("rubySpace");
     ioOut << m_rubySpace;
 }
-//%outOfLineFunctions } zVkPiL9m8AbWVkOLkyKtWw
+//%outOfLineFunctions } Wujqs/kdpX0HgH56mAHUkQ

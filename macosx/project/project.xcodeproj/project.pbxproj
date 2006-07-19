@@ -1871,6 +1871,14 @@
 		7ACF543708C38BE800BBEB7E /* MushRenderMeshSolid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7ACF543508C38BE800BBEB7E /* MushRenderMeshSolid.cpp */; };
 		7ACF543808C38BE800BBEB7E /* MushRenderMeshSolid.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ACF543408C38BE800BBEB7E /* MushRenderMeshSolid.h */; };
 		7ACF543908C38BE800BBEB7E /* MushRenderMeshSolid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7ACF543508C38BE800BBEB7E /* MushRenderMeshSolid.cpp */; };
+		7ACFAC1A0A6E2B670046377F /* AdanaxisPieceWorld.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ACFAC180A6E2B670046377F /* AdanaxisPieceWorld.h */; };
+		7ACFAC1B0A6E2B670046377F /* AdanaxisPieceWorld.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7ACFAC190A6E2B670046377F /* AdanaxisPieceWorld.cpp */; };
+		7ACFAC1C0A6E2B670046377F /* AdanaxisPieceWorld.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ACFAC180A6E2B670046377F /* AdanaxisPieceWorld.h */; };
+		7ACFAC1D0A6E2B670046377F /* AdanaxisPieceWorld.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7ACFAC190A6E2B670046377F /* AdanaxisPieceWorld.cpp */; };
+		7ACFAC260A6E2D1C0046377F /* AdanaxisRubyWorld.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ACFAC240A6E2D1C0046377F /* AdanaxisRubyWorld.h */; };
+		7ACFAC270A6E2D1C0046377F /* AdanaxisRubyWorld.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7ACFAC250A6E2D1C0046377F /* AdanaxisRubyWorld.cpp */; };
+		7ACFAC280A6E2D1C0046377F /* AdanaxisRubyWorld.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ACFAC240A6E2D1C0046377F /* AdanaxisRubyWorld.h */; };
+		7ACFAC290A6E2D1C0046377F /* AdanaxisRubyWorld.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7ACFAC250A6E2D1C0046377F /* AdanaxisRubyWorld.cpp */; };
 		7ACFC877086C05CB00B0E7E4 /* MushGameCamera.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ACFC875086C05CB00B0E7E4 /* MushGameCamera.h */; };
 		7ACFC878086C05CB00B0E7E4 /* MushGameCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7ACFC876086C05CB00B0E7E4 /* MushGameCamera.cpp */; };
 		7ACFC879086C05CB00B0E7E4 /* MushGameCamera.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ACFC875086C05CB00B0E7E4 /* MushGameCamera.h */; };
@@ -3624,6 +3632,10 @@
 		7ACF536C08C35E3600BBEB7E /* MushSkinTiled.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushSkinTiled.cpp; sourceTree = "<group>"; };
 		7ACF543408C38BE800BBEB7E /* MushRenderMeshSolid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushRenderMeshSolid.h; sourceTree = "<group>"; };
 		7ACF543508C38BE800BBEB7E /* MushRenderMeshSolid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushRenderMeshSolid.cpp; sourceTree = "<group>"; };
+		7ACFAC180A6E2B670046377F /* AdanaxisPieceWorld.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdanaxisPieceWorld.h; sourceTree = "<group>"; };
+		7ACFAC190A6E2B670046377F /* AdanaxisPieceWorld.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AdanaxisPieceWorld.cpp; sourceTree = "<group>"; };
+		7ACFAC240A6E2D1C0046377F /* AdanaxisRubyWorld.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdanaxisRubyWorld.h; sourceTree = "<group>"; };
+		7ACFAC250A6E2D1C0046377F /* AdanaxisRubyWorld.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AdanaxisRubyWorld.cpp; sourceTree = "<group>"; };
 		7ACFC875086C05CB00B0E7E4 /* MushGameCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushGameCamera.h; sourceTree = "<group>"; };
 		7ACFC876086C05CB00B0E7E4 /* MushGameCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushGameCamera.cpp; sourceTree = "<group>"; };
 		7ACFC87E086C06B100B0E7E4 /* MushGamePiece.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushGamePiece.h; sourceTree = "<group>"; };
@@ -5291,6 +5303,8 @@
 				7AFB11E2088C052000F097A3 /* AdanaxisPieceKhazi.h */,
 				7AD1864B0883DC4D00F5459F /* AdanaxisPieceProjectile.cpp */,
 				7AD1864A0883DC4D00F5459F /* AdanaxisPieceProjectile.h */,
+				7ACFAC190A6E2B670046377F /* AdanaxisPieceWorld.cpp */,
+				7ACFAC180A6E2B670046377F /* AdanaxisPieceWorld.h */,
 				7AD42BF60866FAB0002348BD /* AdanaxisPlayer.cpp */,
 				7AD42BF50866FAB0002348BD /* AdanaxisPlayer.h */,
 				7A218C3A08729E8900EEA4E1 /* AdanaxisRender.cpp */,
@@ -5301,6 +5315,8 @@
 				7A9502BB0A498BC100F4CE37 /* AdanaxisRubyDeco.h */,
 				7A3E0F8D0A4859E70078B650 /* AdanaxisRubyKhazi.cpp */,
 				7A3E0F8C0A4859E70078B650 /* AdanaxisRubyKhazi.h */,
+				7ACFAC250A6E2D1C0046377F /* AdanaxisRubyWorld.cpp */,
+				7ACFAC240A6E2D1C0046377F /* AdanaxisRubyWorld.h */,
 				7AD3B5E0085F403C00512DB1 /* AdanaxisSaveData.cpp */,
 				7AD3B5DF085F403C00512DB1 /* AdanaxisSaveData.h */,
 				7AD3B616086183C900512DB1 /* AdanaxisServer.cpp */,
@@ -6528,6 +6544,8 @@
 				7A61A2A10A6BA6BB00D70D05 /* MushMeshLibrarySingleFacet.h in Headers */,
 				7A61A2AF0A6BA9A300D70D05 /* MushMeshRubyBaseSingleFacet.h in Headers */,
 				7A61A36E0A6BB8F000D70D05 /* MushSkinPixelSourceRadial.h in Headers */,
+				7ACFAC1C0A6E2B670046377F /* AdanaxisPieceWorld.h in Headers */,
+				7ACFAC280A6E2D1C0046377F /* AdanaxisRubyWorld.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6956,6 +6974,8 @@
 				7A61A2A30A6BA6BB00D70D05 /* MushMeshLibrarySingleFacet.h in Headers */,
 				7A61A2B10A6BA9A300D70D05 /* MushMeshRubyBaseSingleFacet.h in Headers */,
 				7A61A3700A6BB8F000D70D05 /* MushSkinPixelSourceRadial.h in Headers */,
+				7ACFAC1A0A6E2B670046377F /* AdanaxisPieceWorld.h in Headers */,
+				7ACFAC260A6E2D1C0046377F /* AdanaxisRubyWorld.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8412,6 +8432,8 @@
 				7A61A2A20A6BA6BB00D70D05 /* MushMeshLibrarySingleFacet.cpp in Sources */,
 				7A61A2B00A6BA9A300D70D05 /* MushMeshRubyBaseSingleFacet.cpp in Sources */,
 				7A61A36F0A6BB8F000D70D05 /* MushSkinPixelSourceRadial.cpp in Sources */,
+				7ACFAC1D0A6E2B670046377F /* AdanaxisPieceWorld.cpp in Sources */,
+				7ACFAC290A6E2D1C0046377F /* AdanaxisRubyWorld.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8761,6 +8783,8 @@
 				7A61A2A40A6BA6BB00D70D05 /* MushMeshLibrarySingleFacet.cpp in Sources */,
 				7A61A2B20A6BA9A300D70D05 /* MushMeshRubyBaseSingleFacet.cpp in Sources */,
 				7A61A3710A6BB8F000D70D05 /* MushSkinPixelSourceRadial.cpp in Sources */,
+				7ACFAC1B0A6E2B670046377F /* AdanaxisPieceWorld.cpp in Sources */,
+				7ACFAC270A6E2D1C0046377F /* AdanaxisRubyWorld.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

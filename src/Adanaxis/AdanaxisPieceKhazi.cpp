@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } Z+ifTSkKrl4GVRxP2YKNlg
 /*
- * $Id: AdanaxisPieceKhazi.cpp,v 1.8 2006/06/21 12:17:55 southa Exp $
+ * $Id: AdanaxisPieceKhazi.cpp,v 1.9 2006/06/30 15:05:31 southa Exp $
  * $Log: AdanaxisPieceKhazi.cpp,v $
+ * Revision 1.9  2006/06/30 15:05:31  southa
+ * Texture and buffer purge
+ *
  * Revision 1.8  2006/06/21 12:17:55  southa
  * Ruby object generation
  *
@@ -174,6 +177,10 @@ AdanaxisPieceKhazi::Explode(MushGameLogic& ioLogic, const MushGameMessageCollisi
 			// Can't texture this one yet
 			// projectileRef.TexCoordBuffersRefSet(m_texCoordBuffersRef);
         }
+    }
+    for (U32 i=0; i<30; ++i)
+    {
+        // AdanaxisUtil::EmberCreate(ioLogic);
     }
 }
 

@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } Hr8bvS7fc+x0pR9DrFcIZw
 /*
- * $Id: AdanaxisRender.cpp,v 1.31 2006/07/08 16:05:54 southa Exp $
+ * $Id: AdanaxisRender.cpp,v 1.32 2006/07/17 14:43:39 southa Exp $
  * $Log: AdanaxisRender.cpp,v $
+ * Revision 1.32  2006/07/17 14:43:39  southa
+ * Billboarded deco objects
+ *
  * Revision 1.31  2006/07/08 16:05:54  southa
  * Ruby menus and key handling
  *
@@ -187,8 +190,6 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
         
         MushGLState::Sgl().RenderStateSet(MushGLState::kRenderState4D);
         
-        typedef AdanaxisVolatileData::tDecoList tDecoList;
-        
         //MushRenderMeshDiagnostic renderMesh;
         //MushRenderMeshWireframe renderMesh;
         MushRenderMeshSolid renderMesh;
@@ -204,6 +205,8 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
 
         if (!m_scannerOn)
         {
+            typedef AdanaxisVolatileData::tDecoList tDecoList;
+            
             tDecoList::iterator decoEndIter = pVolData->DecoListWRef().end();
             for (tDecoList::iterator p = pVolData->DecoListWRef().begin(); p != decoEndIter; ++p)
             {
@@ -215,6 +218,16 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
         renderMesh.ColourZMiddleSet(t4Val(1.0,1.0,1.0,0.3));
         renderMesh.ColourZLeftSet(t4Val(1.0,0.3,0.3,0.0));
         renderMesh.ColourZRightSet(t4Val(0.3,1.0,0.3,0.0));
+
+        {
+            typedef AdanaxisVolatileData::tWorldList tWorldList;
+            tWorldList::iterator worldEndIter = pVolData->WorldListWRef().end();
+            for (tWorldList::iterator p = pVolData->WorldListWRef().begin(); p != worldEndIter; ++p)
+            {
+                p->Render(ioLogic, renderMesh, camera);
+            }
+        }
+        
         typedef AdanaxisSaveData::tProjectileList tProjectileList;
         
         tProjectileList::iterator projectileEndIter = pSaveData->ProjectileListWRef().end();

@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } Kb73MSBnaByz2lwXVLGZkA
 /*
- * $Id: AdanaxisPieceDeco.cpp,v 1.17 2006/06/30 15:05:31 southa Exp $
+ * $Id: AdanaxisPieceDeco.cpp,v 1.18 2006/07/17 14:43:39 southa Exp $
  * $Log: AdanaxisPieceDeco.cpp,v $
+ * Revision 1.18  2006/07/17 14:43:39  southa
+ * Billboarded deco objects
+ *
  * Revision 1.17  2006/06/30 15:05:31  southa
  * Texture and buffer purge
  *
@@ -86,7 +89,7 @@ void
 AdanaxisPieceDeco::Render(MushGameLogic& ioLogic, MushRenderMesh& inRender, const MushGameCamera& inCamera)
 {
     bool visible = true;
-    t4Val objNormal = Post().Pos();
+    t4Val objNormal = Post().Pos() - inCamera.Post().Pos();
 	
     objNormal.InPlaceNormalise();
     t4Val viewNormal = t4Val(0,0,0,-1);
@@ -99,15 +102,12 @@ AdanaxisPieceDeco::Render(MushGameLogic& ioLogic, MushRenderMesh& inRender, cons
     {
         PostWRef().InPlaceVelocityAdd();
 
-        MushGameCamera newCamera(inCamera);
-        newCamera.PostWRef().PosWRef().ToAdditiveIdentitySet();
-
         MushRenderSpec renderSpec;
         renderSpec.BuffersRefSet(BuffersRef());
 		renderSpec.TexCoordBuffersRefSet(TexCoordBuffersRef());
 
         MushMeshOps::PosticityToMattress(renderSpec.ModelWRef(), Post());
-        MushMeshOps::PosticityToMattress(renderSpec.ViewWRef(), newCamera.Post());
+        MushMeshOps::PosticityToMattress(renderSpec.ViewWRef(), inCamera.Post());
         renderSpec.ViewWRef().InPlaceInvert();
         
         renderSpec.ProjectionSet(inCamera.Projection());
