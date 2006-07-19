@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } Kb73MSBnaByz2lwXVLGZkA
 /*
- * $Id: AdanaxisPieceDeco.cpp,v 1.18 2006/07/17 14:43:39 southa Exp $
+ * $Id: AdanaxisPieceDeco.cpp,v 1.19 2006/07/19 10:22:14 southa Exp $
  * $Log: AdanaxisPieceDeco.cpp,v $
+ * Revision 1.19  2006/07/19 10:22:14  southa
+ * World objects
+ *
  * Revision 1.18  2006/07/17 14:43:39  southa
  * Billboarded deco objects
  *
@@ -81,8 +84,30 @@ using namespace Mushware;
 using namespace std;
 
 AdanaxisPieceDeco::AdanaxisPieceDeco(const std::string& inID) :
-    MushGamePiece(inID)
+    MushGamePiece(inID),
+    m_lifeMsec(1000)
 {
+}
+
+void
+AdanaxisPieceDeco::Move(MushGameLogic& ioLogic, const tVal inFrameSlice)
+{
+    tVal velScale = 1 - inFrameSlice * 0.03;
+    if (velScale < 0) velScale = 0;
+    
+    PostWRef().InPlaceVelocityAdd();
+    // PostWRef().VelWRef() *= velScale; // FIXME
+    
+    tVal meshScale = 1 - inFrameSlice * 0.01;
+    if (meshScale < 0) meshScale = 0;
+    
+    
+    MeshWRef().ApplyScale(t4Val(meshScale, meshScale, meshScale, meshScale));
+    
+    if (ioLogic.FrameMsec() > m_expiryMsec)
+    {
+        ExpireFlagSet(true);
+    }
 }
 
 void
@@ -100,8 +125,6 @@ AdanaxisPieceDeco::Render(MushGameLogic& ioLogic, MushRenderMesh& inRender, cons
     
     if (visible)
     {
-        PostWRef().InPlaceVelocityAdd();
-
         MushRenderSpec renderSpec;
         renderSpec.BuffersRefSet(BuffersRef());
 		renderSpec.TexCoordBuffersRefSet(TexCoordBuffersRef());
@@ -111,6 +134,16 @@ AdanaxisPieceDeco::Render(MushGameLogic& ioLogic, MushRenderMesh& inRender, cons
         renderSpec.ViewWRef().InPlaceInvert();
         
         renderSpec.ProjectionSet(inCamera.Projection());
+        
+        MushRenderMeshSolid *pRender = dynamic_cast<MushRenderMeshSolid *>(&inRender);
+        
+        if (pRender != NULL)
+        {
+            tVal alpha =  (0.0 + m_expiryMsec - ioLogic.FrameMsec()) / m_lifeMsec;
+            MushcoreUtil::Constrain<tVal>(alpha, 0, 1);
+            // alpha = sqrt(alpha);
+            pRender->ColourZMiddleSet(t4Val(1,1,1, alpha));
+        }
         
         inRender.MeshRender(renderSpec, Mesh());
     }
@@ -150,6 +183,8 @@ AdanaxisPieceDeco::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
     MushGamePiece::AutoPrint(ioOut);
+    ioOut << "lifeMsec=" << m_lifeMsec << ", ";
+    ioOut << "expiryMsec=" << m_expiryMsec;
     ioOut << "]";
 }
 bool
@@ -160,6 +195,14 @@ AdanaxisPieceDeco::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::strin
         AutoInputPrologue(ioIn);
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
+    }
+    else if (inTagStr == "lifeMsec")
+    {
+        ioIn >> m_lifeMsec;
+    }
+    else if (inTagStr == "expiryMsec")
+    {
+        ioIn >> m_expiryMsec;
     }
     else if (MushGamePiece::AutoXMLDataProcess(ioIn, inTagStr))
     {
@@ -175,5 +218,9 @@ void
 AdanaxisPieceDeco::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
     MushGamePiece::AutoXMLPrint(ioOut);
+    ioOut.TagSet("lifeMsec");
+    ioOut << m_lifeMsec;
+    ioOut.TagSet("expiryMsec");
+    ioOut << m_expiryMsec;
 }
-//%outOfLineFunctions } C4QJXOg4sML405P71FzJlQ
+//%outOfLineFunctions } QCCqHrQbWc9vzmLB7TP/lA

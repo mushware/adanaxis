@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } kEA/hGTYr5TaTuBUG+UAGA
 /*
- * $Id: AdanaxisLogic.cpp,v 1.11 2005/08/02 14:37:44 southa Exp $
+ * $Id: AdanaxisLogic.cpp,v 1.12 2006/06/01 15:38:47 southa Exp $
  * $Log: AdanaxisLogic.cpp,v $
+ * Revision 1.12  2006/06/01 15:38:47  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.11  2005/08/02 14:37:44  southa
  * Adanaxis control demo work
  *
@@ -89,6 +92,27 @@ AdanaxisLogic::ProjectilesMove(void)
         if (p->ExpireFlag())
         {
             SaveData().ProjectileListWRef().Delete(p++);
+        }
+        else
+        {
+            ++p;   
+        }
+    }
+}
+
+void
+AdanaxisLogic::DecoMove(void)
+{
+    typedef AdanaxisVolatileData::tDecoList tDecoList;
+    
+    tDecoList::iterator objEndIter = VolatileData().DecoListWRef().end();
+    for (tDecoList::iterator p = VolatileData().DecoListWRef().begin(); p != objEndIter;)
+    {
+        p->Move(*this, 1);
+        
+        if (p->ExpireFlag())
+        {
+            VolatileData().DecoListWRef().Delete(p++);
         }
         else
         {
@@ -188,6 +212,7 @@ AdanaxisLogic::MoveSequence(void)
     MushGameLogic::MoveSequence();
     KhaziMove();
     ProjectilesMove();
+    DecoMove();
 }
 
 void

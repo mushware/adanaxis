@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } MSkxQTbR3Y9MJ8AQN1Lzjw
 /*
- * $Id: AdanaxisUtil.h,v 1.8 2006/06/01 15:38:49 southa Exp $
+ * $Id: AdanaxisUtil.h,v 1.9 2006/06/21 12:17:57 southa Exp $
  * $Log: AdanaxisUtil.h,v $
+ * Revision 1.9  2006/06/21 12:17:57  southa
+ * Ruby object generation
+ *
  * Revision 1.8  2006/06/01 15:38:49  southa
  * DrawArray verification and fixes
  *
@@ -63,6 +66,9 @@ public:
     static void TestPiecesCreate(AdanaxisLogic& ioLogic);
     static void TestDecoCreate(AdanaxisLogic& ioLogic);
     static void TestSkinsCreate(AdanaxisLogic& ioLogic);
+    static void EmberCreate(AdanaxisLogic& ioLogic, const MushMeshPosticity& inPost, Mushware::tVal inSize, Mushware::tVal inSpeed);
+    static void FlareCreate(AdanaxisLogic& ioLogic, const MushMeshPosticity& inPost, Mushware::tVal inSize, Mushware::tVal inSpeed);
+    
     static AdanaxisAppHandler& AppHandler(void);
     static AdanaxisMeshLibrary& MeshLibrary(void);
     static AdanaxisLogic& Logic(MushGameLogic& ioLogic);

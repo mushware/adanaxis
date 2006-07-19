@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } oYzojPrY+iq5d6Z2oF715A
 /*
- * $Id: MushMesh4Mesh.cpp,v 1.18 2006/06/19 15:57:18 southa Exp $
+ * $Id: MushMesh4Mesh.cpp,v 1.19 2006/07/17 14:43:40 southa Exp $
  * $Log: MushMesh4Mesh.cpp,v $
+ * Revision 1.19  2006/07/17 14:43:40  southa
+ * Billboarded deco objects
+ *
  * Revision 1.18  2006/06/19 15:57:18  southa
  * Materials
  *
@@ -576,6 +579,17 @@ MushMesh4Mesh::Apply(const MushMeshDisplacement& inDisp)
     for (U32 i=0; i<verticesSize; ++i)
     {
 		inDisp.Displace(m_vertices[i]);
+	}
+	VerticesTouch();
+}
+
+void
+MushMesh4Mesh::ApplyScale(const Mushware::t4Val inScale)
+{
+	U32 verticesSize = m_vertices.size();
+    for (U32 i=0; i<verticesSize; ++i)
+    {
+		m_vertices[i] *= inScale;
 	}
 	VerticesTouch();
 }

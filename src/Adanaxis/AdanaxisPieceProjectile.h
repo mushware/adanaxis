@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } AFo2vzl87aFxQx3VFVpFzA
 /*
- * $Id: AdanaxisPieceProjectile.h,v 1.5 2006/06/21 12:17:55 southa Exp $
+ * $Id: AdanaxisPieceProjectile.h,v 1.6 2006/06/30 15:05:32 southa Exp $
  * $Log: AdanaxisPieceProjectile.h,v $
+ * Revision 1.6  2006/06/30 15:05:32  southa
+ * Texture and buffer purge
+ *
  * Revision 1.5  2006/06/21 12:17:55  southa
  * Ruby object generation
  *
@@ -70,6 +73,7 @@ private:
     Mushware::tVal m_initialVelocity; //:readwrite
     Mushware::tMsec m_lifeMsec; //:readwrite
     Mushware::tMsec m_expiryMsec; //:readwrite
+    Mushware::U32 m_moveCtr;
     
 //%classPrototypes {
 public:

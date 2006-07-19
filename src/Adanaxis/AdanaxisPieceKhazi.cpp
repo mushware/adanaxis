@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } Z+ifTSkKrl4GVRxP2YKNlg
 /*
- * $Id: AdanaxisPieceKhazi.cpp,v 1.9 2006/06/30 15:05:31 southa Exp $
+ * $Id: AdanaxisPieceKhazi.cpp,v 1.10 2006/07/19 10:22:14 southa Exp $
  * $Log: AdanaxisPieceKhazi.cpp,v $
+ * Revision 1.10  2006/07/19 10:22:14  southa
+ * World objects
+ *
  * Revision 1.9  2006/06/30 15:05:31  southa
  * Texture and buffer purge
  *
@@ -178,9 +181,15 @@ AdanaxisPieceKhazi::Explode(MushGameLogic& ioLogic, const MushGameMessageCollisi
 			// projectileRef.TexCoordBuffersRefSet(m_texCoordBuffersRef);
         }
     }
+    AdanaxisUtil::FlareCreate(dynamic_cast<AdanaxisLogic&>(ioLogic), Post(), 20, 0);
+
     for (U32 i=0; i<30; ++i)
     {
-        // AdanaxisUtil::EmberCreate(ioLogic);
+        AdanaxisUtil::EmberCreate(dynamic_cast<AdanaxisLogic&>(ioLogic),
+                                  Post(),
+                                  MushMeshTools::Random(0.1, 2), // size
+                                  MushMeshTools::Random(0.1, 2)  // speed
+                                  );
     }
 }
 

@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } DEX6Sh9oUk/bih2GXm2coA
 /*
- * $Id: AdanaxisGame.cpp,v 1.41 2006/07/12 11:22:40 southa Exp $
+ * $Id: AdanaxisGame.cpp,v 1.42 2006/07/18 16:58:36 southa Exp $
  * $Log: AdanaxisGame.cpp,v $
+ * Revision 1.42  2006/07/18 16:58:36  southa
+ * Texture fixes
+ *
  * Revision 1.41  2006/07/12 11:22:40  southa
  * Advanced control menu
  *
@@ -387,6 +390,11 @@ AdanaxisGame::SwapIn(MushGameAppHandler& inAppHandler)
     Logic().RecordTimeSet(m_config.RecordTime());
 
     dynamic_cast<AdanaxisRender&>(SaveData().RenderRef().WRef()).RenderPreludeSet();
+    
+    for (U32 i=0; i<100; ++i)
+    {
+        MushRubyExec::Sgl().Call(VolatileData().RubySpace(), "mPreCache");
+    }
 }
 
 void

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } YrK9KiG4XjKqbWo1rVGU4w
 /*
- * $Id: MushMesh4Mesh.h,v 1.18 2006/06/19 15:57:18 southa Exp $
+ * $Id: MushMesh4Mesh.h,v 1.19 2006/07/17 14:43:40 southa Exp $
  * $Log: MushMesh4Mesh.h,v $
+ * Revision 1.19  2006/07/17 14:43:40  southa
+ * Billboarded deco objects
+ *
  * Revision 1.18  2006/06/19 15:57:18  southa
  * Materials
  *
@@ -186,7 +189,8 @@ public:
 	Mushware::U32 NumMaterials(void) const { return m_materials.size(); }
 	
 	void Apply(const MushMeshDisplacement& inDisp);
-	void Make(void);
+    void ApplyScale(const Mushware::t4Val inScale);
+            void Make(void);
 	
 private:
     // Minimal representation

@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } nTy3CMXyGBhzHaXXoJENIg
 /*
- * $Id: AdanaxisLogic.h,v 1.8 2005/08/02 14:37:44 southa Exp $
+ * $Id: AdanaxisLogic.h,v 1.9 2006/06/01 15:38:47 southa Exp $
  * $Log: AdanaxisLogic.h,v $
+ * Revision 1.9  2006/06/01 15:38:47  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.8  2005/08/02 14:37:44  southa
  * Adanaxis control demo work
  *
@@ -70,6 +73,7 @@ public:
     virtual MushGamePlayer *PlayerNew(const MushGameMessage *inpMessage) { return new AdanaxisPlayer; }
     
     virtual void ProjectilesMove(void);
+    virtual void DecoMove(void);
     virtual void KhaziMove(void);
     virtual void MoveSequence(void);
     virtual void CollideSequence(void);
@@ -83,10 +87,7 @@ public:
     virtual const AdanaxisSaveData& ConstSaveData(void) const;
     virtual AdanaxisVolatileData& VolatileData(void) const;
     virtual const AdanaxisVolatileData& ConstVolatileData(void) const;
-    
-    // virtual AdanaxisHostSaveData& HostSaveData(void) { return m_hostDataRef.Ref().SaveDataRef().WRef(); }
-    // virtual AdanaxisHostVolatileData& HostVolatileData(void) { return m_hostDataRef.Ref().VolatileDataRef().WRef(); }
-    
+
 protected:
     void CollisionHandle(AdanaxisSaveData::tProjectile& ioProj,
                          AdanaxisSaveData::tKhazi& ioKhazi,

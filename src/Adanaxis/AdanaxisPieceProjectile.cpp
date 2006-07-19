@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } JmMTx0XAPATtkBANlQg8tA
 /*
- * $Id: AdanaxisPieceProjectile.cpp,v 1.6 2006/06/21 12:17:55 southa Exp $
+ * $Id: AdanaxisPieceProjectile.cpp,v 1.7 2006/06/30 15:05:32 southa Exp $
  * $Log: AdanaxisPieceProjectile.cpp,v $
+ * Revision 1.7  2006/06/30 15:05:32  southa
+ * Texture and buffer purge
+ *
  * Revision 1.6  2006/06/21 12:17:55  southa
  * Ruby object generation
  *
@@ -41,24 +44,35 @@
 
 #include "AdanaxisPieceProjectile.h"
 
+#include "AdanaxisUtil.h"
+
 using namespace Mushware;
 using namespace std;
 
 AdanaxisPieceProjectile::AdanaxisPieceProjectile(const std::string& inID) :
     MushGamePiece(inID),
     m_initialVelocity(1),
-    m_lifeMsec(10000)
+    m_lifeMsec(10000),
+    m_moveCtr(0)
 {
 }
 
 void
 AdanaxisPieceProjectile::Move(MushGameLogic& ioLogic, const tVal inFrameslice)
 {
+    
+    if (m_moveCtr == 0)
+    {
+
+    }
+    
     PostWRef().InPlaceVelocityAdd();
     if (ioLogic.FrameMsec() > m_expiryMsec)
     {
         ExpireFlagSet(true);
     }
+
+    m_moveCtr++;
 }
 
 void
@@ -137,7 +151,8 @@ AdanaxisPieceProjectile::AutoPrint(std::ostream& ioOut) const
     ioOut << "owner=" << m_owner << ", ";
     ioOut << "initialVelocity=" << m_initialVelocity << ", ";
     ioOut << "lifeMsec=" << m_lifeMsec << ", ";
-    ioOut << "expiryMsec=" << m_expiryMsec;
+    ioOut << "expiryMsec=" << m_expiryMsec << ", ";
+    ioOut << "moveCtr=" << m_moveCtr;
     ioOut << "]";
 }
 bool
@@ -165,6 +180,10 @@ AdanaxisPieceProjectile::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std:
     {
         ioIn >> m_expiryMsec;
     }
+    else if (inTagStr == "moveCtr")
+    {
+        ioIn >> m_moveCtr;
+    }
     else if (MushGamePiece::AutoXMLDataProcess(ioIn, inTagStr))
     {
         // Tag consumed by base class
@@ -187,5 +206,7 @@ AdanaxisPieceProjectile::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_lifeMsec;
     ioOut.TagSet("expiryMsec");
     ioOut << m_expiryMsec;
+    ioOut.TagSet("moveCtr");
+    ioOut << m_moveCtr;
 }
-//%outOfLineFunctions } EOeUqBHeoPgh3aEtBXZwBQ
+//%outOfLineFunctions } +aZ4m66cvd68PwWcqvFUgg

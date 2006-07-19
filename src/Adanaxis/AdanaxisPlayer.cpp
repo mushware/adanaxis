@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } 0edG1wrkU5hKeWbu3l1MQA
 /*
- * $Id: AdanaxisPlayer.cpp,v 1.18 2006/07/11 12:37:51 southa Exp $
+ * $Id: AdanaxisPlayer.cpp,v 1.19 2006/07/12 11:22:41 southa Exp $
  * $Log: AdanaxisPlayer.cpp,v $
+ * Revision 1.19  2006/07/12 11:22:41  southa
+ * Advanced control menu
+ *
  * Revision 1.18  2006/07/11 12:37:51  southa
  * Control configuration
  *
@@ -288,6 +291,15 @@ AdanaxisPlayer::FirePieceCreate(MushGameLogic& ioLogic, const MushGameMessageFir
     // Create the mesh for this object
     projectileRef.MeshWRef() = m_projectileMeshRef.Ref();
 	projectileRef.TexCoordBuffersNameSet(m_projectileMeshRef.Name());
+    
+    // Create the flare effect
+    MushMeshPosticity flarePost = projectileRef.Post();
+    flarePost.PosWRef() -= 1 * flarePost.Vel();
+    AdanaxisUtil::FlareCreate(dynamic_cast<AdanaxisLogic&>(ioLogic),
+                              flarePost,
+                              0.5, // size
+                              0  // speed
+                              );
 }
 
 void

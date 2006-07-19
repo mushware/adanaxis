@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } gq3ekJ+T4/5Q9GxsUU01+w
 /*
- * $Id: AdanaxisUtil.cpp,v 1.27 2006/06/21 12:17:56 southa Exp $
+ * $Id: AdanaxisUtil.cpp,v 1.28 2006/06/21 16:52:29 southa Exp $
  * $Log: AdanaxisUtil.cpp,v $
+ * Revision 1.28  2006/06/21 16:52:29  southa
+ * Deco objects
+ *
  * Revision 1.27  2006/06/21 12:17:56  southa
  * Ruby object generation
  *
@@ -314,3 +317,55 @@ AdanaxisUtil::TestSkinsCreate(AdanaxisLogic& ioLogic)
     MushcoreData<MushGLBuffers>::Sgl().GetOrCreate("projectile");
 }
 
+void
+AdanaxisUtil::FlareCreate(AdanaxisLogic& ioLogic, const MushMeshPosticity& inPost, Mushware::tVal inSize, Mushware::tVal inSpeed)
+{
+    ostringstream objNameStream;
+    objNameStream << "flare" << MushcoreUtil::RandomU32(0, 10);
+    std::string objName = objNameStream.str();
+    
+    AdanaxisVolatileData::tDecoList& decoListRef = ioLogic.VolatileData().DecoListWRef();
+    
+    decoListRef.push_back(AdanaxisPieceDeco("flareObj"));
+    AdanaxisVolatileData::tDeco& objRef = decoListRef.back();
+        
+    objRef.ExpiryMsecSet(ioLogic.FrameMsec() + objRef.LifeMsec());
+    
+    objRef.PostSet(inPost);
+    objRef.PostWRef().VelWRef() += MushMeshTools::RandomUnitVector() * inSpeed;    
+    objRef.PostWRef().AngPosWRef().ToRotationIdentitySet();
+    objRef.PostWRef().AngVelWRef().ToRotationIdentitySet();
+    
+    objRef.MeshWRef() = *MushcoreData<MushMesh4Mesh>::Sgl().Get(objName);
+    objRef.MeshWRef().TexCoordDelegateSet(MushMesh4Mesh::tDataRef(objName));
+    objRef.TexCoordBuffersNameSet(objName);
+    
+    objRef.MeshWRef().ApplyScale(t4Val(inSize, inSize, inSize, inSize));
+}
+
+void
+AdanaxisUtil::EmberCreate(AdanaxisLogic& ioLogic, const MushMeshPosticity& inPost, Mushware::tVal inSize, Mushware::tVal inSpeed)
+{
+    ostringstream objNameStream;
+    objNameStream << "ember" << MushcoreUtil::RandomU32(0, 10);
+    std::string objName = objNameStream.str();
+    
+    
+    AdanaxisVolatileData::tDecoList& decoListRef = ioLogic.VolatileData().DecoListWRef();
+    
+    decoListRef.push_back(AdanaxisPieceDeco("emberObj"));
+    AdanaxisVolatileData::tDeco& objRef = decoListRef.back();
+    
+    objRef.ExpiryMsecSet(ioLogic.FrameMsec() + objRef.LifeMsec());
+    
+    objRef.PostSet(inPost);
+    objRef.PostWRef().VelWRef() += MushMeshTools::RandomUnitVector() * inSpeed;    
+    objRef.PostWRef().AngPosWRef().ToRotationIdentitySet();
+    objRef.PostWRef().AngVelWRef().ToRotationIdentitySet();
+    
+    objRef.MeshWRef() = *MushcoreData<MushMesh4Mesh>::Sgl().Get(objName);
+    objRef.MeshWRef().TexCoordDelegateSet(MushMesh4Mesh::tDataRef(objName));
+    objRef.TexCoordBuffersNameSet(objName);
+    
+    objRef.MeshWRef().ApplyScale(t4Val(inSize, inSize, inSize, inSize));
+}

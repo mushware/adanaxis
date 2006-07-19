@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } 6GdOb3M8gmTP56sPCf1YGA
 /*
- * $Id: AdanaxisPieceDeco.h,v 1.7 2006/06/21 16:52:28 southa Exp $
+ * $Id: AdanaxisPieceDeco.h,v 1.8 2006/06/30 15:05:31 southa Exp $
  * $Log: AdanaxisPieceDeco.h,v $
+ * Revision 1.8  2006/06/30 15:05:31  southa
+ * Texture and buffer purge
+ *
  * Revision 1.7  2006/06/21 16:52:28  southa
  * Deco objects
  *
@@ -59,12 +62,19 @@ class AdanaxisPieceDeco : public MushGamePiece
 {
 public:
     explicit AdanaxisPieceDeco(const std::string& inID = "");
-    
+
+    virtual void Move(MushGameLogic& ioLogic, const Mushware::tVal inFrameSlice);
     virtual void Render(MushGameLogic& ioLogic, MushRenderMesh& inRender, const MushGameCamera& inCamera);
 private:
+    Mushware::tMsec m_lifeMsec; //:readwrite
+    Mushware::tMsec m_expiryMsec; //:readwrite
     
 //%classPrototypes {
 public:
+    const Mushware::tMsec& LifeMsec(void) const { return m_lifeMsec; }
+    void LifeMsecSet(const Mushware::tMsec& inValue) { m_lifeMsec=inValue; }
+    const Mushware::tMsec& ExpiryMsec(void) const { return m_expiryMsec; }
+    void ExpiryMsecSet(const Mushware::tMsec& inValue) { m_expiryMsec=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -72,7 +82,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } 1oBgFruy5qHAaudtV+Hcmg
+//%classPrototypes } 09nopOwzu0aQknhSgoZfVw
 };
 //%inlineHeader {
 inline std::ostream&
