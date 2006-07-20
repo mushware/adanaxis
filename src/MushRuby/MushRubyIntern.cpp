@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } lqALCPGBahbk4ibyVPO8LQ
 /*
- * $Id: MushRubyIntern.cpp,v 1.9 2006/07/02 21:08:55 southa Exp $
+ * $Id: MushRubyIntern.cpp,v 1.10 2006/07/04 16:55:28 southa Exp $
  * $Log: MushRubyIntern.cpp,v $
+ * Revision 1.10  2006/07/04 16:55:28  southa
+ * Ruby key handling
+ *
  * Revision 1.9  2006/07/02 21:08:55  southa
  * Ruby menu work
  *
@@ -67,6 +70,7 @@ MUSHRUBYINTERN_DEFINE(divide);
 MUSHRUBYINTERN_DEFINE(extent);
 MUSHRUBYINTERN_DEFINE(mesh_name);
 MUSHRUBYINTERN_DEFINE(mKeypress);
+MUSHRUBYINTERN_DEFINE(mPreCacheRender);
 MUSHRUBYINTERN_DEFINE(mRender);
 MUSHRUBYINTERN_DEFINE(name);
 MUSHRUBYINTERN_DEFINE(num_iterations);
@@ -98,6 +102,7 @@ MushRubyIntern::Initialise(void)
 	MUSHRUBYINTERN_INIT(extent);
 	MUSHRUBYINTERN_INIT(mesh_name);
 	MUSHRUBYINTERN_INIT(mKeypress);
+	MUSHRUBYINTERN_INIT(mPreCacheRender);
 	MUSHRUBYINTERN_INIT(mRender);
 	MUSHRUBYINTERN_INIT(name);
 	MUSHRUBYINTERN_INIT(num_iterations);

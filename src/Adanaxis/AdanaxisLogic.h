@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } nTy3CMXyGBhzHaXXoJENIg
 /*
- * $Id: AdanaxisLogic.h,v 1.9 2006/06/01 15:38:47 southa Exp $
+ * $Id: AdanaxisLogic.h,v 1.10 2006/07/19 14:34:50 southa Exp $
  * $Log: AdanaxisLogic.h,v $
+ * Revision 1.10  2006/07/19 14:34:50  southa
+ * Flare effects
+ *
  * Revision 1.9  2006/06/01 15:38:47  southa
  * DrawArray verification and fixes
  *
@@ -77,6 +80,7 @@ public:
     virtual void KhaziMove(void);
     virtual void MoveSequence(void);
     virtual void CollideSequence(void);
+    virtual void PreCacheSequence(void);
     virtual void RenderSequence(void);
     virtual void ProjectilesFullCollide(void);
     
@@ -87,7 +91,8 @@ public:
     virtual const AdanaxisSaveData& ConstSaveData(void) const;
     virtual AdanaxisVolatileData& VolatileData(void) const;
     virtual const AdanaxisVolatileData& ConstVolatileData(void) const;
-
+    virtual Mushware::U32 PreCachePercentage(void) const { return m_preCacheResult; }
+    
 protected:
     void CollisionHandle(AdanaxisSaveData::tProjectile& ioProj,
                          AdanaxisSaveData::tKhazi& ioKhazi,
@@ -98,6 +103,7 @@ private:
     Mushware::tMsec m_startTime; //:readwrite
     Mushware::tMsec m_endTime; //:readwrite
     Mushware::tMsec m_recordTime; //:readwrite
+    Mushware::U32 m_preCacheResult; //:read
     
 //%classPrototypes {
 public:
@@ -109,6 +115,7 @@ public:
     void EndTimeSet(const Mushware::tMsec& inValue) { m_endTime=inValue; }
     const Mushware::tMsec& RecordTime(void) const { return m_recordTime; }
     void RecordTimeSet(const Mushware::tMsec& inValue) { m_recordTime=inValue; }
+    const Mushware::U32& PreCacheResult(void) const { return m_preCacheResult; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -116,7 +123,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } dl8cBZqIOtan46mtOs/q1w
+//%classPrototypes } aJ4OXVfWbCFuT5yCsdL9jg
 };
 
 inline AdanaxisSaveData&

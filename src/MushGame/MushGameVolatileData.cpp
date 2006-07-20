@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } mGoZWUiZsKFfWNio1FcVLw
 /*
- * $Id: MushGameVolatileData.cpp,v 1.7 2006/07/04 16:55:28 southa Exp $
+ * $Id: MushGameVolatileData.cpp,v 1.8 2006/07/07 18:13:59 southa Exp $
  * $Log: MushGameVolatileData.cpp,v $
+ * Revision 1.8  2006/07/07 18:13:59  southa
+ * Menu start and stop
+ *
  * Revision 1.7  2006/07/04 16:55:28  southa
  * Ruby key handling
  *
@@ -56,7 +59,8 @@ MushGameVolatileData::MushGameVolatileData() :
     m_lastGameMsec(0),
     m_frameMsec(0),
     m_rubyGame(Mushware::kRubyQnil),
-    m_gameMode(kGameModeMenu)
+    m_gameMode(kGameModeMenu),
+    m_preCache(false)
 {
 }
 
@@ -100,7 +104,8 @@ MushGameVolatileData::AutoPrint(std::ostream& ioOut) const
     ioOut << "lastGameMsec=" << m_lastGameMsec << ", ";
     ioOut << "frameMsec=" << m_frameMsec << ", ";
     ioOut << "rubyGame=" << m_rubyGame << ", ";
-    ioOut << "gameMode=" << m_gameMode;
+    ioOut << "gameMode=" << m_gameMode << ", ";
+    ioOut << "preCache=" << m_preCache;
     ioOut << "]";
 }
 bool
@@ -144,6 +149,10 @@ MushGameVolatileData::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::st
     {
         ioIn >> m_gameMode;
     }
+    else if (inTagStr == "preCache")
+    {
+        ioIn >> m_preCache;
+    }
     else 
     {
         return false;
@@ -169,5 +178,7 @@ MushGameVolatileData::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_rubyGame;
     ioOut.TagSet("gameMode");
     ioOut << m_gameMode;
+    ioOut.TagSet("preCache");
+    ioOut << m_preCache;
 }
-//%outOfLineFunctions } cbtoogNfAdf5ncGRHB90sA
+//%outOfLineFunctions } KqwArvraujPFYqrsF6+lyQ

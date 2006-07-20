@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } Hr8bvS7fc+x0pR9DrFcIZw
 /*
- * $Id: AdanaxisRender.cpp,v 1.33 2006/07/19 10:22:15 southa Exp $
+ * $Id: AdanaxisRender.cpp,v 1.34 2006/07/19 14:34:51 southa Exp $
  * $Log: AdanaxisRender.cpp,v $
+ * Revision 1.34  2006/07/19 14:34:51  southa
+ * Flare effects
+ *
  * Revision 1.33  2006/07/19 10:22:15  southa
  * World objects
  *
@@ -145,6 +148,39 @@ AdanaxisRender::AdanaxisRender() :
 }
 
 void
+AdanaxisRender::PreCacheRender(MushGameLogic& ioLogic, const MushGameCamera& inCamera)
+{
+    AdanaxisVolatileData *pVolData = dynamic_cast<AdanaxisVolatileData *>(&ioLogic.VolatileData());
+    
+    if (pVolData == NULL)
+    {
+        throw MushcoreDataFail("Uninitialised AdanaxisVolatileData");
+    }
+    
+    AdanaxisLogic *pLogic = dynamic_cast<AdanaxisLogic *>(&ioLogic);
+    
+    if (pLogic == NULL)
+    {
+        throw MushcoreDataFail("Uninitialised AdanaxisLogic");
+    }
+    
+    MushGLUtil::DisplayPrologue();
+    MushGLUtil::ClearScreen();
+    MushGLUtil::IdentityPrologue();
+    MushGLUtil::OrthoPrologue();
+
+    MushGLState::Sgl().RenderStateSet(MushGLState::kRenderState2D);
+
+    MushRubyExec::Sgl().Call(pVolData->RubyGame(),
+                             MushRubyIntern::mPreCacheRender(),
+                             MushRubyValue(pLogic->PreCachePercentage()));
+
+    MushGLUtil::OrthoEpilogue();
+    MushGLUtil::IdentityEpilogue();
+    MushGLUtil::DisplayEpilogue();    
+}
+
+void
 AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCamera)
 {
     AdanaxisSaveData *pSaveData = dynamic_cast<AdanaxisSaveData *>(&ioLogic.SaveData());
@@ -199,12 +235,11 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
         
         MushGameCamera camera(inCamera);
         
+        renderMesh.ColourZMiddleSet(t4Val(1.0,1.0,1.0,1.0));
+        renderMesh.ColourZLeftSet(t4Val(1.0,0.3,0.3,0.0));
+        renderMesh.ColourZRightSet(t4Val(0.3,1.0,0.3,0.0));
+
         camera.ProjectionSet(m_projection);
-        
-
-        
-
-
         {
             typedef AdanaxisVolatileData::tWorldList tWorldList;
             tWorldList::iterator worldEndIter = pVolData->WorldListWRef().end();
@@ -214,6 +249,10 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
             }
         }
         
+        renderMesh.ColourZMiddleSet(t4Val(1.0,1.0,1.0,0.3));
+        renderMesh.ColourZLeftSet(t4Val(1.0,0.3,0.3,0.0));
+        renderMesh.ColourZRightSet(t4Val(0.3,1.0,0.3,0.0));
+
         typedef AdanaxisSaveData::tProjectileList tProjectileList;
         
         tProjectileList::iterator projectileEndIter = pSaveData->ProjectileListWRef().end();
@@ -237,7 +276,7 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
             }
         }
         
-        renderMesh.ColourZMiddleSet(t4Val(1.0,1.0,1.0,0.3));
+        renderMesh.ColourZMiddleSet(t4Val(1.0,1.0,1.0,0.5));
         renderMesh.ColourZLeftSet(t4Val(1.0,0.3,0.3,0.0));
         renderMesh.ColourZRightSet(t4Val(0.3,1.0,0.3,0.0));
         

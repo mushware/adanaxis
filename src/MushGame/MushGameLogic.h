@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } pz9Ij69Gp+RQuOHP0yYqgg
 /*
- * $Id: MushGameLogic.h,v 1.17 2006/07/07 18:13:58 southa Exp $
+ * $Id: MushGameLogic.h,v 1.18 2006/07/08 16:05:59 southa Exp $
  * $Log: MushGameLogic.h,v $
+ * Revision 1.18  2006/07/08 16:05:59  southa
+ * Ruby menus and key handling
+ *
  * Revision 1.17  2006/07/07 18:13:58  southa
  * Menu start and stop
  *
@@ -137,14 +140,18 @@ public:
     virtual void CameraMove(MushGameCamera& inCamera);
     virtual void CameraSequence(void);
     virtual void MenuSequence(void);
+    virtual void PreCacheSequence(void);
     virtual void RenderSequence(void);
     virtual void MainSequence(void);
 
-    virtual bool IsGameMode(void) const;
     virtual bool IsMenuMode(void) const;
-    virtual void GameModeEnter(void);
+    virtual bool IsPreCacheMode(void) const;
+    virtual bool IsGameMode(void) const;
     virtual void MenuModeEnter(void);
+    virtual void GameModeEnter(void);
     virtual void QuitModeEnter(void);
+    virtual void PreCacheModeEnter(void);
+    virtual void PreCacheModeExit(void);
     
     virtual void ClientNewPlayerHandle(const std::string& inPlayerName);
     

@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } kEA/hGTYr5TaTuBUG+UAGA
 /*
- * $Id: AdanaxisLogic.cpp,v 1.12 2006/06/01 15:38:47 southa Exp $
+ * $Id: AdanaxisLogic.cpp,v 1.13 2006/07/19 14:34:50 southa Exp $
  * $Log: AdanaxisLogic.cpp,v $
+ * Revision 1.13  2006/07/19 14:34:50  southa
+ * Flare effects
+ *
  * Revision 1.12  2006/06/01 15:38:47  southa
  * DrawArray verification and fixes
  *
@@ -69,7 +72,8 @@ using namespace std;
 
 AdanaxisLogic::AdanaxisLogic() :
     MushGameLogic(),
-    m_khaziCount(1)
+    m_khaziCount(1),
+    m_preCacheResult(0)
 {
 }
 
@@ -222,6 +226,17 @@ AdanaxisLogic::CollideSequence(void)
 }
 
 void
+AdanaxisLogic::PreCacheSequence(void)
+{
+    m_preCacheResult = MushRubyValue(MushRubyExec::Sgl().Call(VolatileData().RubySpace(), "mPreCache")).U32();
+    
+    if (m_preCacheResult >= 100)
+    {
+        PreCacheModeExit();
+    }
+}
+
+void
 AdanaxisLogic::RenderSequence(void)
 {
     m_khaziCount = 0;
@@ -353,7 +368,8 @@ AdanaxisLogic::AutoPrint(std::ostream& ioOut) const
     ioOut << "khaziCount=" << m_khaziCount << ", ";
     ioOut << "startTime=" << m_startTime << ", ";
     ioOut << "endTime=" << m_endTime << ", ";
-    ioOut << "recordTime=" << m_recordTime;
+    ioOut << "recordTime=" << m_recordTime << ", ";
+    ioOut << "preCacheResult=" << m_preCacheResult;
     ioOut << "]";
 }
 bool
@@ -381,6 +397,10 @@ AdanaxisLogic::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& i
     {
         ioIn >> m_recordTime;
     }
+    else if (inTagStr == "preCacheResult")
+    {
+        ioIn >> m_preCacheResult;
+    }
     else if (MushGameLogic::AutoXMLDataProcess(ioIn, inTagStr))
     {
         // Tag consumed by base class
@@ -403,5 +423,7 @@ AdanaxisLogic::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_endTime;
     ioOut.TagSet("recordTime");
     ioOut << m_recordTime;
+    ioOut.TagSet("preCacheResult");
+    ioOut << m_preCacheResult;
 }
-//%outOfLineFunctions } bCjjtTQxMbrlyKOMMqlD2Q
+//%outOfLineFunctions } a70sQwDFt5hHHuygTk9r7A

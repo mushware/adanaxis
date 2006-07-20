@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } jpyq9WjuLQC6cyA1T6bbWw
 /*
- * $Id: AdanaxisRender.h,v 1.6 2006/06/01 15:38:48 southa Exp $
+ * $Id: AdanaxisRender.h,v 1.7 2006/06/30 17:26:10 southa Exp $
  * $Log: AdanaxisRender.h,v $
+ * Revision 1.7  2006/06/30 17:26:10  southa
+ * Render prelude
+ *
  * Revision 1.6  2006/06/01 15:38:48  southa
  * DrawArray verification and fixes
  *
@@ -55,6 +58,7 @@ public:
     AdanaxisRender();
     virtual ~AdanaxisRender() {}
     
+    virtual void PreCacheRender(MushGameLogic& ioLogic, const MushGameCamera& inCamera);
     virtual void FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCamera);
     virtual void Overplot(MushGameLogic& ioLogic, const MushGameCamera& inCamera);
     virtual void RenderPreludeSet(Mushware::U32 inValue = 3) { m_renderPrelude = inValue; }

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } zS6MRI08vU38Tp9aNbV8RQ
 /*
- * $Id: MushGameVolatileData.h,v 1.7 2006/07/07 18:13:59 southa Exp $
+ * $Id: MushGameVolatileData.h,v 1.8 2006/07/08 16:06:00 southa Exp $
  * $Log: MushGameVolatileData.h,v $
+ * Revision 1.8  2006/07/08 16:06:00  southa
+ * Ruby menus and key handling
+ *
  * Revision 1.7  2006/07/07 18:13:59  southa
  * Menu start and stop
  *
@@ -82,7 +85,8 @@ private:
     Mushware::tMsec m_frameMsec; //:readwrite
     Mushware::tRubyValue m_rubyGame; //:readwrite
     Mushware::U32 m_gameMode; //:readwrite
-
+    bool m_preCache; //:readwrite
+    
 //%classPrototypes {
 public:
     const Mushware::U32& PlayerUplinkPeriodMsec(void) const { return m_playerUplinkPeriodMsec; }
@@ -101,6 +105,8 @@ public:
     void RubyGameSet(const Mushware::tRubyValue& inValue) { m_rubyGame=inValue; }
     const Mushware::U32& GameMode(void) const { return m_gameMode; }
     void GameModeSet(const Mushware::U32& inValue) { m_gameMode=inValue; }
+    const bool& PreCache(void) const { return m_preCache; }
+    void PreCacheSet(const bool& inValue) { m_preCache=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -108,7 +114,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } Vr1DmM/6WPvuORMLDORJVA
+//%classPrototypes } 72gUydbAyIFw2piMzr3DOg
 };
 //%inlineHeader {
 inline std::ostream&

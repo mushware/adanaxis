@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } o9Dxm/e8GypZNPSRXLgJNQ
 /*
- * $Id: MushGameLogic.cpp,v 1.25 2006/07/07 18:13:58 southa Exp $
+ * $Id: MushGameLogic.cpp,v 1.26 2006/07/08 16:05:59 southa Exp $
  * $Log: MushGameLogic.cpp,v $
+ * Revision 1.26  2006/07/08 16:05:59  southa
+ * Ruby menus and key handling
+ *
  * Revision 1.25  2006/07/07 18:13:58  southa
  * Menu start and stop
  *
@@ -559,7 +562,11 @@ MushGameLogic::CameraSequence(void)
 void
 MushGameLogic::MenuSequence(void)
 {
-    
+}
+
+void
+MushGameLogic::PreCacheSequence(void)
+{
 }
 
 void
@@ -569,7 +576,14 @@ MushGameLogic::RenderSequence(void)
     MushcoreData<MushGameCamera>& cameraData = SaveData().CamerasWRef();
     for (tIterator p = cameraData.Begin(); p != cameraData.End(); ++p)
     {
-        SaveData().RenderRef().WRef().FrameRender(*this, *p->second);
+        if (IsPreCacheMode())
+        {
+            SaveData().RenderRef().WRef().PreCacheRender(*this, *p->second);        
+        }
+        else
+        {
+            SaveData().RenderRef().WRef().FrameRender(*this, *p->second);
+        }
     }
 }
 
@@ -602,20 +616,27 @@ MushGameLogic::MainSequence(void)
         try { MenuSequence(); }
         catch (MushcoreNonFatalFail& e) { ExceptionHandle(&e, "MenuSequence"); }
     }
+    if (IsPreCacheMode())
+    {
+        try { PreCacheSequence(); }
+        catch (MushcoreNonFatalFail& e) { ExceptionHandle(&e, "PreCacheSequence"); }
+    }
     try { RenderSequence(); }
     catch (MushcoreNonFatalFail& e) { ExceptionHandle(&e, "RenderSequence"); }
-}
-
-void
-MushGameLogic::GameModeEnter(void)
-{
-    VolatileData().GameModeSet(MushGameVolatileData::kGameModeGame);
 }
 
 void
 MushGameLogic::MenuModeEnter(void)
 {
     VolatileData().GameModeSet(MushGameVolatileData::kGameModeMenu);
+    PreCacheModeEnter();
+}
+
+void
+MushGameLogic::GameModeEnter(void)
+{
+    VolatileData().GameModeSet(MushGameVolatileData::kGameModeGame);
+    PreCacheModeEnter();
 }
 
 void
@@ -625,16 +646,35 @@ MushGameLogic::QuitModeEnter(void)
     MushGameUtil::AppHandler().QuitStateEnter();
 }
 
-bool
-MushGameLogic::IsGameMode(void) const
+void
+MushGameLogic::PreCacheModeEnter(void)
 {
-    return VolatileData().GameMode() == MushGameVolatileData::kGameModeGame;    
+    VolatileData().PreCacheSet(true);
+}
+
+void
+MushGameLogic::PreCacheModeExit(void)
+{
+    VolatileData().PreCacheSet(false);
 }
 
 bool
 MushGameLogic::IsMenuMode(void) const
 {
     return VolatileData().GameMode() == MushGameVolatileData::kGameModeMenu;    
+}
+
+
+bool
+MushGameLogic::IsPreCacheMode(void) const
+{
+    return VolatileData().PreCache();    
+}
+
+bool
+MushGameLogic::IsGameMode(void) const
+{
+    return VolatileData().GameMode() == MushGameVolatileData::kGameModeGame;    
 }
 
 void

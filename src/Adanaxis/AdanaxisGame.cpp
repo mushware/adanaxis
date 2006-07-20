@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } DEX6Sh9oUk/bih2GXm2coA
 /*
- * $Id: AdanaxisGame.cpp,v 1.42 2006/07/18 16:58:36 southa Exp $
+ * $Id: AdanaxisGame.cpp,v 1.43 2006/07/19 14:34:50 southa Exp $
  * $Log: AdanaxisGame.cpp,v $
+ * Revision 1.43  2006/07/19 14:34:50  southa
+ * Flare effects
+ *
  * Revision 1.42  2006/07/18 16:58:36  southa
  * Texture fixes
  *
@@ -305,10 +308,11 @@ AdanaxisGame::Init(MushGameAppHandler& inAppHandler)
     MushcoreInterpreter::Sgl().Execute("loadsoundstream('adanaxis-music1')");
     if (m_config.PlayMusic())
     {
-        MediaAudio::Sgl().MusicFadeIn(300);                    
+        MediaAudio::Sgl().MusicFadeIn(300);
     }
     
     Logic().StartTimeSet(Logic().GameMsec());
+    Logic().MenuModeEnter();
     m_inited = true;
 }
 
@@ -390,11 +394,6 @@ AdanaxisGame::SwapIn(MushGameAppHandler& inAppHandler)
     Logic().RecordTimeSet(m_config.RecordTime());
 
     dynamic_cast<AdanaxisRender&>(SaveData().RenderRef().WRef()).RenderPreludeSet();
-    
-    for (U32 i=0; i<100; ++i)
-    {
-        MushRubyExec::Sgl().Call(VolatileData().RubySpace(), "mPreCache");
-    }
 }
 
 void
