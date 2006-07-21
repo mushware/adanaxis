@@ -267,6 +267,8 @@
 #define DLEXT ".bundle"
 
 #else
+
+#ifndef WIN32
 /* X11 configuration.  Use the top level config.h */
 #include "../../config.h"
 
@@ -276,6 +278,7 @@
 #define TOKEN_PASTE(x,y) x##y
 #define DLEXT ".so"
 #define RSHIFT(x,y) ((x)>>(int)y)
+#endif
 #endif
 
 /* Common definitions */

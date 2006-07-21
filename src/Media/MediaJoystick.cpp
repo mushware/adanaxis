@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } kz7WHlIvN6zEx7WiK5g+5A
 /*
- * $Id$
- * $Log$
+ * $Id: MediaJoystick.cpp,v 1.1 2006/07/11 19:49:04 southa Exp $
+ * $Log: MediaJoystick.cpp,v $
+ * Revision 1.1  2006/07/11 19:49:04  southa
+ * Control menu
+ *
  */
 
 #include "MediaJoystick.h"
@@ -58,6 +61,8 @@ MediaJoystick::MediaJoystick()
 
 MediaJoystick::~MediaJoystick()
 {
+#ifndef WIN32
+    // Windows doesn't like this
     for (U32 i=0; i<m_sticks.size(); ++i)
     {
         if (SDL_JoystickOpened(i))
@@ -65,7 +70,7 @@ MediaJoystick::~MediaJoystick()
             SDL_JoystickClose(m_sticks[i]);
         }
     }
-    
+#endif    
     MediaSDL::Sgl().QuitJoystick();
 }
 

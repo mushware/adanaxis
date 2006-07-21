@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } TPx6ydKbT+Ng+tUVZS0gZA
 /*
- * $Id: GLAppHandler.h,v 1.33 2006/06/01 15:38:49 southa Exp $
+ * $Id: GLAppHandler.h,v 1.34 2006/07/08 16:05:54 southa Exp $
  * $Log: GLAppHandler.h,v $
+ * Revision 1.34  2006/07/08 16:05:54  southa
+ * Ruby menus and key handling
+ *
  * Revision 1.33  2006/06/01 15:38:49  southa
  * DrawArray verification and fixes
  *
@@ -149,8 +152,8 @@ class GLAppHandler : public MushcoreAppHandler
 {
 public:
     virtual ~GLAppHandler() {}
-    virtual bool KeyStateGet(const Mushware::U32 inKey) const = 0;
-    virtual bool LatchedKeyStateTake(const Mushware::U32 inKey) = 0;
+    virtual bool KeyStateGet(Mushware::U32 inKey) const = 0;
+    virtual bool LatchedKeyStateTake(Mushware::U32 inKey) = 0;
     virtual void MousePositionGet(Mushware::tVal& outX, Mushware::tVal& outY) const = 0;
     virtual void UnboundedMousePositionGet(Mushware::S32& outX, Mushware::S32& outY) const = 0;
     virtual void EnterScreen(const GLModeDef& inDef) = 0;

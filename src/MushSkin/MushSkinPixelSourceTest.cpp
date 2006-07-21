@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } z7GIR5rZlSZBeKpGQS4AoQ
 /*
- * $Id: MushSkinPixelSourceTest.cpp,v 1.1 2006/06/05 14:37:52 southa Exp $
+ * $Id: MushSkinPixelSourceTest.cpp,v 1.2 2006/06/07 12:15:21 southa Exp $
  * $Log: MushSkinPixelSourceTest.cpp,v $
+ * Revision 1.2  2006/06/07 12:15:21  southa
+ * Grid and test textures
+ *
  * Revision 1.1  2006/06/05 14:37:52  southa
  * Texture generation
  *
@@ -61,7 +64,7 @@ MushSkinPixelSourceTest::PixelSource(void) const
 	MushSkinPixelSourceProc *pPixelSource = dynamic_cast<MushSkinPixelSourceProc *>(m_pPixelSource);
 	if (m_pPixelSource == NULL)	
 	{
-		throw MushcoreLogicFail("Invalid pixel source");;	
+		throw MushcoreLogicFail("Invalid pixel source");
 	}
 	return *pPixelSource;
 }

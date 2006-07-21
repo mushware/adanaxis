@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } X577BrzUUfCyG/exJzzEYQ
 /*
- * $Id: SDLAppHandler.cpp,v 1.57 2006/07/17 14:43:39 southa Exp $
+ * $Id: SDLAppHandler.cpp,v 1.58 2006/07/18 16:58:37 southa Exp $
  * $Log: SDLAppHandler.cpp,v $
+ * Revision 1.58  2006/07/18 16:58:37  southa
+ * Texture fixes
+ *
  * Revision 1.57  2006/07/17 14:43:39  southa
  * Billboarded deco objects
  *
@@ -612,7 +615,6 @@ SDLAppHandler::PollForControlEvents(void)
             
             case SDL_JOYHATMOTION:
             {
-                // Untested
                 if (event.jhat.which < kNumDevices)
                 {
                     bool leftState = (event.jhat.value & SDL_HAT_LEFT) != 0;

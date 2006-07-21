@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 8+s43zymtGuWatXc9oMynA
 /*
- * $Id: MediaKeyboard.h,v 1.2 2006/07/08 16:05:57 southa Exp $
+ * $Id: MediaKeyboard.h,v 1.3 2006/07/11 19:49:05 southa Exp $
  * $Log: MediaKeyboard.h,v $
+ * Revision 1.3  2006/07/11 19:49:05  southa
+ * Control menu
+ *
  * Revision 1.2  2006/07/08 16:05:57  southa
  * Ruby menus and key handling
  *
@@ -288,7 +291,7 @@ public:
         kKeyStickHatRight = 1,
         kKeyStickHatUp    = 2,
         kKeyStickHatDown  = 3,
-        
+         
         kKeyStick0   = 1200,
         kKeyStick0_0 = 1200,
         kKeyStick0_1 = 1201,

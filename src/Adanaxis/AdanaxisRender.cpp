@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } Hr8bvS7fc+x0pR9DrFcIZw
 /*
- * $Id: AdanaxisRender.cpp,v 1.34 2006/07/19 14:34:51 southa Exp $
+ * $Id: AdanaxisRender.cpp,v 1.35 2006/07/20 12:22:21 southa Exp $
  * $Log: AdanaxisRender.cpp,v $
+ * Revision 1.35  2006/07/20 12:22:21  southa
+ * Precache display
+ *
  * Revision 1.34  2006/07/19 14:34:51  southa
  * Flare effects
  *
@@ -276,7 +279,7 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
             }
         }
         
-        renderMesh.ColourZMiddleSet(t4Val(1.0,1.0,1.0,0.5));
+        renderMesh.ColourZMiddleSet(t4Val(1.0,1.0,1.0,0.3));
         renderMesh.ColourZLeftSet(t4Val(1.0,0.3,0.3,0.0));
         renderMesh.ColourZRightSet(t4Val(0.3,1.0,0.3,0.0));
         

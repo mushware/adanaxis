@@ -878,6 +878,12 @@
 					RelativePath="..\..\src\Adanaxis\AdanaxisPieceProjectile.h">
 				</File>
 				<File
+					RelativePath="..\..\src\Adanaxis\AdanaxisPieceWorld.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\Adanaxis\AdanaxisPieceWorld.h">
+				</File>
+				<File
 					RelativePath="..\..\src\Adanaxis\AdanaxisPlayer.cpp">
 				</File>
 				<File
@@ -906,6 +912,12 @@
 				</File>
 				<File
 					RelativePath="..\..\src\Adanaxis\AdanaxisRubyKhazi.h">
+				</File>
+				<File
+					RelativePath="..\..\src\Adanaxis\AdanaxisRubyWorld.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\Adanaxis\AdanaxisRubyWorld.h">
 				</File>
 				<File
 					RelativePath="..\..\src\Adanaxis\AdanaxisSaveData.cpp">
@@ -1042,6 +1054,18 @@
 					RelativePath="..\..\src\Media\MediaAudioSDL.h">
 				</File>
 				<File
+					RelativePath="..\..\src\Media\MediaJoystick.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\Media\MediaJoystick.h">
+				</File>
+				<File
+					RelativePath="..\..\src\Media\MediaKeyboard.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\Media\MediaKeyboard.h">
+				</File>
+				<File
 					RelativePath="..\..\src\Media\MediaSDL.cpp">
 				</File>
 				<File
@@ -1089,12 +1113,6 @@
 				</File>
 				<File
 					RelativePath="..\..\src\MushGL\MushGLArrays.h">
-				</File>
-				<File
-					RelativePath="..\..\src\MushGL\MushGLBuffer.cpp">
-				</File>
-				<File
-					RelativePath="..\..\src\MushGL\MushGLBuffer.h">
 				</File>
 				<File
 					RelativePath="..\..\src\MushGL\MushGLBuffers.cpp">
@@ -1167,6 +1185,12 @@
 				</File>
 				<File
 					RelativePath="..\..\src\MushGL\MushGLResolverPixelSource.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushGL\MushGLRubyFont.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushGL\MushGLRubyFont.h">
 				</File>
 				<File
 					RelativePath="..\..\src\MushGL\MushGLStandard.cpp">
@@ -1568,12 +1592,6 @@
 					RelativePath="..\..\src\Gl\GLFontRef.h">
 				</File>
 				<File
-					RelativePath="..\..\src\Gl\GLKeys.cpp">
-				</File>
-				<File
-					RelativePath="..\..\src\Gl\GLKeys.h">
-				</File>
-				<File
 					RelativePath="..\..\src\Gl\GLLightDef.cpp">
 				</File>
 				<File
@@ -1861,6 +1879,12 @@
 					RelativePath="..\..\src\MushMeshLibrary\MushMeshLibraryPrism.h">
 				</File>
 				<File
+					RelativePath="..\..\src\MushMeshLibrary\MushMeshLibrarySingleFacet.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMeshLibrary\MushMeshLibrarySingleFacet.h">
+				</File>
+				<File
 					RelativePath="..\..\src\MushMeshLibrary\MushMeshLibraryStandard.cpp">
 				</File>
 				<File
@@ -1911,6 +1935,12 @@
 				</File>
 				<File
 					RelativePath="..\..\src\MushGame\MushGameAxisDef.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushGame\MushGameBase.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushGame\MushGameBase.h">
 				</File>
 				<File
 					RelativePath="..\..\src\MushGame\MushGameCamera.cpp">
@@ -2147,6 +2177,12 @@
 					RelativePath="..\..\src\MushGame\MushGameRender.h">
 				</File>
 				<File
+					RelativePath="..\..\src\MushGame\MushGameRuby.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushGame\MushGameRuby.h">
+				</File>
+				<File
 					RelativePath="..\..\src\MushGame\MushGameSaveData.cpp">
 				</File>
 				<File
@@ -2293,6 +2329,12 @@
 					RelativePath="..\..\src\MushMeshRuby\MushMeshRubyBasePrism.h">
 				</File>
 				<File
+					RelativePath="..\..\src\MushMeshRuby\MushMeshRubyBaseSingleFacet.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMeshRuby\MushMeshRubyBaseSingleFacet.h">
+				</File>
+				<File
 					RelativePath="..\..\src\MushMeshRuby\MushMeshRubyDisplacement.cpp">
 				</File>
 				<File
@@ -2327,12 +2369,6 @@
 				</File>
 				<File
 					RelativePath="..\..\src\MushMeshRuby\MushMeshRubyRotation.h">
-				</File>
-				<File
-					RelativePath="..\..\src\MushMeshRuby\MushMeshRubyRuby.cpp">
-				</File>
-				<File
-					RelativePath="..\..\src\MushMeshRuby\MushMeshRubyRuby.h">
 				</File>
 				<File
 					RelativePath="..\..\src\MushMeshRuby\MushMeshRubyStandard.cpp">
@@ -2391,6 +2427,12 @@
 				</File>
 				<File
 					RelativePath="..\..\src\MushSkin\MushSkinPixelSourceProc.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushSkin\MushSkinPixelSourceRadial.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushSkin\MushSkinPixelSourceRadial.h">
 				</File>
 				<File
 					RelativePath="..\..\src\MushSkin\MushSkinPixelSourceTest.cpp">
