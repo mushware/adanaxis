@@ -64,6 +64,28 @@ fi
 CFLAGS="$CFLAGS -I\${srcdir} -I\${srcdir}/API"
 CPPFLAGS="$CPPFLAGS -I\${srcdir} -I\${srcdir}/API"
 
+AC_HEADER_DIRENT
+AC_HEADER_STDC
+AC_HEADER_SYS_WAIT
+AC_CHECK_HEADERS(stdlib.h string.h unistd.h limits.h sys/file.h sys/ioctl.h sys/syscall.h fcntl.h sys/fcntl.h sys/select.h sys/time.h sys/times.h sys/param.h syscall.h pwd.h utime.h memory.h direct.h)
+
+AC_CHECK_SIZEOF(int, 4)
+AC_CHECK_SIZEOF(short, 2)
+AC_CHECK_SIZEOF(long, 4)
+AC_CHECK_SIZEOF(long long, 0)
+AC_CHECK_SIZEOF(void*, 4)
+AC_CHECK_SIZEOF(float, 4)
+AC_CHECK_SIZEOF(double, 8)
+AC_CHECK_SIZEOF(time_t, 0)
+
+AC_FUNC_MEMCMP
+AC_REPLACE_FUNCS(dup2 memmove strcasecmp strncasecmp strerror strftime strchr strstr strtoul crypt flock acosh erf)
+AC_CHECK_FUNCS(getcwd fcntl lockf symlink pause dlopen telldir seekdir mktime timegm cosh sinh tanh)
+
+dnl Checks for typedefs, structures, and compiler characteristics.
+AC_C_BIGENDIAN
+
+
 dnl Checks for libraries.
 AC_CHECK_HEADER(windows.h)
 
@@ -145,6 +167,13 @@ AC_CHECK_LIB(vorbis, main,, AC_MSG_ERROR([libvorbis library not found - home is 
 AC_CHECK_LIB(vorbisfile, main,, AC_MSG_ERROR([libvorbisfile library not found - home is http://www.xiph.org/]))
 AC_CHECK_LIB(SDL_mixer, main,, AC_MSG_ERROR([libSDL_mixer library not found - home is http://www.libsdl.org/]))
  
+AC_CHECK_HEADERS(pcre.h,, [AC_CHECK_HEADERS(pcre/pcre.h,, AC_MSG_ERROR([Cannot find pcre.h header]))])
+AC_CHECK_HEADERS(expat.h,, [AC_CHECK_HEADERS(expat/expat.h,, AC_MSG_ERROR([Cannot find expat.h header]))])
+AC_CHECK_HEADERS(SDL.h,, [AC_CHECK_HEADERS(SDL/SDL.h,, AC_MSG_ERROR([Cannot find SDL.h header]))])
+AC_CHECK_HEADERS(SDL_mixer.h,, [AC_CHECK_HEADERS(SDL/SDL_mixer.h,, AC_MSG_ERROR([Cannot find SDL_mixer.h header]))])
+AC_CHECK_HEADERS(SDL_main.h,, [AC_CHECK_HEADERS(SDL/SDL_main.h,, AC_MSG_ERROR([Cannot find SDL_main.h header]))])
+AC_CHECK_HEADERS(SDL_opengl.h,, [AC_CHECK_HEADERS(SDL/SDL_opengl.h,, AC_MSG_NOTICE([Cannot find SDL_opengl.h header]))])
+ 
 dnl Switch to C++ for sstream and valarray
 AC_LANG(C++)
 
@@ -157,33 +186,6 @@ CPPFLAGS="$CPPFLAGS -I\${srcdir}/Support/gcc-2.95.2"
 AC_CHECK_HEADERS(valarray,,[
 AC_MSG_WARN([valarray not found.  Will fall back to vector])
 ])
-
-AC_HEADER_DIRENT
-AC_HEADER_STDC
-AC_HEADER_SYS_WAIT
-AC_CHECK_HEADERS(stdlib.h string.h unistd.h limits.h sys/file.h sys/ioctl.h sys/syscall.h fcntl.h sys/fcntl.h sys/select.h sys/time.h sys/times.h sys/param.h syscall.h pwd.h utime.h memory.h direct.h)
-
-AC_CHECK_SIZEOF(int, 4)
-AC_CHECK_SIZEOF(short, 2)
-AC_CHECK_SIZEOF(long, 4)
-AC_CHECK_SIZEOF(long long, 0)
-AC_CHECK_SIZEOF(void*, 4)
-AC_CHECK_SIZEOF(float, 4)
-AC_CHECK_SIZEOF(double, 8)
-AC_CHECK_SIZEOF(time_t, 0)
-
-AC_FUNC_MEMCMP
-AC_REPLACE_FUNCS(dup2 memmove strcasecmp strncasecmp strerror strftime strchr strstr strtoul crypt flock acosh erf)
-AC_CHECK_FUNCS(getcwd fcntl lockf symlink pause dlopen telldir seekdir mktime timegm cosh sinh tanh)
-AC_CHECK_HEADERS(pcre.h,, [AC_CHECK_HEADERS(pcre/pcre.h,, AC_MSG_ERROR([Cannot find pcre.h header]))])
-AC_CHECK_HEADERS(expat.h,, [AC_CHECK_HEADERS(expat/expat.h,, AC_MSG_ERROR([Cannot find expat.h header]))])
-AC_CHECK_HEADERS(SDL.h,, [AC_CHECK_HEADERS(SDL/SDL.h,, AC_MSG_ERROR([Cannot find SDL.h header]))])
-AC_CHECK_HEADERS(SDL_mixer.h,, [AC_CHECK_HEADERS(SDL/SDL_mixer.h,, AC_MSG_ERROR([Cannot find SDL_mixer.h header]))])
-AC_CHECK_HEADERS(SDL_main.h,, [AC_CHECK_HEADERS(SDL/SDL_main.h,, AC_MSG_ERROR([Cannot find SDL_main.h header]))])
-AC_CHECK_HEADERS(SDL_opengl.h,, [AC_CHECK_HEADERS(SDL/SDL_opengl.h,, AC_MSG_NOTICE([Cannot find SDL_opengl.h header]))])
-
-dnl Checks for typedefs, structures, and compiler characteristics.
-AC_C_BIGENDIAN
 
 dnl Checks for library functions.
 AC_TRY_COMPILE([
