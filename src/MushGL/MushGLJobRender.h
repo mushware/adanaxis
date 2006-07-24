@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } niNk52AMovUz2uwLdjDeFg
 /*
- * $Id: MushGLJobRender.h,v 1.3 2006/06/01 15:39:17 southa Exp $
+ * $Id: MushGLJobRender.h,v 1.4 2006/06/27 11:58:08 southa Exp $
  * $Log: MushGLJobRender.h,v $
+ * Revision 1.4  2006/06/27 11:58:08  southa
+ * Warning fixes
+ *
  * Revision 1.3  2006/06/01 15:39:17  southa
  * DrawArray verification and fixes
  *
@@ -61,6 +64,8 @@ private:
     MushGLBuffers::tDataRef m_buffersRef; //:readwrite
     MushGLBuffers::tSharedDataRef m_texCoordBuffersRef; //:readwrite
     
+    Mushware::tVal m_sortValue; //:readwrite
+    
 //%classPrototypes {
 public:
     const std::vector<MushGLWorkSpec *>& WorkSpecs(void) const { return m_workSpecs; }
@@ -68,6 +73,8 @@ public:
     void BuffersRefSet(const MushGLBuffers::tDataRef& inValue) { m_buffersRef=inValue; }
     const MushGLBuffers::tSharedDataRef& TexCoordBuffersRef(void) const { return m_texCoordBuffersRef; }
     void TexCoordBuffersRefSet(const MushGLBuffers::tSharedDataRef& inValue) { m_texCoordBuffersRef=inValue; }
+    const Mushware::tVal& SortValue(void) const { return m_sortValue; }
+    void SortValueSet(const Mushware::tVal& inValue) { m_sortValue=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -75,7 +82,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } v/lwY0m7XyEQUKHTGlY/Ew
+//%classPrototypes } iqsI52DsPQk9Rj3cvRZaNA
 };
 
 inline MushGLWorkSpec&

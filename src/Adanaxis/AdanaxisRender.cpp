@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } Hr8bvS7fc+x0pR9DrFcIZw
 /*
- * $Id: AdanaxisRender.cpp,v 1.35 2006/07/20 12:22:21 southa Exp $
+ * $Id: AdanaxisRender.cpp,v 1.36 2006/07/21 10:52:05 southa Exp $
  * $Log: AdanaxisRender.cpp,v $
+ * Revision 1.36  2006/07/21 10:52:05  southa
+ * win32 build fixes
+ *
  * Revision 1.35  2006/07/20 12:22:21  southa
  * Precache display
  *
@@ -184,6 +187,31 @@ AdanaxisRender::PreCacheRender(MushGameLogic& ioLogic, const MushGameCamera& inC
 }
 
 void
+AdanaxisRender::SortAndDespatch(MushGameLogic& ioLogic, std::vector<MushGLJobRender *> inJobs)
+{
+    U32 numJobs = inJobs.size();
+    
+    std::vector< std::pair<tVal, U32> > sortList(numJobs);
+    
+    for (U32 i=0; i<numJobs; ++i)
+    {
+        MUSHCOREASSERT(inJobs[i] != NULL);
+        sortList[i].first = inJobs[i]->SortValue(); 
+        sortList[i].second = i; 
+    }
+    
+    std::sort(sortList.begin(), sortList.end());
+    
+    for (U32 i=0; i<numJobs; ++i)
+    {
+        MushGLJobRender *pJob = inJobs[sortList[i].second];
+        MUSHCOREASSERT(pJob != NULL);
+        pJob->Execute();
+    }
+}
+
+
+void
 AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCamera)
 {
     AdanaxisSaveData *pSaveData = dynamic_cast<AdanaxisSaveData *>(&ioLogic.SaveData());
@@ -228,6 +256,9 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
     
     if (m_renderPrelude == 0)
     {
+        m_renderList.resize(0);
+        m_renderList.push_back(new MushGLJobRender);
+
         MushGLUtil::IdentityPrologue();
         
         MushGLState::Sgl().RenderStateSet(MushGLState::kRenderState4D);
@@ -261,7 +292,12 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
         tProjectileList::iterator projectileEndIter = pSaveData->ProjectileListWRef().end();
         for (tProjectileList::iterator p = pSaveData->ProjectileListWRef().begin(); p != projectileEndIter; ++p)
         {
-            p->Render(ioLogic, renderMesh, camera);
+            MUSHCOREASSERT(m_renderList.back() != NULL);
+            
+            if (p->Render(*m_renderList.back(), ioLogic, renderMesh, camera))
+            {
+                m_renderList.push_back(new MushGLJobRender);
+            }
         }    
         
         renderMesh.ColourZMiddleSet(t4Val(1.0,1.0,1.0,1.0));
@@ -275,7 +311,12 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
             tDecoList::iterator decoEndIter = pVolData->DecoListWRef().end();
             for (tDecoList::iterator p = pVolData->DecoListWRef().begin(); p != decoEndIter; ++p)
             {
-                p->Render(ioLogic, renderMesh, camera);
+                MUSHCOREASSERT(m_renderList.back() != NULL);
+                
+                if (p->Render(*m_renderList.back(), ioLogic, renderMesh, camera))
+                {
+                    m_renderList.push_back(new MushGLJobRender);
+                }
             }
         }
         
@@ -288,8 +329,24 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
         tKhaziList::iterator khaziEndIter = pSaveData->KhaziListWRef().end();
         for (tKhaziList::iterator p = pSaveData->KhaziListWRef().begin(); p != khaziEndIter; ++p)
         {
-            p->Render(ioLogic, renderMesh, camera);
+            MUSHCOREASSERT(m_renderList.back() != NULL);
+            
+            if (p->Render(*m_renderList.back(), ioLogic, renderMesh, camera))
+            {
+                m_renderList.push_back(new MushGLJobRender);
+            }
         }    
+        
+        SortAndDespatch(ioLogic, m_renderList);
+        
+        U32 renderListSize = m_renderList.size();
+        for (U32 i=0; i + 1 < renderListSize; ++i)
+        {
+            MUSHCOREASSERT(m_renderList[i] != NULL);            
+            delete m_renderList[i];
+            m_renderList[i] = NULL;
+        }
+        m_renderList.resize(0);
         
         MushGLUtil::IdentityEpilogue();
     }
@@ -337,6 +394,8 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
     {
         --m_renderPrelude;   
     }
+    
+
 }
 
 void
@@ -463,7 +522,8 @@ AdanaxisRender::AutoPrint(std::ostream& ioOut) const
     ioOut << "halfAngle=" << m_halfAngle << ", ";
     ioOut << "halfAngleAttractor=" << m_halfAngleAttractor << ", ";
     ioOut << "scannerOn=" << m_scannerOn << ", ";
-    ioOut << "renderPrelude=" << m_renderPrelude;
+    ioOut << "renderPrelude=" << m_renderPrelude << ", ";
+    ioOut << "renderList=" << m_renderList;
     ioOut << "]";
 }
 bool
@@ -495,6 +555,10 @@ AdanaxisRender::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
     {
         ioIn >> m_renderPrelude;
     }
+    else if (inTagStr == "renderList")
+    {
+        ioIn >> m_renderList;
+    }
     else 
     {
         return false;
@@ -514,5 +578,7 @@ AdanaxisRender::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_scannerOn;
     ioOut.TagSet("renderPrelude");
     ioOut << m_renderPrelude;
+    ioOut.TagSet("renderList");
+    ioOut << m_renderList;
 }
-//%outOfLineFunctions } N2BqhZJl9F8dB+TKB8MuNA
+//%outOfLineFunctions } c/2s2DO2L2KEFp5Qw59H4Q

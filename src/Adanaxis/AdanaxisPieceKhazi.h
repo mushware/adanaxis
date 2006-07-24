@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } zxudYl+J614B+ona+VDSzQ
 /*
- * $Id: AdanaxisPieceKhazi.h,v 1.8 2006/06/21 12:17:55 southa Exp $
+ * $Id: AdanaxisPieceKhazi.h,v 1.9 2006/06/30 15:05:31 southa Exp $
  * $Log: AdanaxisPieceKhazi.h,v $
+ * Revision 1.9  2006/06/30 15:05:31  southa
+ * Texture and buffer purge
+ *
  * Revision 1.8  2006/06/21 12:17:55  southa
  * Ruby object generation
  *
@@ -66,7 +69,8 @@ public:
     virtual ~AdanaxisPieceKhazi() {}
 
     virtual void Move(MushGameLogic& ioLogic, const Mushware::tVal inFrameslice);
-    virtual void Render(MushGameLogic& ioLogic, MushRenderMesh& inRender, const MushGameCamera& inCamera);
+    virtual bool Render(MushGLJobRender& outRender,
+                        MushGameLogic& ioLogic, MushRenderMesh& inRender, const MushGameCamera& inCamera);
     
     virtual void CollisionFatalConsume(MushGameLogic& ioLogic, const MushGameMessageCollisionFatal& inMessage);
     virtual void MessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage);

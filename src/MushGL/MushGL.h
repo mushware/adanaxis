@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } glfKswkbeoueNs++v5RKqA
 /*
- * $Id: MushGL.h,v 1.14 2006/06/29 08:27:08 southa Exp $
+ * $Id: MushGL.h,v 1.15 2006/06/30 15:05:32 southa Exp $
  * $Log: MushGL.h,v $
+ * Revision 1.15  2006/06/30 15:05:32  southa
+ * Texture and buffer purge
+ *
  * Revision 1.14  2006/06/29 08:27:08  southa
  * X11 fixes
  *
@@ -73,6 +76,7 @@
 #include "MushGLArrays.h"
 #include "MushGLBuffers.h"
 #include "MushGLCacheControl.h"
+#include "MushGLCamera.h"
 #include "MushGLClaimer.h"
 #include "MushGLControl.h"
 #include "MushGLFont.h"

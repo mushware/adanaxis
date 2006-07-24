@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } GBnKh1xP//zYsMvzXoAYTg
 /*
- * $Id: MushRenderMeshWireframe.cpp,v 1.6 2006/06/01 15:39:38 southa Exp $
+ * $Id: MushRenderMeshWireframe.cpp,v 1.7 2006/06/27 11:58:10 southa Exp $
  * $Log: MushRenderMeshWireframe.cpp,v $
+ * Revision 1.7  2006/06/27 11:58:10  southa
+ * Warning fixes
+ *
  * Revision 1.6  2006/06/01 15:39:38  southa
  * DrawArray verification and fixes
  *
@@ -61,21 +64,31 @@ MushRenderMeshWireframe::MushRenderMeshWireframe() :
 void
 MushRenderMeshWireframe::MeshRender(const MushRenderSpec& inSpec, const MushMeshMesh& inMesh)
 {
-    if (!OutputBufferGenerate(inSpec, inMesh))
+    const MushMesh4Mesh *p4Mesh = dynamic_cast<const MushMesh4Mesh *>(&inMesh); // Pointer to the input mesh
+    if (p4Mesh == NULL)
     {
-        if (!OutputBufferGenerate(inSpec, inMesh))
-        {
-            throw MushcoreDeviceFail("Double fault when unmapping vertex buffer");
-        }
+        throw MushcoreRequestFail(std::string("Cannot render mesh type '")+inMesh.AutoName()+"'");
     }
     
-    MushGLJobRender jobRender;
-    MushGLWorkSpec& workSpecRef = jobRender.WorkSpecNew();
+    if (!ShouldMeshCull(inSpec, *p4Mesh))
+    {    
     
-    jobRender.BuffersRefSet(inSpec.BuffersRef());
-    workSpecRef.RenderTypeSet(MushGLWorkSpec::kRenderTypeLines);
-    
-    jobRender.Execute();
+        if (!OutputBufferGenerate(inSpec, *p4Mesh))
+        {
+            if (!OutputBufferGenerate(inSpec, *p4Mesh))
+            {
+                throw MushcoreDeviceFail("Double fault when unmapping vertex buffer");
+            }
+        }
+        
+        MushGLJobRender jobRender;
+        MushGLWorkSpec& workSpecRef = jobRender.WorkSpecNew();
+        
+        jobRender.BuffersRefSet(inSpec.BuffersRef());
+        workSpecRef.RenderTypeSet(MushGLWorkSpec::kRenderTypeLines);
+        
+        jobRender.Execute();
+    }
 }
 
 inline void
@@ -116,7 +129,7 @@ MushRenderMeshWireframe::DerivedColourSet(Mushware::t4Val& outColour, const Mush
 }
 
 bool
-MushRenderMeshWireframe::OutputBufferGenerate(const MushRenderSpec& inSpec, const MushMeshMesh& inMesh)
+MushRenderMeshWireframe::OutputBufferGenerate(const MushRenderSpec& inSpec, const MushMesh4Mesh& inMesh)
 {
     // Gather data
     MushGLBuffers& glDestBuffersRef = inSpec.BuffersRef().WRef(); // GL Buffer set for output
@@ -138,8 +151,19 @@ MushRenderMeshWireframe::OutputBufferGenerate(const MushRenderSpec& inSpec, cons
     MushGLWorkspace<MushGLBuffers::tVertex>& projectedWorkspace =
         glDestBuffersRef.ProjectedVerticesWRef(); // Projected vertex workspace
     MushMesh4Mesh::tVertices& projectedVertices = projectedWorkspace.DataWRef();
+    
     // Create the projected vertices
-    MushRenderUtil::Transform(projectedVertices, srcVertices, inSpec.ModelToClipMattress());
+    switch (inMesh.TransformType())
+    {
+        case MushMesh4Mesh::kTransformTypeBillboard:
+            MushRenderUtil::Transform(projectedVertices, srcVertices, inSpec.ModelToClipBillboardMattress());
+            break;
+            
+        default:
+            MushRenderUtil::Transform(projectedVertices, srcVertices, inSpec.ModelToClipMattress());
+            break;
+    }
+    
     U32 projectedVerticesSize = projectedVertices.size(); // Size of projected vertex vector array
 
     MushGLWorkspace<MushGLBuffers::tVertex>& eyeWorkspace =

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } A/GPso4jrQBD0hPDpi3qXg
 /*
- * $Id: MushRenderMeshSolid.cpp,v 1.9 2006/06/20 19:06:54 southa Exp $
+ * $Id: MushRenderMeshSolid.cpp,v 1.10 2006/07/17 14:43:42 southa Exp $
  * $Log: MushRenderMeshSolid.cpp,v $
+ * Revision 1.10  2006/07/17 14:43:42  southa
+ * Billboarded deco objects
+ *
  * Revision 1.9  2006/06/20 19:06:54  southa
  * Object creation
  *
@@ -70,41 +73,64 @@ MushRenderMeshSolid::MushRenderMeshSolid() :
 void
 MushRenderMeshSolid::MeshRender(const MushRenderSpec& inSpec, const MushMeshMesh& inMesh)
 {
-	try
-	{
-		const MushMesh4Mesh& meshRef = dynamic_cast<const MushMesh4Mesh&>(inMesh);
-		
-		if (!OutputBufferGenerate(inSpec, inMesh))
-		{
-			if (!OutputBufferGenerate(inSpec, inMesh))
-			{
-				throw MushcoreDeviceFail("Double fault when unmapping vertex buffer");
-			}
-		}
-		
-		MushGLJobRender jobRender;
-		MushGLWorkSpec& workSpecRef = jobRender.WorkSpecNew();
-		
-		jobRender.BuffersRefSet(inSpec.BuffersRef());
-		jobRender.TexCoordBuffersRefSet(inSpec.TexCoordBuffersRef());
-		workSpecRef.RenderTypeSet(MushGLWorkSpec::kRenderTypeTriangles);
+    MushGLJobRender renderJob;
+    
+    try
+    {
+        if (RenderJobCreate(renderJob, inSpec, inMesh))
+        {
+            renderJob.Execute();
+        }
+    }
+    catch (std::exception& e)
+    {
+        static U32 ctr = 0;
+        if (++ctr < 100)
+        {
+            throw MushcoreDataFail(std::string("Cannot render mesh: ")+e.what());
+        }
+    }
+}
 
-		for (U32 i=0; i < meshRef.NumMaterials(); ++i)
-		{
-			const MushGLMaterial& materialRef = dynamic_cast<const MushGLMaterial&>(meshRef.MaterialRef(i));
-			MushGLTexture *pTexture = &materialRef.TexRef(i);
+bool
+MushRenderMeshSolid::RenderJobCreate(MushGLJobRender& outRender,
+                                     const MushRenderSpec& inSpec,
+                                     const MushMeshMesh& inMesh)
+{
+    bool jobCreated = false;
+    
+    const MushMesh4Mesh *p4Mesh = dynamic_cast<const MushMesh4Mesh *>(&inMesh); // Pointer to the input mesh
+    if (p4Mesh == NULL)
+    {
+        throw MushcoreRequestFail(std::string("Cannot render mesh type '")+inMesh.AutoName()+"'");
+    }
+    
+    if (!ShouldMeshCull(inSpec, *p4Mesh))
+    {
+        if (!OutputBufferGenerate(inSpec, *p4Mesh))
+        {
+            if (!OutputBufferGenerate(inSpec, *p4Mesh))
+            {
+                throw MushcoreDeviceFail("Double fault when unmapping vertex buffer");
+            }
+        }
+        
+        MushGLWorkSpec& workSpecRef = outRender.WorkSpecNew();
+        
+        outRender.BuffersRefSet(inSpec.BuffersRef());
+        outRender.TexCoordBuffersRefSet(inSpec.TexCoordBuffersRef());
+        workSpecRef.RenderTypeSet(MushGLWorkSpec::kRenderTypeTriangles);
+        
+        for (U32 i=0; i < p4Mesh->NumMaterials(); ++i)
+        {
+            const MushGLMaterial& materialRef = dynamic_cast<const MushGLMaterial&>(p4Mesh->MaterialRef(i));
+            MushGLTexture *pTexture = &materialRef.TexRef(i);
             workSpecRef.TextureSet(pTexture, i);
-		}
-		jobRender.Execute();
-	}
-	catch (std::exception& e)
-	{
-		static U32 ctr = 0;
-		if (++ctr < 100)
-		{
-			throw MushcoreDataFail(std::string("Cannot render mesh: ")+e.what());
-	    }
-	}
+        }
+        outRender.SortValueSet(SortDepth(inSpec, *p4Mesh));
+        jobCreated = true;
+    }
+    return jobCreated;
 }
 
 inline void
@@ -221,27 +247,22 @@ MushRenderMeshSolid::TriangleListBuild(MushGLBuffers::tTriangleList& ioList, con
 }
 
 bool
-MushRenderMeshSolid::OutputBufferGenerate(const MushRenderSpec& inSpec, const MushMeshMesh& inMesh)
+MushRenderMeshSolid::OutputBufferGenerate(const MushRenderSpec& inSpec, const MushMesh4Mesh& inMesh)
 {
     // Gather data
-    const MushMesh4Mesh *p4Mesh = dynamic_cast<const MushMesh4Mesh *>(&inMesh); // Pointer to the input mesh
-    if (p4Mesh == NULL)
-    {
-        throw MushcoreRequestFail(std::string("Cannot render mesh type '")+inMesh.AutoName()+"'");
-    }
     const MushMesh4Mesh *pTexCoordMesh = NULL;
     
-    if (p4Mesh->TexCoordDelegate().Name().size() == 0)
+    if (inMesh.TexCoordDelegate().Name().size() == 0)
     {
         // Name not set, use same mesh
-        pTexCoordMesh = p4Mesh;
+        pTexCoordMesh = &inMesh;
     }
     else
     {
-        pTexCoordMesh = &p4Mesh->TexCoordDelegate().Ref();
+        pTexCoordMesh = &inMesh.TexCoordDelegate().Ref();
     }
     
-    const MushMesh4Mesh::tVertices& srcVertices = p4Mesh->Vertices(); // Source vertices
+    const MushMesh4Mesh::tVertices& srcVertices = inMesh.Vertices(); // Source vertices
     // const U32 srcVerticesSize = srcVertices.size(); // Number of source vertices
     const MushMesh4Mesh::tTexCoords& srcTexCoords = pTexCoordMesh->TexCoords(); // Source texture coordinates
     const U32 srcTexCoordsSize = srcTexCoords.size(); // Number of source texture coordinates
@@ -280,7 +301,7 @@ MushRenderMeshSolid::OutputBufferGenerate(const MushRenderSpec& inSpec, const Mu
     // Build the triangle lists if necessary
     if (glDestBuffersRef.TriangleListContextNum() == 0)
     {
-        TriangleListBuild(glDestBuffersRef.VertexTriangleListWRef(), *p4Mesh, kSourceTypeVertex);
+        TriangleListBuild(glDestBuffersRef.VertexTriangleListWRef(), inMesh, kSourceTypeVertex);
         glDestBuffersRef.TriangleListContextNumSet(1);
     }
     
@@ -297,7 +318,7 @@ MushRenderMeshSolid::OutputBufferGenerate(const MushRenderSpec& inSpec, const Mu
         glDestBuffersRef.ProjectedVerticesWRef(); // Projected vertex workspace
     MushMesh4Mesh::tVertices& projectedVertices = projectedWorkspace.DataWRef();
     // Create the projected vertices
-    switch (p4Mesh->TransformType())
+    switch (inMesh.TransformType())
     {
         case MushMesh4Mesh::kTransformTypeBillboard:
             MushRenderUtil::Transform(projectedVertices, srcVertices, inSpec.ModelToClipBillboardMattress());
@@ -314,6 +335,8 @@ MushRenderMeshSolid::OutputBufferGenerate(const MushRenderSpec& inSpec, const Mu
     // Create the projected vertices
     MushRenderUtil::Transform(eyeVertices, srcVertices, inSpec.ModelToEyeMattress());
     // U32 eyeVerticesSize = eyeVertices.size(); // Size of projected vertex vector array
+    
+    
     
     const MushGLBuffers::tTriangleList& vertexTriangleList = glDestBuffersRef.VertexTriangleList();
     Mushware::U32 vertexTriangleListSize = vertexTriangleList.size();

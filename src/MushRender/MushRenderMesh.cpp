@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } nAlXQAIXh98l6rrr70+y5w
 /*
- * $Id: MushRenderMesh.cpp,v 1.3 2005/07/04 11:10:43 southa Exp $
+ * $Id: MushRenderMesh.cpp,v 1.4 2006/06/01 15:39:38 southa Exp $
  * $Log: MushRenderMesh.cpp,v $
+ * Revision 1.4  2006/06/01 15:39:38  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.3  2005/07/04 11:10:43  southa
  * Rendering pipeline
  *
@@ -34,10 +37,55 @@
 
 #include "MushRenderMesh.h"
 
+using namespace Mushware;
+using namespace std;
+
 void
 MushRenderMesh::MeshRender(const MushRenderSpec& inSpec, const MushMeshMesh& inMesh)
 {
     // No render output
+}
+
+bool
+MushRenderMesh::RenderJobCreate(MushGLJobRender& outRender,
+                                const MushRenderSpec& inSpec,
+                                const MushMeshMesh& inMesh)
+{
+    // Never creates a render job
+    return false;
+}
+
+Mushware::tVal
+MushRenderMesh::SortDepth(const MushRenderSpec& inSpec, const MushMesh4Mesh& inMesh)
+{
+    t4Val objCentre = inMesh.Centroid();
+    objCentre = inSpec.ModelToEyeMattress() * objCentre;
+    return objCentre.W();
+}
+
+bool
+MushRenderMesh::ShouldMeshCull(const MushRenderSpec& inSpec, const MushMesh4Mesh& inMesh)
+{
+    // Transform mesh centroid to eye coordinates
+    t4Val objCentre = inMesh.Centroid();
+    objCentre = inSpec.ModelToEyeMattress() * objCentre;
+    tVal boundingRadius = inMesh.BoundingRadius();
+    
+    const t4Val& clipMin = inSpec.Projection().ClipMin();
+    const t4Val& clipMax = inSpec.Projection().ClipMax();
+    const t4Val& brFactor = inSpec.Projection().BoundingRadiusFactor();
+    
+    /* Cull unless the centre of the object is within a bounding radius of
+     * any part of the view frustum
+     */
+    return (//objCentre.W() + boundingRadius < clipMin.W() ||
+            //objCentre.W() - boundingRadius > clipMax.W() ||
+            objCentre.X() + boundingRadius * brFactor.X() < clipMin.X() * -objCentre.W() ||
+            objCentre.X() - boundingRadius * brFactor.X() > clipMax.X() * -objCentre.W() ||
+            objCentre.Y() + boundingRadius * brFactor.Y() < clipMin.Y() * -objCentre.W() ||
+            objCentre.Y() - boundingRadius * brFactor.Y() > clipMax.Y() * -objCentre.W() ||
+            objCentre.Z() + boundingRadius * brFactor.Z() < clipMin.Z() * -objCentre.W() ||
+            objCentre.Z() - boundingRadius * brFactor.Z() > clipMax.Z() * -objCentre.W());
 }
 
 //%outOfLineFunctions {

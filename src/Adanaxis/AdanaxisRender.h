@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } jpyq9WjuLQC6cyA1T6bbWw
 /*
- * $Id: AdanaxisRender.h,v 1.7 2006/06/30 17:26:10 southa Exp $
+ * $Id: AdanaxisRender.h,v 1.8 2006/07/20 12:22:21 southa Exp $
  * $Log: AdanaxisRender.h,v $
+ * Revision 1.8  2006/07/20 12:22:21  southa
+ * Precache display
+ *
  * Revision 1.7  2006/06/30 17:26:10  southa
  * Render prelude
  *
@@ -62,6 +65,7 @@ public:
     virtual void FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCamera);
     virtual void Overplot(MushGameLogic& ioLogic, const MushGameCamera& inCamera);
     virtual void RenderPreludeSet(Mushware::U32 inValue = 3) { m_renderPrelude = inValue; }
+    virtual void SortAndDespatch(MushGameLogic& ioLogic, std::vector<MushGLJobRender *> inJobs);
     
 protected:
     MushGLProjection m_projection;
@@ -69,6 +73,7 @@ protected:
     Mushware::tVal m_halfAngleAttractor; //:readwrite
     bool m_scannerOn; //:readwrite
     Mushware::U32 m_renderPrelude;
+    std::vector<MushGLJobRender *> m_renderList;
     
 private:
 //%classPrototypes {

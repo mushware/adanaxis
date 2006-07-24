@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } Z+ifTSkKrl4GVRxP2YKNlg
 /*
- * $Id: AdanaxisPieceKhazi.cpp,v 1.10 2006/07/19 10:22:14 southa Exp $
+ * $Id: AdanaxisPieceKhazi.cpp,v 1.11 2006/07/19 14:34:51 southa Exp $
  * $Log: AdanaxisPieceKhazi.cpp,v $
+ * Revision 1.11  2006/07/19 14:34:51  southa
+ * Flare effects
+ *
  * Revision 1.10  2006/07/19 10:22:14  southa
  * World objects
  *
@@ -71,8 +74,9 @@ AdanaxisPieceKhazi::Move(MushGameLogic& ioLogic, const tVal inFrameslice)
     PostWRef().InPlaceVelocityAdd();
 }
 
-void
-AdanaxisPieceKhazi::Render(MushGameLogic& ioLogic, MushRenderMesh& inRender, const MushGameCamera& inCamera)
+bool
+AdanaxisPieceKhazi::Render(MushGLJobRender& outRender,
+                           MushGameLogic& ioLogic, MushRenderMesh& inRender, const MushGameCamera& inCamera)
 {
     MushRenderSpec renderSpec;
     renderSpec.BuffersRefSet(BuffersRef());
@@ -84,7 +88,7 @@ AdanaxisPieceKhazi::Render(MushGameLogic& ioLogic, MushRenderMesh& inRender, con
     
     renderSpec.ProjectionSet(inCamera.Projection());
     
-    inRender.MeshRender(renderSpec, Mesh());
+    return inRender.RenderJobCreate(outRender, renderSpec, Mesh());
 }
 
 void
@@ -145,7 +149,7 @@ AdanaxisPieceKhazi::Explode(MushGameLogic& ioLogic, const MushGameMessageCollisi
             AdanaxisSaveData::tProjectile& projectileRef = projectileListRef.back();
             
             projectileRef.OwnerSet(Id());
-            projectileRef.ExpiryMsecSet(ioLogic.FrameMsec() + projectileRef.LifeMsec());
+            projectileRef.ExpiryMsecSet(static_cast<Mushware::tMsec>(ioLogic.FrameMsec() + MushMeshTools::Random(0.1,0.5) * projectileRef.LifeMsec()));
             
             // Create projectile in Khazi's coordinates
             projectileRef.PostWRef().ToIdentitySet();

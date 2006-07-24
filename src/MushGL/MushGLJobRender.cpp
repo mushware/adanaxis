@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } FhldoK+rPKGab09yIIQtMw
 /*
- * $Id: MushGLJobRender.cpp,v 1.2 2005/09/05 17:14:22 southa Exp $
+ * $Id: MushGLJobRender.cpp,v 1.3 2006/06/01 15:39:17 southa Exp $
  * $Log: MushGLJobRender.cpp,v $
+ * Revision 1.3  2006/06/01 15:39:17  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.2  2005/09/05 17:14:22  southa
  * Solid rendering
  *
@@ -95,7 +98,8 @@ MushGLJobRender::AutoPrint(std::ostream& ioOut) const
     MushGLJob::AutoPrint(ioOut);
     ioOut << "workSpecs=" << m_workSpecs << ", ";
     ioOut << "buffersRef=" << m_buffersRef << ", ";
-    ioOut << "texCoordBuffersRef=" << m_texCoordBuffersRef;
+    ioOut << "texCoordBuffersRef=" << m_texCoordBuffersRef << ", ";
+    ioOut << "sortValue=" << m_sortValue;
     ioOut << "]";
 }
 bool
@@ -119,6 +123,10 @@ MushGLJobRender::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string&
     {
         ioIn >> m_texCoordBuffersRef;
     }
+    else if (inTagStr == "sortValue")
+    {
+        ioIn >> m_sortValue;
+    }
     else if (MushGLJob::AutoXMLDataProcess(ioIn, inTagStr))
     {
         // Tag consumed by base class
@@ -139,5 +147,7 @@ MushGLJobRender::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_buffersRef;
     ioOut.TagSet("texCoordBuffersRef");
     ioOut << m_texCoordBuffersRef;
+    ioOut.TagSet("sortValue");
+    ioOut << m_sortValue;
 }
-//%outOfLineFunctions } ncI2XvlpAz9s3goAXt7ifA
+//%outOfLineFunctions } cCducN1vhzGcqSnjpprgVw

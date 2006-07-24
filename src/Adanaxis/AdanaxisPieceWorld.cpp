@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } ++kApsFU7rEN0tQHOFEB9w
 /*
- * $Id$
- * $Log$
+ * $Id: AdanaxisPieceWorld.cpp,v 1.1 2006/07/19 10:22:15 southa Exp $
+ * $Log: AdanaxisPieceWorld.cpp,v $
+ * Revision 1.1  2006/07/19 10:22:15  southa
+ * World objects
+ *
  */
 
 #include "AdanaxisPieceWorld.h"
@@ -34,36 +37,25 @@ MushGamePiece(inID)
 void
 AdanaxisPieceWorld::Render(MushGameLogic& ioLogic, MushRenderMesh& inRender, const MushGameCamera& inCamera)
 {
-    bool visible = true;
-    t4Val objNormal = Post().Pos();
-	
-    objNormal.InPlaceNormalise();
-    t4Val viewNormal = t4Val(0,0,0,-1);
+
+    PostWRef().InPlaceVelocityAdd();
     
-    inCamera.Post().AngPos().VectorRotate(viewNormal);
+    MushGameCamera newCamera(inCamera);
+    newCamera.PostWRef().PosWRef().ToAdditiveIdentitySet();
     
-    visible = (objNormal * viewNormal > 0.9);
+    MushRenderSpec renderSpec;
+    renderSpec.BuffersRefSet(BuffersRef());
+    renderSpec.TexCoordBuffersRefSet(TexCoordBuffersRef());
     
-    if (visible)
-    {
-        PostWRef().InPlaceVelocityAdd();
-        
-        MushGameCamera newCamera(inCamera);
-        newCamera.PostWRef().PosWRef().ToAdditiveIdentitySet();
-        
-        MushRenderSpec renderSpec;
-        renderSpec.BuffersRefSet(BuffersRef());
-		renderSpec.TexCoordBuffersRefSet(TexCoordBuffersRef());
-        
-        MushMeshOps::PosticityToMattress(renderSpec.ModelWRef(), Post());
-        MushMeshOps::PosticityToMattress(renderSpec.ViewWRef(), newCamera.Post());
-        renderSpec.ViewWRef().InPlaceInvert();
-        
-        renderSpec.ProjectionSet(inCamera.Projection());
-        
-        inRender.MeshRender(renderSpec, Mesh());
-    }
+    MushMeshOps::PosticityToMattress(renderSpec.ModelWRef(), Post());
+    MushMeshOps::PosticityToMattress(renderSpec.ViewWRef(), newCamera.Post());
+    renderSpec.ViewWRef().InPlaceInvert();
+    
+    renderSpec.ProjectionSet(inCamera.Projection());
+    
+    inRender.MeshRender(renderSpec, Mesh());
 }
+
 //%outOfLineFunctions {
 
 const char *AdanaxisPieceWorld::AutoName(void) const

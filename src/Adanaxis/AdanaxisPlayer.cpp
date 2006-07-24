@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } 0edG1wrkU5hKeWbu3l1MQA
 /*
- * $Id: AdanaxisPlayer.cpp,v 1.19 2006/07/12 11:22:41 southa Exp $
+ * $Id: AdanaxisPlayer.cpp,v 1.20 2006/07/19 14:34:51 southa Exp $
  * $Log: AdanaxisPlayer.cpp,v $
+ * Revision 1.20  2006/07/19 14:34:51  southa
+ * Flare effects
+ *
  * Revision 1.19  2006/07/12 11:22:41  southa
  * Advanced control menu
  *
@@ -265,21 +268,23 @@ AdanaxisPlayer::FirePieceCreate(MushGameLogic& ioLogic, const MushGameMessageFir
 
     projectileRef.PostWRef().PosWRef() += posOffset;
 
+    // Get the player forward velocity but not transverse
+    t4Val playerVel = inMessage.Post().Vel();
+    inMessage.Post().AngPos().Conjugate().VectorRotate(playerVel);
     
     projectileRef.PostWRef().AngVelWRef().ToRotationIdentitySet();
     projectileRef.PostWRef().AngVelWRef().OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis(0, 0.02));
     projectileRef.PostWRef().AngVelWRef().OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis(2, 0.017));
     projectileRef.PostWRef().AngVelWRef().OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis(5, 0.013));
-    projectileRef.PostWRef().VelSet(t4Val(0,0,0,-projectileRef.InitialVelocity()));
+    projectileRef.PostWRef().VelSet(t4Val(0, 0, 0, playerVel.W() - projectileRef.InitialVelocity()));
     
     // Now transform to world coordinates
     // Reorientate the player space vectors to world space
     inMessage.Post().AngPos().VectorRotate(projectileRef.PostWRef().PosWRef());
     inMessage.Post().AngPos().VectorRotate(projectileRef.PostWRef().VelWRef());
 
-    // Move to player position and velocity
+    // Move to player position
     projectileRef.PostWRef().PosWRef() += inMessage.Post().Pos();
-    projectileRef.PostWRef().VelWRef() += inMessage.Post().Vel();
     projectileRef.PostWRef().AngPosWRef().OuterMultiplyBy(inMessage.Post().AngPos());
     
     tQValPair angVel = inMessage.Post().AngPos().Conjugate();

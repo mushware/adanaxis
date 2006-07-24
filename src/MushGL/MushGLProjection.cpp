@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 9Kn/SS5ndAEKfUwMxD5NnA
 /*
- * $Id: MushGLProjection.cpp,v 1.4 2005/07/05 16:35:53 southa Exp $
+ * $Id: MushGLProjection.cpp,v 1.5 2006/06/01 15:39:18 southa Exp $
  * $Log: MushGLProjection.cpp,v $
+ * Revision 1.5  2006/06/01 15:39:18  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.4  2005/07/05 16:35:53  southa
  * Adanaxis work
  *
@@ -65,6 +68,33 @@ MushGLProjection::FromAspectNearFarMake(Mushware::tVal inAspect, Mushware::tVal 
                                  t4Val(0,               0,      0,  (inFar+inNear)/(inNear-inFar)),
                                  t4Val(0,               0,      0,  -1)));
     m_mattress.OffsetSet(t4Val(0, 0, 2*inFar*inNear/(inNear - inFar), 0));    
+
+    /* In these clip values, x y and z are proportional (the boundary is value = x/w)
+     * and the w value is absolute
+     */
+    m_clipMin = t4Val(
+        -tan(m_viewHalfRadians) * inAspect,
+        -tan(m_viewHalfRadians),
+        -tan(m_viewHalfRadians),
+        inNear);
+    
+    m_clipMax = t4Val(
+        tan(m_viewHalfRadians) * inAspect,
+        tan(m_viewHalfRadians),
+        tan(m_viewHalfRadians),
+        inFar);
+    
+    m_boundingRadiusFactor = t4Val(
+        1 / cos(m_viewHalfRadians),
+        1 / cos(m_viewHalfRadians),
+        1 / cos(m_viewHalfRadians),
+        1);
+    
+#if  0
+    // Pull cull boundaries in a bit for debugging
+    m_clipMin *= 0.9;                   
+    m_clipMax *= 0.9;                   
+#endif
 }
 
 //%outOfLineFunctions {
@@ -101,7 +131,10 @@ MushGLProjection::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
     ioOut << "viewHalfRadians=" << m_viewHalfRadians << ", ";
-    ioOut << "mattress=" << m_mattress;
+    ioOut << "mattress=" << m_mattress << ", ";
+    ioOut << "clipMin=" << m_clipMin << ", ";
+    ioOut << "clipMax=" << m_clipMax << ", ";
+    ioOut << "boundingRadiusFactor=" << m_boundingRadiusFactor;
     ioOut << "]";
 }
 bool
@@ -121,6 +154,18 @@ MushGLProjection::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string
     {
         ioIn >> m_mattress;
     }
+    else if (inTagStr == "clipMin")
+    {
+        ioIn >> m_clipMin;
+    }
+    else if (inTagStr == "clipMax")
+    {
+        ioIn >> m_clipMax;
+    }
+    else if (inTagStr == "boundingRadiusFactor")
+    {
+        ioIn >> m_boundingRadiusFactor;
+    }
     else 
     {
         return false;
@@ -134,5 +179,11 @@ MushGLProjection::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_viewHalfRadians;
     ioOut.TagSet("mattress");
     ioOut << m_mattress;
+    ioOut.TagSet("clipMin");
+    ioOut << m_clipMin;
+    ioOut.TagSet("clipMax");
+    ioOut << m_clipMax;
+    ioOut.TagSet("boundingRadiusFactor");
+    ioOut << m_boundingRadiusFactor;
 }
-//%outOfLineFunctions } YEDUaNmiEL8/fzIbpMKyVA
+//%outOfLineFunctions } k6aCr6zmR+U36tTmLX/QZA

@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } JmMTx0XAPATtkBANlQg8tA
 /*
- * $Id: AdanaxisPieceProjectile.cpp,v 1.7 2006/06/30 15:05:32 southa Exp $
+ * $Id: AdanaxisPieceProjectile.cpp,v 1.8 2006/07/19 14:34:51 southa Exp $
  * $Log: AdanaxisPieceProjectile.cpp,v $
+ * Revision 1.8  2006/07/19 14:34:51  southa
+ * Flare effects
+ *
  * Revision 1.7  2006/06/30 15:05:32  southa
  * Texture and buffer purge
  *
@@ -60,7 +63,6 @@ AdanaxisPieceProjectile::AdanaxisPieceProjectile(const std::string& inID) :
 void
 AdanaxisPieceProjectile::Move(MushGameLogic& ioLogic, const tVal inFrameslice)
 {
-    
     if (m_moveCtr == 0)
     {
 
@@ -69,14 +71,16 @@ AdanaxisPieceProjectile::Move(MushGameLogic& ioLogic, const tVal inFrameslice)
     PostWRef().InPlaceVelocityAdd();
     if (ioLogic.FrameMsec() > m_expiryMsec)
     {
+        Explode(ioLogic);
         ExpireFlagSet(true);
     }
 
     m_moveCtr++;
 }
 
-void
-AdanaxisPieceProjectile::Render(MushGameLogic& ioLogic, MushRenderMesh& inRender, const MushGameCamera& inCamera)
+bool
+AdanaxisPieceProjectile::Render(MushGLJobRender& outRender,
+    MushGameLogic& ioLogic, MushRenderMesh& inRender, const MushGameCamera& inCamera)
 {
     MushRenderSpec renderSpec;
     renderSpec.BuffersRefSet(BuffersRef());
@@ -88,12 +92,14 @@ AdanaxisPieceProjectile::Render(MushGameLogic& ioLogic, MushRenderMesh& inRender
     
     renderSpec.ProjectionSet(inCamera.Projection());
     
-    inRender.MeshRender(renderSpec, Mesh());
+    bool jobCreated = inRender.RenderJobCreate(outRender, renderSpec, Mesh());
+    return jobCreated;
 }
 
 void
 AdanaxisPieceProjectile::CollisionFatalConsume(MushGameLogic& ioLogic, const MushGameMessageCollisionFatal& inMessage)
 {
+    Explode(ioLogic);
     ExpireFlagSet(true);
 }    
 
@@ -113,6 +119,22 @@ AdanaxisPieceProjectile::MessageConsume(MushGameLogic& ioLogic, const MushGameMe
     }
 }
 
+void
+AdanaxisPieceProjectile::Explode(MushGameLogic& ioLogic)
+{
+    MushMeshPosticity flarePost = Post();
+    flarePost.VelWRef().ToAdditiveIdentitySet();
+    
+    AdanaxisUtil::FlareCreate(dynamic_cast<AdanaxisLogic&>(ioLogic), flarePost, 3, 0);
+    for (U32 i=0; i<3; ++i)
+    {
+        AdanaxisUtil::EmberCreate(dynamic_cast<AdanaxisLogic&>(ioLogic),
+                                  Post(),
+                                  MushMeshTools::Random(0.1, 0.4), // size
+                                  MushMeshTools::Random(0.1, 1)  // speed
+                                  );
+    }
+}
 
 //%outOfLineFunctions {
 

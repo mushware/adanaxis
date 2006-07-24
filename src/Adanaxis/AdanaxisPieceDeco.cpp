@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } Kb73MSBnaByz2lwXVLGZkA
 /*
- * $Id: AdanaxisPieceDeco.cpp,v 1.19 2006/07/19 10:22:14 southa Exp $
+ * $Id: AdanaxisPieceDeco.cpp,v 1.20 2006/07/19 14:34:50 southa Exp $
  * $Log: AdanaxisPieceDeco.cpp,v $
+ * Revision 1.20  2006/07/19 14:34:50  southa
+ * Flare effects
+ *
  * Revision 1.19  2006/07/19 10:22:14  southa
  * World objects
  *
@@ -110,43 +113,32 @@ AdanaxisPieceDeco::Move(MushGameLogic& ioLogic, const tVal inFrameSlice)
     }
 }
 
-void
-AdanaxisPieceDeco::Render(MushGameLogic& ioLogic, MushRenderMesh& inRender, const MushGameCamera& inCamera)
+bool
+AdanaxisPieceDeco::Render(MushGLJobRender& outRender,
+                          MushGameLogic& ioLogic, MushRenderMesh& inRender, const MushGameCamera& inCamera)
 {
-    bool visible = true;
-    t4Val objNormal = Post().Pos() - inCamera.Post().Pos();
-	
-    objNormal.InPlaceNormalise();
-    t4Val viewNormal = t4Val(0,0,0,-1);
-    
-    inCamera.Post().AngPos().VectorRotate(viewNormal);
-    
-    visible = (objNormal * viewNormal > 0.9);
-    
-    if (visible)
-    {
-        MushRenderSpec renderSpec;
-        renderSpec.BuffersRefSet(BuffersRef());
-		renderSpec.TexCoordBuffersRefSet(TexCoordBuffersRef());
 
-        MushMeshOps::PosticityToMattress(renderSpec.ModelWRef(), Post());
-        MushMeshOps::PosticityToMattress(renderSpec.ViewWRef(), inCamera.Post());
-        renderSpec.ViewWRef().InPlaceInvert();
-        
-        renderSpec.ProjectionSet(inCamera.Projection());
-        
-        MushRenderMeshSolid *pRender = dynamic_cast<MushRenderMeshSolid *>(&inRender);
-        
-        if (pRender != NULL)
-        {
-            tVal alpha =  (0.0 + m_expiryMsec - ioLogic.FrameMsec()) / m_lifeMsec;
-            MushcoreUtil::Constrain<tVal>(alpha, 0, 1);
-            // alpha = sqrt(alpha);
-            pRender->ColourZMiddleSet(t4Val(1,1,1, alpha));
-        }
-        
-        inRender.MeshRender(renderSpec, Mesh());
+    MushRenderSpec renderSpec;
+    renderSpec.BuffersRefSet(BuffersRef());
+    renderSpec.TexCoordBuffersRefSet(TexCoordBuffersRef());
+
+    MushMeshOps::PosticityToMattress(renderSpec.ModelWRef(), Post());
+    MushMeshOps::PosticityToMattress(renderSpec.ViewWRef(), inCamera.Post());
+    renderSpec.ViewWRef().InPlaceInvert();
+    
+    renderSpec.ProjectionSet(inCamera.Projection());
+    
+    MushRenderMeshSolid *pRender = dynamic_cast<MushRenderMeshSolid *>(&inRender);
+    
+    if (pRender != NULL)
+    {
+        tVal alpha =  (0.0 + m_expiryMsec - ioLogic.FrameMsec()) / m_lifeMsec;
+        MushcoreUtil::Constrain<tVal>(alpha, 0, 1);
+        // alpha = sqrt(alpha);
+        pRender->ColourZMiddleSet(t4Val(1,1,1, alpha));
     }
+        
+    return inRender.RenderJobCreate(outRender, renderSpec, Mesh());
 }
 
 //%outOfLineFunctions {

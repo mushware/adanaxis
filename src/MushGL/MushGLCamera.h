@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef MUSHRENDERMESH_H
-#define MUSHRENDERMESH_H
-//%includeGuardStart } ABdf7JA7T3b7y0E3Z3dHBg
+#ifndef MUSHGLCAMERA_H
+#define MUSHGLCAMERA_H
+//%includeGuardStart } FKjlErIhB4R6UWU6iP8Vxg
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushRender/MushRenderMesh.h
+ * File: src/MushGL/MushGLCamera.h
  *
  * Author: Andy Southgate 2002-2006
  *
@@ -21,46 +21,35 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } +/eRzpkNzTX9fJgJPPNtkw
+//%Header } jNedmfdtJ0Q+QB4kIlXVuQ
 /*
- * $Id: MushRenderMesh.h,v 1.4 2006/06/01 15:39:38 southa Exp $
- * $Log: MushRenderMesh.h,v $
- * Revision 1.4  2006/06/01 15:39:38  southa
- * DrawArray verification and fixes
- *
- * Revision 1.3  2005/07/02 00:42:38  southa
- * Conditioning tweaks
- *
- * Revision 1.2  2005/07/01 16:42:54  southa
- * Render work
- *
- * Revision 1.1  2005/07/01 10:36:46  southa
- * MushRender work
- *
+ * $Id$
+ * $Log$
  */
 
-#include "MushRenderStandard.h"
+#include "MushGLStandard.h"
 
-#include "MushRenderSpec.h"
+#include "MushGLProjection.h"
 
-//:generate standard ostream xml1
-class MushRenderMesh : public MushcoreVirtualObject
+//:generate virtual standard ostream xml1
+class MushGLCamera : public MushcoreVirtualObject
 {
 public:
-    virtual ~MushRenderMesh() {}
-    
-    virtual void MeshRender(const MushRenderSpec& inSpec, const MushMeshMesh& inMesh);
-    virtual bool RenderJobCreate(MushGLJobRender& outRender,
-                                 const MushRenderSpec& inSpec,
-                                 const MushMeshMesh& inMesh);
-    
-    virtual Mushware::tVal SortDepth(const MushRenderSpec& inSpec, const MushMesh4Mesh& inMesh);
-    
-    virtual bool ShouldMeshCull(const MushRenderSpec& inSpec, const MushMesh4Mesh& inMesh);
+    virtual ~MushGLCamera();
     
 private:
+    MushMeshPosticity m_post; //:readwrite :wref
+    MushGLProjection m_projection; //:readwrite :wref
 //%classPrototypes {
 public:
+    const MushMeshPosticity& Post(void) const { return m_post; }
+    void PostSet(const MushMeshPosticity& inValue) { m_post=inValue; }
+    // Writable reference for m_post
+    MushMeshPosticity& PostWRef(void) { return m_post; }
+    const MushGLProjection& Projection(void) const { return m_projection; }
+    void ProjectionSet(const MushGLProjection& inValue) { m_projection=inValue; }
+    // Writable reference for m_projection
+    MushGLProjection& ProjectionWRef(void) { return m_projection; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -68,16 +57,16 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } 1oBgFruy5qHAaudtV+Hcmg
+//%classPrototypes } b0TYGAO+rwIrQB2rMp5jQQ
 };
 //%inlineHeader {
 inline std::ostream&
-operator<<(std::ostream& ioOut, const MushRenderMesh& inObj)
+operator<<(std::ostream& ioOut, const MushGLCamera& inObj)
 {
     inObj.AutoPrint(ioOut);
     return ioOut;
 }
-//%inlineHeader } Prj6108OeDef62/U9aQ3PA
+//%inlineHeader } t7NpPqMwrm6Qf7QTsZXiNg
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

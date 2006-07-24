@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } X577BrzUUfCyG/exJzzEYQ
 /*
- * $Id: SDLAppHandler.cpp,v 1.58 2006/07/18 16:58:37 southa Exp $
+ * $Id: SDLAppHandler.cpp,v 1.59 2006/07/21 10:52:06 southa Exp $
  * $Log: SDLAppHandler.cpp,v $
+ * Revision 1.59  2006/07/21 10:52:06  southa
+ * win32 build fixes
+ *
  * Revision 1.58  2006/07/18 16:58:37  southa
  * Texture fixes
  *
@@ -652,7 +655,12 @@ SDLAppHandler::PollForControlEvents(void)
         }
         
         if (++loopCtr > 100) break;
-    }    
+    }
+    
+    if (loopCtr > 100)
+    {
+        throw MushcoreDataFail("event loopCtr overrun");
+    }
 }
 
 Mushware::tVal

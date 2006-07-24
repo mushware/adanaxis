@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } FObiLM884v89SsLhON7VJQ
 /*
- * $Id: MushRenderMeshSolid.h,v 1.3 2005/09/06 12:15:35 southa Exp $
+ * $Id: MushRenderMeshSolid.h,v 1.4 2006/06/01 15:39:38 southa Exp $
  * $Log: MushRenderMeshSolid.h,v $
+ * Revision 1.4  2006/06/01 15:39:38  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.3  2005/09/06 12:15:35  southa
  * Texture and rendering work
  *
@@ -51,7 +54,9 @@ public:
     virtual ~MushRenderMeshSolid() {}
     
     virtual void MeshRender(const MushRenderSpec& inSpec, const MushMeshMesh& inMesh);
-    
+    virtual bool RenderJobCreate(MushGLJobRender& outRender,
+                                 const MushRenderSpec& inSpec,
+                                 const MushMeshMesh& inMesh);
 protected:
     enum tSourceType
     {
@@ -64,7 +69,7 @@ protected:
     void DerivedColourSet(Mushware::t4Val& outColour, const Mushware::t4Val& inEyeVertex, const MushRenderSpec& inSpec);
     
 private:
-    bool OutputBufferGenerate(const MushRenderSpec& inSpec, const MushMeshMesh& inMesh);
+    bool OutputBufferGenerate(const MushRenderSpec& inSpec, const MushMesh4Mesh& inMesh);
     
     Mushware::t4Val m_colourZMiddle; //:readwrite
     Mushware::t4Val m_colourZLeft;   //:readwrite

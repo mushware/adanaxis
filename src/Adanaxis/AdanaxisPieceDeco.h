@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } 6GdOb3M8gmTP56sPCf1YGA
 /*
- * $Id: AdanaxisPieceDeco.h,v 1.8 2006/06/30 15:05:31 southa Exp $
+ * $Id: AdanaxisPieceDeco.h,v 1.9 2006/07/19 14:34:51 southa Exp $
  * $Log: AdanaxisPieceDeco.h,v $
+ * Revision 1.9  2006/07/19 14:34:51  southa
+ * Flare effects
+ *
  * Revision 1.8  2006/06/30 15:05:31  southa
  * Texture and buffer purge
  *
@@ -64,7 +67,8 @@ public:
     explicit AdanaxisPieceDeco(const std::string& inID = "");
 
     virtual void Move(MushGameLogic& ioLogic, const Mushware::tVal inFrameSlice);
-    virtual void Render(MushGameLogic& ioLogic, MushRenderMesh& inRender, const MushGameCamera& inCamera);
+    virtual bool Render(MushGLJobRender& outRender,
+                        MushGameLogic& ioLogic, MushRenderMesh& inRender, const MushGameCamera& inCamera);
 private:
     Mushware::tMsec m_lifeMsec; //:readwrite
     Mushware::tMsec m_expiryMsec; //:readwrite

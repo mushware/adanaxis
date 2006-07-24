@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } B/4MJzXGrSbE0MA0fiUXlA
 /*
- * $Id: MushGameCamera.cpp,v 1.5 2005/07/04 15:59:00 southa Exp $
+ * $Id: MushGameCamera.cpp,v 1.6 2006/06/01 15:39:20 southa Exp $
  * $Log: MushGameCamera.cpp,v $
+ * Revision 1.6  2006/06/01 15:39:20  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.5  2005/07/04 15:59:00  southa
  * Adanaxis work
  *
@@ -43,7 +46,7 @@
 MushGameCamera::MushGameCamera() :
     m_pTiedRef(NULL)
 {
-        m_post.ToIdentitySet();
+        PostWRef().ToIdentitySet();
 }
 
 const MushGameCamera&
@@ -119,8 +122,7 @@ void
 MushGameCamera::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
-    ioOut << "post=" << m_post << ", ";
-    ioOut << "projection=" << m_projection << ", ";
+    MushGLCamera::AutoPrint(ioOut);
     if (m_pTiedRef == NULL)
     {
         ioOut << "pTiedRef=NULL" ;
@@ -140,17 +142,13 @@ MushGameCamera::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
     }
-    else if (inTagStr == "post")
-    {
-        ioIn >> m_post;
-    }
-    else if (inTagStr == "projection")
-    {
-        ioIn >> m_projection;
-    }
     else if (inTagStr == "pTiedRef")
     {
         ioIn >> m_pTiedRef;
+    }
+    else if (MushGLCamera::AutoXMLDataProcess(ioIn, inTagStr))
+    {
+        // Tag consumed by base class
     }
     else 
     {
@@ -161,11 +159,8 @@ MushGameCamera::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
 void
 MushGameCamera::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
-    ioOut.TagSet("post");
-    ioOut << m_post;
-    ioOut.TagSet("projection");
-    ioOut << m_projection;
+    MushGLCamera::AutoXMLPrint(ioOut);
     ioOut.TagSet("pTiedRef");
     ioOut << m_pTiedRef;
 }
-//%outOfLineFunctions } 0dULot/zTlzib3FjxKUx0A
+//%outOfLineFunctions } Lskz4OegNj5RsVWxixrr3A
