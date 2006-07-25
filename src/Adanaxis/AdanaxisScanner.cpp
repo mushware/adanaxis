@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } G8Z0FhC/G4lBOZEeeMzYgA
 /*
- * $Id$
- * $Log$
+ * $Id: AdanaxisScanner.cpp,v 1.1 2006/07/25 13:30:57 southa Exp $
+ * $Log: AdanaxisScanner.cpp,v $
+ * Revision 1.1  2006/07/25 13:30:57  southa
+ * Initial scanner work
+ *
  */
 
 #include "AdanaxisScanner.h"
@@ -62,19 +65,38 @@ AdanaxisScanner::ScanObjectRender(AdanaxisLogic& ioLogic, MushRenderMesh *inpMes
 {
     MUSHCOREASSERT(inpMeshRender != NULL);
     
-    MushMeshPosticity scanPost = inPost;
+    MushMeshPosticity objPost = inPost;
     MushMeshPosticity cameraPost = inCamera.Post();
     
-    // scanPost.PosWRef().Normalise();
+    // t4Val cameraToObj = objPost.Pos() - cameraPos.Pos();
+    
+    objPost.PosWRef() -= cameraPost.Pos();
+    cameraPost.AngPosWRef().Conjugate().VectorRotate(objPost.PosWRef());
+    cameraPost.PosWRef() -= cameraPost.Pos();
+    cameraPost.AngPosWRef().ToRotationIdentitySet();
 
     MushRenderSpec renderSpec;
-    MushMeshOps::PosticityToMattress(renderSpec.ModelWRef(), scanPost);
+    MushMeshOps::PosticityToMattress(renderSpec.ModelWRef(), objPost);
     MushMeshOps::PosticityToMattress(renderSpec.ViewWRef(), cameraPost);
     renderSpec.ViewWRef().InPlaceInvert();    
     renderSpec.ProjectionSet(inCamera.Projection());
+
+    t4Val eyePos = renderSpec.ModelToEyeMattress() * t4Val(0,0,0,0);
     
-    t4Val clipPos = renderSpec.ModelToClipMattress() * t4Val(0,0,0,0); // inMesh.Centroid();
-    t4Val eyePos = renderSpec.ModelToEyeMattress() * t4Val(0,0,0,0); // inMesh.Centroid();
+    tVal xwAngleLimit = M_PI/20;
+    tVal xwAngle = atan2(objPost.Pos().X(), objPost.Pos().W());
+    if (std::fabs(xwAngle) > xwAngleLimit, 1)
+    {
+        tVal newXWAngle = M_PI; // (xwAngle > 0) ? xwAngleLimit : -xwAngleLimit;
+        MushMeshTools::QuaternionRotateInAxis(MushMeshTools::kAxisXW, xwAngle - newXWAngle).VectorRotate(objPost.PosWRef());
+    }
+    
+    
+    MushMeshOps::PosticityToMattress(renderSpec.ModelWRef(), objPost);
+    MushMeshOps::PosticityToMattress(renderSpec.ViewWRef(), cameraPost);
+    renderSpec.ViewWRef().InPlaceInvert();    
+    t4Val clipPos = renderSpec.ModelToClipMattress() * t4Val(0,0,0,0);
+
     ScanSymbolRender(clipPos, eyePos);
 }
 
