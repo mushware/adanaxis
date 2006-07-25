@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } G8Z0FhC/G4lBOZEeeMzYgA
 /*
- * $Id: AdanaxisScanner.cpp,v 1.1 2006/07/25 13:30:57 southa Exp $
+ * $Id: AdanaxisScanner.cpp,v 1.2 2006/07/25 15:03:08 southa Exp $
  * $Log: AdanaxisScanner.cpp,v $
+ * Revision 1.2  2006/07/25 15:03:08  southa
+ * Scanner work
+ *
  * Revision 1.1  2006/07/25 13:30:57  southa
  * Initial scanner work
  *
@@ -37,25 +40,34 @@ AdanaxisScanner::AdanaxisScanner() :
 }
 
 void
-AdanaxisScanner::ScanSymbolRender(Mushware::t4Val& inPos, Mushware::t4Val inParam)
+AdanaxisScanner::ScanSymbolRender(Mushware::t4Val& inPos, Mushware::t4Val inParam, Mushware::tVal inAlpha)
 {
     MushGLFont& fontRef = m_symbolFontRef.WRef();
     
-    fontRef.ColourSet(t4Val(1,1,1,1));
+    fontRef.ColourSet(t4Val(1,1,1,inAlpha));
     fontRef.RenderSymbolAtSize(kSymbolScanWhite, inPos, m_symbolSize);
+
+    fontRef.ColourSet(t4Val(1,1,1,std::pow(1.0*inAlpha, 0.4)));
     
-    tVal radius = 2.5;
+    tVal outerRadius = 0.7;
+    tVal dotSize = 0.3;
+    t4Val wOffset = t4Val(0, 0, 0, 0);
+    // fontRef.RenderSymbolAtSize(kSymbolScanW, inPos + wOffset, m_symbolSize * dotSize);
+
     tVal xAngle = atan2(inParam.X(), inParam.W());
-    t4Val xOffset = t4Val(radius * sin(xAngle), radius * -cos(xAngle), 0, 0);
-    fontRef.RenderSymbolAtSize(kSymbolScanX, inPos + xOffset, m_symbolSize * 0.2);
+    xAngle = M_PI * pow(xAngle/M_PI, 7);
+    t4Val xOffset = t4Val(m_symbolSize.X() * outerRadius * sin(xAngle), m_symbolSize.Y() * outerRadius * -cos(xAngle), 0, 0);
+    fontRef.RenderSymbolAtSize(kSymbolScanX, inPos + xOffset, m_symbolSize * dotSize);
+
     tVal yAngle = atan2(inParam.Y(), inParam.W());
-    t4Val yOffset = t4Val(radius * sin(yAngle), radius * -cos(yAngle), 0, 0);
-    fontRef.RenderSymbolAtSize(kSymbolScanY, inPos + yOffset, m_symbolSize * 0.2);
+    yAngle = M_PI * pow(yAngle/M_PI, 7);
+    t4Val yOffset = t4Val(m_symbolSize.X() * outerRadius * sin(yAngle), m_symbolSize.Y() * outerRadius * -cos(yAngle), 0, 0);
+    fontRef.RenderSymbolAtSize(kSymbolScanY, inPos + yOffset, m_symbolSize * dotSize);
+
     tVal zAngle = atan2(inParam.Z(), inParam.W());
-    t4Val zOffset = t4Val(radius * sin(zAngle), radius * -cos(zAngle), 0, 0);
-    fontRef.RenderSymbolAtSize(kSymbolScanZ, inPos + zOffset, m_symbolSize * 0.2);
-    t4Val wOffset = t4Val(0, (inPos.W() > 0) ? 3.5 : -3.5, 0, 0);
-    fontRef.RenderSymbolAtSize(kSymbolScanW, inPos + wOffset, m_symbolSize * 0.2);
+    zAngle = M_PI * pow(zAngle/M_PI, 7);
+    t4Val zOffset = t4Val(m_symbolSize.X() * outerRadius * sin(zAngle), m_symbolSize.Y() * outerRadius * -cos(zAngle), 0, 0);
+    fontRef.RenderSymbolAtSize(kSymbolScanZ, inPos + zOffset, m_symbolSize * dotSize);
 }
 
 void
@@ -83,21 +95,149 @@ AdanaxisScanner::ScanObjectRender(AdanaxisLogic& ioLogic, MushRenderMesh *inpMes
 
     t4Val eyePos = renderSpec.ModelToEyeMattress() * t4Val(0,0,0,0);
     
-    tVal xwAngleLimit = M_PI/20;
-    tVal xwAngle = atan2(objPost.Pos().X(), objPost.Pos().W());
-    if (std::fabs(xwAngle) > xwAngleLimit, 1)
+    // Check wheter the camera is on target on this object
+    if (m_targetState != kTargetStateOnTarget)
     {
-        tVal newXWAngle = M_PI; // (xwAngle > 0) ? xwAngleLimit : -xwAngleLimit;
-        MushMeshTools::QuaternionRotateInAxis(MushMeshTools::kAxisXW, xwAngle - newXWAngle).VectorRotate(objPost.PosWRef());
+        tVal boundingRadius = inMesh.BoundingRadius();
+        t4Val centroidPos = renderSpec.ModelToEyeMattress() * inMesh.Centroid();
+        if (centroidPos.W() < boundingRadius && centroidPos.W() != 0)
+        {
+            // Distance from the w axis is sqrt(x^2+y^2+z^2), so set w to 0 and take magnitude
+            centroidPos.WSet(0);
+            tVal distFromWAxis = centroidPos.Magnitude();
+            if (distFromWAxis < boundingRadius)
+            {
+                // Bounding sphere intersects th w axis, so set in boundary
+                m_targetState = kTargetStateInBoundary;
+                
+                U32 numChunks = inMesh.NumChunks();
+                for (U32 i=0; i<numChunks; ++i)
+                {
+                    tVal chunkRadius = inMesh.ChunkBoundingRadius(i);
+                    t4Val chunkCentroidPos = renderSpec.ModelToEyeMattress() * inMesh.ChunkCentroid(i);
+                    chunkCentroidPos.WSet(0);
+                    if (chunkCentroidPos.Magnitude() < chunkRadius)
+                    {
+                        // Bounding sphere on a chunk intersects th w axis, so set on target
+                        m_targetState = kTargetStateOnTarget;
+                        break;
+                    }
+                }
+            }
+        }
     }
     
+    tVal angleRunOff = M_PI/50;
+    tVal xwAngleLimit = renderSpec.Projection().XHalfAngle() - angleRunOff;
+    tVal ywAngleLimit = renderSpec.Projection().YHalfAngle() - angleRunOff;
+    tVal xwAngle = atan2(objPost.Pos().X(), -objPost.Pos().W());
     
-    MushMeshOps::PosticityToMattress(renderSpec.ModelWRef(), objPost);
+    tVal alpha = 1;
+    
+    if (std::fabs(xwAngle) > xwAngleLimit)
+    {
+        tVal runOffFraction = (std::fabs(xwAngle) - xwAngleLimit) / (M_PI - xwAngleLimit);
+        tVal newXWAngle =  xwAngleLimit + angleRunOff * (1- pow(1-runOffFraction, 4));
+        if (xwAngle < 0) newXWAngle = -newXWAngle;
+        MushMeshTools::QuaternionRotateInAxis(MushMeshTools::kAxisXW, newXWAngle - xwAngle).VectorRotate(objPost.PosWRef());
+    }
+    else
+    {
+        alpha = 0.3 + 0.7*(std::fabs(xwAngle) / xwAngleLimit);
+    }
+    
+    tVal ywAngle = atan2(objPost.Pos().Y(), -objPost.Pos().W());
+    if (std::fabs(ywAngle) > ywAngleLimit)
+    {
+        tVal runOffFraction = (std::fabs(ywAngle) - ywAngleLimit) / (M_PI - ywAngleLimit);
+        tVal newYWAngle =  ywAngleLimit + angleRunOff * (1- pow(1-runOffFraction, 4));
+        if (ywAngle < 0) newYWAngle = -newYWAngle;
+        MushMeshTools::QuaternionRotateInAxis(MushMeshTools::kAxisYW, newYWAngle - ywAngle).VectorRotate(objPost.PosWRef());
+    }
+    else
+    {
+        MushcoreUtil::Constrain<tVal>(alpha, 0, 0.3 + 0.7*(std::fabs(ywAngle) / ywAngleLimit));
+    }
+    
+    if (std::fabs(objPost.PosWRef().W()) > 0)
+    {
+        objPost.PosWRef() /= std::fabs(objPost.PosWRef().W());
+        objPost.PosWRef() *= 100;
+        MushMeshOps::PosticityToMattress(renderSpec.ModelWRef(), objPost);
+        MushMeshOps::PosticityToMattress(renderSpec.ViewWRef(), cameraPost);
+        renderSpec.ViewWRef().InPlaceInvert();    
+        t4Val clipPos = renderSpec.ModelToClipMattress() * t4Val(0,0,0,0);
+        
+        m_symbolSize = 4 * t2Val(1, renderSpec.Projection().AspectRatio()); 
+        ScanSymbolRender(clipPos, eyePos, alpha);
+    }
+}
+
+void
+AdanaxisScanner::ScanCrosshairRender(AdanaxisLogic& ioLogic, MushRenderMesh *inpMeshRender,
+                                     const MushGameCamera& inCamera)
+{
+    MushMeshPosticity cameraPost = inCamera.Post();
+    
+    MushMeshPosticity crossPost(MushMeshPosticity::Identity());
+    
+    crossPost.PosSet(cameraPost.Pos() + cameraPost.AngPos().RotatedVector(t4Val(0,0,0,-10)));
+
+    MushRenderSpec renderSpec;
+    MushMeshOps::PosticityToMattress(renderSpec.ModelWRef(), crossPost);
     MushMeshOps::PosticityToMattress(renderSpec.ViewWRef(), cameraPost);
     renderSpec.ViewWRef().InPlaceInvert();    
+    renderSpec.ProjectionSet(inCamera.Projection());
     t4Val clipPos = renderSpec.ModelToClipMattress() * t4Val(0,0,0,0);
-
-    ScanSymbolRender(clipPos, eyePos);
+    
+    m_symbolSize = 1 * t2Val(1, renderSpec.Projection().AspectRatio()); 
+    
+    U32 symbol;
+    const tVal rotSpeed = 0.025;
+    
+    switch (m_targetState)
+    {
+        case kTargetStateIdle:
+            symbol = kSymbolCrosshairIdle;
+            
+            if (m_sightAngle == 0 ||
+                ceil(m_sightAngle / (M_PI/2)) != ceil((m_sightAngle + rotSpeed) / (M_PI/2)))
+            {
+                m_sightAngle = 0;
+            }
+            else
+            {
+                m_sightAngle += rotSpeed;
+            }
+            break;
+            
+        case kTargetStateInBoundary:
+            symbol = kSymbolCrosshairInBoundary;
+            if (m_sightAngle == 0 ||
+                ceil(m_sightAngle / (M_PI/2)) != ceil((m_sightAngle + rotSpeed) / (M_PI/2)))
+            {
+                m_sightAngle = 0;
+            }
+            else
+            {
+                m_sightAngle += rotSpeed;
+            }
+            break;
+            
+        case kTargetStateOnTarget:
+            symbol = kSymbolCrosshairOnTarget;
+            m_sightAngle += rotSpeed;
+            break;
+            
+        default:
+            symbol = kSymbolCrosshairSpecial;
+            break;
+    }
+    
+    MushGLFont& fontRef = m_symbolFontRef.WRef();
+    fontRef.ColourSet(t4Val(1,1,1,0.3));
+    fontRef.RenderSymbolAtSizeAngle(symbol, clipPos, m_symbolSize,
+                                    m_sightAngle);
 }
 
 //%outOfLineFunctions {
@@ -134,7 +274,9 @@ AdanaxisScanner::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
     ioOut << "symbolSize=" << m_symbolSize << ", ";
-    ioOut << "symbolFontRef=" << m_symbolFontRef;
+    ioOut << "symbolFontRef=" << m_symbolFontRef << ", ";
+    ioOut << "sightAngle=" << m_sightAngle << ", ";
+    ioOut << "targetState=" << m_targetState;
     ioOut << "]";
 }
 bool
@@ -154,6 +296,14 @@ AdanaxisScanner::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string&
     {
         ioIn >> m_symbolFontRef;
     }
+    else if (inTagStr == "sightAngle")
+    {
+        ioIn >> m_sightAngle;
+    }
+    else if (inTagStr == "targetState")
+    {
+        ioIn >> m_targetState;
+    }
     else 
     {
         return false;
@@ -167,5 +317,9 @@ AdanaxisScanner::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_symbolSize;
     ioOut.TagSet("symbolFontRef");
     ioOut << m_symbolFontRef;
+    ioOut.TagSet("sightAngle");
+    ioOut << m_sightAngle;
+    ioOut.TagSet("targetState");
+    ioOut << m_targetState;
 }
-//%outOfLineFunctions } 2/cipfgQzQbubvmpeqKf8A
+//%outOfLineFunctions } wiSB91ajhhv8/vHmmIfn9Q

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } Zq+IM0uOYEygMymunhBN6w
 /*
- * $Id: MushGLFont.cpp,v 1.4 2006/07/08 16:05:57 southa Exp $
+ * $Id: MushGLFont.cpp,v 1.5 2006/07/25 13:30:57 southa Exp $
  * $Log: MushGLFont.cpp,v $
+ * Revision 1.5  2006/07/25 13:30:57  southa
+ * Initial scanner work
+ *
  * Revision 1.4  2006/07/08 16:05:57  southa
  * Ruby menus and key handling
  *
@@ -73,13 +76,13 @@ MushGLFont::RenderSymbolAtSize(const Mushware::U32 inValue, const Mushware::t4Va
     
     tVal uScale = m_extent.X() / texSize.X();
     tVal vScale = m_extent.Y() / texSize.Y();
-                    
+    
     tVal uPos = (inValue % m_divide.X()) * uScale;
     tVal vPos = (1 + inValue / m_divide.X()) * vScale;
-                
+    
     // Already expect to be in kRenderState2D    
     glBegin(GL_QUADS);
-
+    
     glTexCoord2f(uPos, vPos);
     glVertex4f(xPos, yPos, zPos, wPos);
     glTexCoord2f(uPos + uScale, vPos);
@@ -88,7 +91,50 @@ MushGLFont::RenderSymbolAtSize(const Mushware::U32 inValue, const Mushware::t4Va
     glVertex4f(xPos + xSize, yPos + ySize, zPos, wPos);
     glTexCoord2f(uPos, vPos - vScale);
     glVertex4f(xPos, yPos + ySize, zPos, wPos);
+    
+    glEnd();
+}
 
+void
+MushGLFont::RenderSymbolAtSizeAngle(const Mushware::U32 inValue, const Mushware::t4Val& inCoords,
+                                    const Mushware::t2Val& inSize, Mushware::tVal inAngle)
+{
+    MushGLState::Sgl().TextureEnable2D(0); // Enable texture 0
+    m_textureRef.WRef().Bind();
+    
+    t4U32 texSize = m_textureRef.WRef().Size();
+    
+    MushGLUtil::ColourSet(m_colour);
+    
+    tVal xSize = inSize.X();
+    tVal ySize = inSize.Y();
+    
+    tVal xPos = inCoords.X();
+    tVal yPos = inCoords.Y();
+    tVal zPos = inCoords.Z();
+    tVal wPos = inCoords.W();
+    
+    tVal uScale = m_extent.X() / texSize.X();
+    tVal vScale = m_extent.Y() / texSize.Y();
+    
+    tVal uPos = (inValue % m_divide.X()) * uScale;
+    tVal vPos = (1 + inValue / m_divide.X()) * vScale;
+    
+    // Already expect to be in kRenderState2D    
+    glBegin(GL_QUADS);
+    
+    tVal xSize2 = xSize/sqrt(2.0);
+    tVal ySize2 = ySize/sqrt(2.0);
+    
+    glTexCoord2f(uPos, vPos);
+    glVertex4f(xPos + xSize2 * cos(inAngle + 5*M_PI/4), yPos + ySize2 * sin(inAngle + 5*M_PI/4), zPos, wPos);
+    glTexCoord2f(uPos + uScale, vPos);
+    glVertex4f(xPos + xSize2 * cos(inAngle + 7*M_PI/4), yPos + ySize2 * sin(inAngle + 7*M_PI/4), zPos, wPos);
+    glTexCoord2f(uPos + uScale, vPos - vScale);
+    glVertex4f(xPos + xSize2 * cos(inAngle + 1*M_PI/4), yPos + ySize2 * sin(inAngle + 1*M_PI/4), zPos, wPos);
+    glTexCoord2f(uPos, vPos - vScale);
+    glVertex4f(xPos + xSize2 * cos(inAngle + 3*M_PI/4), yPos + ySize2 * sin(inAngle + 3*M_PI/4), zPos, wPos);
+    
     glEnd();
 }
 

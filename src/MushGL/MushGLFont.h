@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } GszAZNIc4XTjBhyVnPxI7g
 /*
- * $Id: MushGLFont.h,v 1.4 2006/07/08 16:05:58 southa Exp $
+ * $Id: MushGLFont.h,v 1.5 2006/07/25 13:30:58 southa Exp $
  * $Log: MushGLFont.h,v $
+ * Revision 1.5  2006/07/25 13:30:58  southa
+ * Initial scanner work
+ *
  * Revision 1.4  2006/07/08 16:05:58  southa
  * Ruby menus and key handling
  *
@@ -56,6 +59,8 @@ public:
     
     void RenderSymbolAtSize(const Mushware::U32 inValue, const Mushware::t4Val& inCoords,
                             const Mushware::t2Val& inSize);
+    void RenderSymbolAtSizeAngle(const Mushware::U32 inValue, const Mushware::t4Val& inCoords,
+                                 const Mushware::t2Val& inSize, Mushware::tVal inAngle);
     
     void TextureNameSet(const std::string& inName) { m_textureRef.NameSet(inName); }
     void Render(const std::string& inStr) const;

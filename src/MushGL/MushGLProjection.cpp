@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 9Kn/SS5ndAEKfUwMxD5NnA
 /*
- * $Id: MushGLProjection.cpp,v 1.5 2006/06/01 15:39:18 southa Exp $
+ * $Id: MushGLProjection.cpp,v 1.6 2006/07/24 18:46:49 southa Exp $
  * $Log: MushGLProjection.cpp,v $
+ * Revision 1.6  2006/07/24 18:46:49  southa
+ * Depth sorting
+ *
  * Revision 1.5  2006/06/01 15:39:18  southa
  * DrawArray verification and fixes
  *
@@ -63,6 +66,8 @@ MushGLProjection::FromAspectNearFarMake(Mushware::tVal inAspect, Mushware::tVal 
         throw MushcoreDataFail("Bad values for projection");
     }
     
+    m_aspectRatio = inAspect;
+    
     m_mattress.MatrixSet(t4x4Val(t4Val(fValue/inAspect, 0,      0,  0),
                                  t4Val(0,               fValue, 0,  0),
                                  t4Val(0,               0,      0,  (inFar+inNear)/(inNear-inFar)),
@@ -96,6 +101,13 @@ MushGLProjection::FromAspectNearFarMake(Mushware::tVal inAspect, Mushware::tVal 
     m_clipMax *= 0.9;                   
 #endif
 }
+
+Mushware::tVal
+MushGLProjection::XHalfAngle(void) const
+{
+    return atan(m_aspectRatio * tan(m_viewHalfRadians));
+}
+
 
 //%outOfLineFunctions {
 
@@ -134,7 +146,8 @@ MushGLProjection::AutoPrint(std::ostream& ioOut) const
     ioOut << "mattress=" << m_mattress << ", ";
     ioOut << "clipMin=" << m_clipMin << ", ";
     ioOut << "clipMax=" << m_clipMax << ", ";
-    ioOut << "boundingRadiusFactor=" << m_boundingRadiusFactor;
+    ioOut << "boundingRadiusFactor=" << m_boundingRadiusFactor << ", ";
+    ioOut << "aspectRatio=" << m_aspectRatio;
     ioOut << "]";
 }
 bool
@@ -166,6 +179,10 @@ MushGLProjection::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string
     {
         ioIn >> m_boundingRadiusFactor;
     }
+    else if (inTagStr == "aspectRatio")
+    {
+        ioIn >> m_aspectRatio;
+    }
     else 
     {
         return false;
@@ -185,5 +202,7 @@ MushGLProjection::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_clipMax;
     ioOut.TagSet("boundingRadiusFactor");
     ioOut << m_boundingRadiusFactor;
+    ioOut.TagSet("aspectRatio");
+    ioOut << m_aspectRatio;
 }
-//%outOfLineFunctions } k6aCr6zmR+U36tTmLX/QZA
+//%outOfLineFunctions } aRCQwz6d9srVJ/Kp2GxwPQ

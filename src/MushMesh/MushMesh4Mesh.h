@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } YrK9KiG4XjKqbWo1rVGU4w
 /*
- * $Id: MushMesh4Mesh.h,v 1.19 2006/07/17 14:43:40 southa Exp $
+ * $Id: MushMesh4Mesh.h,v 1.20 2006/07/19 14:34:52 southa Exp $
  * $Log: MushMesh4Mesh.h,v $
+ * Revision 1.20  2006/07/19 14:34:52  southa
+ * Flare effects
+ *
  * Revision 1.19  2006/07/17 14:43:40  southa
  * Billboarded deco objects
  *
@@ -147,6 +150,7 @@ public:
     const tConnectivity& Connectivity(void) const { if (!m_connectivityValid) ConnectivityBuild(); return m_connectivity; }
     const Mushware::U32 NumConnections(void) const { if (!m_connectivityValid) ConnectivityBuild(); return m_numConnections; }
     const Mushware::U32 NumFacets(void) const { if (!m_numFacetsValid) NumFacetsBuild(); return m_numFacets; }
+    const Mushware::U32 NumChunks(void) const { return m_chunks.size(); }
     const tCentroid& Centroid(void) const { if (!m_centroidValid) CentroidBuild(); return m_centroid; }
     const tBoundingRadius BoundingRadius(void) const { if (!m_boundingRadiusValid) BoundingRadiusBuild(); return m_boundingRadius; }
     const tCentroid& FaceCentroid(Mushware::U32 inFaceNum) const;
@@ -190,7 +194,7 @@ public:
 	
 	void Apply(const MushMeshDisplacement& inDisp);
     void ApplyScale(const Mushware::t4Val inScale);
-            void Make(void);
+    void Make(void);
 	
 private:
     // Minimal representation

@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } 193nrcElHZdqkj3k/yUpIg
 /*
- * $Id$
- * $Log$
+ * $Id: AdanaxisScanner.h,v 1.1 2006/07/25 13:30:57 southa Exp $
+ * $Log: AdanaxisScanner.h,v $
+ * Revision 1.1  2006/07/25 13:30:57  southa
+ * Initial scanner work
+ *
  */
 
 #include "AdanaxisStandard.h"
@@ -51,20 +54,35 @@ public:
         kSymbolScanX = 8,
         kSymbolScanY = 9,
         kSymbolScanZ = 10,
-        kSymbolScanW = 11
+        kSymbolScanW = 11,
+        kSymbolCrosshairSpecial = 16,
+        kSymbolCrosshairOnTarget = 17,
+        kSymbolCrosshairIdle = 18,
+        kSymbolCrosshairInBoundary = 19,
+        
+        kTargetStateInvalid = 0,
+        kTargetStateIdle,
+        kTargetStateInBoundary,
+        kTargetStateOnTarget
     };
     
+    
     AdanaxisScanner();
+    void ScanBegin(void) { m_targetState = kTargetStateIdle; }
     void ScanObjectRender(AdanaxisLogic& ioLogic, MushRenderMesh *inpMeshRender,
                           const MushGameCamera& inCamera, const MushMeshPosticity& inPost,
                           const MushMesh4Mesh& inMesh, Mushware::U32 inObjType);
     
-    void ScanSymbolRender(Mushware::t4Val& inPos, Mushware::t4Val inParam);
+    void ScanSymbolRender(Mushware::t4Val& inPos, Mushware::t4Val inParam, Mushware::tVal inAlpha);
+    void ScanCrosshairRender(AdanaxisLogic& ioLogic, MushRenderMesh *inpMeshRender,
+                             const MushGameCamera& inCamera);
     
 private:
     Mushware::t2Val m_symbolSize; //:readwrite
     MushGLFont::tDataRef m_symbolFontRef;
-        
+    Mushware::tVal m_sightAngle;
+    Mushware::U32 m_targetState;
+    
 //%classPrototypes {
 public:
     const Mushware::t2Val& SymbolSize(void) const { return m_symbolSize; }

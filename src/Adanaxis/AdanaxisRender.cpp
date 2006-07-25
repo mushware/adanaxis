@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } Hr8bvS7fc+x0pR9DrFcIZw
 /*
- * $Id: AdanaxisRender.cpp,v 1.37 2006/07/24 18:46:47 southa Exp $
+ * $Id: AdanaxisRender.cpp,v 1.38 2006/07/25 13:30:56 southa Exp $
  * $Log: AdanaxisRender.cpp,v $
+ * Revision 1.38  2006/07/25 13:30:56  southa
+ * Initial scanner work
+ *
  * Revision 1.37  2006/07/24 18:46:47  southa
  * Depth sorting
  *
@@ -351,7 +354,7 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
         SortAndDespatch(ioLogic, m_renderList);
 
         ScanRender(*pLogic, &renderMesh, camera);
-        
+                
         U32 renderListSize = m_renderList.size();
         for (U32 i=0; i + 1 < renderListSize; ++i)
         {
@@ -374,7 +377,7 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
     MushGameDialogueUtils::MoveAndRender(pSaveData->DialoguesWRef(), AdanaxisUtil::AppHandler());
     
     MushGLUtil::OrthoPrologue();
-    
+
     Overplot(ioLogic, inCamera);
     
     if (pVolData->ModeKeypressMsec() != 0)
@@ -413,6 +416,8 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
 
 void AdanaxisRender::ScanRender(AdanaxisLogic& ioLogic, MushRenderMesh *inpRenderMesh, const MushGameCamera& inCamera)
 {
+    m_scanner.ScanBegin();
+    
     AdanaxisSaveData *pSaveData = dynamic_cast<AdanaxisSaveData *>(&ioLogic.SaveData());
 
     typedef AdanaxisSaveData::tKhaziList tKhaziList;
@@ -422,6 +427,8 @@ void AdanaxisRender::ScanRender(AdanaxisLogic& ioLogic, MushRenderMesh *inpRende
     {
         m_scanner.ScanObjectRender(ioLogic, inpRenderMesh, inCamera, p->Post(), p->Mesh(), AdanaxisScanner::kObjectTypeKhazi);
     }
+    
+    m_scanner.ScanCrosshairRender(ioLogic, inpRenderMesh, inCamera);
 }
 
 void
