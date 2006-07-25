@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } nAlXQAIXh98l6rrr70+y5w
 /*
- * $Id: MushRenderMesh.cpp,v 1.4 2006/06/01 15:39:38 southa Exp $
+ * $Id: MushRenderMesh.cpp,v 1.5 2006/07/24 18:46:50 southa Exp $
  * $Log: MushRenderMesh.cpp,v $
+ * Revision 1.5  2006/07/24 18:46:50  southa
+ * Depth sorting
+ *
  * Revision 1.4  2006/06/01 15:39:38  southa
  * DrawArray verification and fixes
  *
@@ -67,8 +70,7 @@ bool
 MushRenderMesh::ShouldMeshCull(const MushRenderSpec& inSpec, const MushMesh4Mesh& inMesh)
 {
     // Transform mesh centroid to eye coordinates
-    t4Val objCentre = inMesh.Centroid();
-    objCentre = inSpec.ModelToEyeMattress() * objCentre;
+    t4Val objCentre = inSpec.ModelToEyeMattress() * inMesh.Centroid();
     tVal boundingRadius = inMesh.BoundingRadius();
     
     const t4Val& clipMin = inSpec.Projection().ClipMin();
@@ -78,14 +80,22 @@ MushRenderMesh::ShouldMeshCull(const MushRenderSpec& inSpec, const MushMesh4Mesh
     /* Cull unless the centre of the object is within a bounding radius of
      * any part of the view frustum
      */
-    return (//objCentre.W() + boundingRadius < clipMin.W() ||
-            //objCentre.W() - boundingRadius > clipMax.W() ||
+    return (objCentre.W() + boundingRadius < -clipMax.W() ||
+            objCentre.W() - boundingRadius > -clipMin.W() ||
             objCentre.X() + boundingRadius * brFactor.X() < clipMin.X() * -objCentre.W() ||
             objCentre.X() - boundingRadius * brFactor.X() > clipMax.X() * -objCentre.W() ||
             objCentre.Y() + boundingRadius * brFactor.Y() < clipMin.Y() * -objCentre.W() ||
             objCentre.Y() - boundingRadius * brFactor.Y() > clipMax.Y() * -objCentre.W() ||
             objCentre.Z() + boundingRadius * brFactor.Z() < clipMin.Z() * -objCentre.W() ||
             objCentre.Z() - boundingRadius * brFactor.Z() > clipMax.Z() * -objCentre.W());
+}
+
+void
+MushRenderMesh::CentroidToClip(Mushware::t4Val outPos,
+                               const MushRenderSpec& inSpec,
+                               const MushMesh4Mesh& inMesh)
+{
+    outPos = inSpec.ModelToClipMattress() * inMesh.Centroid();
 }
 
 //%outOfLineFunctions {

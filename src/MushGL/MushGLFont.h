@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } GszAZNIc4XTjBhyVnPxI7g
 /*
- * $Id: MushGLFont.h,v 1.3 2006/07/02 21:08:54 southa Exp $
+ * $Id: MushGLFont.h,v 1.4 2006/07/08 16:05:58 southa Exp $
  * $Log: MushGLFont.h,v $
+ * Revision 1.4  2006/07/08 16:05:58  southa
+ * Ruby menus and key handling
+ *
  * Revision 1.3  2006/07/02 21:08:54  southa
  * Ruby menu work
  *
@@ -46,7 +49,14 @@
 class MushGLFont : public MushcoreVirtualObject
 {
 public:
+    typedef MushcoreData<MushGLFont> tData;
+    typedef MushcoreDataRef<MushGLFont> tDataRef;
+    
     MushGLFont();
+    
+    void RenderSymbolAtSize(const Mushware::U32 inValue, const Mushware::t4Val& inCoords,
+                            const Mushware::t2Val& inSize);
+    
     void TextureNameSet(const std::string& inName) { m_textureRef.NameSet(inName); }
     void Render(const std::string& inStr) const;
     void RenderAt(const std::string& inStr, const Mushware::t2Val& inCoords) const;

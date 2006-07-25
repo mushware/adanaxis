@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } jpyq9WjuLQC6cyA1T6bbWw
 /*
- * $Id: AdanaxisRender.h,v 1.8 2006/07/20 12:22:21 southa Exp $
+ * $Id: AdanaxisRender.h,v 1.9 2006/07/24 18:46:48 southa Exp $
  * $Log: AdanaxisRender.h,v $
+ * Revision 1.9  2006/07/24 18:46:48  southa
+ * Depth sorting
+ *
  * Revision 1.8  2006/07/20 12:22:21  southa
  * Precache display
  *
@@ -51,8 +54,12 @@
 
 #include "AdanaxisStandard.h"
 
+#include "AdanaxisScanner.h"
+
 #include "API/mushMushGame.h"
 #include "API/mushMushGL.h"
+
+class MushRenderMesh;
 
 //:generate standard ostream xml1
 class AdanaxisRender : public MushGameRender
@@ -63,6 +70,7 @@ public:
     
     virtual void PreCacheRender(MushGameLogic& ioLogic, const MushGameCamera& inCamera);
     virtual void FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCamera);
+    virtual void ScanRender(AdanaxisLogic& ioLogic, MushRenderMesh *inpRenderMesh, const MushGameCamera& inCamera);
     virtual void Overplot(MushGameLogic& ioLogic, const MushGameCamera& inCamera);
     virtual void RenderPreludeSet(Mushware::U32 inValue = 3) { m_renderPrelude = inValue; }
     virtual void SortAndDespatch(MushGameLogic& ioLogic, std::vector<MushGLJobRender *> inJobs);
@@ -74,6 +82,7 @@ protected:
     bool m_scannerOn; //:readwrite
     Mushware::U32 m_renderPrelude;
     std::vector<MushGLJobRender *> m_renderList;
+    AdanaxisScanner m_scanner;
     
 private:
 //%classPrototypes {

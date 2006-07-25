@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } +/eRzpkNzTX9fJgJPPNtkw
 /*
- * $Id: MushRenderMesh.h,v 1.4 2006/06/01 15:39:38 southa Exp $
+ * $Id: MushRenderMesh.h,v 1.5 2006/07/24 18:46:50 southa Exp $
  * $Log: MushRenderMesh.h,v $
+ * Revision 1.5  2006/07/24 18:46:50  southa
+ * Depth sorting
+ *
  * Revision 1.4  2006/06/01 15:39:38  southa
  * DrawArray verification and fixes
  *
@@ -57,6 +60,10 @@ public:
     virtual Mushware::tVal SortDepth(const MushRenderSpec& inSpec, const MushMesh4Mesh& inMesh);
     
     virtual bool ShouldMeshCull(const MushRenderSpec& inSpec, const MushMesh4Mesh& inMesh);
+    
+    virtual void CentroidToClip(Mushware::t4Val outPos, 
+                                const MushRenderSpec& inSpec,
+                                const MushMesh4Mesh& inMesh);
     
 private:
 //%classPrototypes {

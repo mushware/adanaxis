@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } Hr8bvS7fc+x0pR9DrFcIZw
 /*
- * $Id: AdanaxisRender.cpp,v 1.36 2006/07/21 10:52:05 southa Exp $
+ * $Id: AdanaxisRender.cpp,v 1.37 2006/07/24 18:46:47 southa Exp $
  * $Log: AdanaxisRender.cpp,v $
+ * Revision 1.37  2006/07/24 18:46:47  southa
+ * Depth sorting
+ *
  * Revision 1.36  2006/07/21 10:52:05  southa
  * win32 build fixes
  *
@@ -214,6 +217,13 @@ AdanaxisRender::SortAndDespatch(MushGameLogic& ioLogic, std::vector<MushGLJobRen
 void
 AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCamera)
 {
+    AdanaxisLogic *pLogic = dynamic_cast<AdanaxisLogic *>(&ioLogic);
+    
+    if (pLogic == NULL)
+    {
+        throw MushcoreDataFail("Uninitialised AdanaxisLogic");
+    }
+    
     AdanaxisSaveData *pSaveData = dynamic_cast<AdanaxisSaveData *>(&ioLogic.SaveData());
     
     if (pSaveData == NULL)
@@ -274,6 +284,7 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
         renderMesh.ColourZRightSet(t4Val(0.3,1.0,0.3,0.0));
 
         camera.ProjectionSet(m_projection);
+        
         {
             typedef AdanaxisVolatileData::tWorldList tWorldList;
             tWorldList::iterator worldEndIter = pVolData->WorldListWRef().end();
@@ -338,6 +349,8 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
         }    
         
         SortAndDespatch(ioLogic, m_renderList);
+
+        ScanRender(*pLogic, &renderMesh, camera);
         
         U32 renderListSize = m_renderList.size();
         for (U32 i=0; i + 1 < renderListSize; ++i)
@@ -361,7 +374,7 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
     MushGameDialogueUtils::MoveAndRender(pSaveData->DialoguesWRef(), AdanaxisUtil::AppHandler());
     
     MushGLUtil::OrthoPrologue();
-
+    
     Overplot(ioLogic, inCamera);
     
     if (pVolData->ModeKeypressMsec() != 0)
@@ -396,6 +409,19 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
     }
     
 
+}
+
+void AdanaxisRender::ScanRender(AdanaxisLogic& ioLogic, MushRenderMesh *inpRenderMesh, const MushGameCamera& inCamera)
+{
+    AdanaxisSaveData *pSaveData = dynamic_cast<AdanaxisSaveData *>(&ioLogic.SaveData());
+
+    typedef AdanaxisSaveData::tKhaziList tKhaziList;
+    
+    tKhaziList::iterator khaziEndIter = pSaveData->KhaziListWRef().end();
+    for (tKhaziList::iterator p = pSaveData->KhaziListWRef().begin(); p != khaziEndIter; ++p)
+    {
+        m_scanner.ScanObjectRender(ioLogic, inpRenderMesh, inCamera, p->Post(), p->Mesh(), AdanaxisScanner::kObjectTypeKhazi);
+    }
 }
 
 void
@@ -523,7 +549,8 @@ AdanaxisRender::AutoPrint(std::ostream& ioOut) const
     ioOut << "halfAngleAttractor=" << m_halfAngleAttractor << ", ";
     ioOut << "scannerOn=" << m_scannerOn << ", ";
     ioOut << "renderPrelude=" << m_renderPrelude << ", ";
-    ioOut << "renderList=" << m_renderList;
+    ioOut << "renderList=" << m_renderList << ", ";
+    ioOut << "scanner=" << m_scanner;
     ioOut << "]";
 }
 bool
@@ -559,6 +586,10 @@ AdanaxisRender::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
     {
         ioIn >> m_renderList;
     }
+    else if (inTagStr == "scanner")
+    {
+        ioIn >> m_scanner;
+    }
     else 
     {
         return false;
@@ -580,5 +611,7 @@ AdanaxisRender::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_renderPrelude;
     ioOut.TagSet("renderList");
     ioOut << m_renderList;
+    ioOut.TagSet("scanner");
+    ioOut << m_scanner;
 }
-//%outOfLineFunctions } c/2s2DO2L2KEFp5Qw59H4Q
+//%outOfLineFunctions } pRVXSvwS8IZ/hrJflHkzPg

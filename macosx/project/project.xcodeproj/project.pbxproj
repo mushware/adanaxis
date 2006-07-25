@@ -342,6 +342,10 @@
 		7A61AEF00A63EB590053DE68 /* MediaJoystick.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A61AEEE0A63EB590053DE68 /* MediaJoystick.cpp */; };
 		7A61B10E07A68FEA00C6B670 /* MushMeshGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A61B10A07A68FEA00C6B670 /* MushMeshGroup.h */; };
 		7A61B10F07A68FEA00C6B670 /* MushMeshGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A61B10B07A68FEA00C6B670 /* MushMeshGroup.cpp */; };
+		7A61CA3B0A7632C3006C633E /* AdanaxisScanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A61CA390A7632C3006C633E /* AdanaxisScanner.h */; };
+		7A61CA3C0A7632C3006C633E /* AdanaxisScanner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A61CA3A0A7632C3006C633E /* AdanaxisScanner.cpp */; };
+		7A61CA3D0A7632C3006C633E /* AdanaxisScanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A61CA390A7632C3006C633E /* AdanaxisScanner.h */; };
+		7A61CA3E0A7632C3006C633E /* AdanaxisScanner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A61CA3A0A7632C3006C633E /* AdanaxisScanner.cpp */; };
 		7A61E3EB05B0168900AFEB17 /* MushPieSignal.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A61E3E905B0168900AFEB17 /* MushPieSignal.h */; };
 		7A61E3EC05B0168900AFEB17 /* MushPieSignal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A61E3EA05B0168900AFEB17 /* MushPieSignal.cpp */; };
 		7A61E3ED05B0168900AFEB17 /* MushPieSignal.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A61E3E905B0168900AFEB17 /* MushPieSignal.h */; };
@@ -2667,7 +2671,7 @@
 		7A5B14F20A57AF580047BD0B /* AdanaxisRender.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AdanaxisRender.rb; sourceTree = "<group>"; };
 		7A5B14F50A57B1230047BD0B /* MushGLRubyFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushGLRubyFont.h; sourceTree = "<group>"; };
 		7A5B14F60A57B1230047BD0B /* MushGLRubyFont.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushGLRubyFont.cpp; sourceTree = "<group>"; };
-		7A5B15170A57B5FA0047BD0B /* AdanaxisFontLibrary.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AdanaxisFontLibrary.rb; sourceTree = "<group>"; };
+		7A5B15170A57B5FA0047BD0B /* AdanaxisFontLibrary.rb */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = text.script.ruby; path = AdanaxisFontLibrary.rb; sourceTree = "<group>"; tabWidth = 2; };
 		7A5B54E80A52823400780DEA /* libSDL_mixer-1.2.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL_mixer-1.2.0.dylib"; path = "/usr/local/lib/libSDL_mixer-1.2.0.dylib"; sourceTree = "<absolute>"; };
 		7A5B54ED0A52828600780DEA /* libSDL-1.2.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL-1.2.0.dylib"; path = "/usr/local/lib/libSDL-1.2.0.dylib"; sourceTree = "<absolute>"; };
 		7A5B54FD0A5293D200780DEA /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = /usr/lib/libz.dylib; sourceTree = "<absolute>"; };
@@ -2743,6 +2747,8 @@
 		7A61AEEE0A63EB590053DE68 /* MediaJoystick.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MediaJoystick.cpp; sourceTree = "<group>"; };
 		7A61B10A07A68FEA00C6B670 /* MushMeshGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushMeshGroup.h; sourceTree = "<group>"; };
 		7A61B10B07A68FEA00C6B670 /* MushMeshGroup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushMeshGroup.cpp; sourceTree = "<group>"; };
+		7A61CA390A7632C3006C633E /* AdanaxisScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdanaxisScanner.h; sourceTree = "<group>"; };
+		7A61CA3A0A7632C3006C633E /* AdanaxisScanner.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AdanaxisScanner.cpp; sourceTree = "<group>"; };
 		7A61E3E905B0168900AFEB17 /* MushPieSignal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushPieSignal.h; sourceTree = "<group>"; };
 		7A61E3EA05B0168900AFEB17 /* MushPieSignal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushPieSignal.cpp; sourceTree = "<group>"; };
 		7A61E42905B017D000AFEB17 /* MushPieSignalNumeric.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushPieSignalNumeric.h; sourceTree = "<group>"; };
@@ -5327,6 +5333,8 @@
 				7ACFAC240A6E2D1C0046377F /* AdanaxisRubyWorld.h */,
 				7AD3B5E0085F403C00512DB1 /* AdanaxisSaveData.cpp */,
 				7AD3B5DF085F403C00512DB1 /* AdanaxisSaveData.h */,
+				7A61CA3A0A7632C3006C633E /* AdanaxisScanner.cpp */,
+				7A61CA390A7632C3006C633E /* AdanaxisScanner.h */,
 				7AD3B616086183C900512DB1 /* AdanaxisServer.cpp */,
 				7AD3B615086183C900512DB1 /* AdanaxisServer.h */,
 				7A70CEBD085DF1C50055C6FB /* AdanaxisStandard.cpp */,
@@ -6555,6 +6563,7 @@
 				7ACFAC1C0A6E2B670046377F /* AdanaxisPieceWorld.h in Headers */,
 				7ACFAC280A6E2D1C0046377F /* AdanaxisRubyWorld.h in Headers */,
 				7A61250D0A74D8020080D6AB /* MushGLCamera.h in Headers */,
+				7A61CA3B0A7632C3006C633E /* AdanaxisScanner.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6986,6 +6995,7 @@
 				7ACFAC1A0A6E2B670046377F /* AdanaxisPieceWorld.h in Headers */,
 				7ACFAC260A6E2D1C0046377F /* AdanaxisRubyWorld.h in Headers */,
 				7A61250B0A74D8020080D6AB /* MushGLCamera.h in Headers */,
+				7A61CA3D0A7632C3006C633E /* AdanaxisScanner.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8445,6 +8455,7 @@
 				7ACFAC1D0A6E2B670046377F /* AdanaxisPieceWorld.cpp in Sources */,
 				7ACFAC290A6E2D1C0046377F /* AdanaxisRubyWorld.cpp in Sources */,
 				7A61250E0A74D8020080D6AB /* MushGLCamera.cpp in Sources */,
+				7A61CA3C0A7632C3006C633E /* AdanaxisScanner.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8797,6 +8808,7 @@
 				7ACFAC1B0A6E2B670046377F /* AdanaxisPieceWorld.cpp in Sources */,
 				7ACFAC270A6E2D1C0046377F /* AdanaxisRubyWorld.cpp in Sources */,
 				7A61250C0A74D8020080D6AB /* MushGLCamera.cpp in Sources */,
+				7A61CA3E0A7632C3006C633E /* AdanaxisScanner.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
