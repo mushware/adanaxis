@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } NkO0g6TshWQZ+4+THDCdtQ
 /*
- * $Id: MediaAudio.h,v 1.25 2005/05/19 13:02:08 southa Exp $
+ * $Id: MediaAudio.h,v 1.26 2006/06/01 15:39:13 southa Exp $
  * $Log: MediaAudio.h,v $
+ * Revision 1.26  2006/06/01 15:39:13  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.25  2005/05/19 13:02:08  southa
  * Mac release work
  *
@@ -93,6 +96,8 @@ public:
     virtual void Ticker(void) = 0;
     virtual void MusicFadeIn(Mushware::tVal inMsec) = 0;
     virtual void MusicFadeOut(Mushware::tVal inMsec) = 0;
+    virtual void MusicVolumeSet(Mushware::tVal inVolume) = 0;
+    virtual void AudioVolumeSet(Mushware::tVal inVolume) = 0;
     
     static MediaAudio *SingletonFactory(void);
     

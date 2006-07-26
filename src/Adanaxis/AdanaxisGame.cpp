@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } DEX6Sh9oUk/bih2GXm2coA
 /*
- * $Id: AdanaxisGame.cpp,v 1.43 2006/07/19 14:34:50 southa Exp $
+ * $Id: AdanaxisGame.cpp,v 1.44 2006/07/20 12:22:20 southa Exp $
  * $Log: AdanaxisGame.cpp,v $
+ * Revision 1.44  2006/07/20 12:22:20  southa
+ * Precache display
+ *
  * Revision 1.43  2006/07/19 14:34:50  southa
  * Flare effects
  *
@@ -183,53 +186,7 @@ AdanaxisGame::~AdanaxisGame()
 
 void
 AdanaxisGame::Process(MushGameAppHandler& inAppHandler)
-{    
-    U32 msecNow = inAppHandler.MillisecondsGet();
-
-    VolatileData().ModeKeypressMsecSet(m_modeKeypressMsec);
-    VolatileData().NewModeSet(m_newMode);
-    
-    
-    if (inAppHandler.LatchedKeyStateTake('m'))
-    {
-        m_config.PlayMusicToggle();
-        if (m_config.PlayMusic())
-        {
-            MediaAudio::Sgl().MusicFadeIn(300);            
-        }
-        else
-        {
-            MediaAudio::Sgl().MusicFadeOut(300);            
-        }
-    }
-    if (inAppHandler.LatchedKeyStateTake('-'))
-    {
-        if (m_modeKeypressMsec != 0)
-        {
-            m_newMode = PlatformVideoUtils::Sgl().PreviousModeDef(m_newMode);
-        }
-        m_modeKeypressMsec = msecNow;
-    }
-    if (inAppHandler.LatchedKeyStateTake('='))
-    {
-        if (m_modeKeypressMsec != 0)
-        {
-            m_newMode = PlatformVideoUtils::Sgl().NextModeDef(m_newMode);
-        }
-        m_modeKeypressMsec = msecNow;
-    }
-    if (m_modeKeypressMsec != 0 && m_modeKeypressMsec + 3000 < msecNow)
-    {
-        if (m_newMode != m_config.DisplayMode())
-        {
-            m_config.DisplayModeSet(m_newMode);
-            SwapOut(inAppHandler);
-            SwapIn(inAppHandler);
-        }
-        
-        m_modeKeypressMsec=0;
-    }
-    
+{
     if (inAppHandler.LatchedKeyStateTake('.'))
     {
         MushGLUtil::BufferPurge();
@@ -249,6 +206,18 @@ AdanaxisGame::Process(MushGameAppHandler& inAppHandler)
     Logic().MainSequence();
         
     GLUtils::PostRedisplay();
+}
+
+Mushware::U32
+AdanaxisGame::DisplayModeNum(void) const
+{
+    return m_config.DisplayMode();
+}
+
+void
+AdanaxisGame::NextDisplayMode(void)
+{
+    m_config.DisplayModeSet(PlatformVideoUtils::Sgl().NextModeDef(m_config.DisplayMode()));
 }
 
 void
@@ -306,8 +275,9 @@ AdanaxisGame::Init(MushGameAppHandler& inAppHandler)
     // MushcoreLog::Sgl().XMLInfoLog() << MushcoreData<MushMesh4Mesh>::Sgl().Get("attendant");
     
     MushcoreInterpreter::Sgl().Execute("loadsoundstream('adanaxis-music1')");
-    if (m_config.PlayMusic())
+    if (m_config.MusicVolume() > 0)
     {
+        MediaAudio::Sgl().MusicVolumeSet(m_config.MusicVolume() / 100.0);
         MediaAudio::Sgl().MusicFadeIn(300);
     }
     
@@ -388,11 +358,10 @@ AdanaxisGame::SwapIn(MushGameAppHandler& inAppHandler)
     }
     
     GLUtils::CheckGLError();
-       
-    m_modeKeypressMsec = 0;
-    m_newMode = m_config.DisplayMode();
+    
     Logic().RecordTimeSet(m_config.RecordTime());
-
+    Logic().PreCacheModeEnter();
+    
     dynamic_cast<AdanaxisRender&>(SaveData().RenderRef().WRef()).RenderPreludeSet();
 }
 
@@ -453,8 +422,6 @@ AdanaxisGame::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
     ioOut << "name=" << m_name << ", ";
-    ioOut << "modeKeypressMsec=" << m_modeKeypressMsec << ", ";
-    ioOut << "newMode=" << m_newMode << ", ";
     ioOut << "config=" << m_config;
     ioOut << "]";
 }
@@ -471,14 +438,6 @@ AdanaxisGame::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& in
     {
         ioIn >> m_name;
     }
-    else if (inTagStr == "modeKeypressMsec")
-    {
-        ioIn >> m_modeKeypressMsec;
-    }
-    else if (inTagStr == "newMode")
-    {
-        ioIn >> m_newMode;
-    }
     else if (inTagStr == "config")
     {
         ioIn >> m_config;
@@ -494,11 +453,7 @@ AdanaxisGame::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
     ioOut.TagSet("name");
     ioOut << m_name;
-    ioOut.TagSet("modeKeypressMsec");
-    ioOut << m_modeKeypressMsec;
-    ioOut.TagSet("newMode");
-    ioOut << m_newMode;
     ioOut.TagSet("config");
     ioOut << m_config;
 }
-//%outOfLineFunctions } huIQnCJa8DiWjK7S/vB3qQ
+//%outOfLineFunctions } Cyzu9asYpO4Y5GQEcub1LA

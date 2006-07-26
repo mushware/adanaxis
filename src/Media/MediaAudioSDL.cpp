@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } ccLCYRn/kYU+5Rp9coVdng
 /*
- * $Id: MediaAudioSDL.cpp,v 1.20 2005/05/19 13:02:08 southa Exp $
+ * $Id: MediaAudioSDL.cpp,v 1.21 2006/06/01 15:39:13 southa Exp $
  * $Log: MediaAudioSDL.cpp,v $
+ * Revision 1.21  2006/06/01 15:39:13  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.20  2005/05/19 13:02:08  southa
  * Mac release work
  *
@@ -209,8 +212,8 @@ MediaAudioSDL::Play(MediaSound& inSound)
     }
     else
     {
-	Mix_Volume(channel, MIX_MAX_VOLUME); // Fix for SDL bug
-	MUSHCOREASSERT(channel < static_cast<S32>(m_softChannels));
+        Mix_Volume(channel, MIX_MAX_VOLUME); // Fix for SDL bug
+        MUSHCOREASSERT(channel < static_cast<S32>(m_softChannels));
         ChannelStateSet(channel, kChannelPlaying, &inSound);
     }
 }
@@ -332,3 +335,16 @@ MediaAudioSDL::MusicFadeOut(Mushware::tVal inMsec)
 {
     Mix_FadeOutMusic(static_cast<int>(inMsec));
 }
+
+void
+MediaAudioSDL::MusicVolumeSet(Mushware::tVal inVolume)
+{
+    Mix_VolumeMusic(static_cast<int>(inVolume*128));
+}
+
+void
+MediaAudioSDL::AudioVolumeSet(Mushware::tVal inVolume)
+{
+    
+}
+

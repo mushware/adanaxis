@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } auDv5KzHAtGChacJ2aS7ug
 /*
- * $Id: MushGameBase.h,v 1.3 2006/07/07 18:13:58 southa Exp $
+ * $Id: MushGameBase.h,v 1.4 2006/07/12 11:22:42 southa Exp $
  * $Log: MushGameBase.h,v $
+ * Revision 1.4  2006/07/12 11:22:42  southa
+ * Advanced control menu
+ *
  * Revision 1.3  2006/07/07 18:13:58  southa
  * Menu start and stop
  *
@@ -45,6 +48,7 @@
 #include "MushGameLogic.h"
 
 class MushGameAppHandler;
+class MushGameConfigBase;
 
 //:generate virtual standard ostream xml1
 class MushGameBase : public MushcoreVirtualObject
@@ -61,6 +65,11 @@ public:
     virtual void ControlsToDefaultSet(MushGameAppHandler& inHandler);
     virtual MushGameLogic& LogicWRef(void) const { return m_logicRef.WRef(); }
     
+    virtual Mushware::U32 DisplayModeNum(void) const { return 1; }
+    virtual void NextDisplayMode(void) {}
+    virtual const MushGameConfigBase& Config(void) const { throw MushcoreRequestFail("No config available"); }
+    virtual MushGameConfigBase& ConfigWRef(void) { throw MushcoreRequestFail("No config available"); }
+
 private:
     MushcoreDataRef<MushGameSaveData> m_saveDataRef; //:read :wref
     MushcoreDataRef<MushGameVolatileData> m_volatileDataRef; //:read :wref

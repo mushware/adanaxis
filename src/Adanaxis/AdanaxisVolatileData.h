@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } lXOhNHrEv7a8Ndh1gy3P5A
 /*
- * $Id: AdanaxisVolatileData.h,v 1.6 2006/07/04 16:55:26 southa Exp $
+ * $Id: AdanaxisVolatileData.h,v 1.7 2006/07/19 10:22:16 southa Exp $
  * $Log: AdanaxisVolatileData.h,v $
+ * Revision 1.7  2006/07/19 10:22:16  southa
+ * World objects
+ *
  * Revision 1.6  2006/07/04 16:55:26  southa
  * Ruby key handling
  *
@@ -65,8 +68,6 @@ public:
 private:
     tDecoList m_decoList; //:read :wref
     tWorldList m_worldList; //:read :wref
-    Mushware::tMsec m_modeKeypressMsec; //:readwrite
-    Mushware::tMsec m_newMode; //:readwrite
     std::auto_ptr<MushRenderMesh> m_aRenderMesh; //:read :wref
 	Mushware::tRubyValue m_rubySpace; //:readwrite
     
@@ -78,10 +79,6 @@ public:
     const tWorldList& WorldList(void) const { return m_worldList; }
     // Writable reference for m_worldList
     tWorldList& WorldListWRef(void) { return m_worldList; }
-    const Mushware::tMsec& ModeKeypressMsec(void) const { return m_modeKeypressMsec; }
-    void ModeKeypressMsecSet(const Mushware::tMsec& inValue) { m_modeKeypressMsec=inValue; }
-    const Mushware::tMsec& NewMode(void) const { return m_newMode; }
-    void NewModeSet(const Mushware::tMsec& inValue) { m_newMode=inValue; }
     const std::auto_ptr<MushRenderMesh>& ARenderMesh(void) const { return m_aRenderMesh; }
     // Writable reference for m_aRenderMesh
     std::auto_ptr<MushRenderMesh>& ARenderMeshWRef(void) { return m_aRenderMesh; }
@@ -94,7 +91,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } PQ7++2CaajtZFIuKWDnkMw
+//%classPrototypes } wGBRB75HyQpLbGrM+IF8pw
 };
 //%inlineHeader {
 inline std::ostream&

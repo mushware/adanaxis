@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } abz8WfQdtsWpPxv12NZxhA
 /*
- * $Id: MushGameRuby.h,v 1.6 2006/07/11 19:49:06 southa Exp $
+ * $Id: MushGameRuby.h,v 1.7 2006/07/12 11:22:43 southa Exp $
  * $Log: MushGameRuby.h,v $
+ * Revision 1.7  2006/07/12 11:22:43  southa
+ * Advanced control menu
+ *
  * Revision 1.6  2006/07/11 19:49:06  southa
  * Control menu
  *
@@ -65,6 +68,16 @@ public:
     static Mushware::tRubyValue KeySet(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0, Mushware::tRubyValue inArg1);
     static Mushware::tRubyValue NumJoysticks(Mushware::tRubyValue inSelf);
     static Mushware::tRubyValue ControlsToDefaultSet(Mushware::tRubyValue inSelf);
+    static Mushware::tRubyValue DisplayModeString(Mushware::tRubyValue inSelf);
+    static Mushware::tRubyValue NextDisplayMode(Mushware::tRubyValue inSelf);
+    static Mushware::tRubyValue DisplayReset(Mushware::tRubyValue inSelf);
+    static Mushware::tRubyValue AudioVolume(Mushware::tRubyValue inSelf);
+    static Mushware::tRubyValue AudioVolumeSet(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
+    static Mushware::tRubyValue MusicVolume(Mushware::tRubyValue inSelf);
+    static Mushware::tRubyValue MusicVolumeSet(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
+    static Mushware::tRubyValue TextureDetail(Mushware::tRubyValue inSelf);
+    static Mushware::tRubyValue TextureDetailSet(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
+
     static void MethodsInstall(void);
     
 private:

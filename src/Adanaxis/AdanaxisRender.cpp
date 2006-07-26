@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } Hr8bvS7fc+x0pR9DrFcIZw
 /*
- * $Id: AdanaxisRender.cpp,v 1.38 2006/07/25 13:30:56 southa Exp $
+ * $Id: AdanaxisRender.cpp,v 1.39 2006/07/25 20:31:02 southa Exp $
  * $Log: AdanaxisRender.cpp,v $
+ * Revision 1.39  2006/07/25 20:31:02  southa
+ * Scanner work
+ *
  * Revision 1.38  2006/07/25 13:30:56  southa
  * Initial scanner work
  *
@@ -379,11 +382,6 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
     MushGLUtil::OrthoPrologue();
 
     Overplot(ioLogic, inCamera);
-    
-    if (pVolData->ModeKeypressMsec() != 0)
-    {
-        PlatformVideoUtils::Sgl().RenderModeInfo(pVolData->NewMode());
-    }
 
     MushGLUtil::OrthoEpilogue();
     

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } rqKVCOMdajoYPgaQgbClmg
 /*
- * $Id: MushGameAppHandler.h,v 1.10 2006/07/11 19:49:05 southa Exp $
+ * $Id: MushGameAppHandler.h,v 1.11 2006/07/12 11:22:41 southa Exp $
  * $Log: MushGameAppHandler.h,v $
+ * Revision 1.11  2006/07/12 11:22:41  southa
+ * Advanced control menu
+ *
  * Revision 1.10  2006/07/11 19:49:05  southa
  * Control menu
  *
@@ -61,6 +64,7 @@
 
 #include "MushGameAxisDef.h"
 #include "MushGameBase.h"
+#include "MushGameConfigBase.h"
 #include "MushGameKeyDef.h"
 #include "MushGameMailbox.h"
 
@@ -88,8 +92,13 @@ public:
     virtual void KeyDefSet(const MushGameKeyDef& inKeyDef, Mushware::U32 inKeyNum);
     virtual void AxisPurge(Mushware::U32 inDeviceNum, Mushware::U32 inAxisNum);
     virtual void KeyPurge(Mushware::U32 inKeyNum);
+    virtual Mushware::U32 DisplayModeNum(void) const;
+    virtual void NextDisplayMode(void);
+    virtual void DisplayReset(void);
     
     virtual MushGameLogic& LogicWRef(void) const { return m_currentRef.Ref().LogicWRef(); }
+    virtual const MushGameConfigBase& Config(void) const { return m_currentRef.Ref().Config(); }
+    virtual MushGameConfigBase& ConfigWRef(void) const { return m_currentRef.WRef().ConfigWRef(); }
     
 protected:
     enum tAppState

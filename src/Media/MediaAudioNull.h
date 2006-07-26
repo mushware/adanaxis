@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } +TqwNDFCDF610zYAXeniiA
 /*
- * $Id: MediaAudioNull.h,v 1.11 2005/05/19 13:02:08 southa Exp $
+ * $Id: MediaAudioNull.h,v 1.12 2006/06/01 15:39:13 southa Exp $
  * $Log: MediaAudioNull.h,v $
+ * Revision 1.12  2006/06/01 15:39:13  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.11  2005/05/19 13:02:08  southa
  * Mac release work
  *
@@ -74,9 +77,11 @@ public:
     virtual void Load(MediaSoundStream& inSoundStream) {}
     virtual void Free(MediaSound& inSound) const;
     virtual void Ticker(void);
-    virtual void MusicFadeIn(Mushware::tVal inMsec) {};
-    virtual void MusicFadeOut(Mushware::tVal inMsec) {};
-    
+    virtual void MusicFadeIn(Mushware::tVal inMsec) {}
+    virtual void MusicFadeOut(Mushware::tVal inMsec) {}
+    virtual void MusicVolumeSet(Mushware::tVal inVolume) {}
+    virtual void AudioVolumeSet(Mushware::tVal inVolume) {}
+
 private:
 };
 //%includeGuardEnd {

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } QiMF3F/St2AHbQ+NVPq3XA
 /*
- * $Id: MushGameConfigUtils.cpp,v 1.1 2005/06/14 20:39:41 southa Exp $
+ * $Id: MushGameConfigUtils.cpp,v 1.2 2006/06/01 15:39:20 southa Exp $
  * $Log: MushGameConfigUtils.cpp,v $
+ * Revision 1.2  2006/06/01 15:39:20  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.1  2005/06/14 20:39:41  southa
  * Adanaxis work
  *
@@ -68,12 +71,12 @@ MushGameConfigUtils::ConfigAcquire(MushGameConfigBase *inpConfig)
             }
         }
     }
-    catch (MushcoreNonFatalFail& e)
+    catch (MushcoreFail& e)
     {
         MushcoreLog::Sgl().ErrorLog() << e.what() << endl;
         inpConfig->ToDefaultSet();
     }
-    
+
     // Safe mode is pseudo-config - not saved
     if (MushcoreEnv::Sgl().VariableGetIfExists(pScalar, "SAFE_MODE"))
     {

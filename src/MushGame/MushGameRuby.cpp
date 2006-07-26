@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } yY7ZZkvIHHOoUzJzTAQPOQ
 /*
- * $Id: MushGameRuby.cpp,v 1.6 2006/07/11 19:49:06 southa Exp $
+ * $Id: MushGameRuby.cpp,v 1.7 2006/07/12 11:22:43 southa Exp $
  * $Log: MushGameRuby.cpp,v $
+ * Revision 1.7  2006/07/12 11:22:43  southa
+ * Advanced control menu
+ *
  * Revision 1.6  2006/07/11 19:49:06  southa
  * Control menu
  *
@@ -49,6 +52,7 @@
 #include "MushGameUtil.h"
 
 #include "API/mushMedia.h"
+#include "API/mushPlatform.h"
 
 MUSHRUBYEMPTYOBJ_INSTANCE(4000);
 
@@ -332,6 +336,99 @@ MushGameRuby::ControlsToDefaultSet(Mushware::tRubyValue inSelf)
     return Mushware::kRubyQnil;
 }  
 
+Mushware::tRubyValue
+MushGameRuby::DisplayModeString(Mushware::tRubyValue inSelf)
+{
+    std::string displayName = "<no mode>";
+    try
+    {
+        U32 modeNum = MushGameUtil::AppHandler().DisplayModeNum();
+        displayName = PlatformVideoUtils::Sgl().ModeDefGet(modeNum).NameGet();
+    }
+    catch (std::exception& e)
+    {
+        MushRubyUtil::Raise(e.what());       
+    }
+    
+    return MushRubyValue(displayName).Value();
+}  
+
+Mushware::tRubyValue
+MushGameRuby::NextDisplayMode(Mushware::tRubyValue inSelf)
+{
+    try
+    {
+        MushGameUtil::AppHandler().NextDisplayMode();
+    }
+    catch (std::exception& e)
+    {
+        MushRubyUtil::Raise(e.what());       
+    }
+    
+    return Mushware::kRubyQnil;
+}
+
+Mushware::tRubyValue
+MushGameRuby::DisplayReset(Mushware::tRubyValue inSelf)
+{
+    try
+    {
+        MushGameUtil::AppHandler().DisplayReset();
+    }
+    catch (std::exception& e)
+    {
+        MushRubyUtil::Raise(e.what());       
+    }
+    return Mushware::kRubyQnil;
+}
+
+Mushware::tRubyValue
+MushGameRuby::AudioVolume(Mushware::tRubyValue inSelf)
+{
+    U32 retVal = MushGameUtil::AppHandler().Config().AudioVolume();
+    return MushRubyValue(retVal).Value();
+}
+
+Mushware::tRubyValue
+MushGameRuby::AudioVolumeSet(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0)
+{
+    MushRubyValue value(inArg0);
+    MushGameUtil::AppHandler().ConfigWRef().AudioVolumeSet(value.U32());
+    return Mushware::kRubyQnil;
+}
+
+Mushware::tRubyValue
+MushGameRuby::MusicVolume(Mushware::tRubyValue inSelf)
+{
+    U32 retVal = MushGameUtil::AppHandler().Config().MusicVolume();
+    return MushRubyValue(retVal).Value();
+}
+
+Mushware::tRubyValue
+MushGameRuby::MusicVolumeSet(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0)
+{
+    MushRubyValue value(inArg0);
+    MushGameUtil::AppHandler().ConfigWRef().MusicVolumeSet(value.U32());
+    MediaAudio::Sgl().MusicVolumeSet(value.U32() / 100.0);
+
+    return Mushware::kRubyQnil;
+}
+
+Mushware::tRubyValue
+MushGameRuby::TextureDetail(Mushware::tRubyValue inSelf)
+{
+    U32 retVal = MushGameUtil::AppHandler().Config().TextureDetail();
+    return MushRubyValue(retVal).Value();
+}
+
+Mushware::tRubyValue
+MushGameRuby::TextureDetailSet(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0)
+{
+    MushRubyValue value(inArg0);
+    MushGameUtil::AppHandler().ConfigWRef().TextureDetailSet(value.U32());
+    return Mushware::kRubyQnil;
+}
+
 void
 MushGameRuby::MethodsInstall(void)
 {
@@ -348,4 +445,13 @@ MushGameRuby::MethodsInstall(void)
     MushRubyUtil::SingletonMethodDefineTwoParams(Klass(), "cKeySet", KeySet);
     MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cNumJoysticks", NumJoysticks);
     MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cControlsToDefaultSet", ControlsToDefaultSet);
+    MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cDisplayModeString", DisplayModeString);
+    MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cNextDisplayMode", NextDisplayMode);
+    MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cDisplayReset", DisplayReset);
+    MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cAudioVolume", AudioVolume);
+    MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cAudioVolumeSet", AudioVolumeSet);
+    MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cMusicVolume", MusicVolume);
+    MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cMusicVolumeSet", MusicVolumeSet);
+    MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cTextureDetail", TextureDetail);
+    MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cTextureDetailSet", TextureDetailSet);
 }

@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } OOi2UXPQf+WlFT25nv19jA
 /*
- * $Id: AdanaxisConfig.cpp,v 1.13 2006/06/01 15:38:46 southa Exp $
+ * $Id: AdanaxisConfig.cpp,v 1.14 2006/07/11 12:37:51 southa Exp $
  * $Log: AdanaxisConfig.cpp,v $
+ * Revision 1.14  2006/07/11 12:37:51  southa
+ * Control configuration
+ *
  * Revision 1.13  2006/06/01 15:38:46  southa
  * DrawArray verification and fixes
  *
@@ -83,7 +86,6 @@ AdanaxisConfig::ToDefaultSet(void)
     AxesToDefaultSet();
     KeysToDefaultSet();
     m_recordTime = 0;
-    m_playMusic = true;
 }
 
 void
@@ -211,8 +213,7 @@ AdanaxisConfig::AutoPrint(std::ostream& ioOut) const
     ioOut << "axisDefs=" << m_axisDefs << ", ";
     ioOut << "keyDefs=" << m_keyDefs << ", ";
     ioOut << "displayMode=" << m_displayMode << ", ";
-    ioOut << "recordTime=" << m_recordTime << ", ";
-    ioOut << "playMusic=" << m_playMusic;
+    ioOut << "recordTime=" << m_recordTime;
     ioOut << "]";
 }
 bool
@@ -240,10 +241,6 @@ AdanaxisConfig::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
     {
         ioIn >> m_recordTime;
     }
-    else if (inTagStr == "playMusic")
-    {
-        ioIn >> m_playMusic;
-    }
     else if (MushGameConfigBase::AutoXMLDataProcess(ioIn, inTagStr))
     {
         // Tag consumed by base class
@@ -266,7 +263,5 @@ AdanaxisConfig::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_displayMode;
     ioOut.TagSet("recordTime");
     ioOut << m_recordTime;
-    ioOut.TagSet("playMusic");
-    ioOut << m_playMusic;
 }
-//%outOfLineFunctions } 0GiRptJ2ai7KQ8BL6LPCsw
+//%outOfLineFunctions } 3e6oe+6sKcc33IeIlZTNng

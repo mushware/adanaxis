@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } 0edG1wrkU5hKeWbu3l1MQA
 /*
- * $Id: AdanaxisPlayer.cpp,v 1.20 2006/07/19 14:34:51 southa Exp $
+ * $Id: AdanaxisPlayer.cpp,v 1.21 2006/07/24 18:46:47 southa Exp $
  * $Log: AdanaxisPlayer.cpp,v $
+ * Revision 1.21  2006/07/24 18:46:47  southa
+ * Depth sorting
+ *
  * Revision 1.20  2006/07/19 14:34:51  southa
  * Flare effects
  *
@@ -189,7 +192,9 @@ AdanaxisPlayer::KeyChangeHandle(MushGameLogic& ioLogic, bool inState, Mushware::
         break;
             
         default:
-            throw MushcoreDataFail("Bad key number");
+            ostringstream message;
+            message << "Bad key number: " << inKeyNum;
+            throw MushcoreDataFail(message.str());
             break;
     }        
 }

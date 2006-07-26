@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } j+QdgpgaMWOYWMDzkr6iXg
 /*
- * $Id: MushGameConfigBase.h,v 1.1 2005/06/14 20:39:41 southa Exp $
+ * $Id: MushGameConfigBase.h,v 1.2 2006/06/01 15:39:20 southa Exp $
  * $Log: MushGameConfigBase.h,v $
+ * Revision 1.2  2006/06/01 15:39:20  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.1  2005/06/14 20:39:41  southa
  * Adanaxis work
  *
@@ -43,18 +46,29 @@ public:
     
 private:
     Mushware::U32 m_version; //:readwrite
+    Mushware::U32 m_textureDetail; //:readwrite
+    Mushware::U32 m_audioVolume; //:readwrite
+    Mushware::U32 m_musicVolume; //:readwrite
+    
+    // psuedo-config
     Mushware::U32 m_safeMode; //:readwrite
     
 //%classPrototypes {
 public:
     const Mushware::U32& Version(void) const { return m_version; }
     void VersionSet(const Mushware::U32& inValue) { m_version=inValue; }
+    const Mushware::U32& TextureDetail(void) const { return m_textureDetail; }
+    void TextureDetailSet(const Mushware::U32& inValue) { m_textureDetail=inValue; }
+    const Mushware::U32& AudioVolume(void) const { return m_audioVolume; }
+    void AudioVolumeSet(const Mushware::U32& inValue) { m_audioVolume=inValue; }
+    const Mushware::U32& MusicVolume(void) const { return m_musicVolume; }
+    void MusicVolumeSet(const Mushware::U32& inValue) { m_musicVolume=inValue; }
     const Mushware::U32& SafeMode(void) const { return m_safeMode; }
     void SafeModeSet(const Mushware::U32& inValue) { m_safeMode=inValue; }
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } nrDh7o2kpymliVX8DHeBNg
+//%classPrototypes } AIOprPsm+x1BmPjCZ7CePg
 };
 
 //%inlineHeader {

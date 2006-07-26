@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } bC49LKe3G5tsyGqAVa5gyw
 /*
- * $Id: MushGameAppHandler.cpp,v 1.12 2006/07/11 19:49:05 southa Exp $
+ * $Id: MushGameAppHandler.cpp,v 1.13 2006/07/12 11:22:41 southa Exp $
  * $Log: MushGameAppHandler.cpp,v $
+ * Revision 1.13  2006/07/12 11:22:41  southa
+ * Advanced control menu
+ *
  * Revision 1.12  2006/07/11 19:49:05  southa
  * Control menu
  *
@@ -133,6 +136,33 @@ MushGameAppHandler::ControlsToDefaultSet(void)
         m_currentRef.Get()->ControlsToDefaultSet(*this);
     }
 }    
+
+Mushware::U32
+MushGameAppHandler::DisplayModeNum(void) const
+{
+    U32 retVal = 0;
+    if (m_currentRef.Exists())
+    {
+        retVal = m_currentRef.Get()->DisplayModeNum();
+    }
+    return retVal;
+}
+
+void
+MushGameAppHandler::NextDisplayMode(void)
+{
+    if (m_currentRef.Exists())
+    {
+        m_currentRef.Get()->NextDisplayMode();
+    }
+}
+
+void
+MushGameAppHandler::DisplayReset(void)
+{
+    CurrentSwapOut();
+    CurrentSwapIn(m_groupingName);
+}
 
 void
 MushGameAppHandler::GroupingNameSet(const std::string& inName)
