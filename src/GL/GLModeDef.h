@@ -24,8 +24,11 @@
 //%Header } Rz2L7OMoKXcq+Y5XU4qSww
 
 /*
- * $Id: GLModeDef.h,v 1.11 2005/05/19 13:01:59 southa Exp $
+ * $Id: GLModeDef.h,v 1.12 2006/06/01 15:38:51 southa Exp $
  * $Log: GLModeDef.h,v $
+ * Revision 1.12  2006/06/01 15:38:51  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.11  2005/05/19 13:01:59  southa
  * Mac release work
  *
@@ -112,6 +115,10 @@ public:
     bool HardSyncGet(void) const { return m_sync == kSyncHard; }
     tSync SyncGet(void) const { return m_sync; }
 
+    bool IsEqual(const GLModeDef& inModeDef) const;
+    bool operator==(const GLModeDef& inModeDef) const;
+    bool operator!=(const GLModeDef& inModeDef) const;
+    
     static GLModeDef Default(void);
 
 private:
@@ -124,6 +131,19 @@ private:
     tCursor m_cursor;
     tSync m_sync;
 };
+
+inline bool
+GLModeDef::operator==(const GLModeDef& inModeDef) const
+{
+    return IsEqual(inModeDef);
+}
+
+inline bool
+GLModeDef::operator!=(const GLModeDef& inModeDef) const
+{
+    return !IsEqual(inModeDef);
+}
+
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

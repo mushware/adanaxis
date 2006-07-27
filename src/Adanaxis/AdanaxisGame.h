@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } wOXl6eoMycMTXcUsBJ4Pgg
 /*
- * $Id: AdanaxisGame.h,v 1.18 2006/07/12 11:22:41 southa Exp $
+ * $Id: AdanaxisGame.h,v 1.19 2006/07/26 16:37:21 southa Exp $
  * $Log: AdanaxisGame.h,v $
+ * Revision 1.19  2006/07/26 16:37:21  southa
+ * Options menu
+ *
  * Revision 1.18  2006/07/12 11:22:41  southa
  * Advanced control menu
  *
@@ -104,10 +107,12 @@ public:
     virtual void Init(MushGameAppHandler& inAppHandler);
     virtual void ControlsToDefaultSet(MushGameAppHandler& inHandler);
     virtual Mushware::U32 DisplayModeNum(void) const;
+    virtual void PreviousDisplayMode(void);
     virtual void NextDisplayMode(void);
 
     virtual void UpdateFromConfig(void);
     virtual void UpdateToConfig(void);
+    virtual void ConfigSave(void);
     virtual const MushGameConfigBase& Config(void) const { return m_config; }
     virtual MushGameConfigBase& ConfigWRef(void) { return m_config; }
 

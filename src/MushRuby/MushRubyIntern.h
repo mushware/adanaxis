@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } n1eaCj2fb8dNPgbT0uOuEQ
 /*
- * $Id: MushRubyIntern.h,v 1.10 2006/07/04 16:55:28 southa Exp $
+ * $Id: MushRubyIntern.h,v 1.11 2006/07/20 12:22:23 southa Exp $
  * $Log: MushRubyIntern.h,v $
+ * Revision 1.11  2006/07/20 12:22:23  southa
+ * Precache display
+ *
  * Revision 1.10  2006/07/04 16:55:28  southa
  * Ruby key handling
  *
@@ -82,6 +85,7 @@ public:
 	MUSHRUBYINTERN_DECLARE(mKeypress);
 	MUSHRUBYINTERN_DECLARE(mPreCacheRender);
 	MUSHRUBYINTERN_DECLARE(mRender);
+	MUSHRUBYINTERN_DECLARE(mReset);
 	MUSHRUBYINTERN_DECLARE(num_iterations);
 	MUSHRUBYINTERN_DECLARE(name);
 	MUSHRUBYINTERN_DECLARE(offset);

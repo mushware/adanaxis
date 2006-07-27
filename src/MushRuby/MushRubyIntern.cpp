@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } lqALCPGBahbk4ibyVPO8LQ
 /*
- * $Id: MushRubyIntern.cpp,v 1.10 2006/07/04 16:55:28 southa Exp $
+ * $Id: MushRubyIntern.cpp,v 1.11 2006/07/20 12:22:22 southa Exp $
  * $Log: MushRubyIntern.cpp,v $
+ * Revision 1.11  2006/07/20 12:22:22  southa
+ * Precache display
+ *
  * Revision 1.10  2006/07/04 16:55:28  southa
  * Ruby key handling
  *
@@ -72,6 +75,7 @@ MUSHRUBYINTERN_DEFINE(mesh_name);
 MUSHRUBYINTERN_DEFINE(mKeypress);
 MUSHRUBYINTERN_DEFINE(mPreCacheRender);
 MUSHRUBYINTERN_DEFINE(mRender);
+MUSHRUBYINTERN_DEFINE(mReset);
 MUSHRUBYINTERN_DEFINE(name);
 MUSHRUBYINTERN_DEFINE(num_iterations);
 MUSHRUBYINTERN_DEFINE(offset);
@@ -104,6 +108,7 @@ MushRubyIntern::Initialise(void)
 	MUSHRUBYINTERN_INIT(mKeypress);
 	MUSHRUBYINTERN_INIT(mPreCacheRender);
 	MUSHRUBYINTERN_INIT(mRender);
+	MUSHRUBYINTERN_INIT(mReset);
 	MUSHRUBYINTERN_INIT(name);
 	MUSHRUBYINTERN_INIT(num_iterations);
 	MUSHRUBYINTERN_INIT(offset);

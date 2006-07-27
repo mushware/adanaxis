@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } abz8WfQdtsWpPxv12NZxhA
 /*
- * $Id: MushGameRuby.h,v 1.7 2006/07/12 11:22:43 southa Exp $
+ * $Id: MushGameRuby.h,v 1.8 2006/07/26 16:37:24 southa Exp $
  * $Log: MushGameRuby.h,v $
+ * Revision 1.8  2006/07/26 16:37:24  southa
+ * Options menu
+ *
  * Revision 1.7  2006/07/12 11:22:43  southa
  * Advanced control menu
  *
@@ -69,6 +72,7 @@ public:
     static Mushware::tRubyValue NumJoysticks(Mushware::tRubyValue inSelf);
     static Mushware::tRubyValue ControlsToDefaultSet(Mushware::tRubyValue inSelf);
     static Mushware::tRubyValue DisplayModeString(Mushware::tRubyValue inSelf);
+    static Mushware::tRubyValue PreviousDisplayMode(Mushware::tRubyValue inSelf);
     static Mushware::tRubyValue NextDisplayMode(Mushware::tRubyValue inSelf);
     static Mushware::tRubyValue DisplayReset(Mushware::tRubyValue inSelf);
     static Mushware::tRubyValue AudioVolume(Mushware::tRubyValue inSelf);

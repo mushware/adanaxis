@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } bC49LKe3G5tsyGqAVa5gyw
 /*
- * $Id: MushGameAppHandler.cpp,v 1.13 2006/07/12 11:22:41 southa Exp $
+ * $Id: MushGameAppHandler.cpp,v 1.14 2006/07/26 16:37:22 southa Exp $
  * $Log: MushGameAppHandler.cpp,v $
+ * Revision 1.14  2006/07/26 16:37:22  southa
+ * Options menu
+ *
  * Revision 1.13  2006/07/12 11:22:41  southa
  * Advanced control menu
  *
@@ -146,6 +149,15 @@ MushGameAppHandler::DisplayModeNum(void) const
         retVal = m_currentRef.Get()->DisplayModeNum();
     }
     return retVal;
+}
+
+void
+MushGameAppHandler::PreviousDisplayMode(void)
+{
+    if (m_currentRef.Exists())
+    {
+        m_currentRef.Get()->PreviousDisplayMode();
+    }
 }
 
 void

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } rqKVCOMdajoYPgaQgbClmg
 /*
- * $Id: MushGameAppHandler.h,v 1.11 2006/07/12 11:22:41 southa Exp $
+ * $Id: MushGameAppHandler.h,v 1.12 2006/07/26 16:37:23 southa Exp $
  * $Log: MushGameAppHandler.h,v $
+ * Revision 1.12  2006/07/26 16:37:23  southa
+ * Options menu
+ *
  * Revision 1.11  2006/07/12 11:22:41  southa
  * Advanced control menu
  *
@@ -93,6 +96,7 @@ public:
     virtual void AxisPurge(Mushware::U32 inDeviceNum, Mushware::U32 inAxisNum);
     virtual void KeyPurge(Mushware::U32 inKeyNum);
     virtual Mushware::U32 DisplayModeNum(void) const;
+    virtual void PreviousDisplayMode(void);
     virtual void NextDisplayMode(void);
     virtual void DisplayReset(void);
     

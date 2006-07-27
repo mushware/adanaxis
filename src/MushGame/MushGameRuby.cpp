@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } yY7ZZkvIHHOoUzJzTAQPOQ
 /*
- * $Id: MushGameRuby.cpp,v 1.7 2006/07/12 11:22:43 southa Exp $
+ * $Id: MushGameRuby.cpp,v 1.8 2006/07/26 16:37:23 southa Exp $
  * $Log: MushGameRuby.cpp,v $
+ * Revision 1.8  2006/07/26 16:37:23  southa
+ * Options menu
+ *
  * Revision 1.7  2006/07/12 11:22:43  southa
  * Advanced control menu
  *
@@ -354,18 +357,33 @@ MushGameRuby::DisplayModeString(Mushware::tRubyValue inSelf)
 }  
 
 Mushware::tRubyValue
-MushGameRuby::NextDisplayMode(Mushware::tRubyValue inSelf)
+MushGameRuby::PreviousDisplayMode(Mushware::tRubyValue inSelf)
 {
     try
     {
-        MushGameUtil::AppHandler().NextDisplayMode();
+        MushGameUtil::AppHandler().PreviousDisplayMode();
     }
     catch (std::exception& e)
     {
         MushRubyUtil::Raise(e.what());       
     }
-    
+
     return Mushware::kRubyQnil;
+}
+
+Mushware::tRubyValue
+MushGameRuby::NextDisplayMode(Mushware::tRubyValue inSelf)
+{
+    try
+{
+    MushGameUtil::AppHandler().NextDisplayMode();
+}
+catch (std::exception& e)
+{
+    MushRubyUtil::Raise(e.what());       
+}
+
+return Mushware::kRubyQnil;
 }
 
 Mushware::tRubyValue
@@ -446,6 +464,7 @@ MushGameRuby::MethodsInstall(void)
     MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cNumJoysticks", NumJoysticks);
     MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cControlsToDefaultSet", ControlsToDefaultSet);
     MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cDisplayModeString", DisplayModeString);
+    MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cPreviousDisplayMode", PreviousDisplayMode);
     MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cNextDisplayMode", NextDisplayMode);
     MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cDisplayReset", DisplayReset);
     MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cAudioVolume", AudioVolume);

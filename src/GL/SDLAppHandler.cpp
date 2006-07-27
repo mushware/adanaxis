@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } X577BrzUUfCyG/exJzzEYQ
 /*
- * $Id: SDLAppHandler.cpp,v 1.59 2006/07/21 10:52:06 southa Exp $
+ * $Id: SDLAppHandler.cpp,v 1.60 2006/07/24 18:46:48 southa Exp $
  * $Log: SDLAppHandler.cpp,v $
+ * Revision 1.60  2006/07/24 18:46:48  southa
+ * Depth sorting
+ *
  * Revision 1.59  2006/07/21 10:52:06  southa
  * win32 build fixes
  *
@@ -202,7 +205,6 @@
 #include "SDLAppHandler.h"
 
 #include "GLAppSignal.h"
-#include "GLModeDef.h"
 #include "GLStandard.h"
 #include "GLState.h"
 #include "GLUtils.h"
@@ -410,6 +412,17 @@ SDLAppHandler::EnterScreen(const GLModeDef& inDef)
     {
         m_keyState[i] = false;
     }
+    
+    if (inDef.FullScreenGet())
+    {
+        SDL_WM_GrabInput(SDL_GRAB_ON);
+    }
+    else
+    {
+        // Don't grab input so that user can still work
+        SDL_WM_GrabInput(SDL_GRAB_OFF);
+    }
+    
     m_modeDef=inDef;
     PlatformVideoUtils::AppActivate();
 }
@@ -559,10 +572,13 @@ SDLAppHandler::PollForControlEvents(void)
                 m_mouseY=event.motion.y;
                 S32 mouseDeltaX = event.motion.xrel;
                 S32 mouseDeltaY = event.motion.yrel;
-                PlatformInputUtils::MouseDeltaOverrideGet(mouseDeltaX, mouseDeltaY);
+                
+                if (!CurrentModeDefGet().FullScreenGet())
+                {
+                    PlatformInputUtils::MouseDeltaOverrideGet(mouseDeltaX, mouseDeltaY);
+                }
                 m_unboundedMouseX += mouseDeltaX;
                 m_unboundedMouseY += mouseDeltaY;
-
             }
             break;
 

@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } nTy3CMXyGBhzHaXXoJENIg
 /*
- * $Id: AdanaxisLogic.h,v 1.10 2006/07/19 14:34:50 southa Exp $
+ * $Id: AdanaxisLogic.h,v 1.11 2006/07/20 12:22:21 southa Exp $
  * $Log: AdanaxisLogic.h,v $
+ * Revision 1.11  2006/07/20 12:22:21  southa
+ * Precache display
+ *
  * Revision 1.10  2006/07/19 14:34:50  southa
  * Flare effects
  *
@@ -83,6 +86,8 @@ public:
     virtual void PreCacheSequence(void);
     virtual void RenderSequence(void);
     virtual void ProjectilesFullCollide(void);
+    virtual void MenuModeEnter(void);
+    
     
     virtual void CollisionFatalConsume(MushGameLogic& ioLogic, const MushGameMessageCollisionFatal& inMessage);
     virtual void CollisionMessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage);

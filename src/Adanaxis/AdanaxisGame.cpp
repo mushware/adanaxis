@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } DEX6Sh9oUk/bih2GXm2coA
 /*
- * $Id: AdanaxisGame.cpp,v 1.44 2006/07/20 12:22:20 southa Exp $
+ * $Id: AdanaxisGame.cpp,v 1.45 2006/07/26 16:37:20 southa Exp $
  * $Log: AdanaxisGame.cpp,v $
+ * Revision 1.45  2006/07/26 16:37:20  southa
+ * Options menu
+ *
  * Revision 1.44  2006/07/20 12:22:20  southa
  * Precache display
  *
@@ -204,6 +207,14 @@ AdanaxisGame::Process(MushGameAppHandler& inAppHandler)
     
     Logic().PerFrameProcessing();
     Logic().MainSequence();
+    
+    // Start the clock once we're going
+    if (Logic().IsGameMode() && !Logic().IsPreCacheMode() && !SaveData().ClockStarted())
+    {
+        // TimingSequence will have run at least once, so GameMsec is valid
+        Logic().StartTimeSet(Logic().GameMsec());
+        SaveData().ClockStartedSet(true);
+    }
         
     GLUtils::PostRedisplay();
 }
@@ -212,6 +223,12 @@ Mushware::U32
 AdanaxisGame::DisplayModeNum(void) const
 {
     return m_config.DisplayMode();
+}
+
+void
+AdanaxisGame::PreviousDisplayMode(void)
+{
+    m_config.DisplayModeSet(PlatformVideoUtils::Sgl().PreviousModeDef(m_config.DisplayMode()));
 }
 
 void
@@ -271,9 +288,7 @@ AdanaxisGame::Init(MushGameAppHandler& inAppHandler)
 	MushRubyExec::Sgl().Call(VolatileData().RubySpace(), "mInitialPiecesCreate");
 	
 	AdanaxisUtil::MissingSkinsCreate(Logic());
-    
-    // MushcoreLog::Sgl().XMLInfoLog() << MushcoreData<MushMesh4Mesh>::Sgl().Get("attendant");
-    
+
     MushcoreInterpreter::Sgl().Execute("loadsoundstream('adanaxis-music1')");
     if (m_config.MusicVolume() > 0)
     {
@@ -281,9 +296,9 @@ AdanaxisGame::Init(MushGameAppHandler& inAppHandler)
         MediaAudio::Sgl().MusicFadeIn(300);
     }
     
-    Logic().StartTimeSet(Logic().GameMsec());
     Logic().MenuModeEnter();
     m_inited = true;
+    SaveData().ClockStartedSet(false);
 }
 
 void
@@ -330,6 +345,17 @@ AdanaxisGame::UpdateToConfig(void)
 }
 
 void
+AdanaxisGame::ConfigSave(void)
+{
+    const MushcoreScalar *pScalar;    
+    if (MushcoreEnv::Sgl().VariableGetIfExists(pScalar, "CONFIG_FILENAME"))
+    {
+        UpdateToConfig();
+        m_config.AutoFileSave(pScalar->StringGet());
+    }
+}    
+
+void
 AdanaxisGame::SwapIn(MushGameAppHandler& inAppHandler)
 {
     MushGameBase::SwapIn(inAppHandler);
@@ -344,19 +370,30 @@ AdanaxisGame::SwapIn(MushGameAppHandler& inAppHandler)
     
     try
     {
-        inAppHandler.EnterScreen(PlatformVideoUtils::Sgl().ModeDefGet(m_config.DisplayMode()));
-        MushGLV::Sgl().Acquaint();
-        if (MushcoreEnv::Sgl().VariableExists("MUSHGL_DUMP_MUSHGLV"))
+        const GLModeDef& modeDefRef = PlatformVideoUtils::Sgl().ModeDefGet(m_config.DisplayMode());
+        
+        if (modeDefRef != inAppHandler.CurrentModeDefGet())
         {
-            std::cout << MushGLV::Sgl() << endl;
+            inAppHandler.EnterScreen(modeDefRef);
+            MushGLV::Sgl().Acquaint();
+            if (MushcoreEnv::Sgl().VariableExists("MUSHGL_DUMP_MUSHGLV"))
+            {
+                std::cout << MushGLV::Sgl() << endl;
+            }
+        }
+        else
+        {
+            MushGLUtil::Purge();
+            MushGLV::Sgl().Acquaint();
         }
     }
     catch (...)
     {
         m_config.DisplayModeSet(0);
+        ConfigSave();
         throw;
     }
-    
+
     GLUtils::CheckGLError();
     
     Logic().RecordTimeSet(m_config.RecordTime());
@@ -380,12 +417,7 @@ AdanaxisGame::SwapOut(MushGameAppHandler& inAppHandler)
         }
     }
 
-    const MushcoreScalar *pScalar;    
-    if (MushcoreEnv::Sgl().VariableGetIfExists(pScalar, "CONFIG_FILENAME"))
-    {
-        UpdateToConfig();
-        m_config.AutoFileSave(pScalar->StringGet());
-    }
+    ConfigSave();
 }
 
 //%outOfLineFunctions {

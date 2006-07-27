@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } kEA/hGTYr5TaTuBUG+UAGA
 /*
- * $Id: AdanaxisLogic.cpp,v 1.13 2006/07/19 14:34:50 southa Exp $
+ * $Id: AdanaxisLogic.cpp,v 1.14 2006/07/20 12:22:20 southa Exp $
  * $Log: AdanaxisLogic.cpp,v $
+ * Revision 1.14  2006/07/20 12:22:20  southa
+ * Precache display
+ *
  * Revision 1.13  2006/07/19 14:34:50  southa
  * Flare effects
  *
@@ -329,6 +332,21 @@ AdanaxisLogic::CollisionMessageConsume(MushGameLogic& ioLogic, const MushGameMes
     {
         MushGameLogic::CollisionMessageConsume(ioLogic, inMessage);
     }
+}
+
+void
+AdanaxisLogic::MenuModeEnter(void)
+{
+    if (VolatileData().RubyGame() != Mushware::kRubyQnil)
+    {
+        bool allowResume = SaveData().ClockStarted();
+        
+        MushRubyExec::Sgl().Call(VolatileData().RubyGame(),
+                                 MushRubyIntern::mReset(),
+                                 MushRubyValue(allowResume));
+    }
+    
+    MushGameLogic::MenuModeEnter();
 }
 
 //%outOfLineFunctions {

@@ -44,3 +44,9 @@ GLModeDef::Default(void)
 {
     return GLModeDef("Default 640x480",640,480,32,0,GLModeDef::kScreenWindow,GLModeDef::kCursorShow,GLModeDef::kSyncSoft);
 }
+
+bool
+GLModeDef::IsEqual(const GLModeDef& inModeDef) const
+{
+    return m_name == inModeDef.m_name;
+}

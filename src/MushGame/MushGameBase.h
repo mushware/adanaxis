@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } auDv5KzHAtGChacJ2aS7ug
 /*
- * $Id: MushGameBase.h,v 1.4 2006/07/12 11:22:42 southa Exp $
+ * $Id: MushGameBase.h,v 1.5 2006/07/26 16:37:23 southa Exp $
  * $Log: MushGameBase.h,v $
+ * Revision 1.5  2006/07/26 16:37:23  southa
+ * Options menu
+ *
  * Revision 1.4  2006/07/12 11:22:42  southa
  * Advanced control menu
  *
@@ -66,6 +69,7 @@ public:
     virtual MushGameLogic& LogicWRef(void) const { return m_logicRef.WRef(); }
     
     virtual Mushware::U32 DisplayModeNum(void) const { return 1; }
+    virtual void PreviousDisplayMode(void) {}
     virtual void NextDisplayMode(void) {}
     virtual const MushGameConfigBase& Config(void) const { throw MushcoreRequestFail("No config available"); }
     virtual MushGameConfigBase& ConfigWRef(void) { throw MushcoreRequestFail("No config available"); }

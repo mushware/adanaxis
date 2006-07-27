@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } Hr8bvS7fc+x0pR9DrFcIZw
 /*
- * $Id: AdanaxisRender.cpp,v 1.39 2006/07/25 20:31:02 southa Exp $
+ * $Id: AdanaxisRender.cpp,v 1.40 2006/07/26 16:37:21 southa Exp $
  * $Log: AdanaxisRender.cpp,v $
+ * Revision 1.40  2006/07/26 16:37:21  southa
+ * Options menu
+ *
  * Revision 1.39  2006/07/25 20:31:02  southa
  * Scanner work
  *
@@ -320,7 +323,7 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
         renderMesh.ColourZMiddleSet(t4Val(1.0,1.0,1.0,1.0));
         renderMesh.ColourZLeftSet(t4Val(1.0,0.3,0.3,0.0));
         renderMesh.ColourZRightSet(t4Val(0.3,1.0,0.3,0.0));
-        
+
         if (!m_scannerOn)
         {
             typedef AdanaxisVolatileData::tDecoList tDecoList;
@@ -401,15 +404,13 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
         MushGLUtil::OrthoEpilogue();
         MushGLUtil::IdentityEpilogue();
     }
-    
+
     MushGLUtil::DisplayEpilogue();
     
     if (m_renderPrelude > 0)
     {
         --m_renderPrelude;   
     }
-    
-
 }
 
 void AdanaxisRender::ScanRender(AdanaxisLogic& ioLogic, MushRenderMesh *inpRenderMesh, const MushGameCamera& inCamera)
@@ -464,27 +465,30 @@ AdanaxisRender::Overplot(MushGameLogic& ioLogic, const MushGameCamera& inCamera)
             glStr.Render();
         }
         
+        if (logicRef.SaveData().ClockStarted())
         {
-            orthoGL.MoveToEdge(-1,1);
-            orthoGL.MoveRelative(0.01, -0.04);
-            ostringstream message;
-            message << logicRef.KhaziCount() << " left";
-            GLString glStr(message.str(), GLFontRef("font-mono1", 0.02), -1);
-            glStr.Render();
-        }
-        {
-            orthoGL.MoveToEdge(1,1);
-            orthoGL.MoveRelative(-0.01, -0.04);
-            ostringstream message;
-            message << GameTimer::MsecToLongString(logicRef.EndTime() - logicRef.StartTime());
-            GLString glStr(message.str(), GLFontRef("font-mono1", 0.02), 1);
-            glStr.Render();
-        }
-        {
-            orthoGL.MoveToEdge(0,-1);
-            orthoGL.MoveRelative(0, 0.04);
-            GLString glStr(AdanaxisUtil::AppHandler().AxisNames(), GLFontRef("font-mono1", 0.02), 0);
-            glStr.Render();
+            {
+                orthoGL.MoveToEdge(-1,1);
+                orthoGL.MoveRelative(0.01, -0.04);
+                ostringstream message;
+                message << logicRef.KhaziCount() << " left";
+                GLString glStr(message.str(), GLFontRef("font-mono1", 0.02), -1);
+                glStr.Render();
+            }
+            {
+                orthoGL.MoveToEdge(1,1);
+                orthoGL.MoveRelative(-0.01, -0.04);
+                ostringstream message;
+                message << GameTimer::MsecToLongString(logicRef.EndTime() - logicRef.StartTime());
+                GLString glStr(message.str(), GLFontRef("font-mono1", 0.02), 1);
+                glStr.Render();
+            }
+            {
+                orthoGL.MoveToEdge(0,-1);
+                orthoGL.MoveRelative(0, 0.04);
+                GLString glStr(AdanaxisUtil::AppHandler().AxisNames(), GLFontRef("font-mono1", 0.02), 0);
+                glStr.Render();
+            }
         }
         
         if (logicRef.KhaziCount() == 0)
