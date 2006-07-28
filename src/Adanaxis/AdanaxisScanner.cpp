@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } G8Z0FhC/G4lBOZEeeMzYgA
 /*
- * $Id: AdanaxisScanner.cpp,v 1.2 2006/07/25 15:03:08 southa Exp $
+ * $Id: AdanaxisScanner.cpp,v 1.3 2006/07/25 20:31:03 southa Exp $
  * $Log: AdanaxisScanner.cpp,v $
+ * Revision 1.3  2006/07/25 20:31:03  southa
+ * Scanner work
+ *
  * Revision 1.2  2006/07/25 15:03:08  southa
  * Scanner work
  *
@@ -34,7 +37,9 @@ using namespace std;
 
 AdanaxisScanner::AdanaxisScanner() :
     m_symbolSize(4,4),
-    m_symbolFontRef("symbol1-font")
+    m_symbolFontRef("symbol1-font"),
+    m_sightAngle(0),
+    m_targetState(kTargetStateIdle)
 {
     
 }
@@ -231,6 +236,7 @@ AdanaxisScanner::ScanCrosshairRender(AdanaxisLogic& ioLogic, MushRenderMesh *inp
             
         default:
             symbol = kSymbolCrosshairSpecial;
+            m_sightAngle = 0;
             break;
     }
     

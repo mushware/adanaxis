@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } NYmv5MZn7NEYPYHpc3JV8Q
 /*
- * $Id: MushGLV.cpp,v 1.16 2006/06/30 15:05:34 southa Exp $
+ * $Id: MushGLV.cpp,v 1.17 2006/07/28 16:52:22 southa Exp $
  * $Log: MushGLV.cpp,v $
+ * Revision 1.17  2006/07/28 16:52:22  southa
+ * Options work
+ *
  * Revision 1.16  2006/06/30 15:05:34  southa
  * Texture and buffer purge
  *
@@ -237,10 +240,6 @@ MushGLV::DrawArraysVerify(GLenum inMode, GLint inFirst, GLsizei inCount) const
 			pVertexBuffer->Bind();
 			BufferValidate(sizeof(MushGLBuffers::tVertex) * requiredSize);
 		}
-		else
-		{
-			throw MushcoreRequestFail("Debug check not supported");	
-		}
 	}
 
 	if (MushGLState::Sgl().ColourArray())
@@ -257,10 +256,6 @@ MushGLV::DrawArraysVerify(GLenum inMode, GLint inFirst, GLsizei inCount) const
 
 			pColourBuffer->Bind();
 			BufferValidate(sizeof(MushGLBuffers::tColour) * requiredSize);
-		}
-		else
-		{
-			throw MushcoreRequestFail("Debug check not supported");	
 		}
 	}
 
@@ -279,10 +274,6 @@ MushGLV::DrawArraysVerify(GLenum inMode, GLint inFirst, GLsizei inCount) const
 				MUSHCOREASSERT(requiredSize <= pTexCoordBuffer->Size());
 				pTexCoordBuffer->Bind();
 				BufferValidate(sizeof(MushGLBuffers::tTexCoord) * requiredSize);
-			}
-			else
-			{
-				throw MushcoreRequestFail("Debug check not supported");	
 			}
 		}
 	}

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } IqSxvqRd3OSDd+9vhv6sYw
 /*
- * $Id: MushGLVertexBuffer.h,v 1.11 2006/06/01 15:39:19 southa Exp $
+ * $Id: MushGLVertexBuffer.h,v 1.12 2006/06/30 15:05:34 southa Exp $
  * $Log: MushGLVertexBuffer.h,v $
+ * Revision 1.12  2006/06/30 15:05:34  southa
+ * Texture and buffer purge
+ *
  * Revision 1.11  2006/06/01 15:39:19  southa
  * DrawArray verification and fixes
  *
@@ -92,6 +95,8 @@ public:
     GLuint GLName() const { return m_handle; }
     
 private:  
+    MushGLVertexBuffer(const MushGLVertexBuffer& inBuffer); // Prohibit copying
+    MushGLVertexBuffer& operator=(const MushGLVertexBuffer& inBuffer); // Prohibit assignement
     void Validate(void);
     void Allocate(const Mushware::tSize inSize);
     void Deallocate();
@@ -200,9 +205,11 @@ MushGLVertexBuffer<T>::Deallocate()
         }
         delete[] m_pData;
     }
+    
     m_pData = NULL;
     m_allocated = false;
     m_mapped = false;
+    
 }    
 
 template <class T>
@@ -282,6 +289,10 @@ MushGLVertexBuffer<T>::MapReadWrite(void)
         }
         m_pData = pData;
     }
+    else
+    {
+        Validate();
+    }
     m_mapped = true;
 }
 
@@ -319,6 +330,7 @@ MushGLVertexBuffer<T>::Ref(const Mushware::tSize inIndex)
     }
     
     MushcoreUtil::BoundsCheck(inIndex, m_size);
+    MUSHCOREASSERT(m_pData != NULL);
     return m_pData[inIndex];
 }
 
@@ -331,6 +343,7 @@ MushGLVertexBuffer<T>::Set(const tVec& inValue, const Mushware::tSize inIndex)
         throw MushcoreLogicFail("MushGLVertexBuffer: Set on unmapped buffer");
     }
     MushcoreUtil::BoundsCheck(inIndex, m_size);
+    MUSHCOREASSERT(m_pData != NULL);
     m_pData[inIndex] = inValue;
 }
 
@@ -342,6 +355,7 @@ MushGLVertexBuffer<T>::AddrForGLGet(const Mushware::tSize inIndex)
     {
         throw MushcoreLogicFail("MushGLVertexBuffer: AddrForGLGet on mapped buffer");
     }
+    MUSHCOREASSERT(m_allocated);
     MushcoreUtil::BoundsCheck(inIndex, m_size);
     if (m_isVertexBuffer)
     {
@@ -353,6 +367,7 @@ MushGLVertexBuffer<T>::AddrForGLGet(const Mushware::tSize inIndex)
     }
     else
     {
+        MUSHCOREASSERT(m_pData != NULL);
         return &m_pData[inIndex];
     }
 }

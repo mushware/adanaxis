@@ -3329,7 +3329,7 @@
 		7A6CE21C05A5935800777D9B /* MushPieSTL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushPieSTL.cpp; sourceTree = "<group>"; };
 		7A70CD10085DE6A90055C6FB /* MushGLControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushGLControl.h; sourceTree = "<group>"; };
 		7A70CD11085DE6A90055C6FB /* MushGLControl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushGLControl.cpp; sourceTree = "<group>"; };
-		7A70CE7E085DEE2D0055C6FB /* Adanaxis Control Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Adanaxis Control Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7A70CE7E085DEE2D0055C6FB /* Adanaxis Rendering Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Adanaxis Rendering Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A70CEB1085DF1C40055C6FB /* AdanaxisAppHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = AdanaxisAppHandler.cpp; sourceTree = "<group>"; };
 		7A70CEB2085DF1C40055C6FB /* AdanaxisAppHandler.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = AdanaxisAppHandler.h; sourceTree = "<group>"; };
 		7A70CEB3085DF1C50055C6FB /* AdanaxisCommandHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = AdanaxisCommandHandler.cpp; sourceTree = "<group>"; };
@@ -4063,7 +4063,7 @@
 				7A657EE905A9CD1C00E727F8 /* MushPie.framework */,
 				7AB650D705F9E0A0003E2845 /* Mustl.framework */,
 				7AAE6CD807AFC4250085C60F /* Tesseract Trainer.app */,
-				7A70CE7E085DEE2D0055C6FB /* Adanaxis Control Demo.app */,
+				7A70CE7E085DEE2D0055C6FB /* Adanaxis Rendering Demo.app */,
 				7AD1AB4D09EC598E0059879A /* MushRuby.framework */,
 			);
 			name = Products;
@@ -7499,7 +7499,7 @@
 			);
 			name = Adanaxis;
 			productName = All;
-			productReference = 7A70CE7E085DEE2D0055C6FB /* Adanaxis Control Demo.app */;
+			productReference = 7A70CE7E085DEE2D0055C6FB /* Adanaxis Rendering Demo.app */;
 			productType = "com.apple.product-type.application";
 		};
 		7A7194EC05A998B900C42A20 /* Mushcore */ = {
@@ -9306,6 +9306,8 @@
 					0x2a000000,
 				);
 				PRODUCT_NAME = Mushcore;
+				STRIP_INSTALLED_PRODUCT = YES;
+				STRIP_STYLE = "non-global";
 			};
 			name = Deployment;
 		};
@@ -9341,6 +9343,8 @@
 					0x2b000000,
 				);
 				PRODUCT_NAME = MushMesh;
+				STRIP_INSTALLED_PRODUCT = YES;
+				STRIP_STYLE = "non-global";
 				USER_HEADER_SEARCH_PATHS = $MUSH_FRAMEWORK_HEADERS;
 			};
 			name = Deployment;
@@ -9354,7 +9358,7 @@
 				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = "/Users/southa/core-app/macosx/project/Adanaxis-Info.plist";
 				INSTALL_PATH = "$(MUSH_APP_INSTALL_PATH)";
-				PRODUCT_NAME = "Adanaxis Control Demo";
+				PRODUCT_NAME = "Adanaxis Rendering Demo";
 				USER_HEADER_SEARCH_PATHS = $MUSH_APP_HEADERS;
 			};
 			name = Development;
@@ -9368,7 +9372,8 @@
 				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = "/Users/southa/core-app/macosx/project/Adanaxis-Info.plist";
 				INSTALL_PATH = "$(MUSH_APP_INSTALL_PATH)";
-				PRODUCT_NAME = "Adanaxis Control Demo";
+				PRODUCT_NAME = "Adanaxis Rendering Demo";
+				STRIP_INSTALLED_PRODUCT = YES;
 				USER_HEADER_SEARCH_PATHS = $MUSH_APP_HEADERS;
 			};
 			name = Deployment;
@@ -9403,6 +9408,8 @@
 					0x2b800000,
 				);
 				PRODUCT_NAME = MushPie;
+				STRIP_INSTALLED_PRODUCT = YES;
+				STRIP_STYLE = "non-global";
 				USER_HEADER_SEARCH_PATHS = $MUSH_FRAMEWORK_HEADERS;
 			};
 			name = Deployment;
@@ -9437,6 +9444,8 @@
 					0x2c000000,
 				);
 				PRODUCT_NAME = Mustl;
+				STRIP_INSTALLED_PRODUCT = YES;
+				STRIP_STYLE = "non-global";
 				USER_HEADER_SEARCH_PATHS = $MUSH_FRAMEWORK_HEADERS;
 			};
 			name = Deployment;
@@ -9710,6 +9719,8 @@
 					0x2d000000,
 				);
 				PRODUCT_NAME = MushRuby;
+				STRIP_INSTALLED_PRODUCT = YES;
+				STRIP_STYLE = "non-global";
 				USER_HEADER_SEARCH_PATHS = $MUSH_FRAMEWORK_HEADERS;
 			};
 			name = Deployment;

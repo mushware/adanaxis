@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } A/GPso4jrQBD0hPDpi3qXg
 /*
- * $Id: MushRenderMeshSolid.cpp,v 1.10 2006/07/17 14:43:42 southa Exp $
+ * $Id: MushRenderMeshSolid.cpp,v 1.11 2006/07/24 18:46:50 southa Exp $
  * $Log: MushRenderMeshSolid.cpp,v $
+ * Revision 1.11  2006/07/24 18:46:50  southa
+ * Depth sorting
+ *
  * Revision 1.10  2006/07/17 14:43:42  southa
  * Billboarded deco objects
  *
@@ -285,6 +288,7 @@ MushRenderMeshSolid::OutputBufferGenerate(const MushRenderSpec& inSpec, const Mu
     {
         pglDestTexCoordBuffers = &glDestBuffersRef;
     }
+    
     MushGLBuffers& glDestTexCoordBuffersRef = *pglDestTexCoordBuffers; // GL Buffer set for output
 
     MushGLClaimer<MushGLBuffers> claimer(glDestBuffersRef); // Claim the buffers
@@ -384,6 +388,7 @@ MushRenderMeshSolid::OutputBufferGenerate(const MushRenderSpec& inSpec, const Mu
             {
                 destTexCoord.ClearAndResize(texCoordTriangleListSize);
             }
+            
             destTexCoord.MapReadWrite();
             for (U32 i=0; i<texCoordTriangleListSize; ++i)
             {

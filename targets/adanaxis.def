@@ -1,6 +1,9 @@
 # Target definition file
-# $Id: adanaxis.def,v 1.8 2006/07/21 11:53:41 southa Exp $
+# $Id: adanaxis.def,v 1.9 2006/07/28 16:52:26 southa Exp $
 # $Log: adanaxis.def,v $
+# Revision 1.9  2006/07/28 16:52:26  southa
+# Options work
+#
 # Revision 1.8  2006/07/21 11:53:41  southa
 # X11 fixes
 #
@@ -31,7 +34,7 @@ Name: 'Adanaxis Rendering Demo'
 
 Use: targets/app.acinclude.m4 as acinclude.m4
 
-Subst: MUSH_APP_PACKAGE 'adanaxiscontroldemo'
+Subst: MUSH_APP_PACKAGE 'adanaxisrenderingdemo'
 Subst: MUSH_APP_NAME 'Adanaxis Rendering Demo'
 Subst: MUSH_APP_MAJOR_VERSION '0'
 Subst: MUSH_APP_MINOR_VERSION '1'
@@ -54,14 +57,14 @@ Use: targets/adanaxis.ChangeLog as NEWS
 Use: targets/win32.installer.nsi as win32/installer.nsi
 Subst: MUSH_APP_RELEASE '1mdk'
 Subst: MUSH_BUILD_REQUIRES 'BuildRequires: gcc-c++,XFree86-devel,libMesaGLU1-devel,libMesaglut3-devel,libpcre0-devel,libexpat0-devel,libungif4-devel,libtiff3-devel,libSDL1.2-devel,libalsa1-devel,libsmpeg0.4-devel,libogg0-devel,libvorbis0-devel,libSDL_mixer1.2-devel'
-Use: targets/sdl_app.spec.mdk as adanaxiscontroldemo.spec.mdk
+Use: targets/sdl_app.spec.mdk as adanaxisrenderingdemo.spec.mdk
 Subst: MUSH_APP_RELEASE '1'
 Subst: MUSH_BUILD_REQUIRES ''
-Use: targets/sdl_app.spec as adanaxiscontroldemo.spec.generic
+Use: targets/sdl_app.spec as adanaxisrenderingdemo.spec.generic
 
 Create: src/Makefile.am
 
-Program: adanaxiscontroldemobinary
+Program: adanaxisrenderingdemobinary
 Modules: API Game GL Main/SDLApp Media Mushcore MushGame MushGL MushCollision MushMesh MushMeshLibrary MushMeshRuby MushPie MushRender MushRuby MushSkin Platform Support Adanaxis
 
 ExtraDist:
@@ -70,9 +73,9 @@ Modules: Platform/MacOSX Platform/win32 +.*\.c$ Platform/X11 +.*\.y$ +.*\.mkf$ +
 Append: Makefile.am
 
 ExtraDist:
-Modules: prebuild.sh adanaxiscontroldemo\.spec\.* macosx/project/.*\.plist README\.* .*\.pl .*\.pm macosx/project/project.xcodeproj/.*pbx(proj|user) macosx/MakeRelease.sh macosx/Start_in_Recovery_Mode.(app|scpt) macosx/adanaxis_app.icns win32/adanaxiscontroldemo.*\.ico win32/MakeInstaller.sh win32/installer.nsi win32/FileListToNSI.rb VisualC/project/adanaxiscontroldemo.*\.(sln|aps|rc|vcproj|ico) x11/icons/adanaxiscontroldemo\..*\.png$
+Modules: prebuild.sh adanaxisrenderingdemo\.spec\.* macosx/project/.*\.plist README\.* .*\.pl .*\.pm macosx/project/project.xcodeproj/.*pbx(proj|user) macosx/MakeRelease.sh macosx/Start_in_Recovery_Mode.(app|scpt) macosx/adanaxis_app.icns win32/adanaxisrenderingdemo.*\.ico win32/MakeInstaller.sh win32/installer.nsi win32/FileListToNSI.rb VisualC/project/adanaxisrenderingdemo.*\.(sln|aps|rc|vcproj|ico) x11/icons/adanaxisrenderingdemo\..*\.png$
 Manual:
-Modules: x11/man/adanaxiscontroldemo.*
+Modules: x11/man/adanaxisrenderingdemo.*
 
 Create: data-adanaxis/Makefile.am
 PkgData:
