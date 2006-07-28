@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } tuTK6NcDPsNibg7CubVnHw
 /*
- * $Id: MushSkinLineGenerator.h,v 1.6 2006/07/17 14:43:42 southa Exp $
+ * $Id: MushSkinLineGenerator.h,v 1.7 2006/07/18 16:58:39 southa Exp $
  * $Log: MushSkinLineGenerator.h,v $
+ * Revision 1.7  2006/07/18 16:58:39  southa
+ * Texture fixes
+ *
  * Revision 1.6  2006/07/17 14:43:42  southa
  * Billboarded deco objects
  *
@@ -355,13 +358,10 @@ MushSkinLineGenerator::TileShowLineGenerate(std::vector<Mushware::tVal>& outData
 inline Mushware::tVal
 MushSkinLineGenerator::RadialGenerate(const Mushware::t4Val& inPos)
 {		
-    Mushware::tVal angle = std::atan2(inPos.Y(), inPos.X());
     Mushware::tVal dist = std::sqrt(inPos.X()*inPos.X() + inPos.Y()*inPos.Y());
     Mushware::tVal clampedDist = dist;
     MushcoreUtil::Constrain<Mushware::tVal>(clampedDist, 0, 1);
     Mushware::tVal clampedInvDist = 1.0 - clampedDist;
-
-    // clampedInvDist *= MushcoreUtil::RandomVal(1, 1.01);
     
     Mushware::tVal retVal = clampedInvDist;
     MushcoreUtil::Constrain<Mushware::tVal>(retVal, 0, 1);

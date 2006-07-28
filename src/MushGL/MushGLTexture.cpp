@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } vh/xCnesmbXGxXqZK5YEaA
 /*
- * $Id: MushGLTexture.cpp,v 1.14 2006/06/30 15:05:33 southa Exp $
+ * $Id: MushGLTexture.cpp,v 1.15 2006/07/17 14:43:39 southa Exp $
  * $Log: MushGLTexture.cpp,v $
+ * Revision 1.15  2006/07/17 14:43:39  southa
+ * Billboarded deco objects
+ *
  * Revision 1.14  2006/06/30 15:05:33  southa
  * Texture and buffer purge
  *
@@ -233,7 +236,7 @@ MushGLTexture::PixelDataGLRGBAUse(void *pData)
 
 		GLenum internalFormat;
 		
-		if (m_compress && MushGLV::Sgl().HasS3TC())
+		if (m_compress && MushGLV::Sgl().UseS3TC())
 		{
 			internalFormat = GL_COMPRESSED_RGBA_S3TC_DXT5_EXT;
 		}

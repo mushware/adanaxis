@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } o9Dxm/e8GypZNPSRXLgJNQ
 /*
- * $Id: MushGameLogic.cpp,v 1.27 2006/07/20 12:22:21 southa Exp $
+ * $Id: MushGameLogic.cpp,v 1.28 2006/07/28 11:14:28 southa Exp $
  * $Log: MushGameLogic.cpp,v $
+ * Revision 1.28  2006/07/28 11:14:28  southa
+ * Records for multiple spaces
+ *
  * Revision 1.27  2006/07/20 12:22:21  southa
  * Precache display
  *
@@ -631,6 +634,7 @@ MushGameLogic::MainSequence(void)
 void
 MushGameLogic::MenuModeEnter(void)
 {
+    MushGameUtil::AppHandler().KeyRepeatSet(true);
     VolatileData().GameModeSet(MushGameVolatileData::kGameModeMenu);
     PreCacheModeEnter();
 }
@@ -638,6 +642,7 @@ MushGameLogic::MenuModeEnter(void)
 void
 MushGameLogic::GameModeEnter(void)
 {
+    MushGameUtil::AppHandler().KeyRepeatSet(false);
     VolatileData().GameModeSet(MushGameVolatileData::kGameModeGame);
     PreCacheModeEnter();
 }

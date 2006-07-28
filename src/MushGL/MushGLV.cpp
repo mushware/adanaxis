@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } NYmv5MZn7NEYPYHpc3JV8Q
 /*
- * $Id: MushGLV.cpp,v 1.15 2006/06/27 11:58:09 southa Exp $
+ * $Id: MushGLV.cpp,v 1.16 2006/06/30 15:05:34 southa Exp $
  * $Log: MushGLV.cpp,v $
+ * Revision 1.16  2006/06/30 15:05:34  southa
+ * Texture and buffer purge
+ *
  * Revision 1.15  2006/06/27 11:58:09  southa
  * Warning fixes
  *
@@ -96,6 +99,7 @@ MushGLV::MushGLV() :
     m_fpClientActiveTexture(NULL),
     m_numTextureUnits(0),
     m_hasS3TC(false),
+    m_useS3TC(false),
     m_contextNum(1),
     m_contextValid(false)
 {
@@ -307,8 +311,9 @@ MushGLV::AutoPrint(std::ostream& ioOut) const
     ioOut << "extensions=" << m_extensions << ", ";
     ioOut << "numTextureUnits=" << m_numTextureUnits << ", ";
     ioOut << "hasS3TC=" << m_hasS3TC << ", ";
+    ioOut << "useS3TC=" << m_useS3TC << ", ";
     ioOut << "contextNum=" << m_contextNum << ", ";
     ioOut << "contextValid=" << m_contextValid;
     ioOut << "]";
 }
-//%outOfLineFunctions } Y3RNvFGT1cWxEFFkOnxnaQ
+//%outOfLineFunctions } 9p3mRYmaZRDSfpmyCYnNUw

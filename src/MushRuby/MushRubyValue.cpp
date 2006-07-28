@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } hwIlNOCEH5GsgwGY+rP1Kg
 /*
- * $Id: MushRubyValue.cpp,v 1.13 2006/07/12 16:03:03 southa Exp $
+ * $Id: MushRubyValue.cpp,v 1.14 2006/07/28 11:14:29 southa Exp $
  * $Log: MushRubyValue.cpp,v $
+ * Revision 1.14  2006/07/28 11:14:29  southa
+ * Records for multiple spaces
+ *
  * Revision 1.13  2006/07/12 16:03:03  southa
  * Adanaxis work
  *
@@ -84,8 +87,7 @@ MushRubyValue::MushRubyValue(Mushware::U32 inValue) :
 
 MushRubyValue::MushRubyValue(Mushware::tVal inValue)
 {
-    m_value = rb_class_new_instance(0, 0, rb_cFloat);
-    RFLOAT(m_value)->value = inValue;
+    m_value = rb_float_new(inValue);
 }
 
 MushRubyValue::MushRubyValue(bool inValue)

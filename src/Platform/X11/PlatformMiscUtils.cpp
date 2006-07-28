@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } IvAhPSVPf1x+MLMRSmlIow
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.26 2006/06/01 15:39:58 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.27 2006/06/29 08:27:11 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.27  2006/06/29 08:27:11  southa
+ * X11 fixes
+ *
  * Revision 1.26  2006/06/01 15:39:58  southa
  * DrawArray verification and fixes
  *
@@ -237,6 +240,32 @@ string& inDirName)
         struct stat statInfo;
         lstat(entry->d_name, &statInfo);
         if(S_ISDIR(statInfo.st_mode))
+        {
+            string name=entry->d_name;
+            if (name != "." && name != ".." && name != "CVS")
+            {
+                outFilenames.push_back(name);
+            }
+        }
+    }
+    closedir(dirPtr);
+}
+
+void
+PlatformMiscUtils::ScanDirectory(vector<std::string>& outFilenames, const string& inDirName)
+{
+    // Returns files in the directory
+    DIR *dirPtr = opendir(inDirName.c_str());
+    if (dirPtr == NULL)
+    {
+        throw(MushcoreCommandFail("Cannot open directory '" + inDirName + "'"));
+    }
+    struct dirent *entry;
+    while (entry = readdir(dirPtr), entry != NULL)
+    {
+        struct stat statInfo;
+        lstat(entry->d_name, &statInfo);
+        if(S_ISREG(statInfo.st_mode))
         {
             string name=entry->d_name;
             if (name != "." && name != ".." && name != "CVS")

@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } lXOhNHrEv7a8Ndh1gy3P5A
 /*
- * $Id: AdanaxisVolatileData.h,v 1.8 2006/07/26 16:37:21 southa Exp $
+ * $Id: AdanaxisVolatileData.h,v 1.9 2006/07/28 11:14:28 southa Exp $
  * $Log: AdanaxisVolatileData.h,v $
+ * Revision 1.9  2006/07/28 11:14:28  southa
+ * Records for multiple spaces
+ *
  * Revision 1.8  2006/07/26 16:37:21  southa
  * Options menu
  *
@@ -73,6 +76,8 @@ private:
     tWorldList m_worldList; //:read :wref
     std::auto_ptr<MushRenderMesh> m_aRenderMesh; //:read :wref
 	MushRubyValue m_rubySpace; //:readwrite
+    Mushware::tVal m_brightness; //:readwrite
+    bool m_scannerOn; //:readwrite
     
 //%classPrototypes {
 public:
@@ -87,6 +92,10 @@ public:
     std::auto_ptr<MushRenderMesh>& ARenderMeshWRef(void) { return m_aRenderMesh; }
     const MushRubyValue& RubySpace(void) const { return m_rubySpace; }
     void RubySpaceSet(const MushRubyValue& inValue) { m_rubySpace=inValue; }
+    const Mushware::tVal& Brightness(void) const { return m_brightness; }
+    void BrightnessSet(const Mushware::tVal& inValue) { m_brightness=inValue; }
+    const bool& ScannerOn(void) const { return m_scannerOn; }
+    void ScannerOnSet(const bool& inValue) { m_scannerOn=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -94,7 +103,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } bkZy15GKHI8dG2ASOGOqxA
+//%classPrototypes } R56rnaV/PEXuBbYuqyTioA
 };
 //%inlineHeader {
 inline std::ostream&

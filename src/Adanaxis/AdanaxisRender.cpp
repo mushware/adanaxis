@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } Hr8bvS7fc+x0pR9DrFcIZw
 /*
- * $Id: AdanaxisRender.cpp,v 1.41 2006/07/27 13:51:34 southa Exp $
+ * $Id: AdanaxisRender.cpp,v 1.42 2006/07/28 11:14:27 southa Exp $
  * $Log: AdanaxisRender.cpp,v $
+ * Revision 1.42  2006/07/28 11:14:27  southa
+ * Records for multiple spaces
+ *
  * Revision 1.41  2006/07/27 13:51:34  southa
  * Menu and control fixes
  *
@@ -163,7 +166,6 @@ using namespace std;
 AdanaxisRender::AdanaxisRender() :
     m_halfAngle(M_PI/12),
     m_halfAngleAttractor(M_PI/12),
-    m_scannerOn(false),
     m_renderPrelude(0)
 {
 }
@@ -251,18 +253,20 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
     }
     
     tVal aspectRatio = MushGLUtil::ScreenAspectRatio();
-    
+    tVal brightness = std::pow(pVolData->Brightness(), 2) / 2;
+    tVal backdropAlpha = 1.2 * brightness;
+    tVal decoAlpha = 1.0 * brightness;
+    tVal meshAlpha = 0.4 * brightness;
+    MushcoreUtil::Constrain<tVal>(backdropAlpha, 0, 1);
+    MushcoreUtil::Constrain<tVal>(decoAlpha, 0, 1);
+    MushcoreUtil::Constrain<tVal>(meshAlpha, 0, 1);
+        
     m_projection.ViewHalfRadiansSet(m_halfAngle);
     m_projection.FromAspectNearFarMake(aspectRatio, 1.0, 10000.0);
 
     m_halfAngle = m_halfAngle * 0.90 + m_halfAngleAttractor * 0.1;
     
-    if (MushGLUtil::AppHandler().LatchedKeyStateTake(9))
-    {
-        m_scannerOn = !m_scannerOn;
-    }
-    
-    if (m_scannerOn)
+    if (pVolData->ScannerOn())
     {
         m_halfAngleAttractor = 0.4*M_PI;
     }
@@ -291,7 +295,7 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
         
         MushGameCamera camera(inCamera);
         
-        renderMesh.ColourZMiddleSet(t4Val(1.0,1.0,1.0,1.0));
+        renderMesh.ColourZMiddleSet(t4Val(1.0,1.0,1.0,backdropAlpha));
         renderMesh.ColourZLeftSet(t4Val(1.0,0.3,0.3,0.0));
         renderMesh.ColourZRightSet(t4Val(0.3,1.0,0.3,0.0));
 
@@ -306,7 +310,7 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
             }
         }
         
-        renderMesh.ColourZMiddleSet(t4Val(1.0,1.0,1.0,0.3));
+        renderMesh.ColourZMiddleSet(t4Val(1.0,1.0,1.0,meshAlpha));
         renderMesh.ColourZLeftSet(t4Val(1.0,0.3,0.3,0.0));
         renderMesh.ColourZRightSet(t4Val(0.3,1.0,0.3,0.0));
 
@@ -323,11 +327,11 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
             }
         }    
         
-        renderMesh.ColourZMiddleSet(t4Val(1.0,1.0,1.0,1.0));
+        renderMesh.ColourZMiddleSet(t4Val(1.0,1.0,1.0,decoAlpha));
         renderMesh.ColourZLeftSet(t4Val(1.0,0.3,0.3,0.0));
         renderMesh.ColourZRightSet(t4Val(0.3,1.0,0.3,0.0));
 
-        if (!m_scannerOn)
+        if (!pVolData->ScannerOn())
         {
             typedef AdanaxisVolatileData::tDecoList tDecoList;
             
@@ -343,7 +347,7 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
             }
         }
         
-        renderMesh.ColourZMiddleSet(t4Val(1.0,1.0,1.0,0.3));
+        renderMesh.ColourZMiddleSet(t4Val(1.0,1.0,1.0,meshAlpha));
         renderMesh.ColourZLeftSet(t4Val(1.0,0.3,0.3,0.0));
         renderMesh.ColourZRightSet(t4Val(0.3,1.0,0.3,0.0));
         
@@ -463,7 +467,7 @@ AdanaxisRender::Overplot(MushGameLogic& ioLogic, const MushGameCamera& inCamera)
     }
     else
     {
-        if (m_scannerOn)
+        if (logicRef.VolatileData().ScannerOn())
         {
             orthoGL.MoveToEdge(0,1);
             orthoGL.MoveRelative(0, -0.08);
@@ -564,7 +568,6 @@ AdanaxisRender::AutoPrint(std::ostream& ioOut) const
     ioOut << "projection=" << m_projection << ", ";
     ioOut << "halfAngle=" << m_halfAngle << ", ";
     ioOut << "halfAngleAttractor=" << m_halfAngleAttractor << ", ";
-    ioOut << "scannerOn=" << m_scannerOn << ", ";
     ioOut << "renderPrelude=" << m_renderPrelude << ", ";
     ioOut << "renderList=" << m_renderList << ", ";
     ioOut << "scanner=" << m_scanner;
@@ -590,10 +593,6 @@ AdanaxisRender::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
     else if (inTagStr == "halfAngleAttractor")
     {
         ioIn >> m_halfAngleAttractor;
-    }
-    else if (inTagStr == "scannerOn")
-    {
-        ioIn >> m_scannerOn;
     }
     else if (inTagStr == "renderPrelude")
     {
@@ -622,8 +621,6 @@ AdanaxisRender::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_halfAngle;
     ioOut.TagSet("halfAngleAttractor");
     ioOut << m_halfAngleAttractor;
-    ioOut.TagSet("scannerOn");
-    ioOut << m_scannerOn;
     ioOut.TagSet("renderPrelude");
     ioOut << m_renderPrelude;
     ioOut.TagSet("renderList");
@@ -631,4 +628,4 @@ AdanaxisRender::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("scanner");
     ioOut << m_scanner;
 }
-//%outOfLineFunctions } pRVXSvwS8IZ/hrJflHkzPg
+//%outOfLineFunctions } lPoADamzmMQs/iY6Xaqgng

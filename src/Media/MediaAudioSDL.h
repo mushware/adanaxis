@@ -25,8 +25,11 @@
 /* Name changed from MediaAudio to MediaAudioSDL 2002/08/23 */
 
 /*
- * $Id: MediaAudioSDL.h,v 1.13 2006/06/01 15:39:13 southa Exp $
+ * $Id: MediaAudioSDL.h,v 1.14 2006/07/26 16:37:22 southa Exp $
  * $Log: MediaAudioSDL.h,v $
+ * Revision 1.14  2006/07/26 16:37:22  southa
+ * Options menu
+ *
  * Revision 1.13  2006/06/01 15:39:13  southa
  * DrawArray verification and fixes
  *
@@ -137,7 +140,9 @@ private:
     std::vector<ChannelState> m_channelState;
     std::vector<MediaSound *> m_activeSamples;
     Mix_Music *m_music;
+    Mushware::U32 m_audioVolume;
     mutable Mushware::U32 m_errCtr;
+    
 };
 
 

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } dAboIY5Kp9P01iutrXBmlw
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.36 2006/06/23 00:35:28 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.37 2006/06/26 12:55:12 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.37  2006/06/26 12:55:12  southa
+ * win32 installer updates
+ *
  * Revision 1.36  2006/06/23 00:35:28  southa
  * win32 build fixes
  *
@@ -270,38 +273,73 @@ PlatformMiscUtils::ReadDirectory(vector<std::string>& outFilenames, const string
 {
     WIN32_FIND_DATA fileData;
     string findStr = inDirName+"/*";
+     HANDLE hList = FindFirstFile(findStr.c_str(), &fileData);
+     
+     if (hList != INVALID_HANDLE_VALUE)
+     {     
+         for (U32 i=0; i<10000; ++i)
+         {
+             if (fileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
+             {
+                 string name=fileData.cFileName;		
+                 if (name != "." && name != ".." && name != "CVS")
+                 {
+                     outFilenames.push_back(name);
+                 }
+                 if (!FindNextFile(hList, &fileData))
+                 {
+                     if (GetLastError() == ERROR_NO_MORE_FILES)
+                     {
+                         break;
+                     }
+                     FindClose(hList);
+                     ostringstream message;
+                     message << "Directory error (" << GetLastError() << ")";
+                     throw(MushcoreCommandFail(message.str()));
+                 }
+             }
+             MUSHCOREASSERT(i<9999);
+         }
+         
+         FindClose(hList);
+     }
+}
+
+void
+PlatformMiscUtils::ScanDirectory(vector<std::string>& outFilenames, const string& inDirName)
+{
+    WIN32_FIND_DATA fileData;
+    string findStr = inDirName+"/*";
     HANDLE hList = FindFirstFile(findStr.c_str(), &fileData);
-
-    if (hList == INVALID_HANDLE_VALUE)
+     
+    if (hList != INVALID_HANDLE_VALUE)
     {
-        throw(MushcoreCommandFail("No files in drectory '" + inDirName + "'"));
-    }
-    
-    for (U32 i=0; i<10000; ++i)
-    {
-        if (fileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
-	{
-            string name=fileData.cFileName;		
-            if (name != "." && name != ".." && name != "CVS")
+        for (U32 i=0; i<10000; ++i)
+        {
+            if (fileData.dwFileAttributes & FILE_ATTRIBUTE_NORMAL)
             {
-                outFilenames.push_back(name);
+                string name=fileData.cFileName;		
+                if (name != "." && name != ".." && name != "CVS")
+                {
+                    outFilenames.push_back(name);
+                }
+                if (!FindNextFile(hList, &fileData))
+                {
+                    if (GetLastError() == ERROR_NO_MORE_FILES)
+                    {
+                        break;
+                    }
+                    FindClose(hList);
+                    ostringstream message;
+                    message << "Directory error (" << GetLastError() << ")";
+                    throw(MushcoreCommandFail(message.str()));
+                }
             }
-            if (!FindNextFile(hList, &fileData))
-            {
-                if (GetLastError() == ERROR_NO_MORE_FILES)
-	        {
-	            break;
-	        }
-                FindClose(hList);
-	        ostringstream message;
-	        message << "Directory error (" << GetLastError() << ")";
-	        throw(MushcoreCommandFail(message.str()));
-	    }
-	}
-        MUSHCOREASSERT(i<9999);
-    }
+            MUSHCOREASSERT(i<9999);
+        }
 
-    FindClose(hList);   
+        FindClose(hList);   
+    }
 }
 
 void

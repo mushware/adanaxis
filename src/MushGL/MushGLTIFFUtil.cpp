@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } h1Go2vLqhxcDo4G+8KTIWw
 /*
- * $Id: MushGLTIFFUtil.cpp,v 1.1 2006/06/05 11:48:25 southa Exp $
+ * $Id: MushGLTIFFUtil.cpp,v 1.2 2006/06/27 11:58:09 southa Exp $
  * $Log: MushGLTIFFUtil.cpp,v $
+ * Revision 1.2  2006/06/27 11:58:09  southa
+ * Warning fixes
+ *
  * Revision 1.1  2006/06/05 11:48:25  southa
  * Noise textures
  *
@@ -170,4 +173,28 @@ MushGLTIFFUtil::TextureSave(const std::string& inFilename, const std::string& in
 	MUSHCOREASSERT(texData[bufferSize] == 0xA5);
 	
 	RGBASave(inFilename, inDesc, t2U32(width, height), &texData[0]);
+}
+
+std::string
+MushGLTIFFUtil::CreatorGet(const std::string& inFilename)
+{
+    tiffio::TIFF *pTIFF = tiffio::TIFFOpen(inFilename.c_str(), "r");
+	
+	if (pTIFF == NULL)
+	{
+		throw MushcoreFileFail(inFilename, "Could not open TIFF file to read creator");
+	}
+    const char *pTag;
+    tiffio::TIFFGetField(pTIFF, TIFFTAG_SOFTWARE, &pTag);
+    
+    std::string retVal;
+    if (pTag != NULL)
+    {
+        retVal = pTag;
+    }
+    else
+    {
+        retVal = "";
+    }
+    return retVal;
 }

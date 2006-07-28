@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } DrRdUlvo6OVowDenPoqf+A
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.40 2006/06/01 15:39:58 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.41 2006/06/01 20:13:01 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.41  2006/06/01 20:13:01  southa
+ * Initial texture caching
+ *
  * Revision 1.40  2006/06/01 15:39:58  southa
  * DrawArray verification and fixes
  *
@@ -262,6 +265,7 @@ PlatformMiscUtils::MakePublicDirectory(const string& inName)
 void
 PlatformMiscUtils::ReadDirectory(vector<std::string>& outFilenames, const string& inDirName)
 {
+    // Returns directories in the directory
     DIR *dirPtr = opendir(inDirName.c_str());
     if (dirPtr == NULL)
     {
@@ -273,6 +277,32 @@ PlatformMiscUtils::ReadDirectory(vector<std::string>& outFilenames, const string
         struct stat statInfo;
         lstat(entry->d_name, &statInfo);
         if(S_ISDIR(statInfo.st_mode))
+        {
+            string name=entry->d_name;
+            if (name != "." && name != ".." && name != "CVS")
+            {
+                outFilenames.push_back(name);
+            }
+        }
+    }
+    closedir(dirPtr);
+}
+
+void
+PlatformMiscUtils::ScanDirectory(vector<std::string>& outFilenames, const string& inDirName)
+{
+    // Returns files in the directory
+    DIR *dirPtr = opendir(inDirName.c_str());
+    if (dirPtr == NULL)
+    {
+        throw(MushcoreCommandFail("Cannot open directory '" + inDirName + "'"));
+    }
+    struct dirent *entry;
+    while (entry = readdir(dirPtr), entry != NULL)
+    {
+        struct stat statInfo;
+        lstat(entry->d_name, &statInfo);
+        if(S_ISREG(statInfo.st_mode))
         {
             string name=entry->d_name;
             if (name != "." && name != ".." && name != "CVS")

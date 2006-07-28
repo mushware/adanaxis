@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 6wr8yd2kKFYq5Tmj1juyJQ
 /*
- * $Id: MushcoreInfo.h,v 1.12 2005/07/29 11:53:41 southa Exp $
+ * $Id: MushcoreInfo.h,v 1.13 2006/06/01 15:39:44 southa Exp $
  * $Log: MushcoreInfo.h,v $
+ * Revision 1.13  2006/06/01 15:39:44  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.12  2005/07/29 11:53:41  southa
  * MushcoreMaptor created
  *
@@ -86,6 +89,7 @@ public:
     virtual std::string PlatformNameGet(void);
     virtual std::string ApplicationNameGet(void);
     virtual std::string PackageNameGet(void);
+    virtual std::string PackageName(void) { return PackageNameGet(); }
     virtual std::string PackageVersionGet(void);
     virtual std::string PackageIDGet(void);
     virtual std::string PackageID(void) { return PackageIDGet(); }

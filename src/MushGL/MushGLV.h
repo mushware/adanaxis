@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } JUBCCFXz/CzIx64ACD8wjA
 /*
- * $Id: MushGLV.h,v 1.18 2006/06/23 00:35:06 southa Exp $
+ * $Id: MushGLV.h,v 1.19 2006/06/30 15:05:34 southa Exp $
  * $Log: MushGLV.h,v $
+ * Revision 1.19  2006/06/30 15:05:34  southa
+ * Texture and buffer purge
+ *
  * Revision 1.18  2006/06/23 00:35:06  southa
  * win32 build fixes
  *
@@ -99,9 +102,9 @@ public:
     void ActiveTextureZeroBased(Mushware::U32 inTexNum);
     void ClientActiveTextureZeroBased(Mushware::U32 inTexNum);
     
-    bool HasVertexBuffer() const { return m_hasVertexBuffer; }
-    bool UseVertexBuffer() const { return m_hasVertexBuffer; }
-    
+    bool HasVertexBuffer(void) const { return m_hasVertexBuffer; }
+    bool UseVertexBuffer(void) const { return m_hasVertexBuffer; }
+    bool UseS3TC(void) const { return m_hasS3TC && m_useS3TC; }
     void BindBuffer(GLenum target, GLuint buffer) const { if (m_fpBindBuffer != NULL) m_fpBindBuffer(target, buffer); }
     
     void BufferData(GLenum target, GLsizeiptr size, const GLvoid *data, GLenum usage) const { if (m_fpBufferData != NULL) m_fpBufferData(target, size, data, usage); }
@@ -156,7 +159,8 @@ private:
     std::string m_extensions;
     Mushware::U32 m_numTextureUnits; //:read
     bool m_hasS3TC; //:read
-	
+	bool m_useS3TC; //:write
+    
     Mushware::U32 m_contextNum; //:read
     bool m_contextValid; //:read
     
@@ -164,10 +168,11 @@ private:
 public:
     const Mushware::U32& NumTextureUnits(void) const { return m_numTextureUnits; }
     const bool& HasS3TC(void) const { return m_hasS3TC; }
+    void UseS3TCSet(const bool& inValue) { m_useS3TC=inValue; }
     const Mushware::U32& ContextNum(void) const { return m_contextNum; }
     const bool& ContextValid(void) const { return m_contextValid; }
     virtual void AutoPrint(std::ostream& ioOut) const;
-//%classPrototypes } xh5aSPuEY0XhVV6xBEZ5rQ
+//%classPrototypes } zrqyQadN6eqwhqqavDuNzQ
 };
 
 inline void

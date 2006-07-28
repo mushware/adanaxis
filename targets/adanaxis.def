@@ -1,6 +1,9 @@
 # Target definition file
-# $Id: adanaxis.def,v 1.7 2006/07/12 16:54:14 southa Exp $
+# $Id: adanaxis.def,v 1.8 2006/07/21 11:53:41 southa Exp $
 # $Log: adanaxis.def,v $
+# Revision 1.8  2006/07/21 11:53:41  southa
+# X11 fixes
+#
 # Revision 1.7  2006/07/12 16:54:14  southa
 # Documentation generation
 #
@@ -24,14 +27,14 @@
 #
 
 
-Name: 'Adanaxis Control Demo'
+Name: 'Adanaxis Rendering Demo'
 
 Use: targets/app.acinclude.m4 as acinclude.m4
 
 Subst: MUSH_APP_PACKAGE 'adanaxiscontroldemo'
-Subst: MUSH_APP_NAME 'Adanaxis Control Demo'
+Subst: MUSH_APP_NAME 'Adanaxis Rendering Demo'
 Subst: MUSH_APP_MAJOR_VERSION '0'
-Subst: MUSH_APP_MINOR_VERSION '0'
+Subst: MUSH_APP_MINOR_VERSION '1'
 Subst: MUSH_APP_MICRO_VERSION '1'
 Subst: MUSH_APP_VERSION 'MUSH_APP_MAJOR_VERSION.MUSH_APP_MINOR_VERSION.MUSH_APP_MICRO_VERSION'
 Subst: MUSH_DATA_DIR 'data-adanaxis'
@@ -73,6 +76,6 @@ Modules: x11/man/adanaxiscontroldemo.*
 
 Create: data-adanaxis/Makefile.am
 PkgData:
-Modules: pixels mushruby ruby spaces/local1 spaces/local2 waves system/.*\.xml$ system/.*\.txt$
+Modules: pixels mushruby ruby spaces/local1 spaces/local2 spaces/menu1 waves system/.*\.xml$ system/.*\.txt$
 ExtraDist:
 Modules: \.*pdf$

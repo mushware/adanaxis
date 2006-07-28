@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } bC49LKe3G5tsyGqAVa5gyw
 /*
- * $Id: MushGameAppHandler.cpp,v 1.14 2006/07/26 16:37:22 southa Exp $
+ * $Id: MushGameAppHandler.cpp,v 1.15 2006/07/27 13:51:35 southa Exp $
  * $Log: MushGameAppHandler.cpp,v $
+ * Revision 1.15  2006/07/27 13:51:35  southa
+ * Menu and control fixes
+ *
  * Revision 1.14  2006/07/26 16:37:22  southa
  * Options menu
  *
@@ -127,6 +130,9 @@ MushGameAppHandler::QuitStateEnter(void)
     {
         CurrentSwapOut();
         m_appState = kAppStateQuitting;
+        
+        MushGLCacheControl::Sgl().CachePurge();
+        
         AppQuit(); // Quit immediately
     }
 }
@@ -174,6 +180,15 @@ MushGameAppHandler::DisplayReset(void)
 {
     CurrentSwapOut();
     CurrentSwapIn(m_groupingName);
+}
+
+void
+MushGameAppHandler::BrightnessSet(Mushware::tVal inValue)
+{
+    if (m_currentRef.Exists())
+    {
+        m_currentRef.Get()->BrightnessSet(inValue);
+    }
 }
 
 void

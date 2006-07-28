@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } X577BrzUUfCyG/exJzzEYQ
 /*
- * $Id: SDLAppHandler.cpp,v 1.60 2006/07/24 18:46:48 southa Exp $
+ * $Id: SDLAppHandler.cpp,v 1.61 2006/07/27 13:51:35 southa Exp $
  * $Log: SDLAppHandler.cpp,v $
+ * Revision 1.61  2006/07/27 13:51:35  southa
+ * Menu and control fixes
+ *
  * Revision 1.60  2006/07/24 18:46:48  southa
  * Depth sorting
  *
@@ -229,7 +232,8 @@ SDLAppHandler::SDLAppHandler():
     m_unboundedMouseY(0),
     m_controlBuffer(kControlBufferSize, SDLControlEntry(0)),
     m_controlBufferIndex(0),
-    m_firstDelta(true)
+    m_firstDelta(true),
+    m_mouseSensitivity(1.0)
 {
     m_deviceList.resize(kNumDevices);
     for (U32 i=0; i<kNumDevices; ++i)
@@ -326,13 +330,13 @@ SDLAppHandler::UnboundedMousePositionGet(S32& outX, S32& outY) const
 tVal
 SDLAppHandler::ScaledUnboundedMouseX(void) const
 {
-    return m_unboundedMouseX / 640.0;
+    return m_mouseSensitivity * m_unboundedMouseX / 640.0;
 }
 
 tVal
 SDLAppHandler::ScaledUnboundedMouseY(void) const
 {
-    return -m_unboundedMouseY / 640.0;
+    return -m_mouseSensitivity * m_unboundedMouseY / 640.0;
 }
 
 void
@@ -758,6 +762,20 @@ void
 SDLAppHandler::AppQuit(void)
 {
     m_doQuit=true;
+}
+
+void
+SDLAppHandler::KeyRepeatSet(bool inValue)
+{
+    if (inValue)
+    {
+        SDL_EnableKeyRepeat(SDL_DEFAULT_REPEAT_DELAY, SDL_DEFAULT_REPEAT_INTERVAL);
+    }
+    else
+    {
+        //  Disable
+        SDL_EnableKeyRepeat(0, SDL_DEFAULT_REPEAT_INTERVAL);
+    }
 }
 
 

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } j+QdgpgaMWOYWMDzkr6iXg
 /*
- * $Id: MushGameConfigBase.h,v 1.2 2006/06/01 15:39:20 southa Exp $
+ * $Id: MushGameConfigBase.h,v 1.3 2006/07/26 16:37:23 southa Exp $
  * $Log: MushGameConfigBase.h,v $
+ * Revision 1.3  2006/07/26 16:37:23  southa
+ * Options menu
+ *
  * Revision 1.2  2006/06/01 15:39:20  southa
  * DrawArray verification and fixes
  *
@@ -49,6 +52,8 @@ private:
     Mushware::U32 m_textureDetail; //:readwrite
     Mushware::U32 m_audioVolume; //:readwrite
     Mushware::U32 m_musicVolume; //:readwrite
+    Mushware::tVal m_mouseSensitivity; //:readwrite
+    Mushware::tVal m_brightness; //:readwrite
     
     // psuedo-config
     Mushware::U32 m_safeMode; //:readwrite
@@ -63,12 +68,16 @@ public:
     void AudioVolumeSet(const Mushware::U32& inValue) { m_audioVolume=inValue; }
     const Mushware::U32& MusicVolume(void) const { return m_musicVolume; }
     void MusicVolumeSet(const Mushware::U32& inValue) { m_musicVolume=inValue; }
+    const Mushware::tVal& MouseSensitivity(void) const { return m_mouseSensitivity; }
+    void MouseSensitivitySet(const Mushware::tVal& inValue) { m_mouseSensitivity=inValue; }
+    const Mushware::tVal& Brightness(void) const { return m_brightness; }
+    void BrightnessSet(const Mushware::tVal& inValue) { m_brightness=inValue; }
     const Mushware::U32& SafeMode(void) const { return m_safeMode; }
     void SafeModeSet(const Mushware::U32& inValue) { m_safeMode=inValue; }
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } AIOprPsm+x1BmPjCZ7CePg
+//%classPrototypes } cPzV5s8KgqAQkqzbQOSa5g
 };
 
 //%inlineHeader {

@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } DEX6Sh9oUk/bih2GXm2coA
 /*
- * $Id: AdanaxisGame.cpp,v 1.46 2006/07/27 13:51:33 southa Exp $
+ * $Id: AdanaxisGame.cpp,v 1.47 2006/07/28 11:14:27 southa Exp $
  * $Log: AdanaxisGame.cpp,v $
+ * Revision 1.47  2006/07/28 11:14:27  southa
+ * Records for multiple spaces
+ *
  * Revision 1.46  2006/07/27 13:51:33  southa
  * Menu and control fixes
  *
@@ -243,6 +246,12 @@ AdanaxisGame::NextDisplayMode(void)
 }
 
 void
+AdanaxisGame::BrightnessSet(Mushware::tVal inValue)
+{
+    VolatileData().BrightnessSet(inValue);
+}
+
+void
 AdanaxisGame::Display(MushGameAppHandler& inAppHandler)
 {    
 }
@@ -279,6 +288,7 @@ AdanaxisGame::Init(MushGameAppHandler& inAppHandler)
     if (m_config.SafeMode())
     {
         m_config.DisplayModeSet(0);
+        m_config.TextureDetailSet(0);
         MushGameDialogueUtils::NamedDialoguesAdd(SaveData().DialoguesWRef(), "^safemode");
     }
     
@@ -297,16 +307,30 @@ AdanaxisGame::Init(MushGameAppHandler& inAppHandler)
 	AdanaxisUtil::MissingSkinsCreate(Logic());
 
     MushcoreInterpreter::Sgl().Execute("loadsoundstream('adanaxis-music1')");
+    MediaAudio::Sgl().AudioVolumeSet(m_config.AudioVolume() / 100.0);
+    MediaAudio::Sgl().MusicVolumeSet(m_config.MusicVolume() / 100.0);
     if (m_config.MusicVolume() > 0)
     {
-        MediaAudio::Sgl().MusicVolumeSet(m_config.MusicVolume() / 100.0);
         MediaAudio::Sgl().MusicFadeIn(300);
     }
-
+    
+    // Use compresion at low detail levels only - alpha-mapped textures don't compress well
+    if (m_config.TextureDetail() > 1)
+    {
+        MushGLV::Sgl().UseS3TCSet(false);
+    }
+    else
+    {
+        MushGLV::Sgl().UseS3TCSet(true);
+    }
+    
     Logic().RecordTimeSet(m_config.RecordTime(SaveData().SpaceName()));
     Logic().MenuModeEnter();
     Logic().StartTimeSet(0);
     Logic().EndTimeSet(0);
+    inAppHandler.MouseSensitivitySet(m_config.MouseSensitivity());
+    VolatileData().BrightnessSet(m_config.Brightness());
+    VolatileData().ScannerOnSet(false);
     
     m_inited = true;
     SaveData().ClockStartedSet(false);

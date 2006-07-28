@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 8UDpRyydYFs+83Uhgt0k6g
 /*
- * $Id$
- * $Log$
+ * $Id: MushGLCacheControl.h,v 1.1 2006/06/05 11:48:24 southa Exp $
+ * $Log: MushGLCacheControl.h,v $
+ * Revision 1.1  2006/06/05 11:48:24  southa
+ * Noise textures
+ *
  */
 
 #include "MushGLStandard.h"
@@ -39,7 +42,10 @@ public:
 	virtual std::string HashedFilenameMake(const std::string& inName);
 	virtual std::string TextureCacheFilenameMake(const std::string& inName);
 	virtual std::string TextureCachePlainFilenameMake(const std::string& inName);
-	void TextureCacheHitRegister(void) { ++m_textureCacheHits; }
+	virtual std::string TextureCachePath(void) const;
+	virtual void CachePurge(void);
+    
+    void TextureCacheHitRegister(void) { ++m_textureCacheHits; }
 	void TextureCacheMissRegister(void) { ++m_textureCacheMisses; }
 	
 protected:

@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } 0edG1wrkU5hKeWbu3l1MQA
 /*
- * $Id: AdanaxisPlayer.cpp,v 1.22 2006/07/26 16:37:21 southa Exp $
+ * $Id: AdanaxisPlayer.cpp,v 1.23 2006/07/28 11:14:27 southa Exp $
  * $Log: AdanaxisPlayer.cpp,v $
+ * Revision 1.23  2006/07/28 11:14:27  southa
+ * Records for multiple spaces
+ *
  * Revision 1.22  2006/07/26 16:37:21  southa
  * Options menu
  *
@@ -194,6 +197,20 @@ AdanaxisPlayer::KeyChangeHandle(MushGameLogic& ioLogic, bool inState, Mushware::
         }
         break;
             
+        case AdanaxisConfig::kKeyScanner:
+        {
+            if (inState)
+            {
+                AdanaxisVolatileData *pVolData = dynamic_cast<AdanaxisVolatileData *>(&ioLogic.VolatileData());
+
+                if (pVolData != NULL)
+                {
+                    pVolData->ScannerOnSet(!pVolData->ScannerOn());
+                }
+            }
+        }
+        break;
+            
         default:
             ostringstream message;
             message << "Bad key number: " << inKeyNum;
@@ -322,9 +339,13 @@ AdanaxisPlayer::FireConsume(MushGameLogic& ioLogic, const MushGameMessageFire& i
     
     MediaAudio::Sgl().Play(*MushcoreDataRef<MediaSound>("fire").Get());
     
-    dynamic_cast<AdanaxisRender&>(ioLogic.SaveData().RenderRef().WRef()).ScannerOnSet(false);
+    AdanaxisVolatileData *pVolData = dynamic_cast<AdanaxisVolatileData *>(&ioLogic.VolatileData());
+    
+    if (pVolData != NULL)
+    {
+        pVolData->ScannerOnSet(false);
+    }
 }
-
 
 //%outOfLineFunctions {
 

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } abz8WfQdtsWpPxv12NZxhA
 /*
- * $Id: MushGameRuby.h,v 1.8 2006/07/26 16:37:24 southa Exp $
+ * $Id: MushGameRuby.h,v 1.9 2006/07/27 13:51:36 southa Exp $
  * $Log: MushGameRuby.h,v $
+ * Revision 1.9  2006/07/27 13:51:36  southa
+ * Menu and control fixes
+ *
  * Revision 1.8  2006/07/26 16:37:24  southa
  * Options menu
  *
@@ -81,6 +84,10 @@ public:
     static Mushware::tRubyValue MusicVolumeSet(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
     static Mushware::tRubyValue TextureDetail(Mushware::tRubyValue inSelf);
     static Mushware::tRubyValue TextureDetailSet(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
+    static Mushware::tRubyValue MouseSensitivity(Mushware::tRubyValue inSelf);
+    static Mushware::tRubyValue MouseSensitivitySet(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
+    static Mushware::tRubyValue Brightness(Mushware::tRubyValue inSelf);
+    static Mushware::tRubyValue BrightnessSet(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
 
     static void MethodsInstall(void);
     

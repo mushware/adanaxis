@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } wOXl6eoMycMTXcUsBJ4Pgg
 /*
- * $Id: AdanaxisGame.h,v 1.19 2006/07/26 16:37:21 southa Exp $
+ * $Id: AdanaxisGame.h,v 1.20 2006/07/27 13:51:33 southa Exp $
  * $Log: AdanaxisGame.h,v $
+ * Revision 1.20  2006/07/27 13:51:33  southa
+ * Menu and control fixes
+ *
  * Revision 1.19  2006/07/26 16:37:21  southa
  * Options menu
  *
@@ -109,6 +112,7 @@ public:
     virtual Mushware::U32 DisplayModeNum(void) const;
     virtual void PreviousDisplayMode(void);
     virtual void NextDisplayMode(void);
+    virtual void BrightnessSet(Mushware::tVal inValue);
 
     virtual void UpdateFromConfig(void);
     virtual void UpdateToConfig(void);

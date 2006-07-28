@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } WGW0jWLT0tHoC21nwBZAtQ
 /*
- * $Id: MushGameConfigBase.cpp,v 1.3 2006/06/01 15:39:20 southa Exp $
+ * $Id: MushGameConfigBase.cpp,v 1.4 2006/07/26 16:37:23 southa Exp $
  * $Log: MushGameConfigBase.cpp,v $
+ * Revision 1.4  2006/07/26 16:37:23  southa
+ * Options menu
+ *
  * Revision 1.3  2006/06/01 15:39:20  southa
  * DrawArray verification and fixes
  *
@@ -50,6 +53,8 @@ MushGameConfigBase::ToDefaultSet(void)
     m_audioVolume = 100;
     m_musicVolume = 50;
     m_safeMode = 0;
+    m_mouseSensitivity = 1;
+    m_brightness = 1;
 }
 
 void
@@ -74,6 +79,8 @@ MushGameConfigBase::AutoPrint(std::ostream& ioOut) const
     ioOut << "textureDetail=" << m_textureDetail << ", ";
     ioOut << "audioVolume=" << m_audioVolume << ", ";
     ioOut << "musicVolume=" << m_musicVolume << ", ";
+    ioOut << "mouseSensitivity=" << m_mouseSensitivity << ", ";
+    ioOut << "brightness=" << m_brightness << ", ";
     ioOut << "safeMode=" << m_safeMode;
     ioOut << "]";
 }
@@ -102,6 +109,14 @@ MushGameConfigBase::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::stri
     {
         ioIn >> m_musicVolume;
     }
+    else if (inTagStr == "mouseSensitivity")
+    {
+        ioIn >> m_mouseSensitivity;
+    }
+    else if (inTagStr == "brightness")
+    {
+        ioIn >> m_brightness;
+    }
     else if (inTagStr == "safeMode")
     {
         ioIn >> m_safeMode;
@@ -123,7 +138,11 @@ MushGameConfigBase::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_audioVolume;
     ioOut.TagSet("musicVolume");
     ioOut << m_musicVolume;
+    ioOut.TagSet("mouseSensitivity");
+    ioOut << m_mouseSensitivity;
+    ioOut.TagSet("brightness");
+    ioOut << m_brightness;
     ioOut.TagSet("safeMode");
     ioOut << m_safeMode;
 }
-//%outOfLineFunctions } TkUwqXfx0RImsmyk9T74UA
+//%outOfLineFunctions } /Xh6R7toYIiT+2Th1lxRRA

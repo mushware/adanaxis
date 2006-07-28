@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } nsV76GW3owDjusQMHIpipw
 /*
- * $Id: PlatformMiscUtils.h,v 1.29 2006/06/01 20:13:01 southa Exp $
+ * $Id: PlatformMiscUtils.h,v 1.30 2006/06/26 12:55:12 southa Exp $
  * $Log: PlatformMiscUtils.h,v $
+ * Revision 1.30  2006/06/26 12:55:12  southa
+ * win32 installer updates
+ *
  * Revision 1.29  2006/06/01 20:13:01  southa
  * Initial texture caching
  *
@@ -107,6 +110,7 @@ public:
     static void MakePrivateDirectory(const std::string& inName);
     static void MakePublicDirectory(const std::string& inName);
     static void ReadDirectory(std::vector<std::string>& outFilenames, const std::string& inDirName);
+    static void ScanDirectory(std::vector<std::string>& outFilenames, const std::string& inDirName);
     static void ErrorBox(const std::string& inStr);
     static void MinorErrorBox(const std::string& inStr);
     static bool PermissionBox(const std::string& inStr, bool inDefault);

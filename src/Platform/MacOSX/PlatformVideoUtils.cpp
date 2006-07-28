@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } vRSkWrGbuq+m7eRcwoLkDA
 /*
- * $Id: PlatformVideoUtils.cpp,v 1.19 2005/05/20 10:26:28 southa Exp $
+ * $Id: PlatformVideoUtils.cpp,v 1.20 2006/06/01 15:39:58 southa Exp $
  * $Log: PlatformVideoUtils.cpp,v $
+ * Revision 1.20  2006/06/01 15:39:58  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.19  2005/05/20 10:26:28  southa
  * Release work
  *
@@ -147,13 +150,12 @@ PlatformVideoUtils::DefaultModeGet(void) const
     U32 retVal=0;
     for (U32 i=2; i < m_modeDefs.size(); ++i)
     {
-        if (m_modeDefs[i].WidthGet() == 640 &&
-            m_modeDefs[i].HeightGet() == 480)
+        if (m_modeDefs[i].WidthGet() == 1024 &&
+            m_modeDefs[i].HeightGet() == 768)
         {
             retVal = i;   
         }
     }
-	retVal = 0;
     return retVal;
 }
 

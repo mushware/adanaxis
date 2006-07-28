@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } FUSjt7oP2HjWF6m1BxppWw
 /*
- * $Id$
- * $Log$
+ * $Id: MushGLTIFFUtil.h,v 1.1 2006/06/05 11:48:25 southa Exp $
+ * $Log: MushGLTIFFUtil.h,v $
+ * Revision 1.1  2006/06/05 11:48:25  southa
+ * Noise textures
+ *
  */
 
 #include "MushGLStandard.h"
@@ -37,7 +40,8 @@ public:
 	static void ValSave(const std::string& inFilename, const std::string& inDesc,
 						const Mushware::t2U32& inSize, const Mushware::tVal *inpData);
 	static void TextureSave(const std::string& inFilename, const std::string& inDesc);
-	
+    static std::string CreatorGet(const std::string& inFilename);
+    
 private:
 	static void FieldsSet(void *inpTIFF, const std::string& inDesc, const Mushware::t2U32& inSize,
 						  Mushware::U32 inRowsPerStrip);

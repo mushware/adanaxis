@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } VUfBvm3qobPEj3YM/Njzcg
 /*
- * $Id: SDLAppHandler.h,v 1.30 2006/07/08 16:05:56 southa Exp $
+ * $Id: SDLAppHandler.h,v 1.31 2006/07/11 19:49:04 southa Exp $
  * $Log: SDLAppHandler.h,v $
+ * Revision 1.31  2006/07/11 19:49:04  southa
+ * Control menu
+ *
  * Revision 1.30  2006/07/08 16:05:56  southa
  * Ruby menus and key handling
  *
@@ -156,7 +159,8 @@ public:
     virtual void KeysOfInterestSet(const std::vector<Mushware::U32>& inKeyValues);
     virtual void ReadHistoricControlState(Mushware::S32& outUnboundedMouseX, Mushware::S32& outUnboundedMouseY, std::vector<bool>& outKeys, Mushware::tVal inMsec);
     virtual Mushware::tVal DeviceAxis(Mushware::U32 inDevice, Mushware::U32 inAxis);
-    
+    virtual void KeyRepeatSet(bool inValue);
+    virtual void MouseSensitivitySet(Mushware::tVal inValue) { m_mouseSensitivity = inValue; }
     
 protected:
     virtual void Initialise(void);
@@ -200,6 +204,7 @@ private:
     bool m_firstDelta;
     bool m_doQuit;
     tDeviceList m_deviceList;
+    Mushware::tVal m_mouseSensitivity;
 };
 //%includeGuardEnd {
 #endif

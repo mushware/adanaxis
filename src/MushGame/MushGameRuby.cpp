@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } yY7ZZkvIHHOoUzJzTAQPOQ
 /*
- * $Id: MushGameRuby.cpp,v 1.8 2006/07/26 16:37:23 southa Exp $
+ * $Id: MushGameRuby.cpp,v 1.9 2006/07/27 13:51:36 southa Exp $
  * $Log: MushGameRuby.cpp,v $
+ * Revision 1.9  2006/07/27 13:51:36  southa
+ * Menu and control fixes
+ *
  * Revision 1.8  2006/07/26 16:37:23  southa
  * Options menu
  *
@@ -412,6 +415,7 @@ MushGameRuby::AudioVolumeSet(Mushware::tRubyValue inSelf, Mushware::tRubyValue i
 {
     MushRubyValue value(inArg0);
     MushGameUtil::AppHandler().ConfigWRef().AudioVolumeSet(value.U32());
+    MediaAudio::Sgl().AudioVolumeSet(value.U32() / 100.0);
     return Mushware::kRubyQnil;
 }
 
@@ -444,6 +448,49 @@ MushGameRuby::TextureDetailSet(Mushware::tRubyValue inSelf, Mushware::tRubyValue
 {
     MushRubyValue value(inArg0);
     MushGameUtil::AppHandler().ConfigWRef().TextureDetailSet(value.U32());
+    
+    // Use compresion at low detail levels only - alpha-mapped textures don't compress well
+    if (value.U32() > 1)
+    {
+        MushGLV::Sgl().UseS3TCSet(false);
+    }
+    else
+    {
+        MushGLV::Sgl().UseS3TCSet(true);
+    }
+
+    return Mushware::kRubyQnil;
+}
+
+Mushware::tRubyValue
+MushGameRuby::MouseSensitivity(Mushware::tRubyValue inSelf)
+{
+    tVal retVal = MushGameUtil::AppHandler().Config().MouseSensitivity();
+    return MushRubyValue(retVal).Value();
+}
+
+Mushware::tRubyValue
+MushGameRuby::MouseSensitivitySet(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0)
+{
+    MushRubyValue value(inArg0);
+    MushGameUtil::AppHandler().ConfigWRef().MouseSensitivitySet(value.Val());
+    MushGameUtil::AppHandler().MouseSensitivitySet(value.Val());
+    return Mushware::kRubyQnil;
+}
+
+Mushware::tRubyValue
+MushGameRuby::Brightness(Mushware::tRubyValue inSelf)
+{
+    tVal retVal = MushGameUtil::AppHandler().Config().Brightness();
+    return MushRubyValue(retVal).Value();
+}
+
+Mushware::tRubyValue
+MushGameRuby::BrightnessSet(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0)
+{
+    MushRubyValue value(inArg0);
+    MushGameUtil::AppHandler().ConfigWRef().BrightnessSet(value.Val());
+    MushGameUtil::AppHandler().BrightnessSet(value.Val());
     return Mushware::kRubyQnil;
 }
 
@@ -473,4 +520,8 @@ MushGameRuby::MethodsInstall(void)
     MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cMusicVolumeSet", MusicVolumeSet);
     MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cTextureDetail", TextureDetail);
     MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cTextureDetailSet", TextureDetailSet);
+    MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cMouseSensitivity", MouseSensitivity);
+    MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cMouseSensitivitySet", MouseSensitivitySet);
+    MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cBrightness", Brightness);
+    MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cBrightnessSet", BrightnessSet);
 }

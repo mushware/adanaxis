@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } jpyq9WjuLQC6cyA1T6bbWw
 /*
- * $Id: AdanaxisRender.h,v 1.9 2006/07/24 18:46:48 southa Exp $
+ * $Id: AdanaxisRender.h,v 1.10 2006/07/25 13:30:57 southa Exp $
  * $Log: AdanaxisRender.h,v $
+ * Revision 1.10  2006/07/25 13:30:57  southa
+ * Initial scanner work
+ *
  * Revision 1.9  2006/07/24 18:46:48  southa
  * Depth sorting
  *
@@ -79,7 +82,6 @@ protected:
     MushGLProjection m_projection;
     Mushware::tVal m_halfAngle; //:readwrite
     Mushware::tVal m_halfAngleAttractor; //:readwrite
-    bool m_scannerOn; //:readwrite
     Mushware::U32 m_renderPrelude;
     std::vector<MushGLJobRender *> m_renderList;
     AdanaxisScanner m_scanner;
@@ -91,8 +93,6 @@ public:
     void HalfAngleSet(const Mushware::tVal& inValue) { m_halfAngle=inValue; }
     const Mushware::tVal& HalfAngleAttractor(void) const { return m_halfAngleAttractor; }
     void HalfAngleAttractorSet(const Mushware::tVal& inValue) { m_halfAngleAttractor=inValue; }
-    const bool& ScannerOn(void) const { return m_scannerOn; }
-    void ScannerOnSet(const bool& inValue) { m_scannerOn=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -100,7 +100,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } E+QOfl/VxCxg9fXFuIyMAQ
+//%classPrototypes } GgpsTEU9hkWCMlscEoyb+w
 };
 //%inlineHeader {
 inline std::ostream&

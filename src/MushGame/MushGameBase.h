@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } auDv5KzHAtGChacJ2aS7ug
 /*
- * $Id: MushGameBase.h,v 1.6 2006/07/27 13:51:36 southa Exp $
+ * $Id: MushGameBase.h,v 1.7 2006/07/28 11:14:28 southa Exp $
  * $Log: MushGameBase.h,v $
+ * Revision 1.7  2006/07/28 11:14:28  southa
+ * Records for multiple spaces
+ *
  * Revision 1.6  2006/07/27 13:51:36  southa
  * Menu and control fixes
  *
@@ -74,6 +77,8 @@ public:
     virtual Mushware::U32 DisplayModeNum(void) const { return 1; }
     virtual void PreviousDisplayMode(void) {}
     virtual void NextDisplayMode(void) {}
+    virtual void BrightnessSet(Mushware::tVal inValue) {}
+    
     virtual const MushGameConfigBase& Config(void) const { throw MushcoreRequestFail("No config available"); }
     virtual MushGameConfigBase& ConfigWRef(void) { throw MushcoreRequestFail("No config available"); }
     virtual bool IsMenuBackdrop(void) const { return false; }

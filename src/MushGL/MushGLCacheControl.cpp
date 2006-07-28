@@ -19,14 +19,21 @@
  ****************************************************************************/
 //%Header } vYDFvfnYgaI4ZFA13k+Usg
 /*
- * $Id: MushGLCacheControl.cpp,v 1.1 2006/06/05 11:48:24 southa Exp $
+ * $Id: MushGLCacheControl.cpp,v 1.2 2006/06/07 14:25:55 southa Exp $
  * $Log: MushGLCacheControl.cpp,v $
+ * Revision 1.2  2006/06/07 14:25:55  southa
+ * Grid texture fixes
+ *
  * Revision 1.1  2006/06/05 11:48:24  southa
  * Noise textures
  *
  */
 
 #include "MushGLCacheControl.h"
+
+#include "MushGLTIFFUtil.h"
+
+#include "API/mushPlatform.h"
 
 MUSHCORE_SINGLETON_INSTANCE(MushGLCacheControl);
 
@@ -113,7 +120,42 @@ MushGLCacheControl::TextureCachePlainFilenameMake(const std::string& inName)
 	return filename;
 }
 
+std::string
+MushGLCacheControl::TextureCachePath(void) const
+{
+    return m_globalCachePath;
+}
 
+void
+MushGLCacheControl::CachePurge(void)
+{
+    std::vector<std::string> filenames;
+    std::string packageName = MushcoreInfo::Sgl().PackageName();
+    
+    PlatformMiscUtils::ScanDirectory(filenames, m_globalCachePath);
+    
+    MushcoreRegExp regExp("^tex-.+\\.tiff$");
+    
+    for (U32 i=0; i<filenames.size(); ++i)
+    {
+        std::string& filename = filenames[i];
+        if (regExp.Search(filename))
+        {
+            std::string fullFilename = m_globalCachePath+"/"+filename;
+            // File matches our pattern
+            std::string creator = MushGLTIFFUtil::CreatorGet(fullFilename);
+            
+            if (packageName == creator.substr(0, packageName.size()))
+            {
+                // File has right name and creator, so delete it
+                if (std::remove(fullFilename.c_str()) != 0)
+                {
+                    MushcoreLog::Sgl().InfoLog() << "Failed to remove cache file '" << fullFilename << "'" << endl;
+                }
+            }
+        }
+    }
+}
 
 //%outOfLineFunctions {
 

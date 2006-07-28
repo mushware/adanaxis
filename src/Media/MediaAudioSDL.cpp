@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } ccLCYRn/kYU+5Rp9coVdng
 /*
- * $Id: MediaAudioSDL.cpp,v 1.21 2006/06/01 15:39:13 southa Exp $
+ * $Id: MediaAudioSDL.cpp,v 1.22 2006/07/26 16:37:22 southa Exp $
  * $Log: MediaAudioSDL.cpp,v $
+ * Revision 1.22  2006/07/26 16:37:22  southa
+ * Options menu
+ *
  * Revision 1.21  2006/06/01 15:39:13  southa
  * DrawArray verification and fixes
  *
@@ -212,7 +215,7 @@ MediaAudioSDL::Play(MediaSound& inSound)
     }
     else
     {
-        Mix_Volume(channel, MIX_MAX_VOLUME); // Fix for SDL bug
+        Mix_Volume(channel, m_audioVolume); // Also a fix for SDL bug
         MUSHCOREASSERT(channel < static_cast<S32>(m_softChannels));
         ChannelStateSet(channel, kChannelPlaying, &inSound);
     }
@@ -345,6 +348,6 @@ MediaAudioSDL::MusicVolumeSet(Mushware::tVal inVolume)
 void
 MediaAudioSDL::AudioVolumeSet(Mushware::tVal inVolume)
 {
-    
+    m_audioVolume = static_cast<U32>(inVolume*128);
 }
 

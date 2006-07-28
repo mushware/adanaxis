@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } rqKVCOMdajoYPgaQgbClmg
 /*
- * $Id: MushGameAppHandler.h,v 1.12 2006/07/26 16:37:23 southa Exp $
+ * $Id: MushGameAppHandler.h,v 1.13 2006/07/27 13:51:35 southa Exp $
  * $Log: MushGameAppHandler.h,v $
+ * Revision 1.13  2006/07/27 13:51:35  southa
+ * Menu and control fixes
+ *
  * Revision 1.12  2006/07/26 16:37:23  southa
  * Options menu
  *
@@ -99,6 +102,7 @@ public:
     virtual void PreviousDisplayMode(void);
     virtual void NextDisplayMode(void);
     virtual void DisplayReset(void);
+    virtual void BrightnessSet(Mushware::tVal inValue);
     
     virtual MushGameLogic& LogicWRef(void) const { return m_currentRef.Ref().LogicWRef(); }
     virtual const MushGameConfigBase& Config(void) const { return m_currentRef.Ref().Config(); }
