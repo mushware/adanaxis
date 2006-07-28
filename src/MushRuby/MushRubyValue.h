@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 5BOLwI3DhgfDHotOLswDpg
 /*
- * $Id: MushRubyValue.h,v 1.11 2006/07/07 07:57:30 southa Exp $
+ * $Id: MushRubyValue.h,v 1.12 2006/07/08 16:06:00 southa Exp $
  * $Log: MushRubyValue.h,v $
+ * Revision 1.12  2006/07/08 16:06:00  southa
+ * Ruby menus and key handling
+ *
  * Revision 1.11  2006/07/07 07:57:30  southa
  * Key translation
  *
@@ -89,11 +92,12 @@ public:
 	Mushware::tRubyID Symbol(void) const;
 	
 private:
-	Mushware::tRubyValue m_value; //:read
+	Mushware::tRubyValue m_value; //:readwrite
 //%classPrototypes {
 public:
     const Mushware::tRubyValue& Value(void) const { return m_value; }
-//%classPrototypes } 5uVSaGlp6OQXEWYc+ngbCQ
+    void ValueSet(const Mushware::tRubyValue& inValue) { m_value=inValue; }
+//%classPrototypes } cilEi2WX4ErxeTTCJSOTBg
 };
 
 namespace Mushware
@@ -105,6 +109,21 @@ inline std::ostream&
 operator<<(std::ostream& ioOut, const MushRubyValue& inObj)
 {
     ioOut << inObj.String();
+    return ioOut;
+}
+
+inline void
+operator>>(MushcoreXMLIStream& ioIn, MushRubyValue& outObj)
+{
+    Mushware::tRubyValue value;
+    ioIn >> value; // FIXME
+    outObj.ValueSet(value);
+}
+
+inline MushcoreXMLOStream&
+operator<<(MushcoreXMLOStream& ioOut, const MushRubyValue& inObj)
+{
+    ioOut << inObj.Value(); // FIXME    
     return ioOut;
 }
 

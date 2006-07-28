@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } kEA/hGTYr5TaTuBUG+UAGA
 /*
- * $Id: AdanaxisLogic.cpp,v 1.14 2006/07/20 12:22:20 southa Exp $
+ * $Id: AdanaxisLogic.cpp,v 1.15 2006/07/27 13:51:33 southa Exp $
  * $Log: AdanaxisLogic.cpp,v $
+ * Revision 1.15  2006/07/27 13:51:33  southa
+ * Menu and control fixes
+ *
  * Revision 1.14  2006/07/20 12:22:20  southa
  * Precache display
  *
@@ -337,7 +340,7 @@ AdanaxisLogic::CollisionMessageConsume(MushGameLogic& ioLogic, const MushGameMes
 void
 AdanaxisLogic::MenuModeEnter(void)
 {
-    if (VolatileData().RubyGame() != Mushware::kRubyQnil)
+    if (VolatileData().RubyGame().Value() != Mushware::kRubyQnil)
     {
         bool allowResume = SaveData().ClockStarted();
         

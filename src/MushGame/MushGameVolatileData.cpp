@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } mGoZWUiZsKFfWNio1FcVLw
 /*
- * $Id: MushGameVolatileData.cpp,v 1.8 2006/07/07 18:13:59 southa Exp $
+ * $Id: MushGameVolatileData.cpp,v 1.9 2006/07/20 12:22:22 southa Exp $
  * $Log: MushGameVolatileData.cpp,v $
+ * Revision 1.9  2006/07/20 12:22:22  southa
+ * Precache display
+ *
  * Revision 1.8  2006/07/07 18:13:59  southa
  * Menu start and stop
  *
@@ -60,7 +63,8 @@ MushGameVolatileData::MushGameVolatileData() :
     m_frameMsec(0),
     m_rubyGame(Mushware::kRubyQnil),
     m_gameMode(kGameModeMenu),
-    m_preCache(false)
+    m_preCache(false),
+    m_isMenuBackdrop(false)
 {
 }
 
@@ -105,7 +109,8 @@ MushGameVolatileData::AutoPrint(std::ostream& ioOut) const
     ioOut << "frameMsec=" << m_frameMsec << ", ";
     ioOut << "rubyGame=" << m_rubyGame << ", ";
     ioOut << "gameMode=" << m_gameMode << ", ";
-    ioOut << "preCache=" << m_preCache;
+    ioOut << "preCache=" << m_preCache << ", ";
+    ioOut << "isMenuBackdrop=" << m_isMenuBackdrop;
     ioOut << "]";
 }
 bool
@@ -153,6 +158,10 @@ MushGameVolatileData::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::st
     {
         ioIn >> m_preCache;
     }
+    else if (inTagStr == "isMenuBackdrop")
+    {
+        ioIn >> m_isMenuBackdrop;
+    }
     else 
     {
         return false;
@@ -180,5 +189,7 @@ MushGameVolatileData::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_gameMode;
     ioOut.TagSet("preCache");
     ioOut << m_preCache;
+    ioOut.TagSet("isMenuBackdrop");
+    ioOut << m_isMenuBackdrop;
 }
-//%outOfLineFunctions } KqwArvraujPFYqrsF6+lyQ
+//%outOfLineFunctions } XQ3PP6Tp7uSWdgyzoypTcg

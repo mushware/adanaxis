@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } XF1bjCN2eB/qdeJZOQQkxg
 /*
- * $Id: AdanaxisConfig.h,v 1.12 2006/07/12 11:22:40 southa Exp $
+ * $Id: AdanaxisConfig.h,v 1.13 2006/07/26 16:37:20 southa Exp $
  * $Log: AdanaxisConfig.h,v $
+ * Revision 1.13  2006/07/26 16:37:20  southa
+ * Options menu
+ *
  * Revision 1.12  2006/07/12 11:22:40  southa
  * Advanced control menu
  *
@@ -88,6 +91,7 @@ public:
     enum
     {
         kKeyFire = 0,
+        kKeyScanner = 1,
         kNumKeys
     };
     
@@ -105,17 +109,20 @@ public:
     MushGameKeyDef& KeyDefWRef(Mushware::U32 inKeyDefNum) { MushcoreUtil::BoundsCheck(inKeyDefNum, m_keyDefs.size()); return m_keyDefs[inKeyDefNum]; }
     void AxisDefSet(const MushGameAxisDef& inDef, Mushware::U32 inAxisDefNum) { MushcoreUtil::BoundsCheck(inAxisDefNum, m_axisDefs.size()); m_axisDefs[inAxisDefNum] = inDef; }
     void KeyDefSet(const MushGameKeyDef& inDef, Mushware::U32 inKeyDefNum) { MushcoreUtil::BoundsCheck(inKeyDefNum, m_keyDefs.size()); m_keyDefs[inKeyDefNum] = inDef; }
-
+    Mushware::tMsec RecordTime(const std::string& inName);
+    void RecordTimeSet(const std::string& inName, Mushware::tMsec inTime) { m_recordTimes[inName] = inTime; }
+    
 private:
     enum
     {
-        kVersion = 20060726,
+        kVersion = 20060728,
     };
+    typedef std::map< std::string, Mushware::tMsec > tRecordTimes;
     
     std::vector<MushGameAxisDef> m_axisDefs; //:read
     std::vector<MushGameKeyDef> m_keyDefs; //:read
     Mushware::U32 m_displayMode; //:readwrite
-    Mushware::tMsec m_recordTime; //:readwrite
+    tRecordTimes m_recordTimes;
 
 //%classPrototypes {
 public:
@@ -123,8 +130,6 @@ public:
     const std::vector<MushGameKeyDef>& KeyDefs(void) const { return m_keyDefs; }
     const Mushware::U32& DisplayMode(void) const { return m_displayMode; }
     void DisplayModeSet(const Mushware::U32& inValue) { m_displayMode=inValue; }
-    const Mushware::tMsec& RecordTime(void) const { return m_recordTime; }
-    void RecordTimeSet(const Mushware::tMsec& inValue) { m_recordTime=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -132,7 +137,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } 7/bmsZAzY6gfl7rJTjhB/Q
+//%classPrototypes } o8V20dDJ/f6CPeqLqotZNA
 };
 //%inlineHeader {
 inline std::ostream&

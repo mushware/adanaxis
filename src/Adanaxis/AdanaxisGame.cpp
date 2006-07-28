@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } DEX6Sh9oUk/bih2GXm2coA
 /*
- * $Id: AdanaxisGame.cpp,v 1.45 2006/07/26 16:37:20 southa Exp $
+ * $Id: AdanaxisGame.cpp,v 1.46 2006/07/27 13:51:33 southa Exp $
  * $Log: AdanaxisGame.cpp,v $
+ * Revision 1.46  2006/07/27 13:51:33  southa
+ * Menu and control fixes
+ *
  * Revision 1.45  2006/07/26 16:37:20  southa
  * Options menu
  *
@@ -190,6 +193,7 @@ AdanaxisGame::~AdanaxisGame()
 void
 AdanaxisGame::Process(MushGameAppHandler& inAppHandler)
 {
+#ifdef MUSHCORE_DEBUG
     if (inAppHandler.LatchedKeyStateTake('.'))
     {
         MushGLUtil::BufferPurge();
@@ -204,6 +208,7 @@ AdanaxisGame::Process(MushGameAppHandler& inAppHandler)
         MushGLV::Sgl().Purge();
         MushGLV::Sgl().Acquaint();
     }
+#endif
     
     Logic().PerFrameProcessing();
     Logic().MainSequence();
@@ -286,7 +291,9 @@ AdanaxisGame::Init(MushGameAppHandler& inAppHandler)
 	VolatileData().RubyGameSet(MushRubyExec::Sgl().Call("$currentGame.mLoad"));
 	VolatileData().RubySpaceSet(MushRubyExec::Sgl().Call("$currentGame.space"));
 	MushRubyExec::Sgl().Call(VolatileData().RubySpace(), "mInitialPiecesCreate");
-	
+	VolatileData().IsMenuBackdropSet(MushRubyExec::Sgl().Call(VolatileData().RubySpace(), "mIsMenuBackdrop").Bool());
+    SaveData().SpaceNameSet(MushRubyExec::Sgl().Call("$currentGame.mSpaceName").String());
+    
 	AdanaxisUtil::MissingSkinsCreate(Logic());
 
     MushcoreInterpreter::Sgl().Execute("loadsoundstream('adanaxis-music1')");
@@ -295,8 +302,12 @@ AdanaxisGame::Init(MushGameAppHandler& inAppHandler)
         MediaAudio::Sgl().MusicVolumeSet(m_config.MusicVolume() / 100.0);
         MediaAudio::Sgl().MusicFadeIn(300);
     }
-    
+
+    Logic().RecordTimeSet(m_config.RecordTime(SaveData().SpaceName()));
     Logic().MenuModeEnter();
+    Logic().StartTimeSet(0);
+    Logic().EndTimeSet(0);
+    
     m_inited = true;
     SaveData().ClockStartedSet(false);
 }
@@ -396,7 +407,6 @@ AdanaxisGame::SwapIn(MushGameAppHandler& inAppHandler)
 
     GLUtils::CheckGLError();
     
-    Logic().RecordTimeSet(m_config.RecordTime());
     Logic().PreCacheModeEnter();
     
     dynamic_cast<AdanaxisRender&>(SaveData().RenderRef().WRef()).RenderPreludeSet();
@@ -408,12 +418,12 @@ AdanaxisGame::SwapOut(MushGameAppHandler& inAppHandler)
     MushGameBase::SwapOut(inAppHandler);
 
     tMsec gameTime = Logic().EndTime() - Logic().StartTime();
-    
-    if (m_config.RecordTime() == 0 || gameTime < m_config.RecordTime())
+    tMsec recordTime = m_config.RecordTime(SaveData().SpaceName());
+    if (recordTime == 0 || gameTime < recordTime)
     {
         if (Logic().KhaziCount() == 0)
         {
-            m_config.RecordTimeSet(gameTime);
+            m_config.RecordTimeSet(SaveData().SpaceName(), gameTime);
         }
     }
 

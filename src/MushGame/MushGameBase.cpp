@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 72jYu/IZevqg7bsvRKLvxw
 /*
- * $Id: MushGameBase.cpp,v 1.4 2006/07/08 16:05:59 southa Exp $
+ * $Id: MushGameBase.cpp,v 1.5 2006/07/12 11:22:42 southa Exp $
  * $Log: MushGameBase.cpp,v $
+ * Revision 1.5  2006/07/12 11:22:42  southa
+ * Advanced control menu
+ *
  * Revision 1.4  2006/07/08 16:05:59  southa
  * Ruby menus and key handling
  *
@@ -66,6 +69,7 @@ MushGameBase::KeyboardSignal(const GLKeyboardSignal& inSignal, MushGameAppHandle
         // Add keypress to the queue
         MushRubyExec::Sgl().Call(VolatileDataRef().Ref().RubyGame(), MushRubyIntern::mKeypress(),
                                  MushRubyValue(inSignal.keyValue),
+                                 MushRubyValue(inSignal.keyModifier),
                                  MushRubyValue(inSignal.keyDown));
     }
     else if (inSignal.keyValue == 27 && inSignal.keyDown)

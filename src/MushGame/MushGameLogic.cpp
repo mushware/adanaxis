@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } o9Dxm/e8GypZNPSRXLgJNQ
 /*
- * $Id: MushGameLogic.cpp,v 1.26 2006/07/08 16:05:59 southa Exp $
+ * $Id: MushGameLogic.cpp,v 1.27 2006/07/20 12:22:21 southa Exp $
  * $Log: MushGameLogic.cpp,v $
+ * Revision 1.27  2006/07/20 12:22:21  southa
+ * Precache display
+ *
  * Revision 1.26  2006/07/08 16:05:59  southa
  * Ruby menus and key handling
  *
@@ -596,7 +599,7 @@ MushGameLogic::MainSequence(void)
     catch (MushcoreNonFatalFail& e) { ExceptionHandle(&e, "ReceiveSequence"); }
     try { SendSequence(); }
     catch (MushcoreNonFatalFail& e) { ExceptionHandle(&e, "SendSequence"); }
-    if (IsGameMode())
+    if (IsGameMode() || VolatileData().IsMenuBackdrop())
     {
         try { MoveSequence(); }
         catch (MushcoreNonFatalFail& e) { ExceptionHandle(&e, "MoveSequence"); }

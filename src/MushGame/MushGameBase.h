@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } auDv5KzHAtGChacJ2aS7ug
 /*
- * $Id: MushGameBase.h,v 1.5 2006/07/26 16:37:23 southa Exp $
+ * $Id: MushGameBase.h,v 1.6 2006/07/27 13:51:36 southa Exp $
  * $Log: MushGameBase.h,v $
+ * Revision 1.6  2006/07/27 13:51:36  southa
+ * Menu and control fixes
+ *
  * Revision 1.5  2006/07/26 16:37:23  southa
  * Options menu
  *
@@ -73,7 +76,8 @@ public:
     virtual void NextDisplayMode(void) {}
     virtual const MushGameConfigBase& Config(void) const { throw MushcoreRequestFail("No config available"); }
     virtual MushGameConfigBase& ConfigWRef(void) { throw MushcoreRequestFail("No config available"); }
-
+    virtual bool IsMenuBackdrop(void) const { return false; }
+    
 private:
     MushcoreDataRef<MushGameSaveData> m_saveDataRef; //:read :wref
     MushcoreDataRef<MushGameVolatileData> m_volatileDataRef; //:read :wref

@@ -2661,6 +2661,8 @@
 		7A58111D089A5E32000A1C04 /* MushcoreMaptorIterator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushcoreMaptorIterator.cpp; sourceTree = "<group>"; };
 		7A581156089A6CCE000A1C04 /* MushcoreMaptorConstIterator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushcoreMaptorConstIterator.h; sourceTree = "<group>"; };
 		7A581157089A6CCE000A1C04 /* MushcoreMaptorConstIterator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushcoreMaptorConstIterator.cpp; sourceTree = "<group>"; };
+		7A58280F0A791B55005FD788 /* manifest.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = manifest.txt; sourceTree = "<group>"; };
+		7A5828100A791B56005FD788 /* space.rb */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.ruby; path = space.rb; sourceTree = "<group>"; };
 		7A58F1760A3D680C00B7AE0E /* MushMeshRuby.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = MushMeshRuby.cpp; sourceTree = "<group>"; };
 		7A58F1770A3D680C00B7AE0E /* MushMeshRuby.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = MushMeshRuby.h; sourceTree = "<group>"; };
 		7A58F1D60A3D68EA00B7AE0E /* MushMeshRubyStandard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushMeshRubyStandard.h; sourceTree = "<group>"; };
@@ -4145,6 +4147,7 @@
 			children = (
 				7A3E0D1B0A4821C10078B650 /* local1 */,
 				7A97ECE80A6A808600369FD6 /* local2 */,
+				7A58280E0A791B55005FD788 /* menu1 */,
 			);
 			path = spaces;
 			sourceTree = "<group>";
@@ -4199,6 +4202,15 @@
 				7A4FA55C05F9EBCA00297E23 /* start.txt */,
 			);
 			path = system;
+			sourceTree = "<group>";
+		};
+		7A58280E0A791B55005FD788 /* menu1 */ = {
+			isa = PBXGroup;
+			children = (
+				7A58280F0A791B55005FD788 /* manifest.txt */,
+				7A5828100A791B56005FD788 /* space.rb */,
+			);
+			path = menu1;
 			sourceTree = "<group>";
 		};
 		7A58F1750A3D680C00B7AE0E /* MushMeshRuby */ = {

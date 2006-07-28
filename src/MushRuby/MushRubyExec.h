@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } UpB+98ShDY+5JMJVLGBArQ
 /*
- * $Id: MushRubyExec.h,v 1.5 2006/07/04 16:55:28 southa Exp $
+ * $Id: MushRubyExec.h,v 1.6 2006/07/08 16:06:00 southa Exp $
  * $Log: MushRubyExec.h,v $
+ * Revision 1.6  2006/07/08 16:06:00  southa
+ * Ruby menus and key handling
+ *
  * Revision 1.5  2006/07/04 16:55:28  southa
  * Ruby key handling
  *
@@ -50,15 +53,17 @@ class MushRubyExec : public MushcoreSingleton<MushRubyExec>
 {
 public:
     MushRubyExec();
-    Mushware::tRubyValue Eval(const std::string& inStr);
-    Mushware::tRubyValue Call(const std::string& inRecv, const std::string& inFunc);
-    Mushware::tRubyValue Call(const std::string& inStr);
-    Mushware::tRubyValue Call(Mushware::tRubyValue inRecv, const std::string& inFunc);
-    Mushware::tRubyValue Call(Mushware::tRubyValue inRecv, Mushware::tRubyID inFunc);
-    Mushware::tRubyValue Call(Mushware::tRubyValue inRecv, Mushware::tRubyID inFunc,
+    MushRubyValue Eval(const std::string& inStr);
+    MushRubyValue Call(const std::string& inRecv, const std::string& inFunc);
+    MushRubyValue Call(const std::string& inStr);
+    MushRubyValue Call(MushRubyValue inRecv, const std::string& inFunc);
+    MushRubyValue Call(MushRubyValue inRecv, Mushware::tRubyID inFunc);
+    MushRubyValue Call(MushRubyValue inRecv, Mushware::tRubyID inFunc,
                               MushRubyValue inArg0);
-    Mushware::tRubyValue Call(Mushware::tRubyValue inRecv, Mushware::tRubyID inFunc,
-                              MushRubyValue inArg0, MushRubyValue inArg1);
+    MushRubyValue Call(MushRubyValue inRecv, Mushware::tRubyID inFunc,
+                       MushRubyValue inArg0, MushRubyValue inArg1);
+    MushRubyValue Call(MushRubyValue inRecv, Mushware::tRubyID inFunc,
+                       MushRubyValue inArg0, MushRubyValue inArg1, MushRubyValue inArg2);
     void Require(const std::string& inStr);
     
 protected:

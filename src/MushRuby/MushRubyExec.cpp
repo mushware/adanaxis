@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } ZcziFKLJA7zY/8U6Ju48NA
 /*
- * $Id: MushRubyExec.cpp,v 1.8 2006/07/04 16:55:28 southa Exp $
+ * $Id: MushRubyExec.cpp,v 1.9 2006/07/08 16:06:00 southa Exp $
  * $Log: MushRubyExec.cpp,v $
+ * Revision 1.9  2006/07/08 16:06:00  southa
+ * Ruby menus and key handling
+ *
  * Revision 1.8  2006/07/04 16:55:28  southa
  * Ruby key handling
  *
@@ -66,7 +69,7 @@ MushRubyExec::MushRubyExec() :
     MushRubyExec::Initialise();    
 }
 
-tRubyValue
+MushRubyValue
 MushRubyExec::Eval(const std::string& inStr)
 {
     tRubyValue retVal;
@@ -76,7 +79,7 @@ MushRubyExec::Eval(const std::string& inStr)
     {
         throw MushRubyFail();
     }
-    return retVal;
+    return MushRubyValue(retVal);
 }
 
 tRubyValue
@@ -95,7 +98,7 @@ MushRubyExec::StaticWrapProtect(tRubyValue inValue)
     return MushRubyExec::Sgl().WrapProtect(inValue);
 }
 
-tRubyValue
+MushRubyValue
 MushRubyExec::Call(const std::string& inRecv, const std::string& inFunc)
 {
     tRubyValue retVal;
@@ -111,13 +114,13 @@ MushRubyExec::Call(const std::string& inRecv, const std::string& inFunc)
     {
         throw MushRubyFail();
     }
-    return retVal;
+    return MushRubyValue(retVal);
 }
 
-tRubyValue
+MushRubyValue
 MushRubyExec::Call(const std::string& inStr)
 {
-    tRubyValue retVal;
+    MushRubyValue retVal;
     U32 dotPos = inStr.find(".", 0);
     
     if (dotPos == inStr.npos)
@@ -131,13 +134,13 @@ MushRubyExec::Call(const std::string& inStr)
     return retVal;
 }    
 
-Mushware::tRubyValue
-MushRubyExec::Call(Mushware::tRubyValue inRecv,  const std::string& inFunc)
+MushRubyValue
+MushRubyExec::Call(MushRubyValue inRecv,  const std::string& inFunc)
 {
 	tRubyValue retVal;
     tRubyError rubyError;
     
-    m_callReceiver = inRecv;
+    m_callReceiver = inRecv.Value();
     m_callFunction = rb_intern(inFunc.c_str());
     m_callNumArgs = 0;
     
@@ -147,16 +150,16 @@ MushRubyExec::Call(Mushware::tRubyValue inRecv,  const std::string& inFunc)
     {
         throw MushRubyFail();
     }
-    return retVal;
+    return MushRubyValue(retVal);
 }
 
-Mushware::tRubyValue
-MushRubyExec::Call(Mushware::tRubyValue inRecv,  Mushware::tRubyID inFunc)
+MushRubyValue
+MushRubyExec::Call(MushRubyValue inRecv,  Mushware::tRubyID inFunc)
 {
 	tRubyValue retVal;
     tRubyError rubyError;
     
-    m_callReceiver = inRecv;
+    m_callReceiver = inRecv.Value();
     m_callFunction = inFunc;
     m_callNumArgs = 0;
     
@@ -166,17 +169,17 @@ MushRubyExec::Call(Mushware::tRubyValue inRecv,  Mushware::tRubyID inFunc)
     {
         throw MushRubyFail();
     }
-    return retVal;
+    return MushRubyValue(retVal);
 }
 
-Mushware::tRubyValue
-MushRubyExec::Call(Mushware::tRubyValue inRecv, Mushware::tRubyID inFunc,
+MushRubyValue
+MushRubyExec::Call(MushRubyValue inRecv, Mushware::tRubyID inFunc,
                    MushRubyValue inArg0)
 {
 	tRubyValue retVal;
     tRubyError rubyError;
     
-    m_callReceiver = inRecv;
+    m_callReceiver = inRecv.Value();
     m_callFunction = inFunc;
     MUSHCOREASSERT(m_callArgs.size() >= 1);
     m_callArgs[0] = inArg0.Value();
@@ -188,17 +191,17 @@ MushRubyExec::Call(Mushware::tRubyValue inRecv, Mushware::tRubyID inFunc,
     {
         throw MushRubyFail();
     }
-    return retVal;
+    return MushRubyValue(retVal);
 }
 
-Mushware::tRubyValue
-MushRubyExec::Call(Mushware::tRubyValue inRecv, Mushware::tRubyID inFunc,
+MushRubyValue
+MushRubyExec::Call(MushRubyValue inRecv, Mushware::tRubyID inFunc,
                    MushRubyValue inArg0, MushRubyValue inArg1)
 {
 	tRubyValue retVal;
     tRubyError rubyError;
     
-    m_callReceiver = inRecv;
+    m_callReceiver = inRecv.Value();
     m_callFunction = inFunc;
     MUSHCOREASSERT(m_callArgs.size() >= 2);
     m_callArgs[0] = inArg0.Value();
@@ -211,10 +214,32 @@ MushRubyExec::Call(Mushware::tRubyValue inRecv, Mushware::tRubyID inFunc,
     {
         throw MushRubyFail();
     }
-    return retVal;
+    return MushRubyValue(retVal);
 }
 
-
+MushRubyValue
+MushRubyExec::Call(MushRubyValue inRecv, Mushware::tRubyID inFunc,
+                   MushRubyValue inArg0, MushRubyValue inArg1, MushRubyValue inArg2)
+{
+	tRubyValue retVal;
+    tRubyError rubyError;
+    
+    m_callReceiver = inRecv.Value();
+    m_callFunction = inFunc;
+    MUSHCOREASSERT(m_callArgs.size() >= 3);
+    m_callArgs[0] = inArg0.Value();
+    m_callArgs[1] = inArg1.Value();
+    m_callArgs[2] = inArg2.Value();
+    m_callNumArgs = 3;
+    
+    retVal = rb_protect(StaticWrapProtect, 0, &rubyError);
+    
+    if (rubyError)
+    {
+        throw MushRubyFail();
+    }
+    return MushRubyValue(retVal);
+}
 
 void
 MushRubyExec::Require(const std::string& inStr)

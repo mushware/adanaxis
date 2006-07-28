@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } 157b9FcuQDovkVcDTGUZJw
 /*
- * $Id: AdanaxisSaveData.cpp,v 1.10 2006/06/01 15:38:48 southa Exp $
+ * $Id: AdanaxisSaveData.cpp,v 1.11 2006/07/27 13:51:34 southa Exp $
  * $Log: AdanaxisSaveData.cpp,v $
+ * Revision 1.11  2006/07/27 13:51:34  southa
+ * Menu and control fixes
+ *
  * Revision 1.10  2006/06/01 15:38:48  southa
  * DrawArray verification and fixes
  *
@@ -95,7 +98,8 @@ AdanaxisSaveData::AutoPrint(std::ostream& ioOut) const
     ioOut << "projectileList=" << m_projectileList << ", ";
     ioOut << "khaziList=" << m_khaziList << ", ";
     ioOut << "dialogues=" << m_dialogues << ", ";
-    ioOut << "clockStarted=" << m_clockStarted;
+    ioOut << "clockStarted=" << m_clockStarted << ", ";
+    ioOut << "spaceName=" << m_spaceName;
     ioOut << "]";
 }
 bool
@@ -123,6 +127,10 @@ AdanaxisSaveData::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string
     {
         ioIn >> m_clockStarted;
     }
+    else if (inTagStr == "spaceName")
+    {
+        ioIn >> m_spaceName;
+    }
     else if (MushGameSaveData::AutoXMLDataProcess(ioIn, inTagStr))
     {
         // Tag consumed by base class
@@ -145,5 +153,7 @@ AdanaxisSaveData::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_dialogues;
     ioOut.TagSet("clockStarted");
     ioOut << m_clockStarted;
+    ioOut.TagSet("spaceName");
+    ioOut << m_spaceName;
 }
-//%outOfLineFunctions } uBDOjKUWh744lybJPZgGkw
+//%outOfLineFunctions } xKVIN8qTa1phRrUhc+deKw

@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } 0edG1wrkU5hKeWbu3l1MQA
 /*
- * $Id: AdanaxisPlayer.cpp,v 1.21 2006/07/24 18:46:47 southa Exp $
+ * $Id: AdanaxisPlayer.cpp,v 1.22 2006/07/26 16:37:21 southa Exp $
  * $Log: AdanaxisPlayer.cpp,v $
+ * Revision 1.22  2006/07/26 16:37:21  southa
+ * Options menu
+ *
  * Revision 1.21  2006/07/24 18:46:47  southa
  * Depth sorting
  *
@@ -103,7 +106,7 @@ AdanaxisPlayer::AdanaxisPlayer(const std::string& inPlayerID) :
     MushGamePlayer(inPlayerID),
 	m_projectileMeshRef("projectile")
 {
-    PostWRef().PosSet(t4Val(0,0,0,55));
+    PostWRef().PosSet(t4Val(0,0,0,0));
 }
 
 void

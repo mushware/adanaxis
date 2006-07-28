@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } Hr8bvS7fc+x0pR9DrFcIZw
 /*
- * $Id: AdanaxisRender.cpp,v 1.40 2006/07/26 16:37:21 southa Exp $
+ * $Id: AdanaxisRender.cpp,v 1.41 2006/07/27 13:51:34 southa Exp $
  * $Log: AdanaxisRender.cpp,v $
+ * Revision 1.41  2006/07/27 13:51:34  southa
+ * Menu and control fixes
+ *
  * Revision 1.40  2006/07/26 16:37:21  southa
  * Options menu
  *
@@ -359,7 +362,10 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
         
         SortAndDespatch(ioLogic, m_renderList);
 
-        ScanRender(*pLogic, &renderMesh, camera);
+        if (ioLogic.IsGameMode())
+        {
+            ScanRender(*pLogic, &renderMesh, camera);
+        }
                 
         U32 renderListSize = m_renderList.size();
         for (U32 i=0; i + 1 < renderListSize; ++i)
@@ -475,6 +481,7 @@ AdanaxisRender::Overplot(MushGameLogic& ioLogic, const MushGameCamera& inCamera)
                 GLString glStr(message.str(), GLFontRef("font-mono1", 0.02), -1);
                 glStr.Render();
             }
+            if (logicRef.EndTime() > logicRef.StartTime())
             {
                 orthoGL.MoveToEdge(1,1);
                 orthoGL.MoveRelative(-0.01, -0.04);
@@ -493,6 +500,7 @@ AdanaxisRender::Overplot(MushGameLogic& ioLogic, const MushGameCamera& inCamera)
         
         if (logicRef.KhaziCount() == 0)
         {
+            if (logicRef.EndTime() > logicRef.StartTime())
             {
                 orthoGL.MoveTo(0, 0.04);
                 ostringstream message;

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } hwIlNOCEH5GsgwGY+rP1Kg
 /*
- * $Id: MushRubyValue.cpp,v 1.12 2006/07/08 16:06:00 southa Exp $
+ * $Id: MushRubyValue.cpp,v 1.13 2006/07/12 16:03:03 southa Exp $
  * $Log: MushRubyValue.cpp,v $
+ * Revision 1.13  2006/07/12 16:03:03  southa
+ * Adanaxis work
+ *
  * Revision 1.12  2006/07/08 16:06:00  southa
  * Ruby menus and key handling
  *
@@ -127,13 +130,13 @@ MushRubyValue::String(void) const
 	}
 	else if (rb_obj_is_instance_of(tempValue, rb_cArray))
 	{
-		Mushware::tRubyValue stringValue = MushRubyExec::Sgl().Call(tempValue, MushRubyIntern::cToPrint());
+		Mushware::tRubyValue stringValue = MushRubyExec::Sgl().Call(MushRubyValue(tempValue), MushRubyIntern::cToPrint()).Value();
 		
 		retVal = std::string(RSTRING(stringValue)->ptr, RSTRING(stringValue)->ptr + RSTRING(stringValue)->len);	
 	}
 	else
 	{
-		Mushware::tRubyValue stringValue = MushRubyExec::Sgl().Call(tempValue, MushRubyIntern::to_s());
+		Mushware::tRubyValue stringValue = MushRubyExec::Sgl().Call(MushRubyValue(tempValue), MushRubyIntern::to_s()).Value();
 		retVal = std::string(RSTRING(stringValue)->ptr, RSTRING(stringValue)->ptr + RSTRING(stringValue)->len);	
 	}
 			 
@@ -178,7 +181,7 @@ MushRubyValue::ValVector(void) const
 	{
 		throw MushcoreDataFail("Cannot generate vector from non-array ruby type");
 	}
-	Mushware::tRubyValue sizeValue = MushRubyExec::Sgl().Call(tempValue, MushRubyIntern::size());
+	Mushware::tRubyValue sizeValue = MushRubyExec::Sgl().Call(MushRubyValue(tempValue), MushRubyIntern::size()).Value();
 	
 	for (Mushware::U32 i=0; i<NUM2UINT(sizeValue); ++i)
 	{
@@ -198,7 +201,7 @@ MushRubyValue::U32Vector(void) const
 	{
 		throw MushcoreDataFail("Cannot generate vector from non-array ruby type");
 	}
-	Mushware::tRubyValue sizeValue = MushRubyExec::Sgl().Call(tempValue, MushRubyIntern::size());
+	Mushware::tRubyValue sizeValue = MushRubyExec::Sgl().Call(MushRubyValue(tempValue), MushRubyIntern::size()).Value();
 	
 	for (Mushware::U32 i=0; i<NUM2UINT(sizeValue); ++i)
 	{
