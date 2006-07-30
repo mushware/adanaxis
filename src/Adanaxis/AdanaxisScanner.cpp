@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } G8Z0FhC/G4lBOZEeeMzYgA
 /*
- * $Id: AdanaxisScanner.cpp,v 1.3 2006/07/25 20:31:03 southa Exp $
+ * $Id: AdanaxisScanner.cpp,v 1.4 2006/07/28 19:24:34 southa Exp $
  * $Log: AdanaxisScanner.cpp,v $
+ * Revision 1.4  2006/07/28 19:24:34  southa
+ * Pre-release work
+ *
  * Revision 1.3  2006/07/25 20:31:03  southa
  * Scanner work
  *
@@ -100,7 +103,7 @@ AdanaxisScanner::ScanObjectRender(AdanaxisLogic& ioLogic, MushRenderMesh *inpMes
 
     t4Val eyePos = renderSpec.ModelToEyeMattress() * t4Val(0,0,0,0);
     
-    // Check wheter the camera is on target on this object
+    // Check whether the camera is on target on this object
     if (m_targetState != kTargetStateOnTarget)
     {
         tVal boundingRadius = inMesh.BoundingRadius();
