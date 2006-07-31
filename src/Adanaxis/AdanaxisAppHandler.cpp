@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } oSmLZ+XD56LtO8LoKCgFfg
 /*
- * $Id: AdanaxisAppHandler.cpp,v 1.6 2006/06/30 15:05:30 southa Exp $
+ * $Id: AdanaxisAppHandler.cpp,v 1.7 2006/07/07 18:13:56 southa Exp $
  * $Log: AdanaxisAppHandler.cpp,v $
+ * Revision 1.7  2006/07/07 18:13:56  southa
+ * Menu start and stop
+ *
  * Revision 1.6  2006/06/30 15:05:30  southa
  * Texture and buffer purge
  *
@@ -54,7 +57,8 @@ using namespace Mushware;
 using namespace std;
 
 AdanaxisAppHandler::AdanaxisAppHandler(const std::string& inName) :
-    MushGameAppHandler(inName)
+    MushGameAppHandler(inName),
+    m_firstGame(true)
 {
 }
 
@@ -65,3 +69,69 @@ AdanaxisAppHandler::NewGameCreate(const std::string& inName)
     m_gameRef.NameSet(inName);
 }
 
+//%outOfLineFunctions {
+
+const char *AdanaxisAppHandler::AutoName(void) const
+{
+    return "AdanaxisAppHandler";
+}
+
+MushcoreVirtualObject *AdanaxisAppHandler::AutoClone(void) const
+{
+    return new AdanaxisAppHandler(*this);
+}
+
+MushcoreVirtualObject *AdanaxisAppHandler::AutoCreate(void) const
+{
+    return new AdanaxisAppHandler;
+}
+
+MushcoreVirtualObject *AdanaxisAppHandler::AutoVirtualFactory(void)
+{
+    return new AdanaxisAppHandler;
+}
+namespace
+{
+void AutoInstall(void)
+{
+    MushcoreFactory::Sgl().FactoryAdd("AdanaxisAppHandler", AdanaxisAppHandler::AutoVirtualFactory);
+}
+MushcoreInstaller AutoInstaller(AutoInstall);
+} // end anonymous namespace
+bool
+AdanaxisAppHandler::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr)
+{
+    if (inTagStr == "obj")
+    {
+        AutoInputPrologue(ioIn);
+        ioIn >> *this;
+        AutoInputEpilogue(ioIn);
+    }
+    else if (inTagStr == "gameRef")
+    {
+        ioIn >> m_gameRef;
+    }
+    else if (inTagStr == "firstGame")
+    {
+        ioIn >> m_firstGame;
+    }
+    else if (MushGameAppHandler::AutoXMLDataProcess(ioIn, inTagStr))
+    {
+        // Tag consumed by base class
+    }
+    else 
+    {
+        return false;
+    }
+    return true;
+}
+void
+AdanaxisAppHandler::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
+{
+    MushGameAppHandler::AutoXMLPrint(ioOut);
+    ioOut.TagSet("gameRef");
+    ioOut << m_gameRef;
+    ioOut.TagSet("firstGame");
+    ioOut << m_firstGame;
+}
+//%outOfLineFunctions } sjpvgUWxyJpvMdK+HI4NEQ

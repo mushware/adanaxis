@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } VUfBvm3qobPEj3YM/Njzcg
 /*
- * $Id: SDLAppHandler.h,v 1.31 2006/07/11 19:49:04 southa Exp $
+ * $Id: SDLAppHandler.h,v 1.32 2006/07/28 16:52:20 southa Exp $
  * $Log: SDLAppHandler.h,v $
+ * Revision 1.32  2006/07/28 16:52:20  southa
+ * Options work
+ *
  * Revision 1.31  2006/07/11 19:49:04  southa
  * Control menu
  *
@@ -134,6 +137,8 @@ public:
     bool keyDirection;
 };
 
+//:xml1base GLAppHandler
+//:generate virtual standard ostream xml1
 class SDLAppHandler : public GLAppHandler
 {
 public:

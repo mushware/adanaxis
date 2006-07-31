@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } wOXl6eoMycMTXcUsBJ4Pgg
 /*
- * $Id: AdanaxisGame.h,v 1.20 2006/07/27 13:51:33 southa Exp $
+ * $Id: AdanaxisGame.h,v 1.21 2006/07/28 16:52:19 southa Exp $
  * $Log: AdanaxisGame.h,v $
+ * Revision 1.21  2006/07/28 16:52:19  southa
+ * Options work
+ *
  * Revision 1.20  2006/07/27 13:51:33  southa
  * Menu and control fixes
  *
@@ -135,9 +138,12 @@ private:
     std::string m_name;
 
     AdanaxisConfig m_config;
+    bool m_startDialogueShown; //:readwrite
     
 //%classPrototypes {
 public:
+    const bool& StartDialogueShown(void) const { return m_startDialogueShown; }
+    void StartDialogueShownSet(const bool& inValue) { m_startDialogueShown=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -145,7 +151,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } 1oBgFruy5qHAaudtV+Hcmg
+//%classPrototypes } SLrcN/4B/Ouc3cX+vsN2/A
 };
 
 inline AdanaxisSaveData&

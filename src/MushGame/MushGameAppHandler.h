@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } rqKVCOMdajoYPgaQgbClmg
 /*
- * $Id: MushGameAppHandler.h,v 1.13 2006/07/27 13:51:35 southa Exp $
+ * $Id: MushGameAppHandler.h,v 1.14 2006/07/28 16:52:23 southa Exp $
  * $Log: MushGameAppHandler.h,v $
+ * Revision 1.14  2006/07/28 16:52:23  southa
+ * Options work
+ *
  * Revision 1.13  2006/07/27 13:51:35  southa
  * Menu and control fixes
  *
@@ -76,7 +79,8 @@
 
 #include "API/mushGame.h"
 
-//:generate
+//:xml1base MushGLAppHandler
+//:generate virtual standard ostream xml1
 class MushGameAppHandler : public MushGLAppHandler
 {
 public:
@@ -129,7 +133,7 @@ protected:
     virtual void NewGameCreate(const std::string& inName);
     
 private:
-    tAppState m_appState; //:readwrite
+    Mushware::U32 m_appState; //:readwrite
     MushcoreDataRef<MushGameBase> m_currentRef;
     
     std::string m_groupingName;
@@ -142,14 +146,29 @@ private:
     
 //%classPrototypes {
 public:
-    const tAppState& AppState(void) const { return m_appState; }
-    void AppStateSet(const tAppState& inValue) { m_appState=inValue; }
+    const Mushware::U32& AppState(void) const { return m_appState; }
+    void AppStateSet(const Mushware::U32& inValue) { m_appState=inValue; }
     const MushcoreDataRef<MushGameMailbox>& ControlMailboxRef(void) const { return m_controlMailboxRef; }
     const bool& LastAxesValid(void) const { return m_lastAxesValid; }
     void LastAxesValidSet(const bool& inValue) { m_lastAxesValid=inValue; }
     const std::string& AxisNames(void) const { return m_axisNames; }
-//%classPrototypes } 6gtVEQp10KpMF0xzAPw9xQ
+    virtual const char *AutoName(void) const;
+    virtual MushcoreVirtualObject *AutoClone(void) const;
+    virtual MushcoreVirtualObject *AutoCreate(void) const;
+    static MushcoreVirtualObject *AutoVirtualFactory(void);
+    virtual void AutoPrint(std::ostream& ioOut) const;
+    virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
+    virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
+//%classPrototypes } nIzuZaPHaypGXCmfgM9bww
 };
+//%inlineHeader {
+inline std::ostream&
+operator<<(std::ostream& ioOut, const MushGameAppHandler& inObj)
+{
+    inObj.AutoPrint(ioOut);
+    return ioOut;
+}
+//%inlineHeader } hHDQl74WSvqQu3Oe6JxiMA
 
 //%includeGuardEnd {
 #endif

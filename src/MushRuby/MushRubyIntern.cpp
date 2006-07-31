@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } lqALCPGBahbk4ibyVPO8LQ
 /*
- * $Id: MushRubyIntern.cpp,v 1.11 2006/07/20 12:22:22 southa Exp $
+ * $Id: MushRubyIntern.cpp,v 1.12 2006/07/27 13:51:36 southa Exp $
  * $Log: MushRubyIntern.cpp,v $
+ * Revision 1.12  2006/07/27 13:51:36  southa
+ * Menu and control fixes
+ *
  * Revision 1.11  2006/07/20 12:22:22  southa
  * Precache display
  *
@@ -72,7 +75,9 @@ MUSHRUBYINTERN_DEFINE(displacement_velocity);
 MUSHRUBYINTERN_DEFINE(divide);
 MUSHRUBYINTERN_DEFINE(extent);
 MUSHRUBYINTERN_DEFINE(mesh_name);
+MUSHRUBYINTERN_DEFINE(mHandleGameStart);
 MUSHRUBYINTERN_DEFINE(mKeypress);
+MUSHRUBYINTERN_DEFINE(mPreCache);
 MUSHRUBYINTERN_DEFINE(mPreCacheRender);
 MUSHRUBYINTERN_DEFINE(mRender);
 MUSHRUBYINTERN_DEFINE(mReset);
@@ -105,7 +110,9 @@ MushRubyIntern::Initialise(void)
 	MUSHRUBYINTERN_INIT(divide);
 	MUSHRUBYINTERN_INIT(extent);
 	MUSHRUBYINTERN_INIT(mesh_name);
+	MUSHRUBYINTERN_INIT(mHandleGameStart);
 	MUSHRUBYINTERN_INIT(mKeypress);
+	MUSHRUBYINTERN_INIT(mPreCache);
 	MUSHRUBYINTERN_INIT(mPreCacheRender);
 	MUSHRUBYINTERN_INIT(mRender);
 	MUSHRUBYINTERN_INIT(mReset);

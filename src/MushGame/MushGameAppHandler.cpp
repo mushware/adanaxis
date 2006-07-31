@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } bC49LKe3G5tsyGqAVa5gyw
 /*
- * $Id: MushGameAppHandler.cpp,v 1.15 2006/07/27 13:51:35 southa Exp $
+ * $Id: MushGameAppHandler.cpp,v 1.16 2006/07/28 16:52:22 southa Exp $
  * $Log: MushGameAppHandler.cpp,v $
+ * Revision 1.16  2006/07/28 16:52:22  southa
+ * Options work
+ *
  * Revision 1.15  2006/07/27 13:51:35  southa
  * Menu and control fixes
  *
@@ -131,7 +134,16 @@ MushGameAppHandler::QuitStateEnter(void)
         CurrentSwapOut();
         m_appState = kAppStateQuitting;
         
-        MushGLCacheControl::Sgl().CachePurge();
+        bool permitPurge = true;
+        MushcoreScalar textureCachePurge;
+        if (MushcoreEnv::Sgl().VariableGetIfExists(textureCachePurge, "MUSHGL_TEXTURE_CACHE_PURGE"))
+        {
+            permitPurge = textureCachePurge.BoolGet();
+        }
+        if (permitPurge)
+        {
+            MushGLCacheControl::Sgl().CachePurge();
+        }
         
         AppQuit(); // Quit immediately
     }
@@ -604,3 +616,127 @@ MushGameAppHandler::KeyboardSignal(const GLKeyboardSignal& inSignal)
         MushGLAppHandler::KeyboardSignal(inSignal);
     }
 }
+//%outOfLineFunctions {
+
+const char *MushGameAppHandler::AutoName(void) const
+{
+    return "MushGameAppHandler";
+}
+
+MushcoreVirtualObject *MushGameAppHandler::AutoClone(void) const
+{
+    return new MushGameAppHandler(*this);
+}
+
+MushcoreVirtualObject *MushGameAppHandler::AutoCreate(void) const
+{
+    return new MushGameAppHandler;
+}
+
+MushcoreVirtualObject *MushGameAppHandler::AutoVirtualFactory(void)
+{
+    return new MushGameAppHandler;
+}
+namespace
+{
+void AutoInstall(void)
+{
+    MushcoreFactory::Sgl().FactoryAdd("MushGameAppHandler", MushGameAppHandler::AutoVirtualFactory);
+}
+MushcoreInstaller AutoInstaller(AutoInstall);
+} // end anonymous namespace
+void
+MushGameAppHandler::AutoPrint(std::ostream& ioOut) const
+{
+    ioOut << "[";
+    MushGLAppHandler::AutoPrint(ioOut);
+    ioOut << "appState=" << m_appState << ", ";
+    ioOut << "currentRef=" << m_currentRef << ", ";
+    ioOut << "groupingName=" << m_groupingName << ", ";
+    ioOut << "axisDefs=" << m_axisDefs << ", ";
+    ioOut << "keyDefs=" << m_keyDefs << ", ";
+    ioOut << "lastTickerMsec=" << m_lastTickerMsec << ", ";
+    ioOut << "controlMailboxRef=" << m_controlMailboxRef << ", ";
+    ioOut << "lastAxesValid=" << m_lastAxesValid << ", ";
+    ioOut << "axisNames=" << m_axisNames;
+    ioOut << "]";
+}
+bool
+MushGameAppHandler::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr)
+{
+    if (inTagStr == "obj")
+    {
+        AutoInputPrologue(ioIn);
+        ioIn >> *this;
+        AutoInputEpilogue(ioIn);
+    }
+    else if (inTagStr == "appState")
+    {
+        ioIn >> m_appState;
+    }
+    else if (inTagStr == "currentRef")
+    {
+        ioIn >> m_currentRef;
+    }
+    else if (inTagStr == "groupingName")
+    {
+        ioIn >> m_groupingName;
+    }
+    else if (inTagStr == "axisDefs")
+    {
+        ioIn >> m_axisDefs;
+    }
+    else if (inTagStr == "keyDefs")
+    {
+        ioIn >> m_keyDefs;
+    }
+    else if (inTagStr == "lastTickerMsec")
+    {
+        ioIn >> m_lastTickerMsec;
+    }
+    else if (inTagStr == "controlMailboxRef")
+    {
+        ioIn >> m_controlMailboxRef;
+    }
+    else if (inTagStr == "lastAxesValid")
+    {
+        ioIn >> m_lastAxesValid;
+    }
+    else if (inTagStr == "axisNames")
+    {
+        ioIn >> m_axisNames;
+    }
+    else if (MushGLAppHandler::AutoXMLDataProcess(ioIn, inTagStr))
+    {
+        // Tag consumed by base class
+    }
+    else 
+    {
+        return false;
+    }
+    return true;
+}
+void
+MushGameAppHandler::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
+{
+    MushGLAppHandler::AutoXMLPrint(ioOut);
+    ioOut.TagSet("appState");
+    ioOut << m_appState;
+    ioOut.TagSet("currentRef");
+    ioOut << m_currentRef;
+    ioOut.TagSet("groupingName");
+    ioOut << m_groupingName;
+    ioOut.TagSet("axisDefs");
+    ioOut << m_axisDefs;
+    ioOut.TagSet("keyDefs");
+    ioOut << m_keyDefs;
+    ioOut.TagSet("lastTickerMsec");
+    ioOut << m_lastTickerMsec;
+    ioOut.TagSet("controlMailboxRef");
+    ioOut << m_controlMailboxRef;
+    ioOut.TagSet("lastAxesValid");
+    ioOut << m_lastAxesValid;
+    ioOut.TagSet("axisNames");
+    ioOut << m_axisNames;
+}
+//%outOfLineFunctions } EN6rf/mfB9F/bV9AIHwa1w

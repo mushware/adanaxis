@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } n1eaCj2fb8dNPgbT0uOuEQ
 /*
- * $Id: MushRubyIntern.h,v 1.11 2006/07/20 12:22:23 southa Exp $
+ * $Id: MushRubyIntern.h,v 1.12 2006/07/27 13:51:36 southa Exp $
  * $Log: MushRubyIntern.h,v $
+ * Revision 1.12  2006/07/27 13:51:36  southa
+ * Menu and control fixes
+ *
  * Revision 1.11  2006/07/20 12:22:23  southa
  * Precache display
  *
@@ -82,8 +85,10 @@ public:
 	MUSHRUBYINTERN_DECLARE(divide);
 	MUSHRUBYINTERN_DECLARE(extent);
 	MUSHRUBYINTERN_DECLARE(mesh_name);
+	MUSHRUBYINTERN_DECLARE(mHandleGameStart);
 	MUSHRUBYINTERN_DECLARE(mKeypress);
 	MUSHRUBYINTERN_DECLARE(mPreCacheRender);
+	MUSHRUBYINTERN_DECLARE(mPreCache);
 	MUSHRUBYINTERN_DECLARE(mRender);
 	MUSHRUBYINTERN_DECLARE(mReset);
 	MUSHRUBYINTERN_DECLARE(num_iterations);

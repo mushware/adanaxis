@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } VmmV8fh8x7DVoVc/E9Sx+A
 /*
- * $Id: MushGameSaveData.cpp,v 1.12 2005/07/29 14:59:49 southa Exp $
+ * $Id: MushGameSaveData.cpp,v 1.13 2006/06/01 15:39:27 southa Exp $
  * $Log: MushGameSaveData.cpp,v $
+ * Revision 1.13  2006/06/01 15:39:27  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.12  2005/07/29 14:59:49  southa
  * Maptor access
  *
@@ -108,7 +111,8 @@ MushGameSaveData::AutoPrint(std::ostream& ioOut) const
     ioOut << "clientRef=" << m_clientRef << ", ";
     ioOut << "serverAddrRef=" << m_serverAddrRef << ", ";
     ioOut << "renderRef=" << m_renderRef << ", ";
-    ioOut << "controlMailboxName=" << m_controlMailboxName;
+    ioOut << "controlMailboxName=" << m_controlMailboxName << ", ";
+    ioOut << "dialogues=" << m_dialogues;
     ioOut << "]";
 }
 bool
@@ -156,6 +160,10 @@ MushGameSaveData::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string
     {
         ioIn >> m_controlMailboxName;
     }
+    else if (inTagStr == "dialogues")
+    {
+        ioIn >> m_dialogues;
+    }
     else 
     {
         return false;
@@ -183,5 +191,7 @@ MushGameSaveData::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_renderRef;
     ioOut.TagSet("controlMailboxName");
     ioOut << m_controlMailboxName;
+    ioOut.TagSet("dialogues");
+    ioOut << m_dialogues;
 }
-//%outOfLineFunctions } o0ZngYG0x1H+8zLQkWKldg
+//%outOfLineFunctions } B+UhZnhonuCrGvwUi3Vo0g

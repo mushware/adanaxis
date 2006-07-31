@@ -2747,6 +2747,8 @@
 		7A61A36D0A6BB8F000D70D05 /* MushSkinPixelSourceRadial.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushSkinPixelSourceRadial.cpp; sourceTree = "<group>"; };
 		7A61AEED0A63EB590053DE68 /* MediaJoystick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaJoystick.h; sourceTree = "<group>"; };
 		7A61AEEE0A63EB590053DE68 /* MediaJoystick.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MediaJoystick.cpp; sourceTree = "<group>"; };
+		7A61AF9D0A7E0D9500C3532C /* dialogues.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = dialogues.xml; sourceTree = "<group>"; };
+		7A61AFB70A7E0FF400C3532C /* dialogues.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = dialogues.xml; sourceTree = "<group>"; };
 		7A61B10A07A68FEA00C6B670 /* MushMeshGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushMeshGroup.h; sourceTree = "<group>"; };
 		7A61B10B07A68FEA00C6B670 /* MushMeshGroup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushMeshGroup.cpp; sourceTree = "<group>"; };
 		7A61CA390A7632C3006C633E /* AdanaxisScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdanaxisScanner.h; sourceTree = "<group>"; };
@@ -4157,6 +4159,7 @@
 			children = (
 				7A3E0D1C0A4821C10078B650 /* space.rb */,
 				7ABDE4ED0A6943F000636DC1 /* manifest.txt */,
+				7A61AFB70A7E0FF400C3532C /* dialogues.xml */,
 			);
 			path = local1;
 			sourceTree = "<group>";
@@ -4209,6 +4212,7 @@
 			children = (
 				7A58280F0A791B55005FD788 /* manifest.txt */,
 				7A5828100A791B56005FD788 /* space.rb */,
+				7A61AF9D0A7E0D9500C3532C /* dialogues.xml */,
 			);
 			path = menu1;
 			sourceTree = "<group>";

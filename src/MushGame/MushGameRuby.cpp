@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } yY7ZZkvIHHOoUzJzTAQPOQ
 /*
- * $Id: MushGameRuby.cpp,v 1.9 2006/07/27 13:51:36 southa Exp $
+ * $Id: MushGameRuby.cpp,v 1.10 2006/07/28 16:52:24 southa Exp $
  * $Log: MushGameRuby.cpp,v $
+ * Revision 1.10  2006/07/28 16:52:24  southa
+ * Options work
+ *
  * Revision 1.9  2006/07/27 13:51:36  southa
  * Menu and control fixes
  *
@@ -54,6 +57,8 @@
 
 #include "MushGameAppHandler.h"
 #include "MushGameAxisDef.h"
+#include "MushGameDialogue.h"
+#include "MushGameDialogueUtils.h"
 #include "MushGameKeyDef.h"
 #include "MushGameUtil.h"
 
@@ -185,19 +190,59 @@ MushGameRuby::AxisName(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0)
             
         case MushGameAxisDef::kDeviceStick0:
         {
-            if (axisNum == 0) axisName = "stick x";
-            if (axisNum == 1) axisName = "stick y";
-            if (axisNum == 2) axisName = "stick z";
-            if (axisNum == 3) axisName = "stick w";
+            axisName = "stick ";
+            switch (axisNum)
+            {
+                case 0: 
+                    axisName += "x";
+                    break;
+                    
+                case 1:
+                    axisName += "y";
+                    break;
+                    
+                case 2:
+                    axisName += "z";
+                    break;
+                    
+                case 3:
+                    axisName += "w";
+                    break;
+                    
+                default:
+                    ostringstream number;
+                    number << axisNum+1;
+                    axisName += number.str();
+            }
         }
         break;
 
         case MushGameAxisDef::kDeviceStick1:
         {
-            if (axisNum == 0) axisName = "stick2 x";
-            if (axisNum == 1) axisName = "stick2 y";
-            if (axisNum == 2) axisName = "stick2 z";
-            if (axisNum == 3) axisName = "stick2 w";
+            axisName = "stick2 ";
+            switch (axisNum)
+            {
+                case 0: 
+                    axisName += "x";
+                    break;
+                    
+                case 1:
+                    axisName += "y";
+                    break;
+                    
+                case 2:
+                    axisName += "z";
+                    break;
+                    
+                case 3:
+                    axisName += "w";
+                    break;
+                    
+                default:
+                    ostringstream number;
+                    number << axisNum+1;
+                    axisName += number.str();
+            }
         }
         break;
     }
@@ -494,6 +539,77 @@ MushGameRuby::BrightnessSet(Mushware::tRubyValue inSelf, Mushware::tRubyValue in
     return Mushware::kRubyQnil;
 }
 
+Mushware::tRubyValue
+MushGameRuby::GameDialoguesLoad(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0)
+{
+    MushRubyValue param0(inArg0);
+    ifstream fileStream(param0.String().c_str());
+    if (!fileStream)
+    {
+        MushRubyUtil::Raise("Could not open file '"+param0.String()+"'");
+    }
+    try
+    {
+        MushcoreXMLIStream xmlIStream(fileStream);
+        
+        xmlIStream >> MushcoreData<MushGameDialogue>::Sgl();
+    }
+    catch (std::exception& e)
+    {
+        MushRubyUtil::Raise(e.what());       
+    }
+    return Mushware::kRubyQnil;
+}
+
+Mushware::tRubyValue
+MushGameRuby::NamedDialoguesAdd(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0)
+{
+    MushRubyValue param0(inArg0);
+    try
+    {
+        MushGameDialogueUtils::NamedDialoguesAdd(MushGameUtil::AppHandler().LogicWRef().SaveData().DialoguesWRef(), param0.String());
+    }
+    catch (std::exception& e)
+    {
+        MushRubyUtil::Raise(e.what());       
+    }
+    return Mushware::kRubyQnil;
+}
+
+Mushware::tRubyValue
+MushGameRuby::SoundDefine(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0, Mushware::tRubyValue inArg1)
+{
+    MushRubyValue param0(inArg0);
+    MushRubyValue param1(inArg1);
+    try
+    {
+        std::string command = "residentsound('"+param0.String()+"','"+param1.String()+"')";
+        MushcoreInterpreter::Sgl().Execute(command);
+    }
+    catch (std::exception& e)
+    {
+        MushRubyUtil::Raise(e.what());       
+    }
+    return Mushware::kRubyQnil;
+}
+
+Mushware::tRubyValue
+MushGameRuby::SoundStreamDefine(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0, Mushware::tRubyValue inArg1)
+{
+    MushRubyValue param0(inArg0);
+    MushRubyValue param1(inArg1);
+    try
+    {
+        std::string command = "soundstream('"+param0.String()+"','"+param1.String()+"')";
+        MushcoreInterpreter::Sgl().Execute(command);
+    }
+    catch (std::exception& e)
+    {
+        MushRubyUtil::Raise(e.what());       
+    }
+    return Mushware::kRubyQnil;
+}
+
 void
 MushGameRuby::MethodsInstall(void)
 {
@@ -524,4 +640,8 @@ MushGameRuby::MethodsInstall(void)
     MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cMouseSensitivitySet", MouseSensitivitySet);
     MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cBrightness", Brightness);
     MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cBrightnessSet", BrightnessSet);
+    MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cGameDialoguesLoad", GameDialoguesLoad);
+    MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cNamedDialoguesAdd", NamedDialoguesAdd);
+    MushRubyUtil::SingletonMethodDefineTwoParams(Klass(), "cSoundDefine", SoundDefine);
+    MushRubyUtil::SingletonMethodDefineTwoParams(Klass(), "cSoundStreamDefine", SoundStreamDefine);
 }

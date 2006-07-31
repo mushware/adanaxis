@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } C/16EW0GDk97fUG+f75bUQ
 /*
- * $Id: AdanaxisAppHandler.h,v 1.5 2006/06/30 15:05:30 southa Exp $
+ * $Id: AdanaxisAppHandler.h,v 1.6 2006/07/07 18:13:57 southa Exp $
  * $Log: AdanaxisAppHandler.h,v $
+ * Revision 1.6  2006/07/07 18:13:57  southa
+ * Menu start and stop
+ *
  * Revision 1.5  2006/06/30 15:05:30  southa
  * Texture and buffer purge
  *
@@ -44,6 +47,8 @@
 
 #include "API/mushMushGame.h"
 
+//:xml1base MushGameAppHandler
+//:generate virtual standard ostram xml1
 class AdanaxisAppHandler : public MushGameAppHandler
 {
 public:
@@ -52,6 +57,18 @@ public:
     
 private:
     MushcoreDataRef<MushGameBase> m_gameRef;
+    bool m_firstGame; //:readwrite
+//%classPrototypes {
+public:
+    const bool& FirstGame(void) const { return m_firstGame; }
+    void FirstGameSet(const bool& inValue) { m_firstGame=inValue; }
+    virtual const char *AutoName(void) const;
+    virtual MushcoreVirtualObject *AutoClone(void) const;
+    virtual MushcoreVirtualObject *AutoCreate(void) const;
+    static MushcoreVirtualObject *AutoVirtualFactory(void);
+    virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
+    virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
+//%classPrototypes } 41ea4WwBp3htQ6jE1GF4Mg
 };
 
 //%includeGuardEnd {

@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } yuUu61uMVhUeaS8L1dPsHA
 /*
- * $Id: AdanaxisSaveData.h,v 1.12 2006/07/27 13:51:34 southa Exp $
+ * $Id: AdanaxisSaveData.h,v 1.13 2006/07/28 11:14:28 southa Exp $
  * $Log: AdanaxisSaveData.h,v $
+ * Revision 1.13  2006/07/28 11:14:28  southa
+ * Records for multiple spaces
+ *
  * Revision 1.12  2006/07/27 13:51:34  southa
  * Menu and control fixes
  *
@@ -90,7 +93,6 @@ public:
 private:
     tProjectileList m_projectileList; //:read :wref
     tKhaziList m_khaziList; //:read :wref
-    MushcoreData<GameDialogue> m_dialogues; //:read :wref
     bool m_clockStarted; //:readwrite
     std::string m_spaceName; //:readwrite
     
@@ -102,9 +104,6 @@ public:
     const tKhaziList& KhaziList(void) const { return m_khaziList; }
     // Writable reference for m_khaziList
     tKhaziList& KhaziListWRef(void) { return m_khaziList; }
-    const MushcoreData<GameDialogue>& Dialogues(void) const { return m_dialogues; }
-    // Writable reference for m_dialogues
-    MushcoreData<GameDialogue>& DialoguesWRef(void) { return m_dialogues; }
     const bool& ClockStarted(void) const { return m_clockStarted; }
     void ClockStartedSet(const bool& inValue) { m_clockStarted=inValue; }
     const std::string& SpaceName(void) const { return m_spaceName; }
@@ -116,7 +115,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } gcYKNADfyGsLWMuDyutD2A
+//%classPrototypes } HYybG5VdGGIEd17nEZMFzQ
 };
 
 //%inlineHeader {

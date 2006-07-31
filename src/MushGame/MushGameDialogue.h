@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } f1n405NDv9+yoI5eEZZz2g
 /*
- * $Id: MushGameDialogue.h,v 1.1 2005/06/14 20:39:41 southa Exp $
+ * $Id: MushGameDialogue.h,v 1.2 2006/06/01 15:39:21 southa Exp $
  * $Log: MushGameDialogue.h,v $
+ * Revision 1.2  2006/06/01 15:39:21  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.1  2005/06/14 20:39:41  southa
  * Adanaxis work
  *
@@ -35,6 +38,7 @@
 #include "API/mushGame.h"
 
 typedef GameDialogue MushGameDialogue;
+
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

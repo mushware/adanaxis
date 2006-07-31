@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } nEZn7NROSx73PjiZRDOb5Q
 /*
- * $Id: MushcoreAppHandler.cpp,v 1.9 2005/05/19 13:02:14 southa Exp $
+ * $Id: MushcoreAppHandler.cpp,v 1.10 2006/06/01 15:39:41 southa Exp $
  * $Log: MushcoreAppHandler.cpp,v $
+ * Revision 1.10  2006/06/01 15:39:41  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.9  2005/05/19 13:02:14  southa
  * Mac release work
  *
@@ -89,6 +92,10 @@
 #include "MushcoreAppHandler.h"
 
 #include "MushcoreAppSignal.h"
+#include "MushcoreFactory.h"
+#include "MushcoreInstaller.h"
+#include "MushcoreXMLIStream.h"
+#include "MushcoreXMLOStream.h"
 
 #include "MushcoreSTL.h"
 
@@ -140,3 +147,58 @@ MushcoreAppHandler::Signal(const MushcoreAppSignal& inSignal)
             break;
     }
 }
+//%outOfLineFunctions {
+
+const char *MushcoreAppHandler::AutoName(void) const
+{
+    return "MushcoreAppHandler";
+}
+
+MushcoreVirtualObject *MushcoreAppHandler::AutoClone(void) const
+{
+    return new MushcoreAppHandler(*this);
+}
+
+MushcoreVirtualObject *MushcoreAppHandler::AutoCreate(void) const
+{
+    return new MushcoreAppHandler;
+}
+
+MushcoreVirtualObject *MushcoreAppHandler::AutoVirtualFactory(void)
+{
+    return new MushcoreAppHandler;
+}
+namespace
+{
+void AutoInstall(void)
+{
+    MushcoreFactory::Sgl().FactoryAdd("MushcoreAppHandler", MushcoreAppHandler::AutoVirtualFactory);
+}
+MushcoreInstaller AutoInstaller(AutoInstall);
+} // end anonymous namespace
+void
+MushcoreAppHandler::AutoPrint(std::ostream& ioOut) const
+{
+    ioOut << "[";
+    ioOut << "]";
+}
+bool
+MushcoreAppHandler::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr)
+{
+    if (inTagStr == "obj")
+    {
+        AutoInputPrologue(ioIn);
+        ioIn >> *this;
+        AutoInputEpilogue(ioIn);
+    }
+    else 
+    {
+        return false;
+    }
+    return true;
+}
+void
+MushcoreAppHandler::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
+{
+}
+//%outOfLineFunctions } OGZ4jEiU/SCETT1y6JT1bg

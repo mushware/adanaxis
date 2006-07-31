@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } RQQs1JsLGnc5eUT1J6jhDw
 /*
- * $Id: MushGameDialogueUtils.cpp,v 1.2 2006/06/01 15:39:21 southa Exp $
+ * $Id: MushGameDialogueUtils.cpp,v 1.3 2006/06/30 15:05:35 southa Exp $
  * $Log: MushGameDialogueUtils.cpp,v $
+ * Revision 1.3  2006/06/30 15:05:35  southa
+ * Texture and buffer purge
+ *
  * Revision 1.2  2006/06/01 15:39:21  southa
  * DrawArray verification and fixes
  *
@@ -39,12 +42,12 @@ MushGameDialogueUtils::NamedDialoguesAdd(
     const std::string& inRegExp)
 {
     MushcoreRegExp regExp(inRegExp);
-    for (MushcoreData<GameDialogue>::tIterator p = MushcoreData<GameDialogue>::Sgl().Begin();
-         p != MushcoreData<GameDialogue>::Sgl().End(); ++p)
+    for (MushcoreData<MushGameDialogue>::tIterator p = MushcoreData<MushGameDialogue>::Sgl().Begin();
+         p != MushcoreData<MushGameDialogue>::Sgl().End(); ++p)
     {
         if (regExp.Search(p->first))
         {
-            outDialogues.Give(p->first, new GameDialogue(*p->second));
+            outDialogues.Give(p->first, new MushGameDialogue(*p->second));
         }
     }   
 }

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } i+XL0Lx00Vu7TzgYWs51uw
 /*
- * $Id: MushcoreAppHandler.h,v 1.9 2005/05/19 13:02:14 southa Exp $
+ * $Id: MushcoreAppHandler.h,v 1.10 2006/06/01 15:39:41 southa Exp $
  * $Log: MushcoreAppHandler.h,v $
+ * Revision 1.10  2006/06/01 15:39:41  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.9  2005/05/19 13:02:14  southa
  * Mac release work
  *
@@ -89,9 +92,12 @@
 
 #include "MushcoreStandard.h"
 
+#include "MushcoreVirtualObject.h"
+
 class MushcoreAppSignal;
 
-class MushcoreAppHandler
+//:generate virtual standard ostream xml1
+class MushcoreAppHandler : public MushcoreVirtualObject
 {
 public:
     virtual ~MushcoreAppHandler() {};
@@ -107,7 +113,25 @@ protected:
     
 private:
     static MushcoreAppHandler *m_instance;
+//%classPrototypes {
+public:
+    virtual const char *AutoName(void) const;
+    virtual MushcoreVirtualObject *AutoClone(void) const;
+    virtual MushcoreVirtualObject *AutoCreate(void) const;
+    static MushcoreVirtualObject *AutoVirtualFactory(void);
+    virtual void AutoPrint(std::ostream& ioOut) const;
+    virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
+    virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
+//%classPrototypes } 1oBgFruy5qHAaudtV+Hcmg
 };
+//%inlineHeader {
+inline std::ostream&
+operator<<(std::ostream& ioOut, const MushcoreAppHandler& inObj)
+{
+    inObj.AutoPrint(ioOut);
+    return ioOut;
+}
+//%inlineHeader } QyjywdqKk4N5Onhdm+xaiA
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

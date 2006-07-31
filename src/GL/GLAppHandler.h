@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } TPx6ydKbT+Ng+tUVZS0gZA
 /*
- * $Id: GLAppHandler.h,v 1.34 2006/07/08 16:05:54 southa Exp $
+ * $Id: GLAppHandler.h,v 1.35 2006/07/21 10:52:05 southa Exp $
  * $Log: GLAppHandler.h,v $
+ * Revision 1.35  2006/07/21 10:52:05  southa
+ * win32 build fixes
+ *
  * Revision 1.34  2006/07/08 16:05:54  southa
  * Ruby menus and key handling
  *
@@ -148,6 +151,8 @@
 
 class GLModeDef;
 
+//:xml1base MushcoreAppHandler
+//:generate virtual abstract standard ostream xml1
 class GLAppHandler : public MushcoreAppHandler
 {
 public:
@@ -172,7 +177,25 @@ public:
     virtual void AppQuit(void) = 0;
     virtual void KeysOfInterestSet(const std::vector<Mushware::U32>& inKeyValues) = 0;
     virtual void ReadHistoricControlState(Mushware::S32& outUnboundedMouseX, Mushware::S32& outUnboundedMouseY, std::vector<bool>& outKeys, Mushware::tVal inMsec) = 0;
+//%classPrototypes {
+public:
+    virtual const char *AutoName(void) const;
+    virtual MushcoreVirtualObject *AutoClone(void) const;
+    virtual MushcoreVirtualObject *AutoCreate(void) const;
+    static MushcoreVirtualObject *AutoVirtualFactory(void);
+    virtual void AutoPrint(std::ostream& ioOut) const;
+    virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
+    virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
+//%classPrototypes } 1oBgFruy5qHAaudtV+Hcmg
 };
+//%inlineHeader {
+inline std::ostream&
+operator<<(std::ostream& ioOut, const GLAppHandler& inObj)
+{
+    inObj.AutoPrint(ioOut);
+    return ioOut;
+}
+//%inlineHeader } rMqbKQaO7FVVOiv0GbwMmg
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

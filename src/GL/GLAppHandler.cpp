@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 6YHmtgknRbuvioESlwjpIQ
 /*
- * $Id: GLAppHandler.cpp,v 1.25 2005/05/19 13:01:57 southa Exp $
+ * $Id: GLAppHandler.cpp,v 1.26 2006/06/01 15:38:49 southa Exp $
  * $Log: GLAppHandler.cpp,v $
+ * Revision 1.26  2006/06/01 15:38:49  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.25  2005/05/19 13:01:57  southa
  * Mac release work
  *
@@ -105,3 +108,65 @@
 
 using namespace Mushware;
 using namespace std;
+
+//%outOfLineFunctions {
+
+const char *GLAppHandler::AutoName(void) const
+{
+    return "GLAppHandler";
+}
+
+MushcoreVirtualObject *GLAppHandler::AutoClone(void) const
+{
+    throw MushcoreRequestFail("Cannot clone 'GLAppHandler'");;
+}
+
+MushcoreVirtualObject *GLAppHandler::AutoCreate(void) const
+{
+    throw MushcoreRequestFail("Cannot create abstract 'GLAppHandler'");
+}
+
+MushcoreVirtualObject *GLAppHandler::AutoVirtualFactory(void)
+{
+    throw MushcoreRequestFail("Cannot create abstract 'GLAppHandler'");
+}
+namespace
+{
+void AutoInstall(void)
+{
+    MushcoreFactory::Sgl().FactoryAdd("GLAppHandler", GLAppHandler::AutoVirtualFactory);
+}
+MushcoreInstaller AutoInstaller(AutoInstall);
+} // end anonymous namespace
+void
+GLAppHandler::AutoPrint(std::ostream& ioOut) const
+{
+    ioOut << "[";
+    MushcoreAppHandler::AutoPrint(ioOut);
+    ioOut << "]";
+}
+bool
+GLAppHandler::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr)
+{
+    if (inTagStr == "obj")
+    {
+        AutoInputPrologue(ioIn);
+        ioIn >> *this;
+        AutoInputEpilogue(ioIn);
+    }
+    else if (MushcoreAppHandler::AutoXMLDataProcess(ioIn, inTagStr))
+    {
+        // Tag consumed by base class
+    }
+    else 
+    {
+        return false;
+    }
+    return true;
+}
+void
+GLAppHandler::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
+{
+    MushcoreAppHandler::AutoXMLPrint(ioOut);
+}
+//%outOfLineFunctions } FHe6FKetTHEk2d7NfkOtCg

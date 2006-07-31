@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } PBod8HMi8jriZbQcQlQicg
 /*
- * $Id: MediaSoundStream.cpp,v 1.20 2005/05/19 13:02:08 southa Exp $
+ * $Id: MediaSoundStream.cpp,v 1.21 2006/06/01 15:39:14 southa Exp $
  * $Log: MediaSoundStream.cpp,v $
+ * Revision 1.21  2006/06/01 15:39:14  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.20  2005/05/19 13:02:08  southa
  * Mac release work
  *
@@ -119,7 +122,7 @@ MediaSoundStream::PlaySoundStream(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv
 {
     if (ioCommand.NumParams() != 1)
     {
-        throw(MushcoreCommandFail("Usage: playsoundstreamm('name')"));
+        throw(MushcoreCommandFail("Usage: playsoundstream('name')"));
     }
     string name;
     ioCommand.PopParam(name);
@@ -133,7 +136,7 @@ MediaSoundStream::LoadSoundStream(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv
 {
     if (ioCommand.NumParams() != 1)
     {
-        throw(MushcoreCommandFail("Usage: loadsoundstreamm('name')"));
+        throw(MushcoreCommandFail("Usage: loadsoundstream('name')"));
     }
     string name;
     ioCommand.PopParam(name);

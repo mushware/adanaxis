@@ -10,8 +10,11 @@
 #
 ##############################################################################
 
-# $Id: SourceConditioner.pl,v 1.50 2006/04/20 00:22:44 southa Exp $
+# $Id: SourceConditioner.pl,v 1.51 2006/04/21 00:10:42 southa Exp $
 # $Log: SourceConditioner.pl,v $
+# Revision 1.51  2006/04/21 00:10:42  southa
+# MushGLFont ruby module
+#
 # Revision 1.50  2006/04/20 00:22:44  southa
 # Added ruby executive
 #
@@ -650,7 +653,7 @@ sub StandardFunctionGenerate($$)
     die "Cannot generate 'standard' inline " if $$infoRef{INLINE};
     
     my $cloneCommand;
-    if ($$infoRef{NOCOPY})
+    if ($$infoRef{NOCOPY} || $$infoRef{ABSTRACT})
     {
         $cloneCommand = "throw MushcoreRequestFail(\"Cannot clone \'$className\'\");";
     }
@@ -676,13 +679,13 @@ $templatePrefix,
 "MushcoreVirtualObject *".
 "${outerClassName}::$gConfig{AUTO_PREFIX}Create(void) const",
 "{",
-"    return new $className;",
+$$infoRef{ABSTRACT} ? "    throw MushcoreRequestFail(\"Cannot create abstract \'$className\'\");" : "    return new $className;",
 "}",
 $templatePrefix,
 "MushcoreVirtualObject *".
 "${outerClassName}::$gConfig{AUTO_PREFIX}VirtualFactory(void)",
 "{",
-"    return new $className;",
+$$infoRef{ABSTRACT} ? "    throw MushcoreRequestFail(\"Cannot create abstract \'$className\'\");" : "    return new $className;",
 "}",
 "namespace",
 "{",
@@ -1355,6 +1358,7 @@ sub ProcessHeader($$)
     {
         push @ classPrototypes, "public:";
         $headerInfo{NOCOPY} = 0;
+        $headerInfo{ABSTRACT} = 0;
         $headerInfo{INLINE} = 0;
         $headerInfo{VIRTUAL} = "virtual ";
         
@@ -1369,6 +1373,7 @@ sub ProcessHeader($$)
             $headerInfo{VIRTUAL} = "" if $$commandsRef[$i] =~ /\bnonvirtual\b/;
             $headerInfo{NOCOPY} = 1 if $$commandsRef[$i] =~ /\bnocopy\b/;
             $headerInfo{NOCOPY} = 0 if $$commandsRef[$i] =~ /\bcopy\b/;
+            $headerInfo{ABSTRACT} = 1 if $$commandsRef[$i] =~ /\babstract\b/;
             
             die "notvirtual should be nonvirtual" if $$commandsRef[$i] =~ /\bnotvirtual\b/;
             
@@ -1454,6 +1459,7 @@ sub ProcessCPP($$)
     my @outOfLineCode;
     my $commandsRef = $headerInfo{COMMANDS};
     $headerInfo{NOCOPY} = 0;
+    $headerInfo{ABSTRACT} = 0;
     $headerInfo{INLINE} = 0;
     $headerInfo{VIRTUAL} = "virtual ";
     
@@ -1467,7 +1473,8 @@ sub ProcessCPP($$)
             $headerInfo{VIRTUAL} = "" if $$commandsRef[$i] =~ /\bnonvirtual\b/;
             $headerInfo{NOCOPY} = 1 if $$commandsRef[$i] =~ /\bnocopy\b/;
             $headerInfo{NOCOPY} = 0 if $$commandsRef[$i] =~ /\bcopy\b/;
-            
+            $headerInfo{ABSTRACT} = 1 if $$commandsRef[$i] =~ /\babstract\b/;
+           
             unless ($headerInfo{INLINE})
             {
                 DefinitionsWrite(\@outOfLineCode, \%headerInfo, $$commandsRef[$i]);

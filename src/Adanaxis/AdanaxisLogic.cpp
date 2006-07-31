@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } kEA/hGTYr5TaTuBUG+UAGA
 /*
- * $Id: AdanaxisLogic.cpp,v 1.15 2006/07/27 13:51:33 southa Exp $
+ * $Id: AdanaxisLogic.cpp,v 1.16 2006/07/28 11:14:27 southa Exp $
  * $Log: AdanaxisLogic.cpp,v $
+ * Revision 1.16  2006/07/28 11:14:27  southa
+ * Records for multiple spaces
+ *
  * Revision 1.15  2006/07/27 13:51:33  southa
  * Menu and control fixes
  *
@@ -234,10 +237,11 @@ AdanaxisLogic::CollideSequence(void)
 void
 AdanaxisLogic::PreCacheSequence(void)
 {
-    m_preCacheResult = MushRubyValue(MushRubyExec::Sgl().Call(VolatileData().RubySpace(), "mPreCache")).U32();
+    m_preCacheResult = MushRubyValue(MushRubyExec::Sgl().Call(VolatileData().RubySpace(), MushRubyIntern::mPreCache())).U32();
     
     if (m_preCacheResult >= 100)
     {
+        MushRubyExec::Sgl().Call(VolatileData().RubySpace(), MushRubyIntern::mHandleGameStart());
         PreCacheModeExit();
     }
 }
@@ -255,22 +259,6 @@ AdanaxisLogic::RenderSequence(void)
     if (m_khaziCount != 0)
     {
         EndTimeSet(FrameMsec());
-    }
-    
-    AdanaxisAppHandler& appHandler = AdanaxisUtil::AppHandler();
-    
-    if (appHandler.LatchedKeyStateTake('z'))
-    {
-        static bool show = true;
-        if (show)
-        {
-            MushGameDialogueUtils::NamedDialoguesAdd(SaveData().DialoguesWRef(), "^keyhelp");
-        }
-        else
-        {
-            SaveData().DialoguesWRef().Clear();
-        }
-        show = !show;
     }
     
     MushGameLogic::RenderSequence();

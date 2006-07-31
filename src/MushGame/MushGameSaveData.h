@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } jVIqo6l6rVjwbe9qE13NKA
 /*
- * $Id: MushGameSaveData.h,v 1.11 2005/07/29 14:59:50 southa Exp $
+ * $Id: MushGameSaveData.h,v 1.12 2006/06/01 15:39:27 southa Exp $
  * $Log: MushGameSaveData.h,v $
+ * Revision 1.12  2006/06/01 15:39:27  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.11  2005/07/29 14:59:50  southa
  * Maptor access
  *
@@ -64,6 +67,7 @@
 
 #include "MushGameCamera.h"
 #include "MushGameClient.h"
+#include "MushGameDialogue.h"
 #include "MushGameJob.h"
 #include "MushGameMailbox.h"
 #include "MushGamePlayer.h"
@@ -87,6 +91,7 @@ private:
     MushcoreDataRef<MushGameAddress> m_serverAddrRef; //:readwrite :wref
     MushcoreDataRef<MushGameRender> m_renderRef; //:readwrite :wref
     std::string m_controlMailboxName; //:readwrite
+    MushcoreData<MushGameDialogue> m_dialogues; //:read :wref
     
 //%classPrototypes {
 public:
@@ -115,6 +120,9 @@ public:
     MushcoreDataRef<MushGameRender>& RenderRefWRef(void) { return m_renderRef; }
     const std::string& ControlMailboxName(void) const { return m_controlMailboxName; }
     void ControlMailboxNameSet(const std::string& inValue) { m_controlMailboxName=inValue; }
+    const MushcoreData<MushGameDialogue>& Dialogues(void) const { return m_dialogues; }
+    // Writable reference for m_dialogues
+    MushcoreData<MushGameDialogue>& DialoguesWRef(void) { return m_dialogues; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -122,7 +130,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } VBOsUq0ou6InUwk7Jb2kpw
+//%classPrototypes } c40zYRFjPOc6Pvo2nOigcg
 };
 //%inlineHeader {
 inline std::ostream&

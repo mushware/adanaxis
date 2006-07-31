@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } DEX6Sh9oUk/bih2GXm2coA
 /*
- * $Id: AdanaxisGame.cpp,v 1.47 2006/07/28 11:14:27 southa Exp $
+ * $Id: AdanaxisGame.cpp,v 1.48 2006/07/28 16:52:18 southa Exp $
  * $Log: AdanaxisGame.cpp,v $
+ * Revision 1.48  2006/07/28 16:52:18  southa
+ * Options work
+ *
  * Revision 1.47  2006/07/28 11:14:27  southa
  * Records for multiple spaces
  *
@@ -186,7 +189,8 @@ using namespace std;
 
 AdanaxisGame::AdanaxisGame(const std::string& inName) :
     m_inited(false),
-    m_name(inName)
+    m_name(inName),
+    m_startDialogueShown(false)
 {
 }
 
@@ -217,11 +221,19 @@ AdanaxisGame::Process(MushGameAppHandler& inAppHandler)
     Logic().MainSequence();
     
     // Start the clock once we're going
-    if (Logic().IsGameMode() && !Logic().IsPreCacheMode() && !SaveData().ClockStarted())
+    if (!Logic().IsPreCacheMode() && !SaveData().ClockStarted())
     {
-        // TimingSequence will have run at least once, so GameMsec is valid
-        Logic().StartTimeSet(Logic().GameMsec());
-        SaveData().ClockStartedSet(true);
+        if (Logic().IsGameMode())
+        {
+            // TimingSequence will have run at least once, so GameMsec is valid
+            Logic().StartTimeSet(Logic().GameMsec());
+            SaveData().ClockStartedSet(true);
+        }
+        else if (Logic().IsMenuMode() && !m_startDialogueShown)
+        {
+            m_startDialogueShown = true;
+            MushGameDialogueUtils::NamedDialoguesAdd(SaveData().DialoguesWRef(), "^menuonce");
+        }
     }
         
     GLUtils::PostRedisplay();
@@ -285,15 +297,13 @@ AdanaxisGame::Init(MushGameAppHandler& inAppHandler)
     
     MushGameConfigUtils::ConfigAcquire(&m_config);
     
-    if (m_config.SafeMode())
+    if (AdanaxisUtil::AppHandler().FirstGame() && m_config.SafeMode())
     {
         m_config.DisplayModeSet(0);
         m_config.TextureDetailSet(0);
         MushGameDialogueUtils::NamedDialoguesAdd(SaveData().DialoguesWRef(), "^safemode");
     }
     
-    MushGameDialogueUtils::NamedDialoguesAdd(SaveData().DialoguesWRef(), "^start");
-
     Logic().InitialDataCreate();
 
     UpdateFromConfig();
@@ -306,7 +316,7 @@ AdanaxisGame::Init(MushGameAppHandler& inAppHandler)
     
 	AdanaxisUtil::MissingSkinsCreate(Logic());
 
-    MushcoreInterpreter::Sgl().Execute("loadsoundstream('adanaxis-music1')");
+    // MushcoreInterpreter::Sgl().Execute("loadsoundstream('adanaxis-music1')");
     MediaAudio::Sgl().AudioVolumeSet(m_config.AudioVolume() / 100.0);
     MediaAudio::Sgl().MusicVolumeSet(m_config.MusicVolume() / 100.0);
     if (m_config.MusicVolume() > 0)
@@ -334,6 +344,7 @@ AdanaxisGame::Init(MushGameAppHandler& inAppHandler)
     
     m_inited = true;
     SaveData().ClockStartedSet(false);
+    AdanaxisUtil::AppHandler().FirstGameSet(false);
 }
 
 void
@@ -488,7 +499,8 @@ AdanaxisGame::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
     ioOut << "name=" << m_name << ", ";
-    ioOut << "config=" << m_config;
+    ioOut << "config=" << m_config << ", ";
+    ioOut << "startDialogueShown=" << m_startDialogueShown;
     ioOut << "]";
 }
 bool
@@ -508,6 +520,10 @@ AdanaxisGame::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& in
     {
         ioIn >> m_config;
     }
+    else if (inTagStr == "startDialogueShown")
+    {
+        ioIn >> m_startDialogueShown;
+    }
     else 
     {
         return false;
@@ -521,5 +537,7 @@ AdanaxisGame::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_name;
     ioOut.TagSet("config");
     ioOut << m_config;
+    ioOut.TagSet("startDialogueShown");
+    ioOut << m_startDialogueShown;
 }
-//%outOfLineFunctions } Cyzu9asYpO4Y5GQEcub1LA
+//%outOfLineFunctions } 7rvmWEETrQ1yRz+b8SzWWA
