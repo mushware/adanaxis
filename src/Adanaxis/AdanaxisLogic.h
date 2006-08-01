@@ -10,7 +10,7 @@
  * Copyright: Andy Southgate 2005-2006
  *
  * This file may be used and distributed under the terms of the Mushware
- * software licence version 1.0, under the terms for 'Proprietary original
+ * software licence version 1.1, under the terms for 'Proprietary original
  * source files'.  If not supplied with this software, a copy of the licence
  * can be obtained from Mushware Limited via http://www.mushware.com/.
  * One of your options under that licence is to use and distribute this file
@@ -19,10 +19,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } nTy3CMXyGBhzHaXXoJENIg
+//%Header } 3LuiErcM0vO3wOyNDCFVeQ
 /*
- * $Id: AdanaxisLogic.h,v 1.11 2006/07/20 12:22:21 southa Exp $
+ * $Id: AdanaxisLogic.h,v 1.12 2006/07/27 13:51:34 southa Exp $
  * $Log: AdanaxisLogic.h,v $
+ * Revision 1.12  2006/07/27 13:51:34  southa
+ * Menu and control fixes
+ *
  * Revision 1.11  2006/07/20 12:22:21  southa
  * Precache display
  *

@@ -10,7 +10,7 @@
  * Copyright: Andy Southgate 2005-2006
  *
  * This file may be used and distributed under the terms of the Mushware
- * software licence version 1.0, under the terms for 'Proprietary original
+ * software licence version 1.1, under the terms for 'Proprietary original
  * source files'.  If not supplied with this software, a copy of the licence
  * can be obtained from Mushware Limited via http://www.mushware.com/.
  * One of your options under that licence is to use and distribute this file
@@ -19,10 +19,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } JMQ6Bw79bYzUs+Ek4D1kZw
+//%Header } uPLWn2S3lnrmaPHM+5GJaQ
 /*
- * $Id: MushMeshLibraryBase.h,v 1.4 2006/06/01 15:39:33 southa Exp $
+ * $Id: MushMeshLibraryBase.h,v 1.5 2006/07/17 14:43:40 southa Exp $
  * $Log: MushMeshLibraryBase.h,v $
+ * Revision 1.5  2006/07/17 14:43:40  southa
+ * Billboarded deco objects
+ *
  * Revision 1.4  2006/06/01 15:39:33  southa
  * DrawArray verification and fixes
  *

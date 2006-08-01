@@ -10,7 +10,7 @@
  * Copyright: Andy Southgate 2005-2006
  *
  * This file may be used and distributed under the terms of the Mushware
- * software licence version 1.0, under the terms for 'Proprietary original
+ * software licence version 1.1, under the terms for 'Proprietary original
  * source files'.  If not supplied with this software, a copy of the licence
  * can be obtained from Mushware Limited via http://www.mushware.com/.
  * One of your options under that licence is to use and distribute this file
@@ -19,10 +19,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 6GdOb3M8gmTP56sPCf1YGA
+//%Header } 72X8YWgaBjSc1x61Wdygug
 /*
- * $Id: AdanaxisPieceDeco.h,v 1.9 2006/07/19 14:34:51 southa Exp $
+ * $Id: AdanaxisPieceDeco.h,v 1.10 2006/07/24 18:46:46 southa Exp $
  * $Log: AdanaxisPieceDeco.h,v $
+ * Revision 1.10  2006/07/24 18:46:46  southa
+ * Depth sorting
+ *
  * Revision 1.9  2006/07/19 14:34:51  southa
  * Flare effects
  *

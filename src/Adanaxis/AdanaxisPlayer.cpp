@@ -6,7 +6,7 @@
  * Copyright: Andy Southgate 2005-2006
  *
  * This file may be used and distributed under the terms of the Mushware
- * software licence version 1.0, under the terms for 'Proprietary original
+ * software licence version 1.1, under the terms for 'Proprietary original
  * source files'.  If not supplied with this software, a copy of the licence
  * can be obtained from Mushware Limited via http://www.mushware.com/.
  * One of your options under that licence is to use and distribute this file
@@ -15,10 +15,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 0edG1wrkU5hKeWbu3l1MQA
+//%Header } vHDbpnIep+mzmlVV3IuGGg
 /*
- * $Id: AdanaxisPlayer.cpp,v 1.23 2006/07/28 11:14:27 southa Exp $
+ * $Id: AdanaxisPlayer.cpp,v 1.24 2006/07/28 16:52:19 southa Exp $
  * $Log: AdanaxisPlayer.cpp,v $
+ * Revision 1.24  2006/07/28 16:52:19  southa
+ * Options work
+ *
  * Revision 1.23  2006/07/28 11:14:27  southa
  * Records for multiple spaces
  *

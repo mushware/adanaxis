@@ -10,7 +10,7 @@
  * Copyright: Andy Southgate 2005-2006
  *
  * This file may be used and distributed under the terms of the Mushware
- * software licence version 1.0, under the terms for 'Proprietary original
+ * software licence version 1.1, under the terms for 'Proprietary original
  * source files'.  If not supplied with this software, a copy of the licence
  * can be obtained from Mushware Limited via http://www.mushware.com/.
  * One of your options under that licence is to use and distribute this file
@@ -19,10 +19,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } hi3ujI4Vfz2nY7QFnANQWA
+//%Header } qwvmgxUE74EmhwrOExx0uw
 /*
- * $Id: AdanaxisPlayer.h,v 1.9 2006/06/01 15:38:48 southa Exp $
+ * $Id: AdanaxisPlayer.h,v 1.10 2006/06/21 12:17:55 southa Exp $
  * $Log: AdanaxisPlayer.h,v $
+ * Revision 1.10  2006/06/21 12:17:55  southa
+ * Ruby object generation
+ *
  * Revision 1.9  2006/06/01 15:38:48  southa
  * DrawArray verification and fixes
  *

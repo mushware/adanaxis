@@ -6,7 +6,7 @@
  * Copyright: Andy Southgate 2005-2006
  *
  * This file may be used and distributed under the terms of the Mushware
- * software licence version 1.0, under the terms for 'Proprietary original
+ * software licence version 1.1, under the terms for 'Proprietary original
  * source files'.  If not supplied with this software, a copy of the licence
  * can be obtained from Mushware Limited via http://www.mushware.com/.
  * One of your options under that licence is to use and distribute this file
@@ -15,10 +15,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } /ogEinXWaS3ZU9x1JORYXA
+//%Header } tN5REhM700S5vgTRTVu/cw
 /*
- * $Id: MushSkinLineGenerator.cpp,v 1.4 2006/06/07 14:25:56 southa Exp $
+ * $Id: MushSkinLineGenerator.cpp,v 1.5 2006/07/17 14:43:42 southa Exp $
  * $Log: MushSkinLineGenerator.cpp,v $
+ * Revision 1.5  2006/07/17 14:43:42  southa
+ * Billboarded deco objects
+ *
  * Revision 1.4  2006/06/07 14:25:56  southa
  * Grid texture fixes
  *

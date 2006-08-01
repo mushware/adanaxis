@@ -10,7 +10,7 @@
  * Copyright: Andy Southgate 2005-2006
  *
  * This file may be used and distributed under the terms of the Mushware
- * software licence version 1.0, under the terms for 'Proprietary original
+ * software licence version 1.1, under the terms for 'Proprietary original
  * source files'.  If not supplied with this software, a copy of the licence
  * can be obtained from Mushware Limited via http://www.mushware.com/.
  * One of your options under that licence is to use and distribute this file
@@ -19,10 +19,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 0HiAHzu6L8Ypx1//EWOoZA
+//%Header } ECP938UrYgtCd8X0IGCB+Q
 /*
- * $Id$
- * $Log$
+ * $Id: MushSkinPixelSourceRadial.h,v 1.1 2006/07/17 14:43:43 southa Exp $
+ * $Log: MushSkinPixelSourceRadial.h,v $
+ * Revision 1.1  2006/07/17 14:43:43  southa
+ * Billboarded deco objects
+ *
  */
 
 #include "MushSkinPixelSourceProc.h"

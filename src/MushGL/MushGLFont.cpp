@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } Zq+IM0uOYEygMymunhBN6w
 /*
- * $Id: MushGLFont.cpp,v 1.5 2006/07/25 13:30:57 southa Exp $
+ * $Id: MushGLFont.cpp,v 1.6 2006/07/25 20:31:03 southa Exp $
  * $Log: MushGLFont.cpp,v $
+ * Revision 1.6  2006/07/25 20:31:03  southa
+ * Scanner work
+ *
  * Revision 1.5  2006/07/25 13:30:57  southa
  * Initial scanner work
  *
@@ -120,19 +123,22 @@ MushGLFont::RenderSymbolAtSizeAngle(const Mushware::U32 inValue, const Mushware:
     tVal uPos = (inValue % m_divide.X()) * uScale;
     tVal vPos = (1 + inValue / m_divide.X()) * vScale;
     
+    tVal uTweak = 0;
+    tVal vTweak = 0;
+    
     // Already expect to be in kRenderState2D    
     glBegin(GL_QUADS);
     
     tVal xSize2 = xSize/sqrt(2.0);
     tVal ySize2 = ySize/sqrt(2.0);
     
-    glTexCoord2f(uPos, vPos);
+    glTexCoord2f(uPos + uTweak, vPos - vTweak);
     glVertex4f(xPos + xSize2 * cos(inAngle + 5*M_PI/4), yPos + ySize2 * sin(inAngle + 5*M_PI/4), zPos, wPos);
-    glTexCoord2f(uPos + uScale, vPos);
+    glTexCoord2f(uPos + uScale - uTweak, vPos - vTweak);
     glVertex4f(xPos + xSize2 * cos(inAngle + 7*M_PI/4), yPos + ySize2 * sin(inAngle + 7*M_PI/4), zPos, wPos);
-    glTexCoord2f(uPos + uScale, vPos - vScale);
+    glTexCoord2f(uPos + uScale - uTweak, vPos - vScale + vTweak);
     glVertex4f(xPos + xSize2 * cos(inAngle + 1*M_PI/4), yPos + ySize2 * sin(inAngle + 1*M_PI/4), zPos, wPos);
-    glTexCoord2f(uPos, vPos - vScale);
+    glTexCoord2f(uPos + uTweak, vPos - vScale + vTweak);
     glVertex4f(xPos + xSize2 * cos(inAngle + 3*M_PI/4), yPos + ySize2 * sin(inAngle + 3*M_PI/4), zPos, wPos);
     
     glEnd();
@@ -162,6 +168,10 @@ MushGLFont::RenderAtSize(const std::string& inStr, const Mushware::t2Val& inCoor
     tVal uScale = m_extent.X() / texSize.X();
     tVal vScale = m_extent.Y() / texSize.Y();
     
+    // Move half a pixel away from the edges of the character tile
+    tVal uTweak = 0.5 / texSize.X();
+    tVal vTweak = 0.5 / texSize.Y();
+    
     for (U32 i=0; i < strSize; ++i)
     {
         U32 charValue = inStr[i];
@@ -179,13 +189,13 @@ MushGLFont::RenderAtSize(const std::string& inStr, const Mushware::t2Val& inCoor
                 tVal uPos = (charValue % m_divide.X()) * uScale;
                 tVal vPos = (1 + charValue / m_divide.X()) * vScale;
                 
-                glTexCoord2f(uPos, vPos);
+                glTexCoord2f(uPos + uTweak , vPos - vTweak);
                 glVertex2f(xPos, yPos);
-                glTexCoord2f(uPos + uScale, vPos);
+                glTexCoord2f(uPos + uScale - uTweak, vPos - vTweak);
                 glVertex2f(xPos + xSize, yPos);
-                glTexCoord2f(uPos + uScale, vPos - vScale);
+                glTexCoord2f(uPos + uScale - uTweak, vPos - vScale + vTweak);
                 glVertex2f(xPos + xSize, yPos + ySize);
-                glTexCoord2f(uPos, vPos - vScale);
+                glTexCoord2f(uPos + uTweak, vPos - vScale + vTweak);
                 glVertex2f(xPos, yPos + ySize);
             }
             xPos += xSize;

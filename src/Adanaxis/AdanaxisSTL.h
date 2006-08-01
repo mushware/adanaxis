@@ -10,7 +10,7 @@
  * Copyright: Andy Southgate 2005-2006
  *
  * This file may be used and distributed under the terms of the Mushware
- * software licence version 1.0, under the terms for 'Proprietary original
+ * software licence version 1.1, under the terms for 'Proprietary original
  * source files'.  If not supplied with this software, a copy of the licence
  * can be obtained from Mushware Limited via http://www.mushware.com/.
  * One of your options under that licence is to use and distribute this file
@@ -19,10 +19,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 5m1HprgtdQQZNqmS0ap59A
+//%Header } eiASfP5T7/p4ACoZuTDRIQ
 /*
- * $Id: AdanaxisSTL.h,v 1.3 2006/06/01 15:38:48 southa Exp $
+ * $Id: AdanaxisSTL.h,v 1.4 2006/06/22 19:07:28 southa Exp $
  * $Log: AdanaxisSTL.h,v $
+ * Revision 1.4  2006/06/22 19:07:28  southa
+ * Build fixes
+ *
  * Revision 1.3  2006/06/01 15:38:48  southa
  * DrawArray verification and fixes
  *

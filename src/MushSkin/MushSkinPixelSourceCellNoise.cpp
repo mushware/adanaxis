@@ -6,7 +6,7 @@
  * Copyright: Andy Southgate 2005-2006
  *
  * This file may be used and distributed under the terms of the Mushware
- * software licence version 1.0, under the terms for 'Proprietary original
+ * software licence version 1.1, under the terms for 'Proprietary original
  * source files'.  If not supplied with this software, a copy of the licence
  * can be obtained from Mushware Limited via http://www.mushware.com/.
  * One of your options under that licence is to use and distribute this file
@@ -15,10 +15,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } qhEdbIEwQwu5Qbsnsh682Q
+//%Header } RpUcNofcukehzfbbfFbTjQ
 /*
- * $Id: MushSkinPixelSourceCellNoise.cpp,v 1.2 2006/06/09 21:07:14 southa Exp $
+ * $Id: MushSkinPixelSourceCellNoise.cpp,v 1.3 2006/06/26 17:03:15 southa Exp $
  * $Log: MushSkinPixelSourceCellNoise.cpp,v $
+ * Revision 1.3  2006/06/26 17:03:15  southa
+ * win32 installer tweaks
+ *
  * Revision 1.2  2006/06/09 21:07:14  southa
  * Tiled skin generation
  *

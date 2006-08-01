@@ -6,7 +6,7 @@
  * Copyright: Andy Southgate 2005-2006
  *
  * This file may be used and distributed under the terms of the Mushware
- * software licence version 1.0, under the terms for 'Proprietary original
+ * software licence version 1.1, under the terms for 'Proprietary original
  * source files'.  If not supplied with this software, a copy of the licence
  * can be obtained from Mushware Limited via http://www.mushware.com/.
  * One of your options under that licence is to use and distribute this file
@@ -15,10 +15,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } G8Z0FhC/G4lBOZEeeMzYgA
+//%Header } jTomsRfJomSPXOWn3jd6fw
 /*
- * $Id: AdanaxisScanner.cpp,v 1.4 2006/07/28 19:24:34 southa Exp $
+ * $Id: AdanaxisScanner.cpp,v 1.5 2006/07/30 19:38:52 southa Exp $
  * $Log: AdanaxisScanner.cpp,v $
+ * Revision 1.5  2006/07/30 19:38:52  southa
+ * Level updates
+ *
  * Revision 1.4  2006/07/28 19:24:34  southa
  * Pre-release work
  *

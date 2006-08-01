@@ -2740,6 +2740,12 @@
 		7A614A980A62951900E8FCEF /* AdanaxisControl.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AdanaxisControl.rb; sourceTree = "<group>"; };
 		7A6168550A5FF25E0046188D /* MushMenu.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = MushMenu.rb; sourceTree = "<group>"; };
 		7A6174D60A7F8B5E00B97CA2 /* ReadMe.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ReadMe.txt; sourceTree = "<group>"; };
+		7A6176840A7FB32F00B97CA2 /* dialogues.xml */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; path = dialogues.xml; sourceTree = "<group>"; };
+		7A6176850A7FB32F00B97CA2 /* manifest.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = manifest.txt; sourceTree = "<group>"; };
+		7A6176860A7FB32F00B97CA2 /* space.rb */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.ruby; path = space.rb; sourceTree = "<group>"; };
+		7A6176880A7FB34800B97CA2 /* dialogues.xml */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; path = dialogues.xml; sourceTree = "<group>"; };
+		7A6176890A7FB34800B97CA2 /* manifest.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = manifest.txt; sourceTree = "<group>"; };
+		7A61768A0A7FB34800B97CA2 /* space.rb */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.ruby; path = space.rb; sourceTree = "<group>"; };
 		7A61A29F0A6BA6BB00D70D05 /* MushMeshLibrarySingleFacet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushMeshLibrarySingleFacet.h; sourceTree = "<group>"; };
 		7A61A2A00A6BA6BB00D70D05 /* MushMeshLibrarySingleFacet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushMeshLibrarySingleFacet.cpp; sourceTree = "<group>"; };
 		7A61A2AD0A6BA9A300D70D05 /* MushMeshRubyBaseSingleFacet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushMeshRubyBaseSingleFacet.h; sourceTree = "<group>"; };
@@ -4150,7 +4156,9 @@
 			children = (
 				7A3E0D1B0A4821C10078B650 /* local1 */,
 				7A97ECE80A6A808600369FD6 /* local2 */,
+				7A6176830A7FB32F00B97CA2 /* local3 */,
 				7A58280E0A791B55005FD788 /* menu1 */,
+				7A6176870A7FB34800B97CA2 /* river1 */,
 				7A6174D60A7F8B5E00B97CA2 /* ReadMe.txt */,
 			);
 			path = spaces;
@@ -4322,6 +4330,26 @@
 				7A5C9EF6080979900017E78B /* CodeGenCommands.h */,
 			);
 			path = CodeGen;
+			sourceTree = "<group>";
+		};
+		7A6176830A7FB32F00B97CA2 /* local3 */ = {
+			isa = PBXGroup;
+			children = (
+				7A6176840A7FB32F00B97CA2 /* dialogues.xml */,
+				7A6176850A7FB32F00B97CA2 /* manifest.txt */,
+				7A6176860A7FB32F00B97CA2 /* space.rb */,
+			);
+			path = local3;
+			sourceTree = "<group>";
+		};
+		7A6176870A7FB34800B97CA2 /* river1 */ = {
+			isa = PBXGroup;
+			children = (
+				7A6176880A7FB34800B97CA2 /* dialogues.xml */,
+				7A6176890A7FB34800B97CA2 /* manifest.txt */,
+				7A61768A0A7FB34800B97CA2 /* space.rb */,
+			);
+			path = river1;
 			sourceTree = "<group>";
 		};
 		7A62B70B05A49D04002A5F1C /* src */ = {

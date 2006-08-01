@@ -6,7 +6,7 @@
  * Copyright: Andy Southgate 2005-2006
  *
  * This file may be used and distributed under the terms of the Mushware
- * software licence version 1.0, under the terms for 'Proprietary original
+ * software licence version 1.1, under the terms for 'Proprietary original
  * source files'.  If not supplied with this software, a copy of the licence
  * can be obtained from Mushware Limited via http://www.mushware.com/.
  * One of your options under that licence is to use and distribute this file
@@ -15,10 +15,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } IuTpIaMwL6no6kcwEBn4/Q
+//%Header } LbzmMdfPb45IsUxre1uxoA
 /*
- * $Id: AdanaxisData.cpp,v 1.1 2005/08/01 13:09:57 southa Exp $
+ * $Id: AdanaxisData.cpp,v 1.2 2006/06/01 15:38:47 southa Exp $
  * $Log: AdanaxisData.cpp,v $
+ * Revision 1.2  2006/06/01 15:38:47  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.1  2005/08/01 13:09:57  southa
  * Collision messaging
  *

@@ -10,7 +10,7 @@
  * Copyright: Andy Southgate 2005-2006
  *
  * This file may be used and distributed under the terms of the Mushware
- * software licence version 1.0, under the terms for 'Proprietary original
+ * software licence version 1.1, under the terms for 'Proprietary original
  * source files'.  If not supplied with this software, a copy of the licence
  * can be obtained from Mushware Limited via http://www.mushware.com/.
  * One of your options under that licence is to use and distribute this file
@@ -19,10 +19,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } lXOhNHrEv7a8Ndh1gy3P5A
+//%Header } /G5prPJmGC4DIKgcQWm0Bg
 /*
- * $Id: AdanaxisVolatileData.h,v 1.9 2006/07/28 11:14:28 southa Exp $
+ * $Id: AdanaxisVolatileData.h,v 1.10 2006/07/28 16:52:20 southa Exp $
  * $Log: AdanaxisVolatileData.h,v $
+ * Revision 1.10  2006/07/28 16:52:20  southa
+ * Options work
+ *
  * Revision 1.9  2006/07/28 11:14:28  southa
  * Records for multiple spaces
  *

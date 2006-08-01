@@ -6,7 +6,7 @@
  * Copyright: Andy Southgate 2005-2006
  *
  * This file may be used and distributed under the terms of the Mushware
- * software licence version 1.0, under the terms for 'Proprietary original
+ * software licence version 1.1, under the terms for 'Proprietary original
  * source files'.  If not supplied with this software, a copy of the licence
  * can be obtained from Mushware Limited via http://www.mushware.com/.
  * One of your options under that licence is to use and distribute this file
@@ -15,10 +15,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } xkvbVCXm8pXCDWV4BdLGFQ
+//%Header } vXTD+dcfp4bvknskNBj72g
 /*
- * $Id: MushSkinTiled.cpp,v 1.9 2006/07/18 16:58:39 southa Exp $
+ * $Id: MushSkinTiled.cpp,v 1.10 2006/07/24 18:46:51 southa Exp $
  * $Log: MushSkinTiled.cpp,v $
+ * Revision 1.10  2006/07/24 18:46:51  southa
+ * Depth sorting
+ *
  * Revision 1.9  2006/07/18 16:58:39  southa
  * Texture fixes
  *

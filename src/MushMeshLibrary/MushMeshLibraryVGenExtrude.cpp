@@ -6,7 +6,7 @@
  * Copyright: Andy Southgate 2005-2006
  *
  * This file may be used and distributed under the terms of the Mushware
- * software licence version 1.0, under the terms for 'Proprietary original
+ * software licence version 1.1, under the terms for 'Proprietary original
  * source files'.  If not supplied with this software, a copy of the licence
  * can be obtained from Mushware Limited via http://www.mushware.com/.
  * One of your options under that licence is to use and distribute this file
@@ -15,10 +15,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 1XpIVIgiHvKJLMjMoray6A
+//%Header } EfCnRYfVAkVtOqJHiqjfMQ
 /*
- * $Id: MushMeshLibraryVGenExtrude.cpp,v 1.5 2006/06/01 15:39:34 southa Exp $
+ * $Id: MushMeshLibraryVGenExtrude.cpp,v 1.6 2006/06/14 18:45:49 southa Exp $
  * $Log: MushMeshLibraryVGenExtrude.cpp,v $
+ * Revision 1.6  2006/06/14 18:45:49  southa
+ * Ruby mesh generation
+ *
  * Revision 1.5  2006/06/01 15:39:34  southa
  * DrawArray verification and fixes
  *

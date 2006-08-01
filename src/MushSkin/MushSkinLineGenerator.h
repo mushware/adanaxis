@@ -10,7 +10,7 @@
  * Copyright: Andy Southgate 2005-2006
  *
  * This file may be used and distributed under the terms of the Mushware
- * software licence version 1.0, under the terms for 'Proprietary original
+ * software licence version 1.1, under the terms for 'Proprietary original
  * source files'.  If not supplied with this software, a copy of the licence
  * can be obtained from Mushware Limited via http://www.mushware.com/.
  * One of your options under that licence is to use and distribute this file
@@ -19,10 +19,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } tuTK6NcDPsNibg7CubVnHw
+//%Header } LvbD2/lJf2ORlyxi850gkw
 /*
- * $Id: MushSkinLineGenerator.h,v 1.7 2006/07/18 16:58:39 southa Exp $
+ * $Id: MushSkinLineGenerator.h,v 1.8 2006/07/28 16:52:24 southa Exp $
  * $Log: MushSkinLineGenerator.h,v $
+ * Revision 1.8  2006/07/28 16:52:24  southa
+ * Options work
+ *
  * Revision 1.7  2006/07/18 16:58:39  southa
  * Texture fixes
  *
