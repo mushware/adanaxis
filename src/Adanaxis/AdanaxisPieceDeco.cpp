@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } Kb73MSBnaByz2lwXVLGZkA
 /*
- * $Id: AdanaxisPieceDeco.cpp,v 1.20 2006/07/19 14:34:50 southa Exp $
+ * $Id: AdanaxisPieceDeco.cpp,v 1.21 2006/07/24 18:46:46 southa Exp $
  * $Log: AdanaxisPieceDeco.cpp,v $
+ * Revision 1.21  2006/07/24 18:46:46  southa
+ * Depth sorting
+ *
  * Revision 1.20  2006/07/19 14:34:50  southa
  * Flare effects
  *
@@ -134,8 +137,8 @@ AdanaxisPieceDeco::Render(MushGLJobRender& outRender,
     {
         tVal alpha =  (0.0 + m_expiryMsec - ioLogic.FrameMsec()) / m_lifeMsec;
         MushcoreUtil::Constrain<tVal>(alpha, 0, 1);
-        // alpha = sqrt(alpha);
-        pRender->ColourZMiddleSet(t4Val(1,1,1, alpha));
+
+        pRender->ColourZMiddleSet(pRender->ColourZMiddle().ElementwiseProduct(t4Val(1,1,1,alpha)));
     }
         
     return inRender.RenderJobCreate(outRender, renderSpec, Mesh());

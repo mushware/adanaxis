@@ -11,8 +11,11 @@
 ##############################################################################
 
 #
-# $Id: SourceProcess.pm,v 1.3 2004/01/02 11:56:58 southa Exp $
+# $Id: SourceProcess.pm,v 1.4 2004/01/02 21:13:04 southa Exp $
 # $Log: SourceProcess.pm,v $
+# Revision 1.4  2004/01/02 21:13:04  southa
+# Source conditioning
+#
 # Revision 1.3  2004/01/02 11:56:58  southa
 # MushPie created
 #
@@ -584,5 +587,10 @@ sub QueryReplace($)
     0;
 }
 
+sub CommentStartSet($)
+{
+    my ($commentStart) = @_;
+    $gConfig{'COMMENT_START'} = $commentStart;
+}
 
 1;

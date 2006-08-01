@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } abz8WfQdtsWpPxv12NZxhA
 /*
- * $Id: MushGameRuby.h,v 1.10 2006/07/28 16:52:24 southa Exp $
+ * $Id: MushGameRuby.h,v 1.11 2006/07/31 11:01:38 southa Exp $
  * $Log: MushGameRuby.h,v $
+ * Revision 1.11  2006/07/31 11:01:38  southa
+ * Music and dialogues
+ *
  * Revision 1.10  2006/07/28 16:52:24  southa
  * Options work
  *
@@ -95,7 +98,8 @@ public:
     static Mushware::tRubyValue NamedDialoguesAdd(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
     static Mushware::tRubyValue SoundDefine(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0, Mushware::tRubyValue inArg1);
     static Mushware::tRubyValue SoundStreamDefine(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0, Mushware::tRubyValue inArg1);
-
+    static Mushware::tRubyValue PackageID(Mushware::tRubyValue inSelf);
+    
     static void MethodsInstall(void);
     
 private:

@@ -10,8 +10,11 @@
 #
 ##############################################################################
 
-# $Id: SourceConditioner.pl,v 1.51 2006/04/21 00:10:42 southa Exp $
+# $Id: SourceConditioner.pl,v 1.52 2006/07/31 11:01:33 southa Exp $
 # $Log: SourceConditioner.pl,v $
+# Revision 1.52  2006/07/31 11:01:33  southa
+# Music and dialogues
+#
 # Revision 1.51  2006/04/21 00:10:42  southa
 # MushGLFont ruby module
 #
@@ -234,45 +237,84 @@ my @gCHeaders = (
 ' *',
 ' ****************************************************************************/'
 ],
-'^(Adanaxis|MushMeshLibrary|MushSkin)' => [
-'/*****************************************************************************',
-' *',
-' * File: @FILENAME@',
-' *',
-' * Copyright: Andy Southgate 2005-2006',
-' *',
-' * This file may be used and distributed under the terms of the Mushware',
-' * software licence version 1.0, under the terms for \'Proprietary original',
-' * source files\'.  If not supplied with this software, a copy of the licence',
-' * can be obtained from Mushware Limited via http://www.mushware.com/.',
-' * One of your options under that licence is to use and distribute this file',
-' * under the terms of the GNU General Public Licence version 2.',
-' *', 
-' * This software carries NO WARRANTY of any kind.',
-' *',
-' ****************************************************************************/'
+'^Adanaxis.*\.rb$' => [
+'##############################################################################',
+'#',
+'# File @FILENAME@',
+'#',
+'# Copyright Andy Southgate 2006',
+'#',
+'# This file may be used and distributed under the terms of the Mushware',
+'# software licence version 1.1, under the terms for \'Proprietary original',
+'# source files\'.  If not supplied with this software, a copy of the licence',
+'# can be obtained from Mushware Limited via http://www.mushware.com/.',
+'# One of your options under that licence is to use and distribute this file',
+'# under the terms of the GNU General Public Licence version 2.',
+'#', 
+'# This software carries NO WARRANTY of any kind.',
+'#',
+'##############################################################################'
 ],
+'.*\.rb$' =>
+[
+'##############################################################################',
+'#',
+'# File @FILENAME@',
+'#',
+'# Author Andy Southgate 2006',
+'#',
+'# This file contains original work by Andy Southgate.  The author and his',
+'# employer (Mushware Limited) irrevocably waive all of their copyright rights',
+'# vested in this particular version of this file to the furthest extent',
+'# permitted.  The author and Mushware Limited also irrevocably waive any and',
+'# all of their intellectual property rights arising from said file and its',
+'# creation that would otherwise restrict the rights of any party to use and/or',
+'# distribute the use of, the techniques and methods used herein.  A written',
+'# waiver can be obtained via http://www.mushware.com/.',
+'#',
+'# This software carries NO WARRANTY of any kind.',
+'#',
+'##############################################################################'
+],
+'^(Adanaxis|MushMeshLibrary|MushSkin)' => [
+ '/*****************************************************************************',
+  ' *',
+  ' * File: @FILENAME@',
+  ' *',
+  ' * Copyright: Andy Southgate 2005-2006',
+  ' *',
+  ' * This file may be used and distributed under the terms of the Mushware',
+  ' * software licence version 1.1, under the terms for \'Proprietary original',
+  ' * source files\'.  If not supplied with this software, a copy of the licence',
+  ' * can be obtained from Mushware Limited via http://www.mushware.com/.',
+  ' * One of your options under that licence is to use and distribute this file',
+  ' * under the terms of the GNU General Public Licence version 2.',
+  ' *', 
+  ' * This software carries NO WARRANTY of any kind.',
+  ' *',
+  ' ****************************************************************************/'
+ ],
 '.*' =>
 [
-'/*****************************************************************************',
-' *',
-' * File: @FILENAME@',
-' *',
-' * Author: Andy Southgate 2002-2006',
-' *',
-' * This file contains original work by Andy Southgate.  The author and his',
-' * employer (Mushware Limited) irrevocably waive all of their copyright rights',
-' * vested in this particular version of this file to the furthest extent',
-' * permitted.  The author and Mushware Limited also irrevocably waive any and',
-' * all of their intellectual property rights arising from said file and its',
-' * creation that would otherwise restrict the rights of any party to use and/or',
-' * distribute the use of, the techniques and methods used herein.  A written',
-' * waiver can be obtained via http://www.mushware.com/.',
-' *',
-' * This software carries NO WARRANTY of any kind.',
-' *',
-' ****************************************************************************/'
-]
+ '/*****************************************************************************',
+  ' *',
+  ' * File: @FILENAME@',
+  ' *',
+  ' * Author: Andy Southgate 2002-2006',
+  ' *',
+  ' * This file contains original work by Andy Southgate.  The author and his',
+  ' * employer (Mushware Limited) irrevocably waive all of their copyright rights',
+  ' * vested in this particular version of this file to the furthest extent',
+  ' * permitted.  The author and Mushware Limited also irrevocably waive any and',
+  ' * all of their intellectual property rights arising from said file and its',
+  ' * creation that would otherwise restrict the rights of any party to use and/or',
+  ' * distribute the use of, the techniques and methods used herein.  A written',
+  ' * waiver can be obtained via http://www.mushware.com/.',
+  ' *',
+  ' * This software carries NO WARRANTY of any kind.',
+  ' *',
+  ' ****************************************************************************/'
+ ]
 );
 
 my $headerMarker='Mushware file header version';
@@ -286,8 +328,17 @@ SourceProcess::AddArrayProcessor('\.h$', \&ProcessHeader);
 SourceProcess::AddArrayProcessor('\.cpp$', \&ProcessCPP);
 SourceProcess::AddArrayProcessor('\.h$', \&ProcessIncludeGuard);
 SourceProcess::AddArrayProcessor('\.h$', \&ProcessTouchCFile);
+SourceProcess::AddArrayProcessor('\.rb$', \&ProcessFileHeader);
 
 SourceProcess::Process('src');
+
+foreach my $dataDir ('data-adanaxis')
+{
+    if ( -d $dataDir )
+    {
+        SourceProcess::Process($dataDir);
+    }
+}
 
 sub XMLBaseGenerate($)
 {
@@ -1214,10 +1265,15 @@ sub HeaderGenerate($$$)
                 $line =~ s/\@FILENAME\@/$userFilename/;
                 push @headerStore, $line;
             }
+            if ($filename =~ /\.rb$/)
+            {
+                SourceProcess::CommentStartSet('#');                
+            }
             SourceProcess::BlockReplace(\@$arrayRef, \@headerStore, 'Header', 0);
             last;
         }
     }
+    SourceProcess::CommentStartSet('//');
 }
 
 sub ProcessFileHeader($$)

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } yY7ZZkvIHHOoUzJzTAQPOQ
 /*
- * $Id: MushGameRuby.cpp,v 1.10 2006/07/28 16:52:24 southa Exp $
+ * $Id: MushGameRuby.cpp,v 1.11 2006/07/31 11:01:38 southa Exp $
  * $Log: MushGameRuby.cpp,v $
+ * Revision 1.11  2006/07/31 11:01:38  southa
+ * Music and dialogues
+ *
  * Revision 1.10  2006/07/28 16:52:24  southa
  * Options work
  *
@@ -610,6 +613,12 @@ MushGameRuby::SoundStreamDefine(Mushware::tRubyValue inSelf, Mushware::tRubyValu
     return Mushware::kRubyQnil;
 }
 
+Mushware::tRubyValue
+MushGameRuby::PackageID(Mushware::tRubyValue inSelf)
+{
+    return MushRubyValue(MushcoreInfo::Sgl().PackageID()).Value();
+}
+
 void
 MushGameRuby::MethodsInstall(void)
 {
@@ -644,4 +653,5 @@ MushGameRuby::MethodsInstall(void)
     MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cNamedDialoguesAdd", NamedDialoguesAdd);
     MushRubyUtil::SingletonMethodDefineTwoParams(Klass(), "cSoundDefine", SoundDefine);
     MushRubyUtil::SingletonMethodDefineTwoParams(Klass(), "cSoundStreamDefine", SoundStreamDefine);
+    MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cPackageID", PackageID);
 }

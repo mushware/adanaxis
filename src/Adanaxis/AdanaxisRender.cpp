@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } Hr8bvS7fc+x0pR9DrFcIZw
 /*
- * $Id: AdanaxisRender.cpp,v 1.42 2006/07/28 11:14:27 southa Exp $
+ * $Id: AdanaxisRender.cpp,v 1.43 2006/07/28 16:52:19 southa Exp $
  * $Log: AdanaxisRender.cpp,v $
+ * Revision 1.43  2006/07/28 16:52:19  southa
+ * Options work
+ *
  * Revision 1.42  2006/07/28 11:14:27  southa
  * Records for multiple spaces
  *
@@ -338,6 +341,8 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
             tDecoList::iterator decoEndIter = pVolData->DecoListWRef().end();
             for (tDecoList::iterator p = pVolData->DecoListWRef().begin(); p != decoEndIter; ++p)
             {
+                renderMesh.ColourZMiddleSet(t4Val(1.0,1.0,1.0,decoAlpha));
+
                 MUSHCOREASSERT(m_renderList.back() != NULL);
                 
                 if (p->Render(*m_renderList.back(), ioLogic, renderMesh, camera))
