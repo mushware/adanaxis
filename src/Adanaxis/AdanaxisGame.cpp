@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } 0Sg2qcftBJTnB0QxDEkq2Q
 /*
- * $Id: AdanaxisGame.cpp,v 1.49 2006/07/31 11:01:36 southa Exp $
+ * $Id: AdanaxisGame.cpp,v 1.50 2006/08/01 17:21:23 southa Exp $
  * $Log: AdanaxisGame.cpp,v $
+ * Revision 1.50  2006/08/01 17:21:23  southa
+ * River demo
+ *
  * Revision 1.49  2006/07/31 11:01:36  southa
  * Music and dialogues
  *
@@ -324,7 +327,7 @@ AdanaxisGame::Init(MushGameAppHandler& inAppHandler)
     MediaAudio::Sgl().MusicVolumeSet(m_config.MusicVolume() / 100.0);
     if (m_config.MusicVolume() > 0)
     {
-        MediaAudio::Sgl().MusicFadeIn(300);
+        // MediaAudio::Sgl().MusicFadeIn(300);
     }
     
     // Use compresion at low detail levels only - alpha-mapped textures don't compress well

@@ -3691,6 +3691,7 @@
 		7AD164D3087A8BE60071C752 /* MushGLAppHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushGLAppHandler.cpp; sourceTree = "<group>"; };
 		7AD16524087A97230071C752 /* MushGameAnimPostManip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushGameAnimPostManip.h; sourceTree = "<group>"; };
 		7AD16525087A97230071C752 /* MushGameAnimPostManip.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushGameAnimPostManip.cpp; sourceTree = "<group>"; };
+		7AD16ADA0A80163D0023E82E /* dialogues.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = dialogues.xml; sourceTree = "<group>"; };
 		7AD17D86088BAEF800BE236E /* MushMesh4Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushMesh4Util.h; sourceTree = "<group>"; };
 		7AD17D87088BAEF800BE236E /* MushMesh4Util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushMesh4Util.cpp; sourceTree = "<group>"; };
 		7AD17DAA088BB33700BE236E /* AdanaxisMeshLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdanaxisMeshLibrary.h; sourceTree = "<group>"; };
@@ -4167,9 +4168,9 @@
 		7A3E0D1B0A4821C10078B650 /* local1 */ = {
 			isa = PBXGroup;
 			children = (
+				7A61AFB70A7E0FF400C3532C /* dialogues.xml */,
 				7A3E0D1C0A4821C10078B650 /* space.rb */,
 				7ABDE4ED0A6943F000636DC1 /* manifest.txt */,
-				7A61AFB70A7E0FF400C3532C /* dialogues.xml */,
 			);
 			path = local1;
 			sourceTree = "<group>";
@@ -4220,9 +4221,9 @@
 		7A58280E0A791B55005FD788 /* menu1 */ = {
 			isa = PBXGroup;
 			children = (
+				7A61AF9D0A7E0D9500C3532C /* dialogues.xml */,
 				7A58280F0A791B55005FD788 /* manifest.txt */,
 				7A5828100A791B56005FD788 /* space.rb */,
-				7A61AF9D0A7E0D9500C3532C /* dialogues.xml */,
 			);
 			path = menu1;
 			sourceTree = "<group>";
@@ -5616,6 +5617,7 @@
 		7A97ECE80A6A808600369FD6 /* local2 */ = {
 			isa = PBXGroup;
 			children = (
+				7AD16ADA0A80163D0023E82E /* dialogues.xml */,
 				7A97ECE90A6A808600369FD6 /* manifest.txt */,
 				7A97ECEA0A6A808600369FD6 /* space.rb */,
 			);
