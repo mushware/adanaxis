@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } SS7f07ZxAqPFhgfU05q65Q
 /*
- * $Id: MushcoreLog.cpp,v 1.6 2005/07/14 16:55:09 southa Exp $
+ * $Id: MushcoreLog.cpp,v 1.7 2006/06/01 15:39:45 southa Exp $
  * $Log: MushcoreLog.cpp,v $
+ * Revision 1.7  2006/06/01 15:39:45  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.6  2005/07/14 16:55:09  southa
  * Mesh library work
  *
@@ -58,8 +61,13 @@ MushcoreLog::MushcoreLog() :
     m_xmlErrorStream(NULL),
     m_xmlStdStream(NULL),
     m_enableErrorLog(true),
+#ifdef MUSHCORE_DEBUG
     m_enableWarningLog(true),
     m_enableInfoLog(true),
+#else
+    m_enableWarningLog(false),
+    m_enableInfoLog(false),
+#endif
     m_errorHeaderDone(false),
     m_stdHeaderDone(false)
 {

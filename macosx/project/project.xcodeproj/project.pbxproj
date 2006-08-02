@@ -3338,7 +3338,7 @@
 		7A6CE21C05A5935800777D9B /* MushPieSTL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushPieSTL.cpp; sourceTree = "<group>"; };
 		7A70CD10085DE6A90055C6FB /* MushGLControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushGLControl.h; sourceTree = "<group>"; };
 		7A70CD11085DE6A90055C6FB /* MushGLControl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushGLControl.cpp; sourceTree = "<group>"; };
-		7A70CE7E085DEE2D0055C6FB /* Adanaxis Rendering Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Adanaxis Rendering Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7A70CE7E085DEE2D0055C6FB /* Adanaxis Rendering Demo.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = "Adanaxis Rendering Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A70CEB1085DF1C40055C6FB /* AdanaxisAppHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = AdanaxisAppHandler.cpp; sourceTree = "<group>"; };
 		7A70CEB2085DF1C40055C6FB /* AdanaxisAppHandler.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = AdanaxisAppHandler.h; sourceTree = "<group>"; };
 		7A70CEB3085DF1C50055C6FB /* AdanaxisCommandHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = AdanaxisCommandHandler.cpp; sourceTree = "<group>"; };
