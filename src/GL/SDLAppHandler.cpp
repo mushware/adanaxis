@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } X577BrzUUfCyG/exJzzEYQ
 /*
- * $Id: SDLAppHandler.cpp,v 1.61 2006/07/27 13:51:35 southa Exp $
+ * $Id: SDLAppHandler.cpp,v 1.62 2006/07/28 16:52:20 southa Exp $
  * $Log: SDLAppHandler.cpp,v $
+ * Revision 1.62  2006/07/28 16:52:20  southa
+ * Options work
+ *
  * Revision 1.61  2006/07/27 13:51:35  southa
  * Menu and control fixes
  *
@@ -679,7 +682,7 @@ SDLAppHandler::PollForControlEvents(void)
     
     if (loopCtr > 100)
     {
-        throw MushcoreDataFail("event loopCtr overrun");
+        MushcoreLog::Sgl().WarningLog() << "event loopCtr overrun";
     }
 }
 

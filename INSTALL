@@ -1,4 +1,4 @@
-Please report bugs or request support at http://www.mushware.com/
+Please report bugs at http://www.mushware.com/
 
 Platform-specific details can be found in README.linux, README.win32 and
 README.macosx files.
@@ -25,12 +25,13 @@ make
 cd data-adanaxisrenderingdemo
 ../../src/adanaxisrenderingdemobinary
 
-MacOS X
-=======
+Mac OS X
+========
 
-Install using the MacOS X installer from http://www.mushware.com/, or:
+The application should run directly from the disk image, obtainable from
+http://www.mushware.com/, or:
 
-Compile using the project builder file macosx/project/project.xcode.
+Compile using the Xcode file macosx/project/project.xcodeproj.
 To build the release, use
 
 make mac-release
@@ -43,9 +44,8 @@ win32
 
 Install using the win32 installer from http://www.mushware.com/, or:
 
-Build using cygwin/mingw32.  Both cygwin and mingw32 should be installed,
-with mingw32 paths appearing before cygwin so that the mingw32 compiler
-is used.  Then build as for POSIX above.
+Build using Visual Studio .NET 2003.  The project file can be found in the
+VisualC directory (project/project.sln).
 
 To build the installer, ensure that nullsoft.com's makensis.exe is visible
 in your path.  Place the required DLLs in win32/win32libs or get them via
