@@ -101,7 +101,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="WS2_32.lib Winmm.lib dxguid.lib Iphlpapi.lib OPENGL32.lib GLU32.lib libexpat.lib libpcre.a SDL.lib SDLmain.lib SDL_mixer.lib libtiff.lib"
-				OutputFile="$(OutDir)/adanaxiscontroldemo.exe"
+				OutputFile="$(OutDir)/adanaxisrenderingdemo.exe"
 				Version="0.1.1"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="C:\msvclibs\GnuWin32\lib;&quot;C:\msvclibs\Expat-1.95.8\Libs&quot;;&quot;C:\msvclibs\SDL-1.2.7\lib&quot;;&quot;C:\msvclibs\SDL_mixer-1.2.5\lib&quot;"

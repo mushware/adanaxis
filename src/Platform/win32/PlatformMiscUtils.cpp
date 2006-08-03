@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } dAboIY5Kp9P01iutrXBmlw
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.37 2006/06/26 12:55:12 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.38 2006/07/28 16:52:26 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.38  2006/07/28 16:52:26  southa
+ * Options work
+ *
  * Revision 1.37  2006/06/26 12:55:12  southa
  * win32 installer updates
  *
@@ -316,25 +319,26 @@ PlatformMiscUtils::ScanDirectory(vector<std::string>& outFilenames, const string
     {
         for (U32 i=0; i<10000; ++i)
         {
-            if (fileData.dwFileAttributes & FILE_ATTRIBUTE_NORMAL)
+            if ((fileData.dwFileAttributes & (FILE_ATTRIBUTE_NORMAL | FILE_ATTRIBUTE_ARCHIVE)) != 0)
             {
                 string name=fileData.cFileName;		
                 if (name != "." && name != ".." && name != "CVS")
                 {
                     outFilenames.push_back(name);
                 }
-                if (!FindNextFile(hList, &fileData))
-                {
-                    if (GetLastError() == ERROR_NO_MORE_FILES)
-                    {
-                        break;
-                    }
-                    FindClose(hList);
-                    ostringstream message;
-                    message << "Directory error (" << GetLastError() << ")";
-                    throw(MushcoreCommandFail(message.str()));
-                }
             }
+            if (!FindNextFile(hList, &fileData))
+            {
+                if (GetLastError() == ERROR_NO_MORE_FILES)
+                {
+                    break;
+                }
+                FindClose(hList);
+                ostringstream message;
+                message << "Directory error (" << GetLastError() << ")";
+                throw(MushcoreCommandFail(message.str()));
+            }
+
             MUSHCOREASSERT(i<9999);
         }
 

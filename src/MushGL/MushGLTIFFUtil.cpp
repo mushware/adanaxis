@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } h1Go2vLqhxcDo4G+8KTIWw
 /*
- * $Id: MushGLTIFFUtil.cpp,v 1.2 2006/06/27 11:58:09 southa Exp $
+ * $Id: MushGLTIFFUtil.cpp,v 1.3 2006/07/28 16:52:21 southa Exp $
  * $Log: MushGLTIFFUtil.cpp,v $
+ * Revision 1.3  2006/07/28 16:52:21  southa
+ * Options work
+ *
  * Revision 1.2  2006/06/27 11:58:09  southa
  * Warning fixes
  *
@@ -184,17 +187,22 @@ MushGLTIFFUtil::CreatorGet(const std::string& inFilename)
 	{
 		throw MushcoreFileFail(inFilename, "Could not open TIFF file to read creator");
 	}
-    const char *pTag;
-    tiffio::TIFFGetField(pTIFF, TIFFTAG_SOFTWARE, &pTag);
-    
+
     std::string retVal;
-    if (pTag != NULL)
+
     {
-        retVal = pTag;
+        const char *pTag;
+        tiffio::TIFFGetField(pTIFF, TIFFTAG_SOFTWARE, &pTag);
+    
+        if (pTag != NULL)
+        {
+            retVal = pTag;
+        }
+        else
+        {
+            retVal = "";
+        }
     }
-    else
-    {
-        retVal = "";
-    }
+    tiffio::TIFFClose(pTIFF);
     return retVal;
 }

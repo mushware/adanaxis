@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } vYDFvfnYgaI4ZFA13k+Usg
 /*
- * $Id: MushGLCacheControl.cpp,v 1.2 2006/06/07 14:25:55 southa Exp $
+ * $Id: MushGLCacheControl.cpp,v 1.3 2006/07/28 16:52:21 southa Exp $
  * $Log: MushGLCacheControl.cpp,v $
+ * Revision 1.3  2006/07/28 16:52:21  southa
+ * Options work
+ *
  * Revision 1.2  2006/06/07 14:25:55  southa
  * Grid texture fixes
  *
@@ -135,7 +138,7 @@ MushGLCacheControl::CachePurge(void)
     PlatformMiscUtils::ScanDirectory(filenames, m_globalCachePath);
     
     MushcoreRegExp regExp("^tex-.+\\.tiff$");
-    
+ 
     for (U32 i=0; i<filenames.size(); ++i)
     {
         std::string& filename = filenames[i];
@@ -144,10 +147,10 @@ MushGLCacheControl::CachePurge(void)
             std::string fullFilename = m_globalCachePath+"/"+filename;
             // File matches our pattern
             std::string creator = MushGLTIFFUtil::CreatorGet(fullFilename);
-            
+
             if (packageName == creator.substr(0, packageName.size()))
             {
-                // File has right name and creator, so delete it
+                 // File has right name and creator, so delete it
                 if (std::remove(fullFilename.c_str()) != 0)
                 {
                     MushcoreLog::Sgl().InfoLog() << "Failed to remove cache file '" << fullFilename << "'" << endl;

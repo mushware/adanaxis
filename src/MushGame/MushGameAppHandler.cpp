@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } bC49LKe3G5tsyGqAVa5gyw
 /*
- * $Id: MushGameAppHandler.cpp,v 1.16 2006/07/28 16:52:22 southa Exp $
+ * $Id: MushGameAppHandler.cpp,v 1.17 2006/07/31 11:01:37 southa Exp $
  * $Log: MushGameAppHandler.cpp,v $
+ * Revision 1.17  2006/07/31 11:01:37  southa
+ * Music and dialogues
+ *
  * Revision 1.16  2006/07/28 16:52:22  southa
  * Options work
  *
@@ -135,7 +138,7 @@ MushGameAppHandler::QuitStateEnter(void)
         m_appState = kAppStateQuitting;
         
         bool permitPurge = true;
-        MushcoreScalar textureCachePurge;
+        MushcoreScalar textureCachePurge(1);
         if (MushcoreEnv::Sgl().VariableGetIfExists(textureCachePurge, "MUSHGL_TEXTURE_CACHE_PURGE"))
         {
             permitPurge = textureCachePurge.BoolGet();

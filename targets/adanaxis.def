@@ -1,6 +1,9 @@
 # Target definition file
-# $Id: adanaxis.def,v 1.10 2006/07/28 19:24:35 southa Exp $
+# $Id: adanaxis.def,v 1.11 2006/08/02 16:25:54 southa Exp $
 # $Log: adanaxis.def,v $
+# Revision 1.11  2006/08/02 16:25:54  southa
+# Prerelease work
+#
 # Revision 1.10  2006/07/28 19:24:35  southa
 # Pre-release work
 #
@@ -39,6 +42,7 @@ Use: targets/app.acinclude.m4 as acinclude.m4
 
 Subst: MUSH_APP_PACKAGE 'adanaxisrenderingdemo'
 Subst: MUSH_APP_NAME 'Adanaxis Rendering Demo'
+Subst: MUSH_APP_UNDERSCORED_NAME 'Adanaxis_Rendering_Demo'
 Subst: MUSH_APP_MAJOR_VERSION '0'
 Subst: MUSH_APP_MINOR_VERSION '1'
 Subst: MUSH_APP_MICRO_VERSION '1'
