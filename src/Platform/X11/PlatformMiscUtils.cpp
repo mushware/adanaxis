@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } IvAhPSVPf1x+MLMRSmlIow
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.27 2006/06/29 08:27:11 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.28 2006/07/28 16:52:26 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.28  2006/07/28 16:52:26  southa
+ * Options work
+ *
  * Revision 1.27  2006/06/29 08:27:11  southa
  * X11 fixes
  *
@@ -265,7 +268,8 @@ PlatformMiscUtils::ScanDirectory(vector<std::string>& outFilenames, const string
     {
         struct stat statInfo;
         lstat(entry->d_name, &statInfo);
-        if(S_ISREG(statInfo.st_mode))
+
+        if (S_ISREG(statInfo.st_mode), 1) // Workaround for file test problem
         {
             string name=entry->d_name;
             if (name != "." && name != ".." && name != "CVS")

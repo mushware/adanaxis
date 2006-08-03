@@ -1,11 +1,10 @@
 MUSH_APP_NAME
 
-The documentation for this package is supplied in a PDF file
-named About MUSH_APP_NAME.  Thi may be found in the directory
-MUSH_DATA_DIR
+The documentation for this package is supplied in a PDF file named
+MUSH_DATA_DIR/About_MUSH_APP_UNDERSCORED_NAME.pdf
 
-There may be a limited ammount of man infomation accesible
-after installation using:
+There may be a limited amount of man infomation accesible after
+installation using:
 
 man MUSH_APP_PACKAGE
 

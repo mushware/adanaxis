@@ -1,11 +1,10 @@
 Adanaxis Rendering Demo
 
-The documentation for this package is supplied in a PDF file
-named About Adanaxis Rendering Demo.  Thi may be found in the directory
-data-adanaxis
+The documentation for this package is supplied in a PDF file named
+data-adanaxis/About_Adanaxis_Rendering_Demo.pdf
 
-There may be a limited ammount of man infomation accesible
-after installation using:
+There may be a limited amount of man infomation accesible after
+installation using:
 
 man adanaxisrenderingdemo
 

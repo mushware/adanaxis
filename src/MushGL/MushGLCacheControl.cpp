@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } vYDFvfnYgaI4ZFA13k+Usg
 /*
- * $Id: MushGLCacheControl.cpp,v 1.3 2006/07/28 16:52:21 southa Exp $
+ * $Id: MushGLCacheControl.cpp,v 1.4 2006/08/03 15:07:58 southa Exp $
  * $Log: MushGLCacheControl.cpp,v $
+ * Revision 1.4  2006/08/03 15:07:58  southa
+ * Cache purge fix
+ *
  * Revision 1.3  2006/07/28 16:52:21  southa
  * Options work
  *
@@ -138,7 +141,7 @@ MushGLCacheControl::CachePurge(void)
     PlatformMiscUtils::ScanDirectory(filenames, m_globalCachePath);
     
     MushcoreRegExp regExp("^tex-.+\\.tiff$");
- 
+
     for (U32 i=0; i<filenames.size(); ++i)
     {
         std::string& filename = filenames[i];
