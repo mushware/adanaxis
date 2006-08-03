@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 0anIi7FRbv5HCqf7j1JbnA
 /*
- * $Id: PlatformVideoUtils.cpp,v 1.19 2005/06/09 00:04:59 southa Exp $
+ * $Id: PlatformVideoUtils.cpp,v 1.20 2006/06/01 15:39:58 southa Exp $
  * $Log: PlatformVideoUtils.cpp,v $
+ * Revision 1.20  2006/06/01 15:39:58  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.19  2005/06/09 00:04:59  southa
  * X11 tweaks
  *
@@ -87,6 +90,18 @@
 #include "mushMedia.h"
 #include "mushPlatform.h"
 
+#if 0
+#if defined(HAVE_SDL_SDL_H)
+#include <SDL/SDL.h>
+#else
+#if defined(HAVE_SDL_H)
+#include <SDL.h>
+#else
+#include "SDL.h"
+#endif
+#endif
+#endif
+
 using namespace Mushware;
 using namespace std;
 
@@ -95,23 +110,23 @@ PlatformVideoUtils *PlatformVideoUtils::m_instance=NULL;
 PlatformVideoUtils::PlatformVideoUtils()
 {
     m_modeDefs.push_back(GLModeDef("640x480 window",640,480,32,0, 
-GLModeDef::kScreenWindow, GLModeDef::kCursorShow, GLModeDef::kSyncSoft));
+        GLModeDef::kScreenWindow, GLModeDef::kCursorShow, GLModeDef::kSyncSoft));
     m_modeDefs.push_back(GLModeDef("800x600 window",800,600,32,0, 
-GLModeDef::kScreenWindow, GLModeDef::kCursorShow, GLModeDef::kSyncSoft));
+        GLModeDef::kScreenWindow, GLModeDef::kCursorShow, GLModeDef::kSyncSoft));
 
     m_modeDefs.push_back(GLModeDef("640x480",640,480,32,0, 
-GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncSoft));
+        GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncSoft));
 
     m_modeDefs.push_back(GLModeDef("800x600",800,600,32,0, 
-GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncSoft));
+        GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncSoft));
 
     m_modeDefs.push_back(GLModeDef("1024x768",1024,768,32,0, 
-GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncSoft));
+        GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncSoft));
 
     m_modeDefs.push_back(GLModeDef("1280x1024",1280,1024,32,0, 
-GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncSoft));
+        GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncSoft));
     m_modeDefs.push_back(GLModeDef("1600x1200",1600,1200,32,0, 
-GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncSoft));
+        GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncSoft));
 
     for (U32 i=0; i<10; ++i)
     {
@@ -134,11 +149,47 @@ GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncSoft));
 		        32,0, GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncSoft));
                 }
 	    }
-	    catch (MushcoreNonFatalFail& e)
+	    catch (MushcoreFail& e)
 	    {
 	        cerr << "Mode syntax error in " << varName.str() << endl;
 	    }
 	}
+    }
+
+    SDL_Rect **ppModes = NULL;
+
+    MushcoreScalar useSDLModes(0);
+    if (MushcoreEnv::Sgl().VariableGetIfExists(useSDLModes, "X11_USE_SDL_LISTMODES"));
+    {
+        if (useSDLModes.BoolGet())
+        {
+            ppModes = SDL_ListModes(NULL, SDL_FULLSCREEN|SDL_HWSURFACE);
+        }
+    }
+
+    if (ppModes != NULL && ppModes != (SDL_Rect **) -1)
+    {
+        for (U32 i=0; ppModes[i] != NULL; ++i)
+        {
+            SDL_Rect *pMode = ppModes[i];
+
+            bool addMode = true;
+            for (U32 j=0; j<m_modeDefs.size(); ++j)
+            {
+                if (pMode->w == m_modeDefs[i].WidthGet() && pMode->h == m_modeDefs[i].HeightGet())
+                {
+                    // Mode already there so don't add
+                    addMode = false;
+                }
+            }
+            if (addMode)
+            {
+	        std::ostringstream modeName;
+	        modeName << pMode->w << "x" << pMode->h;
+                m_modeDefs.push_back(GLModeDef(modeName.str(), pMode->w, pMode->h, 32, 0, 
+                    GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncSoft));
+            }
+        }
     }
 }
 

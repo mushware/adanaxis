@@ -61,8 +61,9 @@ else
     AC_MSG_NOTICE([sdl-config set LIBS to $LIBS])
 fi
 
-CFLAGS="$CFLAGS -I\${srcdir} -I\${srcdir}/API"
-CPPFLAGS="$CPPFLAGS -I\${srcdir} -I\${srcdir}/API"
+dnl Remove NDEBUG for development work
+CFLAGS="$CFLAGS -I\${srcdir} -I\${srcdir}/API -DNDEBUG -O3"
+CPPFLAGS="$CPPFLAGS -I\${srcdir} -I\${srcdir}/API -DNDEBUG -O3"
 
 AC_HEADER_DIRENT
 AC_HEADER_STDC
