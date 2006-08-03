@@ -926,6 +926,12 @@
 					RelativePath="..\..\src\Adanaxis\AdanaxisSaveData.h">
 				</File>
 				<File
+					RelativePath="..\..\src\Adanaxis\AdanaxisScanner.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\Adanaxis\AdanaxisScanner.h">
+				</File>
+				<File
 					RelativePath="..\..\src\Adanaxis\AdanaxisServer.cpp">
 				</File>
 				<File
@@ -1125,6 +1131,12 @@
 				</File>
 				<File
 					RelativePath="..\..\src\MushGL\MushGLCacheControl.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushGL\MushGLCamera.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushGL\MushGLCamera.h">
 				</File>
 				<File
 					RelativePath="..\..\src\MushGL\MushGLClaimer.cpp">
