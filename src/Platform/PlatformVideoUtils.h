@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } VLWFZJL8pEO5dQmZmEC5Ww
 /*
- * $Id: PlatformVideoUtils.h,v 1.16 2005/05/26 00:46:40 southa Exp $
+ * $Id: PlatformVideoUtils.h,v 1.17 2006/06/01 15:39:57 southa Exp $
  * $Log: PlatformVideoUtils.h,v $
+ * Revision 1.17  2006/06/01 15:39:57  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.16  2005/05/26 00:46:40  southa
  * Made buildable on win32
  *
@@ -79,6 +82,7 @@
 
 class GLModeDef;
 
+//:generate
 class PlatformVideoUtils
 {
 public:
@@ -106,6 +110,16 @@ private:
 
     bool m_threadAttached;
     unsigned long m_fgThreadID;
+    Mushware::U32 m_modeOverrideX; //:readwrite
+    Mushware::U32 m_modeOverrideY; //:readwrite
+
+//%classPrototypes {
+public:
+    const Mushware::U32& ModeOverrideX(void) const { return m_modeOverrideX; }
+    void ModeOverrideXSet(const Mushware::U32& inValue) { m_modeOverrideX=inValue; }
+    const Mushware::U32& ModeOverrideY(void) const { return m_modeOverrideY; }
+    void ModeOverrideYSet(const Mushware::U32& inValue) { m_modeOverrideY=inValue; }
+//%classPrototypes } 3D9Mx7is47LAO5NTwhWl+Q
 };
 //%includeGuardEnd {
 #endif

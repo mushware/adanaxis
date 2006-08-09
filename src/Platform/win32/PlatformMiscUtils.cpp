@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } dAboIY5Kp9P01iutrXBmlw
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.38 2006/07/28 16:52:26 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.39 2006/08/03 15:07:58 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.39  2006/08/03 15:07:58  southa
+ * Cache purge fix
+ *
  * Revision 1.38  2006/07/28 16:52:26  southa
  * Options work
  *
@@ -222,6 +225,30 @@ PlatformMiscUtils::GetUserDataPath(int argc, char *argv[])
 void
 PlatformMiscUtils::TweakArgs(string& ioStr)
 {
+    U32 rxValue = 640;
+    U32 ryValue = 480;
+
+    MushcoreRegExp::tMatches matches;
+
+    MushcoreRegExp rxExp("\\brx\\s+(\\d+)\\b");
+    if (rxExp.Search(matches, ioStr))
+    {
+        std::istringstream rxStream(matches[0]);
+        rxStream >> rxValue;
+    }
+
+    MushcoreRegExp ryExp("\\bry\\s+(\\d+)\\b");
+    if (ryExp.Search(matches, ioStr))
+    {
+        std::istringstream ryStream(matches[0]);
+        ryStream >> ryValue;
+
+    }
+
+    PlatformVideoUtils::Sgl().ModeOverrideXSet(rxValue);
+    PlatformVideoUtils::Sgl().ModeOverrideYSet(ryValue);
+
+    ioStr = "";
 }
 
 bool

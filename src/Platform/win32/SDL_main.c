@@ -48,7 +48,7 @@
 
 /* The standard output files */
 #define STDOUT_FILE	TEXT("stdout.txt")
-#define STDERR_FILE	TEXT("stderr.txt")
+#define STDERR_FILE	TEXT("..\\log.txt")
 
 #ifndef NO_STDIO_REDIRECT
 # ifdef _WIN32_WCE

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } HfHgcDcZFYWXROWCCS7SCQ
 /*
- * $Id: PlatformVideoUtils.cpp,v 1.22 2006/06/01 15:39:58 southa Exp $
+ * $Id: PlatformVideoUtils.cpp,v 1.23 2006/06/30 17:26:11 southa Exp $
  * $Log: PlatformVideoUtils.cpp,v $
+ * Revision 1.23  2006/06/30 17:26:11  southa
+ * Render prelude
+ *
  * Revision 1.22  2006/06/01 15:39:58  southa
  * DrawArray verification and fixes
  *
@@ -128,7 +131,9 @@ PlatformVideoUtils::ModeAdd(Mushware::U32 inWidth, Mushware::U32 inHeight)
 }
 
 PlatformVideoUtils::PlatformVideoUtils() :
-    m_threadAttached(false)
+    m_threadAttached(false),
+    m_modeOverrideX(640),
+    m_modeOverrideY(480)
 {
     bool safeMode = false;
     const MushcoreScalar *pScalar;
@@ -220,6 +225,9 @@ PlatformVideoUtils::ModeDefGet(U32 inNum)
         message << "Mode number " << inNum << " too high (max " << m_modeDefs.size() << ")";
         throw(MushcoreReferenceFail(message.str()));
     }
+    // Frig for competition
+    m_modeDefs[inNum].WidthSet(m_modeOverrideX);
+    m_modeDefs[inNum].HeightSet(m_modeOverrideY);
     return m_modeDefs[inNum];
 }
 
