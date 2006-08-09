@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } 0Sg2qcftBJTnB0QxDEkq2Q
 /*
- * $Id: AdanaxisGame.cpp,v 1.50 2006/08/01 17:21:23 southa Exp $
+ * $Id: AdanaxisGame.cpp,v 1.51 2006/08/01 23:21:52 southa Exp $
  * $Log: AdanaxisGame.cpp,v $
+ * Revision 1.51  2006/08/01 23:21:52  southa
+ * Rendering demo content
+ *
  * Revision 1.50  2006/08/01 17:21:23  southa
  * River demo
  *
@@ -241,7 +244,52 @@ AdanaxisGame::Process(MushGameAppHandler& inAppHandler)
             MushGameDialogueUtils::NamedDialoguesAdd(SaveData().DialoguesWRef(), "^menuonce");
         }
     }
-        
+    
+    // Frigs for competition
+    if (inAppHandler.LatchedKeyStateTake(MediaKeyboard::kKey_F10))
+    {
+        LogicWRef().QuitModeEnter();
+    }
+
+    if (inAppHandler.LatchedKeyStateTake(MediaKeyboard::kKey_F1))
+    {
+        static U32 helpShown = false;
+
+        if (helpShown && SaveData().DialoguesWRef().Size() > 0)
+        {
+            SaveData().DialoguesWRef().Clear();
+            helpShown = false;
+        }
+        else
+        {
+            SaveData().DialoguesWRef().Clear();
+            MushGameDialogueUtils::NamedDialoguesAdd(SaveData().DialoguesWRef(), "^help");
+            helpShown = true;
+        }
+    }
+
+    if (inAppHandler.LatchedKeyStateTake(MediaKeyboard::kKey_F5))
+    {
+        static U32 hintsShown = false;
+
+        if (hintsShown && SaveData().DialoguesWRef().Size() > 0)
+        {
+            SaveData().DialoguesWRef().Clear();
+            hintsShown = false;
+        }
+        else
+        {
+            SaveData().DialoguesWRef().Clear();
+            MushGameDialogueUtils::NamedDialoguesAdd(SaveData().DialoguesWRef(), "^hint");
+            hintsShown = true;
+        }
+    }
+
+    if (Logic().IsMenuMode() && SaveData().DialoguesWRef().Size() > 0)
+    {
+        SaveData().DialoguesWRef().Clear();
+    }
+
     GLUtils::PostRedisplay();
 }
 
@@ -341,7 +389,7 @@ AdanaxisGame::Init(MushGameAppHandler& inAppHandler)
     }
     
     Logic().RecordTimeSet(m_config.RecordTime(SaveData().SpaceName()));
-    Logic().MenuModeEnter();
+    Logic().GameModeEnter();
     Logic().StartTimeSet(0);
     Logic().EndTimeSet(0);
     inAppHandler.MouseSensitivitySet(m_config.MouseSensitivity());

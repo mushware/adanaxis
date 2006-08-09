@@ -24,8 +24,11 @@
 //%Header } Rz2L7OMoKXcq+Y5XU4qSww
 
 /*
- * $Id: GLModeDef.h,v 1.12 2006/06/01 15:38:51 southa Exp $
+ * $Id: GLModeDef.h,v 1.13 2006/07/27 13:51:35 southa Exp $
  * $Log: GLModeDef.h,v $
+ * Revision 1.13  2006/07/27 13:51:35  southa
+ * Menu and control fixes
+ *
  * Revision 1.12  2006/06/01 15:38:51  southa
  * DrawArray verification and fixes
  *
@@ -108,6 +111,8 @@ public:
     const std::string& NameGet(void) const { return m_name; }
     Mushware::U32 WidthGet(void) const { return m_width; }
     Mushware::U32 HeightGet(void) const { return m_height; }
+    void WidthSet(Mushware::U32 inValue) { m_width = inValue; }
+    void HeightSet(Mushware::U32 inValue) { m_height = inValue; }
     Mushware::U32 BPPGet(void) const { return m_bpp; }
     Mushware::U32 HzGet(void) const { return m_hz; }
     bool FullScreenGet(void) const { return m_screen == kScreenFull; }

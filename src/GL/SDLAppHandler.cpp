@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } X577BrzUUfCyG/exJzzEYQ
 /*
- * $Id: SDLAppHandler.cpp,v 1.62 2006/07/28 16:52:20 southa Exp $
+ * $Id: SDLAppHandler.cpp,v 1.63 2006/08/02 16:25:54 southa Exp $
  * $Log: SDLAppHandler.cpp,v $
+ * Revision 1.63  2006/08/02 16:25:54  southa
+ * Prerelease work
+ *
  * Revision 1.62  2006/07/28 16:52:20  southa
  * Options work
  *
@@ -564,10 +567,21 @@ SDLAppHandler::PollForControlEvents(void)
         {
             case SDL_KEYDOWN:
             case SDL_KEYUP:
+                {
+                // Frigs for competition
+                U32 keySym = static_cast<U32>(event.key.keysym.sym);
+                if (keySym == 'w' || keySym == MediaKeyboard::kKey_KP5) keySym = MediaKeyboard::kKey_UP;
+                if (keySym == MediaKeyboard::kKey_KP1) keySym = 'a';
+                if (keySym == MediaKeyboard::kKey_KP3) keySym = 'd';
+                if (keySym == 's' || keySym == MediaKeyboard::kKey_KP2) keySym = MediaKeyboard::kKey_DOWN;
+                if (keySym == MediaKeyboard::kKey_LALT || keySym == MediaKeyboard::kKey_RALT) keySym = MediaKeyboard::kKeyMouse2;
+                if (keySym == MediaKeyboard::kKey_LCTRL || keySym == MediaKeyboard::kKey_RCTRL) keySym = MediaKeyboard::kKeyMouse0;
+
                 Signal(GLKeyboardSignal((event.key.type==SDL_KEYDOWN),
-                                        static_cast<U32>(event.key.keysym.sym),
+                                        keySym,
                                         static_cast<U32>(event.key.keysym.mod),
                                         m_mouseX, m_mouseY));
+                }
                 break;
 
             case SDL_MOUSEMOTION:

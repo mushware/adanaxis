@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } WGW0jWLT0tHoC21nwBZAtQ
 /*
- * $Id: MushGameConfigBase.cpp,v 1.5 2006/07/28 16:52:23 southa Exp $
+ * $Id: MushGameConfigBase.cpp,v 1.6 2006/08/01 23:21:53 southa Exp $
  * $Log: MushGameConfigBase.cpp,v $
+ * Revision 1.6  2006/08/01 23:21:53  southa
+ * Rendering demo content
+ *
  * Revision 1.5  2006/07/28 16:52:23  southa
  * Options work
  *
@@ -52,12 +55,12 @@ void
 MushGameConfigBase::ToDefaultSet(void)
 {
     m_version = 0;
-    m_textureDetail = 1;
+    m_textureDetail = 3;
     m_audioVolume = 100;
     m_musicVolume = 100;
     m_safeMode = 0;
     m_mouseSensitivity = 1;
-    m_brightness = 1;
+    m_brightness = 1.2;
 }
 
 void
