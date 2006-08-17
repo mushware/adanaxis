@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } rVCNunlW+wZoonHnGB5a7Q
 /*
- * $Id: MushGamePiece.cpp,v 1.7 2006/06/30 15:05:35 southa Exp $
+ * $Id: MushGamePiece.cpp,v 1.8 2006/08/17 08:57:12 southa Exp $
  * $Log: MushGamePiece.cpp,v $
+ * Revision 1.8  2006/08/17 08:57:12  southa
+ * Event handling
+ *
  * Revision 1.7  2006/06/30 15:05:35  southa
  * Texture and buffer purge
  *
@@ -50,6 +53,11 @@
 
 MUSHCORE_DATA_INSTANCE(MushGamePiece);
 
+using namespace Mushware;
+using namespace std;
+
+Mushware::tRubyValue MushGamePiece::m_rubyKlass = Mushware::kRubyQnil;
+
 MushGamePiece::MushGamePiece(const std::string& inID) :
     m_id(inID),
     m_post(MushMeshPosticity::Identity()),
@@ -64,6 +72,34 @@ void
 MushGamePiece::MessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage)
 {
     throw MushcoreDataFail(std::string("Unhandled message type ")+inMessage.AutoName()+" in "+AutoName());
+}
+
+Mushware::tRubyValue
+MushGamePiece::Klass(void)
+{
+    if (m_rubyKlass == kRubyQnil)
+    {
+        RubyInstall();
+    }
+    return m_rubyKlass;
+}    
+
+void
+MushGamePiece::RubyInstall(void)
+{
+    if (m_rubyKlass == kRubyQnil)
+    {
+	    m_rubyKlass = MushRubyUtil::SubclassDefine("MushPiece", MushRubyObject::Klass());
+    }
+}
+
+namespace
+{
+	void Install(void)
+	{
+		MushRubyInstall::Sgl().Add(MushGamePiece::RubyInstall);
+	}
+	MushcoreInstaller install(Install);
 }
 
 //%outOfLineFunctions {

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } QiW5KaWfX1mBGolg1jxMIg
 /*
- * $Id: MushGamePiece.h,v 1.10 2006/06/30 15:05:35 southa Exp $
+ * $Id: MushGamePiece.h,v 1.11 2006/08/17 08:57:12 southa Exp $
  * $Log: MushGamePiece.h,v $
+ * Revision 1.11  2006/08/17 08:57:12  southa
+ * Event handling
+ *
  * Revision 1.10  2006/06/30 15:05:35  southa
  * Texture and buffer purge
  *
@@ -78,6 +81,9 @@ public:
 
     virtual void TexCoordBuffersNameSet(const std::string& inName) { m_texCoordBuffersRef.NameSet(inName); }
 
+    static Mushware::tRubyValue Klass(void);
+    static void RubyInstall(void);
+    
 private:
     std::string m_id; //:readwrite
     MushMeshPosticity m_post; //:readwrite :wref
@@ -88,6 +94,8 @@ private:
     MushGLBuffers::tSharedDataRef m_texCoordBuffersRef; //:read :wref
 
     MushRubyValue m_rubyObj; //:readwrite
+    
+    static Mushware::tRubyValue m_rubyKlass;
     
 //%classPrototypes {
 public:

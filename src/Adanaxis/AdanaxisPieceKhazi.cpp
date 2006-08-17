@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } YCa3eNmcxUH2q0Oxh6SpTA
 /*
- * $Id: AdanaxisPieceKhazi.cpp,v 1.13 2006/08/01 17:21:25 southa Exp $
+ * $Id: AdanaxisPieceKhazi.cpp,v 1.14 2006/08/17 08:57:11 southa Exp $
  * $Log: AdanaxisPieceKhazi.cpp,v $
+ * Revision 1.14  2006/08/17 08:57:11  southa
+ * Event handling
+ *
  * Revision 1.13  2006/08/01 17:21:25  southa
  * River demo
  *
@@ -69,6 +72,8 @@
 
 using namespace Mushware;
 using namespace std;
+
+Mushware::tRubyValue AdanaxisPieceKhazi::m_rubyKlass = Mushware::kRubyQnil;
 
 AdanaxisPieceKhazi::AdanaxisPieceKhazi(const std::string& inID) :
     MushGamePiece(inID),
@@ -302,6 +307,42 @@ AdanaxisPieceKhazi::Explode(MushGameLogic& ioLogic, const MushGameMessageCollisi
                                   MushMeshTools::Random(0.1, 2)  // speed
                                   );
     }
+}
+
+Mushware::tRubyValue
+AdanaxisPieceKhazi::RubyPostLoad(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0)
+{
+	// NOT YET MushMeshRubyPost::WRef(inArg0) = Ref(inSelf).Post();
+	return inArg0;
+}
+
+Mushware::tRubyValue
+AdanaxisPieceKhazi::Klass(void)
+{
+    if (m_rubyKlass == kRubyQnil)
+    {
+        RubyInstall();
+    }
+    return m_rubyKlass;
+}    
+
+void
+AdanaxisPieceKhazi::RubyInstall(void)
+{
+    if (m_rubyKlass == kRubyQnil)
+    {
+	    m_rubyKlass = MushRubyUtil::SubclassDefine("AdanaxisPieceKhazi", MushGamePiece::Klass());
+    }
+	MushRubyUtil::MethodDefineOneParam(Klass(), "mPostLoad", RubyPostLoad);
+}
+
+namespace
+{
+	void Install(void)
+	{
+		MushRubyInstall::Sgl().Add(AdanaxisPieceKhazi::RubyInstall);
+	}
+	MushcoreInstaller install(Install);
 }
 
 //%outOfLineFunctions {

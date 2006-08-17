@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } Bm3nTDDsM5QE9iTgAOLr3w
 /*
- * $Id: AdanaxisPieceKhazi.h,v 1.11 2006/08/01 17:21:25 southa Exp $
+ * $Id: AdanaxisPieceKhazi.h,v 1.12 2006/08/17 08:57:11 southa Exp $
  * $Log: AdanaxisPieceKhazi.h,v $
+ * Revision 1.12  2006/08/17 08:57:11  southa
+ * Event handling
+ *
  * Revision 1.11  2006/08/01 17:21:25  southa
  * River demo
  *
@@ -87,6 +90,10 @@ public:
     virtual void ActionValueHandle(MushGameLogic& ioLogic, const MushRubyValue& inActionValue);
     virtual void EventHandle(MushGameLogic& ioLogic, MushRubyValue inEvent, MushRubyValue inParams);
     
+    static Mushware::tRubyValue RubyPostLoad(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
+    static Mushware::tRubyValue Klass(void);
+    static void RubyInstall(void);
+    
 protected:
     virtual void Explode(MushGameLogic& ioLogic, const MushGameMessageCollisionFatal& inMessage);
     
@@ -94,6 +101,8 @@ private:
     bool m_initialised;
     Mushware::tMsec m_actionMsec;
         
+    static Mushware::tRubyValue m_rubyKlass;
+
 //%classPrototypes {
 public:
     virtual const char *AutoName(void) const;
