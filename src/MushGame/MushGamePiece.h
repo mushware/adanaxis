@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } QiW5KaWfX1mBGolg1jxMIg
 /*
- * $Id: MushGamePiece.h,v 1.9 2006/06/01 15:39:25 southa Exp $
+ * $Id: MushGamePiece.h,v 1.10 2006/06/30 15:05:35 southa Exp $
  * $Log: MushGamePiece.h,v $
+ * Revision 1.10  2006/06/30 15:05:35  southa
+ * Texture and buffer purge
+ *
  * Revision 1.9  2006/06/01 15:39:25  southa
  * DrawArray verification and fixes
  *
@@ -84,6 +87,8 @@ private:
     MushGLBuffers::tDataRef m_buffersRef; //:read :wref
     MushGLBuffers::tSharedDataRef m_texCoordBuffersRef; //:read :wref
 
+    MushRubyValue m_rubyObj; //:readwrite
+    
 //%classPrototypes {
 public:
     const std::string& Id(void) const { return m_id; }
@@ -103,6 +108,8 @@ public:
     const MushGLBuffers::tSharedDataRef& TexCoordBuffersRef(void) const { return m_texCoordBuffersRef; }
     // Writable reference for m_texCoordBuffersRef
     MushGLBuffers::tSharedDataRef& TexCoordBuffersRefWRef(void) { return m_texCoordBuffersRef; }
+    const MushRubyValue& RubyObj(void) const { return m_rubyObj; }
+    void RubyObjSet(const MushRubyValue& inValue) { m_rubyObj=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -110,7 +117,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } TB6vPLT5ryIZFPTFO5l/ig
+//%classPrototypes } p5NQC4z4mOjwHXKZ+Le7/g
 };
 //%inlineHeader {
 inline std::ostream&

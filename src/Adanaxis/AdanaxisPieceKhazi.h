@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } Bm3nTDDsM5QE9iTgAOLr3w
 /*
- * $Id: AdanaxisPieceKhazi.h,v 1.10 2006/07/24 18:46:47 southa Exp $
+ * $Id: AdanaxisPieceKhazi.h,v 1.11 2006/08/01 17:21:25 southa Exp $
  * $Log: AdanaxisPieceKhazi.h,v $
+ * Revision 1.11  2006/08/01 17:21:25  southa
+ * River demo
+ *
  * Revision 1.10  2006/07/24 18:46:47  southa
  * Depth sorting
  *
@@ -69,8 +72,9 @@ class AdanaxisPieceKhazi : public MushGamePiece, public MushCollisionPiece
 {
 public:
     explicit AdanaxisPieceKhazi(const std::string& inID = "");
-    virtual ~AdanaxisPieceKhazi() {}
+    virtual ~AdanaxisPieceKhazi();
 
+    virtual void Initialise(MushGameLogic& ioLogic);
     virtual void Move(MushGameLogic& ioLogic, const Mushware::tVal inFrameslice);
     virtual bool Render(MushGLJobRender& outRender,
                         MushGameLogic& ioLogic, MushRenderMesh& inRender, const MushGameCamera& inCamera);
@@ -80,12 +84,16 @@ public:
 
     virtual const MushMesh4Mesh& CollisionMesh(void) const { return Mesh(); }
     virtual const MushMeshPosticity& CollisionPost(void) const { return Post(); }
-
+    virtual void ActionValueHandle(MushGameLogic& ioLogic, const MushRubyValue& inActionValue);
+    virtual void EventHandle(MushGameLogic& ioLogic, MushRubyValue inEvent, MushRubyValue inParams);
+    
 protected:
     virtual void Explode(MushGameLogic& ioLogic, const MushGameMessageCollisionFatal& inMessage);
     
 private:
-
+    bool m_initialised;
+    Mushware::tMsec m_actionMsec;
+        
 //%classPrototypes {
 public:
     virtual const char *AutoName(void) const;

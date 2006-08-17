@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 5BOLwI3DhgfDHotOLswDpg
 /*
- * $Id: MushRubyValue.h,v 1.12 2006/07/08 16:06:00 southa Exp $
+ * $Id: MushRubyValue.h,v 1.13 2006/07/28 11:14:30 southa Exp $
  * $Log: MushRubyValue.h,v $
+ * Revision 1.13  2006/07/28 11:14:30  southa
+ * Records for multiple spaces
+ *
  * Revision 1.12  2006/07/08 16:06:00  southa
  * Ruby menus and key handling
  *
@@ -88,9 +91,16 @@ public:
 	bool Bool(void) const;
 	Mushware::U32 U32(void) const;
 	Mushware::tVal Val(void) const;
+	void Hash(tRubyHash& outHash) const;
 	tRubyHash Hash(void) const;
 	Mushware::tRubyID Symbol(void) const;
 	
+    bool Is(Mushware::U32& outU32) const;
+    Mushware::U32 ArraySize(void) const;
+    MushRubyValue ArrayEntry(Mushware::U32 inIndex) const;
+    
+    MushRubyValue Call(Mushware::tRubyID inID) const;
+    
 private:
 	Mushware::tRubyValue m_value; //:readwrite
 //%classPrototypes {

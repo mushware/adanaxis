@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } n1eaCj2fb8dNPgbT0uOuEQ
 /*
- * $Id: MushRubyIntern.h,v 1.12 2006/07/27 13:51:36 southa Exp $
+ * $Id: MushRubyIntern.h,v 1.13 2006/07/31 11:01:39 southa Exp $
  * $Log: MushRubyIntern.h,v $
+ * Revision 1.13  2006/07/31 11:01:39  southa
+ * Music and dialogues
+ *
  * Revision 1.12  2006/07/27 13:51:36  southa
  * Menu and control fixes
  *
@@ -76,19 +79,27 @@ class MushRubyIntern
 {
 public:
 	static void Initialise(void);
+    static Mushware::tRubyID SymbolID(const char *inStr);
+    static Mushware::tRubyID SymbolID(const std::string& inStr);
 	MUSHRUBYINTERN_DECLARE(angular_position);
 	MUSHRUBYINTERN_DECLARE(angular_velocity);
 	MUSHRUBYINTERN_DECLARE(backtrace);
+	MUSHRUBYINTERN_DECLARE(cRegisteredCreate);
 	MUSHRUBYINTERN_DECLARE(cToPrint);
 	MUSHRUBYINTERN_DECLARE(displacement);
 	MUSHRUBYINTERN_DECLARE(displacement_velocity);
 	MUSHRUBYINTERN_DECLARE(divide);
+	MUSHRUBYINTERN_DECLARE(event);
 	MUSHRUBYINTERN_DECLARE(extent);
+	MUSHRUBYINTERN_DECLARE(klass);
 	MUSHRUBYINTERN_DECLARE(mesh_name);
+	MUSHRUBYINTERN_DECLARE(mBanner);
 	MUSHRUBYINTERN_DECLARE(mHandleGameStart);
+	MUSHRUBYINTERN_DECLARE(mInitialise);
 	MUSHRUBYINTERN_DECLARE(mKeypress);
 	MUSHRUBYINTERN_DECLARE(mPreCacheRender);
 	MUSHRUBYINTERN_DECLARE(mPreCache);
+	MUSHRUBYINTERN_DECLARE(mRegisteredDestroy);
 	MUSHRUBYINTERN_DECLARE(mRender);
 	MUSHRUBYINTERN_DECLARE(mReset);
 	MUSHRUBYINTERN_DECLARE(num_iterations);

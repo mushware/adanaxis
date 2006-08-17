@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } J1Ivq58IhQNdFhYFAdJc+A
 /*
- * $Id: AdanaxisStandard.h,v 1.5 2006/06/22 19:07:28 southa Exp $
+ * $Id: AdanaxisStandard.h,v 1.6 2006/08/01 17:21:30 southa Exp $
  * $Log: AdanaxisStandard.h,v $
+ * Revision 1.6  2006/08/01 17:21:30  southa
+ * River demo
+ *
  * Revision 1.5  2006/06/22 19:07:28  southa
  * Build fixes
  *
@@ -62,6 +65,14 @@
 #include <MushMesh.h>
 #else
 #include "MushMesh/MushMesh.h"
+#endif
+
+#if defined(HAVE_MUSHRUBY_MUSHRUBY_H)
+#include <MushRuby/MushRuby.h>
+#elif defined(HAVE_MUSHRUBY_H)
+#include <MushRuby.h>
+#else
+#include "MushRuby/MushRuby.h"
 #endif
 
 #include "mushGame.h"

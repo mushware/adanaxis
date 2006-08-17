@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } rVCNunlW+wZoonHnGB5a7Q
 /*
- * $Id: MushGamePiece.cpp,v 1.6 2006/06/01 15:39:25 southa Exp $
+ * $Id: MushGamePiece.cpp,v 1.7 2006/06/30 15:05:35 southa Exp $
  * $Log: MushGamePiece.cpp,v $
+ * Revision 1.7  2006/06/30 15:05:35  southa
+ * Texture and buffer purge
+ *
  * Revision 1.6  2006/06/01 15:39:25  southa
  * DrawArray verification and fixes
  *
@@ -50,7 +53,8 @@ MUSHCORE_DATA_INSTANCE(MushGamePiece);
 MushGamePiece::MushGamePiece(const std::string& inID) :
     m_id(inID),
     m_post(MushMeshPosticity::Identity()),
-    m_expireFlag(false)
+    m_expireFlag(false),
+    m_rubyObj(Mushware::kRubyQnil)
 {
     m_buffersRef.NameSet(MushGLBuffers::NextBufferNumAdvance());
     MushGLBuffers::tData::Sgl().GetOrCreate(m_buffersRef.Name());    
@@ -100,7 +104,8 @@ MushGamePiece::AutoPrint(std::ostream& ioOut) const
     ioOut << "mesh=" << m_mesh << ", ";
     ioOut << "expireFlag=" << m_expireFlag << ", ";
     ioOut << "buffersRef=" << m_buffersRef << ", ";
-    ioOut << "texCoordBuffersRef=" << m_texCoordBuffersRef;
+    ioOut << "texCoordBuffersRef=" << m_texCoordBuffersRef << ", ";
+    ioOut << "rubyObj=" << m_rubyObj;
     ioOut << "]";
 }
 bool
@@ -136,6 +141,10 @@ MushGamePiece::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& i
     {
         ioIn >> m_texCoordBuffersRef;
     }
+    else if (inTagStr == "rubyObj")
+    {
+        ioIn >> m_rubyObj;
+    }
     else 
     {
         return false;
@@ -157,5 +166,7 @@ MushGamePiece::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_buffersRef;
     ioOut.TagSet("texCoordBuffersRef");
     ioOut << m_texCoordBuffersRef;
+    ioOut.TagSet("rubyObj");
+    ioOut << m_rubyObj;
 }
-//%outOfLineFunctions } ybZ//iBAiGgaKl809fN/3A
+//%outOfLineFunctions } IamEJXzQ9bxpzTb/wn6ONA

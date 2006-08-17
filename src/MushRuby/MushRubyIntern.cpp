@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } lqALCPGBahbk4ibyVPO8LQ
 /*
- * $Id: MushRubyIntern.cpp,v 1.12 2006/07/27 13:51:36 southa Exp $
+ * $Id: MushRubyIntern.cpp,v 1.13 2006/07/31 11:01:39 southa Exp $
  * $Log: MushRubyIntern.cpp,v $
+ * Revision 1.13  2006/07/31 11:01:39  southa
+ * Music and dialogues
+ *
  * Revision 1.12  2006/07/27 13:51:36  southa
  * Menu and control fixes
  *
@@ -69,16 +72,22 @@
 MUSHRUBYINTERN_DEFINE(angular_position);
 MUSHRUBYINTERN_DEFINE(angular_velocity);
 MUSHRUBYINTERN_DEFINE(backtrace);
+MUSHRUBYINTERN_DEFINE(cRegisteredCreate);
 MUSHRUBYINTERN_DEFINE(cToPrint);
 MUSHRUBYINTERN_DEFINE(displacement);
 MUSHRUBYINTERN_DEFINE(displacement_velocity);
 MUSHRUBYINTERN_DEFINE(divide);
+MUSHRUBYINTERN_DEFINE(event);
 MUSHRUBYINTERN_DEFINE(extent);
+MUSHRUBYINTERN_DEFINE(klass);
 MUSHRUBYINTERN_DEFINE(mesh_name);
+MUSHRUBYINTERN_DEFINE(mBanner);
 MUSHRUBYINTERN_DEFINE(mHandleGameStart);
+MUSHRUBYINTERN_DEFINE(mInitialise);
 MUSHRUBYINTERN_DEFINE(mKeypress);
 MUSHRUBYINTERN_DEFINE(mPreCache);
 MUSHRUBYINTERN_DEFINE(mPreCacheRender);
+MUSHRUBYINTERN_DEFINE(mRegisteredDestroy);
 MUSHRUBYINTERN_DEFINE(mRender);
 MUSHRUBYINTERN_DEFINE(mReset);
 MUSHRUBYINTERN_DEFINE(name);
@@ -104,16 +113,22 @@ MushRubyIntern::Initialise(void)
 	MUSHRUBYINTERN_INIT(angular_position);
 	MUSHRUBYINTERN_INIT(angular_velocity);
 	MUSHRUBYINTERN_INIT(backtrace);
+	MUSHRUBYINTERN_INIT(cRegisteredCreate);
 	MUSHRUBYINTERN_INIT(cToPrint);
 	MUSHRUBYINTERN_INIT(displacement);
 	MUSHRUBYINTERN_INIT(displacement_velocity);
 	MUSHRUBYINTERN_INIT(divide);
+	MUSHRUBYINTERN_INIT(event);
 	MUSHRUBYINTERN_INIT(extent);
+	MUSHRUBYINTERN_INIT(klass);
 	MUSHRUBYINTERN_INIT(mesh_name);
+	MUSHRUBYINTERN_INIT(mBanner);
 	MUSHRUBYINTERN_INIT(mHandleGameStart);
+	MUSHRUBYINTERN_INIT(mInitialise);
 	MUSHRUBYINTERN_INIT(mKeypress);
 	MUSHRUBYINTERN_INIT(mPreCache);
 	MUSHRUBYINTERN_INIT(mPreCacheRender);
+	MUSHRUBYINTERN_INIT(mRegisteredDestroy);
 	MUSHRUBYINTERN_INIT(mRender);
 	MUSHRUBYINTERN_INIT(mReset);
 	MUSHRUBYINTERN_INIT(name);
@@ -132,4 +147,16 @@ MushRubyIntern::Initialise(void)
 	MUSHRUBYINTERN_INIT(to_point);
 	MUSHRUBYINTERN_INIT(to_s);
 	MUSHRUBYINTERN_INIT(velocity);
+}
+
+Mushware::tRubyID
+MushRubyIntern::SymbolID(const char *inStr)
+{
+    return rb_intern(inStr);
+}
+
+Mushware::tRubyID
+MushRubyIntern::SymbolID(const std::string& inStr)
+{
+    return rb_intern(inStr.c_str());
 }

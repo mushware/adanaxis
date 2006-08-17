@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } hwIlNOCEH5GsgwGY+rP1Kg
 /*
- * $Id: MushRubyValue.cpp,v 1.14 2006/07/28 11:14:29 southa Exp $
+ * $Id: MushRubyValue.cpp,v 1.15 2006/07/28 16:52:24 southa Exp $
  * $Log: MushRubyValue.cpp,v $
+ * Revision 1.15  2006/07/28 16:52:24  southa
+ * Options work
+ *
  * Revision 1.14  2006/07/28 11:14:29  southa
  * Records for multiple spaces
  *
@@ -247,8 +250,8 @@ MushRubyValue::Val(void) const
 	return NUM2DBL(tempValue);
 }
 
-Mushware::tRubyHash
-MushRubyValue::Hash(void) const
+void
+MushRubyValue::Hash(Mushware::tRubyHash& outHash) const
 {
 	Mushware::tRubyValue tempValue = m_value; // Avoid const problem
 	
@@ -256,9 +259,14 @@ MushRubyValue::Hash(void) const
 	{
 		throw MushcoreDataFail("Cannot generate hash from non-hash ruby type");
 	}
-	
+	MushRubyUtil::HashConvert(outHash, tempValue);
+}
+
+Mushware::tRubyHash
+MushRubyValue::Hash(void) const
+{
 	Mushware::tRubyHash retHash;
-	MushRubyUtil::HashConvert(retHash, tempValue);
+	Hash(retHash);
 	return retHash;
 }
 
@@ -270,4 +278,35 @@ MushRubyValue::Symbol(void) const
 		throw MushcoreDataFail("Cannot generate symbol from non-symbol ruby type");
 	}
 	return SYM2ID(m_value);
+}
+
+
+MushRubyValue
+MushRubyValue::Call(Mushware::tRubyID inID) const
+{
+    return MushRubyExec::Sgl().Call(*this, inID);
+}
+
+bool
+MushRubyValue::Is(Mushware::U32& outU32) const
+{
+	if (FIXNUM_P(m_value))
+    {
+        outU32 = FIX2LONG(m_value);
+        return true;
+    }
+    return false;
+}
+
+Mushware::U32
+MushRubyValue::ArraySize(void) const
+{
+    MushRubyValue tempValue(*this); // Avoid const problem
+	return MushRubyExec::Sgl().Call(tempValue, MushRubyIntern::size()).U32();
+}
+
+MushRubyValue
+MushRubyValue::ArrayEntry(Mushware::U32 inIndex) const
+{
+    return MushRubyValue(rb_ary_entry(m_value, inIndex));
 }

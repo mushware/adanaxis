@@ -1899,6 +1899,8 @@
 		7ACFC8AA086C0FCE00B0E7E4 /* MushMeshPosticity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7ACFC8A6086C0FCE00B0E7E4 /* MushMeshPosticity.cpp */; };
 		7ACFC8AB086C108B00B0E7E4 /* MushMeshPosticity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7ACFC8A6086C0FCE00B0E7E4 /* MushMeshPosticity.cpp */; };
 		7ACFC8AC086C108B00B0E7E4 /* MushMeshPosticity.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ACFC8A5086C0FCE00B0E7E4 /* MushMeshPosticity.h */; };
+		7ACFCE6A0A90AFF100A55B7D /* AdanaxisIntern.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ACFCE680A90AFF100A55B7D /* AdanaxisIntern.h */; };
+		7ACFCE6B0A90AFF100A55B7D /* AdanaxisIntern.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7ACFCE690A90AFF100A55B7D /* AdanaxisIntern.cpp */; };
 		7ACFED1F089E28590055BF20 /* MushGameMessageCollision.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ACFED1D089E28580055BF20 /* MushGameMessageCollision.h */; };
 		7ACFED20089E28590055BF20 /* MushGameMessageCollision.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7ACFED1E089E28590055BF20 /* MushGameMessageCollision.cpp */; };
 		7ACFED21089E28590055BF20 /* MushGameMessageCollision.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ACFED1D089E28580055BF20 /* MushGameMessageCollision.h */; };
@@ -2644,7 +2646,6 @@
 		7A5353C705AE013000097C96 /* BaseMaterials.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = BaseMaterials.xml; sourceTree = "<group>"; };
 		7A561DA00A2F592500E5EC7F /* MushGLTIFFUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushGLTIFFUtil.h; sourceTree = "<group>"; };
 		7A561DA10A2F592500E5EC7F /* MushGLTIFFUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushGLTIFFUtil.cpp; sourceTree = "<group>"; };
-		7A5725120A41648A00D99536 /* MakeDocs.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = MakeDocs.sh; sourceTree = "<group>"; };
 		7A57282C0A357682000470D8 /* MushRubyValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushRubyValue.h; sourceTree = "<group>"; };
 		7A57282D0A357682000470D8 /* MushRubyValue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushRubyValue.cpp; sourceTree = "<group>"; };
 		7A578EC20A36DC9B00CB3F1C /* MushSkinPixelSourceGrid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushSkinPixelSourceGrid.h; sourceTree = "<group>"; };
@@ -3338,7 +3339,7 @@
 		7A6CE21C05A5935800777D9B /* MushPieSTL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushPieSTL.cpp; sourceTree = "<group>"; };
 		7A70CD10085DE6A90055C6FB /* MushGLControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushGLControl.h; sourceTree = "<group>"; };
 		7A70CD11085DE6A90055C6FB /* MushGLControl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushGLControl.cpp; sourceTree = "<group>"; };
-		7A70CE7E085DEE2D0055C6FB /* Adanaxis Rendering Demo.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = "Adanaxis Rendering Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7A70CE7E085DEE2D0055C6FB /* Adanaxis Rendering Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Adanaxis Rendering Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A70CEB1085DF1C40055C6FB /* AdanaxisAppHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = AdanaxisAppHandler.cpp; sourceTree = "<group>"; };
 		7A70CEB2085DF1C40055C6FB /* AdanaxisAppHandler.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = AdanaxisAppHandler.h; sourceTree = "<group>"; };
 		7A70CEB3085DF1C50055C6FB /* AdanaxisCommandHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = AdanaxisCommandHandler.cpp; sourceTree = "<group>"; };
@@ -3629,7 +3630,6 @@
 		7ACEFB3C09F6F7DB00E38865 /* MushRubyFail.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushRubyFail.cpp; sourceTree = "<group>"; };
 		7ACEFB4509F6F9CA00E38865 /* MushRubyRuby.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushRubyRuby.h; sourceTree = "<group>"; };
 		7ACEFB4609F6F9CA00E38865 /* MushRubyRuby.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushRubyRuby.cpp; sourceTree = "<group>"; };
-		7ACEFB4F09F6FE8F00E38865 /* TopMenu.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = TopMenu.rb; sourceTree = "<group>"; };
 		7ACEFB5909F7052600E38865 /* MushRubySTL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushRubySTL.h; sourceTree = "<group>"; };
 		7ACEFB5A09F7052600E38865 /* MushRubySTL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushRubySTL.cpp; sourceTree = "<group>"; };
 		7ACF103E08C25FB70050F369 /* MushGLPixelSourceTIFF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushGLPixelSourceTIFF.h; sourceTree = "<group>"; };
@@ -3665,6 +3665,13 @@
 		7ACFC87F086C06B100B0E7E4 /* MushGamePiece.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushGamePiece.cpp; sourceTree = "<group>"; };
 		7ACFC8A5086C0FCE00B0E7E4 /* MushMeshPosticity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushMeshPosticity.h; sourceTree = "<group>"; };
 		7ACFC8A6086C0FCE00B0E7E4 /* MushMeshPosticity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushMeshPosticity.cpp; sourceTree = "<group>"; };
+		7ACFCE4C0A90A2A200A55B7D /* MushPiece.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = MushPiece.rb; sourceTree = "<group>"; };
+		7ACFCE510A90A40C00A55B7D /* AdanaxisPieceKhazi.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AdanaxisPieceKhazi.rb; sourceTree = "<group>"; };
+		7ACFCE540A90A4E600A55B7D /* MushEvent.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = MushEvent.rb; sourceTree = "<group>"; };
+		7ACFCE680A90AFF100A55B7D /* AdanaxisIntern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdanaxisIntern.h; sourceTree = "<group>"; };
+		7ACFCE690A90AFF100A55B7D /* AdanaxisIntern.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AdanaxisIntern.cpp; sourceTree = "<group>"; };
+		7ACFCF590A90BCFB00A55B7D /* MushRegistered.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = MushRegistered.rb; sourceTree = "<group>"; };
+		7ACFD0AE0A91D93800A55B7D /* MushEventTimer.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = MushEventTimer.rb; sourceTree = "<group>"; };
 		7ACFED1D089E28580055BF20 /* MushGameMessageCollision.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushGameMessageCollision.h; sourceTree = "<group>"; };
 		7ACFED1E089E28590055BF20 /* MushGameMessageCollision.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushGameMessageCollision.cpp; sourceTree = "<group>"; };
 		7ACFED26089E2A300055BF20 /* MushGameMessageCollisionFatal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushGameMessageCollisionFatal.h; sourceTree = "<group>"; };
@@ -4183,6 +4190,8 @@
 				7A4CAAFF0A582DF100AA934F /* MushBasePrism.rb */,
 				7A4CAB000A582DF100AA934F /* MushConfig.rb */,
 				7A4CAB010A582DF200AA934F /* MushDisplacement.rb */,
+				7ACFCE540A90A4E600A55B7D /* MushEvent.rb */,
+				7ACFD0AE0A91D93800A55B7D /* MushEventTimer.rb */,
 				7A4CAB020A582DF200AA934F /* MushExtruder.rb */,
 				7AD0B6A10A6B81DC0004F107 /* MushGame.rb */,
 				7A4CAB030A582DF200AA934F /* MushGLFont.rb */,
@@ -4193,6 +4202,8 @@
 				7A4CAB070A582DF200AA934F /* MushMesh.rb */,
 				7A6110CC0A5D79CF00D8F31F /* MushKeys.rb */,
 				7A4CAB080A582DF200AA934F /* MushPost.rb */,
+				7ACFCE4C0A90A2A200A55B7D /* MushPiece.rb */,
+				7ACFCF590A90BCFB00A55B7D /* MushRegistered.rb */,
 				7A4CAB090A582DF200AA934F /* MushRotation.rb */,
 				7A4CAB0A0A582DF200AA934F /* MushTools.rb */,
 				7A4CAB0B0A582DF200AA934F /* MushVector.rb */,
@@ -5354,6 +5365,8 @@
 				7A70CEB8085DF1C50055C6FB /* AdanaxisGame.h */,
 				7A70CEB9085DF1C50055C6FB /* AdanaxisInfo.cpp */,
 				7A70CEBA085DF1C50055C6FB /* AdanaxisInfo.h */,
+				7ACFCE690A90AFF100A55B7D /* AdanaxisIntern.cpp */,
+				7ACFCE680A90AFF100A55B7D /* AdanaxisIntern.h */,
 				7A32151F087444380056D5C4 /* AdanaxisLogic.cpp */,
 				7A32151E087444380056D5C4 /* AdanaxisLogic.h */,
 				7AD17DAB088BB33700BE236E /* AdanaxisMeshLibrary.cpp */,
@@ -5882,6 +5895,7 @@
 				7A614A980A62951900E8FCEF /* AdanaxisControl.rb */,
 				7A35AEFB0A481B5F00DB00A1 /* AdanaxisGame.rb */,
 				7A5BA8260A4955C400DC847A /* AdanaxisKhazi.rb */,
+				7ACFCE510A90A40C00A55B7D /* AdanaxisPieceKhazi.rb */,
 				7A614A7D0A6280CD00E8FCEF /* AdanaxisMenu.rb */,
 				7ABDE4E20A69400100636DC1 /* AdanaxisLevels.rb */,
 				7A3E0D230A4822460078B650 /* AdanaxisSpace.rb */,
@@ -5891,8 +5905,6 @@
 				7AAFF0A60A46E84F0005F57F /* AdanaxisTextureLibrary.rb */,
 				7A5B15170A57B5FA0047BD0B /* AdanaxisFontLibrary.rb */,
 				7ACEFB3109F6EF6700E38865 /* init.rb */,
-				7ACEFB4F09F6FE8F00E38865 /* TopMenu.rb */,
-				7A5725120A41648A00D99536 /* MakeDocs.sh */,
 			);
 			path = ruby;
 			sourceTree = "<group>";
@@ -7044,6 +7056,7 @@
 				7ACFAC260A6E2D1C0046377F /* AdanaxisRubyWorld.h in Headers */,
 				7A61250B0A74D8020080D6AB /* MushGLCamera.h in Headers */,
 				7A61CA3D0A7632C3006C633E /* AdanaxisScanner.h in Headers */,
+				7ACFCE6A0A90AFF100A55B7D /* AdanaxisIntern.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8857,6 +8870,7 @@
 				7ACFAC270A6E2D1C0046377F /* AdanaxisRubyWorld.cpp in Sources */,
 				7A61250C0A74D8020080D6AB /* MushGLCamera.cpp in Sources */,
 				7A61CA3E0A7632C3006C633E /* AdanaxisScanner.cpp in Sources */,
+				7ACFCE6B0A90AFF100A55B7D /* AdanaxisIntern.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

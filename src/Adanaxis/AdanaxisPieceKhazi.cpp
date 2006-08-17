@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } YCa3eNmcxUH2q0Oxh6SpTA
 /*
- * $Id: AdanaxisPieceKhazi.cpp,v 1.12 2006/07/24 18:46:46 southa Exp $
+ * $Id: AdanaxisPieceKhazi.cpp,v 1.13 2006/08/01 17:21:25 southa Exp $
  * $Log: AdanaxisPieceKhazi.cpp,v $
+ * Revision 1.13  2006/08/01 17:21:25  southa
+ * River demo
+ *
  * Revision 1.12  2006/07/24 18:46:46  southa
  * Depth sorting
  *
@@ -60,6 +63,7 @@
 #include "AdanaxisPieceKhazi.h"
 
 #include "AdanaxisData.h"
+#include "AdanaxisIntern.h"
 #include "AdanaxisPieceProjectile.h"
 #include "AdanaxisUtil.h"
 
@@ -67,13 +71,111 @@ using namespace Mushware;
 using namespace std;
 
 AdanaxisPieceKhazi::AdanaxisPieceKhazi(const std::string& inID) :
-    MushGamePiece(inID)
+    MushGamePiece(inID),
+    m_initialised(false),
+    m_actionMsec(0)
 {
-}  
+    RubyObjSet(MushRubyExec::Sgl().Call(AdanaxisIntern::Sgl().KlassAdanaxisPieceKhazi(),
+                                        MushRubyIntern::cRegisteredCreate()));
+}
+
+AdanaxisPieceKhazi::~AdanaxisPieceKhazi()
+{
+    try
+    {
+        RubyObj().Call(MushRubyIntern::mRegisteredDestroy());
+    }
+    catch (std::exception& e)
+    {
+        MushcoreLog::Sgl().ErrorLog() << "Destructor exception: " << e.what() << std::endl;
+    }
+}
+
+void
+AdanaxisPieceKhazi::ActionValueHandle(MushGameLogic& ioLogic, const MushRubyValue& inActionValue)
+{
+    U32 u32Value;
+
+    if (inActionValue.Value() == Mushware::kRubyQnil)
+    {
+        m_actionMsec = 0;
+    }
+    else if (inActionValue.Is(u32Value))
+    {
+        m_actionMsec = ioLogic.GameMsec() + u32Value;
+    }
+    else if (inActionValue.IsArray())
+    {
+        // Whenever more than one action is required, use an array
+        U32 size = inActionValue.ArraySize();
+        for (U32 i=0; i<size; ++i)
+        {
+            ActionValueHandle(ioLogic, inActionValue.ArrayEntry(i));
+        }
+    }
+    else if (inActionValue.IsHash())
+    {
+        // Each hash contains a single event or action
+        Mushware::tRubyHash hash;
+        inActionValue.Hash(hash);
+        
+        MushRubyValue event(kRubyQnil);
+        
+        Mushware::tRubyHash::iterator pEnd = hash.end();
+        for (Mushware::tRubyHash::iterator p = hash.begin(); p != pEnd; ++p)
+        {
+            Mushware::tRubyID symbol = p->first.Symbol();
+            
+            if (symbol == MushRubyIntern::event())
+            {
+                event = p->second;
+            }
+            else
+            {
+                // Unknown hash element.  Assume it's intended for the event handler
+            }
+        }
+        
+        if (event.Value() != kRubyQnil)
+        {
+            // There is an event to dispatch
+            EventHandle(ioLogic, event, inActionValue);
+        }
+    }
+    else
+    {
+        throw MushcoreRequestFail("Bad return value from action function");
+    }
+}
+
+
+void
+AdanaxisPieceKhazi::EventHandle(MushGameLogic& ioLogic, MushRubyValue inEvent, MushRubyValue inParams)
+{
+    MushcoreLog::Sgl().InfoLog() << "Event " << inEvent.Call(MushRubyIntern::to_s()) << endl;
+}
+
+void
+AdanaxisPieceKhazi::Initialise(MushGameLogic& ioLogic)
+{
+    ActionValueHandle(ioLogic, RubyObj().Call(MushRubyIntern::mInitialise()));
+    m_initialised = true;
+}
 
 void
 AdanaxisPieceKhazi::Move(MushGameLogic& ioLogic, const tVal inFrameslice)
 {
+    if (!m_initialised) Initialise(ioLogic);
+    
+    if (m_actionMsec != 0)
+    {
+        Mushware::tMsec gameMsec = ioLogic.GameMsec();
+        if (m_actionMsec < gameMsec)
+        {
+            ActionValueHandle(ioLogic, RubyObj().Call(MushRubyIntern::SymbolID("mActionTimer")));
+        }
+    }
+        
     PostWRef().InPlaceVelocityAdd();
 }
 
@@ -81,6 +183,8 @@ bool
 AdanaxisPieceKhazi::Render(MushGLJobRender& outRender,
                            MushGameLogic& ioLogic, MushRenderMesh& inRender, const MushGameCamera& inCamera)
 {
+    if (!m_initialised) Initialise(ioLogic);
+
     MushRenderSpec renderSpec;
     renderSpec.BuffersRefSet(BuffersRef());
     renderSpec.TexCoordBuffersRefSet(TexCoordBuffersRef());
@@ -234,6 +338,8 @@ AdanaxisPieceKhazi::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
     MushGamePiece::AutoPrint(ioOut);
+    ioOut << "initialised=" << m_initialised << ", ";
+    ioOut << "actionMsec=" << m_actionMsec;
     ioOut << "]";
 }
 bool
@@ -244,6 +350,14 @@ AdanaxisPieceKhazi::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::stri
         AutoInputPrologue(ioIn);
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
+    }
+    else if (inTagStr == "initialised")
+    {
+        ioIn >> m_initialised;
+    }
+    else if (inTagStr == "actionMsec")
+    {
+        ioIn >> m_actionMsec;
     }
     else if (MushGamePiece::AutoXMLDataProcess(ioIn, inTagStr))
     {
@@ -259,5 +373,9 @@ void
 AdanaxisPieceKhazi::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
     MushGamePiece::AutoXMLPrint(ioOut);
+    ioOut.TagSet("initialised");
+    ioOut << m_initialised;
+    ioOut.TagSet("actionMsec");
+    ioOut << m_actionMsec;
 }
-//%outOfLineFunctions } UJRpiKhuu/YO//32wwZeSw
+//%outOfLineFunctions } EtJnBJVF9T6ODOM9mIr6WQ

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } gSaMBKSS/9FVf/ypP8x5kA
 /*
- * $Id: MushRubyUtil.cpp,v 1.10 2006/06/16 01:02:33 southa Exp $
+ * $Id: MushRubyUtil.cpp,v 1.11 2006/06/16 12:11:06 southa Exp $
  * $Log: MushRubyUtil.cpp,v $
+ * Revision 1.11  2006/06/16 12:11:06  southa
+ * Ruby subclasses
+ *
  * Revision 1.10  2006/06/16 01:02:33  southa
  * Ruby mesh generation
  *
@@ -104,7 +107,7 @@ MushRubyUtil::ValueConvert(Mushware::tVal& outVal, Mushware::tRubyValue inValue)
 Mushware::tRubyValue
 MushRubyUtil::Class(const std::string& inName)
 {
-    tRubyValue klass = rb_define_class(inName.c_str(), rb_cObject);
+    tRubyValue klass = rb_const_get(rb_cObject, rb_intern(inName.c_str()));
     return klass;
 }
 

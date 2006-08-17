@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } qwHjHWDAhJ5nzUjaMqYD6A
 /*
- * $Id: AdanaxisRubyKhazi.cpp,v 1.2 2006/06/21 16:52:29 southa Exp $
+ * $Id: AdanaxisRubyKhazi.cpp,v 1.3 2006/08/01 17:21:28 southa Exp $
  * $Log: AdanaxisRubyKhazi.cpp,v $
+ * Revision 1.3  2006/08/01 17:21:28  southa
+ * River demo
+ *
  * Revision 1.2  2006/06/21 16:52:29  southa
  * Deco objects
  *
@@ -101,7 +104,7 @@ MUSHRUBYMAPTOROBJ_INITIALIZE(AdanaxisPieceKhazi)(Mushware::tRubyArgC inArgC, Mus
 	}
     else
 	{
-			MushcoreLog::Sgl().WarningLog() << "Creating AdanaxisKhazi object without a valid mesh_name parameter" << endl;	
+        MushcoreLog::Sgl().WarningLog() << "Creating AdanaxisKhazi object without a valid mesh_name parameter" << endl;	
 	}
 
 	return inSelf;
