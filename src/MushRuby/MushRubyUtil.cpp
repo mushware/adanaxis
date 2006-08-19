@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } gSaMBKSS/9FVf/ypP8x5kA
 /*
- * $Id: MushRubyUtil.cpp,v 1.11 2006/06/16 12:11:06 southa Exp $
+ * $Id: MushRubyUtil.cpp,v 1.12 2006/08/17 08:57:13 southa Exp $
  * $Log: MushRubyUtil.cpp,v $
+ * Revision 1.12  2006/08/17 08:57:13  southa
+ * Event handling
+ *
  * Revision 1.11  2006/06/16 12:11:06  southa
  * Ruby subclasses
  *
@@ -59,6 +62,7 @@
 #include "MushRubyUtil.h"
 
 #include "MushRubyFail.h"
+#include "MushRubyIntern.h"
 #include "MushRubyRuby.h"
 #include "MushRubySTL.h"
 #include "MushRubyValue.h"
@@ -293,7 +297,6 @@ MushRubyUtil::DataGetStruct(Mushware::tRubyValue inSelf)
 	return pRetVal;
 }
 
-
 Mushware::tRubyValue
 MushRubyUtil::StringNew(const std::string& inStr)
 {
@@ -304,4 +307,22 @@ Mushware::tRubyValue
 MushRubyUtil::ClassNewInstance(Mushware::tRubyID inID)
 {
     return rb_class_new_instance(0, 0, inID);
+}
+
+Mushware::tRubyValue
+MushRubyUtil::DataObjectWrapNew(const MushRubyValue& inKlass, const MushRubyValue& inSelf, void *inpData)
+{
+    tRubyValue dataObj = Data_Wrap_Struct(rb_cData, NULL, NULL, inpData);
+    rb_ivar_set(inSelf.Value(), MushRubyIntern::AT_embeddedDataPtr(), dataObj);
+    cout << "ivar set" << endl;
+    return dataObj;
+}
+
+void *
+MushRubyUtil::DataObjectRetrieve(Mushware::tRubyValue inSelf)
+{
+ 	void *pRetVal;
+    tRubyValue dataValue = rb_ivar_get(inSelf, MushRubyIntern::AT_embeddedDataPtr());
+	Data_Get_Struct(dataValue, void, pRetVal);
+	return pRetVal;   
 }

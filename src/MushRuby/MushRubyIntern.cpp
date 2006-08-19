@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } lqALCPGBahbk4ibyVPO8LQ
 /*
- * $Id: MushRubyIntern.cpp,v 1.13 2006/07/31 11:01:39 southa Exp $
+ * $Id: MushRubyIntern.cpp,v 1.14 2006/08/17 08:57:12 southa Exp $
  * $Log: MushRubyIntern.cpp,v $
+ * Revision 1.14  2006/08/17 08:57:12  southa
+ * Event handling
+ *
  * Revision 1.13  2006/07/31 11:01:39  southa
  * Music and dialogues
  *
@@ -67,7 +70,9 @@
 #include "MushRubyRuby.h"
 
 #define MUSHRUBYINTERN_DEFINE(a) Mushware::tRubyID MushRubyIntern::m_##a = 0
+#define MUSHRUBYINTERN_DEFINE_AT(a) Mushware::tRubyID MushRubyIntern::m_AT##a = 0
 #define MUSHRUBYINTERN_INIT(a) m_##a = rb_intern(#a)
+#define MUSHRUBYINTERN_INIT_AT(a) m_AT##a = rb_intern("@" #a)
 
 MUSHRUBYINTERN_DEFINE(angular_position);
 MUSHRUBYINTERN_DEFINE(angular_velocity);
@@ -106,6 +111,8 @@ MUSHRUBYINTERN_DEFINE(to_ary);
 MUSHRUBYINTERN_DEFINE(to_point);
 MUSHRUBYINTERN_DEFINE(to_s);
 MUSHRUBYINTERN_DEFINE(velocity);
+
+MUSHRUBYINTERN_DEFINE_AT(_embeddedDataPtr);
 
 void
 MushRubyIntern::Initialise(void)
@@ -147,6 +154,8 @@ MushRubyIntern::Initialise(void)
 	MUSHRUBYINTERN_INIT(to_point);
 	MUSHRUBYINTERN_INIT(to_s);
 	MUSHRUBYINTERN_INIT(velocity);
+
+	MUSHRUBYINTERN_INIT_AT(_embeddedDataPtr);
 }
 
 Mushware::tRubyID

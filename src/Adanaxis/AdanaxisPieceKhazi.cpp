@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } YCa3eNmcxUH2q0Oxh6SpTA
 /*
- * $Id: AdanaxisPieceKhazi.cpp,v 1.14 2006/08/17 08:57:11 southa Exp $
+ * $Id: AdanaxisPieceKhazi.cpp,v 1.15 2006/08/17 12:18:10 southa Exp $
  * $Log: AdanaxisPieceKhazi.cpp,v $
+ * Revision 1.15  2006/08/17 12:18:10  southa
+ * Event handling
+ *
  * Revision 1.14  2006/08/17 08:57:11  southa
  * Event handling
  *
@@ -70,6 +73,8 @@
 #include "AdanaxisPieceProjectile.h"
 #include "AdanaxisUtil.h"
 
+#include "API/mushMushMeshRuby.h"
+
 using namespace Mushware;
 using namespace std;
 
@@ -82,6 +87,7 @@ AdanaxisPieceKhazi::AdanaxisPieceKhazi(const std::string& inID) :
 {
     RubyObjSet(MushRubyExec::Sgl().Call(AdanaxisIntern::Sgl().KlassAdanaxisPieceKhazi(),
                                         MushRubyIntern::cRegisteredCreate()));
+    MushRubyUtil::DataObjectWrapNew(AdanaxisIntern::Sgl().KlassAdanaxisPieceKhazi(), RubyObj(), this);
 }
 
 AdanaxisPieceKhazi::~AdanaxisPieceKhazi()
@@ -312,7 +318,8 @@ AdanaxisPieceKhazi::Explode(MushGameLogic& ioLogic, const MushGameMessageCollisi
 Mushware::tRubyValue
 AdanaxisPieceKhazi::RubyPostLoad(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0)
 {
-	// NOT YET MushMeshRubyPost::WRef(inArg0) = Ref(inSelf).Post();
+    AdanaxisPieceKhazi *self = reinterpret_cast<AdanaxisPieceKhazi *>(MushRubyUtil::DataObjectRetrieve(inSelf));
+	MushMeshRubyPost::WRef(inArg0) = self->Post();
 	return inArg0;
 }
 

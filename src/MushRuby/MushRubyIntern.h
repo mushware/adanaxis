@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } n1eaCj2fb8dNPgbT0uOuEQ
 /*
- * $Id: MushRubyIntern.h,v 1.13 2006/07/31 11:01:39 southa Exp $
+ * $Id: MushRubyIntern.h,v 1.14 2006/08/17 08:57:13 southa Exp $
  * $Log: MushRubyIntern.h,v $
+ * Revision 1.14  2006/08/17 08:57:13  southa
+ * Event handling
+ *
  * Revision 1.13  2006/07/31 11:01:39  southa
  * Music and dialogues
  *
@@ -74,6 +77,11 @@ static Mushware::tRubyID a(void) { return m_##a; } \
 private: \
 static Mushware::tRubyID m_##a
 
+#define MUSHRUBYINTERN_DECLARE_AT(a) \
+public: \
+static Mushware::tRubyID AT ## a(void) { return m_AT##a; } \
+private: \
+static Mushware::tRubyID m_AT##a
 
 class MushRubyIntern
 {
@@ -118,6 +126,8 @@ public:
 	MUSHRUBYINTERN_DECLARE(to_s);
 	MUSHRUBYINTERN_DECLARE(to_point);
 	MUSHRUBYINTERN_DECLARE(velocity);
+
+	MUSHRUBYINTERN_DECLARE_AT(_embeddedDataPtr);
 };
 
 #undef MUSHRUBYINTERN_DECLARE
