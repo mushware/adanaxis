@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } nD/Irg6+j8tkN0uh3Wk1EQ
 /*
- * $Id: AdanaxisRuby.cpp,v 1.1 2006/06/21 12:17:56 southa Exp $
+ * $Id: AdanaxisRuby.cpp,v 1.2 2006/08/01 17:21:27 southa Exp $
  * $Log: AdanaxisRuby.cpp,v $
+ * Revision 1.2  2006/08/01 17:21:27  southa
+ * River demo
+ *
  * Revision 1.1  2006/06/21 12:17:56  southa
  * Ruby object generation
  *
@@ -26,6 +29,7 @@
 
 #include "AdanaxisRuby.h"
 
+#include "API/mushMushMeshRuby.h"
 
 MUSHRUBYEMPTYOBJ_INSTANCE(2000);
 
@@ -36,7 +40,22 @@ using namespace std;
 
 MushcoreDataRef<MushGameLogic> AdanaxisRuby::s_logicRef;
 
+Mushware::tRubyValue
+AdanaxisRuby::PlayerPosition(Mushware::tRubyValue inSelf)
+{
+    tRubyValue retVal = MushMeshRubyVector::NewInstance();
+    
+    typedef MushcoreData<MushGamePlayer>::tIterator tIterator;
+    MushcoreData<MushGamePlayer>& playerData = SaveData().PlayersWRef();
+    for (tIterator p = playerData.Begin(); p != playerData.End(); ++p)
+    {
+        MushMeshRubyVector::WRef(retVal) = p->second->Post().Pos();
+    }
+    return retVal;
+}    
+
 void
 AdanaxisRuby::AdanaxisInstall(void)
 {
+    MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cPlayerPosition", PlayerPosition);
 }

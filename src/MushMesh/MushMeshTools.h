@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } VP8fay9XgM+kqodf58ym6g
 /*
- * $Id: MushMeshTools.h,v 1.14 2006/07/17 14:43:40 southa Exp $
+ * $Id: MushMeshTools.h,v 1.15 2006/07/18 16:58:38 southa Exp $
  * $Log: MushMeshTools.h,v $
+ * Revision 1.15  2006/07/18 16:58:38  southa
+ * Texture fixes
+ *
  * Revision 1.14  2006/07/17 14:43:40  southa
  * Billboarded deco objects
  *
@@ -77,6 +80,7 @@
 
 class MushMesh4Mesh;
 class MushMesh4TextureTile;
+class MushMeshPosticity;
 
 //:generate standard ostream xml1
 class MushMeshTools : public MushcoreVirtualObject
@@ -118,6 +122,17 @@ public:
 								 Mushware::U32 inFaceNum, Mushware::U32 inFacetNum);
 	static void TextureCoordsForFacet(std::vector<Mushware::t4Val>& outTexCoords, const MushMesh4Mesh& inMesh,
 									  Mushware::U32 inFaceNum, Mushware::U32 inFacetNum);
+    static void ClampedRotateToWAxis(Mushware::tQValPair& outPair, const Mushware::t4Val& inTarget, Mushware::tVal inAmount);
+    static void PartialRotateToWAxis(Mushware::tQValPair& outPair, const Mushware::t4Val& inTarget, Mushware::tVal inAmount);
+
+    static void WorldToObject(Mushware::tQValPair& ioPair, const MushMeshPosticity& inPost);
+    static void WorldToObject(Mushware::t4Val& ioVec, const MushMeshPosticity& inPost);
+    static void ObjectToWorld(Mushware::tQValPair& ioPair, const MushMeshPosticity& inPost);
+    static void ObjectToWorld(Mushware::t4Val& ioVec, const MushMeshPosticity& inPost);
+    static void TurnToFace(Mushware::tQValPair& outPair, const MushMeshPosticity& inPost,
+                           const Mushware::t4Val& inTarget, Mushware::tVal inAmount);
+     
+    
 //%classPrototypes {
 public:
     virtual const char *AutoName(void) const;

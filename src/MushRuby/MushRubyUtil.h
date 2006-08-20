@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } ZnwDjEM1+TPkZ9HrL5mg7A
 /*
- * $Id: MushRubyUtil.h,v 1.11 2006/06/16 12:11:06 southa Exp $
+ * $Id: MushRubyUtil.h,v 1.12 2006/08/19 09:12:10 southa Exp $
  * $Log: MushRubyUtil.h,v $
+ * Revision 1.12  2006/08/19 09:12:10  southa
+ * Event handling
+ *
  * Revision 1.11  2006/06/16 12:11:06  southa
  * Ruby subclasses
  *
@@ -113,6 +116,8 @@ public:
 	static Mushware::tRubyValue ClassNewInstance(Mushware::tRubyID inID);
     static Mushware::tRubyValue DataObjectWrapNew(const MushRubyValue& inKlass, const MushRubyValue& inSelf, void *inpData);
     static void *DataObjectRetrieve(Mushware::tRubyValue inSelf);
+    static Mushware::tRubyValue InstanceVar(Mushware::tRubyValue inObj, Mushware::tRubyID inSym);
+    static void InstanceVarSet(Mushware::tRubyValue inObj, Mushware::tRubyID inSym, Mushware::tRubyValue inValue);
     
 private:
 	static Mushware::tRubyValue HashHandler(Mushware::tRubyValue inArray, Mushware::tRubyValue inArg);

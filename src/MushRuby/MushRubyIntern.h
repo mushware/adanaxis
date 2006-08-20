@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } n1eaCj2fb8dNPgbT0uOuEQ
 /*
- * $Id: MushRubyIntern.h,v 1.14 2006/08/17 08:57:13 southa Exp $
+ * $Id: MushRubyIntern.h,v 1.15 2006/08/19 09:12:10 southa Exp $
  * $Log: MushRubyIntern.h,v $
+ * Revision 1.15  2006/08/19 09:12:10  southa
+ * Event handling
+ *
  * Revision 1.14  2006/08/17 08:57:13  southa
  * Event handling
  *
@@ -128,6 +131,8 @@ public:
 	MUSHRUBYINTERN_DECLARE(velocity);
 
 	MUSHRUBYINTERN_DECLARE_AT(_embeddedDataPtr);
+	MUSHRUBYINTERN_DECLARE_AT(m_expireFlag);
+	MUSHRUBYINTERN_DECLARE_AT(m_post);
 };
 
 #undef MUSHRUBYINTERN_DECLARE

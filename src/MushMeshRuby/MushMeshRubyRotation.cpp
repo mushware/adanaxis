@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } IYs87CodIcNWOTBfGGVoeQ
 /*
- * $Id: MushMeshRubyRotation.cpp,v 1.2 2006/06/20 19:06:53 southa Exp $
+ * $Id: MushMeshRubyRotation.cpp,v 1.3 2006/06/22 19:07:33 southa Exp $
  * $Log: MushMeshRubyRotation.cpp,v $
+ * Revision 1.3  2006/06/22 19:07:33  southa
+ * Build fixes
+ *
  * Revision 1.2  2006/06/20 19:06:53  southa
  * Object creation
  *
@@ -81,8 +84,61 @@ MushMeshRubyRotation::Rotate(Mushware::tRubyValue inSelf, Mushware::tRubyValue i
 	{
 		MushMeshRubyRotation::WRef(inArg0).OuterMultiplyBy(Ref(inSelf));
 	}
-		
+    
 	return inSelf;
+}
+
+Mushware::tRubyValue
+MushMeshRubyRotation::Inverse(Mushware::tRubyValue inSelf)
+{
+	tRubyValue retVal = NewInstance();
+    WRef(retVal) = Ref(inSelf).Conjugate();
+    
+	return retVal;
+}
+
+Mushware::tRubyValue
+MushMeshRubyRotation::Normalise(Mushware::tRubyValue inSelf)
+{
+	WRef(inSelf).InPlaceNormalise();
+	return inSelf;
+}
+
+Mushware::tRubyValue
+MushMeshRubyRotation::Scale(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0)
+{
+    tVal prop = MushRubyValue(inArg0).Val();
+    
+    if (prop < 0.0 || prop > 1.0)
+    {
+        ostringstream message;
+        message << "MushRotation.Scale(" << prop << ") called, but accepts only 0 <= value <= 1";
+        MushRubyUtil::Raise(message.str());
+    }
+    
+    WRef(inSelf) = MushMeshOps::SlerpNormalised(tQValPair::RotationIdentity(), Ref(inSelf), prop);
+    
+    return inSelf;
+}
+
+Mushware::tRubyValue
+MushMeshRubyRotation::Scaled(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0)
+{
+    tVal prop = MushRubyValue(inArg0).Val();
+    
+    if (prop < 0.0 || prop > 1.0)
+    {
+        ostringstream message;
+        message << "MushRotation.Scale(" << prop << ") called, but accepts only 0 <= value <= 1";
+        MushRubyUtil::Raise(message.str());
+    }
+    
+    Mushware::tRubyValue retVal = MushMeshRubyRotation::NewInstance();
+    MushMeshRubyRotation::WRef(retVal) =
+        MushMeshOps::SlerpNormalised(tQValPair::RotationIdentity(),
+                                     Ref(inSelf),
+                                     prop);
+	return retVal;    
 }
 
 void
@@ -91,6 +147,10 @@ MushMeshRubyRotation::RubyInstall(void)
 	ObjInstall("MushRotation");
 	MushRubyUtil::MethodDefineOneParam(ObjKlass(), "==", IsEqual);
 	MushRubyUtil::MethodDefineOneParam(ObjKlass(), "mRotate", Rotate);
+	MushRubyUtil::MethodDefineNoParams(ObjKlass(), "mInverse", Inverse);
+	MushRubyUtil::MethodDefineNoParams(ObjKlass(), "mNormalise!", Normalise);
+	MushRubyUtil::MethodDefineOneParam(ObjKlass(), "mScale!", Scale);
+	MushRubyUtil::MethodDefineOneParam(ObjKlass(), "mScaled", Scaled);
 }
 
 MUSHRUBY_INSTALL(MushMeshRubyRotation);

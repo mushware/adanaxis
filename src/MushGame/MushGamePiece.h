@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } QiW5KaWfX1mBGolg1jxMIg
 /*
- * $Id: MushGamePiece.h,v 1.11 2006/08/17 08:57:12 southa Exp $
+ * $Id: MushGamePiece.h,v 1.12 2006/08/17 12:18:11 southa Exp $
  * $Log: MushGamePiece.h,v $
+ * Revision 1.12  2006/08/17 12:18:11  southa
+ * Event handling
+ *
  * Revision 1.11  2006/08/17 08:57:12  southa
  * Event handling
  *
@@ -80,7 +83,11 @@ public:
     virtual void MessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage);
 
     virtual void TexCoordBuffersNameSet(const std::string& inName) { m_texCoordBuffersRef.NameSet(inName); }
-
+    virtual void Load(Mushware::tRubyValue inSelf);
+    virtual void Save(Mushware::tRubyValue inSelf);
+    
+    static Mushware::tRubyValue RubyLoad(Mushware::tRubyValue inSelf);
+    static Mushware::tRubyValue RubySave(Mushware::tRubyValue inSelf);
     static Mushware::tRubyValue Klass(void);
     static void RubyInstall(void);
     

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } oKuIr5eVL2esfxDutcXp9Q
 /*
- * $Id: MushMeshRubyTools.cpp,v 1.3 2006/07/17 14:43:41 southa Exp $
+ * $Id: MushMeshRubyTools.cpp,v 1.4 2006/07/18 16:58:38 southa Exp $
  * $Log: MushMeshRubyTools.cpp,v $
+ * Revision 1.4  2006/07/18 16:58:38  southa
+ * Texture fixes
+ *
  * Revision 1.3  2006/07/17 14:43:41  southa
  * Billboarded deco objects
  *
@@ -34,6 +37,7 @@
 
 #include "MushMeshRubyTools.h"
 
+#include "MushMeshRubyPost.h"
 #include "MushMeshRubyRotation.h"
 #include "MushMeshRubyVector.h"
 
@@ -128,6 +132,41 @@ MushMeshRubyTools::RandomAngularVelocity(Mushware::tRubyValue inSelf, Mushware::
 	return retVal;
 }
 
+Mushware::tRubyValue
+MushMeshRubyTools::SeekRotation(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0,
+                                Mushware::tRubyValue inArg1)
+{
+	Mushware::tRubyValue retVal = MushMeshRubyRotation::NewInstance();
+    MushMeshTools::PartialRotateToWAxis(MushMeshRubyRotation::WRef(retVal),
+                                        MushMeshRubyVector::Ref(inArg0),
+                                        MushRubyValue(inArg1).Val());
+	return retVal;
+}
+
+Mushware::tRubyValue
+MushMeshRubyTools::TurnToFace(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0,
+                              Mushware::tRubyValue inArg1, Mushware::tRubyValue inArg2)
+{
+	Mushware::tRubyValue retVal = MushMeshRubyRotation::NewInstance();
+    MushMeshTools::TurnToFace(MushMeshRubyRotation::WRef(retVal),
+                                        MushMeshRubyPost::Ref(inArg0),
+                                        MushMeshRubyVector::Ref(inArg1),
+                                        MushRubyValue(inArg2).Val());
+	return retVal;
+}
+
+Mushware::tRubyValue
+MushMeshRubyTools::Slerp(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0,
+                         Mushware::tRubyValue inArg1, Mushware::tRubyValue inArg2)
+{
+	Mushware::tRubyValue retVal = MushMeshRubyRotation::NewInstance();
+    MushMeshRubyRotation::WRef(retVal) =
+        MushMeshOps::SlerpNormalised(MushMeshRubyRotation::Ref(inArg0),
+                                     MushMeshRubyRotation::Ref(inArg1),
+                                     MushRubyValue(inArg2).Val());
+	return retVal;
+}
+
 void
 MushMeshRubyTools::RubyInstall(void)
 {
@@ -143,6 +182,10 @@ MushMeshRubyTools::RubyInstall(void)
 	MushRubyUtil::SingletonMethodDefineNoParams(ObjKlass(), "cRandomOrientation", RandomOrientation);
 	MushRubyUtil::SingletonMethodDefineNoParams(ObjKlass(), "cRandomUnitVector", RandomUnitVector);
 	MushRubyUtil::SingletonMethodDefineOneParam(ObjKlass(), "cRandomAngularVelocity", RandomAngularVelocity);
+	MushRubyUtil::SingletonMethodDefineTwoParams(ObjKlass(), "cSeekRotation", SeekRotation);
+	MushRubyUtil::SingletonMethodDefineThreeParams(ObjKlass(), "cTurnToFace", TurnToFace);
+	MushRubyUtil::SingletonMethodDefineThreeParams(ObjKlass(), "cSlerp", Slerp);
+	//MushRubyUtil::SingletonMethodDefineThreeParams(ObjKlass(), "cTurnToFace", TurnToFace);
 }
 
 MUSHRUBY_INSTALL(MushMeshRubyTools);

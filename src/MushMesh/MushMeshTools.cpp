@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } cQoVIV2DdH4LiqrKzfp8tw
 /*
- * $Id: MushMeshTools.cpp,v 1.14 2006/07/17 14:43:40 southa Exp $
+ * $Id: MushMeshTools.cpp,v 1.15 2006/07/18 16:58:38 southa Exp $
  * $Log: MushMeshTools.cpp,v $
+ * Revision 1.15  2006/07/18 16:58:38  southa
+ * Texture fixes
+ *
  * Revision 1.14  2006/07/17 14:43:40  southa
  * Billboarded deco objects
  *
@@ -67,6 +70,7 @@
 
 #include "MushMeshTools.h"
 
+#include "MushMeshPosticity.h"
 #include "MushMeshSTL.h"
 #include "MushMesh4Mesh.h"
 #include "MushMesh4TextureTile.h"
@@ -571,6 +575,147 @@ MushMeshTools::TextureCoordsForFacet(std::vector<Mushware::t4Val>& outTexCoords,
 	}
 }
 
+void
+MushMeshTools::ClampedRotateToWAxis(Mushware::tQValPair& outPair, const Mushware::t4Val& inTarget, Mushware::tVal inAmount)
+{
+    /* The generated rotation must be a proportion of the rotation which
+    * rotates the w direction onto the target vector
+    */
+    
+    t4Val rotVec(inTarget);
+    tQValPair rotation;
+    
+    // Rotate in xw
+    tVal xwAngle = std::atan2(rotVec.X(), rotVec.W());
+    QuaternionRotateInAxis(kAxisXW, xwAngle).VectorRotate(rotVec);
+    
+    // Rotate in yw
+    tVal ywAngle = std::atan2(rotVec.Y(), rotVec.W());
+    QuaternionRotateInAxis(kAxisYW, ywAngle).VectorRotate(rotVec);
+    
+    // Rotate in zw
+    tVal zwAngle = std::atan2(rotVec.Z(), rotVec.W());
+    // QuaternionRotateInAxis(kAxisZW, zwAngle).VectorRotate(rotVec);
+
+    tVal xwAbs = std::fabs(xwAngle);
+    tVal ywAbs = std::fabs(ywAngle);
+    tVal zwAbs = std::fabs(zwAngle);
+    
+    // Three-way maximum
+    tVal maxAngle;
+    if (xwAbs > ywAbs)
+    {
+        if (xwAbs > zwAbs)
+        {
+            maxAngle = xwAbs;
+        }
+        else
+        {
+            maxAngle = zwAbs;
+        }
+    }
+    else
+    {
+        if (ywAbs > zwAbs)
+        {
+            maxAngle = ywAbs;
+        }
+        else
+        {
+            maxAngle = zwAbs;
+        }
+    }
+    
+    tVal scale;
+    
+    if (maxAngle > inAmount)
+    {
+        scale = inAmount / maxAngle;
+    }
+    else
+    {
+        scale = 1;
+    }
+    
+    xwAngle *= scale;
+    ywAngle *= scale;
+    zwAngle *= scale;
+
+    outPair = QuaternionRotateInAxis(kAxisXW, xwAngle);
+    outPair.OuterMultiplyBy(QuaternionRotateInAxis(kAxisYW, ywAngle));
+    outPair.OuterMultiplyBy(QuaternionRotateInAxis(kAxisZW, zwAngle));
+}
+
+void
+MushMeshTools::PartialRotateToWAxis(Mushware::tQValPair& outPair, const Mushware::t4Val& inTarget, Mushware::tVal inAmount)
+{
+    /* The generated rotation must be a proportion of the rotation which
+    * rotates the w direction onto the target vector
+    */
+    
+    t4Val rotVec(inTarget);
+    tQValPair rotation;
+    tVal angle;
+    
+    // Rotate in xw
+    angle = std::atan2(rotVec.X(), rotVec.W());
+    QuaternionRotateInAxis(kAxisXW, angle).VectorRotate(rotVec);
+    outPair = QuaternionRotateInAxis(kAxisXW, inAmount * angle);
+    
+    // Rotate in yw
+    angle = std::atan2(rotVec.Y(), rotVec.W());
+    QuaternionRotateInAxis(kAxisYW, angle).VectorRotate(rotVec);
+    outPair.OuterMultiplyBy(QuaternionRotateInAxis(kAxisYW, inAmount * angle));
+    
+    // Rotate in zw
+    angle = std::atan2(rotVec.Z(), rotVec.W());
+    QuaternionRotateInAxis(kAxisZW, angle).VectorRotate(rotVec);
+    outPair.OuterMultiplyBy(QuaternionRotateInAxis(kAxisZW, inAmount * angle));
+}
+
+void
+MushMeshTools::WorldToObject(Mushware::tQValPair& ioPair, const MushMeshPosticity& inPost)
+{
+    tQValPair result = inPost.AngPos();
+    result.OuterMultiplyBy(ioPair);
+    result.OuterMultiplyBy(inPost.AngPos().Conjugate());
+    ioPair = result;
+}
+
+void
+MushMeshTools::WorldToObject(Mushware::t4Val& ioVec, const MushMeshPosticity& inPost)
+{
+    ioVec -= inPost.Pos();
+    inPost.AngPos().Conjugate().VectorRotate(ioVec);
+}
+
+void
+MushMeshTools::ObjectToWorld(Mushware::tQValPair& ioPair, const MushMeshPosticity& inPost)
+{
+    tQValPair result(inPost.AngPos().Conjugate());
+    result.OuterMultiplyBy(ioPair.Conjugate());
+    result.OuterMultiplyBy(inPost.AngPos());
+    ioPair = result;
+}
+
+void
+MushMeshTools::ObjectToWorld(Mushware::t4Val& ioVec, const MushMeshPosticity& inPost)
+{
+    inPost.AngPos().VectorRotate(ioVec);
+    ioVec += inPost.Pos();
+}
+
+void
+MushMeshTools::TurnToFace(Mushware::tQValPair& outPair, const MushMeshPosticity& inPost,
+                          const Mushware::t4Val& inTarget, Mushware::tVal inAmount)
+{
+    t4Val targetVec(inTarget);
+    
+    WorldToObject(targetVec, inPost);
+    ClampedRotateToWAxis(outPair, -targetVec, inAmount);
+    ObjectToWorld(outPair, inPost);
+    outPair.InPlaceNormalise();
+}
 
 //%outOfLineFunctions {
 

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } NU6ZSof2ssS4JvX3KgPtTw
 /*
- * $Id: MushMeshRubyRotation.h,v 1.1 2006/06/13 19:30:38 southa Exp $
+ * $Id: MushMeshRubyRotation.h,v 1.2 2006/06/20 19:06:54 southa Exp $
  * $Log: MushMeshRubyRotation.h,v $
+ * Revision 1.2  2006/06/20 19:06:54  southa
+ * Object creation
+ *
  * Revision 1.1  2006/06/13 19:30:38  southa
  * Ruby mesh generation
  *
@@ -40,7 +43,11 @@ public:
 	
 protected:
 	static Mushware::tRubyValue Rotate(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
-	static Mushware::tRubyValue IsEqual(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg1);
+	static Mushware::tRubyValue Inverse(Mushware::tRubyValue inSelf);
+	static Mushware::tRubyValue IsEqual(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
+	static Mushware::tRubyValue Normalise(Mushware::tRubyValue inSelf);
+	static Mushware::tRubyValue Scale(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
+	static Mushware::tRubyValue Scaled(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
 private:
 };
 

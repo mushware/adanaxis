@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } gSaMBKSS/9FVf/ypP8x5kA
 /*
- * $Id: MushRubyUtil.cpp,v 1.12 2006/08/17 08:57:13 southa Exp $
+ * $Id: MushRubyUtil.cpp,v 1.13 2006/08/19 09:12:10 southa Exp $
  * $Log: MushRubyUtil.cpp,v $
+ * Revision 1.13  2006/08/19 09:12:10  southa
+ * Event handling
+ *
  * Revision 1.12  2006/08/17 08:57:13  southa
  * Event handling
  *
@@ -314,7 +317,6 @@ MushRubyUtil::DataObjectWrapNew(const MushRubyValue& inKlass, const MushRubyValu
 {
     tRubyValue dataObj = Data_Wrap_Struct(rb_cData, NULL, NULL, inpData);
     rb_ivar_set(inSelf.Value(), MushRubyIntern::AT_embeddedDataPtr(), dataObj);
-    cout << "ivar set" << endl;
     return dataObj;
 }
 
@@ -325,4 +327,17 @@ MushRubyUtil::DataObjectRetrieve(Mushware::tRubyValue inSelf)
     tRubyValue dataValue = rb_ivar_get(inSelf, MushRubyIntern::AT_embeddedDataPtr());
 	Data_Get_Struct(dataValue, void, pRetVal);
 	return pRetVal;   
+}
+
+
+Mushware::tRubyValue
+MushRubyUtil::InstanceVar(Mushware::tRubyValue inObj, Mushware::tRubyID inSym)
+{
+    return rb_ivar_get(inObj, inSym);
+}
+
+void
+MushRubyUtil::InstanceVarSet(Mushware::tRubyValue inObj, Mushware::tRubyID inSym, Mushware::tRubyValue inValue)
+{
+    rb_ivar_set(inObj, inSym, inValue);
 }

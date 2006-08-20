@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } Bm3nTDDsM5QE9iTgAOLr3w
 /*
- * $Id: AdanaxisPieceKhazi.h,v 1.12 2006/08/17 08:57:11 southa Exp $
+ * $Id: AdanaxisPieceKhazi.h,v 1.13 2006/08/17 12:18:10 southa Exp $
  * $Log: AdanaxisPieceKhazi.h,v $
+ * Revision 1.13  2006/08/17 12:18:10  southa
+ * Event handling
+ *
  * Revision 1.12  2006/08/17 08:57:11  southa
  * Event handling
  *
@@ -91,6 +94,7 @@ public:
     virtual void EventHandle(MushGameLogic& ioLogic, MushRubyValue inEvent, MushRubyValue inParams);
     
     static Mushware::tRubyValue RubyPostLoad(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
+    static Mushware::tRubyValue RubyPostSave(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
     static Mushware::tRubyValue Klass(void);
     static void RubyInstall(void);
     

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } kjx6juFzwsH41luLhCyMIQ
 /*
- * $Id: MushRubyObj.h,v 1.5 2006/06/16 12:11:05 southa Exp $
+ * $Id: MushRubyObj.h,v 1.6 2006/06/27 11:58:10 southa Exp $
  * $Log: MushRubyObj.h,v $
+ * Revision 1.6  2006/06/27 11:58:10  southa
+ * Warning fixes
+ *
  * Revision 1.5  2006/06/16 12:11:05  southa
  * Ruby subclasses
  *
@@ -120,7 +123,7 @@ MushRubyObj<T>::Ref(Mushware::tRubyValue inSelf)
 }
 
 template <class T>
-inline T&
+inline T& 
 MushRubyObj<T>::WRef(Mushware::tRubyValue inSelf)
 {
 	MushRubyUtil::RaiseUnlessInstanceOf(inSelf, m_rubyKlass);

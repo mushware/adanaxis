@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } bXehXXY7VVdSW1knmNpOqw
 /*
- * $Id: MushMeshRubyTools.h,v 1.2 2006/07/17 14:43:42 southa Exp $
+ * $Id: MushMeshRubyTools.h,v 1.3 2006/07/18 16:58:38 southa Exp $
  * $Log: MushMeshRubyTools.h,v $
+ * Revision 1.3  2006/07/18 16:58:38  southa
+ * Texture fixes
+ *
  * Revision 1.2  2006/07/17 14:43:42  southa
  * Billboarded deco objects
  *
@@ -52,7 +55,11 @@ protected:
 	static Mushware::tRubyValue RandomOrientation(Mushware::tRubyValue inSelf);
 	static Mushware::tRubyValue RandomUnitVector(Mushware::tRubyValue inSelf);
 	static Mushware::tRubyValue RandomAngularVelocity(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
-
+	static Mushware::tRubyValue SeekRotation(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0, Mushware::tRubyValue inArg1);
+    static Mushware::tRubyValue TurnToFace(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0,
+                                           Mushware::tRubyValue inArg1, Mushware::tRubyValue inArg2);
+    static Mushware::tRubyValue Slerp(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0,
+                                      Mushware::tRubyValue inArg1, Mushware::tRubyValue inArg2);
 private:
 };
 //%includeGuardEnd {

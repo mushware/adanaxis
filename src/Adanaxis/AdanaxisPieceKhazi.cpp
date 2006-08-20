@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } YCa3eNmcxUH2q0Oxh6SpTA
 /*
- * $Id: AdanaxisPieceKhazi.cpp,v 1.15 2006/08/17 12:18:10 southa Exp $
+ * $Id: AdanaxisPieceKhazi.cpp,v 1.16 2006/08/19 09:12:09 southa Exp $
  * $Log: AdanaxisPieceKhazi.cpp,v $
+ * Revision 1.16  2006/08/19 09:12:09  southa
+ * Event handling
+ *
  * Revision 1.15  2006/08/17 12:18:10  southa
  * Event handling
  *
@@ -99,6 +102,7 @@ AdanaxisPieceKhazi::~AdanaxisPieceKhazi()
     catch (std::exception& e)
     {
         MushcoreLog::Sgl().ErrorLog() << "Destructor exception: " << e.what() << std::endl;
+        // Don't allow exception to propagate
     }
 }
 
@@ -318,8 +322,29 @@ AdanaxisPieceKhazi::Explode(MushGameLogic& ioLogic, const MushGameMessageCollisi
 Mushware::tRubyValue
 AdanaxisPieceKhazi::RubyPostLoad(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0)
 {
+    try
+    {
+        AdanaxisPieceKhazi *self = reinterpret_cast<AdanaxisPieceKhazi *>(MushRubyUtil::DataObjectRetrieve(inSelf));
+        MUSHCOREASSERT(dynamic_cast<AdanaxisPieceKhazi *>(self) != NULL);
+        
+        self->MushGamePiece::RubyLoad(inSelf);
+
+        MushMeshRubyPost::WRef(inArg0) = self->Post();
+	}
+    catch (std::exception& e)
+    {
+        MushRubyUtil::Raise(e.what());    
+    }
+    return inArg0;
+}
+
+Mushware::tRubyValue
+AdanaxisPieceKhazi::RubyPostSave(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0)
+{
     AdanaxisPieceKhazi *self = reinterpret_cast<AdanaxisPieceKhazi *>(MushRubyUtil::DataObjectRetrieve(inSelf));
-	MushMeshRubyPost::WRef(inArg0) = self->Post();
+    MUSHCOREASSERT(dynamic_cast<AdanaxisPieceKhazi *>(self) != NULL);
+    
+	self->PostSet(MushMeshRubyPost::Ref(inArg0));
 	return inArg0;
 }
 
@@ -341,6 +366,7 @@ AdanaxisPieceKhazi::RubyInstall(void)
 	    m_rubyKlass = MushRubyUtil::SubclassDefine("AdanaxisPieceKhazi", MushGamePiece::Klass());
     }
 	MushRubyUtil::MethodDefineOneParam(Klass(), "mPostLoad", RubyPostLoad);
+	MushRubyUtil::MethodDefineOneParam(Klass(), "mPostSave", RubyPostSave);
 }
 
 namespace

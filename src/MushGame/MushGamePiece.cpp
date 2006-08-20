@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } rVCNunlW+wZoonHnGB5a7Q
 /*
- * $Id: MushGamePiece.cpp,v 1.8 2006/08/17 08:57:12 southa Exp $
+ * $Id: MushGamePiece.cpp,v 1.9 2006/08/17 12:18:11 southa Exp $
  * $Log: MushGamePiece.cpp,v $
+ * Revision 1.9  2006/08/17 12:18:11  southa
+ * Event handling
+ *
  * Revision 1.8  2006/08/17 08:57:12  southa
  * Event handling
  *
@@ -51,6 +54,8 @@
 
 #include "MushGameMessage.h"
 
+#include "API/mushMushMeshRuby.h"
+
 MUSHCORE_DATA_INSTANCE(MushGamePiece);
 
 using namespace Mushware;
@@ -74,6 +79,69 @@ MushGamePiece::MessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inM
     throw MushcoreDataFail(std::string("Unhandled message type ")+inMessage.AutoName()+" in "+AutoName());
 }
 
+void
+MushGamePiece::Load(Mushware::tRubyValue inSelf)
+{
+    {
+        tRubyValue value = MushRubyUtil::InstanceVar(inSelf, MushRubyIntern::ATm_post());
+        if (value == kRubyQnil)
+        {
+            throw MushcoreDataFail("No attribute @post in MushPiece");
+        }
+        MushMeshRubyPost::WRef(value) = Post();
+    }
+    
+    MushRubyUtil::InstanceVarSet(inSelf, MushRubyIntern::ATm_expireFlag(), MushRubyValue(m_expireFlag).Value());
+}
+
+void
+MushGamePiece::Save(Mushware::tRubyValue inSelf)
+{
+    {
+        tRubyValue value = MushRubyUtil::InstanceVar(inSelf, MushRubyIntern::ATm_post());
+        if (value == kRubyQnil)
+        {
+            throw MushcoreDataFail("No attribute @post in MushPiece");
+        }
+        PostSet(MushMeshRubyPost::Ref(value));
+    }
+    m_expireFlag = MushRubyValue(MushRubyUtil::InstanceVar(inSelf, MushRubyIntern::ATm_expireFlag())).Bool();
+}
+
+Mushware::tRubyValue
+MushGamePiece::RubyLoad(Mushware::tRubyValue inSelf)
+{
+    try
+    {
+        MushGamePiece *self = reinterpret_cast<MushGamePiece *>(MushRubyUtil::DataObjectRetrieve(inSelf));
+        MUSHCOREASSERT(dynamic_cast<MushGamePiece *>(self) != NULL);
+
+        self->Load(inSelf);
+    }
+    catch (std::exception& e)
+    {
+            MushRubyUtil::Raise(e.what());    
+    }
+	return inSelf;
+}
+
+Mushware::tRubyValue
+MushGamePiece::RubySave(Mushware::tRubyValue inSelf)
+{
+    try
+    {
+        MushGamePiece *self = reinterpret_cast<MushGamePiece *>(MushRubyUtil::DataObjectRetrieve(inSelf));
+        MUSHCOREASSERT(dynamic_cast<MushGamePiece *>(self) != NULL);
+        
+        self->Save(inSelf);
+    }
+    catch (std::exception& e)
+    {
+        MushRubyUtil::Raise(e.what());    
+    }
+    return inSelf;
+}
+
 Mushware::tRubyValue
 MushGamePiece::Klass(void)
 {
@@ -90,6 +158,8 @@ MushGamePiece::RubyInstall(void)
     if (m_rubyKlass == kRubyQnil)
     {
 	    m_rubyKlass = MushRubyUtil::SubclassDefine("MushPiece", MushRubyObject::Klass());
+        MushRubyUtil::MethodDefineNoParams(Klass(), "mLoad", RubyLoad);
+        MushRubyUtil::MethodDefineNoParams(Klass(), "mSave", RubySave);
     }
 }
 
