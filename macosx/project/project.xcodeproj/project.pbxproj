@@ -3435,6 +3435,8 @@
 		7A789E510A52E5870036F93F /* SDL_types.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = SDL_types.h; path = /usr/local/include/SDL/SDL_types.h; sourceTree = "<absolute>"; };
 		7A789E520A52E5870036F93F /* SDL_version.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = SDL_version.h; path = /usr/local/include/SDL/SDL_version.h; sourceTree = "<absolute>"; };
 		7A789E530A52E5870036F93F /* SDL_video.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = SDL_video.h; path = /usr/local/include/SDL/SDL_video.h; sourceTree = "<absolute>"; };
+		7A79D1370A9DFEB500B27C83 /* MushError.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = MushError.rb; sourceTree = "<group>"; };
+		7A79D13C0A9DFF1000B27C83 /* MushLog.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = MushLog.rb; sourceTree = "<group>"; };
 		7A7DE93808157EE300CB5432 /* TesseractTrainerConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TesseractTrainerConfig.h; sourceTree = "<group>"; };
 		7A7DE93908157EE300CB5432 /* TesseractTrainerConfig.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TesseractTrainerConfig.cpp; sourceTree = "<group>"; };
 		7A8040E9086AE085007B0F20 /* MushGameJobAdmission.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushGameJobAdmission.h; sourceTree = "<group>"; };
@@ -4194,6 +4196,7 @@
 				7A4CAAFF0A582DF100AA934F /* MushBasePrism.rb */,
 				7A4CAB000A582DF100AA934F /* MushConfig.rb */,
 				7A4CAB010A582DF200AA934F /* MushDisplacement.rb */,
+				7A79D1370A9DFEB500B27C83 /* MushError.rb */,
 				7ACFCE540A90A4E600A55B7D /* MushEvent.rb */,
 				7ACFD0AE0A91D93800A55B7D /* MushEventTimer.rb */,
 				7A4CAB020A582DF200AA934F /* MushExtruder.rb */,
@@ -4202,6 +4205,7 @@
 				7A4CAB040A582DF200AA934F /* MushGLTexture.rb */,
 				7A4CAB050A582DF200AA934F /* MushHelpers.rb */,
 				7A5965790A9DB412002A966B /* MushLogic.rb */,
+				7A79D13C0A9DFF1000B27C83 /* MushLog.rb */,
 				7A4CAB060A582DF200AA934F /* MushMaterial.rb */,
 				7A6168550A5FF25E0046188D /* MushMenu.rb */,
 				7A4CAB070A582DF200AA934F /* MushMesh.rb */,

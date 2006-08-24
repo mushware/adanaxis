@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } YCa3eNmcxUH2q0Oxh6SpTA
 /*
- * $Id: AdanaxisPieceKhazi.cpp,v 1.17 2006/08/20 14:19:20 southa Exp $
+ * $Id: AdanaxisPieceKhazi.cpp,v 1.18 2006/08/24 13:04:38 southa Exp $
  * $Log: AdanaxisPieceKhazi.cpp,v $
+ * Revision 1.18  2006/08/24 13:04:38  southa
+ * Event handling
+ *
  * Revision 1.17  2006/08/20 14:19:20  southa
  * Seek operation
  *
@@ -94,8 +97,7 @@ AdanaxisPieceKhazi::AdanaxisPieceKhazi(const std::string& inID) :
     RubyObjSet(MushRubyExec::Sgl().Call(AdanaxisIntern::Sgl().KlassAdanaxisPieceKhazi(),
                                         MushRubyIntern::cRegisteredCreate()));
     MushRubyUtil::DataObjectWrapNew(AdanaxisIntern::Sgl().KlassAdanaxisPieceKhazi(), RubyObj(), this);
-    MushRubyUtil::InstanceVarSet(RubyObj().Value(), MushRubyIntern::SymbolID("@m_id"), MushRubyValue(inID).Value());
-    MushcoreLog::Sgl().InfoLog() << RubyObj().Inspect() << endl;
+    MushRubyUtil::InstanceVarSet(RubyObj().Value(), MushRubyIntern::ATm_id(), MushRubyValue(inID).Value());
 }
 
 AdanaxisPieceKhazi::~AdanaxisPieceKhazi()

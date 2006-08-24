@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } lqALCPGBahbk4ibyVPO8LQ
 /*
- * $Id: MushRubyIntern.cpp,v 1.16 2006/08/20 14:19:22 southa Exp $
+ * $Id: MushRubyIntern.cpp,v 1.17 2006/08/24 13:04:38 southa Exp $
  * $Log: MushRubyIntern.cpp,v $
+ * Revision 1.17  2006/08/24 13:04:38  southa
+ * Event handling
+ *
  * Revision 1.16  2006/08/20 14:19:22  southa
  * Seek operation
  *
@@ -122,6 +125,7 @@ MUSHRUBYINTERN_DEFINE(velocity);
 
 MUSHRUBYINTERN_DEFINE_AT(_embeddedDataPtr);
 MUSHRUBYINTERN_DEFINE_AT(m_expireFlag);
+MUSHRUBYINTERN_DEFINE_AT(m_id);
 MUSHRUBYINTERN_DEFINE_AT(m_post);
 
 void
@@ -169,6 +173,7 @@ MushRubyIntern::Initialise(void)
 
 	MUSHRUBYINTERN_INIT_AT(_embeddedDataPtr);
 	MUSHRUBYINTERN_INIT_AT(m_expireFlag);
+	MUSHRUBYINTERN_INIT_AT(m_id);
 	MUSHRUBYINTERN_INIT_AT(m_post);
 }
 

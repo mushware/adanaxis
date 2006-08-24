@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } n1eaCj2fb8dNPgbT0uOuEQ
 /*
- * $Id: MushRubyIntern.h,v 1.16 2006/08/20 14:19:22 southa Exp $
+ * $Id: MushRubyIntern.h,v 1.17 2006/08/24 13:04:38 southa Exp $
  * $Log: MushRubyIntern.h,v $
+ * Revision 1.17  2006/08/24 13:04:38  southa
+ * Event handling
+ *
  * Revision 1.16  2006/08/20 14:19:22  southa
  * Seek operation
  *
@@ -137,6 +140,7 @@ public:
 
 	MUSHRUBYINTERN_DECLARE_AT(_embeddedDataPtr);
 	MUSHRUBYINTERN_DECLARE_AT(m_expireFlag);
+	MUSHRUBYINTERN_DECLARE_AT(m_id);
 	MUSHRUBYINTERN_DECLARE_AT(m_post);
 };
 
