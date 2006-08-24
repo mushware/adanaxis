@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } rVCNunlW+wZoonHnGB5a7Q
 /*
- * $Id: MushGamePiece.cpp,v 1.9 2006/08/17 12:18:11 southa Exp $
+ * $Id: MushGamePiece.cpp,v 1.10 2006/08/20 14:19:21 southa Exp $
  * $Log: MushGamePiece.cpp,v $
+ * Revision 1.10  2006/08/20 14:19:21  southa
+ * Seek operation
+ *
  * Revision 1.9  2006/08/17 12:18:11  southa
  * Event handling
  *
@@ -86,7 +89,7 @@ MushGamePiece::Load(Mushware::tRubyValue inSelf)
         tRubyValue value = MushRubyUtil::InstanceVar(inSelf, MushRubyIntern::ATm_post());
         if (value == kRubyQnil)
         {
-            throw MushcoreDataFail("No attribute @post in MushPiece");
+            throw MushcoreDataFail("No attribute @m_post in MushPiece");
         }
         MushMeshRubyPost::WRef(value) = Post();
     }
@@ -101,7 +104,7 @@ MushGamePiece::Save(Mushware::tRubyValue inSelf)
         tRubyValue value = MushRubyUtil::InstanceVar(inSelf, MushRubyIntern::ATm_post());
         if (value == kRubyQnil)
         {
-            throw MushcoreDataFail("No attribute @post in MushPiece");
+            throw MushcoreDataFail("No attribute @m_post in MushPiece");
         }
         PostSet(MushMeshRubyPost::Ref(value));
     }

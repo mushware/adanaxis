@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } n1eaCj2fb8dNPgbT0uOuEQ
 /*
- * $Id: MushRubyIntern.h,v 1.15 2006/08/19 09:12:10 southa Exp $
+ * $Id: MushRubyIntern.h,v 1.16 2006/08/20 14:19:22 southa Exp $
  * $Log: MushRubyIntern.h,v $
+ * Revision 1.16  2006/08/20 14:19:22  southa
+ * Seek operation
+ *
  * Revision 1.15  2006/08/19 09:12:10  southa
  * Event handling
  *
@@ -102,6 +105,8 @@ public:
 	MUSHRUBYINTERN_DECLARE(divide);
 	MUSHRUBYINTERN_DECLARE(event);
 	MUSHRUBYINTERN_DECLARE(extent);
+	MUSHRUBYINTERN_DECLARE(inspect);
+	MUSHRUBYINTERN_DECLARE(Integer);
 	MUSHRUBYINTERN_DECLARE(klass);
 	MUSHRUBYINTERN_DECLARE(mesh_name);
 	MUSHRUBYINTERN_DECLARE(mBanner);

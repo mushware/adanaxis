@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } qwHjHWDAhJ5nzUjaMqYD6A
 /*
- * $Id: AdanaxisRubyKhazi.cpp,v 1.3 2006/08/01 17:21:28 southa Exp $
+ * $Id: AdanaxisRubyKhazi.cpp,v 1.4 2006/08/17 08:57:12 southa Exp $
  * $Log: AdanaxisRubyKhazi.cpp,v $
+ * Revision 1.4  2006/08/17 08:57:12  southa
+ * Event handling
+ *
  * Revision 1.3  2006/08/01 17:21:28  southa
  * River demo
  *
@@ -54,9 +57,16 @@ MUSHRUBYMAPTOROBJ_INITIALIZE(AdanaxisPieceKhazi)(Mushware::tRubyArgC inArgC, Mus
 	 */
 	refRef.MaptorSet(dataRef);
 	
-	refRef.KeySet(dataRef.NextKey());
-	AdanaxisPieceKhazi& khaziRef = *refRef.GetOrCreate();
+    tMaptorObjData::key_type key = dataRef.NextKey();
+	refRef.KeySet(key);
+    
+    ostringstream idStream;
+    idStream << "k" << key;
+    
+	AdanaxisPieceKhazi& khaziRef = *new AdanaxisPieceKhazi(idStream.str());
+    dataRef.Give(&khaziRef, key);
 
+    std::string id = "";
 	std::string meshName = "";
 	
 	switch (inArgC)

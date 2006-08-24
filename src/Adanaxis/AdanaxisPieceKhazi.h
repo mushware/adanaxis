@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } Bm3nTDDsM5QE9iTgAOLr3w
 /*
- * $Id: AdanaxisPieceKhazi.h,v 1.13 2006/08/17 12:18:10 southa Exp $
+ * $Id: AdanaxisPieceKhazi.h,v 1.14 2006/08/20 14:19:20 southa Exp $
  * $Log: AdanaxisPieceKhazi.h,v $
+ * Revision 1.14  2006/08/20 14:19:20  southa
+ * Seek operation
+ *
  * Revision 1.13  2006/08/17 12:18:10  southa
  * Event handling
  *
@@ -80,7 +83,6 @@ public:
     explicit AdanaxisPieceKhazi(const std::string& inID = "");
     virtual ~AdanaxisPieceKhazi();
 
-    virtual void Initialise(MushGameLogic& ioLogic);
     virtual void Move(MushGameLogic& ioLogic, const Mushware::tVal inFrameslice);
     virtual bool Render(MushGLJobRender& outRender,
                         MushGameLogic& ioLogic, MushRenderMesh& inRender, const MushGameCamera& inCamera);
@@ -95,6 +97,8 @@ public:
     
     static Mushware::tRubyValue RubyPostLoad(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
     static Mushware::tRubyValue RubyPostSave(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
+    
+    static Mushware::tRubyValue RubyLookup(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
     static Mushware::tRubyValue Klass(void);
     static void RubyInstall(void);
     
@@ -102,7 +106,6 @@ protected:
     virtual void Explode(MushGameLogic& ioLogic, const MushGameMessageCollisionFatal& inMessage);
     
 private:
-    bool m_initialised;
     Mushware::tMsec m_actionMsec;
         
     static Mushware::tRubyValue m_rubyKlass;

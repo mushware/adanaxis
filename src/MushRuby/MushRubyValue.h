@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 5BOLwI3DhgfDHotOLswDpg
 /*
- * $Id: MushRubyValue.h,v 1.13 2006/07/28 11:14:30 southa Exp $
+ * $Id: MushRubyValue.h,v 1.14 2006/08/17 08:57:13 southa Exp $
  * $Log: MushRubyValue.h,v $
+ * Revision 1.14  2006/08/17 08:57:13  southa
+ * Event handling
+ *
  * Revision 1.13  2006/07/28 11:14:30  southa
  * Records for multiple spaces
  *
@@ -100,6 +103,7 @@ public:
     MushRubyValue ArrayEntry(Mushware::U32 inIndex) const;
     
     MushRubyValue Call(Mushware::tRubyID inID) const;
+    const std::string Inspect(void) const;
     
 private:
 	Mushware::tRubyValue m_value; //:readwrite

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } lqALCPGBahbk4ibyVPO8LQ
 /*
- * $Id: MushRubyIntern.cpp,v 1.15 2006/08/19 09:12:09 southa Exp $
+ * $Id: MushRubyIntern.cpp,v 1.16 2006/08/20 14:19:22 southa Exp $
  * $Log: MushRubyIntern.cpp,v $
+ * Revision 1.16  2006/08/20 14:19:22  southa
+ * Seek operation
+ *
  * Revision 1.15  2006/08/19 09:12:09  southa
  * Event handling
  *
@@ -87,6 +90,8 @@ MUSHRUBYINTERN_DEFINE(displacement_velocity);
 MUSHRUBYINTERN_DEFINE(divide);
 MUSHRUBYINTERN_DEFINE(event);
 MUSHRUBYINTERN_DEFINE(extent);
+MUSHRUBYINTERN_DEFINE(inspect);
+MUSHRUBYINTERN_DEFINE(Integer);
 MUSHRUBYINTERN_DEFINE(klass);
 MUSHRUBYINTERN_DEFINE(mesh_name);
 MUSHRUBYINTERN_DEFINE(mBanner);
@@ -132,6 +137,8 @@ MushRubyIntern::Initialise(void)
 	MUSHRUBYINTERN_INIT(divide);
 	MUSHRUBYINTERN_INIT(event);
 	MUSHRUBYINTERN_INIT(extent);
+	MUSHRUBYINTERN_INIT(inspect);
+	MUSHRUBYINTERN_INIT(Integer);
 	MUSHRUBYINTERN_INIT(klass);
 	MUSHRUBYINTERN_INIT(mesh_name);
 	MUSHRUBYINTERN_INIT(mBanner);

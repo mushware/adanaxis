@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } hwIlNOCEH5GsgwGY+rP1Kg
 /*
- * $Id: MushRubyValue.cpp,v 1.15 2006/07/28 16:52:24 southa Exp $
+ * $Id: MushRubyValue.cpp,v 1.16 2006/08/17 08:57:13 southa Exp $
  * $Log: MushRubyValue.cpp,v $
+ * Revision 1.16  2006/08/17 08:57:13  southa
+ * Event handling
+ *
  * Revision 1.15  2006/07/28 16:52:24  southa
  * Options work
  *
@@ -238,8 +241,7 @@ Mushware::U32
 MushRubyValue::U32(void) const
 {
 	Mushware::tRubyValue tempValue = m_value; // Avoid const problem
-	
-	return NUM2UINT(tempValue);
+    return NUM2UINT(rb_Integer(tempValue));
 }
 
 Mushware::tVal
@@ -309,4 +311,11 @@ MushRubyValue
 MushRubyValue::ArrayEntry(Mushware::U32 inIndex) const
 {
     return MushRubyValue(rb_ary_entry(m_value, inIndex));
+}
+
+const std::string
+MushRubyValue::Inspect(void) const
+{
+    Mushware::tRubyValue stringValue = MushRubyExec::Sgl().Call(MushRubyValue(m_value), MushRubyIntern::inspect()).Value();
+    return std::string(RSTRING(stringValue)->ptr, RSTRING(stringValue)->ptr + RSTRING(stringValue)->len);
 }

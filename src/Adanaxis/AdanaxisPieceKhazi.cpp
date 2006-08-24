@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } YCa3eNmcxUH2q0Oxh6SpTA
 /*
- * $Id: AdanaxisPieceKhazi.cpp,v 1.16 2006/08/19 09:12:09 southa Exp $
+ * $Id: AdanaxisPieceKhazi.cpp,v 1.17 2006/08/20 14:19:20 southa Exp $
  * $Log: AdanaxisPieceKhazi.cpp,v $
+ * Revision 1.17  2006/08/20 14:19:20  southa
+ * Seek operation
+ *
  * Revision 1.16  2006/08/19 09:12:09  southa
  * Event handling
  *
@@ -74,6 +77,7 @@
 #include "AdanaxisData.h"
 #include "AdanaxisIntern.h"
 #include "AdanaxisPieceProjectile.h"
+#include "AdanaxisRuby.h"
 #include "AdanaxisUtil.h"
 
 #include "API/mushMushMeshRuby.h"
@@ -85,12 +89,13 @@ Mushware::tRubyValue AdanaxisPieceKhazi::m_rubyKlass = Mushware::kRubyQnil;
 
 AdanaxisPieceKhazi::AdanaxisPieceKhazi(const std::string& inID) :
     MushGamePiece(inID),
-    m_initialised(false),
-    m_actionMsec(0)
+    m_actionMsec(1)
 {
     RubyObjSet(MushRubyExec::Sgl().Call(AdanaxisIntern::Sgl().KlassAdanaxisPieceKhazi(),
                                         MushRubyIntern::cRegisteredCreate()));
     MushRubyUtil::DataObjectWrapNew(AdanaxisIntern::Sgl().KlassAdanaxisPieceKhazi(), RubyObj(), this);
+    MushRubyUtil::InstanceVarSet(RubyObj().Value(), MushRubyIntern::SymbolID("@m_id"), MushRubyValue(inID).Value());
+    MushcoreLog::Sgl().InfoLog() << RubyObj().Inspect() << endl;
 }
 
 AdanaxisPieceKhazi::~AdanaxisPieceKhazi()
@@ -171,17 +176,8 @@ AdanaxisPieceKhazi::EventHandle(MushGameLogic& ioLogic, MushRubyValue inEvent, M
 }
 
 void
-AdanaxisPieceKhazi::Initialise(MushGameLogic& ioLogic)
-{
-    ActionValueHandle(ioLogic, RubyObj().Call(MushRubyIntern::mInitialise()));
-    m_initialised = true;
-}
-
-void
 AdanaxisPieceKhazi::Move(MushGameLogic& ioLogic, const tVal inFrameslice)
 {
-    if (!m_initialised) Initialise(ioLogic);
-    
     if (m_actionMsec != 0)
     {
         Mushware::tMsec gameMsec = ioLogic.GameMsec();
@@ -198,8 +194,6 @@ bool
 AdanaxisPieceKhazi::Render(MushGLJobRender& outRender,
                            MushGameLogic& ioLogic, MushRenderMesh& inRender, const MushGameCamera& inCamera)
 {
-    if (!m_initialised) Initialise(ioLogic);
-
     MushRenderSpec renderSpec;
     renderSpec.BuffersRefSet(BuffersRef());
     renderSpec.TexCoordBuffersRefSet(TexCoordBuffersRef());
@@ -349,6 +343,32 @@ AdanaxisPieceKhazi::RubyPostSave(Mushware::tRubyValue inSelf, Mushware::tRubyVal
 }
 
 Mushware::tRubyValue
+AdanaxisPieceKhazi::RubyLookup(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0)
+{
+    tRubyValue retVal;
+    try
+    {
+        U32 objNum = MushRubyValue(inArg0).U32();
+                
+        AdanaxisPieceKhazi *pKhazi = NULL;
+        if (AdanaxisRuby::SaveData().KhaziListWRef().GetIfExists(pKhazi, objNum))
+        {
+            retVal = pKhazi->RubyObj().Value();
+        }
+        else
+        {
+            retVal = kRubyQnil;
+        }
+    }
+    catch (std::exception& e)
+    {
+        MushRubyUtil::Raise(e.what());
+        retVal = kRubyQnil; // Prevent warning
+    }
+    return retVal;
+}
+
+Mushware::tRubyValue
 AdanaxisPieceKhazi::Klass(void)
 {
     if (m_rubyKlass == kRubyQnil)
@@ -367,6 +387,7 @@ AdanaxisPieceKhazi::RubyInstall(void)
     }
 	MushRubyUtil::MethodDefineOneParam(Klass(), "mPostLoad", RubyPostLoad);
 	MushRubyUtil::MethodDefineOneParam(Klass(), "mPostSave", RubyPostSave);
+	MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cLookup", RubyLookup);
 }
 
 namespace
@@ -412,7 +433,6 @@ AdanaxisPieceKhazi::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
     MushGamePiece::AutoPrint(ioOut);
-    ioOut << "initialised=" << m_initialised << ", ";
     ioOut << "actionMsec=" << m_actionMsec;
     ioOut << "]";
 }
@@ -424,10 +444,6 @@ AdanaxisPieceKhazi::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::stri
         AutoInputPrologue(ioIn);
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
-    }
-    else if (inTagStr == "initialised")
-    {
-        ioIn >> m_initialised;
     }
     else if (inTagStr == "actionMsec")
     {
@@ -447,9 +463,7 @@ void
 AdanaxisPieceKhazi::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
     MushGamePiece::AutoXMLPrint(ioOut);
-    ioOut.TagSet("initialised");
-    ioOut << m_initialised;
     ioOut.TagSet("actionMsec");
     ioOut << m_actionMsec;
 }
-//%outOfLineFunctions } EtJnBJVF9T6ODOM9mIr6WQ
+//%outOfLineFunctions } XsG9P26QU9OniLdfLEyr7g
