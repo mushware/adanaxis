@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } vHDbpnIep+mzmlVV3IuGGg
 /*
- * $Id: AdanaxisPlayer.cpp,v 1.24 2006/07/28 16:52:19 southa Exp $
+ * $Id: AdanaxisPlayer.cpp,v 1.25 2006/08/01 17:21:26 southa Exp $
  * $Log: AdanaxisPlayer.cpp,v $
+ * Revision 1.25  2006/08/01 17:21:26  southa
+ * River demo
+ *
  * Revision 1.24  2006/07/28 16:52:19  southa
  * Options work
  *
@@ -276,11 +279,16 @@ AdanaxisPlayer::ControlInfoConsume(MushGameLogic& ioLogic, const MushGameMessage
 void
 AdanaxisPlayer::FirePieceCreate(MushGameLogic& ioLogic, const MushGameMessageFire& inMessage)
 {
-    AdanaxisSaveData::tProjectileList& projectileListRef =
+    AdanaxisSaveData::tProjectileList& dataRef =
         AdanaxisUtil::Logic(ioLogic).SaveData().ProjectileListWRef();
 
-    projectileListRef.push_back(AdanaxisPieceProjectile("proj"+Id()));
-    AdanaxisSaveData::tProjectile& projectileRef = projectileListRef.back();
+    AdanaxisSaveData::tProjectileList::key_type key = dataRef.NextKey();
+    
+    ostringstream idStream;
+    idStream << "p" << key;
+    
+	AdanaxisPieceProjectile& projectileRef = *new AdanaxisPieceProjectile(idStream.str());
+    dataRef.Give(&projectileRef, key);
     
     projectileRef.OwnerSet(Id());
     projectileRef.ExpiryMsecSet(ioLogic.FrameMsec() + projectileRef.LifeMsec());
