@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } lqALCPGBahbk4ibyVPO8LQ
 /*
- * $Id: MushRubyIntern.cpp,v 1.17 2006/08/24 13:04:38 southa Exp $
+ * $Id: MushRubyIntern.cpp,v 1.18 2006/08/24 16:30:56 southa Exp $
  * $Log: MushRubyIntern.cpp,v $
+ * Revision 1.18  2006/08/24 16:30:56  southa
+ * Event handling
+ *
  * Revision 1.17  2006/08/24 13:04:38  southa
  * Event handling
  *
@@ -96,6 +99,7 @@ MUSHRUBYINTERN_DEFINE(extent);
 MUSHRUBYINTERN_DEFINE(inspect);
 MUSHRUBYINTERN_DEFINE(Integer);
 MUSHRUBYINTERN_DEFINE(klass);
+MUSHRUBYINTERN_DEFINE(lifetime_msec);
 MUSHRUBYINTERN_DEFINE(mesh_name);
 MUSHRUBYINTERN_DEFINE(mBanner);
 MUSHRUBYINTERN_DEFINE(mHandleGameStart);
@@ -110,6 +114,7 @@ MUSHRUBYINTERN_DEFINE(name);
 MUSHRUBYINTERN_DEFINE(num_iterations);
 MUSHRUBYINTERN_DEFINE(offset);
 MUSHRUBYINTERN_DEFINE(order);
+MUSHRUBYINTERN_DEFINE(owner);
 MUSHRUBYINTERN_DEFINE(position);
 MUSHRUBYINTERN_DEFINE(post);
 MUSHRUBYINTERN_DEFINE(rotation);
@@ -144,6 +149,7 @@ MushRubyIntern::Initialise(void)
 	MUSHRUBYINTERN_INIT(inspect);
 	MUSHRUBYINTERN_INIT(Integer);
 	MUSHRUBYINTERN_INIT(klass);
+	MUSHRUBYINTERN_INIT(lifetime_msec);
 	MUSHRUBYINTERN_INIT(mesh_name);
 	MUSHRUBYINTERN_INIT(mBanner);
 	MUSHRUBYINTERN_INIT(mHandleGameStart);
@@ -158,6 +164,7 @@ MushRubyIntern::Initialise(void)
 	MUSHRUBYINTERN_INIT(num_iterations);
 	MUSHRUBYINTERN_INIT(offset);
 	MUSHRUBYINTERN_INIT(order);
+	MUSHRUBYINTERN_INIT(owner);
 	MUSHRUBYINTERN_INIT(post);
 	MUSHRUBYINTERN_INIT(position);
 	MUSHRUBYINTERN_INIT(rotation);

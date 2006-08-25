@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } yAaZbixiy4nfgXOSFEVzQQ
 /*
- * $Id: AdanaxisPieceProjectile.h,v 1.8 2006/07/24 18:46:47 southa Exp $
+ * $Id: AdanaxisPieceProjectile.h,v 1.9 2006/08/01 17:21:26 southa Exp $
  * $Log: AdanaxisPieceProjectile.h,v $
+ * Revision 1.9  2006/08/01 17:21:26  southa
+ * River demo
+ *
  * Revision 1.8  2006/07/24 18:46:47  southa
  * Depth sorting
  *
@@ -75,12 +78,18 @@ public:
     virtual const MushMesh4Mesh& CollisionMesh(void) const { return Mesh(); }
     virtual const MushMeshPosticity& CollisionPost(void) const { return Post(); }
 
+    static Mushware::tRubyValue RubyCreate(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
+    static Mushware::tRubyValue Klass(void);
+    static void RubyInstall(void);
+
 private:
     std::string m_owner; //:readwrite
     Mushware::tVal m_initialVelocity; //:readwrite
     Mushware::tMsec m_lifeMsec; //:readwrite
     Mushware::tMsec m_expiryMsec; //:readwrite
     Mushware::U32 m_moveCtr;
+    
+    static Mushware::tRubyValue m_rubyKlass; // Must duplicate this in derived classes
     
 //%classPrototypes {
 public:

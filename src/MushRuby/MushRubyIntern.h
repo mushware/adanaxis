@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } n1eaCj2fb8dNPgbT0uOuEQ
 /*
- * $Id: MushRubyIntern.h,v 1.17 2006/08/24 13:04:38 southa Exp $
+ * $Id: MushRubyIntern.h,v 1.18 2006/08/24 16:30:56 southa Exp $
  * $Log: MushRubyIntern.h,v $
+ * Revision 1.18  2006/08/24 16:30:56  southa
+ * Event handling
+ *
  * Revision 1.17  2006/08/24 13:04:38  southa
  * Event handling
  *
@@ -111,6 +114,7 @@ public:
 	MUSHRUBYINTERN_DECLARE(inspect);
 	MUSHRUBYINTERN_DECLARE(Integer);
 	MUSHRUBYINTERN_DECLARE(klass);
+	MUSHRUBYINTERN_DECLARE(lifetime_msec);
 	MUSHRUBYINTERN_DECLARE(mesh_name);
 	MUSHRUBYINTERN_DECLARE(mBanner);
 	MUSHRUBYINTERN_DECLARE(mHandleGameStart);
@@ -125,6 +129,7 @@ public:
 	MUSHRUBYINTERN_DECLARE(name);
 	MUSHRUBYINTERN_DECLARE(offset);
 	MUSHRUBYINTERN_DECLARE(order);
+	MUSHRUBYINTERN_DECLARE(owner);
 	MUSHRUBYINTERN_DECLARE(position);
 	MUSHRUBYINTERN_DECLARE(post);
 	MUSHRUBYINTERN_DECLARE(rotation);

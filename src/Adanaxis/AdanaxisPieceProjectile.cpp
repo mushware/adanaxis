@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } AKn0HlU4NeCX3ptHFWodSQ
 /*
- * $Id: AdanaxisPieceProjectile.cpp,v 1.9 2006/07/24 18:46:47 southa Exp $
+ * $Id: AdanaxisPieceProjectile.cpp,v 1.10 2006/08/01 17:21:25 southa Exp $
  * $Log: AdanaxisPieceProjectile.cpp,v $
+ * Revision 1.10  2006/08/01 17:21:25  southa
+ * River demo
+ *
  * Revision 1.9  2006/07/24 18:46:47  southa
  * Depth sorting
  *
@@ -50,7 +53,13 @@
 
 #include "AdanaxisPieceProjectile.h"
 
+#include "AdanaxisRuby.h"
+#include "AdanaxisSaveData.h"
 #include "AdanaxisUtil.h"
+
+#include "API/mushMushMeshRuby.h"
+
+Mushware::tRubyValue AdanaxisPieceProjectile::m_rubyKlass = Mushware::kRubyQnil;
 
 using namespace Mushware;
 using namespace std;
@@ -66,18 +75,12 @@ AdanaxisPieceProjectile::AdanaxisPieceProjectile(const std::string& inID) :
 void
 AdanaxisPieceProjectile::Move(MushGameLogic& ioLogic, const tVal inFrameslice)
 {
-    if (m_moveCtr == 0)
-    {
-
-    }
-    
     PostWRef().InPlaceVelocityAdd();
     if (ioLogic.FrameMsec() > m_expiryMsec)
     {
         Explode(ioLogic);
         ExpireFlagSet(true);
     }
-
     m_moveCtr++;
 }
 
@@ -137,6 +140,107 @@ AdanaxisPieceProjectile::Explode(MushGameLogic& ioLogic)
                                   MushMeshTools::Random(0.1, 1)  // speed
                                   );
     }
+}
+
+Mushware::tRubyValue
+AdanaxisPieceProjectile::RubyCreate(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0)
+{
+    AdanaxisSaveData::tProjectileList& dataRef = AdanaxisRuby::SaveData().ProjectileListWRef();
+	
+	/* This object contains a reference (MushcoreMaptorRef) to an object
+     * in SaveData().ProjectileList(), which is a MushcoreMaptor<AdanaxisPieceProjectile>.
+     * The next line points the MushcoreMaptorRef at that MushcoreMaptor
+     */
+    AdanaxisSaveData::tProjectileList::key_type key = dataRef.NextKey();
+
+    ostringstream idStream;
+    idStream << "p" << key;
+    
+	AdanaxisPieceProjectile& objRef = *new AdanaxisPieceProjectile(idStream.str());
+    dataRef.Give(&objRef, key);
+    
+    std::string id = "";
+	std::string meshName = "";
+	std::string owner = "";
+	U32 lifetimeMsec = 0;
+			
+    MushRubyValue param0(inArg0);
+    if (!param0.IsHash())
+    {
+        MushRubyUtil::Raise("Parameters to AdanaxisPieceProjectile.new must be in hash form");	
+    }
+    else
+    {
+        Mushware::tRubyHash paramHash = param0.Hash();
+        
+        for (Mushware::tRubyHash::iterator p = paramHash.begin(); p != paramHash.end(); ++p)
+        {
+            tRubyID symbol = p->first.Symbol();
+            if (symbol == MushRubyIntern::post())
+            {
+                objRef.PostSet(MushMeshRubyPost::Ref(p->second.Value()));
+            }
+            else if (symbol == MushRubyIntern::mesh_name())
+            {
+                meshName = p->second.String();
+            }
+            else if (symbol == MushRubyIntern::owner())
+            {
+                owner = p->second.String();
+            }
+            else if (symbol == MushRubyIntern::lifetime_msec())
+            {
+                lifetimeMsec = p->second.U32();
+            }
+            else
+            {
+                MushRubyUtil::Raise("Unknown name in AdanaxisPieceProjectile parameter hash '"+p->first.String()+"'");	
+            }
+        }
+    }
+	
+	if (meshName != "")
+    {
+		objRef.MeshWRef() = *MushcoreData<MushMesh4Mesh>::Sgl().Get(meshName);
+		objRef.TexCoordBuffersNameSet(meshName);
+	}
+    else
+	{
+        MushcoreLog::Sgl().WarningLog() << "Creating AdanaxisPieceProjectile object without a valid mesh_name parameter" << endl;	
+	}
+    objRef.OwnerSet(owner);
+    objRef.ExpiryMsecSet(AdanaxisRuby::VolatileData().GameMsec() + lifetimeMsec);
+
+    return objRef.RubyObj().Value();
+}
+
+Mushware::tRubyValue
+AdanaxisPieceProjectile::Klass(void)
+{
+    if (m_rubyKlass == kRubyQnil)
+    {
+        RubyInstall();
+    }
+    return m_rubyKlass;
+}    
+
+void
+AdanaxisPieceProjectile::RubyInstall(void)
+{
+    if (m_rubyKlass == kRubyQnil)
+    {
+	    m_rubyKlass = MushRubyUtil::SubclassDefine("AdanaxisPieceProjectile", MushGamePiece::Klass());
+    }
+	MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cCreate", RubyCreate);
+}
+
+namespace
+{
+	void Install(void)
+	{
+		MushRubyInstall::Sgl().Add(AdanaxisPieceProjectile::RubyInstall);
+	}
+	MushcoreInstaller install(Install);
 }
 
 //%outOfLineFunctions {

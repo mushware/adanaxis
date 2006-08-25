@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } Mac7dWHONvkZIg39sQnwww
 /*
- * $Id: AdanaxisLogic.cpp,v 1.17 2006/07/31 11:01:36 southa Exp $
+ * $Id: AdanaxisLogic.cpp,v 1.18 2006/08/01 17:21:24 southa Exp $
  * $Log: AdanaxisLogic.cpp,v $
+ * Revision 1.18  2006/08/01 17:21:24  southa
+ * River demo
+ *
  * Revision 1.17  2006/07/31 11:01:36  southa
  * Music and dialogues
  *
@@ -200,11 +203,13 @@ AdanaxisLogic::ProjectilesFullCollide(void)
     tKhaziList::const_iterator khaziEndIter = SaveData().KhaziList().end();
     for (tProjectileList::const_iterator p = SaveData().ProjectileList().begin(); p != projectileEndIter; ++p)
     {
+        std::string projOwner = p->Owner();
         if (!p->ExpireFlag())
         {
             for (tKhaziList::const_iterator q = SaveData().KhaziList().begin(); q != khaziEndIter; ++q)
             {
-                if (!q->ExpireFlag())
+                // if this object hasn't expired and doesn't own the projectile...
+                if (!q->ExpireFlag() && projOwner != q->Id())
                 {
                     MushCollisionInfo collInfo;
                     MushCollisionResolver::Sgl().Resolve(collInfo, *p, *q);

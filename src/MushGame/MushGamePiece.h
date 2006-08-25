@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } QiW5KaWfX1mBGolg1jxMIg
 /*
- * $Id: MushGamePiece.h,v 1.12 2006/08/17 12:18:11 southa Exp $
+ * $Id: MushGamePiece.h,v 1.13 2006/08/20 14:19:21 southa Exp $
  * $Log: MushGamePiece.h,v $
+ * Revision 1.13  2006/08/20 14:19:21  southa
+ * Seek operation
+ *
  * Revision 1.12  2006/08/17 12:18:11  southa
  * Event handling
  *
@@ -102,7 +105,7 @@ private:
 
     MushRubyValue m_rubyObj; //:readwrite
     
-    static Mushware::tRubyValue m_rubyKlass;
+    static Mushware::tRubyValue m_rubyKlass; // Must duplicate this in derived classes
     
 //%classPrototypes {
 public:
