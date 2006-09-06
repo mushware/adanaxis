@@ -1,6 +1,9 @@
 # Target definition file
-# $Id: snapshot.def,v 1.12 2006/06/01 15:40:06 southa Exp $
+# $Id: snapshot.def,v 1.13 2006/06/12 16:03:32 southa Exp $
 # $Log: snapshot.def,v $
+# Revision 1.13  2006/06/12 16:03:32  southa
+# Ruby mesh generation
+#
 # Revision 1.12  2006/06/01 15:40:06  southa
 # DrawArray verification and fixes
 #
@@ -81,4 +84,4 @@ Modules: Main/CommandLineApp Platform/MacOSX Platform/win32 Platform/X11 +.*\.y$
 Append: Makefile.am
 
 ExtraDist:
-Modules: targets/.* macosx/project/.*\.plist README\.* .*\.pl .*\.pm macosx/project/project.xcode/.*pbx(proj|user) prebuild.sh macosx/MakeRelease.sh macosx/snapshot.*
+Modules: targets/.* macosx/project/.*\.plist README\.* .*\.pl .*\.pm macosx/project/project.xcode/.*pbx(proj|user) prebuild.sh macosx/MakeRelease.sh macosx/snapshot.* data-adanaxis/ruby/.* data-adanaxis/mushruby/.*

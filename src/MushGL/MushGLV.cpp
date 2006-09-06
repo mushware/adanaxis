@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } NYmv5MZn7NEYPYHpc3JV8Q
 /*
- * $Id: MushGLV.cpp,v 1.17 2006/07/28 16:52:22 southa Exp $
+ * $Id: MushGLV.cpp,v 1.18 2006/07/28 19:24:34 southa Exp $
  * $Log: MushGLV.cpp,v $
+ * Revision 1.18  2006/07/28 19:24:34  southa
+ * Pre-release work
+ *
  * Revision 1.17  2006/07/28 16:52:22  southa
  * Options work
  *
@@ -100,6 +103,36 @@ MushGLV::MushGLV() :
     m_hasActiveTexture(false),
     m_fpActiveTexture(NULL),
     m_fpClientActiveTexture(NULL),
+    m_hasShader(false),
+    m_useShader(false),
+    m_fpCreateShaderObject(NULL),
+    m_fpShaderSource(NULL),
+    m_fpCompileShader(NULL),
+    m_fpCreateProgramObject(NULL),
+    m_fpAttachObject(NULL),
+    m_fpLinkProgram(NULL),  
+    m_fpUseProgramObject(NULL),  
+    m_fpDeleteObject(NULL), 
+    m_fpGetObjectParameterfv(NULL),  
+    m_fpGetObjectParameteriv(NULL),
+    m_fpGetShaderSource(NULL),
+    m_fpGetInfoLog(NULL),  
+    m_fpVertexAttribPointer(NULL),  
+    m_fpEnableVertexAttribArray(NULL),  
+    m_fpDisableVertexAttribArray(NULL),  
+    m_fpBindAttribLocation(NULL),  
+    m_fpGetAttribLocation(NULL),  
+    m_fpGetActiveAttrib(NULL),  
+    m_fpVertexAttrib4fv(NULL),  
+    m_fpVertexAttrib4iv(NULL),  
+    m_fpGetVertexAttribPointerv(NULL),  
+    m_fpGetUniformLocation(NULL),  
+    m_fpUniform1i(NULL),  
+    m_fpUniform4iv(NULL),  
+    m_fpUniform1f(NULL),  
+    m_fpUniform4fv(NULL),  
+    m_fpUniformMatrix4fv(NULL), 
+    m_fpGetActiveUniform(NULL),
     m_numTextureUnits(0),
     m_hasS3TC(false),
     m_useS3TC(false),
@@ -191,6 +224,54 @@ MushGLV::Acquaint(void)
 	else
 	{
 		m_hasS3TC = false;
+	}
+	
+	if (!safeMode &&
+        m_extensions.find(" GL_ARB_shader_objects ") != string::npos &&
+        m_extensions.find(" GL_ARB_vertex_shader ") != string::npos &&
+        m_extensions.find(" GL_ARB_fragment_shader ") != string::npos)
+    {
+        try
+        { 
+            m_fpCreateShaderObject = (tfpCreateShaderObject) GetProcAddressWithARB("glCreateShaderObject");
+            m_fpShaderSource = (tfpShaderSource) GetProcAddressWithARB("glShaderSource");
+            m_fpCompileShader = (tfpCompileShader) GetProcAddressWithARB("glCompileShader");
+            m_fpCreateProgramObject = (tfpCreateProgramObject) GetProcAddressWithARB("glCreateProgramObject");
+            m_fpAttachObject = (tfpAttachObject) GetProcAddressWithARB("glAttachObject");
+            m_fpLinkProgram = (tfpLinkProgram) GetProcAddressWithARB("glLinkProgram");  
+            m_fpUseProgramObject = (tfpUseProgramObject) GetProcAddressWithARB("glUseProgramObject"); 
+            m_fpDeleteObject = (tfpDeleteObject) GetProcAddressWithARB("glDeleteObject");
+            m_fpGetObjectParameterfv = (tfpGetObjectParameterfv) GetProcAddressWithARB("glGetObjectParameterfv");  
+            m_fpGetObjectParameteriv = (tfpGetObjectParameteriv) GetProcAddressWithARB("glGetObjectParameteriv");
+            m_fpGetShaderSource = (tfpGetShaderSource) GetProcAddressWithARB("glGetShaderSource");
+            m_fpGetInfoLog = (tfpGetInfoLog) GetProcAddressWithARB("glGetInfoLog");  
+            m_fpVertexAttribPointer = (tfpVertexAttribPointer) GetProcAddressWithARB("glVertexAttribPointer");  
+            m_fpEnableVertexAttribArray = (tfpEnableVertexAttribArray) GetProcAddressWithARB("glEnableVertexAttribArray");  
+            m_fpDisableVertexAttribArray = (tfpDisableVertexAttribArray) GetProcAddressWithARB("glDisableVertexAttribArray");  
+            m_fpBindAttribLocation = (tfpBindAttribLocation) GetProcAddressWithARB("glBindAttribLocation"); 
+            m_fpGetAttribLocation = (tfpGetAttribLocation) GetProcAddressWithARB("glGetAttribLocation");  
+            m_fpGetActiveAttrib = (tfpGetActiveAttrib) GetProcAddressWithARB("glGetActiveAttrib");  
+            m_fpVertexAttrib4fv = (tfpVertexAttrib4fv) GetProcAddressWithARB("glVertexAttrib4fv");  
+            m_fpVertexAttrib4iv = (tfpVertexAttrib4iv) GetProcAddressWithARB("glVertexAttrib4iv");   
+            m_fpGetVertexAttribPointerv = (tfpGetVertexAttribPointerv) GetProcAddressWithARB("glGetVertexAttribPointerv");  
+            m_fpGetUniformLocation = (tfpGetUniformLocation) GetProcAddressWithARB("glGetUniformLocation"); 
+            m_fpUniform1i = (tfpUniform1i) GetProcAddressWithARB("glUniform1i");  
+            m_fpUniform4iv = (tfpUniform4iv) GetProcAddressWithARB("glUniform4iv");  
+            m_fpUniform1f = (tfpUniform1f) GetProcAddressWithARB("glUniform1f");  
+            m_fpUniform4fv = (tfpUniform4fv) GetProcAddressWithARB("glUniform4fv");  
+            m_fpUniformMatrix4fv = (tfpUniformMatrix4fv) GetProcAddressWithARB("glUniformMatrix4fv"); 
+            m_fpGetActiveUniform = (tfpGetActiveUniform) GetProcAddressWithARB("glGetActiveUniform");
+            
+		    m_hasShader = true;
+        }
+        catch (MushcoreNonFatalFail &e)
+        {
+                MushcoreLog::Sgl().InfoLog() << "OpenGL symbol missing: " << e.what() << endl;
+        }
+	}
+	else
+	{
+		m_hasShader = false;
 	}
 	
     m_contextValid = true;
@@ -296,6 +377,36 @@ MushGLV::AutoPrint(std::ostream& ioOut) const
     ioOut << "hasActiveTexture=" << m_hasActiveTexture << ", ";
     ioOut << "fpActiveTexture=" << (void *)m_fpActiveTexture << ", ";
     ioOut << "fpClientActiveTexture=" << (void *)m_fpClientActiveTexture << ", ";
+    ioOut << "hasShader=" << m_hasShader << ", ";
+    ioOut << "useShader=" << m_useShader << ", ";
+    ioOut << "fpCreateShaderObject=" << (void *)m_fpCreateShaderObject << ", ";
+    ioOut << "fpShaderSource=" << (void *)m_fpShaderSource << ", ";
+    ioOut << "fpCompileShader=" << (void *)m_fpCompileShader << ", ";
+    ioOut << "fpCreateProgramObject=" << (void *)m_fpCreateProgramObject << ", ";
+    ioOut << "fpAttachObject=" << (void *)m_fpAttachObject << ", ";
+    ioOut << "fpLinkProgram=" << (void *)m_fpLinkProgram << ", ";
+    ioOut << "fpUseProgramObject=" << (void *)m_fpUseProgramObject << ", ";
+    ioOut << "fpDeleteObject=" << (void *)m_fpDeleteObject << ", ";
+    ioOut << "fpGetObjectParameterfv=" << (void *)m_fpGetObjectParameterfv << ", ";
+    ioOut << "fpGetObjectParameteriv=" << (void *)m_fpGetObjectParameteriv << ", ";
+    ioOut << "fpGetShaderSource=" << (void *)m_fpGetShaderSource << ", ";
+    ioOut << "fpGetInfoLog=" << (void *)m_fpGetInfoLog << ", ";
+    ioOut << "fpVertexAttribPointer=" << (void *)m_fpVertexAttribPointer << ", ";
+    ioOut << "fpEnableVertexAttribArray=" << (void *)m_fpEnableVertexAttribArray << ", ";
+    ioOut << "fpDisableVertexAttribArray=" << (void *)m_fpDisableVertexAttribArray << ", ";
+    ioOut << "fpBindAttribLocation=" << (void *)m_fpBindAttribLocation << ", ";
+    ioOut << "fpGetAttribLocation=" << (void *)m_fpGetAttribLocation << ", ";
+    ioOut << "fpGetActiveAttrib=" << (void *)m_fpGetActiveAttrib << ", ";
+    ioOut << "fpVertexAttrib4fv=" << (void *)m_fpVertexAttrib4fv << ", ";
+    ioOut << "fpVertexAttrib4iv=" << (void *)m_fpVertexAttrib4iv << ", ";
+    ioOut << "fpGetVertexAttribPointerv=" << (void *)m_fpGetVertexAttribPointerv << ", ";
+    ioOut << "fpGetUniformLocation=" << (void *)m_fpGetUniformLocation << ", ";
+    ioOut << "fpUniform1i=" << (void *)m_fpUniform1i << ", ";
+    ioOut << "fpUniform4iv=" << (void *)m_fpUniform4iv << ", ";
+    ioOut << "fpUniform1f=" << (void *)m_fpUniform1f << ", ";
+    ioOut << "fpUniform4fv=" << (void *)m_fpUniform4fv << ", ";
+    ioOut << "fpUniformMatrix4fv=" << (void *)m_fpUniformMatrix4fv << ", ";
+    ioOut << "fpGetActiveUniform=" << (void *)m_fpGetActiveUniform << ", ";
     ioOut << "vendor=" << m_vendor << ", ";
     ioOut << "renderer=" << m_renderer << ", ";
     ioOut << "version=" << m_version << ", ";
@@ -307,4 +418,4 @@ MushGLV::AutoPrint(std::ostream& ioOut) const
     ioOut << "contextValid=" << m_contextValid;
     ioOut << "]";
 }
-//%outOfLineFunctions } 9p3mRYmaZRDSfpmyCYnNUw
+//%outOfLineFunctions } uEDioFB46lQpDxEY78djyg
