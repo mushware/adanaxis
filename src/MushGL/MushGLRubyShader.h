@@ -1,7 +1,11 @@
+//%includeGuardStart {
+#ifndef MUSHGLRUBYSHADER_H
+#define MUSHGLRUBYSHADER_H
+//%includeGuardStart } WwbZBL15DrZVigx4xjmeCg
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushGL/MushGLStandard.cpp
+ * File: src/MushGL/MushGLRubyShader.h
  *
  * Author: Andy Southgate 2002-2006
  *
@@ -17,24 +21,31 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } vy2DZLrk9+/D44VvOAt0eA
+//%Header } uvOdj7JHTp+sQX4yst5P7Q
 /*
- * $Id: MushGLStandard.cpp,v 1.3 2006/06/01 15:39:18 southa Exp $
- * $Log: MushGLStandard.cpp,v $
- * Revision 1.3  2006/06/01 15:39:18  southa
- * DrawArray verification and fixes
- *
- * Revision 1.2  2005/05/19 13:02:09  southa
- * Mac release work
- *
- * Revision 1.1  2004/03/07 12:05:56  southa
- * Rendering work
- *
+ * $Id$
+ * $Log$
  */
 
 #include "MushGLStandard.h"
 
-namespace Mushware
+#include "MushGLShader.h"
+
+#include "API/mushMushRuby.h"
+
+class MushGLRubyShader : public MushRubyDataObj<MushGLShader>
 {
-	const GLHandle kGLHandleNull = 0;	
+public:
+    static Mushware::tRubyValue Dump(Mushware::tRubyValue inSelf);
+
+private:
+};
+
+MUSHRUBYDATAOBJ_INSTALL(MushGLShader)(void)
+{
+	DataObjInstall("MushGLShader");
+    MushRubyUtil::MethodDefineNoParams(Klass(), "mDump", MushGLRubyShader::Dump);
 }
+//%includeGuardEnd {
+#endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

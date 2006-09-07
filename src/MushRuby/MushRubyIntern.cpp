@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } lqALCPGBahbk4ibyVPO8LQ
 /*
- * $Id: MushRubyIntern.cpp,v 1.18 2006/08/24 16:30:56 southa Exp $
+ * $Id: MushRubyIntern.cpp,v 1.19 2006/08/25 01:44:57 southa Exp $
  * $Log: MushRubyIntern.cpp,v $
+ * Revision 1.19  2006/08/25 01:44:57  southa
+ * Khazi fire
+ *
  * Revision 1.18  2006/08/24 16:30:56  southa
  * Event handling
  *
@@ -96,6 +99,7 @@ MUSHRUBYINTERN_DEFINE(displacement_velocity);
 MUSHRUBYINTERN_DEFINE(divide);
 MUSHRUBYINTERN_DEFINE(event);
 MUSHRUBYINTERN_DEFINE(extent);
+MUSHRUBYINTERN_DEFINE(fragment_shader);
 MUSHRUBYINTERN_DEFINE(inspect);
 MUSHRUBYINTERN_DEFINE(Integer);
 MUSHRUBYINTERN_DEFINE(klass);
@@ -117,6 +121,7 @@ MUSHRUBYINTERN_DEFINE(order);
 MUSHRUBYINTERN_DEFINE(owner);
 MUSHRUBYINTERN_DEFINE(position);
 MUSHRUBYINTERN_DEFINE(post);
+MUSHRUBYINTERN_DEFINE(program);
 MUSHRUBYINTERN_DEFINE(rotation);
 MUSHRUBYINTERN_DEFINE(scale);
 MUSHRUBYINTERN_DEFINE(scale_velocity);
@@ -127,6 +132,7 @@ MUSHRUBYINTERN_DEFINE(to_ary);
 MUSHRUBYINTERN_DEFINE(to_point);
 MUSHRUBYINTERN_DEFINE(to_s);
 MUSHRUBYINTERN_DEFINE(velocity);
+MUSHRUBYINTERN_DEFINE(vertex_shader);
 
 MUSHRUBYINTERN_DEFINE_AT(_embeddedDataPtr);
 MUSHRUBYINTERN_DEFINE_AT(m_expireFlag);
@@ -146,6 +152,7 @@ MushRubyIntern::Initialise(void)
 	MUSHRUBYINTERN_INIT(divide);
 	MUSHRUBYINTERN_INIT(event);
 	MUSHRUBYINTERN_INIT(extent);
+	MUSHRUBYINTERN_INIT(fragment_shader);
 	MUSHRUBYINTERN_INIT(inspect);
 	MUSHRUBYINTERN_INIT(Integer);
 	MUSHRUBYINTERN_INIT(klass);
@@ -165,8 +172,9 @@ MushRubyIntern::Initialise(void)
 	MUSHRUBYINTERN_INIT(offset);
 	MUSHRUBYINTERN_INIT(order);
 	MUSHRUBYINTERN_INIT(owner);
-	MUSHRUBYINTERN_INIT(post);
 	MUSHRUBYINTERN_INIT(position);
+	MUSHRUBYINTERN_INIT(post);
+	MUSHRUBYINTERN_INIT(program);
 	MUSHRUBYINTERN_INIT(rotation);
 	MUSHRUBYINTERN_INIT(scale);
 	MUSHRUBYINTERN_INIT(scale_velocity);
@@ -177,6 +185,7 @@ MushRubyIntern::Initialise(void)
 	MUSHRUBYINTERN_INIT(to_point);
 	MUSHRUBYINTERN_INIT(to_s);
 	MUSHRUBYINTERN_INIT(velocity);
+	MUSHRUBYINTERN_INIT(vertex_shader);
 
 	MUSHRUBYINTERN_INIT_AT(_embeddedDataPtr);
 	MUSHRUBYINTERN_INIT_AT(m_expireFlag);

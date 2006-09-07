@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } 0Sg2qcftBJTnB0QxDEkq2Q
 /*
- * $Id: AdanaxisGame.cpp,v 1.50 2006/08/01 17:21:23 southa Exp $
+ * $Id: AdanaxisGame.cpp,v 1.51 2006/08/01 23:21:52 southa Exp $
  * $Log: AdanaxisGame.cpp,v $
+ * Revision 1.51  2006/08/01 23:21:52  southa
+ * Rendering demo content
+ *
  * Revision 1.50  2006/08/01 17:21:23  southa
  * River demo
  *
@@ -451,6 +454,10 @@ AdanaxisGame::SwapIn(MushGameAppHandler& inAppHandler)
     Logic().PreCacheModeEnter();
     
     dynamic_cast<AdanaxisRender&>(SaveData().RenderRef().WRef()).RenderPreludeSet();
+    
+#ifdef MUSHCORE_DEBUG
+    MushGLUtil::ShaderTest();
+#endif
 }
 
 void

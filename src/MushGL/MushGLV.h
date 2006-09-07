@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } JUBCCFXz/CzIx64ACD8wjA
 /*
- * $Id: MushGLV.h,v 1.20 2006/07/28 16:52:22 southa Exp $
+ * $Id: MushGLV.h,v 1.21 2006/09/06 17:33:18 southa Exp $
  * $Log: MushGLV.h,v $
+ * Revision 1.21  2006/09/06 17:33:18  southa
+ * Shader interface
+ *
  * Revision 1.20  2006/07/28 16:52:22  southa
  * Options work
  *
@@ -125,7 +128,7 @@ public:
 	void GetBufferParameteriv(GLenum target, GLenum value, GLint *data) const { if (m_fpGetBufferParameteriv != NULL) return m_fpGetBufferParameteriv(target, value, data); else throw MushcoreLogicFail("MushGLV::GetBufferParameteriv"); }
 	
     GLhandleARB CreateShaderObject(GLenum shaderType) const { if (m_fpCreateShaderObject != NULL) return m_fpCreateShaderObject(shaderType); else throw MushcoreLogicFail("MushGLV: CreateShaderObject"); }
-    void ShaderSource(GLhandleARB shader, GLuint nstrings, const GLcharARB **strings, GLint lengths) const { if (m_fpShaderSource != NULL) m_fpShaderSource(shader, nstrings, strings, lengths); else throw MushcoreLogicFail("MushGLV: ShaderSource"); }
+    void ShaderSource(GLhandleARB shader, GLuint nstrings, const GLcharARB **strings, GLint *lengths) const { if (m_fpShaderSource != NULL) m_fpShaderSource(shader, nstrings, strings, lengths); else throw MushcoreLogicFail("MushGLV: ShaderSource"); }
     void CompileShader(GLhandleARB shader) const { if (m_fpCompileShader != NULL) m_fpCompileShader(shader); else throw MushcoreLogicFail("MushGLV: CompileShader"); }
     GLhandleARB CreateProgramObject(void) const { if (m_fpCreateProgramObject != NULL) return m_fpCreateProgramObject(); else throw MushcoreLogicFail("MushGLV: CreateProgramObject"); }
     void AttachObject(GLhandleARB program, GLhandleARB shader) const { if (m_fpAttachObject != NULL) m_fpAttachObject(program, shader); else throw MushcoreLogicFail("MushGLV: AttachObject"); }
@@ -187,7 +190,7 @@ private:
 	bool m_useShader; //:write
     typedef GLhandleARB (MUSHCORE_APIENTRY *tfpCreateShaderObject)(GLenum shaderType);
     tfpCreateShaderObject m_fpCreateShaderObject; // :fnpointer
-    typedef void (MUSHCORE_APIENTRY *tfpShaderSource)(GLhandleARB shader, GLuint nstrings, const GLcharARB **strings, GLint lengths);
+    typedef void (MUSHCORE_APIENTRY *tfpShaderSource)(GLhandleARB shader, GLuint nstrings, const GLcharARB **strings, GLint *lengths);
     tfpShaderSource m_fpShaderSource; // :fnpointer
     typedef void (MUSHCORE_APIENTRY *tfpCompileShader)(GLhandleARB shader);
     tfpCompileShader m_fpCompileShader; // :fnpointer

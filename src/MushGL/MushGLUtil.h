@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 0OQkM+NcUqCBag3zq+cczA
 /*
- * $Id: MushGLUtil.h,v 1.4 2006/06/30 15:05:33 southa Exp $
+ * $Id: MushGLUtil.h,v 1.5 2006/07/08 16:05:58 southa Exp $
  * $Log: MushGLUtil.h,v $
+ * Revision 1.5  2006/07/08 16:05:58  southa
+ * Ruby menus and key handling
+ *
  * Revision 1.4  2006/06/30 15:05:33  southa
  * Texture and buffer purge
  *
@@ -69,8 +72,12 @@ public:
 	static std::string TextureCacheFilename(const std::string& inName);
 	
     static void BufferPurge(void);
+    static void ShaderPurge(void);
     static void TexturePurge(void);
     static void Purge(void);
+    
+    static void ShaderTest(void);
+
     static void ColourSet(const Mushware::t4Val& inColour);
     
 private:

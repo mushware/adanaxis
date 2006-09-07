@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } n1eaCj2fb8dNPgbT0uOuEQ
 /*
- * $Id: MushRubyIntern.h,v 1.18 2006/08/24 16:30:56 southa Exp $
+ * $Id: MushRubyIntern.h,v 1.19 2006/08/25 01:44:57 southa Exp $
  * $Log: MushRubyIntern.h,v $
+ * Revision 1.19  2006/08/25 01:44:57  southa
+ * Khazi fire
+ *
  * Revision 1.18  2006/08/24 16:30:56  southa
  * Event handling
  *
@@ -111,6 +114,7 @@ public:
 	MUSHRUBYINTERN_DECLARE(divide);
 	MUSHRUBYINTERN_DECLARE(event);
 	MUSHRUBYINTERN_DECLARE(extent);
+	MUSHRUBYINTERN_DECLARE(fragment_shader);
 	MUSHRUBYINTERN_DECLARE(inspect);
 	MUSHRUBYINTERN_DECLARE(Integer);
 	MUSHRUBYINTERN_DECLARE(klass);
@@ -132,6 +136,7 @@ public:
 	MUSHRUBYINTERN_DECLARE(owner);
 	MUSHRUBYINTERN_DECLARE(position);
 	MUSHRUBYINTERN_DECLARE(post);
+	MUSHRUBYINTERN_DECLARE(program);
 	MUSHRUBYINTERN_DECLARE(rotation);
 	MUSHRUBYINTERN_DECLARE(scale);
 	MUSHRUBYINTERN_DECLARE(scale_velocity);
@@ -142,6 +147,7 @@ public:
 	MUSHRUBYINTERN_DECLARE(to_s);
 	MUSHRUBYINTERN_DECLARE(to_point);
 	MUSHRUBYINTERN_DECLARE(velocity);
+	MUSHRUBYINTERN_DECLARE(vertex_shader);
 
 	MUSHRUBYINTERN_DECLARE_AT(_embeddedDataPtr);
 	MUSHRUBYINTERN_DECLARE_AT(m_expireFlag);

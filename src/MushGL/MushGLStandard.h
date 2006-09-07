@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 4aNrDWDcHhvbi/ZjV2ZFxA
 /*
- * $Id: MushGLStandard.h,v 1.16 2006/06/23 00:35:05 southa Exp $
+ * $Id: MushGLStandard.h,v 1.17 2006/06/29 10:12:34 southa Exp $
  * $Log: MushGLStandard.h,v $
+ * Revision 1.17  2006/06/29 10:12:34  southa
+ * 64 bit compatibility fixes
+ *
  * Revision 1.16  2006/06/23 00:35:05  southa
  * win32 build fixes
  *
@@ -172,6 +175,9 @@ namespace Mushware
      typedef MushMeshVector<Mushware::tGLVal, 3> t3GLVal;
      typedef MushMeshVector<Mushware::tGLVal, 4> t4GLVal;
      typedef t2GLVal tGLTexCoord;
+     typedef GLhandleARB GLHandle;
+     typedef GLcharARB GLChar;
+     extern const GLHandle kGLHandleNull;
 }
 
 #define MUSHGL_VALTYPE GL_FLOAT

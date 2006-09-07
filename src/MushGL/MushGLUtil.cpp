@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } vl7jY3WxF4VnrsvzzFB2Cw
 /*
- * $Id: MushGLUtil.cpp,v 1.5 2006/06/30 15:05:33 southa Exp $
+ * $Id: MushGLUtil.cpp,v 1.6 2006/07/08 16:05:58 southa Exp $
  * $Log: MushGLUtil.cpp,v $
+ * Revision 1.6  2006/07/08 16:05:58  southa
+ * Ruby menus and key handling
+ *
  * Revision 1.5  2006/06/30 15:05:33  southa
  * Texture and buffer purge
  *
@@ -41,6 +44,7 @@
 #include "MushGLUtil.h"
 
 #include "MushGLBuffers.h"
+#include "MushGLShader.h"
 #include "MushGLTexture.h"
 
 #include "API/mushPlatform.h"
@@ -269,6 +273,17 @@ MushGLUtil::BufferPurge(void)
 }
 
 void
+MushGLUtil::ShaderPurge(void)
+{
+    typedef MushcoreData<MushGLShader> tData;
+    for (tData::iterator p = tData::Sgl().begin(); p != tData::Sgl().end(); ++p)
+    {
+        MUSHCOREASSERT(p->second != NULL);
+        p->second->Purge();   
+    }
+}
+
+void
 MushGLUtil::TexturePurge(void)
 {
     typedef MushcoreData<MushGLTexture> tData;
@@ -283,7 +298,20 @@ void
 MushGLUtil::Purge(void)
 {
     BufferPurge();
+    ShaderPurge();
     TexturePurge();
+}
+
+void
+MushGLUtil::ShaderTest(void)
+{
+    typedef MushcoreData<MushGLShader> tData;
+    for (tData::iterator p = tData::Sgl().begin(); p != tData::Sgl().end(); ++p)
+    {
+        MUSHCOREASSERT(p->second != NULL);
+        p->second->Test();
+        MushcoreLog::Sgl().InfoLog() << "Shader " << p->first << " OK" << endl;
+    }
 }
 
 void
@@ -291,4 +319,3 @@ MushGLUtil::ColourSet(const Mushware::t4Val& inColour)
 {
     glColor4f(inColour.X(), inColour.Y(), inColour.Z(), inColour.W());   
 }
-
