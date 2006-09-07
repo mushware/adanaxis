@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 6hLRNoZfeBvP570tKfB/gA
 /*
- * $Id: MushRenderSpec.h,v 1.11 2006/07/17 14:43:42 southa Exp $
+ * $Id: MushRenderSpec.h,v 1.12 2006/07/18 16:58:39 southa Exp $
  * $Log: MushRenderSpec.h,v $
+ * Revision 1.12  2006/07/18 16:58:39  southa
+ * Texture fixes
+ *
  * Revision 1.11  2006/07/17 14:43:42  southa
  * Billboarded deco objects
  *
@@ -85,7 +88,7 @@ private:
 
     MushGLBuffers::tDataRef m_buffersRef; //:readwrite
     MushGLBuffers::tSharedDataRef m_texCoordBuffersRef; //:readwrite
-    
+
 //%classPrototypes {
 public:
     const MushGLProjection& Projection(void) const { return m_projection; }

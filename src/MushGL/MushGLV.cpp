@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } NYmv5MZn7NEYPYHpc3JV8Q
 /*
- * $Id: MushGLV.cpp,v 1.18 2006/07/28 19:24:34 southa Exp $
+ * $Id: MushGLV.cpp,v 1.19 2006/09/06 17:33:18 southa Exp $
  * $Log: MushGLV.cpp,v $
+ * Revision 1.19  2006/09/06 17:33:18  southa
+ * Shader interface
+ *
  * Revision 1.18  2006/07/28 19:24:34  southa
  * Pre-release work
  *
@@ -133,6 +136,7 @@ MushGLV::MushGLV() :
     m_fpUniform4fv(NULL),  
     m_fpUniformMatrix4fv(NULL), 
     m_fpGetActiveUniform(NULL),
+    m_fpValidateProgram(NULL),
     m_numTextureUnits(0),
     m_hasS3TC(false),
     m_useS3TC(false),
@@ -261,6 +265,11 @@ MushGLV::Acquaint(void)
             m_fpUniform4fv = (tfpUniform4fv) GetProcAddressWithARB("glUniform4fv");  
             m_fpUniformMatrix4fv = (tfpUniformMatrix4fv) GetProcAddressWithARB("glUniformMatrix4fv"); 
             m_fpGetActiveUniform = (tfpGetActiveUniform) GetProcAddressWithARB("glGetActiveUniform");
+            m_fpValidateProgram = (tfpValidateProgram) GetProcAddressWithARB("glValidateProgram");
+            
+            GLint numComp = 0;
+            glGetIntegerv(GL_MAX_FRAGMENT_UNIFORM_COMPONENTS_ARB, &numComp);
+            m_maxFragmentUniformComponents = numComp;
             
 		    m_hasShader = true;
         }
@@ -407,6 +416,8 @@ MushGLV::AutoPrint(std::ostream& ioOut) const
     ioOut << "fpUniform4fv=" << (void *)m_fpUniform4fv << ", ";
     ioOut << "fpUniformMatrix4fv=" << (void *)m_fpUniformMatrix4fv << ", ";
     ioOut << "fpGetActiveUniform=" << (void *)m_fpGetActiveUniform << ", ";
+    ioOut << "fpValidateProgram=" << (void *)m_fpValidateProgram << ", ";
+    ioOut << "maxFragmentUniformComponents=" << m_maxFragmentUniformComponents << ", ";
     ioOut << "vendor=" << m_vendor << ", ";
     ioOut << "renderer=" << m_renderer << ", ";
     ioOut << "version=" << m_version << ", ";
@@ -418,4 +429,4 @@ MushGLV::AutoPrint(std::ostream& ioOut) const
     ioOut << "contextValid=" << m_contextValid;
     ioOut << "]";
 }
-//%outOfLineFunctions } uEDioFB46lQpDxEY78djyg
+//%outOfLineFunctions } wndptupBoqbDdmUF4SX2sg

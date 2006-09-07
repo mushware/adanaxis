@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } ekXjNEr/KGzqEKIqDRVimA
 /*
- * $Id: MushMeshMattress.h,v 1.4 2005/07/19 10:07:00 southa Exp $
+ * $Id: MushMeshMattress.h,v 1.5 2006/06/01 15:39:30 southa Exp $
  * $Log: MushMeshMattress.h,v $
+ * Revision 1.5  2006/06/01 15:39:30  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.4  2005/07/19 10:07:00  southa
  * Adanaxis work
  *
@@ -61,6 +64,8 @@ public:
     void ToIdentitySet(void) { m_matrix.ToMultiplicativeIdentitySet(); m_offset.ToAdditiveIdentitySet(); }
     const tThis Inverse(void) const;
     void InPlaceInvert(void);
+    
+    static tThis Identity(void) { tThis retVal; retVal.ToIdentitySet(); return retVal; }
     
 private:
     tMatrix m_matrix; //:readwrite :wref

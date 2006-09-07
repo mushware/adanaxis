@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } bWOmRsKwsaFHaJtZXjt8HA
 /*
- * $Id: MushGLState.cpp,v 1.6 2006/06/30 17:26:10 southa Exp $
+ * $Id: MushGLState.cpp,v 1.7 2006/07/18 16:58:37 southa Exp $
  * $Log: MushGLState.cpp,v $
+ * Revision 1.7  2006/07/18 16:58:37  southa
+ * Texture fixes
+ *
  * Revision 1.6  2006/06/30 17:26:10  southa
  * Render prelude
  *
@@ -53,6 +56,7 @@ using namespace std;
 MushGLState::MushGLState()
 {
     InvalidateAll();
+    m_standardShader.NameSet("standard");
 }
 
 void
@@ -84,6 +88,7 @@ MushGLState::Reset(void)
     }
     ActiveTextureZeroBased(0);
     ClientActiveTextureZeroBased(0);
+    m_standardShader.WRef().Bind();
 }
 
 void
@@ -322,6 +327,15 @@ MushGLState::TexturesDisable(void)
     }
 }
 
+void
+MushGLState::ShaderDisable(void)
+{
+    if (MushGLV::Sgl().HasShader())
+    {
+        MushGLV::Sgl().UseProgramObject(kGLHandleNull);
+    }
+}        
+
 //%outOfLineFunctions {
 
 const char *MushGLState::AutoName(void) const
@@ -364,6 +378,7 @@ MushGLState::AutoPrint(std::ostream& ioOut) const
     ioOut << "textureStates=" << m_textureStates << ", ";
     ioOut << "activeTexNum=" << m_activeTexNum << ", ";
     ioOut << "clientActiveTexNum=" << m_clientActiveTexNum << ", ";
+    ioOut << "standardShader=" << m_standardShader << ", ";
     if (m_pCurrentColourBuffer == NULL)
     {
         ioOut << "pCurrentColourBuffer=NULL"  << ", ";
@@ -435,6 +450,10 @@ MushGLState::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inT
     {
         ioIn >> m_clientActiveTexNum;
     }
+    else if (inTagStr == "standardShader")
+    {
+        ioIn >> m_standardShader;
+    }
     else if (inTagStr == "pCurrentColourBuffer")
     {
         ioIn >> m_pCurrentColourBuffer;
@@ -474,6 +493,8 @@ MushGLState::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_activeTexNum;
     ioOut.TagSet("clientActiveTexNum");
     ioOut << m_clientActiveTexNum;
+    ioOut.TagSet("standardShader");
+    ioOut << m_standardShader;
     ioOut.TagSet("pCurrentColourBuffer");
     ioOut << m_pCurrentColourBuffer;
     ioOut.TagSet("pCurrentTexCoordBuffer");
@@ -481,4 +502,4 @@ MushGLState::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("pCurrentVertexBuffer");
     ioOut << m_pCurrentVertexBuffer;
 }
-//%outOfLineFunctions } lcyoYzM/ReMUty0vOw9OTA
+//%outOfLineFunctions } Cq3uqh7/l/B4M0/kuQRk0w

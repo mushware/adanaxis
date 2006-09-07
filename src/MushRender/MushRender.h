@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } n/kahdmCKLOsZ25z7ErcEg
 /*
- * $Id: MushRender.h,v 1.4 2005/08/29 18:40:57 southa Exp $
+ * $Id: MushRender.h,v 1.5 2006/06/01 15:39:38 southa Exp $
  * $Log: MushRender.h,v $
+ * Revision 1.5  2006/06/01 15:39:38  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.4  2005/08/29 18:40:57  southa
  * Solid rendering work
  *
@@ -41,6 +44,7 @@
 
 #include "MushRenderMesh.h"
 #include "MushRenderMeshDiagnostic.h"
+#include "MushRenderMeshShader.h"
 #include "MushRenderMeshSolid.h"
 #include "MushRenderMeshWireframe.h"
 #include "MushRenderSpec.h"

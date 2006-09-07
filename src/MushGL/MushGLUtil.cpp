@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } vl7jY3WxF4VnrsvzzFB2Cw
 /*
- * $Id: MushGLUtil.cpp,v 1.6 2006/07/08 16:05:58 southa Exp $
+ * $Id: MushGLUtil.cpp,v 1.7 2006/09/07 10:02:37 southa Exp $
  * $Log: MushGLUtil.cpp,v $
+ * Revision 1.7  2006/09/07 10:02:37  southa
+ * Shader interface
+ *
  * Revision 1.6  2006/07/08 16:05:58  southa
  * Ruby menus and key handling
  *
@@ -318,4 +321,118 @@ void
 MushGLUtil::ColourSet(const Mushware::t4Val& inColour)
 {
     glColor4f(inColour.X(), inColour.Y(), inColour.Z(), inColour.W());   
+}
+
+void
+MushGLUtil::MatrixToGL(tGLMatrix& outMatrix, const Mushware::t4x4Val& inMatrix)
+{
+    MUSHCOREASSERT(sizeof(outMatrix)/sizeof(outMatrix[0]) == 16);
+    outMatrix[0] = inMatrix.RCGet(0,0);
+    outMatrix[1] = inMatrix.RCGet(1,0);
+    outMatrix[2] = inMatrix.RCGet(2,0);
+    outMatrix[3] = inMatrix.RCGet(3,0);
+    outMatrix[4] = inMatrix.RCGet(0,1);
+    outMatrix[5] = inMatrix.RCGet(1,1);
+    outMatrix[6] = inMatrix.RCGet(2,1);
+    outMatrix[7] = inMatrix.RCGet(3,1);
+    outMatrix[8] = inMatrix.RCGet(0,2);
+    outMatrix[9] = inMatrix.RCGet(1,2);
+    outMatrix[10] = inMatrix.RCGet(2,2);
+    outMatrix[11] = inMatrix.RCGet(3,2);
+    outMatrix[12] = inMatrix.RCGet(0,3);
+    outMatrix[13] = inMatrix.RCGet(1,3);
+    outMatrix[14] = inMatrix.RCGet(2,3);
+    outMatrix[15] = inMatrix.RCGet(3,3);
+}
+
+void
+MushGLUtil::ProjectionMatrixSet(const Mushware::t4x4Val& inMatrix)
+{
+    tGLMatrix glMatrix;
+    MatrixToGL(glMatrix, inMatrix);
+    
+    glMatrixMode(GL_PROJECTION);
+    glLoadMatrixf(glMatrix);
+}
+
+void
+MushGLUtil::ModelViewMatrixSet(const Mushware::t4x4Val& inMatrix)
+{
+    tGLMatrix glMatrix;
+    MatrixToGL(glMatrix, inMatrix);
+    
+    glMatrixMode(GL_MODELVIEW);
+    glLoadMatrixf(glMatrix);
+}
+
+std::string
+MushGLUtil::DataTypeToString(GLenum inType)
+{
+    std::string retVal;
+    
+    switch (inType)
+    {
+        case GL_FLOAT:
+            retVal = "GL_FLOAT";
+            break;
+            
+        case GL_FLOAT_VEC2_ARB:
+            retVal = "GL_FLOAT_VEC2_ARB";
+            break;
+            
+        case GL_FLOAT_VEC3_ARB:
+            retVal = "GL_FLOAT_VEC3_ARB";
+            break;
+            
+        case GL_FLOAT_VEC4_ARB:
+            retVal = "GL_FLOAT_VEC4_ARB";
+            break;
+            
+        case GL_INT:
+            retVal = "GL_INT";
+            break;
+            
+        case GL_INT_VEC2_ARB:
+            retVal = "GL_INT_VEC2_ARB";
+            break;
+            
+        case GL_INT_VEC3_ARB:
+            retVal = "GL_INT_VEC3_ARB";
+            break;
+            
+        case GL_INT_VEC4_ARB:
+            retVal = "GL_INT_VEC4_ARB";
+            break;
+            
+        case GL_FLOAT_MAT2_ARB:
+            retVal = "GL_FLOAT_MAT2_ARB";
+            break;
+            
+        case GL_FLOAT_MAT3_ARB:
+            retVal = "GL_FLOAT_MAT3_ARB";
+            break;
+            
+        case GL_FLOAT_MAT4_ARB:
+            retVal = "GL_FLOAT_MAT4_ARB";
+            break;
+
+        case GL_SAMPLER_1D_ARB:
+            retVal = "GL_SAMPLER_1D_ARB";
+            break;
+            
+        case GL_SAMPLER_2D_ARB:
+            retVal = "GL_SAMPLER_2D_ARB";
+            break;
+            
+        case GL_SAMPLER_3D_ARB:
+            retVal = "GL_SAMPLER_3D_ARB";
+            break;
+            
+        default:
+            ostringstream typeStream;
+            typeStream << "Unknown (" << inType << ")";
+            retVal = typeStream.str();
+            break;
+    }
+    return retVal;
 }

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } vFMISa2849VX/N6vU3bn2g
 /*
- * $Id: MushGLState.h,v 1.7 2006/06/26 17:03:13 southa Exp $
+ * $Id: MushGLState.h,v 1.8 2006/06/30 17:26:10 southa Exp $
  * $Log: MushGLState.h,v $
+ * Revision 1.8  2006/06/30 17:26:10  southa
+ * Render prelude
+ *
  * Revision 1.7  2006/06/26 17:03:13  southa
  * win32 installer tweaks
  *
@@ -50,6 +53,7 @@
 
 #include "MushGLStandard.h"
 
+#include "MushGLShader.h"
 #include "MushGLVertexBuffer.h"
 
 //:generate standard ostream xml1
@@ -108,6 +112,7 @@ public:
     
     void ArraysDisable(void);
     void TexturesDisable(void);
+    void ShaderDisable(void);
     
     void ResetWriteAll(void);
     void Reset(void);
@@ -135,6 +140,7 @@ private:
     std::vector<tState> m_textureStates;
     Mushware::U32 m_activeTexNum;
     Mushware::U32 m_clientActiveTexNum;
+    MushGLShader::tDataRef m_standardShader;
     
 	// Debug variables
 	tColourArrayBuffer *m_pCurrentColourBuffer;

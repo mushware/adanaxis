@@ -23,31 +23,43 @@
  ****************************************************************************/
 //%Header } MmuefLWPCIWvwCK7IfDibQ
 /*
- * $Id$
- * $Log$
+ * $Id: MushGLShader.h,v 1.1 2006/09/07 10:02:37 southa Exp $
+ * $Log: MushGLShader.h,v $
+ * Revision 1.1  2006/09/07 10:02:37  southa
+ * Shader interface
+ *
  */
 
 #include "MushGLStandard.h"
 
 #include "API/mushMushRuby.h"
 
+class MushGLAttribs;
+
 //:generate standard ostream xml1
 class MushGLShader : public MushcoreVirtualObject
 {
 public:
+    typedef MushcoreData<MushGLShader> tData;
+    typedef MushcoreDataRef<MushGLShader> tDataRef;
+    
     MushGLShader();
     virtual ~MushGLShader() {}
     void Make(void);
     void Bind(void);
     void Dump(std::ostream& ioOut) const;
+    void UniformDump(std::ostream& ioOut) const;
     void Test(void);
     void Purge(void);
-    
+    void AttribsApply(const MushGLAttribs& inAttribs);
+
 protected:
     std::string SourceGet(Mushware::GLHandle inShader) const;
     std::string InfoLogGet(Mushware::GLHandle inShader) const;
     bool CompileStatusGet(Mushware::GLHandle inShader) const;
     bool LinkStatusGet(Mushware::GLHandle inProgram) const;
+    bool ValidateStatusGet(Mushware::GLHandle inProgram) const;
+    GLint UniformLocationGet(const std::string& inName);
     
 private:
     Mushware::GLHandle m_programHandle; //:xmlignore (because underlying type is void *)
@@ -56,6 +68,11 @@ private:
     std::string m_fragmentShader; //:readwrite
     std::string m_vertexShader; //:readwrite
     bool m_made;
+    
+    // Uniform variable indices
+    GLint m_mush_ProjectionOffset; //:xmlignore
+    GLint m_mush_ModelViewOffset; //:xmlignore
+    GLint m_mush_ModelViewProjectionOffset; //:xmlignore
     
 //%classPrototypes {
 public:

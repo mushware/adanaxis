@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } JUBCCFXz/CzIx64ACD8wjA
 /*
- * $Id: MushGLV.h,v 1.21 2006/09/06 17:33:18 southa Exp $
+ * $Id: MushGLV.h,v 1.22 2006/09/07 10:02:38 southa Exp $
  * $Log: MushGLV.h,v $
+ * Revision 1.22  2006/09/07 10:02:38  southa
+ * Shader interface
+ *
  * Revision 1.21  2006/09/06 17:33:18  southa
  * Shader interface
  *
@@ -150,12 +153,13 @@ public:
     void GetVertexAttribPointerv(GLuint index, GLenum pname, GLvoid **pointer) const { if (m_fpGetVertexAttribPointerv != NULL) m_fpGetVertexAttribPointerv(index, pname, pointer); else throw MushcoreLogicFail("MushGLV: GetVertexAttribPointerv"); }
     GLint GetUniformLocation(GLhandleARB progam, const GLcharARB *name) const { if (m_fpGetUniformLocation != NULL) return m_fpGetUniformLocation(progam, name); else throw MushcoreLogicFail("MushGLV: GetUniformLocation"); }
     void Uniform1i(GLint location, GLint v0) const { if (m_fpUniform1i != NULL) m_fpUniform1i(location, v0); else throw MushcoreLogicFail("MushGLV: Uniform1i"); }
-    void Uniform4iv(GLint location, GLint *v) const { if (m_fpUniform4iv != NULL) m_fpUniform4iv(location, v); else throw MushcoreLogicFail("MushGLV: Uniform4iv"); }
+    void Uniform4iv(GLint location, GLsizei count, const GLint *v) const { if (m_fpUniform4iv != NULL) m_fpUniform4iv(location, count, v); else throw MushcoreLogicFail("MushGLV: Uniform4iv"); }
     void Uniform1f(GLint location, GLfloat v0) const { if (m_fpUniform1f != NULL) m_fpUniform1f(location, v0); else throw MushcoreLogicFail("MushGLV: Uniform1f"); }
-    void Uniform4fv(GLint location, GLfloat *v) const { if (m_fpUniform4fv != NULL) m_fpUniform4fv(location, v); else throw MushcoreLogicFail("MushGLV: Uniform4fv"); }
+    void Uniform4fv(GLint location, GLsizei count, const GLfloat *v) const { if (m_fpUniform4fv != NULL) m_fpUniform4fv(location, count, v); else throw MushcoreLogicFail("MushGLV: Uniform4fv"); }
     void UniformMatrix4fv(GLint location, GLuint count, GLboolean transpose, const GLfloat *v) const { if (m_fpUniformMatrix4fv != NULL) m_fpUniformMatrix4fv(location, count, transpose, v); else throw MushcoreLogicFail("MushGLV: UniformMatrix4fv"); }
     void GetActiveUniform(GLhandleARB progam, GLuint index, GLsizei maxLength, GLsizei *length, GLint *size, GLenum *type, GLcharARB *name) const { if (m_fpGetActiveUniform != NULL) m_fpGetActiveUniform(progam, index, maxLength, length, size, type, name); else throw MushcoreLogicFail("MushGLV: GetActiveUniform"); }
-    
+    void ValidateProgram(GLhandleARB program) const { if (m_fpValidateProgram != NULL) m_fpValidateProgram(program); else throw MushcoreLogicFail("MushGLV: ValidateProgram"); }
+
 protected:
     void ContextValidAssert(void) const;
     void DrawArraysVerify(GLenum inMode, GLint inFirst, GLsizei inCount) const;
@@ -234,17 +238,21 @@ private:
     tfpGetUniformLocation m_fpGetUniformLocation; // :fnpointer  
     typedef void (MUSHCORE_APIENTRY *tfpUniform1i)(GLint location, GLint v0);
     tfpUniform1i m_fpUniform1i; // :fnpointer  
-    typedef void (MUSHCORE_APIENTRY *tfpUniform4iv)(GLint location, GLint *v);
+    typedef void (MUSHCORE_APIENTRY *tfpUniform4iv)(GLint location, GLsizei count, const GLint *v);
     tfpUniform4iv m_fpUniform4iv; // :fnpointer  
     typedef void (MUSHCORE_APIENTRY *tfpUniform1f)(GLint location, GLfloat v0);
     tfpUniform1f m_fpUniform1f; // :fnpointer  
-    typedef void (MUSHCORE_APIENTRY *tfpUniform4fv)(GLint location, GLfloat *v);
+    typedef void (MUSHCORE_APIENTRY *tfpUniform4fv)(GLint location, GLsizei count, const GLfloat *v);
     tfpUniform4fv m_fpUniform4fv; // :fnpointer  
     typedef void (MUSHCORE_APIENTRY *tfpUniformMatrix4fv)(GLint location, GLuint count, GLboolean transpose, const GLfloat *v);
     tfpUniformMatrix4fv m_fpUniformMatrix4fv; // :fnpointer  
     typedef void (MUSHCORE_APIENTRY *tfpGetActiveUniform)(GLhandleARB progam, GLuint index, GLsizei maxLength, GLsizei *length, GLint *size, GLenum *type, GLcharARB *name);
     tfpGetActiveUniform m_fpGetActiveUniform; // :fnpointer
-
+    typedef void (MUSHCORE_APIENTRY *tfpValidateProgram)(GLhandleARB program);
+    tfpValidateProgram m_fpValidateProgram; // :fnpointer  
+    Mushware::U32 m_maxFragmentUniformComponents; //:read
+    
+    
     void *GetProcAddressWithARB(const std::string& inName) const;
     
     std::string m_vendor;
@@ -262,13 +270,14 @@ private:
 public:
     const bool& HasShader(void) const { return m_hasShader; }
     void UseShaderSet(const bool& inValue) { m_useShader=inValue; }
+    const Mushware::U32& MaxFragmentUniformComponents(void) const { return m_maxFragmentUniformComponents; }
     const Mushware::U32& NumTextureUnits(void) const { return m_numTextureUnits; }
     const bool& HasS3TC(void) const { return m_hasS3TC; }
     void UseS3TCSet(const bool& inValue) { m_useS3TC=inValue; }
     const Mushware::U32& ContextNum(void) const { return m_contextNum; }
     const bool& ContextValid(void) const { return m_contextValid; }
     virtual void AutoPrint(std::ostream& ioOut) const;
-//%classPrototypes } 81nIvEtuDjjYgM2qo9SmtQ
+//%classPrototypes } V7083U4lmtjlDOlJNceWlA
 };
 
 inline void

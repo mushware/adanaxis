@@ -19,12 +19,17 @@
  ****************************************************************************/
 //%Header } bQ20AxcHOjJNfCG2TxDNVg
 /*
- * $Id$
- * $Log$
+ * $Id: MushGLShader.cpp,v 1.1 2006/09/07 10:02:37 southa Exp $
+ * $Log: MushGLShader.cpp,v $
+ * Revision 1.1  2006/09/07 10:02:37  southa
+ * Shader interface
+ *
  */
 
 #include "MushGLShader.h"
 
+#include "MushGLAttribs.h"
+#include "MushGLProjection.h"
 #include "MushGLUtil.h"
 #include "MushGLV.h"
 
@@ -145,6 +150,19 @@ MushGLShader::LinkStatusGet(Mushware::GLHandle inProgram) const
     return (linkStatus == 1);
 }
 
+bool
+MushGLShader::ValidateStatusGet(Mushware::GLHandle inProgram) const
+{
+    GLint validateStatus = 0;
+    if (inProgram != kGLHandleNull)
+    {
+        MushGLV::Sgl().GetObjectParameteriv(inProgram,
+                                            GL_OBJECT_VALIDATE_STATUS_ARB,
+                                            &validateStatus);        
+    }
+    return (validateStatus == 1);
+}
+
 void
 MushGLShader::Dump(std::ostream& ioOut) const
 {
@@ -170,6 +188,86 @@ MushGLShader::Dump(std::ostream& ioOut) const
         if (infoLog != "") ioOut << "Program info:" << endl << infoLog << endl;
     }
 }
+
+void
+MushGLShader::UniformDump(std::ostream& ioOut) const
+{
+    ioOut << "Uniform variables:" << endl;
+
+    if (m_programHandle != kGLHandleNull)
+    {
+        GLint numUniforms = 0;
+        MushGLV::Sgl().GetObjectParameteriv(m_programHandle,
+                                            GL_OBJECT_ACTIVE_UNIFORMS_ARB,
+                                            &numUniforms);
+        GLint maxLength = 0;
+        MushGLV::Sgl().GetObjectParameteriv(m_programHandle,
+                                            GL_OBJECT_ACTIVE_UNIFORM_MAX_LENGTH_ARB,
+                                            &maxLength);
+
+        for (GLint i=0; i<numUniforms; ++i)
+        {
+            GLChar buffer[maxLength+2];
+            GLsizei length = 0;
+            GLint size = 0;
+            GLenum type = 0;
+            
+            MushGLV::Sgl().GetActiveUniform(m_programHandle,
+                                            i,
+                                            maxLength,
+                                            &length,
+                                            &size,
+                                            &type,
+                                            buffer);
+            
+            ioOut << "Uniform " << i << " " << MushGLUtil::DataTypeToString(type);
+            ioOut << " (size " << size << "): " << buffer << endl;                      
+        }
+    }
+}    
+
+GLint
+MushGLShader::UniformLocationGet(const std::string& inName)
+{
+    GLint retVal = -1;
+    
+    if (m_programHandle != kGLHandleNull)
+    {
+        retVal = MushGLV::Sgl().GetUniformLocation(m_programHandle, inName.c_str());
+    }
+    
+    return retVal;
+}
+
+
+void
+MushGLShader::AttribsApply(const MushGLAttribs& inAttribs)
+{
+    const Mushware::t4x4o4Val& projMattress = inAttribs.Projection().Mattress();
+    Mushware::t4x4o4Val modelViewMattress = inAttribs.View() * inAttribs.Model();
+    
+    MushGLUtil::ProjectionMatrixSet(projMattress.Matrix());
+    MushGLUtil::ModelViewMatrixSet(projMattress.Matrix());
+    // The gl_ProjectionModelView is calculated internally by OpenGL
+    
+    if (m_mush_ProjectionOffset >= 0)
+    {
+        t4GLVal projOffset(projMattress.Offset());
+        MushGLV::Sgl().Uniform4fv(m_mush_ProjectionOffset, 1, &projOffset[0]);
+    }
+    if (m_mush_ModelViewOffset >= 0)
+    {
+        t4GLVal modelViewOffset(modelViewMattress.Offset());
+        MushGLV::Sgl().Uniform4fv(m_mush_ModelViewOffset, 1, &modelViewOffset[0]);
+    }
+    if (m_mush_ModelViewProjectionOffset >= 0)
+    {
+        // Need to calculate the offset
+        Mushware::t4x4o4Val mvpMattress(projMattress * modelViewMattress);
+        t4GLVal mvpOffset(mvpMattress.Offset());
+        MushGLV::Sgl().Uniform4fv(m_mush_ModelViewProjectionOffset, 1, &mvpOffset[0]);
+    }
+}    
 
 void
 MushGLShader::Make(void)
@@ -286,7 +384,30 @@ MushGLShader::Make(void)
     
     MushGLUtil::ThrowIfGLError("Linking shader");
     
+#ifdef MUSHCORE_DEBUG
+    MushGLV::Sgl().ValidateProgram(m_programHandle);
+    
+    infoLog = InfoLogGet(m_programHandle);
+    
+    if (!ValidateStatusGet(m_programHandle))
+    {
+        Dump(MushcoreLog::Sgl().ErrorLog());
+        throw MushcoreSyntaxFail("Shader validation failed: " + infoLog);
+    }
+    if (infoLog != "")
+    {
+        MushcoreLog::Sgl().InfoLog() << "Shader validation info:" << endl;
+        MushcoreLog::Sgl().InfoLog()<< infoLog << endl;
+    } 
+#endif
+    
+    // Read statndard uniform variable locations
+    m_mush_ProjectionOffset = UniformLocationGet("mush_ProjectionOffset");
+    m_mush_ModelViewOffset = UniformLocationGet("mush_ModelViewOffset");
+    m_mush_ModelViewProjectionOffset = UniformLocationGet("mush_ModelViewProjectionOffset");
+    
     m_made = true;
+    cout << *this << endl;
 }
 
 void
@@ -309,6 +430,7 @@ MushGLShader::Test(void)
 {
     Bind();
     Dump(MushcoreLog::Sgl().InfoLog());
+    UniformDump(MushcoreLog::Sgl().InfoLog());
     Purge();
 }
 
@@ -376,7 +498,10 @@ MushGLShader::AutoPrint(std::ostream& ioOut) const
     ioOut << "vertexShaderHandle=" << m_vertexShaderHandle << ", ";
     ioOut << "fragmentShader=" << m_fragmentShader << ", ";
     ioOut << "vertexShader=" << m_vertexShader << ", ";
-    ioOut << "made=" << m_made;
+    ioOut << "made=" << m_made << ", ";
+    ioOut << "mush_ProjectionOffset=" << m_mush_ProjectionOffset << ", ";
+    ioOut << "mush_ModelViewOffset=" << m_mush_ModelViewOffset << ", ";
+    ioOut << "mush_ModelViewProjectionOffset=" << m_mush_ModelViewProjectionOffset;
     ioOut << "]";
 }
 bool
@@ -416,4 +541,4 @@ MushGLShader::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("made");
     ioOut << m_made;
 }
-//%outOfLineFunctions } srDHsjerTmulGx4CovGB7g
+//%outOfLineFunctions } bAS1ukmZv/6P/G40A4+Y4Q

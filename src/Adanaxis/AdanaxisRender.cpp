@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } rQkTih3VUd7Xp8cDeV3ZYA
 /*
- * $Id: AdanaxisRender.cpp,v 1.44 2006/08/01 13:41:15 southa Exp $
+ * $Id: AdanaxisRender.cpp,v 1.45 2006/08/01 17:21:26 southa Exp $
  * $Log: AdanaxisRender.cpp,v $
+ * Revision 1.45  2006/08/01 17:21:26  southa
+ * River demo
+ *
  * Revision 1.44  2006/08/01 13:41:15  southa
  * Pre-release updates
  *
@@ -297,7 +300,8 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
         
         //MushRenderMeshDiagnostic renderMesh;
         //MushRenderMeshWireframe renderMesh;
-        MushRenderMeshSolid renderMesh;
+        //MushRenderMeshSolid renderMesh;
+        MushRenderMeshShader renderMesh;
         
         MushGameCamera camera(inCamera);
         

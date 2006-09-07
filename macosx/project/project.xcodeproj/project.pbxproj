@@ -1432,6 +1432,10 @@
 		7A8177BA0A134B64005C1108 /* TesseractTrainerCommandHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AAE6B9E07AFC36C0085C60F /* TesseractTrainerCommandHandler.cpp */; };
 		7A8177BB0A134B64005C1108 /* TesseractTrainerAppHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AAE6B9D07AFC36C0085C60F /* TesseractTrainerAppHandler.h */; };
 		7A8177BC0A134B65005C1108 /* TesseractTrainerAppHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AAE6B9C07AFC36C0085C60F /* TesseractTrainerAppHandler.cpp */; };
+		7A81D6BA0AB04E6700B1F7F4 /* MushRenderMeshShader.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A81D6B80AB04E6700B1F7F4 /* MushRenderMeshShader.h */; };
+		7A81D6BB0AB04E6700B1F7F4 /* MushRenderMeshShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A81D6B90AB04E6700B1F7F4 /* MushRenderMeshShader.cpp */; };
+		7A81D6C30AB0550A00B1F7F4 /* MushGLAttribs.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A81D6C10AB0550900B1F7F4 /* MushGLAttribs.h */; };
+		7A81D6C40AB0550A00B1F7F4 /* MushGLAttribs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A81D6C20AB0550A00B1F7F4 /* MushGLAttribs.cpp */; };
 		7A85876008754D4100ED67ED /* MushRenderStandard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A85875C08754D4100ED67ED /* MushRenderStandard.cpp */; };
 		7A85876108754D4100ED67ED /* MushRenderStandard.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A85875D08754D4100ED67ED /* MushRenderStandard.h */; };
 		7A85876208754D4100ED67ED /* MushRender.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A85875E08754D4100ED67ED /* MushRender.cpp */; };
@@ -3446,6 +3450,10 @@
 		7A7DE93908157EE300CB5432 /* TesseractTrainerConfig.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TesseractTrainerConfig.cpp; sourceTree = "<group>"; };
 		7A8040E9086AE085007B0F20 /* MushGameJobAdmission.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushGameJobAdmission.h; sourceTree = "<group>"; };
 		7A8040EA086AE085007B0F20 /* MushGameJobAdmission.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushGameJobAdmission.cpp; sourceTree = "<group>"; };
+		7A81D6B80AB04E6700B1F7F4 /* MushRenderMeshShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushRenderMeshShader.h; sourceTree = "<group>"; };
+		7A81D6B90AB04E6700B1F7F4 /* MushRenderMeshShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushRenderMeshShader.cpp; sourceTree = "<group>"; };
+		7A81D6C10AB0550900B1F7F4 /* MushGLAttribs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushGLAttribs.h; sourceTree = "<group>"; };
+		7A81D6C20AB0550A00B1F7F4 /* MushGLAttribs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushGLAttribs.cpp; sourceTree = "<group>"; };
 		7A85875C08754D4100ED67ED /* MushRenderStandard.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = MushRenderStandard.cpp; sourceTree = "<group>"; };
 		7A85875D08754D4100ED67ED /* MushRenderStandard.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = MushRenderStandard.h; sourceTree = "<group>"; };
 		7A85875E08754D4100ED67ED /* MushRender.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = MushRender.cpp; sourceTree = "<group>"; };
@@ -3459,10 +3467,6 @@
 		7A8A6E7F067C5D7B0025D379 /* COBTranslate.pl */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.perl; name = COBTranslate.pl; path = "/Users/southa/core-app/scripts/COBTranslate.pl"; sourceTree = "<absolute>"; };
 		7A8C8F0D0AAF40C600963E87 /* MushGLShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushGLShader.h; sourceTree = "<group>"; };
 		7A8C8F0E0AAF40C600963E87 /* MushGLShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushGLShader.cpp; sourceTree = "<group>"; };
-		7A8C8F150AAF412700963E87 /* MushGLShaderFragment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushGLShaderFragment.h; sourceTree = "<group>"; };
-		7A8C8F160AAF412700963E87 /* MushGLShaderFragment.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushGLShaderFragment.cpp; sourceTree = "<group>"; };
-		7A8C8F1B0AAF413900963E87 /* MushGLShaderVertex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushGLShaderVertex.h; sourceTree = "<group>"; };
-		7A8C8F1C0AAF413900963E87 /* MushGLShaderVertex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushGLShaderVertex.cpp; sourceTree = "<group>"; };
 		7A8C8F580AAF46A500963E87 /* MushGLRubyShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushGLRubyShader.h; sourceTree = "<group>"; };
 		7A8C8F590AAF46A500963E87 /* MushGLRubyShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushGLRubyShader.cpp; sourceTree = "<group>"; };
 		7A8C8F760AAF47AE00963E87 /* AdanaxisShaderLibrary.rb */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = text.script.ruby; path = AdanaxisShaderLibrary.rb; sourceTree = "<group>"; tabWidth = 2; };
@@ -5306,6 +5310,8 @@
 				7AD164D2087A8BE60071C752 /* MushGLAppHandler.h */,
 				7A66E36905FB240500135328 /* MushGLArrays.cpp */,
 				7A66E36A05FB240500135328 /* MushGLArrays.h */,
+				7A81D6C20AB0550A00B1F7F4 /* MushGLAttribs.cpp */,
+				7A81D6C10AB0550900B1F7F4 /* MushGLAttribs.h */,
 				7AD298E80876907500367963 /* MushGLBuffers.cpp */,
 				7AD298E70876907400367963 /* MushGLBuffers.h */,
 				7A38D0F10A30642100B790E2 /* MushGLCacheControl.cpp */,
@@ -5338,10 +5344,6 @@
 				7A8C8F580AAF46A500963E87 /* MushGLRubyShader.h */,
 				7A8C8F0E0AAF40C600963E87 /* MushGLShader.cpp */,
 				7A8C8F0D0AAF40C600963E87 /* MushGLShader.h */,
-				7A8C8F160AAF412700963E87 /* MushGLShaderFragment.cpp */,
-				7A8C8F150AAF412700963E87 /* MushGLShaderFragment.h */,
-				7A8C8F1C0AAF413900963E87 /* MushGLShaderVertex.cpp */,
-				7A8C8F1B0AAF413900963E87 /* MushGLShaderVertex.h */,
 				7A66E40205FB256A00135328 /* MushGLStandard.cpp */,
 				7A66E40105FB256A00135328 /* MushGLStandard.h */,
 				7AD2991E0876BE2300367963 /* MushGLState.cpp */,
@@ -5644,6 +5646,8 @@
 				7A85878E0875518400ED67ED /* MushRenderMesh.h */,
 				7AD1912708891F5B007761E5 /* MushRenderMeshDiagnostic.cpp */,
 				7AD1912608891F5B007761E5 /* MushRenderMeshDiagnostic.h */,
+				7A81D6B90AB04E6700B1F7F4 /* MushRenderMeshShader.cpp */,
+				7A81D6B80AB04E6700B1F7F4 /* MushRenderMeshShader.h */,
 				7ACF543508C38BE800BBEB7E /* MushRenderMeshSolid.cpp */,
 				7ACF543408C38BE800BBEB7E /* MushRenderMeshSolid.h */,
 				7AD159AE087936CC00FBCAAF /* MushRenderMeshWireframe.cpp */,
@@ -7095,6 +7099,8 @@
 				7ACFCE6A0A90AFF100A55B7D /* AdanaxisIntern.h in Headers */,
 				7A8C8F0F0AAF40C600963E87 /* MushGLShader.h in Headers */,
 				7A8C8F5A0AAF46A500963E87 /* MushGLRubyShader.h in Headers */,
+				7A81D6BA0AB04E6700B1F7F4 /* MushRenderMeshShader.h in Headers */,
+				7A81D6C30AB0550A00B1F7F4 /* MushGLAttribs.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8911,6 +8917,8 @@
 				7ACFCE6B0A90AFF100A55B7D /* AdanaxisIntern.cpp in Sources */,
 				7A8C8F100AAF40C600963E87 /* MushGLShader.cpp in Sources */,
 				7A8C8F5B0AAF46A500963E87 /* MushGLRubyShader.cpp in Sources */,
+				7A81D6BB0AB04E6700B1F7F4 /* MushRenderMeshShader.cpp in Sources */,
+				7A81D6C40AB0550A00B1F7F4 /* MushGLAttribs.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

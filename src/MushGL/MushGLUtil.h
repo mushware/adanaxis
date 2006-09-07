@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 0OQkM+NcUqCBag3zq+cczA
 /*
- * $Id: MushGLUtil.h,v 1.5 2006/07/08 16:05:58 southa Exp $
+ * $Id: MushGLUtil.h,v 1.6 2006/09/07 10:02:37 southa Exp $
  * $Log: MushGLUtil.h,v $
+ * Revision 1.6  2006/09/07 10:02:37  southa
+ * Shader interface
+ *
  * Revision 1.5  2006/07/08 16:05:58  southa
  * Ruby menus and key handling
  *
@@ -80,7 +83,15 @@ public:
 
     static void ColourSet(const Mushware::t4Val& inColour);
     
+    static void ProjectionMatrixSet(const Mushware::t4x4Val& inMatrix);
+    static void ModelViewMatrixSet(const Mushware::t4x4Val& inMatrix);
+    
+    static std::string DataTypeToString(GLenum inType);
+    
 private:
+    typedef GLfloat tGLMatrix[16];
+    static void MatrixToGL(tGLMatrix& outMatrix, const Mushware::t4x4Val& inMatrix);
+
 	static void ThrowGLError(GLenum inGLErr);
 	static void ThrowGLError(GLenum inGLErr, const std::string& inMessage);
 	static void GLErrorWriteToLog(GLenum inGLErr);

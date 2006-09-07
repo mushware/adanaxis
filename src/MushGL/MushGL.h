@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } glfKswkbeoueNs++v5RKqA
 /*
- * $Id: MushGL.h,v 1.15 2006/06/30 15:05:32 southa Exp $
+ * $Id: MushGL.h,v 1.16 2006/07/24 18:46:48 southa Exp $
  * $Log: MushGL.h,v $
+ * Revision 1.16  2006/07/24 18:46:48  southa
+ * Depth sorting
+ *
  * Revision 1.15  2006/06/30 15:05:32  southa
  * Texture and buffer purge
  *
@@ -74,6 +77,7 @@
 
 #include "MushGLAppHandler.h"
 #include "MushGLArrays.h"
+#include "MushGLAttribs.h"
 #include "MushGLBuffers.h"
 #include "MushGLCacheControl.h"
 #include "MushGLCamera.h"
