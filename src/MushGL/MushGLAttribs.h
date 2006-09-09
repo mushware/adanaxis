@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } ajCMNJ9+nE9yqrSF4kKMGQ
 /*
- * $Id$
- * $Log$
+ * $Id: MushGLAttribs.h,v 1.1 2006/09/07 16:38:50 southa Exp $
+ * $Log: MushGLAttribs.h,v $
+ * Revision 1.1  2006/09/07 16:38:50  southa
+ * Vertex shader
+ *
  */
 
 #include "MushGLStandard.h"
@@ -38,12 +41,14 @@ class MushGLAttribs : public MushcoreVirtualObject
 {
 public:
     typedef Mushware::t4x4o4Val tMattress;
+    typedef std::vector<Mushware::t4GLVal> tColours;
 
 private:
     MushGLProjection m_projection; //:readwrite :wref
     tMattress m_view; //:readwrite :wref
     tMattress m_model; //:readwrite :wref
-
+    tColours m_colours; //:readwrite :wref
+    
 //%classPrototypes {
 public:
     const MushGLProjection& Projection(void) const { return m_projection; }
@@ -58,6 +63,10 @@ public:
     void ModelSet(const tMattress& inValue) { m_model=inValue; }
     // Writable reference for m_model
     tMattress& ModelWRef(void) { return m_model; }
+    const tColours& Colours(void) const { return m_colours; }
+    void ColoursSet(const tColours& inValue) { m_colours=inValue; }
+    // Writable reference for m_colours
+    tColours& ColoursWRef(void) { return m_colours; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -65,7 +74,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } sHRE9qqcBWLB8ckcEFT5bQ
+//%classPrototypes } oiazj5eBax7f0V6xGqVo6g
 };
 //%inlineHeader {
 inline std::ostream&

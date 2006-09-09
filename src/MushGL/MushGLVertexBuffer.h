@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } IqSxvqRd3OSDd+9vhv6sYw
 /*
- * $Id: MushGLVertexBuffer.h,v 1.12 2006/06/30 15:05:34 southa Exp $
+ * $Id: MushGLVertexBuffer.h,v 1.13 2006/07/28 19:24:34 southa Exp $
  * $Log: MushGLVertexBuffer.h,v $
+ * Revision 1.13  2006/07/28 19:24:34  southa
+ * Pre-release work
+ *
  * Revision 1.12  2006/06/30 15:05:34  southa
  * Texture and buffer purge
  *
@@ -259,6 +262,11 @@ MushGLVertexBuffer<T>::MapReadWrite(void)
         throw MushcoreLogicFail("MushGLVertexBuffer attempt to map buffer twice");
     }
     
+    if (m_size == 0)
+    {
+        throw MushcoreLogicFail("MushGLVertexBuffer cannot map buffer of zero size");
+    }
+    
     if (m_isVertexBuffer)
     {
         Bind();
@@ -284,7 +292,9 @@ MushGLVertexBuffer<T>::MapReadWrite(void)
             else
             {
                 m_pData = NULL;
-                throw MushcoreLogicFail("Bad result from glMapBuffer");
+                std::ostringstream message;
+                message << "Bad result from glMapBuffer (" << std::hex << glErr << ")";
+                throw MushcoreLogicFail(message.str());
             }                
         }
         m_pData = pData;

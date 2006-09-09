@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } bQ20AxcHOjJNfCG2TxDNVg
 /*
- * $Id: MushGLShader.cpp,v 1.2 2006/09/07 16:38:51 southa Exp $
+ * $Id: MushGLShader.cpp,v 1.3 2006/09/09 11:16:40 southa Exp $
  * $Log: MushGLShader.cpp,v $
+ * Revision 1.3  2006/09/09 11:16:40  southa
+ * One-time vertex buffer generation
+ *
  * Revision 1.2  2006/09/07 16:38:51  southa
  * Vertex shader
  *
@@ -270,6 +273,26 @@ MushGLShader::AttribsApply(const MushGLAttribs& inAttribs)
         t4GLVal mvpOffset(mvpMattress.Offset());
         MushGLV::Sgl().Uniform4fv(m_mush_ModelViewProjectionOffset, 1, &mvpOffset[0]);
     }
+    if (m_mush_FValue >= 0)
+    {
+        MushGLV::Sgl().Uniform1f(m_mush_FValue, inAttribs.Projection().FValue());
+    }
+    
+    // Apply colours
+    const MushGLAttribs::tColours& coloursRef = inAttribs.Colours();
+    
+    U32 colourSize = coloursRef.size();
+    
+    if (colourSize > kNumColourAttrib)
+    {
+        throw MushcoreRequestFail("Too many colour attributes");
+    }
+    MUSHCOREASSERT(m_mush_Colours.size() == kNumColourAttrib);
+    
+    for (U32 i=0; i < colourSize; ++i)
+    {
+        MushGLV::Sgl().Uniform4fv(m_mush_Colours[i], 1, &coloursRef[i][0]);
+    }
 }    
 
 void
@@ -408,6 +431,15 @@ MushGLShader::Make(void)
     m_mush_ProjectionOffset = UniformLocationGet("mush_ProjectionOffset");
     m_mush_ModelViewOffset = UniformLocationGet("mush_ModelViewOffset");
     m_mush_ModelViewProjectionOffset = UniformLocationGet("mush_ModelViewProjectionOffset");
+    m_mush_FValue = UniformLocationGet("mush_FValue");
+    
+    m_mush_Colours.resize(kNumColourAttrib);
+    for (U32 i=0; i<m_mush_Colours.size(); ++i)
+    {
+        ostringstream nameStream;
+        nameStream << "mush_Colour" << i;
+        m_mush_Colours[i] = UniformLocationGet(nameStream.str());
+    }
     
     m_made = true;
     cout << *this << endl;
@@ -504,7 +536,9 @@ MushGLShader::AutoPrint(std::ostream& ioOut) const
     ioOut << "made=" << m_made << ", ";
     ioOut << "mush_ProjectionOffset=" << m_mush_ProjectionOffset << ", ";
     ioOut << "mush_ModelViewOffset=" << m_mush_ModelViewOffset << ", ";
-    ioOut << "mush_ModelViewProjectionOffset=" << m_mush_ModelViewProjectionOffset;
+    ioOut << "mush_ModelViewProjectionOffset=" << m_mush_ModelViewProjectionOffset << ", ";
+    ioOut << "mush_Colours=" << m_mush_Colours << ", ";
+    ioOut << "mush_FValue=" << m_mush_FValue;
     ioOut << "]";
 }
 bool
@@ -544,4 +578,4 @@ MushGLShader::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("made");
     ioOut << m_made;
 }
-//%outOfLineFunctions } bAS1ukmZv/6P/G40A4+Y4Q
+//%outOfLineFunctions } +heUpytkt5CS/rZdXOBScw

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } XKDM1ZJgQpb3nz4x0n57Og
 /*
- * $Id: MushRenderMeshShader.cpp,v 1.1 2006/09/07 16:38:52 southa Exp $
+ * $Id: MushRenderMeshShader.cpp,v 1.2 2006/09/09 11:16:41 southa Exp $
  * $Log: MushRenderMeshShader.cpp,v $
+ * Revision 1.2  2006/09/09 11:16:41  southa
+ * One-time vertex buffer generation
+ *
  * Revision 1.1  2006/09/07 16:38:52  southa
  * Vertex shader
  *
@@ -114,6 +117,10 @@ MushRenderMeshShader::RenderJobCreate(MushGLJobRender& outRender,
         attribsRef.ProjectionSet(inSpec.Projection());
         attribsRef.ViewSet(inSpec.View());
         attribsRef.ModelSet(inSpec.Model());
+        attribsRef.ColoursWRef().resize(0);
+        attribsRef.ColoursWRef().push_back(t4GLVal(ColourZLeft()));
+        attribsRef.ColoursWRef().push_back(t4GLVal(ColourZMiddle()));
+        attribsRef.ColoursWRef().push_back(t4GLVal(ColourZRight()));
         jobCreated = true;
     }
     return jobCreated;
@@ -155,13 +162,13 @@ MushRenderMeshShader::OutputBufferGenerate(const MushRenderSpec& inSpec, const M
     }
 
     // Build the triangle lists if necessary
-    if (pDestVertex->TriangleListContextNum() == 0)
+    if (pDestVertex->TriangleListContextNum() == 0 || pDestVertex->VertexTriangleList().size() == 0)
     {
         TriangleListBuild(pDestVertex->VertexTriangleListWRef(), inMesh, kSourceTypeVertex);
         pDestVertex->TriangleListContextNumSet(1);
     }
 
-    if (pDestTexCoord->TriangleListContextNum() < 2)
+    if (pDestTexCoord->TriangleListContextNum() < 2 || pDestTexCoord->TexCoordTriangleList().size() == 0)
     {
         for (U32 i=0; i<texCoordsPerVertex; ++i)
         {
@@ -174,6 +181,12 @@ MushRenderMeshShader::OutputBufferGenerate(const MushRenderSpec& inSpec, const M
     Mushware::U32 vertexTriangleListSize = vertexTriangleList.size();
     const MushGLBuffers::tTriangleList& texCoordTriangleList = pDestTexCoord->TexCoordTriangleList();
     Mushware::U32 texCoordTriangleListSize = texCoordTriangleList.size();
+    
+    if (vertexTriangleListSize == 0)
+    {
+        MushcoreLog::Sgl().XMLInfoLog() << inMesh;
+        abort();   
+    }
     
     // Build the output buffers
     bool unmapSuccess = true;
@@ -196,6 +209,7 @@ MushRenderMeshShader::OutputBufferGenerate(const MushRenderSpec& inSpec, const M
         }
         
         unmapSuccess = destVertices.AttemptUnmap();
+        
         pDestVertex->VertexContextNumSet(1);
     }
     

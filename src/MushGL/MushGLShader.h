@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } MmuefLWPCIWvwCK7IfDibQ
 /*
- * $Id: MushGLShader.h,v 1.1 2006/09/07 10:02:37 southa Exp $
+ * $Id: MushGLShader.h,v 1.2 2006/09/07 16:38:51 southa Exp $
  * $Log: MushGLShader.h,v $
+ * Revision 1.2  2006/09/07 16:38:51  southa
+ * Vertex shader
+ *
  * Revision 1.1  2006/09/07 10:02:37  southa
  * Shader interface
  *
@@ -42,6 +45,11 @@ class MushGLShader : public MushcoreVirtualObject
 public:
     typedef MushcoreData<MushGLShader> tData;
     typedef MushcoreDataRef<MushGLShader> tDataRef;
+    
+    enum
+    {
+        kNumColourAttrib = 8
+    };
     
     MushGLShader();
     virtual ~MushGLShader() {}
@@ -73,6 +81,8 @@ private:
     GLint m_mush_ProjectionOffset; //:xmlignore
     GLint m_mush_ModelViewOffset; //:xmlignore
     GLint m_mush_ModelViewProjectionOffset; //:xmlignore
+    std::vector<GLint> m_mush_Colours; //:xmlignore
+    GLint m_mush_FValue; //:xmlignore
     
 //%classPrototypes {
 public:

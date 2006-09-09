@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } YCa3eNmcxUH2q0Oxh6SpTA
 /*
- * $Id: AdanaxisPieceKhazi.cpp,v 1.19 2006/08/24 16:30:55 southa Exp $
+ * $Id: AdanaxisPieceKhazi.cpp,v 1.20 2006/09/09 11:16:39 southa Exp $
  * $Log: AdanaxisPieceKhazi.cpp,v $
+ * Revision 1.20  2006/09/09 11:16:39  southa
+ * One-time vertex buffer generation
+ *
  * Revision 1.19  2006/08/24 16:30:55  southa
  * Event handling
  *
@@ -259,6 +262,9 @@ AdanaxisPieceKhazi::Explode(MushGameLogic& ioLogic, const MushGameMessageCollisi
     
     MushMesh4Mesh::tCentroid contactCentroid = Mesh().ChunkCentroid(contactChunk);
     
+    // Disable for the moment
+    numChunks = 0;
+    
     for (U32 i=0; i<numChunks; ++i)
     {
         if (i != contactChunk)
@@ -303,7 +309,7 @@ AdanaxisPieceKhazi::Explode(MushGameLogic& ioLogic, const MushGameMessageCollisi
             MushMesh4Util::ChunkCopy(projectileRef.MeshWRef(), Mesh(), i);
 			
 			// Can't texture this one yet
-			// projectileRef.TexCoordBuffersRefSet(m_texCoordBuffersRef);
+			// projectileRef.SharedBuffersRefSet(SharedBuffersRef());
         }
     }
     AdanaxisUtil::FlareCreate(dynamic_cast<AdanaxisLogic&>(ioLogic), Post(), 20, 0);

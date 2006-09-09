@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } rQkTih3VUd7Xp8cDeV3ZYA
 /*
- * $Id: AdanaxisRender.cpp,v 1.46 2006/09/07 16:38:50 southa Exp $
+ * $Id: AdanaxisRender.cpp,v 1.47 2006/09/09 11:16:40 southa Exp $
  * $Log: AdanaxisRender.cpp,v $
+ * Revision 1.47  2006/09/09 11:16:40  southa
+ * One-time vertex buffer generation
+ *
  * Revision 1.46  2006/09/07 16:38:50  southa
  * Vertex shader
  *
@@ -308,7 +311,7 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
         
         MushRenderMesh *pRenderMesh = &wireframeRender;
         
-        if ((pLogic->FrameMsec() % 2000) > 1000)
+        if ((pLogic->FrameMsec() % 3000) > 2000)
         {
             pRenderMesh = &solidRender;
         }
