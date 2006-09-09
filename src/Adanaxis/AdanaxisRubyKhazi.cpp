@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } qwHjHWDAhJ5nzUjaMqYD6A
 /*
- * $Id: AdanaxisRubyKhazi.cpp,v 1.4 2006/08/17 08:57:12 southa Exp $
+ * $Id: AdanaxisRubyKhazi.cpp,v 1.5 2006/08/24 13:04:38 southa Exp $
  * $Log: AdanaxisRubyKhazi.cpp,v $
+ * Revision 1.5  2006/08/24 13:04:38  southa
+ * Event handling
+ *
  * Revision 1.4  2006/08/17 08:57:12  southa
  * Event handling
  *
@@ -110,7 +113,7 @@ MUSHRUBYMAPTOROBJ_INITIALIZE(AdanaxisPieceKhazi)(Mushware::tRubyArgC inArgC, Mus
 	if (meshName != "")
     {
 		khaziRef.MeshWRef() = *MushcoreData<MushMesh4Mesh>::Sgl().Get(meshName);
-		khaziRef.TexCoordBuffersNameSet(meshName);
+		khaziRef.SharedBuffersNameSet(meshName);
 	}
     else
 	{

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 6hLRNoZfeBvP570tKfB/gA
 /*
- * $Id: MushRenderSpec.h,v 1.12 2006/07/18 16:58:39 southa Exp $
+ * $Id: MushRenderSpec.h,v 1.13 2006/09/07 16:38:52 southa Exp $
  * $Log: MushRenderSpec.h,v $
+ * Revision 1.13  2006/09/07 16:38:52  southa
+ * Vertex shader
+ *
  * Revision 1.12  2006/07/18 16:58:39  southa
  * Texture fixes
  *
@@ -74,11 +77,12 @@ class MushRenderSpec : public MushcoreVirtualObject
 {
 public:
     typedef Mushware::t4x4o4Val tMattress;
-    virtual ~MushRenderSpec() {}
-    const tMattress ModelToEyeMattress(void) const { return m_view * m_model; }
     
+    MushRenderSpec() : m_useSharedVertices(true) {}
+    virtual ~MushRenderSpec() {}
+    
+    const tMattress ModelToEyeMattress(void) const { return m_view * m_model; }
     const tMattress ModelToClipMattress(void) const { return m_projection.Mattress() * ModelToEyeMattress(); }
-
     const tMattress ModelToClipBillboardMattress(void) const;
 
 private:
@@ -87,8 +91,9 @@ private:
     tMattress m_model; //:readwrite :wref
 
     MushGLBuffers::tDataRef m_buffersRef; //:readwrite
-    MushGLBuffers::tSharedDataRef m_texCoordBuffersRef; //:readwrite
-
+    MushGLBuffers::tSharedDataRef m_sharedBuffersRef; //:readwrite
+    bool m_useSharedVertices; //:readwrite
+    
 //%classPrototypes {
 public:
     const MushGLProjection& Projection(void) const { return m_projection; }
@@ -105,8 +110,10 @@ public:
     tMattress& ModelWRef(void) { return m_model; }
     const MushGLBuffers::tDataRef& BuffersRef(void) const { return m_buffersRef; }
     void BuffersRefSet(const MushGLBuffers::tDataRef& inValue) { m_buffersRef=inValue; }
-    const MushGLBuffers::tSharedDataRef& TexCoordBuffersRef(void) const { return m_texCoordBuffersRef; }
-    void TexCoordBuffersRefSet(const MushGLBuffers::tSharedDataRef& inValue) { m_texCoordBuffersRef=inValue; }
+    const MushGLBuffers::tSharedDataRef& SharedBuffersRef(void) const { return m_sharedBuffersRef; }
+    void SharedBuffersRefSet(const MushGLBuffers::tSharedDataRef& inValue) { m_sharedBuffersRef=inValue; }
+    const bool& UseSharedVertices(void) const { return m_useSharedVertices; }
+    void UseSharedVerticesSet(const bool& inValue) { m_useSharedVertices=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -114,7 +121,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } eo6ShDpTtzBdvR+enEqYzw
+//%classPrototypes } l9x9n+sfExdm5RF6z4J1RA
 };
 
 inline const MushRenderSpec::tMattress

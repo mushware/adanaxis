@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } niNk52AMovUz2uwLdjDeFg
 /*
- * $Id: MushGLJobRender.h,v 1.5 2006/07/24 18:46:49 southa Exp $
+ * $Id: MushGLJobRender.h,v 1.6 2006/09/07 16:38:50 southa Exp $
  * $Log: MushGLJobRender.h,v $
+ * Revision 1.6  2006/09/07 16:38:50  southa
+ * Vertex shader
+ *
  * Revision 1.5  2006/07/24 18:46:49  southa
  * Depth sorting
  *
@@ -67,7 +70,7 @@ private:
     std::vector<MushGLWorkSpec *> m_workSpecs; //:read
     
     MushGLBuffers::tDataRef m_buffersRef; //:readwrite
-    MushGLBuffers::tSharedDataRef m_texCoordBuffersRef; //:readwrite
+    MushGLBuffers::tSharedDataRef m_sharedBuffersRef; //:readwrite
     
     Mushware::tVal m_sortValue; //:readwrite
     MushGLShader::tDataRef m_shaderRef; //:readwrite :wref
@@ -78,8 +81,8 @@ public:
     const std::vector<MushGLWorkSpec *>& WorkSpecs(void) const { return m_workSpecs; }
     const MushGLBuffers::tDataRef& BuffersRef(void) const { return m_buffersRef; }
     void BuffersRefSet(const MushGLBuffers::tDataRef& inValue) { m_buffersRef=inValue; }
-    const MushGLBuffers::tSharedDataRef& TexCoordBuffersRef(void) const { return m_texCoordBuffersRef; }
-    void TexCoordBuffersRefSet(const MushGLBuffers::tSharedDataRef& inValue) { m_texCoordBuffersRef=inValue; }
+    const MushGLBuffers::tSharedDataRef& SharedBuffersRef(void) const { return m_sharedBuffersRef; }
+    void SharedBuffersRefSet(const MushGLBuffers::tSharedDataRef& inValue) { m_sharedBuffersRef=inValue; }
     const Mushware::tVal& SortValue(void) const { return m_sortValue; }
     void SortValueSet(const Mushware::tVal& inValue) { m_sortValue=inValue; }
     const MushGLShader::tDataRef& ShaderRef(void) const { return m_shaderRef; }
@@ -97,7 +100,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } nBXiejYXzLrI500suWw81w
+//%classPrototypes } vxGl1AE4xHphsIvbROTS+w
 };
 
 inline MushGLWorkSpec&

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } ct6tn+dNsUgrYUjoy0CuvQ
 /*
- * $Id: MushRenderSpec.cpp,v 1.8 2005/09/05 12:54:30 southa Exp $
+ * $Id: MushRenderSpec.cpp,v 1.9 2006/06/01 15:39:38 southa Exp $
  * $Log: MushRenderSpec.cpp,v $
+ * Revision 1.9  2006/06/01 15:39:38  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.8  2005/09/05 12:54:30  southa
  * Solid rendering work
  *
@@ -86,7 +89,8 @@ MushRenderSpec::AutoPrint(std::ostream& ioOut) const
     ioOut << "view=" << m_view << ", ";
     ioOut << "model=" << m_model << ", ";
     ioOut << "buffersRef=" << m_buffersRef << ", ";
-    ioOut << "texCoordBuffersRef=" << m_texCoordBuffersRef;
+    ioOut << "sharedBuffersRef=" << m_sharedBuffersRef << ", ";
+    ioOut << "useSharedVertices=" << m_useSharedVertices;
     ioOut << "]";
 }
 bool
@@ -114,9 +118,13 @@ MushRenderSpec::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
     {
         ioIn >> m_buffersRef;
     }
-    else if (inTagStr == "texCoordBuffersRef")
+    else if (inTagStr == "sharedBuffersRef")
     {
-        ioIn >> m_texCoordBuffersRef;
+        ioIn >> m_sharedBuffersRef;
+    }
+    else if (inTagStr == "useSharedVertices")
+    {
+        ioIn >> m_useSharedVertices;
     }
     else 
     {
@@ -135,7 +143,9 @@ MushRenderSpec::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_model;
     ioOut.TagSet("buffersRef");
     ioOut << m_buffersRef;
-    ioOut.TagSet("texCoordBuffersRef");
-    ioOut << m_texCoordBuffersRef;
+    ioOut.TagSet("sharedBuffersRef");
+    ioOut << m_sharedBuffersRef;
+    ioOut.TagSet("useSharedVertices");
+    ioOut << m_useSharedVertices;
 }
-//%outOfLineFunctions } hJfvaIu1NSVJSmMIuZl91g
+//%outOfLineFunctions } H8rff2bchYmwoVCKq/NZxg

@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } 4/aItzPaY/pRS+Cp7uX3Fw
 /*
- * $Id: AdanaxisPieceWorld.cpp,v 1.2 2006/07/24 18:46:47 southa Exp $
+ * $Id: AdanaxisPieceWorld.cpp,v 1.3 2006/08/01 17:21:26 southa Exp $
  * $Log: AdanaxisPieceWorld.cpp,v $
+ * Revision 1.3  2006/08/01 17:21:26  southa
+ * River demo
+ *
  * Revision 1.2  2006/07/24 18:46:47  southa
  * Depth sorting
  *
@@ -48,7 +51,7 @@ AdanaxisPieceWorld::Render(MushGameLogic& ioLogic, MushRenderMesh& inRender, con
     
     MushRenderSpec renderSpec;
     renderSpec.BuffersRefSet(BuffersRef());
-    renderSpec.TexCoordBuffersRefSet(TexCoordBuffersRef());
+    renderSpec.SharedBuffersRefSet(SharedBuffersRef());
     
     MushMeshOps::PosticityToMattress(renderSpec.ModelWRef(), Post());
     MushMeshOps::PosticityToMattress(renderSpec.ViewWRef(), newCamera.Post());

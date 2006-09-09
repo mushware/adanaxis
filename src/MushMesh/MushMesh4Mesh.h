@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } YrK9KiG4XjKqbWo1rVGU4w
 /*
- * $Id: MushMesh4Mesh.h,v 1.20 2006/07/19 14:34:52 southa Exp $
+ * $Id: MushMesh4Mesh.h,v 1.21 2006/07/25 20:31:04 southa Exp $
  * $Log: MushMesh4Mesh.h,v $
+ * Revision 1.21  2006/07/25 20:31:04  southa
+ * Scanner work
+ *
  * Revision 1.20  2006/07/19 14:34:52  southa
  * Flare effects
  *
@@ -206,6 +209,8 @@ private:
     Mushware::U32  m_transformType; //:readwrite
     
     // Delegates
+    tDataRef m_vertexDelegate; //:readwrite :wref
+    tDataRef m_colourDelegate; //:readwrite :wref
     tDataRef m_texCoordDelegate; //:readwrite :wref
     
     // Generation and animation
@@ -221,7 +226,7 @@ private:
     
     // Collision
     tChunks m_chunks; //:readwrite :wref
-    
+
     // Derived representation
     mutable tNormals m_normals;
     mutable tConnectivity m_connectivity;
@@ -260,6 +265,14 @@ public:
     void LevelOfDetailSet(const Mushware::U32& inValue) { m_levelOfDetail=inValue; }
     const Mushware::U32& TransformType(void) const { return m_transformType; }
     void TransformTypeSet(const Mushware::U32& inValue) { m_transformType=inValue; }
+    const tDataRef& VertexDelegate(void) const { return m_vertexDelegate; }
+    void VertexDelegateSet(const tDataRef& inValue) { m_vertexDelegate=inValue; }
+    // Writable reference for m_vertexDelegate
+    tDataRef& VertexDelegateWRef(void) { return m_vertexDelegate; }
+    const tDataRef& ColourDelegate(void) const { return m_colourDelegate; }
+    void ColourDelegateSet(const tDataRef& inValue) { m_colourDelegate=inValue; }
+    // Writable reference for m_colourDelegate
+    tDataRef& ColourDelegateWRef(void) { return m_colourDelegate; }
     const tDataRef& TexCoordDelegate(void) const { return m_texCoordDelegate; }
     void TexCoordDelegateSet(const tDataRef& inValue) { m_texCoordDelegate=inValue; }
     // Writable reference for m_texCoordDelegate
@@ -310,7 +323,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } wiHO6BcqooUc9xVXHpfZBw
+//%classPrototypes } L7+IDNv+6/6nTHJS7c7d8Q
 };
 
 inline const MushMesh4Mesh::tCentroid&

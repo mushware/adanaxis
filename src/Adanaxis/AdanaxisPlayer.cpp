@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } vHDbpnIep+mzmlVV3IuGGg
 /*
- * $Id: AdanaxisPlayer.cpp,v 1.25 2006/08/01 17:21:26 southa Exp $
+ * $Id: AdanaxisPlayer.cpp,v 1.26 2006/08/25 11:06:08 southa Exp $
  * $Log: AdanaxisPlayer.cpp,v $
+ * Revision 1.26  2006/08/25 11:06:08  southa
+ * Snapshot
+ *
  * Revision 1.25  2006/08/01 17:21:26  southa
  * River demo
  *
@@ -331,7 +334,7 @@ AdanaxisPlayer::FirePieceCreate(MushGameLogic& ioLogic, const MushGameMessageFir
     
     // Create the mesh for this object
     projectileRef.MeshWRef() = m_projectileMeshRef.Ref();
-	projectileRef.TexCoordBuffersNameSet(m_projectileMeshRef.Name());
+	projectileRef.SharedBuffersNameSet(m_projectileMeshRef.Name());
     
     // Create the flare effect
     MushMeshPosticity flarePost = projectileRef.Post();

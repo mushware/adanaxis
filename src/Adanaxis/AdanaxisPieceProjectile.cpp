@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } AKn0HlU4NeCX3ptHFWodSQ
 /*
- * $Id: AdanaxisPieceProjectile.cpp,v 1.10 2006/08/01 17:21:25 southa Exp $
+ * $Id: AdanaxisPieceProjectile.cpp,v 1.11 2006/08/25 01:44:57 southa Exp $
  * $Log: AdanaxisPieceProjectile.cpp,v $
+ * Revision 1.11  2006/08/25 01:44:57  southa
+ * Khazi fire
+ *
  * Revision 1.10  2006/08/01 17:21:25  southa
  * River demo
  *
@@ -90,7 +93,7 @@ AdanaxisPieceProjectile::Render(MushGLJobRender& outRender,
 {
     MushRenderSpec renderSpec;
     renderSpec.BuffersRefSet(BuffersRef());
-    renderSpec.TexCoordBuffersRefSet(TexCoordBuffersRef());
+    renderSpec.SharedBuffersRefSet(SharedBuffersRef());
     
     MushMeshOps::PosticityToMattress(renderSpec.ModelWRef(), Post());
     MushMeshOps::PosticityToMattress(renderSpec.ViewWRef(), inCamera.Post());
@@ -202,7 +205,7 @@ AdanaxisPieceProjectile::RubyCreate(Mushware::tRubyValue inSelf, Mushware::tRuby
 	if (meshName != "")
     {
 		objRef.MeshWRef() = *MushcoreData<MushMesh4Mesh>::Sgl().Get(meshName);
-		objRef.TexCoordBuffersNameSet(meshName);
+		objRef.SharedBuffersNameSet(meshName);
 	}
     else
 	{

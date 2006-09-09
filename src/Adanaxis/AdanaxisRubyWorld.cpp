@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } e2qXanrW6Ie+VC9e3SaK0A
 /*
- * $Id: AdanaxisRubyWorld.cpp,v 1.1 2006/07/19 10:22:15 southa Exp $
+ * $Id: AdanaxisRubyWorld.cpp,v 1.2 2006/08/01 17:21:28 southa Exp $
  * $Log: AdanaxisRubyWorld.cpp,v $
+ * Revision 1.2  2006/08/01 17:21:28  southa
+ * River demo
+ *
  * Revision 1.1  2006/07/19 10:22:15  southa
  * World objects
  *
@@ -91,7 +94,7 @@ MUSHRUBYMAPTOROBJ_INITIALIZE(AdanaxisPieceWorld)(Mushware::tRubyArgC inArgC, Mus
 	if (meshName != "")
     {
 		khaziRef.MeshWRef() = *MushcoreData<MushMesh4Mesh>::Sgl().Get(meshName);
-		khaziRef.TexCoordBuffersNameSet(meshName);
+		khaziRef.SharedBuffersNameSet(meshName);
 	}
     else
 	{

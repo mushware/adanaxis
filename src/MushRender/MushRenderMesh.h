@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } +/eRzpkNzTX9fJgJPPNtkw
 /*
- * $Id: MushRenderMesh.h,v 1.5 2006/07/24 18:46:50 southa Exp $
+ * $Id: MushRenderMesh.h,v 1.6 2006/07/25 13:30:58 southa Exp $
  * $Log: MushRenderMesh.h,v $
+ * Revision 1.6  2006/07/25 13:30:58  southa
+ * Initial scanner work
+ *
  * Revision 1.5  2006/07/24 18:46:50  southa
  * Depth sorting
  *
@@ -50,12 +53,22 @@
 class MushRenderMesh : public MushcoreVirtualObject
 {
 public:
+    MushRenderMesh();
     virtual ~MushRenderMesh() {}
     
     virtual void MeshRender(const MushRenderSpec& inSpec, const MushMeshMesh& inMesh);
     virtual bool RenderJobCreate(MushGLJobRender& outRender,
                                  const MushRenderSpec& inSpec,
                                  const MushMeshMesh& inMesh);
+    
+    virtual void MeshDelegatesGet(const MushMesh4Mesh *& outpVertexMesh,
+                                  const MushMesh4Mesh *& outpColourMesh,
+                                  const MushMesh4Mesh *& outpTexCoordMesh,
+                                  const MushMesh4Mesh& inMesh);
+    virtual void DestDelegatesGet(MushGLBuffers *& outpDestVertex,
+                                  MushGLBuffers *& outpDestColour,
+                                  MushGLBuffers *& outpDestTexCoord,
+                                  const MushRenderSpec& inSpec);
     
     virtual Mushware::tVal SortDepth(const MushRenderSpec& inSpec, const MushMesh4Mesh& inMesh);
     
@@ -64,10 +77,28 @@ public:
     virtual void CentroidToClip(Mushware::t4Val outPos, 
                                 const MushRenderSpec& inSpec,
                                 const MushMesh4Mesh& inMesh);
+protected:
+    enum tSourceType
+    {
+        kSourceTypeVertex,
+        kSourceTypeTexCoord
+    };
+    
+    virtual void TriangleListBuild(MushGLBuffers::tTriangleList& ioList, const MushMesh4Mesh& inMesh, tSourceType inSourceType);
     
 private:
+    Mushware::t4Val m_colourZMiddle; //:readwrite
+    Mushware::t4Val m_colourZLeft;   //:readwrite
+    Mushware::t4Val m_colourZRight;  //:readwrite
+    
 //%classPrototypes {
 public:
+    const Mushware::t4Val& ColourZMiddle(void) const { return m_colourZMiddle; }
+    void ColourZMiddleSet(const Mushware::t4Val& inValue) { m_colourZMiddle=inValue; }
+    const Mushware::t4Val& ColourZLeft(void) const { return m_colourZLeft; }
+    void ColourZLeftSet(const Mushware::t4Val& inValue) { m_colourZLeft=inValue; }
+    const Mushware::t4Val& ColourZRight(void) const { return m_colourZRight; }
+    void ColourZRightSet(const Mushware::t4Val& inValue) { m_colourZRight=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -75,7 +106,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } 1oBgFruy5qHAaudtV+Hcmg
+//%classPrototypes } +P6+SbQdCkMB4JhavYauEw
 };
 //%inlineHeader {
 inline std::ostream&

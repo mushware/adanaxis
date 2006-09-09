@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } XsVs/rr7rRJFJzKi6eatxg
 /*
- * $Id: AdanaxisUtil.cpp,v 1.29 2006/07/19 14:34:51 southa Exp $
+ * $Id: AdanaxisUtil.cpp,v 1.30 2006/08/01 17:21:30 southa Exp $
  * $Log: AdanaxisUtil.cpp,v $
+ * Revision 1.30  2006/08/01 17:21:30  southa
+ * River demo
+ *
  * Revision 1.29  2006/07/19 14:34:51  southa
  * Flare effects
  *
@@ -288,7 +291,7 @@ AdanaxisUtil::TestPiecesCreate(AdanaxisLogic& ioLogic)
 #endif
         //AdanaxisMeshLibrary::AdanaxisSgl().TesseractCreate(khaziRef.MeshWRef());
         khaziRef.MeshWRef().TexCoordDelegateSet(MushMesh4Mesh::tDataRef("attendant"));
-        khaziRef.TexCoordBuffersNameSet("attendant");
+        khaziRef.SharedBuffersNameSet("attendant");
     }
 }
 
@@ -341,7 +344,7 @@ AdanaxisUtil::FlareCreate(AdanaxisLogic& ioLogic, const MushMeshPosticity& inPos
     
     objRef.MeshWRef() = *MushcoreData<MushMesh4Mesh>::Sgl().Get(objName);
     objRef.MeshWRef().TexCoordDelegateSet(MushMesh4Mesh::tDataRef(objName));
-    objRef.TexCoordBuffersNameSet(objName);
+    objRef.SharedBuffersNameSet(objName);
     
     objRef.MeshWRef().ApplyScale(t4Val(inSize, inSize, inSize, inSize));
 }
@@ -368,7 +371,7 @@ AdanaxisUtil::EmberCreate(AdanaxisLogic& ioLogic, const MushMeshPosticity& inPos
     
     objRef.MeshWRef() = *MushcoreData<MushMesh4Mesh>::Sgl().Get(objName);
     objRef.MeshWRef().TexCoordDelegateSet(MushMesh4Mesh::tDataRef(objName));
-    objRef.TexCoordBuffersNameSet(objName);
+    objRef.SharedBuffersNameSet(objName);
     
     objRef.MeshWRef().ApplyScale(t4Val(inSize, inSize, inSize, inSize));
 }

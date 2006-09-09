@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } Xbi0vrfUMDnmd9NKsSwjUQ
 /*
- * $Id: AdanaxisPieceDeco.cpp,v 1.22 2006/08/01 13:41:15 southa Exp $
+ * $Id: AdanaxisPieceDeco.cpp,v 1.23 2006/08/01 17:21:25 southa Exp $
  * $Log: AdanaxisPieceDeco.cpp,v $
+ * Revision 1.23  2006/08/01 17:21:25  southa
+ * River demo
+ *
  * Revision 1.22  2006/08/01 13:41:15  southa
  * Pre-release updates
  *
@@ -126,7 +129,7 @@ AdanaxisPieceDeco::Render(MushGLJobRender& outRender,
 
     MushRenderSpec renderSpec;
     renderSpec.BuffersRefSet(BuffersRef());
-    renderSpec.TexCoordBuffersRefSet(TexCoordBuffersRef());
+    renderSpec.SharedBuffersRefSet(SharedBuffersRef());
 
     MushMeshOps::PosticityToMattress(renderSpec.ModelWRef(), Post());
     MushMeshOps::PosticityToMattress(renderSpec.ViewWRef(), inCamera.Post());

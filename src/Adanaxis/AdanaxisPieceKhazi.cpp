@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } YCa3eNmcxUH2q0Oxh6SpTA
 /*
- * $Id: AdanaxisPieceKhazi.cpp,v 1.18 2006/08/24 13:04:38 southa Exp $
+ * $Id: AdanaxisPieceKhazi.cpp,v 1.19 2006/08/24 16:30:55 southa Exp $
  * $Log: AdanaxisPieceKhazi.cpp,v $
+ * Revision 1.19  2006/08/24 16:30:55  southa
+ * Event handling
+ *
  * Revision 1.18  2006/08/24 13:04:38  southa
  * Event handling
  *
@@ -198,14 +201,14 @@ AdanaxisPieceKhazi::Render(MushGLJobRender& outRender,
 {
     MushRenderSpec renderSpec;
     renderSpec.BuffersRefSet(BuffersRef());
-    renderSpec.TexCoordBuffersRefSet(TexCoordBuffersRef());
+    renderSpec.SharedBuffersRefSet(SharedBuffersRef());
 
     MushMeshOps::PosticityToMattress(renderSpec.ModelWRef(), Post());
     MushMeshOps::PosticityToMattress(renderSpec.ViewWRef(), inCamera.Post());
     renderSpec.ViewWRef().InPlaceInvert();
     
     renderSpec.ProjectionSet(inCamera.Projection());
-    
+
     return inRender.RenderJobCreate(outRender, renderSpec, Mesh());
 }
 

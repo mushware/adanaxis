@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } rQkTih3VUd7Xp8cDeV3ZYA
 /*
- * $Id: AdanaxisRender.cpp,v 1.45 2006/08/01 17:21:26 southa Exp $
+ * $Id: AdanaxisRender.cpp,v 1.46 2006/09/07 16:38:50 southa Exp $
  * $Log: AdanaxisRender.cpp,v $
+ * Revision 1.46  2006/09/07 16:38:50  southa
+ * Vertex shader
+ *
  * Revision 1.45  2006/08/01 17:21:26  southa
  * River demo
  *
@@ -298,16 +301,27 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
         
         MushGLState::Sgl().RenderStateSet(MushGLState::kRenderState4D);
         
-        //MushRenderMeshDiagnostic renderMesh;
-        //MushRenderMeshWireframe renderMesh;
-        //MushRenderMeshSolid renderMesh;
-        MushRenderMeshShader renderMesh;
+        MushRenderMeshDiagnostic diagnosticRender;
+        MushRenderMeshWireframe wireframeRender;
+        MushRenderMeshSolid solidRender;
+        MushRenderMeshShader shaderRender;
+        
+        MushRenderMesh *pRenderMesh = &wireframeRender;
+        
+        if ((pLogic->FrameMsec() % 2000) > 1000)
+        {
+            pRenderMesh = &solidRender;
+        }
+        else
+        {
+            pRenderMesh = &shaderRender;
+        }
         
         MushGameCamera camera(inCamera);
         
-        renderMesh.ColourZMiddleSet(t4Val(1.0,1.0,1.0,backdropAlpha));
-        renderMesh.ColourZLeftSet(t4Val(1.0,0.3,0.3,0.0));
-        renderMesh.ColourZRightSet(t4Val(0.3,1.0,0.3,0.0));
+        pRenderMesh->ColourZMiddleSet(t4Val(1.0,1.0,1.0,backdropAlpha));
+        pRenderMesh->ColourZLeftSet(t4Val(1.0,0.3,0.3,0.0));
+        pRenderMesh->ColourZRightSet(t4Val(0.3,1.0,0.3,0.0));
 
         camera.ProjectionSet(m_projection);
         
@@ -316,13 +330,13 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
             tWorldList::iterator worldEndIter = pVolData->WorldListWRef().end();
             for (tWorldList::iterator p = pVolData->WorldListWRef().begin(); p != worldEndIter; ++p)
             {
-                p->Render(ioLogic, renderMesh, camera);
+                p->Render(ioLogic, *pRenderMesh, camera);
             }
         }
         
-        renderMesh.ColourZMiddleSet(t4Val(1.0,1.0,1.0,meshAlpha));
-        renderMesh.ColourZLeftSet(t4Val(1.0,0.3,0.3,0.0));
-        renderMesh.ColourZRightSet(t4Val(0.3,1.0,0.3,0.0));
+        pRenderMesh->ColourZMiddleSet(t4Val(1.0,1.0,1.0,meshAlpha));
+        pRenderMesh->ColourZLeftSet(t4Val(1.0,0.3,0.3,0.0));
+        pRenderMesh->ColourZRightSet(t4Val(0.3,1.0,0.3,0.0));
 
         typedef AdanaxisSaveData::tProjectileList tProjectileList;
         
@@ -331,15 +345,15 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
         {
             MUSHCOREASSERT(m_renderList.back() != NULL);
             
-            if (p->Render(*m_renderList.back(), ioLogic, renderMesh, camera))
+            if (p->Render(*m_renderList.back(), ioLogic, *pRenderMesh, camera))
             {
                 m_renderList.push_back(new MushGLJobRender);
             }
         }    
         
-        renderMesh.ColourZMiddleSet(t4Val(1.0,1.0,1.0,decoAlpha));
-        renderMesh.ColourZLeftSet(t4Val(1.0,0.3,0.3,0.0));
-        renderMesh.ColourZRightSet(t4Val(0.3,1.0,0.3,0.0));
+        pRenderMesh->ColourZMiddleSet(t4Val(1.0,1.0,1.0,decoAlpha));
+        pRenderMesh->ColourZLeftSet(t4Val(1.0,0.3,0.3,0.0));
+        pRenderMesh->ColourZRightSet(t4Val(0.3,1.0,0.3,0.0));
 
         if (!pVolData->ScannerOn())
         {
@@ -348,20 +362,20 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
             tDecoList::iterator decoEndIter = pVolData->DecoListWRef().end();
             for (tDecoList::iterator p = pVolData->DecoListWRef().begin(); p != decoEndIter; ++p)
             {
-                renderMesh.ColourZMiddleSet(t4Val(1.0,1.0,1.0,decoAlpha));
+                pRenderMesh->ColourZMiddleSet(t4Val(1.0,1.0,1.0,decoAlpha));
 
                 MUSHCOREASSERT(m_renderList.back() != NULL);
                 
-                if (p->Render(*m_renderList.back(), ioLogic, renderMesh, camera))
+                if (p->Render(*m_renderList.back(), ioLogic, *pRenderMesh, camera))
                 {
                     m_renderList.push_back(new MushGLJobRender);
                 }
             }
         }
         
-        renderMesh.ColourZMiddleSet(t4Val(1.0,1.0,1.0,meshAlpha));
-        renderMesh.ColourZLeftSet(t4Val(1.0,0.3,0.3,0.0));
-        renderMesh.ColourZRightSet(t4Val(0.3,1.0,0.3,0.0));
+        pRenderMesh->ColourZMiddleSet(t4Val(1.0,1.0,1.0,meshAlpha));
+        pRenderMesh->ColourZLeftSet(t4Val(1.0,0.3,0.3,0.0));
+        pRenderMesh->ColourZRightSet(t4Val(0.3,1.0,0.3,0.0));
         
         typedef AdanaxisSaveData::tKhaziList tKhaziList;
         
@@ -370,7 +384,7 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
         {
             MUSHCOREASSERT(m_renderList.back() != NULL);
             
-            if (p->Render(*m_renderList.back(), ioLogic, renderMesh, camera))
+            if (p->Render(*m_renderList.back(), ioLogic, *pRenderMesh, camera))
             {
                 m_renderList.push_back(new MushGLJobRender);
             }
@@ -378,9 +392,13 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
         
         SortAndDespatch(ioLogic, m_renderList);
 
+        // Reset modelview and projection matrices
+        MushGLUtil::IdentityPrologue();
+        MushGLUtil::IdentityEpilogue();
+        
         if (ioLogic.IsGameMode())
         {
-            ScanRender(*pLogic, &renderMesh, camera);
+            ScanRender(*pLogic, &*pRenderMesh, camera);
         }
                 
         U32 renderListSize = m_renderList.size();

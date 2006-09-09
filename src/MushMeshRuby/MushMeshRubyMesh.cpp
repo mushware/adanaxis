@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } oR7WPhSKmfGQldTVFg6TpQ
 /*
- * $Id: MushMeshRubyMesh.cpp,v 1.10 2006/07/16 09:19:47 southa Exp $
+ * $Id: MushMeshRubyMesh.cpp,v 1.11 2006/07/17 14:43:41 southa Exp $
  * $Log: MushMeshRubyMesh.cpp,v $
+ * Revision 1.11  2006/07/17 14:43:41  southa
+ * Billboarded deco objects
+ *
  * Revision 1.10  2006/07/16 09:19:47  southa
  * Delete mesh before creating
  *
@@ -80,6 +83,8 @@ MUSHRUBYDATAOBJ_INITIALIZE(MushMesh4Mesh)(Mushware::tRubyArgC inArgC, Mushware::
     tDataObjData::Sgl().IfExistsDelete(nameStr); // Create mesh if it doesn't exist
 	tDataObjData::Sgl().GetOrCreate(nameStr); // Create mesh if it doesn't exist
 
+	WRef(inSelf).VertexDelegateSet(MushMesh4Mesh::tDataRef(nameStr));
+	WRef(inSelf).ColourDelegateSet(MushMesh4Mesh::tDataRef(nameStr));
 	WRef(inSelf).TexCoordDelegateSet(MushMesh4Mesh::tDataRef(nameStr));
 
 	return inSelf;

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } bQ20AxcHOjJNfCG2TxDNVg
 /*
- * $Id: MushGLShader.cpp,v 1.1 2006/09/07 10:02:37 southa Exp $
+ * $Id: MushGLShader.cpp,v 1.2 2006/09/07 16:38:51 southa Exp $
  * $Log: MushGLShader.cpp,v $
+ * Revision 1.2  2006/09/07 16:38:51  southa
+ * Vertex shader
+ *
  * Revision 1.1  2006/09/07 10:02:37  southa
  * Shader interface
  *
@@ -247,7 +250,7 @@ MushGLShader::AttribsApply(const MushGLAttribs& inAttribs)
     Mushware::t4x4o4Val modelViewMattress = inAttribs.View() * inAttribs.Model();
     
     MushGLUtil::ProjectionMatrixSet(projMattress.Matrix());
-    MushGLUtil::ModelViewMatrixSet(projMattress.Matrix());
+    MushGLUtil::ModelViewMatrixSet(modelViewMattress.Matrix());
     // The gl_ProjectionModelView is calculated internally by OpenGL
     
     if (m_mush_ProjectionOffset >= 0)

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } QiW5KaWfX1mBGolg1jxMIg
 /*
- * $Id: MushGamePiece.h,v 1.13 2006/08/20 14:19:21 southa Exp $
+ * $Id: MushGamePiece.h,v 1.14 2006/08/25 01:44:57 southa Exp $
  * $Log: MushGamePiece.h,v $
+ * Revision 1.14  2006/08/25 01:44:57  southa
+ * Khazi fire
+ *
  * Revision 1.13  2006/08/20 14:19:21  southa
  * Seek operation
  *
@@ -85,7 +88,7 @@ public:
     
     virtual void MessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage);
 
-    virtual void TexCoordBuffersNameSet(const std::string& inName) { m_texCoordBuffersRef.NameSet(inName); }
+    virtual void SharedBuffersNameSet(const std::string& inName) { m_sharedBuffersRef.NameSet(inName); }
     virtual void Load(Mushware::tRubyValue inSelf);
     virtual void Save(Mushware::tRubyValue inSelf);
     
@@ -101,7 +104,7 @@ private:
     bool m_expireFlag; //:readwrite    
     
     MushGLBuffers::tDataRef m_buffersRef; //:read :wref
-    MushGLBuffers::tSharedDataRef m_texCoordBuffersRef; //:read :wref
+    MushGLBuffers::tSharedDataRef m_sharedBuffersRef; //:read :wref
 
     MushRubyValue m_rubyObj; //:readwrite
     
@@ -123,9 +126,9 @@ public:
     const MushGLBuffers::tDataRef& BuffersRef(void) const { return m_buffersRef; }
     // Writable reference for m_buffersRef
     MushGLBuffers::tDataRef& BuffersRefWRef(void) { return m_buffersRef; }
-    const MushGLBuffers::tSharedDataRef& TexCoordBuffersRef(void) const { return m_texCoordBuffersRef; }
-    // Writable reference for m_texCoordBuffersRef
-    MushGLBuffers::tSharedDataRef& TexCoordBuffersRefWRef(void) { return m_texCoordBuffersRef; }
+    const MushGLBuffers::tSharedDataRef& SharedBuffersRef(void) const { return m_sharedBuffersRef; }
+    // Writable reference for m_sharedBuffersRef
+    MushGLBuffers::tSharedDataRef& SharedBuffersRefWRef(void) { return m_sharedBuffersRef; }
     const MushRubyValue& RubyObj(void) const { return m_rubyObj; }
     void RubyObjSet(const MushRubyValue& inValue) { m_rubyObj=inValue; }
     virtual const char *AutoName(void) const;
@@ -135,7 +138,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } p5NQC4z4mOjwHXKZ+Le7/g
+//%classPrototypes } e2znHWqzEPRvtxRzYLr0cw
 };
 //%inlineHeader {
 inline std::ostream&

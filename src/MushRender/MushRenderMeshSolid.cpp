@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } A/GPso4jrQBD0hPDpi3qXg
 /*
- * $Id: MushRenderMeshSolid.cpp,v 1.11 2006/07/24 18:46:50 southa Exp $
+ * $Id: MushRenderMeshSolid.cpp,v 1.12 2006/07/28 19:24:34 southa Exp $
  * $Log: MushRenderMeshSolid.cpp,v $
+ * Revision 1.12  2006/07/28 19:24:34  southa
+ * Pre-release work
+ *
  * Revision 1.11  2006/07/24 18:46:50  southa
  * Depth sorting
  *
@@ -66,10 +69,7 @@
 using namespace Mushware;
 using namespace std;
 
-MushRenderMeshSolid::MushRenderMeshSolid() :
-    m_colourZMiddle(t4Val(1.0,1.0,1.0,0.1)),
-    m_colourZLeft(t4Val(1.0,0.8,0.8,0.0)),
-    m_colourZRight(t4Val(0.8,1.0,0.8,0.0))
+MushRenderMeshSolid::MushRenderMeshSolid()
 {
 }
 
@@ -107,6 +107,14 @@ MushRenderMeshSolid::RenderJobCreate(MushGLJobRender& outRender,
     {
         throw MushcoreRequestFail(std::string("Cannot render mesh type '")+inMesh.AutoName()+"'");
     }
+    if (inSpec.BuffersRef().Name() == 0)
+    {
+        throw MushcoreDataFail("MushRenderMeshSolid::RenderJobCreate data name not set");
+    }
+    if (inSpec.SharedBuffersRef().Name() == "")
+    {
+        throw MushcoreDataFail("MushRenderMeshSolid::RenderJobCreate shared data name not set");
+    }
     
     if (!ShouldMeshCull(inSpec, *p4Mesh))
     {
@@ -121,8 +129,9 @@ MushRenderMeshSolid::RenderJobCreate(MushGLJobRender& outRender,
         MushGLWorkSpec& workSpecRef = outRender.WorkSpecNew();
         
         outRender.BuffersRefSet(inSpec.BuffersRef());
-        outRender.TexCoordBuffersRefSet(inSpec.TexCoordBuffersRef());
+        outRender.SharedBuffersRefSet(inSpec.SharedBuffersRef());
         workSpecRef.RenderTypeSet(MushGLWorkSpec::kRenderTypeTriangles);
+        workSpecRef.UseSharedVerticesSet(false);
         
         for (U32 i=0; i < p4Mesh->NumMaterials(); ++i)
         {
@@ -144,11 +153,11 @@ MushRenderMeshSolid::DerivedColourSet(Mushware::t4Val& outColour, const Mushware
         // Behind viewer
         if (inEyeVertex.Z() < 0)
         {
-            outColour = m_colourZLeft;
+            outColour = ColourZLeft();
         }
         else
         {
-            outColour = m_colourZRight;
+            outColour = ColourZRight();
         }
     }
     else
@@ -156,95 +165,19 @@ MushRenderMeshSolid::DerivedColourSet(Mushware::t4Val& outColour, const Mushware
         tVal discrim = (inEyeVertex.Z() * inSpec.Projection().FValue()) / inEyeVertex.W();
         if (discrim < -1.0)
         {
-            outColour = m_colourZLeft;
+            outColour = ColourZLeft();
         }
         else if (discrim < 0.0)
         {
-            outColour = -discrim * m_colourZLeft + (1+discrim) * m_colourZMiddle;
+            outColour = -discrim * ColourZLeft() + (1+discrim) * ColourZMiddle();
         }
         else if (discrim < 1.0)
         {
-            outColour = discrim * m_colourZRight + (1-discrim) * m_colourZMiddle;
+            outColour = discrim * ColourZRight() + (1-discrim) * ColourZMiddle();
         }
         else
         {
-            outColour = m_colourZRight;
-        }
-    }
-}
-
-void
-MushRenderMeshSolid::TriangleListBuild(MushGLBuffers::tTriangleList& ioList, const MushMesh4Mesh& inMesh,
-                                       tSourceType inSourceType)
-{
-    ioList.resize(0);
-    U32 numFaces = inMesh.Faces().size();
-    U32 entryLimit = 0;
-    for (U32 faceNum=0; faceNum<numFaces; ++faceNum)
-    {
-        if (!inMesh.Face(faceNum).Internal())
-        { 
-            const MushMesh4Face::tVertexList *pSrcList = NULL;
-            switch (inSourceType)
-            {
-                case kSourceTypeVertex:
-                    pSrcList = &inMesh.Face(faceNum).VertexList();
-                    entryLimit = inMesh.Vertices().size();
-                    break;
-                    
-                case kSourceTypeTexCoord:
-                    pSrcList = &inMesh.Face(faceNum).TexCoordList();
-                    entryLimit = inMesh.TexCoords().size();
-                    break;
-                    
-                default:
-                    throw MushcoreLogicFail("Bad source type selector");
-            }
-            
-            const MushMesh4Face::tVertexList& srcListRef = *pSrcList;
-            
-            U32 srcListSize = srcListRef.size();
-            
-            const MushMesh4Face::tVertexGroupSize& srcGroupSizeRef = inMesh.Face(faceNum).VertexGroupSize();
-            U32 numFacets = srcGroupSizeRef.size();
-            
-            U32 srcFaceIndex = 0;
-            for (U32 facetNum=0; facetNum<numFacets; ++facetNum)
-            {
-                // listNum0 is srcFaceIndex
-                if (srcFaceIndex >= srcListSize)
-                {
-                    throw MushcoreDataFail(std::string("Vertex list overrun in ")+AutoName());
-                }            
-                U32 entryValue0 = srcListRef[srcFaceIndex]; 
-                if (entryValue0 >= entryLimit)
-                {
-                    throw MushcoreDataFail(std::string("Entry index list overrun in ")+AutoName());
-                }
-                // Add triangles for this facet
-                U32 groupSize = srcGroupSizeRef[facetNum];
-                
-                for (U32 i=1; i+1 < groupSize; ++i)
-                {
-                    U32 listNum1 = srcFaceIndex + i;
-                    U32 listNum2 = srcFaceIndex + i + 1;
-                    
-                    if (listNum1 >= srcListSize || listNum2 >= srcListSize)
-                    {
-                        throw MushcoreDataFail(std::string("Vertex list overrun in ")+AutoName());
-                    }
-                    U32 entryValue1 = srcListRef[listNum1];
-                    U32 entryValue2 = srcListRef[listNum2];
-                    if (entryValue1 >= entryLimit || entryValue2 >= entryLimit)
-                    {
-                        throw MushcoreDataFail(std::string("Entry index list overrun in ")+AutoName());
-                    }
-                    ioList.push_back(entryValue0);
-                    ioList.push_back(entryValue1);
-                    ioList.push_back(entryValue2);
-                }
-                srcFaceIndex += groupSize;
-            }
+            outColour = ColourZRight();
         }
     }
 }
@@ -265,6 +198,8 @@ MushRenderMeshSolid::OutputBufferGenerate(const MushRenderSpec& inSpec, const Mu
         pTexCoordMesh = &inMesh.TexCoordDelegate().Ref();
     }
     
+    
+    
     const MushMesh4Mesh::tVertices& srcVertices = inMesh.Vertices(); // Source vertices
     // const U32 srcVerticesSize = srcVertices.size(); // Number of source vertices
     const MushMesh4Mesh::tTexCoords& srcTexCoords = pTexCoordMesh->TexCoords(); // Source texture coordinates
@@ -280,9 +215,9 @@ MushRenderMeshSolid::OutputBufferGenerate(const MushRenderSpec& inSpec, const Mu
     
     // Get the delegated buffer if there is one, otherwise use the main buffer
     MushGLBuffers *pglDestTexCoordBuffers;
-    if (inSpec.TexCoordBuffersRef().Name().size() != 0)
+    if (inSpec.SharedBuffersRef().Name().size() != 0)
     {
-        pglDestTexCoordBuffers = &inSpec.TexCoordBuffersRef().WRef();
+        pglDestTexCoordBuffers = &inSpec.SharedBuffersRef().WRef();
     }
     else
     {
@@ -437,9 +372,6 @@ MushRenderMeshSolid::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
     MushRenderMesh::AutoPrint(ioOut);
-    ioOut << "colourZMiddle=" << m_colourZMiddle << ", ";
-    ioOut << "colourZLeft=" << m_colourZLeft << ", ";
-    ioOut << "colourZRight=" << m_colourZRight;
     ioOut << "]";
 }
 bool
@@ -450,18 +382,6 @@ MushRenderMeshSolid::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::str
         AutoInputPrologue(ioIn);
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
-    }
-    else if (inTagStr == "colourZMiddle")
-    {
-        ioIn >> m_colourZMiddle;
-    }
-    else if (inTagStr == "colourZLeft")
-    {
-        ioIn >> m_colourZLeft;
-    }
-    else if (inTagStr == "colourZRight")
-    {
-        ioIn >> m_colourZRight;
     }
     else if (MushRenderMesh::AutoXMLDataProcess(ioIn, inTagStr))
     {
@@ -477,11 +397,5 @@ void
 MushRenderMeshSolid::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
     MushRenderMesh::AutoXMLPrint(ioOut);
-    ioOut.TagSet("colourZMiddle");
-    ioOut << m_colourZMiddle;
-    ioOut.TagSet("colourZLeft");
-    ioOut << m_colourZLeft;
-    ioOut.TagSet("colourZRight");
-    ioOut << m_colourZRight;
 }
-//%outOfLineFunctions } 7lB2ImJC4trJnEXDcT28jA
+//%outOfLineFunctions } oOdIRNnS3nfYXC4doS1+lQ

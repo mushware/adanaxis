@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } oYzojPrY+iq5d6Z2oF715A
 /*
- * $Id: MushMesh4Mesh.cpp,v 1.19 2006/07/17 14:43:40 southa Exp $
+ * $Id: MushMesh4Mesh.cpp,v 1.20 2006/07/19 14:34:52 southa Exp $
  * $Log: MushMesh4Mesh.cpp,v $
+ * Revision 1.20  2006/07/19 14:34:52  southa
+ * Flare effects
+ *
  * Revision 1.19  2006/07/17 14:43:40  southa
  * Billboarded deco objects
  *
@@ -640,6 +643,8 @@ MushMesh4Mesh::AutoPrint(std::ostream& ioOut) const
     ioOut << "materials=" << m_materials << ", ";
     ioOut << "levelOfDetail=" << m_levelOfDetail << ", ";
     ioOut << "transformType=" << m_transformType << ", ";
+    ioOut << "vertexDelegate=" << m_vertexDelegate << ", ";
+    ioOut << "colourDelegate=" << m_colourDelegate << ", ";
     ioOut << "texCoordDelegate=" << m_texCoordDelegate << ", ";
     ioOut << "vertexCounter=" << m_vertexCounter << ", ";
     ioOut << "faceCounter=" << m_faceCounter << ", ";
@@ -698,6 +703,14 @@ MushMesh4Mesh::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& i
     else if (inTagStr == "transformType")
     {
         ioIn >> m_transformType;
+    }
+    else if (inTagStr == "vertexDelegate")
+    {
+        ioIn >> m_vertexDelegate;
+    }
+    else if (inTagStr == "colourDelegate")
+    {
+        ioIn >> m_colourDelegate;
     }
     else if (inTagStr == "texCoordDelegate")
     {
@@ -821,6 +834,10 @@ MushMesh4Mesh::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_levelOfDetail;
     ioOut.TagSet("transformType");
     ioOut << m_transformType;
+    ioOut.TagSet("vertexDelegate");
+    ioOut << m_vertexDelegate;
+    ioOut.TagSet("colourDelegate");
+    ioOut << m_colourDelegate;
     ioOut.TagSet("texCoordDelegate");
     ioOut << m_texCoordDelegate;
     ioOut.TagSet("vertexCounter");
@@ -870,4 +887,4 @@ MushMesh4Mesh::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("numFacetsValid");
     ioOut << m_numFacetsValid;
 }
-//%outOfLineFunctions } y44J83r60Xfpr0avUX6ehA
+//%outOfLineFunctions } wI//apk3O41FzUap14MVoQ

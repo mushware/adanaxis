@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } FhldoK+rPKGab09yIIQtMw
 /*
- * $Id: MushGLJobRender.cpp,v 1.4 2006/07/24 18:46:49 southa Exp $
+ * $Id: MushGLJobRender.cpp,v 1.5 2006/09/07 16:38:50 southa Exp $
  * $Log: MushGLJobRender.cpp,v $
+ * Revision 1.5  2006/09/07 16:38:50  southa
+ * Vertex shader
+ *
  * Revision 1.4  2006/07/24 18:46:49  southa
  * Depth sorting
  *
@@ -74,7 +77,7 @@ MushGLJobRender::Execute(void)
         {
             throw MushcoreLogicFail(std::string("Corrupt ")+AutoName()+" job");
         }
-        m_workSpecs[i]->Execute(m_buffersRef, m_texCoordBuffersRef);
+        m_workSpecs[i]->Execute(m_buffersRef, m_sharedBuffersRef);
     }    
     MushGLState::Sgl().ShaderDisable();
 }
@@ -115,7 +118,7 @@ MushGLJobRender::AutoPrint(std::ostream& ioOut) const
     MushGLJob::AutoPrint(ioOut);
     ioOut << "workSpecs=" << m_workSpecs << ", ";
     ioOut << "buffersRef=" << m_buffersRef << ", ";
-    ioOut << "texCoordBuffersRef=" << m_texCoordBuffersRef << ", ";
+    ioOut << "sharedBuffersRef=" << m_sharedBuffersRef << ", ";
     ioOut << "sortValue=" << m_sortValue << ", ";
     ioOut << "shaderRef=" << m_shaderRef << ", ";
     ioOut << "attribs=" << m_attribs;
@@ -138,9 +141,9 @@ MushGLJobRender::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string&
     {
         ioIn >> m_buffersRef;
     }
-    else if (inTagStr == "texCoordBuffersRef")
+    else if (inTagStr == "sharedBuffersRef")
     {
-        ioIn >> m_texCoordBuffersRef;
+        ioIn >> m_sharedBuffersRef;
     }
     else if (inTagStr == "sortValue")
     {
@@ -172,8 +175,8 @@ MushGLJobRender::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_workSpecs;
     ioOut.TagSet("buffersRef");
     ioOut << m_buffersRef;
-    ioOut.TagSet("texCoordBuffersRef");
-    ioOut << m_texCoordBuffersRef;
+    ioOut.TagSet("sharedBuffersRef");
+    ioOut << m_sharedBuffersRef;
     ioOut.TagSet("sortValue");
     ioOut << m_sortValue;
     ioOut.TagSet("shaderRef");
@@ -181,4 +184,4 @@ MushGLJobRender::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("attribs");
     ioOut << m_attribs;
 }
-//%outOfLineFunctions } KwC/mpbdgBhLykiAy+YbSg
+//%outOfLineFunctions } hRuMIWSbuYqSHoYodI0q0A

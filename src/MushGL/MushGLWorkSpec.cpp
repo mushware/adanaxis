@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } B/Uhyb8oyTGYwsbcQe79PQ
 /*
- * $Id: MushGLWorkSpec.cpp,v 1.9 2006/06/19 15:57:17 southa Exp $
+ * $Id: MushGLWorkSpec.cpp,v 1.10 2006/06/20 19:06:52 southa Exp $
  * $Log: MushGLWorkSpec.cpp,v $
+ * Revision 1.10  2006/06/20 19:06:52  southa
+ * Object creation
+ *
  * Revision 1.9  2006/06/19 15:57:17  southa
  * Materials
  *
@@ -62,48 +65,55 @@ using namespace std;
 void
 MushGLWorkSpec::Execute(MushGLBuffers::tDataRef& ioDataRef, MushGLBuffers::tSharedDataRef& ioSharedDataRef)
 {
+    if (ioDataRef.Name() == 0)
+    {
+        throw MushcoreDataFail("MushGLWorkSpec data name not set");
+    }
+    if (ioSharedDataRef.Name() == "")
+    {
+        throw MushcoreDataFail("MushGLWorkSpec shared data name not set");
+    }
+
     MushGLState& stateRef = MushGLState::Sgl();
 
-    MushGLBuffers& buffersRef = ioDataRef.WRef();
-    MushGLClaimer<MushGLBuffers> claimBuffer(buffersRef);
+    MushGLBuffers *pVertexBuffers = m_useSharedVertices ? &ioSharedDataRef.WRef() : &ioDataRef.WRef();
+    MushGLBuffers *pColourBuffers = &ioDataRef.WRef();
+    MushGLBuffers *pTexCoordBuffers = &ioSharedDataRef.WRef();
 
-    tSize vertexSize = buffersRef.VertexBuffer().Size();
-    tSize colourSize = buffersRef.ColourBuffer().Size();
+    tSize vertexSize = pVertexBuffers->VertexBuffer().Size();
     if (vertexSize > 0)
     {
-        stateRef.VertexArraySetTrue(buffersRef.VertexBufferWRef());
+        stateRef.VertexArraySetTrue(pVertexBuffers->VertexBufferWRef());
     }
+    
+    tSize colourSize = pColourBuffers->ColourBuffer().Size();
     if (colourSize > 0)
     {
         if (vertexSize != colourSize)
         {
             throw MushcoreDataFail("Sizes of vertex and colour buffers do not match");
         }
-        stateRef.ColourArraySetTrue(buffersRef.ColourBufferWRef());
+        stateRef.ColourArraySetTrue(pColourBuffers->ColourBufferWRef());
     }
 
-    if (ioSharedDataRef.Name() != "")
+    for (U32 i=0; i < pTexCoordBuffers->NumTexCoordBuffers(); ++i)
     {
-        MushGLBuffers& texCoordBuffersRef = ioSharedDataRef.WRef();
-        MushGLClaimer<MushGLBuffers> texCoordClaimBuffer(texCoordBuffersRef);
+        tSize texCoordSize = pTexCoordBuffers->TexCoordBuffer(i).Size();
 
-        for (U32 i=0; i<texCoordBuffersRef.NumTexCoordBuffers(); ++i)
+        if (texCoordSize > 0)
         {
-            tSize texCoordSize = texCoordBuffersRef.TexCoordBuffer(i).Size();
-
-            if (texCoordSize > 0)
+            if (vertexSize != texCoordSize)
             {
-                if (vertexSize != texCoordSize)
-                {
-                    throw MushcoreDataFail("Sizes of vertex and texture coordinate buffers do not match");
-                }
-				if (IsValidTexture(i))
-				{
-					stateRef.ActiveTextureZeroBased(i);
-					Texture(i).Bind();
-					stateRef.TexCoordArraySetTrue(texCoordBuffersRef.TexCoordBufferWRef(i), i);
-					stateRef.TextureEnable2D(i);
-				}
+                ostringstream message;
+                message << "Sizes of vertex (" << vertexSize << ") and texture (" << texCoordSize << ") coordinate buffers do not match";
+                throw MushcoreDataFail(message.str());
+            }
+            if (IsValidTexture(i))
+            {
+                stateRef.ActiveTextureZeroBased(i);
+                Texture(i).Bind();
+                stateRef.TexCoordArraySetTrue(pTexCoordBuffers->TexCoordBufferWRef(i), i);
+                stateRef.TextureEnable2D(i);
             }
         }
     }
@@ -171,7 +181,8 @@ MushGLWorkSpec::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
     ioOut << "renderType=" << m_renderType << ", ";
-    ioOut << "textures=" << m_textures;
+    ioOut << "textures=" << m_textures << ", ";
+    ioOut << "useSharedVertices=" << m_useSharedVertices;
     ioOut << "]";
 }
 bool
@@ -191,6 +202,10 @@ MushGLWorkSpec::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
     {
         ioIn >> m_textures;
     }
+    else if (inTagStr == "useSharedVertices")
+    {
+        ioIn >> m_useSharedVertices;
+    }
     else 
     {
         return false;
@@ -204,5 +219,7 @@ MushGLWorkSpec::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_renderType;
     ioOut.TagSet("textures");
     ioOut << m_textures;
+    ioOut.TagSet("useSharedVertices");
+    ioOut << m_useSharedVertices;
 }
-//%outOfLineFunctions } 3mmaHloPf9Z7s/VceIeseg
+//%outOfLineFunctions } sgvqsERl60B2FOCU24bqWQ

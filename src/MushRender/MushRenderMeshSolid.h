@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } FObiLM884v89SsLhON7VJQ
 /*
- * $Id: MushRenderMeshSolid.h,v 1.4 2006/06/01 15:39:38 southa Exp $
+ * $Id: MushRenderMeshSolid.h,v 1.5 2006/07/24 18:46:51 southa Exp $
  * $Log: MushRenderMeshSolid.h,v $
+ * Revision 1.5  2006/07/24 18:46:51  southa
+ * Depth sorting
+ *
  * Revision 1.4  2006/06/01 15:39:38  southa
  * DrawArray verification and fixes
  *
@@ -58,31 +61,14 @@ public:
                                  const MushRenderSpec& inSpec,
                                  const MushMeshMesh& inMesh);
 protected:
-    enum tSourceType
-    {
-        kSourceTypeVertex,
-        kSourceTypeTexCoord
-    };
-    
-    void TriangleListBuild(MushGLBuffers::tTriangleList& ioList, const MushMesh4Mesh& inMesh, tSourceType inSourceType);
-        
     void DerivedColourSet(Mushware::t4Val& outColour, const Mushware::t4Val& inEyeVertex, const MushRenderSpec& inSpec);
     
 private:
     bool OutputBufferGenerate(const MushRenderSpec& inSpec, const MushMesh4Mesh& inMesh);
     
-    Mushware::t4Val m_colourZMiddle; //:readwrite
-    Mushware::t4Val m_colourZLeft;   //:readwrite
-    Mushware::t4Val m_colourZRight;  //:readwrite
     
 //%classPrototypes {
 public:
-    const Mushware::t4Val& ColourZMiddle(void) const { return m_colourZMiddle; }
-    void ColourZMiddleSet(const Mushware::t4Val& inValue) { m_colourZMiddle=inValue; }
-    const Mushware::t4Val& ColourZLeft(void) const { return m_colourZLeft; }
-    void ColourZLeftSet(const Mushware::t4Val& inValue) { m_colourZLeft=inValue; }
-    const Mushware::t4Val& ColourZRight(void) const { return m_colourZRight; }
-    void ColourZRightSet(const Mushware::t4Val& inValue) { m_colourZRight=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -90,7 +76,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } +P6+SbQdCkMB4JhavYauEw
+//%classPrototypes } 1oBgFruy5qHAaudtV+Hcmg
 };
 //%inlineHeader {
 inline std::ostream&

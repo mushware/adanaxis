@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } d0PLtMuUJJgR2LEeb5ey+g
 /*
- * $Id: MushGLWorkSpec.h,v 1.5 2006/06/19 15:57:17 southa Exp $
+ * $Id: MushGLWorkSpec.h,v 1.6 2006/06/20 19:06:52 southa Exp $
  * $Log: MushGLWorkSpec.h,v $
+ * Revision 1.6  2006/06/20 19:06:52  southa
+ * Object creation
+ *
  * Revision 1.5  2006/06/19 15:57:17  southa
  * Materials
  *
@@ -57,7 +60,7 @@ public:
         kRenderTypeTriangles = GL_TRIANGLES,
     };
     
-    MushGLWorkSpec() : m_renderType(0) {}
+    MushGLWorkSpec() : m_renderType(0), m_useSharedVertices(true) {}
     virtual ~MushGLWorkSpec() {}
 
     void Execute(MushGLBuffers::tDataRef& ioDataRef, MushGLBuffers::tSharedDataRef& ioSharedDataRef);
@@ -69,11 +72,14 @@ public:
 private:
     Mushware::U32 m_renderType; //:readwrite
 	std::vector<MushGLTexture *> m_textures; // Object doesn't own these
-
+    bool m_useSharedVertices; //:readwrite
+    
 //%classPrototypes {
 public:
     const Mushware::U32& RenderType(void) const { return m_renderType; }
     void RenderTypeSet(const Mushware::U32& inValue) { m_renderType=inValue; }
+    const bool& UseSharedVertices(void) const { return m_useSharedVertices; }
+    void UseSharedVerticesSet(const bool& inValue) { m_useSharedVertices=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -81,7 +87,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } PSOTfAbS2nVFuLJMprN9Yg
+//%classPrototypes } xCDOaHzKXigndok/y9lFoA
 };
 
 inline void

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } rVCNunlW+wZoonHnGB5a7Q
 /*
- * $Id: MushGamePiece.cpp,v 1.10 2006/08/20 14:19:21 southa Exp $
+ * $Id: MushGamePiece.cpp,v 1.11 2006/08/24 13:04:38 southa Exp $
  * $Log: MushGamePiece.cpp,v $
+ * Revision 1.11  2006/08/24 13:04:38  southa
+ * Event handling
+ *
  * Revision 1.10  2006/08/20 14:19:21  southa
  * Seek operation
  *
@@ -213,7 +216,7 @@ MushGamePiece::AutoPrint(std::ostream& ioOut) const
     ioOut << "mesh=" << m_mesh << ", ";
     ioOut << "expireFlag=" << m_expireFlag << ", ";
     ioOut << "buffersRef=" << m_buffersRef << ", ";
-    ioOut << "texCoordBuffersRef=" << m_texCoordBuffersRef << ", ";
+    ioOut << "sharedBuffersRef=" << m_sharedBuffersRef << ", ";
     ioOut << "rubyObj=" << m_rubyObj;
     ioOut << "]";
 }
@@ -246,9 +249,9 @@ MushGamePiece::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& i
     {
         ioIn >> m_buffersRef;
     }
-    else if (inTagStr == "texCoordBuffersRef")
+    else if (inTagStr == "sharedBuffersRef")
     {
-        ioIn >> m_texCoordBuffersRef;
+        ioIn >> m_sharedBuffersRef;
     }
     else if (inTagStr == "rubyObj")
     {
@@ -273,9 +276,9 @@ MushGamePiece::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_expireFlag;
     ioOut.TagSet("buffersRef");
     ioOut << m_buffersRef;
-    ioOut.TagSet("texCoordBuffersRef");
-    ioOut << m_texCoordBuffersRef;
+    ioOut.TagSet("sharedBuffersRef");
+    ioOut << m_sharedBuffersRef;
     ioOut.TagSet("rubyObj");
     ioOut << m_rubyObj;
 }
-//%outOfLineFunctions } IamEJXzQ9bxpzTb/wn6ONA
+//%outOfLineFunctions } wrjwSj/eXxq7PEDqKQVMYw
