@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } FFnhuXNalVWlRhcCSD56vg
 /*
- * $Id: MushGLAttribs.cpp,v 1.1 2006/09/07 16:38:50 southa Exp $
+ * $Id: MushGLAttribs.cpp,v 1.2 2006/09/09 15:59:27 southa Exp $
  * $Log: MushGLAttribs.cpp,v $
+ * Revision 1.2  2006/09/09 15:59:27  southa
+ * Shader colour calculations
+ *
  * Revision 1.1  2006/09/07 16:38:50  southa
  * Vertex shader
  *
@@ -64,7 +67,8 @@ MushGLAttribs::AutoPrint(std::ostream& ioOut) const
     ioOut << "projection=" << m_projection << ", ";
     ioOut << "view=" << m_view << ", ";
     ioOut << "model=" << m_model << ", ";
-    ioOut << "colours=" << m_colours;
+    ioOut << "colours=" << m_colours << ", ";
+    ioOut << "transformType=" << m_transformType;
     ioOut << "]";
 }
 bool
@@ -92,6 +96,10 @@ MushGLAttribs::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& i
     {
         ioIn >> m_colours;
     }
+    else if (inTagStr == "transformType")
+    {
+        ioIn >> m_transformType;
+    }
     else 
     {
         return false;
@@ -109,5 +117,7 @@ MushGLAttribs::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_model;
     ioOut.TagSet("colours");
     ioOut << m_colours;
+    ioOut.TagSet("transformType");
+    ioOut << m_transformType;
 }
-//%outOfLineFunctions } VoeCR+oz77E41igfj6cjDA
+//%outOfLineFunctions } CnfxFvPT66gzWgev1T4YHA

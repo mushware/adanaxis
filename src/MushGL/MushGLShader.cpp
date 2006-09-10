@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } bQ20AxcHOjJNfCG2TxDNVg
 /*
- * $Id: MushGLShader.cpp,v 1.3 2006/09/09 11:16:40 southa Exp $
+ * $Id: MushGLShader.cpp,v 1.4 2006/09/09 15:59:28 southa Exp $
  * $Log: MushGLShader.cpp,v $
+ * Revision 1.4  2006/09/09 15:59:28  southa
+ * Shader colour calculations
+ *
  * Revision 1.3  2006/09/09 11:16:40  southa
  * One-time vertex buffer generation
  *
@@ -250,11 +253,30 @@ void
 MushGLShader::AttribsApply(const MushGLAttribs& inAttribs)
 {
     const Mushware::t4x4o4Val& projMattress = inAttribs.Projection().Mattress();
-    Mushware::t4x4o4Val modelViewMattress = inAttribs.View() * inAttribs.Model();
+    
+    Mushware::t4x4o4Val modelViewMattress;
+    
+    switch (inAttribs.TransformType())
+    {
+        case MushMesh4Mesh::kTransformTypeNormal:
+            modelViewMattress = inAttribs.View() * inAttribs.Model();
+            break;
+    
+        case MushMesh4Mesh::kTransformTypeBillboard:
+        {
+            modelViewMattress = inAttribs.View() * inAttribs.Model();
+            modelViewMattress.MatrixSet(Mushware::t4x4Val::Identity());
+        }
+        break;
+            
+        default:
+            throw MushcoreDataFail("AttribsApply: Bad transform type");
+            break;
+    }
     
     MushGLUtil::ProjectionMatrixSet(projMattress.Matrix());
     MushGLUtil::ModelViewMatrixSet(modelViewMattress.Matrix());
-    // The gl_ProjectionModelView is calculated internally by OpenGL
+    // The gl_ProjectionModelView matrix is calculated internally by OpenGL
     
     if (m_mush_ProjectionOffset >= 0)
     {

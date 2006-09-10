@@ -3639,6 +3639,7 @@
 		7ACC327B05AB3A09001A0873 /* mushMustl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mushMustl.h; sourceTree = "<group>"; };
 		7ACC32F705AB4141001A0873 /* mushMushcoreSTL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mushMushcoreSTL.h; sourceTree = "<group>"; };
 		7ACC330005AB4150001A0873 /* mushMushcoreIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mushMushcoreIO.h; sourceTree = "<group>"; };
+		7ACE601B0AB40D2F001AE5AA /* MushShaderLibrary.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = MushShaderLibrary.rb; sourceTree = "<group>"; };
 		7ACED0CE09F83ED500055E66 /* MushRubyInstall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushRubyInstall.h; sourceTree = "<group>"; };
 		7ACED0CF09F83ED500055E66 /* MushRubyInstall.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushRubyInstall.cpp; sourceTree = "<group>"; };
 		7ACED0D409F8416300055E66 /* MushRubyUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushRubyUtil.h; sourceTree = "<group>"; };
@@ -4232,6 +4233,7 @@
 				7ACFCE4C0A90A2A200A55B7D /* MushPiece.rb */,
 				7ACFCF590A90BCFB00A55B7D /* MushRegistered.rb */,
 				7A4CAB090A582DF200AA934F /* MushRotation.rb */,
+				7ACE601B0AB40D2F001AE5AA /* MushShaderLibrary.rb */,
 				7A4CAB0A0A582DF200AA934F /* MushTools.rb */,
 				7A4CAB0B0A582DF200AA934F /* MushVector.rb */,
 				7A4CAB0C0A582DF200AA934F /* Mushware.rb */,

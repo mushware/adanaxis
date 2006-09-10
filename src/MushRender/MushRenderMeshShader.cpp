@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } XKDM1ZJgQpb3nz4x0n57Og
 /*
- * $Id: MushRenderMeshShader.cpp,v 1.2 2006/09/09 11:16:41 southa Exp $
+ * $Id: MushRenderMeshShader.cpp,v 1.3 2006/09/09 15:59:28 southa Exp $
  * $Log: MushRenderMeshShader.cpp,v $
+ * Revision 1.3  2006/09/09 15:59:28  southa
+ * Shader colour calculations
+ *
  * Revision 1.2  2006/09/09 11:16:41  southa
  * One-time vertex buffer generation
  *
@@ -121,6 +124,7 @@ MushRenderMeshShader::RenderJobCreate(MushGLJobRender& outRender,
         attribsRef.ColoursWRef().push_back(t4GLVal(ColourZLeft()));
         attribsRef.ColoursWRef().push_back(t4GLVal(ColourZMiddle()));
         attribsRef.ColoursWRef().push_back(t4GLVal(ColourZRight()));
+        attribsRef.TransformTypeSet(p4Mesh->TransformType());
         jobCreated = true;
     }
     return jobCreated;
