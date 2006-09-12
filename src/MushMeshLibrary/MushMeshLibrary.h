@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } oYAvasSSd0ReXdY7eTUG3w
 /*
- * $Id: MushMeshLibrary.h,v 1.7 2006/07/17 14:43:40 southa Exp $
+ * $Id: MushMeshLibrary.h,v 1.8 2006/08/01 17:21:33 southa Exp $
  * $Log: MushMeshLibrary.h,v $
+ * Revision 1.8  2006/08/01 17:21:33  southa
+ * River demo
+ *
  * Revision 1.7  2006/07/17 14:43:40  southa
  * Billboarded deco objects
  *
@@ -55,6 +58,7 @@
 #include "MushMeshLibrarySingleFacet.h"
 #include "MushMeshLibraryStandard.h"
 #include "MushMeshLibraryVGenExtrude.h"
+#include "MushMeshLibraryWorldSphere.h"
 
 //%includeGuardEnd {
 #endif

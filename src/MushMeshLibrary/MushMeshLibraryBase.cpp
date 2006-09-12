@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } AeLgkt7yxXf/LwFxCFwhtQ
 /*
- * $Id: MushMeshLibraryBase.cpp,v 1.8 2006/07/17 14:43:40 southa Exp $
+ * $Id: MushMeshLibraryBase.cpp,v 1.9 2006/08/01 17:21:33 southa Exp $
  * $Log: MushMeshLibraryBase.cpp,v $
+ * Revision 1.9  2006/08/01 17:21:33  southa
+ * River demo
+ *
  * Revision 1.8  2006/07/17 14:43:40  southa
  * Billboarded deco objects
  *
@@ -310,37 +313,37 @@ MushMeshLibraryBase::CongruentFacesJoin(MushMesh4Mesh& ioMesh, Mushware::U32 inF
 }
 
 void
-MushMeshLibraryBase::SingleFacetCreate(MushMesh4Mesh& ioMesh, Mushware::U32 inOrder) const
-{
-    ioMesh.FaceCounterSet(0);
-    
-    MushMesh4Mesh::tFaces& facesRef = ioMesh.FacesWRef();
-    facesRef.resize(0);
-        
+MushMeshLibraryBase::SingleFacetCreate(MushMesh4Mesh& ioMesh,
+                                       Mushware::U32 inOrder,
+                                       const MushMeshDisplacement& inDisp) const
+{        
     // Chunk.  All faces are placed in one chunk
-    MushMesh4Util::NewChunkCreate(ioMesh);
+    if (ioMesh.NumChunks() == 0)
+    {
+        MushMesh4Util::NewChunkCreate(ioMesh);
+    }
     
     MushMesh4Mesh::tVertices& verticesRef = ioMesh.VerticesWRef();
-
-    if (verticesRef.size() < inOrder)
-    {
-        verticesRef.resize(inOrder);
-    }
+    U32 vertexCounterBase = ioMesh.VertexCounter();
     
     tVal angularStep = M_PI * 2.0 / inOrder;
     tVal scale = std::sqrt(2.0); // Scale for unit square
     
     for (U32 i=0; i < inOrder; ++i)
     {
-        MushMesh4Mesh::tVertex& vertex = verticesRef[i];
+        MushMesh4Mesh::tVertex vertex;
         
         vertex.XSet(scale * cos(angularStep * (i-0.5)));
         vertex.YSet(scale * sin(angularStep * (i-0.5)));
         vertex.ZSet(0);
         vertex.WSet(0);
+        
+        inDisp.Displace(vertex);
+        
+        verticesRef.push_back(vertex);
     }
 
-    ioMesh.VertexCounterSet(inOrder);
+    ioMesh.VertexCounterSet(vertexCounterBase + inOrder);
     
     MushMesh4Face *pFace = NULL;
     MushMesh4Face::tVertexList *pVertexList = NULL;
@@ -350,10 +353,19 @@ MushMeshLibraryBase::SingleFacetCreate(MushMesh4Mesh& ioMesh, Mushware::U32 inOr
 
     for (U32 i=0; i<inOrder; ++i)
     {
-        pVertexList->push_back(i);
+        pVertexList->push_back(vertexCounterBase + i);
     }
     pVertexGroupSize->push_back(inOrder);
 }
+
+void
+MushMeshLibraryBase::SingleFacetCreate(MushMesh4Mesh& ioMesh, Mushware::U32 inOrder) const
+{
+    MushMeshDisplacement disp = MushMeshDisplacement::Identity();
+    SingleFacetCreate(ioMesh, inOrder, disp);
+}
+
+
 
 //%outOfLineFunctions {
 

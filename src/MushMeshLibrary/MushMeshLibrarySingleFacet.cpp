@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } jXe27ZCKRIN0zXKHCsxj4Q
 /*
- * $Id: MushMeshLibrarySingleFacet.cpp,v 1.1 2006/07/17 14:43:41 southa Exp $
+ * $Id: MushMeshLibrarySingleFacet.cpp,v 1.2 2006/08/01 17:21:35 southa Exp $
  * $Log: MushMeshLibrarySingleFacet.cpp,v $
+ * Revision 1.2  2006/08/01 17:21:35  southa
+ * River demo
+ *
  * Revision 1.1  2006/07/17 14:43:41  southa
  * Billboarded deco objects
  *
@@ -41,6 +44,7 @@ MushMeshLibrarySingleFacet::Make(MushMesh4Mesh& ioMesh) const
 	}
 	MushMeshLibraryBase::Sgl().SingleFacetCreate(ioMesh, m_order);
 }
+
 //%outOfLineFunctions {
 
 const char *MushMeshLibrarySingleFacet::AutoName(void) const

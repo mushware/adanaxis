@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } oR7WPhSKmfGQldTVFg6TpQ
 /*
- * $Id: MushMeshRubyMesh.cpp,v 1.11 2006/07/17 14:43:41 southa Exp $
+ * $Id: MushMeshRubyMesh.cpp,v 1.12 2006/09/09 11:16:41 southa Exp $
  * $Log: MushMeshRubyMesh.cpp,v $
+ * Revision 1.12  2006/09/09 11:16:41  southa
+ * One-time vertex buffer generation
+ *
  * Revision 1.11  2006/07/17 14:43:41  southa
  * Billboarded deco objects
  *
@@ -61,6 +64,7 @@
 #include "MushMeshRubyBase.h"
 #include "MushMeshRubyBasePrism.h"
 #include "MushMeshRubyBaseSingleFacet.h"
+#include "MushMeshRubyBaseWorldSphere.h"
 #include "MushMeshRubyDisplacement.h"
 #include "MushMeshRubyExtruder.h"
 // #include "MushMeshRubyRuby.h"
@@ -103,9 +107,13 @@ MushMeshRubyMesh::BaseAdd(Mushware::tRubyValue inSelf, Mushware::tRubyValue inAr
         {
 		    WRef(inSelf).BaseGive(new MushMeshLibrarySingleFacet(MushMeshRubyBaseSingleFacet::Ref(inArg0)));
         }
+        else if (MushMeshRubyBaseWorldSphere::IsInstanceOf(inArg0))
+        {
+		    WRef(inSelf).BaseGive(new MushMeshLibraryWorldSphere(MushMeshRubyBaseWorldSphere::Ref(inArg0)));
+        }
         else
         {
-            MushRubyUtil::Raise("Wrong type for BaseAdd"); 
+            MushRubyUtil::Raise("Wrong type for BaseAdd - must be MushMeshRubyBaseXXXX"); 
         }
 	}
 	catch (std::exception& e)

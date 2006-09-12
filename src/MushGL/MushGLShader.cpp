@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } bQ20AxcHOjJNfCG2TxDNVg
 /*
- * $Id: MushGLShader.cpp,v 1.4 2006/09/09 15:59:28 southa Exp $
+ * $Id: MushGLShader.cpp,v 1.5 2006/09/10 10:30:52 southa Exp $
  * $Log: MushGLShader.cpp,v $
+ * Revision 1.5  2006/09/10 10:30:52  southa
+ * Shader billboarding
+ *
  * Revision 1.4  2006/09/09 15:59:28  southa
  * Shader colour calculations
  *
@@ -376,7 +379,7 @@ MushGLShader::Make(void)
         if (infoLog != "")
         {
             MushcoreLog::Sgl().InfoLog() << "Shader compilation info:" << endl;
-            MushcoreLog::Sgl().InfoLog()<< infoLog << endl;
+            MushcoreLog::Sgl().InfoLog() << infoLog << endl;
         }
     }
     
@@ -396,7 +399,7 @@ MushGLShader::Make(void)
         if (infoLog != "")
         {
             MushcoreLog::Sgl().InfoLog() << "Shader compilation info:" << endl;
-            MushcoreLog::Sgl().InfoLog()<< infoLog << endl;
+            MushcoreLog::Sgl().InfoLog() << infoLog << endl;
         }
     }
     
@@ -427,7 +430,7 @@ MushGLShader::Make(void)
     if (infoLog != "")
     {
         MushcoreLog::Sgl().InfoLog() << "Shader link info:" << endl;
-        MushcoreLog::Sgl().InfoLog()<< infoLog << endl;
+        MushcoreLog::Sgl().InfoLog() << infoLog << endl;
     }
     
     MushGLUtil::ThrowIfGLError("Linking shader");
@@ -445,11 +448,11 @@ MushGLShader::Make(void)
     if (infoLog != "")
     {
         MushcoreLog::Sgl().InfoLog() << "Shader validation info:" << endl;
-        MushcoreLog::Sgl().InfoLog()<< infoLog << endl;
+        MushcoreLog::Sgl().InfoLog() << infoLog << endl;
     } 
 #endif
     
-    // Read statndard uniform variable locations
+    // Read standard uniform variable locations
     m_mush_ProjectionOffset = UniformLocationGet("mush_ProjectionOffset");
     m_mush_ModelViewOffset = UniformLocationGet("mush_ModelViewOffset");
     m_mush_ModelViewProjectionOffset = UniformLocationGet("mush_ModelViewProjectionOffset");
@@ -464,7 +467,6 @@ MushGLShader::Make(void)
     }
     
     m_made = true;
-    cout << *this << endl;
 }
 
 void
@@ -486,8 +488,6 @@ void
 MushGLShader::Test(void)
 {
     Bind();
-    Dump(MushcoreLog::Sgl().InfoLog());
-    UniformDump(MushcoreLog::Sgl().InfoLog());
     Purge();
 }
 

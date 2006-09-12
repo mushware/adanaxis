@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } uPLWn2S3lnrmaPHM+5GJaQ
 /*
- * $Id: MushMeshLibraryBase.h,v 1.5 2006/07/17 14:43:40 southa Exp $
+ * $Id: MushMeshLibraryBase.h,v 1.6 2006/08/01 17:21:33 southa Exp $
  * $Log: MushMeshLibraryBase.h,v $
+ * Revision 1.6  2006/08/01 17:21:33  southa
+ * River demo
+ *
  * Revision 1.5  2006/07/17 14:43:40  southa
  * Billboarded deco objects
  *
@@ -53,7 +56,7 @@ public:
 
     virtual void PolygonPrismVerticesCreate(MushMesh4Mesh& ioMesh, const Mushware::t4Val& inScale, Mushware::U32 inOrder) const;
     virtual void PolygonPrismCreate(MushMesh4Mesh& ioMesh, const Mushware::t4Val& inScale, Mushware::U32 inOrder) const;
-    
+    virtual void SingleFacetCreate(MushMesh4Mesh& ioMesh, Mushware::U32 inOrder, const MushMeshDisplacement& inDisp) const;
     virtual void SingleFacetCreate(MushMesh4Mesh& ioMesh, Mushware::U32 inOrder) const;
     
 protected:
