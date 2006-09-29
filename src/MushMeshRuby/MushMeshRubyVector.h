@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 2J8UOQdZFzDY6iljFrjmCg
 /*
- * $Id: MushMeshRubyVector.h,v 1.5 2006/06/14 18:45:50 southa Exp $
+ * $Id: MushMeshRubyVector.h,v 1.6 2006/07/17 14:43:42 southa Exp $
  * $Log: MushMeshRubyVector.h,v $
+ * Revision 1.6  2006/07/17 14:43:42  southa
+ * Billboarded deco objects
+ *
  * Revision 1.5  2006/06/14 18:45:50  southa
  * Ruby mesh generation
  *
@@ -58,6 +61,8 @@ private:
 	static Mushware::tRubyValue MushVectorMultiply(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg1);
 	static Mushware::tRubyValue MushVectorIsEqual(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg1);
 	static Mushware::tRubyValue ApproxEqual(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0, Mushware::tRubyValue inArg1);
+	static Mushware::tRubyValue Magnitude(Mushware::tRubyValue inSelf);
+	static Mushware::tRubyValue MagnitudeSquared(Mushware::tRubyValue inSelf);
 };
 
 //%includeGuardEnd {

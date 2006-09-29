@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } eAXK2shReRuPxk9ARzaGHA
 /*
- * $Id: MushGameUtil.cpp,v 1.13 2006/06/29 11:40:40 southa Exp $
+ * $Id: MushGameUtil.cpp,v 1.14 2006/07/07 18:13:59 southa Exp $
  * $Log: MushGameUtil.cpp,v $
+ * Revision 1.14  2006/07/07 18:13:59  southa
+ * Menu start and stop
+ *
  * Revision 1.13  2006/06/29 11:40:40  southa
  * X11 and 64 bit fixes
  *
@@ -230,6 +233,12 @@ MushGameUtil::AppHandler(void)
 
 MushGameLogic&
 MushGameUtil::LogicWRef(void)
+{
+    return AppHandler().LogicWRef();    
+}
+
+const MushGameLogic&
+MushGameUtil::LogicRef(void)
 {
     return AppHandler().LogicWRef();    
 }

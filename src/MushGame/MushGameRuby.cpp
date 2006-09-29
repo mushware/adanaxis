@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } yY7ZZkvIHHOoUzJzTAQPOQ
 /*
- * $Id: MushGameRuby.cpp,v 1.11 2006/07/31 11:01:38 southa Exp $
+ * $Id: MushGameRuby.cpp,v 1.12 2006/08/01 13:41:15 southa Exp $
  * $Log: MushGameRuby.cpp,v $
+ * Revision 1.12  2006/08/01 13:41:15  southa
+ * Pre-release updates
+ *
  * Revision 1.11  2006/07/31 11:01:38  southa
  * Music and dialogues
  *
@@ -619,6 +622,12 @@ MushGameRuby::PackageID(Mushware::tRubyValue inSelf)
     return MushRubyValue(MushcoreInfo::Sgl().PackageID()).Value();
 }
 
+Mushware::tRubyValue
+MushGameRuby::GameMsec(Mushware::tRubyValue inSelf)
+{
+    return MushRubyValue(MushGameUtil::LogicRef().GameMsec()).Value();
+}
+
 void
 MushGameRuby::MethodsInstall(void)
 {
@@ -654,4 +663,5 @@ MushGameRuby::MethodsInstall(void)
     MushRubyUtil::SingletonMethodDefineTwoParams(Klass(), "cSoundDefine", SoundDefine);
     MushRubyUtil::SingletonMethodDefineTwoParams(Klass(), "cSoundStreamDefine", SoundStreamDefine);
     MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cPackageID", PackageID);
+    MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cGameMsec", GameMsec);
 }

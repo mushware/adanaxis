@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 0xPG/7jmGTzjaD0AmAZyzw
 /*
- * $Id: MushMeshRubyVector.cpp,v 1.7 2006/06/22 19:07:34 southa Exp $
+ * $Id: MushMeshRubyVector.cpp,v 1.8 2006/07/17 14:43:42 southa Exp $
  * $Log: MushMeshRubyVector.cpp,v $
+ * Revision 1.8  2006/07/17 14:43:42  southa
+ * Billboarded deco objects
+ *
  * Revision 1.7  2006/06/22 19:07:34  southa
  * Build fixes
  *
@@ -171,6 +174,18 @@ MushMeshRubyVector::ApproxEqual(Mushware::tRubyValue inSelf, Mushware::tRubyValu
 	return Ref(inSelf).ApproxEqual(Ref(inArg0), MushRubyValue(inArg1).Val());
 }
 
+Mushware::tRubyValue
+MushMeshRubyVector::Magnitude(Mushware::tRubyValue inSelf)
+{
+    return MushRubyValue(Ref(inSelf).Magnitude()).Value();
+}
+
+Mushware::tRubyValue
+MushMeshRubyVector::MagnitudeSquared(Mushware::tRubyValue inSelf)
+{
+    return MushRubyValue(Ref(inSelf).MagnitudeSquared()).Value();
+}
+
 void
 MushMeshRubyVector::RubyInstall(void)
 {
@@ -184,6 +199,8 @@ MushMeshRubyVector::RubyInstall(void)
 	MushRubyUtil::MethodDefineOneParam(ObjKlass(), "*", MushVectorMultiply);
 	MushRubyUtil::MethodDefineOneParam(ObjKlass(), "==", MushVectorIsEqual);
 	MushRubyUtil::MethodDefineTwoParams(ObjKlass(), "mApproxEqual", ApproxEqual);
+	MushRubyUtil::MethodDefineNoParams(ObjKlass(), "mMagnitude", Magnitude);
+	MushRubyUtil::MethodDefineNoParams(ObjKlass(), "mMagnitudeSquared", MagnitudeSquared);
 }
 
 MUSHRUBY_INSTALL(MushMeshRubyVector);

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } jHsuT0DibdJl7EB6jmyAAg
 /*
- * $Id: MushGameUtil.h,v 1.9 2006/06/01 15:39:27 southa Exp $
+ * $Id: MushGameUtil.h,v 1.10 2006/07/07 18:13:59 southa Exp $
  * $Log: MushGameUtil.h,v $
+ * Revision 1.10  2006/07/07 18:13:59  southa
+ * Menu start and stop
+ *
  * Revision 1.9  2006/06/01 15:39:27  southa
  * DrawArray verification and fixes
  *
@@ -80,6 +83,7 @@ public:
     static std::string KeyFromMessage(const MushGameMessage& inMessage);
     static std::string ReplyIDFromMessage(const MushGameMessage& inMessage);
     static MushGameAppHandler& AppHandler(void);
+    static const MushGameLogic& LogicRef(void);
     static MushGameLogic& LogicWRef(void);
     static std::string ObjectName(Mushware::U8 inPrefix, Mushware::U32 inNumber);
     static void ObjectNameDecode(Mushware::U8& outPrefix, Mushware::U32& outNumber, const std::string& inName);
