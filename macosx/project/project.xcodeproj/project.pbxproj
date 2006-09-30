@@ -2687,6 +2687,8 @@
 		7A58F1EA0A3D6B3B00B7AE0E /* MushMeshRubyVector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushMeshRubyVector.h; sourceTree = "<group>"; };
 		7A58F1EB0A3D6B3B00B7AE0E /* MushMeshRubyVector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushMeshRubyVector.cpp; sourceTree = "<group>"; };
 		7A58F2070A3D725400B7AE0E /* AdanaxisMeshLibrary.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AdanaxisMeshLibrary.rb; sourceTree = "<group>"; };
+		7A59645C0ACE8CEA007FAA8F /* AdanaxisAIKhazi.rb */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = text.script.ruby; path = AdanaxisAIKhazi.rb; sourceTree = "<group>"; tabWidth = 2; };
+		7A59646D0ACE93F9007FAA8F /* MushUtil.rb */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = text.script.ruby; path = MushUtil.rb; sourceTree = "<group>"; tabWidth = 2; };
 		7A59656E0A9DB0F4002A966B /* AdanaxisEvents.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AdanaxisEvents.rb; sourceTree = "<group>"; };
 		7A5965760A9DB39B002A966B /* AdanaxisLogic.rb */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = text.script.ruby; path = AdanaxisLogic.rb; sourceTree = "<group>"; tabWidth = 2; };
 		7A5965790A9DB412002A966B /* MushLogic.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = MushLogic.rb; sourceTree = "<group>"; };
@@ -4243,6 +4245,7 @@
 				7A4CAB090A582DF200AA934F /* MushRotation.rb */,
 				7ACE601B0AB40D2F001AE5AA /* MushShaderLibrary.rb */,
 				7A4CAB0A0A582DF200AA934F /* MushTools.rb */,
+				7A59646D0ACE93F9007FAA8F /* MushUtil.rb */,
 				7A4CAB0B0A582DF200AA934F /* MushVector.rb */,
 				7A4CAB0C0A582DF200AA934F /* Mushware.rb */,
 			);
@@ -5942,6 +5945,7 @@
 			children = (
 				7A5F18250A3DC12700B46F5F /* Adanaxis.rb */,
 				7A619A760A974B1900FAA06C /* AdanaxisAI.rb */,
+				7A59645C0ACE8CEA007FAA8F /* AdanaxisAIKhazi.rb */,
 				7A614A980A62951900E8FCEF /* AdanaxisControl.rb */,
 				7A59656E0A9DB0F4002A966B /* AdanaxisEvents.rb */,
 				7A35AEFB0A481B5F00DB00A1 /* AdanaxisGame.rb */,

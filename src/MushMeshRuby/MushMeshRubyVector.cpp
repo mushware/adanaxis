@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 0xPG/7jmGTzjaD0AmAZyzw
 /*
- * $Id: MushMeshRubyVector.cpp,v 1.8 2006/07/17 14:43:42 southa Exp $
+ * $Id: MushMeshRubyVector.cpp,v 1.9 2006/09/29 10:47:57 southa Exp $
  * $Log: MushMeshRubyVector.cpp,v $
+ * Revision 1.9  2006/09/29 10:47:57  southa
+ * Object AI
+ *
  * Revision 1.8  2006/07/17 14:43:42  southa
  * Billboarded deco objects
  *
@@ -186,6 +189,16 @@ MushMeshRubyVector::MagnitudeSquared(Mushware::tRubyValue inSelf)
     return MushRubyValue(Ref(inSelf).MagnitudeSquared()).Value();
 }
 
+Mushware::tRubyValue
+MushMeshRubyVector::InnerProduct(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg1)
+{
+    if (!IsInstanceOf(inArg1))
+    {
+        MushRubyUtil::Raise("Parameter to mInnerProduct must be MushVector");
+    }
+    return MushRubyValue(Ref(inSelf) * Ref(inArg1)).Value();
+}
+
 void
 MushMeshRubyVector::RubyInstall(void)
 {
@@ -201,6 +214,7 @@ MushMeshRubyVector::RubyInstall(void)
 	MushRubyUtil::MethodDefineTwoParams(ObjKlass(), "mApproxEqual", ApproxEqual);
 	MushRubyUtil::MethodDefineNoParams(ObjKlass(), "mMagnitude", Magnitude);
 	MushRubyUtil::MethodDefineNoParams(ObjKlass(), "mMagnitudeSquared", MagnitudeSquared);
+	MushRubyUtil::MethodDefineOneParam(ObjKlass(), "mInnerProduct", InnerProduct);
 }
 
 MUSHRUBY_INSTALL(MushMeshRubyVector);

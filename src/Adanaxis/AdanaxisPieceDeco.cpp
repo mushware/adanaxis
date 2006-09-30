@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } Xbi0vrfUMDnmd9NKsSwjUQ
 /*
- * $Id: AdanaxisPieceDeco.cpp,v 1.23 2006/08/01 17:21:25 southa Exp $
+ * $Id: AdanaxisPieceDeco.cpp,v 1.24 2006/09/09 11:16:39 southa Exp $
  * $Log: AdanaxisPieceDeco.cpp,v $
+ * Revision 1.24  2006/09/09 11:16:39  southa
+ * One-time vertex buffer generation
+ *
  * Revision 1.23  2006/08/01 17:21:25  southa
  * River demo
  *
@@ -136,16 +139,11 @@ AdanaxisPieceDeco::Render(MushGLJobRender& outRender,
     renderSpec.ViewWRef().InPlaceInvert();
     
     renderSpec.ProjectionSet(inCamera.Projection());
-    
-    MushRenderMeshSolid *pRender = dynamic_cast<MushRenderMeshSolid *>(&inRender);
-    
-    if (pRender != NULL)
-    {
-        tVal alpha =  (0.0 + m_expiryMsec - ioLogic.FrameMsec()) / m_lifeMsec;
-        MushcoreUtil::Constrain<tVal>(alpha, 0, 1);
 
-        pRender->ColourZMiddleSet(pRender->ColourZMiddle().ElementwiseProduct(t4Val(1,1,1,alpha)));
-    }
+    tVal alpha =  (0.0 + m_expiryMsec - ioLogic.FrameMsec()) / m_lifeMsec;
+    MushcoreUtil::Constrain<tVal>(alpha, 0, 1);
+
+    inRender.ColourZMiddleSet(inRender.ColourZMiddle().ElementwiseProduct(t4Val(1,1,1,alpha)));
         
     return inRender.RenderJobCreate(outRender, renderSpec, Mesh());
 }
