@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } YCa3eNmcxUH2q0Oxh6SpTA
 /*
- * $Id: AdanaxisPieceKhazi.cpp,v 1.20 2006/09/09 11:16:39 southa Exp $
+ * $Id: AdanaxisPieceKhazi.cpp,v 1.21 2006/09/09 15:59:27 southa Exp $
  * $Log: AdanaxisPieceKhazi.cpp,v $
+ * Revision 1.21  2006/09/09 15:59:27  southa
+ * Shader colour calculations
+ *
  * Revision 1.20  2006/09/09 11:16:39  southa
  * One-time vertex buffer generation
  *
@@ -354,32 +357,6 @@ AdanaxisPieceKhazi::RubyPostSave(Mushware::tRubyValue inSelf, Mushware::tRubyVal
 }
 
 Mushware::tRubyValue
-AdanaxisPieceKhazi::RubyLookup(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0)
-{
-    tRubyValue retVal;
-    try
-    {
-        U32 objNum = MushRubyValue(inArg0).U32();
-                
-        AdanaxisPieceKhazi *pKhazi = NULL;
-        if (AdanaxisRuby::SaveData().KhaziListWRef().GetIfExists(pKhazi, objNum))
-        {
-            retVal = pKhazi->RubyObj().Value();
-        }
-        else
-        {
-            retVal = kRubyQnil;
-        }
-    }
-    catch (std::exception& e)
-    {
-        MushRubyUtil::Raise(e.what());
-        retVal = kRubyQnil; // Prevent warning
-    }
-    return retVal;
-}
-
-Mushware::tRubyValue
 AdanaxisPieceKhazi::Klass(void)
 {
     if (m_rubyKlass == kRubyQnil)
@@ -398,7 +375,6 @@ AdanaxisPieceKhazi::RubyInstall(void)
     }
 	MushRubyUtil::MethodDefineOneParam(Klass(), "mPostLoad", RubyPostLoad);
 	MushRubyUtil::MethodDefineOneParam(Klass(), "mPostSave", RubyPostSave);
-	MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cLookup", RubyLookup);
 }
 
 namespace

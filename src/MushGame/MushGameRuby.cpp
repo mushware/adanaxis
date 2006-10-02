@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } yY7ZZkvIHHOoUzJzTAQPOQ
 /*
- * $Id: MushGameRuby.cpp,v 1.13 2006/09/29 10:47:56 southa Exp $
+ * $Id: MushGameRuby.cpp,v 1.14 2006/10/02 17:25:06 southa Exp $
  * $Log: MushGameRuby.cpp,v $
+ * Revision 1.14  2006/10/02 17:25:06  southa
+ * Object lookup and target selection
+ *
  * Revision 1.13  2006/09/29 10:47:56  southa
  * Object AI
  *
@@ -72,6 +75,7 @@
 #include "MushGameUtil.h"
 
 #include "API/mushMedia.h"
+#include "API/mushMushMeshRuby.h"
 #include "API/mushPlatform.h"
 
 MUSHRUBYEMPTYOBJ_INSTANCE(4000);
@@ -652,6 +656,34 @@ MushGameRuby::PieceLookup(Mushware::tRubyValue inSelf, Mushware::tRubyValue inAr
     return pPiece->RubyObj().Value();
 }
 
+Mushware::tRubyValue
+MushGameRuby::TargetPieceSelect(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0,
+                                Mushware::tRubyValue inArg1, Mushware::tRubyValue inArg2)
+{
+    std::string pieceID;
+    
+    try
+    {
+        const MushMeshPosticity& postRef = MushMeshRubyPost::Ref(inArg0);
+        std::string typeString = MushRubyValue(inArg1).String();
+        std::string excludeString = MushRubyValue(inArg2).String();
+        pieceID = MushGameUtil::LogicRef().TargetPieceSelect(postRef, typeString, excludeString);
+    }
+    catch (std::exception& e)
+    {
+        MushRubyUtil::Raise(e.what());       
+    }
+
+    if (pieceID == "")
+    {
+        return kRubyQnil;
+    }
+    else
+    {
+        return MushRubyValue(pieceID).Value();
+    }
+}
+
 void
 MushGameRuby::MethodsInstall(void)
 {
@@ -689,4 +721,5 @@ MushGameRuby::MethodsInstall(void)
     MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cPackageID", PackageID);
     MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cGameMsec", GameMsec);
     MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cPieceLookup", PieceLookup);
+    MushRubyUtil::SingletonMethodDefineThreeParams(Klass(), "cTargetPieceSelect", TargetPieceSelect);
 }

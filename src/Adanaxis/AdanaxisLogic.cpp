@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } Mac7dWHONvkZIg39sQnwww
 /*
- * $Id: AdanaxisLogic.cpp,v 1.18 2006/08/01 17:21:24 southa Exp $
+ * $Id: AdanaxisLogic.cpp,v 1.19 2006/08/25 01:44:56 southa Exp $
  * $Log: AdanaxisLogic.cpp,v $
+ * Revision 1.19  2006/08/25 01:44:56  southa
+ * Khazi fire
+ *
  * Revision 1.18  2006/08/01 17:21:24  southa
  * River demo
  *
@@ -90,6 +93,42 @@ AdanaxisLogic::AdanaxisLogic() :
     m_khaziCount(1),
     m_preCacheResult(0)
 {
+}
+
+void
+AdanaxisLogic::TargetPieceSearch(std::string& ioID,
+                                 Mushware::tVal& ioDistSquared,
+                                 const Mushware::t4Val& inPos,
+                                 Mushware::U8 inObjType,
+                                 const std::string& inExcludeID) const
+{
+    switch (inObjType)
+    {
+        case AdanaxisData::kCharKhazi:
+        {
+            typedef AdanaxisSaveData::tKhaziList::const_iterator tIterator;
+            const AdanaxisSaveData::tKhaziList& pieceData = SaveData().KhaziList();
+            for (tIterator p = pieceData.begin(); p != pieceData.end(); ++p)
+            {
+                t4Val vecToObj = inPos - p->Post().Pos();
+                tVal distToObjSquared = vecToObj.MagnitudeSquared();
+                if (ioID == "" || distToObjSquared < ioDistSquared)
+                {
+                    std::string newID = MushGameUtil::ObjectName(inObjType, p.Key());
+                    if (newID != inExcludeID)
+                    {
+                        ioDistSquared = distToObjSquared;
+                        ioID = newID;
+                    }
+                }
+            }
+        }
+        break;
+            
+        default:
+            MushGameLogic::TargetPieceSearch(ioID, ioDistSquared, inPos, inObjType, inExcludeID);
+            break;
+    }
 }
 
 void

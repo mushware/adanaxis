@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } qwHjHWDAhJ5nzUjaMqYD6A
 /*
- * $Id: AdanaxisRubyKhazi.cpp,v 1.5 2006/08/24 13:04:38 southa Exp $
+ * $Id: AdanaxisRubyKhazi.cpp,v 1.6 2006/09/09 11:16:40 southa Exp $
  * $Log: AdanaxisRubyKhazi.cpp,v $
+ * Revision 1.6  2006/09/09 11:16:40  southa
+ * One-time vertex buffer generation
+ *
  * Revision 1.5  2006/08/24 13:04:38  southa
  * Event handling
  *
@@ -64,7 +67,7 @@ MUSHRUBYMAPTOROBJ_INITIALIZE(AdanaxisPieceKhazi)(Mushware::tRubyArgC inArgC, Mus
 	refRef.KeySet(key);
     
     ostringstream idStream;
-    idStream << "k" << key;
+    idStream << "k:" << key;
     
 	AdanaxisPieceKhazi& khaziRef = *new AdanaxisPieceKhazi(idStream.str());
     dataRef.Give(&khaziRef, key);

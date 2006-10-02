@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } WMShka8Hj2wrlOceGnqYjw
 /*
- * $Id: AdanaxisPiecePlayer.h,v 1.11 2006/08/01 17:21:26 southa Exp $
+ * $Id: AdanaxisPiecePlayer.h,v 1.1 2006/10/02 17:25:04 southa Exp $
  * $Log: AdanaxisPiecePlayer.h,v $
+ * Revision 1.1  2006/10/02 17:25:04  southa
+ * Object lookup and target selection
+ *
  * Revision 1.11  2006/08/01 17:21:26  southa
  * River demo
  *
@@ -78,7 +81,6 @@ public:
     virtual void FirePieceCreate(MushGameLogic& ioLogic, const MushGameMessageFire& inMessage);
     virtual void FireConsume(MushGameLogic& ioLogic, const MushGameMessageFire& inMessage);
 
-    static Mushware::tRubyValue RubyPost(Mushware::tRubyValue inSelf);
     static Mushware::tRubyValue Klass(void);
     static void RubyInstall(void);
     

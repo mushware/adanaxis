@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } gq+r6M5XzKqE/mgjgvunrQ
 /*
- * $Id: AdanaxisPiecePlayer.cpp,v 1.27 2006/09/09 11:16:40 southa Exp $
+ * $Id: AdanaxisPiecePlayer.cpp,v 1.1 2006/10/02 17:25:04 southa Exp $
  * $Log: AdanaxisPiecePlayer.cpp,v $
+ * Revision 1.1  2006/10/02 17:25:04  southa
+ * Object lookup and target selection
+ *
  * Revision 1.27  2006/09/09 11:16:40  southa
  * One-time vertex buffer generation
  *
@@ -371,27 +374,6 @@ AdanaxisPiecePlayer::FireConsume(MushGameLogic& ioLogic, const MushGameMessageFi
     {
         pVolData->ScannerOnSet(false);
     }
-}
-
-Mushware::tRubyValue
-AdanaxisPiecePlayer::RubyPost(Mushware::tRubyValue inSelf)
-{
-    Mushware::tRubyValue retVal = kRubyQnil;
-    
-    try
-    {
-        AdanaxisPiecePlayer *self = reinterpret_cast<AdanaxisPiecePlayer *>(MushRubyUtil::DataObjectRetrieve(inSelf));
-        MUSHCOREASSERT(dynamic_cast<AdanaxisPiecePlayer *>(self) != NULL);
-        
-        retVal = MushMeshRubyPost::NewInstance();
-        
-        MushMeshRubyPost::WRef(retVal) = self->Post();
-    }
-    catch (std::exception& e)
-    {
-        MushRubyUtil::Raise(e.what());    
-    }
-    return retVal;
 }
 
 Mushware::tRubyValue

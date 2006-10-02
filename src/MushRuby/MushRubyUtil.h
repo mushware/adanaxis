@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } ZnwDjEM1+TPkZ9HrL5mg7A
 /*
- * $Id: MushRubyUtil.h,v 1.12 2006/08/19 09:12:10 southa Exp $
+ * $Id: MushRubyUtil.h,v 1.13 2006/08/20 14:19:23 southa Exp $
  * $Log: MushRubyUtil.h,v $
+ * Revision 1.13  2006/08/20 14:19:23  southa
+ * Seek operation
+ *
  * Revision 1.12  2006/08/19 09:12:10  southa
  * Event handling
  *
@@ -118,6 +121,7 @@ public:
     static void *DataObjectRetrieve(Mushware::tRubyValue inSelf);
     static Mushware::tRubyValue InstanceVar(Mushware::tRubyValue inObj, Mushware::tRubyID inSym);
     static void InstanceVarSet(Mushware::tRubyValue inObj, Mushware::tRubyID inSym, Mushware::tRubyValue inValue);
+    static void Freeze(Mushware::tRubyValue& ioValue);
     
 private:
 	static Mushware::tRubyValue HashHandler(Mushware::tRubyValue inArray, Mushware::tRubyValue inArg);

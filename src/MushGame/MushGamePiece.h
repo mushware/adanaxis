@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } QiW5KaWfX1mBGolg1jxMIg
 /*
- * $Id: MushGamePiece.h,v 1.14 2006/08/25 01:44:57 southa Exp $
+ * $Id: MushGamePiece.h,v 1.15 2006/09/09 11:16:41 southa Exp $
  * $Log: MushGamePiece.h,v $
+ * Revision 1.15  2006/09/09 11:16:41  southa
+ * One-time vertex buffer generation
+ *
  * Revision 1.14  2006/08/25 01:44:57  southa
  * Khazi fire
  *
@@ -95,6 +98,9 @@ public:
     static Mushware::tRubyValue RubyLoad(Mushware::tRubyValue inSelf);
     static Mushware::tRubyValue RubySave(Mushware::tRubyValue inSelf);
     static Mushware::tRubyValue Klass(void);
+
+    static Mushware::tRubyValue RubyPost(Mushware::tRubyValue inSelf);
+    
     static void RubyInstall(void);
     
 private:

@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } 3LuiErcM0vO3wOyNDCFVeQ
 /*
- * $Id: AdanaxisLogic.h,v 1.13 2006/08/01 17:21:24 southa Exp $
+ * $Id: AdanaxisLogic.h,v 1.14 2006/10/02 17:25:04 southa Exp $
  * $Log: AdanaxisLogic.h,v $
+ * Revision 1.14  2006/10/02 17:25:04  southa
+ * Object lookup and target selection
+ *
  * Revision 1.13  2006/08/01 17:21:24  southa
  * River demo
  *
@@ -84,6 +87,8 @@ public:
     
     virtual MushGamePiecePlayer *PlayerNew(const MushGameMessage *inpMessage) { return new AdanaxisPiecePlayer; }
     
+    virtual void TargetPieceSearch(std::string& ioID,  Mushware::tVal& ioDistSquared, const Mushware::t4Val& inPos,
+                                   Mushware::U8 inObjType, const std::string& inExcludeID) const;
     virtual void ProjectilesMove(void);
     virtual void DecoMove(void);
     virtual void KhaziMove(void);

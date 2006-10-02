@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } rVCNunlW+wZoonHnGB5a7Q
 /*
- * $Id: MushGamePiece.cpp,v 1.11 2006/08/24 13:04:38 southa Exp $
+ * $Id: MushGamePiece.cpp,v 1.12 2006/09/09 11:16:41 southa Exp $
  * $Log: MushGamePiece.cpp,v $
+ * Revision 1.12  2006/09/09 11:16:41  southa
+ * One-time vertex buffer generation
+ *
  * Revision 1.11  2006/08/24 13:04:38  southa
  * Event handling
  *
@@ -158,6 +161,28 @@ MushGamePiece::Klass(void)
     return m_rubyKlass;
 }    
 
+Mushware::tRubyValue
+MushGamePiece::RubyPost(Mushware::tRubyValue inSelf)
+{
+    Mushware::tRubyValue retVal = kRubyQnil;
+    
+    try
+    {
+        MushGamePiece *self = reinterpret_cast<MushGamePiece *>(MushRubyUtil::DataObjectRetrieve(inSelf));
+        MUSHCOREASSERT(dynamic_cast<MushGamePiece *>(self) != NULL);
+        
+        retVal = MushMeshRubyPost::NewInstance();
+        
+        MushMeshRubyPost::WRef(retVal) = self->Post();
+        MushRubyUtil::Freeze(retVal);
+    }
+    catch (std::exception& e)
+    {
+        MushRubyUtil::Raise(e.what());    
+    }
+    return retVal;
+}
+
 void
 MushGamePiece::RubyInstall(void)
 {
@@ -166,6 +191,7 @@ MushGamePiece::RubyInstall(void)
 	    m_rubyKlass = MushRubyUtil::SubclassDefine("MushPiece", MushRubyObject::Klass());
         MushRubyUtil::MethodDefineNoParams(Klass(), "mLoad", RubyLoad);
         MushRubyUtil::MethodDefineNoParams(Klass(), "mSave", RubySave);
+        MushRubyUtil::MethodDefineNoParams(Klass(), "post", RubyPost);
     }
 }
 

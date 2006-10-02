@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } o9Dxm/e8GypZNPSRXLgJNQ
 /*
- * $Id: MushGameLogic.cpp,v 1.29 2006/07/28 16:52:23 southa Exp $
+ * $Id: MushGameLogic.cpp,v 1.30 2006/10/02 17:25:05 southa Exp $
  * $Log: MushGameLogic.cpp,v $
+ * Revision 1.30  2006/10/02 17:25:05  southa
+ * Object lookup and target selection
+ *
  * Revision 1.29  2006/07/28 16:52:23  southa
  * Options work
  *
@@ -150,6 +153,60 @@ MushGameLogic::PieceLookup(const std::string& inName) const
             break;
     }
     return *pPiece;
+}
+
+void
+MushGameLogic::TargetPieceSearch(std::string& ioID,
+                                 Mushware::tVal& ioDistSquared,
+                                 const Mushware::t4Val& inPos,
+                                 Mushware::U8 inObjType,
+                                 const std::string& inExcludeID) const
+{
+    switch (inObjType)
+    {
+        case MushGameData::kCharPlayer:
+        {
+            typedef MushcoreMaptor<MushGamePiecePlayer>::const_iterator tIterator;
+            const MushcoreMaptor<MushGamePiecePlayer>& playerData = SaveData().Players();
+            for (tIterator p = playerData.begin(); p != playerData.end(); ++p)
+            {
+                t4Val vecToObj = inPos - p->Post().Pos();
+                tVal distToObjSquared = vecToObj.MagnitudeSquared();
+                if (ioID == "" || distToObjSquared < ioDistSquared)
+                {
+                    std::string newID = MushGameUtil::ObjectName(inObjType, p.Key());
+                    if (newID != inExcludeID)
+                    {
+                        ioDistSquared = distToObjSquared;
+                        ioID = newID;
+                    }
+                }
+            }
+        }
+        break;
+
+        default:
+            ostringstream message;
+            message <<"Unknown object type '" << inObjType << "' in TargetPieceSearch";
+            throw MushcoreDataFail(message.str());
+            break;
+    }
+}
+
+std::string
+MushGameLogic::TargetPieceSelect(const MushMeshPosticity& inPost, const std::string& inTypes,
+                                 const std::string& inExcludeID) const
+{
+    std::string pieceID;
+    tVal distToPieceSquared = 0;
+    
+    const t4Val& objPos = inPost.Pos();
+    
+    for (U32 i=0; i<inTypes.size(); ++i)
+    {
+        TargetPieceSearch(pieceID, distToPieceSquared, objPos, inTypes[i], inExcludeID);
+    }
+    return pieceID;
 }
 
 void

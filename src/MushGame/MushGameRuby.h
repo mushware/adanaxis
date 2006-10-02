@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } abz8WfQdtsWpPxv12NZxhA
 /*
- * $Id: MushGameRuby.h,v 1.13 2006/09/29 10:47:56 southa Exp $
+ * $Id: MushGameRuby.h,v 1.14 2006/10/02 17:25:06 southa Exp $
  * $Log: MushGameRuby.h,v $
+ * Revision 1.14  2006/10/02 17:25:06  southa
+ * Object lookup and target selection
+ *
  * Revision 1.13  2006/09/29 10:47:56  southa
  * Object AI
  *
@@ -107,6 +110,7 @@ public:
     static Mushware::tRubyValue PackageID(Mushware::tRubyValue inSelf);
     static Mushware::tRubyValue GameMsec(Mushware::tRubyValue inSelf);
     static Mushware::tRubyValue PieceLookup(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
+    static Mushware::tRubyValue TargetPieceSelect(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0, Mushware::tRubyValue inArg1, Mushware::tRubyValue inArg2);
     
     static void MethodsInstall(void);
     

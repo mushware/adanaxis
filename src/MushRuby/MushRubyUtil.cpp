@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } gSaMBKSS/9FVf/ypP8x5kA
 /*
- * $Id: MushRubyUtil.cpp,v 1.13 2006/08/19 09:12:10 southa Exp $
+ * $Id: MushRubyUtil.cpp,v 1.14 2006/08/20 14:19:23 southa Exp $
  * $Log: MushRubyUtil.cpp,v $
+ * Revision 1.14  2006/08/20 14:19:23  southa
+ * Seek operation
+ *
  * Revision 1.13  2006/08/19 09:12:10  southa
  * Event handling
  *
@@ -340,4 +343,10 @@ void
 MushRubyUtil::InstanceVarSet(Mushware::tRubyValue inObj, Mushware::tRubyID inSym, Mushware::tRubyValue inValue)
 {
     rb_ivar_set(inObj, inSym, inValue);
+}
+
+void
+MushRubyUtil::Freeze(Mushware::tRubyValue& ioValue)
+{
+    OBJ_FREEZE(ioValue);
 }
