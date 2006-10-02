@@ -1806,10 +1806,10 @@
 		7ABBAB2508087A3900A01FB4 /* GameUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7ABBAB2308087A3900A01FB4 /* GameUtils.cpp */; };
 		7ABBAB2608087A3900A01FB4 /* GameUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ABBAB2208087A3900A01FB4 /* GameUtils.h */; };
 		7ABBAB2708087A3900A01FB4 /* GameUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7ABBAB2308087A3900A01FB4 /* GameUtils.cpp */; };
-		7AC4391E0861E020006D73D3 /* MushGamePlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AC4391C0861E020006D73D3 /* MushGamePlayer.h */; };
-		7AC4391F0861E020006D73D3 /* MushGamePlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AC4391D0861E020006D73D3 /* MushGamePlayer.cpp */; };
-		7AC439200861E020006D73D3 /* MushGamePlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AC4391C0861E020006D73D3 /* MushGamePlayer.h */; };
-		7AC439210861E020006D73D3 /* MushGamePlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AC4391D0861E020006D73D3 /* MushGamePlayer.cpp */; };
+		7AC4391E0861E020006D73D3 /* MushGamePiecePlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AC4391C0861E020006D73D3 /* MushGamePiecePlayer.h */; };
+		7AC4391F0861E020006D73D3 /* MushGamePiecePlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AC4391D0861E020006D73D3 /* MushGamePiecePlayer.cpp */; };
+		7AC439200861E020006D73D3 /* MushGamePiecePlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AC4391C0861E020006D73D3 /* MushGamePiecePlayer.h */; };
+		7AC439210861E020006D73D3 /* MushGamePiecePlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AC4391D0861E020006D73D3 /* MushGamePiecePlayer.cpp */; };
 		7AC439270861E1C3006D73D3 /* MushGameSaveData.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AC439250861E1C3006D73D3 /* MushGameSaveData.h */; };
 		7AC439280861E1C3006D73D3 /* MushGameSaveData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AC439260861E1C3006D73D3 /* MushGameSaveData.cpp */; };
 		7AC439290861E1C3006D73D3 /* MushGameSaveData.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AC439250861E1C3006D73D3 /* MushGameSaveData.h */; };
@@ -2296,10 +2296,10 @@
 		7AD42BEC0866F659002348BD /* MushGameMessageJoinRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AD42BEA0866F659002348BD /* MushGameMessageJoinRequest.cpp */; };
 		7AD42BED0866F659002348BD /* MushGameMessageJoinRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD42BE90866F659002348BD /* MushGameMessageJoinRequest.h */; };
 		7AD42BEE0866F659002348BD /* MushGameMessageJoinRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AD42BEA0866F659002348BD /* MushGameMessageJoinRequest.cpp */; };
-		7AD42BF70866FAB0002348BD /* AdanaxisPlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD42BF50866FAB0002348BD /* AdanaxisPlayer.h */; };
-		7AD42BF80866FAB0002348BD /* AdanaxisPlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AD42BF60866FAB0002348BD /* AdanaxisPlayer.cpp */; };
-		7AD42BF90866FAB0002348BD /* AdanaxisPlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD42BF50866FAB0002348BD /* AdanaxisPlayer.h */; };
-		7AD42BFA0866FAB0002348BD /* AdanaxisPlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AD42BF60866FAB0002348BD /* AdanaxisPlayer.cpp */; };
+		7AD42BF70866FAB0002348BD /* AdanaxisPiecePlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD42BF50866FAB0002348BD /* AdanaxisPiecePlayer.h */; };
+		7AD42BF80866FAB0002348BD /* AdanaxisPiecePlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AD42BF60866FAB0002348BD /* AdanaxisPiecePlayer.cpp */; };
+		7AD42BF90866FAB0002348BD /* AdanaxisPiecePlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD42BF50866FAB0002348BD /* AdanaxisPiecePlayer.h */; };
+		7AD42BFA0866FAB0002348BD /* AdanaxisPiecePlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AD42BF60866FAB0002348BD /* AdanaxisPiecePlayer.cpp */; };
 		7AD42C47086703F4002348BD /* MushGameMessageJoinDenied.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD42C45086703F4002348BD /* MushGameMessageJoinDenied.h */; };
 		7AD42C48086703F4002348BD /* MushGameMessageJoinDenied.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AD42C46086703F4002348BD /* MushGameMessageJoinDenied.cpp */; };
 		7AD42C49086703F4002348BD /* MushGameMessageJoinDenied.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD42C45086703F4002348BD /* MushGameMessageJoinDenied.h */; };
@@ -2692,6 +2692,11 @@
 		7A59656E0A9DB0F4002A966B /* AdanaxisEvents.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AdanaxisEvents.rb; sourceTree = "<group>"; };
 		7A5965760A9DB39B002A966B /* AdanaxisLogic.rb */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = text.script.ruby; path = AdanaxisLogic.rb; sourceTree = "<group>"; tabWidth = 2; };
 		7A5965790A9DB412002A966B /* MushLogic.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = MushLogic.rb; sourceTree = "<group>"; };
+		7A597B610AD15C620071174E /* AdanaxisPiecePlayer.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AdanaxisPiecePlayer.rb; sourceTree = "<group>"; };
+		7A597BB80AD164AF0071174E /* MushGamePiecePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushGamePiecePlayer.h; sourceTree = "<group>"; };
+		7A597BB90AD164D00071174E /* MushGamePiecePlayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushGamePiecePlayer.cpp; sourceTree = "<group>"; };
+		7A597BBC0AD165270071174E /* AdanaxisPiecePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdanaxisPiecePlayer.h; sourceTree = "<group>"; };
+		7A597BBD0AD1653F0071174E /* AdanaxisPiecePlayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AdanaxisPiecePlayer.cpp; sourceTree = "<group>"; };
 		7A5B14F20A57AF580047BD0B /* AdanaxisRender.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AdanaxisRender.rb; sourceTree = "<group>"; };
 		7A5B14F50A57B1230047BD0B /* MushGLRubyFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushGLRubyFont.h; sourceTree = "<group>"; };
 		7A5B14F60A57B1230047BD0B /* MushGLRubyFont.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushGLRubyFont.cpp; sourceTree = "<group>"; };
@@ -3622,8 +3627,8 @@
 		7ABCE97005AB463800A00CC6 /* sdl_app.configure.in */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = sdl_app.configure.in; sourceTree = "<group>"; };
 		7ABDE4E20A69400100636DC1 /* AdanaxisLevels.rb */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = text.script.ruby; path = AdanaxisLevels.rb; sourceTree = "<group>"; tabWidth = 2; };
 		7ABDE4ED0A6943F000636DC1 /* manifest.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = manifest.txt; sourceTree = "<group>"; };
-		7AC4391C0861E020006D73D3 /* MushGamePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushGamePlayer.h; sourceTree = "<group>"; };
-		7AC4391D0861E020006D73D3 /* MushGamePlayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushGamePlayer.cpp; sourceTree = "<group>"; };
+		7AC4391C0861E020006D73D3 /* MushGamePiecePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushGamePiecePlayer.h; sourceTree = "<group>"; };
+		7AC4391D0861E020006D73D3 /* MushGamePiecePlayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushGamePiecePlayer.cpp; sourceTree = "<group>"; };
 		7AC439250861E1C3006D73D3 /* MushGameSaveData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushGameSaveData.h; sourceTree = "<group>"; };
 		7AC439260861E1C3006D73D3 /* MushGameSaveData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushGameSaveData.cpp; sourceTree = "<group>"; };
 		7AC5D50906FF502E00EF3984 /* MushGLV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushGLV.h; sourceTree = "<group>"; };
@@ -3906,8 +3911,8 @@
 		7AD3B6340861868E00512DB1 /* MushGameMailbox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushGameMailbox.cpp; sourceTree = "<group>"; };
 		7AD42BE90866F659002348BD /* MushGameMessageJoinRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushGameMessageJoinRequest.h; sourceTree = "<group>"; };
 		7AD42BEA0866F659002348BD /* MushGameMessageJoinRequest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushGameMessageJoinRequest.cpp; sourceTree = "<group>"; };
-		7AD42BF50866FAB0002348BD /* AdanaxisPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdanaxisPlayer.h; sourceTree = "<group>"; };
-		7AD42BF60866FAB0002348BD /* AdanaxisPlayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AdanaxisPlayer.cpp; sourceTree = "<group>"; };
+		7AD42BF50866FAB0002348BD /* AdanaxisPiecePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdanaxisPiecePlayer.h; sourceTree = "<group>"; };
+		7AD42BF60866FAB0002348BD /* AdanaxisPiecePlayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AdanaxisPiecePlayer.cpp; sourceTree = "<group>"; };
 		7AD42C45086703F4002348BD /* MushGameMessageJoinDenied.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushGameMessageJoinDenied.h; sourceTree = "<group>"; };
 		7AD42C46086703F4002348BD /* MushGameMessageJoinDenied.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushGameMessageJoinDenied.cpp; sourceTree = "<group>"; };
 		7AD42C4D0867040C002348BD /* MushGameMessageJoinConfirm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushGameMessageJoinConfirm.h; sourceTree = "<group>"; };
@@ -5427,8 +5432,10 @@
 				7AD1864A0883DC4D00F5459F /* AdanaxisPieceProjectile.h */,
 				7ACFAC190A6E2B670046377F /* AdanaxisPieceWorld.cpp */,
 				7ACFAC180A6E2B670046377F /* AdanaxisPieceWorld.h */,
-				7AD42BF60866FAB0002348BD /* AdanaxisPlayer.cpp */,
-				7AD42BF50866FAB0002348BD /* AdanaxisPlayer.h */,
+				7A597BBD0AD1653F0071174E /* AdanaxisPiecePlayer.cpp */,
+				7AD42BF60866FAB0002348BD /* AdanaxisPiecePlayer.cpp */,
+				7A597BBC0AD165270071174E /* AdanaxisPiecePlayer.h */,
+				7AD42BF50866FAB0002348BD /* AdanaxisPiecePlayer.h */,
 				7A218C3A08729E8900EEA4E1 /* AdanaxisRender.cpp */,
 				7A218C3908729E8900EEA4E1 /* AdanaxisRender.h */,
 				7A3E0DCA0A48387C0078B650 /* AdanaxisRuby.cpp */,
@@ -5951,6 +5958,7 @@
 				7A35AEFB0A481B5F00DB00A1 /* AdanaxisGame.rb */,
 				7A5BA8260A4955C400DC847A /* AdanaxisKhazi.rb */,
 				7ACFCE510A90A40C00A55B7D /* AdanaxisPieceKhazi.rb */,
+				7A597B610AD15C620071174E /* AdanaxisPiecePlayer.rb */,
 				7A60C9960A9E762F00026EEC /* AdanaxisPieceProjectile.rb */,
 				7A614A7D0A6280CD00E8FCEF /* AdanaxisMenu.rb */,
 				7ABDE4E20A69400100636DC1 /* AdanaxisLevels.rb */,
@@ -6169,8 +6177,10 @@
 				7AD008390882B1B9004EEAA8 /* MushGameMessageUplinkPlayer.h */,
 				7A06969A08686175007ACACE /* MushGameMessageWake.cpp */,
 				7A06969908686175007ACACE /* MushGameMessageWake.h */,
-				7AC4391D0861E020006D73D3 /* MushGamePlayer.cpp */,
-				7AC4391C0861E020006D73D3 /* MushGamePlayer.h */,
+				7A597BB90AD164D00071174E /* MushGamePiecePlayer.cpp */,
+				7AC4391D0861E020006D73D3 /* MushGamePiecePlayer.cpp */,
+				7A597BB80AD164AF0071174E /* MushGamePiecePlayer.h */,
+				7AC4391C0861E020006D73D3 /* MushGamePiecePlayer.h */,
 				7ACFC87F086C06B100B0E7E4 /* MushGamePiece.cpp */,
 				7ACFC87E086C06B100B0E7E4 /* MushGamePiece.h */,
 				7ADBEEE20867142900CFB0B1 /* MushGameReceiver.cpp */,
@@ -6555,10 +6565,10 @@
 				7AD3B621086183DB00512DB1 /* AdanaxisClient.h in Headers */,
 				7AD3B62F086185CB00512DB1 /* MushGameLink.h in Headers */,
 				7AD3B6370861868E00512DB1 /* MushGameMailbox.h in Headers */,
-				7AC439200861E020006D73D3 /* MushGamePlayer.h in Headers */,
+				7AC439200861E020006D73D3 /* MushGamePiecePlayer.h in Headers */,
 				7AC439290861E1C3006D73D3 /* MushGameSaveData.h in Headers */,
 				7AD42BEB0866F659002348BD /* MushGameMessageJoinRequest.h in Headers */,
-				7AD42BF70866FAB0002348BD /* AdanaxisPlayer.h in Headers */,
+				7AD42BF70866FAB0002348BD /* AdanaxisPiecePlayer.h in Headers */,
 				7AD42C47086703F4002348BD /* MushGameMessageJoinDenied.h in Headers */,
 				7AD42C4F0867040C002348BD /* MushGameMessageJoinConfirm.h in Headers */,
 				7ADBEEA308670F0A00CFB0B1 /* MushGameDespatch.h in Headers */,
@@ -6938,10 +6948,10 @@
 				7AD3B61F086183DB00512DB1 /* AdanaxisClient.h in Headers */,
 				7AD3B62D086185CB00512DB1 /* MushGameLink.h in Headers */,
 				7AD3B6350861868E00512DB1 /* MushGameMailbox.h in Headers */,
-				7AC4391E0861E020006D73D3 /* MushGamePlayer.h in Headers */,
+				7AC4391E0861E020006D73D3 /* MushGamePiecePlayer.h in Headers */,
 				7AC439270861E1C3006D73D3 /* MushGameSaveData.h in Headers */,
 				7AD42BED0866F659002348BD /* MushGameMessageJoinRequest.h in Headers */,
-				7AD42BF90866FAB0002348BD /* AdanaxisPlayer.h in Headers */,
+				7AD42BF90866FAB0002348BD /* AdanaxisPiecePlayer.h in Headers */,
 				7AD42C49086703F4002348BD /* MushGameMessageJoinDenied.h in Headers */,
 				7AD42C510867040C002348BD /* MushGameMessageJoinConfirm.h in Headers */,
 				7ADBEEA508670F0A00CFB0B1 /* MushGameDespatch.h in Headers */,
@@ -8438,10 +8448,10 @@
 				7AD3B622086183DB00512DB1 /* AdanaxisClient.cpp in Sources */,
 				7AD3B630086185CB00512DB1 /* MushGameLink.cpp in Sources */,
 				7AD3B6380861868E00512DB1 /* MushGameMailbox.cpp in Sources */,
-				7AC439210861E020006D73D3 /* MushGamePlayer.cpp in Sources */,
+				7AC439210861E020006D73D3 /* MushGamePiecePlayer.cpp in Sources */,
 				7AC4392A0861E1C3006D73D3 /* MushGameSaveData.cpp in Sources */,
 				7AD42BEC0866F659002348BD /* MushGameMessageJoinRequest.cpp in Sources */,
-				7AD42BF80866FAB0002348BD /* AdanaxisPlayer.cpp in Sources */,
+				7AD42BF80866FAB0002348BD /* AdanaxisPiecePlayer.cpp in Sources */,
 				7AD42C48086703F4002348BD /* MushGameMessageJoinDenied.cpp in Sources */,
 				7AD42C500867040C002348BD /* MushGameMessageJoinConfirm.cpp in Sources */,
 				7ADBEEA408670F0A00CFB0B1 /* MushGameDespatch.cpp in Sources */,
@@ -8806,10 +8816,10 @@
 				7AD3B620086183DB00512DB1 /* AdanaxisClient.cpp in Sources */,
 				7AD3B62E086185CB00512DB1 /* MushGameLink.cpp in Sources */,
 				7AD3B6360861868E00512DB1 /* MushGameMailbox.cpp in Sources */,
-				7AC4391F0861E020006D73D3 /* MushGamePlayer.cpp in Sources */,
+				7AC4391F0861E020006D73D3 /* MushGamePiecePlayer.cpp in Sources */,
 				7AC439280861E1C3006D73D3 /* MushGameSaveData.cpp in Sources */,
 				7AD42BEE0866F659002348BD /* MushGameMessageJoinRequest.cpp in Sources */,
-				7AD42BFA0866FAB0002348BD /* AdanaxisPlayer.cpp in Sources */,
+				7AD42BFA0866FAB0002348BD /* AdanaxisPiecePlayer.cpp in Sources */,
 				7AD42C4A086703F4002348BD /* MushGameMessageJoinDenied.cpp in Sources */,
 				7AD42C520867040C002348BD /* MushGameMessageJoinConfirm.cpp in Sources */,
 				7ADBEEA608670F0A00CFB0B1 /* MushGameDespatch.cpp in Sources */,

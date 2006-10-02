@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } wvHUgTbJZM55w0TorvjfBg
 /*
- * $Id: MushGameHostSaveData.h,v 1.6 2005/07/29 14:59:49 southa Exp $
+ * $Id: MushGameHostSaveData.h,v 1.7 2006/06/01 15:39:22 southa Exp $
  * $Log: MushGameHostSaveData.h,v $
+ * Revision 1.7  2006/06/01 15:39:22  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.6  2005/07/29 14:59:49  southa
  * Maptor access
  *
@@ -49,7 +52,7 @@
 
 #include "MushGameAddress.h"
 #include "MushGameJob.h"
-#include "MushGamePlayer.h"
+#include "MushGamePiecePlayer.h"
 
 //:generate virtual standard ostream xml1 nocopy
 class MushGameHostSaveData : public MushcoreVirtualObject
@@ -63,7 +66,7 @@ public:
     
 private:
     std::string m_serverName; //:readwrite
-    MushcoreData<MushGamePlayer> m_hostPlayers; //:read :wref
+    MushcoreMaptor<MushGamePiecePlayer> m_hostPlayers; //:read :wref
     Mushware::U32 m_nextPlayerNum; //:readwrite :wref
     Mushware::U32 m_maxPlayersAllowed; //:readwrite
     MushcoreData<MushGameJob> m_jobList; //:read :wref
@@ -73,9 +76,9 @@ private:
 public:
     const std::string& ServerName(void) const { return m_serverName; }
     void ServerNameSet(const std::string& inValue) { m_serverName=inValue; }
-    const MushcoreData<MushGamePlayer>& HostPlayers(void) const { return m_hostPlayers; }
+    const MushcoreMaptor<MushGamePiecePlayer>& HostPlayers(void) const { return m_hostPlayers; }
     // Writable reference for m_hostPlayers
-    MushcoreData<MushGamePlayer>& HostPlayersWRef(void) { return m_hostPlayers; }
+    MushcoreMaptor<MushGamePiecePlayer>& HostPlayersWRef(void) { return m_hostPlayers; }
     const Mushware::U32& NextPlayerNum(void) const { return m_nextPlayerNum; }
     void NextPlayerNumSet(const Mushware::U32& inValue) { m_nextPlayerNum=inValue; }
     // Writable reference for m_nextPlayerNum

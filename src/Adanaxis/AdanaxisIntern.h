@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } WBiqbvbumO43Eps7fHh03A
 /*
- * $Id$
- * $Log$
+ * $Id: AdanaxisIntern.h,v 1.1 2006/08/17 08:57:11 southa Exp $
+ * $Log: AdanaxisIntern.h,v $
+ * Revision 1.1  2006/08/17 08:57:11  southa
+ * Event handling
+ *
  */
 
 #include "AdanaxisStandard.h"
@@ -45,7 +48,9 @@ class AdanaxisIntern : public MushcoreSingleton<AdanaxisIntern>
 public:
     AdanaxisIntern();
     ADANAXISINTERN_ID(AdanaxisPieceKhazi);
+    ADANAXISINTERN_ID(AdanaxisPiecePlayer);
     ADANAXISINTERN_VALUE(KlassAdanaxisPieceKhazi);
+    ADANAXISINTERN_VALUE(KlassAdanaxisPiecePlayer);
 };
 
 #undef ADANAXISINTERN_ID

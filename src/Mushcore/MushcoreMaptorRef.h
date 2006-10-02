@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } oYaclGAzf6mPo2JW/S6SXA
 /*
- * $Id: MushcoreMaptorRef.h,v 1.3 2006/06/20 19:06:55 southa Exp $
+ * $Id: MushcoreMaptorRef.h,v 1.4 2006/06/21 12:17:59 southa Exp $
  * $Log: MushcoreMaptorRef.h,v $
+ * Revision 1.4  2006/06/21 12:17:59  southa
+ * Ruby object generation
+ *
  * Revision 1.3  2006/06/20 19:06:55  southa
  * Object creation
  *
@@ -66,7 +69,9 @@ public:
 
 	void MaptorSet(C& inMaptor) { m_pContainer = &inMaptor; }
 	T *GetOrCreate(void) const;
-	
+    const T& Ref(void) const { return *Dereference(); }
+    T& WRef(void) const { return *Dereference(); }
+
 protected:
     T *Dereference(void) const;
 
@@ -123,6 +128,24 @@ MushcoreMaptorRef<T, K, C>::GetOrCreate(void) const
     }
     return m_ptr;
 }	
+
+// XML operators treat this object as a single string
+template<class T, class K, class C>
+inline MushcoreXMLOStream&
+operator<<(MushcoreXMLOStream& ioOut, const MushcoreMaptorRef<T, K, C>& inObj)
+{
+    ioOut << inObj.Key();
+    return ioOut;
+}
+
+template<class T, class K, class C>
+inline void
+operator>>(MushcoreXMLIStream& ioIn, MushcoreMaptorRef<T, K, C>& outObj)
+{
+    K keyValue;
+    ioIn >> keyValue;
+    outObj.KeySet(keyValue);
+}
 
 //%inlineHeader {
 template<class T, class K, class C>

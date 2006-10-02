@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } o9Dxm/e8GypZNPSRXLgJNQ
 /*
- * $Id: MushGameLogic.cpp,v 1.28 2006/07/28 11:14:28 southa Exp $
+ * $Id: MushGameLogic.cpp,v 1.29 2006/07/28 16:52:23 southa Exp $
  * $Log: MushGameLogic.cpp,v $
+ * Revision 1.29  2006/07/28 16:52:23  southa
+ * Options work
+ *
  * Revision 1.28  2006/07/28 11:14:28  southa
  * Records for multiple spaces
  *
@@ -139,10 +142,9 @@ MushGameLogic::PieceLookup(const std::string& inName) const
     switch (objType)
     {
         case MushGameData::kCharPlayer:
-            // pPiece = &SaveData().Players().Get(objNum);
-            throw MushcoreDataFail("No player lookup yet");
+            pPiece = &SaveData().Players().Get(objNum);
             break;
-            
+
         default:
             throw MushcoreDataFail("Unknown object type '"+inName+"'");
             break;
@@ -233,16 +235,18 @@ MushGameLogic::JobMessageConsume(MushGameLogic& ioLogic, const MushGameMessage& 
 void
 MushGameLogic::ServerPlayerMessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage)
 {
-    std::string playerName = MushGameUtil::KeyFromMessage(inMessage);
+    Mushware::U8 objType;
+    Mushware::U32 objNum;
+    MushGameUtil::ObjectNameDecode(objType, objNum, inMessage.Id());
     
-    MushGamePlayer *pPlayer;
-    if (HostSaveData().HostPlayers().GetIfExists(pPlayer, playerName))
+    MushGamePiecePlayer *pPlayer;
+    if (HostSaveData().HostPlayers().GetIfExists(pPlayer, objNum))
     {
         pPlayer->MessageConsume(ioLogic, inMessage);
     }
     else
     {
-        throw MushcoreDataFail(std::string("Unknown player ID '")+playerName+"' in message type '"+inMessage.AutoName()+"'");
+        throw MushcoreDataFail(std::string("Unknown player ID '")+inMessage.Id()+"' in message type '"+inMessage.AutoName()+"'");
     }
 }
 
@@ -462,7 +466,7 @@ MushGameLogic::SendSequence(void)
 }
 
 void
-MushGameLogic::PlayerUplink(MushGamePlayer& inPlayer)
+MushGameLogic::PlayerUplink(MushGamePiecePlayer& inPlayer)
 {
     inPlayer.UplinkSend(*this);
 }    
@@ -470,11 +474,11 @@ MushGameLogic::PlayerUplink(MushGamePlayer& inPlayer)
 void
 MushGameLogic::PlayerUplinkSequence(void)
 {
-    typedef MushcoreData<MushGamePlayer>::tIterator tIterator;
-    MushcoreData<MushGamePlayer>& playerData = SaveData().PlayersWRef();
-    for (tIterator p = playerData.Begin(); p != playerData.End(); ++p)
+    typedef MushcoreMaptor<MushGamePiecePlayer>::iterator tIterator;
+    MushcoreMaptor<MushGamePiecePlayer>& playerData = SaveData().PlayersWRef();
+    for (tIterator p = playerData.begin(); p != playerData.end(); ++p)
     {
-        PlayerUplink(*p->second);
+        PlayerUplink(*p);
     }
 }
 
@@ -508,7 +512,7 @@ MushGameLogic::UplinkSequence(void)
 }
 
 void
-MushGameLogic::PlayerMove(MushGamePlayer& inPlayer)
+MushGameLogic::PlayerMove(MushGamePiecePlayer& inPlayer)
 {
     inPlayer.PreControl(*this);
     inPlayer.ControlMailboxProcess(*this);
@@ -518,11 +522,11 @@ MushGameLogic::PlayerMove(MushGamePlayer& inPlayer)
 void
 MushGameLogic::MoveSequence(void)
 {
-    typedef MushcoreData<MushGamePlayer>::tIterator tIterator;
-    MushcoreData<MushGamePlayer>& playerData = SaveData().PlayersWRef();
-    for (tIterator p = playerData.Begin(); p != playerData.End(); ++p)
+    typedef MushcoreMaptor<MushGamePiecePlayer>::iterator tIterator;
+    MushcoreMaptor<MushGamePiecePlayer>& playerData = SaveData().PlayersWRef();
+    for (tIterator p = playerData.begin(); p != playerData.end(); ++p)
     {
-        PlayerMove(*p->second);
+        PlayerMove(*p);
     }
 }
 
@@ -532,7 +536,7 @@ MushGameLogic::CollideSequence(void)
 }
 
 void
-MushGameLogic::PlayerTicker(MushGamePlayer& inPlayer)
+MushGameLogic::PlayerTicker(MushGamePiecePlayer& inPlayer)
 {
     inPlayer.TickerProcess(*this);
 }
@@ -540,11 +544,11 @@ MushGameLogic::PlayerTicker(MushGamePlayer& inPlayer)
 void
 MushGameLogic::TickerSequence(void)
 {
-    typedef MushcoreData<MushGamePlayer>::tIterator tIterator;
-    MushcoreData<MushGamePlayer>& playerData = SaveData().PlayersWRef();
-    for (tIterator p = playerData.Begin(); p != playerData.End(); ++p)
+    typedef MushcoreMaptor<MushGamePiecePlayer>::iterator tIterator;
+    MushcoreMaptor<MushGamePiecePlayer>& playerData = SaveData().PlayersWRef();
+    for (tIterator p = playerData.begin(); p != playerData.end(); ++p)
     {
-        PlayerTicker(*p->second);
+        PlayerTicker(*p);
     }
 }
 
@@ -692,11 +696,11 @@ MushGameLogic::ExceptionHandle(std::exception *inpFail, const std::string& inNam
 }
 
 void
-MushGameLogic::ClientNewPlayerHandle(const std::string& inPlayerName)
+MushGameLogic::ClientNewPlayerHandle(Mushware::U32 inPlayerNum)
 {
     MushGameCamera *pCamera = SaveData().CamerasWRef().GetOrCreate("default-camera");
                               
-    MushGameRefPlayer playerRef(inPlayerName, &SaveData().PlayersWRef());
+    MushGameRefPlayer playerRef(inPlayerNum, &SaveData().PlayersWRef());
     pCamera->TiedRefCopy(&playerRef);
 }
 

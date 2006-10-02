@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } mqRyosjSblx9ADjVCHc1/g
 /*
- * $Id$
- * $Log$
+ * $Id: AdanaxisIntern.cpp,v 1.1 2006/08/17 08:57:11 southa Exp $
+ * $Log: AdanaxisIntern.cpp,v $
+ * Revision 1.1  2006/08/17 08:57:11  southa
+ * Event handling
+ *
  */
 
 #include "AdanaxisIntern.h"
@@ -28,8 +31,10 @@ MUSHCORE_SINGLETON_INSTANCE(AdanaxisIntern);
 #define ADANAXISINTERN_INIT_ID(a) m_##a = MushRubyIntern::SymbolID(#a)
 
 AdanaxisIntern::AdanaxisIntern() :
-    m_KlassAdanaxisPieceKhazi(MushRubyUtil::Class("AdanaxisPieceKhazi"))
+    m_KlassAdanaxisPieceKhazi(MushRubyUtil::Class("AdanaxisPieceKhazi")),
+    m_KlassAdanaxisPiecePlayer(MushRubyUtil::Class("AdanaxisPiecePlayer"))
+
 {
     ADANAXISINTERN_INIT_ID(AdanaxisPieceKhazi);
-
+    ADANAXISINTERN_INIT_ID(AdanaxisPiecePlayer);
 }

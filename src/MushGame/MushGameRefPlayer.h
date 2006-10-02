@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } YjlUEq64eQ5HbaRM7KM04g
 /*
- * $Id: MushGameRefPlayer.h,v 1.1 2005/06/29 09:07:56 southa Exp $
+ * $Id: MushGameRefPlayer.h,v 1.2 2006/06/01 15:39:26 southa Exp $
  * $Log: MushGameRefPlayer.h,v $
+ * Revision 1.2  2006/06/01 15:39:26  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.1  2005/06/29 09:07:56  southa
  * MushGame camera work
  *
@@ -36,7 +39,7 @@
 #include "MushGameRefPiece.h"
 
 #include "MushGamePiece.h"
-#include "MushGamePlayer.h"
+#include "MushGamePiecePlayer.h"
 
 //:xml1base MushGameRef
 //:generate virtual standard ostream xml1
@@ -44,11 +47,11 @@ class MushGameRefPlayer : public MushGameRef
 {
 public:
     MushGameRefPlayer() {}
-    explicit MushGameRefPlayer(const std::string& inName, MushcoreData<MushGamePlayer> *inInstance);
+    explicit MushGameRefPlayer(Mushware::U32 inNum, MushcoreMaptor<MushGamePiecePlayer> *inInstance);
     virtual MushcoreVirtualObject& Ref() { return m_playerRef.WRef(); }
     
 private:
-    MushcoreDataRef<MushGamePlayer> m_playerRef;
+    MushcoreMaptorRef<MushGamePiecePlayer> m_playerRef;
     
 //%classPrototypes {
 public:

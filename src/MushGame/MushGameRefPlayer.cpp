@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } ETJO/YTdNnJBUtnyOyRe/A
 /*
- * $Id: MushGameRefPlayer.cpp,v 1.3 2005/07/02 00:42:38 southa Exp $
+ * $Id: MushGameRefPlayer.cpp,v 1.4 2006/06/01 15:39:26 southa Exp $
  * $Log: MushGameRefPlayer.cpp,v $
+ * Revision 1.4  2006/06/01 15:39:26  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.3  2005/07/02 00:42:38  southa
  * Conditioning tweaks
  *
@@ -37,8 +40,8 @@
 using namespace Mushware;
 using namespace std;
 
-MushGameRefPlayer::MushGameRefPlayer(const std::string& inName, MushcoreData<MushGamePlayer> *inInstance) :
-    m_playerRef(inName, *inInstance)
+MushGameRefPlayer::MushGameRefPlayer(Mushware::U32 inNum, MushcoreMaptor<MushGamePiecePlayer> *inInstance) :
+    m_playerRef(*inInstance, inNum)
 {
 }
 

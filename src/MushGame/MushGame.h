@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } qKw8sPtc3ciNf46/evJgCA
 /*
- * $Id: MushGame.h,v 1.15 2006/06/01 15:39:19 southa Exp $
+ * $Id: MushGame.h,v 1.16 2006/06/30 15:05:34 southa Exp $
  * $Log: MushGame.h,v $
+ * Revision 1.16  2006/06/30 15:05:34  southa
+ * Texture and buffer purge
+ *
  * Revision 1.15  2006/06/01 15:39:19  southa
  * DrawArray verification and fixes
  *
@@ -104,7 +107,7 @@
 #include "MushGameMessageJoinRequest.h"
 #include "MushGameMessageUplinkPiece.h"
 #include "MushGameMessageUplinkPlayer.h"
-#include "MushGamePlayer.h"
+#include "MushGamePiecePlayer.h"
 #include "MushGameReceiver.h"
 #include "MushGameRef.h"
 #include "MushGameRefPlayer.h"

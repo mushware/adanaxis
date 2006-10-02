@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } jVIqo6l6rVjwbe9qE13NKA
 /*
- * $Id: MushGameSaveData.h,v 1.12 2006/06/01 15:39:27 southa Exp $
+ * $Id: MushGameSaveData.h,v 1.13 2006/07/31 11:01:39 southa Exp $
  * $Log: MushGameSaveData.h,v $
+ * Revision 1.13  2006/07/31 11:01:39  southa
+ * Music and dialogues
+ *
  * Revision 1.12  2006/06/01 15:39:27  southa
  * DrawArray verification and fixes
  *
@@ -70,7 +73,7 @@
 #include "MushGameDialogue.h"
 #include "MushGameJob.h"
 #include "MushGameMailbox.h"
-#include "MushGamePlayer.h"
+#include "MushGamePiecePlayer.h"
 #include "MushGameRender.h"
 
 //:generate virtual standard ostream xml1 nocopy
@@ -83,7 +86,7 @@ public:
     
 private:
     std::string m_clientName; //:readwrite
-    MushcoreData<MushGamePlayer> m_players; //:read :wref
+    MushcoreMaptor<MushGamePiecePlayer> m_players; //:read :wref
     MushcoreData<MushGameJob> m_jobList; //:read :wref
     MushcoreData<MushGameCamera> m_cameras; //:read :wref
     MushGameMailbox m_toServerMailbox; //:readwrite :wref
@@ -97,9 +100,9 @@ private:
 public:
     const std::string& ClientName(void) const { return m_clientName; }
     void ClientNameSet(const std::string& inValue) { m_clientName=inValue; }
-    const MushcoreData<MushGamePlayer>& Players(void) const { return m_players; }
+    const MushcoreMaptor<MushGamePiecePlayer>& Players(void) const { return m_players; }
     // Writable reference for m_players
-    MushcoreData<MushGamePlayer>& PlayersWRef(void) { return m_players; }
+    MushcoreMaptor<MushGamePiecePlayer>& PlayersWRef(void) { return m_players; }
     const MushcoreData<MushGameJob>& JobList(void) const { return m_jobList; }
     // Writable reference for m_jobList
     MushcoreData<MushGameJob>& JobListWRef(void) { return m_jobList; }
@@ -130,7 +133,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } c40zYRFjPOc6Pvo2nOigcg
+//%classPrototypes } tCEJlNLI2VD123JaY1+Seg
 };
 //%inlineHeader {
 inline std::ostream&

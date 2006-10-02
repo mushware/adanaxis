@@ -1,6 +1,9 @@
 # Target definition file
-# $Id: adanaxis.def,v 1.11 2006/08/02 16:25:54 southa Exp $
+# $Id: adanaxis.def,v 1.12 2006/08/03 15:07:58 southa Exp $
 # $Log: adanaxis.def,v $
+# Revision 1.12  2006/08/03 15:07:58  southa
+# Cache purge fix
+#
 # Revision 1.11  2006/08/02 16:25:54  southa
 # Prerelease work
 #
@@ -45,7 +48,7 @@ Subst: MUSH_APP_NAME 'Adanaxis Rendering Demo'
 Subst: MUSH_APP_UNDERSCORED_NAME 'Adanaxis_Rendering_Demo'
 Subst: MUSH_APP_MAJOR_VERSION '0'
 Subst: MUSH_APP_MINOR_VERSION '1'
-Subst: MUSH_APP_MICRO_VERSION '1'
+Subst: MUSH_APP_MICRO_VERSION '2'
 Subst: MUSH_APP_VERSION 'MUSH_APP_MAJOR_VERSION.MUSH_APP_MINOR_VERSION.MUSH_APP_MICRO_VERSION'
 Subst: MUSH_DATA_DIR 'data-adanaxis'
 Subst: MUSH_DATA_MAKEFILE 'data-adanaxis/Makefile'

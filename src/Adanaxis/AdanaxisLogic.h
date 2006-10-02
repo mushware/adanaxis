@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } 3LuiErcM0vO3wOyNDCFVeQ
 /*
- * $Id: AdanaxisLogic.h,v 1.12 2006/07/27 13:51:34 southa Exp $
+ * $Id: AdanaxisLogic.h,v 1.13 2006/08/01 17:21:24 southa Exp $
  * $Log: AdanaxisLogic.h,v $
+ * Revision 1.13  2006/08/01 17:21:24  southa
+ * River demo
+ *
  * Revision 1.12  2006/07/27 13:51:34  southa
  * Menu and control fixes
  *
@@ -64,7 +67,7 @@
 #include "AdanaxisStandard.h"
 
 #include "AdanaxisSaveData.h"
-#include "AdanaxisPlayer.h"
+#include "AdanaxisPiecePlayer.h"
 #include "AdanaxisVolatileData.h"
 
 #include "API/mushMushGame.h"
@@ -79,7 +82,7 @@ public:
     virtual MushGamePiece& PieceLookup(const std::string& inName) const;
     virtual void InitialDataCreate(void);
     
-    virtual MushGamePlayer *PlayerNew(const MushGameMessage *inpMessage) { return new AdanaxisPlayer; }
+    virtual MushGamePiecePlayer *PlayerNew(const MushGameMessage *inpMessage) { return new AdanaxisPiecePlayer; }
     
     virtual void ProjectilesMove(void);
     virtual void DecoMove(void);

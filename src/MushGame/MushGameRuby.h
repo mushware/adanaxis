@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } abz8WfQdtsWpPxv12NZxhA
 /*
- * $Id: MushGameRuby.h,v 1.12 2006/08/01 13:41:15 southa Exp $
+ * $Id: MushGameRuby.h,v 1.13 2006/09/29 10:47:56 southa Exp $
  * $Log: MushGameRuby.h,v $
+ * Revision 1.13  2006/09/29 10:47:56  southa
+ * Object AI
+ *
  * Revision 1.12  2006/08/01 13:41:15  southa
  * Pre-release updates
  *
@@ -103,6 +106,7 @@ public:
     static Mushware::tRubyValue SoundStreamDefine(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0, Mushware::tRubyValue inArg1);
     static Mushware::tRubyValue PackageID(Mushware::tRubyValue inSelf);
     static Mushware::tRubyValue GameMsec(Mushware::tRubyValue inSelf);
+    static Mushware::tRubyValue PieceLookup(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
     
     static void MethodsInstall(void);
     

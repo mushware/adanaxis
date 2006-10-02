@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } PSJpfP8sO8yPNETGwQRxew
 /*
- * $Id: AdanaxisInfo.cpp,v 1.4 2006/06/01 15:38:47 southa Exp $
+ * $Id: AdanaxisInfo.cpp,v 1.5 2006/08/01 13:41:15 southa Exp $
  * $Log: AdanaxisInfo.cpp,v $
+ * Revision 1.5  2006/08/01 13:41:15  southa
+ * Pre-release updates
+ *
  * Revision 1.4  2006/06/01 15:38:47  southa
  * DrawArray verification and fixes
  *
@@ -40,7 +43,7 @@
 #endif
 
 #ifndef VERSION
-#define VERSION "0.1.1"
+#define VERSION "0.1.2"
 #endif
 
 #include "AdanaxisSTL.h"

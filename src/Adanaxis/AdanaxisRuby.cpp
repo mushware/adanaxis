@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } nD/Irg6+j8tkN0uh3Wk1EQ
 /*
- * $Id: AdanaxisRuby.cpp,v 1.2 2006/08/01 17:21:27 southa Exp $
+ * $Id: AdanaxisRuby.cpp,v 1.3 2006/08/20 14:19:20 southa Exp $
  * $Log: AdanaxisRuby.cpp,v $
+ * Revision 1.3  2006/08/20 14:19:20  southa
+ * Seek operation
+ *
  * Revision 1.2  2006/08/01 17:21:27  southa
  * River demo
  *
@@ -45,11 +48,11 @@ AdanaxisRuby::PlayerPosition(Mushware::tRubyValue inSelf)
 {
     tRubyValue retVal = MushMeshRubyVector::NewInstance();
     
-    typedef MushcoreData<MushGamePlayer>::tIterator tIterator;
-    MushcoreData<MushGamePlayer>& playerData = SaveData().PlayersWRef();
-    for (tIterator p = playerData.Begin(); p != playerData.End(); ++p)
+    typedef MushcoreMaptor<MushGamePiecePlayer>::iterator tIterator;
+    MushcoreMaptor<MushGamePiecePlayer>& playerData = SaveData().PlayersWRef();
+    for (tIterator p = playerData.begin(); p != playerData.end(); ++p)
     {
-        MushMeshRubyVector::WRef(retVal) = p->second->Post().Pos();
+        MushMeshRubyVector::WRef(retVal) = p->Post().Pos();
     }
     return retVal;
 }    

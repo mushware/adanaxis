@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } KiIXpTnHXcN2vGSkbhO8LQ
 /*
- * $Id: MushGameJobAdmission.cpp,v 1.3 2005/07/02 00:42:37 southa Exp $
+ * $Id: MushGameJobAdmission.cpp,v 1.4 2006/06/01 15:39:22 southa Exp $
  * $Log: MushGameJobAdmission.cpp,v $
+ * Revision 1.4  2006/06/01 15:39:22  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.3  2005/07/02 00:42:37  southa
  * Conditioning tweaks
  *
@@ -50,7 +53,7 @@ MushGameJobAdmission::MushGameJobAdmission(const std::string& inID) :
 void
 MushGameJobAdmission::JoinRequestConsume(MushGameLogic& ioLogic, const MushGameMessageJoinRequest& inMessage)
 {    
-    if (ioLogic.HostSaveData().HostPlayers().Size() >= ioLogic.HostSaveData().MaxPlayersAllowed())
+    if (ioLogic.HostSaveData().HostPlayers().size() >= ioLogic.HostSaveData().MaxPlayersAllowed())
     {
         MushGameMessageJoinDenied deniedMessage;
         ioLogic.AsReplyCopyAndSend(deniedMessage, inMessage);
@@ -67,13 +70,13 @@ MushGameJobAdmission::JoinRequestConsume(MushGameLogic& ioLogic, const MushGameM
             newPlayerName = newPlayerStream.str();
         }
         
-        if (ioLogic.HostSaveData().HostPlayers().Exists(newPlayerName))
+        if (ioLogic.HostSaveData().HostPlayers().Exists(newPlayerNum))
         {
             throw MushcoreRequestFail("Attempt to create player that already exists");
         }
         
-        MushGamePlayer *pPlayer =
-            ioLogic.HostSaveData().HostPlayersWRef().Give(newPlayerName, ioLogic.PlayerNew(&inMessage));
+        MushGamePiecePlayer *pPlayer =
+            ioLogic.HostSaveData().HostPlayersWRef().Give(ioLogic.PlayerNew(&inMessage), newPlayerNum);
 
         pPlayer->IdSet("p:"+newPlayerName);
         pPlayer->PlayerNameSet(inMessage.PlayerName());
@@ -85,8 +88,8 @@ MushGameJobAdmission::JoinRequestConsume(MushGameLogic& ioLogic, const MushGameM
 
         confirmMessage.NewPlayerIDSet("p:"+playerID.str());
         confirmMessage.HostNameSet(ioLogic.HostSaveData().ServerName());
-        confirmMessage.PlayerNameSet(inMessage.PlayerName());;
-        confirmMessage.HostPackageIDSet(MushcoreInfo::Sgl().PackageID());;
+        confirmMessage.PlayerNameSet(inMessage.PlayerName());
+        confirmMessage.HostPackageIDSet(MushcoreInfo::Sgl().PackageID());
         
         ioLogic.AsReplyCopyAndSend(confirmMessage, inMessage);
     }

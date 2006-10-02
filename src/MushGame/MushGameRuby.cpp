@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } yY7ZZkvIHHOoUzJzTAQPOQ
 /*
- * $Id: MushGameRuby.cpp,v 1.12 2006/08/01 13:41:15 southa Exp $
+ * $Id: MushGameRuby.cpp,v 1.13 2006/09/29 10:47:56 southa Exp $
  * $Log: MushGameRuby.cpp,v $
+ * Revision 1.13  2006/09/29 10:47:56  southa
+ * Object AI
+ *
  * Revision 1.12  2006/08/01 13:41:15  southa
  * Pre-release updates
  *
@@ -628,6 +631,27 @@ MushGameRuby::GameMsec(Mushware::tRubyValue inSelf)
     return MushRubyValue(MushGameUtil::LogicRef().GameMsec()).Value();
 }
 
+Mushware::tRubyValue
+MushGameRuby::PieceLookup(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0)
+{
+    MushRubyValue param0(inArg0);
+    
+    MushGamePiece *pPiece = NULL;
+    
+    try
+    {
+        pPiece = &MushGameUtil::LogicRef().PieceLookup(param0.String());
+    }
+    catch (std::exception& e)
+    {
+        // MushcoreLog::Sgl().XMLInfoLog() << MushGameUtil::LogicRef().SaveData().Players();
+        MushRubyUtil::Raise(e.what());       
+    }
+    
+    MUSHCOREASSERT(pPiece != NULL);
+    return pPiece->RubyObj().Value();
+}
+
 void
 MushGameRuby::MethodsInstall(void)
 {
@@ -664,4 +688,5 @@ MushGameRuby::MethodsInstall(void)
     MushRubyUtil::SingletonMethodDefineTwoParams(Klass(), "cSoundStreamDefine", SoundStreamDefine);
     MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cPackageID", PackageID);
     MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cGameMsec", GameMsec);
+    MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cPieceLookup", PieceLookup);
 }

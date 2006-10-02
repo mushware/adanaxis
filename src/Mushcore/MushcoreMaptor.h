@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } ChL6aTElKIc1rPHNw0/j3A
 /*
- * $Id: MushcoreMaptor.h,v 1.6 2006/06/20 19:06:55 southa Exp $
+ * $Id: MushcoreMaptor.h,v 1.7 2006/06/21 12:17:59 southa Exp $
  * $Log: MushcoreMaptor.h,v $
+ * Revision 1.7  2006/06/21 12:17:59  southa
+ * Ruby object generation
+ *
  * Revision 1.6  2006/06/20 19:06:55  southa
  * Object creation
  *
@@ -99,9 +102,10 @@ public:
     void pop_back(void);
     
     // Give/Get/Delete/Clear interface
-    void Give(T *inpObj, const K& inKey);
+    T *Give(T *inpObj, const K& inKey);
     T& Get(const K& inKey) const;
     T& GetOrCreate(const K& inKey);
+    bool Exists(const K& inKey) const;
     bool GetIfExists(T *& outpObj, const K& inKey) const;
     void Delete(const iterator& inIter) { erase(inIter.MapIter()); }
     void Delete(const K& inKey);
@@ -300,7 +304,7 @@ MushcoreMaptor<T, K, C>::pop_back(void)
 }
 
 template<class T, class K, class C>
-inline void
+inline T *
 MushcoreMaptor<T, K, C>::Give(T *inpObj, const K& inKey)
 {
     tMapIter p = m_data.find(inKey);
@@ -315,6 +319,7 @@ MushcoreMaptor<T, K, C>::Give(T *inpObj, const K& inKey)
         // Not there, so assign
         m_data[inKey] = inpObj;
     }
+    return inpObj;
 }
 
 template<class T, class K, class C>
@@ -370,6 +375,14 @@ MushcoreMaptor<T, K, C>::GetIfExists(T *& outpObj, const K& inKey) const
     }
     outpObj = p->second;
     return true;
+}
+
+template<class T, class K, class C>
+inline bool
+MushcoreMaptor<T, K, C>::Exists(const K& inKey) const
+{
+    T *pObj;  // Discarded value
+    return GetIfExists(pObj, inKey);
 }
 
 template<class T, class K, class C>

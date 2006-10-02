@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 73iRqDd6zP6hGImTnrZMfg
 /*
- * $Id: MushGameLogicLocal.cpp,v 1.7 2005/07/02 00:42:37 southa Exp $
+ * $Id: MushGameLogicLocal.cpp,v 1.8 2006/06/01 15:39:23 southa Exp $
  * $Log: MushGameLogicLocal.cpp,v $
+ * Revision 1.8  2006/06/01 15:39:23  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.7  2005/07/02 00:42:37  southa
  * Conditioning tweaks
  *
@@ -56,7 +59,7 @@ MushGameLogicLocal::MushGameLogicLocal()
 void
 MushGameLogicLocal::SinglePlayerCheck(void)
 {
-    if (SaveData().Players().Size() < 1)
+    if (SaveData().Players().size() < 1)
     {
         std::string jobName = "localplayercreate";
         if (!SaveData().JobList().Exists(jobName))

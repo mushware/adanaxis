@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } sMWR8ancG1E3YqBNuEjJWw
 /*
- * $Id: MushGameJobPlayerCreate.cpp,v 1.10 2005/08/02 14:37:45 southa Exp $
+ * $Id: MushGameJobPlayerCreate.cpp,v 1.11 2006/06/01 15:39:22 southa Exp $
  * $Log: MushGameJobPlayerCreate.cpp,v $
+ * Revision 1.11  2006/06/01 15:39:22  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.10  2005/08/02 14:37:45  southa
  * Adanaxis control demo work
  *
@@ -85,7 +88,7 @@ MushGameJobPlayerCreate::WakeConsume(MushGameLogic& ioLogic, const MushGameMessa
             
             MushGameMessageJoinRequest joinRequest("j:admission|"+Id());
             joinRequest.ClientNameSet(ioLogic.SaveData().ClientName());
-            joinRequest.PlayerNameSet("localplayer");
+            joinRequest.PlayerNameSet("0");
             joinRequest.PackageIDSet(MushcoreInfo::Sgl().PackageID());
             
             ioLogic.CopyAndSendToServer(joinRequest);
@@ -106,21 +109,21 @@ MushGameJobPlayerCreate::WakeConsume(MushGameLogic& ioLogic, const MushGameMessa
 void
 MushGameJobPlayerCreate::JoinConfirmConsume(MushGameLogic& ioLogic, const MushGameMessageJoinConfirm& inMessage)
 {
-    
-    std::string playerName = MushGameUtil::KeyFromString(inMessage.NewPlayerID());
-    
-    if (ioLogic.SaveData().Players().Exists(playerName))
+    Mushware::U8 objType;
+    Mushware::U32 objNum;
+    MushGameUtil::ObjectNameDecode(objType, objNum, inMessage.NewPlayerID());
+    if (ioLogic.SaveData().Players().Exists(objNum))
     {
         throw MushcoreRequestFail("Attempt to create player that already exists");
     }
     
-    MushGamePlayer *pPlayer = ioLogic.SaveData().PlayersWRef().Give(playerName, ioLogic.PlayerNew(&inMessage));
+    MushGamePiecePlayer *pPlayer = ioLogic.SaveData().PlayersWRef().Give(ioLogic.PlayerNew(&inMessage), objNum);
     
     pPlayer->IdSet(inMessage.NewPlayerID());
     pPlayer->PlayerNameSet(inMessage.PlayerName());
     pPlayer->ControlMailboxNameSet(ioLogic.SaveData().ControlMailboxName());
 
-    ioLogic.ClientNewPlayerHandle(playerName);
+    ioLogic.ClientNewPlayerHandle(objNum);
     
     CompleteSet(true);
 }

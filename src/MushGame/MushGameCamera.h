@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } lsHtNJKYG2fgi6Muwtd8AQ
 /*
- * $Id: MushGameCamera.h,v 1.7 2006/06/27 11:58:09 southa Exp $
+ * $Id: MushGameCamera.h,v 1.8 2006/07/24 18:46:50 southa Exp $
  * $Log: MushGameCamera.h,v $
+ * Revision 1.8  2006/07/24 18:46:50  southa
+ * Depth sorting
+ *
  * Revision 1.7  2006/06/27 11:58:09  southa
  * Warning fixes
  *
@@ -51,7 +54,7 @@
 #include "MushGameStandard.h"
 
 #include "MushGamePiece.h"
-#include "MushGamePlayer.h"
+#include "MushGamePiecePlayer.h"
 #include "MushGameRef.h"
 
 #include "API/mushMushGL.h"

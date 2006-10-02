@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } pz9Ij69Gp+RQuOHP0yYqgg
 /*
- * $Id: MushGameLogic.h,v 1.18 2006/07/08 16:05:59 southa Exp $
+ * $Id: MushGameLogic.h,v 1.19 2006/07/20 12:22:22 southa Exp $
  * $Log: MushGameLogic.h,v $
+ * Revision 1.19  2006/07/20 12:22:22  southa
+ * Precache display
+ *
  * Revision 1.18  2006/07/08 16:05:59  southa
  * Ruby menus and key handling
  *
@@ -89,7 +92,7 @@
 #include "MushGameHostVolatileData.h"
 #include "MushGameJob.h"
 #include "MushGameMailbox.h"
-#include "MushGamePlayer.h"
+#include "MushGamePiecePlayer.h"
 #include "MushGameReceiver.h"
 #include "MushGameSaveData.h"
 #include "MushGameVolatileData.h"
@@ -129,13 +132,13 @@ public:
     virtual void ServerSendSequence(void);
     virtual void ReceiveSequence(void);
     virtual void SendSequence(void);
-    virtual void PlayerUplink(MushGamePlayer& inPlayer);
+    virtual void PlayerUplink(MushGamePiecePlayer& inPlayer);
     virtual void PlayerUplinkSequence(void);    
     virtual void UplinkSequence(void);
-    virtual void PlayerMove(MushGamePlayer& inPlayer);
+    virtual void PlayerMove(MushGamePiecePlayer& inPlayer);
     virtual void MoveSequence(void);
     virtual void CollideSequence(void);
-    virtual void PlayerTicker(MushGamePlayer& inPlayer);
+    virtual void PlayerTicker(MushGamePiecePlayer& inPlayer);
     virtual void TickerSequence(void);
     virtual void CameraMove(MushGameCamera& inCamera);
     virtual void CameraSequence(void);
@@ -153,9 +156,9 @@ public:
     virtual void PreCacheModeEnter(void);
     virtual void PreCacheModeExit(void);
     
-    virtual void ClientNewPlayerHandle(const std::string& inPlayerName);
+    virtual void ClientNewPlayerHandle(Mushware::U32 inPlayerNum);
     
-    virtual MushGamePlayer *PlayerNew(const MushGameMessage *inpMessage) { return new MushGamePlayer; }
+    virtual MushGamePiecePlayer *PlayerNew(const MushGameMessage *inpMessage) { return new MushGamePiecePlayer; }
     
     virtual MushGameSaveData& SaveData(void) const { return m_dataRef.Ref().SaveDataRef().WRef(); }
     virtual const MushGameSaveData& ConstSaveData(void) const { return m_dataRef.Ref().SaveDataRef().Ref();; }
