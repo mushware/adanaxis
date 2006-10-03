@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } gq+r6M5XzKqE/mgjgvunrQ
 /*
- * $Id: AdanaxisPiecePlayer.cpp,v 1.1 2006/10/02 17:25:04 southa Exp $
+ * $Id: AdanaxisPiecePlayer.cpp,v 1.2 2006/10/02 20:28:10 southa Exp $
  * $Log: AdanaxisPiecePlayer.cpp,v $
+ * Revision 1.2  2006/10/02 20:28:10  southa
+ * Object lookup and target selection
+ *
  * Revision 1.1  2006/10/02 17:25:04  southa
  * Object lookup and target selection
  *
@@ -309,7 +312,7 @@ AdanaxisPiecePlayer::FirePieceCreate(MushGameLogic& ioLogic, const MushGameMessa
     dataRef.Give(&projectileRef, key);
     
     projectileRef.OwnerSet(Id());
-    projectileRef.ExpiryMsecSet(ioLogic.FrameMsec() + projectileRef.LifeMsec());
+    projectileRef.LifeMsecSet(15000); // FIXME
     
     // Create projectile in player's coordinates
     projectileRef.PostWRef().ToIdentitySet();
@@ -330,7 +333,7 @@ AdanaxisPiecePlayer::FirePieceCreate(MushGameLogic& ioLogic, const MushGameMessa
     projectileRef.PostWRef().AngVelWRef().OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis(0, 0.02));
     projectileRef.PostWRef().AngVelWRef().OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis(2, 0.017));
     projectileRef.PostWRef().AngVelWRef().OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis(5, 0.013));
-    projectileRef.PostWRef().VelSet(t4Val(0, 0, 0, playerVel.W() - projectileRef.InitialVelocity()));
+    projectileRef.PostWRef().VelSet(t4Val(0, 0, 0, playerVel.W() - 1.0)); //FIXME
     
     // Now transform to world coordinates
     // Reorientate the player space vectors to world space

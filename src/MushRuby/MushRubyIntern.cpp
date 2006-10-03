@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } lqALCPGBahbk4ibyVPO8LQ
 /*
- * $Id: MushRubyIntern.cpp,v 1.19 2006/08/25 01:44:57 southa Exp $
+ * $Id: MushRubyIntern.cpp,v 1.20 2006/09/07 10:02:38 southa Exp $
  * $Log: MushRubyIntern.cpp,v $
+ * Revision 1.20  2006/09/07 10:02:38  southa
+ * Shader interface
+ *
  * Revision 1.19  2006/08/25 01:44:57  southa
  * Khazi fire
  *
@@ -114,6 +117,7 @@ MUSHRUBYINTERN_DEFINE(mPreCacheRender);
 MUSHRUBYINTERN_DEFINE(mRegisteredDestroy);
 MUSHRUBYINTERN_DEFINE(mRender);
 MUSHRUBYINTERN_DEFINE(mReset);
+MUSHRUBYINTERN_DEFINE(mSave);
 MUSHRUBYINTERN_DEFINE(name);
 MUSHRUBYINTERN_DEFINE(num_iterations);
 MUSHRUBYINTERN_DEFINE(offset);
@@ -137,6 +141,10 @@ MUSHRUBYINTERN_DEFINE(vertex_shader);
 MUSHRUBYINTERN_DEFINE_AT(_embeddedDataPtr);
 MUSHRUBYINTERN_DEFINE_AT(m_expireFlag);
 MUSHRUBYINTERN_DEFINE_AT(m_id);
+MUSHRUBYINTERN_DEFINE_AT(m_initialVelocity);
+MUSHRUBYINTERN_DEFINE_AT(m_lifeMsec);
+MUSHRUBYINTERN_DEFINE_AT(m_meshName);
+MUSHRUBYINTERN_DEFINE_AT(m_owner);
 MUSHRUBYINTERN_DEFINE_AT(m_post);
 
 void
@@ -167,6 +175,7 @@ MushRubyIntern::Initialise(void)
 	MUSHRUBYINTERN_INIT(mRegisteredDestroy);
 	MUSHRUBYINTERN_INIT(mRender);
 	MUSHRUBYINTERN_INIT(mReset);
+	MUSHRUBYINTERN_INIT(mSave);
 	MUSHRUBYINTERN_INIT(name);
 	MUSHRUBYINTERN_INIT(num_iterations);
 	MUSHRUBYINTERN_INIT(offset);
@@ -190,6 +199,10 @@ MushRubyIntern::Initialise(void)
 	MUSHRUBYINTERN_INIT_AT(_embeddedDataPtr);
 	MUSHRUBYINTERN_INIT_AT(m_expireFlag);
 	MUSHRUBYINTERN_INIT_AT(m_id);
+	MUSHRUBYINTERN_INIT_AT(m_initialVelocity);
+	MUSHRUBYINTERN_INIT_AT(m_lifeMsec);
+	MUSHRUBYINTERN_INIT_AT(m_meshName);
+	MUSHRUBYINTERN_INIT_AT(m_owner);
 	MUSHRUBYINTERN_INIT_AT(m_post);
 }
 

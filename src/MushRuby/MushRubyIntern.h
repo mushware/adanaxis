@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } n1eaCj2fb8dNPgbT0uOuEQ
 /*
- * $Id: MushRubyIntern.h,v 1.19 2006/08/25 01:44:57 southa Exp $
+ * $Id: MushRubyIntern.h,v 1.20 2006/09/07 10:02:38 southa Exp $
  * $Log: MushRubyIntern.h,v $
+ * Revision 1.20  2006/09/07 10:02:38  southa
+ * Shader interface
+ *
  * Revision 1.19  2006/08/25 01:44:57  southa
  * Khazi fire
  *
@@ -129,6 +132,7 @@ public:
 	MUSHRUBYINTERN_DECLARE(mRegisteredDestroy);
 	MUSHRUBYINTERN_DECLARE(mRender);
 	MUSHRUBYINTERN_DECLARE(mReset);
+	MUSHRUBYINTERN_DECLARE(mSave);
 	MUSHRUBYINTERN_DECLARE(num_iterations);
 	MUSHRUBYINTERN_DECLARE(name);
 	MUSHRUBYINTERN_DECLARE(offset);
@@ -152,6 +156,10 @@ public:
 	MUSHRUBYINTERN_DECLARE_AT(_embeddedDataPtr);
 	MUSHRUBYINTERN_DECLARE_AT(m_expireFlag);
 	MUSHRUBYINTERN_DECLARE_AT(m_id);
+	MUSHRUBYINTERN_DECLARE_AT(m_initialVelocity);
+    MUSHRUBYINTERN_DECLARE_AT(m_lifeMsec);
+	MUSHRUBYINTERN_DECLARE_AT(m_meshName);
+	MUSHRUBYINTERN_DECLARE_AT(m_owner);
 	MUSHRUBYINTERN_DECLARE_AT(m_post);
 };
 

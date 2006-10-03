@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } WBiqbvbumO43Eps7fHh03A
 /*
- * $Id: AdanaxisIntern.h,v 1.1 2006/08/17 08:57:11 southa Exp $
+ * $Id: AdanaxisIntern.h,v 1.2 2006/10/02 17:25:04 southa Exp $
  * $Log: AdanaxisIntern.h,v $
+ * Revision 1.2  2006/10/02 17:25:04  southa
+ * Object lookup and target selection
+ *
  * Revision 1.1  2006/08/17 08:57:11  southa
  * Event handling
  *
@@ -49,8 +52,10 @@ public:
     AdanaxisIntern();
     ADANAXISINTERN_ID(AdanaxisPieceKhazi);
     ADANAXISINTERN_ID(AdanaxisPiecePlayer);
+    ADANAXISINTERN_ID(AdanaxisPieceProjectile);
     ADANAXISINTERN_VALUE(KlassAdanaxisPieceKhazi);
     ADANAXISINTERN_VALUE(KlassAdanaxisPiecePlayer);
+    ADANAXISINTERN_VALUE(KlassAdanaxisPieceProjectile);
 };
 
 #undef ADANAXISINTERN_ID

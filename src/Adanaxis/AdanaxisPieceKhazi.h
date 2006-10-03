@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } Bm3nTDDsM5QE9iTgAOLr3w
 /*
- * $Id: AdanaxisPieceKhazi.h,v 1.15 2006/08/24 13:04:38 southa Exp $
+ * $Id: AdanaxisPieceKhazi.h,v 1.16 2006/10/02 20:28:10 southa Exp $
  * $Log: AdanaxisPieceKhazi.h,v $
+ * Revision 1.16  2006/10/02 20:28:10  southa
+ * Object lookup and target selection
+ *
  * Revision 1.15  2006/08/24 13:04:38  southa
  * Event handling
  *
@@ -83,7 +86,7 @@
 class AdanaxisPieceKhazi : public MushGamePiece, public MushCollisionPiece
 {
 public:
-    explicit AdanaxisPieceKhazi(const std::string& inID = "");
+    explicit AdanaxisPieceKhazi(const std::string& inID = "", const MushRubyValue& inParams = MushRubyValue());
     virtual ~AdanaxisPieceKhazi();
 
     virtual void Move(MushGameLogic& ioLogic, const Mushware::tVal inFrameslice);
@@ -98,8 +101,7 @@ public:
     virtual void ActionValueHandle(MushGameLogic& ioLogic, const MushRubyValue& inActionValue);
     virtual void EventHandle(MushGameLogic& ioLogic, MushRubyValue inEvent, MushRubyValue inParams);
     
-    static Mushware::tRubyValue RubyPostLoad(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
-    static Mushware::tRubyValue RubyPostSave(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
+    static Mushware::tRubyValue RubyCreate(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
     
     static Mushware::tRubyValue Klass(void);
     static void RubyInstall(void);

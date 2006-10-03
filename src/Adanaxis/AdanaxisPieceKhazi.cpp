@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } YCa3eNmcxUH2q0Oxh6SpTA
 /*
- * $Id: AdanaxisPieceKhazi.cpp,v 1.21 2006/09/09 15:59:27 southa Exp $
+ * $Id: AdanaxisPieceKhazi.cpp,v 1.22 2006/10/02 20:28:10 southa Exp $
  * $Log: AdanaxisPieceKhazi.cpp,v $
+ * Revision 1.22  2006/10/02 20:28:10  southa
+ * Object lookup and target selection
+ *
  * Revision 1.21  2006/09/09 15:59:27  southa
  * Shader colour calculations
  *
@@ -99,27 +102,16 @@ using namespace std;
 
 Mushware::tRubyValue AdanaxisPieceKhazi::m_rubyKlass = Mushware::kRubyQnil;
 
-AdanaxisPieceKhazi::AdanaxisPieceKhazi(const std::string& inID) :
+AdanaxisPieceKhazi::AdanaxisPieceKhazi(const std::string& inID, const MushRubyValue& inParams) :
     MushGamePiece(inID),
     m_actionMsec(1)
 {
-    RubyObjSet(MushRubyExec::Sgl().Call(AdanaxisIntern::Sgl().KlassAdanaxisPieceKhazi(),
-                                        MushRubyIntern::cRegisteredCreate()));
-    MushRubyUtil::DataObjectWrapNew(AdanaxisIntern::Sgl().KlassAdanaxisPieceKhazi(), RubyObj(), this);
-    MushRubyUtil::InstanceVarSet(RubyObj().Value(), MushRubyIntern::ATm_id(), MushRubyValue(inID).Value());
+    RubyPieceConstructor(inID, inParams, AdanaxisIntern::Sgl().KlassAdanaxisPieceKhazi());
 }
 
 AdanaxisPieceKhazi::~AdanaxisPieceKhazi()
 {
-    try
-    {
-        RubyObj().Call(MushRubyIntern::mRegisteredDestroy());
-    }
-    catch (std::exception& e)
-    {
-        MushcoreLog::Sgl().ErrorLog() << "Destructor exception: " << e.what() << std::endl;
-        // Don't allow exception to propagate
-    }
+    RubyPieceDestructor();
 }
 
 void
@@ -245,7 +237,6 @@ AdanaxisPieceKhazi::MessageConsume(MushGameLogic& ioLogic, const MushGameMessage
     }
 }
 
-
 void
 AdanaxisPieceKhazi::Explode(MushGameLogic& ioLogic, const MushGameMessageCollisionFatal& inMessage)
 {
@@ -279,7 +270,7 @@ AdanaxisPieceKhazi::Explode(MushGameLogic& ioLogic, const MushGameMessageCollisi
             AdanaxisSaveData::tProjectile& projectileRef = projectileListRef.back();
             
             projectileRef.OwnerSet(Id());
-            projectileRef.ExpiryMsecSet(static_cast<Mushware::tMsec>(ioLogic.FrameMsec() + MushMeshTools::Random(0.1,0.5) * projectileRef.LifeMsec()));
+            projectileRef.LifeMsecSet(static_cast<U32>(15000*MushMeshTools::Random(0.1,0.5)));
             
             // Create projectile in Khazi's coordinates
             projectileRef.PostWRef().ToIdentitySet();
@@ -328,32 +319,23 @@ AdanaxisPieceKhazi::Explode(MushGameLogic& ioLogic, const MushGameMessageCollisi
 }
 
 Mushware::tRubyValue
-AdanaxisPieceKhazi::RubyPostLoad(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0)
+AdanaxisPieceKhazi::RubyCreate(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0)
 {
-    try
-    {
-        AdanaxisPieceKhazi *self = reinterpret_cast<AdanaxisPieceKhazi *>(MushRubyUtil::DataObjectRetrieve(inSelf));
-        MUSHCOREASSERT(dynamic_cast<AdanaxisPieceKhazi *>(self) != NULL);
-        
-        self->MushGamePiece::RubyLoad(inSelf);
-
-        MushMeshRubyPost::WRef(inArg0) = self->Post();
-	}
-    catch (std::exception& e)
-    {
-        MushRubyUtil::Raise(e.what());    
-    }
-    return inArg0;
-}
-
-Mushware::tRubyValue
-AdanaxisPieceKhazi::RubyPostSave(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0)
-{
-    AdanaxisPieceKhazi *self = reinterpret_cast<AdanaxisPieceKhazi *>(MushRubyUtil::DataObjectRetrieve(inSelf));
-    MUSHCOREASSERT(dynamic_cast<AdanaxisPieceKhazi *>(self) != NULL);
+    AdanaxisSaveData::tKhaziList& dataRef = AdanaxisRuby::SaveData().KhaziListWRef();
+	
+	/* This object contains a reference (MushcoreMaptorRef) to an object
+     * in SaveData().KhaziList(), which is a MushcoreMaptor<AdanaxisPieceProjectile>.
+     * The next line points the MushcoreMaptorRef at that MushcoreMaptor
+     */
+    AdanaxisSaveData::tKhaziList::key_type key = dataRef.NextKey();
     
-	self->PostSet(MushMeshRubyPost::Ref(inArg0));
-	return inArg0;
+    ostringstream idStream;
+    idStream << "k:" << key;
+    
+	AdanaxisPieceKhazi& objRef = *new AdanaxisPieceKhazi(idStream.str(), MushRubyValue(inArg0));
+    dataRef.Give(&objRef, key);
+
+    return objRef.RubyObj().Value();
 }
 
 Mushware::tRubyValue
@@ -373,8 +355,7 @@ AdanaxisPieceKhazi::RubyInstall(void)
     {
 	    m_rubyKlass = MushRubyUtil::SubclassDefine("AdanaxisPieceKhazi", MushGamePiece::Klass());
     }
-	MushRubyUtil::MethodDefineOneParam(Klass(), "mPostLoad", RubyPostLoad);
-	MushRubyUtil::MethodDefineOneParam(Klass(), "mPostSave", RubyPostSave);
+	MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cCreate", RubyCreate);
 }
 
 namespace

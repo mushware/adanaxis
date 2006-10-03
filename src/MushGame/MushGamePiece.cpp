@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } rVCNunlW+wZoonHnGB5a7Q
 /*
- * $Id: MushGamePiece.cpp,v 1.12 2006/09/09 11:16:41 southa Exp $
+ * $Id: MushGamePiece.cpp,v 1.13 2006/10/02 20:28:11 southa Exp $
  * $Log: MushGamePiece.cpp,v $
+ * Revision 1.13  2006/10/02 20:28:11  southa
+ * Object lookup and target selection
+ *
  * Revision 1.12  2006/09/09 11:16:41  southa
  * One-time vertex buffer generation
  *
@@ -100,6 +103,7 @@ MushGamePiece::Load(Mushware::tRubyValue inSelf)
         MushMeshRubyPost::WRef(value) = Post();
     }
     
+    MushRubyUtil::InstanceVarSet(inSelf, MushRubyIntern::ATm_meshName(), MushRubyValue(m_meshName).Value());    
     MushRubyUtil::InstanceVarSet(inSelf, MushRubyIntern::ATm_expireFlag(), MushRubyValue(m_expireFlag).Value());
 }
 
@@ -114,7 +118,57 @@ MushGamePiece::Save(Mushware::tRubyValue inSelf)
         }
         PostSet(MushMeshRubyPost::Ref(value));
     }
+    {
+        std::string newMeshName = MushRubyValue(MushRubyUtil::InstanceVar(inSelf, MushRubyIntern::ATm_meshName())).String();
+        if (m_meshName != newMeshName)
+        {
+            // Expensive mesh duplication
+            MeshSet(*MushcoreData<MushMesh4Mesh>::Sgl().Get(newMeshName));
+            SharedBuffersNameSet(newMeshName); 
+            m_meshName = newMeshName;
+        }
+    }
     m_expireFlag = MushRubyValue(MushRubyUtil::InstanceVar(inSelf, MushRubyIntern::ATm_expireFlag())).Bool();
+}
+
+void
+MushGamePiece::RubyPieceConstructor(const std::string& inID, const MushRubyValue& inParams,
+                                    const MushRubyValue& inKlass)
+{
+    /*** This function is called from constructors */
+    
+    // Create the registered object
+    RubyObjSet(MushRubyExec::Sgl().Call(inKlass,
+                                        MushRubyIntern::cRegisteredCreate(),
+                                        inParams));
+    /* Add this C++ object to the ruby object as a wrapped DataStruct, and set
+    * embedded data pointer
+    */
+    MushRubyUtil::DataObjectWrapNew(inKlass, RubyObj(), this);
+    
+    // Set the ruby instance variable @m_id to the C++ ID
+    MushRubyUtil::InstanceVarSet(RubyObj().Value(), MushRubyIntern::ATm_id(), MushRubyValue(inID).Value());
+    
+    /* Save the ruby variables (extracted from inParams by the ruby initialize method)
+    * into this C++ object
+    */
+    MushRubyExec::Sgl().Call(RubyObj(), MushRubyIntern::mSave());
+}
+
+void
+MushGamePiece::RubyPieceDestructor(void) // nothrow
+{
+    /*** This function is called from destructors */
+    
+    try
+    {
+        RubyObj().Call(MushRubyIntern::mRegisteredDestroy());
+    }
+    catch (std::exception& e)
+    {
+        MushcoreLog::Sgl().ErrorLog() << "Destructor exception: " << e.what() << std::endl;
+        // Don't allow exception to propagate
+    }
 }
 
 Mushware::tRubyValue
@@ -238,6 +292,7 @@ MushGamePiece::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
     ioOut << "id=" << m_id << ", ";
+    ioOut << "meshName=" << m_meshName << ", ";
     ioOut << "post=" << m_post << ", ";
     ioOut << "mesh=" << m_mesh << ", ";
     ioOut << "expireFlag=" << m_expireFlag << ", ";
@@ -258,6 +313,10 @@ MushGamePiece::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& i
     else if (inTagStr == "id")
     {
         ioIn >> m_id;
+    }
+    else if (inTagStr == "meshName")
+    {
+        ioIn >> m_meshName;
     }
     else if (inTagStr == "post")
     {
@@ -294,6 +353,8 @@ MushGamePiece::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
     ioOut.TagSet("id");
     ioOut << m_id;
+    ioOut.TagSet("meshName");
+    ioOut << m_meshName;
     ioOut.TagSet("post");
     ioOut << m_post;
     ioOut.TagSet("mesh");
@@ -307,4 +368,4 @@ MushGamePiece::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("rubyObj");
     ioOut << m_rubyObj;
 }
-//%outOfLineFunctions } wrjwSj/eXxq7PEDqKQVMYw
+//%outOfLineFunctions } cgTL3a7H5w8YqO/DRKOAEg

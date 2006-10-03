@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } mqRyosjSblx9ADjVCHc1/g
 /*
- * $Id: AdanaxisIntern.cpp,v 1.1 2006/08/17 08:57:11 southa Exp $
+ * $Id: AdanaxisIntern.cpp,v 1.2 2006/10/02 17:25:04 southa Exp $
  * $Log: AdanaxisIntern.cpp,v $
+ * Revision 1.2  2006/10/02 17:25:04  southa
+ * Object lookup and target selection
+ *
  * Revision 1.1  2006/08/17 08:57:11  southa
  * Event handling
  *
@@ -32,9 +35,10 @@ MUSHCORE_SINGLETON_INSTANCE(AdanaxisIntern);
 
 AdanaxisIntern::AdanaxisIntern() :
     m_KlassAdanaxisPieceKhazi(MushRubyUtil::Class("AdanaxisPieceKhazi")),
-    m_KlassAdanaxisPiecePlayer(MushRubyUtil::Class("AdanaxisPiecePlayer"))
-
+    m_KlassAdanaxisPiecePlayer(MushRubyUtil::Class("AdanaxisPiecePlayer")),
+    m_KlassAdanaxisPieceProjectile(MushRubyUtil::Class("AdanaxisPieceProjectile"))
 {
     ADANAXISINTERN_INIT_ID(AdanaxisPieceKhazi);
     ADANAXISINTERN_INIT_ID(AdanaxisPiecePlayer);
+    ADANAXISINTERN_INIT_ID(AdanaxisPieceProjectile);
 }

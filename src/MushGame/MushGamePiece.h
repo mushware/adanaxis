@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } QiW5KaWfX1mBGolg1jxMIg
 /*
- * $Id: MushGamePiece.h,v 1.15 2006/09/09 11:16:41 southa Exp $
+ * $Id: MushGamePiece.h,v 1.16 2006/10/02 20:28:11 southa Exp $
  * $Log: MushGamePiece.h,v $
+ * Revision 1.16  2006/10/02 20:28:11  southa
+ * Object lookup and target selection
+ *
  * Revision 1.15  2006/09/09 11:16:41  southa
  * One-time vertex buffer generation
  *
@@ -95,6 +98,11 @@ public:
     virtual void Load(Mushware::tRubyValue inSelf);
     virtual void Save(Mushware::tRubyValue inSelf);
     
+    // Called from constructor so not virtual
+    void RubyPieceConstructor(const std::string& inID, const MushRubyValue& inParams,
+                              const MushRubyValue& inKlass);
+    void RubyPieceDestructor(void); // nothrow
+    
     static Mushware::tRubyValue RubyLoad(Mushware::tRubyValue inSelf);
     static Mushware::tRubyValue RubySave(Mushware::tRubyValue inSelf);
     static Mushware::tRubyValue Klass(void);
@@ -105,8 +113,9 @@ public:
     
 private:
     std::string m_id; //:readwrite
+    std::string m_meshName; //:readwrite
     MushMeshPosticity m_post; //:readwrite :wref
-    MushMesh4Mesh m_mesh; //:read :wref
+    MushMesh4Mesh m_mesh; //:readwrite :wref
     bool m_expireFlag; //:readwrite    
     
     MushGLBuffers::tDataRef m_buffersRef; //:read :wref
@@ -120,11 +129,14 @@ private:
 public:
     const std::string& Id(void) const { return m_id; }
     void IdSet(const std::string& inValue) { m_id=inValue; }
+    const std::string& MeshName(void) const { return m_meshName; }
+    void MeshNameSet(const std::string& inValue) { m_meshName=inValue; }
     const MushMeshPosticity& Post(void) const { return m_post; }
     void PostSet(const MushMeshPosticity& inValue) { m_post=inValue; }
     // Writable reference for m_post
     MushMeshPosticity& PostWRef(void) { return m_post; }
     const MushMesh4Mesh& Mesh(void) const { return m_mesh; }
+    void MeshSet(const MushMesh4Mesh& inValue) { m_mesh=inValue; }
     // Writable reference for m_mesh
     MushMesh4Mesh& MeshWRef(void) { return m_mesh; }
     const bool& ExpireFlag(void) const { return m_expireFlag; }
@@ -144,7 +156,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } e2znHWqzEPRvtxRzYLr0cw
+//%classPrototypes } FcEO1p862PQwALDKyblq/Q
 };
 //%inlineHeader {
 inline std::ostream&

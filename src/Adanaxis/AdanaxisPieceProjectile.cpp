@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } AKn0HlU4NeCX3ptHFWodSQ
 /*
- * $Id: AdanaxisPieceProjectile.cpp,v 1.11 2006/08/25 01:44:57 southa Exp $
+ * $Id: AdanaxisPieceProjectile.cpp,v 1.12 2006/09/09 11:16:39 southa Exp $
  * $Log: AdanaxisPieceProjectile.cpp,v $
+ * Revision 1.12  2006/09/09 11:16:39  southa
+ * One-time vertex buffer generation
+ *
  * Revision 1.11  2006/08/25 01:44:57  southa
  * Khazi fire
  *
@@ -56,6 +59,7 @@
 
 #include "AdanaxisPieceProjectile.h"
 
+#include "AdanaxisIntern.h"
 #include "AdanaxisRuby.h"
 #include "AdanaxisSaveData.h"
 #include "AdanaxisUtil.h"
@@ -67,24 +71,32 @@ Mushware::tRubyValue AdanaxisPieceProjectile::m_rubyKlass = Mushware::kRubyQnil;
 using namespace Mushware;
 using namespace std;
 
-AdanaxisPieceProjectile::AdanaxisPieceProjectile(const std::string& inID) :
+AdanaxisPieceProjectile::AdanaxisPieceProjectile(const std::string& inID, const MushRubyValue& inParams) :
     MushGamePiece(inID),
-    m_initialVelocity(1),
-    m_lifeMsec(10000),
-    m_moveCtr(0)
+    m_launchMsec(0)
 {
+    RubyPieceConstructor(inID, inParams, AdanaxisIntern::Sgl().KlassAdanaxisPieceProjectile());
+}
+
+AdanaxisPieceProjectile::~AdanaxisPieceProjectile()
+{
+    RubyPieceDestructor();    
 }
 
 void
 AdanaxisPieceProjectile::Move(MushGameLogic& ioLogic, const tVal inFrameslice)
 {
     PostWRef().InPlaceVelocityAdd();
-    if (ioLogic.FrameMsec() > m_expiryMsec)
+
+    if (m_launchMsec == 0)
+    {
+        m_launchMsec = ioLogic.FrameMsec();
+    }
+    if (ioLogic.FrameMsec() > m_launchMsec + m_lifeMsec)
     {
         Explode(ioLogic);
         ExpireFlagSet(true);
     }
-    m_moveCtr++;
 }
 
 bool
@@ -145,76 +157,40 @@ AdanaxisPieceProjectile::Explode(MushGameLogic& ioLogic)
     }
 }
 
+void
+AdanaxisPieceProjectile::Load(Mushware::tRubyValue inSelf)
+{
+    MushGamePiece::Load(inSelf);
+    MushRubyUtil::InstanceVarSet(inSelf, MushRubyIntern::ATm_owner(), MushRubyValue(m_owner).Value());    
+    MushRubyUtil::InstanceVarSet(inSelf, MushRubyIntern::ATm_lifeMsec(), MushRubyValue(static_cast<U32>(m_lifeMsec)).Value());    
+}
+
+void
+AdanaxisPieceProjectile::Save(Mushware::tRubyValue inSelf)
+{
+    MushGamePiece::Save(inSelf);
+    m_owner = MushRubyValue(MushRubyUtil::InstanceVar(inSelf, MushRubyIntern::ATm_owner())).String();
+    m_lifeMsec = MushRubyValue(MushRubyUtil::InstanceVar(inSelf, MushRubyIntern::ATm_lifeMsec())).U32();
+}
+
 Mushware::tRubyValue
 AdanaxisPieceProjectile::RubyCreate(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0)
 {
-    AdanaxisSaveData::tProjectileList& dataRef = AdanaxisRuby::SaveData().ProjectileListWRef();
-	
-	/* This object contains a reference (MushcoreMaptorRef) to an object
-     * in SaveData().ProjectileList(), which is a MushcoreMaptor<AdanaxisPieceProjectile>.
-     * The next line points the MushcoreMaptorRef at that MushcoreMaptor
-     */
-    AdanaxisSaveData::tProjectileList::key_type key = dataRef.NextKey();
-
-    ostringstream idStream;
-    idStream << "p" << key;
-    
-	AdanaxisPieceProjectile& objRef = *new AdanaxisPieceProjectile(idStream.str());
-    dataRef.Give(&objRef, key);
-    
-    std::string id = "";
-	std::string meshName = "";
-	std::string owner = "";
-	U32 lifetimeMsec = 0;
-			
-    MushRubyValue param0(inArg0);
-    if (!param0.IsHash())
-    {
-        MushRubyUtil::Raise("Parameters to AdanaxisPieceProjectile.new must be in hash form");	
-    }
-    else
-    {
-        Mushware::tRubyHash paramHash = param0.Hash();
+        AdanaxisSaveData::tProjectileList& dataRef = AdanaxisRuby::SaveData().ProjectileListWRef();
         
-        for (Mushware::tRubyHash::iterator p = paramHash.begin(); p != paramHash.end(); ++p)
-        {
-            tRubyID symbol = p->first.Symbol();
-            if (symbol == MushRubyIntern::post())
-            {
-                objRef.PostSet(MushMeshRubyPost::Ref(p->second.Value()));
-            }
-            else if (symbol == MushRubyIntern::mesh_name())
-            {
-                meshName = p->second.String();
-            }
-            else if (symbol == MushRubyIntern::owner())
-            {
-                owner = p->second.String();
-            }
-            else if (symbol == MushRubyIntern::lifetime_msec())
-            {
-                lifetimeMsec = p->second.U32();
-            }
-            else
-            {
-                MushRubyUtil::Raise("Unknown name in AdanaxisPieceProjectile parameter hash '"+p->first.String()+"'");	
-            }
-        }
-    }
-	
-	if (meshName != "")
-    {
-		objRef.MeshWRef() = *MushcoreData<MushMesh4Mesh>::Sgl().Get(meshName);
-		objRef.SharedBuffersNameSet(meshName);
-	}
-    else
-	{
-        MushcoreLog::Sgl().WarningLog() << "Creating AdanaxisPieceProjectile object without a valid mesh_name parameter" << endl;	
-	}
-    objRef.OwnerSet(owner);
-    objRef.ExpiryMsecSet(AdanaxisRuby::VolatileData().GameMsec() + lifetimeMsec);
-
-    return objRef.RubyObj().Value();
+        /* This object contains a reference (MushcoreMaptorRef) to an object
+         * in SaveData().ProjectileList(), which is a MushcoreMaptor<AdanaxisPieceProjectile>.
+         * The next line points the MushcoreMaptorRef at that MushcoreMaptor
+         */
+        AdanaxisSaveData::tProjectileList::key_type key = dataRef.NextKey();
+        
+        ostringstream idStream;
+        idStream << "r:" << key;
+        
+        AdanaxisPieceProjectile& objRef = *new AdanaxisPieceProjectile(idStream.str(), MushRubyValue(inArg0));
+        dataRef.Give(&objRef, key);
+        
+        return objRef.RubyObj().Value();
 }
 
 Mushware::tRubyValue
@@ -281,10 +257,8 @@ AdanaxisPieceProjectile::AutoPrint(std::ostream& ioOut) const
     ioOut << "[";
     MushGamePiece::AutoPrint(ioOut);
     ioOut << "owner=" << m_owner << ", ";
-    ioOut << "initialVelocity=" << m_initialVelocity << ", ";
     ioOut << "lifeMsec=" << m_lifeMsec << ", ";
-    ioOut << "expiryMsec=" << m_expiryMsec << ", ";
-    ioOut << "moveCtr=" << m_moveCtr;
+    ioOut << "launchMsec=" << m_launchMsec;
     ioOut << "]";
 }
 bool
@@ -300,21 +274,13 @@ AdanaxisPieceProjectile::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std:
     {
         ioIn >> m_owner;
     }
-    else if (inTagStr == "initialVelocity")
-    {
-        ioIn >> m_initialVelocity;
-    }
     else if (inTagStr == "lifeMsec")
     {
         ioIn >> m_lifeMsec;
     }
-    else if (inTagStr == "expiryMsec")
+    else if (inTagStr == "launchMsec")
     {
-        ioIn >> m_expiryMsec;
-    }
-    else if (inTagStr == "moveCtr")
-    {
-        ioIn >> m_moveCtr;
+        ioIn >> m_launchMsec;
     }
     else if (MushGamePiece::AutoXMLDataProcess(ioIn, inTagStr))
     {
@@ -332,13 +298,9 @@ AdanaxisPieceProjectile::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     MushGamePiece::AutoXMLPrint(ioOut);
     ioOut.TagSet("owner");
     ioOut << m_owner;
-    ioOut.TagSet("initialVelocity");
-    ioOut << m_initialVelocity;
     ioOut.TagSet("lifeMsec");
     ioOut << m_lifeMsec;
-    ioOut.TagSet("expiryMsec");
-    ioOut << m_expiryMsec;
-    ioOut.TagSet("moveCtr");
-    ioOut << m_moveCtr;
+    ioOut.TagSet("launchMsec");
+    ioOut << m_launchMsec;
 }
-//%outOfLineFunctions } +aZ4m66cvd68PwWcqvFUgg
+//%outOfLineFunctions } nGrestPzIZ/DZtg9HdC84g
