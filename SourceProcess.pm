@@ -11,8 +11,11 @@
 ##############################################################################
 
 #
-# $Id: SourceProcess.pm,v 1.4 2004/01/02 21:13:04 southa Exp $
+# $Id: SourceProcess.pm,v 1.5 2006/08/01 13:41:05 southa Exp $
 # $Log: SourceProcess.pm,v $
+# Revision 1.5  2006/08/01 13:41:05  southa
+# Pre-release updates
+#
 # Revision 1.4  2004/01/02 21:13:04  southa
 # Source conditioning
 #
@@ -64,10 +67,8 @@ my %gConfig = (
 
 my %gContext;
 
-my @gProcessors = (
-#    '.cpp$', \&ProcessCPPFile,
-#    '.h$', \&ProcessHFile
-);
+my @gProcessors = ();
+my @gFileProcessors = ();
 
 my $gReal=1;
 my $gVerbose=0;
@@ -82,8 +83,14 @@ GetOptions(
 
 sub AddArrayProcessor($$)
 {
-    my ($expression, $processor) = @_;
-    push @gProcessors, $expression, $processor;
+  my ($expression, $processor) = @_;
+  push @gProcessors, $expression, $processor;
+}
+
+sub AddFileProcessor($$)
+{
+  my ($expression, $processor) = @_;
+  push @gFileProcessors, $expression, $processor;
 }
 
 sub GetContext()
@@ -112,15 +119,31 @@ sub ProcessFile($)
     $gProcessedFiles{$filename} = 1;
     
     my $processed = 0;
+    
+      
+    for (my $i=0; $i < @gFileProcessors; $i += 2)
+    {
+        if ($filename =~ /$gFileProcessors[$i]/)
+        {
+
+            unless ($processed)
+            {
+                $gFileProcessors[$i+1]($filename);
+            }
+            $processed = 1;
+        }
+    }
+    
     my @contents;
     my @origContents;
+    $processed = 0;
     
     for (my $i=0; $i < @gProcessors; $i += 2)
     {
         if ($filename =~ /$gProcessors[$i]/)
         {
             unless ($processed)
-        {
+            {
                 ReadFile(\@contents, $filename);
                 foreach (@contents)
                 {
@@ -128,7 +151,7 @@ sub ProcessFile($)
                     s/\012//g;
                         s/\015//g;        
                 }
-        }
+            }
             $gProcessors[$i+1](\@contents, $filename);
             $processed = 1;
         }

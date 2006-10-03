@@ -2605,6 +2605,7 @@
 		7A3A86AD0882CD7D008A5F9C /* keyconfig-default.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "keyconfig-default.xml"; sourceTree = "<group>"; };
 		7A3C5D500A34427300BC1598 /* MushSkinPixelSourceTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushSkinPixelSourceTest.h; sourceTree = "<group>"; };
 		7A3C5D510A34427300BC1598 /* MushSkinPixelSourceTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushSkinPixelSourceTest.cpp; sourceTree = "<group>"; };
+		7A3DCD3C0AD2AC4000E03BFA /* SourceProcess.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = SourceProcess.rb; sourceTree = "<group>"; };
 		7A3E0D1C0A4821C10078B650 /* space.rb */ = {isa = PBXFileReference; fileEncoding = 30; indentWidth = 2; lastKnownFileType = text.script.ruby; path = space.rb; sourceTree = "<group>"; tabWidth = 2; };
 		7A3E0D230A4822460078B650 /* AdanaxisSpace.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AdanaxisSpace.rb; sourceTree = "<group>"; };
 		7A3E0DC90A48387C0078B650 /* AdanaxisRuby.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdanaxisRuby.h; sourceTree = "<group>"; };
@@ -3349,10 +3350,10 @@
 		7A6AC94605B9728C0019F752 /* TestMushcoreObjectSubSub.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestMushcoreObjectSubSub.cpp; sourceTree = "<group>"; };
 		7A6CE13405A5899B00777D9B /* MushPiePiece.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushPiePiece.h; sourceTree = "<group>"; };
 		7A6CE13505A5899B00777D9B /* MushPiePiece.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushPiePiece.cpp; sourceTree = "<group>"; };
-		7A6CE19E05A58DF000777D9B /* autogen.pl */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.perl; name = autogen.pl; path = ../../autogen.pl; sourceTree = "<group>"; };
-		7A6CE1A005A58DF000777D9B /* prebuild.sh */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.sh; name = prebuild.sh; path = ../../prebuild.sh; sourceTree = "<group>"; };
-		7A6CE1A105A58DF000777D9B /* SourceConditioner.pl */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.perl; name = SourceConditioner.pl; path = ../../SourceConditioner.pl; sourceTree = "<group>"; };
-		7A6CE1A205A58DF000777D9B /* SourceProcess.pm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.perl; name = SourceProcess.pm; path = ../../SourceProcess.pm; sourceTree = "<group>"; };
+		7A6CE19E05A58DF000777D9B /* autogen.pl */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.perl; name = autogen.pl; path = ../autogen.pl; sourceTree = "<group>"; };
+		7A6CE1A005A58DF000777D9B /* prebuild.sh */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.sh; name = prebuild.sh; path = ../prebuild.sh; sourceTree = "<group>"; };
+		7A6CE1A105A58DF000777D9B /* SourceConditioner.pl */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.perl; name = SourceConditioner.pl; path = ../SourceConditioner.pl; sourceTree = "<group>"; };
+		7A6CE1A205A58DF000777D9B /* SourceProcess.pm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.perl; name = SourceProcess.pm; path = ../SourceProcess.pm; sourceTree = "<group>"; };
 		7A6CE1FA05A5930A00777D9B /* MushPieStandard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushPieStandard.h; sourceTree = "<group>"; };
 		7A6CE1FB05A5930A00777D9B /* MushPieStandard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushPieStandard.cpp; sourceTree = "<group>"; };
 		7A6CE21B05A5935800777D9B /* MushPieSTL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushPieSTL.h; sourceTree = "<group>"; };
@@ -4130,7 +4131,7 @@
 				20286C2CFDCF999611CA2CEA /* Resources */,
 				20286C32FDCF999611CA2CEA /* External Frameworks and Libraries */,
 				195DF8CFFE9D517E11CA2CBB /* Products */,
-				7A6CE19605A58DB000777D9B /* Scripts */,
+				7A6CE19605A58DB000777D9B /* scripts */,
 				7A63E99405AA25DD0051D708 /* Info */,
 				7A65837905A9D4FC00E727F8 /* Doc */,
 				7ACC317305AB2FDD001A0873 /* targets */,
@@ -4247,8 +4248,10 @@
 				7A4CAB0B0A582DF200AA934F /* MushVector.rb */,
 				7A4CAB0C0A582DF200AA934F /* Mushware.rb */,
 			);
+			indentWidth = 2;
 			path = mushruby;
 			sourceTree = "<group>";
+			tabWidth = 2;
 		};
 		7A4FA55A05F9EBCA00297E23 /* maurheen */ = {
 			isa = PBXGroup;
@@ -5379,7 +5382,7 @@
 			path = MushGL;
 			sourceTree = "<group>";
 		};
-		7A6CE19605A58DB000777D9B /* Scripts */ = {
+		7A6CE19605A58DB000777D9B /* scripts */ = {
 			isa = PBXGroup;
 			children = (
 				7A8A6E74067C5CE60025D379 /* COBHandler.pm */,
@@ -5390,9 +5393,13 @@
 				7A6CE1A105A58DF000777D9B /* SourceConditioner.pl */,
 				7A6CE1A205A58DF000777D9B /* SourceProcess.pm */,
 				7A97AAF70A653A6600921057 /* MakeDocs.rb */,
+				7A3DCD3C0AD2AC4000E03BFA /* SourceProcess.rb */,
 			);
-			name = Scripts;
+			indentWidth = 2;
+			name = scripts;
+			path = ../../scripts;
 			sourceTree = "<group>";
+			tabWidth = 2;
 		};
 		7A70CEB0085DF1C40055C6FB /* Adanaxis */ = {
 			isa = PBXGroup;
@@ -5962,8 +5969,10 @@
 				7A5B15170A57B5FA0047BD0B /* AdanaxisFontLibrary.rb */,
 				7ACEFB3109F6EF6700E38865 /* init.rb */,
 			);
+			indentWidth = 2;
 			path = ruby;
 			sourceTree = "<group>";
+			tabWidth = 2;
 		};
 		7ACF535508C35D1300BBEB7E /* MushSkin */ = {
 			isa = PBXGroup;

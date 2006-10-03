@@ -10,8 +10,11 @@
 #
 ##############################################################################
 
-# $Id: SourceConditioner.pl,v 1.52 2006/07/31 11:01:33 southa Exp $
+# $Id: SourceConditioner.pl,v 1.53 2006/08/01 13:41:04 southa Exp $
 # $Log: SourceConditioner.pl,v $
+# Revision 1.53  2006/08/01 13:41:04  southa
+# Pre-release updates
+#
 # Revision 1.52  2006/07/31 11:01:33  southa
 # Music and dialogues
 #
@@ -329,6 +332,10 @@ SourceProcess::AddArrayProcessor('\.cpp$', \&ProcessCPP);
 SourceProcess::AddArrayProcessor('\.h$', \&ProcessIncludeGuard);
 SourceProcess::AddArrayProcessor('\.h$', \&ProcessTouchCFile);
 SourceProcess::AddArrayProcessor('\.rb$', \&ProcessFileHeader);
+SourceProcess::AddFileProcessor('\.cpp$', \&ProcessProcessDirective);
+SourceProcess::AddFileProcessor('\.c$', \&ProcessProcessDirective);
+SourceProcess::AddFileProcessor('\.h$', \&ProcessProcessDirective);
+SourceProcess::AddFileProcessor('\.rb$', \&ProcessProcessDirective);
 
 SourceProcess::Process('src');
 
@@ -1539,3 +1546,29 @@ sub ProcessCPP($$)
     }
     SourceProcess::BlockReplace(\@$contentRef, \@outOfLineCode, 'outOfLineFunctions', @$contentRef);
 }
+
+sub ProcessProcessDirective($)
+{
+    my ($filename) = @_;
+  
+    my @processDirectives;
+    open(FILE, $filename) or die "File open for read failed for $filename: $!";
+    while (<FILE>)
+    {
+        if (/\/\/:process\b/)
+        {
+            chomp;
+            push @processDirectives, $_;
+        }
+    }
+    foreach my $directive (@processDirectives)
+    {
+        unless ($directive =~ /\/\/:process\s+([A-Za-z0-9_.]+)\s*(.*)/)
+        {
+            die "Malformed :process directive '$directive'"
+        }
+        print "Process directive $directive = $1\n";
+    }
+}
+
+

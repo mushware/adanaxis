@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } WBiqbvbumO43Eps7fHh03A
 /*
- * $Id: AdanaxisIntern.h,v 1.2 2006/10/02 17:25:04 southa Exp $
+ * $Id: AdanaxisIntern.h,v 1.3 2006/10/03 14:06:51 southa Exp $
  * $Log: AdanaxisIntern.h,v $
+ * Revision 1.3  2006/10/03 14:06:51  southa
+ * Khazi and projectile creation
+ *
  * Revision 1.2  2006/10/02 17:25:04  southa
  * Object lookup and target selection
  *
@@ -32,6 +35,8 @@
  */
 
 #include "AdanaxisStandard.h"
+
+//:process ProcessAdanaxisIntern.rb
 
 #define ADANAXISINTERN_ID(a) \
 public: \
@@ -56,6 +61,9 @@ public:
     ADANAXISINTERN_VALUE(KlassAdanaxisPieceKhazi);
     ADANAXISINTERN_VALUE(KlassAdanaxisPiecePlayer);
     ADANAXISINTERN_VALUE(KlassAdanaxisPieceProjectile);
+//%classPrototypes {
+public:
+//%classPrototypes } 0ImSRh0/JBpOMwe5g8vGcA
 };
 
 #undef ADANAXISINTERN_ID
