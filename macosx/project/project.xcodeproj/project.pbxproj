@@ -2623,6 +2623,7 @@
 		7A45EAB107F46A9900773CF6 /* GameSoundSpec.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameSoundSpec.cpp; sourceTree = "<group>"; };
 		7A45EAB807F46BE500773CF6 /* GameSoundStreamSpec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSoundStreamSpec.h; sourceTree = "<group>"; };
 		7A45EAB907F46BE500773CF6 /* GameSoundStreamSpec.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameSoundStreamSpec.cpp; sourceTree = "<group>"; };
+		7A471EDF0AD44C39008B59E0 /* ProcessAdanaxisIntern.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ProcessAdanaxisIntern.rb; sourceTree = "<group>"; };
 		7A492DF70A39ACA200EE1835 /* MushSkinPixelSourceTileShow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushSkinPixelSourceTileShow.h; sourceTree = "<group>"; };
 		7A492DF80A39ACA200EE1835 /* MushSkinPixelSourceTileShow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushSkinPixelSourceTileShow.cpp; sourceTree = "<group>"; };
 		7A492F2E0A39CB6D00EE1835 /* MushSkinTiledMethod1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushSkinTiledMethod1.h; sourceTree = "<group>"; };
@@ -5394,6 +5395,7 @@
 				7A6CE1A205A58DF000777D9B /* SourceProcess.pm */,
 				7A97AAF70A653A6600921057 /* MakeDocs.rb */,
 				7A3DCD3C0AD2AC4000E03BFA /* SourceProcess.rb */,
+				7A471EDF0AD44C39008B59E0 /* ProcessAdanaxisIntern.rb */,
 			);
 			indentWidth = 2;
 			name = scripts;

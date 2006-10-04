@@ -11,8 +11,11 @@
 ##############################################################################
 
 #
-# $Id: SourceProcess.pm,v 1.5 2006/08/01 13:41:05 southa Exp $
+# $Id: SourceProcess.pm,v 1.6 2006/10/03 15:28:20 southa Exp $
 # $Log: SourceProcess.pm,v $
+# Revision 1.6  2006/10/03 15:28:20  southa
+# Source process directives
+#
 # Revision 1.5  2006/08/01 13:41:05  southa
 # Pre-release updates
 #
@@ -238,7 +241,6 @@ sub Process($)
     FileEntriesLoad($gConfig{ENTRIES_FILENAME});
     ProcessDirectory($dirname);
     FileEntriesSave($gConfig{ENTRIES_FILENAME});
-    print "Done.\n";
 }
 
 sub CompareArrays($$)

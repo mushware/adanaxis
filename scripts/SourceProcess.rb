@@ -16,12 +16,16 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-# $Id$
-# $Log$
+# $Id: SourceProcess.rb,v 1.1 2006/10/03 15:28:21 southa Exp $
+# $Log: SourceProcess.rb,v $
+# Revision 1.1  2006/10/03 15:28:21  southa
+# Source process directives
+#
 
 class SourceProcess
   def initialize(params = {})
     @m_filename = params[:filename] || ""
+    @m_commentMarker = params[:comment_marker] || "//"
     @m_content = []
   end
   
@@ -30,9 +34,58 @@ class SourceProcess
     @m_content = IO.readlines(@m_filename)
     @m_content.each { |line| line.chomp! }
     
-    IO.open(@m_backupFilename, "w") do |io|
+    File.open(@m_backupFilename, "w") do |file|
       @m_content.each do |line|
-        io.print(line, 10.chr) # Enforce Unix line endings
+        file.print(line, 10.chr) # Enforce Unix line endings
       end
     end
+  end
+  
+  def mEvalData(inDataName, inBinding, inFilename = nil)
+    filename = inFilename || @m_filename
+    dataName = inDataName
+    beginExp = Regexp.new(":#{dataName}begin")
+    endExp = Regexp.new(":#{dataName}end")
+    toEval = ""
+    state = 0
+    lineNum=1
+    IO.foreach(filename) do |line|
+      case state
+      when 0:
+        lineNum += 1
+        if line =~ beginExp
+          state = 1
+        end
+        
+      when 1:
+        if line =~ endExp
+          state = 2
+        else
+          toEval += line
+        end
+        
+      when 2:
+        if (line =~ beginExp || line =~ endExp)
+          raise RuntimeError, "Multiple #{dataName}begin/#{dataName}end markers in #{filename}"
+        end
+      end # of case
+    end # of foreach
+      
+    raise RuntimeError, "Could not detect #{dataName}begin/#{dataName}end markers in #{filename}" if state != 2
+    
+    eval(toEval, inBinding, filename, lineNum)
+  end
+  
+  def mBlockStartMarker(inBlockID)
+    "#{@m_commentMarker}#{inBlockID} {"
+  end
+  
+  def mBlockEndMarker(inBlockID)
+    "#{@m_commentMarker}#{inBlockID} }"
+  end
+  
+  def mBlockReplace(inBlockID, inContent, inSuggestedLine)
+    startExp = Regexp.new('^\s*'+Regexp::quote(mBlockStartMake(inBlockID)))
+    endExp = Regexp.new('^\s*'+Regexp::quote(mBlockEndMake(inBlockID))+'\s*([0-9a-zA-Z+/]*)')
+  end
 end

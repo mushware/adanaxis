@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } WBiqbvbumO43Eps7fHh03A
 /*
- * $Id: AdanaxisIntern.h,v 1.3 2006/10/03 14:06:51 southa Exp $
+ * $Id: AdanaxisIntern.h,v 1.4 2006/10/03 15:28:21 southa Exp $
  * $Log: AdanaxisIntern.h,v $
+ * Revision 1.4  2006/10/03 15:28:21  southa
+ * Source process directives
+ *
  * Revision 1.3  2006/10/03 14:06:51  southa
  * Khazi and projectile creation
  *
@@ -34,10 +37,24 @@
  *
  */
 
+
 #include "AdanaxisStandard.h"
 
 //:process ProcessAdanaxisIntern.rb
-
+/*
+:data1begin
+ids = %w{
+  AdanaxisPieceKhazi
+  AdanaxisPiecePlayer
+  AdanaxisPieceProjectile
+}
+values = %w{
+  KlassAdanaxisPieceKhazi
+  KlassAdanaxisPiecePlayer
+  KlassAdanaxisPieceProjectile
+}
+:data1end
+*/
 #define ADANAXISINTERN_ID(a) \
 public: \
 Mushware::tRubyID a(void) { return m_##a; } \
@@ -50,7 +67,7 @@ const MushRubyValue& a(void) { return m_##a; } \
 private: \
 MushRubyValue m_##a
 
-
+ 
 class AdanaxisIntern : public MushcoreSingleton<AdanaxisIntern>
 {
 public:

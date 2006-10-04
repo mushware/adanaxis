@@ -10,8 +10,11 @@
 #
 ##############################################################################
 
-# $Id: SourceConditioner.pl,v 1.53 2006/08/01 13:41:04 southa Exp $
+# $Id: SourceConditioner.pl,v 1.54 2006/10/03 15:28:20 southa Exp $
 # $Log: SourceConditioner.pl,v $
+# Revision 1.54  2006/10/03 15:28:20  southa
+# Source process directives
+#
 # Revision 1.53  2006/08/01 13:41:04  southa
 # Pre-release updates
 #
@@ -181,6 +184,7 @@ my $gExprVariableName = '[A-Za-z0-9_]+'; # Variable name
 my $gExprVariableExpr = '\**[A-Za-z0-9_[\]]+'; # variable expression, e.g. *x
 my $gExprTemplateSuffix = '<.+>'; # template suffix, e.g. <std::string>
 my $gVerbose = 0;
+my $gScriptPath = 'scripts';
 
 my %gConfig = (
 AUTO_PREFIX => 'Auto',
@@ -1567,7 +1571,27 @@ sub ProcessProcessDirective($)
         {
             die "Malformed :process directive '$directive'"
         }
+        my $scriptFilename = $1;
+        my $params = $2;
         print "Process directive $directive = $1\n";
+      
+        die "Malformed filename" unless $scriptFilename =~ /\.([^.]+)$/;
+        my $extension = $1;
+        my $command = "";
+          
+        if ($extension eq 'rb')
+        {
+            $command = "ruby '$gScriptPath/$scriptFilename' '$filename' $params";
+        }
+        else
+        {
+            die "Unknown script extension .$extension";
+        }
+        
+        if (system($command) != 0)
+        {
+            die "Process directive '$directive' in file '$filename' failed";
+        }
     }
 }
 
