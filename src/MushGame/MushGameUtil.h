@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } jHsuT0DibdJl7EB6jmyAAg
 /*
- * $Id: MushGameUtil.h,v 1.10 2006/07/07 18:13:59 southa Exp $
+ * $Id: MushGameUtil.h,v 1.11 2006/09/29 10:47:56 southa Exp $
  * $Log: MushGameUtil.h,v $
+ * Revision 1.11  2006/09/29 10:47:56  southa
+ * Object AI
+ *
  * Revision 1.10  2006/07/07 18:13:59  southa
  * Menu start and stop
  *
@@ -85,8 +88,8 @@ public:
     static MushGameAppHandler& AppHandler(void);
     static const MushGameLogic& LogicRef(void);
     static MushGameLogic& LogicWRef(void);
-    static std::string ObjectName(Mushware::U8 inPrefix, Mushware::U32 inNumber);
-    static void ObjectNameDecode(Mushware::U8& outPrefix, Mushware::U32& outNumber, const std::string& inName);
+    static std::string ObjectName(const std::string& inPrefix, Mushware::U32 inNumber);
+    static void ObjectNameDecode(std::string& outPrefix, Mushware::U32& outNumber, const std::string& inName);
 private:
     
 };

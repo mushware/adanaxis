@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } ZnwDjEM1+TPkZ9HrL5mg7A
 /*
- * $Id: MushRubyUtil.h,v 1.13 2006/08/20 14:19:23 southa Exp $
+ * $Id: MushRubyUtil.h,v 1.14 2006/10/02 20:28:11 southa Exp $
  * $Log: MushRubyUtil.h,v $
+ * Revision 1.14  2006/10/02 20:28:11  southa
+ * Object lookup and target selection
+ *
  * Revision 1.13  2006/08/20 14:19:23  southa
  * Seek operation
  *
@@ -122,6 +125,8 @@ public:
     static Mushware::tRubyValue InstanceVar(Mushware::tRubyValue inObj, Mushware::tRubyID inSym);
     static void InstanceVarSet(Mushware::tRubyValue inObj, Mushware::tRubyID inSym, Mushware::tRubyValue inValue);
     static void Freeze(Mushware::tRubyValue& ioValue);
+    static void HashValueSet(Mushware::tRubyValue inHash, Mushware::tRubyValue inKey, Mushware::tRubyValue inValue); 
+    static Mushware::tRubyValue SymbolToValue(Mushware::tRubyID inSymbol);
     
 private:
 	static Mushware::tRubyValue HashHandler(Mushware::tRubyValue inArray, Mushware::tRubyValue inArg);

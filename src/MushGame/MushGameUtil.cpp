@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } eAXK2shReRuPxk9ARzaGHA
 /*
- * $Id: MushGameUtil.cpp,v 1.14 2006/07/07 18:13:59 southa Exp $
+ * $Id: MushGameUtil.cpp,v 1.15 2006/09/29 10:47:56 southa Exp $
  * $Log: MushGameUtil.cpp,v $
+ * Revision 1.15  2006/09/29 10:47:56  southa
+ * Object AI
+ *
  * Revision 1.14  2006/07/07 18:13:59  southa
  * Menu start and stop
  *
@@ -244,28 +247,29 @@ MushGameUtil::LogicRef(void)
 }
 
 std::string
-MushGameUtil::ObjectName(Mushware::U8 inPrefix, Mushware::U32 inNumber)
+MushGameUtil::ObjectName(const std::string& inPrefix, Mushware::U32 inNumber)
 {
     ostringstream nameStream;
-    nameStream << static_cast<char>(inPrefix) << ':' << inNumber;
+    nameStream << inPrefix << ':' << inNumber;
     return nameStream.str();
 }
 
 void
-MushGameUtil::ObjectNameDecode(Mushware::U8& outPrefix, Mushware::U32& outNumber, const std::string& inName)
+MushGameUtil::ObjectNameDecode(std::string& outPrefix, Mushware::U32& outNumber, const std::string& inName)
 {
-    istringstream nameStream(inName);
-    char prefixChar, colonChar;
-
-    nameStream >> prefixChar;
-    if (nameStream) nameStream >> colonChar;
+    string::size_type pos = inName.find(':');
+    if (pos == string::npos || pos == 0)
+    {
+        throw MushcoreDataFail("Cannot decode object name from '"+inName+"' - no colon");
+    }
+    
+    outPrefix = inName.substr(0, pos);
+    istringstream nameStream(inName.substr(pos+1));
     if (nameStream) nameStream >> outNumber;
-    if (!nameStream || colonChar != ':')
+    
+    if (!nameStream)
     {
         throw MushcoreDataFail("Cannot decode object name from '"+inName+"'");
     }
-    outPrefix = prefixChar;
+    // cout << "Decoded " << inName << " to '" << outPrefix << "' '" << outNumber << "'" << endl; 
 }
-
-
-

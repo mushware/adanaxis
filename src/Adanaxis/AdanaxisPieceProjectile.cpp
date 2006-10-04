@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } AKn0HlU4NeCX3ptHFWodSQ
 /*
- * $Id: AdanaxisPieceProjectile.cpp,v 1.12 2006/09/09 11:16:39 southa Exp $
+ * $Id: AdanaxisPieceProjectile.cpp,v 1.13 2006/10/03 14:06:51 southa Exp $
  * $Log: AdanaxisPieceProjectile.cpp,v $
+ * Revision 1.13  2006/10/03 14:06:51  southa
+ * Khazi and projectile creation
+ *
  * Revision 1.12  2006/09/09 11:16:39  southa
  * One-time vertex buffer generation
  *
@@ -185,7 +188,7 @@ AdanaxisPieceProjectile::RubyCreate(Mushware::tRubyValue inSelf, Mushware::tRuby
         AdanaxisSaveData::tProjectileList::key_type key = dataRef.NextKey();
         
         ostringstream idStream;
-        idStream << "r:" << key;
+        idStream << key;
         
         AdanaxisPieceProjectile& objRef = *new AdanaxisPieceProjectile(idStream.str(), MushRubyValue(inArg0));
         dataRef.Give(&objRef, key);

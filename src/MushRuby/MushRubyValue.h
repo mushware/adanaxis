@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 5BOLwI3DhgfDHotOLswDpg
 /*
- * $Id: MushRubyValue.h,v 1.14 2006/08/17 08:57:13 southa Exp $
+ * $Id: MushRubyValue.h,v 1.15 2006/08/24 13:04:38 southa Exp $
  * $Log: MushRubyValue.h,v $
+ * Revision 1.15  2006/08/24 13:04:38  southa
+ * Event handling
+ *
  * Revision 1.14  2006/08/17 08:57:13  southa
  * Event handling
  *
@@ -85,6 +88,7 @@ public:
 	explicit MushRubyValue(const char *inValue);
     explicit MushRubyValue(const std::string& inValue);
 	std::string String(void) const;
+	bool IsNil(void) const;
 	bool IsU32(void) const;
 	bool IsHash(void) const;
 	bool IsArray(void) const;

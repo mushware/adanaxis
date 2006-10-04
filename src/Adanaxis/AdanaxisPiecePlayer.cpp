@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } gq+r6M5XzKqE/mgjgvunrQ
 /*
- * $Id: AdanaxisPiecePlayer.cpp,v 1.2 2006/10/02 20:28:10 southa Exp $
+ * $Id: AdanaxisPiecePlayer.cpp,v 1.3 2006/10/03 14:06:51 southa Exp $
  * $Log: AdanaxisPiecePlayer.cpp,v $
+ * Revision 1.3  2006/10/03 14:06:51  southa
+ * Khazi and projectile creation
+ *
  * Revision 1.2  2006/10/02 20:28:10  southa
  * Object lookup and target selection
  *
@@ -306,7 +309,7 @@ AdanaxisPiecePlayer::FirePieceCreate(MushGameLogic& ioLogic, const MushGameMessa
     AdanaxisSaveData::tProjectileList::key_type key = dataRef.NextKey();
     
     ostringstream idStream;
-    idStream << "p" << key;
+    idStream << key;
     
 	AdanaxisPieceProjectile& projectileRef = *new AdanaxisPieceProjectile(idStream.str());
     dataRef.Give(&projectileRef, key);

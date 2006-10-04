@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } Mac7dWHONvkZIg39sQnwww
 /*
- * $Id: AdanaxisLogic.cpp,v 1.19 2006/08/25 01:44:56 southa Exp $
+ * $Id: AdanaxisLogic.cpp,v 1.20 2006/10/02 20:28:10 southa Exp $
  * $Log: AdanaxisLogic.cpp,v $
+ * Revision 1.20  2006/10/02 20:28:10  southa
+ * Object lookup and target selection
+ *
  * Revision 1.19  2006/08/25 01:44:56  southa
  * Khazi fire
  *
@@ -99,10 +102,14 @@ void
 AdanaxisLogic::TargetPieceSearch(std::string& ioID,
                                  Mushware::tVal& ioDistSquared,
                                  const Mushware::t4Val& inPos,
-                                 Mushware::U8 inObjType,
+                                 const std::string& inObjType,
                                  const std::string& inExcludeID) const
 {
-    switch (inObjType)
+    if (inObjType.size() < 1)
+    {
+        throw MushcoreDataFail("Object type of zero length");
+    }
+    switch (inObjType[0])
     {
         case AdanaxisData::kCharKhazi:
         {
@@ -110,15 +117,23 @@ AdanaxisLogic::TargetPieceSearch(std::string& ioID,
             const AdanaxisSaveData::tKhaziList& pieceData = SaveData().KhaziList();
             for (tIterator p = pieceData.begin(); p != pieceData.end(); ++p)
             {
+                // For each Khazi...
                 t4Val vecToObj = inPos - p->Post().Pos();
                 tVal distToObjSquared = vecToObj.MagnitudeSquared();
+                // If we have no current candidate, or this object is nearer than the current candidate...
                 if (ioID == "" || distToObjSquared < ioDistSquared)
                 {
-                    std::string newID = MushGameUtil::ObjectName(inObjType, p.Key());
+                    std::string newID = p->Id();
+                    // If it's not the excluded ID (which prevents us targeting ourselves)...
                     if (newID != inExcludeID)
                     {
-                        ioDistSquared = distToObjSquared;
-                        ioID = newID;
+                        // If the first characters of the ID match the requested type...
+                        if (newID.substr(0, inObjType.length()) == inObjType)
+                        {
+                            // Choose this object as the new current candidate
+                            ioDistSquared = distToObjSquared;
+                            ioID = newID;
+                        }
                     }
                 }
             }
@@ -254,8 +269,8 @@ AdanaxisLogic::ProjectilesFullCollide(void)
                     MushCollisionResolver::Sgl().Resolve(collInfo, *p, *q);
                     if (collInfo.SeparatingDistance() <= 0)
                     {
-                        collInfo.ObjectName1Set(MushGameUtil::ObjectName(AdanaxisData::kCharProjectile, p.Key()));
-                        collInfo.ObjectName2Set(MushGameUtil::ObjectName(AdanaxisData::kCharKhazi, q.Key()));
+                        collInfo.ObjectName1Set(p->Id());
+                        collInfo.ObjectName2Set(q->Id());
                         collInfo.ObjectNamesValidSet(true);
                         
                         CollisionHandle(*p, *q, collInfo);
@@ -315,10 +330,10 @@ MushGamePiece&
 AdanaxisLogic::PieceLookup(const std::string& inName) const
 {
     MushGamePiece *pPiece = NULL;
-    Mushware::U8 objType;
+    std::string objType;
     Mushware::U32 objNum;
     MushGameUtil::ObjectNameDecode(objType, objNum, inName);
-    switch (objType)
+    switch (objType[0])
     {
         case AdanaxisData::kCharProjectile:
             pPiece = &SaveData().Projectile(objNum);

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } hwIlNOCEH5GsgwGY+rP1Kg
 /*
- * $Id: MushRubyValue.cpp,v 1.16 2006/08/17 08:57:13 southa Exp $
+ * $Id: MushRubyValue.cpp,v 1.17 2006/08/24 13:04:38 southa Exp $
  * $Log: MushRubyValue.cpp,v $
+ * Revision 1.17  2006/08/24 13:04:38  southa
+ * Event handling
+ *
  * Revision 1.16  2006/08/17 08:57:13  southa
  * Event handling
  *
@@ -149,6 +152,12 @@ MushRubyValue::String(void) const
 	}
 			 
 	return retVal;
+}
+
+bool
+MushRubyValue::IsNil(void) const
+{
+	return (m_value == Qnil);
 }
 
 bool

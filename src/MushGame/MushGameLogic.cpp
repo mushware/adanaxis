@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } o9Dxm/e8GypZNPSRXLgJNQ
 /*
- * $Id: MushGameLogic.cpp,v 1.30 2006/10/02 17:25:05 southa Exp $
+ * $Id: MushGameLogic.cpp,v 1.31 2006/10/02 20:28:11 southa Exp $
  * $Log: MushGameLogic.cpp,v $
+ * Revision 1.31  2006/10/02 20:28:11  southa
+ * Object lookup and target selection
+ *
  * Revision 1.30  2006/10/02 17:25:05  southa
  * Object lookup and target selection
  *
@@ -139,10 +142,12 @@ MushGamePiece&
 MushGameLogic::PieceLookup(const std::string& inName) const
 {
     MushGamePiece *pPiece = NULL;
-    Mushware::U8 objType;
+    std::string objType;
     Mushware::U32 objNum;
     MushGameUtil::ObjectNameDecode(objType, objNum, inName);
-    switch (objType)
+
+    MUSHCOREASSERT(objType.size() > 0);
+    switch (objType[0])
     {
         case MushGameData::kCharPlayer:
             pPiece = &SaveData().Players().Get(objNum);
@@ -159,10 +164,14 @@ void
 MushGameLogic::TargetPieceSearch(std::string& ioID,
                                  Mushware::tVal& ioDistSquared,
                                  const Mushware::t4Val& inPos,
-                                 Mushware::U8 inObjType,
+                                 const std::string& inObjType,
                                  const std::string& inExcludeID) const
 {
-    switch (inObjType)
+    if (inObjType.size() < 1)
+    {
+        throw MushcoreDataFail("Object type of zero length");
+    }
+    switch (inObjType[0])
     {
         case MushGameData::kCharPlayer:
         {
@@ -202,10 +211,16 @@ MushGameLogic::TargetPieceSelect(const MushMeshPosticity& inPost, const std::str
     
     const t4Val& objPos = inPost.Pos();
     
-    for (U32 i=0; i<inTypes.size(); ++i)
+    std::string::size_type pos = 0;
+    std::string::size_type commaPos = 0;
+    
+    do
     {
-        TargetPieceSearch(pieceID, distToPieceSquared, objPos, inTypes[i], inExcludeID);
-    }
+        commaPos = inTypes.find(',', pos);
+        TargetPieceSearch(pieceID, distToPieceSquared, objPos, inTypes.substr(pos, commaPos - pos), inExcludeID);
+        pos = commaPos + 1;
+    } while (pieceID == "" && commaPos != string::npos);
+    
     return pieceID;
 }
 
@@ -292,7 +307,7 @@ MushGameLogic::JobMessageConsume(MushGameLogic& ioLogic, const MushGameMessage& 
 void
 MushGameLogic::ServerPlayerMessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage)
 {
-    Mushware::U8 objType;
+    std::string objType;
     Mushware::U32 objNum;
     MushGameUtil::ObjectNameDecode(objType, objNum, inMessage.Id());
     

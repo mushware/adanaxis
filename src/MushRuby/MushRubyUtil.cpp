@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } gSaMBKSS/9FVf/ypP8x5kA
 /*
- * $Id: MushRubyUtil.cpp,v 1.14 2006/08/20 14:19:23 southa Exp $
+ * $Id: MushRubyUtil.cpp,v 1.15 2006/10/02 20:28:11 southa Exp $
  * $Log: MushRubyUtil.cpp,v $
+ * Revision 1.15  2006/10/02 20:28:11  southa
+ * Object lookup and target selection
+ *
  * Revision 1.14  2006/08/20 14:19:23  southa
  * Seek operation
  *
@@ -350,3 +353,21 @@ MushRubyUtil::Freeze(Mushware::tRubyValue& ioValue)
 {
     OBJ_FREEZE(ioValue);
 }
+
+void
+MushRubyUtil::HashValueSet(Mushware::tRubyValue inHash, Mushware::tRubyValue inKey, Mushware::tRubyValue inValue)
+{
+    if (!rb_obj_is_instance_of(inHash, rb_cHash))
+	{
+		throw MushRubyFail("Cannot set hash element in non-hash type");
+	}
+    rb_hash_aset(inHash, inKey, inValue);
+}
+
+Mushware::tRubyValue
+MushRubyUtil::SymbolToValue(Mushware::tRubyID inSymbol)
+{
+	return ID2SYM(inSymbol);
+}
+
+

@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } YCa3eNmcxUH2q0Oxh6SpTA
 /*
- * $Id: AdanaxisPieceKhazi.cpp,v 1.22 2006/10/02 20:28:10 southa Exp $
+ * $Id: AdanaxisPieceKhazi.cpp,v 1.23 2006/10/03 14:06:51 southa Exp $
  * $Log: AdanaxisPieceKhazi.cpp,v $
+ * Revision 1.23  2006/10/03 14:06:51  southa
+ * Khazi and projectile creation
+ *
  * Revision 1.22  2006/10/02 20:28:10  southa
  * Object lookup and target selection
  *
@@ -330,7 +333,7 @@ AdanaxisPieceKhazi::RubyCreate(Mushware::tRubyValue inSelf, Mushware::tRubyValue
     AdanaxisSaveData::tKhaziList::key_type key = dataRef.NextKey();
     
     ostringstream idStream;
-    idStream << "k:" << key;
+    idStream << key;
     
 	AdanaxisPieceKhazi& objRef = *new AdanaxisPieceKhazi(idStream.str(), MushRubyValue(inArg0));
     dataRef.Give(&objRef, key);

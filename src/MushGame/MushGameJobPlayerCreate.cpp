@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } sMWR8ancG1E3YqBNuEjJWw
 /*
- * $Id: MushGameJobPlayerCreate.cpp,v 1.11 2006/06/01 15:39:22 southa Exp $
+ * $Id: MushGameJobPlayerCreate.cpp,v 1.12 2006/10/02 17:25:05 southa Exp $
  * $Log: MushGameJobPlayerCreate.cpp,v $
+ * Revision 1.12  2006/10/02 17:25:05  southa
+ * Object lookup and target selection
+ *
  * Revision 1.11  2006/06/01 15:39:22  southa
  * DrawArray verification and fixes
  *
@@ -109,7 +112,7 @@ MushGameJobPlayerCreate::WakeConsume(MushGameLogic& ioLogic, const MushGameMessa
 void
 MushGameJobPlayerCreate::JoinConfirmConsume(MushGameLogic& ioLogic, const MushGameMessageJoinConfirm& inMessage)
 {
-    Mushware::U8 objType;
+    std::string objType;
     Mushware::U32 objNum;
     MushGameUtil::ObjectNameDecode(objType, objNum, inMessage.NewPlayerID());
     if (ioLogic.SaveData().Players().Exists(objNum))

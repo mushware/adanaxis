@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } pz9Ij69Gp+RQuOHP0yYqgg
 /*
- * $Id: MushGameLogic.h,v 1.20 2006/10/02 17:25:05 southa Exp $
+ * $Id: MushGameLogic.h,v 1.21 2006/10/02 20:28:11 southa Exp $
  * $Log: MushGameLogic.h,v $
+ * Revision 1.21  2006/10/02 20:28:11  southa
+ * Object lookup and target selection
+ *
  * Revision 1.20  2006/10/02 17:25:05  southa
  * Object lookup and target selection
  *
@@ -114,7 +117,7 @@ public:
     virtual Mushware::tMsec FrameMsec(void) const { return ConstVolatileData().FrameMsec(); }
     virtual MushGamePiece& PieceLookup(const std::string& inName) const;
     virtual void TargetPieceSearch(std::string& ioID, Mushware::tVal& ioDistSquared, const Mushware::t4Val& inPos,
-                                   Mushware::U8 inObjType,
+                                   const std::string& inObjType,
                                    const std::string& inExcludeID) const;
     virtual std::string TargetPieceSelect(const MushMeshPosticity& inPost, const std::string& inTypes,
                                           const std::string& inExcludeID) const;

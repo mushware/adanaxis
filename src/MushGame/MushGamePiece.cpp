@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } rVCNunlW+wZoonHnGB5a7Q
 /*
- * $Id: MushGamePiece.cpp,v 1.13 2006/10/02 20:28:11 southa Exp $
+ * $Id: MushGamePiece.cpp,v 1.14 2006/10/03 14:06:51 southa Exp $
  * $Log: MushGamePiece.cpp,v $
+ * Revision 1.14  2006/10/03 14:06:51  southa
+ * Khazi and projectile creation
+ *
  * Revision 1.13  2006/10/02 20:28:11  southa
  * Object lookup and target selection
  *
@@ -76,7 +79,6 @@ using namespace std;
 Mushware::tRubyValue MushGamePiece::m_rubyKlass = Mushware::kRubyQnil;
 
 MushGamePiece::MushGamePiece(const std::string& inID) :
-    m_id(inID),
     m_post(MushMeshPosticity::Identity()),
     m_expireFlag(false),
     m_rubyObj(Mushware::kRubyQnil)
@@ -94,6 +96,7 @@ MushGamePiece::MessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inM
 void
 MushGamePiece::Load(Mushware::tRubyValue inSelf)
 {
+    MushRubyUtil::InstanceVarSet(inSelf, MushRubyIntern::ATm_id(), MushRubyValue(m_id).Value());
     {
         tRubyValue value = MushRubyUtil::InstanceVar(inSelf, MushRubyIntern::ATm_post());
         if (value == kRubyQnil)
@@ -110,6 +113,7 @@ MushGamePiece::Load(Mushware::tRubyValue inSelf)
 void
 MushGamePiece::Save(Mushware::tRubyValue inSelf)
 {
+    m_id = MushRubyValue(MushRubyUtil::InstanceVar(inSelf, MushRubyIntern::ATm_id())).String();
     {
         tRubyValue value = MushRubyUtil::InstanceVar(inSelf, MushRubyIntern::ATm_post());
         if (value == kRubyQnil)
@@ -136,6 +140,15 @@ MushGamePiece::RubyPieceConstructor(const std::string& inID, const MushRubyValue
                                     const MushRubyValue& inKlass)
 {
     /*** This function is called from constructors */
+
+    if (!inParams.IsNil())
+    {
+        /* Add the element id_suffix => inId so that the ruby object can calculate its ID.
+         * This is saved into the C++ m_id by mSave
+         */
+        MushRubyUtil::HashValueSet(inParams.Value(), MushRubyUtil::SymbolToValue(MushRubyIntern::id_suffix()),
+                                   MushRubyValue(inID).Value());
+    }
     
     // Create the registered object
     RubyObjSet(MushRubyExec::Sgl().Call(inKlass,
@@ -145,9 +158,6 @@ MushGamePiece::RubyPieceConstructor(const std::string& inID, const MushRubyValue
     * embedded data pointer
     */
     MushRubyUtil::DataObjectWrapNew(inKlass, RubyObj(), this);
-    
-    // Set the ruby instance variable @m_id to the C++ ID
-    MushRubyUtil::InstanceVarSet(RubyObj().Value(), MushRubyIntern::ATm_id(), MushRubyValue(inID).Value());
     
     /* Save the ruby variables (extracted from inParams by the ruby initialize method)
     * into this C++ object

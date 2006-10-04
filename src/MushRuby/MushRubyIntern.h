@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } n1eaCj2fb8dNPgbT0uOuEQ
 /*
- * $Id: MushRubyIntern.h,v 1.20 2006/09/07 10:02:38 southa Exp $
+ * $Id: MushRubyIntern.h,v 1.21 2006/10/03 14:06:52 southa Exp $
  * $Log: MushRubyIntern.h,v $
+ * Revision 1.21  2006/10/03 14:06:52  southa
+ * Khazi and projectile creation
+ *
  * Revision 1.20  2006/09/07 10:02:38  southa
  * Shader interface
  *
@@ -118,6 +121,7 @@ public:
 	MUSHRUBYINTERN_DECLARE(event);
 	MUSHRUBYINTERN_DECLARE(extent);
 	MUSHRUBYINTERN_DECLARE(fragment_shader);
+	MUSHRUBYINTERN_DECLARE(id_suffix);
 	MUSHRUBYINTERN_DECLARE(inspect);
 	MUSHRUBYINTERN_DECLARE(Integer);
 	MUSHRUBYINTERN_DECLARE(klass);
@@ -156,6 +160,7 @@ public:
 	MUSHRUBYINTERN_DECLARE_AT(_embeddedDataPtr);
 	MUSHRUBYINTERN_DECLARE_AT(m_expireFlag);
 	MUSHRUBYINTERN_DECLARE_AT(m_id);
+	MUSHRUBYINTERN_DECLARE_AT(m_idSuffix);
 	MUSHRUBYINTERN_DECLARE_AT(m_initialVelocity);
     MUSHRUBYINTERN_DECLARE_AT(m_lifeMsec);
 	MUSHRUBYINTERN_DECLARE_AT(m_meshName);
