@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } B8mSgw4FqoBVewtmsej6Zw
 /*
- * $Id: AdanaxisUtil.h,v 1.10 2006/07/19 14:34:52 southa Exp $
+ * $Id: AdanaxisUtil.h,v 1.11 2006/08/01 17:21:30 southa Exp $
  * $Log: AdanaxisUtil.h,v $
+ * Revision 1.11  2006/08/01 17:21:30  southa
+ * River demo
+ *
  * Revision 1.10  2006/07/19 14:34:52  southa
  * Flare effects
  *
@@ -71,6 +74,7 @@ public:
     static void TestSkinsCreate(AdanaxisLogic& ioLogic);
     static void EmberCreate(AdanaxisLogic& ioLogic, const MushMeshPosticity& inPost, Mushware::tVal inSize, Mushware::tVal inSpeed);
     static void FlareCreate(AdanaxisLogic& ioLogic, const MushMeshPosticity& inPost, Mushware::tVal inSize, Mushware::tVal inSpeed);
+    static void ExploCreate(AdanaxisLogic& ioLogic, const MushMeshPosticity& inPost, Mushware::tVal inSize, Mushware::tVal inSpeed);
     
     static AdanaxisAppHandler& AppHandler(void);
     static AdanaxisMeshLibrary& MeshLibrary(void);

@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } Xbi0vrfUMDnmd9NKsSwjUQ
 /*
- * $Id: AdanaxisPieceDeco.cpp,v 1.24 2006/09/09 11:16:39 southa Exp $
+ * $Id: AdanaxisPieceDeco.cpp,v 1.25 2006/09/30 13:46:33 southa Exp $
  * $Log: AdanaxisPieceDeco.cpp,v $
+ * Revision 1.25  2006/09/30 13:46:33  southa
+ * Seek and patrol
+ *
  * Revision 1.24  2006/09/09 11:16:39  southa
  * One-time vertex buffer generation
  *
@@ -144,7 +147,22 @@ AdanaxisPieceDeco::Render(MushGLJobRender& outRender,
     MushcoreUtil::Constrain<tVal>(alpha, 0, 1);
 
     inRender.ColourZMiddleSet(inRender.ColourZMiddle().ElementwiseProduct(t4Val(1,1,1,alpha)));
-        
+    
+    MushMesh4Mesh::tMaterialRef& matRef = MeshWRef().MaterialRefWRef(0);
+    MushGLMaterial *pMaterial = dynamic_cast<MushGLMaterial *>(&matRef.WRef());
+    
+    if (pMaterial != NULL)
+    {
+        std::string materialName = pMaterial->TexRef(0).Name();
+        if (materialName.substr(0, 5) == "explo")
+        {
+            ostringstream texName;
+            texName << "explo1-tex-" << 1 + (U32) ((1-alpha) * 39);
+            std::string newMaterial = texName.str();
+            pMaterial->TexNameSet(newMaterial);
+        }
+    }
+    
     return inRender.RenderJobCreate(outRender, renderSpec, Mesh());
 }
 

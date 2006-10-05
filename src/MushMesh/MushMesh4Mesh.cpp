@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } oYzojPrY+iq5d6Z2oF715A
 /*
- * $Id: MushMesh4Mesh.cpp,v 1.20 2006/07/19 14:34:52 southa Exp $
+ * $Id: MushMesh4Mesh.cpp,v 1.21 2006/09/09 11:16:41 southa Exp $
  * $Log: MushMesh4Mesh.cpp,v $
+ * Revision 1.21  2006/09/09 11:16:41  southa
+ * One-time vertex buffer generation
+ *
  * Revision 1.20  2006/07/19 14:34:52  southa
  * Flare effects
  *
@@ -563,6 +566,18 @@ Mushware::U32
 MushMesh4Mesh::NumExtruders(void) const
 {
 	return m_extruders.size();
+}
+
+const std::string&
+MushMesh4Mesh::MaterialName(Mushware::U32 inIndex) const
+{
+    if (inIndex <= m_materials.size())
+	{
+        ostringstream message;
+        message << "Material of index" << inIndex << " does not exist";
+		throw MushcoreRequestFail(message.str());	
+	}
+	return m_materials[inIndex].Name();
 }
 
 void

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } YrK9KiG4XjKqbWo1rVGU4w
 /*
- * $Id: MushMesh4Mesh.h,v 1.21 2006/07/25 20:31:04 southa Exp $
+ * $Id: MushMesh4Mesh.h,v 1.22 2006/09/09 11:16:41 southa Exp $
  * $Log: MushMesh4Mesh.h,v $
+ * Revision 1.22  2006/09/09 11:16:41  southa
+ * One-time vertex buffer generation
+ *
  * Revision 1.21  2006/07/25 20:31:04  southa
  * Scanner work
  *
@@ -187,11 +190,17 @@ public:
 	MushMesh4Extruder *ExtruderWGet(Mushware::U32 inNum);
 	Mushware::U32 NumExtruders(void) const;
 	
+    const std::string& MaterialName(Mushware::U32 inIndex) const;
 	void MaterialNameSet(const std::string& inName, Mushware::U32 inIndex);
 	const MushMesh4Material& MaterialRef(Mushware::U32 inIndex) const
 	{
 		MushcoreUtil::DebugBoundsCheck(inIndex, m_materials.size());
 		return m_materials[inIndex].Ref();
+	}
+	tMaterialRef& MaterialRefWRef(Mushware::U32 inIndex)
+	{
+		MushcoreUtil::DebugBoundsCheck(inIndex, m_materials.size());
+		return m_materials[inIndex]; //:ignore
 	}
 	Mushware::U32 NumMaterials(void) const { return m_materials.size(); }
 	

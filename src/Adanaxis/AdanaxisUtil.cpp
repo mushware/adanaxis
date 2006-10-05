@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } XsVs/rr7rRJFJzKi6eatxg
 /*
- * $Id: AdanaxisUtil.cpp,v 1.30 2006/08/01 17:21:30 southa Exp $
+ * $Id: AdanaxisUtil.cpp,v 1.31 2006/09/09 11:16:40 southa Exp $
  * $Log: AdanaxisUtil.cpp,v $
+ * Revision 1.31  2006/09/09 11:16:40  southa
+ * One-time vertex buffer generation
+ *
  * Revision 1.30  2006/08/01 17:21:30  southa
  * River demo
  *
@@ -335,6 +338,7 @@ AdanaxisUtil::FlareCreate(AdanaxisLogic& ioLogic, const MushMeshPosticity& inPos
     decoListRef.push_back(AdanaxisPieceDeco("flareObj"));
     AdanaxisVolatileData::tDeco& objRef = decoListRef.back();
         
+    objRef.LifeMsecSet(400);
     objRef.ExpiryMsecSet(ioLogic.FrameMsec() + objRef.LifeMsec());
     
     objRef.PostSet(inPost);
@@ -373,5 +377,34 @@ AdanaxisUtil::EmberCreate(AdanaxisLogic& ioLogic, const MushMeshPosticity& inPos
     objRef.MeshWRef().TexCoordDelegateSet(MushMesh4Mesh::tDataRef(objName));
     objRef.SharedBuffersNameSet(objName);
     
+    
     objRef.MeshWRef().ApplyScale(t4Val(inSize, inSize, inSize, inSize));
+}
+
+
+void
+AdanaxisUtil::ExploCreate(AdanaxisLogic& ioLogic, const MushMeshPosticity& inPost, Mushware::tVal inSize, Mushware::tVal inSpeed)
+{
+    ostringstream objNameStream;
+    objNameStream << "explo1";
+    std::string objName = objNameStream.str();
+    
+    AdanaxisVolatileData::tDecoList& decoListRef = ioLogic.VolatileData().DecoListWRef();
+    
+    decoListRef.push_back(AdanaxisPieceDeco("exploObj"));
+    AdanaxisVolatileData::tDeco& objRef = decoListRef.back();
+    
+    objRef.LifeMsecSet(2000);
+    objRef.ExpiryMsecSet(ioLogic.FrameMsec() + objRef.LifeMsec());
+    
+    objRef.PostSet(inPost);
+    objRef.PostWRef().AngPosWRef().ToRotationIdentitySet();
+    objRef.PostWRef().AngVelWRef().ToRotationIdentitySet();
+    
+    objRef.MeshWRef() = *MushcoreData<MushMesh4Mesh>::Sgl().Get(objName);
+    objRef.MeshWRef().TexCoordDelegateSet(MushMesh4Mesh::tDataRef(objName));
+    objRef.SharedBuffersNameSet(objName);
+    
+    objRef.MeshWRef().ApplyScale(t4Val(inSize, inSize, inSize, inSize));
+    objRef.SharedBuffersRefWRef().WRef().VertexContextNumSet(0);
 }

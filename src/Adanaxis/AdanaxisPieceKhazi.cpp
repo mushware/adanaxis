@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } YCa3eNmcxUH2q0Oxh6SpTA
 /*
- * $Id: AdanaxisPieceKhazi.cpp,v 1.23 2006/10/03 14:06:51 southa Exp $
+ * $Id: AdanaxisPieceKhazi.cpp,v 1.24 2006/10/04 13:35:22 southa Exp $
  * $Log: AdanaxisPieceKhazi.cpp,v $
+ * Revision 1.24  2006/10/04 13:35:22  southa
+ * Selective targetting
+ *
  * Revision 1.23  2006/10/03 14:06:51  southa
  * Khazi and projectile creation
  *
@@ -309,6 +312,7 @@ AdanaxisPieceKhazi::Explode(MushGameLogic& ioLogic, const MushGameMessageCollisi
 			// projectileRef.SharedBuffersRefSet(SharedBuffersRef());
         }
     }
+    AdanaxisUtil::ExploCreate(dynamic_cast<AdanaxisLogic&>(ioLogic), Post(), 10, 0);
     AdanaxisUtil::FlareCreate(dynamic_cast<AdanaxisLogic&>(ioLogic), Post(), 20, 0);
 
     for (U32 i=0; i<30; ++i)
