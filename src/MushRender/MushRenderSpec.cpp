@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } ct6tn+dNsUgrYUjoy0CuvQ
 /*
- * $Id: MushRenderSpec.cpp,v 1.9 2006/06/01 15:39:38 southa Exp $
+ * $Id: MushRenderSpec.cpp,v 1.10 2006/09/09 11:16:42 southa Exp $
  * $Log: MushRenderSpec.cpp,v $
+ * Revision 1.10  2006/09/09 11:16:42  southa
+ * One-time vertex buffer generation
+ *
  * Revision 1.9  2006/06/01 15:39:38  southa
  * DrawArray verification and fixes
  *
@@ -88,6 +91,7 @@ MushRenderSpec::AutoPrint(std::ostream& ioOut) const
     ioOut << "projection=" << m_projection << ", ";
     ioOut << "view=" << m_view << ", ";
     ioOut << "model=" << m_model << ", ";
+    ioOut << "scale=" << m_scale << ", ";
     ioOut << "buffersRef=" << m_buffersRef << ", ";
     ioOut << "sharedBuffersRef=" << m_sharedBuffersRef << ", ";
     ioOut << "useSharedVertices=" << m_useSharedVertices;
@@ -113,6 +117,10 @@ MushRenderSpec::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
     else if (inTagStr == "model")
     {
         ioIn >> m_model;
+    }
+    else if (inTagStr == "scale")
+    {
+        ioIn >> m_scale;
     }
     else if (inTagStr == "buffersRef")
     {
@@ -141,6 +149,8 @@ MushRenderSpec::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_view;
     ioOut.TagSet("model");
     ioOut << m_model;
+    ioOut.TagSet("scale");
+    ioOut << m_scale;
     ioOut.TagSet("buffersRef");
     ioOut << m_buffersRef;
     ioOut.TagSet("sharedBuffersRef");
@@ -148,4 +158,4 @@ MushRenderSpec::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("useSharedVertices");
     ioOut << m_useSharedVertices;
 }
-//%outOfLineFunctions } H8rff2bchYmwoVCKq/NZxg
+//%outOfLineFunctions } 2uWPZMogzA9bAG7j6rjb8w

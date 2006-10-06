@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } QiW5KaWfX1mBGolg1jxMIg
 /*
- * $Id: MushGamePiece.h,v 1.16 2006/10/02 20:28:11 southa Exp $
+ * $Id: MushGamePiece.h,v 1.17 2006/10/03 14:06:52 southa Exp $
  * $Log: MushGamePiece.h,v $
+ * Revision 1.17  2006/10/03 14:06:52  southa
+ * Khazi and projectile creation
+ *
  * Revision 1.16  2006/10/02 20:28:11  southa
  * Object lookup and target selection
  *
@@ -116,6 +119,7 @@ private:
     std::string m_meshName; //:readwrite
     MushMeshPosticity m_post; //:readwrite :wref
     MushMesh4Mesh m_mesh; //:readwrite :wref
+    Mushware::t4Val m_meshScale; //:readwrite :wref
     bool m_expireFlag; //:readwrite    
     
     MushGLBuffers::tDataRef m_buffersRef; //:read :wref
@@ -139,6 +143,10 @@ public:
     void MeshSet(const MushMesh4Mesh& inValue) { m_mesh=inValue; }
     // Writable reference for m_mesh
     MushMesh4Mesh& MeshWRef(void) { return m_mesh; }
+    const Mushware::t4Val& MeshScale(void) const { return m_meshScale; }
+    void MeshScaleSet(const Mushware::t4Val& inValue) { m_meshScale=inValue; }
+    // Writable reference for m_meshScale
+    Mushware::t4Val& MeshScaleWRef(void) { return m_meshScale; }
     const bool& ExpireFlag(void) const { return m_expireFlag; }
     void ExpireFlagSet(const bool& inValue) { m_expireFlag=inValue; }
     const MushGLBuffers::tDataRef& BuffersRef(void) const { return m_buffersRef; }
@@ -156,7 +164,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } FcEO1p862PQwALDKyblq/Q
+//%classPrototypes } 3+rrSZpJKH/kgPFsR4fEqg
 };
 //%inlineHeader {
 inline std::ostream&

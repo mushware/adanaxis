@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } XsVs/rr7rRJFJzKi6eatxg
 /*
- * $Id: AdanaxisUtil.cpp,v 1.31 2006/09/09 11:16:40 southa Exp $
+ * $Id: AdanaxisUtil.cpp,v 1.32 2006/10/05 15:39:17 southa Exp $
  * $Log: AdanaxisUtil.cpp,v $
+ * Revision 1.32  2006/10/05 15:39:17  southa
+ * Explosion handling
+ *
  * Revision 1.31  2006/09/09 11:16:40  southa
  * One-time vertex buffer generation
  *
@@ -350,7 +353,7 @@ AdanaxisUtil::FlareCreate(AdanaxisLogic& ioLogic, const MushMeshPosticity& inPos
     objRef.MeshWRef().TexCoordDelegateSet(MushMesh4Mesh::tDataRef(objName));
     objRef.SharedBuffersNameSet(objName);
     
-    objRef.MeshWRef().ApplyScale(t4Val(inSize, inSize, inSize, inSize));
+    objRef.MeshScaleSet(t4Val(inSize, inSize, inSize, inSize));
 }
 
 void
@@ -378,7 +381,7 @@ AdanaxisUtil::EmberCreate(AdanaxisLogic& ioLogic, const MushMeshPosticity& inPos
     objRef.SharedBuffersNameSet(objName);
     
     
-    objRef.MeshWRef().ApplyScale(t4Val(inSize, inSize, inSize, inSize));
+    objRef.MeshScaleSet(t4Val(inSize, inSize, inSize, inSize));
 }
 
 
@@ -405,6 +408,5 @@ AdanaxisUtil::ExploCreate(AdanaxisLogic& ioLogic, const MushMeshPosticity& inPos
     objRef.MeshWRef().TexCoordDelegateSet(MushMesh4Mesh::tDataRef(objName));
     objRef.SharedBuffersNameSet(objName);
     
-    objRef.MeshWRef().ApplyScale(t4Val(inSize, inSize, inSize, inSize));
-    objRef.SharedBuffersRefWRef().WRef().VertexContextNumSet(0);
+    objRef.MeshScaleSet(t4Val(inSize, inSize, inSize, inSize));
 }

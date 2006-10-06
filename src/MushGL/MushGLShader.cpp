@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } bQ20AxcHOjJNfCG2TxDNVg
 /*
- * $Id: MushGLShader.cpp,v 1.5 2006/09/10 10:30:52 southa Exp $
+ * $Id: MushGLShader.cpp,v 1.6 2006/09/12 15:28:50 southa Exp $
  * $Log: MushGLShader.cpp,v $
+ * Revision 1.6  2006/09/12 15:28:50  southa
+ * World sphere
+ *
  * Revision 1.5  2006/09/10 10:30:52  southa
  * Shader billboarding
  *
@@ -268,7 +271,7 @@ MushGLShader::AttribsApply(const MushGLAttribs& inAttribs)
         case MushMesh4Mesh::kTransformTypeBillboard:
         {
             modelViewMattress = inAttribs.View() * inAttribs.Model();
-            modelViewMattress.MatrixSet(Mushware::t4x4Val::Identity());
+            modelViewMattress.MatrixSet(inAttribs.Model().Matrix());
         }
         break;
             

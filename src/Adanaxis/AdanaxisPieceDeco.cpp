@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } Xbi0vrfUMDnmd9NKsSwjUQ
 /*
- * $Id: AdanaxisPieceDeco.cpp,v 1.25 2006/09/30 13:46:33 southa Exp $
+ * $Id: AdanaxisPieceDeco.cpp,v 1.26 2006/10/05 15:39:17 southa Exp $
  * $Log: AdanaxisPieceDeco.cpp,v $
+ * Revision 1.26  2006/10/05 15:39:17  southa
+ * Explosion handling
+ *
  * Revision 1.25  2006/09/30 13:46:33  southa
  * Seek and patrol
  *
@@ -120,7 +123,7 @@ AdanaxisPieceDeco::Move(MushGameLogic& ioLogic, const tVal inFrameSlice)
     if (meshScale < 0) meshScale = 0;
     
     
-    MeshWRef().ApplyScale(t4Val(meshScale, meshScale, meshScale, meshScale));
+    MeshScaleSet(MeshScale().ElementwiseProduct(t4Val(meshScale, meshScale, meshScale, meshScale)));
     
     if (ioLogic.FrameMsec() > m_expiryMsec)
     {
@@ -136,7 +139,8 @@ AdanaxisPieceDeco::Render(MushGLJobRender& outRender,
     MushRenderSpec renderSpec;
     renderSpec.BuffersRefSet(BuffersRef());
     renderSpec.SharedBuffersRefSet(SharedBuffersRef());
-
+    renderSpec.ScaleSet(MeshScale());
+    
     MushMeshOps::PosticityToMattress(renderSpec.ModelWRef(), Post());
     MushMeshOps::PosticityToMattress(renderSpec.ViewWRef(), inCamera.Post());
     renderSpec.ViewWRef().InPlaceInvert();

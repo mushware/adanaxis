@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } rQkTih3VUd7Xp8cDeV3ZYA
 /*
- * $Id: AdanaxisRender.cpp,v 1.49 2006/10/04 13:35:23 southa Exp $
+ * $Id: AdanaxisRender.cpp,v 1.50 2006/10/05 15:39:17 southa Exp $
  * $Log: AdanaxisRender.cpp,v $
+ * Revision 1.50  2006/10/05 15:39:17  southa
+ * Explosion handling
+ *
  * Revision 1.49  2006/10/04 13:35:23  southa
  * Selective targetting
  *
@@ -317,7 +320,7 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
         
         MushRenderMesh *pRenderMesh = &wireframeRender;
         
-        if ((pLogic->FrameMsec() % 3000) > 0)
+        if ((pLogic->FrameMsec() % 1000) > 1000)
         {
             pRenderMesh = &solidRender;
         }

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } XKDM1ZJgQpb3nz4x0n57Og
 /*
- * $Id: MushRenderMeshShader.cpp,v 1.3 2006/09/09 15:59:28 southa Exp $
+ * $Id: MushRenderMeshShader.cpp,v 1.4 2006/09/10 10:30:53 southa Exp $
  * $Log: MushRenderMeshShader.cpp,v $
+ * Revision 1.4  2006/09/10 10:30:53  southa
+ * Shader billboarding
+ *
  * Revision 1.3  2006/09/09 15:59:28  southa
  * Shader colour calculations
  *
@@ -119,7 +122,14 @@ MushRenderMeshShader::RenderJobCreate(MushGLJobRender& outRender,
         MushGLAttribs& attribsRef = outRender.AttribsWRef();
         attribsRef.ProjectionSet(inSpec.Projection());
         attribsRef.ViewSet(inSpec.View());
-        attribsRef.ModelSet(inSpec.Model());
+        if (p4Mesh->TransformType() == MushMesh4Mesh::kTransformTypeBillboard)
+        {
+            attribsRef.ModelSet(inSpec.ScaledModelBillboardMattress());
+        }
+        else
+        {
+            attribsRef.ModelSet(inSpec.ScaledModelMattress());
+        }
         attribsRef.ColoursWRef().resize(0);
         attribsRef.ColoursWRef().push_back(t4GLVal(ColourZLeft()));
         attribsRef.ColoursWRef().push_back(t4GLVal(ColourZMiddle()));

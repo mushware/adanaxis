@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } rVCNunlW+wZoonHnGB5a7Q
 /*
- * $Id: MushGamePiece.cpp,v 1.14 2006/10/03 14:06:51 southa Exp $
+ * $Id: MushGamePiece.cpp,v 1.15 2006/10/04 13:35:24 southa Exp $
  * $Log: MushGamePiece.cpp,v $
+ * Revision 1.15  2006/10/04 13:35:24  southa
+ * Selective targetting
+ *
  * Revision 1.14  2006/10/03 14:06:51  southa
  * Khazi and projectile creation
  *
@@ -80,6 +83,7 @@ Mushware::tRubyValue MushGamePiece::m_rubyKlass = Mushware::kRubyQnil;
 
 MushGamePiece::MushGamePiece(const std::string& inID) :
     m_post(MushMeshPosticity::Identity()),
+    m_meshScale(Mushware::t4Val::MultiplicativeIdentity()),
     m_expireFlag(false),
     m_rubyObj(Mushware::kRubyQnil)
 {
@@ -305,6 +309,7 @@ MushGamePiece::AutoPrint(std::ostream& ioOut) const
     ioOut << "meshName=" << m_meshName << ", ";
     ioOut << "post=" << m_post << ", ";
     ioOut << "mesh=" << m_mesh << ", ";
+    ioOut << "meshScale=" << m_meshScale << ", ";
     ioOut << "expireFlag=" << m_expireFlag << ", ";
     ioOut << "buffersRef=" << m_buffersRef << ", ";
     ioOut << "sharedBuffersRef=" << m_sharedBuffersRef << ", ";
@@ -335,6 +340,10 @@ MushGamePiece::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& i
     else if (inTagStr == "mesh")
     {
         ioIn >> m_mesh;
+    }
+    else if (inTagStr == "meshScale")
+    {
+        ioIn >> m_meshScale;
     }
     else if (inTagStr == "expireFlag")
     {
@@ -369,6 +378,8 @@ MushGamePiece::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_post;
     ioOut.TagSet("mesh");
     ioOut << m_mesh;
+    ioOut.TagSet("meshScale");
+    ioOut << m_meshScale;
     ioOut.TagSet("expireFlag");
     ioOut << m_expireFlag;
     ioOut.TagSet("buffersRef");
@@ -378,4 +389,4 @@ MushGamePiece::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("rubyObj");
     ioOut << m_rubyObj;
 }
-//%outOfLineFunctions } cgTL3a7H5w8YqO/DRKOAEg
+//%outOfLineFunctions } Ry6Zyq82248SBIrpgFgdGQ

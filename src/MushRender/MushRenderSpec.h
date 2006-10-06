@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 6hLRNoZfeBvP570tKfB/gA
 /*
- * $Id: MushRenderSpec.h,v 1.13 2006/09/07 16:38:52 southa Exp $
+ * $Id: MushRenderSpec.h,v 1.14 2006/09/09 11:16:42 southa Exp $
  * $Log: MushRenderSpec.h,v $
+ * Revision 1.14  2006/09/09 11:16:42  southa
+ * One-time vertex buffer generation
+ *
  * Revision 1.13  2006/09/07 16:38:52  southa
  * Vertex shader
  *
@@ -78,18 +81,22 @@ class MushRenderSpec : public MushcoreVirtualObject
 public:
     typedef Mushware::t4x4o4Val tMattress;
     
-    MushRenderSpec() : m_useSharedVertices(true) {}
+    MushRenderSpec() : m_scale(Mushware::t4Val(1.0, 1.0, 1.0, 1.0)), m_useSharedVertices(true) {}
     virtual ~MushRenderSpec() {}
     
-    const tMattress ModelToEyeMattress(void) const { return m_view * m_model; }
+    const tMattress ModelToEyeMattress(void) const { return m_view * ScaledModelMattress(); }
     const tMattress ModelToClipMattress(void) const { return m_projection.Mattress() * ModelToEyeMattress(); }
     const tMattress ModelToClipBillboardMattress(void) const;
-
+    const tMattress ScaledModelMattress(void) const { return tMattress(ScaleMatrix() * m_model.Matrix(), m_model.Offset()); }
+    const tMattress ScaledModelBillboardMattress(void) const;
+    const tMattress::tMatrix ScaleMatrix(void) const;
+    
 private:
     MushGLProjection m_projection; //:readwrite :wref
     tMattress m_view; //:readwrite :wref
     tMattress m_model; //:readwrite :wref
-
+    Mushware::t4Val m_scale; //:readwrite :wref
+    
     MushGLBuffers::tDataRef m_buffersRef; //:readwrite
     MushGLBuffers::tSharedDataRef m_sharedBuffersRef; //:readwrite
     bool m_useSharedVertices; //:readwrite
@@ -108,6 +115,10 @@ public:
     void ModelSet(const tMattress& inValue) { m_model=inValue; }
     // Writable reference for m_model
     tMattress& ModelWRef(void) { return m_model; }
+    const Mushware::t4Val& Scale(void) const { return m_scale; }
+    void ScaleSet(const Mushware::t4Val& inValue) { m_scale=inValue; }
+    // Writable reference for m_scale
+    Mushware::t4Val& ScaleWRef(void) { return m_scale; }
     const MushGLBuffers::tDataRef& BuffersRef(void) const { return m_buffersRef; }
     void BuffersRefSet(const MushGLBuffers::tDataRef& inValue) { m_buffersRef=inValue; }
     const MushGLBuffers::tSharedDataRef& SharedBuffersRef(void) const { return m_sharedBuffersRef; }
@@ -121,7 +132,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } l9x9n+sfExdm5RF6z4J1RA
+//%classPrototypes } Ii31i1EtUxNlmWmRYW4s5Q
 };
 
 inline const MushRenderSpec::tMattress
@@ -130,9 +141,29 @@ MushRenderSpec::ModelToClipBillboardMattress(void) const
     tMattress billModel = ModelToEyeMattress();
     
     // billModel.MatrixSet(MushMeshTools::MatrixRotateInAxis(MushMeshTools::kAxisXY, MushcoreUtil::RandomVal(0,2*M_PI)));    
-    billModel.MatrixSet(Mushware::t4x4Val::Identity());
+    billModel.MatrixSet(ScaleMatrix());
     
     return m_projection.Mattress() * billModel;
+}
+
+inline const MushRenderSpec::tMattress
+MushRenderSpec::ScaledModelBillboardMattress(void) const
+{
+    tMattress billModel = Model();
+    
+    billModel.MatrixSet(ScaleMatrix());
+    
+    return billModel;
+}
+
+inline const MushRenderSpec::tMattress::tMatrix
+MushRenderSpec::ScaleMatrix(void) const
+{
+    return tMattress::tMatrix(
+                              Mushware::t4Val(m_scale.X(), 0, 0, 0),
+                              Mushware::t4Val(0, m_scale.Y(), 0, 0),
+                              Mushware::t4Val(0, 0, m_scale.Z(), 0),
+                              Mushware::t4Val(0, 0, 0, m_scale.W()));
 }
 
 //%inlineHeader {
