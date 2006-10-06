@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } pVNnocdRpPu4/VVhDtWttw
 /*
- * $Id: MushGLMaterial.h,v 1.4 2006/06/19 15:57:17 southa Exp $
+ * $Id: MushGLMaterial.h,v 1.5 2006/06/20 19:06:52 southa Exp $
  * $Log: MushGLMaterial.h,v $
+ * Revision 1.5  2006/06/20 19:06:52  southa
+ * Object creation
+ *
  * Revision 1.4  2006/06/19 15:57:17  southa
  * Materials
  *
@@ -48,22 +51,28 @@ class MushGLMaterial : public MushMesh4Material
 {
 public:
 	typedef MushcoreDataRef<MushGLMaterial> tDataRef;
+    typedef MushGLTexture::tDataRef tTextureRef;
+    typedef std::vector<tTextureRef> tMultiTextureRef;
+    
+    const tMultiTextureRef& MultiTextureRef(Mushware::U32 inFrame) const;
+    
+	virtual void TexNameSet(const std::string& inName, Mushware::U32 inFrame = 0, Mushware::U32 inTexNum = 0);
+	virtual MushGLTexture& TexRef(Mushware::U32 inFrame = 0, Mushware::U32 inTexNum = 0) const;
+    virtual Mushware::U32 AnimatorToFrame(Mushware::tVal inAnimator) const;
+    virtual MushGLTexture& AnimatedTexRef(Mushware::tVal inAnimator, Mushware::U32 inTexNum = 0) const;
 
-	virtual void TexNameSet(const std::string& inName, Mushware::U32 inIndex = 0);
-	virtual MushGLTexture& TexRef(Mushware::U32 inIndex) const;
-	virtual MushGLTexture& MushGLMaterial::TexWRef(Mushware::U32 inIndex);
-
+    
 	static Mushware::tRubyValue RubyDefine(Mushware::tRubyArgC inArgC, Mushware::tRubyValue *inpArgV, Mushware::tRubyValue inSelf);
 	static Mushware::tRubyValue Rubyto_xml(Mushware::tRubyValue inSelf);
 	static void RubyInstall(void);
 	
 private:
-    std::vector<MushGLTexture::tDataRef> m_texRefs; //:wref
+    std::vector<tMultiTextureRef> m_multiTexRefs; //:wref
 
 //%classPrototypes {
 public:
-    // Writable reference for m_texRefs
-    std::vector<MushGLTexture::tDataRef>& TexRefsWRef(void) { return m_texRefs; }
+    // Writable reference for m_multiTexRefs
+    std::vector<tMultiTextureRef>& MultiTexRefsWRef(void) { return m_multiTexRefs; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -71,7 +80,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } 9kBrHf8P6AogaqTG+AvtuQ
+//%classPrototypes } 43ZKccyqLuP1MDe9Oa6SpQ
 };
 
 //%inlineHeader {

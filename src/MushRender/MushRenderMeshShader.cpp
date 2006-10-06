@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } XKDM1ZJgQpb3nz4x0n57Og
 /*
- * $Id: MushRenderMeshShader.cpp,v 1.4 2006/09/10 10:30:53 southa Exp $
+ * $Id: MushRenderMeshShader.cpp,v 1.5 2006/10/06 11:54:58 southa Exp $
  * $Log: MushRenderMeshShader.cpp,v $
+ * Revision 1.5  2006/10/06 11:54:58  southa
+ * Scaled rendering
+ *
  * Revision 1.4  2006/09/10 10:30:53  southa
  * Shader billboarding
  *
@@ -114,9 +117,10 @@ MushRenderMeshShader::RenderJobCreate(MushGLJobRender& outRender,
         for (U32 i=0; i < p4Mesh->NumMaterials(); ++i)
         {
             const MushGLMaterial& materialRef = dynamic_cast<const MushGLMaterial&>(p4Mesh->MaterialRef(i));
-            MushGLTexture *pTexture = &materialRef.TexRef(i);
+            MushGLTexture *pTexture = &materialRef.AnimatedTexRef(inSpec.MaterialAnimator());
             workSpecRef.TextureSet(pTexture, i);
         }
+        
         outRender.SortValueSet(SortDepth(inSpec, *p4Mesh));
         outRender.ShaderRefSet(m_project4DRef);
         MushGLAttribs& attribsRef = outRender.AttribsWRef();

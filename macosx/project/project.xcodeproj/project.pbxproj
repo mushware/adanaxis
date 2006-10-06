@@ -4214,8 +4214,8 @@
 			isa = PBXGroup;
 			children = (
 				7A61AFB70A7E0FF400C3532C /* dialogues.xml */,
-				7A3E0D1C0A4821C10078B650 /* space.rb */,
 				7ABDE4ED0A6943F000636DC1 /* manifest.txt */,
+				7A3E0D1C0A4821C10078B650 /* space.rb */,
 			);
 			path = local1;
 			sourceTree = "<group>";

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 6hLRNoZfeBvP570tKfB/gA
 /*
- * $Id: MushRenderSpec.h,v 1.14 2006/09/09 11:16:42 southa Exp $
+ * $Id: MushRenderSpec.h,v 1.15 2006/10/06 11:54:58 southa Exp $
  * $Log: MushRenderSpec.h,v $
+ * Revision 1.15  2006/10/06 11:54:58  southa
+ * Scaled rendering
+ *
  * Revision 1.14  2006/09/09 11:16:42  southa
  * One-time vertex buffer generation
  *
@@ -100,7 +103,8 @@ private:
     MushGLBuffers::tDataRef m_buffersRef; //:readwrite
     MushGLBuffers::tSharedDataRef m_sharedBuffersRef; //:readwrite
     bool m_useSharedVertices; //:readwrite
-    
+    Mushware::tVal m_materialAnimator; //:readwrite
+        
 //%classPrototypes {
 public:
     const MushGLProjection& Projection(void) const { return m_projection; }
@@ -125,6 +129,8 @@ public:
     void SharedBuffersRefSet(const MushGLBuffers::tSharedDataRef& inValue) { m_sharedBuffersRef=inValue; }
     const bool& UseSharedVertices(void) const { return m_useSharedVertices; }
     void UseSharedVerticesSet(const bool& inValue) { m_useSharedVertices=inValue; }
+    const Mushware::tVal& MaterialAnimator(void) const { return m_materialAnimator; }
+    void MaterialAnimatorSet(const Mushware::tVal& inValue) { m_materialAnimator=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -132,7 +138,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } Ii31i1EtUxNlmWmRYW4s5Q
+//%classPrototypes } HXp/kWlFzxcW/shbqot3lg
 };
 
 inline const MushRenderSpec::tMattress

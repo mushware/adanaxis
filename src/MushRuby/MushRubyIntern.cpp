@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } lqALCPGBahbk4ibyVPO8LQ
 /*
- * $Id: MushRubyIntern.cpp,v 1.21 2006/10/03 14:06:52 southa Exp $
+ * $Id: MushRubyIntern.cpp,v 1.22 2006/10/04 13:35:25 southa Exp $
  * $Log: MushRubyIntern.cpp,v $
+ * Revision 1.22  2006/10/04 13:35:25  southa
+ * Selective targetting
+ *
  * Revision 1.21  2006/10/03 14:06:52  southa
  * Khazi and projectile creation
  *
@@ -136,6 +139,7 @@ MUSHRUBYINTERN_DEFINE(scale_velocity);
 MUSHRUBYINTERN_DEFINE(size);
 MUSHRUBYINTERN_DEFINE(sourceface);
 MUSHRUBYINTERN_DEFINE(texture_name);
+MUSHRUBYINTERN_DEFINE(texture_names);
 MUSHRUBYINTERN_DEFINE(to_ary);
 MUSHRUBYINTERN_DEFINE(to_point);
 MUSHRUBYINTERN_DEFINE(to_s);
@@ -196,6 +200,7 @@ MushRubyIntern::Initialise(void)
 	MUSHRUBYINTERN_INIT(size);
 	MUSHRUBYINTERN_INIT(sourceface);
 	MUSHRUBYINTERN_INIT(texture_name);
+	MUSHRUBYINTERN_INIT(texture_names);
 	MUSHRUBYINTERN_INIT(to_ary);
 	MUSHRUBYINTERN_INIT(to_point);
 	MUSHRUBYINTERN_INIT(to_s);

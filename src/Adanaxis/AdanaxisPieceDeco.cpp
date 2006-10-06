@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } Xbi0vrfUMDnmd9NKsSwjUQ
 /*
- * $Id: AdanaxisPieceDeco.cpp,v 1.26 2006/10/05 15:39:17 southa Exp $
+ * $Id: AdanaxisPieceDeco.cpp,v 1.27 2006/10/06 11:54:57 southa Exp $
  * $Log: AdanaxisPieceDeco.cpp,v $
+ * Revision 1.27  2006/10/06 11:54:57  southa
+ * Scaled rendering
+ *
  * Revision 1.26  2006/10/05 15:39:17  southa
  * Explosion handling
  *
@@ -151,22 +154,9 @@ AdanaxisPieceDeco::Render(MushGLJobRender& outRender,
     MushcoreUtil::Constrain<tVal>(alpha, 0, 1);
 
     inRender.ColourZMiddleSet(inRender.ColourZMiddle().ElementwiseProduct(t4Val(1,1,1,alpha)));
-    
-    MushMesh4Mesh::tMaterialRef& matRef = MeshWRef().MaterialRefWRef(0);
-    MushGLMaterial *pMaterial = dynamic_cast<MushGLMaterial *>(&matRef.WRef());
-    
-    if (pMaterial != NULL)
-    {
-        std::string materialName = pMaterial->TexRef(0).Name();
-        if (materialName.substr(0, 5) == "explo")
-        {
-            ostringstream texName;
-            texName << "explo1-tex-" << 1 + (U32) ((1-alpha) * 39);
-            std::string newMaterial = texName.str();
-            pMaterial->TexNameSet(newMaterial);
-        }
-    }
-    
+
+    renderSpec.MaterialAnimatorSet(1.0 - alpha);
+
     return inRender.RenderJobCreate(outRender, renderSpec, Mesh());
 }
 

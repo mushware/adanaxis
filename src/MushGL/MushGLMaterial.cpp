@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } yyGH2nvFnzrMau3Fpl5qfQ
 /*
- * $Id: MushGLMaterial.cpp,v 1.4 2006/06/19 15:57:17 southa Exp $
+ * $Id: MushGLMaterial.cpp,v 1.5 2006/06/20 19:06:52 southa Exp $
  * $Log: MushGLMaterial.cpp,v $
+ * Revision 1.5  2006/06/20 19:06:52  southa
+ * Object creation
+ *
  * Revision 1.4  2006/06/19 15:57:17  southa
  * Materials
  *
@@ -43,37 +46,70 @@ using namespace Mushware;
 using namespace std;
 
 void
-MushGLMaterial::TexNameSet(const std::string& inName, Mushware::U32 inIndex)
+MushGLMaterial::TexNameSet(const std::string& inName, Mushware::U32 inFrame, Mushware::U32 inTexNum)
 {
-    if (m_texRefs.size() <= inIndex)
+    if (m_multiTexRefs.size() <= inFrame)
 	{
-		m_texRefs.resize(inIndex + 1);	
+		m_multiTexRefs.resize(inFrame + 1);	
 	}
-	m_texRefs[inIndex].NameSet(inName);
+    tMultiTextureRef& multiTexRef = m_multiTexRefs[inFrame];
+    
+    if (multiTexRef.size() <= inTexNum)
+	{
+		multiTexRef.resize(inTexNum + 1);	
+	}
+	multiTexRef[inTexNum].NameSet(inName);
+}
+
+const MushGLMaterial::tMultiTextureRef&
+MushGLMaterial::MultiTextureRef(Mushware::U32 inFrame) const
+{
+	if (inFrame >= m_multiTexRefs.size())
+	{
+		std::ostringstream message;
+		message << "Material '" << Name() << "' has " << m_multiTexRefs.size() << " frames but frame " << inFrame << " requested";
+		throw MushcoreRequestFail(message.str());
+	}
+	return m_multiTexRefs[inFrame];
 }
 
 MushGLTexture&
-MushGLMaterial::TexRef(Mushware::U32 inIndex) const
+MushGLMaterial::TexRef(Mushware::U32 inFrame, Mushware::U32 inTexNum) const
 {
-	if (inIndex >= m_texRefs.size())
+    const tMultiTextureRef& multiTexRef = MultiTextureRef(inFrame);
+    
+	if (inTexNum >= multiTexRef.size())
 	{
 		std::ostringstream message;
-		message << "Texture '" << Name() << "' has " << m_texRefs.size() << " textures but index " << inIndex << " requested";
+		message << "Material '" << Name() << "' frame " << inFrame << " has " << multiTexRef.size() << " textures but index " << inTexNum << " requested";
 		throw MushcoreRequestFail(message.str());
 	}
-	return m_texRefs[inIndex].WRef();
+	return multiTexRef[inTexNum].WRef();
+}
+
+Mushware::U32
+MushGLMaterial::AnimatorToFrame(Mushware::tVal inAnimator) const
+{
+    U32 retVal = 0;
+    
+    U32 numMulti = m_multiTexRefs.size();
+    
+    if (numMulti > 0)
+    {
+        retVal = static_cast<U32>(std::fabs(inAnimator) * numMulti);
+        if (retVal >= numMulti)
+        {
+            // Catch inAnimator >= 1.0
+            retVal = numMulti - 1;
+        }
+    }
+    return retVal;
 }
 
 MushGLTexture&
-MushGLMaterial::TexWRef(Mushware::U32 inIndex)
+MushGLMaterial::AnimatedTexRef(Mushware::tVal inAnimator, Mushware::U32 inTexNum) const
 {
-	if (inIndex >= m_texRefs.size())
-	{
-		std::ostringstream message;
-		message << "Texture '" << Name() << "' has " << m_texRefs.size() << " textures but index " << inIndex << " requested";
-		throw MushcoreRequestFail(message.str());
-	}
-	return m_texRefs[inIndex].WRef();
+    return TexRef(AnimatorToFrame(inAnimator), inTexNum);
 }
 
 Mushware::tRubyValue
@@ -90,7 +126,7 @@ MushGLMaterial::RubyDefine(Mushware::tRubyArgC inArgC, Mushware::tRubyValue *inp
 		MushRubyUtil::HashConvert(paramHash, MushRubyValue(inpArgV[0]));
 
 		std::string materialName = "";
-		std::string textureName = "";
+        std::vector<std::string> textureNames;
 		
 		tRubyHash::const_iterator endIter = paramHash.end();
 		for (tRubyHash::const_iterator p = paramHash.begin(); p != endIter; ++p)
@@ -100,9 +136,18 @@ MushGLMaterial::RubyDefine(Mushware::tRubyArgC inArgC, Mushware::tRubyValue *inp
 			{
 				materialName = p->second.String();
 			}
-			else if (symbol == MushRubyIntern::texture_name())
+			else if (symbol == MushRubyIntern::texture_names())
 			{
-				textureName = p->second.String();
+                if (!p->second.IsArray())
+                {
+                    MushRubyUtil::Raise(":texture_names parameters must be an array");	
+                    
+                }
+                U32 size = p->second.ArraySize();
+                for (U32 i=0; i<size; ++i)
+                {
+				    textureNames.push_back(p->second.ArrayEntry(i).String());
+                }
 			}
 			else
 			{
@@ -110,21 +155,24 @@ MushGLMaterial::RubyDefine(Mushware::tRubyArgC inArgC, Mushware::tRubyValue *inp
 			}
 		}			
 				
-		if (materialName == "" || textureName == "")
+		if (materialName == "" || textureNames.size() == 0)
 		{
-			MushRubyUtil::Raise("Both :name and :texture_name paramters must be supplied");	
+			MushRubyUtil::Raise("Both :name and :texture_names parameters must be supplied");	
 			
 		}
 		
 		MushGLMaterial *pMaterial = dynamic_cast<MushGLMaterial *>(MushcoreData<MushMesh4Material>::Sgl().Give(materialName, new MushGLMaterial));
 		pMaterial->NameSet(materialName);
-		pMaterial->TexNameSet(textureName);
+        
+        for (U32 i=0; i<textureNames.size(); ++i)
+        {
+		    pMaterial->TexNameSet(textureNames[i], i, 0);
+        }
 	}
 	catch (MushcoreFail& e)
 	{
 		MushRubyUtil::Raise(e.what());
 	}
-
 	return Mushware::kRubyQnil;
 }
 
@@ -197,7 +245,7 @@ void
 MushGLMaterial::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
-    ioOut << "texRefs=" << m_texRefs;
+    ioOut << "multiTexRefs=" << m_multiTexRefs;
     ioOut << "]";
 }
 bool
@@ -209,9 +257,9 @@ MushGLMaterial::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
     }
-    else if (inTagStr == "texRefs")
+    else if (inTagStr == "multiTexRefs")
     {
-        ioIn >> m_texRefs;
+        ioIn >> m_multiTexRefs;
     }
     else 
     {
@@ -222,7 +270,7 @@ MushGLMaterial::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
 void
 MushGLMaterial::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
-    ioOut.TagSet("texRefs");
-    ioOut << m_texRefs;
+    ioOut.TagSet("multiTexRefs");
+    ioOut << m_multiTexRefs;
 }
-//%outOfLineFunctions } x3xh/JbLnzza669EngaO5g
+//%outOfLineFunctions } sqgVyGcaZ7BP29i7Dy1rcw

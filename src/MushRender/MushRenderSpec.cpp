@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } ct6tn+dNsUgrYUjoy0CuvQ
 /*
- * $Id: MushRenderSpec.cpp,v 1.10 2006/09/09 11:16:42 southa Exp $
+ * $Id: MushRenderSpec.cpp,v 1.11 2006/10/06 11:54:58 southa Exp $
  * $Log: MushRenderSpec.cpp,v $
+ * Revision 1.11  2006/10/06 11:54:58  southa
+ * Scaled rendering
+ *
  * Revision 1.10  2006/09/09 11:16:42  southa
  * One-time vertex buffer generation
  *
@@ -94,7 +97,8 @@ MushRenderSpec::AutoPrint(std::ostream& ioOut) const
     ioOut << "scale=" << m_scale << ", ";
     ioOut << "buffersRef=" << m_buffersRef << ", ";
     ioOut << "sharedBuffersRef=" << m_sharedBuffersRef << ", ";
-    ioOut << "useSharedVertices=" << m_useSharedVertices;
+    ioOut << "useSharedVertices=" << m_useSharedVertices << ", ";
+    ioOut << "materialAnimator=" << m_materialAnimator;
     ioOut << "]";
 }
 bool
@@ -134,6 +138,10 @@ MushRenderSpec::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
     {
         ioIn >> m_useSharedVertices;
     }
+    else if (inTagStr == "materialAnimator")
+    {
+        ioIn >> m_materialAnimator;
+    }
     else 
     {
         return false;
@@ -157,5 +165,7 @@ MushRenderSpec::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_sharedBuffersRef;
     ioOut.TagSet("useSharedVertices");
     ioOut << m_useSharedVertices;
+    ioOut.TagSet("materialAnimator");
+    ioOut << m_materialAnimator;
 }
-//%outOfLineFunctions } 2uWPZMogzA9bAG7j6rjb8w
+//%outOfLineFunctions } fRVDNHJ600Qfmor9DNF1jg

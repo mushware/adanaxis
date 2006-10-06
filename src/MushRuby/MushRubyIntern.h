@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } n1eaCj2fb8dNPgbT0uOuEQ
 /*
- * $Id: MushRubyIntern.h,v 1.21 2006/10/03 14:06:52 southa Exp $
+ * $Id: MushRubyIntern.h,v 1.22 2006/10/04 13:35:25 southa Exp $
  * $Log: MushRubyIntern.h,v $
+ * Revision 1.22  2006/10/04 13:35:25  southa
+ * Selective targetting
+ *
  * Revision 1.21  2006/10/03 14:06:52  southa
  * Khazi and projectile creation
  *
@@ -151,6 +154,7 @@ public:
 	MUSHRUBYINTERN_DECLARE(size);
 	MUSHRUBYINTERN_DECLARE(sourceface);
 	MUSHRUBYINTERN_DECLARE(texture_name);
+	MUSHRUBYINTERN_DECLARE(texture_names);
 	MUSHRUBYINTERN_DECLARE(to_ary);
 	MUSHRUBYINTERN_DECLARE(to_s);
 	MUSHRUBYINTERN_DECLARE(to_point);
