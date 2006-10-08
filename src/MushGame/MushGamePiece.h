@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } QiW5KaWfX1mBGolg1jxMIg
 /*
- * $Id: MushGamePiece.h,v 1.17 2006/10/03 14:06:52 southa Exp $
+ * $Id: MushGamePiece.h,v 1.18 2006/10/06 11:54:58 southa Exp $
  * $Log: MushGamePiece.h,v $
+ * Revision 1.18  2006/10/06 11:54:58  southa
+ * Scaled rendering
+ *
  * Revision 1.17  2006/10/03 14:06:52  southa
  * Khazi and projectile creation
  *
@@ -121,6 +124,8 @@ private:
     MushMesh4Mesh m_mesh; //:readwrite :wref
     Mushware::t4Val m_meshScale; //:readwrite :wref
     bool m_expireFlag; //:readwrite    
+    Mushware::tVal m_hitPoints; //:readwrite
+    Mushware::tVal m_initialHitPoints; //:readwrite
     
     MushGLBuffers::tDataRef m_buffersRef; //:read :wref
     MushGLBuffers::tSharedDataRef m_sharedBuffersRef; //:read :wref
@@ -149,6 +154,10 @@ public:
     Mushware::t4Val& MeshScaleWRef(void) { return m_meshScale; }
     const bool& ExpireFlag(void) const { return m_expireFlag; }
     void ExpireFlagSet(const bool& inValue) { m_expireFlag=inValue; }
+    const Mushware::tVal& HitPoints(void) const { return m_hitPoints; }
+    void HitPointsSet(const Mushware::tVal& inValue) { m_hitPoints=inValue; }
+    const Mushware::tVal& InitialHitPoints(void) const { return m_initialHitPoints; }
+    void InitialHitPointsSet(const Mushware::tVal& inValue) { m_initialHitPoints=inValue; }
     const MushGLBuffers::tDataRef& BuffersRef(void) const { return m_buffersRef; }
     // Writable reference for m_buffersRef
     MushGLBuffers::tDataRef& BuffersRefWRef(void) { return m_buffersRef; }
@@ -164,7 +173,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } 3+rrSZpJKH/kgPFsR4fEqg
+//%classPrototypes } ZuC2bQCROG+wjFojFGr2lQ
 };
 //%inlineHeader {
 inline std::ostream&

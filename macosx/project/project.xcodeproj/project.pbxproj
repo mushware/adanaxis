@@ -3511,6 +3511,7 @@
 		7AA0FB83088436EB00997505 /* MushMeshDisplacement.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushMeshDisplacement.cpp; sourceTree = "<group>"; };
 		7AA0FB8A08844AF100997505 /* MushMeshLibraryFGenExtrude.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushMeshLibraryFGenExtrude.h; sourceTree = "<group>"; };
 		7AA0FB8B08844AF100997505 /* MushMeshLibraryFGenExtrude.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushMeshLibraryFGenExtrude.cpp; sourceTree = "<group>"; };
+		7AA5753E0AD9100800CEA8BA /* AdanaxisUtil.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AdanaxisUtil.rb; sourceTree = "<group>"; };
 		7AAE6B9C07AFC36C0085C60F /* TesseractTrainerAppHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = TesseractTrainerAppHandler.cpp; sourceTree = "<group>"; };
 		7AAE6B9D07AFC36C0085C60F /* TesseractTrainerAppHandler.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = TesseractTrainerAppHandler.h; sourceTree = "<group>"; };
 		7AAE6B9E07AFC36C0085C60F /* TesseractTrainerCommandHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = TesseractTrainerCommandHandler.cpp; sourceTree = "<group>"; };
@@ -5975,6 +5976,7 @@
 				7A58F2070A3D725400B7AE0E /* AdanaxisMeshLibrary.rb */,
 				7AAFF0A60A46E84F0005F57F /* AdanaxisTextureLibrary.rb */,
 				7A5B15170A57B5FA0047BD0B /* AdanaxisFontLibrary.rb */,
+				7AA5753E0AD9100800CEA8BA /* AdanaxisUtil.rb */,
 				7ACEFB3109F6EF6700E38865 /* init.rb */,
 			);
 			indentWidth = 2;

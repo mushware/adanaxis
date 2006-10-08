@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } n1eaCj2fb8dNPgbT0uOuEQ
 /*
- * $Id: MushRubyIntern.h,v 1.22 2006/10/04 13:35:25 southa Exp $
+ * $Id: MushRubyIntern.h,v 1.23 2006/10/06 14:48:19 southa Exp $
  * $Log: MushRubyIntern.h,v $
+ * Revision 1.23  2006/10/06 14:48:19  southa
+ * Material animation
+ *
  * Revision 1.22  2006/10/04 13:35:25  southa
  * Selective targetting
  *
@@ -124,6 +127,7 @@ public:
 	MUSHRUBYINTERN_DECLARE(event);
 	MUSHRUBYINTERN_DECLARE(extent);
 	MUSHRUBYINTERN_DECLARE(fragment_shader);
+	MUSHRUBYINTERN_DECLARE(hit_points);
 	MUSHRUBYINTERN_DECLARE(id_suffix);
 	MUSHRUBYINTERN_DECLARE(inspect);
 	MUSHRUBYINTERN_DECLARE(Integer);
@@ -163,6 +167,7 @@ public:
 
 	MUSHRUBYINTERN_DECLARE_AT(_embeddedDataPtr);
 	MUSHRUBYINTERN_DECLARE_AT(m_expireFlag);
+	MUSHRUBYINTERN_DECLARE_AT(m_hitPoints);
 	MUSHRUBYINTERN_DECLARE_AT(m_id);
 	MUSHRUBYINTERN_DECLARE_AT(m_idSuffix);
 	MUSHRUBYINTERN_DECLARE_AT(m_initialVelocity);

@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } Mac7dWHONvkZIg39sQnwww
 /*
- * $Id: AdanaxisLogic.cpp,v 1.20 2006/10/02 20:28:10 southa Exp $
+ * $Id: AdanaxisLogic.cpp,v 1.21 2006/10/04 13:35:22 southa Exp $
  * $Log: AdanaxisLogic.cpp,v $
+ * Revision 1.21  2006/10/04 13:35:22  southa
+ * Selective targetting
+ *
  * Revision 1.20  2006/10/02 20:28:10  southa
  * Object lookup and target selection
  *
@@ -244,7 +247,7 @@ AdanaxisLogic::CollisionHandle(AdanaxisSaveData::tProjectile& ioProj,
     }
 }
 
-// Slow version for debug - rechecks every object
+// Slow version - checks every object
 void
 AdanaxisLogic::ProjectilesFullCollide(void)
 {

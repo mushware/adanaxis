@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } lqALCPGBahbk4ibyVPO8LQ
 /*
- * $Id: MushRubyIntern.cpp,v 1.22 2006/10/04 13:35:25 southa Exp $
+ * $Id: MushRubyIntern.cpp,v 1.23 2006/10/06 14:48:19 southa Exp $
  * $Log: MushRubyIntern.cpp,v $
+ * Revision 1.23  2006/10/06 14:48:19  southa
+ * Material animation
+ *
  * Revision 1.22  2006/10/04 13:35:25  southa
  * Selective targetting
  *
@@ -109,6 +112,7 @@ MUSHRUBYINTERN_DEFINE(divide);
 MUSHRUBYINTERN_DEFINE(event);
 MUSHRUBYINTERN_DEFINE(extent);
 MUSHRUBYINTERN_DEFINE(fragment_shader);
+MUSHRUBYINTERN_DEFINE(hit_points);
 MUSHRUBYINTERN_DEFINE(id_suffix);
 MUSHRUBYINTERN_DEFINE(inspect);
 MUSHRUBYINTERN_DEFINE(Integer);
@@ -148,6 +152,7 @@ MUSHRUBYINTERN_DEFINE(vertex_shader);
 
 MUSHRUBYINTERN_DEFINE_AT(_embeddedDataPtr);
 MUSHRUBYINTERN_DEFINE_AT(m_expireFlag);
+MUSHRUBYINTERN_DEFINE_AT(m_hitPoints);
 MUSHRUBYINTERN_DEFINE_AT(m_id);
 MUSHRUBYINTERN_DEFINE_AT(m_idSuffix);
 MUSHRUBYINTERN_DEFINE_AT(m_initialVelocity);
@@ -170,6 +175,7 @@ MushRubyIntern::Initialise(void)
 	MUSHRUBYINTERN_INIT(event);
 	MUSHRUBYINTERN_INIT(extent);
 	MUSHRUBYINTERN_INIT(fragment_shader);
+	MUSHRUBYINTERN_INIT(hit_points);
 	MUSHRUBYINTERN_INIT(id_suffix);
 	MUSHRUBYINTERN_INIT(inspect);
 	MUSHRUBYINTERN_INIT(Integer);
@@ -209,6 +215,7 @@ MushRubyIntern::Initialise(void)
 
 	MUSHRUBYINTERN_INIT_AT(_embeddedDataPtr);
 	MUSHRUBYINTERN_INIT_AT(m_expireFlag);
+	MUSHRUBYINTERN_INIT_AT(m_hitPoints);
 	MUSHRUBYINTERN_INIT_AT(m_id);
 	MUSHRUBYINTERN_INIT_AT(m_idSuffix);
 	MUSHRUBYINTERN_INIT_AT(m_initialVelocity);

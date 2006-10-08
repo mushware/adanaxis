@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } rVCNunlW+wZoonHnGB5a7Q
 /*
- * $Id: MushGamePiece.cpp,v 1.15 2006/10/04 13:35:24 southa Exp $
+ * $Id: MushGamePiece.cpp,v 1.16 2006/10/06 11:54:58 southa Exp $
  * $Log: MushGamePiece.cpp,v $
+ * Revision 1.16  2006/10/06 11:54:58  southa
+ * Scaled rendering
+ *
  * Revision 1.15  2006/10/04 13:35:24  southa
  * Selective targetting
  *
@@ -85,6 +88,8 @@ MushGamePiece::MushGamePiece(const std::string& inID) :
     m_post(MushMeshPosticity::Identity()),
     m_meshScale(Mushware::t4Val::MultiplicativeIdentity()),
     m_expireFlag(false),
+    m_hitPoints(0),
+    m_initialHitPoints(0),
     m_rubyObj(Mushware::kRubyQnil)
 {
     m_buffersRef.NameSet(MushGLBuffers::NextBufferNumAdvance());
@@ -112,6 +117,7 @@ MushGamePiece::Load(Mushware::tRubyValue inSelf)
     
     MushRubyUtil::InstanceVarSet(inSelf, MushRubyIntern::ATm_meshName(), MushRubyValue(m_meshName).Value());    
     MushRubyUtil::InstanceVarSet(inSelf, MushRubyIntern::ATm_expireFlag(), MushRubyValue(m_expireFlag).Value());
+    MushRubyUtil::InstanceVarSet(inSelf, MushRubyIntern::ATm_hitPoints(), MushRubyValue(m_hitPoints).Value());
 }
 
 void
@@ -137,6 +143,7 @@ MushGamePiece::Save(Mushware::tRubyValue inSelf)
         }
     }
     m_expireFlag = MushRubyValue(MushRubyUtil::InstanceVar(inSelf, MushRubyIntern::ATm_expireFlag())).Bool();
+    m_hitPoints = MushRubyValue(MushRubyUtil::InstanceVar(inSelf, MushRubyIntern::ATm_hitPoints())).Val();
 }
 
 void
@@ -159,14 +166,17 @@ MushGamePiece::RubyPieceConstructor(const std::string& inID, const MushRubyValue
                                         MushRubyIntern::cRegisteredCreate(),
                                         inParams));
     /* Add this C++ object to the ruby object as a wrapped DataStruct, and set
-    * embedded data pointer
-    */
+     * embedded data pointer
+     */
     MushRubyUtil::DataObjectWrapNew(inKlass, RubyObj(), this);
     
     /* Save the ruby variables (extracted from inParams by the ruby initialize method)
-    * into this C++ object
-    */
+     * into this C++ object
+     */
     MushRubyExec::Sgl().Call(RubyObj(), MushRubyIntern::mSave());
+    
+    /* Store the initial hit points */
+    m_initialHitPoints = m_hitPoints;
 }
 
 void
@@ -311,6 +321,8 @@ MushGamePiece::AutoPrint(std::ostream& ioOut) const
     ioOut << "mesh=" << m_mesh << ", ";
     ioOut << "meshScale=" << m_meshScale << ", ";
     ioOut << "expireFlag=" << m_expireFlag << ", ";
+    ioOut << "hitPoints=" << m_hitPoints << ", ";
+    ioOut << "initialHitPoints=" << m_initialHitPoints << ", ";
     ioOut << "buffersRef=" << m_buffersRef << ", ";
     ioOut << "sharedBuffersRef=" << m_sharedBuffersRef << ", ";
     ioOut << "rubyObj=" << m_rubyObj;
@@ -349,6 +361,14 @@ MushGamePiece::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& i
     {
         ioIn >> m_expireFlag;
     }
+    else if (inTagStr == "hitPoints")
+    {
+        ioIn >> m_hitPoints;
+    }
+    else if (inTagStr == "initialHitPoints")
+    {
+        ioIn >> m_initialHitPoints;
+    }
     else if (inTagStr == "buffersRef")
     {
         ioIn >> m_buffersRef;
@@ -382,6 +402,10 @@ MushGamePiece::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_meshScale;
     ioOut.TagSet("expireFlag");
     ioOut << m_expireFlag;
+    ioOut.TagSet("hitPoints");
+    ioOut << m_hitPoints;
+    ioOut.TagSet("initialHitPoints");
+    ioOut << m_initialHitPoints;
     ioOut.TagSet("buffersRef");
     ioOut << m_buffersRef;
     ioOut.TagSet("sharedBuffersRef");
@@ -389,4 +413,4 @@ MushGamePiece::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("rubyObj");
     ioOut << m_rubyObj;
 }
-//%outOfLineFunctions } Ry6Zyq82248SBIrpgFgdGQ
+//%outOfLineFunctions } ykBrJQOa5HZ3/BuagvNhQA
