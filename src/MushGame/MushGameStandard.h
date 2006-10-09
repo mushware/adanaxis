@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } o+BSM01bjQYGzqTGFYVwpg
 /*
- * $Id: MushGameStandard.h,v 1.5 2006/06/01 15:39:27 southa Exp $
+ * $Id: MushGameStandard.h,v 1.6 2006/06/22 19:07:32 southa Exp $
  * $Log: MushGameStandard.h,v $
+ * Revision 1.6  2006/06/22 19:07:32  southa
+ * Build fixes
+ *
  * Revision 1.5  2006/06/01 15:39:27  southa
  * DrawArray verification and fixes
  *
@@ -61,6 +64,14 @@
 #include <MushMesh.h>
 #else
 #include "MushMesh/MushMesh.h"
+#endif
+
+#if defined(HAVE_MUSHRUBY_MUSHRUBY_H)
+#include <MushRuby/MushRuby.h>
+#elif defined(HAVE_MUSHRUBY_H)
+#include <MushRuby.h>
+#else
+#include "MushRuby/MushRuby.h"
 #endif
 
 namespace Mushware

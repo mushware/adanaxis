@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } jTomsRfJomSPXOWn3jd6fw
 /*
- * $Id: AdanaxisScanner.cpp,v 1.5 2006/07/30 19:38:52 southa Exp $
+ * $Id: AdanaxisScanner.cpp,v 1.6 2006/08/01 17:21:29 southa Exp $
  * $Log: AdanaxisScanner.cpp,v $
+ * Revision 1.6  2006/08/01 17:21:29  southa
+ * River demo
+ *
  * Revision 1.5  2006/07/30 19:38:52  southa
  * Level updates
  *
@@ -45,7 +48,8 @@ AdanaxisScanner::AdanaxisScanner() :
     m_symbolSize(4,4),
     m_symbolFontRef("symbol1-font"),
     m_sightAngle(0),
-    m_targetState(kTargetStateIdle)
+    m_targetState(kTargetStateIdle),
+    m_targetHitPointRatio(0)
 {
     
 }
@@ -83,13 +87,14 @@ AdanaxisScanner::ScanSymbolRender(Mushware::t4Val& inPos, Mushware::t4Val inPara
 
 void
 AdanaxisScanner::ScanObjectRender(AdanaxisLogic& ioLogic, MushRenderMesh *inpMeshRender,
-                                  const MushGameCamera& inCamera, const MushMeshPosticity& inPost,
-                                  const MushMesh4Mesh& inMesh, Mushware::U32 inObjType)
+                                  const MushGameCamera& inCamera, const MushGamePiece& inPiece,
+                                  Mushware::U32 inObjType)
 {
     MUSHCOREASSERT(inpMeshRender != NULL);
     
-    MushMeshPosticity objPost = inPost;
+    MushMeshPosticity objPost = inPiece.Post();
     MushMeshPosticity cameraPost = inCamera.Post();
+    const MushMesh4Mesh& meshRef = inPiece.Mesh();
     
     // t4Val cameraToObj = objPost.Pos() - cameraPos.Pos();
     
@@ -109,8 +114,8 @@ AdanaxisScanner::ScanObjectRender(AdanaxisLogic& ioLogic, MushRenderMesh *inpMes
     // Check whether the camera is on target on this object
     if (m_targetState != kTargetStateOnTarget)
     {
-        tVal boundingRadius = inMesh.BoundingRadius();
-        t4Val centroidPos = renderSpec.ModelToEyeMattress() * inMesh.Centroid();
+        tVal boundingRadius = meshRef.BoundingRadius();
+        t4Val centroidPos = renderSpec.ModelToEyeMattress() * meshRef.Centroid();
         if (centroidPos.W() < boundingRadius && centroidPos.W() != 0)
         {
             // Distance from the w axis is sqrt(x^2+y^2+z^2), so set w to 0 and take magnitude
@@ -120,12 +125,13 @@ AdanaxisScanner::ScanObjectRender(AdanaxisLogic& ioLogic, MushRenderMesh *inpMes
             {
                 // Bounding sphere intersects th w axis, so set in boundary
                 m_targetState = kTargetStateInBoundary;
+                m_targetHitPointRatio = inPiece.HitPointRatio();
                 
-                U32 numChunks = inMesh.NumChunks();
+                U32 numChunks = meshRef.NumChunks();
                 for (U32 i=0; i<numChunks; ++i)
                 {
-                    tVal chunkRadius = inMesh.ChunkBoundingRadius(i);
-                    t4Val chunkCentroidPos = renderSpec.ModelToEyeMattress() * inMesh.ChunkCentroid(i);
+                    tVal chunkRadius = meshRef.ChunkBoundingRadius(i);
+                    t4Val chunkCentroidPos = renderSpec.ModelToEyeMattress() * meshRef.ChunkCentroid(i);
                     chunkCentroidPos.WSet(0);
                     if (chunkCentroidPos.Magnitude() < chunkRadius)
                     {
@@ -199,12 +205,14 @@ AdanaxisScanner::ScanCrosshairRender(AdanaxisLogic& ioLogic, MushRenderMesh *inp
     MushMeshOps::PosticityToMattress(renderSpec.ViewWRef(), cameraPost);
     renderSpec.ViewWRef().InPlaceInvert();    
     renderSpec.ProjectionSet(inCamera.Projection());
-    t4Val clipPos = renderSpec.ModelToClipMattress() * t4Val(0,0,0,0);
+    t4Val sightClipPos = renderSpec.ModelToClipMattress() * t4Val(0,0,0,0);
+    t4Val barClipPos = sightClipPos + t4Val(0,-0.5,0,0);
     
     m_symbolSize = 1 * t2Val(1, renderSpec.Projection().AspectRatio()); 
     
     U32 symbol;
     const tVal rotSpeed = 0.025;
+    bool hitPointsBar = false;
     
     switch (m_targetState)
     {
@@ -233,11 +241,13 @@ AdanaxisScanner::ScanCrosshairRender(AdanaxisLogic& ioLogic, MushRenderMesh *inp
             {
                 m_sightAngle += rotSpeed;
             }
+            hitPointsBar = true;
             break;
             
         case kTargetStateOnTarget:
             symbol = kSymbolCrosshairOnTarget;
             m_sightAngle += rotSpeed;
+            hitPointsBar = true;
             break;
             
         default:
@@ -246,10 +256,20 @@ AdanaxisScanner::ScanCrosshairRender(AdanaxisLogic& ioLogic, MushRenderMesh *inp
             break;
     }
     
+    // Render sight
     MushGLFont& fontRef = m_symbolFontRef.WRef();
     fontRef.ColourSet(t4Val(1,1,1,0.3));
-    fontRef.RenderSymbolAtSizeAngle(symbol, clipPos, m_symbolSize,
+    fontRef.RenderSymbolAtSizeAngle(symbol, sightClipPos, m_symbolSize,
                                     m_sightAngle);
+
+    if (hitPointsBar)
+    {
+        MushcoreUtil::Constrain<tVal>(m_targetHitPointRatio, 0.0, 1.0);
+        // Render hit points bar
+        fontRef.RenderSymbolAtSize(kSymbolHitPointsBarBorder, barClipPos, m_symbolSize);
+        fontRef.RenderSymbolAtSizeProportion(kSymbolHitPointsBarInterior, barClipPos,
+                                             m_symbolSize, t2Val(m_targetHitPointRatio, 1));
+    }
 }
 
 //%outOfLineFunctions {
@@ -288,7 +308,8 @@ AdanaxisScanner::AutoPrint(std::ostream& ioOut) const
     ioOut << "symbolSize=" << m_symbolSize << ", ";
     ioOut << "symbolFontRef=" << m_symbolFontRef << ", ";
     ioOut << "sightAngle=" << m_sightAngle << ", ";
-    ioOut << "targetState=" << m_targetState;
+    ioOut << "targetState=" << m_targetState << ", ";
+    ioOut << "targetHitPointRatio=" << m_targetHitPointRatio;
     ioOut << "]";
 }
 bool
@@ -316,6 +337,10 @@ AdanaxisScanner::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string&
     {
         ioIn >> m_targetState;
     }
+    else if (inTagStr == "targetHitPointRatio")
+    {
+        ioIn >> m_targetHitPointRatio;
+    }
     else 
     {
         return false;
@@ -333,5 +358,7 @@ AdanaxisScanner::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_sightAngle;
     ioOut.TagSet("targetState");
     ioOut << m_targetState;
+    ioOut.TagSet("targetHitPointRatio");
+    ioOut << m_targetHitPointRatio;
 }
-//%outOfLineFunctions } wiSB91ajhhv8/vHmmIfn9Q
+//%outOfLineFunctions } rMscJTUxePzpCKIDVyQhiA

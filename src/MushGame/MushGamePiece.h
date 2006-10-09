@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } QiW5KaWfX1mBGolg1jxMIg
 /*
- * $Id: MushGamePiece.h,v 1.18 2006/10/06 11:54:58 southa Exp $
+ * $Id: MushGamePiece.h,v 1.19 2006/10/08 11:31:33 southa Exp $
  * $Log: MushGamePiece.h,v $
+ * Revision 1.19  2006/10/08 11:31:33  southa
+ * Hit points
+ *
  * Revision 1.18  2006/10/06 11:54:58  southa
  * Scaled rendering
  *
@@ -99,7 +102,8 @@ public:
     virtual void Move(MushGameLogic& ioLogic, const Mushware::tVal inFrameslice) {}
     
     virtual void MessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage);
-
+    virtual Mushware::tVal HitPointRatio(void) const;
+    
     virtual void SharedBuffersNameSet(const std::string& inName) { m_sharedBuffersRef.NameSet(inName); }
     virtual void Load(Mushware::tRubyValue inSelf);
     virtual void Save(Mushware::tRubyValue inSelf);

@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } XLKRQITGeEosZnXBO0QSEw
 /*
- * $Id: AdanaxisScanner.h,v 1.2 2006/07/25 20:31:03 southa Exp $
+ * $Id: AdanaxisScanner.h,v 1.3 2006/08/01 17:21:29 southa Exp $
  * $Log: AdanaxisScanner.h,v $
+ * Revision 1.3  2006/08/01 17:21:29  southa
+ * River demo
+ *
  * Revision 1.2  2006/07/25 20:31:03  southa
  * Scanner work
  *
@@ -63,6 +66,9 @@ public:
         kSymbolCrosshairIdle = 18,
         kSymbolCrosshairInBoundary = 19,
         
+        kSymbolHitPointsBarBorder = 24,
+        kSymbolHitPointsBarInterior = 25,
+        
         kTargetStateInvalid = 0,
         kTargetStateIdle,
         kTargetStateInBoundary,
@@ -73,8 +79,8 @@ public:
     AdanaxisScanner();
     void ScanBegin(void) { m_targetState = kTargetStateIdle; }
     void ScanObjectRender(AdanaxisLogic& ioLogic, MushRenderMesh *inpMeshRender,
-                          const MushGameCamera& inCamera, const MushMeshPosticity& inPost,
-                          const MushMesh4Mesh& inMesh, Mushware::U32 inObjType);
+                          const MushGameCamera& inCamera, const MushGamePiece& inPiece,
+                          Mushware::U32 inObjType);
     
     void ScanSymbolRender(Mushware::t4Val& inPos, Mushware::t4Val inParam, Mushware::tVal inAlpha);
     void ScanCrosshairRender(AdanaxisLogic& ioLogic, MushRenderMesh *inpMeshRender,
@@ -85,6 +91,7 @@ private:
     MushGLFont::tDataRef m_symbolFontRef;
     Mushware::tVal m_sightAngle;
     Mushware::U32 m_targetState;
+    Mushware::tVal m_targetHitPointRatio;
     
 //%classPrototypes {
 public:

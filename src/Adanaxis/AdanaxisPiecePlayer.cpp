@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } gq+r6M5XzKqE/mgjgvunrQ
 /*
- * $Id: AdanaxisPiecePlayer.cpp,v 1.3 2006/10/03 14:06:51 southa Exp $
+ * $Id: AdanaxisPiecePlayer.cpp,v 1.4 2006/10/04 13:35:22 southa Exp $
  * $Log: AdanaxisPiecePlayer.cpp,v $
+ * Revision 1.4  2006/10/04 13:35:22  southa
+ * Selective targetting
+ *
  * Revision 1.3  2006/10/03 14:06:51  southa
  * Khazi and projectile creation
  *
@@ -314,6 +317,7 @@ AdanaxisPiecePlayer::FirePieceCreate(MushGameLogic& ioLogic, const MushGameMessa
 	AdanaxisPieceProjectile& projectileRef = *new AdanaxisPieceProjectile(idStream.str());
     dataRef.Give(&projectileRef, key);
     
+    projectileRef.IdSet("f:"+idStream.str());
     projectileRef.OwnerSet(Id());
     projectileRef.LifeMsecSet(15000); // FIXME
     

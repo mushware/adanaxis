@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } Mac7dWHONvkZIg39sQnwww
 /*
- * $Id: AdanaxisLogic.cpp,v 1.21 2006/10/04 13:35:22 southa Exp $
+ * $Id: AdanaxisLogic.cpp,v 1.22 2006/10/08 11:31:32 southa Exp $
  * $Log: AdanaxisLogic.cpp,v $
+ * Revision 1.22  2006/10/08 11:31:32  southa
+ * Hit points
+ *
  * Revision 1.21  2006/10/04 13:35:22  southa
  * Selective targetting
  *
@@ -225,6 +228,9 @@ AdanaxisLogic::CollisionHandle(AdanaxisSaveData::tProjectile& ioProj,
     bool fatal = true;
     
     MUSHCOREASSERT(inCollInfo.ObjectNamesValid());
+    
+    // Build events for ruby objects
+    
     
     if (fatal)
     {

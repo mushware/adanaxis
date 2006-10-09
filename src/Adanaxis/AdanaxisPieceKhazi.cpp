@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } YCa3eNmcxUH2q0Oxh6SpTA
 /*
- * $Id: AdanaxisPieceKhazi.cpp,v 1.24 2006/10/04 13:35:22 southa Exp $
+ * $Id: AdanaxisPieceKhazi.cpp,v 1.25 2006/10/05 15:39:17 southa Exp $
  * $Log: AdanaxisPieceKhazi.cpp,v $
+ * Revision 1.25  2006/10/05 15:39:17  southa
+ * Explosion handling
+ *
  * Revision 1.24  2006/10/04 13:35:22  southa
  * Selective targetting
  *
@@ -221,9 +224,13 @@ AdanaxisPieceKhazi::CollisionFatalConsume(MushGameLogic& ioLogic, const MushGame
 {
     if (!ExpireFlag())
     {
-        ExpireFlagSet(true);
-        Explode(ioLogic, inMessage);
-        MediaAudio::Sgl().Play(*MushcoreDataRef<MediaSound>("explode").Get());
+        HitPointsSet(HitPoints() - 0.1);
+        if (HitPoints() <= 0)
+        {
+            ExpireFlagSet(true);
+            Explode(ioLogic, inMessage);
+            MediaAudio::Sgl().Play(*MushcoreDataRef<MediaSound>("explode").Get());
+        }
     }
 }    
 

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } rVCNunlW+wZoonHnGB5a7Q
 /*
- * $Id: MushGamePiece.cpp,v 1.16 2006/10/06 11:54:58 southa Exp $
+ * $Id: MushGamePiece.cpp,v 1.17 2006/10/08 11:31:32 southa Exp $
  * $Log: MushGamePiece.cpp,v $
+ * Revision 1.17  2006/10/08 11:31:32  southa
+ * Hit points
+ *
  * Revision 1.16  2006/10/06 11:54:58  southa
  * Scaled rendering
  *
@@ -100,6 +103,19 @@ void
 MushGamePiece::MessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage)
 {
     throw MushcoreDataFail(std::string("Unhandled message type ")+inMessage.AutoName()+" in "+AutoName());
+}
+
+Mushware::tVal
+MushGamePiece::HitPointRatio(void) const
+{
+    if (m_initialHitPoints <= 0)
+    {
+        return 1.0;
+    }
+    else
+    {
+        return m_hitPoints / m_initialHitPoints;
+    }
 }
 
 void

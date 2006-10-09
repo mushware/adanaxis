@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } Zq+IM0uOYEygMymunhBN6w
 /*
- * $Id: MushGLFont.cpp,v 1.6 2006/07/25 20:31:03 southa Exp $
+ * $Id: MushGLFont.cpp,v 1.7 2006/08/01 17:21:32 southa Exp $
  * $Log: MushGLFont.cpp,v $
+ * Revision 1.7  2006/08/01 17:21:32  southa
+ * River demo
+ *
  * Revision 1.6  2006/07/25 20:31:03  southa
  * Scanner work
  *
@@ -82,6 +85,51 @@ MushGLFont::RenderSymbolAtSize(const Mushware::U32 inValue, const Mushware::t4Va
     
     tVal uPos = (inValue % m_divide.X()) * uScale;
     tVal vPos = (1 + inValue / m_divide.X()) * vScale;
+    
+    // Already expect to be in kRenderState2D    
+    glBegin(GL_QUADS);
+    
+    glTexCoord2f(uPos, vPos);
+    glVertex4f(xPos, yPos, zPos, wPos);
+    glTexCoord2f(uPos + uScale, vPos);
+    glVertex4f(xPos + xSize, yPos, zPos, wPos);
+    glTexCoord2f(uPos + uScale, vPos - vScale);
+    glVertex4f(xPos + xSize, yPos + ySize, zPos, wPos);
+    glTexCoord2f(uPos, vPos - vScale);
+    glVertex4f(xPos, yPos + ySize, zPos, wPos);
+    
+    glEnd();
+}
+
+void
+MushGLFont::RenderSymbolAtSizeProportion(const Mushware::U32 inValue, const Mushware::t4Val& inCoords,
+                               const Mushware::t2Val& inSize, const Mushware::t2Val& inProp)
+{
+    MushGLState::Sgl().TextureEnable2D(0); // Enable texture 0
+    m_textureRef.WRef().Bind();
+    
+    t4U32 texSize = m_textureRef.WRef().Size();
+    
+    MushGLUtil::ColourSet(m_colour);
+    
+    tVal xSize = inSize.X();
+    tVal ySize = inSize.Y();
+    
+    tVal xPos = inCoords.X() - xSize/2;
+    tVal yPos = inCoords.Y() - ySize/2;
+    tVal zPos = inCoords.Z();
+    tVal wPos = inCoords.W();
+    
+    tVal uScale = m_extent.X() / texSize.X();
+    tVal vScale = m_extent.Y() / texSize.Y();
+    
+    tVal uPos = (inValue % m_divide.X()) * uScale;
+    tVal vPos = (1 + inValue / m_divide.X()) * vScale;
+    
+    xSize *= inProp.X();
+    ySize *= inProp.Y();
+    uScale *= inProp.X();
+    vScale *= inProp.Y();
     
     // Already expect to be in kRenderState2D    
     glBegin(GL_QUADS);

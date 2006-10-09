@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } H3ST5h4h3xAlbP2DXml2uQ
 /*
- * $Id: MushGamePiecePlayer.cpp,v 1.13 2006/06/01 15:39:25 southa Exp $
+ * $Id: MushGamePiecePlayer.cpp,v 1.1 2006/10/02 17:25:05 southa Exp $
  * $Log: MushGamePiecePlayer.cpp,v $
+ * Revision 1.1  2006/10/02 17:25:05  southa
+ * Object lookup and target selection
+ *
  * Revision 1.13  2006/06/01 15:39:25  southa
  * DrawArray verification and fixes
  *
@@ -126,7 +129,7 @@ MushGamePiecePlayer::FireConsume(MushGameLogic& ioLogic, const MushGameMessageFi
 Mushware::tMsec
 MushGamePiecePlayer::FirePeriodMsec(void)
 {
-    return 250;   
+    return 100;   
 }
 
 void

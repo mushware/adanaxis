@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } GszAZNIc4XTjBhyVnPxI7g
 /*
- * $Id: MushGLFont.h,v 1.5 2006/07/25 13:30:58 southa Exp $
+ * $Id: MushGLFont.h,v 1.6 2006/07/25 20:31:03 southa Exp $
  * $Log: MushGLFont.h,v $
+ * Revision 1.6  2006/07/25 20:31:03  southa
+ * Scanner work
+ *
  * Revision 1.5  2006/07/25 13:30:58  southa
  * Initial scanner work
  *
@@ -59,6 +62,8 @@ public:
     
     void RenderSymbolAtSize(const Mushware::U32 inValue, const Mushware::t4Val& inCoords,
                             const Mushware::t2Val& inSize);
+    void RenderSymbolAtSizeProportion(const Mushware::U32 inValue, const Mushware::t4Val& inCoords,
+                            const Mushware::t2Val& inSize, const Mushware::t2Val& inProp);
     void RenderSymbolAtSizeAngle(const Mushware::U32 inValue, const Mushware::t4Val& inCoords,
                                  const Mushware::t2Val& inSize, Mushware::tVal inAngle);
     

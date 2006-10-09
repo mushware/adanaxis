@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } rQkTih3VUd7Xp8cDeV3ZYA
 /*
- * $Id: AdanaxisRender.cpp,v 1.50 2006/10/05 15:39:17 southa Exp $
+ * $Id: AdanaxisRender.cpp,v 1.51 2006/10/06 11:54:57 southa Exp $
  * $Log: AdanaxisRender.cpp,v $
+ * Revision 1.51  2006/10/06 11:54:57  southa
+ * Scaled rendering
+ *
  * Revision 1.50  2006/10/05 15:39:17  southa
  * Explosion handling
  *
@@ -476,7 +479,7 @@ void AdanaxisRender::ScanRender(AdanaxisLogic& ioLogic, MushRenderMesh *inpRende
     tKhaziList::iterator khaziEndIter = pSaveData->KhaziListWRef().end();
     for (tKhaziList::iterator p = pSaveData->KhaziListWRef().begin(); p != khaziEndIter; ++p)
     {
-        m_scanner.ScanObjectRender(ioLogic, inpRenderMesh, inCamera, p->Post(), p->Mesh(), AdanaxisScanner::kObjectTypeKhazi);
+        m_scanner.ScanObjectRender(ioLogic, inpRenderMesh, inCamera, *p, AdanaxisScanner::kObjectTypeKhazi);
     }
     
     m_scanner.ScanCrosshairRender(ioLogic, inpRenderMesh, inCamera);
