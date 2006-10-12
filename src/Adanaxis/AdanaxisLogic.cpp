@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } Mac7dWHONvkZIg39sQnwww
 /*
- * $Id: AdanaxisLogic.cpp,v 1.22 2006/10/08 11:31:32 southa Exp $
+ * $Id: AdanaxisLogic.cpp,v 1.23 2006/10/09 16:00:16 southa Exp $
  * $Log: AdanaxisLogic.cpp,v $
+ * Revision 1.23  2006/10/09 16:00:16  southa
+ * Intern generation
+ *
  * Revision 1.22  2006/10/08 11:31:32  southa
  * Hit points
  *
@@ -225,32 +228,30 @@ void
 AdanaxisLogic::CollisionHandle(AdanaxisSaveData::tProjectile& ioProj,
                                AdanaxisSaveData::tKhazi& ioKhazi, const MushCollisionInfo& inCollInfo)
 {
-    bool fatal = true;
-    
     MUSHCOREASSERT(inCollInfo.ObjectNamesValid());
-    
-    // Build events for ruby objects
-    
-    
-    if (fatal)
+
+    MushGameMessageCollision collMesg("c:");
+    collMesg.ObjectName1Set(inCollInfo.ObjectName1());
+    collMesg.ObjectName2Set(inCollInfo.ObjectName2());
+    collMesg.Piece1Set(&ioProj);
+    collMesg.Piece2Set(&ioKhazi);
+    collMesg.PiecesValidSet(true);
+    if (inCollInfo.ChunkNumsValid())
     {
-        MushGameMessageCollisionFatal fatalMesg("c:");
-        fatalMesg.ObjectName1Set(inCollInfo.ObjectName1());
-        fatalMesg.ObjectName2Set(inCollInfo.ObjectName2());
-        fatalMesg.Post1Set(ioProj.Post());
-        fatalMesg.Post2Set(ioProj.Post());
-        if (inCollInfo.ChunkNumsValid())
-        {
-            fatalMesg.ChunkNum1Set(inCollInfo.ChunkNum1());
-            fatalMesg.ChunkNum2Set(inCollInfo.ChunkNum2());
-            fatalMesg.ChunkNumsValidSet(true);
-        }
-        else
-        {
-            fatalMesg.ChunkNumsValidSet(false);
-        }
-        CopyAndBroadcast(fatalMesg);
+        collMesg.ChunkNum1Set(inCollInfo.ChunkNum1());
+        collMesg.ChunkNum2Set(inCollInfo.ChunkNum2());
+        collMesg.ChunkNumsValidSet(true);
     }
+    else
+    {
+        collMesg.ChunkNumsValidSet(false);
+    }
+    
+    MushRubyValue collObj(collMesg.RubyObjectMake());
+    
+    RubyLogic().Call(MushRubyIntern::SymbolID("mCollisionEventConsume"), collObj);
+    
+    CopyAndBroadcast(collMesg);
 }
 
 // Slow version - checks every object
@@ -360,7 +361,7 @@ AdanaxisLogic::PieceLookup(const std::string& inName) const
 }
 
 void
-AdanaxisLogic::CollisionFatalConsume(MushGameLogic& ioLogic, const MushGameMessageCollisionFatal& inMessage)
+AdanaxisLogic::CollisionConsume(MushGameLogic& ioLogic, const MushGameMessageCollision& inMessage)
 {    
     // Forward this message to both colliding objects
     try
@@ -384,11 +385,11 @@ AdanaxisLogic::CollisionFatalConsume(MushGameLogic& ioLogic, const MushGameMessa
 void
 AdanaxisLogic::CollisionMessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage)
 {
-    const MushGameMessageCollisionFatal *pCollisionFatal;
+    const MushGameMessageCollision *pCollision;
     
-    if ((pCollisionFatal = dynamic_cast<const MushGameMessageCollisionFatal *>(&inMessage)) != NULL)
+    if ((pCollision = dynamic_cast<const MushGameMessageCollision *>(&inMessage)) != NULL)
     {
-        CollisionFatalConsume(ioLogic, *pCollisionFatal);
+        CollisionConsume(ioLogic, *pCollision);
     }
     else
     {

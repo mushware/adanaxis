@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 5BOLwI3DhgfDHotOLswDpg
 /*
- * $Id: MushRubyValue.h,v 1.15 2006/08/24 13:04:38 southa Exp $
+ * $Id: MushRubyValue.h,v 1.16 2006/10/04 13:35:26 southa Exp $
  * $Log: MushRubyValue.h,v $
+ * Revision 1.16  2006/10/04 13:35:26  southa
+ * Selective targetting
+ *
  * Revision 1.15  2006/08/24 13:04:38  southa
  * Event handling
  *
@@ -107,6 +110,7 @@ public:
     MushRubyValue ArrayEntry(Mushware::U32 inIndex) const;
     
     MushRubyValue Call(Mushware::tRubyID inID) const;
+    MushRubyValue Call(Mushware::tRubyID inID, const MushRubyValue& inParam0) const;
     const std::string Inspect(void) const;
     
 private:

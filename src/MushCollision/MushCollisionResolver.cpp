@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } ymdD2Lh32YJKehH+HKSuAg
 /*
- * $Id: MushCollisionResolver.cpp,v 1.4 2005/08/01 13:09:58 southa Exp $
+ * $Id: MushCollisionResolver.cpp,v 1.5 2006/06/01 15:39:16 southa Exp $
  * $Log: MushCollisionResolver.cpp,v $
+ * Revision 1.5  2006/06/01 15:39:16  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.4  2005/08/01 13:09:58  southa
  * Collision messaging
  *
@@ -88,6 +91,7 @@ MushCollisionResolver::ChunkResolve(MushCollisionInfo& outCollInfo, const MushCo
     outCollInfo.ChunkNum1Set(chunkNum1);
     outCollInfo.ChunkNum2Set(chunkNum2);
     outCollInfo.ChunkNumsValidSet(true);
+    outCollInfo.ObjectPointersValidSet(false);
 }
 
 void

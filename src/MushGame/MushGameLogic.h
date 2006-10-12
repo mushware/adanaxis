@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } pz9Ij69Gp+RQuOHP0yYqgg
 /*
- * $Id: MushGameLogic.h,v 1.21 2006/10/02 20:28:11 southa Exp $
+ * $Id: MushGameLogic.h,v 1.22 2006/10/04 13:35:24 southa Exp $
  * $Log: MushGameLogic.h,v $
+ * Revision 1.22  2006/10/04 13:35:24  southa
+ * Selective targetting
+ *
  * Revision 1.21  2006/10/02 20:28:11  southa
  * Object lookup and target selection
  *
@@ -182,11 +185,16 @@ public:
     
     virtual void ExceptionHandle(std::exception *inpFail, const std::string& inName) const;
 
+    const MushRubyValue& RubyLogic(void);
+    
 protected:
         
 private:
     MushcoreDataRef<MushGameData> m_dataRef; //:readwrite :wref
     MushcoreDataRef<MushGameHostData> m_hostDataRef; //:readwrite :wref
+    MushRubyValue m_rubyLogic;
+    
+    virtual MushRubyValue NewLogic(void);
     
 //%classPrototypes {
 public:
@@ -207,6 +215,17 @@ public:
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
 //%classPrototypes } Bfr2pEaavQy7OxUU5VS7Fg
 };
+
+inline const MushRubyValue&
+MushGameLogic::RubyLogic(void)
+{
+    if (m_rubyLogic.IsNil())
+    {
+        m_rubyLogic = NewLogic();
+    }
+    return m_rubyLogic;
+}
+
 //%inlineHeader {
 inline std::ostream&
 operator<<(std::ostream& ioOut, const MushGameLogic& inObj)

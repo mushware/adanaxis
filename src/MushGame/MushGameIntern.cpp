@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 8fTAEuGpO9TKg8SBLTUQaw
 /*
- * $Id$
- * $Log$
+ * $Id: MushGameIntern.cpp,v 1.1 2006/10/09 16:00:17 southa Exp $
+ * $Log: MushGameIntern.cpp,v $
+ * Revision 1.1  2006/10/09 16:00:17  southa
+ * Intern generation
+ *
  */
 
 #include "MushGameIntern.h"
@@ -32,6 +35,10 @@ MUSHCORE_SINGLETON_INSTANCE(MushGameIntern);
 MushGameIntern::MushGameIntern()
 {
 //%initialisations {
-    m_klassMushEventCollision = MushRubyUtil::Class("MushEventCollision");
-//%initialisations } 65821d0fd7231b7ec54129acc63d57d3
+    m_klassMushEventCollision = MushRubyValue(MushRubyUtil::Class("MushEventCollision"));
+    m_ATm_piece1 = MushRubyIntern::SymbolID("@m_piece1");
+    m_ATm_piece2 = MushRubyIntern::SymbolID("@m_piece2");
+    m_ATm_chunkNum1 = MushRubyIntern::SymbolID("@m_chunkNum1");
+    m_ATm_chunkNum2 = MushRubyIntern::SymbolID("@m_chunkNum2");
+//%initialisations } 0635fbe9216a0e71ab725f8c642e7bce
 }

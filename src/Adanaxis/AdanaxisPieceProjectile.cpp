@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } AKn0HlU4NeCX3ptHFWodSQ
 /*
- * $Id: AdanaxisPieceProjectile.cpp,v 1.13 2006/10/03 14:06:51 southa Exp $
+ * $Id: AdanaxisPieceProjectile.cpp,v 1.14 2006/10/04 13:35:23 southa Exp $
  * $Log: AdanaxisPieceProjectile.cpp,v $
+ * Revision 1.14  2006/10/04 13:35:23  southa
+ * Selective targetting
+ *
  * Revision 1.13  2006/10/03 14:06:51  southa
  * Khazi and projectile creation
  *
@@ -78,7 +81,7 @@ AdanaxisPieceProjectile::AdanaxisPieceProjectile(const std::string& inID, const 
     MushGamePiece(inID),
     m_launchMsec(0)
 {
-    RubyPieceConstructor(inID, inParams, AdanaxisIntern::Sgl().KlassAdanaxisPieceProjectile());
+    RubyPieceConstructor(inID, inParams, AdanaxisIntern::Sgl().AdanaxisPieceProjectile());
 }
 
 AdanaxisPieceProjectile::~AdanaxisPieceProjectile()
@@ -121,7 +124,7 @@ AdanaxisPieceProjectile::Render(MushGLJobRender& outRender,
 }
 
 void
-AdanaxisPieceProjectile::CollisionFatalConsume(MushGameLogic& ioLogic, const MushGameMessageCollisionFatal& inMessage)
+AdanaxisPieceProjectile::CollisionConsume(MushGameLogic& ioLogic, const MushGameMessageCollision& inMessage)
 {
     Explode(ioLogic);
     ExpireFlagSet(true);
@@ -130,11 +133,11 @@ AdanaxisPieceProjectile::CollisionFatalConsume(MushGameLogic& ioLogic, const Mus
 void
 AdanaxisPieceProjectile::MessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage)
 {
-    const MushGameMessageCollisionFatal *pCollisionFatal;
+    const MushGameMessageCollision *pCollision;
     
-    if ((pCollisionFatal = dynamic_cast<const MushGameMessageCollisionFatal *>(&inMessage)) != NULL)
+    if ((pCollision = dynamic_cast<const MushGameMessageCollision *>(&inMessage)) != NULL)
     {
-        CollisionFatalConsume(ioLogic, *pCollisionFatal);
+        CollisionConsume(ioLogic, *pCollision);
     }
     else
     {

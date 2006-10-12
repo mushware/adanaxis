@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } IoZErpHTPH1ESqVhq+g9og
 /*
- * $Id: MushGameMessageCollision.h,v 1.1 2005/08/01 13:09:58 southa Exp $
+ * $Id: MushGameMessageCollision.h,v 1.2 2006/06/01 15:39:24 southa Exp $
  * $Log: MushGameMessageCollision.h,v $
+ * Revision 1.2  2006/06/01 15:39:24  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.1  2005/08/01 13:09:58  southa
  * Collision messaging
  *
@@ -33,6 +36,7 @@
 #include "MushGameStandard.h"
 
 #include "MushGameMessage.h"
+#include "MushGamePiece.h"
 
 //:xml1base MushGameMessage
 //:generate virtual standard ostream xml1
@@ -40,12 +44,27 @@ class MushGameMessageCollision : public MushGameMessage
 {
 public:
     explicit MushGameMessageCollision(const std::string& inID = "") :
-        MushGameMessage(inID)
+        MushGameMessage(inID),
+        m_chunkNumsValid(false),
+        m_piecesValid(false)
     {}
 
+    MushGamePiece *Piece1(void) const { return m_piece1; }
+    void Piece1Set(MushGamePiece *inValue) { m_piece1=inValue; }
+    MushGamePiece *Piece2(void) const { return m_piece2; }
+    void Piece2Set(MushGamePiece *inValue) { m_piece2=inValue; }
+    
+    Mushware::tRubyValue RubyObjectMake(void);
+    
 private:
     std::string m_objectName1; //:readwrite
     std::string m_objectName2; //:readwrite
+    MushGamePiece *m_piece1;
+    MushGamePiece *m_piece2;    
+    Mushware::U32 m_chunkNum1; //:readwrite
+    Mushware::U32 m_chunkNum2; //:readwrite
+    bool m_chunkNumsValid; //:readwrite
+    bool m_piecesValid; //:readwrite
     
 //%classPrototypes {
 public:
@@ -53,6 +72,14 @@ public:
     void ObjectName1Set(const std::string& inValue) { m_objectName1=inValue; }
     const std::string& ObjectName2(void) const { return m_objectName2; }
     void ObjectName2Set(const std::string& inValue) { m_objectName2=inValue; }
+    const Mushware::U32& ChunkNum1(void) const { return m_chunkNum1; }
+    void ChunkNum1Set(const Mushware::U32& inValue) { m_chunkNum1=inValue; }
+    const Mushware::U32& ChunkNum2(void) const { return m_chunkNum2; }
+    void ChunkNum2Set(const Mushware::U32& inValue) { m_chunkNum2=inValue; }
+    const bool& ChunkNumsValid(void) const { return m_chunkNumsValid; }
+    void ChunkNumsValidSet(const bool& inValue) { m_chunkNumsValid=inValue; }
+    const bool& PiecesValid(void) const { return m_piecesValid; }
+    void PiecesValidSet(const bool& inValue) { m_piecesValid=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -60,7 +87,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } /hQHOIrqK2QxgkAgwJRPTQ
+//%classPrototypes } 0EDgRTYQyG8Jp4iBMGbh3w
 };
 //%inlineHeader {
 inline std::ostream&

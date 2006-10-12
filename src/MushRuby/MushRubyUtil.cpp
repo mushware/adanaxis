@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } gSaMBKSS/9FVf/ypP8x5kA
 /*
- * $Id: MushRubyUtil.cpp,v 1.15 2006/10/02 20:28:11 southa Exp $
+ * $Id: MushRubyUtil.cpp,v 1.16 2006/10/04 13:35:25 southa Exp $
  * $Log: MushRubyUtil.cpp,v $
+ * Revision 1.16  2006/10/04 13:35:25  southa
+ * Selective targetting
+ *
  * Revision 1.15  2006/10/02 20:28:11  southa
  * Object lookup and target selection
  *
@@ -313,9 +316,15 @@ MushRubyUtil::StringNew(const std::string& inStr)
 }
 
 Mushware::tRubyValue
-MushRubyUtil::ClassNewInstance(Mushware::tRubyID inID)
+MushRubyUtil::ClassNewInstance(Mushware::tRubyValue inValue)
 {
-    return rb_class_new_instance(0, 0, inID);
+    return rb_class_new_instance(0, 0, inValue);
+}
+
+MushRubyValue
+MushRubyUtil::ClassNewInstance(const MushRubyValue& inValue)
+{
+    return MushRubyValue(rb_class_new_instance(0, 0, inValue.Value()));
 }
 
 Mushware::tRubyValue
@@ -370,4 +379,9 @@ MushRubyUtil::SymbolToValue(Mushware::tRubyID inSymbol)
 	return ID2SYM(inSymbol);
 }
 
+MushRubyValue
+MushRubyUtil::GlobalVar(const std::string& inName)
+{
+    return MushRubyValue(rb_gv_get(inName.c_str()));
+}
 

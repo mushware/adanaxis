@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } WBiqbvbumO43Eps7fHh03A
 /*
- * $Id: AdanaxisIntern.h,v 1.4 2006/10/03 15:28:21 southa Exp $
+ * $Id: AdanaxisIntern.h,v 1.5 2006/10/04 21:39:35 southa Exp $
  * $Log: AdanaxisIntern.h,v $
+ * Revision 1.5  2006/10/04 21:39:35  southa
+ * Source processing
+ *
  * Revision 1.4  2006/10/03 15:28:21  southa
  * Source process directives
  *
@@ -40,44 +43,34 @@
 
 #include "AdanaxisStandard.h"
 
-//:process ProcessAdanaxisIntern.rb
+//:process ProcessIntern.rb
 /*
 :data1begin
-ids = %w{
-  AdanaxisPieceKhazi
-  AdanaxisPiecePlayer
-  AdanaxisPieceProjectile
-}
-values = %w{
-  KlassAdanaxisPieceKhazi
-  KlassAdanaxisPiecePlayer
-  KlassAdanaxisPieceProjectile
-}
+ ids = %w{
+ }
+ classes = %w{
+   AdanaxisPieceKhazi
+   AdanaxisPiecePlayer
+   AdanaxisPieceProjectile
+ }
 :data1end
 */
-#define ADANAXISINTERN_ID(a) \
-public: \
-Mushware::tRubyID a(void) { return m_##a; } \
-private: \
-Mushware::tRubyID m_##a
 
-#define ADANAXISINTERN_VALUE(a) \
-public: \
-const MushRubyValue& a(void) { return m_##a; } \
-private: \
-MushRubyValue m_##a
-
- 
 class AdanaxisIntern : public MushcoreSingleton<AdanaxisIntern>
 {
 public:
     AdanaxisIntern();
-    ADANAXISINTERN_ID(AdanaxisPieceKhazi);
-    ADANAXISINTERN_ID(AdanaxisPiecePlayer);
-    ADANAXISINTERN_ID(AdanaxisPieceProjectile);
-    ADANAXISINTERN_VALUE(KlassAdanaxisPieceKhazi);
-    ADANAXISINTERN_VALUE(KlassAdanaxisPiecePlayer);
-    ADANAXISINTERN_VALUE(KlassAdanaxisPieceProjectile);
+//%declarations {
+public:
+    MushRubyValue& AdanaxisPieceKhazi(void) { return m_klassAdanaxisPieceKhazi; }
+    MushRubyValue& AdanaxisPiecePlayer(void) { return m_klassAdanaxisPiecePlayer; }
+    MushRubyValue& AdanaxisPieceProjectile(void) { return m_klassAdanaxisPieceProjectile; }
+private:
+    MushRubyValue m_klassAdanaxisPieceKhazi;
+    MushRubyValue m_klassAdanaxisPiecePlayer;
+    MushRubyValue m_klassAdanaxisPieceProjectile;
+//%declarations } 2dc0f6518fc663c9a66d0a637579828d
+
 //%classPrototypes {
 public:
 //%classPrototypes } 0ImSRh0/JBpOMwe5g8vGcA

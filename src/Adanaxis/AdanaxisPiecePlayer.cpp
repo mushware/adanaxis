@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } gq+r6M5XzKqE/mgjgvunrQ
 /*
- * $Id: AdanaxisPiecePlayer.cpp,v 1.4 2006/10/04 13:35:22 southa Exp $
+ * $Id: AdanaxisPiecePlayer.cpp,v 1.5 2006/10/09 16:00:16 southa Exp $
  * $Log: AdanaxisPiecePlayer.cpp,v $
+ * Revision 1.5  2006/10/09 16:00:16  southa
+ * Intern generation
+ *
  * Revision 1.4  2006/10/04 13:35:22  southa
  * Selective targetting
  *
@@ -139,9 +142,9 @@ AdanaxisPiecePlayer::AdanaxisPiecePlayer(const std::string& inPlayerID) :
 {
     PostWRef().PosSet(t4Val(0,0,0,0));
         
-    RubyObjSet(MushRubyExec::Sgl().Call(AdanaxisIntern::Sgl().KlassAdanaxisPiecePlayer(),
+    RubyObjSet(MushRubyExec::Sgl().Call(AdanaxisIntern::Sgl().AdanaxisPiecePlayer(),
                                         MushRubyIntern::cRegisteredCreate()));
-    MushRubyUtil::DataObjectWrapNew(AdanaxisIntern::Sgl().KlassAdanaxisPiecePlayer(), RubyObj(), this);
+    MushRubyUtil::DataObjectWrapNew(AdanaxisIntern::Sgl().AdanaxisPiecePlayer(), RubyObj(), this);
     MushRubyUtil::InstanceVarSet(RubyObj().Value(), MushRubyIntern::ATm_id(), MushRubyValue(inPlayerID).Value());        
 }
 

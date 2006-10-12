@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } ZnwDjEM1+TPkZ9HrL5mg7A
 /*
- * $Id: MushRubyUtil.h,v 1.14 2006/10/02 20:28:11 southa Exp $
+ * $Id: MushRubyUtil.h,v 1.15 2006/10/04 13:35:25 southa Exp $
  * $Log: MushRubyUtil.h,v $
+ * Revision 1.15  2006/10/04 13:35:25  southa
+ * Selective targetting
+ *
  * Revision 1.14  2006/10/02 20:28:11  southa
  * Object lookup and target selection
  *
@@ -119,7 +122,8 @@ public:
 	static Mushware::tRubyValue DataWrapStruct(Mushware::tRubyValue inSelf, Mushware::tfpRubyDataFunc infpMark, Mushware::tfpRubyDataFunc infpFree, void *inpData);
 	static void *DataGetStruct(Mushware::tRubyValue inSelf);
     static Mushware::tRubyValue StringNew(const std::string& inStr);
-	static Mushware::tRubyValue ClassNewInstance(Mushware::tRubyID inID);
+	static Mushware::tRubyValue ClassNewInstance(Mushware::tRubyValue inValue);
+    static MushRubyValue ClassNewInstance(const MushRubyValue& inValue);
     static Mushware::tRubyValue DataObjectWrapNew(const MushRubyValue& inKlass, const MushRubyValue& inSelf, void *inpData);
     static void *DataObjectRetrieve(Mushware::tRubyValue inSelf);
     static Mushware::tRubyValue InstanceVar(Mushware::tRubyValue inObj, Mushware::tRubyID inSym);
@@ -127,6 +131,7 @@ public:
     static void Freeze(Mushware::tRubyValue& ioValue);
     static void HashValueSet(Mushware::tRubyValue inHash, Mushware::tRubyValue inKey, Mushware::tRubyValue inValue); 
     static Mushware::tRubyValue SymbolToValue(Mushware::tRubyID inSymbol);
+    static MushRubyValue GlobalVar(const std::string& inName);
     
 private:
 	static Mushware::tRubyValue HashHandler(Mushware::tRubyValue inArray, Mushware::tRubyValue inArg);

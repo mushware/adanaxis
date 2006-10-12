@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } M7UhIENwDvfEsDghIncTBw
 /*
- * $Id: MushCollisionInfo.h,v 1.2 2005/08/01 20:24:03 southa Exp $
+ * $Id: MushCollisionInfo.h,v 1.3 2006/06/01 15:39:15 southa Exp $
  * $Log: MushCollisionInfo.h,v $
+ * Revision 1.3  2006/06/01 15:39:15  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.2  2005/08/01 20:24:03  southa
  * Backdrop and build fixes
  *
@@ -46,10 +49,12 @@ private:
     Mushware::tVal m_separatingDistance; //:readwrite
     std::string m_objectName1; //:readwrite
     std::string m_objectName2; //:readwrite
+    
     Mushware::U32 m_chunkNum1; //:readwrite
     Mushware::U32 m_chunkNum2; //:readwrite
     bool m_objectNamesValid; //:readwrite
     bool m_chunkNumsValid; //:readwrite
+    bool m_objectPointersValid; //:readwrite
     
 //%classPrototypes {
 public:
@@ -67,6 +72,8 @@ public:
     void ObjectNamesValidSet(const bool& inValue) { m_objectNamesValid=inValue; }
     const bool& ChunkNumsValid(void) const { return m_chunkNumsValid; }
     void ChunkNumsValidSet(const bool& inValue) { m_chunkNumsValid=inValue; }
+    const bool& ObjectPointersValid(void) const { return m_objectPointersValid; }
+    void ObjectPointersValidSet(const bool& inValue) { m_objectPointersValid=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -74,7 +81,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } 7rptE1azCoGvB9iJ23fF0g
+//%classPrototypes } ylpGT1OVFIgLVBxm4I4lpg
 };
 //%inlineHeader {
 inline std::ostream&

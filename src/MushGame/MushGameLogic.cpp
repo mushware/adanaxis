@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } o9Dxm/e8GypZNPSRXLgJNQ
 /*
- * $Id: MushGameLogic.cpp,v 1.31 2006/10/02 20:28:11 southa Exp $
+ * $Id: MushGameLogic.cpp,v 1.32 2006/10/04 13:35:24 southa Exp $
  * $Log: MushGameLogic.cpp,v $
+ * Revision 1.32  2006/10/04 13:35:24  southa
+ * Selective targetting
+ *
  * Revision 1.31  2006/10/02 20:28:11  southa
  * Object lookup and target selection
  *
@@ -776,6 +779,13 @@ MushGameLogic::ClientNewPlayerHandle(Mushware::U32 inPlayerNum)
     pCamera->TiedRefCopy(&playerRef);
 }
 
+
+MushRubyValue
+MushGameLogic::NewLogic(void)
+{
+    return MushRubyUtil::GlobalVar("$currentLogic");
+}
+
 //%outOfLineFunctions {
 
 const char *MushGameLogic::AutoName(void) const
@@ -810,7 +820,8 @@ MushGameLogic::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
     ioOut << "dataRef=" << m_dataRef << ", ";
-    ioOut << "hostDataRef=" << m_hostDataRef;
+    ioOut << "hostDataRef=" << m_hostDataRef << ", ";
+    ioOut << "rubyLogic=" << m_rubyLogic;
     ioOut << "]";
 }
 bool
@@ -830,6 +841,10 @@ MushGameLogic::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& i
     {
         ioIn >> m_hostDataRef;
     }
+    else if (inTagStr == "rubyLogic")
+    {
+        ioIn >> m_rubyLogic;
+    }
     else 
     {
         return false;
@@ -843,5 +858,7 @@ MushGameLogic::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_dataRef;
     ioOut.TagSet("hostDataRef");
     ioOut << m_hostDataRef;
+    ioOut.TagSet("rubyLogic");
+    ioOut << m_rubyLogic;
 }
-//%outOfLineFunctions } iFXIT4kZZC5R+63KfE3VMw
+//%outOfLineFunctions } BkdQLiheBSdL7u0BwAwbNQ

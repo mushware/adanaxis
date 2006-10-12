@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } hwIlNOCEH5GsgwGY+rP1Kg
 /*
- * $Id: MushRubyValue.cpp,v 1.17 2006/08/24 13:04:38 southa Exp $
+ * $Id: MushRubyValue.cpp,v 1.18 2006/10/04 13:35:25 southa Exp $
  * $Log: MushRubyValue.cpp,v $
+ * Revision 1.18  2006/10/04 13:35:25  southa
+ * Selective targetting
+ *
  * Revision 1.17  2006/08/24 13:04:38  southa
  * Event handling
  *
@@ -296,6 +299,12 @@ MushRubyValue
 MushRubyValue::Call(Mushware::tRubyID inID) const
 {
     return MushRubyExec::Sgl().Call(*this, inID);
+}
+
+MushRubyValue
+MushRubyValue::Call(Mushware::tRubyID inID, const MushRubyValue& inParam0) const
+{
+    return MushRubyExec::Sgl().Call(*this, inID, inParam0);
 }
 
 bool

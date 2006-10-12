@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } ccLCYRn/kYU+5Rp9coVdng
 /*
- * $Id: MediaAudioSDL.cpp,v 1.22 2006/07/26 16:37:22 southa Exp $
+ * $Id: MediaAudioSDL.cpp,v 1.23 2006/07/28 16:52:20 southa Exp $
  * $Log: MediaAudioSDL.cpp,v $
+ * Revision 1.23  2006/07/28 16:52:20  southa
+ * Options work
+ *
  * Revision 1.22  2006/07/26 16:37:22  southa
  * Options menu
  *
@@ -137,7 +140,7 @@ MediaAudioSDL::MediaAudioSDL():
     int audioRate = MIX_DEFAULT_FREQUENCY; // 22050Hz
     unsigned short audioFormat = MIX_DEFAULT_FORMAT; // 16-bit stereo
     int audioHardChannels = 2; // Stereo
-    U32 audioSoftChannels = 8;
+    U32 audioSoftChannels = 16;
     int audioBuffer = 1024;
 
     const MushcoreScalar *pScalar;

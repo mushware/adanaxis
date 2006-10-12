@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } YCa3eNmcxUH2q0Oxh6SpTA
 /*
- * $Id: AdanaxisPieceKhazi.cpp,v 1.25 2006/10/05 15:39:17 southa Exp $
+ * $Id: AdanaxisPieceKhazi.cpp,v 1.26 2006/10/09 16:00:16 southa Exp $
  * $Log: AdanaxisPieceKhazi.cpp,v $
+ * Revision 1.26  2006/10/09 16:00:16  southa
+ * Intern generation
+ *
  * Revision 1.25  2006/10/05 15:39:17  southa
  * Explosion handling
  *
@@ -115,7 +118,7 @@ AdanaxisPieceKhazi::AdanaxisPieceKhazi(const std::string& inID, const MushRubyVa
     MushGamePiece(inID),
     m_actionMsec(1)
 {
-    RubyPieceConstructor(inID, inParams, AdanaxisIntern::Sgl().KlassAdanaxisPieceKhazi());
+    RubyPieceConstructor(inID, inParams, AdanaxisIntern::Sgl().AdanaxisPieceKhazi());
 }
 
 AdanaxisPieceKhazi::~AdanaxisPieceKhazi()
@@ -220,7 +223,7 @@ AdanaxisPieceKhazi::Render(MushGLJobRender& outRender,
 }
 
 void
-AdanaxisPieceKhazi::CollisionFatalConsume(MushGameLogic& ioLogic, const MushGameMessageCollisionFatal& inMessage)
+AdanaxisPieceKhazi::CollisionConsume(MushGameLogic& ioLogic, const MushGameMessageCollision& inMessage)
 {
     if (!ExpireFlag())
     {
@@ -237,11 +240,11 @@ AdanaxisPieceKhazi::CollisionFatalConsume(MushGameLogic& ioLogic, const MushGame
 void
 AdanaxisPieceKhazi::MessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage)
 {
-    const MushGameMessageCollisionFatal *pCollisionFatal;
+    const MushGameMessageCollision *pCollision;
     
-    if ((pCollisionFatal = dynamic_cast<const MushGameMessageCollisionFatal *>(&inMessage)) != NULL)
+    if ((pCollision = dynamic_cast<const MushGameMessageCollision *>(&inMessage)) != NULL)
     {
-        CollisionFatalConsume(ioLogic, *pCollisionFatal);
+        CollisionConsume(ioLogic, *pCollision);
     }
     else
     {
@@ -251,7 +254,7 @@ AdanaxisPieceKhazi::MessageConsume(MushGameLogic& ioLogic, const MushGameMessage
 }
 
 void
-AdanaxisPieceKhazi::Explode(MushGameLogic& ioLogic, const MushGameMessageCollisionFatal& inMessage)
+AdanaxisPieceKhazi::Explode(MushGameLogic& ioLogic, const MushGameMessageCollision& inMessage)
 {
     U32 numChunks = Mesh().Chunks().size();
     U32 contactChunk = 0;

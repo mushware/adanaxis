@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } mqRyosjSblx9ADjVCHc1/g
 /*
- * $Id: AdanaxisIntern.cpp,v 1.2 2006/10/02 17:25:04 southa Exp $
+ * $Id: AdanaxisIntern.cpp,v 1.3 2006/10/03 14:06:50 southa Exp $
  * $Log: AdanaxisIntern.cpp,v $
+ * Revision 1.3  2006/10/03 14:06:50  southa
+ * Khazi and projectile creation
+ *
  * Revision 1.2  2006/10/02 17:25:04  southa
  * Object lookup and target selection
  *
@@ -29,16 +32,15 @@
 
 #include "AdanaxisIntern.h"
 
+//:process ProcessIntern.rb
+
 MUSHCORE_SINGLETON_INSTANCE(AdanaxisIntern);
 
-#define ADANAXISINTERN_INIT_ID(a) m_##a = MushRubyIntern::SymbolID(#a)
-
-AdanaxisIntern::AdanaxisIntern() :
-    m_KlassAdanaxisPieceKhazi(MushRubyUtil::Class("AdanaxisPieceKhazi")),
-    m_KlassAdanaxisPiecePlayer(MushRubyUtil::Class("AdanaxisPiecePlayer")),
-    m_KlassAdanaxisPieceProjectile(MushRubyUtil::Class("AdanaxisPieceProjectile"))
+AdanaxisIntern::AdanaxisIntern()
 {
-    ADANAXISINTERN_INIT_ID(AdanaxisPieceKhazi);
-    ADANAXISINTERN_INIT_ID(AdanaxisPiecePlayer);
-    ADANAXISINTERN_INIT_ID(AdanaxisPieceProjectile);
+//%initialisations {
+    m_klassAdanaxisPieceKhazi = MushRubyValue(MushRubyUtil::Class("AdanaxisPieceKhazi"));
+    m_klassAdanaxisPiecePlayer = MushRubyValue(MushRubyUtil::Class("AdanaxisPiecePlayer"));
+    m_klassAdanaxisPieceProjectile = MushRubyValue(MushRubyUtil::Class("AdanaxisPieceProjectile"));
+//%initialisations } d5a206b442010e7f793fbfa25fa5e830
 }

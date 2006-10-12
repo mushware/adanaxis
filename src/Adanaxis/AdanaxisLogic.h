@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } 3LuiErcM0vO3wOyNDCFVeQ
 /*
- * $Id: AdanaxisLogic.h,v 1.15 2006/10/02 20:28:10 southa Exp $
+ * $Id: AdanaxisLogic.h,v 1.16 2006/10/04 13:35:22 southa Exp $
  * $Log: AdanaxisLogic.h,v $
+ * Revision 1.16  2006/10/04 13:35:22  southa
+ * Selective targetting
+ *
  * Revision 1.15  2006/10/02 20:28:10  southa
  * Object lookup and target selection
  *
@@ -103,7 +106,7 @@ public:
     virtual void MenuModeEnter(void);
     
     
-    virtual void CollisionFatalConsume(MushGameLogic& ioLogic, const MushGameMessageCollisionFatal& inMessage);
+    virtual void CollisionConsume(MushGameLogic& ioLogic, const MushGameMessageCollision& inMessage);
     virtual void CollisionMessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage);
     
     virtual AdanaxisSaveData& SaveData(void) const;

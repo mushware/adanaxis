@@ -68,7 +68,8 @@ MushCollisionInfo::AutoPrint(std::ostream& ioOut) const
     ioOut << "chunkNum1=" << m_chunkNum1 << ", ";
     ioOut << "chunkNum2=" << m_chunkNum2 << ", ";
     ioOut << "objectNamesValid=" << m_objectNamesValid << ", ";
-    ioOut << "chunkNumsValid=" << m_chunkNumsValid;
+    ioOut << "chunkNumsValid=" << m_chunkNumsValid << ", ";
+    ioOut << "objectPointersValid=" << m_objectPointersValid;
     ioOut << "]";
 }
 bool
@@ -108,6 +109,10 @@ MushCollisionInfo::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::strin
     {
         ioIn >> m_chunkNumsValid;
     }
+    else if (inTagStr == "objectPointersValid")
+    {
+        ioIn >> m_objectPointersValid;
+    }
     else 
     {
         return false;
@@ -131,5 +136,7 @@ MushCollisionInfo::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_objectNamesValid;
     ioOut.TagSet("chunkNumsValid");
     ioOut << m_chunkNumsValid;
+    ioOut.TagSet("objectPointersValid");
+    ioOut << m_objectPointersValid;
 }
-//%outOfLineFunctions } NAPE+1z1/Y/9+kqYcqN5Dw
+//%outOfLineFunctions } TV37g1aiRMsB5r9TpAsffQ
