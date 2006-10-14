@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } WBiqbvbumO43Eps7fHh03A
 /*
- * $Id: AdanaxisIntern.h,v 1.5 2006/10/04 21:39:35 southa Exp $
+ * $Id: AdanaxisIntern.h,v 1.6 2006/10/12 22:04:46 southa Exp $
  * $Log: AdanaxisIntern.h,v $
+ * Revision 1.6  2006/10/12 22:04:46  southa
+ * Collision events
+ *
  * Revision 1.5  2006/10/04 21:39:35  southa
  * Source processing
  *
@@ -46,13 +49,15 @@
 //:process ProcessIntern.rb
 /*
 :data1begin
- ids = %w{
- }
- classes = %w{
-   AdanaxisPieceKhazi
-   AdanaxisPiecePlayer
-   AdanaxisPieceProjectile
- }
+  ids = %w{
+    mCollisionEventConsume
+  }
+  classes = %w{
+    AdanaxisPieceDeco
+    AdanaxisPieceKhazi
+    AdanaxisPiecePlayer
+    AdanaxisPieceProjectile
+  }
 :data1end
 */
 
@@ -62,14 +67,18 @@ public:
     AdanaxisIntern();
 //%declarations {
 public:
+    MushRubyValue& AdanaxisPieceDeco(void) { return m_klassAdanaxisPieceDeco; }
     MushRubyValue& AdanaxisPieceKhazi(void) { return m_klassAdanaxisPieceKhazi; }
     MushRubyValue& AdanaxisPiecePlayer(void) { return m_klassAdanaxisPiecePlayer; }
     MushRubyValue& AdanaxisPieceProjectile(void) { return m_klassAdanaxisPieceProjectile; }
+    Mushware::tRubyID mCollisionEventConsume(void) { return m_mCollisionEventConsume; }
 private:
+    MushRubyValue m_klassAdanaxisPieceDeco;
     MushRubyValue m_klassAdanaxisPieceKhazi;
     MushRubyValue m_klassAdanaxisPiecePlayer;
     MushRubyValue m_klassAdanaxisPieceProjectile;
-//%declarations } 2dc0f6518fc663c9a66d0a637579828d
+    Mushware::tRubyID m_mCollisionEventConsume;
+//%declarations } e46191660152c12dbcbbed46d185946c
 
 //%classPrototypes {
 public:

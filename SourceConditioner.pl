@@ -10,8 +10,11 @@
 #
 ##############################################################################
 
-# $Id: SourceConditioner.pl,v 1.54 2006/10/03 15:28:20 southa Exp $
+# $Id: SourceConditioner.pl,v 1.55 2006/10/04 21:39:34 southa Exp $
 # $Log: SourceConditioner.pl,v $
+# Revision 1.55  2006/10/04 21:39:34  southa
+# Source processing
+#
 # Revision 1.54  2006/10/03 15:28:20  southa
 # Source process directives
 #
@@ -336,6 +339,7 @@ SourceProcess::AddArrayProcessor('\.cpp$', \&ProcessCPP);
 SourceProcess::AddArrayProcessor('\.h$', \&ProcessIncludeGuard);
 SourceProcess::AddArrayProcessor('\.h$', \&ProcessTouchCFile);
 SourceProcess::AddArrayProcessor('\.rb$', \&ProcessFileHeader);
+SourceProcess::AddArrayProcessor('\.rb$', \&ProcessRubySequences);
 SourceProcess::AddFileProcessor('\.cpp$', \&ProcessProcessDirective);
 SourceProcess::AddFileProcessor('\.c$', \&ProcessProcessDirective);
 SourceProcess::AddFileProcessor('\.h$', \&ProcessProcessDirective);
@@ -1550,6 +1554,22 @@ sub ProcessCPP($$)
     }
     SourceProcess::BlockReplace(\@$contentRef, \@outOfLineCode, 'outOfLineFunctions', @$contentRef);
 }
+
+sub ProcessRubySequences($$)
+{
+  my ($contentRef, $filename) = @_;
+
+  my $lineNum = 1;
+  foreach my $line (@$contentRef)
+  {
+    if ($line =~ /\sm_/)
+    {
+      die "Forbidden sequence ' m_' in file $filename line $lineNum";
+    }
+    $lineNum += 1;
+  }
+}
+
 
 sub ProcessProcessDirective($)
 {

@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } XsVs/rr7rRJFJzKi6eatxg
 /*
- * $Id: AdanaxisUtil.cpp,v 1.32 2006/10/05 15:39:17 southa Exp $
+ * $Id: AdanaxisUtil.cpp,v 1.33 2006/10/06 11:54:57 southa Exp $
  * $Log: AdanaxisUtil.cpp,v $
+ * Revision 1.33  2006/10/06 11:54:57  southa
+ * Scaled rendering
+ *
  * Revision 1.32  2006/10/05 15:39:17  southa
  * Explosion handling
  *
@@ -342,8 +345,7 @@ AdanaxisUtil::FlareCreate(AdanaxisLogic& ioLogic, const MushMeshPosticity& inPos
     AdanaxisVolatileData::tDeco& objRef = decoListRef.back();
         
     objRef.LifeMsecSet(400);
-    objRef.ExpiryMsecSet(ioLogic.FrameMsec() + objRef.LifeMsec());
-    
+
     objRef.PostSet(inPost);
     objRef.PostWRef().VelWRef() += MushMeshTools::RandomUnitVector() * inSpeed;    
     objRef.PostWRef().AngPosWRef().ToRotationIdentitySet();
@@ -369,8 +371,7 @@ AdanaxisUtil::EmberCreate(AdanaxisLogic& ioLogic, const MushMeshPosticity& inPos
     decoListRef.push_back(AdanaxisPieceDeco("emberObj"));
     AdanaxisVolatileData::tDeco& objRef = decoListRef.back();
     
-    objRef.ExpiryMsecSet(ioLogic.FrameMsec() + objRef.LifeMsec());
-    
+
     objRef.PostSet(inPost);
     objRef.PostWRef().VelWRef() += MushMeshTools::RandomUnitVector() * inSpeed;    
     objRef.PostWRef().AngPosWRef().ToRotationIdentitySet();
@@ -398,7 +399,6 @@ AdanaxisUtil::ExploCreate(AdanaxisLogic& ioLogic, const MushMeshPosticity& inPos
     AdanaxisVolatileData::tDeco& objRef = decoListRef.back();
     
     objRef.LifeMsecSet(2000);
-    objRef.ExpiryMsecSet(ioLogic.FrameMsec() + objRef.LifeMsec());
     
     objRef.PostSet(inPost);
     objRef.PostWRef().AngPosWRef().ToRotationIdentitySet();

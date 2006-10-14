@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } mqRyosjSblx9ADjVCHc1/g
 /*
- * $Id: AdanaxisIntern.cpp,v 1.3 2006/10/03 14:06:50 southa Exp $
+ * $Id: AdanaxisIntern.cpp,v 1.4 2006/10/12 22:04:46 southa Exp $
  * $Log: AdanaxisIntern.cpp,v $
+ * Revision 1.4  2006/10/12 22:04:46  southa
+ * Collision events
+ *
  * Revision 1.3  2006/10/03 14:06:50  southa
  * Khazi and projectile creation
  *
@@ -39,8 +42,10 @@ MUSHCORE_SINGLETON_INSTANCE(AdanaxisIntern);
 AdanaxisIntern::AdanaxisIntern()
 {
 //%initialisations {
+    m_klassAdanaxisPieceDeco = MushRubyValue(MushRubyUtil::Class("AdanaxisPieceDeco"));
     m_klassAdanaxisPieceKhazi = MushRubyValue(MushRubyUtil::Class("AdanaxisPieceKhazi"));
     m_klassAdanaxisPiecePlayer = MushRubyValue(MushRubyUtil::Class("AdanaxisPiecePlayer"));
     m_klassAdanaxisPieceProjectile = MushRubyValue(MushRubyUtil::Class("AdanaxisPieceProjectile"));
-//%initialisations } d5a206b442010e7f793fbfa25fa5e830
+    m_mCollisionEventConsume = MushRubyIntern::SymbolID("mCollisionEventConsume");
+//%initialisations } 595559e6edb983f40983cd4923278e81
 }

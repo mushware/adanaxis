@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } 72X8YWgaBjSc1x61Wdygug
 /*
- * $Id: AdanaxisPieceDeco.h,v 1.10 2006/07/24 18:46:46 southa Exp $
+ * $Id: AdanaxisPieceDeco.h,v 1.11 2006/08/01 17:21:25 southa Exp $
  * $Log: AdanaxisPieceDeco.h,v $
+ * Revision 1.11  2006/08/01 17:21:25  southa
+ * River demo
+ *
  * Revision 1.10  2006/07/24 18:46:46  southa
  * Depth sorting
  *
@@ -67,21 +70,31 @@
 class AdanaxisPieceDeco : public MushGamePiece
 {
 public:
-    explicit AdanaxisPieceDeco(const std::string& inID = "");
-
+    explicit AdanaxisPieceDeco(const std::string& inID = "", const MushRubyValue& inParams = MushRubyValue());
+    virtual ~AdanaxisPieceDeco();
+    
     virtual void Move(MushGameLogic& ioLogic, const Mushware::tVal inFrameSlice);
     virtual bool Render(MushGLJobRender& outRender,
                         MushGameLogic& ioLogic, MushRenderMesh& inRender, const MushGameCamera& inCamera);
+
+    virtual void Load(Mushware::tRubyValue inSelf);
+    virtual void Save(Mushware::tRubyValue inSelf);
+    static Mushware::tRubyValue RubyCreate(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
+    static Mushware::tRubyValue Klass(void);
+    static void RubyInstall(void);
+
 private:
     Mushware::tMsec m_lifeMsec; //:readwrite
-    Mushware::tMsec m_expiryMsec; //:readwrite
+    Mushware::tMsec m_launchMsec; //:readwrite
+    
+    static Mushware::tRubyValue m_rubyKlass; // Must duplicate this in derived classes
     
 //%classPrototypes {
 public:
     const Mushware::tMsec& LifeMsec(void) const { return m_lifeMsec; }
     void LifeMsecSet(const Mushware::tMsec& inValue) { m_lifeMsec=inValue; }
-    const Mushware::tMsec& ExpiryMsec(void) const { return m_expiryMsec; }
-    void ExpiryMsecSet(const Mushware::tMsec& inValue) { m_expiryMsec=inValue; }
+    const Mushware::tMsec& LaunchMsec(void) const { return m_launchMsec; }
+    void LaunchMsecSet(const Mushware::tMsec& inValue) { m_launchMsec=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -89,7 +102,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } 09nopOwzu0aQknhSgoZfVw
+//%classPrototypes } gxBR9acaUSIzCXPdKsrH1A
 };
 //%inlineHeader {
 inline std::ostream&

@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } Mac7dWHONvkZIg39sQnwww
 /*
- * $Id: AdanaxisLogic.cpp,v 1.23 2006/10/09 16:00:16 southa Exp $
+ * $Id: AdanaxisLogic.cpp,v 1.24 2006/10/12 22:04:46 southa Exp $
  * $Log: AdanaxisLogic.cpp,v $
+ * Revision 1.24  2006/10/12 22:04:46  southa
+ * Collision events
+ *
  * Revision 1.23  2006/10/09 16:00:16  southa
  * Intern generation
  *
@@ -94,6 +97,7 @@
 
 #include "AdanaxisAppHandler.h"
 #include "AdanaxisData.h"
+#include "AdanaxisIntern.h"
 #include "AdanaxisRender.h"
 #include "AdanaxisUtil.h"
 
@@ -249,12 +253,11 @@ AdanaxisLogic::CollisionHandle(AdanaxisSaveData::tProjectile& ioProj,
     
     MushRubyValue collObj(collMesg.RubyObjectMake());
     
-    RubyLogic().Call(MushRubyIntern::SymbolID("mCollisionEventConsume"), collObj);
+    RubyLogic().Call(AdanaxisIntern::Sgl().mCollisionEventConsume(), collObj);
     
-    CopyAndBroadcast(collMesg);
+    // CopyAndBroadcast(collMesg);
 }
 
-// Slow version - checks every object
 void
 AdanaxisLogic::ProjectilesFullCollide(void)
 {

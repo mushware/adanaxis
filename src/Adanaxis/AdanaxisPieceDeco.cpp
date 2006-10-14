@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } Xbi0vrfUMDnmd9NKsSwjUQ
 /*
- * $Id: AdanaxisPieceDeco.cpp,v 1.27 2006/10/06 11:54:57 southa Exp $
+ * $Id: AdanaxisPieceDeco.cpp,v 1.28 2006/10/06 14:48:18 southa Exp $
  * $Log: AdanaxisPieceDeco.cpp,v $
+ * Revision 1.28  2006/10/06 14:48:18  southa
+ * Material animation
+ *
  * Revision 1.27  2006/10/06 11:54:57  southa
  * Scaled rendering
  *
@@ -104,13 +107,25 @@
 
 #include "AdanaxisPieceDeco.h"
 
+#include "AdanaxisRuby.h"
+#include "AdanaxisVolatileData.h"
+#include "AdanaxisIntern.h"
+
+Mushware::tRubyValue AdanaxisPieceDeco::m_rubyKlass = Mushware::kRubyQnil;
+
 using namespace Mushware;
 using namespace std;
 
-AdanaxisPieceDeco::AdanaxisPieceDeco(const std::string& inID) :
+AdanaxisPieceDeco::AdanaxisPieceDeco(const std::string& inID, const MushRubyValue& inParams) :
     MushGamePiece(inID),
-    m_lifeMsec(1000)
+    m_launchMsec(0)
 {
+    RubyPieceConstructor(inID, inParams, AdanaxisIntern::Sgl().AdanaxisPieceDeco());
+}
+
+AdanaxisPieceDeco::~AdanaxisPieceDeco()
+{
+    RubyPieceDestructor();    
 }
 
 void
@@ -128,7 +143,11 @@ AdanaxisPieceDeco::Move(MushGameLogic& ioLogic, const tVal inFrameSlice)
     
     MeshScaleSet(MeshScale().ElementwiseProduct(t4Val(meshScale, meshScale, meshScale, meshScale)));
     
-    if (ioLogic.FrameMsec() > m_expiryMsec)
+    if (m_launchMsec == 0)
+    {
+        m_launchMsec = ioLogic.FrameMsec();
+    }
+    if (ioLogic.FrameMsec() > m_launchMsec + m_lifeMsec)
     {
         ExpireFlagSet(true);
     }
@@ -150,7 +169,7 @@ AdanaxisPieceDeco::Render(MushGLJobRender& outRender,
     
     renderSpec.ProjectionSet(inCamera.Projection());
 
-    tVal alpha =  (0.0 + m_expiryMsec - ioLogic.FrameMsec()) / m_lifeMsec;
+    tVal alpha =  (0.0 + ioLogic.FrameMsec() - m_launchMsec) / m_lifeMsec;
     MushcoreUtil::Constrain<tVal>(alpha, 0, 1);
 
     inRender.ColourZMiddleSet(inRender.ColourZMiddle().ElementwiseProduct(t4Val(1,1,1,alpha)));
@@ -158,6 +177,69 @@ AdanaxisPieceDeco::Render(MushGLJobRender& outRender,
     renderSpec.MaterialAnimatorSet(1.0 - alpha);
 
     return inRender.RenderJobCreate(outRender, renderSpec, Mesh());
+}
+
+void
+AdanaxisPieceDeco::Load(Mushware::tRubyValue inSelf)
+{
+    MushGamePiece::Load(inSelf);
+    MushRubyUtil::InstanceVarSet(inSelf, MushRubyIntern::ATm_lifeMsec(), MushRubyValue(static_cast<U32>(m_lifeMsec)).Value());    
+}
+
+void
+AdanaxisPieceDeco::Save(Mushware::tRubyValue inSelf)
+{
+    MushGamePiece::Save(inSelf);
+    m_lifeMsec = MushRubyValue(MushRubyUtil::InstanceVar(inSelf, MushRubyIntern::ATm_lifeMsec())).U32();
+}
+
+Mushware::tRubyValue
+AdanaxisPieceDeco::RubyCreate(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0)
+{
+    AdanaxisVolatileData::tDecoList& dataRef = AdanaxisRuby::VolatileData().DecoListWRef();
+    
+    /* This object contains a reference (MushcoreMaptorRef) to an object
+    * in SaveData().DecoList(), which is a MushcoreMaptor<AdanaxisPieceDeco>.
+    * The next line points the MushcoreMaptorRef at that MushcoreMaptor
+    */
+    AdanaxisVolatileData::tDecoList::key_type key = dataRef.NextKey();
+    
+    ostringstream idStream;
+    idStream << key;
+    
+    AdanaxisPieceDeco& objRef = *new AdanaxisPieceDeco(idStream.str(), MushRubyValue(inArg0));
+    dataRef.Give(&objRef, key);
+    
+    return objRef.RubyObj().Value();
+}
+
+Mushware::tRubyValue
+AdanaxisPieceDeco::Klass(void)
+{
+    if (m_rubyKlass == kRubyQnil)
+    {
+        RubyInstall();
+    }
+    return m_rubyKlass;
+}    
+
+void
+AdanaxisPieceDeco::RubyInstall(void)
+{
+    if (m_rubyKlass == kRubyQnil)
+    {
+	    m_rubyKlass = MushRubyUtil::SubclassDefine("AdanaxisPieceDeco", MushGamePiece::Klass());
+    }
+	MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cCreate", RubyCreate);
+}
+
+namespace
+{
+	void Install(void)
+	{
+		MushRubyInstall::Sgl().Add(AdanaxisPieceDeco::RubyInstall);
+	}
+	MushcoreInstaller install(Install);
 }
 
 //%outOfLineFunctions {
@@ -195,7 +277,7 @@ AdanaxisPieceDeco::AutoPrint(std::ostream& ioOut) const
     ioOut << "[";
     MushGamePiece::AutoPrint(ioOut);
     ioOut << "lifeMsec=" << m_lifeMsec << ", ";
-    ioOut << "expiryMsec=" << m_expiryMsec;
+    ioOut << "launchMsec=" << m_launchMsec;
     ioOut << "]";
 }
 bool
@@ -211,9 +293,9 @@ AdanaxisPieceDeco::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::strin
     {
         ioIn >> m_lifeMsec;
     }
-    else if (inTagStr == "expiryMsec")
+    else if (inTagStr == "launchMsec")
     {
-        ioIn >> m_expiryMsec;
+        ioIn >> m_launchMsec;
     }
     else if (MushGamePiece::AutoXMLDataProcess(ioIn, inTagStr))
     {
@@ -231,7 +313,7 @@ AdanaxisPieceDeco::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     MushGamePiece::AutoXMLPrint(ioOut);
     ioOut.TagSet("lifeMsec");
     ioOut << m_lifeMsec;
-    ioOut.TagSet("expiryMsec");
-    ioOut << m_expiryMsec;
+    ioOut.TagSet("launchMsec");
+    ioOut << m_launchMsec;
 }
-//%outOfLineFunctions } QCCqHrQbWc9vzmLB7TP/lA
+//%outOfLineFunctions } ib/EjpdMjjfDJRWLbWpTlQ
