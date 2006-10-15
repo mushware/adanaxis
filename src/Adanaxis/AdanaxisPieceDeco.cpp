@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } Xbi0vrfUMDnmd9NKsSwjUQ
 /*
- * $Id: AdanaxisPieceDeco.cpp,v 1.28 2006/10/06 14:48:18 southa Exp $
+ * $Id: AdanaxisPieceDeco.cpp,v 1.29 2006/10/14 16:59:44 southa Exp $
  * $Log: AdanaxisPieceDeco.cpp,v $
+ * Revision 1.29  2006/10/14 16:59:44  southa
+ * Ruby Deco objects
+ *
  * Revision 1.28  2006/10/06 14:48:18  southa
  * Material animation
  *
@@ -125,7 +128,8 @@ AdanaxisPieceDeco::AdanaxisPieceDeco(const std::string& inID, const MushRubyValu
 
 AdanaxisPieceDeco::~AdanaxisPieceDeco()
 {
-    RubyPieceDestructor();    
+    //FIXME!
+    //RubyPieceDestructor();    
 }
 
 void
@@ -141,7 +145,7 @@ AdanaxisPieceDeco::Move(MushGameLogic& ioLogic, const tVal inFrameSlice)
     if (meshScale < 0) meshScale = 0;
     
     
-    MeshScaleSet(MeshScale().ElementwiseProduct(t4Val(meshScale, meshScale, meshScale, meshScale)));
+    RenderScaleSet(RenderScale().ElementwiseProduct(t4Val(meshScale, meshScale, meshScale, meshScale)));
     
     if (m_launchMsec == 0)
     {
@@ -161,7 +165,7 @@ AdanaxisPieceDeco::Render(MushGLJobRender& outRender,
     MushRenderSpec renderSpec;
     renderSpec.BuffersRefSet(BuffersRef());
     renderSpec.SharedBuffersRefSet(SharedBuffersRef());
-    renderSpec.ScaleSet(MeshScale());
+    renderSpec.ScaleSet(RenderScale());
     
     MushMeshOps::PosticityToMattress(renderSpec.ModelWRef(), Post());
     MushMeshOps::PosticityToMattress(renderSpec.ViewWRef(), inCamera.Post());
@@ -169,7 +173,7 @@ AdanaxisPieceDeco::Render(MushGLJobRender& outRender,
     
     renderSpec.ProjectionSet(inCamera.Projection());
 
-    tVal alpha =  (0.0 + ioLogic.FrameMsec() - m_launchMsec) / m_lifeMsec;
+    tVal alpha =  1.0 - (0.0 + ioLogic.FrameMsec() - m_launchMsec) / m_lifeMsec;
     MushcoreUtil::Constrain<tVal>(alpha, 0, 1);
 
     inRender.ColourZMiddleSet(inRender.ColourZMiddle().ElementwiseProduct(t4Val(1,1,1,alpha)));

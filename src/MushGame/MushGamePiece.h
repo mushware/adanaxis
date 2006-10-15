@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } QiW5KaWfX1mBGolg1jxMIg
 /*
- * $Id: MushGamePiece.h,v 1.19 2006/10/08 11:31:33 southa Exp $
+ * $Id: MushGamePiece.h,v 1.20 2006/10/09 16:00:17 southa Exp $
  * $Log: MushGamePiece.h,v $
+ * Revision 1.20  2006/10/09 16:00:17  southa
+ * Intern generation
+ *
  * Revision 1.19  2006/10/08 11:31:33  southa
  * Hit points
  *
@@ -126,7 +129,7 @@ private:
     std::string m_meshName; //:readwrite
     MushMeshPosticity m_post; //:readwrite :wref
     MushMesh4Mesh m_mesh; //:readwrite :wref
-    Mushware::t4Val m_meshScale; //:readwrite :wref
+    Mushware::t4Val m_renderScale; //:readwrite :wref
     bool m_expireFlag; //:readwrite    
     Mushware::tVal m_hitPoints; //:readwrite
     Mushware::tVal m_initialHitPoints; //:readwrite
@@ -152,10 +155,10 @@ public:
     void MeshSet(const MushMesh4Mesh& inValue) { m_mesh=inValue; }
     // Writable reference for m_mesh
     MushMesh4Mesh& MeshWRef(void) { return m_mesh; }
-    const Mushware::t4Val& MeshScale(void) const { return m_meshScale; }
-    void MeshScaleSet(const Mushware::t4Val& inValue) { m_meshScale=inValue; }
-    // Writable reference for m_meshScale
-    Mushware::t4Val& MeshScaleWRef(void) { return m_meshScale; }
+    const Mushware::t4Val& RenderScale(void) const { return m_renderScale; }
+    void RenderScaleSet(const Mushware::t4Val& inValue) { m_renderScale=inValue; }
+    // Writable reference for m_renderScale
+    Mushware::t4Val& RenderScaleWRef(void) { return m_renderScale; }
     const bool& ExpireFlag(void) const { return m_expireFlag; }
     void ExpireFlagSet(const bool& inValue) { m_expireFlag=inValue; }
     const Mushware::tVal& HitPoints(void) const { return m_hitPoints; }
@@ -177,7 +180,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } ZuC2bQCROG+wjFojFGr2lQ
+//%classPrototypes } k+Nm1xyshjKLlCqaLFy8sw
 };
 //%inlineHeader {
 inline std::ostream&

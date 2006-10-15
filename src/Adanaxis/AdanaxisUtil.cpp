@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } XsVs/rr7rRJFJzKi6eatxg
 /*
- * $Id: AdanaxisUtil.cpp,v 1.33 2006/10/06 11:54:57 southa Exp $
+ * $Id: AdanaxisUtil.cpp,v 1.34 2006/10/14 16:59:44 southa Exp $
  * $Log: AdanaxisUtil.cpp,v $
+ * Revision 1.34  2006/10/14 16:59:44  southa
+ * Ruby Deco objects
+ *
  * Revision 1.33  2006/10/06 11:54:57  southa
  * Scaled rendering
  *
@@ -355,7 +358,7 @@ AdanaxisUtil::FlareCreate(AdanaxisLogic& ioLogic, const MushMeshPosticity& inPos
     objRef.MeshWRef().TexCoordDelegateSet(MushMesh4Mesh::tDataRef(objName));
     objRef.SharedBuffersNameSet(objName);
     
-    objRef.MeshScaleSet(t4Val(inSize, inSize, inSize, inSize));
+    objRef.RenderScaleSet(t4Val(inSize, inSize, inSize, inSize));
 }
 
 void
@@ -382,7 +385,7 @@ AdanaxisUtil::EmberCreate(AdanaxisLogic& ioLogic, const MushMeshPosticity& inPos
     objRef.SharedBuffersNameSet(objName);
     
     
-    objRef.MeshScaleSet(t4Val(inSize, inSize, inSize, inSize));
+    objRef.RenderScaleSet(t4Val(inSize, inSize, inSize, inSize));
 }
 
 
@@ -408,5 +411,5 @@ AdanaxisUtil::ExploCreate(AdanaxisLogic& ioLogic, const MushMeshPosticity& inPos
     objRef.MeshWRef().TexCoordDelegateSet(MushMesh4Mesh::tDataRef(objName));
     objRef.SharedBuffersNameSet(objName);
     
-    objRef.MeshScaleSet(t4Val(inSize, inSize, inSize, inSize));
+    objRef.RenderScaleSet(t4Val(inSize, inSize, inSize, inSize));
 }

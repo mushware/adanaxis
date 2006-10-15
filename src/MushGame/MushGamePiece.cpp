@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } rVCNunlW+wZoonHnGB5a7Q
 /*
- * $Id: MushGamePiece.cpp,v 1.17 2006/10/08 11:31:32 southa Exp $
+ * $Id: MushGamePiece.cpp,v 1.18 2006/10/09 16:00:17 southa Exp $
  * $Log: MushGamePiece.cpp,v $
+ * Revision 1.18  2006/10/09 16:00:17  southa
+ * Intern generation
+ *
  * Revision 1.17  2006/10/08 11:31:32  southa
  * Hit points
  *
@@ -76,6 +79,7 @@
 
 #include "MushGamePiece.h"
 
+#include "MushGameIntern.h"
 #include "MushGameMessage.h"
 
 #include "API/mushMushMeshRuby.h"
@@ -89,7 +93,7 @@ Mushware::tRubyValue MushGamePiece::m_rubyKlass = Mushware::kRubyQnil;
 
 MushGamePiece::MushGamePiece(const std::string& inID) :
     m_post(MushMeshPosticity::Identity()),
-    m_meshScale(Mushware::t4Val::MultiplicativeIdentity()),
+    m_renderScale(Mushware::t4Val::MultiplicativeIdentity()),
     m_expireFlag(false),
     m_hitPoints(0),
     m_initialHitPoints(0),
@@ -134,6 +138,14 @@ MushGamePiece::Load(Mushware::tRubyValue inSelf)
     MushRubyUtil::InstanceVarSet(inSelf, MushRubyIntern::ATm_meshName(), MushRubyValue(m_meshName).Value());    
     MushRubyUtil::InstanceVarSet(inSelf, MushRubyIntern::ATm_expireFlag(), MushRubyValue(m_expireFlag).Value());
     MushRubyUtil::InstanceVarSet(inSelf, MushRubyIntern::ATm_hitPoints(), MushRubyValue(m_hitPoints).Value());
+    
+    {
+        tRubyValue value = MushRubyUtil::InstanceVar(inSelf, MushGameIntern::Sgl().ATm_renderScale());
+        if (value != kRubyQnil)
+        {
+            MushMeshRubyVector::WRef(value) = m_renderScale;
+        }
+    }
 }
 
 void
@@ -160,6 +172,13 @@ MushGamePiece::Save(Mushware::tRubyValue inSelf)
     }
     m_expireFlag = MushRubyValue(MushRubyUtil::InstanceVar(inSelf, MushRubyIntern::ATm_expireFlag())).Bool();
     m_hitPoints = MushRubyValue(MushRubyUtil::InstanceVar(inSelf, MushRubyIntern::ATm_hitPoints())).Val();
+    {
+        tRubyValue value = MushRubyUtil::InstanceVar(inSelf, MushGameIntern::Sgl().ATm_renderScale());
+        if (value != kRubyQnil)
+        {
+            RenderScaleSet(MushMeshRubyVector::Ref(value));
+        }
+    }
 }
 
 void
@@ -335,7 +354,7 @@ MushGamePiece::AutoPrint(std::ostream& ioOut) const
     ioOut << "meshName=" << m_meshName << ", ";
     ioOut << "post=" << m_post << ", ";
     ioOut << "mesh=" << m_mesh << ", ";
-    ioOut << "meshScale=" << m_meshScale << ", ";
+    ioOut << "renderScale=" << m_renderScale << ", ";
     ioOut << "expireFlag=" << m_expireFlag << ", ";
     ioOut << "hitPoints=" << m_hitPoints << ", ";
     ioOut << "initialHitPoints=" << m_initialHitPoints << ", ";
@@ -369,9 +388,9 @@ MushGamePiece::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& i
     {
         ioIn >> m_mesh;
     }
-    else if (inTagStr == "meshScale")
+    else if (inTagStr == "renderScale")
     {
-        ioIn >> m_meshScale;
+        ioIn >> m_renderScale;
     }
     else if (inTagStr == "expireFlag")
     {
@@ -414,8 +433,8 @@ MushGamePiece::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_post;
     ioOut.TagSet("mesh");
     ioOut << m_mesh;
-    ioOut.TagSet("meshScale");
-    ioOut << m_meshScale;
+    ioOut.TagSet("renderScale");
+    ioOut << m_renderScale;
     ioOut.TagSet("expireFlag");
     ioOut << m_expireFlag;
     ioOut.TagSet("hitPoints");
@@ -429,4 +448,4 @@ MushGamePiece::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("rubyObj");
     ioOut << m_rubyObj;
 }
-//%outOfLineFunctions } ykBrJQOa5HZ3/BuagvNhQA
+//%outOfLineFunctions } 1gw3/lUItRInMSgZLzVrTQ

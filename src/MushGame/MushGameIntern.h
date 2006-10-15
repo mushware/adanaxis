@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } mlN3NFYShD8lw+CPV54eBg
 /*
- * $Id: MushGameIntern.h,v 1.1 2006/10/09 16:00:17 southa Exp $
+ * $Id: MushGameIntern.h,v 1.2 2006/10/12 22:04:48 southa Exp $
  * $Log: MushGameIntern.h,v $
+ * Revision 1.2  2006/10/12 22:04:48  southa
+ * Collision events
+ *
  * Revision 1.1  2006/10/09 16:00:17  southa
  * Intern generation
  *
@@ -40,6 +43,7 @@
      @m_piece2
      @m_chunkNum1
      @m_chunkNum2
+     @m_renderScale
  }
  classes = %w{
      MushEventCollision
@@ -57,13 +61,15 @@ public:
     Mushware::tRubyID ATm_piece2(void) { return m_ATm_piece2; }
     Mushware::tRubyID ATm_chunkNum1(void) { return m_ATm_chunkNum1; }
     Mushware::tRubyID ATm_chunkNum2(void) { return m_ATm_chunkNum2; }
+    Mushware::tRubyID ATm_renderScale(void) { return m_ATm_renderScale; }
 private:
     MushRubyValue m_klassMushEventCollision;
     Mushware::tRubyID m_ATm_piece1;
     Mushware::tRubyID m_ATm_piece2;
     Mushware::tRubyID m_ATm_chunkNum1;
     Mushware::tRubyID m_ATm_chunkNum2;
-//%declarations } 11e60ae1a822cef6ce5199b23d7032cd
+    Mushware::tRubyID m_ATm_renderScale;
+//%declarations } 65e4349c4e45d428ddd6ca677c1cad9a
 //%classPrototypes {
 public:
 //%classPrototypes } 0ImSRh0/JBpOMwe5g8vGcA

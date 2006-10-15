@@ -2697,6 +2697,7 @@
 		7A5965760A9DB39B002A966B /* AdanaxisLogic.rb */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = text.script.ruby; path = AdanaxisLogic.rb; sourceTree = "<group>"; tabWidth = 2; };
 		7A5965790A9DB412002A966B /* MushLogic.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = MushLogic.rb; sourceTree = "<group>"; };
 		7A597B610AD15C620071174E /* AdanaxisPiecePlayer.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AdanaxisPiecePlayer.rb; sourceTree = "<group>"; };
+		7A59869B0AE2836C00A33406 /* AdanaxisEffects.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AdanaxisEffects.rb; sourceTree = "<group>"; };
 		7A5A5B3A0AD4FD410066FCA2 /* ImageProcess.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ImageProcess.rb; sourceTree = "<group>"; };
 		7A5A5B3D0AD4FD860066FCA2 /* ProcessAnimation.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ProcessAnimation.rb; sourceTree = "<group>"; };
 		7A5A5B4F0AD5001B0066FCA2 /* MakeAnimation.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = MakeAnimation.rb; sourceTree = "<group>"; };
@@ -5968,6 +5969,7 @@
 				7A619A760A974B1900FAA06C /* AdanaxisAI.rb */,
 				7A59645C0ACE8CEA007FAA8F /* AdanaxisAIKhazi.rb */,
 				7A614A980A62951900E8FCEF /* AdanaxisControl.rb */,
+				7A59869B0AE2836C00A33406 /* AdanaxisEffects.rb */,
 				7A59656E0A9DB0F4002A966B /* AdanaxisEvents.rb */,
 				7A35AEFB0A481B5F00DB00A1 /* AdanaxisGame.rb */,
 				7A5BA8260A4955C400DC847A /* AdanaxisKhazi.rb */,

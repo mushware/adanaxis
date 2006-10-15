@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 8fTAEuGpO9TKg8SBLTUQaw
 /*
- * $Id: MushGameIntern.cpp,v 1.1 2006/10/09 16:00:17 southa Exp $
+ * $Id: MushGameIntern.cpp,v 1.2 2006/10/12 22:04:48 southa Exp $
  * $Log: MushGameIntern.cpp,v $
+ * Revision 1.2  2006/10/12 22:04:48  southa
+ * Collision events
+ *
  * Revision 1.1  2006/10/09 16:00:17  southa
  * Intern generation
  *
@@ -40,5 +43,6 @@ MushGameIntern::MushGameIntern()
     m_ATm_piece2 = MushRubyIntern::SymbolID("@m_piece2");
     m_ATm_chunkNum1 = MushRubyIntern::SymbolID("@m_chunkNum1");
     m_ATm_chunkNum2 = MushRubyIntern::SymbolID("@m_chunkNum2");
-//%initialisations } 0635fbe9216a0e71ab725f8c642e7bce
+    m_ATm_renderScale = MushRubyIntern::SymbolID("@m_renderScale");
+//%initialisations } 8b20e406e8effb8c2c1148597d2065ae
 }
