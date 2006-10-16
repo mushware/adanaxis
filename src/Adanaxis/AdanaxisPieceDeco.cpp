@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } Xbi0vrfUMDnmd9NKsSwjUQ
 /*
- * $Id: AdanaxisPieceDeco.cpp,v 1.30 2006/10/15 17:12:54 southa Exp $
+ * $Id: AdanaxisPieceDeco.cpp,v 1.31 2006/10/16 14:36:50 southa Exp $
  * $Log: AdanaxisPieceDeco.cpp,v $
+ * Revision 1.31  2006/10/16 14:36:50  southa
+ * Deco handling
+ *
  * Revision 1.30  2006/10/15 17:12:54  southa
  * Scripted explosions
  *
@@ -137,17 +140,7 @@ AdanaxisPieceDeco::~AdanaxisPieceDeco()
 void
 AdanaxisPieceDeco::Move(MushGameLogic& ioLogic, const tVal inFrameSlice)
 {
-    tVal velScale = 1 - inFrameSlice * 0.03;
-    if (velScale < 0) velScale = 0;
-    
     PostWRef().InPlaceVelocityAdd();
-    // PostWRef().VelWRef() *= velScale; // FIXME
-    
-    tVal meshScale = 1 - inFrameSlice * 0.01;
-    if (meshScale < 0) meshScale = 0;
-    
-    
-    RenderScaleSet(RenderScale().ElementwiseProduct(t4Val(meshScale, meshScale, meshScale, meshScale)));
     
     if (m_launchMsec == 0)
     {
