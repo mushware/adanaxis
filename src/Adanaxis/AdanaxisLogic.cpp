@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } Mac7dWHONvkZIg39sQnwww
 /*
- * $Id: AdanaxisLogic.cpp,v 1.24 2006/10/12 22:04:46 southa Exp $
+ * $Id: AdanaxisLogic.cpp,v 1.25 2006/10/14 16:59:44 southa Exp $
  * $Log: AdanaxisLogic.cpp,v $
+ * Revision 1.25  2006/10/14 16:59:44  southa
+ * Ruby Deco objects
+ *
  * Revision 1.24  2006/10/12 22:04:46  southa
  * Collision events
  *
@@ -229,16 +232,15 @@ AdanaxisLogic::KhaziMove(void)
 }
 
 void
-AdanaxisLogic::CollisionHandle(AdanaxisSaveData::tProjectile& ioProj,
-                               AdanaxisSaveData::tKhazi& ioKhazi, const MushCollisionInfo& inCollInfo)
+AdanaxisLogic::CollisionHandle(MushGamePiece *iopPiece1, MushGamePiece *iopPiece2, const MushCollisionInfo& inCollInfo)
 {
     MUSHCOREASSERT(inCollInfo.ObjectNamesValid());
 
     MushGameMessageCollision collMesg("c:");
     collMesg.ObjectName1Set(inCollInfo.ObjectName1());
     collMesg.ObjectName2Set(inCollInfo.ObjectName2());
-    collMesg.Piece1Set(&ioProj);
-    collMesg.Piece2Set(&ioKhazi);
+    collMesg.Piece1Set(iopPiece1);
+    collMesg.Piece2Set(iopPiece2);
     collMesg.PiecesValidSet(true);
     if (inCollInfo.ChunkNumsValid())
     {
@@ -259,21 +261,22 @@ AdanaxisLogic::CollisionHandle(AdanaxisSaveData::tProjectile& ioProj,
 }
 
 void
-AdanaxisLogic::ProjectilesFullCollide(void)
+AdanaxisLogic::ProjectilesKhaziFullCollide(void)
 {
-    typedef AdanaxisSaveData::tProjectileList tProjectileList;
-    typedef AdanaxisSaveData::tKhaziList tKhaziList;
-
-    MushCollisionResolver::Sgl().FrameMsecSet(VolatileData().FrameMsec());
+    typedef AdanaxisSaveData::tProjectileList tList1;
+    typedef AdanaxisSaveData::tKhaziList tList2;
     
-    tProjectileList::const_iterator projectileEndIter = SaveData().ProjectileList().end();
-    tKhaziList::const_iterator khaziEndIter = SaveData().KhaziList().end();
-    for (tProjectileList::const_iterator p = SaveData().ProjectileList().begin(); p != projectileEndIter; ++p)
+    const tList1& list1Ref = SaveData().ProjectileList();
+    const tList2& list2Ref = SaveData().KhaziList();
+    
+    tList1::const_iterator list1EndIter = list1Ref.end();
+    tList2::const_iterator list2EndIter = list2Ref.end();
+    for (tList1::const_iterator p = list1Ref.begin(); p != list1EndIter; ++p)
     {
         std::string projOwner = p->Owner();
         if (!p->ExpireFlag())
         {
-            for (tKhaziList::const_iterator q = SaveData().KhaziList().begin(); q != khaziEndIter; ++q)
+            for (tList2::const_iterator q = list2Ref.begin(); q != list2EndIter; ++q)
             {
                 // if this object hasn't expired and doesn't own the projectile...
                 if (!q->ExpireFlag() && projOwner != q->Id())
@@ -286,7 +289,40 @@ AdanaxisLogic::ProjectilesFullCollide(void)
                         collInfo.ObjectName2Set(q->Id());
                         collInfo.ObjectNamesValidSet(true);
                         
-                        CollisionHandle(*p, *q, collInfo);
+                        CollisionHandle(&*p, &*q, collInfo);
+                    }
+                }
+            }
+        }
+    }
+}
+
+void
+AdanaxisLogic::KhaziKhaziFullCollide(void)
+{
+    typedef AdanaxisSaveData::tKhaziList tList1;
+    
+    const tList1& list1Ref = SaveData().KhaziList();
+    
+    tList1::const_iterator list1EndIter = list1Ref.end();
+
+    for (tList1::const_iterator p = list1Ref.begin(); p != list1EndIter; ++p)
+    {
+        if (!p->ExpireFlag())
+        {
+            for (tList1::const_iterator q = p; ++q != list1EndIter; )
+            {
+                if (!q->ExpireFlag())
+                {
+                    MushCollisionInfo collInfo;
+                    MushCollisionResolver::Sgl().Resolve(collInfo, *p, *q);
+                    if (collInfo.SeparatingDistance() <= 0)
+                    {
+                        collInfo.ObjectName1Set(p->Id());
+                        collInfo.ObjectName2Set(q->Id());
+                        collInfo.ObjectNamesValidSet(true);
+                        
+                        CollisionHandle(&*p, &*q, collInfo);
                     }
                 }
             }
@@ -306,7 +342,9 @@ AdanaxisLogic::MoveSequence(void)
 void
 AdanaxisLogic::CollideSequence(void)
 {
-    ProjectilesFullCollide();
+    MushCollisionResolver::Sgl().FrameMsecSet(VolatileData().FrameMsec());
+    KhaziKhaziFullCollide();
+    ProjectilesKhaziFullCollide();
 }
 
 void

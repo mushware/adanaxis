@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } 3LuiErcM0vO3wOyNDCFVeQ
 /*
- * $Id: AdanaxisLogic.h,v 1.16 2006/10/04 13:35:22 southa Exp $
+ * $Id: AdanaxisLogic.h,v 1.17 2006/10/12 22:04:47 southa Exp $
  * $Log: AdanaxisLogic.h,v $
+ * Revision 1.17  2006/10/12 22:04:47  southa
+ * Collision events
+ *
  * Revision 1.16  2006/10/04 13:35:22  southa
  * Selective targetting
  *
@@ -102,7 +105,8 @@ public:
     virtual void CollideSequence(void);
     virtual void PreCacheSequence(void);
     virtual void RenderSequence(void);
-    virtual void ProjectilesFullCollide(void);
+    virtual void ProjectilesKhaziFullCollide(void);
+    virtual void KhaziKhaziFullCollide(void);
     virtual void MenuModeEnter(void);
     
     
@@ -116,9 +120,7 @@ public:
     virtual Mushware::U32 PreCachePercentage(void) const { return m_preCacheResult; }
     
 protected:
-    void CollisionHandle(AdanaxisSaveData::tProjectile& ioProj,
-                         AdanaxisSaveData::tKhazi& ioKhazi,
-                         const MushCollisionInfo& inCollInfo);
+    virtual void CollisionHandle(MushGamePiece *iopPiece1, MushGamePiece *iopPiece2, const MushCollisionInfo& inCollInfo);
     
 private:
     Mushware::U32 m_khaziCount; //:readwrite

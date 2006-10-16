@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } abz8WfQdtsWpPxv12NZxhA
 /*
- * $Id: MushGameRuby.h,v 1.14 2006/10/02 17:25:06 southa Exp $
+ * $Id: MushGameRuby.h,v 1.15 2006/10/02 20:28:11 southa Exp $
  * $Log: MushGameRuby.h,v $
+ * Revision 1.15  2006/10/02 20:28:11  southa
+ * Object lookup and target selection
+ *
  * Revision 1.14  2006/10/02 17:25:06  southa
  * Object lookup and target selection
  *
@@ -107,6 +110,8 @@ public:
     static Mushware::tRubyValue NamedDialoguesAdd(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
     static Mushware::tRubyValue SoundDefine(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0, Mushware::tRubyValue inArg1);
     static Mushware::tRubyValue SoundStreamDefine(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0, Mushware::tRubyValue inArg1);
+    static Mushware::tRubyValue SoundPlay(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0, Mushware::tRubyValue inArg1);
+    static Mushware::tRubyValue SoundStreamPlay(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0, Mushware::tRubyValue inArg1);
     static Mushware::tRubyValue PackageID(Mushware::tRubyValue inSelf);
     static Mushware::tRubyValue GameMsec(Mushware::tRubyValue inSelf);
     static Mushware::tRubyValue PieceLookup(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
