@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } rVCNunlW+wZoonHnGB5a7Q
 /*
- * $Id: MushGamePiece.cpp,v 1.18 2006/10/09 16:00:17 southa Exp $
+ * $Id: MushGamePiece.cpp,v 1.19 2006/10/15 17:12:54 southa Exp $
  * $Log: MushGamePiece.cpp,v $
+ * Revision 1.19  2006/10/15 17:12:54  southa
+ * Scripted explosions
+ *
  * Revision 1.18  2006/10/09 16:00:17  southa
  * Intern generation
  *
@@ -218,15 +221,18 @@ void
 MushGamePiece::RubyPieceDestructor(void) // nothrow
 {
     /*** This function is called from destructors */
-    
-    try
+
+    if (m_rubyObjMonkey.FreeInDestructor())
     {
-        RubyObj().Call(MushRubyIntern::mRegisteredDestroy());
-    }
-    catch (std::exception& e)
-    {
-        MushcoreLog::Sgl().ErrorLog() << "Destructor exception: " << e.what() << std::endl;
-        // Don't allow exception to propagate
+        try
+        {
+            RubyObj().Call(MushRubyIntern::mRegisteredDestroy());
+        }
+        catch (std::exception& e)
+        {
+            MushcoreLog::Sgl().ErrorLog() << "Destructor exception: " << e.what() << std::endl;
+            // Don't allow exception to propagate
+        }
     }
 }
 
@@ -360,7 +366,8 @@ MushGamePiece::AutoPrint(std::ostream& ioOut) const
     ioOut << "initialHitPoints=" << m_initialHitPoints << ", ";
     ioOut << "buffersRef=" << m_buffersRef << ", ";
     ioOut << "sharedBuffersRef=" << m_sharedBuffersRef << ", ";
-    ioOut << "rubyObj=" << m_rubyObj;
+    ioOut << "rubyObj=" << m_rubyObj << ", ";
+    ioOut << "rubyObjMonkey=" << m_rubyObjMonkey;
     ioOut << "]";
 }
 bool
@@ -416,6 +423,10 @@ MushGamePiece::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& i
     {
         ioIn >> m_rubyObj;
     }
+    else if (inTagStr == "rubyObjMonkey")
+    {
+        ioIn >> m_rubyObjMonkey;
+    }
     else 
     {
         return false;
@@ -447,5 +458,7 @@ MushGamePiece::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_sharedBuffersRef;
     ioOut.TagSet("rubyObj");
     ioOut << m_rubyObj;
+    ioOut.TagSet("rubyObjMonkey");
+    ioOut << m_rubyObjMonkey;
 }
-//%outOfLineFunctions } 1gw3/lUItRInMSgZLzVrTQ
+//%outOfLineFunctions } Gbmwin7QODfE+qup77U/Gw

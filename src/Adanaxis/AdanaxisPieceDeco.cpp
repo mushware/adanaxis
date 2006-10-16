@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } Xbi0vrfUMDnmd9NKsSwjUQ
 /*
- * $Id: AdanaxisPieceDeco.cpp,v 1.29 2006/10/14 16:59:44 southa Exp $
+ * $Id: AdanaxisPieceDeco.cpp,v 1.30 2006/10/15 17:12:54 southa Exp $
  * $Log: AdanaxisPieceDeco.cpp,v $
+ * Revision 1.30  2006/10/15 17:12:54  southa
+ * Scripted explosions
+ *
  * Revision 1.29  2006/10/14 16:59:44  southa
  * Ruby Deco objects
  *
@@ -128,8 +131,7 @@ AdanaxisPieceDeco::AdanaxisPieceDeco(const std::string& inID, const MushRubyValu
 
 AdanaxisPieceDeco::~AdanaxisPieceDeco()
 {
-    //FIXME!
-    //RubyPieceDestructor();    
+    RubyPieceDestructor();
 }
 
 void

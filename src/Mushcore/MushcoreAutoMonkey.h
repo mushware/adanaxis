@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } ql6j7wYRM3gGisEGTVY8JA
 /*
- * $Id: MushcoreAutoMonkey.h,v 1.8 2005/05/19 13:02:14 southa Exp $
+ * $Id: MushcoreAutoMonkey.h,v 1.9 2006/06/01 15:39:41 southa Exp $
  * $Log: MushcoreAutoMonkey.h,v $
+ * Revision 1.9  2006/06/01 15:39:41  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.8  2005/05/19 13:02:14  southa
  * Mac release work
  *
@@ -104,21 +107,47 @@
  * };
  */
 
-class MushcoreAutoMonkey
+#include "MushcoreVirtualObject.h"
+
+class MushcoreXMLIStream;
+class MushcoreXMLOStream;
+
+//:generate virtual ostream standard xml1
+class MushcoreAutoMonkey : public MushcoreVirtualObject
 {
 public:
-    MushcoreAutoMonkey(): m_refCtrPtr(new Mushware::S32(1)) {}
+    MushcoreAutoMonkey(): m_refCtrPtr(new Mushware::U32(1)) {}
     ~MushcoreAutoMonkey();
     MushcoreAutoMonkey(const MushcoreAutoMonkey& inMonkey);
     bool FreeInDestructor(void *inDataPtr) const;
+    bool FreeInDestructor(void) const;
 
-    Mushware::S32 ReferenceCountGet(void) const {return *m_refCtrPtr;} // For testing
+    Mushware::U32 ReferenceCountGet(void) const {return *m_refCtrPtr;} // For testing
     MushcoreAutoMonkey& operator=(const MushcoreAutoMonkey&);
     
 private:
     void Swap(MushcoreAutoMonkey& inMonkey);
-    Mushware::S32 *m_refCtrPtr;
+    Mushware::U32 *m_refCtrPtr;
+//%classPrototypes {
+public:
+    virtual const char *AutoName(void) const;
+    virtual MushcoreVirtualObject *AutoClone(void) const;
+    virtual MushcoreVirtualObject *AutoCreate(void) const;
+    static MushcoreVirtualObject *AutoVirtualFactory(void);
+    virtual void AutoPrint(std::ostream& ioOut) const;
+    virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
+    virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
+//%classPrototypes } 1oBgFruy5qHAaudtV+Hcmg
 };
+//%inlineHeader {
+inline std::ostream&
+operator<<(std::ostream& ioOut, const MushcoreAutoMonkey& inObj)
+{
+    inObj.AutoPrint(ioOut);
+    return ioOut;
+}
+//%inlineHeader } DjYpOXMqzNerIuqJGcVIIA
+
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

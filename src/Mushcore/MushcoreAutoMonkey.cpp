@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } aEvMGCmLAVy9Yp7e8dHvdQ
 /*
- * $Id: MushcoreAutoMonkey.cpp,v 1.7 2005/05/19 13:02:14 southa Exp $
+ * $Id: MushcoreAutoMonkey.cpp,v 1.8 2006/06/01 15:39:41 southa Exp $
  * $Log: MushcoreAutoMonkey.cpp,v $
+ * Revision 1.8  2006/06/01 15:39:41  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.7  2005/05/19 13:02:14  southa
  * Mac release work
  *
@@ -88,8 +91,13 @@
 
 #include "MushcoreAutoMonkey.h"
 
+#include "MushcoreFactory.h"
 #include "MushcoreFail.h"
+#include "MushcoreInstaller.h"
 #include "MushcoreSwitches.h"
+
+#include "MushcoreXMLIStream.h"
+#include "MushcoreXMLOStream.h"
 
 #include "MushcoreSTL.h"
 
@@ -108,7 +116,8 @@ MushcoreAutoMonkey::~MushcoreAutoMonkey()
     }
 }
 
-MushcoreAutoMonkey::MushcoreAutoMonkey(const MushcoreAutoMonkey& inMonkey)
+MushcoreAutoMonkey::MushcoreAutoMonkey(const MushcoreAutoMonkey& inMonkey) :
+    MushcoreVirtualObject()
 {
     m_refCtrPtr=inMonkey.m_refCtrPtr;
     ++*m_refCtrPtr;
@@ -118,7 +127,7 @@ MushcoreAutoMonkey::MushcoreAutoMonkey(const MushcoreAutoMonkey& inMonkey)
 void
 MushcoreAutoMonkey::Swap(MushcoreAutoMonkey& inMonkey)
 {
-    S32 *temp=m_refCtrPtr;
+    U32 *temp=m_refCtrPtr;
     m_refCtrPtr=inMonkey.m_refCtrPtr;
     inMonkey.m_refCtrPtr=temp;
 }
@@ -139,3 +148,80 @@ MushcoreAutoMonkey::FreeInDestructor(void *inDataPtr) const
     return (*m_refCtrPtr == 1  && inDataPtr != NULL);
 }
 
+bool
+MushcoreAutoMonkey::FreeInDestructor(void) const
+{
+    if (*m_refCtrPtr < 1) throw(MushcoreLogicFail("MushcoreAutoMonkey fault"));
+    MUSHCORE_IFMONKEYTESTING(cerr << "Automonkey InDestructorFree, refcount is " << ReferenceCountGet() << endl);
+    return (*m_refCtrPtr == 1);
+}
+
+//%outOfLineFunctions {
+
+const char *MushcoreAutoMonkey::AutoName(void) const
+{
+    return "MushcoreAutoMonkey";
+}
+
+MushcoreVirtualObject *MushcoreAutoMonkey::AutoClone(void) const
+{
+    return new MushcoreAutoMonkey(*this);
+}
+
+MushcoreVirtualObject *MushcoreAutoMonkey::AutoCreate(void) const
+{
+    return new MushcoreAutoMonkey;
+}
+
+MushcoreVirtualObject *MushcoreAutoMonkey::AutoVirtualFactory(void)
+{
+    return new MushcoreAutoMonkey;
+}
+namespace
+{
+void AutoInstall(void)
+{
+    MushcoreFactory::Sgl().FactoryAdd("MushcoreAutoMonkey", MushcoreAutoMonkey::AutoVirtualFactory);
+}
+MushcoreInstaller AutoInstaller(AutoInstall);
+} // end anonymous namespace
+void
+MushcoreAutoMonkey::AutoPrint(std::ostream& ioOut) const
+{
+    ioOut << "[";
+    if (m_refCtrPtr == NULL)
+    {
+        ioOut << "refCtrPtr=NULL" ;
+    }
+    else
+    {
+        ioOut << "refCtrPtr=" << *m_refCtrPtr;
+    }
+    ioOut << "]";
+}
+bool
+MushcoreAutoMonkey::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr)
+{
+    if (inTagStr == "obj")
+    {
+        AutoInputPrologue(ioIn);
+        ioIn >> *this;
+        AutoInputEpilogue(ioIn);
+    }
+    else if (inTagStr == "refCtrPtr")
+    {
+        ioIn >> m_refCtrPtr;
+    }
+    else 
+    {
+        return false;
+    }
+    return true;
+}
+void
+MushcoreAutoMonkey::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
+{
+    ioOut.TagSet("refCtrPtr");
+    ioOut << m_refCtrPtr;
+}
+//%outOfLineFunctions } S9ru3nQVTKdEmMTITyvLEg

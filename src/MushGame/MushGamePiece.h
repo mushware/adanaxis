@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } QiW5KaWfX1mBGolg1jxMIg
 /*
- * $Id: MushGamePiece.h,v 1.20 2006/10/09 16:00:17 southa Exp $
+ * $Id: MushGamePiece.h,v 1.21 2006/10/15 17:12:54 southa Exp $
  * $Log: MushGamePiece.h,v $
+ * Revision 1.21  2006/10/15 17:12:54  southa
+ * Scripted explosions
+ *
  * Revision 1.20  2006/10/09 16:00:17  southa
  * Intern generation
  *
@@ -138,6 +141,7 @@ private:
     MushGLBuffers::tSharedDataRef m_sharedBuffersRef; //:read :wref
 
     MushRubyValue m_rubyObj; //:readwrite
+    MushcoreAutoMonkey m_rubyObjMonkey;
     
     static Mushware::tRubyValue m_rubyKlass; // Must duplicate this in derived classes
     
