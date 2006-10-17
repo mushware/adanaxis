@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } mlN3NFYShD8lw+CPV54eBg
 /*
- * $Id: MushGameIntern.h,v 1.2 2006/10/12 22:04:48 southa Exp $
+ * $Id: MushGameIntern.h,v 1.3 2006/10/15 17:12:54 southa Exp $
  * $Log: MushGameIntern.h,v $
+ * Revision 1.3  2006/10/15 17:12:54  southa
+ * Scripted explosions
+ *
  * Revision 1.2  2006/10/12 22:04:48  southa
  * Collision events
  *
@@ -44,9 +47,12 @@
      @m_chunkNum1
      @m_chunkNum2
      @m_renderScale
+     mEventConsume
+     mEventHandle
  }
  classes = %w{
      MushEventCollision
+     MushEventExpiry
  }
 :data1end
 */
@@ -57,19 +63,25 @@ public:
 //%declarations {
 public:
     MushRubyValue& MushEventCollision(void) { return m_klassMushEventCollision; }
+    MushRubyValue& MushEventExpiry(void) { return m_klassMushEventExpiry; }
     Mushware::tRubyID ATm_piece1(void) { return m_ATm_piece1; }
     Mushware::tRubyID ATm_piece2(void) { return m_ATm_piece2; }
     Mushware::tRubyID ATm_chunkNum1(void) { return m_ATm_chunkNum1; }
     Mushware::tRubyID ATm_chunkNum2(void) { return m_ATm_chunkNum2; }
     Mushware::tRubyID ATm_renderScale(void) { return m_ATm_renderScale; }
+    Mushware::tRubyID mEventConsume(void) { return m_mEventConsume; }
+    Mushware::tRubyID mEventHandle(void) { return m_mEventHandle; }
 private:
     MushRubyValue m_klassMushEventCollision;
+    MushRubyValue m_klassMushEventExpiry;
     Mushware::tRubyID m_ATm_piece1;
     Mushware::tRubyID m_ATm_piece2;
     Mushware::tRubyID m_ATm_chunkNum1;
     Mushware::tRubyID m_ATm_chunkNum2;
     Mushware::tRubyID m_ATm_renderScale;
-//%declarations } 65e4349c4e45d428ddd6ca677c1cad9a
+    Mushware::tRubyID m_mEventConsume;
+    Mushware::tRubyID m_mEventHandle;
+//%declarations } a85d6eaf850690516f1fa7c8aa84d57d
 //%classPrototypes {
 public:
 //%classPrototypes } 0ImSRh0/JBpOMwe5g8vGcA

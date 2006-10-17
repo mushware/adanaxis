@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } Bm3nTDDsM5QE9iTgAOLr3w
 /*
- * $Id: AdanaxisPieceKhazi.h,v 1.17 2006/10/03 14:06:51 southa Exp $
+ * $Id: AdanaxisPieceKhazi.h,v 1.18 2006/10/12 22:04:47 southa Exp $
  * $Log: AdanaxisPieceKhazi.h,v $
+ * Revision 1.18  2006/10/12 22:04:47  southa
+ * Collision events
+ *
  * Revision 1.17  2006/10/03 14:06:51  southa
  * Khazi and projectile creation
  *
@@ -96,7 +99,6 @@ public:
     virtual bool Render(MushGLJobRender& outRender,
                         MushGameLogic& ioLogic, MushRenderMesh& inRender, const MushGameCamera& inCamera);
     
-    virtual void CollisionConsume(MushGameLogic& ioLogic, const MushGameMessageCollision& inMessage);
     virtual void MessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage);
 
     virtual const MushMesh4Mesh& CollisionMesh(void) const { return Mesh(); }
@@ -110,7 +112,6 @@ public:
     static void RubyInstall(void);
     
 protected:
-    virtual void Explode(MushGameLogic& ioLogic, const MushGameMessageCollision& inMessage);
     
 private:
     Mushware::tMsec m_actionMsec;

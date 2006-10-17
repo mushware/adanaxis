@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } qKw8sPtc3ciNf46/evJgCA
 /*
- * $Id: MushGame.h,v 1.17 2006/10/02 17:25:04 southa Exp $
+ * $Id: MushGame.h,v 1.18 2006/10/09 16:00:17 southa Exp $
  * $Log: MushGame.h,v $
+ * Revision 1.18  2006/10/09 16:00:17  southa
+ * Intern generation
+ *
  * Revision 1.17  2006/10/02 17:25:04  southa
  * Object lookup and target selection
  *
@@ -91,6 +94,7 @@
 #include "MushGameDialogue.h"
 #include "MushGameDialogueUtils.h"
 #include "MushGameDigest.h"
+#include "MushGameEvents.h"
 #include "MushGameIntern.h"
 #include "MushGameLink.h"
 #include "MushGameJob.h"

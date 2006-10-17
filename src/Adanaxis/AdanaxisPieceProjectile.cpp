@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } AKn0HlU4NeCX3ptHFWodSQ
 /*
- * $Id: AdanaxisPieceProjectile.cpp,v 1.14 2006/10/04 13:35:23 southa Exp $
+ * $Id: AdanaxisPieceProjectile.cpp,v 1.15 2006/10/12 22:04:47 southa Exp $
  * $Log: AdanaxisPieceProjectile.cpp,v $
+ * Revision 1.15  2006/10/12 22:04:47  southa
+ * Collision events
+ *
  * Revision 1.14  2006/10/04 13:35:23  southa
  * Selective targetting
  *
@@ -100,8 +103,8 @@ AdanaxisPieceProjectile::Move(MushGameLogic& ioLogic, const tVal inFrameslice)
     }
     if (ioLogic.FrameMsec() > m_launchMsec + m_lifeMsec)
     {
-        Explode(ioLogic);
         ExpireFlagSet(true);
+        RubyEventHandle(MushGameEvents::Sgl().EventExpiryMake());
     }
 }
 
@@ -124,43 +127,10 @@ AdanaxisPieceProjectile::Render(MushGLJobRender& outRender,
 }
 
 void
-AdanaxisPieceProjectile::CollisionConsume(MushGameLogic& ioLogic, const MushGameMessageCollision& inMessage)
-{
-    Explode(ioLogic);
-    ExpireFlagSet(true);
-}    
-
-void
 AdanaxisPieceProjectile::MessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage)
 {
-    const MushGameMessageCollision *pCollision;
-    
-    if ((pCollision = dynamic_cast<const MushGameMessageCollision *>(&inMessage)) != NULL)
-    {
-        CollisionConsume(ioLogic, *pCollision);
-    }
-    else
-    {
-        // Pass to base class
-        MushGamePiece::MessageConsume(ioLogic, inMessage);
-    }
-}
-
-void
-AdanaxisPieceProjectile::Explode(MushGameLogic& ioLogic)
-{
-    MushMeshPosticity flarePost = Post();
-    flarePost.VelWRef().ToAdditiveIdentitySet();
-    
-    AdanaxisUtil::FlareCreate(dynamic_cast<AdanaxisLogic&>(ioLogic), flarePost, 3, 0);
-    for (U32 i=0; i<3; ++i)
-    {
-        AdanaxisUtil::EmberCreate(dynamic_cast<AdanaxisLogic&>(ioLogic),
-                                  Post(),
-                                  MushMeshTools::Random(0.1, 0.4), // size
-                                  MushMeshTools::Random(0.1, 1)  // speed
-                                  );
-    }
+    // Pass to base class
+    MushGamePiece::MessageConsume(ioLogic, inMessage);
 }
 
 void

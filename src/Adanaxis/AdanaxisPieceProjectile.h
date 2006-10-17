@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } yAaZbixiy4nfgXOSFEVzQQ
 /*
- * $Id: AdanaxisPieceProjectile.h,v 1.11 2006/10/03 14:06:51 southa Exp $
+ * $Id: AdanaxisPieceProjectile.h,v 1.12 2006/10/12 22:04:47 southa Exp $
  * $Log: AdanaxisPieceProjectile.h,v $
+ * Revision 1.12  2006/10/12 22:04:47  southa
+ * Collision events
+ *
  * Revision 1.11  2006/10/03 14:06:51  southa
  * Khazi and projectile creation
  *
@@ -77,9 +80,7 @@ public:
     virtual void Move(MushGameLogic& ioLogic, const Mushware::tVal inFrameslice);
     virtual bool Render(MushGLJobRender& outRender, MushGameLogic& ioLogic, MushRenderMesh& inRender, const MushGameCamera& inCamera);
     
-    virtual void CollisionConsume(MushGameLogic& ioLogic, const MushGameMessageCollision& inMessage);
     virtual void MessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage);
-    virtual void Explode(MushGameLogic& ioLogic);
     
     virtual const MushMesh4Mesh& CollisionMesh(void) const { return Mesh(); }
     virtual const MushMeshPosticity& CollisionPost(void) const { return Post(); }

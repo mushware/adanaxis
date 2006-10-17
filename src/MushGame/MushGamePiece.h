@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } QiW5KaWfX1mBGolg1jxMIg
 /*
- * $Id: MushGamePiece.h,v 1.21 2006/10/15 17:12:54 southa Exp $
+ * $Id: MushGamePiece.h,v 1.22 2006/10/16 14:36:51 southa Exp $
  * $Log: MushGamePiece.h,v $
+ * Revision 1.22  2006/10/16 14:36:51  southa
+ * Deco handling
+ *
  * Revision 1.21  2006/10/15 17:12:54  southa
  * Scripted explosions
  *
@@ -113,6 +116,7 @@ public:
     virtual void SharedBuffersNameSet(const std::string& inName) { m_sharedBuffersRef.NameSet(inName); }
     virtual void Load(Mushware::tRubyValue inSelf);
     virtual void Save(Mushware::tRubyValue inSelf);
+    virtual MushRubyValue RubyEventHandle(const MushRubyValue& inEvent);
     
     // Called from constructor so not virtual
     void RubyPieceConstructor(const std::string& inID, const MushRubyValue& inParams,

@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } YCa3eNmcxUH2q0Oxh6SpTA
 /*
- * $Id: AdanaxisPieceKhazi.cpp,v 1.26 2006/10/09 16:00:16 southa Exp $
+ * $Id: AdanaxisPieceKhazi.cpp,v 1.27 2006/10/12 22:04:47 southa Exp $
  * $Log: AdanaxisPieceKhazi.cpp,v $
+ * Revision 1.27  2006/10/12 22:04:47  southa
+ * Collision events
+ *
  * Revision 1.26  2006/10/09 16:00:16  southa
  * Intern generation
  *
@@ -223,36 +226,14 @@ AdanaxisPieceKhazi::Render(MushGLJobRender& outRender,
 }
 
 void
-AdanaxisPieceKhazi::CollisionConsume(MushGameLogic& ioLogic, const MushGameMessageCollision& inMessage)
-{
-    if (!ExpireFlag())
-    {
-        HitPointsSet(HitPoints() - 0.1);
-        if (HitPoints() <= 0)
-        {
-            ExpireFlagSet(true);
-            Explode(ioLogic, inMessage);
-            MediaAudio::Sgl().Play(*MushcoreDataRef<MediaSound>("explode").Get());
-        }
-    }
-}    
-
-void
 AdanaxisPieceKhazi::MessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage)
 {
-    const MushGameMessageCollision *pCollision;
-    
-    if ((pCollision = dynamic_cast<const MushGameMessageCollision *>(&inMessage)) != NULL)
-    {
-        CollisionConsume(ioLogic, *pCollision);
-    }
-    else
-    {
-        // Pass to base class
-        MushGamePiece::MessageConsume(ioLogic, inMessage);
-    }
+
+    // Pass to base class
+    MushGamePiece::MessageConsume(ioLogic, inMessage);
 }
 
+#if 0
 void
 AdanaxisPieceKhazi::Explode(MushGameLogic& ioLogic, const MushGameMessageCollision& inMessage)
 {
@@ -334,6 +315,7 @@ AdanaxisPieceKhazi::Explode(MushGameLogic& ioLogic, const MushGameMessageCollisi
                                   );
     }
 }
+#endif
 
 Mushware::tRubyValue
 AdanaxisPieceKhazi::RubyCreate(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0)

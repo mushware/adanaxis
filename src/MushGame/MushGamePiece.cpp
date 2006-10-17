@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } rVCNunlW+wZoonHnGB5a7Q
 /*
- * $Id: MushGamePiece.cpp,v 1.19 2006/10/15 17:12:54 southa Exp $
+ * $Id: MushGamePiece.cpp,v 1.20 2006/10/16 14:36:50 southa Exp $
  * $Log: MushGamePiece.cpp,v $
+ * Revision 1.20  2006/10/16 14:36:50  southa
+ * Deco handling
+ *
  * Revision 1.19  2006/10/15 17:12:54  southa
  * Scripted explosions
  *
@@ -182,6 +185,12 @@ MushGamePiece::Save(Mushware::tRubyValue inSelf)
             RenderScaleSet(MushMeshRubyVector::Ref(value));
         }
     }
+}
+
+MushRubyValue
+MushGamePiece::RubyEventHandle(const MushRubyValue& inEvent)
+{
+    return RubyObj().Call(MushGameIntern::Sgl().mEventHandle(), inEvent);
 }
 
 void

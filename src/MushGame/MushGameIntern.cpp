@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 8fTAEuGpO9TKg8SBLTUQaw
 /*
- * $Id: MushGameIntern.cpp,v 1.2 2006/10/12 22:04:48 southa Exp $
+ * $Id: MushGameIntern.cpp,v 1.3 2006/10/15 17:12:54 southa Exp $
  * $Log: MushGameIntern.cpp,v $
+ * Revision 1.3  2006/10/15 17:12:54  southa
+ * Scripted explosions
+ *
  * Revision 1.2  2006/10/12 22:04:48  southa
  * Collision events
  *
@@ -39,10 +42,13 @@ MushGameIntern::MushGameIntern()
 {
 //%initialisations {
     m_klassMushEventCollision = MushRubyValue(MushRubyUtil::Class("MushEventCollision"));
+    m_klassMushEventExpiry = MushRubyValue(MushRubyUtil::Class("MushEventExpiry"));
     m_ATm_piece1 = MushRubyIntern::SymbolID("@m_piece1");
     m_ATm_piece2 = MushRubyIntern::SymbolID("@m_piece2");
     m_ATm_chunkNum1 = MushRubyIntern::SymbolID("@m_chunkNum1");
     m_ATm_chunkNum2 = MushRubyIntern::SymbolID("@m_chunkNum2");
     m_ATm_renderScale = MushRubyIntern::SymbolID("@m_renderScale");
-//%initialisations } 8b20e406e8effb8c2c1148597d2065ae
+    m_mEventConsume = MushRubyIntern::SymbolID("mEventConsume");
+    m_mEventHandle = MushRubyIntern::SymbolID("mEventHandle");
+//%initialisations } dbfaef6749059b2b83d71aeaa14744ef
 }

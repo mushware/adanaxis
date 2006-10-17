@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } WBiqbvbumO43Eps7fHh03A
 /*
- * $Id: AdanaxisIntern.h,v 1.6 2006/10/12 22:04:46 southa Exp $
+ * $Id: AdanaxisIntern.h,v 1.7 2006/10/14 16:59:44 southa Exp $
  * $Log: AdanaxisIntern.h,v $
+ * Revision 1.7  2006/10/14 16:59:44  southa
+ * Ruby Deco objects
+ *
  * Revision 1.6  2006/10/12 22:04:46  southa
  * Collision events
  *
@@ -84,9 +87,6 @@ private:
 public:
 //%classPrototypes } 0ImSRh0/JBpOMwe5g8vGcA
 };
-
-#undef ADANAXISINTERN_ID
-#undef ADANAXISINTERN_VALUE
 
 //%includeGuardEnd {
 #endif
