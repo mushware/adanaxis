@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } jVIqo6l6rVjwbe9qE13NKA
 /*
- * $Id: MushGameSaveData.h,v 1.13 2006/07/31 11:01:39 southa Exp $
+ * $Id: MushGameSaveData.h,v 1.14 2006/10/02 17:25:06 southa Exp $
  * $Log: MushGameSaveData.h,v $
+ * Revision 1.14  2006/10/02 17:25:06  southa
+ * Object lookup and target selection
+ *
  * Revision 1.13  2006/07/31 11:01:39  southa
  * Music and dialogues
  *
@@ -80,13 +83,16 @@
 class MushGameSaveData : public MushcoreVirtualObject
 {
 public:
+    typedef MushGamePiecePlayer tPlayers;
+    typedef MushcoreMaptor<tPlayers> tPlayersList;
+    
     MushGameSaveData();
     virtual void GroupingNameSet(const std::string& inName) { m_clientRef.NameSet(inName); }
     virtual void RenderNameSet(const std::string& inName) { m_renderRef.NameSet(inName); }
     
 private:
     std::string m_clientName; //:readwrite
-    MushcoreMaptor<MushGamePiecePlayer> m_players; //:read :wref
+    tPlayersList m_playersList; //:read :wref
     MushcoreData<MushGameJob> m_jobList; //:read :wref
     MushcoreData<MushGameCamera> m_cameras; //:read :wref
     MushGameMailbox m_toServerMailbox; //:readwrite :wref
@@ -100,9 +106,9 @@ private:
 public:
     const std::string& ClientName(void) const { return m_clientName; }
     void ClientNameSet(const std::string& inValue) { m_clientName=inValue; }
-    const MushcoreMaptor<MushGamePiecePlayer>& Players(void) const { return m_players; }
-    // Writable reference for m_players
-    MushcoreMaptor<MushGamePiecePlayer>& PlayersWRef(void) { return m_players; }
+    const tPlayersList& PlayersList(void) const { return m_playersList; }
+    // Writable reference for m_playersList
+    tPlayersList& PlayersListWRef(void) { return m_playersList; }
     const MushcoreData<MushGameJob>& JobList(void) const { return m_jobList; }
     // Writable reference for m_jobList
     MushcoreData<MushGameJob>& JobListWRef(void) { return m_jobList; }
@@ -133,7 +139,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } tCEJlNLI2VD123JaY1+Seg
+//%classPrototypes } b73iY4kAMLsVvkrt/1a2Tg
 };
 //%inlineHeader {
 inline std::ostream&

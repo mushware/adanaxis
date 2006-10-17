@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } rQkTih3VUd7Xp8cDeV3ZYA
 /*
- * $Id: AdanaxisRender.cpp,v 1.51 2006/10/06 11:54:57 southa Exp $
+ * $Id: AdanaxisRender.cpp,v 1.52 2006/10/09 16:00:16 southa Exp $
  * $Log: AdanaxisRender.cpp,v $
+ * Revision 1.52  2006/10/09 16:00:16  southa
+ * Intern generation
+ *
  * Revision 1.51  2006/10/06 11:54:57  southa
  * Scaled rendering
  *
@@ -177,6 +180,7 @@
 #include "AdanaxisRender.h"
 
 #include "AdanaxisAppHandler.h"
+#include "AdanaxisIntern.h"
 #include "AdanaxisSaveData.h"
 #include "AdanaxisLogic.h"
 #include "AdanaxisVolatileData.h"
@@ -454,12 +458,26 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
         U32 timeNow = AdanaxisUtil::AppHandler().MillisecondsGet();
         
         MushRubyExec::Sgl().Call(pVolData->RubyGame(),
-                                 MushRubyIntern::mRender(),
+                                 AdanaxisIntern::Sgl().mMenuRender(),
                                  MushRubyValue(timeNow));
         MushGLUtil::OrthoEpilogue();
         MushGLUtil::IdentityEpilogue();
     }
-
+    else
+    {
+        MushGLUtil::IdentityPrologue();
+        MushGLUtil::OrthoPrologue();
+        GLState::ColourSet(1.0,1.0,1.0,1.0);
+        
+        U32 timeNow = AdanaxisUtil::AppHandler().MillisecondsGet();
+        
+        MushRubyExec::Sgl().Call(pVolData->RubyGame(),
+                                 AdanaxisIntern::Sgl().mRender(),
+                                 MushRubyValue(timeNow));
+        MushGLUtil::OrthoEpilogue();
+        MushGLUtil::IdentityEpilogue();
+    }
+    
     MushGLUtil::DisplayEpilogue();
     
     if (m_renderPrelude > 0)

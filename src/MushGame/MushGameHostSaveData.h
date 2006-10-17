@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } wvHUgTbJZM55w0TorvjfBg
 /*
- * $Id: MushGameHostSaveData.h,v 1.7 2006/06/01 15:39:22 southa Exp $
+ * $Id: MushGameHostSaveData.h,v 1.8 2006/10/02 17:25:05 southa Exp $
  * $Log: MushGameHostSaveData.h,v $
+ * Revision 1.8  2006/10/02 17:25:05  southa
+ * Object lookup and target selection
+ *
  * Revision 1.7  2006/06/01 15:39:22  southa
  * DrawArray verification and fixes
  *
@@ -66,7 +69,7 @@ public:
     
 private:
     std::string m_serverName; //:readwrite
-    MushcoreMaptor<MushGamePiecePlayer> m_hostPlayers; //:read :wref
+    MushcoreMaptor<MushGamePiecePlayer> m_hostPlayersList; //:read :wref
     Mushware::U32 m_nextPlayerNum; //:readwrite :wref
     Mushware::U32 m_maxPlayersAllowed; //:readwrite
     MushcoreData<MushGameJob> m_jobList; //:read :wref
@@ -76,9 +79,9 @@ private:
 public:
     const std::string& ServerName(void) const { return m_serverName; }
     void ServerNameSet(const std::string& inValue) { m_serverName=inValue; }
-    const MushcoreMaptor<MushGamePiecePlayer>& HostPlayers(void) const { return m_hostPlayers; }
-    // Writable reference for m_hostPlayers
-    MushcoreMaptor<MushGamePiecePlayer>& HostPlayersWRef(void) { return m_hostPlayers; }
+    const MushcoreMaptor<MushGamePiecePlayer>& HostPlayersList(void) const { return m_hostPlayersList; }
+    // Writable reference for m_hostPlayersList
+    MushcoreMaptor<MushGamePiecePlayer>& HostPlayersListWRef(void) { return m_hostPlayersList; }
     const Mushware::U32& NextPlayerNum(void) const { return m_nextPlayerNum; }
     void NextPlayerNumSet(const Mushware::U32& inValue) { m_nextPlayerNum=inValue; }
     // Writable reference for m_nextPlayerNum
@@ -99,7 +102,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } ljoz81UYreYe9nruONk/3Q
+//%classPrototypes } T/iPy9H3zttlLc0uss+bdQ
 };
 //%inlineHeader {
 inline std::ostream&

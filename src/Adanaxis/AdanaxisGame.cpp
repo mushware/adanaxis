@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } 0Sg2qcftBJTnB0QxDEkq2Q
 /*
- * $Id: AdanaxisGame.cpp,v 1.51 2006/08/01 23:21:52 southa Exp $
+ * $Id: AdanaxisGame.cpp,v 1.52 2006/09/07 10:02:36 southa Exp $
  * $Log: AdanaxisGame.cpp,v $
+ * Revision 1.52  2006/09/07 10:02:36  southa
+ * Shader interface
+ *
  * Revision 1.51  2006/08/01 23:21:52  southa
  * Rendering demo content
  *
@@ -318,7 +321,7 @@ AdanaxisGame::Init(MushGameAppHandler& inAppHandler)
     UpdateFromConfig();
     
 	VolatileData().RubyGameSet(MushRubyExec::Sgl().Call("$currentGame.mLoad"));
-	VolatileData().RubySpaceSet(MushRubyExec::Sgl().Call("$currentGame.space"));
+	VolatileData().RubySpaceSet(MushRubyExec::Sgl().Call("$currentGame.mSpace"));
 	MushRubyExec::Sgl().Call(VolatileData().RubySpace(), "mInitialPiecesCreate");
 	VolatileData().IsMenuBackdropSet(MushRubyExec::Sgl().Call(VolatileData().RubySpace(), "mIsMenuBackdrop").Bool());
     SaveData().SpaceNameSet(MushRubyExec::Sgl().Call("$currentGame.mSpaceName").String());

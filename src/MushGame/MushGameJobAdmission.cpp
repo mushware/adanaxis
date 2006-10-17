@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } KiIXpTnHXcN2vGSkbhO8LQ
 /*
- * $Id: MushGameJobAdmission.cpp,v 1.4 2006/06/01 15:39:22 southa Exp $
+ * $Id: MushGameJobAdmission.cpp,v 1.5 2006/10/02 17:25:05 southa Exp $
  * $Log: MushGameJobAdmission.cpp,v $
+ * Revision 1.5  2006/10/02 17:25:05  southa
+ * Object lookup and target selection
+ *
  * Revision 1.4  2006/06/01 15:39:22  southa
  * DrawArray verification and fixes
  *
@@ -53,7 +56,7 @@ MushGameJobAdmission::MushGameJobAdmission(const std::string& inID) :
 void
 MushGameJobAdmission::JoinRequestConsume(MushGameLogic& ioLogic, const MushGameMessageJoinRequest& inMessage)
 {    
-    if (ioLogic.HostSaveData().HostPlayers().size() >= ioLogic.HostSaveData().MaxPlayersAllowed())
+    if (ioLogic.HostSaveData().HostPlayersList().size() >= ioLogic.HostSaveData().MaxPlayersAllowed())
     {
         MushGameMessageJoinDenied deniedMessage;
         ioLogic.AsReplyCopyAndSend(deniedMessage, inMessage);
@@ -70,13 +73,13 @@ MushGameJobAdmission::JoinRequestConsume(MushGameLogic& ioLogic, const MushGameM
             newPlayerName = newPlayerStream.str();
         }
         
-        if (ioLogic.HostSaveData().HostPlayers().Exists(newPlayerNum))
+        if (ioLogic.HostSaveData().HostPlayersList().Exists(newPlayerNum))
         {
             throw MushcoreRequestFail("Attempt to create player that already exists");
         }
         
         MushGamePiecePlayer *pPlayer =
-            ioLogic.HostSaveData().HostPlayersWRef().Give(ioLogic.PlayerNew(&inMessage), newPlayerNum);
+            ioLogic.HostSaveData().HostPlayersListWRef().Give(ioLogic.PlayerNew(&inMessage), newPlayerNum);
 
         pPlayer->IdSet("p:"+newPlayerName);
         pPlayer->PlayerNameSet(inMessage.PlayerName());

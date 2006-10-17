@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } WBiqbvbumO43Eps7fHh03A
 /*
- * $Id: AdanaxisIntern.h,v 1.7 2006/10/14 16:59:44 southa Exp $
+ * $Id: AdanaxisIntern.h,v 1.8 2006/10/17 11:05:54 southa Exp $
  * $Log: AdanaxisIntern.h,v $
+ * Revision 1.8  2006/10/17 11:05:54  southa
+ * Expiry events
+ *
  * Revision 1.7  2006/10/14 16:59:44  southa
  * Ruby Deco objects
  *
@@ -54,6 +57,8 @@
 :data1begin
   ids = %w{
     mCollisionEventConsume
+    mMenuRender
+    mRender
   }
   classes = %w{
     AdanaxisPieceDeco
@@ -75,13 +80,17 @@ public:
     MushRubyValue& AdanaxisPiecePlayer(void) { return m_klassAdanaxisPiecePlayer; }
     MushRubyValue& AdanaxisPieceProjectile(void) { return m_klassAdanaxisPieceProjectile; }
     Mushware::tRubyID mCollisionEventConsume(void) { return m_mCollisionEventConsume; }
+    Mushware::tRubyID mMenuRender(void) { return m_mMenuRender; }
+    Mushware::tRubyID mRender(void) { return m_mRender; }
 private:
     MushRubyValue m_klassAdanaxisPieceDeco;
     MushRubyValue m_klassAdanaxisPieceKhazi;
     MushRubyValue m_klassAdanaxisPiecePlayer;
     MushRubyValue m_klassAdanaxisPieceProjectile;
     Mushware::tRubyID m_mCollisionEventConsume;
-//%declarations } e46191660152c12dbcbbed46d185946c
+    Mushware::tRubyID m_mMenuRender;
+    Mushware::tRubyID m_mRender;
+//%declarations } 699af84144f658246bf49640522395d7
 
 //%classPrototypes {
 public:

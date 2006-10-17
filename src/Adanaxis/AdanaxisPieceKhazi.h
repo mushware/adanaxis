@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } Bm3nTDDsM5QE9iTgAOLr3w
 /*
- * $Id: AdanaxisPieceKhazi.h,v 1.18 2006/10/12 22:04:47 southa Exp $
+ * $Id: AdanaxisPieceKhazi.h,v 1.19 2006/10/17 11:05:55 southa Exp $
  * $Log: AdanaxisPieceKhazi.h,v $
+ * Revision 1.19  2006/10/17 11:05:55  southa
+ * Expiry events
+ *
  * Revision 1.18  2006/10/12 22:04:47  southa
  * Collision events
  *
@@ -103,7 +106,6 @@ public:
 
     virtual const MushMesh4Mesh& CollisionMesh(void) const { return Mesh(); }
     virtual const MushMeshPosticity& CollisionPost(void) const { return Post(); }
-    virtual void ActionValueHandle(MushGameLogic& ioLogic, const MushRubyValue& inActionValue);
     virtual void EventHandle(MushGameLogic& ioLogic, MushRubyValue inEvent, MushRubyValue inParams);
     
     static Mushware::tRubyValue RubyCreate(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
@@ -113,9 +115,7 @@ public:
     
 protected:
     
-private:
-    Mushware::tMsec m_actionMsec;
-        
+private:        
     static Mushware::tRubyValue m_rubyKlass;
 
 //%classPrototypes {

@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } WMShka8Hj2wrlOceGnqYjw
 /*
- * $Id: AdanaxisPiecePlayer.h,v 1.1 2006/10/02 17:25:04 southa Exp $
+ * $Id: AdanaxisPiecePlayer.h,v 1.2 2006/10/02 20:28:10 southa Exp $
  * $Log: AdanaxisPiecePlayer.h,v $
+ * Revision 1.2  2006/10/02 20:28:10  southa
+ * Object lookup and target selection
+ *
  * Revision 1.1  2006/10/02 17:25:04  southa
  * Object lookup and target selection
  *
@@ -63,14 +66,19 @@
 
 #include "AdanaxisStandard.h"
 
+#include "API/mushMushCollision.h"
 #include "API/mushMushGame.h"
+#include "API/mushMushGL.h"
+#include "API/mushMushMesh.h"
+#include "API/mushMushRender.h"
 
 //:xml1base MushGamePiecePlayer
 //:generate virtual standard ostream xml1
 class AdanaxisPiecePlayer : public MushGamePiecePlayer
 {
 public:
-    explicit AdanaxisPiecePlayer(const std::string& inPlayerID = "");
+    explicit AdanaxisPiecePlayer(const std::string& inID = "", const MushRubyValue& inParams = MushRubyValue());
+    virtual ~AdanaxisPiecePlayer();
     
     virtual void PreControl(MushGameLogic& ioLogic);
     virtual void Move(MushGameLogic& ioLogic, const Mushware::tVal inFrameslice);
@@ -81,15 +89,17 @@ public:
     virtual void FirePieceCreate(MushGameLogic& ioLogic, const MushGameMessageFire& inMessage);
     virtual void FireConsume(MushGameLogic& ioLogic, const MushGameMessageFire& inMessage);
 
+    static Mushware::tRubyValue RubyCreate(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
+    
     static Mushware::tRubyValue Klass(void);
     static void RubyInstall(void);
     
-    static Mushware::tRubyValue m_rubyKlass; // Must duplicate this in derived classes
-
 private:
     std::vector<Mushware::tVal> m_lastAxes;
 	MushcoreDataRef<MushMesh4Mesh> m_projectileMeshRef;
-	
+
+    static Mushware::tRubyValue m_rubyKlass; // Must duplicate this in derived classes
+
 //%classPrototypes {
 public:
     virtual const char *AutoName(void) const;

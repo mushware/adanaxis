@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } sMWR8ancG1E3YqBNuEjJWw
 /*
- * $Id: MushGameJobPlayerCreate.cpp,v 1.12 2006/10/02 17:25:05 southa Exp $
+ * $Id: MushGameJobPlayerCreate.cpp,v 1.13 2006/10/04 13:35:24 southa Exp $
  * $Log: MushGameJobPlayerCreate.cpp,v $
+ * Revision 1.13  2006/10/04 13:35:24  southa
+ * Selective targetting
+ *
  * Revision 1.12  2006/10/02 17:25:05  southa
  * Object lookup and target selection
  *
@@ -115,17 +118,20 @@ MushGameJobPlayerCreate::JoinConfirmConsume(MushGameLogic& ioLogic, const MushGa
     std::string objType;
     Mushware::U32 objNum;
     MushGameUtil::ObjectNameDecode(objType, objNum, inMessage.NewPlayerID());
-    if (ioLogic.SaveData().Players().Exists(objNum))
+    if (ioLogic.SaveData().PlayersList().Exists(objNum))
     {
         throw MushcoreRequestFail("Attempt to create player that already exists");
     }
     
-    MushGamePiecePlayer *pPlayer = ioLogic.SaveData().PlayersWRef().Give(ioLogic.PlayerNew(&inMessage), objNum);
+    MushGamePiecePlayer *pPlayer = ioLogic.SaveData().PlayersListWRef().Give(ioLogic.PlayerNew(&inMessage), objNum);
     
     pPlayer->IdSet(inMessage.NewPlayerID());
     pPlayer->PlayerNameSet(inMessage.PlayerName());
     pPlayer->ControlMailboxNameSet(ioLogic.SaveData().ControlMailboxName());
-
+    // Create the mesh for this object
+    pPlayer->MeshWRef() = *MushcoreData<MushMesh4Mesh>::Sgl().Get("player");
+	pPlayer->SharedBuffersNameSet("player");
+    
     ioLogic.ClientNewPlayerHandle(objNum);
     
     CompleteSet(true);

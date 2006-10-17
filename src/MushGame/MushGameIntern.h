@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } mlN3NFYShD8lw+CPV54eBg
 /*
- * $Id: MushGameIntern.h,v 1.3 2006/10/15 17:12:54 southa Exp $
+ * $Id: MushGameIntern.h,v 1.4 2006/10/17 11:05:55 southa Exp $
  * $Log: MushGameIntern.h,v $
+ * Revision 1.4  2006/10/17 11:05:55  southa
+ * Expiry events
+ *
  * Revision 1.3  2006/10/15 17:12:54  southa
  * Scripted explosions
  *
@@ -47,6 +50,7 @@
      @m_chunkNum1
      @m_chunkNum2
      @m_renderScale
+     mActionTimer
      mEventConsume
      mEventHandle
  }
@@ -69,6 +73,7 @@ public:
     Mushware::tRubyID ATm_chunkNum1(void) { return m_ATm_chunkNum1; }
     Mushware::tRubyID ATm_chunkNum2(void) { return m_ATm_chunkNum2; }
     Mushware::tRubyID ATm_renderScale(void) { return m_ATm_renderScale; }
+    Mushware::tRubyID mActionTimer(void) { return m_mActionTimer; }
     Mushware::tRubyID mEventConsume(void) { return m_mEventConsume; }
     Mushware::tRubyID mEventHandle(void) { return m_mEventHandle; }
 private:
@@ -79,9 +84,10 @@ private:
     Mushware::tRubyID m_ATm_chunkNum1;
     Mushware::tRubyID m_ATm_chunkNum2;
     Mushware::tRubyID m_ATm_renderScale;
+    Mushware::tRubyID m_mActionTimer;
     Mushware::tRubyID m_mEventConsume;
     Mushware::tRubyID m_mEventHandle;
-//%declarations } a85d6eaf850690516f1fa7c8aa84d57d
+//%declarations } 172c637d17b6124f5ba304eabdd28c0b
 //%classPrototypes {
 public:
 //%classPrototypes } 0ImSRh0/JBpOMwe5g8vGcA

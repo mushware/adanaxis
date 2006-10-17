@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 8fTAEuGpO9TKg8SBLTUQaw
 /*
- * $Id: MushGameIntern.cpp,v 1.3 2006/10/15 17:12:54 southa Exp $
+ * $Id: MushGameIntern.cpp,v 1.4 2006/10/17 11:05:55 southa Exp $
  * $Log: MushGameIntern.cpp,v $
+ * Revision 1.4  2006/10/17 11:05:55  southa
+ * Expiry events
+ *
  * Revision 1.3  2006/10/15 17:12:54  southa
  * Scripted explosions
  *
@@ -48,7 +51,8 @@ MushGameIntern::MushGameIntern()
     m_ATm_chunkNum1 = MushRubyIntern::SymbolID("@m_chunkNum1");
     m_ATm_chunkNum2 = MushRubyIntern::SymbolID("@m_chunkNum2");
     m_ATm_renderScale = MushRubyIntern::SymbolID("@m_renderScale");
+    m_mActionTimer = MushRubyIntern::SymbolID("mActionTimer");
     m_mEventConsume = MushRubyIntern::SymbolID("mEventConsume");
     m_mEventHandle = MushRubyIntern::SymbolID("mEventHandle");
-//%initialisations } dbfaef6749059b2b83d71aeaa14744ef
+//%initialisations } 3fe70ef9b9740000270cf67524a0a741
 }

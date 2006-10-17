@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } TWnJMo1kUQ+/N7vXcpUc0w
 /*
- * $Id: MushGameHostSaveData.cpp,v 1.6 2005/07/29 14:59:49 southa Exp $
+ * $Id: MushGameHostSaveData.cpp,v 1.7 2006/06/01 15:39:22 southa Exp $
  * $Log: MushGameHostSaveData.cpp,v $
+ * Revision 1.7  2006/06/01 15:39:22  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.6  2005/07/29 14:59:49  southa
  * Maptor access
  *
@@ -87,7 +90,7 @@ MushGameHostSaveData::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
     ioOut << "serverName=" << m_serverName << ", ";
-    ioOut << "hostPlayers=" << m_hostPlayers << ", ";
+    ioOut << "hostPlayersList=" << m_hostPlayersList << ", ";
     ioOut << "nextPlayerNum=" << m_nextPlayerNum << ", ";
     ioOut << "maxPlayersAllowed=" << m_maxPlayersAllowed << ", ";
     ioOut << "jobList=" << m_jobList << ", ";
@@ -107,9 +110,9 @@ MushGameHostSaveData::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::st
     {
         ioIn >> m_serverName;
     }
-    else if (inTagStr == "hostPlayers")
+    else if (inTagStr == "hostPlayersList")
     {
-        ioIn >> m_hostPlayers;
+        ioIn >> m_hostPlayersList;
     }
     else if (inTagStr == "nextPlayerNum")
     {
@@ -138,8 +141,8 @@ MushGameHostSaveData::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
     ioOut.TagSet("serverName");
     ioOut << m_serverName;
-    ioOut.TagSet("hostPlayers");
-    ioOut << m_hostPlayers;
+    ioOut.TagSet("hostPlayersList");
+    ioOut << m_hostPlayersList;
     ioOut.TagSet("nextPlayerNum");
     ioOut << m_nextPlayerNum;
     ioOut.TagSet("maxPlayersAllowed");
@@ -149,4 +152,4 @@ MushGameHostSaveData::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("clientAddrRefs");
     ioOut << m_clientAddrRefs;
 }
-//%outOfLineFunctions } yXVFeGreW0ip58F8ufokiA
+//%outOfLineFunctions } mLCRAEb0oFeu6OBqcvN2bg

@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } YCa3eNmcxUH2q0Oxh6SpTA
 /*
- * $Id: AdanaxisPieceKhazi.cpp,v 1.27 2006/10/12 22:04:47 southa Exp $
+ * $Id: AdanaxisPieceKhazi.cpp,v 1.28 2006/10/17 11:05:54 southa Exp $
  * $Log: AdanaxisPieceKhazi.cpp,v $
+ * Revision 1.28  2006/10/17 11:05:54  southa
+ * Expiry events
+ *
  * Revision 1.27  2006/10/12 22:04:47  southa
  * Collision events
  *
@@ -118,8 +121,7 @@ using namespace std;
 Mushware::tRubyValue AdanaxisPieceKhazi::m_rubyKlass = Mushware::kRubyQnil;
 
 AdanaxisPieceKhazi::AdanaxisPieceKhazi(const std::string& inID, const MushRubyValue& inParams) :
-    MushGamePiece(inID),
-    m_actionMsec(1)
+    MushGamePiece(inID)
 {
     RubyPieceConstructor(inID, inParams, AdanaxisIntern::Sgl().AdanaxisPieceKhazi());
 }
@@ -129,81 +131,17 @@ AdanaxisPieceKhazi::~AdanaxisPieceKhazi()
     RubyPieceDestructor();
 }
 
-void
-AdanaxisPieceKhazi::ActionValueHandle(MushGameLogic& ioLogic, const MushRubyValue& inActionValue)
-{
-    U32 u32Value;
-
-    if (inActionValue.Value() == Mushware::kRubyQnil)
-    {
-        m_actionMsec = 0;
-    }
-    else if (inActionValue.Is(u32Value))
-    {
-        m_actionMsec = ioLogic.GameMsec() + u32Value;
-    }
-    else if (inActionValue.IsArray())
-    {
-        // Whenever more than one action is required, use an array
-        U32 size = inActionValue.ArraySize();
-        for (U32 i=0; i<size; ++i)
-        {
-            ActionValueHandle(ioLogic, inActionValue.ArrayEntry(i));
-        }
-    }
-    else if (inActionValue.IsHash())
-    {
-        // Each hash contains a single event or action
-        Mushware::tRubyHash hash;
-        inActionValue.Hash(hash);
-        
-        MushRubyValue event(kRubyQnil);
-        
-        Mushware::tRubyHash::iterator pEnd = hash.end();
-        for (Mushware::tRubyHash::iterator p = hash.begin(); p != pEnd; ++p)
-        {
-            Mushware::tRubyID symbol = p->first.Symbol();
-            
-            if (symbol == MushRubyIntern::event())
-            {
-                event = p->second;
-            }
-            else
-            {
-                // Unknown hash element.  Assume it's intended for the event handler
-            }
-        }
-        
-        if (event.Value() != kRubyQnil)
-        {
-            // There is an event to dispatch
-            EventHandle(ioLogic, event, inActionValue);
-        }
-    }
-    else
-    {
-        throw MushcoreRequestFail("Bad return value from action function");
-    }
-}
-
 
 void
 AdanaxisPieceKhazi::EventHandle(MushGameLogic& ioLogic, MushRubyValue inEvent, MushRubyValue inParams)
 {
-    MushcoreLog::Sgl().InfoLog() << "Event " << inEvent.Call(MushRubyIntern::to_s()) << endl;
+    MushcoreLog::Sgl().InfoLog() << "Khazi event " << inEvent.Call(MushRubyIntern::to_s()) << endl;
 }
 
 void
 AdanaxisPieceKhazi::Move(MushGameLogic& ioLogic, const tVal inFrameslice)
 {
-    if (m_actionMsec != 0)
-    {
-        Mushware::tMsec gameMsec = ioLogic.GameMsec();
-        if (m_actionMsec < gameMsec)
-        {
-            ActionValueHandle(ioLogic, RubyObj().Call(MushRubyIntern::SymbolID("mActionTimer")));
-        }
-    }
+    MushGamePiece::Move(ioLogic, inFrameslice);
         
     PostWRef().InPlaceVelocityAdd();
 }
@@ -400,7 +338,6 @@ AdanaxisPieceKhazi::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
     MushGamePiece::AutoPrint(ioOut);
-    ioOut << "actionMsec=" << m_actionMsec;
     ioOut << "]";
 }
 bool
@@ -411,10 +348,6 @@ AdanaxisPieceKhazi::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::stri
         AutoInputPrologue(ioIn);
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
-    }
-    else if (inTagStr == "actionMsec")
-    {
-        ioIn >> m_actionMsec;
     }
     else if (MushGamePiece::AutoXMLDataProcess(ioIn, inTagStr))
     {
@@ -430,7 +363,5 @@ void
 AdanaxisPieceKhazi::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
     MushGamePiece::AutoXMLPrint(ioOut);
-    ioOut.TagSet("actionMsec");
-    ioOut << m_actionMsec;
 }
-//%outOfLineFunctions } XsG9P26QU9OniLdfLEyr7g
+//%outOfLineFunctions } UJRpiKhuu/YO//32wwZeSw

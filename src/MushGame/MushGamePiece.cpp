@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } rVCNunlW+wZoonHnGB5a7Q
 /*
- * $Id: MushGamePiece.cpp,v 1.20 2006/10/16 14:36:50 southa Exp $
+ * $Id: MushGamePiece.cpp,v 1.21 2006/10/17 11:05:55 southa Exp $
  * $Log: MushGamePiece.cpp,v $
+ * Revision 1.21  2006/10/17 11:05:55  southa
+ * Expiry events
+ *
  * Revision 1.20  2006/10/16 14:36:50  southa
  * Deco handling
  *
@@ -86,6 +89,7 @@
 #include "MushGamePiece.h"
 
 #include "MushGameIntern.h"
+#include "MushGameLogic.h"
 #include "MushGameMessage.h"
 
 #include "API/mushMushMeshRuby.h"
@@ -100,6 +104,7 @@ Mushware::tRubyValue MushGamePiece::m_rubyKlass = Mushware::kRubyQnil;
 MushGamePiece::MushGamePiece(const std::string& inID) :
     m_post(MushMeshPosticity::Identity()),
     m_renderScale(Mushware::t4Val::MultiplicativeIdentity()),
+    m_actionMsec(1),
     m_expireFlag(false),
     m_hitPoints(0),
     m_initialHitPoints(0),
@@ -107,6 +112,19 @@ MushGamePiece::MushGamePiece(const std::string& inID) :
 {
     m_buffersRef.NameSet(MushGLBuffers::NextBufferNumAdvance());
     MushGLBuffers::tData::Sgl().GetOrCreate(m_buffersRef.Name());    
+}
+
+void
+MushGamePiece::Move(MushGameLogic& ioLogic, const tVal inFrameslice)
+{
+    if (ActionMsec() != 0)
+    {
+        Mushware::tMsec gameMsec = ioLogic.GameMsec();
+        if (ActionMsec() < gameMsec)
+        {
+            ActionValueHandle(ioLogic, RubyObj().Call(MushGameIntern::Sgl().mActionTimer()));
+        }
+    }
 }
 
 void
@@ -126,6 +144,70 @@ MushGamePiece::HitPointRatio(void) const
     {
         return m_hitPoints / m_initialHitPoints;
     }
+}
+
+void
+MushGamePiece::ActionValueHandle(MushGameLogic& ioLogic, const MushRubyValue& inActionValue)
+{
+    U32 u32Value;
+    
+    if (inActionValue.Value() == Mushware::kRubyQnil)
+    {
+        m_actionMsec = 0;
+    }
+    else if (inActionValue.Is(u32Value))
+    {
+        m_actionMsec = ioLogic.GameMsec() + u32Value;
+    }
+    else if (inActionValue.IsArray())
+    {
+        // Whenever more than one action is required, use an array
+        U32 size = inActionValue.ArraySize();
+        for (U32 i=0; i<size; ++i)
+        {
+            ActionValueHandle(ioLogic, inActionValue.ArrayEntry(i));
+        }
+    }
+    else if (inActionValue.IsHash())
+    {
+        // Each hash contains a single event or action
+        Mushware::tRubyHash hash;
+        inActionValue.Hash(hash);
+        
+        MushRubyValue event(kRubyQnil);
+        
+        Mushware::tRubyHash::iterator pEnd = hash.end();
+        for (Mushware::tRubyHash::iterator p = hash.begin(); p != pEnd; ++p)
+        {
+            Mushware::tRubyID symbol = p->first.Symbol();
+            
+            if (symbol == MushRubyIntern::event())
+            {
+                event = p->second;
+            }
+            else
+            {
+                // Unknown hash element.  Assume it's intended for the event handler
+            }
+        }
+        
+        if (event.Value() != kRubyQnil)
+        {
+            // There is an event to dispatch
+            EventHandle(ioLogic, event, inActionValue);
+        }
+    }
+    else
+    {
+        throw MushcoreRequestFail("Bad return value from action function");
+    }
+}
+
+void
+MushGamePiece::EventHandle(MushGameLogic& ioLogic, MushRubyValue inEvent, MushRubyValue inParams)
+{
+    MushcoreLog::Sgl().InfoLog() << "Event " << inEvent.Call(MushRubyIntern::to_s()) <<
+        " unhandled by " << AutoName() << endl;
 }
 
 void
@@ -370,6 +452,7 @@ MushGamePiece::AutoPrint(std::ostream& ioOut) const
     ioOut << "post=" << m_post << ", ";
     ioOut << "mesh=" << m_mesh << ", ";
     ioOut << "renderScale=" << m_renderScale << ", ";
+    ioOut << "actionMsec=" << m_actionMsec << ", ";
     ioOut << "expireFlag=" << m_expireFlag << ", ";
     ioOut << "hitPoints=" << m_hitPoints << ", ";
     ioOut << "initialHitPoints=" << m_initialHitPoints << ", ";
@@ -407,6 +490,10 @@ MushGamePiece::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& i
     else if (inTagStr == "renderScale")
     {
         ioIn >> m_renderScale;
+    }
+    else if (inTagStr == "actionMsec")
+    {
+        ioIn >> m_actionMsec;
     }
     else if (inTagStr == "expireFlag")
     {
@@ -455,6 +542,8 @@ MushGamePiece::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_mesh;
     ioOut.TagSet("renderScale");
     ioOut << m_renderScale;
+    ioOut.TagSet("actionMsec");
+    ioOut << m_actionMsec;
     ioOut.TagSet("expireFlag");
     ioOut << m_expireFlag;
     ioOut.TagSet("hitPoints");
@@ -470,4 +559,4 @@ MushGamePiece::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("rubyObjMonkey");
     ioOut << m_rubyObjMonkey;
 }
-//%outOfLineFunctions } Gbmwin7QODfE+qup77U/Gw
+//%outOfLineFunctions } mjrtdnG8B72VF720g4qiww

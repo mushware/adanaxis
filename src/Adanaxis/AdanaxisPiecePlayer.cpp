@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } gq+r6M5XzKqE/mgjgvunrQ
 /*
- * $Id: AdanaxisPiecePlayer.cpp,v 1.5 2006/10/09 16:00:16 southa Exp $
+ * $Id: AdanaxisPiecePlayer.cpp,v 1.6 2006/10/12 22:04:47 southa Exp $
  * $Log: AdanaxisPiecePlayer.cpp,v $
+ * Revision 1.6  2006/10/12 22:04:47  southa
+ * Collision events
+ *
  * Revision 1.5  2006/10/09 16:00:16  southa
  * Intern generation
  *
@@ -124,6 +127,7 @@
 #include "AdanaxisMeshLibrary.h"
 #include "AdanaxisPieceProjectile.h"
 #include "AdanaxisRender.h"
+#include "AdanaxisRuby.h"
 #include "AdanaxisSaveData.h"
 #include "AdanaxisUtil.h"
 #include "AdanaxisVolatileData.h"
@@ -136,16 +140,16 @@ using namespace std;
 
 Mushware::tRubyValue AdanaxisPiecePlayer::m_rubyKlass = Mushware::kRubyQnil;
 
-AdanaxisPiecePlayer::AdanaxisPiecePlayer(const std::string& inPlayerID) :
-    MushGamePiecePlayer(inPlayerID),
+AdanaxisPiecePlayer::AdanaxisPiecePlayer(const std::string& inID, const MushRubyValue& inParams) :
+    MushGamePiecePlayer(inID),
 	m_projectileMeshRef("projectile")
 {
-    PostWRef().PosSet(t4Val(0,0,0,0));
-        
-    RubyObjSet(MushRubyExec::Sgl().Call(AdanaxisIntern::Sgl().AdanaxisPiecePlayer(),
-                                        MushRubyIntern::cRegisteredCreate()));
-    MushRubyUtil::DataObjectWrapNew(AdanaxisIntern::Sgl().AdanaxisPiecePlayer(), RubyObj(), this);
-    MushRubyUtil::InstanceVarSet(RubyObj().Value(), MushRubyIntern::ATm_id(), MushRubyValue(inPlayerID).Value());        
+    RubyPieceConstructor(inID, inParams, AdanaxisIntern::Sgl().AdanaxisPiecePlayer());
+}
+
+AdanaxisPiecePlayer::~AdanaxisPiecePlayer()
+{
+    RubyPieceDestructor();
 }
 
 void
@@ -158,6 +162,8 @@ AdanaxisPiecePlayer::PreControl(MushGameLogic& ioLogic)
 void
 AdanaxisPiecePlayer::Move(MushGameLogic& ioLogic, const tVal inFrameslice)
 {
+    MushGamePiece::Move(ioLogic, inFrameslice);
+
     PostWRef().InPlaceVelocityAdd();
 }
 
@@ -390,6 +396,26 @@ AdanaxisPiecePlayer::FireConsume(MushGameLogic& ioLogic, const MushGameMessageFi
 }
 
 Mushware::tRubyValue
+AdanaxisPiecePlayer::RubyCreate(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0)
+{
+    AdanaxisSaveData::tPlayersList& dataRef = AdanaxisRuby::SaveData().PlayersListWRef();
+	
+	/* This object contains a reference (MushcoreMaptorRef) to an object
+    * in SaveData().PlayersList(), which is a MushcoreMaptor<AdanaxisPieceProjectile>.
+    * The next line points the MushcoreMaptorRef at that MushcoreMaptor
+    */
+    AdanaxisSaveData::tPlayersList::key_type key = dataRef.NextKey();
+    
+    ostringstream idStream;
+    idStream << key;
+    
+	AdanaxisPiecePlayer& objRef = *new AdanaxisPiecePlayer(idStream.str(), MushRubyValue(inArg0));
+    dataRef.Give(&objRef, key);
+    
+    return objRef.RubyObj().Value();
+}
+
+Mushware::tRubyValue
 AdanaxisPiecePlayer::Klass(void)
 {
     if (m_rubyKlass == kRubyQnil)
@@ -406,7 +432,7 @@ AdanaxisPiecePlayer::RubyInstall(void)
     {
 	    m_rubyKlass = MushRubyUtil::SubclassDefine("AdanaxisPiecePlayer", MushGamePiece::Klass());
     }
-	MushRubyUtil::MethodDefineNoParams(Klass(), "post", RubyPost);
+	MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cCreate", RubyCreate);
 }
 
 namespace
@@ -417,6 +443,7 @@ namespace
 	}
 	MushcoreInstaller install(Install);
 }
+
 
 //%outOfLineFunctions {
 

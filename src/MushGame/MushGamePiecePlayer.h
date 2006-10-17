@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } yXJ5P6JaYRYq01Y5a+jhRQ
 /*
- * $Id: MushGamePiecePlayer.h,v 1.11 2006/06/01 15:39:26 southa Exp $
+ * $Id: MushGamePiecePlayer.h,v 1.1 2006/10/02 17:25:06 southa Exp $
  * $Log: MushGamePiecePlayer.h,v $
+ * Revision 1.1  2006/10/02 17:25:06  southa
+ * Object lookup and target selection
+ *
  * Revision 1.11  2006/06/01 15:39:26  southa
  * DrawArray verification and fixes
  *
@@ -73,7 +76,7 @@
 
 //:xml1base MushGamePiece
 //:generate virtual standard ostream xml1
-class MushGamePiecePlayer : public MushGamePiece
+class MushGamePiecePlayer : public MushGamePiece, public MushCollisionPiece
 {
 public:
     explicit MushGamePiecePlayer(std::string inID = "");
@@ -90,6 +93,9 @@ public:
     virtual Mushware::tMsec FirePeriodMsec(void);
     virtual void ServerSideFire(MushGameLogic& ioLogic);
     
+    virtual const MushMesh4Mesh& CollisionMesh(void) const { return Mesh(); }
+    virtual const MushMeshPosticity& CollisionPost(void) const { return Post(); }
+
 private:
     std::string m_id; //:readwrite
     std::string m_playerName; //:readwrite

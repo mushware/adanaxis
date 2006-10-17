@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } Mac7dWHONvkZIg39sQnwww
 /*
- * $Id: AdanaxisLogic.cpp,v 1.25 2006/10/14 16:59:44 southa Exp $
+ * $Id: AdanaxisLogic.cpp,v 1.26 2006/10/16 22:00:20 southa Exp $
  * $Log: AdanaxisLogic.cpp,v $
+ * Revision 1.26  2006/10/16 22:00:20  southa
+ * Tweaks
+ *
  * Revision 1.25  2006/10/14 16:59:44  southa
  * Ruby Deco objects
  *
@@ -331,6 +334,78 @@ AdanaxisLogic::KhaziKhaziFullCollide(void)
 }
 
 void
+AdanaxisLogic::ProjectilesPlayersFullCollide(void)
+{
+    typedef AdanaxisSaveData::tProjectileList tList1;
+    typedef AdanaxisSaveData::tPlayersList tList2;
+    
+    const tList1& list1Ref = SaveData().ProjectileList();
+    const tList2& list2Ref = SaveData().PlayersList();
+    
+    tList1::const_iterator list1EndIter = list1Ref.end();
+    tList2::const_iterator list2EndIter = list2Ref.end();
+    for (tList1::const_iterator p = list1Ref.begin(); p != list1EndIter; ++p)
+    {
+        std::string projOwner = p->Owner();
+        if (!p->ExpireFlag())
+        {
+            for (tList2::const_iterator q = list2Ref.begin(); q != list2EndIter; ++q)
+            {
+                // if this object hasn't expired and doesn't own the projectile...
+                if (!q->ExpireFlag() && projOwner != q->Id())
+                {
+                    MushCollisionInfo collInfo;
+                    MushCollisionResolver::Sgl().Resolve(collInfo, *p, *q);
+                    if (collInfo.SeparatingDistance() <= 0)
+                    {
+                        collInfo.ObjectName1Set(p->Id());
+                        collInfo.ObjectName2Set(q->Id());
+                        collInfo.ObjectNamesValidSet(true);
+                        
+                        CollisionHandle(&*p, &*q, collInfo);
+                    }
+                }
+            }
+        }
+    }
+}
+
+void
+AdanaxisLogic::KhaziPlayersFullCollide(void)
+{
+    typedef AdanaxisSaveData::tKhaziList tList1;
+    typedef AdanaxisSaveData::tPlayersList tList2;
+    
+    const tList1& list1Ref = SaveData().KhaziList();
+    const tList2& list2Ref = SaveData().PlayersList();
+    
+    tList1::const_iterator list1EndIter = list1Ref.end();
+    tList2::const_iterator list2EndIter = list2Ref.end();
+    for (tList1::const_iterator p = list1Ref.begin(); p != list1EndIter; ++p)
+    {
+        if (!p->ExpireFlag())
+        {
+            for (tList2::const_iterator q = list2Ref.begin(); q != list2EndIter; ++q)
+            {
+                if (!q->ExpireFlag())
+                {
+                    MushCollisionInfo collInfo;
+                    MushCollisionResolver::Sgl().Resolve(collInfo, *p, *q);
+                    if (collInfo.SeparatingDistance() <= 0)
+                    {
+                        collInfo.ObjectName1Set(p->Id());
+                        collInfo.ObjectName2Set(q->Id());
+                        collInfo.ObjectNamesValidSet(true);
+                        
+                        CollisionHandle(&*p, &*q, collInfo);
+                    }
+                }
+            }
+        }
+    }
+}
+
+void
 AdanaxisLogic::MoveSequence(void)
 {
     MushGameLogic::MoveSequence();
@@ -345,6 +420,8 @@ AdanaxisLogic::CollideSequence(void)
     MushCollisionResolver::Sgl().FrameMsecSet(VolatileData().FrameMsec());
     KhaziKhaziFullCollide();
     ProjectilesKhaziFullCollide();
+    ProjectilesPlayersFullCollide();
+    KhaziPlayersFullCollide();
 }
 
 void

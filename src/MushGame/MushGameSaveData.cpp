@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } VmmV8fh8x7DVoVc/E9Sx+A
 /*
- * $Id: MushGameSaveData.cpp,v 1.13 2006/06/01 15:39:27 southa Exp $
+ * $Id: MushGameSaveData.cpp,v 1.14 2006/07/31 11:01:38 southa Exp $
  * $Log: MushGameSaveData.cpp,v $
+ * Revision 1.14  2006/07/31 11:01:38  southa
+ * Music and dialogues
+ *
  * Revision 1.13  2006/06/01 15:39:27  southa
  * DrawArray verification and fixes
  *
@@ -104,7 +107,7 @@ MushGameSaveData::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
     ioOut << "clientName=" << m_clientName << ", ";
-    ioOut << "players=" << m_players << ", ";
+    ioOut << "playersList=" << m_playersList << ", ";
     ioOut << "jobList=" << m_jobList << ", ";
     ioOut << "cameras=" << m_cameras << ", ";
     ioOut << "toServerMailbox=" << m_toServerMailbox << ", ";
@@ -128,9 +131,9 @@ MushGameSaveData::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string
     {
         ioIn >> m_clientName;
     }
-    else if (inTagStr == "players")
+    else if (inTagStr == "playersList")
     {
-        ioIn >> m_players;
+        ioIn >> m_playersList;
     }
     else if (inTagStr == "jobList")
     {
@@ -175,8 +178,8 @@ MushGameSaveData::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
     ioOut.TagSet("clientName");
     ioOut << m_clientName;
-    ioOut.TagSet("players");
-    ioOut << m_players;
+    ioOut.TagSet("playersList");
+    ioOut << m_playersList;
     ioOut.TagSet("jobList");
     ioOut << m_jobList;
     ioOut.TagSet("cameras");
@@ -194,4 +197,4 @@ MushGameSaveData::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("dialogues");
     ioOut << m_dialogues;
 }
-//%outOfLineFunctions } B+UhZnhonuCrGvwUi3Vo0g
+//%outOfLineFunctions } gvgx3m7fGl1so9nTpvv9LA

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } yY7ZZkvIHHOoUzJzTAQPOQ
 /*
- * $Id: MushGameRuby.cpp,v 1.15 2006/10/02 20:28:11 southa Exp $
+ * $Id: MushGameRuby.cpp,v 1.16 2006/10/16 22:00:21 southa Exp $
  * $Log: MushGameRuby.cpp,v $
+ * Revision 1.16  2006/10/16 22:00:21  southa
+ * Tweaks
+ *
  * Revision 1.15  2006/10/02 20:28:11  southa
  * Object lookup and target selection
  *
@@ -683,7 +686,7 @@ MushGameRuby::PieceLookup(Mushware::tRubyValue inSelf, Mushware::tRubyValue inAr
     }
     catch (std::exception& e)
     {
-        // MushcoreLog::Sgl().XMLInfoLog() << MushGameUtil::LogicRef().SaveData().Players();
+        // MushcoreLog::Sgl().XMLInfoLog() << MushGameUtil::LogicRef().SaveData().PlayersList();
         MushRubyUtil::Raise(e.what());       
     }
     

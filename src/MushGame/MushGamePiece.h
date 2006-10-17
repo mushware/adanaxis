@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } QiW5KaWfX1mBGolg1jxMIg
 /*
- * $Id: MushGamePiece.h,v 1.22 2006/10/16 14:36:51 southa Exp $
+ * $Id: MushGamePiece.h,v 1.23 2006/10/17 11:05:55 southa Exp $
  * $Log: MushGamePiece.h,v $
+ * Revision 1.23  2006/10/17 11:05:55  southa
+ * Expiry events
+ *
  * Revision 1.22  2006/10/16 14:36:51  southa
  * Deco handling
  *
@@ -98,6 +101,7 @@
 class MushGameLogic;
 class MushGameMessage;
 
+#include "API/mushMushCollision.h"
 #include "API/mushMushMesh.h"
 #include "API/mushMushGL.h"
 
@@ -108,12 +112,16 @@ public:
     MushGamePiece(const std::string& inId = "");
     virtual ~MushGamePiece() {}
     virtual void PreControl(MushGameLogic& ioLogic) {}
-    virtual void Move(MushGameLogic& ioLogic, const Mushware::tVal inFrameslice) {}
+    virtual void Move(MushGameLogic& ioLogic, const Mushware::tVal inFrameslice);
     
     virtual void MessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage);
     virtual Mushware::tVal HitPointRatio(void) const;
+
+    virtual void ActionValueHandle(MushGameLogic& ioLogic, const MushRubyValue& inActionValue);
+    virtual void EventHandle(MushGameLogic& ioLogic, MushRubyValue inEvent, MushRubyValue inParams);
     
     virtual void SharedBuffersNameSet(const std::string& inName) { m_sharedBuffersRef.NameSet(inName); }
+    
     virtual void Load(Mushware::tRubyValue inSelf);
     virtual void Save(Mushware::tRubyValue inSelf);
     virtual MushRubyValue RubyEventHandle(const MushRubyValue& inEvent);
@@ -137,7 +145,9 @@ private:
     MushMeshPosticity m_post; //:readwrite :wref
     MushMesh4Mesh m_mesh; //:readwrite :wref
     Mushware::t4Val m_renderScale; //:readwrite :wref
-    bool m_expireFlag; //:readwrite    
+    Mushware::tMsec m_actionMsec; //:readwrite
+    
+    bool m_expireFlag; //:readwrite   
     Mushware::tVal m_hitPoints; //:readwrite
     Mushware::tVal m_initialHitPoints; //:readwrite
     
@@ -167,6 +177,8 @@ public:
     void RenderScaleSet(const Mushware::t4Val& inValue) { m_renderScale=inValue; }
     // Writable reference for m_renderScale
     Mushware::t4Val& RenderScaleWRef(void) { return m_renderScale; }
+    const Mushware::tMsec& ActionMsec(void) const { return m_actionMsec; }
+    void ActionMsecSet(const Mushware::tMsec& inValue) { m_actionMsec=inValue; }
     const bool& ExpireFlag(void) const { return m_expireFlag; }
     void ExpireFlagSet(const bool& inValue) { m_expireFlag=inValue; }
     const Mushware::tVal& HitPoints(void) const { return m_hitPoints; }
@@ -188,7 +200,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } k+Nm1xyshjKLlCqaLFy8sw
+//%classPrototypes } U25icEESEpgSemwqCSlKuw
 };
 //%inlineHeader {
 inline std::ostream&
