@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } x7wDRgXhtyz4ur55Gakesw
 /*
- * $Id: MushGLRubyFont.cpp,v 1.1 2006/07/02 21:08:54 southa Exp $
+ * $Id: MushGLRubyFont.cpp,v 1.2 2006/07/08 16:05:58 southa Exp $
  * $Log: MushGLRubyFont.cpp,v $
+ * Revision 1.2  2006/07/08 16:05:58  southa
+ * Ruby menus and key handling
+ *
  * Revision 1.1  2006/07/02 21:08:54  southa
  * Ruby menu work
  *
@@ -153,6 +156,28 @@ MushGLRubyFont::RenderAtSize(Mushware::tRubyValue inSelf, Mushware::tRubyValue i
                              );
 	return inSelf;
 }
+
+Mushware::tRubyValue
+MushGLRubyFont::RenderSymbolAtSize(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0,
+    Mushware::tRubyValue inArg1, Mushware::tRubyValue inArg2, Mushware::tRubyValue inArg3)
+{
+	Ref(inSelf).RenderSymbolAtSize(
+                             MushRubyValue(inArg0).U32(),
+                             t4Val(
+                                   MushRubyValue(inArg1).Val(),
+                                   MushRubyValue(inArg2).Val(),
+                                   0.0,
+                                   1.0
+                                   ),
+                             t2Val(
+                                   MushRubyValue(inArg3).Val(),
+                                   MushRubyValue(inArg3).Val()
+                                   )
+                             );
+	return inSelf;
+}
+
+
 
 Mushware::tRubyValue
 MushGLRubyFont::ColourEquals(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0)

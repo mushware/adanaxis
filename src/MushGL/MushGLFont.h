@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } GszAZNIc4XTjBhyVnPxI7g
 /*
- * $Id: MushGLFont.h,v 1.6 2006/07/25 20:31:03 southa Exp $
+ * $Id: MushGLFont.h,v 1.7 2006/10/09 16:00:16 southa Exp $
  * $Log: MushGLFont.h,v $
+ * Revision 1.7  2006/10/09 16:00:16  southa
+ * Intern generation
+ *
  * Revision 1.6  2006/07/25 20:31:03  southa
  * Scanner work
  *
@@ -61,11 +64,11 @@ public:
     MushGLFont();
     
     void RenderSymbolAtSize(const Mushware::U32 inValue, const Mushware::t4Val& inCoords,
-                            const Mushware::t2Val& inSize);
+                            const Mushware::t2Val& inSize) const;
     void RenderSymbolAtSizeProportion(const Mushware::U32 inValue, const Mushware::t4Val& inCoords,
-                            const Mushware::t2Val& inSize, const Mushware::t2Val& inProp);
+                            const Mushware::t2Val& inSize, const Mushware::t2Val& inProp) const;
     void RenderSymbolAtSizeAngle(const Mushware::U32 inValue, const Mushware::t4Val& inCoords,
-                                 const Mushware::t2Val& inSize, Mushware::tVal inAngle);
+                                 const Mushware::t2Val& inSize, Mushware::tVal inAngle) const;
     
     void TextureNameSet(const std::string& inName) { m_textureRef.NameSet(inName); }
     void Render(const std::string& inStr) const;

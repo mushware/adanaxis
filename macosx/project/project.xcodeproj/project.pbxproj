@@ -5981,6 +5981,7 @@
 				7A6AFEFA0AE500A000AAFDA7 /* AdanaxisDashboard.rb */,
 				7A59869B0AE2836C00A33406 /* AdanaxisEffects.rb */,
 				7A59656E0A9DB0F4002A966B /* AdanaxisEvents.rb */,
+				7A5B15170A57B5FA0047BD0B /* AdanaxisFontLibrary.rb */,
 				7A35AEFB0A481B5F00DB00A1 /* AdanaxisGame.rb */,
 				7A5BA8260A4955C400DC847A /* AdanaxisKhazi.rb */,
 				7AAFF09E0A46E7A30005F57F /* AdanaxisMaterialLibrary.rb */,
@@ -5997,7 +5998,6 @@
 				7AFA31910AD18BE500B73920 /* AdanaxisTargetSelect.rb */,
 				7A58F2070A3D725400B7AE0E /* AdanaxisMeshLibrary.rb */,
 				7AAFF0A60A46E84F0005F57F /* AdanaxisTextureLibrary.rb */,
-				7A5B15170A57B5FA0047BD0B /* AdanaxisFontLibrary.rb */,
 				7AA5753E0AD9100800CEA8BA /* AdanaxisUtil.rb */,
 				7ACEFB3109F6EF6700E38865 /* init.rb */,
 			);

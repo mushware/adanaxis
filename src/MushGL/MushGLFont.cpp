@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } Zq+IM0uOYEygMymunhBN6w
 /*
- * $Id: MushGLFont.cpp,v 1.7 2006/08/01 17:21:32 southa Exp $
+ * $Id: MushGLFont.cpp,v 1.8 2006/10/09 16:00:16 southa Exp $
  * $Log: MushGLFont.cpp,v $
+ * Revision 1.8  2006/10/09 16:00:16  southa
+ * Intern generation
+ *
  * Revision 1.7  2006/08/01 17:21:32  southa
  * River demo
  *
@@ -63,7 +66,7 @@ MushGLFont::MushGLFont() :
 
 void
 MushGLFont::RenderSymbolAtSize(const Mushware::U32 inValue, const Mushware::t4Val& inCoords,
-                               const Mushware::t2Val& inSize)
+                               const Mushware::t2Val& inSize) const
 {
     MushGLState::Sgl().TextureEnable2D(0); // Enable texture 0
     m_textureRef.WRef().Bind();
@@ -103,7 +106,7 @@ MushGLFont::RenderSymbolAtSize(const Mushware::U32 inValue, const Mushware::t4Va
 
 void
 MushGLFont::RenderSymbolAtSizeProportion(const Mushware::U32 inValue, const Mushware::t4Val& inCoords,
-                               const Mushware::t2Val& inSize, const Mushware::t2Val& inProp)
+                               const Mushware::t2Val& inSize, const Mushware::t2Val& inProp) const
 {
     MushGLState::Sgl().TextureEnable2D(0); // Enable texture 0
     m_textureRef.WRef().Bind();
@@ -148,7 +151,7 @@ MushGLFont::RenderSymbolAtSizeProportion(const Mushware::U32 inValue, const Mush
 
 void
 MushGLFont::RenderSymbolAtSizeAngle(const Mushware::U32 inValue, const Mushware::t4Val& inCoords,
-                                    const Mushware::t2Val& inSize, Mushware::tVal inAngle)
+                                    const Mushware::t2Val& inSize, Mushware::tVal inAngle) const
 {
     MushGLState::Sgl().TextureEnable2D(0); // Enable texture 0
     m_textureRef.WRef().Bind();

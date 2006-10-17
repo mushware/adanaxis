@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 73do2LMm7sjCSuxgk8yjpQ
 /*
- * $Id: MushGLRubyFont.h,v 1.1 2006/07/02 21:08:55 southa Exp $
+ * $Id: MushGLRubyFont.h,v 1.2 2006/07/08 16:05:58 southa Exp $
  * $Log: MushGLRubyFont.h,v $
+ * Revision 1.2  2006/07/08 16:05:58  southa
+ * Ruby menus and key handling
+ *
  * Revision 1.1  2006/07/02 21:08:55  southa
  * Ruby menu work
  *
@@ -43,8 +46,11 @@ public:
     static Mushware::tRubyValue RenderAt(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0,
                                          Mushware::tRubyValue inArg1, Mushware::tRubyValue inArg2);
     static Mushware::tRubyValue RenderAtSize(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0,
-                                         Mushware::tRubyValue inArg1, Mushware::tRubyValue inArg2, Mushware::tRubyValue inArg3);
-    static Mushware::tRubyValue ColourEquals(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);    
+        Mushware::tRubyValue inArg1, Mushware::tRubyValue inArg2, Mushware::tRubyValue inArg3);
+    static Mushware::tRubyValue ColourEquals(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
+    static Mushware::tRubyValue RenderSymbolAtSize(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0,
+        Mushware::tRubyValue inArg1, Mushware::tRubyValue inArg2, Mushware::tRubyValue inArg3);
+    
 private:
 };
 
@@ -54,6 +60,7 @@ MUSHRUBYDATAOBJ_INSTALL(MushGLFont)(void)
     MushRubyUtil::MethodDefineOneParam(Klass(), "mRender", MushGLRubyFont::Render);
     MushRubyUtil::MethodDefineThreeParams(Klass(), "mRenderAt", MushGLRubyFont::RenderAt);
     MushRubyUtil::MethodDefineFourParams(Klass(), "mRenderAtSize", MushGLRubyFont::RenderAtSize);
+    MushRubyUtil::MethodDefineFourParams(Klass(), "mRenderSymbolAtSize", MushGLRubyFont::RenderSymbolAtSize);
     MushRubyUtil::MethodDefineOneParam(Klass(), "colour=", MushGLRubyFont::ColourEquals);
 }
 //%includeGuardEnd {
