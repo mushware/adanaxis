@@ -16,8 +16,11 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-# $Id$
-# $Log$
+# $Id: ProcessAnimation.rb,v 1.1 2006/10/05 15:39:17 southa Exp $
+# $Log: ProcessAnimation.rb,v $
+# Revision 1.1  2006/10/05 15:39:17  southa
+# Explosion handling
+#
 
 $LOAD_PATH.push File.dirname($0)
 require 'ImageProcess.rb'
@@ -45,7 +48,7 @@ class ProcessAnimation
     @m_im = ImageProcess.new
     @m_im.mLoad(inSrcFilename)
     @m_im.mScale(256, 256)
-    @m_im.mThreshold(0.1)
+    @m_im.mAlphaFromLuminance
     @m_im.mSave(inDestFilename)
   end
   

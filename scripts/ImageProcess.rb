@@ -16,8 +16,11 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-# $Id$
-# $Log$
+# $Id: ImageProcess.rb,v 1.1 2006/10/05 15:39:17 southa Exp $
+# $Log: ImageProcess.rb,v $
+# Revision 1.1  2006/10/05 15:39:17  southa
+# Explosion handling
+#
 
 require 'RMagick'
 
@@ -55,8 +58,9 @@ class ImageProcess
   
   def mSave(inFilename)
     @m_img[:Copyright] = @m_copyright
+    @m_img.compression = Magick::NoCompression
     @m_img.write(inFilename) {
-    
+      compression = Magick::NoCompression
     }
   end
 
@@ -66,6 +70,11 @@ class ImageProcess
   
   def mThreshold(inThreshold)
     @m_img = @m_img.black_threshold(Magick::MaxRGB * inThreshold)
+  end
+  
+  def mAlphaFromLuminance
+    draw = Magick::Draw.new
+    @m_img = @m_img.composite(@m_img, 0, 0, Magick::CopyOpacityCompositeOp)
   end
   
 end
