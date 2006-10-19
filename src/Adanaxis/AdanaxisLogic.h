@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } 3LuiErcM0vO3wOyNDCFVeQ
 /*
- * $Id: AdanaxisLogic.h,v 1.18 2006/10/16 22:00:21 southa Exp $
+ * $Id: AdanaxisLogic.h,v 1.19 2006/10/17 15:28:01 southa Exp $
  * $Log: AdanaxisLogic.h,v $
+ * Revision 1.19  2006/10/17 15:28:01  southa
+ * Player collisions
+ *
  * Revision 1.18  2006/10/16 22:00:21  southa
  * Tweaks
  *
@@ -103,6 +106,7 @@ public:
                                    const std::string& inObjType, const std::string& inExcludeID) const;
     virtual void ProjectilesMove(void);
     virtual void DecoMove(void);
+    virtual void ItemsMove(void);
     virtual void KhaziMove(void);
     virtual void MoveSequence(void);
     virtual void CollideSequence(void);

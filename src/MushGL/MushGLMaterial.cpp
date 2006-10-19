@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } yyGH2nvFnzrMau3Fpl5qfQ
 /*
- * $Id: MushGLMaterial.cpp,v 1.5 2006/06/20 19:06:52 southa Exp $
+ * $Id: MushGLMaterial.cpp,v 1.6 2006/10/06 14:48:18 southa Exp $
  * $Log: MushGLMaterial.cpp,v $
+ * Revision 1.6  2006/10/06 14:48:18  southa
+ * Material animation
+ *
  * Revision 1.5  2006/06/20 19:06:52  southa
  * Object creation
  *
@@ -127,7 +130,8 @@ MushGLMaterial::RubyDefine(Mushware::tRubyArgC inArgC, Mushware::tRubyValue *inp
 
 		std::string materialName = "";
         std::vector<std::string> textureNames;
-		
+		U32 mappingType = kMappingTypeNone;
+        
 		tRubyHash::const_iterator endIter = paramHash.end();
 		for (tRubyHash::const_iterator p = paramHash.begin(); p != endIter; ++p)
 		{
@@ -149,6 +153,26 @@ MushGLMaterial::RubyDefine(Mushware::tRubyArgC inArgC, Mushware::tRubyValue *inp
 				    textureNames.push_back(p->second.ArrayEntry(i).String());
                 }
 			}
+			else if (symbol == MushRubyIntern::SymbolID("mapping_type"))
+			{
+                tRubyID typeSymbol = p->second.Symbol();
+                if (typeSymbol == MushRubyIntern::SymbolID("none"))
+                {
+                    mappingType = kMappingTypeNone;
+                }
+                else if (typeSymbol == MushRubyIntern::SymbolID("tiled"))
+                {
+                    mappingType = kMappingTypeTiled;
+                }
+                else if (typeSymbol == MushRubyIntern::SymbolID("singular"))
+                {
+                    mappingType = kMappingTypeSingular;
+                }
+                else
+                {
+                    MushRubyUtil::Raise("Bad mapping type (should be :none, :tiled or :singular)");	
+                }
+            }
 			else
 			{
 				MushRubyUtil::Raise("Unknown name in parameter hash '"+p->first.String()+"'");	
@@ -163,7 +187,8 @@ MushGLMaterial::RubyDefine(Mushware::tRubyArgC inArgC, Mushware::tRubyValue *inp
 		
 		MushGLMaterial *pMaterial = dynamic_cast<MushGLMaterial *>(MushcoreData<MushMesh4Material>::Sgl().Give(materialName, new MushGLMaterial));
 		pMaterial->NameSet(materialName);
-        
+        pMaterial->MappingTypeSet(mappingType);
+            
         for (U32 i=0; i<textureNames.size(); ++i)
         {
 		    pMaterial->TexNameSet(textureNames[i], i, 0);

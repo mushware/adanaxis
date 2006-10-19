@@ -1,7 +1,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushSkin/MushSkinTiled.cpp
+ * File: src/MushSkin/MushSkinSingular.cpp
  *
  * Copyright: Andy Southgate 2005-2006
  *
@@ -15,72 +15,24 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } vXTD+dcfp4bvknskNBj72g
+//%Header } uUQFiQVbPvLP2IlYDoJdww
 /*
- * $Id: MushSkinTiled.cpp,v 1.11 2006/08/01 17:21:41 southa Exp $
- * $Log: MushSkinTiled.cpp,v $
- * Revision 1.11  2006/08/01 17:21:41  southa
- * River demo
- *
- * Revision 1.10  2006/07/24 18:46:51  southa
- * Depth sorting
- *
- * Revision 1.9  2006/07/18 16:58:39  southa
- * Texture fixes
- *
- * Revision 1.8  2006/07/16 09:19:48  southa
- * Delete mesh before creating
- *
- * Revision 1.7  2006/06/22 19:07:36  southa
- * Build fixes
- *
- * Revision 1.6  2006/06/16 01:02:34  southa
- * Ruby mesh generation
- *
- * Revision 1.5  2006/06/12 11:59:40  southa
- * Ruby wrapper for MushMeshVector
- *
- * Revision 1.4  2006/06/09 21:07:14  southa
- * Tiled skin generation
- *
- * Revision 1.3  2006/06/08 20:17:31  southa
- * Texture tile generation method 2
- *
- * Revision 1.2  2006/06/07 14:25:56  southa
- * Grid texture fixes
- *
- * Revision 1.1  2006/06/07 12:15:22  southa
- * Grid and test textures
- *
- * Revision 1.5  2006/05/03 00:58:43  southa
- * Texturing updates
- *
- * Revision 1.4  2006/05/02 17:32:13  southa
- * Texturing
- *
- * Revision 1.3  2006/05/01 17:39:01  southa
- * Texture generation
- *
- * Revision 1.2  2005/09/06 12:15:35  southa
- * Texture and rendering work
- *
- * Revision 1.1  2005/08/29 18:40:57  southa
- * Solid rendering work
- *
+ * $Id$
+ * $Log$
  */
 
-#include "MushSkinTiled.h"
+#include "MushSkinSingular.h"
 
 using namespace Mushware;
 using namespace std;
 
-MushSkinTiled::MushSkinTiled() :
-    m_pullInRatio(0.95)
+MushSkinSingular::MushSkinSingular() :
+    m_pullInRatio(0.9)
 {
 }
 
 void
-MushSkinTiled::DivideSize(Mushware::t2U32& outSizes, Mushware::U32 inNumFacets)
+MushSkinSingular::DivideSize(Mushware::t2U32& outSizes, Mushware::U32 inNumFacets)
 {
     if (inNumFacets < 1)
     {
@@ -92,18 +44,18 @@ MushSkinTiled::DivideSize(Mushware::t2U32& outSizes, Mushware::U32 inNumFacets)
 }
 
 void
-MushSkinTiled::TexCoordsGenerate(MushMesh4Mesh& ioMesh)
+MushSkinSingular::TexCoordsGenerate(MushMesh4Mesh& ioMesh)
 {
     U32 numFacets = ioMesh.NumFacets();
     // const MushMesh4Mesh::tVertices& verticesRef = ioMesh.Vertices();
     MushMesh4Mesh::tTexCoords& texCoordsWRef = ioMesh.TexCoordsWRef();
     MushMesh4Mesh::tTextureTiles& texTilesWRef = ioMesh.TextureTilesWRef();
     
-    t2U32 divideSize;
-    DivideSize(divideSize, numFacets);
-
+    t2U32 divideSize(1, 1);
+    // DivideSize(divideSize, 1);
+    
     t2Val uvScale(1.0/divideSize.X(), 1.0/divideSize.Y());
-
+    
     // Tile count.  Progresses through the texture as we use them up
     U32 texTileNum = 0;
     
@@ -121,7 +73,7 @@ MushSkinTiled::TexCoordsGenerate(MushMesh4Mesh& ioMesh)
     {
         texCoordsWRef.resize(texCoordSizeGuess);
     }
-
+    
     // Resize the texture tile list
     texTilesWRef.resize(numFacets);
     
@@ -129,7 +81,7 @@ MushSkinTiled::TexCoordsGenerate(MushMesh4Mesh& ioMesh)
     for (U32 faceNum = 0; faceNum < ioMesh.FaceCounter(); ++faceNum)
     {
         MushMesh4Face& faceWRef = ioMesh.FaceWRef(faceNum);
-         //const MushMesh4Face::tVertexGroupSize& vgsRef = faceWRef.VertexGroupSize();
+        //const MushMesh4Face::tVertexGroupSize& vgsRef = faceWRef.VertexGroupSize();
         MushMesh4Face::tTexCoordList& texCoordListWRef = faceWRef.TexCoordListWRef();
         
         // Base for adding texture coordinates
@@ -144,7 +96,7 @@ MushSkinTiled::TexCoordsGenerate(MushMesh4Mesh& ioMesh)
         {
             texCoordListWRef.resize(texCoordBase + faceWRef.VertexList().size());
         }
-
+        
         // Iterate through each facet, using a vertex base and the vertex group size list as usual
         for (U32 facetNum = 0; facetNum < faceWRef.NumFacets(); ++facetNum)
         {
@@ -152,9 +104,10 @@ MushSkinTiled::TexCoordsGenerate(MushMesh4Mesh& ioMesh)
 			MushMeshTools::tFacetVertices facetVertices;
 			
 			MushMeshTools::VerticesForFacet(facetVertices, ioMesh, faceNum, facetNum);
-
+            
 			// Get the uv coordinates of the lower left corner of the tile we're about to use
             t2Val uvBase(texTileNum % divideSize.X(), texTileNum / divideSize.X());
+            uvBase = t2Val(0,0);
             uvBase.InPlaceElementwiseMultiply(uvScale);            
 			
 			// Generate the tile definition for this tile
@@ -210,7 +163,7 @@ MushSkinTiled::TexCoordsGenerate(MushMesh4Mesh& ioMesh)
                 // Advance to the next free texture coordinate slot read for the next one
                 ++texCoordNum;
             }
-
+            
             
 #ifdef MUSHCORE_DEBUG
             // Only report the first few errors
@@ -232,65 +185,65 @@ MushSkinTiled::TexCoordsGenerate(MushMesh4Mesh& ioMesh)
                     {
                         MushcoreLog::Sgl().InfoLog() << "Texture coordinate check failed:" << endl;
                         MushcoreLog::Sgl().InfoLog() << "i=" << i << ", uvPos=" << uvPos << ", resultVec=" << resultVec <<
-                            ", expectedVec=" << expectedVec << endl;
+                        ", expectedVec=" << expectedVec << endl;
                         
                         textureError = true;
                     }
                 }
             }
 #endif
-
+            
             ++texTileNum;
             texCoordBase += numVertices;
         }
     }
     ioMesh.TexCoordCounterSet(texCoordNum);
-
+    
     if (textureErrorCount)
     {
         MushcoreLog::Sgl().WarningLog() << "Number of texture tile errors: " << textureErrorCount <<
-            " in " << texTilesWRef.size() << " tiles" << endl;
+        " in " << texTilesWRef.size() << " tiles" << endl;
     }
 }
 
 //%outOfLineFunctions {
 
-const char *MushSkinTiled::AutoName(void) const
+const char *MushSkinSingular::AutoName(void) const
 {
-    return "MushSkinTiled";
+    return "MushSkinSingular";
 }
 
-MushcoreVirtualObject *MushSkinTiled::AutoClone(void) const
+MushcoreVirtualObject *MushSkinSingular::AutoClone(void) const
 {
-    return new MushSkinTiled(*this);
+    return new MushSkinSingular(*this);
 }
 
-MushcoreVirtualObject *MushSkinTiled::AutoCreate(void) const
+MushcoreVirtualObject *MushSkinSingular::AutoCreate(void) const
 {
-    return new MushSkinTiled;
+    return new MushSkinSingular;
 }
 
-MushcoreVirtualObject *MushSkinTiled::AutoVirtualFactory(void)
+MushcoreVirtualObject *MushSkinSingular::AutoVirtualFactory(void)
 {
-    return new MushSkinTiled;
+    return new MushSkinSingular;
 }
 namespace
 {
 void AutoInstall(void)
 {
-    MushcoreFactory::Sgl().FactoryAdd("MushSkinTiled", MushSkinTiled::AutoVirtualFactory);
+    MushcoreFactory::Sgl().FactoryAdd("MushSkinSingular", MushSkinSingular::AutoVirtualFactory);
 }
 MushcoreInstaller AutoInstaller(AutoInstall);
 } // end anonymous namespace
 void
-MushSkinTiled::AutoPrint(std::ostream& ioOut) const
+MushSkinSingular::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
     ioOut << "pullInRatio=" << m_pullInRatio;
     ioOut << "]";
 }
 bool
-MushSkinTiled::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr)
+MushSkinSingular::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr)
 {
     if (inTagStr == "obj")
     {
@@ -309,10 +262,9 @@ MushSkinTiled::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& i
     return true;
 }
 void
-MushSkinTiled::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
+MushSkinSingular::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
     ioOut.TagSet("pullInRatio");
     ioOut << m_pullInRatio;
 }
-//%outOfLineFunctions } dSEd05ZOWmX21GbElAx9dw
-
+//%outOfLineFunctions } FhxEEOPd6X9Fp+RlGh21dA

@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } JnCiOhBV5nBVM4ynsgQMsQ
 /*
- * $Id: AdanaxisSaveData.h,v 1.14 2006/07/31 11:01:36 southa Exp $
+ * $Id: AdanaxisSaveData.h,v 1.15 2006/08/01 17:21:29 southa Exp $
  * $Log: AdanaxisSaveData.h,v $
+ * Revision 1.15  2006/08/01 17:21:29  southa
+ * River demo
+ *
  * Revision 1.14  2006/07/31 11:01:36  southa
  * Music and dialogues
  *
@@ -69,6 +72,7 @@
 
 #include "AdanaxisStandard.h"
 
+#include "AdanaxisPieceItem.h"
 #include "AdanaxisPieceKhazi.h"
 #include "AdanaxisPieceProjectile.h"
 
@@ -84,6 +88,8 @@ public:
     typedef MushcoreMaptor<tProjectile> tProjectileList;
     typedef AdanaxisPieceKhazi tKhazi;
     typedef MushcoreMaptor<tKhazi> tKhaziList;
+    typedef AdanaxisPieceItem tItem;
+    typedef MushcoreMaptor<tItem> tItemList;
 
     AdanaxisSaveData();
     virtual ~AdanaxisSaveData() {}
@@ -96,6 +102,7 @@ public:
 private:
     tProjectileList m_projectileList; //:read :wref
     tKhaziList m_khaziList; //:read :wref
+    tItemList m_itemList; //:read :wref
     bool m_clockStarted; //:readwrite
     std::string m_spaceName; //:readwrite
     
@@ -107,6 +114,9 @@ public:
     const tKhaziList& KhaziList(void) const { return m_khaziList; }
     // Writable reference for m_khaziList
     tKhaziList& KhaziListWRef(void) { return m_khaziList; }
+    const tItemList& ItemList(void) const { return m_itemList; }
+    // Writable reference for m_itemList
+    tItemList& ItemListWRef(void) { return m_itemList; }
     const bool& ClockStarted(void) const { return m_clockStarted; }
     void ClockStartedSet(const bool& inValue) { m_clockStarted=inValue; }
     const std::string& SpaceName(void) const { return m_spaceName; }
@@ -118,7 +128,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } HYybG5VdGGIEd17nEZMFzQ
+//%classPrototypes } tuX3EOV/byI/TwAaepXapA
 };
 
 //%inlineHeader {

@@ -16,8 +16,11 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-# $Id: ImageProcess.rb,v 1.1 2006/10/05 15:39:17 southa Exp $
+# $Id: ImageProcess.rb,v 1.2 2006/10/18 13:22:09 southa Exp $
 # $Log: ImageProcess.rb,v $
+# Revision 1.2  2006/10/18 13:22:09  southa
+# World rendering
+#
 # Revision 1.1  2006/10/05 15:39:17  southa
 # Explosion handling
 #
@@ -58,9 +61,10 @@ class ImageProcess
   
   def mSave(inFilename)
     @m_img[:Copyright] = @m_copyright
+    # @m_img.compression = Magick::JPEGCompression
     @m_img.compression = Magick::NoCompression
+    # @m_img.quality = 85
     @m_img.write(inFilename) {
-      compression = Magick::NoCompression
     }
   end
 

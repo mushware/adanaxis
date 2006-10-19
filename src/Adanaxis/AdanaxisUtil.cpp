@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } XsVs/rr7rRJFJzKi6eatxg
 /*
- * $Id: AdanaxisUtil.cpp,v 1.34 2006/10/14 16:59:44 southa Exp $
+ * $Id: AdanaxisUtil.cpp,v 1.35 2006/10/15 17:12:54 southa Exp $
  * $Log: AdanaxisUtil.cpp,v $
+ * Revision 1.35  2006/10/15 17:12:54  southa
+ * Scripted explosions
+ *
  * Revision 1.34  2006/10/14 16:59:44  southa
  * Ruby Deco objects
  *
@@ -162,13 +165,31 @@ void
 AdanaxisUtil::MissingSkinsCreate(AdanaxisLogic& ioLogic)
 {
     MushSkinTiled skinTiled;
+    MushSkinSingular skinSingular;
     
 	typedef MushcoreData<MushMesh4Mesh> tMeshData;
 	
 	tMeshData::iterator endIter = tMeshData::Sgl().end();
 	for (tMeshData::iterator p = tMeshData::Sgl().begin(); p != endIter; ++p)
 	{
-		skinTiled.TexCoordsGenerate(*p->second);
+        switch (p->second->MaterialRef(0).MappingType())
+        {
+            case MushMesh4Material::kMappingTypeNone:
+                throw MushcoreDataFail("No mapping type specified for material '"+p->first+"'");
+                break;
+
+            case MushMesh4Material::kMappingTypeTiled:
+                skinTiled.TexCoordsGenerate(*p->second);
+                break;
+                
+            case MushMesh4Material::kMappingTypeSingular:
+                skinSingular.TexCoordsGenerate(*p->second);
+                break;
+                
+            default:
+                throw MushcoreDataFail("Bad value for mapping type");
+                break;
+        }
 		MushcoreData<MushGLBuffers>::Sgl().GetOrCreate(p->first);
 	}
 }

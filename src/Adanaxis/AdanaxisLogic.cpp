@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } Mac7dWHONvkZIg39sQnwww
 /*
- * $Id: AdanaxisLogic.cpp,v 1.26 2006/10/16 22:00:20 southa Exp $
+ * $Id: AdanaxisLogic.cpp,v 1.27 2006/10/17 15:28:01 southa Exp $
  * $Log: AdanaxisLogic.cpp,v $
+ * Revision 1.27  2006/10/17 15:28:01  southa
+ * Player collisions
+ *
  * Revision 1.26  2006/10/16 22:00:20  southa
  * Tweaks
  *
@@ -205,6 +208,27 @@ AdanaxisLogic::DecoMove(void)
         if (p->ExpireFlag())
         {
             VolatileData().DecoListWRef().Delete(p++);
+        }
+        else
+        {
+            ++p;   
+        }
+    }
+}
+
+void
+AdanaxisLogic::ItemsMove(void)
+{
+    typedef AdanaxisSaveData::tItemList tItemList;
+    
+    tItemList::iterator objEndIter = SaveData().ItemListWRef().end();
+    for (tItemList::iterator p = SaveData().ItemListWRef().begin(); p != objEndIter;)
+    {
+        p->Move(*this, 1);
+        
+        if (p->ExpireFlag())
+        {
+            SaveData().ItemListWRef().Delete(p++);
         }
         else
         {
@@ -412,6 +436,7 @@ AdanaxisLogic::MoveSequence(void)
     KhaziMove();
     ProjectilesMove();
     DecoMove();
+    ItemsMove();
 }
 
 void

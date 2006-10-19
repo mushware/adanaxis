@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } rQkTih3VUd7Xp8cDeV3ZYA
 /*
- * $Id: AdanaxisRender.cpp,v 1.52 2006/10/09 16:00:16 southa Exp $
+ * $Id: AdanaxisRender.cpp,v 1.53 2006/10/17 15:28:01 southa Exp $
  * $Log: AdanaxisRender.cpp,v $
+ * Revision 1.53  2006/10/17 15:28:01  southa
+ * Player collisions
+ *
  * Revision 1.52  2006/10/09 16:00:16  southa
  * Intern generation
  *
@@ -361,6 +364,19 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
         
         tProjectileList::iterator projectileEndIter = pSaveData->ProjectileListWRef().end();
         for (tProjectileList::iterator p = pSaveData->ProjectileListWRef().begin(); p != projectileEndIter; ++p)
+        {
+            MUSHCOREASSERT(m_renderList.back() != NULL);
+            
+            if (p->Render(*m_renderList.back(), ioLogic, *pRenderMesh, camera))
+            {
+                m_renderList.push_back(new MushGLJobRender);
+            }
+        }    
+        
+        typedef AdanaxisSaveData::tItemList tItemList;
+        
+        tItemList::iterator itemEndIter = pSaveData->ItemListWRef().end();
+        for (tItemList::iterator p = pSaveData->ItemListWRef().begin(); p != itemEndIter; ++p)
         {
             MUSHCOREASSERT(m_renderList.back() != NULL);
             

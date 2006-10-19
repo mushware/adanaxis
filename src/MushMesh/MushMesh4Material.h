@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 7UvikX8idpVAxy72TO4JQw
 /*
- * $Id$
- * $Log$
+ * $Id: MushMesh4Material.h,v 1.1 2006/06/19 15:57:18 southa Exp $
+ * $Log: MushMesh4Material.h,v $
+ * Revision 1.1  2006/06/19 15:57:18  southa
+ * Materials
+ *
  */
 
 #include "MushMeshStandard.h"
@@ -33,13 +36,25 @@
 class MushMesh4Material : public MushcoreVirtualObject
 {
 public:
+    MushMesh4Material() : m_mappingType(kMappingTypeNone) {}
+    enum
+    {
+        kMappingTypeInvalid,
+        kMappingTypeNone,
+        kMappingTypeTiled,
+        kMappingTypeSingular
+    };
+    
 private:
 	std::string m_name; //:readwrite
-	
+    Mushware::U32 m_mappingType; //:readwrite
+    
 //%classPrototypes {
 public:
     const std::string& Name(void) const { return m_name; }
     void NameSet(const std::string& inValue) { m_name=inValue; }
+    const Mushware::U32& MappingType(void) const { return m_mappingType; }
+    void MappingTypeSet(const Mushware::U32& inValue) { m_mappingType=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -47,7 +62,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } 6kS7zAtgsEBxzZKpMEtoHg
+//%classPrototypes } BCTgrfjsVXpOaiMDcqVlqg
 };
 //%inlineHeader {
 inline std::ostream&

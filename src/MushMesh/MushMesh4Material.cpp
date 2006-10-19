@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } rKxqFRDUQ+hPECsMm6L1IA
 /*
- * $Id$
- * $Log$
+ * $Id: MushMesh4Material.cpp,v 1.1 2006/06/19 15:57:18 southa Exp $
+ * $Log: MushMesh4Material.cpp,v $
+ * Revision 1.1  2006/06/19 15:57:18  southa
+ * Materials
+ *
  */
 
 #include "MushMesh4Material.h"
@@ -60,7 +63,8 @@ void
 MushMesh4Material::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
-    ioOut << "name=" << m_name;
+    ioOut << "name=" << m_name << ", ";
+    ioOut << "mappingType=" << m_mappingType;
     ioOut << "]";
 }
 bool
@@ -76,6 +80,10 @@ MushMesh4Material::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::strin
     {
         ioIn >> m_name;
     }
+    else if (inTagStr == "mappingType")
+    {
+        ioIn >> m_mappingType;
+    }
     else 
     {
         return false;
@@ -87,5 +95,7 @@ MushMesh4Material::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
     ioOut.TagSet("name");
     ioOut << m_name;
+    ioOut.TagSet("mappingType");
+    ioOut << m_mappingType;
 }
-//%outOfLineFunctions } qjtGfw8Jp+t7x8ZpyLUBOg
+//%outOfLineFunctions } VEXtpiEsx4AChHs8CN3Y/A

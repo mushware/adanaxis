@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } CG9ZWwlBRFU/lTEHubWz0w
 /*
- * $Id: MushSkin.h,v 1.4 2006/06/09 21:07:14 southa Exp $
+ * $Id: MushSkin.h,v 1.5 2006/08/01 17:21:37 southa Exp $
  * $Log: MushSkin.h,v $
+ * Revision 1.5  2006/08/01 17:21:37  southa
+ * River demo
+ *
  * Revision 1.4  2006/06/09 21:07:14  southa
  * Tiled skin generation
  *
@@ -37,6 +40,7 @@
  *
  */
 
+#include "MushSkinSingular.h"
 #include "MushSkinTiled.h"
 #include "MushSkinTiledMethod1.h"
 

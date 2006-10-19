@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef MUSHSKINMATERIAL_H
-#define MUSHSKINMATERIAL_H
-//%includeGuardStart } z6+Uj+WopuZ/5d2SvQ6t4A
+#ifndef MUSHSKINSINGULAR_H
+#define MUSHSKINSINGULAR_H
+//%includeGuardStart } Bi+Sl554bG8sYG45Xne7BQ
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushSkin/MushSkinMaterial.h
+ * File: src/MushSkin/MushSkinSingular.h
  *
  * Copyright: Andy Southgate 2005-2006
  *
@@ -19,30 +19,27 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } K4isL40HJqwvsvQ3zMAxaQ
+//%Header } 45S2EOGUBssEmN+pt4X6tw
 /*
- * $Id: MushSkinMaterial.h,v 1.1 2006/06/19 15:57:20 southa Exp $
- * $Log: MushSkinMaterial.h,v $
- * Revision 1.1  2006/06/19 15:57:20  southa
- * Materials
- *
+ * $Id$
+ * $Log$
  */
 
 #include "MushSkinStandard.h"
 
-//:xml1base MushMesh4Material
 //:generate virtual standard ostream xml1
-class MushSkinMaterial : public MushMesh4Material
+class MushSkinSingular : public MushcoreVirtualObject
 {
 public:
-	void NameSet(const std::string& inName) { m_texRef.NameSet(inName); }
-	
-	const MushGLTexture& TexRef(void) { return m_texRef.Ref(); }
-	MushGLTexture& TexWRef(void) { return m_texRef.WRef(); }
-	
+    MushSkinSingular();
+    
+    virtual void DivideSize(Mushware::t2U32& outSizes, Mushware::U32 inNumFacets);
+    virtual void TexCoordsGenerate(MushMesh4Mesh& ioMesh);
+    
+protected:
+        
 private:
-	MushcoreDataRef<MushGLTexture> m_texRef;
-
+        Mushware::tVal m_pullInRatio;
 //%classPrototypes {
 public:
     virtual const char *AutoName(void) const;
@@ -56,12 +53,12 @@ public:
 };
 //%inlineHeader {
 inline std::ostream&
-operator<<(std::ostream& ioOut, const MushSkinMaterial& inObj)
+operator<<(std::ostream& ioOut, const MushSkinSingular& inObj)
 {
     inObj.AutoPrint(ioOut);
     return ioOut;
 }
-//%inlineHeader } D6kGwvVXSh5+Jq9uOBxDog
+//%inlineHeader } WEe+I3W8dV7HSp3jc6XGEw
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw
