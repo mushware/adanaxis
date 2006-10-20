@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } XLKRQITGeEosZnXBO0QSEw
 /*
- * $Id: AdanaxisScanner.h,v 1.3 2006/08/01 17:21:29 southa Exp $
+ * $Id: AdanaxisScanner.h,v 1.4 2006/10/09 16:00:16 southa Exp $
  * $Log: AdanaxisScanner.h,v $
+ * Revision 1.4  2006/10/09 16:00:16  southa
+ * Intern generation
+ *
  * Revision 1.3  2006/08/01 17:21:29  southa
  * River demo
  *
@@ -51,12 +54,15 @@ public:
     {
         kObjectTypeInvalid,
         kObjectTypeNone,
-        kObjectTypeKhazi
+        kObjectTypeKhazi,
+        kObjectTypeItem
     } tObjectType;
     
     enum
     {
         kSymbolScanWhite = 0,
+        kSymbolScanRed = 1,
+        kSymbolScanGreen = 2,
         kSymbolScanX = 8,
         kSymbolScanY = 9,
         kSymbolScanZ = 10,
@@ -82,7 +88,8 @@ public:
                           const MushGameCamera& inCamera, const MushGamePiece& inPiece,
                           Mushware::U32 inObjType);
     
-    void ScanSymbolRender(Mushware::t4Val& inPos, Mushware::t4Val inParam, Mushware::tVal inAlpha);
+    void ScanSymbolRender(Mushware::t4Val& inPos, Mushware::t4Val inParam,
+                          Mushware::tVal inAlpha, Mushware::U32 inSymbol);
     void ScanCrosshairRender(AdanaxisLogic& ioLogic, MushRenderMesh *inpMeshRender,
                              const MushGameCamera& inCamera);
     

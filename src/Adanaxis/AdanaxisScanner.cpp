@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } jTomsRfJomSPXOWn3jd6fw
 /*
- * $Id: AdanaxisScanner.cpp,v 1.6 2006/08/01 17:21:29 southa Exp $
+ * $Id: AdanaxisScanner.cpp,v 1.7 2006/10/09 16:00:16 southa Exp $
  * $Log: AdanaxisScanner.cpp,v $
+ * Revision 1.7  2006/10/09 16:00:16  southa
+ * Intern generation
+ *
  * Revision 1.6  2006/08/01 17:21:29  southa
  * River demo
  *
@@ -55,12 +58,13 @@ AdanaxisScanner::AdanaxisScanner() :
 }
 
 void
-AdanaxisScanner::ScanSymbolRender(Mushware::t4Val& inPos, Mushware::t4Val inParam, Mushware::tVal inAlpha)
+AdanaxisScanner::ScanSymbolRender(Mushware::t4Val& inPos, Mushware::t4Val inParam,
+                                  Mushware::tVal inAlpha, Mushware::U32 inSymbol)
 {
     MushGLFont& fontRef = m_symbolFontRef.WRef();
     
     fontRef.ColourSet(t4Val(1,1,1,inAlpha));
-    fontRef.RenderSymbolAtSize(kSymbolScanWhite, inPos, m_symbolSize);
+    fontRef.RenderSymbolAtSize(inSymbol, inPos, m_symbolSize);
 
     fontRef.ColourSet(t4Val(1,1,1,std::pow(1.0*inAlpha, 0.4)));
     
@@ -112,7 +116,7 @@ AdanaxisScanner::ScanObjectRender(AdanaxisLogic& ioLogic, MushRenderMesh *inpMes
     t4Val eyePos = renderSpec.ModelToEyeMattress() * t4Val(0,0,0,0);
     
     // Check whether the camera is on target on this object
-    if (m_targetState != kTargetStateOnTarget)
+    if (inObjType == kObjectTypeKhazi && m_targetState != kTargetStateOnTarget)
     {
         tVal boundingRadius = meshRef.BoundingRadius();
         t4Val centroidPos = renderSpec.ModelToEyeMattress() * meshRef.Centroid();
@@ -176,6 +180,23 @@ AdanaxisScanner::ScanObjectRender(AdanaxisLogic& ioLogic, MushRenderMesh *inpMes
         MushcoreUtil::Constrain<tVal>(alpha, 0, 0.3 + 0.7*(std::fabs(ywAngle) / ywAngleLimit));
     }
     
+    U32 scanSymbol;
+    
+    switch (inObjType)
+    {
+        case kObjectTypeItem:
+            scanSymbol = kSymbolScanGreen;
+            break;
+            
+        case kObjectTypeKhazi:
+            scanSymbol = kSymbolScanWhite;
+            break;
+            
+        default:
+            scanSymbol = kSymbolScanWhite;
+            break;
+    }
+    
     if (std::fabs(objPost.PosWRef().W()) > 0)
     {
         objPost.PosWRef() /= std::fabs(objPost.PosWRef().W());
@@ -186,7 +207,7 @@ AdanaxisScanner::ScanObjectRender(AdanaxisLogic& ioLogic, MushRenderMesh *inpMes
         t4Val clipPos = renderSpec.ModelToClipMattress() * t4Val(0,0,0,0);
         
         m_symbolSize = 4 * t2Val(1, renderSpec.Projection().AspectRatio()); 
-        ScanSymbolRender(clipPos, eyePos, alpha);
+        ScanSymbolRender(clipPos, eyePos, alpha, scanSymbol);
     }
 }
 

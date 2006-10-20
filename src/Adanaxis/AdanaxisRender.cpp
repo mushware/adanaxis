@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } rQkTih3VUd7Xp8cDeV3ZYA
 /*
- * $Id: AdanaxisRender.cpp,v 1.53 2006/10/17 15:28:01 southa Exp $
+ * $Id: AdanaxisRender.cpp,v 1.54 2006/10/19 15:41:36 southa Exp $
  * $Log: AdanaxisRender.cpp,v $
+ * Revision 1.54  2006/10/19 15:41:36  southa
+ * Item handling
+ *
  * Revision 1.53  2006/10/17 15:28:01  southa
  * Player collisions
  *
@@ -378,6 +381,8 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
         tItemList::iterator itemEndIter = pSaveData->ItemListWRef().end();
         for (tItemList::iterator p = pSaveData->ItemListWRef().begin(); p != itemEndIter; ++p)
         {
+            pRenderMesh->ColourZMiddleSet(t4Val(1.0,1.0,1.0,meshAlpha));
+
             MUSHCOREASSERT(m_renderList.back() != NULL);
             
             if (p->Render(*m_renderList.back(), ioLogic, *pRenderMesh, camera))
@@ -514,6 +519,14 @@ void AdanaxisRender::ScanRender(AdanaxisLogic& ioLogic, MushRenderMesh *inpRende
     for (tKhaziList::iterator p = pSaveData->KhaziListWRef().begin(); p != khaziEndIter; ++p)
     {
         m_scanner.ScanObjectRender(ioLogic, inpRenderMesh, inCamera, *p, AdanaxisScanner::kObjectTypeKhazi);
+    }
+    
+    typedef AdanaxisSaveData::tItemList tItemList;
+    
+    tItemList::iterator itemEndIter = pSaveData->ItemListWRef().end();
+    for (tItemList::iterator p = pSaveData->ItemListWRef().begin(); p != itemEndIter; ++p)
+    {
+        m_scanner.ScanObjectRender(ioLogic, inpRenderMesh, inCamera, *p, AdanaxisScanner::kObjectTypeItem);
     }
     
     m_scanner.ScanCrosshairRender(ioLogic, inpRenderMesh, inCamera);

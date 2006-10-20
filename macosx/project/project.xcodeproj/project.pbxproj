@@ -170,7 +170,6 @@
 		7A5B7ABC0A55375C00EE2E02 /* MushGameBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A5B7AB60A55375C00EE2E02 /* MushGameBase.cpp */; };
 		7A5BA7DC0A494B8B00DC847A /* mushMushMeshRuby.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A5BA7DB0A494B8B00DC847A /* mushMushMeshRuby.h */; };
 		7A5BA7DD0A494B8B00DC847A /* mushMushMeshRuby.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A5BA7DB0A494B8B00DC847A /* mushMushMeshRuby.h */; };
-		7A5BA8280A4955C400DC847A /* AdanaxisKhazi.rb in Resources */ = {isa = PBXBuildFile; fileRef = 7A5BA8260A4955C400DC847A /* AdanaxisKhazi.rb */; };
 		7A5BAA890A54610E00B30CAC /* MushGLAppHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AD164D3087A8BE60071C752 /* MushGLAppHandler.cpp */; };
 		7A5BAA8A0A54610F00B30CAC /* MushGLAppHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AD164D2087A8BE60071C752 /* MushGLAppHandler.h */; };
 		7A5BAA8B0A54611000B30CAC /* MushGLBuffers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AD298E80876907500367963 /* MushGLBuffers.cpp */; };
@@ -2739,7 +2738,6 @@
 		7A5B7C920A585C28006CA73F /* tc_MushTools.rb */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.ruby; path = tc_MushTools.rb; sourceTree = "<group>"; };
 		7A5B7C930A585C28006CA73F /* tc_MushVector.rb */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.ruby; path = tc_MushVector.rb; sourceTree = "<group>"; };
 		7A5BA7DB0A494B8B00DC847A /* mushMushMeshRuby.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mushMushMeshRuby.h; sourceTree = "<group>"; };
-		7A5BA8260A4955C400DC847A /* AdanaxisKhazi.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AdanaxisKhazi.rb; sourceTree = "<group>"; };
 		7A5BE6EE07FB53DA00306E18 /* libjpeg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libjpeg.a; path = /usr/local/lib/libjpeg.a; sourceTree = "<absolute>"; };
 		7A5BE75807FB56AF00306E18 /* font-mono1.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "font-mono1.tiff"; sourceTree = "<group>"; };
 		7A5BE75907FB56AF00306E18 /* plane-target1.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "plane-target1.tiff"; sourceTree = "<group>"; };
@@ -5998,7 +5996,6 @@
 				7A59656E0A9DB0F4002A966B /* AdanaxisEvents.rb */,
 				7A5B15170A57B5FA0047BD0B /* AdanaxisFontLibrary.rb */,
 				7A35AEFB0A481B5F00DB00A1 /* AdanaxisGame.rb */,
-				7A5BA8260A4955C400DC847A /* AdanaxisKhazi.rb */,
 				7AAFF09E0A46E7A30005F57F /* AdanaxisMaterialLibrary.rb */,
 				7A614A7D0A6280CD00E8FCEF /* AdanaxisMenu.rb */,
 				7ABDE4E20A69400100636DC1 /* AdanaxisLevels.rb */,
@@ -7843,7 +7840,6 @@
 				7A62BAEA05A49D06002A5F1C /* sstream in Resources */,
 				7A2E6C9605A4DAF90025F99B /* ic2_app.icns in Resources */,
 				7AD2BA8C087C284000DB2E4B /* axisconfig-default.xml in Resources */,
-				7A5BA8280A4955C400DC847A /* AdanaxisKhazi.rb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

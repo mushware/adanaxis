@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } 3LuiErcM0vO3wOyNDCFVeQ
 /*
- * $Id: AdanaxisLogic.h,v 1.19 2006/10/17 15:28:01 southa Exp $
+ * $Id: AdanaxisLogic.h,v 1.20 2006/10/19 15:41:35 southa Exp $
  * $Log: AdanaxisLogic.h,v $
+ * Revision 1.20  2006/10/19 15:41:35  southa
+ * Item handling
+ *
  * Revision 1.19  2006/10/17 15:28:01  southa
  * Player collisions
  *
@@ -116,6 +119,10 @@ public:
     virtual void KhaziKhaziFullCollide(void);
     virtual void ProjectilesPlayersFullCollide(void);
     virtual void KhaziPlayersFullCollide(void);
+    virtual void ItemsPlayersFullCollide(void);
+    virtual void ProjectilesItemsFullCollide(void);
+
+    
     virtual void MenuModeEnter(void);
     
     virtual void CollisionConsume(MushGameLogic& ioLogic, const MushGameMessageCollision& inMessage);

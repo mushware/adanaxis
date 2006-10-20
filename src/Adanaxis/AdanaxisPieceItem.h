@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } XLkU9/nD9RbqccHzVGeIsQ
 /*
- * $Id$
- * $Log$
+ * $Id: AdanaxisPieceItem.h,v 1.1 2006/10/19 15:41:36 southa Exp $
+ * $Log: AdanaxisPieceItem.h,v $
+ * Revision 1.1  2006/10/19 15:41:36  southa
+ * Item handling
+ *
  */
 
 #include "AdanaxisStandard.h"
@@ -34,7 +37,7 @@
 
 //:xml1base MushGamePiece
 //:generate virtual standard ostream xml1
-class AdanaxisPieceItem : public MushGamePiece
+class AdanaxisPieceItem : public MushGamePiece, public MushCollisionPiece
 {
 public:
     explicit AdanaxisPieceItem(const std::string& inID = "", const MushRubyValue& inParams = MushRubyValue());
@@ -44,6 +47,9 @@ public:
     virtual bool Render(MushGLJobRender& outRender,
                         MushGameLogic& ioLogic, MushRenderMesh& inRender, const MushGameCamera& inCamera);
     
+    virtual const MushMesh4Mesh& CollisionMesh(void) const { return Mesh(); }
+    virtual const MushMeshPosticity& CollisionPost(void) const { return Post(); }
+        
     virtual void Load(Mushware::tRubyValue inSelf);
     virtual void Save(Mushware::tRubyValue inSelf);
     
