@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } XLkU9/nD9RbqccHzVGeIsQ
 /*
- * $Id: AdanaxisPieceItem.h,v 1.1 2006/10/19 15:41:36 southa Exp $
+ * $Id: AdanaxisPieceItem.h,v 1.2 2006/10/20 15:38:52 southa Exp $
  * $Log: AdanaxisPieceItem.h,v $
+ * Revision 1.2  2006/10/20 15:38:52  southa
+ * Item collection
+ *
  * Revision 1.1  2006/10/19 15:41:36  southa
  * Item handling
  *
@@ -30,7 +33,8 @@
 
 #include "AdanaxisStandard.h"
 
-#include "API/mushMushGame.h"
+#include "AdanaxisPiece.h"
+
 #include "API/mushMushGL.h"
 #include "API/mushMushMesh.h"
 #include "API/mushMushRender.h"

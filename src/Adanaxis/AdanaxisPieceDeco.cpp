@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } Xbi0vrfUMDnmd9NKsSwjUQ
 /*
- * $Id: AdanaxisPieceDeco.cpp,v 1.31 2006/10/16 14:36:50 southa Exp $
+ * $Id: AdanaxisPieceDeco.cpp,v 1.32 2006/10/16 15:25:57 southa Exp $
  * $Log: AdanaxisPieceDeco.cpp,v $
+ * Revision 1.32  2006/10/16 15:25:57  southa
+ * Explosion lifetimes
+ *
  * Revision 1.31  2006/10/16 14:36:50  southa
  * Deco handling
  *
@@ -116,9 +119,9 @@
 
 #include "AdanaxisPieceDeco.h"
 
+#include "AdanaxisIntern.h"
 #include "AdanaxisRuby.h"
 #include "AdanaxisVolatileData.h"
-#include "AdanaxisIntern.h"
 
 Mushware::tRubyValue AdanaxisPieceDeco::m_rubyKlass = Mushware::kRubyQnil;
 
@@ -227,7 +230,7 @@ AdanaxisPieceDeco::RubyInstall(void)
 {
     if (m_rubyKlass == kRubyQnil)
     {
-	    m_rubyKlass = MushRubyUtil::SubclassDefine("AdanaxisPieceDeco", MushGamePiece::Klass());
+	    m_rubyKlass = MushRubyUtil::SubclassDefine("AdanaxisPieceDeco", AdanaxisPiece::Klass());
     }
 	MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cCreate", RubyCreate);
 }

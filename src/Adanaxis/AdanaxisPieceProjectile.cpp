@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } AKn0HlU4NeCX3ptHFWodSQ
 /*
- * $Id: AdanaxisPieceProjectile.cpp,v 1.15 2006/10/12 22:04:47 southa Exp $
+ * $Id: AdanaxisPieceProjectile.cpp,v 1.16 2006/10/17 11:05:55 southa Exp $
  * $Log: AdanaxisPieceProjectile.cpp,v $
+ * Revision 1.16  2006/10/17 11:05:55  southa
+ * Expiry events
+ *
  * Revision 1.15  2006/10/12 22:04:47  southa
  * Collision events
  *
@@ -184,7 +187,7 @@ AdanaxisPieceProjectile::RubyInstall(void)
 {
     if (m_rubyKlass == kRubyQnil)
     {
-	    m_rubyKlass = MushRubyUtil::SubclassDefine("AdanaxisPieceProjectile", MushGamePiece::Klass());
+	    m_rubyKlass = MushRubyUtil::SubclassDefine("AdanaxisPieceProjectile", AdanaxisPiece::Klass());
     }
 	MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cCreate", RubyCreate);
 }

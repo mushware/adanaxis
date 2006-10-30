@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } J1Ivq58IhQNdFhYFAdJc+A
 /*
- * $Id: AdanaxisStandard.h,v 1.6 2006/08/01 17:21:30 southa Exp $
+ * $Id: AdanaxisStandard.h,v 1.7 2006/08/17 08:57:12 southa Exp $
  * $Log: AdanaxisStandard.h,v $
+ * Revision 1.7  2006/08/17 08:57:12  southa
+ * Event handling
+ *
  * Revision 1.6  2006/08/01 17:21:30  southa
  * River demo
  *
@@ -76,6 +79,7 @@
 #endif
 
 #include "mushGame.h"
+
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } WMShka8Hj2wrlOceGnqYjw
 /*
- * $Id: AdanaxisPiecePlayer.h,v 1.2 2006/10/02 20:28:10 southa Exp $
+ * $Id: AdanaxisPiecePlayer.h,v 1.3 2006/10/17 15:28:01 southa Exp $
  * $Log: AdanaxisPiecePlayer.h,v $
+ * Revision 1.3  2006/10/17 15:28:01  southa
+ * Player collisions
+ *
  * Revision 1.2  2006/10/02 20:28:10  southa
  * Object lookup and target selection
  *
@@ -66,8 +69,9 @@
 
 #include "AdanaxisStandard.h"
 
+#include "AdanaxisPiece.h"
+
 #include "API/mushMushCollision.h"
-#include "API/mushMushGame.h"
 #include "API/mushMushGL.h"
 #include "API/mushMushMesh.h"
 #include "API/mushMushRender.h"

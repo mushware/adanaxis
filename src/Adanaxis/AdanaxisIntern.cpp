@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } mqRyosjSblx9ADjVCHc1/g
 /*
- * $Id: AdanaxisIntern.cpp,v 1.6 2006/10/17 15:28:01 southa Exp $
+ * $Id: AdanaxisIntern.cpp,v 1.7 2006/10/19 15:41:35 southa Exp $
  * $Log: AdanaxisIntern.cpp,v $
+ * Revision 1.7  2006/10/19 15:41:35  southa
+ * Item handling
+ *
  * Revision 1.6  2006/10/17 15:28:01  southa
  * Player collisions
  *
@@ -48,6 +51,7 @@ MUSHCORE_SINGLETON_INSTANCE(AdanaxisIntern);
 AdanaxisIntern::AdanaxisIntern()
 {
 //%initialisations {
+    m_klassAdanaxisPiece = MushRubyValue(MushRubyUtil::Class("AdanaxisPiece"));
     m_klassAdanaxisPieceDeco = MushRubyValue(MushRubyUtil::Class("AdanaxisPieceDeco"));
     m_klassAdanaxisPieceItem = MushRubyValue(MushRubyUtil::Class("AdanaxisPieceItem"));
     m_klassAdanaxisPieceKhazi = MushRubyValue(MushRubyUtil::Class("AdanaxisPieceKhazi"));
@@ -56,5 +60,5 @@ AdanaxisIntern::AdanaxisIntern()
     m_mCollisionEventConsume = MushRubyIntern::SymbolID("mCollisionEventConsume");
     m_mMenuRender = MushRubyIntern::SymbolID("mMenuRender");
     m_mRender = MushRubyIntern::SymbolID("mRender");
-//%initialisations } 09e7b87cfbf2b2e021efaafd00c63155
+//%initialisations } c4ea64868e26681745d5543146cd916a
 }

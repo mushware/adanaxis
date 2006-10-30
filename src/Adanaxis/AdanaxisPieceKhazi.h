@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } Bm3nTDDsM5QE9iTgAOLr3w
 /*
- * $Id: AdanaxisPieceKhazi.h,v 1.19 2006/10/17 11:05:55 southa Exp $
+ * $Id: AdanaxisPieceKhazi.h,v 1.20 2006/10/17 15:28:01 southa Exp $
  * $Log: AdanaxisPieceKhazi.h,v $
+ * Revision 1.20  2006/10/17 15:28:01  southa
+ * Player collisions
+ *
  * Revision 1.19  2006/10/17 11:05:55  southa
  * Expiry events
  *
@@ -84,8 +87,9 @@
 
 #include "AdanaxisStandard.h"
 
+#include "AdanaxisPiece.h"
+
 #include "API/mushMushCollision.h"
-#include "API/mushMushGame.h"
 #include "API/mushMushGL.h"
 #include "API/mushMushMesh.h"
 #include "API/mushMushRender.h"

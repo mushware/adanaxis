@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } gq+r6M5XzKqE/mgjgvunrQ
 /*
- * $Id: AdanaxisPiecePlayer.cpp,v 1.6 2006/10/12 22:04:47 southa Exp $
+ * $Id: AdanaxisPiecePlayer.cpp,v 1.7 2006/10/17 15:28:01 southa Exp $
  * $Log: AdanaxisPiecePlayer.cpp,v $
+ * Revision 1.7  2006/10/17 15:28:01  southa
+ * Player collisions
+ *
  * Revision 1.6  2006/10/12 22:04:47  southa
  * Collision events
  *
@@ -430,7 +433,7 @@ AdanaxisPiecePlayer::RubyInstall(void)
 {
     if (m_rubyKlass == kRubyQnil)
     {
-	    m_rubyKlass = MushRubyUtil::SubclassDefine("AdanaxisPiecePlayer", MushGamePiece::Klass());
+	    m_rubyKlass = MushRubyUtil::SubclassDefine("AdanaxisPiecePlayer", AdanaxisPiece::Klass());
     }
 	MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cCreate", RubyCreate);
 }

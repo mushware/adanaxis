@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } Hhv5Ay3rWSX4AM9ldISs/g
 /*
- * $Id: AdanaxisPieceWorld.h,v 1.1 2006/07/19 10:22:15 southa Exp $
+ * $Id: AdanaxisPieceWorld.h,v 1.2 2006/08/01 17:21:26 southa Exp $
  * $Log: AdanaxisPieceWorld.h,v $
+ * Revision 1.2  2006/08/01 17:21:26  southa
+ * River demo
+ *
  * Revision 1.1  2006/07/19 10:22:15  southa
  * World objects
  *
@@ -30,7 +33,8 @@
 
 #include "AdanaxisStandard.h"
 
-#include "API/mushMushGame.h"
+#include "AdanaxisPiece.h"
+
 #include "API/mushMushGL.h"
 #include "API/mushMushMesh.h"
 #include "API/mushMushRender.h"

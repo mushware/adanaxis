@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } 72X8YWgaBjSc1x61Wdygug
 /*
- * $Id: AdanaxisPieceDeco.h,v 1.11 2006/08/01 17:21:25 southa Exp $
+ * $Id: AdanaxisPieceDeco.h,v 1.12 2006/10/14 16:59:44 southa Exp $
  * $Log: AdanaxisPieceDeco.h,v $
+ * Revision 1.12  2006/10/14 16:59:44  southa
+ * Ruby Deco objects
+ *
  * Revision 1.11  2006/08/01 17:21:25  southa
  * River demo
  *
@@ -60,7 +63,8 @@
 
 #include "AdanaxisStandard.h"
 
-#include "API/mushMushGame.h"
+#include "AdanaxisPiece.h"
+
 #include "API/mushMushGL.h"
 #include "API/mushMushMesh.h"
 #include "API/mushMushRender.h"

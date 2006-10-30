@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } bYBnqdxSeKgBCtrnRTrEJQ
 /*
- * $Id$
- * $Log$
+ * $Id: AdanaxisPieceItem.cpp,v 1.1 2006/10/19 15:41:35 southa Exp $
+ * $Log: AdanaxisPieceItem.cpp,v $
+ * Revision 1.1  2006/10/19 15:41:35  southa
+ * Item handling
+ *
  */
 
 #include "AdanaxisPieceItem.h"
@@ -137,7 +140,7 @@ AdanaxisPieceItem::RubyInstall(void)
 {
     if (m_rubyKlass == kRubyQnil)
     {
-	    m_rubyKlass = MushRubyUtil::SubclassDefine("AdanaxisPieceItem", MushGamePiece::Klass());
+	    m_rubyKlass = MushRubyUtil::SubclassDefine("AdanaxisPieceItem", AdanaxisPiece::Klass());
     }
 	MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cCreate", RubyCreate);
 }

@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } YCa3eNmcxUH2q0Oxh6SpTA
 /*
- * $Id: AdanaxisPieceKhazi.cpp,v 1.28 2006/10/17 11:05:54 southa Exp $
+ * $Id: AdanaxisPieceKhazi.cpp,v 1.29 2006/10/17 15:28:01 southa Exp $
  * $Log: AdanaxisPieceKhazi.cpp,v $
+ * Revision 1.29  2006/10/17 15:28:01  southa
+ * Player collisions
+ *
  * Revision 1.28  2006/10/17 11:05:54  southa
  * Expiry events
  *
@@ -290,7 +293,7 @@ AdanaxisPieceKhazi::RubyInstall(void)
 {
     if (m_rubyKlass == kRubyQnil)
     {
-	    m_rubyKlass = MushRubyUtil::SubclassDefine("AdanaxisPieceKhazi", MushGamePiece::Klass());
+	    m_rubyKlass = MushRubyUtil::SubclassDefine("AdanaxisPieceKhazi", AdanaxisPiece::Klass());
     }
 	MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cCreate", RubyCreate);
 }
