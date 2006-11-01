@@ -2720,6 +2720,7 @@
 		7A5A5B3A0AD4FD410066FCA2 /* ImageProcess.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ImageProcess.rb; sourceTree = "<group>"; };
 		7A5A5B3D0AD4FD860066FCA2 /* ProcessAnimation.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ProcessAnimation.rb; sourceTree = "<group>"; };
 		7A5A5B4F0AD5001B0066FCA2 /* MakeAnimation.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = MakeAnimation.rb; sourceTree = "<group>"; };
+		7A5AE7850AF8979B00F81946 /* MushTimedValue.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = MushTimedValue.rb; sourceTree = "<group>"; };
 		7A5B14F20A57AF580047BD0B /* AdanaxisRender.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AdanaxisRender.rb; sourceTree = "<group>"; };
 		7A5B14F50A57B1230047BD0B /* MushGLRubyFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushGLRubyFont.h; sourceTree = "<group>"; };
 		7A5B14F60A57B1230047BD0B /* MushGLRubyFont.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushGLRubyFont.cpp; sourceTree = "<group>"; };
@@ -4281,6 +4282,7 @@
 				7ACFCF590A90BCFB00A55B7D /* MushRegistered.rb */,
 				7A4CAB090A582DF200AA934F /* MushRotation.rb */,
 				7ACE601B0AB40D2F001AE5AA /* MushShaderLibrary.rb */,
+				7A5AE7850AF8979B00F81946 /* MushTimedValue.rb */,
 				7A4CAB0A0A582DF200AA934F /* MushTools.rb */,
 				7A59646D0ACE93F9007FAA8F /* MushUtil.rb */,
 				7A4CAB0B0A582DF200AA934F /* MushVector.rb */,

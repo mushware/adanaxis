@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 0xPG/7jmGTzjaD0AmAZyzw
 /*
- * $Id: MushMeshRubyVector.cpp,v 1.9 2006/09/29 10:47:57 southa Exp $
+ * $Id: MushMeshRubyVector.cpp,v 1.10 2006/09/30 13:46:33 southa Exp $
  * $Log: MushMeshRubyVector.cpp,v $
+ * Revision 1.10  2006/09/30 13:46:33  southa
+ * Seek and patrol
+ *
  * Revision 1.9  2006/09/29 10:47:57  southa
  * Object AI
  *
@@ -199,11 +202,71 @@ MushMeshRubyVector::InnerProduct(Mushware::tRubyValue inSelf, Mushware::tRubyVal
     return MushRubyValue(Ref(inSelf) * Ref(inArg1)).Value();
 }
 
+Mushware::tRubyValue
+MushMeshRubyVector::X(Mushware::tRubyValue inSelf)
+{
+    return MushRubyValue(Ref(inSelf).X()).Value();
+}
+
+Mushware::tRubyValue
+MushMeshRubyVector::XEquals(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg1)
+{
+    WRef(inSelf).XSet(MushRubyValue(inArg1).Val());
+    return inSelf;
+}
+
+Mushware::tRubyValue
+MushMeshRubyVector::Y(Mushware::tRubyValue inSelf)
+{
+    return MushRubyValue(Ref(inSelf).Y()).Value();
+}
+
+Mushware::tRubyValue
+MushMeshRubyVector::YEquals(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg1)
+{
+    WRef(inSelf).YSet(MushRubyValue(inArg1).Val());
+    return inSelf;
+}
+
+Mushware::tRubyValue
+MushMeshRubyVector::Z(Mushware::tRubyValue inSelf)
+{
+    return MushRubyValue(Ref(inSelf).Z()).Value();
+}
+
+Mushware::tRubyValue
+MushMeshRubyVector::ZEquals(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg1)
+{
+    WRef(inSelf).ZSet(MushRubyValue(inArg1).Val());
+    return inSelf;
+}
+
+Mushware::tRubyValue
+MushMeshRubyVector::W(Mushware::tRubyValue inSelf)
+{
+    return MushRubyValue(Ref(inSelf).W()).Value();
+}
+
+Mushware::tRubyValue
+MushMeshRubyVector::WEquals(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg1)
+{
+    WRef(inSelf).WSet(MushRubyValue(inArg1).Val());
+    return inSelf;
+}
+
 void
 MushMeshRubyVector::RubyInstall(void)
 {
 	ObjInstall("MushVector");
 
+	MushRubyUtil::MethodDefineNoParams(ObjKlass(), "x", X);
+	MushRubyUtil::MethodDefineOneParam(ObjKlass(), "x=", XEquals);
+	MushRubyUtil::MethodDefineNoParams(ObjKlass(), "y", Y);
+	MushRubyUtil::MethodDefineOneParam(ObjKlass(), "y=", YEquals);
+	MushRubyUtil::MethodDefineNoParams(ObjKlass(), "z", Z);
+	MushRubyUtil::MethodDefineOneParam(ObjKlass(), "z=", ZEquals);
+	MushRubyUtil::MethodDefineNoParams(ObjKlass(), "w", W);
+	MushRubyUtil::MethodDefineOneParam(ObjKlass(), "w=", WEquals);
 	MushRubyUtil::MethodDefineOneParam(ObjKlass(), "+=", MushVectorInPlaceAdd);
 	MushRubyUtil::MethodDefineOneParam(ObjKlass(), "+", MushVectorAdd);
 	MushRubyUtil::MethodDefineOneParam(ObjKlass(), "-=", MushVectorInPlaceSubtract);

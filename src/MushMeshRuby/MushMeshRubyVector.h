@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 2J8UOQdZFzDY6iljFrjmCg
 /*
- * $Id: MushMeshRubyVector.h,v 1.7 2006/09/29 10:47:57 southa Exp $
+ * $Id: MushMeshRubyVector.h,v 1.8 2006/09/30 13:46:33 southa Exp $
  * $Log: MushMeshRubyVector.h,v $
+ * Revision 1.8  2006/09/30 13:46:33  southa
+ * Seek and patrol
+ *
  * Revision 1.7  2006/09/29 10:47:57  southa
  * Object AI
  *
@@ -56,6 +59,15 @@ public:
 	static void RubyInstall(void);
 	
 private:
+    static Mushware::tRubyValue X(Mushware::tRubyValue inSelf);
+    static Mushware::tRubyValue XEquals(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg1);
+    static Mushware::tRubyValue Y(Mushware::tRubyValue inSelf);
+    static Mushware::tRubyValue YEquals(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg1);
+    static Mushware::tRubyValue Z(Mushware::tRubyValue inSelf);
+    static Mushware::tRubyValue ZEquals(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg1);
+    static Mushware::tRubyValue W(Mushware::tRubyValue inSelf);
+    static Mushware::tRubyValue WEquals(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg1);
+    
 	static Mushware::tRubyValue MushVectorInPlaceAdd(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg1);
 	static Mushware::tRubyValue MushVectorAdd(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg1);
 	static Mushware::tRubyValue MushVectorInPlaceSubtract(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg1);
