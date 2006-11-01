@@ -3543,6 +3543,8 @@
 		7AA0FB8A08844AF100997505 /* MushMeshLibraryFGenExtrude.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushMeshLibraryFGenExtrude.h; sourceTree = "<group>"; };
 		7AA0FB8B08844AF100997505 /* MushMeshLibraryFGenExtrude.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushMeshLibraryFGenExtrude.cpp; sourceTree = "<group>"; };
 		7AA5753E0AD9100800CEA8BA /* AdanaxisUtil.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AdanaxisUtil.rb; sourceTree = "<group>"; };
+		7AA67B8B0AF8BF1100A1C04F /* AdanaxisWeaponLibrary.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AdanaxisWeaponLibrary.rb; sourceTree = "<group>"; };
+		7AA67B8E0AF8C0C400A1C04F /* AdanaxisWeapon.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AdanaxisWeapon.rb; sourceTree = "<group>"; };
 		7AAE6B9C07AFC36C0085C60F /* TesseractTrainerAppHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = TesseractTrainerAppHandler.cpp; sourceTree = "<group>"; };
 		7AAE6B9D07AFC36C0085C60F /* TesseractTrainerAppHandler.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = TesseractTrainerAppHandler.h; sourceTree = "<group>"; };
 		7AAE6B9E07AFC36C0085C60F /* TesseractTrainerCommandHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = TesseractTrainerCommandHandler.cpp; sourceTree = "<group>"; };
@@ -3562,8 +3564,6 @@
 		7AAE6CD807AFC4250085C60F /* Tesseract Trainer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tesseract Trainer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AAFEF360A46CD870005F57F /* MushMesh4Material.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushMesh4Material.h; sourceTree = "<group>"; };
 		7AAFEF370A46CD870005F57F /* MushMesh4Material.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushMesh4Material.cpp; sourceTree = "<group>"; };
-		7AAFEF480A46D0AB0005F57F /* MushSkinMaterial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushSkinMaterial.h; sourceTree = "<group>"; };
-		7AAFEF490A46D0AB0005F57F /* MushSkinMaterial.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushSkinMaterial.cpp; sourceTree = "<group>"; };
 		7AAFF09E0A46E7A30005F57F /* AdanaxisMaterialLibrary.rb */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = text.script.ruby; path = AdanaxisMaterialLibrary.rb; sourceTree = "<group>"; tabWidth = 2; };
 		7AAFF0A60A46E84F0005F57F /* AdanaxisTextureLibrary.rb */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = text.script.ruby; path = AdanaxisTextureLibrary.rb; sourceTree = "<group>"; tabWidth = 2; };
 		7AB5ACF50A42BCB200D62CA1 /* MushRubyEmptyObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushRubyEmptyObj.h; sourceTree = "<group>"; };
@@ -6024,6 +6024,8 @@
 				7A58F2070A3D725400B7AE0E /* AdanaxisMeshLibrary.rb */,
 				7AAFF0A60A46E84F0005F57F /* AdanaxisTextureLibrary.rb */,
 				7AA5753E0AD9100800CEA8BA /* AdanaxisUtil.rb */,
+				7AA67B8E0AF8C0C400A1C04F /* AdanaxisWeapon.rb */,
+				7AA67B8B0AF8BF1100A1C04F /* AdanaxisWeaponLibrary.rb */,
 				7ACEFB3109F6EF6700E38865 /* init.rb */,
 			);
 			indentWidth = 2;
@@ -6038,8 +6040,6 @@
 				7ACF535708C35D1300BBEB7E /* MushSkin.h */,
 				7A57EB630A332A6C004F1E44 /* MushSkinLineGenerator.cpp */,
 				7A57EB620A332A6C004F1E44 /* MushSkinLineGenerator.h */,
-				7AAFEF490A46D0AB0005F57F /* MushSkinMaterial.cpp */,
-				7AAFEF480A46D0AB0005F57F /* MushSkinMaterial.h */,
 				7ACF536C08C35E3600BBEB7E /* MushSkinTiled.cpp */,
 				7ACF536B08C35E3600BBEB7E /* MushSkinTiled.h */,
 				7A59A29C0AE7BA2B0089517D /* MushSkinSingular.cpp */,

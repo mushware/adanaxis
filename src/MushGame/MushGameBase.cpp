@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 72jYu/IZevqg7bsvRKLvxw
 /*
- * $Id: MushGameBase.cpp,v 1.5 2006/07/12 11:22:42 southa Exp $
+ * $Id: MushGameBase.cpp,v 1.6 2006/07/28 11:14:28 southa Exp $
  * $Log: MushGameBase.cpp,v $
+ * Revision 1.6  2006/07/28 11:14:28  southa
+ * Records for multiple spaces
+ *
  * Revision 1.5  2006/07/12 11:22:42  southa
  * Advanced control menu
  *
@@ -56,8 +59,11 @@ MushGameBase::SwapIn(MushGameAppHandler& inHandler)
 void
 MushGameBase::SwapOut(MushGameAppHandler& inHandler)
 {
-    MushGLUtil::Purge();
-    MushGLV::Sgl().Purge();
+    if (MushGLV::Sgl().ContextValid())
+    {
+        MushGLUtil::Purge();
+        MushGLV::Sgl().Purge();
+    }
 }
 
 bool
