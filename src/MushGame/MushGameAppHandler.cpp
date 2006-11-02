@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } bC49LKe3G5tsyGqAVa5gyw
 /*
- * $Id: MushGameAppHandler.cpp,v 1.17 2006/07/31 11:01:37 southa Exp $
+ * $Id: MushGameAppHandler.cpp,v 1.18 2006/08/03 15:07:58 southa Exp $
  * $Log: MushGameAppHandler.cpp,v $
+ * Revision 1.18  2006/08/03 15:07:58  southa
+ * Cache purge fix
+ *
  * Revision 1.17  2006/07/31 11:01:37  southa
  * Music and dialogues
  *
@@ -312,7 +315,10 @@ MushGameAppHandler::KeyPurge(Mushware::U32 inKeyNum)
     
     for (U32 i=0; i < m_keyDefs.size(); ++i)
     {
-        if (m_keyDefs[i].KeyValue() == inKeyNum) m_keyDefs[i].KeyValueSet(0);
+        for (U32 j=0; j<m_keyDefs[i].NumKeyValues(); ++j)
+        {
+            if (m_keyDefs[i].KeyValue(j) == inKeyNum) m_keyDefs[i].KeyValueSet(0, j);
+        }
     }
 }    
 
@@ -497,11 +503,15 @@ MushGameAppHandler::KeyTicker(Mushware::tMsec inTimeslice)
     for (U32 i=0; i<m_keyDefs.size(); ++i)
     {
         MushGameKeyDef& keyDefRef = m_keyDefs[i];
-        U32 keyValue = keyDefRef.KeyValue();
-        bool keyState = KeyStateGet(keyValue);
-        if (keyState != keyDefRef.State())
+        bool anyKeyDown = false;
+        for (U32 j=0; j<m_keyDefs[i].NumKeyValues(); ++j)
         {
-            keyDefRef.StateSet(keyState);
+            U32 keyValue = keyDefRef.KeyValue(j);
+            anyKeyDown = anyKeyDown || KeyStateGet(keyValue);
+        }
+        if (anyKeyDown != keyDefRef.State())
+        {
+            keyDefRef.StateSet(anyKeyDown);
             keyDefRef.StateHasChangedSet(true);
         }
     }

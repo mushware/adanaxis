@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 0XyESJoYf4vvwzHYpkSADw
 /*
- * $Id: MushGameKeyDef.h,v 1.3 2006/06/01 15:39:23 southa Exp $
+ * $Id: MushGameKeyDef.h,v 1.4 2006/07/12 11:22:42 southa Exp $
  * $Log: MushGameKeyDef.h,v $
+ * Revision 1.4  2006/07/12 11:22:42  southa
+ * Advanced control menu
+ *
  * Revision 1.3  2006/06/01 15:39:23  southa
  * DrawArray verification and fixes
  *
@@ -48,17 +51,21 @@ public:
     MushGameKeyDef();
     virtual ~MushGameKeyDef() {}
     
+    Mushware::U32 NumKeyValues(void) const { return m_keyValues.size(); }
+    void KeyValuesResize(Mushware::U32 inSize) { m_keyValues.resize(inSize); }
+    Mushware::U32 KeyValue(Mushware::U32 inIndex) const;
+    void KeyValueSet(Mushware::U32 inValue, Mushware::U32 inIndex);
+    
     void Reset(void);
     
 private:
-    Mushware::U32 m_keyValue; //:readwrite
+    std::vector<Mushware::U32> m_keyValues;
     bool m_state; //:readwrite
     bool m_stateHasChanged; //:readwrite
     std::string m_keyName; //:readwrite
+    
 //%classPrototypes {
 public:
-    const Mushware::U32& KeyValue(void) const { return m_keyValue; }
-    void KeyValueSet(const Mushware::U32& inValue) { m_keyValue=inValue; }
     const bool& State(void) const { return m_state; }
     void StateSet(const bool& inValue) { m_state=inValue; }
     const bool& StateHasChanged(void) const { return m_stateHasChanged; }
@@ -72,8 +79,11 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } 86+5lJLiqv5rpSM6tKnM5Q
+//%classPrototypes } +05/2OvFd7Fp5UtrU4V43A
 };
+
+
+
 //%inlineHeader {
 inline std::ostream&
 operator<<(std::ostream& ioOut, const MushGameKeyDef& inObj)

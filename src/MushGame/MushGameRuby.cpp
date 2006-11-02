@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } yY7ZZkvIHHOoUzJzTAQPOQ
 /*
- * $Id: MushGameRuby.cpp,v 1.16 2006/10/16 22:00:21 southa Exp $
+ * $Id: MushGameRuby.cpp,v 1.17 2006/10/17 15:28:03 southa Exp $
  * $Log: MushGameRuby.cpp,v $
+ * Revision 1.17  2006/10/17 15:28:03  southa
+ * Player collisions
+ *
  * Revision 1.16  2006/10/16 22:00:21  southa
  * Tweaks
  *
@@ -358,7 +361,7 @@ MushGameRuby::KeySymbol(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0
         
         const MushGameKeyDef& keyRef = MushGameUtil::AppHandler().KeyDef(keyID.U32());  
         
-        keySymbol = keyRef.KeyValue();
+        keySymbol = keyRef.KeyValue(0);
     }
     catch (std::exception& e)
     {
@@ -380,7 +383,8 @@ MushGameRuby::KeySet(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0, M
         
         MushGameKeyDef keyDef = MushGameUtil::AppHandler().KeyDef(keyID.U32());  
         
-        keyDef.KeyValueSet(symbolValue);
+        keyDef.KeyValuesResize(1);
+        keyDef.KeyValueSet(symbolValue, 0);
         
         MushGameUtil::AppHandler().KeyDefSet(keyDef, keyID.U32());
     }

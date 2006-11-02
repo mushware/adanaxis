@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } cC+qoCB7VQVSsmwgWq6ijQ
 /*
- * $Id: MushGameKeyDef.cpp,v 1.2 2006/06/01 15:39:22 southa Exp $
+ * $Id: MushGameKeyDef.cpp,v 1.3 2006/07/12 11:22:42 southa Exp $
  * $Log: MushGameKeyDef.cpp,v $
+ * Revision 1.3  2006/07/12 11:22:42  southa
+ * Advanced control menu
+ *
  * Revision 1.2  2006/06/01 15:39:22  southa
  * DrawArray verification and fixes
  *
@@ -35,6 +38,20 @@ MushGameKeyDef::MushGameKeyDef() :
     m_state(false),
     m_stateHasChanged(true)
 {
+}
+
+Mushware::U32
+MushGameKeyDef::KeyValue(Mushware::U32 inIndex) const
+{
+    MushcoreUtil::DebugBoundsCheck(inIndex, m_keyValues.size());
+    return m_keyValues[inIndex];
+}
+
+void
+MushGameKeyDef::KeyValueSet(Mushware::U32 inValue, Mushware::U32 inIndex)
+{
+    MushcoreUtil::DebugBoundsCheck(inIndex, m_keyValues.size());
+    m_keyValues[inIndex] = inValue;
 }
 
 void
@@ -77,7 +94,7 @@ void
 MushGameKeyDef::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
-    ioOut << "keyValue=" << m_keyValue << ", ";
+    ioOut << "keyValues=" << m_keyValues << ", ";
     ioOut << "state=" << m_state << ", ";
     ioOut << "stateHasChanged=" << m_stateHasChanged << ", ";
     ioOut << "keyName=" << m_keyName;
@@ -92,9 +109,9 @@ MushGameKeyDef::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
     }
-    else if (inTagStr == "keyValue")
+    else if (inTagStr == "keyValues")
     {
-        ioIn >> m_keyValue;
+        ioIn >> m_keyValues;
     }
     else if (inTagStr == "state")
     {
@@ -117,8 +134,8 @@ MushGameKeyDef::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
 void
 MushGameKeyDef::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
-    ioOut.TagSet("keyValue");
-    ioOut << m_keyValue;
+    ioOut.TagSet("keyValues");
+    ioOut << m_keyValues;
     ioOut.TagSet("state");
     ioOut << m_state;
     ioOut.TagSet("stateHasChanged");
@@ -126,4 +143,4 @@ MushGameKeyDef::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("keyName");
     ioOut << m_keyName;
 }
-//%outOfLineFunctions } Xw2tEfjCwGJryG243fyj0w
+//%outOfLineFunctions } RwRFuqCxsZeyR1KSmwjwfw

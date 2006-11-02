@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } fh7altI5opktY3DzVNPCDA
 /*
- * $Id: AdanaxisConfig.h,v 1.14 2006/07/28 11:14:26 southa Exp $
+ * $Id: AdanaxisConfig.h,v 1.15 2006/08/01 17:21:23 southa Exp $
  * $Log: AdanaxisConfig.h,v $
+ * Revision 1.15  2006/08/01 17:21:23  southa
+ * River demo
+ *
  * Revision 1.14  2006/07/28 11:14:26  southa
  * Records for multiple spaces
  *
@@ -94,7 +97,11 @@ public:
     enum
     {
         kKeyFire = 0,
-        kKeyScanner = 1,
+        kKeyScanner,
+        kKeyWeaponPrevious,
+        kKeyWeaponNext,
+        kKeyWeapon0,
+        kKeyWeapon9 = kKeyWeapon0 + 9,
         kNumKeys
     };
     
@@ -118,7 +125,7 @@ public:
 private:
     enum
     {
-        kVersion = 20060728,
+        kVersion = 20061102,
     };
     typedef std::map< std::string, Mushware::tMsec > tRecordTimes;
     
