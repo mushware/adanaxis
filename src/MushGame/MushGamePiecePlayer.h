@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } yXJ5P6JaYRYq01Y5a+jhRQ
 /*
- * $Id: MushGamePiecePlayer.h,v 1.1 2006/10/02 17:25:06 southa Exp $
+ * $Id: MushGamePiecePlayer.h,v 1.2 2006/10/17 15:28:02 southa Exp $
  * $Log: MushGamePiecePlayer.h,v $
+ * Revision 1.2  2006/10/17 15:28:02  southa
+ * Player collisions
+ *
  * Revision 1.1  2006/10/02 17:25:06  southa
  * Object lookup and target selection
  *
@@ -97,7 +100,6 @@ public:
     virtual const MushMeshPosticity& CollisionPost(void) const { return Post(); }
 
 private:
-    std::string m_id; //:readwrite
     std::string m_playerName; //:readwrite
     Mushware::U32 m_fireState; //:readwrite
     Mushware::tMsec m_fireStartMsec; //:readwrite
@@ -108,8 +110,6 @@ private:
     
 //%classPrototypes {
 public:
-    const std::string& Id(void) const { return m_id; }
-    void IdSet(const std::string& inValue) { m_id=inValue; }
     const std::string& PlayerName(void) const { return m_playerName; }
     void PlayerNameSet(const std::string& inValue) { m_playerName=inValue; }
     const Mushware::U32& FireState(void) const { return m_fireState; }
@@ -127,7 +127,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } WqGZjuwdPoprQ0AAD3fETQ
+//%classPrototypes } KdGOnGzWp+H3MRemKkY57A
 };
 //%inlineHeader {
 inline std::ostream&

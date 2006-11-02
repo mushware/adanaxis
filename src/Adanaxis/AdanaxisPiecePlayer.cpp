@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } gq+r6M5XzKqE/mgjgvunrQ
 /*
- * $Id: AdanaxisPiecePlayer.cpp,v 1.7 2006/10/17 15:28:01 southa Exp $
+ * $Id: AdanaxisPiecePlayer.cpp,v 1.8 2006/10/30 17:03:51 southa Exp $
  * $Log: AdanaxisPiecePlayer.cpp,v $
+ * Revision 1.8  2006/10/30 17:03:51  southa
+ * Remnants creation
+ *
  * Revision 1.7  2006/10/17 15:28:01  southa
  * Player collisions
  *
@@ -126,6 +129,7 @@
 #include "AdanaxisPiecePlayer.h"
 
 #include "AdanaxisConfig.h"
+#include "AdanaxisEvents.h"
 #include "AdanaxisIntern.h"
 #include "AdanaxisMeshLibrary.h"
 #include "AdanaxisPieceProjectile.h"
@@ -386,9 +390,8 @@ AdanaxisPiecePlayer::FirePieceCreate(MushGameLogic& ioLogic, const MushGameMessa
 void
 AdanaxisPiecePlayer::FireConsume(MushGameLogic& ioLogic, const MushGameMessageFire& inMessage)
 {
-    FirePieceCreate(ioLogic, inMessage);
-    
-    MediaAudio::Sgl().Play(*MushcoreDataRef<MediaSound>("fire").Get());
+    MushRubyValue event = AdanaxisEvents::Sgl().EventFireMake(inMessage.Post());
+    RubyEventHandle(event);
     
     AdanaxisVolatileData *pVolData = dynamic_cast<AdanaxisVolatileData *>(&ioLogic.VolatileData());
     

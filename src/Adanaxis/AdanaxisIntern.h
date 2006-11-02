@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } WBiqbvbumO43Eps7fHh03A
 /*
- * $Id: AdanaxisIntern.h,v 1.10 2006/10/19 15:41:35 southa Exp $
+ * $Id: AdanaxisIntern.h,v 1.11 2006/10/30 17:03:50 southa Exp $
  * $Log: AdanaxisIntern.h,v $
+ * Revision 1.11  2006/10/30 17:03:50  southa
+ * Remnants creation
+ *
  * Revision 1.10  2006/10/19 15:41:35  southa
  * Item handling
  *
@@ -67,6 +70,7 @@
     mRender
   }
   classes = %w{
+    AdanaxisEventFire
     AdanaxisPiece
     AdanaxisPieceDeco
     AdanaxisPieceItem
@@ -83,6 +87,7 @@ public:
     AdanaxisIntern();
 //%declarations {
 public:
+    MushRubyValue& AdanaxisEventFire(void) { return m_klassAdanaxisEventFire; }
     MushRubyValue& AdanaxisPiece(void) { return m_klassAdanaxisPiece; }
     MushRubyValue& AdanaxisPieceDeco(void) { return m_klassAdanaxisPieceDeco; }
     MushRubyValue& AdanaxisPieceItem(void) { return m_klassAdanaxisPieceItem; }
@@ -93,6 +98,7 @@ public:
     Mushware::tRubyID mMenuRender(void) { return m_mMenuRender; }
     Mushware::tRubyID mRender(void) { return m_mRender; }
 private:
+    MushRubyValue m_klassAdanaxisEventFire;
     MushRubyValue m_klassAdanaxisPiece;
     MushRubyValue m_klassAdanaxisPieceDeco;
     MushRubyValue m_klassAdanaxisPieceItem;
@@ -102,7 +108,7 @@ private:
     Mushware::tRubyID m_mCollisionEventConsume;
     Mushware::tRubyID m_mMenuRender;
     Mushware::tRubyID m_mRender;
-//%declarations } 269f9862cbceae9600baeba850d25fde
+//%declarations } d581e010e4aa79f47514168eb7dca763
 
 //%classPrototypes {
 public:
