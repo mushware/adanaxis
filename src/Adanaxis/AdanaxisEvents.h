@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } YcOjz32Z5hdWMepzrGLbUQ
 /*
- * $Id$
- * $Log$
+ * $Id: AdanaxisEvents.h,v 1.1 2006/11/02 09:47:33 southa Exp $
+ * $Log: AdanaxisEvents.h,v $
+ * Revision 1.1  2006/11/02 09:47:33  southa
+ * Player weapon control
+ *
  */
 
 #include "MushGameStandard.h"
@@ -34,6 +37,9 @@ public:
     virtual ~AdanaxisEvents() {}
     
     MushRubyValue EventFireMake(const MushMeshPosticity& inPost);
+    MushRubyValue EventKeyStateMake(void);
+    void EventKeyStateAddState(MushRubyValue& ioEvent, Mushware::U32 inNum, bool inState);
+    
 //%classPrototypes {
 public:
     virtual const char *AutoName(void) const;

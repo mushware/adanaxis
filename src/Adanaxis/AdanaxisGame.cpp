@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } 0Sg2qcftBJTnB0QxDEkq2Q
 /*
- * $Id: AdanaxisGame.cpp,v 1.52 2006/09/07 10:02:36 southa Exp $
+ * $Id: AdanaxisGame.cpp,v 1.53 2006/10/17 15:28:01 southa Exp $
  * $Log: AdanaxisGame.cpp,v $
+ * Revision 1.53  2006/10/17 15:28:01  southa
+ * Player collisions
+ *
  * Revision 1.52  2006/09/07 10:02:36  southa
  * Shader interface
  *
@@ -328,7 +331,6 @@ AdanaxisGame::Init(MushGameAppHandler& inAppHandler)
     
 	AdanaxisUtil::MissingSkinsCreate(Logic());
 
-    // MushcoreInterpreter::Sgl().Execute("loadsoundstream('adanaxis-music1')");
     MediaAudio::Sgl().AudioVolumeSet(m_config.AudioVolume() / 100.0);
     MediaAudio::Sgl().MusicVolumeSet(m_config.MusicVolume() / 100.0);
     if (m_config.MusicVolume() > 0)

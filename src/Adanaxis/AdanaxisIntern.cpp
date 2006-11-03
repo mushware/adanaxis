@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } mqRyosjSblx9ADjVCHc1/g
 /*
- * $Id: AdanaxisIntern.cpp,v 1.8 2006/10/30 17:03:50 southa Exp $
+ * $Id: AdanaxisIntern.cpp,v 1.9 2006/11/02 09:47:33 southa Exp $
  * $Log: AdanaxisIntern.cpp,v $
+ * Revision 1.9  2006/11/02 09:47:33  southa
+ * Player weapon control
+ *
  * Revision 1.8  2006/10/30 17:03:50  southa
  * Remnants creation
  *
@@ -55,14 +58,18 @@ AdanaxisIntern::AdanaxisIntern()
 {
 //%initialisations {
     m_klassAdanaxisEventFire = MushRubyValue(MushRubyUtil::Class("AdanaxisEventFire"));
+    m_klassAdanaxisEventKeyState = MushRubyValue(MushRubyUtil::Class("AdanaxisEventKeyState"));
     m_klassAdanaxisPiece = MushRubyValue(MushRubyUtil::Class("AdanaxisPiece"));
     m_klassAdanaxisPieceDeco = MushRubyValue(MushRubyUtil::Class("AdanaxisPieceDeco"));
+    m_klassAdanaxisPieceEffector = MushRubyValue(MushRubyUtil::Class("AdanaxisPieceEffector"));
     m_klassAdanaxisPieceItem = MushRubyValue(MushRubyUtil::Class("AdanaxisPieceItem"));
     m_klassAdanaxisPieceKhazi = MushRubyValue(MushRubyUtil::Class("AdanaxisPieceKhazi"));
     m_klassAdanaxisPiecePlayer = MushRubyValue(MushRubyUtil::Class("AdanaxisPiecePlayer"));
     m_klassAdanaxisPieceProjectile = MushRubyValue(MushRubyUtil::Class("AdanaxisPieceProjectile"));
+    m_ATm_keyNum = MushRubyIntern::SymbolID("@m_keyNum");
+    m_ATm_state = MushRubyIntern::SymbolID("@m_state");
     m_mCollisionEventConsume = MushRubyIntern::SymbolID("mCollisionEventConsume");
     m_mMenuRender = MushRubyIntern::SymbolID("mMenuRender");
     m_mRender = MushRubyIntern::SymbolID("mRender");
-//%initialisations } 66ac1e757f926515864d10d033bd70dd
+//%initialisations } 3ea3d1929424761bae82ac108ce93b8a
 }

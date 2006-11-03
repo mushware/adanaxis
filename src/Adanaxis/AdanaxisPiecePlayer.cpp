@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } gq+r6M5XzKqE/mgjgvunrQ
 /*
- * $Id: AdanaxisPiecePlayer.cpp,v 1.8 2006/10/30 17:03:51 southa Exp $
+ * $Id: AdanaxisPiecePlayer.cpp,v 1.9 2006/11/02 09:47:33 southa Exp $
  * $Log: AdanaxisPiecePlayer.cpp,v $
+ * Revision 1.9  2006/11/02 09:47:33  southa
+ * Player weapon control
+ *
  * Revision 1.8  2006/10/30 17:03:51  southa
  * Remnants creation
  *
@@ -232,20 +235,6 @@ AdanaxisPiecePlayer::KeyChangeHandle(MushGameLogic& ioLogic, bool inState, Mushw
 {
     switch (inKeyNum)
     {
-        case AdanaxisConfig::kKeyFire:
-        {
-            if (inState)
-            {
-                FireStateSet(FireState() | 1);
-            }
-            else
-            {
-                FireStateSet(FireState() & ~1);
-            }
-            ioLogic.QuickPlayerUplinkIsRequired();
-        }
-        break;
-            
         case AdanaxisConfig::kKeyScanner:
         {
             if (inState)
@@ -261,9 +250,10 @@ AdanaxisPiecePlayer::KeyChangeHandle(MushGameLogic& ioLogic, bool inState, Mushw
         break;
             
         default:
-            ostringstream message;
-            message << "Bad key number: " << inKeyNum;
-            throw MushcoreDataFail(message.str());
+            MushRubyValue event = AdanaxisEvents::Sgl().EventKeyStateMake();
+            AdanaxisEvents::Sgl().EventKeyStateAddState(event, inKeyNum, inState);
+            RubyEventHandle(event);
+
             break;
     }        
 }
@@ -389,10 +379,7 @@ AdanaxisPiecePlayer::FirePieceCreate(MushGameLogic& ioLogic, const MushGameMessa
 
 void
 AdanaxisPiecePlayer::FireConsume(MushGameLogic& ioLogic, const MushGameMessageFire& inMessage)
-{
-    MushRubyValue event = AdanaxisEvents::Sgl().EventFireMake(inMessage.Post());
-    RubyEventHandle(event);
-    
+{    
     AdanaxisVolatileData *pVolData = dynamic_cast<AdanaxisVolatileData *>(&ioLogic.VolatileData());
     
     if (pVolData != NULL)

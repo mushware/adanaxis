@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } ADSLqDTcV2OoWVkzmxyavQ
 /*
- * $Id$
- * $Log$
+ * $Id: AdanaxisEvents.cpp,v 1.1 2006/11/02 09:47:33 southa Exp $
+ * $Log: AdanaxisEvents.cpp,v $
+ * Revision 1.1  2006/11/02 09:47:33  southa
+ * Player weapon control
+ *
  */
 
 #include "AdanaxisEvents.h"
@@ -47,6 +50,22 @@ AdanaxisEvents::EventFireMake(const MushMeshPosticity& inPost)
     }
     
     return retVal;
+}
+
+MushRubyValue
+AdanaxisEvents::EventKeyStateMake(void)
+{
+    MushRubyValue retVal( MushRubyUtil::ClassNewInstance(AdanaxisIntern::Sgl().AdanaxisEventKeyState()) );
+    return retVal;
+}    
+
+void
+AdanaxisEvents::EventKeyStateAddState(MushRubyValue& ioEvent, Mushware::U32 inNum, bool inState)
+{
+    MushRubyValue keyNum( MushRubyUtil::InstanceVar(ioEvent.Value(), AdanaxisIntern::Sgl().ATm_keyNum()) );
+    MushRubyUtil::ArrayPush(keyNum, MushRubyValue(inNum));
+    MushRubyValue state( MushRubyUtil::InstanceVar(ioEvent.Value(), AdanaxisIntern::Sgl().ATm_state()) );
+    MushRubyUtil::ArrayPush(state, MushRubyValue(inState));
 }
 
 //%outOfLineFunctions {

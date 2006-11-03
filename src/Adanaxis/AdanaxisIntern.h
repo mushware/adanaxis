@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } WBiqbvbumO43Eps7fHh03A
 /*
- * $Id: AdanaxisIntern.h,v 1.11 2006/10/30 17:03:50 southa Exp $
+ * $Id: AdanaxisIntern.h,v 1.12 2006/11/02 09:47:33 southa Exp $
  * $Log: AdanaxisIntern.h,v $
+ * Revision 1.12  2006/11/02 09:47:33  southa
+ * Player weapon control
+ *
  * Revision 1.11  2006/10/30 17:03:50  southa
  * Remnants creation
  *
@@ -65,14 +68,18 @@
 /*
 :data1begin
   ids = %w{
+    @m_keyNum
+    @m_state
     mCollisionEventConsume
     mMenuRender
     mRender
   }
   classes = %w{
     AdanaxisEventFire
+    AdanaxisEventKeyState
     AdanaxisPiece
     AdanaxisPieceDeco
+    AdanaxisPieceEffector
     AdanaxisPieceItem
     AdanaxisPieceKhazi
     AdanaxisPiecePlayer
@@ -88,27 +95,35 @@ public:
 //%declarations {
 public:
     MushRubyValue& AdanaxisEventFire(void) { return m_klassAdanaxisEventFire; }
+    MushRubyValue& AdanaxisEventKeyState(void) { return m_klassAdanaxisEventKeyState; }
     MushRubyValue& AdanaxisPiece(void) { return m_klassAdanaxisPiece; }
     MushRubyValue& AdanaxisPieceDeco(void) { return m_klassAdanaxisPieceDeco; }
+    MushRubyValue& AdanaxisPieceEffector(void) { return m_klassAdanaxisPieceEffector; }
     MushRubyValue& AdanaxisPieceItem(void) { return m_klassAdanaxisPieceItem; }
     MushRubyValue& AdanaxisPieceKhazi(void) { return m_klassAdanaxisPieceKhazi; }
     MushRubyValue& AdanaxisPiecePlayer(void) { return m_klassAdanaxisPiecePlayer; }
     MushRubyValue& AdanaxisPieceProjectile(void) { return m_klassAdanaxisPieceProjectile; }
+    Mushware::tRubyID ATm_keyNum(void) { return m_ATm_keyNum; }
+    Mushware::tRubyID ATm_state(void) { return m_ATm_state; }
     Mushware::tRubyID mCollisionEventConsume(void) { return m_mCollisionEventConsume; }
     Mushware::tRubyID mMenuRender(void) { return m_mMenuRender; }
     Mushware::tRubyID mRender(void) { return m_mRender; }
 private:
     MushRubyValue m_klassAdanaxisEventFire;
+    MushRubyValue m_klassAdanaxisEventKeyState;
     MushRubyValue m_klassAdanaxisPiece;
     MushRubyValue m_klassAdanaxisPieceDeco;
+    MushRubyValue m_klassAdanaxisPieceEffector;
     MushRubyValue m_klassAdanaxisPieceItem;
     MushRubyValue m_klassAdanaxisPieceKhazi;
     MushRubyValue m_klassAdanaxisPiecePlayer;
     MushRubyValue m_klassAdanaxisPieceProjectile;
+    Mushware::tRubyID m_ATm_keyNum;
+    Mushware::tRubyID m_ATm_state;
     Mushware::tRubyID m_mCollisionEventConsume;
     Mushware::tRubyID m_mMenuRender;
     Mushware::tRubyID m_mRender;
-//%declarations } d581e010e4aa79f47514168eb7dca763
+//%declarations } 0e18b234599f44d3a1694d72de1f4ace
 
 //%classPrototypes {
 public:

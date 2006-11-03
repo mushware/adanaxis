@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } ZnwDjEM1+TPkZ9HrL5mg7A
 /*
- * $Id: MushRubyUtil.h,v 1.15 2006/10/04 13:35:25 southa Exp $
+ * $Id: MushRubyUtil.h,v 1.16 2006/10/12 22:04:49 southa Exp $
  * $Log: MushRubyUtil.h,v $
+ * Revision 1.16  2006/10/12 22:04:49  southa
+ * Collision events
+ *
  * Revision 1.15  2006/10/04 13:35:25  southa
  * Selective targetting
  *
@@ -132,6 +135,7 @@ public:
     static void HashValueSet(Mushware::tRubyValue inHash, Mushware::tRubyValue inKey, Mushware::tRubyValue inValue); 
     static Mushware::tRubyValue SymbolToValue(Mushware::tRubyID inSymbol);
     static MushRubyValue GlobalVar(const std::string& inName);
+    static void ArrayPush(const MushRubyValue& inArray, const MushRubyValue& inValue);
     
 private:
 	static Mushware::tRubyValue HashHandler(Mushware::tRubyValue inArray, Mushware::tRubyValue inArg);

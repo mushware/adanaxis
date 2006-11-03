@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } gSaMBKSS/9FVf/ypP8x5kA
 /*
- * $Id: MushRubyUtil.cpp,v 1.16 2006/10/04 13:35:25 southa Exp $
+ * $Id: MushRubyUtil.cpp,v 1.17 2006/10/12 22:04:49 southa Exp $
  * $Log: MushRubyUtil.cpp,v $
+ * Revision 1.17  2006/10/12 22:04:49  southa
+ * Collision events
+ *
  * Revision 1.16  2006/10/04 13:35:25  southa
  * Selective targetting
  *
@@ -383,5 +386,11 @@ MushRubyValue
 MushRubyUtil::GlobalVar(const std::string& inName)
 {
     return MushRubyValue(rb_gv_get(inName.c_str()));
+}
+
+void
+MushRubyUtil::ArrayPush(const MushRubyValue& inArray, const MushRubyValue& inValue)
+{
+    rb_ary_push(inArray.Value(), inValue.Value());
 }
 

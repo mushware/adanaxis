@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } VNan5sNdD8AXrUJEgevfNg
 /*
- * $Id: AdanaxisSaveData.cpp,v 1.14 2006/08/01 17:21:29 southa Exp $
+ * $Id: AdanaxisSaveData.cpp,v 1.15 2006/10/19 15:41:36 southa Exp $
  * $Log: AdanaxisSaveData.cpp,v $
+ * Revision 1.15  2006/10/19 15:41:36  southa
+ * Item handling
+ *
  * Revision 1.14  2006/08/01 17:21:29  southa
  * River demo
  *
@@ -107,6 +110,7 @@ AdanaxisSaveData::AutoPrint(std::ostream& ioOut) const
     ioOut << "projectileList=" << m_projectileList << ", ";
     ioOut << "khaziList=" << m_khaziList << ", ";
     ioOut << "itemList=" << m_itemList << ", ";
+    ioOut << "effectorList=" << m_effectorList << ", ";
     ioOut << "clockStarted=" << m_clockStarted << ", ";
     ioOut << "spaceName=" << m_spaceName;
     ioOut << "]";
@@ -131,6 +135,10 @@ AdanaxisSaveData::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string
     else if (inTagStr == "itemList")
     {
         ioIn >> m_itemList;
+    }
+    else if (inTagStr == "effectorList")
+    {
+        ioIn >> m_effectorList;
     }
     else if (inTagStr == "clockStarted")
     {
@@ -160,9 +168,11 @@ AdanaxisSaveData::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_khaziList;
     ioOut.TagSet("itemList");
     ioOut << m_itemList;
+    ioOut.TagSet("effectorList");
+    ioOut << m_effectorList;
     ioOut.TagSet("clockStarted");
     ioOut << m_clockStarted;
     ioOut.TagSet("spaceName");
     ioOut << m_spaceName;
 }
-//%outOfLineFunctions } UtWldz760NMTEbtmRIYKKg
+//%outOfLineFunctions } s8VAd+n9rapL63f+np+ZHw

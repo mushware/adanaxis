@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } 3LuiErcM0vO3wOyNDCFVeQ
 /*
- * $Id: AdanaxisLogic.h,v 1.20 2006/10/19 15:41:35 southa Exp $
+ * $Id: AdanaxisLogic.h,v 1.21 2006/10/20 15:38:52 southa Exp $
  * $Log: AdanaxisLogic.h,v $
+ * Revision 1.21  2006/10/20 15:38:52  southa
+ * Item collection
+ *
  * Revision 1.20  2006/10/19 15:41:35  southa
  * Item handling
  *
@@ -109,6 +112,7 @@ public:
                                    const std::string& inObjType, const std::string& inExcludeID) const;
     virtual void ProjectilesMove(void);
     virtual void DecoMove(void);
+    virtual void EffectorsMove(void);
     virtual void ItemsMove(void);
     virtual void KhaziMove(void);
     virtual void MoveSequence(void);
@@ -121,8 +125,7 @@ public:
     virtual void KhaziPlayersFullCollide(void);
     virtual void ItemsPlayersFullCollide(void);
     virtual void ProjectilesItemsFullCollide(void);
-
-    
+    virtual void EffectorsFullCollide(void);    
     virtual void MenuModeEnter(void);
     
     virtual void CollisionConsume(MushGameLogic& ioLogic, const MushGameMessageCollision& inMessage);

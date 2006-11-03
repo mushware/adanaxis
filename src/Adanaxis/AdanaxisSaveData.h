@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } JnCiOhBV5nBVM4ynsgQMsQ
 /*
- * $Id: AdanaxisSaveData.h,v 1.15 2006/08/01 17:21:29 southa Exp $
+ * $Id: AdanaxisSaveData.h,v 1.16 2006/10/19 15:41:36 southa Exp $
  * $Log: AdanaxisSaveData.h,v $
+ * Revision 1.16  2006/10/19 15:41:36  southa
+ * Item handling
+ *
  * Revision 1.15  2006/08/01 17:21:29  southa
  * River demo
  *
@@ -72,6 +75,7 @@
 
 #include "AdanaxisStandard.h"
 
+#include "AdanaxisPieceEffector.h"
 #include "AdanaxisPieceItem.h"
 #include "AdanaxisPieceKhazi.h"
 #include "AdanaxisPieceProjectile.h"
@@ -90,6 +94,8 @@ public:
     typedef MushcoreMaptor<tKhazi> tKhaziList;
     typedef AdanaxisPieceItem tItem;
     typedef MushcoreMaptor<tItem> tItemList;
+    typedef AdanaxisPieceEffector tEffector;
+    typedef MushcoreMaptor<tEffector> tEffectorList;
 
     AdanaxisSaveData();
     virtual ~AdanaxisSaveData() {}
@@ -98,11 +104,14 @@ public:
     const tProjectile& Projectile(Mushware::U32 inNum) const { return m_projectileList.Get(inNum); }
     tKhazi& Khazi(Mushware::U32 inNum) { return m_khaziList.Get(inNum); }
     const tKhazi& Khazi(Mushware::U32 inNum) const { return m_khaziList.Get(inNum); }
+    tEffector& Effector(Mushware::U32 inNum) { return m_effectorList.Get(inNum); }
+    const tEffector& Effector(Mushware::U32 inNum) const { return m_effectorList.Get(inNum); }
     
 private:
     tProjectileList m_projectileList; //:read :wref
     tKhaziList m_khaziList; //:read :wref
     tItemList m_itemList; //:read :wref
+    tEffectorList m_effectorList; //:read :wref
     bool m_clockStarted; //:readwrite
     std::string m_spaceName; //:readwrite
     
@@ -117,6 +126,9 @@ public:
     const tItemList& ItemList(void) const { return m_itemList; }
     // Writable reference for m_itemList
     tItemList& ItemListWRef(void) { return m_itemList; }
+    const tEffectorList& EffectorList(void) const { return m_effectorList; }
+    // Writable reference for m_effectorList
+    tEffectorList& EffectorListWRef(void) { return m_effectorList; }
     const bool& ClockStarted(void) const { return m_clockStarted; }
     void ClockStartedSet(const bool& inValue) { m_clockStarted=inValue; }
     const std::string& SpaceName(void) const { return m_spaceName; }
@@ -128,7 +140,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } tuX3EOV/byI/TwAaepXapA
+//%classPrototypes } SR+c1MnsalRIIV2ydcFNHw
 };
 
 //%inlineHeader {

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } bC49LKe3G5tsyGqAVa5gyw
 /*
- * $Id: MushGameAppHandler.cpp,v 1.18 2006/08/03 15:07:58 southa Exp $
+ * $Id: MushGameAppHandler.cpp,v 1.19 2006/11/02 12:23:22 southa Exp $
  * $Log: MushGameAppHandler.cpp,v $
+ * Revision 1.19  2006/11/02 12:23:22  southa
+ * Weapon selection
+ *
  * Revision 1.18  2006/08/03 15:07:58  southa
  * Cache purge fix
  *
@@ -507,7 +510,21 @@ MushGameAppHandler::KeyTicker(Mushware::tMsec inTimeslice)
         for (U32 j=0; j<m_keyDefs[i].NumKeyValues(); ++j)
         {
             U32 keyValue = keyDefRef.KeyValue(j);
-            anyKeyDown = anyKeyDown || KeyStateGet(keyValue);
+            if (keyValue == MediaKeyboard::kKeyMouse3 ||
+                keyValue == MediaKeyboard::kKeyMouse4)
+            {
+                /* Mouse wheel events are transient and disappear too quickly
+                 * to be caught by the ticker.  Since they're always transient
+                 * (never 'held down') we can take the latched state to ensure
+                 * that the event is reported as a press and immediate release
+                 * on the next pass
+                 */
+                anyKeyDown = anyKeyDown || LatchedKeyStateTake(keyValue);
+            }
+            else
+            {
+                anyKeyDown = anyKeyDown || KeyStateGet(keyValue);
+            }
         }
         if (anyKeyDown != keyDefRef.State())
         {

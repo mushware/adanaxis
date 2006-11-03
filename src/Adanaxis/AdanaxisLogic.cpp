@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } Mac7dWHONvkZIg39sQnwww
 /*
- * $Id: AdanaxisLogic.cpp,v 1.28 2006/10/19 15:41:35 southa Exp $
+ * $Id: AdanaxisLogic.cpp,v 1.29 2006/10/20 15:38:52 southa Exp $
  * $Log: AdanaxisLogic.cpp,v $
+ * Revision 1.29  2006/10/20 15:38:52  southa
+ * Item collection
+ *
  * Revision 1.28  2006/10/19 15:41:35  southa
  * Item handling
  *
@@ -220,6 +223,27 @@ AdanaxisLogic::DecoMove(void)
 }
 
 void
+AdanaxisLogic::EffectorsMove(void)
+{
+    typedef AdanaxisSaveData::tEffectorList tEffectorList;
+    
+    tEffectorList::iterator objEndIter = SaveData().EffectorListWRef().end();
+    for (tEffectorList::iterator p = SaveData().EffectorListWRef().begin(); p != objEndIter;)
+    {
+        p->Move(*this, 1);
+        
+        if (p->ExpireFlag())
+        {
+            SaveData().EffectorListWRef().Delete(p++);
+        }
+        else
+        {
+            ++p;   
+        }
+    }
+}
+
+void
 AdanaxisLogic::ItemsMove(void)
 {
     typedef AdanaxisSaveData::tItemList tItemList;
@@ -286,8 +310,6 @@ AdanaxisLogic::CollisionHandle(MushGamePiece *iopPiece1, MushGamePiece *iopPiece
     MushRubyValue collObj(collMesg.RubyObjectMake());
     
     RubyLogic().Call(AdanaxisIntern::Sgl().mCollisionEventConsume(), collObj);
-    
-    // CopyAndBroadcast(collMesg);
 }
 
 void
@@ -503,6 +525,63 @@ AdanaxisLogic::ProjectilesItemsFullCollide(void)
 }
 
 void
+AdanaxisLogic::EffectorsFullCollide(void)
+{
+    typedef AdanaxisSaveData::tEffectorList tList1;
+    typedef AdanaxisSaveData::tKhaziList tList2;
+    typedef AdanaxisSaveData::tPlayersList tList3;
+    
+    const tList1& list1Ref = SaveData().EffectorList();
+    const tList2& list2Ref = SaveData().KhaziList();
+    const tList3& list3Ref = SaveData().PlayersList();
+    
+    tList1::const_iterator list1EndIter = list1Ref.end();
+    tList2::const_iterator list2EndIter = list2Ref.end();
+    tList3::const_iterator list3EndIter = list3Ref.end();
+    
+    for (tList1::const_iterator p = list1Ref.begin(); p != list1EndIter; ++p)
+    {
+        if (!p->ExpireFlag())
+        {
+            for (tList2::const_iterator q = list2Ref.begin(); q != list2EndIter; ++q)
+            {
+                if (!q->ExpireFlag())
+                {
+                    MushCollisionInfo collInfo;
+                    MushCollisionResolver::Sgl().Resolve(collInfo, *p, *q);
+                    if (collInfo.SeparatingDistance() <= 0)
+                    {
+                        collInfo.ObjectName1Set(p->Id());
+                        collInfo.ObjectName2Set(q->Id());
+                        collInfo.ObjectNamesValidSet(true);
+                        
+                        CollisionHandle(&*p, &*q, collInfo);
+                    }
+                }
+            }
+            
+            for (tList3::const_iterator q = list3Ref.begin(); q != list3EndIter; ++q)
+            {
+                if (!q->ExpireFlag())
+                {
+                    MushCollisionInfo collInfo;
+                    MushCollisionResolver::Sgl().Resolve(collInfo, *p, *q);
+                    if (collInfo.SeparatingDistance() <= 0)
+                    {
+                        collInfo.ObjectName1Set(p->Id());
+                        collInfo.ObjectName2Set(q->Id());
+                        collInfo.ObjectNamesValidSet(true);
+                        
+                        CollisionHandle(&*p, &*q, collInfo);
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+void
 AdanaxisLogic::MoveSequence(void)
 {
     MushGameLogic::MoveSequence();
@@ -510,7 +589,8 @@ AdanaxisLogic::MoveSequence(void)
     ProjectilesMove();
     DecoMove();
     ItemsMove();
-}
+    EffectorsMove();
+} 
 
 void
 AdanaxisLogic::CollideSequence(void)
@@ -522,6 +602,11 @@ AdanaxisLogic::CollideSequence(void)
     KhaziPlayersFullCollide();
     ItemsPlayersFullCollide();
     ProjectilesItemsFullCollide();
+    
+    /* Effectors must be last.  Only effectors can be created in the previous
+     * passes, and no objects can be created in the effectors pass
+    */
+    EffectorsFullCollide();
 }
 
 void
