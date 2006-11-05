@@ -2720,6 +2720,9 @@
 		7A59869B0AE2836C00A33406 /* AdanaxisEffects.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AdanaxisEffects.rb; sourceTree = "<group>"; };
 		7A59A29B0AE7BA2A0089517D /* MushSkinSingular.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushSkinSingular.h; sourceTree = "<group>"; };
 		7A59A29C0AE7BA2B0089517D /* MushSkinSingular.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushSkinSingular.cpp; sourceTree = "<group>"; };
+		7A59A5BE0AFDBBBC00ABD3E5 /* ProcessMush.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ProcessMush.rb; sourceTree = "<group>"; };
+		7A59A5C50AFDBDB100ABD3E5 /* MakeMush.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = MakeMush.rb; sourceTree = "<group>"; };
+		7A59A5D60AFDC15B00ABD3E5 /* FileMush.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = FileMush.rb; sourceTree = "<group>"; };
 		7A5A571C0AF6484600444AC6 /* AdanaxisRemnant.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AdanaxisRemnant.rb; sourceTree = "<group>"; };
 		7A5A572A0AF653D800444AC6 /* AdanaxisPiece.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AdanaxisPiece.rb; sourceTree = "<group>"; };
 		7A5A573B0AF655C900444AC6 /* AdanaxisPiece.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdanaxisPiece.h; sourceTree = "<group>"; };
@@ -5440,12 +5443,14 @@
 				7A6CE19E05A58DF000777D9B /* autogen.pl */,
 				7A8A6E7F067C5D7B0025D379 /* COBTranslate.pl */,
 				7AB661DE083BEDF0009D477D /* CopyLibs.sh */,
+				7A59A5D60AFDC15B00ABD3E5 /* FileMush.rb */,
 				7A5A5B3A0AD4FD410066FCA2 /* ImageProcess.rb */,
 				7A97AAF70A653A6600921057 /* MakeDocs.rb */,
 				7A6CE1A005A58DF000777D9B /* prebuild.sh */,
 				7A5A5B3D0AD4FD860066FCA2 /* ProcessAnimation.rb */,
 				7A5894110AE6459100CD90EA /* ProcessCosmos.rb */,
 				7A591FFC0ADA99290087D766 /* ProcessIntern.rb */,
+				7A59A5BE0AFDBBBC00ABD3E5 /* ProcessMush.rb */,
 				7A6CE1A105A58DF000777D9B /* SourceConditioner.pl */,
 				7A6CE1A205A58DF000777D9B /* SourceProcess.pm */,
 				7A3DCD3C0AD2AC4000E03BFA /* SourceProcess.rb */,
@@ -5561,6 +5566,7 @@
 		7A70D1F7085DF8870055C6FB /* waves */ = {
 			isa = PBXGroup;
 			children = (
+				7A59A5C50AFDBDB100ABD3E5 /* MakeMush.rb */,
 			);
 			path = waves;
 			sourceTree = "<group>";
