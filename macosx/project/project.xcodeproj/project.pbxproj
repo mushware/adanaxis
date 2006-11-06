@@ -146,6 +146,27 @@
 		7A591FF90ADA98A80087D766 /* MushGameIntern.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A591FF70ADA98A80087D766 /* MushGameIntern.cpp */; };
 		7A5944750AE7841200DFF4CD /* AdanaxisPieceItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A5944730AE7841200DFF4CD /* AdanaxisPieceItem.h */; };
 		7A5944760AE7841200DFF4CD /* AdanaxisPieceItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A5944740AE7841200DFF4CD /* AdanaxisPieceItem.cpp */; };
+		7A5949C40AFF2DEF00A71750 /* MushFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A5949C20AFF2DEF00A71750 /* MushFile.cpp */; };
+		7A5949C50AFF2DEF00A71750 /* MushFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A5949C30AFF2DEF00A71750 /* MushFile.h */; };
+		7A5949CE0AFF2F0700A71750 /* MushFileFilename.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A5949CC0AFF2F0600A71750 /* MushFileFilename.h */; };
+		7A5949CF0AFF2F0700A71750 /* MushFileFilename.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A5949CD0AFF2F0700A71750 /* MushFileFilename.cpp */; };
+		7A5949D40AFF2F9600A71750 /* MushFileStandard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A5949D30AFF2F8900A71750 /* MushFileStandard.cpp */; };
+		7A5949D50AFF2F9700A71750 /* MushFileStandard.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A5949D20AFF2F8900A71750 /* MushFileStandard.h */; };
+		7A5949D90AFF301500A71750 /* mushMushFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A5949D80AFF301500A71750 /* mushMushFile.h */; };
+		7A5949E00AFF32A700A71750 /* MushFileFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A5949DE0AFF32A700A71750 /* MushFileFile.h */; };
+		7A5949E10AFF32A700A71750 /* MushFileFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A5949DF0AFF32A700A71750 /* MushFileFile.cpp */; };
+		7A5949FF0AFF3A4500A71750 /* MediaRWops.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A5949FD0AFF3A4500A71750 /* MediaRWops.h */; };
+		7A594A000AFF3A4500A71750 /* MediaRWops.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A5949FE0AFF3A4500A71750 /* MediaRWops.cpp */; };
+		7A594AB60AFF455800A71750 /* MushFileLibrary.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A594AB40AFF455800A71750 /* MushFileLibrary.h */; };
+		7A594AB70AFF455800A71750 /* MushFileLibrary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A594AB50AFF455800A71750 /* MushFileLibrary.cpp */; };
+		7A594ABC0AFF474800A71750 /* MushFileRuby.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A594ABA0AFF474800A71750 /* MushFileRuby.h */; };
+		7A594ABD0AFF474800A71750 /* MushFileRuby.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A594ABB0AFF474800A71750 /* MushFileRuby.cpp */; };
+		7A594AC90AFF4AE600A71750 /* MushFileDirectory.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A594AC70AFF4AE600A71750 /* MushFileDirectory.h */; };
+		7A594ACA0AFF4AE600A71750 /* MushFileDirectory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A594AC80AFF4AE600A71750 /* MushFileDirectory.cpp */; };
+		7A594B720AFF53FC00A71750 /* MushFileDirEntry.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A594B700AFF53FC00A71750 /* MushFileDirEntry.h */; };
+		7A594B730AFF53FC00A71750 /* MushFileDirEntry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A594B710AFF53FC00A71750 /* MushFileDirEntry.cpp */; };
+		7A594B7A0AFF555400A71750 /* MushFileAccessor.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A594B780AFF555400A71750 /* MushFileAccessor.h */; };
+		7A594B7B0AFF555400A71750 /* MushFileAccessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A594B790AFF555400A71750 /* MushFileAccessor.cpp */; };
 		7A59A29D0AE7BA2B0089517D /* MushSkinSingular.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A59A29B0AE7BA2A0089517D /* MushSkinSingular.h */; };
 		7A59A29E0AE7BA2B0089517D /* MushSkinSingular.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A59A29C0AE7BA2B0089517D /* MushSkinSingular.cpp */; };
 		7A5A573D0AF655C900444AC6 /* AdanaxisPiece.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A5A573B0AF655C900444AC6 /* AdanaxisPiece.h */; };
@@ -2711,6 +2732,27 @@
 		7A5944700AE7837600DFF4CD /* AdanaxisPieceItem.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AdanaxisPieceItem.rb; sourceTree = "<group>"; };
 		7A5944730AE7841200DFF4CD /* AdanaxisPieceItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdanaxisPieceItem.h; sourceTree = "<group>"; };
 		7A5944740AE7841200DFF4CD /* AdanaxisPieceItem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AdanaxisPieceItem.cpp; sourceTree = "<group>"; };
+		7A5949C20AFF2DEF00A71750 /* MushFile.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = MushFile.cpp; sourceTree = "<group>"; };
+		7A5949C30AFF2DEF00A71750 /* MushFile.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = MushFile.h; sourceTree = "<group>"; };
+		7A5949CC0AFF2F0600A71750 /* MushFileFilename.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushFileFilename.h; sourceTree = "<group>"; };
+		7A5949CD0AFF2F0700A71750 /* MushFileFilename.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushFileFilename.cpp; sourceTree = "<group>"; };
+		7A5949D20AFF2F8900A71750 /* MushFileStandard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushFileStandard.h; sourceTree = "<group>"; };
+		7A5949D30AFF2F8900A71750 /* MushFileStandard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushFileStandard.cpp; sourceTree = "<group>"; };
+		7A5949D80AFF301500A71750 /* mushMushFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mushMushFile.h; sourceTree = "<group>"; };
+		7A5949DE0AFF32A700A71750 /* MushFileFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushFileFile.h; sourceTree = "<group>"; };
+		7A5949DF0AFF32A700A71750 /* MushFileFile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushFileFile.cpp; sourceTree = "<group>"; };
+		7A5949FD0AFF3A4500A71750 /* MediaRWops.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaRWops.h; sourceTree = "<group>"; };
+		7A5949FE0AFF3A4500A71750 /* MediaRWops.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MediaRWops.cpp; sourceTree = "<group>"; };
+		7A594AB40AFF455800A71750 /* MushFileLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushFileLibrary.h; sourceTree = "<group>"; };
+		7A594AB50AFF455800A71750 /* MushFileLibrary.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushFileLibrary.cpp; sourceTree = "<group>"; };
+		7A594ABA0AFF474800A71750 /* MushFileRuby.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushFileRuby.h; sourceTree = "<group>"; };
+		7A594ABB0AFF474800A71750 /* MushFileRuby.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushFileRuby.cpp; sourceTree = "<group>"; };
+		7A594AC70AFF4AE600A71750 /* MushFileDirectory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushFileDirectory.h; sourceTree = "<group>"; };
+		7A594AC80AFF4AE600A71750 /* MushFileDirectory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushFileDirectory.cpp; sourceTree = "<group>"; };
+		7A594B700AFF53FC00A71750 /* MushFileDirEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushFileDirEntry.h; sourceTree = "<group>"; };
+		7A594B710AFF53FC00A71750 /* MushFileDirEntry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushFileDirEntry.cpp; sourceTree = "<group>"; };
+		7A594B780AFF555400A71750 /* MushFileAccessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushFileAccessor.h; sourceTree = "<group>"; };
+		7A594B790AFF555400A71750 /* MushFileAccessor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushFileAccessor.cpp; sourceTree = "<group>"; };
 		7A59645C0ACE8CEA007FAA8F /* AdanaxisAIKhazi.rb */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = text.script.ruby; path = AdanaxisAIKhazi.rb; sourceTree = "<group>"; tabWidth = 2; };
 		7A59646D0ACE93F9007FAA8F /* MushUtil.rb */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = text.script.ruby; path = MushUtil.rb; sourceTree = "<group>"; tabWidth = 2; };
 		7A59656E0A9DB0F4002A966B /* AdanaxisEvents.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AdanaxisEvents.rb; sourceTree = "<group>"; };
@@ -4369,6 +4411,31 @@
 			path = MushMeshRuby;
 			sourceTree = "<group>";
 		};
+		7A5949C10AFF2DEF00A71750 /* MushFile */ = {
+			isa = PBXGroup;
+			children = (
+				7A5949C20AFF2DEF00A71750 /* MushFile.cpp */,
+				7A5949C30AFF2DEF00A71750 /* MushFile.h */,
+				7A594B790AFF555400A71750 /* MushFileAccessor.cpp */,
+				7A594B780AFF555400A71750 /* MushFileAccessor.h */,
+				7A594B710AFF53FC00A71750 /* MushFileDirEntry.cpp */,
+				7A594B700AFF53FC00A71750 /* MushFileDirEntry.h */,
+				7A594AC80AFF4AE600A71750 /* MushFileDirectory.cpp */,
+				7A594AC70AFF4AE600A71750 /* MushFileDirectory.h */,
+				7A5949DF0AFF32A700A71750 /* MushFileFile.cpp */,
+				7A5949DE0AFF32A700A71750 /* MushFileFile.h */,
+				7A5949CD0AFF2F0700A71750 /* MushFileFilename.cpp */,
+				7A5949CC0AFF2F0600A71750 /* MushFileFilename.h */,
+				7A594AB50AFF455800A71750 /* MushFileLibrary.cpp */,
+				7A594AB40AFF455800A71750 /* MushFileLibrary.h */,
+				7A594ABB0AFF474800A71750 /* MushFileRuby.cpp */,
+				7A594ABA0AFF474800A71750 /* MushFileRuby.h */,
+				7A5949D30AFF2F8900A71750 /* MushFileStandard.cpp */,
+				7A5949D20AFF2F8900A71750 /* MushFileStandard.h */,
+			);
+			path = MushFile;
+			sourceTree = "<group>";
+		};
 		7A5B54FC0A52939E00780DEA /* libz */ = {
 			isa = PBXGroup;
 			children = (
@@ -4476,6 +4543,7 @@
 				7A62B7E605A49D05002A5F1C /* MeshMover */,
 				7A224D95088E788F0078A295 /* MushCollision */,
 				7A62B7EF05A49D05002A5F1C /* Mushcore */,
+				7A5949C10AFF2DEF00A71750 /* MushFile */,
 				7AD23B9B085EFF870017859F /* MushGame */,
 				7A66E36805FB240500135328 /* MushGL */,
 				7A62B84905A49D05002A5F1C /* MushMesh */,
@@ -4512,6 +4580,7 @@
 				7ACC31F105AB36AD001A0873 /* mushMushcore.h */,
 				7ACC32F705AB4141001A0873 /* mushMushcoreSTL.h */,
 				7ACC330005AB4150001A0873 /* mushMushcoreIO.h */,
+				7A5949D80AFF301500A71750 /* mushMushFile.h */,
 				7A66E42505FB25C500135328 /* mushMushGL.h */,
 				7AD23BA4085F007E0017859F /* mushMushGame.h */,
 				7A66E2A605FB1F3800135328 /* mushMushMesh.h */,
@@ -4784,6 +4853,8 @@
 				7A6119F70A5E440100AE9F3A /* MediaKeyboard.h */,
 				7A61AEEE0A63EB590053DE68 /* MediaJoystick.cpp */,
 				7A61AEED0A63EB590053DE68 /* MediaJoystick.h */,
+				7A5949FE0AFF3A4500A71750 /* MediaRWops.cpp */,
+				7A5949FD0AFF3A4500A71750 /* MediaRWops.h */,
 				7A62B7DD05A49D05002A5F1C /* MediaSDL.cpp */,
 				7A62B7DE05A49D05002A5F1C /* MediaSDL.h */,
 				7A62B7DF05A49D05002A5F1C /* MediaSound.cpp */,
@@ -7219,6 +7290,17 @@
 				7A5A573D0AF655C900444AC6 /* AdanaxisPiece.h in Headers */,
 				7A59037C0AF9E07200262221 /* AdanaxisEvents.h in Headers */,
 				7A5A708E0AFBB3E000AA6637 /* AdanaxisPieceEffector.h in Headers */,
+				7A5949C50AFF2DEF00A71750 /* MushFile.h in Headers */,
+				7A5949CE0AFF2F0700A71750 /* MushFileFilename.h in Headers */,
+				7A5949D50AFF2F9700A71750 /* MushFileStandard.h in Headers */,
+				7A5949D90AFF301500A71750 /* mushMushFile.h in Headers */,
+				7A5949E00AFF32A700A71750 /* MushFileFile.h in Headers */,
+				7A5949FF0AFF3A4500A71750 /* MediaRWops.h in Headers */,
+				7A594AB60AFF455800A71750 /* MushFileLibrary.h in Headers */,
+				7A594ABC0AFF474800A71750 /* MushFileRuby.h in Headers */,
+				7A594AC90AFF4AE600A71750 /* MushFileDirectory.h in Headers */,
+				7A594B720AFF53FC00A71750 /* MushFileDirEntry.h in Headers */,
+				7A594B7A0AFF555400A71750 /* MushFileAccessor.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9044,6 +9126,16 @@
 				7A5A573E0AF655C900444AC6 /* AdanaxisPiece.cpp in Sources */,
 				7A59037D0AF9E07300262221 /* AdanaxisEvents.cpp in Sources */,
 				7A5A708F0AFBB3E000AA6637 /* AdanaxisPieceEffector.cpp in Sources */,
+				7A5949C40AFF2DEF00A71750 /* MushFile.cpp in Sources */,
+				7A5949CF0AFF2F0700A71750 /* MushFileFilename.cpp in Sources */,
+				7A5949D40AFF2F9600A71750 /* MushFileStandard.cpp in Sources */,
+				7A5949E10AFF32A700A71750 /* MushFileFile.cpp in Sources */,
+				7A594A000AFF3A4500A71750 /* MediaRWops.cpp in Sources */,
+				7A594AB70AFF455800A71750 /* MushFileLibrary.cpp in Sources */,
+				7A594ABD0AFF474800A71750 /* MushFileRuby.cpp in Sources */,
+				7A594ACA0AFF4AE600A71750 /* MushFileDirectory.cpp in Sources */,
+				7A594B730AFF53FC00A71750 /* MushFileDirEntry.cpp in Sources */,
+				7A594B7B0AFF555400A71750 /* MushFileAccessor.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

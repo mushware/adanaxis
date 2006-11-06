@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } vc39BxijmUcLgo29BoIh0w
 /*
- * $Id: MediaStandard.h,v 1.13 2005/05/19 13:02:08 southa Exp $
+ * $Id: MediaStandard.h,v 1.14 2006/06/01 15:39:14 southa Exp $
  * $Log: MediaStandard.h,v $
+ * Revision 1.14  2006/06/01 15:39:14  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.13  2005/05/19 13:02:08  southa
  * Mac release work
  *
@@ -67,6 +70,9 @@
  */
 
 #include "mushMushcore.h"
+
+#include "API/mushMushFile.h"
+
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

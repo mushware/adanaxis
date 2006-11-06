@@ -16,8 +16,11 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-# $Id$
-# $Log$
+# $Id: FileMush.rb,v 1.1 2006/11/05 09:32:13 southa Exp $
+# $Log: FileMush.rb,v $
+# Revision 1.1  2006/11/05 09:32:13  southa
+# Mush file generation
+#
 
 class FileMush
   @@c_idString = 'MUSH'
@@ -49,6 +52,10 @@ EOS
         @m_file = File.open(@m_filename, "wb")
         @m_directory = []
     end
+  end
+  
+  def mAlign(inValue)
+    4 * ((inValue + 3) / 4)
   end
   
   def mNumber(inNum)
@@ -121,8 +128,8 @@ EOS
       @m_directory.each do |dirEntry|
         chunk << mString(dirEntry[:dest_filename])
         chunk << mNumber(offset)
-        effectiveSize = dirEntry[:filesize]
-        offset += effectiveSize
+        chunk << mNumber(dirEntry[:filesize])
+        offset += mAlign(dirEntry[:filesize])
       end
     end
   end
@@ -174,8 +181,29 @@ EOS
     puts
   end
 
-  def mDirectoryInfo
-    ["Directory info:"]
+  def mNumberTake(ioData)
+    retVal = ioData.unpack('LL')[1]
+    ioData[0..7] = ''
+    retVal
+  end
+
+  def mStringTake(ioData)
+    stringLength = mNumberTake(ioData)
+    retVal = ioData[0..stringLength]
+    ioData[0..mAlign(stringLength)-1] = ''
+    retVal
+  end
+
+  def mDirectoryInfo(inContent)
+    retVal = []
+    content = inContent.dup
+    while content.size > 0
+      filename = mStringTake(content)
+      offset = mNumberTake(content)
+      size = mNumberTake(content)
+      retVal << "Filename: #{filename} size: #{size} offset: #{offset}"
+    end
+    retVal
   end
 
   def mChunkInfo
@@ -190,7 +218,7 @@ EOS
       when @@c_chunkData
         retVal << "(Data area)"
       when @@c_chunkDirectory
-        retVal += mDirectoryInfo
+        retVal += mDirectoryInfo(content)
       when @@c_chunkMessage
         retVal << content
       when @@c_chunkSequence

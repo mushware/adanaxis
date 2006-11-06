@@ -1,6 +1,9 @@
 # Target definition file
-# $Id: adanaxis.def,v 1.12 2006/08/03 15:07:58 southa Exp $
+# $Id: adanaxis.def,v 1.13 2006/10/02 17:25:07 southa Exp $
 # $Log: adanaxis.def,v $
+# Revision 1.13  2006/10/02 17:25:07  southa
+# Object lookup and target selection
+#
 # Revision 1.12  2006/08/03 15:07:58  southa
 # Cache purge fix
 #
@@ -75,7 +78,7 @@ Use: targets/sdl_app.spec as adanaxisrenderingdemo.spec.generic
 Create: src/Makefile.am
 
 Program: adanaxisrenderingdemobinary
-Modules: API Game GL Main/SDLApp Media Mushcore MushGame MushGL MushCollision MushMesh MushMeshLibrary MushMeshRuby MushPie MushRender MushRuby MushSkin Platform Support Adanaxis
+Modules: API Game GL Main/SDLApp Media Mushcore MushFile MushGame MushGL MushCollision MushMesh MushMeshLibrary MushMeshRuby MushPie MushRender MushRuby MushSkin Platform Support Adanaxis
 
 ExtraDist:
 Modules: Platform/MacOSX Platform/win32 +.*\.c$ Platform/X11 +.*\.y$ +.*\.mkf$ +.*\.flex$ +.*\.m$

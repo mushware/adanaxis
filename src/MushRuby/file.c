@@ -37,7 +37,7 @@
   file.c -
 
  
-  $Date: 2006/04/21 00:10:44 $
+  $Date: 2006/06/22 19:07:35 $
   created at: Mon Nov 15 12:24:34 JST 1993
 
   Copyright (C) 1993-2003 Yukihiro Matsumoto
@@ -688,7 +688,8 @@ rb_stat(file, st)
     if (!NIL_P(tmp)) {
 	OpenFile *fptr;
 
-	rb_secure(2);
+    rb_secure(2);
+        
 	GetOpenFile(tmp, fptr);
 	return fstat(fileno(fptr->f), st);
     }

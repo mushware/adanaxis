@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } ccLCYRn/kYU+5Rp9coVdng
 /*
- * $Id: MediaAudioSDL.cpp,v 1.23 2006/07/28 16:52:20 southa Exp $
+ * $Id: MediaAudioSDL.cpp,v 1.24 2006/10/12 22:04:47 southa Exp $
  * $Log: MediaAudioSDL.cpp,v $
+ * Revision 1.24  2006/10/12 22:04:47  southa
+ * Collision events
+ *
  * Revision 1.23  2006/07/28 16:52:20  southa
  * Options work
  *
@@ -123,6 +126,7 @@
  */
 
 #include "MediaAudioSDL.h"
+#include "MediaRWops.h"
 #include "MediaSDL.h"
 #include "MediaSTL.h"
 #include "MediaSound.h"
@@ -300,7 +304,12 @@ MediaAudioSDL::Load(MediaSound &inSound) const
 {
     Free(inSound);
     string filename(inSound.FilenameGet());
-    SDL_RWops *src=SDL_RWFromFile(filename.c_str(), "rb");
+    
+    MushFileFile srcFile;
+    srcFile.OpenForRead(filename);
+    MediaRWops mediaRWops(srcFile);
+    
+    SDL_RWops *src = mediaRWops.RWops();
     if (src == NULL)
     {
         if (++m_errCtr < 100) cerr << "Failed to open file '" << filename << "': " << string(SDL_GetError());

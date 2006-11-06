@@ -1,6 +1,9 @@
 # Target definition file
-# $Id: snapshot.def,v 1.13 2006/06/12 16:03:32 southa Exp $
+# $Id: snapshot.def,v 1.14 2006/09/06 17:33:18 southa Exp $
 # $Log: snapshot.def,v $
+# Revision 1.14  2006/09/06 17:33:18  southa
+# Shader interface
+#
 # Revision 1.13  2006/06/12 16:03:32  southa
 # Ruby mesh generation
 #
@@ -76,7 +79,7 @@ Use: targets/sdl_app.spec as snapshot.spec.generic
 Create: src/Makefile.am
 
 Program: all
-Modules: Adanaxis API Game GL Infernal Main Main/SDLApp Maurheen Media MeshMover MushCollision Mushcore MushGame MushGL MushMesh MushMeshLibrary MushMeshRuby MushModel MushPie MushRender MushRuby MushSkin Mustl MustlGame Platform Support TesseractTrainer TestMushcore TestMushMesh TestMushPie TestMustl
+Modules: Adanaxis API Game GL Infernal Main Main/SDLApp Maurheen Media MeshMover MushCollision Mushcore MushFile MushGame MushGL MushMesh MushMeshLibrary MushMeshRuby MushModel MushPie MushRender MushRuby MushSkin Mustl MustlGame Platform Support TesseractTrainer TestMushcore TestMushMesh TestMushPie TestMustl
 
 ExtraDist:
 Modules: Main/CommandLineApp Platform/MacOSX Platform/win32 Platform/X11 +.*\.y$ +.*\.mkf$ +.*\.flex$
