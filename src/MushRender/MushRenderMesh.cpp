@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } nAlXQAIXh98l6rrr70+y5w
 /*
- * $Id: MushRenderMesh.cpp,v 1.6 2006/07/25 13:30:58 southa Exp $
+ * $Id: MushRenderMesh.cpp,v 1.7 2006/09/09 11:16:41 southa Exp $
  * $Log: MushRenderMesh.cpp,v $
+ * Revision 1.7  2006/09/09 11:16:41  southa
+ * One-time vertex buffer generation
+ *
  * Revision 1.6  2006/07/25 13:30:58  southa
  * Initial scanner work
  *
@@ -225,7 +228,7 @@ MushRenderMesh::ShouldMeshCull(const MushRenderSpec& inSpec, const MushMesh4Mesh
 {
     // Transform mesh centroid to eye coordinates
     t4Val objCentre = inSpec.ModelToEyeMattress() * inMesh.Centroid();
-    tVal boundingRadius = inMesh.BoundingRadius();
+    tVal boundingRadius = inMesh.BoundingRadius() * inSpec.Scale().Magnitude() / 2.0;
     
     const t4Val& clipMin = inSpec.Projection().ClipMin();
     const t4Val& clipMax = inSpec.Projection().ClipMax();

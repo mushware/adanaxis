@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } kXZNqIQb0TdqyV8HrXOyUA
 /*
- * $Id: MediaRWops.cpp,v 1.1 2006/11/06 12:56:31 southa Exp $
+ * $Id: MediaRWops.cpp,v 1.2 2006/11/06 19:27:51 southa Exp $
  * $Log: MediaRWops.cpp,v $
+ * Revision 1.2  2006/11/06 19:27:51  southa
+ * Mushfile handling
+ *
  * Revision 1.1  2006/11/06 12:56:31  southa
  * MushFile work
  *
@@ -39,10 +42,6 @@ MediaRWops::MediaRWops(MushFileFile& ioFile) :
 
 MediaRWops::~MediaRWops()
 {
-    if (m_pRWops != NULL)
-    {
-        SDL_FreeRW(m_pRWops);
-    }
 }
 
 SDL_RWops *
