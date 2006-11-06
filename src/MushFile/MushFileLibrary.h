@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } ENiRe4h/NdtvEV4FlxENHQ
 /*
- * $Id$
- * $Log$
+ * $Id: MushFileLibrary.h,v 1.1 2006/11/06 12:56:32 southa Exp $
+ * $Log: MushFileLibrary.h,v $
+ * Revision 1.1  2006/11/06 12:56:32  southa
+ * MushFile work
+ *
  */
 
 #include "MushFileStandard.h"
@@ -36,7 +39,9 @@ class MushFileLibrary : public MushcoreVirtualObject, public MushcoreSingleton<M
 {
 public:
     void LibraryAdd(const std::string& inFilename);
-    
+    bool Exists(const std::string& inName);
+    void Load(std::vector<Mushware::U8>& outData, const std::string& inName);
+
 private:
     std::vector<MushFileDirectory> m_directories; //:read
     

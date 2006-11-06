@@ -19,11 +19,17 @@
  ****************************************************************************/
 //%Header } kXZNqIQb0TdqyV8HrXOyUA
 /*
- * $Id$
- * $Log$
+ * $Id: MediaRWops.cpp,v 1.1 2006/11/06 12:56:31 southa Exp $
+ * $Log: MediaRWops.cpp,v $
+ * Revision 1.1  2006/11/06 12:56:31  southa
+ * MushFile work
+ *
  */
 
 #include "MediaRWops.h"
+
+using namespace Mushware;
+using namespace std;
 
 MediaRWops::MediaRWops(MushFileFile& ioFile) :
     m_mushFile(ioFile),
@@ -55,6 +61,11 @@ MediaRWops::RWops(void)
         {
             throw MushcoreFileFail(m_mushFile.Name(), "Plain file not found");
         }
+    }
+    else if (m_mushFile.SourceIsMush())
+    {
+        m_pRWops = SDL_RWFromConstMem(m_mushFile.DataStart(), m_mushFile.DataSize());
+        retVal = m_pRWops;
     }
     
     if (retVal == NULL)

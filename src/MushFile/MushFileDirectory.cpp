@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } w7E0fT2jMm6nn3HLuj+ttQ
 /*
- * $Id$
- * $Log$
+ * $Id: MushFileDirectory.cpp,v 1.1 2006/11/06 12:56:32 southa Exp $
+ * $Log: MushFileDirectory.cpp,v $
+ * Revision 1.1  2006/11/06 12:56:32  southa
+ * MushFile work
+ *
  */
 
 #include "MushFileDirectory.h"
@@ -31,21 +34,68 @@ using namespace Mushware;
 using namespace std;
 
 MushFileDirectory::MushFileDirectory(const std::string& inFilename) :
-    m_filename(inFilename)
+    m_filename(inFilename),
+    m_loaded(false)
 {
 }
 
 void
 MushFileDirectory::Load(void)
 {
-    MushFileAccessor accessor(m_filename);
-    m_dataOffset = accessor.ChunkBaseGet("DATA");
-    MushcoreLog::Sgl().XMLInfoLog() << accessor;
+    m_entries.clear();
     
-    std::vector<U8> dirData;
-    accessor.ChunkDataGet(dirData, "DIRC");
-    cout << "data=" << dirData << endl;
+    MushFileAccessor accessor(m_filename);
+    
+    accessor.ChunkDataGet("DIRC");
+    while (!accessor.EndOfChunk())
+    {
+        MushFileDirEntry entry;
+        entry.OffsetSet(accessor.NumberRead());
+        entry.SizeSet(accessor.NumberRead());
+        std::string filename = accessor.StringRead();
+        entry.FilenameSet(filename);
+        
+        if (m_entries.find(filename) != m_entries.end())
+        {
+            throw MushcoreFileFail(m_filename, "Duplicate file '"+filename+"' within file");
+        }
+        m_entries[filename] = entry;
+    }
+    m_loaded = true;
 }
+
+bool
+MushFileDirectory::Exists(const std::string& inName)
+{
+    if (!m_loaded)
+    {
+        Load();
+    }
+    return (m_entries.find(inName) != m_entries.end());
+}
+
+bool
+MushFileDirectory::EntryGet(const MushFileDirEntry *& outEntry, const std::string& inName)
+{
+    if (!m_loaded)
+    {
+        Load();
+    }
+    std::map<std::string, MushFileDirEntry>::const_iterator p = m_entries.find(inName);
+    
+    bool retVal;
+    if (p != m_entries.end())
+    {
+        outEntry = &p->second;
+        retVal = true;
+    }
+    else
+    {
+        retVal = false;
+    }
+    return retVal;
+}
+
 
 //%outOfLineFunctions {
 
@@ -81,8 +131,8 @@ MushFileDirectory::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
     ioOut << "filename=" << m_filename << ", ";
-    ioOut << "entries=" << m_entries << ", ";
-    ioOut << "dataOffset=" << m_dataOffset;
+    ioOut << "loaded=" << m_loaded << ", ";
+    ioOut << "entries=" << m_entries;
     ioOut << "]";
 }
 bool
@@ -98,13 +148,13 @@ MushFileDirectory::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::strin
     {
         ioIn >> m_filename;
     }
+    else if (inTagStr == "loaded")
+    {
+        ioIn >> m_loaded;
+    }
     else if (inTagStr == "entries")
     {
         ioIn >> m_entries;
-    }
-    else if (inTagStr == "dataOffset")
-    {
-        ioIn >> m_dataOffset;
     }
     else 
     {
@@ -117,9 +167,9 @@ MushFileDirectory::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
     ioOut.TagSet("filename");
     ioOut << m_filename;
+    ioOut.TagSet("loaded");
+    ioOut << m_loaded;
     ioOut.TagSet("entries");
     ioOut << m_entries;
-    ioOut.TagSet("dataOffset");
-    ioOut << m_dataOffset;
 }
-//%outOfLineFunctions } eL7cyFXJByfmTiRt3y0uUg
+//%outOfLineFunctions } ZO0CUJPbOGQI8jzb3tA4Fg

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } wYzIfal8N7te9nm4yfNTcg
 /*
- * $Id$
- * $Log$
+ * $Id: MushFileFilename.h,v 1.1 2006/11/06 12:56:32 southa Exp $
+ * $Log: MushFileFilename.h,v $
+ * Revision 1.1  2006/11/06 12:56:32  southa
+ * MushFile work
+ *
  */
 
 #include "MushFileStandard.h"
@@ -41,11 +44,13 @@ public:
     bool SourceIsFile(void);
     bool SourceIsMush(void);
     void AssertResolved(void);
+    void SplitNames(std::vector<std::string>& outNames, const std::string& inName);            
     
 private:
     std::string m_name; //:readwrite
     bool m_resolved; //:read
     MushFile::tSourceType m_sourceType; //:read
+    std::string m_resolvedName; //:read
     
 //%classPrototypes {
 public:
@@ -53,6 +58,7 @@ public:
     void NameSet(const std::string& inValue) { m_name=inValue; }
     const bool& Resolved(void) const { return m_resolved; }
     const MushFile::tSourceType& SourceType(void) const { return m_sourceType; }
+    const std::string& ResolvedName(void) const { return m_resolvedName; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -60,7 +66,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } WUS1lf/PhWDBDKb7EpfifQ
+//%classPrototypes } 5sAJVoTd0DzDH9JA04NKng
 };
 //%inlineHeader {
 inline std::ostream&

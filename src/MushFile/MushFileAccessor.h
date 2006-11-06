@@ -23,21 +23,32 @@
  ****************************************************************************/
 //%Header } k6FUmFChxKsln5+gWstxRQ
 /*
- * $Id$
- * $Log$
+ * $Id: MushFileAccessor.h,v 1.1 2006/11/06 12:56:32 southa Exp $
+ * $Log: MushFileAccessor.h,v $
+ * Revision 1.1  2006/11/06 12:56:32  southa
+ * MushFile work
+ *
  */
 
 #include "MushFileStandard.h"
+
+class MushFileDirEntry;
 
 //:generate virtual standard ostream xml1
 class MushFileAccessor : public MushcoreVirtualObject
 {
 public:
+    typedef std::vector<Mushware::U8> tData;
     explicit MushFileAccessor(const std::string& inFilename = "");
     
     Mushware::tSize ChunkBaseGet(const std::string& inID);
-    void ChunkDataGet(std::vector<Mushware::U8>& ioData, const std::string& inID);
-    
+    Mushware::tSize ChunkDataGet(const std::string& inID);
+    void ChunkDataRelease(void);
+    Mushware::tSize NumberRead(void);
+    std::string StringRead(void);
+    bool EndOfChunk(void) { return (m_readPos >= m_endPos); }
+    void LoadData(std::vector<Mushware::U8>& outData, const MushFileDirEntry& inEntry);
+
 protected:
     enum
     {
@@ -48,17 +59,23 @@ protected:
     Mushware::tSize NumberRead(FILE *inFile);
     std::string IDRead(FILE *inFile);
     void Load(void);
-    
+    Mushware::tSize ChunkDataGet(std::vector<Mushware::U8>& ioData, const std::string& inID);
+
 private:
     std::string m_filename; //:readwrite
     bool m_loaded; //:read
     std::map<std::string, Mushware::tSize> m_chunkList;
+    tData m_data; //:readwrire
+    Mushware::tSize m_readPos; //:read
+    Mushware::tSize m_endPos; //:read
 
 //%classPrototypes {
 public:
     const std::string& Filename(void) const { return m_filename; }
     void FilenameSet(const std::string& inValue) { m_filename=inValue; }
     const bool& Loaded(void) const { return m_loaded; }
+    const Mushware::tSize& ReadPos(void) const { return m_readPos; }
+    const Mushware::tSize& EndPos(void) const { return m_endPos; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -66,7 +83,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } L3DrhVgfD4I5I856jbwwRQ
+//%classPrototypes } y4SuIYQ313IKBFqIJKlU7A
 };
 //%inlineHeader {
 inline std::ostream&

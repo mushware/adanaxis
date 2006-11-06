@@ -19,18 +19,25 @@
  ****************************************************************************/
 //%Header } fIyM/XLdEniRZka5Jb+a2A
 /*
- * $Id$
- * $Log$
+ * $Id: MushFileAccessor.cpp,v 1.1 2006/11/06 12:56:31 southa Exp $
+ * $Log: MushFileAccessor.cpp,v $
+ * Revision 1.1  2006/11/06 12:56:31  southa
+ * MushFile work
+ *
  */
 
 #include "MushFileAccessor.h"
+
+#include "MushFileDirEntry.h"
 
 using namespace Mushware;
 using namespace std;
 
 MushFileAccessor::MushFileAccessor(const std::string& inFilename) :
     m_filename(inFilename),
-    m_loaded(false)
+    m_loaded(false),
+    m_readPos(0),
+    m_endPos(0)
 {
     
 }
@@ -131,9 +138,10 @@ MushFileAccessor::ChunkBaseGet(const std::string& inID)
     return m_chunkList[inID] + kNumberSize + kIDSize;
 }
 
-void
+Mushware::tSize
 MushFileAccessor::ChunkDataGet(std::vector<Mushware::U8>& ioData, const std::string& inID)
 {
+    tSize dataSize = 0;
     if (!m_loaded)
     {
         Load();
@@ -154,7 +162,7 @@ MushFileAccessor::ChunkDataGet(std::vector<Mushware::U8>& ioData, const std::str
     {
         std::fseek(file, pos, SEEK_SET);
         tSize chunkLength = NumberRead(file);
-        tSize dataSize = chunkLength - kIDSize;
+        dataSize = chunkLength - kIDSize;
 
         std::string chunkID = IDRead(file);
         if (chunkID != inID || dataSize > chunkLength)
@@ -163,6 +171,96 @@ MushFileAccessor::ChunkDataGet(std::vector<Mushware::U8>& ioData, const std::str
         }
         ioData.resize(dataSize);
         if (std::fread(&ioData[0], 1, dataSize, file) != dataSize)
+        {
+            throw MushcoreFileFail(m_filename, "Unexpected end of file");
+        }
+    }
+    catch (std::exception& e)
+    {
+        if (file != NULL)
+        {
+            std::fclose(file);
+        }
+        throw;
+    }
+    std::fclose(file);
+    return dataSize;
+}
+
+Mushware::tSize
+MushFileAccessor::ChunkDataGet(const std::string& inID)
+{
+    tSize dataSize = ChunkDataGet(m_data, inID);
+    m_readPos = 0;
+    m_endPos = dataSize;
+    return dataSize;
+}
+
+void
+MushFileAccessor::ChunkDataRelease(void)
+{
+    m_readPos = 0;
+    m_endPos = 0;
+    m_data.resize(0);
+}
+
+Mushware::tSize
+MushFileAccessor::NumberRead(void)
+{
+    tSize retVal = 0;
+    for (U32 i=0; i<kNumberSize; ++i)
+    {
+        if (m_readPos >= m_endPos)
+        {
+            throw MushcoreFileFail(m_filename, "Unexpected end of file");
+        }
+        retVal = (retVal << 8) | m_data[m_readPos];
+        ++m_readPos;
+    }
+    return retVal;
+}
+
+std::string
+MushFileAccessor::StringRead(void)
+{
+    tSize length = NumberRead();
+
+    if (m_readPos + length > m_endPos)
+    {
+        throw MushcoreFileFail(m_filename, "Unexpected end of file");
+    }
+    std::string retVal(reinterpret_cast<char *>(&m_data[m_readPos]), length);
+    m_readPos += length;
+    
+    m_readPos = (m_readPos + 3) & ~3;
+    
+    return retVal;
+}
+
+void
+MushFileAccessor::LoadData(std::vector<Mushware::U8>& outData, const MushFileDirEntry& inEntry)
+{
+    if (!m_loaded)
+    {
+        Load();
+    }
+    
+    if (m_chunkList.find("DATA") == m_chunkList.end())
+    {
+        throw MushcoreFileFail(m_filename, "No DATA chunk present");
+    }
+    tSize pos = m_chunkList["DATA"] + kNumberSize + kIDSize + inEntry.Offset();
+    
+    FILE *file = std::fopen(m_filename.c_str(), "rb");
+    if (file == NULL)
+    {
+        throw MushcoreFileFail(m_filename, "Cannot open mushfile");
+    }
+    try
+    {
+        std::fseek(file, pos, SEEK_SET);
+        outData.resize(inEntry.Size());
+        if (std::fread(&outData[0], 1, inEntry.Size(), file) != inEntry.Size())
         {
             throw MushcoreFileFail(m_filename, "Unexpected end of file");
         }
@@ -213,7 +311,10 @@ MushFileAccessor::AutoPrint(std::ostream& ioOut) const
     ioOut << "[";
     ioOut << "filename=" << m_filename << ", ";
     ioOut << "loaded=" << m_loaded << ", ";
-    ioOut << "chunkList=" << m_chunkList;
+    ioOut << "chunkList=" << m_chunkList << ", ";
+    ioOut << "data=" << m_data << ", ";
+    ioOut << "readPos=" << m_readPos << ", ";
+    ioOut << "endPos=" << m_endPos;
     ioOut << "]";
 }
 bool
@@ -237,6 +338,18 @@ MushFileAccessor::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string
     {
         ioIn >> m_chunkList;
     }
+    else if (inTagStr == "data")
+    {
+        ioIn >> m_data;
+    }
+    else if (inTagStr == "readPos")
+    {
+        ioIn >> m_readPos;
+    }
+    else if (inTagStr == "endPos")
+    {
+        ioIn >> m_endPos;
+    }
     else 
     {
         return false;
@@ -252,5 +365,11 @@ MushFileAccessor::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_loaded;
     ioOut.TagSet("chunkList");
     ioOut << m_chunkList;
+    ioOut.TagSet("data");
+    ioOut << m_data;
+    ioOut.TagSet("readPos");
+    ioOut << m_readPos;
+    ioOut.TagSet("endPos");
+    ioOut << m_endPos;
 }
-//%outOfLineFunctions } XQLLuX66etDMj57TRbT4Mg
+//%outOfLineFunctions } 20r+2Vvqc0I/DMZF/whiKw

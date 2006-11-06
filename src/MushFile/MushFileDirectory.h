@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } xn5oNgprtnehV9hRbLEeKQ
 /*
- * $Id$
- * $Log$
+ * $Id: MushFileDirectory.h,v 1.1 2006/11/06 12:56:32 southa Exp $
+ * $Log: MushFileDirectory.h,v $
+ * Revision 1.1  2006/11/06 12:56:32  southa
+ * MushFile work
+ *
  */
 
 #include "MushFileStandard.h"
@@ -40,19 +43,21 @@ public:
     virtual ~MushFileDirectory() {}
 
     void Load(void);
+    bool Exists(const std::string& inName);
+    bool EntryGet(const MushFileDirEntry *& outEntry, const std::string& inName);
     
 protected:
     
 private:
     std::string m_filename; //:read
-    std::vector<MushFileDirEntry> m_entries; //:read
-    Mushware::tSize m_dataOffset; //:read
+    bool m_loaded; //:read
+    std::map<std::string, MushFileDirEntry> m_entries; //:read
     
 //%classPrototypes {
 public:
     const std::string& Filename(void) const { return m_filename; }
-    const std::vector<MushFileDirEntry>& Entries(void) const { return m_entries; }
-    const Mushware::tSize& DataOffset(void) const { return m_dataOffset; }
+    const bool& Loaded(void) const { return m_loaded; }
+    const std::map<std::string, MushFileDirEntry>& Entries(void) const { return m_entries; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -60,7 +65,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } Qor7u+wxRxm+LR4lAFT2ug
+//%classPrototypes } 9BsVmKvoSwzWL4169BmHfw
 };
 //%inlineHeader {
 inline std::ostream&

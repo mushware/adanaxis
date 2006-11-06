@@ -19,12 +19,17 @@
  ****************************************************************************/
 //%Header } JW5WNz3kt0Z9OBpLQy+gCQ
 /*
- * $Id$
- * $Log$
+ * $Id: MushFileFilename.cpp,v 1.1 2006/11/06 12:56:32 southa Exp $
+ * $Log: MushFileFilename.cpp,v $
+ * Revision 1.1  2006/11/06 12:56:32  southa
+ * MushFile work
+ *
  */
 
 
 #include "MushFileFilename.h"
+
+#include "MushFileLibrary.h"
 
 using namespace Mushware;
 using namespace std;
@@ -46,9 +51,52 @@ MushFileFilename::AssertResolved(void)
 }
 
 void
+MushFileFilename::SplitNames(std::vector<std::string>& outNames, const std::string& inName)
+{
+    outNames.clear();
+    std::string::size_type startPos = 0;
+    std::string::size_type endPos = 0;
+    
+    while (endPos != std::string::npos)
+    {
+        endPos = inName.find("|", startPos);
+        outNames.push_back(inName.substr(startPos, endPos - startPos));
+        startPos = endPos+1;
+    }
+}
+
+void
 MushFileFilename::ResolveForRead(void)
 {
-    m_sourceType = MushFile::kSourceTypeFile;
+    std::vector<std::string> filenames;
+    SplitNames(filenames, m_name);
+    m_sourceType = MushFile::kSourceTypeNone;
+    for (U32 i=0; i<filenames.size() && m_sourceType == MushFile::kSourceTypeNone; ++i)
+    {
+        if (filenames[i].substr(0, 5) == "mush:")
+        {
+            U32 startPos = 5;
+            if (filenames[i].substr(5, 2) == "//")
+            {
+                startPos = 7;
+            }
+            if (MushFileLibrary::Sgl().Exists(filenames[i].substr(startPos)))
+            {
+                m_resolvedName = filenames[i].substr(startPos);
+                m_sourceType = MushFile::kSourceTypeMush;
+            }
+        }
+        else
+        {
+            FILE *file = fopen(filenames[i].c_str(), "rb");
+            if (file != NULL)
+            {
+                std::fclose(file);
+                m_resolvedName = filenames[i];
+                m_sourceType = MushFile::kSourceTypeFile;
+            }
+        }
+    }
     m_resolved = true;
 }
 
@@ -101,7 +149,8 @@ MushFileFilename::AutoPrint(std::ostream& ioOut) const
     ioOut << "[";
     ioOut << "name=" << m_name << ", ";
     ioOut << "resolved=" << m_resolved << ", ";
-    ioOut << "sourceType=" << m_sourceType;
+    ioOut << "sourceType=" << m_sourceType << ", ";
+    ioOut << "resolvedName=" << m_resolvedName;
     ioOut << "]";
 }
 bool
@@ -125,6 +174,10 @@ MushFileFilename::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string
     {
         ioIn >> m_sourceType;
     }
+    else if (inTagStr == "resolvedName")
+    {
+        ioIn >> m_resolvedName;
+    }
     else 
     {
         return false;
@@ -140,5 +193,7 @@ MushFileFilename::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_resolved;
     ioOut.TagSet("sourceType");
     ioOut << m_sourceType;
+    ioOut.TagSet("resolvedName");
+    ioOut << m_resolvedName;
 }
-//%outOfLineFunctions } JshAsvSxQhey1VxLCQK+PQ
+//%outOfLineFunctions } V6Pq2Rvt2pgvpbzgt+CkDw

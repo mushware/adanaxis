@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } u7HheW/jj+BZx6X2IytANA
 /*
- * $Id$
- * $Log$
+ * $Id: MushFileDirEntry.h,v 1.1 2006/11/06 12:56:32 southa Exp $
+ * $Log: MushFileDirEntry.h,v $
+ * Revision 1.1  2006/11/06 12:56:32  southa
+ * MushFile work
+ *
  */
 
 #include "MushFileStandard.h"
@@ -40,6 +43,7 @@ private:
     std::string m_filename; //:readwrite
     Mushware::tSize m_size; //:readwrite
     Mushware::tSize m_offset; //:readwrite
+    
 //%classPrototypes {
 public:
     const std::string& Filename(void) const { return m_filename; }

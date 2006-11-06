@@ -19,11 +19,16 @@
  ****************************************************************************/
 //%Header } s347TUOP6TwsXJmaLdEs1g
 /*
- * $Id$
- * $Log$
+ * $Id: MushFileFile.cpp,v 1.1 2006/11/06 12:56:32 southa Exp $
+ * $Log: MushFileFile.cpp,v $
+ * Revision 1.1  2006/11/06 12:56:32  southa
+ * MushFile work
+ *
  */
 
 #include "MushFileFile.h"
+
+#include "MushFileLibrary.h"
 
 std::string
 MushFileFile::Name(void) const
@@ -39,7 +44,7 @@ MushFileFile::OpenForRead(const std::string& inName)
     
     if (m_filename.SourceIsMush())
     {
-        throw MushcoreLogicFail("Mush not supported yet");
+        MushFileLibrary::Sgl().Load(m_data, m_filename.ResolvedName());
     }
     else if (m_filename.SourceIsFile())
     {
@@ -47,14 +52,35 @@ MushFileFile::OpenForRead(const std::string& inName)
     }
 }
 
+Mushware::U8 *
+MushFileFile::DataStart(void)
+{
+    if (!m_filename.SourceIsMush())
+    {
+        throw MushcoreFileFail(m_filename.Name(), "File is not in a mushfile");
+    }
+
+    return &m_data[0];
+}
+
+Mushware::tSize
+MushFileFile::DataSize(void)
+{
+    if (!m_filename.SourceIsMush())
+    {
+        throw MushcoreFileFail(m_filename.Name(), "File is not in a mushfile");
+    }
+    return m_data.size();
+}
+
 std::string
 MushFileFile::PlainFilename(void)
 {
     if (!m_filename.SourceIsFile())
     {
-        throw MushcoreFileFail(m_filename.Name(), "File is nor a plain file");
+        throw MushcoreFileFail(m_filename.Name(), "File is not a plain file");
     }
-    return m_filename.Name();
+    return m_filename.ResolvedName();
 }
 
 //%outOfLineFunctions {
@@ -91,7 +117,8 @@ MushFileFile::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
     ioOut << "filename=" << m_filename << ", ";
-    ioOut << "sourceType=" << m_sourceType;
+    ioOut << "sourceType=" << m_sourceType << ", ";
+    ioOut << "data=" << m_data;
     ioOut << "]";
 }
 bool
@@ -111,6 +138,10 @@ MushFileFile::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& in
     {
         ioIn >> m_sourceType;
     }
+    else if (inTagStr == "data")
+    {
+        ioIn >> m_data;
+    }
     else 
     {
         return false;
@@ -124,5 +155,7 @@ MushFileFile::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_filename;
     ioOut.TagSet("sourceType");
     ioOut << m_sourceType;
+    ioOut.TagSet("data");
+    ioOut << m_data;
 }
-//%outOfLineFunctions } +aM+XJSJ1q4HkK8y42d4ww
+//%outOfLineFunctions } V0OZBc7+hpeR5Od+RMHjUg

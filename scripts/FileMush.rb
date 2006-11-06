@@ -16,8 +16,11 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-# $Id: FileMush.rb,v 1.1 2006/11/05 09:32:13 southa Exp $
+# $Id: FileMush.rb,v 1.2 2006/11/06 12:56:31 southa Exp $
 # $Log: FileMush.rb,v $
+# Revision 1.2  2006/11/06 12:56:31  southa
+# MushFile work
+#
 # Revision 1.1  2006/11/05 09:32:13  southa
 # Mush file generation
 #
@@ -126,9 +129,9 @@ EOS
     offset = 0
     mChunkWrite(@@c_chunkDirectory) do |chunk|
       @m_directory.each do |dirEntry|
-        chunk << mString(dirEntry[:dest_filename])
         chunk << mNumber(offset)
         chunk << mNumber(dirEntry[:filesize])
+        chunk << mString(dirEntry[:dest_filename])
         offset += mAlign(dirEntry[:filesize])
       end
     end
@@ -198,9 +201,9 @@ EOS
     retVal = []
     content = inContent.dup
     while content.size > 0
-      filename = mStringTake(content)
       offset = mNumberTake(content)
       size = mNumberTake(content)
+      filename = mStringTake(content)
       retVal << "Filename: #{filename} size: #{size} offset: #{offset}"
     end
     retVal

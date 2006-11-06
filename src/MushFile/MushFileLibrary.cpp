@@ -19,11 +19,16 @@
  ****************************************************************************/
 //%Header } c3ylueSV/lJwBs7EptLXFQ
 /*
- * $Id$
- * $Log$
+ * $Id: MushFileLibrary.cpp,v 1.1 2006/11/06 12:56:32 southa Exp $
+ * $Log: MushFileLibrary.cpp,v $
+ * Revision 1.1  2006/11/06 12:56:32  southa
+ * MushFile work
+ *
  */
 
 #include "MushFileLibrary.h"
+
+#include "MushFileAccessor.h"
 
 MUSHCORE_SINGLETON_INSTANCE(MushFileLibrary);
 
@@ -48,6 +53,51 @@ MushFileLibrary::LibraryAdd(const std::string& inFilename)
         m_directories.push_back(MushFileDirectory(inFilename));
         m_directories.back().Load();
     }
+}
+
+bool
+MushFileLibrary::Exists(const std::string& inName)
+{
+    bool found = false;
+    for (U32 i=0; i<m_directories.size(); ++i)
+    {
+        if (m_directories[i].Exists(inName))
+        {
+            if (found)
+            {
+                MushcoreLog::Sgl().WarningLog() << "File '" << inName << "' appears in more than one mushfile.  Using " <<
+                    m_directories[i].Filename() << " so far" << endl;
+            }
+            found = true;
+        }
+    }
+            
+    return found;
+}
+
+void
+MushFileLibrary::Load(std::vector<Mushware::U8>& outData, const std::string& inName)
+{
+    const MushFileDirEntry *pEntry = NULL;
+    std::string mushFilename;
+    
+    for (U32 i=0; i<m_directories.size(); ++i)
+    {
+        if (m_directories[i].EntryGet(pEntry, inName))
+        {
+            mushFilename = m_directories[i].Filename();
+        }
+        
+    }
+    
+    if (pEntry == NULL)
+    {
+        throw MushcoreFileFail(inName, "File not found within any mushfile");
+    }
+
+    MushFileAccessor accessor(mushFilename);
+    
+    accessor.LoadData(outData, *pEntry);
 }
 
 //%outOfLineFunctions {
