@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } wYzIfal8N7te9nm4yfNTcg
 /*
- * $Id: MushFileFilename.h,v 1.1 2006/11/06 12:56:32 southa Exp $
+ * $Id: MushFileFilename.h,v 1.2 2006/11/06 19:27:52 southa Exp $
  * $Log: MushFileFilename.h,v $
+ * Revision 1.2  2006/11/06 19:27:52  southa
+ * Mushfile handling
+ *
  * Revision 1.1  2006/11/06 12:56:32  southa
  * MushFile work
  *
@@ -43,6 +46,7 @@ public:
     void ResolveForRead(void);
     bool SourceIsFile(void);
     bool SourceIsMush(void);
+    bool SourceExists(void);
     void AssertResolved(void);
     void SplitNames(std::vector<std::string>& outNames, const std::string& inName);            
     

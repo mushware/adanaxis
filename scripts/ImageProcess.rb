@@ -16,8 +16,11 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-# $Id: ImageProcess.rb,v 1.2 2006/10/18 13:22:09 southa Exp $
+# $Id: ImageProcess.rb,v 1.3 2006/10/19 15:41:35 southa Exp $
 # $Log: ImageProcess.rb,v $
+# Revision 1.3  2006/10/19 15:41:35  southa
+# Item handling
+#
 # Revision 1.2  2006/10/18 13:22:09  southa
 # World rendering
 #
@@ -33,26 +36,6 @@ class ImageProcess
   end
   
   def mDump
-    puts "   Format: #{@m_img.format}"
-    puts "   Geometry: #{@m_img.columns}x#{@m_img.rows}"
-    puts "   Class: " + case @m_img.class_type
-                            when Magick::DirectClass
-                                "DirectClass"
-                            when Magick::PseudoClass
-                                "PseudoClass"
-                        end
-    puts "   Depth: #{@m_img.depth} bits-per-pixel"
-    puts "   Colors: #{@m_img.number_colors}"
-    puts "   Filesize: #{@m_img.filesize}"
-    puts "   Resolution: #{@m_img.x_resolution.to_i}x#{@m_img.y_resolution.to_i} "+
-        "pixels/#{@m_img.units == Magick::PixelsPerInchResolution ?
-        "inch" : "centimeter"}"
-    if @m_img.properties.length > 0
-        puts "   Properties:"
-        @m_img.properties { |name,value|
-            puts %Q|      #{name} = "#{value}"|
-        }
-    end
   end
   
   def mLoad(inFilename)
@@ -61,10 +44,10 @@ class ImageProcess
   
   def mSave(inFilename)
     @m_img[:Copyright] = @m_copyright
-    # @m_img.compression = Magick::JPEGCompression
-    @m_img.compression = Magick::NoCompression
-    # @m_img.quality = 85
+    @m_img.compression = Magick::JPEGCompression
+    # @m_img.compression = Magick::NoCompression
     @m_img.write(inFilename) {
+        quality = 85
     }
   end
 

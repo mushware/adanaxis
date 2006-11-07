@@ -19,12 +19,16 @@
  ****************************************************************************/
 //%Header } eDanUv+oK5eOEEiPwWQ+Pg
 /*
- * $Id$
- * $Log$
+ * $Id: MushFileRuby.cpp,v 1.1 2006/11/06 12:56:32 southa Exp $
+ * $Log: MushFileRuby.cpp,v $
+ * Revision 1.1  2006/11/06 12:56:32  southa
+ * MushFile work
+ *
  */
 
 #include "MushFileRuby.h"
 
+#include "MushFileFilename.h"
 #include "MushFileLibrary.h"
 
 MUSHRUBYEMPTYOBJ_INSTANCE(6000);
@@ -51,6 +55,18 @@ MushFileRuby::LibraryDump(Mushware::tRubyValue inSelf)
     xmlOut << MushFileLibrary::Sgl();
     
     return kRubyQnil;
+}
+
+Mushware::tRubyValue
+MushFileRuby::File(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0)
+{
+    MushRubyValue param0(inArg0);
+    
+
+    MushFileFilename mushFilename(param0.String());
+    mushFilename.ResolveForRead();
+    bool present = mushFilename.SourceExists();
+    return MushRubyValue(present).Value();
 }    
 
 void
@@ -58,4 +74,5 @@ MushFileRuby::MushFileInstall(void)
 {
     MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cLibraryAdd", LibraryAdd);
     MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cLibraryDump", LibraryDump);
+    MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cFile?", File);
 }

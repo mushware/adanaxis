@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } vh/xCnesmbXGxXqZK5YEaA
 /*
- * $Id: MushGLTexture.cpp,v 1.15 2006/07/17 14:43:39 southa Exp $
+ * $Id: MushGLTexture.cpp,v 1.16 2006/07/28 16:52:22 southa Exp $
  * $Log: MushGLTexture.cpp,v $
+ * Revision 1.16  2006/07/28 16:52:22  southa
+ * Options work
+ *
  * Revision 1.15  2006/07/17 14:43:39  southa
  * Billboarded deco objects
  *
@@ -172,8 +175,11 @@ MushGLTexture::ToCacheSave(void)
 {
 	try
 	{
-		m_cacheFilename = MushGLCacheControl::Sgl().TextureCacheFilenameMake(m_uniqueIdentifier);
-		MushGLTIFFUtil::TextureSave(m_cacheFilename, m_uniqueIdentifier);
+        if (m_saveable)
+        {
+            m_cacheFilename = MushGLCacheControl::Sgl().TextureCacheFilenameMake(m_uniqueIdentifier);
+            MushGLTIFFUtil::TextureSave(m_cacheFilename, m_uniqueIdentifier);
+        }
 	}
 	catch (MushcoreNonFatalFail& e)
 	{
@@ -199,8 +205,11 @@ MushGLTexture::FromCacheLoad(void)
 		success = true;
 		
 #ifdef MUSHCORE_DEBUG
-		std::string saveFilename = m_cacheFilename.substr(0, m_cacheFilename.size()-5);
-		MushGLTIFFUtil::TextureSave(saveFilename+"-resaved.tiff", m_name);
+        if (m_saveable)
+        {
+            std::string saveFilename = m_cacheFilename.substr(0, m_cacheFilename.size()-5);
+            MushGLTIFFUtil::TextureSave(saveFilename+"-resaved.tiff", m_name);
+        }
 #endif
 
 	}
@@ -539,7 +548,8 @@ MushGLTexture::AutoPrint(std::ostream& ioOut) const
     ioOut << "cacheable=" << m_cacheable << ", ";
     ioOut << "cacheSaveRequired=" << m_cacheSaveRequired << ", ";
     ioOut << "compress=" << m_compress << ", ";
-    ioOut << "made=" << m_made;
+    ioOut << "made=" << m_made << ", ";
+    ioOut << "saveable=" << m_saveable;
     ioOut << "]";
 }
 bool
@@ -611,6 +621,10 @@ MushGLTexture::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& i
     {
         ioIn >> m_made;
     }
+    else if (inTagStr == "saveable")
+    {
+        ioIn >> m_saveable;
+    }
     else 
     {
         return false;
@@ -650,6 +664,8 @@ MushGLTexture::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_compress;
     ioOut.TagSet("made");
     ioOut << m_made;
+    ioOut.TagSet("saveable");
+    ioOut << m_saveable;
 }
-//%outOfLineFunctions } pUkR0/hDh/dqtnswoKsjwA
+//%outOfLineFunctions } VKOa5rKnPvep/vVpGpU9eg
 

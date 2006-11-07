@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } JW5WNz3kt0Z9OBpLQy+gCQ
 /*
- * $Id: MushFileFilename.cpp,v 1.1 2006/11/06 12:56:32 southa Exp $
+ * $Id: MushFileFilename.cpp,v 1.2 2006/11/06 19:27:51 southa Exp $
  * $Log: MushFileFilename.cpp,v $
+ * Revision 1.2  2006/11/06 19:27:51  southa
+ * Mushfile handling
+ *
  * Revision 1.1  2006/11/06 12:56:32  southa
  * MushFile work
  *
@@ -112,6 +115,13 @@ MushFileFilename::SourceIsMush(void)
 {
     AssertResolved();
     return (m_sourceType == MushFile::kSourceTypeMush);
+}
+
+bool
+MushFileFilename::SourceExists(void)
+{
+    AssertResolved();
+    return (m_sourceType == MushFile::kSourceTypeMush || m_sourceType == MushFile::kSourceTypeFile);
 }
 
 //%outOfLineFunctions {

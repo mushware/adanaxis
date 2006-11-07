@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } SaBXzXzmz9pA2fL3GoZFMQ
 /*
- * $Id: MushGLPixelSourceTIFF.cpp,v 1.5 2006/06/06 17:58:32 southa Exp $
+ * $Id: MushGLPixelSourceTIFF.cpp,v 1.6 2006/06/07 12:15:19 southa Exp $
  * $Log: MushGLPixelSourceTIFF.cpp,v $
+ * Revision 1.6  2006/06/07 12:15:19  southa
+ * Grid and test textures
+ *
  * Revision 1.5  2006/06/06 17:58:32  southa
  * Ruby texture definition
  *
@@ -42,6 +45,8 @@
 
 #include "MushGLTexture.h"
 
+#include "API/mushMushFile.h"
+
 namespace tiffio
 {
 #include "tiffio.h"
@@ -62,12 +67,36 @@ MushGLPixelSourceTIFF::ToTextureCreate(MushGLTexture& outTexture)
     tiffio::uint32 *pTIFFData = NULL;
 
 	// Suppress error message on stderr
+#ifndef MUSHCORE_DEBUG
     tiffio::TIFFErrorHandler currentHandler = tiffio::TIFFSetErrorHandler(NULL);
+#endif
 	
-	tiffio::TIFF* pTIFF = tiffio::TIFFOpen(m_filename.c_str(), "r");
+	tiffio::TIFF* pTIFF = NULL;
     
+    MushFileFile srcFile;
+    srcFile.OpenForRead(m_filename);
+    
+    if (srcFile.SourceIsFile())
+    {
+        pTIFF = tiffio::TIFFOpen(srcFile.PlainFilename().c_str(), "r");
+    }
+    else if (srcFile.SourceIsMush())
+    {
+        pTIFF = tiffio::TIFFClientOpen(srcFile.Name().c_str(), "rm", // m-> no memory-mapped files
+                                       &srcFile, // Handle
+                                       MushFileFile::TIFFRead,  // readproc
+                                       MushFileFile::TIFFWrite, // writeproc
+                                       MushFileFile::TIFFSeek,  // seekproc
+                                       MushFileFile::TIFFClose, // closeproc
+                                       MushFileFile::TIFFSize,  // sizeproc
+                                       NULL, // mapproc
+                                       NULL); //unmapproc
+    }
+    
+#ifndef MUSHCORE_DEBUG
 	tiffio::TIFFSetErrorHandler(currentHandler);
-	
+#endif
+    
     if (pTIFF == NULL)
     {
         throw MushcoreFileFail(m_filename, "Could not open file");
@@ -117,7 +146,10 @@ MushGLPixelSourceTIFF::ToTextureCreate(MushGLTexture& outTexture)
             outTexture.PixelTypeRGBASet();
             outTexture.StorageTypeSet(StorageType());
             outTexture.PixelDataUse(pTIFFData);
-            
+            if (srcFile.SourceIsMush())
+            {
+                outTexture.SaveableSet(false);
+            }
             tiffio::_TIFFfree(pTIFFData);
             pTIFFData=NULL;
         }

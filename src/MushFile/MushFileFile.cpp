@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } s347TUOP6TwsXJmaLdEs1g
 /*
- * $Id: MushFileFile.cpp,v 1.1 2006/11/06 12:56:32 southa Exp $
+ * $Id: MushFileFile.cpp,v 1.2 2006/11/06 19:27:51 southa Exp $
  * $Log: MushFileFile.cpp,v $
+ * Revision 1.2  2006/11/06 19:27:51  southa
+ * Mushfile handling
+ *
  * Revision 1.1  2006/11/06 12:56:32  southa
  * MushFile work
  *
@@ -29,6 +32,9 @@
 #include "MushFileFile.h"
 
 #include "MushFileLibrary.h"
+
+using namespace Mushware;
+using namespace std;
 
 std::string
 MushFileFile::Name(void) const
@@ -45,6 +51,7 @@ MushFileFile::OpenForRead(const std::string& inName)
     if (m_filename.SourceIsMush())
     {
         MushFileLibrary::Sgl().Load(m_data, m_filename.ResolvedName());
+        m_seekPos = 0;
     }
     else if (m_filename.SourceIsFile())
     {
@@ -73,6 +80,34 @@ MushFileFile::DataSize(void)
     return m_data.size();
 }
 
+Mushware::tSize
+MushFileFile::DataRead(void *outData, Mushware::tSize inSize)
+{
+    tSize readSize = inSize;
+    if (m_seekPos >= m_data.size())
+    {
+        readSize = 0;
+    }
+    else if (m_seekPos + readSize >= m_data.size())
+    {
+        readSize = m_data.size() - m_seekPos;
+    }
+    std::memcpy(outData, &m_data[m_seekPos], readSize);
+    m_seekPos += readSize;
+    
+    return readSize;
+}
+
+void
+MushFileFile::DataSeek(Mushware::tSize inSeekPos)
+{
+    m_seekPos = inSeekPos;
+    if (m_seekPos >= m_data.size())
+    {
+        m_seekPos = m_data.size();
+    }
+}
+
 std::string
 MushFileFile::PlainFilename(void)
 {
@@ -81,6 +116,60 @@ MushFileFile::PlainFilename(void)
         throw MushcoreFileFail(m_filename.Name(), "File is not a plain file");
     }
     return m_filename.ResolvedName();
+}
+
+Mushware::S32
+MushFileFile::TIFFRead(void *inHandle, void *inData, Mushware::S32 inSize)
+{
+    MushFileFile *pFile = reinterpret_cast<MushFileFile *>(inHandle);
+    return pFile->DataRead(inData, inSize);
+}
+
+Mushware::S32
+MushFileFile::TIFFWrite(void *inHandle, void *inData, Mushware::S32 inSize)
+{
+    return 0; // Always fail
+}
+
+Mushware::U32
+MushFileFile::TIFFSeek(void *inHandle, Mushware::U32 inOffset, int inFrom)
+{
+    MushFileFile *pFile = reinterpret_cast<MushFileFile *>(inHandle);
+    tSize seekPos = 0;
+    
+    switch (inFrom)
+    {
+        case SEEK_SET:
+            seekPos = inOffset;
+            break;
+            
+        case SEEK_CUR:
+            seekPos = inOffset + pFile->SeekPos();
+            break;
+            
+        case SEEK_END:
+            seekPos = pFile->DataSize() - inOffset;
+            break;
+            
+        default:
+            throw MushcoreRequestFail("Unknown seek type");
+    }
+    pFile->DataSeek(seekPos);
+    
+    return inOffset;
+}
+
+int
+MushFileFile::TIFFClose(void *inHandle)
+{
+    return 0;
+}
+
+Mushware::U32
+MushFileFile::TIFFSize(void *inHandle)
+{
+    MushFileFile *pFile = reinterpret_cast<MushFileFile *>(inHandle);
+    return static_cast<S32>(pFile->DataSize());
 }
 
 //%outOfLineFunctions {
@@ -118,7 +207,8 @@ MushFileFile::AutoPrint(std::ostream& ioOut) const
     ioOut << "[";
     ioOut << "filename=" << m_filename << ", ";
     ioOut << "sourceType=" << m_sourceType << ", ";
-    ioOut << "data=" << m_data;
+    ioOut << "data=" << m_data << ", ";
+    ioOut << "seekPos=" << m_seekPos;
     ioOut << "]";
 }
 bool
@@ -142,6 +232,10 @@ MushFileFile::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& in
     {
         ioIn >> m_data;
     }
+    else if (inTagStr == "seekPos")
+    {
+        ioIn >> m_seekPos;
+    }
     else 
     {
         return false;
@@ -157,5 +251,7 @@ MushFileFile::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_sourceType;
     ioOut.TagSet("data");
     ioOut << m_data;
+    ioOut.TagSet("seekPos");
+    ioOut << m_seekPos;
 }
-//%outOfLineFunctions } V0OZBc7+hpeR5Od+RMHjUg
+//%outOfLineFunctions } IxS6qDb/CxpIL3yB++2Wdg

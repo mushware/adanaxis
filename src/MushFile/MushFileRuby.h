@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } +LO8BU2aUuhz83bh3+ENyg
 /*
- * $Id$
- * $Log$
+ * $Id: MushFileRuby.h,v 1.1 2006/11/06 12:56:32 southa Exp $
+ * $Log: MushFileRuby.h,v $
+ * Revision 1.1  2006/11/06 12:56:32  southa
+ * MushFile work
+ *
  */
 
 #include "MushFileStandard.h"
@@ -38,6 +41,7 @@ public:
 	
 	static Mushware::tRubyValue LibraryAdd(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);    
 	static Mushware::tRubyValue LibraryDump(Mushware::tRubyValue inSelf);    
+	static Mushware::tRubyValue File(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);    
 private:
 };
 

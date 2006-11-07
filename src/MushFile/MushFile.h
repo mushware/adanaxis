@@ -23,10 +23,14 @@
  ****************************************************************************/
 //%Header } vRVSInP3NlIJ5gemKhyPvA
 /*
- * $Id$
- * $Log$
+ * $Id: MushFile.h,v 1.1 2006/11/06 12:56:31 southa Exp $
+ * $Log: MushFile.h,v $
+ * Revision 1.1  2006/11/06 12:56:31  southa
+ * MushFile work
+ *
  */
 
+#include "MushFileAccessor.h"
 #include "MushFileFile.h"
 #include "MushFileFilename.h"
 #include "MushFileStandard.h"

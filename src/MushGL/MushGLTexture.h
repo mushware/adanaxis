@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } AYQWMxoJ+uDPAQUnlwSk/w
 /*
- * $Id: MushGLTexture.h,v 1.9 2006/06/30 15:05:33 southa Exp $
+ * $Id: MushGLTexture.h,v 1.10 2006/07/02 21:08:55 southa Exp $
  * $Log: MushGLTexture.h,v $
+ * Revision 1.10  2006/07/02 21:08:55  southa
+ * Ruby menu work
+ *
  * Revision 1.9  2006/06/30 15:05:33  southa
  * Texture and buffer purge
  *
@@ -73,7 +76,8 @@ public:
 		m_cacheable(true),
 		m_cacheSaveRequired(false),
 		m_compress(false),
-        m_made(false)
+        m_made(false),
+        m_saveable(true)
     {}
 
     void Make(void);
@@ -127,6 +131,7 @@ private:
 	bool m_cacheSaveRequired;
 	bool m_compress;
     bool m_made;
+    bool m_saveable; //:readwrite
     
 //%classPrototypes {
 public:
@@ -138,6 +143,8 @@ public:
     void NameSet(const std::string& inValue) { m_name=inValue; }
     const bool& Cacheable(void) const { return m_cacheable; }
     void CacheableSet(const bool& inValue) { m_cacheable=inValue; }
+    const bool& Saveable(void) const { return m_saveable; }
+    void SaveableSet(const bool& inValue) { m_saveable=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -145,7 +152,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } xxvBSh7lmZEnD7hXEoNqeQ
+//%classPrototypes } G3eDp5DfY7+3dGDwSjtdkw
 };
 //%inlineHeader {
 inline std::ostream&
