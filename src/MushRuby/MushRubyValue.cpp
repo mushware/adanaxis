@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } hwIlNOCEH5GsgwGY+rP1Kg
 /*
- * $Id: MushRubyValue.cpp,v 1.18 2006/10/04 13:35:25 southa Exp $
+ * $Id: MushRubyValue.cpp,v 1.19 2006/10/12 22:04:49 southa Exp $
  * $Log: MushRubyValue.cpp,v $
+ * Revision 1.19  2006/10/12 22:04:49  southa
+ * Collision events
+ *
  * Revision 1.18  2006/10/04 13:35:25  southa
  * Selective targetting
  *
@@ -122,6 +125,16 @@ MushRubyValue::MushRubyValue(const char *inValue)
 MushRubyValue::MushRubyValue(const std::string& inValue)
 {
     m_value = rb_str_new(inValue.data(), inValue.size());
+}
+
+MushRubyValue::MushRubyValue(const std::vector<Mushware::U32>& inVector)
+{
+    m_value = rb_ary_new();
+    Mushware::U32 arySize = inVector.size();
+    for (Mushware::U32 i=0; i<arySize; ++i)
+    {
+        rb_ary_push(m_value, UINT2NUM(inVector[i]));
+    }
 }
 
 std::string

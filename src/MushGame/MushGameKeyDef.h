@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 0XyESJoYf4vvwzHYpkSADw
 /*
- * $Id: MushGameKeyDef.h,v 1.4 2006/07/12 11:22:42 southa Exp $
+ * $Id: MushGameKeyDef.h,v 1.5 2006/11/02 12:23:22 southa Exp $
  * $Log: MushGameKeyDef.h,v $
+ * Revision 1.5  2006/11/02 12:23:22  southa
+ * Weapon selection
+ *
  * Revision 1.4  2006/07/12 11:22:42  southa
  * Advanced control menu
  *
@@ -59,13 +62,14 @@ public:
     void Reset(void);
     
 private:
-    std::vector<Mushware::U32> m_keyValues;
+    std::vector<Mushware::U32> m_keyValues; //:read
     bool m_state; //:readwrite
     bool m_stateHasChanged; //:readwrite
     std::string m_keyName; //:readwrite
     
 //%classPrototypes {
 public:
+    const std::vector<Mushware::U32>& KeyValues(void) const { return m_keyValues; }
     const bool& State(void) const { return m_state; }
     void StateSet(const bool& inValue) { m_state=inValue; }
     const bool& StateHasChanged(void) const { return m_stateHasChanged; }
@@ -79,7 +83,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } +05/2OvFd7Fp5UtrU4V43A
+//%classPrototypes } tTSECx/WwNVIVgkGSZUeFQ
 };
 
 

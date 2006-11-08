@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } NnTJcSPyQCJazbsDD4KfIg
 /*
- * $Id: MushGameAxisDef.h,v 1.6 2006/07/11 19:49:06 southa Exp $
+ * $Id: MushGameAxisDef.h,v 1.7 2006/07/12 11:22:42 southa Exp $
  * $Log: MushGameAxisDef.h,v $
+ * Revision 1.7  2006/07/12 11:22:42  southa
+ * Advanced control menu
+ *
  * Revision 1.6  2006/07/11 19:49:06  southa
  * Control menu
  *
@@ -69,9 +72,6 @@ public:
         m_deviceNum(0),
         m_deviceAxisNum(0),
         m_deviceSensitivity(1),
-        m_upKey(0),
-        m_downKey(0),
-        m_requiredKey(0),
         m_pos(0),
         m_vel(0),
         m_accel(1),
@@ -79,6 +79,21 @@ public:
         m_posHasMoved(true),
         m_deviceAccelerate(false)
     {}
+    
+    Mushware::U32 NumUpKeys(void) const { return m_upKeys.size(); }
+    void UpKeysResize(Mushware::U32 inSize) { m_upKeys.resize(inSize); }
+    Mushware::U32 UpKey(Mushware::U32 inIndex) const;
+    void UpKeySet(Mushware::U32 inValue, Mushware::U32 inIndex);
+
+    Mushware::U32 NumDownKeys(void) const { return m_downKeys.size(); }
+    void DownKeysResize(Mushware::U32 inSize) { m_downKeys.resize(inSize); }
+    Mushware::U32 DownKey(Mushware::U32 inIndex) const;
+    void DownKeySet(Mushware::U32 inValue, Mushware::U32 inIndex);
+
+    Mushware::U32 NumRequiredKeys(void) const { return m_requiredKeys.size(); }
+    void RequiredKeysResize(Mushware::U32 inSize) { m_requiredKeys.resize(inSize); }
+    Mushware::U32 RequiredKey(Mushware::U32 inIndex) const;
+    void RequiredKeySet(Mushware::U32 inValue, Mushware::U32 inIndex);
     
     void Accelerate(Mushware::tVal inAmount);
     void DeviceAccelerate(Mushware::tVal inAmount);
@@ -91,7 +106,7 @@ public:
     void Reset(void);
     
     bool UseDevice(void) const { return m_deviceNum != 0; }
-    bool UseKeys(void) const { return m_upKey != 0 || m_downKey != 0; }
+    bool UseKeys(void) const { return m_upKeys.size() != 0 || m_downKeys.size() != 0; }
     
 private:
     // Static configuration
@@ -105,10 +120,10 @@ private:
     Mushware::tVal m_velLimit; //:readwrite
     Mushware::tVal m_accel; //:readwrite
     
-    Mushware::U32 m_upKey; //:readwrite
-    Mushware::U32 m_downKey; //:readwrite
+    std::vector<Mushware::U32> m_upKeys; //:readwrite
+    std::vector<Mushware::U32> m_downKeys; //:readwrite
     
-    Mushware::U32 m_requiredKey; //:readwrite
+    std::vector<Mushware::U32> m_requiredKeys; //:readwrite
     
     Mushware::tVal m_minBound; //:readwrite
     Mushware::tVal m_maxBound; //:readwrite
@@ -139,12 +154,12 @@ public:
     void VelLimitSet(const Mushware::tVal& inValue) { m_velLimit=inValue; }
     const Mushware::tVal& Accel(void) const { return m_accel; }
     void AccelSet(const Mushware::tVal& inValue) { m_accel=inValue; }
-    const Mushware::U32& UpKey(void) const { return m_upKey; }
-    void UpKeySet(const Mushware::U32& inValue) { m_upKey=inValue; }
-    const Mushware::U32& DownKey(void) const { return m_downKey; }
-    void DownKeySet(const Mushware::U32& inValue) { m_downKey=inValue; }
-    const Mushware::U32& RequiredKey(void) const { return m_requiredKey; }
-    void RequiredKeySet(const Mushware::U32& inValue) { m_requiredKey=inValue; }
+    const std::vector<Mushware::U32>& UpKeys(void) const { return m_upKeys; }
+    void UpKeysSet(const std::vector<Mushware::U32>& inValue) { m_upKeys=inValue; }
+    const std::vector<Mushware::U32>& DownKeys(void) const { return m_downKeys; }
+    void DownKeysSet(const std::vector<Mushware::U32>& inValue) { m_downKeys=inValue; }
+    const std::vector<Mushware::U32>& RequiredKeys(void) const { return m_requiredKeys; }
+    void RequiredKeysSet(const std::vector<Mushware::U32>& inValue) { m_requiredKeys=inValue; }
     const Mushware::tVal& MinBound(void) const { return m_minBound; }
     void MinBoundSet(const Mushware::tVal& inValue) { m_minBound=inValue; }
     const Mushware::tVal& MaxBound(void) const { return m_maxBound; }
@@ -163,7 +178,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } ai3BdMHOajQ0xeGUPyc2HA
+//%classPrototypes } aKdOYzMKittI9MgH1dNPpA
 };
 //%inlineHeader {
 inline std::ostream&

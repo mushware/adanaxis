@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } bC49LKe3G5tsyGqAVa5gyw
 /*
- * $Id: MushGameAppHandler.cpp,v 1.19 2006/11/02 12:23:22 southa Exp $
+ * $Id: MushGameAppHandler.cpp,v 1.20 2006/11/03 18:46:33 southa Exp $
  * $Log: MushGameAppHandler.cpp,v $
+ * Revision 1.20  2006/11/03 18:46:33  southa
+ * Damage effectors
+ *
  * Revision 1.19  2006/11/02 12:23:22  southa
  * Weapon selection
  *
@@ -311,8 +314,14 @@ MushGameAppHandler::KeyPurge(Mushware::U32 inKeyNum)
 {
     for (U32 i=0; i < m_axisDefs.size(); ++i)
     {
-        if (m_axisDefs[i].UpKey() == inKeyNum) m_axisDefs[i].UpKeySet(0);
-        if (m_axisDefs[i].DownKey() == inKeyNum) m_axisDefs[i].DownKeySet(0);
+        for (U32 j=0; j<m_axisDefs[i].NumUpKeys(); ++j)
+        {
+            if (m_axisDefs[i].UpKey(j) == inKeyNum) m_axisDefs[i].UpKeySet(0, j);
+        }
+        for (U32 j=0; j<m_axisDefs[i].NumDownKeys(); ++j)
+        {        
+            if (m_axisDefs[i].DownKey(j) == inKeyNum) m_axisDefs[i].DownKeySet(0, j);
+        }
         // Required keys can be reused so don't get purged
     }
     
@@ -440,8 +449,16 @@ MushGameAppHandler::AxisTicker(Mushware::tMsec inTimeslice)
         MushGameAxisDef& axisDefRef = m_axisDefs[i];
         if (axisDefRef.UseDevice())
         {
-            U32 requiredKey = axisDefRef.RequiredKey();
-            if (requiredKey != 0 && KeyStateGet(requiredKey))
+            bool pressed = false;
+            for (U32 j=0; j<axisDefRef.NumRequiredKeys(); ++j)
+            {
+                U32 requiredKey = axisDefRef.RequiredKey(j);
+                if (requiredKey != 0 && KeyStateGet(requiredKey))
+                {
+                    pressed = true;
+                }
+            }
+            if (pressed)
             {
                 AxisFromDeviceUpdate(axisDefRef, amount);
             }
@@ -457,8 +474,24 @@ MushGameAppHandler::AxisTicker(Mushware::tMsec inTimeslice)
         
         if (axisDefRef.UseKeys())
         {
-            bool upState = KeyStateGet(axisDefRef.UpKey());
-            bool downState = KeyStateGet(axisDefRef.DownKey());
+            bool upState = false;
+            for (U32 j=0; j<axisDefRef.NumUpKeys(); ++j)
+            {
+                if (KeyStateGet(axisDefRef.UpKey(j)))
+                {
+                    upState = true;
+                }
+            }
+                    
+            bool downState = false;
+            for (U32 j=0; j<axisDefRef.NumDownKeys(); ++j)
+            {
+                if (KeyStateGet(axisDefRef.DownKey(j)))
+                {
+                    downState = true;
+                }
+            }
+            
             if (upState && !downState)
             {
                 axisDefRef.Accelerate(amount);
@@ -478,7 +511,15 @@ MushGameAppHandler::AxisTicker(Mushware::tMsec inTimeslice)
             axisDefRef.Decelerate(amount);
         }
         
-        if (axisDefRef.UseDevice() && axisDefRef.RequiredKey() == 0)
+        bool requiredKeysPresent = false;
+        for (U32 j=0; j<axisDefRef.NumRequiredKeys(); ++j)
+        {
+            if (axisDefRef.RequiredKey(j) != 0)
+            {
+                requiredKeysPresent = true;
+            }
+        }
+        if (axisDefRef.UseDevice() && !requiredKeysPresent)
         {
             AxisFromDeviceUpdate(axisDefRef, amount);
         } 

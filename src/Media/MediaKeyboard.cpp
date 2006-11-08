@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 7mgogG6D/5MIAEtL8RcBUQ
 /*
- * $Id: MediaKeyboard.cpp,v 1.4 2006/07/11 12:37:52 southa Exp $
+ * $Id: MediaKeyboard.cpp,v 1.5 2006/07/11 19:49:04 southa Exp $
  * $Log: MediaKeyboard.cpp,v $
+ * Revision 1.5  2006/07/11 19:49:04  southa
+ * Control menu
+ *
  * Revision 1.4  2006/07/11 12:37:52  southa
  * Control configuration
  *
@@ -50,14 +53,31 @@ MediaKeyboard::KeySymbolToName(Mushware::U32 keyValue)
     if (keyValue < kKey_LAST)
     {
         retVal = SDL_GetKeyName(static_cast<SDLKey>(keyValue));
+        if (retVal == "left ctrl") retVal = "l-ctrl";
+        if (retVal == "right ctrl") retVal = "r-ctrl";
+        if (retVal == "left") retVal = "left arrow";
+        if (retVal == "right") retVal = "right arrow";
+        if (retVal == "up") retVal = "up arrow";
+        if (retVal == "down") retVal = "down arrow";
+        if (retVal == "enter") retVal = "entr";
+        if (retVal == "[0]") retVal = "kp0";
+        if (retVal == "[1]") retVal = "kp1";
+        if (retVal == "[2]") retVal = "kp2";
+        if (retVal == "[3]") retVal = "kp3";
+        if (retVal == "[4]") retVal = "kp4";
+        if (retVal == "[5]") retVal = "kp5";
+        if (retVal == "[6]") retVal = "kp6";
+        if (retVal == "[7]") retVal = "kp7";
+        if (retVal == "[8]") retVal = "kp8";
+        if (retVal == "[9]") retVal = "kp9";
     }
-    else if (keyValue >= kKeyMouse0 && keyValue <= kKeyMouse4)
+    else if (keyValue >= kKeyMouse0 && keyValue <= kKeyMouse6)
     {
         switch (keyValue)
         {
             case kKeyMouse0:
 #if defined(MACOSX) || defined(__APPLE__)
-                retVal = "mouse button";
+                retVal = "mouse click";
 #else
                 retVal = "mouse left";
 #endif
@@ -72,13 +92,21 @@ MediaKeyboard::KeySymbolToName(Mushware::U32 keyValue)
                 break;
                 
             case kKeyMouse3:
-                retVal = "mouse 4";
+                retVal = "wheel up";
                 break;
                 
             case kKeyMouse4:
+                retVal = "wheel down";
+                break;
+                
+            case kKeyMouse5:
                 retVal = "mouse 5";
                 break;
-
+                
+            case kKeyMouse6:
+                retVal = "mouse 6";
+                break;
+                
             default:
                 // Leave as unknown
                 break;

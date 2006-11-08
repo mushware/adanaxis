@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 5BOLwI3DhgfDHotOLswDpg
 /*
- * $Id: MushRubyValue.h,v 1.16 2006/10/04 13:35:26 southa Exp $
+ * $Id: MushRubyValue.h,v 1.17 2006/10/12 22:04:49 southa Exp $
  * $Log: MushRubyValue.h,v $
+ * Revision 1.17  2006/10/12 22:04:49  southa
+ * Collision events
+ *
  * Revision 1.16  2006/10/04 13:35:26  southa
  * Selective targetting
  *
@@ -90,6 +93,7 @@ public:
 	explicit MushRubyValue(bool inValue);
 	explicit MushRubyValue(const char *inValue);
     explicit MushRubyValue(const std::string& inValue);
+    explicit MushRubyValue(const std::vector<Mushware::U32>& inVector);
 	std::string String(void) const;
 	bool IsNil(void) const;
 	bool IsU32(void) const;

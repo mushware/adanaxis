@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } MJLMNaraKdT0cf2Xdn+zyg
 /*
- * $Id: MushGameAxisDef.cpp,v 1.6 2006/07/11 19:49:05 southa Exp $
+ * $Id: MushGameAxisDef.cpp,v 1.7 2006/07/12 11:22:41 southa Exp $
  * $Log: MushGameAxisDef.cpp,v $
+ * Revision 1.7  2006/07/12 11:22:41  southa
+ * Advanced control menu
+ *
  * Revision 1.6  2006/07/11 19:49:05  southa
  * Control menu
  *
@@ -45,6 +48,48 @@
 
 using namespace Mushware;
 using namespace std;
+
+Mushware::U32
+MushGameAxisDef::UpKey(Mushware::U32 inIndex) const
+{
+    MushcoreUtil::DebugBoundsCheck(inIndex, m_upKeys.size());
+    return m_upKeys[inIndex];
+}
+
+void
+MushGameAxisDef::UpKeySet(Mushware::U32 inValue, Mushware::U32 inIndex)
+{
+    MushcoreUtil::DebugBoundsCheck(inIndex, m_upKeys.size());
+    m_upKeys[inIndex] = inValue;
+}
+
+Mushware::U32
+MushGameAxisDef::DownKey(Mushware::U32 inIndex) const
+{
+    MushcoreUtil::DebugBoundsCheck(inIndex, m_downKeys.size());
+    return m_downKeys[inIndex];
+}
+
+void
+MushGameAxisDef::DownKeySet(Mushware::U32 inValue, Mushware::U32 inIndex)
+{
+    MushcoreUtil::DebugBoundsCheck(inIndex, m_downKeys.size());
+    m_downKeys[inIndex] = inValue;
+}
+
+Mushware::U32
+MushGameAxisDef::RequiredKey(Mushware::U32 inIndex) const
+{
+    MushcoreUtil::DebugBoundsCheck(inIndex, m_requiredKeys.size());
+    return m_requiredKeys[inIndex];
+}
+
+void
+MushGameAxisDef::RequiredKeySet(Mushware::U32 inValue, Mushware::U32 inIndex)
+{
+    MushcoreUtil::DebugBoundsCheck(inIndex, m_requiredKeys.size());
+    m_requiredKeys[inIndex] = inValue;
+}
 
 void
 MushGameAxisDef::PosConstrainAndSet(Mushware::tVal inPos)
@@ -192,9 +237,9 @@ MushGameAxisDef::AutoPrint(std::ostream& ioOut) const
     ioOut << "deviceDamping=" << m_deviceDamping << ", ";
     ioOut << "velLimit=" << m_velLimit << ", ";
     ioOut << "accel=" << m_accel << ", ";
-    ioOut << "upKey=" << m_upKey << ", ";
-    ioOut << "downKey=" << m_downKey << ", ";
-    ioOut << "requiredKey=" << m_requiredKey << ", ";
+    ioOut << "upKeys=" << m_upKeys << ", ";
+    ioOut << "downKeys=" << m_downKeys << ", ";
+    ioOut << "requiredKeys=" << m_requiredKeys << ", ";
     ioOut << "minBound=" << m_minBound << ", ";
     ioOut << "maxBound=" << m_maxBound << ", ";
     ioOut << "axisName=" << m_axisName << ", ";
@@ -245,17 +290,17 @@ MushGameAxisDef::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string&
     {
         ioIn >> m_accel;
     }
-    else if (inTagStr == "upKey")
+    else if (inTagStr == "upKeys")
     {
-        ioIn >> m_upKey;
+        ioIn >> m_upKeys;
     }
-    else if (inTagStr == "downKey")
+    else if (inTagStr == "downKeys")
     {
-        ioIn >> m_downKey;
+        ioIn >> m_downKeys;
     }
-    else if (inTagStr == "requiredKey")
+    else if (inTagStr == "requiredKeys")
     {
-        ioIn >> m_requiredKey;
+        ioIn >> m_requiredKeys;
     }
     else if (inTagStr == "minBound")
     {
@@ -310,12 +355,12 @@ MushGameAxisDef::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_velLimit;
     ioOut.TagSet("accel");
     ioOut << m_accel;
-    ioOut.TagSet("upKey");
-    ioOut << m_upKey;
-    ioOut.TagSet("downKey");
-    ioOut << m_downKey;
-    ioOut.TagSet("requiredKey");
-    ioOut << m_requiredKey;
+    ioOut.TagSet("upKeys");
+    ioOut << m_upKeys;
+    ioOut.TagSet("downKeys");
+    ioOut << m_downKeys;
+    ioOut.TagSet("requiredKeys");
+    ioOut << m_requiredKeys;
     ioOut.TagSet("minBound");
     ioOut << m_minBound;
     ioOut.TagSet("maxBound");
@@ -331,4 +376,4 @@ MushGameAxisDef::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("deviceAccelerate");
     ioOut << m_deviceAccelerate;
 }
-//%outOfLineFunctions } Cz5xcPnpleKY/DiQ4LWJCA
+//%outOfLineFunctions } Ot1uiEK/rxgrsaE/ac/Rpw

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 8+s43zymtGuWatXc9oMynA
 /*
- * $Id: MediaKeyboard.h,v 1.3 2006/07/11 19:49:05 southa Exp $
+ * $Id: MediaKeyboard.h,v 1.4 2006/07/21 10:52:06 southa Exp $
  * $Log: MediaKeyboard.h,v $
+ * Revision 1.4  2006/07/21 10:52:06  southa
+ * win32 build fixes
+ *
  * Revision 1.3  2006/07/11 19:49:05  southa
  * Control menu
  *
@@ -284,6 +287,8 @@ public:
         kKeyMouse2 = 1002,
         kKeyMouse3 = 1003,
         kKeyMouse4 = 1004,
+        kKeyMouse5 = 1005,
+        kKeyMouse6 = 1006,
         
         kKeyStickSpacing  = 100,
         kKeyStickHat      = 50,

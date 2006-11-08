@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } X577BrzUUfCyG/exJzzEYQ
 /*
- * $Id: SDLAppHandler.cpp,v 1.62 2006/07/28 16:52:20 southa Exp $
+ * $Id: SDLAppHandler.cpp,v 1.63 2006/08/02 16:25:54 southa Exp $
  * $Log: SDLAppHandler.cpp,v $
+ * Revision 1.63  2006/08/02 16:25:54  southa
+ * Prerelease work
+ *
  * Revision 1.62  2006/07/28 16:52:20  southa
  * Options work
  *
@@ -594,7 +597,7 @@ SDLAppHandler::PollForControlEvents(void)
             {
                 U32 button=event.button.button-1;
                 if (event.button.button < 1 ||
-                    button > (MediaKeyboard::kKeyMouse4 - MediaKeyboard::kKeyMouse0))
+                    button > (MediaKeyboard::kKeyMouse6 - MediaKeyboard::kKeyMouse0))
                 {
                     cerr << "Button index " << button << " ignored" << endl;
                     break;

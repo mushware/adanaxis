@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } abz8WfQdtsWpPxv12NZxhA
 /*
- * $Id: MushGameRuby.h,v 1.15 2006/10/02 20:28:11 southa Exp $
+ * $Id: MushGameRuby.h,v 1.16 2006/10/16 22:00:21 southa Exp $
  * $Log: MushGameRuby.h,v $
+ * Revision 1.16  2006/10/16 22:00:21  southa
+ * Tweaks
+ *
  * Revision 1.15  2006/10/02 20:28:11  southa
  * Object lookup and target selection
  *
@@ -79,16 +82,16 @@
 class MushGameRuby : public MushRubyEmptyObj<4000>
 {
 public:
-    static Mushware::tRubyValue KeySymbolToName(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
+    static Mushware::tRubyValue KeySymbolsToName(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
     static Mushware::tRubyValue GameModeEnter(Mushware::tRubyValue inSelf);
     static Mushware::tRubyValue NewGameEnter(Mushware::tRubyValue inSelf);
     static Mushware::tRubyValue Quit(Mushware::tRubyValue inSelf);
     static Mushware::tRubyValue AxisName(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
     static Mushware::tRubyValue AxisSymbol(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
     static Mushware::tRubyValue AxisSet(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0, Mushware::tRubyValue inArg1);
-    static Mushware::tRubyValue AxisKeySymbol(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
+    static Mushware::tRubyValue AxisKeySymbols(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
     static Mushware::tRubyValue AxisKeySet(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0, Mushware::tRubyValue inArg1);
-    static Mushware::tRubyValue KeySymbol(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
+    static Mushware::tRubyValue KeySymbols(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
     static Mushware::tRubyValue KeySet(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0, Mushware::tRubyValue inArg1);
     static Mushware::tRubyValue NumJoysticks(Mushware::tRubyValue inSelf);
     static Mushware::tRubyValue ControlsToDefaultSet(Mushware::tRubyValue inSelf);
