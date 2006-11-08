@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } zS6MRI08vU38Tp9aNbV8RQ
 /*
- * $Id: MushGameVolatileData.h,v 1.9 2006/07/20 12:22:22 southa Exp $
+ * $Id: MushGameVolatileData.h,v 1.10 2006/07/28 11:14:29 southa Exp $
  * $Log: MushGameVolatileData.h,v $
+ * Revision 1.10  2006/07/28 11:14:29  southa
+ * Records for multiple spaces
+ *
  * Revision 1.9  2006/07/20 12:22:22  southa
  * Precache display
  *
@@ -90,7 +93,9 @@ private:
     Mushware::U32 m_gameMode; //:readwrite
     bool m_preCache; //:readwrite
     bool m_isMenuBackdrop; //:readwrite
-
+    Mushware::tVal m_averageMsecPerFrame; //:readwrite
+    Mushware::U32 m_movesThisFrame; //:readwrite
+    
 //%classPrototypes {
 public:
     const Mushware::U32& PlayerUplinkPeriodMsec(void) const { return m_playerUplinkPeriodMsec; }
@@ -113,6 +118,10 @@ public:
     void PreCacheSet(const bool& inValue) { m_preCache=inValue; }
     const bool& IsMenuBackdrop(void) const { return m_isMenuBackdrop; }
     void IsMenuBackdropSet(const bool& inValue) { m_isMenuBackdrop=inValue; }
+    const Mushware::tVal& AverageMsecPerFrame(void) const { return m_averageMsecPerFrame; }
+    void AverageMsecPerFrameSet(const Mushware::tVal& inValue) { m_averageMsecPerFrame=inValue; }
+    const Mushware::U32& MovesThisFrame(void) const { return m_movesThisFrame; }
+    void MovesThisFrameSet(const Mushware::U32& inValue) { m_movesThisFrame=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -120,7 +129,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } UvK0y9TvEHiznAtEuVhEkA
+//%classPrototypes } 9ZoG3ZKiV6wMUvseKdQK5Q
 };
 //%inlineHeader {
 inline std::ostream&

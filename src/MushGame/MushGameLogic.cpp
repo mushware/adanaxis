@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } o9Dxm/e8GypZNPSRXLgJNQ
 /*
- * $Id: MushGameLogic.cpp,v 1.33 2006/10/12 22:04:48 southa Exp $
+ * $Id: MushGameLogic.cpp,v 1.34 2006/10/17 15:28:02 southa Exp $
  * $Log: MushGameLogic.cpp,v $
+ * Revision 1.34  2006/10/17 15:28:02  southa
+ * Player collisions
+ *
  * Revision 1.33  2006/10/12 22:04:48  southa
  * Collision events
  *
@@ -466,6 +469,23 @@ MushGameLogic::TimingSequence(void)
     Mushware::U32 timeNow = MushGameUtil::AppHandler().MillisecondsGet();
     Mushware::U32 timeDiff = timeNow - static_cast<U32>(VolatileData().LastGameMsec());
     
+    // If generating less than 20 fps, slow down the game speed 
+    if (timeDiff > 50)
+    {
+        timeDiff = 50;
+    }
+    
+    VolatileData().AverageMsecPerFrameSet(VolatileData().AverageMsecPerFrame() * 0.9 + timeDiff * 0.1);
+    
+    // Assume 60fps for move-per-frame calculation.  Smoothness will degrade on non-60Hz displays
+    tVal idealMovesThisFrame = VolatileData().AverageMsecPerFrame() * 60.0 / 1000.0;
+    if (std::fabs(VolatileData().MovesThisFrame() - idealMovesThisFrame) > 0.7)
+    {
+        U32 movesThisFrame = static_cast<U32>(idealMovesThisFrame + 0.5);
+        MushcoreUtil::Constrain<U32>(movesThisFrame, 1, 5);
+        VolatileData().MovesThisFrameSet(movesThisFrame);
+    }
+    
     if (IsGameMode() && timeDiff < 1e9)
     {
         VolatileData().GameMsecSet(VolatileData().GameMsec() + timeDiff);
@@ -686,11 +706,18 @@ MushGameLogic::MainSequence(void)
     catch (MushcoreNonFatalFail& e) { ExceptionHandle(&e, "SendSequence"); }
     if (IsGameMode() || VolatileData().IsMenuBackdrop())
     {
-        try { MoveSequence(); }
-        catch (MushcoreNonFatalFail& e) { ExceptionHandle(&e, "MoveSequence"); }
+        for (U32 i=0; i<VolatileData().MovesThisFrame(); ++i)
+        {
+            try { MoveSequence(); }
+            catch (MushcoreNonFatalFail& e) { ExceptionHandle(&e, "MoveSequence"); }
+            try { CollideSequence(); }
+            catch (MushcoreNonFatalFail& e) { ExceptionHandle(&e, "CollideSequence"); }
+            if (i>10)
+            {
+                throw MushcoreLogicFail("Move overrun");
+            }
+        }
     }
-    try { CollideSequence(); }
-    catch (MushcoreNonFatalFail& e) { ExceptionHandle(&e, "CollideSequence"); }
     try { TickerSequence(); }
     catch (MushcoreNonFatalFail& e) { ExceptionHandle(&e, "TickerSequence"); }
     try { UplinkSequence(); }

@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } rQkTih3VUd7Xp8cDeV3ZYA
 /*
- * $Id: AdanaxisRender.cpp,v 1.54 2006/10/19 15:41:36 southa Exp $
+ * $Id: AdanaxisRender.cpp,v 1.55 2006/10/20 15:38:52 southa Exp $
  * $Log: AdanaxisRender.cpp,v $
+ * Revision 1.55  2006/10/20 15:38:52  southa
+ * Item collection
+ *
  * Revision 1.54  2006/10/19 15:41:36  southa
  * Item handling
  *
@@ -593,6 +596,25 @@ AdanaxisRender::Overplot(MushGameLogic& ioLogic, const MushGameCamera& inCamera)
                 glStr.Render();
             }
         }
+        
+#ifdef MUSHCORE_DEBUG
+        {
+            orthoGL.MoveToEdge(1,1);
+            orthoGL.MoveRelative(-0.01, -0.07);
+            ostringstream message;
+            message << setprecision(1) << fixed << (static_cast<U32>(10000.0 / logicRef.VolatileData().AverageMsecPerFrame()) / 10.0) << " fps";
+            GLString glStr(message.str(), GLFontRef("font-mono1", 0.02), 1);
+            glStr.Render();
+        }
+        {
+            orthoGL.MoveToEdge(1,1);
+            orthoGL.MoveRelative(-0.01, -0.10);
+            ostringstream message;
+            message << logicRef.VolatileData().MovesThisFrame() << " mtf";
+            GLString glStr(message.str(), GLFontRef("font-mono1", 0.02), 1);
+            glStr.Render();
+        }
+#endif
         
         if (logicRef.KhaziCount() == 0)
         {

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } mGoZWUiZsKFfWNio1FcVLw
 /*
- * $Id: MushGameVolatileData.cpp,v 1.9 2006/07/20 12:22:22 southa Exp $
+ * $Id: MushGameVolatileData.cpp,v 1.10 2006/07/28 11:14:29 southa Exp $
  * $Log: MushGameVolatileData.cpp,v $
+ * Revision 1.10  2006/07/28 11:14:29  southa
+ * Records for multiple spaces
+ *
  * Revision 1.9  2006/07/20 12:22:22  southa
  * Precache display
  *
@@ -64,7 +67,9 @@ MushGameVolatileData::MushGameVolatileData() :
     m_rubyGame(Mushware::kRubyQnil),
     m_gameMode(kGameModeMenu),
     m_preCache(false),
-    m_isMenuBackdrop(false)
+    m_isMenuBackdrop(false),
+    m_averageMsecPerFrame(1000.0/60.0),
+    m_movesThisFrame(1)
 {
 }
 
@@ -110,7 +115,9 @@ MushGameVolatileData::AutoPrint(std::ostream& ioOut) const
     ioOut << "rubyGame=" << m_rubyGame << ", ";
     ioOut << "gameMode=" << m_gameMode << ", ";
     ioOut << "preCache=" << m_preCache << ", ";
-    ioOut << "isMenuBackdrop=" << m_isMenuBackdrop;
+    ioOut << "isMenuBackdrop=" << m_isMenuBackdrop << ", ";
+    ioOut << "averageMsecPerFrame=" << m_averageMsecPerFrame << ", ";
+    ioOut << "movesThisFrame=" << m_movesThisFrame;
     ioOut << "]";
 }
 bool
@@ -162,6 +169,14 @@ MushGameVolatileData::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::st
     {
         ioIn >> m_isMenuBackdrop;
     }
+    else if (inTagStr == "averageMsecPerFrame")
+    {
+        ioIn >> m_averageMsecPerFrame;
+    }
+    else if (inTagStr == "movesThisFrame")
+    {
+        ioIn >> m_movesThisFrame;
+    }
     else 
     {
         return false;
@@ -191,5 +206,9 @@ MushGameVolatileData::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_preCache;
     ioOut.TagSet("isMenuBackdrop");
     ioOut << m_isMenuBackdrop;
+    ioOut.TagSet("averageMsecPerFrame");
+    ioOut << m_averageMsecPerFrame;
+    ioOut.TagSet("movesThisFrame");
+    ioOut << m_movesThisFrame;
 }
-//%outOfLineFunctions } XQ3PP6Tp7uSWdgyzoypTcg
+//%outOfLineFunctions } r7scEg2XWPZzWsudyG5KiA
