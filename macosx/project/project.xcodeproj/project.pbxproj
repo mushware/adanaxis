@@ -2709,6 +2709,7 @@
 		7A581A7D0AB55F48004F3E11 /* MushMeshLibraryWorldSphere.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushMeshLibraryWorldSphere.cpp; sourceTree = "<group>"; };
 		7A581A920AB6F301004F3E11 /* MushMeshRubyBaseWorldSphere.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushMeshRubyBaseWorldSphere.h; sourceTree = "<group>"; };
 		7A581A930AB6F301004F3E11 /* MushMeshRubyBaseWorldSphere.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushMeshRubyBaseWorldSphere.cpp; sourceTree = "<group>"; };
+		7A5824560B033A480028C9D1 /* COPYING */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = COPYING; sourceTree = "<group>"; };
 		7A58280F0A791B55005FD788 /* manifest.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = manifest.txt; sourceTree = "<group>"; };
 		7A5828100A791B56005FD788 /* space.rb */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.ruby; path = space.rb; sourceTree = "<group>"; };
 		7A5894110AE6459100CD90EA /* ProcessCosmos.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ProcessCosmos.rb; sourceTree = "<group>"; };
@@ -2765,6 +2766,23 @@
 		7A59A5BE0AFDBBBC00ABD3E5 /* ProcessMush.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ProcessMush.rb; sourceTree = "<group>"; };
 		7A59A5C50AFDBDB100ABD3E5 /* MakeMush.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = MakeMush.rb; sourceTree = "<group>"; };
 		7A59A5D60AFDC15B00ABD3E5 /* FileMush.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = FileMush.rb; sourceTree = "<group>"; };
+		7A59AABC0B0374AF001C6953 /* RE122_L.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = RE122_L.mov; sourceTree = "<group>"; };
+		7A59AAD80B0374CF001C6953 /* MakeMush.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = MakeMush.rb; sourceTree = "<group>"; };
+		7A59AB390B037D89001C6953 /* RE228_L.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = RE228_L.mov; sourceTree = "<group>"; };
+		7A59AB570B037DB1001C6953 /* MakeMush.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = MakeMush.rb; sourceTree = "<group>"; };
+		7A59AB770B037F76001C6953 /* RE313_L.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = RE313_L.mov; sourceTree = "<group>"; };
+		7A59AB7A0B037F86001C6953 /* MakeMush.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = MakeMush.rb; sourceTree = "<group>"; };
+		7A59AB890B0382C5001C6953 /* RE321_L.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = RE321_L.mov; sourceTree = "<group>"; };
+		7A59AB8C0B0382D2001C6953 /* MakeMush.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = MakeMush.rb; sourceTree = "<group>"; };
+		7A59AB9B0B0384EB001C6953 /* RE410_L.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = RE410_L.mov; sourceTree = "<group>"; };
+		7A59AB9E0B0384F7001C6953 /* MakeMush.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = MakeMush.rb; sourceTree = "<group>"; };
+		7A59ABA30B0385D6001C6953 /* RE413B_L.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = RE413B_L.mov; sourceTree = "<group>"; };
+		7A59ABA60B0385E2001C6953 /* MakeMush.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = MakeMush.rb; sourceTree = "<group>"; };
+		7A59ABB10B03881D001C6953 /* RE414A_L.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = RE414A_L.mov; sourceTree = "<group>"; };
+		7A59ABB40B03882B001C6953 /* MakeMush.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = MakeMush.rb; sourceTree = "<group>"; };
+		7A59ABBF0B038A1F001C6953 /* RE428A_L.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = RE428A_L.mov; sourceTree = "<group>"; };
+		7A59ABC20B038A2B001C6953 /* MakeMush.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = MakeMush.rb; sourceTree = "<group>"; };
+		7A59ABD20B038CAD001C6953 /* MakeMush.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = MakeMush.rb; sourceTree = "<group>"; };
 		7A5A571C0AF6484600444AC6 /* AdanaxisRemnant.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AdanaxisRemnant.rb; sourceTree = "<group>"; };
 		7A5A572A0AF653D800444AC6 /* AdanaxisPiece.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AdanaxisPiece.rb; sourceTree = "<group>"; };
 		7A5A573B0AF655C900444AC6 /* AdanaxisPiece.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdanaxisPiece.h; sourceTree = "<group>"; };
@@ -4366,6 +4384,14 @@
 			path = system;
 			sourceTree = "<group>";
 		};
+		7A5824130B0339F80028C9D1 /* cosmos */ = {
+			isa = PBXGroup;
+			children = (
+				7A5824560B033A480028C9D1 /* COPYING */,
+			);
+			path = cosmos;
+			sourceTree = "<group>";
+		};
 		7A58280E0A791B55005FD788 /* menu1 */ = {
 			isa = PBXGroup;
 			children = (
@@ -4436,10 +4462,99 @@
 			path = MushFile;
 			sourceTree = "<group>";
 		};
+		7A59AABA0B0374AF001C6953 /* artbeats */ = {
+			isa = PBXGroup;
+			children = (
+				7A59ABBE0B038A1F001C6953 /* RE428A */,
+				7A59ABB00B03881D001C6953 /* RE414A */,
+				7A59ABA20B0385D5001C6953 /* RE413B */,
+				7A59AB9A0B0384EB001C6953 /* RE410 */,
+				7A59AB880B0382C5001C6953 /* RE321 */,
+				7A59AB760B037F76001C6953 /* RE313 */,
+				7A59AB380B037D89001C6953 /* RE228 */,
+				7A59AABB0B0374AF001C6953 /* RE122 */,
+				7A59ABD20B038CAD001C6953 /* MakeMush.rb */,
+			);
+			path = artbeats;
+			sourceTree = "<group>";
+		};
+		7A59AABB0B0374AF001C6953 /* RE122 */ = {
+			isa = PBXGroup;
+			children = (
+				7A59AAD80B0374CF001C6953 /* MakeMush.rb */,
+				7A59AABC0B0374AF001C6953 /* RE122_L.mov */,
+			);
+			path = RE122;
+			sourceTree = "<group>";
+		};
+		7A59AB380B037D89001C6953 /* RE228 */ = {
+			isa = PBXGroup;
+			children = (
+				7A59AB570B037DB1001C6953 /* MakeMush.rb */,
+				7A59AB390B037D89001C6953 /* RE228_L.mov */,
+			);
+			path = RE228;
+			sourceTree = "<group>";
+		};
+		7A59AB760B037F76001C6953 /* RE313 */ = {
+			isa = PBXGroup;
+			children = (
+				7A59AB7A0B037F86001C6953 /* MakeMush.rb */,
+				7A59AB770B037F76001C6953 /* RE313_L.mov */,
+			);
+			path = RE313;
+			sourceTree = "<group>";
+		};
+		7A59AB880B0382C5001C6953 /* RE321 */ = {
+			isa = PBXGroup;
+			children = (
+				7A59AB8C0B0382D2001C6953 /* MakeMush.rb */,
+				7A59AB890B0382C5001C6953 /* RE321_L.mov */,
+			);
+			path = RE321;
+			sourceTree = "<group>";
+		};
+		7A59AB9A0B0384EB001C6953 /* RE410 */ = {
+			isa = PBXGroup;
+			children = (
+				7A59AB9E0B0384F7001C6953 /* MakeMush.rb */,
+				7A59AB9B0B0384EB001C6953 /* RE410_L.mov */,
+			);
+			path = RE410;
+			sourceTree = "<group>";
+		};
+		7A59ABA20B0385D5001C6953 /* RE413B */ = {
+			isa = PBXGroup;
+			children = (
+				7A59ABA60B0385E2001C6953 /* MakeMush.rb */,
+				7A59ABA30B0385D6001C6953 /* RE413B_L.mov */,
+			);
+			path = RE413B;
+			sourceTree = "<group>";
+		};
+		7A59ABB00B03881D001C6953 /* RE414A */ = {
+			isa = PBXGroup;
+			children = (
+				7A59ABB40B03882B001C6953 /* MakeMush.rb */,
+				7A59ABB10B03881D001C6953 /* RE414A_L.mov */,
+			);
+			path = RE414A;
+			sourceTree = "<group>";
+		};
+		7A59ABBE0B038A1F001C6953 /* RE428A */ = {
+			isa = PBXGroup;
+			children = (
+				7A59ABC20B038A2B001C6953 /* MakeMush.rb */,
+				7A59ABBF0B038A1F001C6953 /* RE428A_L.mov */,
+			);
+			path = RE428A;
+			sourceTree = "<group>";
+		};
 		7A5AC3FE0B0089EC00291891 /* pixelsrc */ = {
 			isa = PBXGroup;
 			children = (
 				7A5AC4660B0089ED00291891 /* MakeMush.rb */,
+				7A59AABA0B0374AF001C6953 /* artbeats */,
 			);
 			path = pixelsrc;
 			sourceTree = "<group>";
@@ -5626,6 +5741,7 @@
 			isa = PBXGroup;
 			children = (
 				7A5894150AE6466A00CD90EA /* MakeCosmos.rb */,
+				7A5824130B0339F80028C9D1 /* cosmos */,
 			);
 			path = pixels;
 			sourceTree = "<group>";

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } vzsiY9MwPTZIFsQ1nPV4fA
 /*
- * $Id: MushGLPixelSource.h,v 1.9 2006/06/22 19:07:31 southa Exp $
+ * $Id: MushGLPixelSource.h,v 1.10 2006/06/27 11:58:09 southa Exp $
  * $Log: MushGLPixelSource.h,v $
+ * Revision 1.10  2006/06/27 11:58:09  southa
+ * Warning fixes
+ *
  * Revision 1.9  2006/06/22 19:07:31  southa
  * Build fixes
  *
@@ -78,6 +81,7 @@ private:
     std::string m_storageType; //:read
 	Mushware::t4U32 m_size; //:readwrite
 	bool m_cacheable; //:readwrite
+	bool m_compress; //:readwrite
 	
 //%classPrototypes {
 public:
@@ -88,6 +92,8 @@ public:
     void SizeSet(const Mushware::t4U32& inValue) { m_size=inValue; }
     const bool& Cacheable(void) const { return m_cacheable; }
     void CacheableSet(const bool& inValue) { m_cacheable=inValue; }
+    const bool& Compress(void) const { return m_compress; }
+    void CompressSet(const bool& inValue) { m_compress=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -95,7 +101,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } LNTgufECfai/ePQ6iZCBmA
+//%classPrototypes } 8d28Z6LXqzGC1aMg3bBNFA
 };
 //%inlineHeader {
 inline std::ostream&

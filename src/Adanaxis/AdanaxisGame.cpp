@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } 0Sg2qcftBJTnB0QxDEkq2Q
 /*
- * $Id: AdanaxisGame.cpp,v 1.53 2006/10/17 15:28:01 southa Exp $
+ * $Id: AdanaxisGame.cpp,v 1.54 2006/11/03 18:46:33 southa Exp $
  * $Log: AdanaxisGame.cpp,v $
+ * Revision 1.54  2006/11/03 18:46:33  southa
+ * Damage effectors
+ *
  * Revision 1.53  2006/10/17 15:28:01  southa
  * Player collisions
  *
@@ -336,16 +339,6 @@ AdanaxisGame::Init(MushGameAppHandler& inAppHandler)
     if (m_config.MusicVolume() > 0)
     {
         // MediaAudio::Sgl().MusicFadeIn(300);
-    }
-    
-    // Use compresion at low detail levels only - alpha-mapped textures don't compress well
-    if (m_config.TextureDetail() > 1)
-    {
-        MushGLV::Sgl().UseS3TCSet(false);
-    }
-    else
-    {
-        MushGLV::Sgl().UseS3TCSet(true);
     }
     
     Logic().RecordTimeSet(m_config.RecordTime(SaveData().SpaceName()));

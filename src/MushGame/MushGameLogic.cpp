@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } o9Dxm/e8GypZNPSRXLgJNQ
 /*
- * $Id: MushGameLogic.cpp,v 1.34 2006/10/17 15:28:02 southa Exp $
+ * $Id: MushGameLogic.cpp,v 1.35 2006/11/08 11:35:00 southa Exp $
  * $Log: MushGameLogic.cpp,v $
+ * Revision 1.35  2006/11/08 11:35:00  southa
+ * Basic frame rate independence
+ *
  * Revision 1.34  2006/10/17 15:28:02  southa
  * Player collisions
  *
@@ -475,7 +478,7 @@ MushGameLogic::TimingSequence(void)
         timeDiff = 50;
     }
     
-    VolatileData().AverageMsecPerFrameSet(VolatileData().AverageMsecPerFrame() * 0.9 + timeDiff * 0.1);
+    VolatileData().AverageMsecPerFrameSet(VolatileData().AverageMsecPerFrame() * 0.8 + timeDiff * 0.2);
     
     // Assume 60fps for move-per-frame calculation.  Smoothness will degrade on non-60Hz displays
     tVal idealMovesThisFrame = VolatileData().AverageMsecPerFrame() * 60.0 / 1000.0;
@@ -766,6 +769,7 @@ MushGameLogic::QuitModeEnter(void)
 void
 MushGameLogic::PreCacheModeEnter(void)
 {
+    MushGLTexture::ByteCountSet(0);
     VolatileData().PreCacheSet(true);
 }
 

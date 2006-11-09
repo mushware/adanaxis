@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } yY7ZZkvIHHOoUzJzTAQPOQ
 /*
- * $Id: MushGameRuby.cpp,v 1.18 2006/11/02 12:23:22 southa Exp $
+ * $Id: MushGameRuby.cpp,v 1.19 2006/11/08 18:30:54 southa Exp $
  * $Log: MushGameRuby.cpp,v $
+ * Revision 1.19  2006/11/08 18:30:54  southa
+ * Key and axis configuration
+ *
  * Revision 1.18  2006/11/02 12:23:22  southa
  * Weapon selection
  *
@@ -543,16 +546,6 @@ MushGameRuby::TextureDetailSet(Mushware::tRubyValue inSelf, Mushware::tRubyValue
     MushRubyValue value(inArg0);
     MushGameUtil::AppHandler().ConfigWRef().TextureDetailSet(value.U32());
     
-    // Use compresion at low detail levels only - alpha-mapped textures don't compress well
-    if (value.U32() > 1)
-    {
-        MushGLV::Sgl().UseS3TCSet(false);
-    }
-    else
-    {
-        MushGLV::Sgl().UseS3TCSet(true);
-    }
-
     return Mushware::kRubyQnil;
 }
 

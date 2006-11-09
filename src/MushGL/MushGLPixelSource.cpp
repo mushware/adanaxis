@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } vz1knUYnzwX5FNm6RC5EZw
 /*
- * $Id: MushGLPixelSource.cpp,v 1.8 2006/06/07 12:15:19 southa Exp $
+ * $Id: MushGLPixelSource.cpp,v 1.9 2006/06/27 11:58:08 southa Exp $
  * $Log: MushGLPixelSource.cpp,v $
+ * Revision 1.9  2006/06/27 11:58:08  southa
+ * Warning fixes
+ *
  * Revision 1.8  2006/06/07 12:15:19  southa
  * Grid and test textures
  *
@@ -60,7 +63,8 @@ MUSHCORE_INSTALLER(MushGLPixelSource::Install);
 
 MushGLPixelSource::MushGLPixelSource() :
     m_storageType("GL"),
-	m_cacheable(true)
+	m_cacheable(true),
+    m_compress(false)
 {
 }
 
@@ -84,6 +88,10 @@ MushGLPixelSource::ParamDecode(const MushRubyValue& inName, const MushRubyValue&
 	else if (nameStr == "cache")
 	{
 		m_cacheable = inValue.Bool();
+	}
+	else if (nameStr == "compress")
+	{
+		m_compress = inValue.Bool();
 	}
 	else
 	{
@@ -155,7 +163,8 @@ MushGLPixelSource::AutoPrint(std::ostream& ioOut) const
     ioOut << "name=" << m_name << ", ";
     ioOut << "storageType=" << m_storageType << ", ";
     ioOut << "size=" << m_size << ", ";
-    ioOut << "cacheable=" << m_cacheable;
+    ioOut << "cacheable=" << m_cacheable << ", ";
+    ioOut << "compress=" << m_compress;
     ioOut << "]";
 }
 bool
@@ -183,6 +192,10 @@ MushGLPixelSource::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::strin
     {
         ioIn >> m_cacheable;
     }
+    else if (inTagStr == "compress")
+    {
+        ioIn >> m_compress;
+    }
     else 
     {
         return false;
@@ -200,5 +213,7 @@ MushGLPixelSource::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_size;
     ioOut.TagSet("cacheable");
     ioOut << m_cacheable;
+    ioOut.TagSet("compress");
+    ioOut << m_compress;
 }
-//%outOfLineFunctions } H426C0uPz7+vi8NVW5PDrg
+//%outOfLineFunctions } d8xEo15VopdWn4VpyqzCUg

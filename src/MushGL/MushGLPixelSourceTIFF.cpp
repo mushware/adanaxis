@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } SaBXzXzmz9pA2fL3GoZFMQ
 /*
- * $Id: MushGLPixelSourceTIFF.cpp,v 1.6 2006/06/07 12:15:19 southa Exp $
+ * $Id: MushGLPixelSourceTIFF.cpp,v 1.7 2006/11/07 11:08:54 southa Exp $
  * $Log: MushGLPixelSourceTIFF.cpp,v $
+ * Revision 1.7  2006/11/07 11:08:54  southa
+ * Texture loading from mushfiles
+ *
  * Revision 1.6  2006/06/07 12:15:19  southa
  * Grid and test textures
  *
@@ -145,6 +148,7 @@ MushGLPixelSourceTIFF::ToTextureCreate(MushGLTexture& outTexture)
             outTexture.SizeSet(t4U32(width, height, 1, 1));
             outTexture.PixelTypeRGBASet();
             outTexture.StorageTypeSet(StorageType());
+            outTexture.CompressSet(Compress());
             outTexture.PixelDataUse(pTIFFData);
             if (srcFile.SourceIsMush())
             {

@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } rQkTih3VUd7Xp8cDeV3ZYA
 /*
- * $Id: AdanaxisRender.cpp,v 1.55 2006/10/20 15:38:52 southa Exp $
+ * $Id: AdanaxisRender.cpp,v 1.56 2006/11/08 11:35:00 southa Exp $
  * $Log: AdanaxisRender.cpp,v $
+ * Revision 1.56  2006/11/08 11:35:00  southa
+ * Basic frame rate independence
+ *
  * Revision 1.55  2006/10/20 15:38:52  southa
  * Item collection
  *
@@ -234,9 +237,13 @@ AdanaxisRender::PreCacheRender(MushGameLogic& ioLogic, const MushGameCamera& inC
 
     MushGLState::Sgl().RenderStateSet(MushGLState::kRenderState2D);
 
+    U32 mbUsed = static_cast<U32>(MushGLTexture::ByteCount() / 1048576);
+    
     MushRubyExec::Sgl().Call(pVolData->RubyGame(),
                              MushRubyIntern::mPreCacheRender(),
-                             MushRubyValue(pLogic->PreCachePercentage()));
+                             MushRubyValue(pLogic->PreCachePercentage()),
+                             MushRubyValue(mbUsed)
+                             );
 
     MushGLUtil::OrthoEpilogue();
     MushGLUtil::IdentityEpilogue();
@@ -294,8 +301,8 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
     
     tVal aspectRatio = MushGLUtil::ScreenAspectRatio();
     tVal brightness = std::pow(pVolData->Brightness(), 2) / 2;
-    tVal backdropAlpha = 1.2 * brightness;
-    tVal decoAlpha = 1.0 * brightness;
+    tVal backdropAlpha = 0.8 * brightness;
+    tVal decoAlpha = 1.2 * brightness;
     tVal meshAlpha = 0.4 * brightness;
     MushcoreUtil::Constrain<tVal>(backdropAlpha, 0, 1);
     MushcoreUtil::Constrain<tVal>(decoAlpha, 0, 1);

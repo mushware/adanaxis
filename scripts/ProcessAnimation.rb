@@ -16,8 +16,11 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-# $Id: ProcessAnimation.rb,v 1.1 2006/10/05 15:39:17 southa Exp $
+# $Id: ProcessAnimation.rb,v 1.2 2006/10/18 13:22:09 southa Exp $
 # $Log: ProcessAnimation.rb,v $
+# Revision 1.2  2006/10/18 13:22:09  southa
+# World rendering
+#
 # Revision 1.1  2006/10/05 15:39:17  southa
 # Explosion handling
 #
@@ -47,6 +50,7 @@ class ProcessAnimation
     die "Source and Destination filenames identical" if File.expand_path(inSrcFilename) == File.expand_path(inDestFilename)
     @m_im = ImageProcess.new
     @m_im.mLoad(inSrcFilename)
+    @m_im.mTrim(@m_trim) if (@m_trim)
     @m_im.mScale(256, 256)
     @m_im.mAlphaFromLuminance
     @m_im.mSave(inDestFilename)
@@ -57,12 +61,18 @@ class ProcessAnimation
     @m_srcSuffix = inParams[:source_suffix] || '.tif'
     @m_destPrefix = inParams[:destination_prefix] || "copyright-#{@m_srcPrefix}"
     @m_destSuffix = inParams[:destination_suffix] || '.tiff'
+    @m_trim = inParams[:trim]
     
     @m_srcFilenames = []
+    num = 0
     1000.times do |i|
       3.times do |j|
         filename = mSrcFilenameMake(i, j)
-        @m_srcFilenames.push([i, filename]) if File.file?(filename)
+        if File.file?(filename)
+        
+          @m_srcFilenames.push([num, filename])
+          num += 1
+        end
       end
     end
     @m_srcFilenames.each do |entry|

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } AYQWMxoJ+uDPAQUnlwSk/w
 /*
- * $Id: MushGLTexture.h,v 1.10 2006/07/02 21:08:55 southa Exp $
+ * $Id: MushGLTexture.h,v 1.11 2006/11/07 11:08:54 southa Exp $
  * $Log: MushGLTexture.h,v $
+ * Revision 1.11  2006/11/07 11:08:54  southa
+ * Texture loading from mushfiles
+ *
  * Revision 1.10  2006/07/02 21:08:55  southa
  * Ruby menu work
  *
@@ -91,6 +94,9 @@ public:
     void PixelDataUse(void *pData);
     Mushware::t4Val U8RGBALookup(Mushware::t2Val inPos) const;
     
+    static Mushware::tSize ByteCount(void) { return m_byteCount; }
+    static void ByteCountSet(Mushware::tSize inCount) { m_byteCount = inCount; }
+    
     static MushcoreScalar Texture(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
     static void Install(void);
     static void RubyInstall(void);
@@ -129,9 +135,11 @@ private:
     std::string m_cacheFilename;
 	bool m_cacheable; //:readwrite
 	bool m_cacheSaveRequired;
-	bool m_compress;
+	bool m_compress; //:readwrite
     bool m_made;
     bool m_saveable; //:readwrite
+    
+    static Mushware::tSize m_byteCount;
     
 //%classPrototypes {
 public:
@@ -143,6 +151,8 @@ public:
     void NameSet(const std::string& inValue) { m_name=inValue; }
     const bool& Cacheable(void) const { return m_cacheable; }
     void CacheableSet(const bool& inValue) { m_cacheable=inValue; }
+    const bool& Compress(void) const { return m_compress; }
+    void CompressSet(const bool& inValue) { m_compress=inValue; }
     const bool& Saveable(void) const { return m_saveable; }
     void SaveableSet(const bool& inValue) { m_saveable=inValue; }
     virtual const char *AutoName(void) const;
@@ -152,7 +162,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } G3eDp5DfY7+3dGDwSjtdkw
+//%classPrototypes } OGMrW6kuUbbjh65Lc4qcFg
 };
 //%inlineHeader {
 inline std::ostream&

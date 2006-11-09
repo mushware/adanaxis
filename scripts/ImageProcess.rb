@@ -16,8 +16,11 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-# $Id: ImageProcess.rb,v 1.3 2006/10/19 15:41:35 southa Exp $
+# $Id: ImageProcess.rb,v 1.4 2006/11/07 11:08:54 southa Exp $
 # $Log: ImageProcess.rb,v $
+# Revision 1.4  2006/11/07 11:08:54  southa
+# Texture loading from mushfiles
+#
 # Revision 1.3  2006/10/19 15:41:35  southa
 # Item handling
 #
@@ -60,9 +63,16 @@ class ImageProcess
   end
   
   def mAlphaFromLuminance
-    draw = Magick::Draw.new
     @m_img = @m_img.composite(@m_img, 0, 0, Magick::CopyOpacityCompositeOp)
   end
   
+  def mTrim(inTrim)
+    x = inTrim[0]
+    y = inTrim[1]
+    width = @m_img.columns - inTrim[0] - inTrim[2]
+    height = @m_img.rows - inTrim[1] - inTrim[3]
+    
+    @m_img.crop!(x, y, width, height)
+  end
 end
 

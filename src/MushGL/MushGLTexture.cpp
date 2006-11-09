@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } vh/xCnesmbXGxXqZK5YEaA
 /*
- * $Id: MushGLTexture.cpp,v 1.16 2006/07/28 16:52:22 southa Exp $
+ * $Id: MushGLTexture.cpp,v 1.17 2006/11/07 11:08:54 southa Exp $
  * $Log: MushGLTexture.cpp,v $
+ * Revision 1.17  2006/11/07 11:08:54  southa
+ * Texture loading from mushfiles
+ *
  * Revision 1.16  2006/07/28 16:52:22  southa
  * Options work
  *
@@ -87,6 +90,8 @@ using namespace std;
 MUSHCORE_DATA_INSTANCE(MushGLTexture);
 
 MushcoreInstaller MushGLTextureInstaller(MushGLTexture::Install);
+
+Mushware::tSize MushGLTexture::m_byteCount = 0;
 
 void
 MushGLTexture::Make(void)
@@ -265,21 +270,23 @@ MushGLTexture::PixelDataGLRGBAUse(void *pData)
                      pData               // pointer to data
                      );
 		
-#ifdef MUSHCORE_DEBUG
-	
+        Mushware::U32 naturalSize = m_size.X() * m_size.Y() * 4; // 1.33 factor for mipmapping
 		GLint compFlag = GL_FALSE;
+        GLint compSize = 0;
 		glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_COMPRESSED, &compFlag);
 		if (compFlag == GL_TRUE)
 		{
-			GLint compSize = 0;
 			glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_COMPRESSED_IMAGE_SIZE, &compSize);
-
-			Mushware::U32 naturalSize = m_size.X() * m_size.Y() * 4; // 1.33 factor for mipmapping
-			
-			MushcoreLog::Sgl().InfoLog() << "Compressed texture (natural size " << naturalSize
-				<< " bytes) to " << compSize << " bytes (" << 100*compSize/naturalSize << "%)" << endl;
+            m_byteCount += compSize;
 		}
+        else
+        {
+            m_byteCount += naturalSize;
+        }
 		
+#ifdef MUSHCORE_DEBUG        
+        MushcoreLog::Sgl().InfoLog() << "Compressed texture (natural size " << naturalSize
+            << " bytes) to " << compSize << " bytes (" << 100*compSize/naturalSize << "%)" << endl;
 #endif
 		
 #else

@@ -16,8 +16,11 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-# $Id: ProcessCosmos.rb,v 1.1 2006/10/18 13:22:09 southa Exp $
+# $Id: ProcessCosmos.rb,v 1.2 2006/11/05 09:32:13 southa Exp $
 # $Log: ProcessCosmos.rb,v $
+# Revision 1.2  2006/11/05 09:32:13  southa
+# Mush file generation
+#
 # Revision 1.1  2006/10/18 13:22:09  southa
 # World rendering
 #
@@ -30,6 +33,7 @@ class ProcessCosmos
     @m_controlFile = inParams[:control_file] || 'no filename supplied'
     @m_srcPath = inParams[:source_path] || '.'
     @m_destPath = inParams[:destination_path] || '.'
+    @m_blackThreshold = inParams[:black_threshold] || 0.0
   end
   
   def mSrcFilenameMake(inNum, inNumZeroes)
@@ -45,11 +49,11 @@ class ProcessCosmos
   def mProcessFile(inNum, inSrcFilename, inDestFilename)
     puts "File #{inNum} file #{inSrcFilename} -> #{inDestFilename}"
     die "Source and Destination filenames identical" if File.expand_path(inSrcFilename) == File.expand_path(inDestFilename)
-    @m_im = ImageProcess.new
+    @m_im = ImageProcess.new(:copyright => "NASA http://www.nasa.gov, Andy Southgate/Mushware Limited http://www.mushware.com")
     @m_im.mLoad(inSrcFilename)
     @m_im.mScale(256, 256)
+    @m_im.mThreshold(@m_blackThreshold) if @m_blackThreshold > 0.0
     @m_im.mAlphaFromLuminance
-    #@m_im.mThreshold(0.1)
     @m_im.mSave(inDestFilename)
   end
   

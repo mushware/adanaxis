@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } NYmv5MZn7NEYPYHpc3JV8Q
 /*
- * $Id: MushGLV.cpp,v 1.19 2006/09/06 17:33:18 southa Exp $
+ * $Id: MushGLV.cpp,v 1.20 2006/09/07 16:38:51 southa Exp $
  * $Log: MushGLV.cpp,v $
+ * Revision 1.20  2006/09/07 16:38:51  southa
+ * Vertex shader
+ *
  * Revision 1.19  2006/09/06 17:33:18  southa
  * Shader interface
  *
@@ -229,7 +232,8 @@ MushGLV::Acquaint(void)
 	{
 		m_hasS3TC = false;
 	}
-	
+	m_useS3TC = m_hasS3TC;
+    
 	if (!safeMode &&
         m_extensions.find(" GL_ARB_shader_objects ") != string::npos &&
         m_extensions.find(" GL_ARB_vertex_shader ") != string::npos &&
