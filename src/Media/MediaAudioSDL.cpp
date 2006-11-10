@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } ccLCYRn/kYU+5Rp9coVdng
 /*
- * $Id: MediaAudioSDL.cpp,v 1.24 2006/10/12 22:04:47 southa Exp $
+ * $Id: MediaAudioSDL.cpp,v 1.25 2006/11/06 12:56:31 southa Exp $
  * $Log: MediaAudioSDL.cpp,v $
+ * Revision 1.25  2006/11/06 12:56:31  southa
+ * MushFile work
+ *
  * Revision 1.24  2006/10/12 22:04:47  southa
  * Collision events
  *
@@ -144,7 +147,7 @@ MediaAudioSDL::MediaAudioSDL():
     int audioRate = MIX_DEFAULT_FREQUENCY; // 22050Hz
     unsigned short audioFormat = MIX_DEFAULT_FORMAT; // 16-bit stereo
     int audioHardChannels = 2; // Stereo
-    U32 audioSoftChannels = 16;
+    U32 audioSoftChannels = 64;
     int audioBuffer = 1024;
 
     const MushcoreScalar *pScalar;

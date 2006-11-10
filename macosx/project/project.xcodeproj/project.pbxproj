@@ -2650,6 +2650,72 @@
 		7A3E0F990A485F530078B650 /* MushRubyMaptorObj.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushRubyMaptorObj.cpp; sourceTree = "<group>"; };
 		7A3E8BEE05A5E63B00AC6E8A /* MushPiePieceSimple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushPiePieceSimple.h; sourceTree = "<group>"; };
 		7A3E8BEF05A5E63C00AC6E8A /* MushPiePieceSimple.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushPiePieceSimple.cpp; sourceTree = "<group>"; };
+		7A4446830B05000800C819B8 /* EXPLOSION_ATOMIC_BM016201.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = EXPLOSION_ATOMIC_BM016201.wav; sourceTree = "<group>"; };
+		7A4446840B05000800C819B8 /* GRENADELA_PECTIVEGUNS024905.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = GRENADELA_PECTIVEGUNS024905.wav; sourceTree = "<group>"; };
+		7A4446850B05000800C819B8 /* GRENADELA_PECTIVEGUNS025001.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = GRENADELA_PECTIVEGUNS025001.wav; sourceTree = "<group>"; };
+		7A4446860B05000800C819B8 /* GrenadeLauncher_Shot12_Ejct.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = GrenadeLauncher_Shot12_Ejct.wav; sourceTree = "<group>"; };
+		7A4446870B05000800C819B8 /* Gun_DrawSelect_Weapon01.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Gun_DrawSelect_Weapon01.wav; sourceTree = "<group>"; };
+		7A4446880B05000800C819B8 /* Gun_Reload_RocketLauncherr1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Gun_Reload_RocketLauncherr1.wav; sourceTree = "<group>"; };
+		7A4446890B05000800C819B8 /* Gun_Reload_RocketLauncherr2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Gun_Reload_RocketLauncherr2.wav; sourceTree = "<group>"; };
+		7A44468A0B05000800C819B8 /* Gun_Reload_Weapon21.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Gun_Reload_Weapon21.wav; sourceTree = "<group>"; };
+		7A44468B0B05000800C819B8 /* Guns_Shotgun_Int_08838126.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Guns_Shotgun_Int_08838126.wav; sourceTree = "<group>"; };
+		7A44468C0B05000800C819B8 /* MediumBoltMechanisms_EVL013.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = MediumBoltMechanisms_EVL013.wav; sourceTree = "<group>"; };
+		7A44468D0B05000800C819B8 /* MISSILELA_HROCKETGUNS025201.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = MISSILELA_HROCKETGUNS025201.wav; sourceTree = "<group>"; };
+		7A44468E0B05000800C819B8 /* Rocket_launcher__VF153701.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Rocket_launcher__VF153701.wav; sourceTree = "<group>"; };
+		7A44468F0B05000800C819B8 /* RocketLauncher_Shot33_Eject.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = RocketLauncher_Shot33_Eject.wav; sourceTree = "<group>"; };
+		7A4446900B05000800C819B8 /* SHOTGUN16_PECTIVEGUNS022001.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = SHOTGUN16_PECTIVEGUNS022001.wav; sourceTree = "<group>"; };
+		7A4446910B05000800C819B8 /* SHOTGUNFO_ECHPULLGUNS035602.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = SHOTGUNFO_ECHPULLGUNS035602.wav; sourceTree = "<group>"; };
+		7A4446920B05000800C819B8 /* VaultMechanismMassiv_EVL016.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = VaultMechanismMassiv_EVL016.wav; sourceTree = "<group>"; };
+		7A4446930B05000800C819B8 /* Weapons_Launcher_ST067344.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Weapons_Launcher_ST067344.wav; sourceTree = "<group>"; };
+		7A4446950B05000800C819B8 /* Explo_Large_02.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Explo_Large_02.wav; sourceTree = "<group>"; };
+		7A4446960B05000800C819B8 /* Explo_Large_12.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Explo_Large_12.wav; sourceTree = "<group>"; };
+		7A4446970B05000800C819B8 /* EXPLOSION_LARGE__60402501.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = EXPLOSION_LARGE__60402501.wav; sourceTree = "<group>"; };
+		7A4446980B05000800C819B8 /* EXPLOSION_LARGE__CRB17901.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = EXPLOSION_LARGE__CRB17901.wav; sourceTree = "<group>"; };
+		7A4446990B05000800C819B8 /* EXPLOSION_LARGE__PS017601.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = EXPLOSION_LARGE__PS017601.wav; sourceTree = "<group>"; };
+		7A44469A0B05000800C819B8 /* EXPLOSION_LARGE__SFE12001.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = EXPLOSION_LARGE__SFE12001.wav; sourceTree = "<group>"; };
+		7A44469B0B05000800C819B8 /* EXPLOSION_LARGE_BLAST284.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = EXPLOSION_LARGE_BLAST284.wav; sourceTree = "<group>"; };
+		7A44469C0B05000800C819B8 /* EXPLOSION_TOUCHD_SE028107.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = EXPLOSION_TOUCHD_SE028107.wav; sourceTree = "<group>"; };
+		7A44469D0B05000800C819B8 /* Explosions_3_Pou_05637601.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Explosions_3_Pou_05637601.wav; sourceTree = "<group>"; };
+		7A44469E0B05000800C819B8 /* Gun_Reload_Scifi04.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Gun_Reload_Scifi04.wav; sourceTree = "<group>"; };
+		7A44469F0B05000800C819B8 /* Gun_Reload_Scifi06.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Gun_Reload_Scifi06.wav; sourceTree = "<group>"; };
+		7A4446A00B05000800C819B8 /* Gun_Reload_Scifi08.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Gun_Reload_Scifi08.wav; sourceTree = "<group>"; };
+		7A4446A10B05000800C819B8 /* Gun_Reload_Scifi12.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Gun_Reload_Scifi12.wav; sourceTree = "<group>"; };
+		7A4446A20B05000800C819B8 /* Gun_Reload_Scifi13.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Gun_Reload_Scifi13.wav; sourceTree = "<group>"; };
+		7A4446A30B05000800C819B8 /* Gun_Reload_Scifi15.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Gun_Reload_Scifi15.wav; sourceTree = "<group>"; };
+		7A4446A40B05000800C819B8 /* Gun_Reload_Scifi16.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Gun_Reload_Scifi16.wav; sourceTree = "<group>"; };
+		7A4446A50B05000800C819B8 /* Gun_Reload_Scifi17.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Gun_Reload_Scifi17.wav; sourceTree = "<group>"; };
+		7A4446A60B05000800C819B8 /* Gun_Reload_Scifi18.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Gun_Reload_Scifi18.wav; sourceTree = "<group>"; };
+		7A4446A70B05000800C819B8 /* Laser_Reload.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Laser_Reload.wav; sourceTree = "<group>"; };
+		7A4446A80B05000800C819B8 /* MakeMush.rb */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.ruby; path = MakeMush.rb; sourceTree = "<group>"; };
+		7A4446A90B05000800C819B8 /* sdog-explo0.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "sdog-explo0.wav"; sourceTree = "<group>"; };
+		7A4446AA0B05000800C819B8 /* sdog-explo1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "sdog-explo1.wav"; sourceTree = "<group>"; };
+		7A4446AB0B05000800C819B8 /* sdog-explo2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "sdog-explo2.wav"; sourceTree = "<group>"; };
+		7A4446AC0B05000800C819B8 /* sdog-explo3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "sdog-explo3.wav"; sourceTree = "<group>"; };
+		7A4446AD0B05000800C819B8 /* sdog-explo4.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "sdog-explo4.wav"; sourceTree = "<group>"; };
+		7A4446AE0B05000800C819B8 /* sdog-explo5.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "sdog-explo5.wav"; sourceTree = "<group>"; };
+		7A4446AF0B05000800C819B8 /* sdog-explo6.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "sdog-explo6.wav"; sourceTree = "<group>"; };
+		7A4446B00B05000800C819B8 /* sdog-explo7.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "sdog-explo7.wav"; sourceTree = "<group>"; };
+		7A4446B10B05000800C819B8 /* sdog-fire0.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "sdog-fire0.wav"; sourceTree = "<group>"; };
+		7A4446B20B05000800C819B8 /* sdog-fire1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "sdog-fire1.wav"; sourceTree = "<group>"; };
+		7A4446B30B05000800C819B8 /* sdog-fire2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "sdog-fire2.wav"; sourceTree = "<group>"; };
+		7A4446B40B05000800C819B8 /* sdog-fire3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "sdog-fire3.wav"; sourceTree = "<group>"; };
+		7A4446B50B05000800C819B8 /* sdog-fire4.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "sdog-fire4.wav"; sourceTree = "<group>"; };
+		7A4446B60B05000800C819B8 /* sdog-fire5.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "sdog-fire5.wav"; sourceTree = "<group>"; };
+		7A4446B70B05000800C819B8 /* sdog-fire6.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "sdog-fire6.wav"; sourceTree = "<group>"; };
+		7A4446B80B05000800C819B8 /* sdog-fire7.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "sdog-fire7.wav"; sourceTree = "<group>"; };
+		7A4446B90B05000800C819B8 /* sdog-fire8.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "sdog-fire8.wav"; sourceTree = "<group>"; };
+		7A4446BA0B05000800C819B8 /* sdog-fire9.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "sdog-fire9.wav"; sourceTree = "<group>"; };
+		7A4446BB0B05000800C819B8 /* sdog-load0.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "sdog-load0.wav"; sourceTree = "<group>"; };
+		7A4446BC0B05000800C819B8 /* sdog-load1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "sdog-load1.wav"; sourceTree = "<group>"; };
+		7A4446BD0B05000800C819B8 /* sdog-load2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "sdog-load2.wav"; sourceTree = "<group>"; };
+		7A4446BE0B05000800C819B8 /* sdog-load3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "sdog-load3.wav"; sourceTree = "<group>"; };
+		7A4446BF0B05000800C819B8 /* sdog-load4.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "sdog-load4.wav"; sourceTree = "<group>"; };
+		7A4446C00B05000800C819B8 /* sdog-load5.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "sdog-load5.wav"; sourceTree = "<group>"; };
+		7A4446C10B05000800C819B8 /* sdog-load6.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "sdog-load6.wav"; sourceTree = "<group>"; };
+		7A4446C20B05000800C819B8 /* sdog-load7.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "sdog-load7.wav"; sourceTree = "<group>"; };
+		7A4446C30B05000800C819B8 /* sdog-load8.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "sdog-load8.wav"; sourceTree = "<group>"; };
+		7A4446C40B05000800C819B8 /* sdog-load9.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "sdog-load9.wav"; sourceTree = "<group>"; };
+		7A4446C50B05000900C819B8 /* sdog-shieldcollect1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "sdog-shieldcollect1.wav"; sourceTree = "<group>"; };
 		7A44BC59089FABB800A08A3F /* objects.xml */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; path = objects.xml; sourceTree = "<group>"; };
 		7A45EA6607F45D6700773CF6 /* GameStringSpec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameStringSpec.h; sourceTree = "<group>"; };
 		7A45EA6707F45D6700773CF6 /* GameStringSpec.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameStringSpec.cpp; sourceTree = "<group>"; };
@@ -2764,7 +2830,6 @@
 		7A59A29B0AE7BA2A0089517D /* MushSkinSingular.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushSkinSingular.h; sourceTree = "<group>"; };
 		7A59A29C0AE7BA2B0089517D /* MushSkinSingular.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushSkinSingular.cpp; sourceTree = "<group>"; };
 		7A59A5BE0AFDBBBC00ABD3E5 /* ProcessMush.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ProcessMush.rb; sourceTree = "<group>"; };
-		7A59A5C50AFDBDB100ABD3E5 /* MakeMush.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = MakeMush.rb; sourceTree = "<group>"; };
 		7A59A5D60AFDC15B00ABD3E5 /* FileMush.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = FileMush.rb; sourceTree = "<group>"; };
 		7A59AABC0B0374AF001C6953 /* RE122_L.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = RE122_L.mov; sourceTree = "<group>"; };
 		7A59AAD80B0374CF001C6953 /* MakeMush.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = MakeMush.rb; sourceTree = "<group>"; };
@@ -4326,6 +4391,95 @@
 			path = local1;
 			sourceTree = "<group>";
 		};
+		7A4446810B05000800C819B8 /* wavesrc */ = {
+			isa = PBXGroup;
+			children = (
+				7A4446820B05000800C819B8 /* 2006-11-10-1 */,
+				7A4446940B05000800C819B8 /* 2006-11-10-2 */,
+				7A4446A80B05000800C819B8 /* MakeMush.rb */,
+				7A4446A90B05000800C819B8 /* sdog-explo0.wav */,
+				7A4446AA0B05000800C819B8 /* sdog-explo1.wav */,
+				7A4446AB0B05000800C819B8 /* sdog-explo2.wav */,
+				7A4446AC0B05000800C819B8 /* sdog-explo3.wav */,
+				7A4446AD0B05000800C819B8 /* sdog-explo4.wav */,
+				7A4446AE0B05000800C819B8 /* sdog-explo5.wav */,
+				7A4446AF0B05000800C819B8 /* sdog-explo6.wav */,
+				7A4446B00B05000800C819B8 /* sdog-explo7.wav */,
+				7A4446B10B05000800C819B8 /* sdog-fire0.wav */,
+				7A4446B20B05000800C819B8 /* sdog-fire1.wav */,
+				7A4446B30B05000800C819B8 /* sdog-fire2.wav */,
+				7A4446B40B05000800C819B8 /* sdog-fire3.wav */,
+				7A4446B50B05000800C819B8 /* sdog-fire4.wav */,
+				7A4446B60B05000800C819B8 /* sdog-fire5.wav */,
+				7A4446B70B05000800C819B8 /* sdog-fire6.wav */,
+				7A4446B80B05000800C819B8 /* sdog-fire7.wav */,
+				7A4446B90B05000800C819B8 /* sdog-fire8.wav */,
+				7A4446BA0B05000800C819B8 /* sdog-fire9.wav */,
+				7A4446BB0B05000800C819B8 /* sdog-load0.wav */,
+				7A4446BC0B05000800C819B8 /* sdog-load1.wav */,
+				7A4446BD0B05000800C819B8 /* sdog-load2.wav */,
+				7A4446BE0B05000800C819B8 /* sdog-load3.wav */,
+				7A4446BF0B05000800C819B8 /* sdog-load4.wav */,
+				7A4446C00B05000800C819B8 /* sdog-load5.wav */,
+				7A4446C10B05000800C819B8 /* sdog-load6.wav */,
+				7A4446C20B05000800C819B8 /* sdog-load7.wav */,
+				7A4446C30B05000800C819B8 /* sdog-load8.wav */,
+				7A4446C40B05000800C819B8 /* sdog-load9.wav */,
+				7A4446C50B05000900C819B8 /* sdog-shieldcollect1.wav */,
+			);
+			path = wavesrc;
+			sourceTree = "<group>";
+		};
+		7A4446820B05000800C819B8 /* 2006-11-10-1 */ = {
+			isa = PBXGroup;
+			children = (
+				7A4446830B05000800C819B8 /* EXPLOSION_ATOMIC_BM016201.wav */,
+				7A4446840B05000800C819B8 /* GRENADELA_PECTIVEGUNS024905.wav */,
+				7A4446850B05000800C819B8 /* GRENADELA_PECTIVEGUNS025001.wav */,
+				7A4446860B05000800C819B8 /* GrenadeLauncher_Shot12_Ejct.wav */,
+				7A4446870B05000800C819B8 /* Gun_DrawSelect_Weapon01.wav */,
+				7A4446880B05000800C819B8 /* Gun_Reload_RocketLauncherr1.wav */,
+				7A4446890B05000800C819B8 /* Gun_Reload_RocketLauncherr2.wav */,
+				7A44468A0B05000800C819B8 /* Gun_Reload_Weapon21.wav */,
+				7A44468B0B05000800C819B8 /* Guns_Shotgun_Int_08838126.wav */,
+				7A44468C0B05000800C819B8 /* MediumBoltMechanisms_EVL013.wav */,
+				7A44468D0B05000800C819B8 /* MISSILELA_HROCKETGUNS025201.wav */,
+				7A44468E0B05000800C819B8 /* Rocket_launcher__VF153701.wav */,
+				7A44468F0B05000800C819B8 /* RocketLauncher_Shot33_Eject.wav */,
+				7A4446900B05000800C819B8 /* SHOTGUN16_PECTIVEGUNS022001.wav */,
+				7A4446910B05000800C819B8 /* SHOTGUNFO_ECHPULLGUNS035602.wav */,
+				7A4446920B05000800C819B8 /* VaultMechanismMassiv_EVL016.wav */,
+				7A4446930B05000800C819B8 /* Weapons_Launcher_ST067344.wav */,
+			);
+			path = "2006-11-10-1";
+			sourceTree = "<group>";
+		};
+		7A4446940B05000800C819B8 /* 2006-11-10-2 */ = {
+			isa = PBXGroup;
+			children = (
+				7A4446950B05000800C819B8 /* Explo_Large_02.wav */,
+				7A4446960B05000800C819B8 /* Explo_Large_12.wav */,
+				7A4446970B05000800C819B8 /* EXPLOSION_LARGE__60402501.wav */,
+				7A4446980B05000800C819B8 /* EXPLOSION_LARGE__CRB17901.wav */,
+				7A4446990B05000800C819B8 /* EXPLOSION_LARGE__PS017601.wav */,
+				7A44469A0B05000800C819B8 /* EXPLOSION_LARGE__SFE12001.wav */,
+				7A44469B0B05000800C819B8 /* EXPLOSION_LARGE_BLAST284.wav */,
+				7A44469C0B05000800C819B8 /* EXPLOSION_TOUCHD_SE028107.wav */,
+				7A44469D0B05000800C819B8 /* Explosions_3_Pou_05637601.wav */,
+				7A44469E0B05000800C819B8 /* Gun_Reload_Scifi04.wav */,
+				7A44469F0B05000800C819B8 /* Gun_Reload_Scifi06.wav */,
+				7A4446A00B05000800C819B8 /* Gun_Reload_Scifi08.wav */,
+				7A4446A10B05000800C819B8 /* Gun_Reload_Scifi12.wav */,
+				7A4446A20B05000800C819B8 /* Gun_Reload_Scifi13.wav */,
+				7A4446A30B05000800C819B8 /* Gun_Reload_Scifi15.wav */,
+				7A4446A40B05000800C819B8 /* Gun_Reload_Scifi16.wav */,
+				7A4446A50B05000800C819B8 /* Gun_Reload_Scifi17.wav */,
+				7A4446A60B05000800C819B8 /* Gun_Reload_Scifi18.wav */,
+				7A4446A70B05000800C819B8 /* Laser_Reload.wav */,
+			);
+			path = "2006-11-10-2";
+			sourceTree = "<group>";
+		};
 		7A4CAAEA0A582D6700AA934F /* mushruby */ = {
 			isa = PBXGroup;
 			children = (
@@ -5732,6 +5886,7 @@
 				7ACEFB3009F6EF6700E38865 /* ruby */,
 				7A70D1F4085DF8870055C6FB /* system */,
 				7A70D1F7085DF8870055C6FB /* waves */,
+				7A4446810B05000800C819B8 /* wavesrc */,
 			);
 			name = "data-adanaxis";
 			path = "../../data-adanaxis";
@@ -5761,7 +5916,6 @@
 		7A70D1F7085DF8870055C6FB /* waves */ = {
 			isa = PBXGroup;
 			children = (
-				7A59A5C50AFDBDB100ABD3E5 /* MakeMush.rb */,
 			);
 			path = waves;
 			sourceTree = "<group>";
