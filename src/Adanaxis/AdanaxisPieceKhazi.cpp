@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } YCa3eNmcxUH2q0Oxh6SpTA
 /*
- * $Id: AdanaxisPieceKhazi.cpp,v 1.29 2006/10/17 15:28:01 southa Exp $
+ * $Id: AdanaxisPieceKhazi.cpp,v 1.30 2006/10/30 17:03:51 southa Exp $
  * $Log: AdanaxisPieceKhazi.cpp,v $
+ * Revision 1.30  2006/10/30 17:03:51  southa
+ * Remnants creation
+ *
  * Revision 1.29  2006/10/17 15:28:01  southa
  * Player collisions
  *
@@ -134,7 +137,6 @@ AdanaxisPieceKhazi::~AdanaxisPieceKhazi()
     RubyPieceDestructor();
 }
 
-
 void
 AdanaxisPieceKhazi::EventHandle(MushGameLogic& ioLogic, MushRubyValue inEvent, MushRubyValue inParams)
 {
@@ -169,94 +171,9 @@ AdanaxisPieceKhazi::Render(MushGLJobRender& outRender,
 void
 AdanaxisPieceKhazi::MessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage)
 {
-
     // Pass to base class
     MushGamePiece::MessageConsume(ioLogic, inMessage);
 }
-
-#if 0
-void
-AdanaxisPieceKhazi::Explode(MushGameLogic& ioLogic, const MushGameMessageCollision& inMessage)
-{
-    U32 numChunks = Mesh().Chunks().size();
-    U32 contactChunk = 0;
-    if (inMessage.ChunkNumsValid())
-    {
-        contactChunk = inMessage.ChunkNum2();
-    }
-    
-    tVal objectSize = Mesh().BoundingRadius();
-    
-    if (objectSize == 0)
-    {
-        throw MushcoreDataFail("Cannot explode object of zero size");
-    }
-    
-    MushMesh4Mesh::tCentroid contactCentroid = Mesh().ChunkCentroid(contactChunk);
-    
-    // Disable for the moment
-    numChunks = 0;
-    
-    for (U32 i=0; i<numChunks; ++i)
-    {
-        if (i != contactChunk)
-        {
-            AdanaxisSaveData::tProjectileList& projectileListRef =
-            AdanaxisUtil::Logic(ioLogic).SaveData().ProjectileListWRef();
-            
-            projectileListRef.push_back(AdanaxisPieceProjectile("khazi"+Id()));
-            AdanaxisSaveData::tProjectile& projectileRef = projectileListRef.back();
-            
-            projectileRef.OwnerSet(Id());
-            projectileRef.LifeMsecSet(static_cast<U32>(15000*MushMeshTools::Random(0.1,0.5)));
-            
-            // Create projectile in Khazi's coordinates
-            projectileRef.PostWRef().ToIdentitySet();
-            
-            t4Val posOffset = Mesh().ChunkCentroid(i);
-            
-            projectileRef.PostWRef().PosWRef() += posOffset;
-            
-            projectileRef.PostWRef().AngVelWRef().ToRotationIdentitySet();
-            for (U32 j=0; j<6; ++j)
-            {
-                tVal rot=0.02;
-                projectileRef.PostWRef().AngVelWRef().OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis(0, MushMeshTools::Random(-rot, +rot)));
-            }
-            projectileRef.PostWRef().VelSet((posOffset - contactCentroid) * (MushMeshTools::Random(0.2,2) / objectSize));
-            
-            // Now transform to world coordinates
-            // Reorientate the player space vectors to world space
-            Post().AngPos().VectorRotate(projectileRef.PostWRef().PosWRef());
-            Post().AngPos().VectorRotate(projectileRef.PostWRef().VelWRef());
-            
-            // Move to this object's position and velocity
-            projectileRef.PostWRef().PosWRef() += Post().Pos();
-            projectileRef.PostWRef().VelWRef() += Post().Vel();
-            projectileRef.PostWRef().AngPosWRef().OuterMultiplyBy(Post().AngPos());
-            
-            // Don't inherit angular velocity
-            
-            // Create the mesh for this object
-            MushMesh4Util::ChunkCopy(projectileRef.MeshWRef(), Mesh(), i);
-			
-			// Can't texture this one yet
-			// projectileRef.SharedBuffersRefSet(SharedBuffersRef());
-        }
-    }
-    AdanaxisUtil::ExploCreate(dynamic_cast<AdanaxisLogic&>(ioLogic), Post(), 10, 0);
-    AdanaxisUtil::FlareCreate(dynamic_cast<AdanaxisLogic&>(ioLogic), Post(), 20, 0);
-
-    for (U32 i=0; i<30; ++i)
-    {
-        AdanaxisUtil::EmberCreate(dynamic_cast<AdanaxisLogic&>(ioLogic),
-                                  Post(),
-                                  MushMeshTools::Random(0.1, 2), // size
-                                  MushMeshTools::Random(0.1, 2)  // speed
-                                  );
-    }
-}
-#endif
 
 Mushware::tRubyValue
 AdanaxisPieceKhazi::RubyCreate(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0)

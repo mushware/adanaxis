@@ -3661,6 +3661,7 @@
 		7A97AAF70A653A6600921057 /* MakeDocs.rb */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = text.script.ruby; name = MakeDocs.rb; path = ../../doc/MakeDocs.rb; sourceTree = SOURCE_ROOT; tabWidth = 2; };
 		7A97ECE90A6A808600369FD6 /* manifest.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = manifest.txt; sourceTree = "<group>"; };
 		7A97ECEA0A6A808600369FD6 /* space.rb */ = {isa = PBXFileReference; fileEncoding = 30; indentWidth = 2; lastKnownFileType = text.script.ruby; path = space.rb; sourceTree = "<group>"; tabWidth = 2; };
+		7A9FAEF40B07771900167096 /* AdanaxisAIProjectile.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AdanaxisAIProjectile.rb; sourceTree = "<group>"; };
 		7AA0FACB08841B5E00997505 /* MushcoreAutoClonePtr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushcoreAutoClonePtr.h; sourceTree = "<group>"; };
 		7AA0FACC08841B5E00997505 /* MushcoreAutoClonePtr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushcoreAutoClonePtr.cpp; sourceTree = "<group>"; };
 		7AA0FADF088424F200997505 /* MushMesh4VertexGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushMesh4VertexGenerator.h; sourceTree = "<group>"; };
@@ -6369,6 +6370,7 @@
 				7A5F18250A3DC12700B46F5F /* Adanaxis.rb */,
 				7A619A760A974B1900FAA06C /* AdanaxisAI.rb */,
 				7A59645C0ACE8CEA007FAA8F /* AdanaxisAIKhazi.rb */,
+				7A9FAEF40B07771900167096 /* AdanaxisAIProjectile.rb */,
 				7A614A980A62951900E8FCEF /* AdanaxisControl.rb */,
 				7A6AFEFA0AE500A000AAFDA7 /* AdanaxisDashboard.rb */,
 				7A59869B0AE2836C00A33406 /* AdanaxisEffects.rb */,

@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } /G5prPJmGC4DIKgcQWm0Bg
 /*
- * $Id: AdanaxisVolatileData.h,v 1.10 2006/07/28 16:52:20 southa Exp $
+ * $Id: AdanaxisVolatileData.h,v 1.11 2006/08/01 17:21:31 southa Exp $
  * $Log: AdanaxisVolatileData.h,v $
+ * Revision 1.11  2006/08/01 17:21:31  southa
+ * River demo
+ *
  * Revision 1.10  2006/07/28 16:52:20  southa
  * Options work
  *
@@ -81,6 +84,7 @@ private:
 	MushRubyValue m_rubySpace; //:readwrite
     Mushware::tVal m_brightness; //:readwrite
     bool m_scannerOn; //:readwrite
+    std::string m_playerTargetID; //:readwrite
     
 //%classPrototypes {
 public:
@@ -99,6 +103,8 @@ public:
     void BrightnessSet(const Mushware::tVal& inValue) { m_brightness=inValue; }
     const bool& ScannerOn(void) const { return m_scannerOn; }
     void ScannerOnSet(const bool& inValue) { m_scannerOn=inValue; }
+    const std::string& PlayerTargetID(void) const { return m_playerTargetID; }
+    void PlayerTargetIDSet(const std::string& inValue) { m_playerTargetID=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -106,7 +112,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } R56rnaV/PEXuBbYuqyTioA
+//%classPrototypes } kTX+FDhzqEPTOutnL1Snpw
 };
 //%inlineHeader {
 inline std::ostream&

@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } rQkTih3VUd7Xp8cDeV3ZYA
 /*
- * $Id: AdanaxisRender.cpp,v 1.56 2006/11/08 11:35:00 southa Exp $
+ * $Id: AdanaxisRender.cpp,v 1.57 2006/11/09 23:53:59 southa Exp $
  * $Log: AdanaxisRender.cpp,v $
+ * Revision 1.57  2006/11/09 23:53:59  southa
+ * Explosion and texture loading
+ *
  * Revision 1.56  2006/11/08 11:35:00  southa
  * Basic frame rate independence
  *
@@ -522,7 +525,7 @@ void AdanaxisRender::ScanRender(AdanaxisLogic& ioLogic, MushRenderMesh *inpRende
     m_scanner.ScanBegin();
     
     AdanaxisSaveData *pSaveData = dynamic_cast<AdanaxisSaveData *>(&ioLogic.SaveData());
-
+    
     typedef AdanaxisSaveData::tKhaziList tKhaziList;
     
     tKhaziList::iterator khaziEndIter = pSaveData->KhaziListWRef().end();
@@ -540,6 +543,8 @@ void AdanaxisRender::ScanRender(AdanaxisLogic& ioLogic, MushRenderMesh *inpRende
     }
     
     m_scanner.ScanCrosshairRender(ioLogic, inpRenderMesh, inCamera);
+    
+    ioLogic.VolatileData().PlayerTargetIDSet(m_scanner.TargetID());
 }
 
 void

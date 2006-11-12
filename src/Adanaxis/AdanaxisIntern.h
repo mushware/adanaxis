@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } WBiqbvbumO43Eps7fHh03A
 /*
- * $Id: AdanaxisIntern.h,v 1.13 2006/11/03 18:46:33 southa Exp $
+ * $Id: AdanaxisIntern.h,v 1.14 2006/11/12 14:39:50 southa Exp $
  * $Log: AdanaxisIntern.h,v $
+ * Revision 1.14  2006/11/12 14:39:50  southa
+ * Player weapons amd audio fix
+ *
  * Revision 1.13  2006/11/03 18:46:33  southa
  * Damage effectors
  *
@@ -73,6 +76,7 @@
   ids = %w{
     @m_acceleration
     @m_keyNum
+    @m_speedLimit
     @m_state
     mCollisionEventConsume
     mMenuRender
@@ -109,6 +113,7 @@ public:
     MushRubyValue& AdanaxisPieceProjectile(void) { return m_klassAdanaxisPieceProjectile; }
     Mushware::tRubyID ATm_acceleration(void) { return m_ATm_acceleration; }
     Mushware::tRubyID ATm_keyNum(void) { return m_ATm_keyNum; }
+    Mushware::tRubyID ATm_speedLimit(void) { return m_ATm_speedLimit; }
     Mushware::tRubyID ATm_state(void) { return m_ATm_state; }
     Mushware::tRubyID mCollisionEventConsume(void) { return m_mCollisionEventConsume; }
     Mushware::tRubyID mMenuRender(void) { return m_mMenuRender; }
@@ -125,11 +130,12 @@ private:
     MushRubyValue m_klassAdanaxisPieceProjectile;
     Mushware::tRubyID m_ATm_acceleration;
     Mushware::tRubyID m_ATm_keyNum;
+    Mushware::tRubyID m_ATm_speedLimit;
     Mushware::tRubyID m_ATm_state;
     Mushware::tRubyID m_mCollisionEventConsume;
     Mushware::tRubyID m_mMenuRender;
     Mushware::tRubyID m_mRender;
-//%declarations } e21611409dd16b7b8a044c35fdcce5c2
+//%declarations } 12c94c780123a2a7abbd6b0d57f4d64e
 
 //%classPrototypes {
 public:

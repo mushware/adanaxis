@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } zadk8cle2hIJ/tR0KH/bYw
 /*
- * $Id: AdanaxisVolatileData.cpp,v 1.9 2006/07/28 16:52:19 southa Exp $
+ * $Id: AdanaxisVolatileData.cpp,v 1.10 2006/08/01 17:21:30 southa Exp $
  * $Log: AdanaxisVolatileData.cpp,v $
+ * Revision 1.10  2006/08/01 17:21:30  southa
+ * River demo
+ *
  * Revision 1.9  2006/07/28 16:52:19  southa
  * Options work
  *
@@ -83,7 +86,8 @@ AdanaxisVolatileData::AutoPrint(std::ostream& ioOut) const
     ioOut << "aRenderMesh=" << m_aRenderMesh << ", ";
     ioOut << "rubySpace=" << m_rubySpace << ", ";
     ioOut << "brightness=" << m_brightness << ", ";
-    ioOut << "scannerOn=" << m_scannerOn;
+    ioOut << "scannerOn=" << m_scannerOn << ", ";
+    ioOut << "playerTargetID=" << m_playerTargetID;
     ioOut << "]";
 }
 bool
@@ -119,6 +123,10 @@ AdanaxisVolatileData::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::st
     {
         ioIn >> m_scannerOn;
     }
+    else if (inTagStr == "playerTargetID")
+    {
+        ioIn >> m_playerTargetID;
+    }
     else if (MushGameVolatileData::AutoXMLDataProcess(ioIn, inTagStr))
     {
         // Tag consumed by base class
@@ -145,5 +153,7 @@ AdanaxisVolatileData::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_brightness;
     ioOut.TagSet("scannerOn");
     ioOut << m_scannerOn;
+    ioOut.TagSet("playerTargetID");
+    ioOut << m_playerTargetID;
 }
-//%outOfLineFunctions } 7Yh11yw3njaRq/xadGxDPA
+//%outOfLineFunctions } Haym/5ntDpkYvEPKkSPvyw

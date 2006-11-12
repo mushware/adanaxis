@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } vh/xCnesmbXGxXqZK5YEaA
 /*
- * $Id: MushGLTexture.cpp,v 1.18 2006/11/09 23:53:59 southa Exp $
+ * $Id: MushGLTexture.cpp,v 1.19 2006/11/12 14:39:50 southa Exp $
  * $Log: MushGLTexture.cpp,v $
+ * Revision 1.19  2006/11/12 14:39:50  southa
+ * Player weapons amd audio fix
+ *
  * Revision 1.18  2006/11/09 23:53:59  southa
  * Explosion and texture loading
  *
@@ -281,6 +284,10 @@ MushGLTexture::PixelDataGLRGBAUse(void *pData)
 		{
 			glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_COMPRESSED_IMAGE_SIZE, &compSize);
             m_byteCount += compSize;
+#ifdef MUSHCORE_DEBUG        
+            MushcoreLog::Sgl().InfoLog() << "Compressed texture (natural size " << naturalSize
+                << " bytes) to " << compSize << " bytes (" << 100*compSize/naturalSize << "%)" << endl;
+#endif
 		}
         else
         {
@@ -288,10 +295,6 @@ MushGLTexture::PixelDataGLRGBAUse(void *pData)
         }
         MushGLUtil::CheckGLError("Texture load");
         
-#ifdef MUSHCORE_DEBUG        
-        MushcoreLog::Sgl().InfoLog() << "Compressed texture (natural size " << naturalSize
-            << " bytes) to " << compSize << " bytes (" << 100*compSize/naturalSize << "%)" << endl;
-#endif
 		
 #else
         GLint err=gluBuild2DMipmaps(GL_TEXTURE_2D,    // target

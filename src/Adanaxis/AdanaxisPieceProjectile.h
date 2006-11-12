@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } yAaZbixiy4nfgXOSFEVzQQ
 /*
- * $Id: AdanaxisPieceProjectile.h,v 1.14 2006/10/30 17:03:51 southa Exp $
+ * $Id: AdanaxisPieceProjectile.h,v 1.15 2006/11/12 14:39:50 southa Exp $
  * $Log: AdanaxisPieceProjectile.h,v $
+ * Revision 1.15  2006/11/12 14:39:50  southa
+ * Player weapons amd audio fix
+ *
  * Revision 1.14  2006/10/30 17:03:51  southa
  * Remnants creation
  *
@@ -103,6 +106,7 @@ private:
     Mushware::tMsec m_lifeMsec; //:readwrite
     Mushware::tMsec m_launchMsec; //:readwrite
     Mushware::tVal m_acceleration; //:readwrite
+    Mushware::tVal m_speedLimit; //:readwrite
     
     static Mushware::tRubyValue m_rubyKlass; // Must duplicate this in derived classes
     
@@ -116,6 +120,8 @@ public:
     void LaunchMsecSet(const Mushware::tMsec& inValue) { m_launchMsec=inValue; }
     const Mushware::tVal& Acceleration(void) const { return m_acceleration; }
     void AccelerationSet(const Mushware::tVal& inValue) { m_acceleration=inValue; }
+    const Mushware::tVal& SpeedLimit(void) const { return m_speedLimit; }
+    void SpeedLimitSet(const Mushware::tVal& inValue) { m_speedLimit=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -123,7 +129,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } tLQ3YDA03R5n6x98Snek1Q
+//%classPrototypes } MtjV2+K9DhQWeffIwjdnFw
 };
 //%inlineHeader {
 inline std::ostream&

@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } jTomsRfJomSPXOWn3jd6fw
 /*
- * $Id: AdanaxisScanner.cpp,v 1.7 2006/10/09 16:00:16 southa Exp $
+ * $Id: AdanaxisScanner.cpp,v 1.8 2006/10/20 15:38:52 southa Exp $
  * $Log: AdanaxisScanner.cpp,v $
+ * Revision 1.8  2006/10/20 15:38:52  southa
+ * Item collection
+ *
  * Revision 1.7  2006/10/09 16:00:16  southa
  * Intern generation
  *
@@ -130,7 +133,7 @@ AdanaxisScanner::ScanObjectRender(AdanaxisLogic& ioLogic, MushRenderMesh *inpMes
                 // Bounding sphere intersects th w axis, so set in boundary
                 m_targetState = kTargetStateInBoundary;
                 m_targetHitPointRatio = inPiece.HitPointRatio();
-                
+                m_targetID = inPiece.Id();
                 U32 numChunks = meshRef.NumChunks();
                 for (U32 i=0; i<numChunks; ++i)
                 {
@@ -330,7 +333,8 @@ AdanaxisScanner::AutoPrint(std::ostream& ioOut) const
     ioOut << "symbolFontRef=" << m_symbolFontRef << ", ";
     ioOut << "sightAngle=" << m_sightAngle << ", ";
     ioOut << "targetState=" << m_targetState << ", ";
-    ioOut << "targetHitPointRatio=" << m_targetHitPointRatio;
+    ioOut << "targetHitPointRatio=" << m_targetHitPointRatio << ", ";
+    ioOut << "targetID=" << m_targetID;
     ioOut << "]";
 }
 bool
@@ -362,6 +366,10 @@ AdanaxisScanner::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string&
     {
         ioIn >> m_targetHitPointRatio;
     }
+    else if (inTagStr == "targetID")
+    {
+        ioIn >> m_targetID;
+    }
     else 
     {
         return false;
@@ -381,5 +389,7 @@ AdanaxisScanner::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_targetState;
     ioOut.TagSet("targetHitPointRatio");
     ioOut << m_targetHitPointRatio;
+    ioOut.TagSet("targetID");
+    ioOut << m_targetID;
 }
-//%outOfLineFunctions } rMscJTUxePzpCKIDVyQhiA
+//%outOfLineFunctions } nmioQwjsOEAtcVMnY6mM8A

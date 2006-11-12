@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } XLKRQITGeEosZnXBO0QSEw
 /*
- * $Id: AdanaxisScanner.h,v 1.4 2006/10/09 16:00:16 southa Exp $
+ * $Id: AdanaxisScanner.h,v 1.5 2006/10/20 15:38:52 southa Exp $
  * $Log: AdanaxisScanner.h,v $
+ * Revision 1.5  2006/10/20 15:38:52  southa
+ * Item collection
+ *
  * Revision 1.4  2006/10/09 16:00:16  southa
  * Intern generation
  *
@@ -99,11 +102,13 @@ private:
     Mushware::tVal m_sightAngle;
     Mushware::U32 m_targetState;
     Mushware::tVal m_targetHitPointRatio;
+    std::string m_targetID; //:read
     
 //%classPrototypes {
 public:
     const Mushware::t2Val& SymbolSize(void) const { return m_symbolSize; }
     void SymbolSizeSet(const Mushware::t2Val& inValue) { m_symbolSize=inValue; }
+    const std::string& TargetID(void) const { return m_targetID; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -111,7 +116,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } +yJMaswq2Z2VTrPV3IxJWg
+//%classPrototypes } Pqfki30KZ4zYaNr6Shu+LQ
 };
 //%inlineHeader {
 inline std::ostream&

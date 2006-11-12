@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } nD/Irg6+j8tkN0uh3Wk1EQ
 /*
- * $Id: AdanaxisRuby.cpp,v 1.4 2006/10/02 17:25:04 southa Exp $
+ * $Id: AdanaxisRuby.cpp,v 1.5 2006/10/17 15:28:02 southa Exp $
  * $Log: AdanaxisRuby.cpp,v $
+ * Revision 1.5  2006/10/17 15:28:02  southa
+ * Player collisions
+ *
  * Revision 1.4  2006/10/02 17:25:04  southa
  * Object lookup and target selection
  *
@@ -60,8 +63,15 @@ AdanaxisRuby::PlayerPosition(Mushware::tRubyValue inSelf)
     return retVal;
 }    
 
+Mushware::tRubyValue
+AdanaxisRuby::PlayerTargetID(Mushware::tRubyValue inSelf)
+{
+    return MushRubyValue(VolatileData().PlayerTargetID()).Value();
+}    
+
 void
 AdanaxisRuby::AdanaxisInstall(void)
 {
     MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cPlayerPosition", PlayerPosition);
+    MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cPlayerTargetID", PlayerTargetID);
 }

@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } AKn0HlU4NeCX3ptHFWodSQ
 /*
- * $Id: AdanaxisPieceProjectile.cpp,v 1.17 2006/10/30 17:03:51 southa Exp $
+ * $Id: AdanaxisPieceProjectile.cpp,v 1.18 2006/11/12 14:39:50 southa Exp $
  * $Log: AdanaxisPieceProjectile.cpp,v $
+ * Revision 1.18  2006/11/12 14:39:50  southa
+ * Player weapons amd audio fix
+ *
  * Revision 1.17  2006/10/30 17:03:51  southa
  * Remnants creation
  *
@@ -101,13 +104,18 @@ AdanaxisPieceProjectile::~AdanaxisPieceProjectile()
 void
 AdanaxisPieceProjectile::Move(MushGameLogic& ioLogic, const tVal inFrameslice)
 {
+    MushGamePiece::Move(ioLogic, inFrameslice);
+
     PostWRef().InPlaceVelocityAdd();
 
     if (m_acceleration != 0.0)
     {
-        t4Val accVec(0,0,0,-m_acceleration);
-        Post().AngPos().VectorRotate(accVec);
-        PostWRef().VelWRef() += accVec;
+        if (m_speedLimit * m_speedLimit > Post().Vel().MagnitudeSquared())
+        {
+            t4Val accVec(0,0,0,-m_acceleration);
+            Post().AngPos().VectorRotate(accVec);
+            PostWRef().VelWRef() += accVec;
+        }
     }
     
     if (m_launchMsec == 0)
@@ -153,6 +161,7 @@ AdanaxisPieceProjectile::Load(Mushware::tRubyValue inSelf)
     MushRubyUtil::InstanceVarSet(inSelf, MushRubyIntern::ATm_owner(), MushRubyValue(m_owner).Value());    
     MushRubyUtil::InstanceVarSet(inSelf, MushRubyIntern::ATm_lifeMsec(), MushRubyValue(static_cast<U32>(m_lifeMsec)).Value());    
     MushRubyUtil::InstanceVarSet(inSelf, AdanaxisIntern::Sgl().ATm_acceleration(), MushRubyValue(m_acceleration).Value());    
+    MushRubyUtil::InstanceVarSet(inSelf, AdanaxisIntern::Sgl().ATm_speedLimit(), MushRubyValue(m_speedLimit).Value());    
 }
 
 void
@@ -162,6 +171,7 @@ AdanaxisPieceProjectile::Save(Mushware::tRubyValue inSelf)
     m_owner = MushRubyValue(MushRubyUtil::InstanceVar(inSelf, MushRubyIntern::ATm_owner())).String();
     m_lifeMsec = MushRubyValue(MushRubyUtil::InstanceVar(inSelf, MushRubyIntern::ATm_lifeMsec())).U32();
     m_acceleration = MushRubyValue(MushRubyUtil::InstanceVar(inSelf, AdanaxisIntern::Sgl().ATm_acceleration())).Val();
+    m_speedLimit = MushRubyValue(MushRubyUtil::InstanceVar(inSelf, AdanaxisIntern::Sgl().ATm_speedLimit())).Val();
 }
 
 Mushware::tRubyValue
@@ -250,7 +260,8 @@ AdanaxisPieceProjectile::AutoPrint(std::ostream& ioOut) const
     ioOut << "owner=" << m_owner << ", ";
     ioOut << "lifeMsec=" << m_lifeMsec << ", ";
     ioOut << "launchMsec=" << m_launchMsec << ", ";
-    ioOut << "acceleration=" << m_acceleration;
+    ioOut << "acceleration=" << m_acceleration << ", ";
+    ioOut << "speedLimit=" << m_speedLimit;
     ioOut << "]";
 }
 bool
@@ -278,6 +289,10 @@ AdanaxisPieceProjectile::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std:
     {
         ioIn >> m_acceleration;
     }
+    else if (inTagStr == "speedLimit")
+    {
+        ioIn >> m_speedLimit;
+    }
     else if (MushGamePiece::AutoXMLDataProcess(ioIn, inTagStr))
     {
         // Tag consumed by base class
@@ -300,5 +315,7 @@ AdanaxisPieceProjectile::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_launchMsec;
     ioOut.TagSet("acceleration");
     ioOut << m_acceleration;
+    ioOut.TagSet("speedLimit");
+    ioOut << m_speedLimit;
 }
-//%outOfLineFunctions } gxMgg3VT3LAmxCsKwUwxGw
+//%outOfLineFunctions } mv03bToCvrVPzqZD3pMXVQ

@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } gEqqVEDekPhwNL6FyxZYWg
 /*
- * $Id: AdanaxisRuby.h,v 1.3 2006/08/01 17:21:27 southa Exp $
+ * $Id: AdanaxisRuby.h,v 1.4 2006/08/20 14:19:21 southa Exp $
  * $Log: AdanaxisRuby.h,v $
+ * Revision 1.4  2006/08/20 14:19:21  southa
+ * Seek operation
+ *
  * Revision 1.3  2006/08/01 17:21:27  southa
  * River demo
  *
@@ -49,6 +52,7 @@ public:
 	static AdanaxisVolatileData& VolatileData(void);
 	static void LogicNameSet(const std::string& inName) { s_logicRef.NameSet(inName); }
 	static Mushware::tRubyValue PlayerPosition(Mushware::tRubyValue inSelf);
+    static Mushware::tRubyValue PlayerTargetID(Mushware::tRubyValue inSelf);
     
 private:
     static MushcoreDataRef<MushGameLogic> s_logicRef;
