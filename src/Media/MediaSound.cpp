@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } me924xa0+Lyfst6KDBi6wg
 /*
- * $Id: MediaSound.cpp,v 1.22 2005/05/19 13:02:08 southa Exp $
+ * $Id: MediaSound.cpp,v 1.23 2006/06/01 15:39:14 southa Exp $
  * $Log: MediaSound.cpp,v $
+ * Revision 1.23  2006/06/01 15:39:14  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.22  2005/05/19 13:02:08  southa
  * Mac release work
  *
@@ -134,10 +137,6 @@ MediaSound::Free(void)
 void
 MediaSound::EndHandler(void)
 {
-    if (!m_resident)
-    {
-        Free();
-    }
 }
 
 MushcoreScalar
@@ -151,7 +150,7 @@ MediaSound::TransientSound(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
     ioCommand.PopParam(name);
     ioCommand.PopParam(filename);
     MediaSound *sound=MushcoreData<MediaSound>::Sgl().Give(name, new MediaSound(filename));
-    sound->ResidenceSet(false);
+    sound->ResidenceSet(true); // Transient sounds now resident (caused crashes)
     return MushcoreScalar(0);
 }
 

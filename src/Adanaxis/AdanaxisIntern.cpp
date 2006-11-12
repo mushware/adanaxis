@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } mqRyosjSblx9ADjVCHc1/g
 /*
- * $Id: AdanaxisIntern.cpp,v 1.9 2006/11/02 09:47:33 southa Exp $
+ * $Id: AdanaxisIntern.cpp,v 1.10 2006/11/03 18:46:33 southa Exp $
  * $Log: AdanaxisIntern.cpp,v $
+ * Revision 1.10  2006/11/03 18:46:33  southa
+ * Damage effectors
+ *
  * Revision 1.9  2006/11/02 09:47:33  southa
  * Player weapon control
  *
@@ -66,10 +69,11 @@ AdanaxisIntern::AdanaxisIntern()
     m_klassAdanaxisPieceKhazi = MushRubyValue(MushRubyUtil::Class("AdanaxisPieceKhazi"));
     m_klassAdanaxisPiecePlayer = MushRubyValue(MushRubyUtil::Class("AdanaxisPiecePlayer"));
     m_klassAdanaxisPieceProjectile = MushRubyValue(MushRubyUtil::Class("AdanaxisPieceProjectile"));
+    m_ATm_acceleration = MushRubyIntern::SymbolID("@m_acceleration");
     m_ATm_keyNum = MushRubyIntern::SymbolID("@m_keyNum");
     m_ATm_state = MushRubyIntern::SymbolID("@m_state");
     m_mCollisionEventConsume = MushRubyIntern::SymbolID("mCollisionEventConsume");
     m_mMenuRender = MushRubyIntern::SymbolID("mMenuRender");
     m_mRender = MushRubyIntern::SymbolID("mRender");
-//%initialisations } 3ea3d1929424761bae82ac108ce93b8a
+//%initialisations } b3286f139c0ae7f1e723da981b3f1b06
 }

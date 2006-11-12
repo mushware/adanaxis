@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } WBiqbvbumO43Eps7fHh03A
 /*
- * $Id: AdanaxisIntern.h,v 1.12 2006/11/02 09:47:33 southa Exp $
+ * $Id: AdanaxisIntern.h,v 1.13 2006/11/03 18:46:33 southa Exp $
  * $Log: AdanaxisIntern.h,v $
+ * Revision 1.13  2006/11/03 18:46:33  southa
+ * Damage effectors
+ *
  * Revision 1.12  2006/11/02 09:47:33  southa
  * Player weapon control
  *
@@ -68,6 +71,7 @@
 /*
 :data1begin
   ids = %w{
+    @m_acceleration
     @m_keyNum
     @m_state
     mCollisionEventConsume
@@ -103,6 +107,7 @@ public:
     MushRubyValue& AdanaxisPieceKhazi(void) { return m_klassAdanaxisPieceKhazi; }
     MushRubyValue& AdanaxisPiecePlayer(void) { return m_klassAdanaxisPiecePlayer; }
     MushRubyValue& AdanaxisPieceProjectile(void) { return m_klassAdanaxisPieceProjectile; }
+    Mushware::tRubyID ATm_acceleration(void) { return m_ATm_acceleration; }
     Mushware::tRubyID ATm_keyNum(void) { return m_ATm_keyNum; }
     Mushware::tRubyID ATm_state(void) { return m_ATm_state; }
     Mushware::tRubyID mCollisionEventConsume(void) { return m_mCollisionEventConsume; }
@@ -118,12 +123,13 @@ private:
     MushRubyValue m_klassAdanaxisPieceKhazi;
     MushRubyValue m_klassAdanaxisPiecePlayer;
     MushRubyValue m_klassAdanaxisPieceProjectile;
+    Mushware::tRubyID m_ATm_acceleration;
     Mushware::tRubyID m_ATm_keyNum;
     Mushware::tRubyID m_ATm_state;
     Mushware::tRubyID m_mCollisionEventConsume;
     Mushware::tRubyID m_mMenuRender;
     Mushware::tRubyID m_mRender;
-//%declarations } 0e18b234599f44d3a1694d72de1f4ace
+//%declarations } e21611409dd16b7b8a044c35fdcce5c2
 
 //%classPrototypes {
 public:

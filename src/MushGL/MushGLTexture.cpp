@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } vh/xCnesmbXGxXqZK5YEaA
 /*
- * $Id: MushGLTexture.cpp,v 1.17 2006/11/07 11:08:54 southa Exp $
+ * $Id: MushGLTexture.cpp,v 1.18 2006/11/09 23:53:59 southa Exp $
  * $Log: MushGLTexture.cpp,v $
+ * Revision 1.18  2006/11/09 23:53:59  southa
+ * Explosion and texture loading
+ *
  * Revision 1.17  2006/11/07 11:08:54  southa
  * Texture loading from mushfiles
  *
@@ -283,7 +286,8 @@ MushGLTexture::PixelDataGLRGBAUse(void *pData)
         {
             m_byteCount += naturalSize;
         }
-		
+        MushGLUtil::CheckGLError("Texture load");
+        
 #ifdef MUSHCORE_DEBUG        
         MushcoreLog::Sgl().InfoLog() << "Compressed texture (natural size " << naturalSize
             << " bytes) to " << compSize << " bytes (" << 100*compSize/naturalSize << "%)" << endl;

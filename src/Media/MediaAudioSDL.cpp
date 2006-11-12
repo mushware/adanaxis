@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } ccLCYRn/kYU+5Rp9coVdng
 /*
- * $Id: MediaAudioSDL.cpp,v 1.25 2006/11/06 12:56:31 southa Exp $
+ * $Id: MediaAudioSDL.cpp,v 1.26 2006/11/10 20:17:11 southa Exp $
  * $Log: MediaAudioSDL.cpp,v $
+ * Revision 1.26  2006/11/10 20:17:11  southa
+ * Audio work
+ *
  * Revision 1.25  2006/11/06 12:56:31  southa
  * MushFile work
  *
@@ -262,12 +265,6 @@ MediaAudioSDL::ChannelStateSet(U32 inChannel, ChannelState inState, MediaSound *
 {
     MUSHCOREASSERT(inChannel < m_softChannels);
     MUSHCOREASSERT(inChannel < m_activeSamples.size());
-
-    MediaSound *oldSound=m_activeSamples[inChannel];
-    if (oldSound != NULL)
-    {
-        oldSound->EndHandler();
-    }
 
     m_activeSamples[inChannel] = inSound;
     m_channelState[inChannel] = inState;

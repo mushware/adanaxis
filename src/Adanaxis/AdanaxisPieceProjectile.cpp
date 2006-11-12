@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } AKn0HlU4NeCX3ptHFWodSQ
 /*
- * $Id: AdanaxisPieceProjectile.cpp,v 1.16 2006/10/17 11:05:55 southa Exp $
+ * $Id: AdanaxisPieceProjectile.cpp,v 1.17 2006/10/30 17:03:51 southa Exp $
  * $Log: AdanaxisPieceProjectile.cpp,v $
+ * Revision 1.17  2006/10/30 17:03:51  southa
+ * Remnants creation
+ *
  * Revision 1.16  2006/10/17 11:05:55  southa
  * Expiry events
  *
@@ -100,6 +103,13 @@ AdanaxisPieceProjectile::Move(MushGameLogic& ioLogic, const tVal inFrameslice)
 {
     PostWRef().InPlaceVelocityAdd();
 
+    if (m_acceleration != 0.0)
+    {
+        t4Val accVec(0,0,0,-m_acceleration);
+        Post().AngPos().VectorRotate(accVec);
+        PostWRef().VelWRef() += accVec;
+    }
+    
     if (m_launchMsec == 0)
     {
         m_launchMsec = ioLogic.FrameMsec();
@@ -142,6 +152,7 @@ AdanaxisPieceProjectile::Load(Mushware::tRubyValue inSelf)
     MushGamePiece::Load(inSelf);
     MushRubyUtil::InstanceVarSet(inSelf, MushRubyIntern::ATm_owner(), MushRubyValue(m_owner).Value());    
     MushRubyUtil::InstanceVarSet(inSelf, MushRubyIntern::ATm_lifeMsec(), MushRubyValue(static_cast<U32>(m_lifeMsec)).Value());    
+    MushRubyUtil::InstanceVarSet(inSelf, AdanaxisIntern::Sgl().ATm_acceleration(), MushRubyValue(m_acceleration).Value());    
 }
 
 void
@@ -150,6 +161,7 @@ AdanaxisPieceProjectile::Save(Mushware::tRubyValue inSelf)
     MushGamePiece::Save(inSelf);
     m_owner = MushRubyValue(MushRubyUtil::InstanceVar(inSelf, MushRubyIntern::ATm_owner())).String();
     m_lifeMsec = MushRubyValue(MushRubyUtil::InstanceVar(inSelf, MushRubyIntern::ATm_lifeMsec())).U32();
+    m_acceleration = MushRubyValue(MushRubyUtil::InstanceVar(inSelf, AdanaxisIntern::Sgl().ATm_acceleration())).Val();
 }
 
 Mushware::tRubyValue
@@ -237,7 +249,8 @@ AdanaxisPieceProjectile::AutoPrint(std::ostream& ioOut) const
     MushGamePiece::AutoPrint(ioOut);
     ioOut << "owner=" << m_owner << ", ";
     ioOut << "lifeMsec=" << m_lifeMsec << ", ";
-    ioOut << "launchMsec=" << m_launchMsec;
+    ioOut << "launchMsec=" << m_launchMsec << ", ";
+    ioOut << "acceleration=" << m_acceleration;
     ioOut << "]";
 }
 bool
@@ -261,6 +274,10 @@ AdanaxisPieceProjectile::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std:
     {
         ioIn >> m_launchMsec;
     }
+    else if (inTagStr == "acceleration")
+    {
+        ioIn >> m_acceleration;
+    }
     else if (MushGamePiece::AutoXMLDataProcess(ioIn, inTagStr))
     {
         // Tag consumed by base class
@@ -281,5 +298,7 @@ AdanaxisPieceProjectile::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_lifeMsec;
     ioOut.TagSet("launchMsec");
     ioOut << m_launchMsec;
+    ioOut.TagSet("acceleration");
+    ioOut << m_acceleration;
 }
-//%outOfLineFunctions } nGrestPzIZ/DZtg9HdC84g
+//%outOfLineFunctions } gxMgg3VT3LAmxCsKwUwxGw
