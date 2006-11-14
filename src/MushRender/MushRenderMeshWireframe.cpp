@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } GBnKh1xP//zYsMvzXoAYTg
 /*
- * $Id: MushRenderMeshWireframe.cpp,v 1.7 2006/06/27 11:58:10 southa Exp $
+ * $Id: MushRenderMeshWireframe.cpp,v 1.8 2006/07/24 18:46:51 southa Exp $
  * $Log: MushRenderMeshWireframe.cpp,v $
+ * Revision 1.8  2006/07/24 18:46:51  southa
+ * Depth sorting
+ *
  * Revision 1.7  2006/06/27 11:58:10  southa
  * Warning fixes
  *
@@ -159,6 +162,10 @@ MushRenderMeshWireframe::OutputBufferGenerate(const MushRenderSpec& inSpec, cons
             MushRenderUtil::Transform(projectedVertices, srcVertices, inSpec.ModelToClipBillboardMattress());
             break;
             
+        case MushMesh4Mesh::kTransformTypeBillboardRandom:
+            MushRenderUtil::Transform(projectedVertices, srcVertices, inSpec.ModelToClipBillboardRandomMattress());
+        break;
+        
         default:
             MushRenderUtil::Transform(projectedVertices, srcVertices, inSpec.ModelToClipMattress());
             break;

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } bQ20AxcHOjJNfCG2TxDNVg
 /*
- * $Id: MushGLShader.cpp,v 1.6 2006/09/12 15:28:50 southa Exp $
+ * $Id: MushGLShader.cpp,v 1.7 2006/10/06 11:54:57 southa Exp $
  * $Log: MushGLShader.cpp,v $
+ * Revision 1.7  2006/10/06 11:54:57  southa
+ * Scaled rendering
+ *
  * Revision 1.6  2006/09/12 15:28:50  southa
  * World sphere
  *
@@ -269,6 +272,13 @@ MushGLShader::AttribsApply(const MushGLAttribs& inAttribs)
             break;
     
         case MushMesh4Mesh::kTransformTypeBillboard:
+        {
+            modelViewMattress = inAttribs.View() * inAttribs.Model();
+            modelViewMattress.MatrixSet(inAttribs.Model().Matrix());
+        }
+        break;
+
+        case MushMesh4Mesh::kTransformTypeBillboardRandom:
         {
             modelViewMattress = inAttribs.View() * inAttribs.Model();
             modelViewMattress.MatrixSet(inAttribs.Model().Matrix());

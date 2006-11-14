@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } hSrHx4/wCdfB19VcRmiYhw
 /*
- * $Id: MushMeshRubyMesh.h,v 1.7 2006/06/19 15:57:19 southa Exp $
+ * $Id: MushMeshRubyMesh.h,v 1.8 2006/07/17 14:43:41 southa Exp $
  * $Log: MushMeshRubyMesh.h,v $
+ * Revision 1.8  2006/07/17 14:43:41  southa
+ * Billboarded deco objects
+ *
  * Revision 1.7  2006/06/19 15:57:19  southa
  * Materials
  *
@@ -61,6 +64,7 @@ protected:
 	static Mushware::tRubyValue BaseAdd(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
 	static Mushware::tRubyValue BaseDisplacementAdd(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
 	static Mushware::tRubyValue BillboardSet(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
+	static Mushware::tRubyValue BillboardRandomSet(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
 	static Mushware::tRubyValue ExtruderAdd(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
 	static Mushware::tRubyValue MaterialAdd(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
 	static Mushware::tRubyValue Make(Mushware::tRubyValue inSelf);

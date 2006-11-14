@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } YrK9KiG4XjKqbWo1rVGU4w
 /*
- * $Id: MushMesh4Mesh.h,v 1.22 2006/09/09 11:16:41 southa Exp $
+ * $Id: MushMesh4Mesh.h,v 1.23 2006/10/05 15:39:18 southa Exp $
  * $Log: MushMesh4Mesh.h,v $
+ * Revision 1.23  2006/10/05 15:39:18  southa
+ * Explosion handling
+ *
  * Revision 1.22  2006/09/09 11:16:41  southa
  * One-time vertex buffer generation
  *
@@ -138,7 +141,8 @@ public:
     {
         kTransformTypeInvalid = 0,
         kTransformTypeNormal,
-        kTransformTypeBillboard
+        kTransformTypeBillboard,
+        kTransformTypeBillboardRandom
     } tTransformType;
     
     MushMesh4Mesh();

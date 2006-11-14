@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } rQkTih3VUd7Xp8cDeV3ZYA
 /*
- * $Id: AdanaxisRender.cpp,v 1.57 2006/11/09 23:53:59 southa Exp $
+ * $Id: AdanaxisRender.cpp,v 1.58 2006/11/12 20:09:55 southa Exp $
  * $Log: AdanaxisRender.cpp,v $
+ * Revision 1.58  2006/11/12 20:09:55  southa
+ * Missile guidance
+ *
  * Revision 1.57  2006/11/09 23:53:59  southa
  * Explosion and texture loading
  *
@@ -372,7 +375,7 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
             }
         }
         
-        pRenderMesh->ColourZMiddleSet(t4Val(1.0,1.0,1.0,meshAlpha));
+        pRenderMesh->ColourZMiddleSet(t4Val(1.0,1.0,1.0,meshAlpha*2));
         pRenderMesh->ColourZLeftSet(t4Val(1.0,0.3,0.3,0.0));
         pRenderMesh->ColourZRightSet(t4Val(0.3,1.0,0.3,0.0));
 

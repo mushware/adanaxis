@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } XKDM1ZJgQpb3nz4x0n57Og
 /*
- * $Id: MushRenderMeshShader.cpp,v 1.5 2006/10/06 11:54:58 southa Exp $
+ * $Id: MushRenderMeshShader.cpp,v 1.6 2006/10/06 14:48:19 southa Exp $
  * $Log: MushRenderMeshShader.cpp,v $
+ * Revision 1.6  2006/10/06 14:48:19  southa
+ * Material animation
+ *
  * Revision 1.5  2006/10/06 11:54:58  southa
  * Scaled rendering
  *
@@ -129,6 +132,10 @@ MushRenderMeshShader::RenderJobCreate(MushGLJobRender& outRender,
         if (p4Mesh->TransformType() == MushMesh4Mesh::kTransformTypeBillboard)
         {
             attribsRef.ModelSet(inSpec.ScaledModelBillboardMattress());
+        }
+        else if (p4Mesh->TransformType() == MushMesh4Mesh::kTransformTypeBillboardRandom)
+        {
+            attribsRef.ModelSet(inSpec.ScaledModelBillboardRandomMattress());
         }
         else
         {

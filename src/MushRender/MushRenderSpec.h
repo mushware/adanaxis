@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 6hLRNoZfeBvP570tKfB/gA
 /*
- * $Id: MushRenderSpec.h,v 1.15 2006/10/06 11:54:58 southa Exp $
+ * $Id: MushRenderSpec.h,v 1.16 2006/10/06 14:48:19 southa Exp $
  * $Log: MushRenderSpec.h,v $
+ * Revision 1.16  2006/10/06 14:48:19  southa
+ * Material animation
+ *
  * Revision 1.15  2006/10/06 11:54:58  southa
  * Scaled rendering
  *
@@ -90,8 +93,10 @@ public:
     const tMattress ModelToEyeMattress(void) const { return m_view * ScaledModelMattress(); }
     const tMattress ModelToClipMattress(void) const { return m_projection.Mattress() * ModelToEyeMattress(); }
     const tMattress ModelToClipBillboardMattress(void) const;
+    const tMattress ModelToClipBillboardRandomMattress(void) const;
     const tMattress ScaledModelMattress(void) const { return tMattress(ScaleMatrix() * m_model.Matrix(), m_model.Offset()); }
     const tMattress ScaledModelBillboardMattress(void) const;
+    const tMattress ScaledModelBillboardRandomMattress(void) const;
     const tMattress::tMatrix ScaleMatrix(void) const;
     
 private:
@@ -158,6 +163,26 @@ MushRenderSpec::ScaledModelBillboardMattress(void) const
     tMattress billModel = Model();
     
     billModel.MatrixSet(ScaleMatrix());
+    
+    return billModel;
+}
+
+inline const MushRenderSpec::tMattress
+MushRenderSpec::ModelToClipBillboardRandomMattress(void) const
+{
+    tMattress billModel = ModelToEyeMattress();
+    
+    billModel.MatrixSet(ScaleMatrix() * MushMeshTools::MatrixRotateInAxis(MushMeshTools::kAxisXY, MushcoreUtil::RandomVal(0,2*M_PI)));
+    
+    return m_projection.Mattress() * billModel;
+}
+
+inline const MushRenderSpec::tMattress
+MushRenderSpec::ScaledModelBillboardRandomMattress(void) const
+{
+    tMattress billModel = Model();
+    
+    billModel.MatrixSet(ScaleMatrix() * MushMeshTools::MatrixRotateInAxis(MushMeshTools::kAxisXY, MushcoreUtil::RandomVal(0,2*M_PI)));
     
     return billModel;
 }

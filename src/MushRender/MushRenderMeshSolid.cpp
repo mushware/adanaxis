@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } A/GPso4jrQBD0hPDpi3qXg
 /*
- * $Id: MushRenderMeshSolid.cpp,v 1.12 2006/07/28 19:24:34 southa Exp $
+ * $Id: MushRenderMeshSolid.cpp,v 1.13 2006/09/09 11:16:42 southa Exp $
  * $Log: MushRenderMeshSolid.cpp,v $
+ * Revision 1.13  2006/09/09 11:16:42  southa
+ * One-time vertex buffer generation
+ *
  * Revision 1.12  2006/07/28 19:24:34  southa
  * Pre-release work
  *
@@ -261,6 +264,10 @@ MushRenderMeshSolid::OutputBufferGenerate(const MushRenderSpec& inSpec, const Mu
     {
         case MushMesh4Mesh::kTransformTypeBillboard:
             MushRenderUtil::Transform(projectedVertices, srcVertices, inSpec.ModelToClipBillboardMattress());
+            break;
+            
+        case MushMesh4Mesh::kTransformTypeBillboardRandom:
+            MushRenderUtil::Transform(projectedVertices, srcVertices, inSpec.ModelToClipBillboardRandomMattress());
             break;
             
         default:

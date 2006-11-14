@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } oR7WPhSKmfGQldTVFg6TpQ
 /*
- * $Id: MushMeshRubyMesh.cpp,v 1.12 2006/09/09 11:16:41 southa Exp $
+ * $Id: MushMeshRubyMesh.cpp,v 1.13 2006/09/12 15:28:51 southa Exp $
  * $Log: MushMeshRubyMesh.cpp,v $
+ * Revision 1.13  2006/09/12 15:28:51  southa
+ * World sphere
+ *
  * Revision 1.12  2006/09/09 11:16:41  southa
  * One-time vertex buffer generation
  *
@@ -164,6 +167,28 @@ MushMeshRubyMesh::BillboardSet(Mushware::tRubyValue inSelf, Mushware::tRubyValue
 }
 
 Mushware::tRubyValue
+MushMeshRubyMesh::BillboardRandomSet(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0)
+{
+	try
+    {
+        MushRubyValue param0(inArg0);
+        if (param0.Bool())
+        {
+            WRef(inSelf).TransformTypeSet(MushMesh4Mesh::kTransformTypeBillboardRandom);
+        }
+        else
+        {
+            WRef(inSelf).TransformTypeSet(MushMesh4Mesh::kTransformTypeNormal);
+        }
+    }
+    catch (std::exception& e)
+    {
+        MushRubyUtil::Raise(e.what());
+    }
+    return inSelf;
+}
+
+Mushware::tRubyValue
 MushMeshRubyMesh::ExtruderAdd(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0)
 {
 	if (!MushMeshRubyExtruder::IsInstanceOf(inArg0))
@@ -218,6 +243,7 @@ MushMeshRubyMesh::RubyInstall(void)
 	MushRubyUtil::MethodDefineOneParam(DataObjKlass(), "mBaseAdd", BaseAdd);
 	MushRubyUtil::MethodDefineOneParam(DataObjKlass(), "mBaseDisplacementAdd", BaseDisplacementAdd);
 	MushRubyUtil::MethodDefineOneParam(DataObjKlass(), "mBillboardSet", BillboardSet);
+	MushRubyUtil::MethodDefineOneParam(DataObjKlass(), "mBillboardRandomSet", BillboardRandomSet);
 	MushRubyUtil::MethodDefineOneParam(DataObjKlass(), "mExtruderAdd", ExtruderAdd);
 	MushRubyUtil::MethodDefineOneParam(DataObjKlass(), "mMaterialAdd", MaterialAdd);
 	MushRubyUtil::MethodDefineNoParams(DataObjKlass(), "mMake", Make);
