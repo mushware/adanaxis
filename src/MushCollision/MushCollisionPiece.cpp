@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } YilYYY1RNzqRnIeOdsFOww
 /*
- * $Id: MushCollisionPiece.cpp,v 1.3 2005/07/30 19:06:14 southa Exp $
+ * $Id: MushCollisionPiece.cpp,v 1.4 2006/06/01 15:39:15 southa Exp $
  * $Log: MushCollisionPiece.cpp,v $
+ * Revision 1.4  2006/06/01 15:39:15  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.3  2005/07/30 19:06:14  southa
  * Collision checking
  *
@@ -47,6 +50,12 @@ const MushMeshPosticity&
 MushCollisionPiece::CollisionPost(void) const
 {
     throw MushcoreDataFail(std::string("Request for collision post unsupported for type '")+AutoName()+"'");
+}
+
+bool
+MushCollisionPiece::CollisionIsWCylinder(void) const
+{
+    return false;
 }
 
 void

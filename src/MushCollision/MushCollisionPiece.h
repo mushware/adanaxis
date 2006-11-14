@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } ilonAQsnHWEXhewV2G7+ug
 /*
- * $Id: MushCollisionPiece.h,v 1.3 2005/07/30 19:06:14 southa Exp $
+ * $Id: MushCollisionPiece.h,v 1.4 2006/06/01 15:39:15 southa Exp $
  * $Log: MushCollisionPiece.h,v $
+ * Revision 1.4  2006/06/01 15:39:15  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.3  2005/07/30 19:06:14  southa
  * Collision checking
  *
@@ -46,6 +49,7 @@ class MushCollisionPiece : public virtual MushcoreVirtualObject
 public:
     virtual const MushMesh4Mesh& CollisionMesh(void) const;
     virtual const MushMeshPosticity& CollisionPost(void) const;
+    virtual bool CollisionIsWCylinder(void) const;
     const Mushware::t4Val& CollisionWorldCentroid(void) const;
     Mushware::tVal CollisionBoundingRadius(void) const;
     const MushCollisionWorkspace::tChunkCentroids& CollisionChunkWorldCentroids(void) const;

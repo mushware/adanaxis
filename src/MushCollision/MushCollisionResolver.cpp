@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } ymdD2Lh32YJKehH+HKSuAg
 /*
- * $Id: MushCollisionResolver.cpp,v 1.5 2006/06/01 15:39:16 southa Exp $
+ * $Id: MushCollisionResolver.cpp,v 1.6 2006/10/12 22:04:48 southa Exp $
  * $Log: MushCollisionResolver.cpp,v $
+ * Revision 1.6  2006/10/12 22:04:48  southa
+ * Collision events
+ *
  * Revision 1.5  2006/06/01 15:39:16  southa
  * DrawArray verification and fixes
  *
@@ -44,7 +47,6 @@ using namespace Mushware;
 using namespace std;
 
 MUSHCORE_SINGLETON_INSTANCE(MushCollisionResolver);
-
 
 void
 MushCollisionResolver::ChunkResolve(MushCollisionInfo& outCollInfo, const MushCollisionPiece& inPiece1, const MushCollisionPiece& inPiece2) const
@@ -77,18 +79,49 @@ MushCollisionResolver::ChunkResolve(MushCollisionInfo& outCollInfo, const MushCo
                 minDistanceSep = distanceSep;
                 chunkNum1 = i;
                 chunkNum2 = j;
-            }
-#if 0
-            cout << " +++sep=" << distanceSep;
-            cout << ", cent1=" << centroidsRef1[i] << " radius " << boundingRadius1;
-            cout << ", cent2=" << centroidsRef2[j] << " radius " << boundingRadius2;
-            cout << endl;
-#endif
-                
+            }                
         }
     }
     outCollInfo.SeparatingDistanceSet(minDistanceSep);
     outCollInfo.ChunkNum1Set(chunkNum1);
+    outCollInfo.ChunkNum2Set(chunkNum2);
+    outCollInfo.ChunkNumsValidSet(true);
+    outCollInfo.ObjectPointersValidSet(false);
+}
+
+void
+MushCollisionResolver::WCylinderResolve(MushCollisionInfo& outCollInfo, const MushCollisionPiece& inPiece1, const MushCollisionPiece& inPiece2) const
+{
+    const MushMesh4Mesh& meshRef2 = inPiece2.CollisionMesh();
+    const MushMesh4Mesh::tChunks& chunksRef2 = meshRef2.Chunks();
+    const MushCollisionWorkspace::tChunkCentroids& centroidsRef1 = inPiece1.CollisionChunkWorldCentroids();
+    const MushCollisionWorkspace::tChunkCentroids& centroidsRef2 = inPiece2.CollisionChunkWorldCentroids();
+    
+    U32 numChunks2 = chunksRef2.size();
+    
+    tVal minDistanceSep = 1;
+    U32 chunkNum2 = 0;
+    
+    for (U32 j=0; j<numChunks2; ++j)
+    {
+        tVal boundingRadius2 = meshRef2.ChunkBoundingRadius(j);
+        t4Val vecSep = centroidsRef1[0] - centroidsRef2[j];
+
+        inPiece1.CollisionPost().AngPos().Conjugate().VectorRotate(vecSep);
+
+        vecSep.WSet(0);
+        
+        tVal distanceSep = vecSep.Magnitude() - boundingRadius2 - 1.0; // 1.0 is generosity margin
+        
+        if ((j == 0) || distanceSep < minDistanceSep)
+        {
+            minDistanceSep = distanceSep;
+            chunkNum2 = j;
+        }                
+    }
+    
+    outCollInfo.SeparatingDistanceSet(minDistanceSep);
+    outCollInfo.ChunkNum1Set(0);
     outCollInfo.ChunkNum2Set(chunkNum2);
     outCollInfo.ChunkNumsValidSet(true);
     outCollInfo.ObjectPointersValidSet(false);
@@ -111,8 +144,19 @@ MushCollisionResolver::Resolve(MushCollisionInfo& outCollInfo, const MushCollisi
     }
     else
     {
-        // Object bounding spheres intersect, so perform the chunkwise test
-        ChunkResolve(outCollInfo, inPiece1, inPiece2);
+        if (inPiece1.CollisionIsWCylinder())
+        {
+            WCylinderResolve(outCollInfo, inPiece1, inPiece2);
+        }
+        else if (inPiece2.CollisionIsWCylinder())
+        {
+            throw MushcoreLogicFail("Cannot resolve WCylinder in piece2");   
+        }
+        else
+        {
+            // Object bounding spheres intersect, so perform the chunkwise test
+            ChunkResolve(outCollInfo, inPiece1, inPiece2);
+        }
     }
 }
 

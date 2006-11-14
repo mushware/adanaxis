@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } W+ZPeiSLOk9REJMC2q6iwg
 /*
- * $Id: MushCollisionResolver.h,v 1.4 2005/08/01 13:09:58 southa Exp $
+ * $Id: MushCollisionResolver.h,v 1.5 2006/06/01 15:39:16 southa Exp $
  * $Log: MushCollisionResolver.h,v $
+ * Revision 1.5  2006/06/01 15:39:16  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.4  2005/08/01 13:09:58  southa
  * Collision messaging
  *
@@ -52,6 +55,7 @@ public:
 
 protected:
     void ChunkResolve(MushCollisionInfo& outCollInfo, const MushCollisionPiece& inPiece1, const MushCollisionPiece& inPiece2) const;
+    void WCylinderResolve(MushCollisionInfo& outCollInfo, const MushCollisionPiece& inPiece1, const MushCollisionPiece& inPiece2) const;
     
 private:
     Mushware::tMsec m_frameMsec; //:readwrite

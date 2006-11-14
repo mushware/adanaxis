@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } mqRyosjSblx9ADjVCHc1/g
 /*
- * $Id: AdanaxisIntern.cpp,v 1.11 2006/11/12 14:39:50 southa Exp $
+ * $Id: AdanaxisIntern.cpp,v 1.12 2006/11/12 20:09:54 southa Exp $
  * $Log: AdanaxisIntern.cpp,v $
+ * Revision 1.12  2006/11/12 20:09:54  southa
+ * Missile guidance
+ *
  * Revision 1.11  2006/11/12 14:39:50  southa
  * Player weapons amd audio fix
  *
@@ -74,10 +77,11 @@ AdanaxisIntern::AdanaxisIntern()
     m_klassAdanaxisPieceProjectile = MushRubyValue(MushRubyUtil::Class("AdanaxisPieceProjectile"));
     m_ATm_acceleration = MushRubyIntern::SymbolID("@m_acceleration");
     m_ATm_keyNum = MushRubyIntern::SymbolID("@m_keyNum");
+    m_ATm_rail = MushRubyIntern::SymbolID("@m_rail");
     m_ATm_speedLimit = MushRubyIntern::SymbolID("@m_speedLimit");
     m_ATm_state = MushRubyIntern::SymbolID("@m_state");
     m_mCollisionEventConsume = MushRubyIntern::SymbolID("mCollisionEventConsume");
     m_mMenuRender = MushRubyIntern::SymbolID("mMenuRender");
     m_mRender = MushRubyIntern::SymbolID("mRender");
-//%initialisations } c898401baa98222ba41f31af3786662b
+//%initialisations } a8e758a109d17c791b7d413a104a5ce0
 }

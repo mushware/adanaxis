@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } Mac7dWHONvkZIg39sQnwww
 /*
- * $Id: AdanaxisLogic.cpp,v 1.29 2006/10/20 15:38:52 southa Exp $
+ * $Id: AdanaxisLogic.cpp,v 1.30 2006/11/03 18:46:33 southa Exp $
  * $Log: AdanaxisLogic.cpp,v $
+ * Revision 1.30  2006/11/03 18:46:33  southa
+ * Damage effectors
+ *
  * Revision 1.29  2006/10/20 15:38:52  southa
  * Item collection
  *
@@ -543,14 +546,17 @@ AdanaxisLogic::EffectorsFullCollide(void)
     {
         if (!p->ExpireFlag())
         {
+            std::string projOwner = p->Owner();
+            
             for (tList2::const_iterator q = list2Ref.begin(); q != list2EndIter; ++q)
             {
                 if (!q->ExpireFlag())
                 {
                     MushCollisionInfo collInfo;
                     MushCollisionResolver::Sgl().Resolve(collInfo, *p, *q);
-                    if (collInfo.SeparatingDistance() <= 0)
+                    if (collInfo.SeparatingDistance() <= 0 && projOwner != q->Id())
                     {
+                        // cout << "Hit k" << endl;
                         collInfo.ObjectName1Set(p->Id());
                         collInfo.ObjectName2Set(q->Id());
                         collInfo.ObjectNamesValidSet(true);
@@ -566,8 +572,9 @@ AdanaxisLogic::EffectorsFullCollide(void)
                 {
                     MushCollisionInfo collInfo;
                     MushCollisionResolver::Sgl().Resolve(collInfo, *p, *q);
-                    if (collInfo.SeparatingDistance() <= 0)
+                    if (collInfo.SeparatingDistance() <= 0 && projOwner != q->Id())
                     {
+                        // cout << "Hit p" << endl;
                         collInfo.ObjectName1Set(p->Id());
                         collInfo.ObjectName2Set(q->Id());
                         collInfo.ObjectNamesValidSet(true);

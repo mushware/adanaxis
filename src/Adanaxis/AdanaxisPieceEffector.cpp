@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } vh6aY9UJPEvjt8XPQ+jLGA
 /*
- * $Id$
- * $Log$
+ * $Id: AdanaxisPieceEffector.cpp,v 1.1 2006/11/03 18:46:33 southa Exp $
+ * $Log: AdanaxisPieceEffector.cpp,v $
+ * Revision 1.1  2006/11/03 18:46:33  southa
+ * Damage effectors
+ *
  */
 
 #include "AdanaxisPieceEffector.h"
@@ -94,6 +97,7 @@ AdanaxisPieceEffector::Load(Mushware::tRubyValue inSelf)
     MushGamePiece::Load(inSelf);
     MushRubyUtil::InstanceVarSet(inSelf, MushRubyIntern::ATm_owner(), MushRubyValue(m_owner).Value());    
     MushRubyUtil::InstanceVarSet(inSelf, MushRubyIntern::ATm_lifeMsec(), MushRubyValue(static_cast<U32>(m_lifeMsec)).Value());    
+    MushRubyUtil::InstanceVarSet(inSelf, AdanaxisIntern::Sgl().ATm_rail(), MushRubyValue(m_rail).Value());    
 }
 
 void
@@ -102,6 +106,7 @@ AdanaxisPieceEffector::Save(Mushware::tRubyValue inSelf)
     MushGamePiece::Save(inSelf);
     m_owner = MushRubyValue(MushRubyUtil::InstanceVar(inSelf, MushRubyIntern::ATm_owner())).String();
     m_lifeMsec = MushRubyValue(MushRubyUtil::InstanceVar(inSelf, MushRubyIntern::ATm_lifeMsec())).U32();
+    m_rail = MushRubyValue(MushRubyUtil::InstanceVar(inSelf, AdanaxisIntern::Sgl().ATm_rail())).Bool();
 }
 
 Mushware::tRubyValue
@@ -188,7 +193,8 @@ AdanaxisPieceEffector::AutoPrint(std::ostream& ioOut) const
     MushGamePiece::AutoPrint(ioOut);
     ioOut << "owner=" << m_owner << ", ";
     ioOut << "lifeMsec=" << m_lifeMsec << ", ";
-    ioOut << "launchMsec=" << m_launchMsec;
+    ioOut << "launchMsec=" << m_launchMsec << ", ";
+    ioOut << "rail=" << m_rail;
     ioOut << "]";
 }
 bool
@@ -212,6 +218,10 @@ AdanaxisPieceEffector::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::s
     {
         ioIn >> m_launchMsec;
     }
+    else if (inTagStr == "rail")
+    {
+        ioIn >> m_rail;
+    }
     else if (MushGamePiece::AutoXMLDataProcess(ioIn, inTagStr))
     {
         // Tag consumed by base class
@@ -232,5 +242,7 @@ AdanaxisPieceEffector::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_lifeMsec;
     ioOut.TagSet("launchMsec");
     ioOut << m_launchMsec;
+    ioOut.TagSet("rail");
+    ioOut << m_rail;
 }
-//%outOfLineFunctions } huaDrtos+gVyprEefd6ceA
+//%outOfLineFunctions } yRdBrnbOEOLWmFHOeR7tjA

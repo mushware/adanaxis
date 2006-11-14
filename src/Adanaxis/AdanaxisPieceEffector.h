@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } Z+onbqAotqlqmYmYEwXKEQ
 /*
- * $Id$
- * $Log$
+ * $Id: AdanaxisPieceEffector.h,v 1.1 2006/11/03 18:46:33 southa Exp $
+ * $Log: AdanaxisPieceEffector.h,v $
+ * Revision 1.1  2006/11/03 18:46:33  southa
+ * Damage effectors
+ *
  */
 
 #include "AdanaxisStandard.h"
@@ -49,6 +52,7 @@ public:
     
     virtual const MushMesh4Mesh& CollisionMesh(void) const { return Mesh(); }
     virtual const MushMeshPosticity& CollisionPost(void) const { return Post(); }
+    virtual bool CollisionIsWCylinder(void) const { return m_rail; }
     
     virtual void Load(Mushware::tRubyValue inSelf);
     virtual void Save(Mushware::tRubyValue inSelf);
@@ -60,6 +64,7 @@ private:
     std::string m_owner; //:readwrite
     Mushware::tMsec m_lifeMsec; //:readwrite
     Mushware::tMsec m_launchMsec; //:readwrite
+    bool m_rail; //:readwrite
     
     static Mushware::tRubyValue m_rubyKlass; // Must duplicate this in derived classes
 //%classPrototypes {
@@ -70,6 +75,8 @@ public:
     void LifeMsecSet(const Mushware::tMsec& inValue) { m_lifeMsec=inValue; }
     const Mushware::tMsec& LaunchMsec(void) const { return m_launchMsec; }
     void LaunchMsecSet(const Mushware::tMsec& inValue) { m_launchMsec=inValue; }
+    const bool& Rail(void) const { return m_rail; }
+    void RailSet(const bool& inValue) { m_rail=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -77,7 +84,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } /+wEvZoaKvn7hVFWv+ug0w
+//%classPrototypes } PSZu4FvT6dy/+sqPh4XLMQ
 };
 //%inlineHeader {
 inline std::ostream&
