@@ -2624,6 +2624,7 @@
 		7A224DAB088E79DF0078A295 /* MushCollision.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushCollision.h; sourceTree = "<group>"; };
 		7A224DAC088E79DF0078A295 /* MushCollision.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushCollision.cpp; sourceTree = "<group>"; };
 		7A224DB3088E7A550078A295 /* mushMushCollision.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mushMushCollision.h; sourceTree = "<group>"; };
+		7A2841600B0E25AD00ECD2EE /* AdanaxisMagazine.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AdanaxisMagazine.rb; sourceTree = "<group>"; };
 		7A2E6C9505A4DAF90025F99B /* ic2_app.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = ic2_app.icns; path = "/Users/southa/core-app/macosx/ic2_app.icns"; sourceTree = "<absolute>"; };
 		7A321515087443960056D5C4 /* AdanaxisUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdanaxisUtil.h; sourceTree = "<group>"; };
 		7A321516087443960056D5C4 /* AdanaxisUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AdanaxisUtil.cpp; sourceTree = "<group>"; };
@@ -6377,6 +6378,7 @@
 				7A59656E0A9DB0F4002A966B /* AdanaxisEvents.rb */,
 				7A5B15170A57B5FA0047BD0B /* AdanaxisFontLibrary.rb */,
 				7A35AEFB0A481B5F00DB00A1 /* AdanaxisGame.rb */,
+				7A2841600B0E25AD00ECD2EE /* AdanaxisMagazine.rb */,
 				7AAFF09E0A46E7A30005F57F /* AdanaxisMaterialLibrary.rb */,
 				7A614A7D0A6280CD00E8FCEF /* AdanaxisMenu.rb */,
 				7A58F2070A3D725400B7AE0E /* AdanaxisMeshLibrary.rb */,
