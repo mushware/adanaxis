@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } WBiqbvbumO43Eps7fHh03A
 /*
- * $Id: AdanaxisIntern.h,v 1.15 2006/11/12 20:09:54 southa Exp $
+ * $Id: AdanaxisIntern.h,v 1.16 2006/11/14 20:28:36 southa Exp $
  * $Log: AdanaxisIntern.h,v $
+ * Revision 1.16  2006/11/14 20:28:36  southa
+ * Added rail gun
+ *
  * Revision 1.15  2006/11/12 20:09:54  southa
  * Missile guidance
  *
@@ -83,6 +86,7 @@
     @m_speedLimit
     @m_state
     mCollisionEventConsume
+    mCutSceneRender
     mMenuRender
     mRender
   }
@@ -121,6 +125,7 @@ public:
     Mushware::tRubyID ATm_speedLimit(void) { return m_ATm_speedLimit; }
     Mushware::tRubyID ATm_state(void) { return m_ATm_state; }
     Mushware::tRubyID mCollisionEventConsume(void) { return m_mCollisionEventConsume; }
+    Mushware::tRubyID mCutSceneRender(void) { return m_mCutSceneRender; }
     Mushware::tRubyID mMenuRender(void) { return m_mMenuRender; }
     Mushware::tRubyID mRender(void) { return m_mRender; }
 private:
@@ -139,9 +144,10 @@ private:
     Mushware::tRubyID m_ATm_speedLimit;
     Mushware::tRubyID m_ATm_state;
     Mushware::tRubyID m_mCollisionEventConsume;
+    Mushware::tRubyID m_mCutSceneRender;
     Mushware::tRubyID m_mMenuRender;
     Mushware::tRubyID m_mRender;
-//%declarations } 384805b31ef38a1ea6cdacb39e4aa7e5
+//%declarations } 7a9483578b3e5136733fa5fcdec392bb
 
 //%classPrototypes {
 public:

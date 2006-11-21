@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } abz8WfQdtsWpPxv12NZxhA
 /*
- * $Id: MushGameRuby.h,v 1.16 2006/10/16 22:00:21 southa Exp $
+ * $Id: MushGameRuby.h,v 1.17 2006/11/08 18:30:54 southa Exp $
  * $Log: MushGameRuby.h,v $
+ * Revision 1.17  2006/11/08 18:30:54  southa
+ * Key and axis configuration
+ *
  * Revision 1.16  2006/10/16 22:00:21  southa
  * Tweaks
  *
@@ -84,6 +87,7 @@ class MushGameRuby : public MushRubyEmptyObj<4000>
 public:
     static Mushware::tRubyValue KeySymbolsToName(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
     static Mushware::tRubyValue GameModeEnter(Mushware::tRubyValue inSelf);
+    static Mushware::tRubyValue CutSceneModeEnter(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
     static Mushware::tRubyValue NewGameEnter(Mushware::tRubyValue inSelf);
     static Mushware::tRubyValue Quit(Mushware::tRubyValue inSelf);
     static Mushware::tRubyValue AxisName(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);

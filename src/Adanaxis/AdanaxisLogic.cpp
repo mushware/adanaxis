@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } Mac7dWHONvkZIg39sQnwww
 /*
- * $Id: AdanaxisLogic.cpp,v 1.30 2006/11/03 18:46:33 southa Exp $
+ * $Id: AdanaxisLogic.cpp,v 1.31 2006/11/14 20:28:37 southa Exp $
  * $Log: AdanaxisLogic.cpp,v $
+ * Revision 1.31  2006/11/14 20:28:37  southa
+ * Added rail gun
+ *
  * Revision 1.30  2006/11/03 18:46:33  southa
  * Damage effectors
  *
@@ -644,6 +647,11 @@ AdanaxisLogic::RenderSequence(void)
     }
     
     MushGameLogic::RenderSequence();
+}
+
+void
+AdanaxisLogic::CutSceneSequence(void)
+{
 }
 
 MushGamePiece&

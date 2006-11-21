@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } mGoZWUiZsKFfWNio1FcVLw
 /*
- * $Id: MushGameVolatileData.cpp,v 1.10 2006/07/28 11:14:29 southa Exp $
+ * $Id: MushGameVolatileData.cpp,v 1.11 2006/11/08 11:35:00 southa Exp $
  * $Log: MushGameVolatileData.cpp,v $
+ * Revision 1.11  2006/11/08 11:35:00  southa
+ * Basic frame rate independence
+ *
  * Revision 1.10  2006/07/28 11:14:29  southa
  * Records for multiple spaces
  *
@@ -117,7 +120,8 @@ MushGameVolatileData::AutoPrint(std::ostream& ioOut) const
     ioOut << "preCache=" << m_preCache << ", ";
     ioOut << "isMenuBackdrop=" << m_isMenuBackdrop << ", ";
     ioOut << "averageMsecPerFrame=" << m_averageMsecPerFrame << ", ";
-    ioOut << "movesThisFrame=" << m_movesThisFrame;
+    ioOut << "movesThisFrame=" << m_movesThisFrame << ", ";
+    ioOut << "cutSceneNum=" << m_cutSceneNum;
     ioOut << "]";
 }
 bool
@@ -177,6 +181,10 @@ MushGameVolatileData::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::st
     {
         ioIn >> m_movesThisFrame;
     }
+    else if (inTagStr == "cutSceneNum")
+    {
+        ioIn >> m_cutSceneNum;
+    }
     else 
     {
         return false;
@@ -210,5 +218,7 @@ MushGameVolatileData::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_averageMsecPerFrame;
     ioOut.TagSet("movesThisFrame");
     ioOut << m_movesThisFrame;
+    ioOut.TagSet("cutSceneNum");
+    ioOut << m_cutSceneNum;
 }
-//%outOfLineFunctions } r7scEg2XWPZzWsudyG5KiA
+//%outOfLineFunctions } +d6bD7UBvR7WFkE0rU9CyQ

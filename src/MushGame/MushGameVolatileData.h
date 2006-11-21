@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } zS6MRI08vU38Tp9aNbV8RQ
 /*
- * $Id: MushGameVolatileData.h,v 1.10 2006/07/28 11:14:29 southa Exp $
+ * $Id: MushGameVolatileData.h,v 1.11 2006/11/08 11:35:00 southa Exp $
  * $Log: MushGameVolatileData.h,v $
+ * Revision 1.11  2006/11/08 11:35:00  southa
+ * Basic frame rate independence
+ *
  * Revision 1.10  2006/07/28 11:14:29  southa
  * Records for multiple spaces
  *
@@ -71,6 +74,7 @@ public:
         kGameModeNone,
         kGameModeMenu,
         kGameModeGame,
+        kGameModeCutScene,
         kGameModeQuit,
         kGameModeNext
     };
@@ -95,6 +99,7 @@ private:
     bool m_isMenuBackdrop; //:readwrite
     Mushware::tVal m_averageMsecPerFrame; //:readwrite
     Mushware::U32 m_movesThisFrame; //:readwrite
+    Mushware::U32 m_cutSceneNum; //:readwrite
     
 //%classPrototypes {
 public:
@@ -122,6 +127,8 @@ public:
     void AverageMsecPerFrameSet(const Mushware::tVal& inValue) { m_averageMsecPerFrame=inValue; }
     const Mushware::U32& MovesThisFrame(void) const { return m_movesThisFrame; }
     void MovesThisFrameSet(const Mushware::U32& inValue) { m_movesThisFrame=inValue; }
+    const Mushware::U32& CutSceneNum(void) const { return m_cutSceneNum; }
+    void CutSceneNumSet(const Mushware::U32& inValue) { m_cutSceneNum=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -129,7 +136,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } 9ZoG3ZKiV6wMUvseKdQK5Q
+//%classPrototypes } IVVOCO21CIdeqCqUGEXB6Q
 };
 //%inlineHeader {
 inline std::ostream&

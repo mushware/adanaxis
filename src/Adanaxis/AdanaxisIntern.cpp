@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } mqRyosjSblx9ADjVCHc1/g
 /*
- * $Id: AdanaxisIntern.cpp,v 1.12 2006/11/12 20:09:54 southa Exp $
+ * $Id: AdanaxisIntern.cpp,v 1.13 2006/11/14 20:28:36 southa Exp $
  * $Log: AdanaxisIntern.cpp,v $
+ * Revision 1.13  2006/11/14 20:28:36  southa
+ * Added rail gun
+ *
  * Revision 1.12  2006/11/12 20:09:54  southa
  * Missile guidance
  *
@@ -81,7 +84,8 @@ AdanaxisIntern::AdanaxisIntern()
     m_ATm_speedLimit = MushRubyIntern::SymbolID("@m_speedLimit");
     m_ATm_state = MushRubyIntern::SymbolID("@m_state");
     m_mCollisionEventConsume = MushRubyIntern::SymbolID("mCollisionEventConsume");
+    m_mCutSceneRender = MushRubyIntern::SymbolID("mCutSceneRender");
     m_mMenuRender = MushRubyIntern::SymbolID("mMenuRender");
     m_mRender = MushRubyIntern::SymbolID("mRender");
-//%initialisations } a8e758a109d17c791b7d413a104a5ce0
+//%initialisations } 8f9c639a63e521c0714eb0b11128ce54
 }

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } pz9Ij69Gp+RQuOHP0yYqgg
 /*
- * $Id: MushGameLogic.h,v 1.22 2006/10/04 13:35:24 southa Exp $
+ * $Id: MushGameLogic.h,v 1.23 2006/10/12 22:04:48 southa Exp $
  * $Log: MushGameLogic.h,v $
+ * Revision 1.23  2006/10/12 22:04:48  southa
+ * Collision events
+ *
  * Revision 1.22  2006/10/04 13:35:24  southa
  * Selective targetting
  *
@@ -160,13 +163,16 @@ public:
     virtual void MenuSequence(void);
     virtual void PreCacheSequence(void);
     virtual void RenderSequence(void);
+    virtual void CutSceneSequence(void);
     virtual void MainSequence(void);
 
     virtual bool IsMenuMode(void) const;
     virtual bool IsPreCacheMode(void) const;
     virtual bool IsGameMode(void) const;
+    virtual bool IsCutSceneMode(void) const;
     virtual void MenuModeEnter(void);
     virtual void GameModeEnter(void);
+    virtual void CutSceneModeEnter(void);
     virtual void QuitModeEnter(void);
     virtual void PreCacheModeEnter(void);
     virtual void PreCacheModeExit(void);

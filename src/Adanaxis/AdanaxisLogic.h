@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } 3LuiErcM0vO3wOyNDCFVeQ
 /*
- * $Id: AdanaxisLogic.h,v 1.21 2006/10/20 15:38:52 southa Exp $
+ * $Id: AdanaxisLogic.h,v 1.22 2006/11/03 18:46:33 southa Exp $
  * $Log: AdanaxisLogic.h,v $
+ * Revision 1.22  2006/11/03 18:46:33  southa
+ * Damage effectors
+ *
  * Revision 1.21  2006/10/20 15:38:52  southa
  * Item collection
  *
@@ -119,6 +122,7 @@ public:
     virtual void CollideSequence(void);
     virtual void PreCacheSequence(void);
     virtual void RenderSequence(void);
+    virtual void CutSceneSequence(void);
     virtual void ProjectilesKhaziFullCollide(void);
     virtual void KhaziKhaziFullCollide(void);
     virtual void ProjectilesPlayersFullCollide(void);

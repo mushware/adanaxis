@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } o9Dxm/e8GypZNPSRXLgJNQ
 /*
- * $Id: MushGameLogic.cpp,v 1.35 2006/11/08 11:35:00 southa Exp $
+ * $Id: MushGameLogic.cpp,v 1.36 2006/11/09 23:53:59 southa Exp $
  * $Log: MushGameLogic.cpp,v $
+ * Revision 1.36  2006/11/09 23:53:59  southa
+ * Explosion and texture loading
+ *
  * Revision 1.35  2006/11/08 11:35:00  southa
  * Basic frame rate independence
  *
@@ -676,6 +679,11 @@ MushGameLogic::MenuSequence(void)
 }
 
 void
+MushGameLogic::CutSceneSequence(void)
+{
+}
+
+void
 MushGameLogic::PreCacheSequence(void)
 {
 }
@@ -741,6 +749,11 @@ MushGameLogic::MainSequence(void)
     }
     try { RenderSequence(); }
     catch (MushcoreNonFatalFail& e) { ExceptionHandle(&e, "RenderSequence"); }
+    if (IsCutSceneMode())
+    {
+        try { CutSceneSequence(); }
+        catch (MushcoreNonFatalFail& e) { ExceptionHandle(&e, "CutSceneSequence"); }
+    }    
 }
 
 void
@@ -756,6 +769,14 @@ MushGameLogic::GameModeEnter(void)
 {
     MushGameUtil::AppHandler().KeyRepeatSet(false);
     VolatileData().GameModeSet(MushGameVolatileData::kGameModeGame);
+    PreCacheModeEnter();
+}
+
+void
+MushGameLogic::CutSceneModeEnter(void)
+{
+    MushGameUtil::AppHandler().KeyRepeatSet(false);
+    VolatileData().GameModeSet(MushGameVolatileData::kGameModeCutScene);
     PreCacheModeEnter();
 }
 
@@ -796,6 +817,12 @@ bool
 MushGameLogic::IsGameMode(void) const
 {
     return VolatileData().GameMode() == MushGameVolatileData::kGameModeGame;    
+}
+
+bool
+MushGameLogic::IsCutSceneMode(void) const
+{
+    return VolatileData().GameMode() == MushGameVolatileData::kGameModeCutScene;    
 }
 
 void

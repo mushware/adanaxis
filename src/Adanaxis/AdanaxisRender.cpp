@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } rQkTih3VUd7Xp8cDeV3ZYA
 /*
- * $Id: AdanaxisRender.cpp,v 1.58 2006/11/12 20:09:55 southa Exp $
+ * $Id: AdanaxisRender.cpp,v 1.59 2006/11/14 14:02:16 southa Exp $
  * $Log: AdanaxisRender.cpp,v $
+ * Revision 1.59  2006/11/14 14:02:16  southa
+ * Ball projectiles
+ *
  * Revision 1.58  2006/11/12 20:09:55  southa
  * Missile guidance
  *
@@ -500,7 +503,21 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
         MushGLUtil::OrthoEpilogue();
         MushGLUtil::IdentityEpilogue();
     }
-    else
+    else if (ioLogic.IsCutSceneMode())
+    {
+        MushGLUtil::IdentityPrologue();
+        MushGLUtil::OrthoPrologue();
+        GLState::ColourSet(1.0,1.0,1.0,1.0);
+        
+        U32 timeNow = AdanaxisUtil::AppHandler().MillisecondsGet();
+        
+        MushRubyExec::Sgl().Call(pVolData->RubyGame(),
+                                 AdanaxisIntern::Sgl().mCutSceneRender(),
+                                 MushRubyValue(pVolData->CutSceneNum()));
+        MushGLUtil::OrthoEpilogue();
+        MushGLUtil::IdentityEpilogue();
+    }
+    else    
     {
         MushGLUtil::IdentityPrologue();
         MushGLUtil::OrthoPrologue();
