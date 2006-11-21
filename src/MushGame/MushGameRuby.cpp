@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } yY7ZZkvIHHOoUzJzTAQPOQ
 /*
- * $Id: MushGameRuby.cpp,v 1.20 2006/11/09 23:54:00 southa Exp $
+ * $Id: MushGameRuby.cpp,v 1.21 2006/11/21 10:08:24 southa Exp $
  * $Log: MushGameRuby.cpp,v $
+ * Revision 1.21  2006/11/21 10:08:24  southa
+ * Initial cut scene handling
+ *
  * Revision 1.20  2006/11/09 23:54:00  southa
  * Explosion and texture loading
  *
@@ -709,6 +712,12 @@ MushGameRuby::GameMsec(Mushware::tRubyValue inSelf)
 }
 
 Mushware::tRubyValue
+MushGameRuby::FreeMsec(Mushware::tRubyValue inSelf)
+{
+    return MushRubyValue(MushGameUtil::AppHandler().MillisecondsGet()).Value();
+}
+
+Mushware::tRubyValue
 MushGameRuby::PieceLookup(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0)
 {
     MushRubyValue param0(inArg0);
@@ -796,6 +805,7 @@ MushGameRuby::MethodsInstall(void)
     MushRubyUtil::SingletonMethodDefineTwoParams(Klass(), "cSoundStreamPlay", SoundStreamPlay);
     MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cPackageID", PackageID);
     MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cGameMsec", GameMsec);
+    MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cFreeMsec", FreeMsec);
     MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cPieceLookup", PieceLookup);
     MushRubyUtil::SingletonMethodDefineThreeParams(Klass(), "cTargetPieceSelect", TargetPieceSelect);
 }

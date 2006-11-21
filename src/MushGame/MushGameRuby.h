@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } abz8WfQdtsWpPxv12NZxhA
 /*
- * $Id: MushGameRuby.h,v 1.17 2006/11/08 18:30:54 southa Exp $
+ * $Id: MushGameRuby.h,v 1.18 2006/11/21 10:08:24 southa Exp $
  * $Log: MushGameRuby.h,v $
+ * Revision 1.18  2006/11/21 10:08:24  southa
+ * Initial cut scene handling
+ *
  * Revision 1.17  2006/11/08 18:30:54  southa
  * Key and axis configuration
  *
@@ -121,6 +124,7 @@ public:
     static Mushware::tRubyValue SoundStreamPlay(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0, Mushware::tRubyValue inArg1);
     static Mushware::tRubyValue PackageID(Mushware::tRubyValue inSelf);
     static Mushware::tRubyValue GameMsec(Mushware::tRubyValue inSelf);
+    static Mushware::tRubyValue FreeMsec(Mushware::tRubyValue inSelf);
     static Mushware::tRubyValue PieceLookup(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
     static Mushware::tRubyValue TargetPieceSelect(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0, Mushware::tRubyValue inArg1, Mushware::tRubyValue inArg2);
     
