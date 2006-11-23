@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } yY7ZZkvIHHOoUzJzTAQPOQ
 /*
- * $Id: MushGameRuby.cpp,v 1.21 2006/11/21 10:08:24 southa Exp $
+ * $Id: MushGameRuby.cpp,v 1.22 2006/11/21 16:13:55 southa Exp $
  * $Log: MushGameRuby.cpp,v $
+ * Revision 1.22  2006/11/21 16:13:55  southa
+ * Cutscene handling
+ *
  * Revision 1.21  2006/11/21 10:08:24  southa
  * Initial cut scene handling
  *
@@ -156,6 +159,13 @@ MushGameRuby::CutSceneModeEnter(Mushware::tRubyValue inSelf, Mushware::tRubyValu
     MushRubyValue param0(inArg0);
     MushGameUtil::LogicWRef().VolatileData().CutSceneNumSet(param0.U32());
     MushGameUtil::LogicWRef().CutSceneModeEnter();
+    return kRubyQnil;
+}
+
+Mushware::tRubyValue
+MushGameRuby::CutSceneModeExit(Mushware::tRubyValue inSelf)
+{
+    MushGameUtil::LogicWRef().CutSceneModeExit();
     return kRubyQnil;
 }
 
@@ -772,6 +782,7 @@ MushGameRuby::MethodsInstall(void)
     MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cKeySymbolsToName", KeySymbolsToName);
     MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cGameModeEnter", GameModeEnter);
     MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cCutSceneModeEnter", CutSceneModeEnter);
+    MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cCutSceneModeExit", CutSceneModeExit);
     MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cNewGameEnter", NewGameEnter);
     MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cQuit", Quit);
     MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cAxisKeySymbols", AxisKeySymbols);

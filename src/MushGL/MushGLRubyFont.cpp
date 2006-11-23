@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } x7wDRgXhtyz4ur55Gakesw
 /*
- * $Id: MushGLRubyFont.cpp,v 1.2 2006/07/08 16:05:58 southa Exp $
+ * $Id: MushGLRubyFont.cpp,v 1.3 2006/10/17 20:43:01 southa Exp $
  * $Log: MushGLRubyFont.cpp,v $
+ * Revision 1.3  2006/10/17 20:43:01  southa
+ * Dashboard work
+ *
  * Revision 1.2  2006/07/08 16:05:58  southa
  * Ruby menus and key handling
  *
@@ -143,17 +146,18 @@ Mushware::tRubyValue
 MushGLRubyFont::RenderAtSize(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0,
                          Mushware::tRubyValue inArg1, Mushware::tRubyValue inArg2, Mushware::tRubyValue inArg3)
 {
-	Ref(inSelf).RenderAtSize(
-                             MushRubyValue(inArg0).String(),
-                             t2Val(
-                                   MushRubyValue(inArg1).Val(),
-                                   MushRubyValue(inArg2).Val()
-                                   ),
-                             t2Val(
-                                   MushRubyValue(inArg3).Val(),
-                                   MushRubyValue(inArg3).Val()
-                                   )
-                             );
+    const MushGLFont& fontRef = Ref(inSelf);
+	fontRef.RenderAtSize(
+                         MushRubyValue(inArg0).String(),
+                         t2Val(
+                               MushRubyValue(inArg1).Val(),
+                               MushRubyValue(inArg2).Val()
+                               ),
+                         t2Val(
+                               MushRubyValue(inArg3).Val(),
+                               MushRubyValue(inArg3).Val()
+                               )
+                         );
 	return inSelf;
 }
 
@@ -161,7 +165,8 @@ Mushware::tRubyValue
 MushGLRubyFont::RenderSymbolAtSize(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0,
     Mushware::tRubyValue inArg1, Mushware::tRubyValue inArg2, Mushware::tRubyValue inArg3)
 {
-	Ref(inSelf).RenderSymbolAtSize(
+	const MushGLFont& fontRef = Ref(inSelf);
+	fontRef.RenderSymbolAtSize(
                              MushRubyValue(inArg0).U32(),
                              t4Val(
                                    MushRubyValue(inArg1).Val(),
@@ -170,8 +175,8 @@ MushGLRubyFont::RenderSymbolAtSize(Mushware::tRubyValue inSelf, Mushware::tRubyV
                                    1.0
                                    ),
                              t2Val(
-                                   MushRubyValue(inArg3).Val(),
-                                   MushRubyValue(inArg3).Val()
+                                   fontRef.Size().X() * MushRubyValue(inArg3).Val(),
+                                   fontRef.Size().Y() * MushRubyValue(inArg3).Val()
                                    )
                              );
 	return inSelf;

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } pz9Ij69Gp+RQuOHP0yYqgg
 /*
- * $Id: MushGameLogic.h,v 1.23 2006/10/12 22:04:48 southa Exp $
+ * $Id: MushGameLogic.h,v 1.24 2006/11/21 10:08:24 southa Exp $
  * $Log: MushGameLogic.h,v $
+ * Revision 1.24  2006/11/21 10:08:24  southa
+ * Initial cut scene handling
+ *
  * Revision 1.23  2006/10/12 22:04:48  southa
  * Collision events
  *
@@ -173,6 +176,7 @@ public:
     virtual void MenuModeEnter(void);
     virtual void GameModeEnter(void);
     virtual void CutSceneModeEnter(void);
+    virtual void CutSceneModeExit(void);
     virtual void QuitModeEnter(void);
     virtual void PreCacheModeEnter(void);
     virtual void PreCacheModeExit(void);

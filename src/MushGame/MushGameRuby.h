@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } abz8WfQdtsWpPxv12NZxhA
 /*
- * $Id: MushGameRuby.h,v 1.18 2006/11/21 10:08:24 southa Exp $
+ * $Id: MushGameRuby.h,v 1.19 2006/11/21 16:13:55 southa Exp $
  * $Log: MushGameRuby.h,v $
+ * Revision 1.19  2006/11/21 16:13:55  southa
+ * Cutscene handling
+ *
  * Revision 1.18  2006/11/21 10:08:24  southa
  * Initial cut scene handling
  *
@@ -91,6 +94,7 @@ public:
     static Mushware::tRubyValue KeySymbolsToName(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
     static Mushware::tRubyValue GameModeEnter(Mushware::tRubyValue inSelf);
     static Mushware::tRubyValue CutSceneModeEnter(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
+    static Mushware::tRubyValue CutSceneModeExit(Mushware::tRubyValue inSelf);
     static Mushware::tRubyValue NewGameEnter(Mushware::tRubyValue inSelf);
     static Mushware::tRubyValue Quit(Mushware::tRubyValue inSelf);
     static Mushware::tRubyValue AxisName(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);

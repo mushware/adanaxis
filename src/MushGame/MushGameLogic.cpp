@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } o9Dxm/e8GypZNPSRXLgJNQ
 /*
- * $Id: MushGameLogic.cpp,v 1.36 2006/11/09 23:53:59 southa Exp $
+ * $Id: MushGameLogic.cpp,v 1.37 2006/11/21 10:08:24 southa Exp $
  * $Log: MushGameLogic.cpp,v $
+ * Revision 1.37  2006/11/21 10:08:24  southa
+ * Initial cut scene handling
+ *
  * Revision 1.36  2006/11/09 23:53:59  southa
  * Explosion and texture loading
  *
@@ -778,6 +781,13 @@ MushGameLogic::CutSceneModeEnter(void)
     MushGameUtil::AppHandler().KeyRepeatSet(false);
     VolatileData().GameModeSet(MushGameVolatileData::kGameModeCutScene);
     PreCacheModeEnter();
+}
+
+void
+MushGameLogic::CutSceneModeExit(void)
+{
+    MushGameUtil::AppHandler().KeyRepeatSet(false);
+    VolatileData().GameModeSet(MushGameVolatileData::kGameModeGame);
 }
 
 void
