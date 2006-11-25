@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } fh7altI5opktY3DzVNPCDA
 /*
- * $Id: AdanaxisConfig.h,v 1.15 2006/08/01 17:21:23 southa Exp $
+ * $Id: AdanaxisConfig.h,v 1.16 2006/11/02 12:23:22 southa Exp $
  * $Log: AdanaxisConfig.h,v $
+ * Revision 1.16  2006/11/02 12:23:22  southa
+ * Weapon selection
+ *
  * Revision 1.15  2006/08/01 17:21:23  southa
  * River demo
  *
@@ -105,6 +108,12 @@ public:
         kNumKeys
     };
     
+    enum
+    {
+        kDisplayXSize = 1024,
+        kDisplayYSize = 768
+    };
+    
     AdanaxisConfig();
     
     virtual void ToDefaultSet(void);
@@ -125,21 +134,21 @@ public:
 private:
     enum
     {
-        kVersion = 20061102,
+        kVersion = 20061125,
     };
     typedef std::map< std::string, Mushware::tMsec > tRecordTimes;
     
     std::vector<MushGameAxisDef> m_axisDefs; //:read
     std::vector<MushGameKeyDef> m_keyDefs; //:read
-    Mushware::U32 m_displayMode; //:readwrite
+    GLModeDef m_modeDef; //:readwrite
     tRecordTimes m_recordTimes;
 
 //%classPrototypes {
 public:
     const std::vector<MushGameAxisDef>& AxisDefs(void) const { return m_axisDefs; }
     const std::vector<MushGameKeyDef>& KeyDefs(void) const { return m_keyDefs; }
-    const Mushware::U32& DisplayMode(void) const { return m_displayMode; }
-    void DisplayModeSet(const Mushware::U32& inValue) { m_displayMode=inValue; }
+    const GLModeDef& ModeDef(void) const { return m_modeDef; }
+    void ModeDefSet(const GLModeDef& inValue) { m_modeDef=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -147,7 +156,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } o8V20dDJ/f6CPeqLqotZNA
+//%classPrototypes } J+HjtniTqbK27MbU4ZlT8A
 };
 //%inlineHeader {
 inline std::ostream&

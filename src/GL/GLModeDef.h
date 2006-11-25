@@ -24,8 +24,11 @@
 //%Header } Rz2L7OMoKXcq+Y5XU4qSww
 
 /*
- * $Id: GLModeDef.h,v 1.12 2006/06/01 15:38:51 southa Exp $
+ * $Id: GLModeDef.h,v 1.13 2006/07/27 13:51:35 southa Exp $
  * $Log: GLModeDef.h,v $
+ * Revision 1.13  2006/07/27 13:51:35  southa
+ * Menu and control fixes
+ *
  * Revision 1.12  2006/06/01 15:38:51  southa
  * DrawArray verification and fixes
  *
@@ -66,83 +69,60 @@
 
 #include "mushMushcore.h"
 
-class GLModeDef
+//:generate virtual standard basic ostream xml1
+class GLModeDef : public MushcoreVirtualObject
 {
 public:
-    enum tScreen
-    {
-        kScreenInvalid,
-        kScreenNone,
-        kScreenWindow,
-        kScreenFull
-    };
-    enum tSync
-    {
-        kSyncInvalid,
-        kSyncNone,
-        kSyncSoft,
-        kSyncHard
-    };
-    enum tCursor
-    {
-        kCursorInvalid,
-        kCursorNone,
-        kCursorHide,
-        kCursorShow
-    };
-
     GLModeDef();
     
-    GLModeDef(const std::string& inName, Mushware::U32 inWidth, Mushware::U32 inHeight,
-              Mushware::U32 inBpp, Mushware::U32 inHz, tScreen inScreen, tCursor inCursor, tSync inSync) :
-        m_name(inName),
+    GLModeDef(Mushware::U32 inWidth, Mushware::U32 inHeight, bool inFullScreen) :
         m_width(inWidth),
         m_height(inHeight),
-        m_bpp(inBpp),
-        m_hz(inHz),
-        m_screen(inScreen),
-        m_cursor(inCursor),
-        m_sync(inSync)
+        m_fullScreen(inFullScreen)
     {}
 
-    const std::string& NameGet(void) const { return m_name; }
-    Mushware::U32 WidthGet(void) const { return m_width; }
-    Mushware::U32 HeightGet(void) const { return m_height; }
-    Mushware::U32 BPPGet(void) const { return m_bpp; }
-    Mushware::U32 HzGet(void) const { return m_hz; }
-    bool FullScreenGet(void) const { return m_screen == kScreenFull; }
-    bool CursorShowGet(void) const { return m_cursor == kCursorShow; }
-    bool HardSyncGet(void) const { return m_sync == kSyncHard; }
-    tSync SyncGet(void) const { return m_sync; }
-
-    bool IsEqual(const GLModeDef& inModeDef) const;
-    bool operator==(const GLModeDef& inModeDef) const;
-    bool operator!=(const GLModeDef& inModeDef) const;
-    
-    static GLModeDef Default(void);
-
 private:
-    std::string m_name;
-    Mushware::U32 m_width;
-    Mushware::U32 m_height;
-    Mushware::U32 m_bpp;
-    Mushware::U32 m_hz;
-    tScreen m_screen;
-    tCursor m_cursor;
-    tSync m_sync;
+    Mushware::U32 m_width; //:readwrite
+    Mushware::U32 m_height; //:readwrite
+    bool m_fullScreen; //:readwrite
+//%classPrototypes {
+public:
+    const Mushware::U32& Width(void) const { return m_width; }
+    void WidthSet(const Mushware::U32& inValue) { m_width=inValue; }
+    const Mushware::U32& Height(void) const { return m_height; }
+    void HeightSet(const Mushware::U32& inValue) { m_height=inValue; }
+    const bool& FullScreen(void) const { return m_fullScreen; }
+    void FullScreenSet(const bool& inValue) { m_fullScreen=inValue; }
+    virtual const char *AutoName(void) const;
+    virtual MushcoreVirtualObject *AutoClone(void) const;
+    virtual MushcoreVirtualObject *AutoCreate(void) const;
+    static MushcoreVirtualObject *AutoVirtualFactory(void);
+    virtual bool AutoEquals(const GLModeDef& inObj) const;
+    virtual void AutoPrint(std::ostream& ioOut) const;
+    virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
+    virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
+//%classPrototypes } CdiEbwOj7MC2hdm6OXtB+w
 };
+//%inlineHeader {
 
 inline bool
-GLModeDef::operator==(const GLModeDef& inModeDef) const
+operator==(const GLModeDef& inA, const GLModeDef& inB)
 {
-    return IsEqual(inModeDef);
+    return inA.AutoEquals(inB);
 }
 
 inline bool
-GLModeDef::operator!=(const GLModeDef& inModeDef) const
+operator!=(const GLModeDef& inA, const GLModeDef& inB)
 {
-    return !IsEqual(inModeDef);
+    return !inA.AutoEquals(inB);
 }
+inline std::ostream&
+operator<<(std::ostream& ioOut, const GLModeDef& inObj)
+{
+    inObj.AutoPrint(ioOut);
+    return ioOut;
+}
+//%inlineHeader } R04B0vPw0dYE31MBJCGMww
 
 //%includeGuardEnd {
 #endif

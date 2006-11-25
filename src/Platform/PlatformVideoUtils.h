@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } VLWFZJL8pEO5dQmZmEC5Ww
 /*
- * $Id: PlatformVideoUtils.h,v 1.16 2005/05/26 00:46:40 southa Exp $
+ * $Id: PlatformVideoUtils.h,v 1.17 2006/06/01 15:39:57 southa Exp $
  * $Log: PlatformVideoUtils.h,v $
+ * Revision 1.17  2006/06/01 15:39:57  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.16  2005/05/26 00:46:40  southa
  * Made buildable on win32
  *
@@ -84,10 +87,10 @@ class PlatformVideoUtils
 public:
     PlatformVideoUtils();
     static PlatformVideoUtils& Sgl(void) {return *((m_instance==NULL)?m_instance=new PlatformVideoUtils:m_instance);}
-    const GLModeDef& ModeDefGet(Mushware::U32 inNum);
-    Mushware::U32 PreviousModeDef(Mushware::U32 inNum) const;
-    Mushware::U32 NextModeDef(Mushware::U32 inNum) const;
-    Mushware::U32 DefaultModeGet(void) const;
+
+    const GLModeDef& PreviousModeDef(const GLModeDef& inModeDef) const;
+    const GLModeDef& NextModeDef(const GLModeDef& inModeDef) const;
+    const GLModeDef& DefaultModeDef(void) const;
     Mushware::U32 NumModesGet(void) const;
     void RenderModeInfo(Mushware::U32 inNum) const;
     void ModeChangePrologue(void);
@@ -97,6 +100,9 @@ public:
     static void VBLWait(void);
     static void ForceShowCursor(void);
     static void AppActivate(void);
+    
+protected:
+    Mushware::U32 ModeDefFind(const GLModeDef& inModeDef) const;
     
 private:
 

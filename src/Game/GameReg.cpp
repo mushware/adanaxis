@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } w2A217EHVnN/AC475uoR/A
 /*
- * $Id: GameReg.cpp,v 1.10 2006/06/01 15:38:59 southa Exp $
+ * $Id: GameReg.cpp,v 1.11 2006/07/08 16:05:56 southa Exp $
  * $Log: GameReg.cpp,v $
+ * Revision 1.11  2006/07/08 16:05:56  southa
+ * Ruby menus and key handling
+ *
  * Revision 1.10  2006/06/01 15:38:59  southa
  * DrawArray verification and fixes
  *
@@ -302,7 +305,7 @@ void
 GameReg::SwapIn(GameAppHandler& inAppHandler)
 {
     GLAppHandler& glAppHandler=dynamic_cast<GLAppHandler &>(MushcoreAppHandler::Sgl());
-    glAppHandler.EnterScreen(PlatformVideoUtils::Sgl().ModeDefGet(0));
+    glAppHandler.EnterScreen(PlatformVideoUtils::Sgl().DefaultModeDef());
 }
 
 void

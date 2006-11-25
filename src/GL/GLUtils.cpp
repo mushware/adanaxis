@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } Ul/ywOJEcqLYC5pn+rdcLg
 /*
- * $Id: GLUtils.cpp,v 1.61 2005/05/20 13:19:00 southa Exp $
+ * $Id: GLUtils.cpp,v 1.62 2006/06/01 15:38:55 southa Exp $
  * $Log: GLUtils.cpp,v $
+ * Revision 1.62  2006/06/01 15:38:55  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.61  2005/05/20 13:19:00  southa
  * Release work
  *
@@ -427,15 +430,7 @@ GLUtils::DisplayPrologue(void)
 
     if (m_swapValid)
     {
-        switch (glAppHandler.CurrentModeDefGet().SyncGet())
-        {
-            case GLModeDef::kSyncHard:
-                // glFinish();
-            case GLModeDef::kSyncSoft:
-                PlatformVideoUtils::VBLWait();
-            default:
-                glAppHandler.SwapBuffers();
-        }
+        glAppHandler.SwapBuffers();
     }
 }
 

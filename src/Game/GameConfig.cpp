@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } wOUvHwg/SCyjbaQcyxMtbQ
 /*
- * $Id: GameConfig.cpp,v 1.35 2005/05/19 13:02:01 southa Exp $
+ * $Id: GameConfig.cpp,v 1.36 2006/06/01 15:38:56 southa Exp $
  * $Log: GameConfig.cpp,v $
+ * Revision 1.36  2006/06/01 15:38:56  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.35  2005/05/19 13:02:01  southa
  * Mac release work
  *
@@ -174,7 +177,7 @@ GameConfig::DisplayModeSet(U32 inMode)
 void
 GameConfig::DisplayModeSetDefault(void)
 {
-    DisplayModeSet(PlatformVideoUtils::Sgl().DefaultModeGet());
+    throw MushcoreLogicFail("DisplayModeSetDefault deprecated");
 }
 
 MushcoreScalar
@@ -534,7 +537,7 @@ GameConfig::GameConfigBoolAdd(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 MushcoreScalar
 GameConfig::GameConfigSpecial(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
 {
-    MushcoreData<GameConfigDef>::Sgl().Give("displaymode", new GameConfigDefU32(PlatformVideoUtils::Sgl().DefaultModeGet(), 0, PlatformVideoUtils::Sgl().NumModesGet()));
+    throw MushcoreLogicFail("GameConfigSpecial deprecated");
     return MushcoreScalar(0);
 }
 

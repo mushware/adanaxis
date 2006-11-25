@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } 0Sg2qcftBJTnB0QxDEkq2Q
 /*
- * $Id: AdanaxisGame.cpp,v 1.54 2006/11/03 18:46:33 southa Exp $
+ * $Id: AdanaxisGame.cpp,v 1.55 2006/11/09 23:53:59 southa Exp $
  * $Log: AdanaxisGame.cpp,v $
+ * Revision 1.55  2006/11/09 23:53:59  southa
+ * Explosion and texture loading
+ *
  * Revision 1.54  2006/11/03 18:46:33  southa
  * Damage effectors
  *
@@ -257,22 +260,22 @@ AdanaxisGame::Process(MushGameAppHandler& inAppHandler)
     GLUtils::PostRedisplay();
 }
 
-Mushware::U32
-AdanaxisGame::DisplayModeNum(void) const
+const GLModeDef&
+AdanaxisGame::DisplayModeDef(void) const
 {
-    return m_config.DisplayMode();
+    return m_config.ModeDef();
 }
 
 void
-AdanaxisGame::PreviousDisplayMode(void)
+AdanaxisGame::PreviousModeDef(void)
 {
-    m_config.DisplayModeSet(PlatformVideoUtils::Sgl().PreviousModeDef(m_config.DisplayMode()));
+    m_config.ModeDefSet(PlatformVideoUtils::Sgl().PreviousModeDef(m_config.ModeDef()));
 }
 
 void
-AdanaxisGame::NextDisplayMode(void)
+AdanaxisGame::NextModeDef(void)
 {
-    m_config.DisplayModeSet(PlatformVideoUtils::Sgl().NextModeDef(m_config.DisplayMode()));
+    m_config.ModeDefSet(PlatformVideoUtils::Sgl().NextModeDef(m_config.ModeDef()));
 }
 
 void
@@ -317,7 +320,7 @@ AdanaxisGame::Init(MushGameAppHandler& inAppHandler)
     
     if (AdanaxisUtil::AppHandler().FirstGame() && m_config.SafeMode())
     {
-        m_config.DisplayModeSet(0);
+        m_config.ModeDefSet(GLModeDef(640, 480, false));
         m_config.TextureDetailSet(0);
         MushGameDialogueUtils::NamedDialoguesAdd(SaveData().DialoguesWRef(), "^safemode");
     }
@@ -423,7 +426,7 @@ AdanaxisGame::SwapIn(MushGameAppHandler& inAppHandler)
     
     try
     {
-        const GLModeDef& modeDefRef = PlatformVideoUtils::Sgl().ModeDefGet(m_config.DisplayMode());
+        const GLModeDef& modeDefRef = m_config.ModeDef();
         
         if (modeDefRef != inAppHandler.CurrentModeDefGet())
         {
@@ -442,7 +445,7 @@ AdanaxisGame::SwapIn(MushGameAppHandler& inAppHandler)
     }
     catch (...)
     {
-        m_config.DisplayModeSet(0);
+        m_config.ModeDefSet(GLModeDef(640, 480, false));
         ConfigSave();
         throw;
     }

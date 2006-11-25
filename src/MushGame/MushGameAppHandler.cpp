@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } bC49LKe3G5tsyGqAVa5gyw
 /*
- * $Id: MushGameAppHandler.cpp,v 1.20 2006/11/03 18:46:33 southa Exp $
+ * $Id: MushGameAppHandler.cpp,v 1.21 2006/11/08 18:30:54 southa Exp $
  * $Log: MushGameAppHandler.cpp,v $
+ * Revision 1.21  2006/11/08 18:30:54  southa
+ * Key and axis configuration
+ *
  * Revision 1.20  2006/11/03 18:46:33  southa
  * Damage effectors
  *
@@ -170,15 +173,17 @@ MushGameAppHandler::ControlsToDefaultSet(void)
     }
 }    
 
-Mushware::U32
-MushGameAppHandler::DisplayModeNum(void) const
+const GLModeDef&
+MushGameAppHandler::DisplayModeDef(void) const
 {
-    U32 retVal = 0;
     if (m_currentRef.Exists())
     {
-        retVal = m_currentRef.Get()->DisplayModeNum();
+        return m_currentRef.Get()->DisplayModeDef();
     }
-    return retVal;
+    else
+    {
+        throw MushcoreRequestFail("No mode definition available");
+    }
 }
 
 void
@@ -186,7 +191,7 @@ MushGameAppHandler::PreviousDisplayMode(void)
 {
     if (m_currentRef.Exists())
     {
-        m_currentRef.Get()->PreviousDisplayMode();
+        m_currentRef.Get()->PreviousModeDef();
     }
 }
 
@@ -195,7 +200,7 @@ MushGameAppHandler::NextDisplayMode(void)
 {
     if (m_currentRef.Exists())
     {
-        m_currentRef.Get()->NextDisplayMode();
+        m_currentRef.Get()->NextModeDef();
     }
 }
 

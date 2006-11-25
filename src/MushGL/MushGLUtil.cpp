@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } vl7jY3WxF4VnrsvzzFB2Cw
 /*
- * $Id: MushGLUtil.cpp,v 1.7 2006/09/07 10:02:37 southa Exp $
+ * $Id: MushGLUtil.cpp,v 1.8 2006/09/07 16:38:51 southa Exp $
  * $Log: MushGLUtil.cpp,v $
+ * Revision 1.8  2006/09/07 16:38:51  southa
+ * Vertex shader
+ *
  * Revision 1.7  2006/09/07 10:02:37  southa
  * Shader interface
  *
@@ -103,15 +106,7 @@ void
 MushGLUtil::DisplayPrologue(void)
 {
     MushGLAppHandler& appHandler(AppHandler());
-    switch (appHandler.CurrentModeDefGet().SyncGet())
-    {
-        case GLModeDef::kSyncHard:
-            // glFinish();
-        case GLModeDef::kSyncSoft:
-            PlatformVideoUtils::VBLWait();
-        default:
-            appHandler.SwapBuffers();
-    }
+    appHandler.SwapBuffers();
 }
 
 void

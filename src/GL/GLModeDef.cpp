@@ -19,12 +19,8 @@
  ****************************************************************************/
 //%Header } vhAMnmvsnbGEXwx1Py1zUQ
 /*
- *  GLModeDef.cpp
- *  core-app
- *
- *  Created by Andy Southgate on Mon Oct 14 2002.
- *  Copyright (c) 2002 __MyCompanyName__. All rights reserved.
- *
+ * $Id$
+ * $Log$
  */
 
 #include "GLModeDef.h"
@@ -34,19 +30,94 @@
 using namespace Mushware;
 using namespace std;
 
-GLModeDef::GLModeDef()
+GLModeDef::GLModeDef() :
+    m_width(640),
+    m_height(480),
+    m_fullScreen(false)
 {
-    *this = Default();
+}
+//%outOfLineFunctions {
+
+const char *GLModeDef::AutoName(void) const
+{
+    return "GLModeDef";
 }
 
-GLModeDef
-GLModeDef::Default(void)
+MushcoreVirtualObject *GLModeDef::AutoClone(void) const
 {
-    return GLModeDef("Default 640x480",640,480,32,0,GLModeDef::kScreenWindow,GLModeDef::kCursorShow,GLModeDef::kSyncSoft);
+    return new GLModeDef(*this);
 }
 
+MushcoreVirtualObject *GLModeDef::AutoCreate(void) const
+{
+    return new GLModeDef;
+}
+
+MushcoreVirtualObject *GLModeDef::AutoVirtualFactory(void)
+{
+    return new GLModeDef;
+}
+namespace
+{
+void AutoInstall(void)
+{
+    MushcoreFactory::Sgl().FactoryAdd("GLModeDef", GLModeDef::AutoVirtualFactory);
+}
+MushcoreInstaller AutoInstaller(AutoInstall);
+} // end anonymous namespace
 bool
-GLModeDef::IsEqual(const GLModeDef& inModeDef) const
+GLModeDef::AutoEquals(const GLModeDef& inObj) const
 {
-    return m_name == inModeDef.m_name;
+    return 1
+        && (m_width == inObj.m_width)
+        && (m_height == inObj.m_height)
+        && (m_fullScreen == inObj.m_fullScreen)
+    ;
 }
+void
+GLModeDef::AutoPrint(std::ostream& ioOut) const
+{
+    ioOut << "[";
+    ioOut << "width=" << m_width << ", ";
+    ioOut << "height=" << m_height << ", ";
+    ioOut << "fullScreen=" << m_fullScreen;
+    ioOut << "]";
+}
+bool
+GLModeDef::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr)
+{
+    if (inTagStr == "obj")
+    {
+        AutoInputPrologue(ioIn);
+        ioIn >> *this;
+        AutoInputEpilogue(ioIn);
+    }
+    else if (inTagStr == "width")
+    {
+        ioIn >> m_width;
+    }
+    else if (inTagStr == "height")
+    {
+        ioIn >> m_height;
+    }
+    else if (inTagStr == "fullScreen")
+    {
+        ioIn >> m_fullScreen;
+    }
+    else 
+    {
+        return false;
+    }
+    return true;
+}
+void
+GLModeDef::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
+{
+    ioOut.TagSet("width");
+    ioOut << m_width;
+    ioOut.TagSet("height");
+    ioOut << m_height;
+    ioOut.TagSet("fullScreen");
+    ioOut << m_fullScreen;
+}
+//%outOfLineFunctions } q3E3Reip9yaMraqy0WNwrQ

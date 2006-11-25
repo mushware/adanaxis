@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } rqKVCOMdajoYPgaQgbClmg
 /*
- * $Id: MushGameAppHandler.h,v 1.14 2006/07/28 16:52:23 southa Exp $
+ * $Id: MushGameAppHandler.h,v 1.15 2006/07/31 11:01:38 southa Exp $
  * $Log: MushGameAppHandler.h,v $
+ * Revision 1.15  2006/07/31 11:01:38  southa
+ * Music and dialogues
+ *
  * Revision 1.14  2006/07/28 16:52:23  southa
  * Options work
  *
@@ -102,7 +105,7 @@ public:
     virtual void KeyDefSet(const MushGameKeyDef& inKeyDef, Mushware::U32 inKeyNum);
     virtual void AxisPurge(Mushware::U32 inDeviceNum, Mushware::U32 inAxisNum);
     virtual void KeyPurge(Mushware::U32 inKeyNum);
-    virtual Mushware::U32 DisplayModeNum(void) const;
+    virtual const GLModeDef& DisplayModeDef(void) const;
     virtual void PreviousDisplayMode(void);
     virtual void NextDisplayMode(void);
     virtual void DisplayReset(void);

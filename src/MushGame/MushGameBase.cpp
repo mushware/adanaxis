@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 72jYu/IZevqg7bsvRKLvxw
 /*
- * $Id: MushGameBase.cpp,v 1.6 2006/07/28 11:14:28 southa Exp $
+ * $Id: MushGameBase.cpp,v 1.7 2006/11/01 13:04:21 southa Exp $
  * $Log: MushGameBase.cpp,v $
+ * Revision 1.7  2006/11/01 13:04:21  southa
+ * Initial weapon handling
+ *
  * Revision 1.6  2006/07/28 11:14:28  southa
  * Records for multiple spaces
  *
@@ -93,6 +96,12 @@ void
 MushGameBase::ControlsToDefaultSet(MushGameAppHandler& inHandler)
 {
     // Override this
+}
+
+const GLModeDef&
+MushGameBase::DisplayModeDef(void) const
+{
+    throw MushcoreLogicFail("DisplayModeDef not overridden");    
 }
 
 //%outOfLineFunctions {

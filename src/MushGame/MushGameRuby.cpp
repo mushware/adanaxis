@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } yY7ZZkvIHHOoUzJzTAQPOQ
 /*
- * $Id: MushGameRuby.cpp,v 1.22 2006/11/21 16:13:55 southa Exp $
+ * $Id: MushGameRuby.cpp,v 1.23 2006/11/23 14:40:30 southa Exp $
  * $Log: MushGameRuby.cpp,v $
+ * Revision 1.23  2006/11/23 14:40:30  southa
+ * Intro cutscene
+ *
  * Revision 1.22  2006/11/21 16:13:55  southa
  * Cutscene handling
  *
@@ -470,8 +473,14 @@ MushGameRuby::DisplayModeString(Mushware::tRubyValue inSelf)
     std::string displayName = "<no mode>";
     try
     {
-        U32 modeNum = MushGameUtil::AppHandler().DisplayModeNum();
-        displayName = PlatformVideoUtils::Sgl().ModeDefGet(modeNum).NameGet();
+        const GLModeDef& modeDef = MushGameUtil::AppHandler().DisplayModeDef();
+        ostringstream displayStream;
+        displayStream << modeDef.Width() << "x" << modeDef.Height();
+        if (!modeDef.FullScreen())
+        {
+            displayStream << " window";    
+        }
+        displayName = displayStream.str();
     }
     catch (std::exception& e)
     {

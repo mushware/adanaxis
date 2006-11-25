@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } X577BrzUUfCyG/exJzzEYQ
 /*
- * $Id: SDLAppHandler.cpp,v 1.63 2006/08/02 16:25:54 southa Exp $
+ * $Id: SDLAppHandler.cpp,v 1.64 2006/11/08 18:30:54 southa Exp $
  * $Log: SDLAppHandler.cpp,v $
+ * Revision 1.64  2006/11/08 18:30:54  southa
+ * Key and axis configuration
+ *
  * Revision 1.63  2006/08/02 16:25:54  southa
  * Prerelease work
  *
@@ -371,12 +374,12 @@ SDLAppHandler::EnterScreen(const GLModeDef& inDef)
     SDL_GL_SetAttribute(SDL_GL_SWAP_CONTROL, 1);
 #endif
     
-    m_width=inDef.WidthGet();
-    m_height=inDef.HeightGet();
-    m_bpp=inDef.BPPGet();
-    m_showCursor=inDef.CursorShowGet();
+    m_width=inDef.Width();
+    m_height=inDef.Height();
+    m_bpp=32;
+    m_showCursor=!inDef.FullScreen();
     U32 sdlFlags=0;
-    if (inDef.FullScreenGet())
+    if (inDef.FullScreen())
     {
         sdlFlags=SDL_OPENGL|SDL_FULLSCREEN;
     }
@@ -423,7 +426,7 @@ SDLAppHandler::EnterScreen(const GLModeDef& inDef)
         m_keyState[i] = false;
     }
     
-    if (inDef.FullScreenGet())
+    if (inDef.FullScreen())
     {
         SDL_WM_GrabInput(SDL_GRAB_ON);
     }
@@ -583,7 +586,7 @@ SDLAppHandler::PollForControlEvents(void)
                 S32 mouseDeltaX = event.motion.xrel;
                 S32 mouseDeltaY = event.motion.yrel;
                 
-                if (!CurrentModeDefGet().FullScreenGet())
+                if (!CurrentModeDefGet().FullScreen())
                 {
                     PlatformInputUtils::MouseDeltaOverrideGet(mouseDeltaX, mouseDeltaY);
                 }

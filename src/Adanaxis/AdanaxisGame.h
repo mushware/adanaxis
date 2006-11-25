@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } oopg9ep1Y8Gi4lDebmHn9g
 /*
- * $Id: AdanaxisGame.h,v 1.22 2006/07/31 11:01:36 southa Exp $
+ * $Id: AdanaxisGame.h,v 1.23 2006/08/01 17:21:23 southa Exp $
  * $Log: AdanaxisGame.h,v $
+ * Revision 1.23  2006/08/01 17:21:23  southa
+ * River demo
+ *
  * Revision 1.22  2006/07/31 11:01:36  southa
  * Music and dialogues
  *
@@ -115,9 +118,9 @@ public:
     virtual void SwapOut(MushGameAppHandler& inAppHandler);
     virtual void Init(MushGameAppHandler& inAppHandler);
     virtual void ControlsToDefaultSet(MushGameAppHandler& inHandler);
-    virtual Mushware::U32 DisplayModeNum(void) const;
-    virtual void PreviousDisplayMode(void);
-    virtual void NextDisplayMode(void);
+    virtual const GLModeDef& DisplayModeDef(void) const;
+    virtual void PreviousModeDef(void);
+    virtual void NextModeDef(void);
     virtual void BrightnessSet(Mushware::tVal inValue);
 
     virtual void UpdateFromConfig(void);

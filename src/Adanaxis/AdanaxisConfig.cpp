@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } nn/isq5fn0Vgn3AN/MiYyA
 /*
- * $Id: AdanaxisConfig.cpp,v 1.16 2006/07/28 11:14:26 southa Exp $
+ * $Id: AdanaxisConfig.cpp,v 1.17 2006/08/01 17:21:22 southa Exp $
  * $Log: AdanaxisConfig.cpp,v $
+ * Revision 1.17  2006/08/01 17:21:22  southa
+ * River demo
+ *
  * Revision 1.16  2006/07/28 11:14:26  southa
  * Records for multiple spaces
  *
@@ -88,7 +91,7 @@ AdanaxisConfig::ToDefaultSet(void)
 {
     MushGameConfigBase::ToDefaultSet();
     VersionSet(kVersion);
-    m_displayMode = PlatformVideoUtils::Sgl().DefaultModeGet();
+    m_modeDef = GLModeDef(kDisplayXSize, kDisplayYSize, true);
     AxesToDefaultSet();
     KeysToDefaultSet();
 }
@@ -163,7 +166,7 @@ AdanaxisConfig::AutoInputPrologue(MushcoreXMLIStream& ioIn)
 {
     MushGameConfigBase::AutoInputPrologue(ioIn);
     VersionSet(kVersion);
-    m_displayMode = PlatformVideoUtils::Sgl().DefaultModeGet();
+    m_modeDef = GLModeDef(kDisplayXSize, kDisplayYSize, true);
     m_axisDefs.resize(0);
     m_keyDefs.resize(0);
     m_recordTimes.clear();
@@ -224,7 +227,7 @@ AdanaxisConfig::AutoPrint(std::ostream& ioOut) const
     MushGameConfigBase::AutoPrint(ioOut);
     ioOut << "axisDefs=" << m_axisDefs << ", ";
     ioOut << "keyDefs=" << m_keyDefs << ", ";
-    ioOut << "displayMode=" << m_displayMode << ", ";
+    ioOut << "modeDef=" << m_modeDef << ", ";
     ioOut << "recordTimes=" << m_recordTimes;
     ioOut << "]";
 }
@@ -245,9 +248,9 @@ AdanaxisConfig::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
     {
         ioIn >> m_keyDefs;
     }
-    else if (inTagStr == "displayMode")
+    else if (inTagStr == "modeDef")
     {
-        ioIn >> m_displayMode;
+        ioIn >> m_modeDef;
     }
     else if (inTagStr == "recordTimes")
     {
@@ -271,9 +274,9 @@ AdanaxisConfig::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_axisDefs;
     ioOut.TagSet("keyDefs");
     ioOut << m_keyDefs;
-    ioOut.TagSet("displayMode");
-    ioOut << m_displayMode;
+    ioOut.TagSet("modeDef");
+    ioOut << m_modeDef;
     ioOut.TagSet("recordTimes");
     ioOut << m_recordTimes;
 }
-//%outOfLineFunctions } 4lKZtB8V+dEqRiCAZ8p1ZQ
+//%outOfLineFunctions } QQLSrKg4xqa2JIMBhmmyWw

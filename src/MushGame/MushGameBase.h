@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } auDv5KzHAtGChacJ2aS7ug
 /*
- * $Id: MushGameBase.h,v 1.7 2006/07/28 11:14:28 southa Exp $
+ * $Id: MushGameBase.h,v 1.8 2006/07/28 16:52:23 southa Exp $
  * $Log: MushGameBase.h,v $
+ * Revision 1.8  2006/07/28 16:52:23  southa
+ * Options work
+ *
  * Revision 1.7  2006/07/28 11:14:28  southa
  * Records for multiple spaces
  *
@@ -74,9 +77,9 @@ public:
     virtual void ControlsToDefaultSet(MushGameAppHandler& inHandler);
     virtual MushGameLogic& LogicWRef(void) const { return m_logicRef.WRef(); }
     
-    virtual Mushware::U32 DisplayModeNum(void) const { return 1; }
-    virtual void PreviousDisplayMode(void) {}
-    virtual void NextDisplayMode(void) {}
+    virtual const GLModeDef& DisplayModeDef(void) const;
+    virtual void PreviousModeDef(void) {}
+    virtual void NextModeDef(void) {}
     virtual void BrightnessSet(Mushware::tVal inValue) {}
     
     virtual const MushGameConfigBase& Config(void) const { throw MushcoreRequestFail("No config available"); }

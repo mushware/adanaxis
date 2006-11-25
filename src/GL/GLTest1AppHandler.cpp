@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } Gdnr62exRbAWwz3jg2bxyQ
 /*
- * $Id: GLTest1AppHandler.cpp,v 1.34 2005/05/19 13:02:00 southa Exp $
+ * $Id: GLTest1AppHandler.cpp,v 1.35 2006/06/01 15:38:53 southa Exp $
  * $Log: GLTest1AppHandler.cpp,v $
+ * Revision 1.35  2006/06/01 15:38:53  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.34  2005/05/19 13:02:00  southa
  * Mac release work
  *
@@ -141,7 +144,7 @@ GLTest1CommandHandlerInstaller(GLTest1AppHandler::Install);
 void
 GLTest1AppHandler::Initialise(void)
 {
-    EnterScreen(GLModeDef::Default());
+    EnterScreen(GLModeDef());
     GLUtils::CheckGLError();
 }
 

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } jvWsLpd9yiZoqGOz/5hv2w
 /*
- * $Id: GameSetup.cpp,v 1.49 2006/06/01 15:38:59 southa Exp $
+ * $Id: GameSetup.cpp,v 1.50 2006/07/08 16:05:56 southa Exp $
  * $Log: GameSetup.cpp,v $
+ * Revision 1.50  2006/07/08 16:05:56  southa
+ * Ruby menus and key handling
+ *
  * Revision 1.49  2006/06/01 15:38:59  southa
  * DrawArray verification and fixes
  *
@@ -380,7 +383,7 @@ void
 GameSetup::SwapIn(GameAppHandler& inAppHandler)
 {
     GLAppHandler& glAppHandler=dynamic_cast<GLAppHandler &>(MushcoreAppHandler::Sgl());
-    glAppHandler.EnterScreen(PlatformVideoUtils::Sgl().ModeDefGet(0));
+    glAppHandler.EnterScreen(PlatformVideoUtils::Sgl().DefaultModeDef());
 }
 
 void
