@@ -316,6 +316,10 @@
 		7A5BAAFD0A54618800B30CAC /* MushRuby.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AD399C709F6CD58000BE1C1 /* MushRuby.cpp */; };
 		7A5BE6EF07FB53DA00306E18 /* libjpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A5BE6EE07FB53DA00306E18 /* libjpeg.a */; };
 		7A5BE6F007FB53DA00306E18 /* libjpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A5BE6EE07FB53DA00306E18 /* libjpeg.a */; };
+		7A5C48CF0B2D751A009085F9 /* MediaAudioSDLChannelDef.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A5C48CD0B2D751A009085F9 /* MediaAudioSDLChannelDef.h */; };
+		7A5C48D00B2D751A009085F9 /* MediaAudioSDLChannelDef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A5C48CE0B2D751A009085F9 /* MediaAudioSDLChannelDef.cpp */; };
+		7A5C48D60B2D79EA009085F9 /* MediaAudioChannelDef.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A5C48D40B2D79EA009085F9 /* MediaAudioChannelDef.h */; };
+		7A5C48D70B2D79EA009085F9 /* MediaAudioChannelDef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A5C48D50B2D79EA009085F9 /* MediaAudioChannelDef.cpp */; };
 		7A5C9A820A40094C00A80527 /* MushMeshLibraryExtruder.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A5C9A800A40094C00A80527 /* MushMeshLibraryExtruder.h */; };
 		7A5C9A830A40094C00A80527 /* MushMeshLibraryExtruder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A5C9A810A40094C00A80527 /* MushMeshLibraryExtruder.cpp */; };
 		7A5C9A8B0A400D4900A80527 /* MushMesh4Extruder.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A5C9A890A400D4900A80527 /* MushMesh4Extruder.h */; };
@@ -332,6 +336,8 @@
 		7A5DB886080804C000163474 /* GameReg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A5DB884080804C000163474 /* GameReg.cpp */; };
 		7A5DB887080804C000163474 /* GameReg.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A5DB883080804C000163474 /* GameReg.h */; };
 		7A5DB888080804C000163474 /* GameReg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A5DB884080804C000163474 /* GameReg.cpp */; };
+		7A5EACDE0B29AD58008D2EE7 /* MushGLRuby.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A5EACDC0B29AD58008D2EE7 /* MushGLRuby.h */; };
+		7A5EACDF0B29AD58008D2EE7 /* MushGLRuby.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A5EACDD0B29AD58008D2EE7 /* MushGLRuby.cpp */; };
 		7A5F017A0A3EB2E40086C680 /* MushRubyDataObj.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A5F01780A3EB2E40086C680 /* MushRubyDataObj.h */; };
 		7A5F017B0A3EB2E40086C680 /* MushRubyDataObj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A5F01790A3EB2E40086C680 /* MushRubyDataObj.cpp */; };
 		7A5F01810A3EB59B0086C680 /* MushRubyIntern.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A5F017F0A3EB59B0086C680 /* MushRubyIntern.h */; };
@@ -2889,6 +2895,10 @@
 		7A5BE75907FB56AF00306E18 /* plane-target1.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "plane-target1.tiff"; sourceTree = "<group>"; };
 		7A5BE75B07FB56AF00306E18 /* objects.xml */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; path = objects.xml; sourceTree = "<group>"; };
 		7A5BE75C07FB56B000306E18 /* start.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = start.txt; sourceTree = "<group>"; };
+		7A5C48CD0B2D751A009085F9 /* MediaAudioSDLChannelDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaAudioSDLChannelDef.h; sourceTree = "<group>"; };
+		7A5C48CE0B2D751A009085F9 /* MediaAudioSDLChannelDef.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MediaAudioSDLChannelDef.cpp; sourceTree = "<group>"; };
+		7A5C48D40B2D79EA009085F9 /* MediaAudioChannelDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaAudioChannelDef.h; sourceTree = "<group>"; };
+		7A5C48D50B2D79EA009085F9 /* MediaAudioChannelDef.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MediaAudioChannelDef.cpp; sourceTree = "<group>"; };
 		7A5C9A800A40094C00A80527 /* MushMeshLibraryExtruder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushMeshLibraryExtruder.h; sourceTree = "<group>"; };
 		7A5C9A810A40094C00A80527 /* MushMeshLibraryExtruder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushMeshLibraryExtruder.cpp; sourceTree = "<group>"; };
 		7A5C9A890A400D4900A80527 /* MushMesh4Extruder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushMesh4Extruder.h; sourceTree = "<group>"; };
@@ -2901,6 +2911,8 @@
 		7A5C9F630809869B0017E78B /* GameCode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameCode.cpp; sourceTree = "<group>"; };
 		7A5DB883080804C000163474 /* GameReg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameReg.h; sourceTree = "<group>"; };
 		7A5DB884080804C000163474 /* GameReg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameReg.cpp; sourceTree = "<group>"; };
+		7A5EACDC0B29AD58008D2EE7 /* MushGLRuby.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushGLRuby.h; sourceTree = "<group>"; };
+		7A5EACDD0B29AD58008D2EE7 /* MushGLRuby.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushGLRuby.cpp; sourceTree = "<group>"; };
 		7A5F01780A3EB2E40086C680 /* MushRubyDataObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushRubyDataObj.h; sourceTree = "<group>"; };
 		7A5F01790A3EB2E40086C680 /* MushRubyDataObj.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushRubyDataObj.cpp; sourceTree = "<group>"; };
 		7A5F017F0A3EB59B0086C680 /* MushRubyIntern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushRubyIntern.h; sourceTree = "<group>"; };
@@ -5122,10 +5134,14 @@
 			children = (
 				7A62B7D505A49D05002A5F1C /* MediaAudio.cpp */,
 				7A62B7D605A49D05002A5F1C /* MediaAudio.h */,
+				7A5C48D50B2D79EA009085F9 /* MediaAudioChannelDef.cpp */,
+				7A5C48D40B2D79EA009085F9 /* MediaAudioChannelDef.h */,
 				7A62B7D705A49D05002A5F1C /* MediaAudioCommandHandler.cpp */,
 				7A62B7D805A49D05002A5F1C /* MediaAudioCommandHandler.h */,
 				7A62B7D905A49D05002A5F1C /* MediaAudioNull.cpp */,
 				7A62B7DA05A49D05002A5F1C /* MediaAudioNull.h */,
+				7A5C48CE0B2D751A009085F9 /* MediaAudioSDLChannelDef.cpp */,
+				7A5C48CD0B2D751A009085F9 /* MediaAudioSDLChannelDef.h */,
 				7A62B7DB05A49D05002A5F1C /* MediaAudioSDL.cpp */,
 				7A62B7DC05A49D05002A5F1C /* MediaAudioSDL.h */,
 				7A6119F80A5E440100AE9F3A /* MediaKeyboard.cpp */,
@@ -5758,6 +5774,8 @@
 				7AD25BCF0875348800560382 /* MushGLProjection.h */,
 				7ACF141608BE530E00A78938 /* MushGLResolverPixelSource.cpp */,
 				7ACF141508BE530E00A78938 /* MushGLResolverPixelSource.h */,
+				7A5EACDD0B29AD58008D2EE7 /* MushGLRuby.cpp */,
+				7A5EACDC0B29AD58008D2EE7 /* MushGLRuby.h */,
 				7A5B14F60A57B1230047BD0B /* MushGLRubyFont.cpp */,
 				7A5B14F50A57B1230047BD0B /* MushGLRubyFont.h */,
 				7A8C8F590AAF46A500963E87 /* MushGLRubyShader.cpp */,
@@ -7583,6 +7601,9 @@
 				7A594AC90AFF4AE600A71750 /* MushFileDirectory.h in Headers */,
 				7A594B720AFF53FC00A71750 /* MushFileDirEntry.h in Headers */,
 				7A594B7A0AFF555400A71750 /* MushFileAccessor.h in Headers */,
+				7A5EACDE0B29AD58008D2EE7 /* MushGLRuby.h in Headers */,
+				7A5C48CF0B2D751A009085F9 /* MediaAudioSDLChannelDef.h in Headers */,
+				7A5C48D60B2D79EA009085F9 /* MediaAudioChannelDef.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9418,6 +9439,9 @@
 				7A594ACA0AFF4AE600A71750 /* MushFileDirectory.cpp in Sources */,
 				7A594B730AFF53FC00A71750 /* MushFileDirEntry.cpp in Sources */,
 				7A594B7B0AFF555400A71750 /* MushFileAccessor.cpp in Sources */,
+				7A5EACDF0B29AD58008D2EE7 /* MushGLRuby.cpp in Sources */,
+				7A5C48D00B2D751A009085F9 /* MediaAudioSDLChannelDef.cpp in Sources */,
+				7A5C48D70B2D79EA009085F9 /* MediaAudioChannelDef.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

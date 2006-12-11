@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } vc39BxijmUcLgo29BoIh0w
 /*
- * $Id: MediaStandard.h,v 1.14 2006/06/01 15:39:14 southa Exp $
+ * $Id: MediaStandard.h,v 1.15 2006/11/06 12:56:31 southa Exp $
  * $Log: MediaStandard.h,v $
+ * Revision 1.15  2006/11/06 12:56:31  southa
+ * MushFile work
+ *
  * Revision 1.14  2006/06/01 15:39:14  southa
  * DrawArray verification and fixes
  *
@@ -69,9 +72,9 @@
  *
  */
 
-#include "mushMushcore.h"
-
+#include "API/mushMushcore.h"
 #include "API/mushMushFile.h"
+#include "API/mushMushMesh.h"
 
 //%includeGuardEnd {
 #endif

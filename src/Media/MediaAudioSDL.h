@@ -25,8 +25,11 @@
 /* Name changed from MediaAudio to MediaAudioSDL 2002/08/23 */
 
 /*
- * $Id: MediaAudioSDL.h,v 1.14 2006/07/26 16:37:22 southa Exp $
+ * $Id: MediaAudioSDL.h,v 1.15 2006/07/28 16:52:21 southa Exp $
  * $Log: MediaAudioSDL.h,v $
+ * Revision 1.15  2006/07/28 16:52:21  southa
+ * Options work
+ *
  * Revision 1.14  2006/07/26 16:37:22  southa
  * Options menu
  *
@@ -104,6 +107,7 @@
 #include "MediaAudio.h"
 #include "MediaSDL.h"
 #include "MediaStandard.h"
+#include "MediaAudioSDLChannelDef.h"
 
 class MediaSound;
 class MediaSoundStream;
@@ -127,24 +131,13 @@ public:
     virtual void AudioVolumeSet(Mushware::tVal inVolume);
 
 private:
-    enum ChannelState
-    {
-        kInvalid,
-        kChannelIdle,
-        kChannelPlaying
-    };
-
-    void ChannelStateSet(Mushware::U32 inChannel, ChannelState inState, MediaSound *inSound);
+    void ChannelStateSet(Mushware::U32 inChannel, Mushware::U32 inState, MediaSound *inSound);
 
     Mushware::U32 m_softChannels;
-    std::vector<ChannelState> m_channelState;
-    std::vector<MediaSound *> m_activeSamples;
     Mix_Music *m_music;
     Mushware::U32 m_audioVolume;
     mutable Mushware::U32 m_errCtr;
-    
 };
-
 
 //%includeGuardEnd {
 #endif

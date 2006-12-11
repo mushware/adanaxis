@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } NkO0g6TshWQZ+4+THDCdtQ
 /*
- * $Id: MediaAudio.h,v 1.26 2006/06/01 15:39:13 southa Exp $
+ * $Id: MediaAudio.h,v 1.27 2006/07/26 16:37:22 southa Exp $
  * $Log: MediaAudio.h,v $
+ * Revision 1.27  2006/07/26 16:37:22  southa
+ * Options menu
+ *
  * Revision 1.26  2006/06/01 15:39:13  southa
  * DrawArray verification and fixes
  *
@@ -78,6 +81,7 @@
 #include "MediaStandard.h"
 
 #include "mushMushcore.h"
+#include "MediaAudioChannelDef.h"
 
 class MediaSound;
 class MediaSoundStream;
@@ -88,6 +92,7 @@ public:
     virtual ~MediaAudio();
     virtual void PlayMusic(const std::string& inName) = 0;
     virtual void Play(MediaSound& inSound) = 0;
+    virtual void Play(MediaSound& inSound, Mushware::tVal inVolume, Mushware::t4Val inPosition) = 0;
     virtual void Play(MediaSoundStream& inSoundStream, Mushware::U32 inLoop=10000) = 0;
     virtual void SoundHalt(MediaSound& inSound) = 0;
     virtual void Load(MediaSound& inSound) const = 0;
@@ -99,9 +104,14 @@ public:
     virtual void MusicVolumeSet(Mushware::tVal inVolume) = 0;
     virtual void AudioVolumeSet(Mushware::tVal inVolume) = 0;
     
+    const MediaAudioChannelDef& ChannelDef(Mushware::U32 inIndex);
+    MediaAudioChannelDef& ChannelDefWRef(Mushware::U32 inIndex);
+    void ChannelDefsResize(Mushware::U32 inSize, const MediaAudioChannelDef& inDef);
+                           
     static MediaAudio *SingletonFactory(void);
     
-protected:
+private:
+    std::vector<MediaAudioChannelDef *> m_channelDefs;    
 };
 
 //%includeGuardEnd {

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } ccLCYRn/kYU+5Rp9coVdng
 /*
- * $Id: MediaAudioSDL.cpp,v 1.26 2006/11/10 20:17:11 southa Exp $
+ * $Id: MediaAudioSDL.cpp,v 1.27 2006/11/12 14:39:50 southa Exp $
  * $Log: MediaAudioSDL.cpp,v $
+ * Revision 1.27  2006/11/12 14:39:50  southa
+ * Player weapons amd audio fix
+ *
  * Revision 1.26  2006/11/10 20:17:11  southa
  * Audio work
  *
@@ -132,6 +135,7 @@
  */
 
 #include "MediaAudioSDL.h"
+#include "MediaAudioSDLChannelDef.h"
 #include "MediaRWops.h"
 #include "MediaSDL.h"
 #include "MediaSTL.h"
@@ -150,7 +154,7 @@ MediaAudioSDL::MediaAudioSDL():
     int audioRate = MIX_DEFAULT_FREQUENCY; // 22050Hz
     unsigned short audioFormat = MIX_DEFAULT_FORMAT; // 16-bit stereo
     int audioHardChannels = 2; // Stereo
-    U32 audioSoftChannels = 64;
+    U32 audioSoftChannels = 32;
     int audioBuffer = 1024;
 
     const MushcoreScalar *pScalar;
@@ -186,10 +190,7 @@ MediaAudioSDL::MediaAudioSDL():
         throw(MushcoreDeviceFail("Unable to open SDL for audio: "+string(Mix_GetError())));
     }
     m_softChannels = Mix_AllocateChannels(audioSoftChannels);
-    m_channelState.resize(m_softChannels, kChannelIdle);
-    m_activeSamples.resize(m_softChannels, NULL);
-    //cout << "Setup audio mixer at " << audioRate << "Hz, format=" << audioFormat;
-    //cout << ", hard channels=" << audioHardChannels << ", soft channels=" << m_softChannels << endl;
+    ChannelDefsResize(m_softChannels, MediaAudioSDLChannelDef());
 }
 
 MediaAudioSDL::~MediaAudioSDL()
@@ -213,24 +214,32 @@ MediaAudioSDL::PlayMusic(const string& inFilename)
 }
 
 void
+MediaAudioSDL::Play(MediaSound& inSound, Mushware::tVal inVolume, Mushware::t4Val inPosition)
+{
+    
+}
+
+void
 MediaAudioSDL::Play(MediaSound& inSound)
 {
     if (inSound.MixChunkGet() == NULL)
     {
-        // Needs better solution
         inSound.Load();
     }
     S32 channel=Mix_PlayChannel(-1, inSound.MixChunkGet(), 0);
 
-    if (channel == -1)
+    if (channel >= static_cast<S32>(m_softChannels))
+    {
+        throw MushcoreDeviceFail("Mix_PlayChannel returned bad channel number");
+    }
+    else if (channel == -1)
     {
         if (++m_errCtr < 100) cerr << "Failed to play sound '" << inSound.FilenameGet() << "': " << string(Mix_GetError());
     }
     else
     {
         Mix_Volume(channel, m_audioVolume); // Also a fix for SDL bug
-        MUSHCOREASSERT(channel < static_cast<S32>(m_softChannels));
-        ChannelStateSet(channel, kChannelPlaying, &inSound);
+        ChannelStateSet(channel, MediaAudioChannelDef::kActivityPlaying, &inSound);
     }
 }
 
@@ -261,13 +270,14 @@ MediaAudioSDL::Play(MediaSoundStream& inSoundStream, U32 inLoop)
 }
 
 void
-MediaAudioSDL::ChannelStateSet(U32 inChannel, ChannelState inState, MediaSound *inSound)
+MediaAudioSDL::ChannelStateSet(Mushware::U32 inChannel, Mushware::U32 inState, MediaSound *inSound)
 {
     MUSHCOREASSERT(inChannel < m_softChannels);
-    MUSHCOREASSERT(inChannel < m_activeSamples.size());
 
-    m_activeSamples[inChannel] = inSound;
-    m_channelState[inChannel] = inState;
+    MediaAudioSDLChannelDef& channelDef(dynamic_cast<MediaAudioSDLChannelDef&>(ChannelDefWRef(inChannel)));
+    
+    channelDef.ActiveSampleSet(inSound);
+    channelDef.ActivitySet(inState);
 }
 
 void
@@ -275,11 +285,11 @@ MediaAudioSDL::Ticker(void)
 {
     for (U32 i=0; i<m_softChannels; ++i)
     {
-        if (m_channelState[i] != kChannelIdle)
+        if (ChannelDef(i).Activity() != MediaAudioChannelDef::kActivityIdle)
         {
             if (Mix_Playing(i) == 0)
             {
-                ChannelStateSet(i, kChannelIdle, NULL);
+                ChannelStateSet(i, MediaAudioChannelDef::kActivityIdle, NULL);
             }
         }
     }
@@ -290,7 +300,9 @@ MediaAudioSDL::SoundHalt(MediaSound& inSound)
 {
     for (U32 i=0; i<m_softChannels; ++i)
     {
-        if (m_activeSamples[i] == &inSound &&
+        MediaAudioSDLChannelDef& channelDef(dynamic_cast<MediaAudioSDLChannelDef&>(ChannelDefWRef(i)));
+        
+        if (channelDef.ActiveSample() == &inSound &&
             Mix_Playing(i) != 0)
         {
             // cerr << "Halting channel " << i << " playing '" << inSound.FilenameGet() << "'" << endl;

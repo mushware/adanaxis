@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } GszAZNIc4XTjBhyVnPxI7g
 /*
- * $Id: MushGLFont.h,v 1.7 2006/10/09 16:00:16 southa Exp $
+ * $Id: MushGLFont.h,v 1.8 2006/10/17 20:43:01 southa Exp $
  * $Log: MushGLFont.h,v $
+ * Revision 1.8  2006/10/17 20:43:01  southa
+ * Dashboard work
+ *
  * Revision 1.7  2006/10/09 16:00:16  southa
  * Intern generation
  *
@@ -58,6 +61,19 @@
 class MushGLFont : public MushcoreVirtualObject
 {
 public:
+    enum
+    {
+        kAlignLeft = 0,
+        kAlignRight,
+        kAlignTop,
+        kAlignBottom,
+        kAlignTopLeft,
+        kAlignTopRight,
+        kAlignBottomLeft,
+        kAlignBottomRight,
+        kAlignNumValues
+    };
+    
     typedef MushcoreData<MushGLFont> tData;
     typedef MushcoreDataRef<MushGLFont> tDataRef;
     

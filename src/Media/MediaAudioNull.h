@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } +TqwNDFCDF610zYAXeniiA
 /*
- * $Id: MediaAudioNull.h,v 1.12 2006/06/01 15:39:13 southa Exp $
+ * $Id: MediaAudioNull.h,v 1.13 2006/07/26 16:37:22 southa Exp $
  * $Log: MediaAudioNull.h,v $
+ * Revision 1.13  2006/07/26 16:37:22  southa
+ * Options menu
+ *
  * Revision 1.12  2006/06/01 15:39:13  southa
  * DrawArray verification and fixes
  *
@@ -71,6 +74,7 @@ public:
     MediaAudioNull();
     virtual void PlayMusic(const std::string& inName);
     virtual void Play(MediaSound& inSound);
+    virtual void Play(MediaSound& inSound, Mushware::tVal inVolume, Mushware::t4Val inPosition);
     virtual void Play(MediaSoundStream& inSoundStream, Mushware::U32 inLoop=10000);
     virtual void SoundHalt(MediaSound& inSound);
     virtual void Load(MediaSound& inSound) const;
