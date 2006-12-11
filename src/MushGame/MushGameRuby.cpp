@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } yY7ZZkvIHHOoUzJzTAQPOQ
 /*
- * $Id: MushGameRuby.cpp,v 1.23 2006/11/23 14:40:30 southa Exp $
+ * $Id: MushGameRuby.cpp,v 1.24 2006/11/25 21:26:33 southa Exp $
  * $Log: MushGameRuby.cpp,v $
+ * Revision 1.24  2006/11/25 21:26:33  southa
+ * Display mode definitions
+ *
  * Revision 1.23  2006/11/23 14:40:30  southa
  * Intro cutscene
  *
@@ -690,10 +693,34 @@ Mushware::tRubyValue
 MushGameRuby::SoundPlay(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0, Mushware::tRubyValue inArg1)
 {
     MushRubyValue param0(inArg0);
-    MushRubyValue param1(inArg1);
     try
     {
-        MediaAudio::Sgl().Play(*MushcoreDataRef<MediaSound>(param0.String()).Get());
+        const MushMeshPosticity& postRef = MushMeshRubyPost::Ref(inArg1);
+        
+        MediaAudio::Sgl().Play(*MushcoreDataRef<MediaSound>(param0.String()).Get(),
+                               1.0, // Volume
+                               postRef.Pos(),
+                               0);
+    }
+    catch (std::exception& e)
+    {
+        MushRubyUtil::Raise(e.what());       
+    }
+    return Mushware::kRubyQnil;
+}
+
+Mushware::tRubyValue
+MushGameRuby::TiedSoundPlay(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0, Mushware::tRubyValue inArg1)
+{
+    MushRubyValue param0(inArg0);
+    try
+    {
+        const MushMeshPosticity& postRef = MushMeshRubyPost::Ref(inArg1);
+        
+        MediaAudio::Sgl().Play(*MushcoreDataRef<MediaSound>(param0.String()).Get(),
+                               1.0, // Volume
+                               postRef.Pos(),
+                               MediaAudio::kFlagsTiedToListener);
     }
     catch (std::exception& e)
     {
@@ -822,6 +849,7 @@ MushGameRuby::MethodsInstall(void)
     MushRubyUtil::SingletonMethodDefineTwoParams(Klass(), "cSoundDefine", SoundDefine);
     MushRubyUtil::SingletonMethodDefineTwoParams(Klass(), "cSoundStreamDefine", SoundStreamDefine);
     MushRubyUtil::SingletonMethodDefineTwoParams(Klass(), "cSoundPlay", SoundPlay);
+    MushRubyUtil::SingletonMethodDefineTwoParams(Klass(), "cTiedSoundPlay", TiedSoundPlay);
     MushRubyUtil::SingletonMethodDefineTwoParams(Klass(), "cSoundStreamPlay", SoundStreamPlay);
     MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cPackageID", PackageID);
     MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cGameMsec", GameMsec);

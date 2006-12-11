@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } NkO0g6TshWQZ+4+THDCdtQ
 /*
- * $Id: MediaAudio.h,v 1.28 2006/12/11 13:28:23 southa Exp $
+ * $Id: MediaAudio.h,v 1.29 2006/12/11 15:01:47 southa Exp $
  * $Log: MediaAudio.h,v $
+ * Revision 1.29  2006/12/11 15:01:47  southa
+ * Snapshot
+ *
  * Revision 1.28  2006/12/11 13:28:23  southa
  * Snapshot
  *
@@ -88,14 +91,20 @@
 class MediaSound;
 class MediaSoundStream;
 
+//:generate
 class MediaAudio : public MushcoreAbstractSingleton<MediaAudio>
 {
 public:
+    enum
+    {
+        kFlagsTiedToListener = 1
+    };
     MediaAudio();
     virtual ~MediaAudio();
     virtual void PlayMusic(const std::string& inName) = 0;
     virtual void Play(MediaSound& inSound) = 0;
-    virtual void Play(MediaSound& inSound, Mushware::tVal inVolume, Mushware::t4Val inPosition) = 0;
+    virtual void Play(MediaSound& inSound, Mushware::tVal inVolume, Mushware::t4Val inPosition,
+                      Mushware::U32 inFlags) = 0;
     virtual void Play(MediaSoundStream& inSoundStream, Mushware::U32 inLoop=10000) = 0;
     virtual void SoundHalt(MediaSound& inSound) = 0;
     virtual void Load(MediaSound& inSound) const = 0;
@@ -111,6 +120,7 @@ public:
     MediaAudioChannelDef& ChannelDefWRef(Mushware::U32 inIndex);
     void ChannelDefsResize(Mushware::U32 inSize, const MediaAudioChannelDef& inDef);
     bool ChannelSelect(Mushware::U32& outChannel);
+    Mushware::tVal ImpliedVolume(const Mushware::t4Val& inPos);
     Mushware::tVal ImpliedVolume(const MediaAudioChannelDef& inDef);
     Mushware::tVal ImpliedPanning(const MediaAudioChannelDef& inDef);
     
@@ -121,6 +131,11 @@ private:
     MushMeshPosticity m_listenerPost; //:readwrite
     Mushware::tVal m_distanceFactor;
     Mushware::U32 m_nextChannel;
+//%classPrototypes {
+public:
+    const MushMeshPosticity& ListenerPost(void) const { return m_listenerPost; }
+    void ListenerPostSet(const MushMeshPosticity& inValue) { m_listenerPost=inValue; }
+//%classPrototypes } RSs3c6YdNdTyIqkfQ50X2A
 };
 
 //%includeGuardEnd {

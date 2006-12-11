@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } Ba7bsFloj7rDS9hxvbz9Ng
 /*
- * $Id$
- * $Log$
+ * $Id: MediaAudioSDLChannelDef.h,v 1.1 2006/12/11 13:28:23 southa Exp $
+ * $Log: MediaAudioSDLChannelDef.h,v $
+ * Revision 1.1  2006/12/11 13:28:23  southa
+ * Snapshot
+ *
  */
 
 #include "MediaStandard.h"
@@ -43,7 +46,7 @@ class MediaAudioSDLChannelDef : public MediaAudioChannelDef
 public:
     MediaAudioSDLChannelDef();
     
-    const MediaSound *ActiveSample(void) const { return m_pActiveSample; }
+    MediaSound *ActiveSample(void) const { return m_pActiveSample; }
     void ActiveSampleSet(MediaSound *inpValue) { m_pActiveSample = inpValue; }
 
 private:

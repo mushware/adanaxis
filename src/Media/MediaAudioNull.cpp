@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } YOS1PmDuCOSGA2BFY+sCOQ
 /*
- * $Id: MediaAudioNull.cpp,v 1.14 2006/06/01 15:39:13 southa Exp $
+ * $Id: MediaAudioNull.cpp,v 1.15 2006/12/11 15:01:48 southa Exp $
  * $Log: MediaAudioNull.cpp,v $
+ * Revision 1.15  2006/12/11 15:01:48  southa
+ * Snapshot
+ *
  * Revision 1.14  2006/06/01 15:39:13  southa
  * DrawArray verification and fixes
  *
@@ -87,7 +90,8 @@ MediaAudioNull::Play(MediaSound& inSound)
 }
 
 void
-MediaAudioNull::Play(MediaSound& inSound, Mushware::tVal inVolume, Mushware::t4Val inPosition)
+MediaAudioNull::Play(MediaSound& inSound, Mushware::tVal inVolume, Mushware::t4Val inPosition,
+                     Mushware::U32 inFlags)
 {
 }
 

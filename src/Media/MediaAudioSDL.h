@@ -25,8 +25,11 @@
 /* Name changed from MediaAudio to MediaAudioSDL 2002/08/23 */
 
 /*
- * $Id: MediaAudioSDL.h,v 1.16 2006/12/11 13:28:23 southa Exp $
+ * $Id: MediaAudioSDL.h,v 1.17 2006/12/11 15:01:48 southa Exp $
  * $Log: MediaAudioSDL.h,v $
+ * Revision 1.17  2006/12/11 15:01:48  southa
+ * Snapshot
+ *
  * Revision 1.16  2006/12/11 13:28:23  southa
  * Snapshot
  *
@@ -122,7 +125,8 @@ public:
     virtual ~MediaAudioSDL();
     void PlayMusic(const std::string& inName);
     void Play(MediaSound& inSound);
-    void Play(MediaSound& inSound, Mushware::tVal inVolume, Mushware::t4Val inPosition);
+    void Play(MediaSound& inSound, Mushware::tVal inVolume, Mushware::t4Val inPosition,
+              Mushware::U32 inFlags);
     void Play(MediaSoundStream& inSoundStream, Mushware::U32 inLoop=10000);
     void SoundHalt(MediaSound& inSound);
     void Load(MediaSound& inSound) const;
@@ -134,9 +138,11 @@ public:
     virtual void MusicVolumeSet(Mushware::tVal inVolume);
     virtual void AudioVolumeSet(Mushware::tVal inVolume);
 
+protected:
+    void ChannelUpdate(Mushware::U32 inChannel);
+    void ChannelTrigger(Mushware::U32 inChannel);
+    
 private:
-    void ChannelStateSet(Mushware::U32 inChannel, Mushware::U32 inState, MediaSound *inSound);
-
     Mushware::U32 m_softChannels;
     Mix_Music *m_music;
     Mushware::U32 m_audioVolume;

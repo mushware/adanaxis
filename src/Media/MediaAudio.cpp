@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } RrZ30myX902oWo35J1ovVw
 /*
- * $Id: MediaAudio.cpp,v 1.26 2006/12/11 13:28:23 southa Exp $
+ * $Id: MediaAudio.cpp,v 1.27 2006/12/11 15:01:43 southa Exp $
  * $Log: MediaAudio.cpp,v $
+ * Revision 1.27  2006/12/11 15:01:43  southa
+ * Snapshot
+ *
  * Revision 1.26  2006/12/11 13:28:23  southa
  * Snapshot
  *
@@ -78,7 +81,7 @@ MUSHCORE_SINGLETON_INSTANCE(MediaAudio);
 
 MediaAudio::MediaAudio() :
     m_listenerPost(MushMeshPosticity::Identity()),
-    m_distanceFactor(0.01),
+    m_distanceFactor(0.00001),
     m_nextChannel(0)
 {
 }
@@ -136,10 +139,10 @@ MediaAudio::ChannelDefsResize(Mushware::U32 inSize, const MediaAudioChannelDef& 
 }
 
 Mushware::tVal
-MediaAudio::ImpliedVolume(const MediaAudioChannelDef& inDef)
+MediaAudio::ImpliedVolume(const t4Val& inPos)
 {
     tVal retVal;
-    t4Val vecToSound = inDef.Position() - m_listenerPost.Pos();
+    t4Val vecToSound = inPos - m_listenerPost.Pos();
     tVal squaredToSound = vecToSound.MagnitudeSquared();
     
     squaredToSound *= m_distanceFactor;
@@ -157,11 +160,28 @@ MediaAudio::ImpliedVolume(const MediaAudioChannelDef& inDef)
 }
 
 Mushware::tVal
+MediaAudio::ImpliedVolume(const MediaAudioChannelDef& inDef)
+{
+    return ImpliedVolume(inDef.Position());
+}
+
+Mushware::tVal
 MediaAudio::ImpliedPanning(const MediaAudioChannelDef& inDef)
 {
-    t4Val vecToSound = m_listenerPost.AngPos().Conjugate().RotatedVector(inDef.Position() - m_listenerPost.Pos());
+    tVal retVal;
     
-    return vecToSound.X() / vecToSound.Magnitude();
+    t4Val vecToSound = m_listenerPost.AngPos().Conjugate().RotatedVector(inDef.Position() - m_listenerPost.Pos());
+    tVal distToSound = vecToSound.Magnitude();
+    
+    if (distToSound < 0.1)
+    {
+        retVal = 0.0;
+    }
+    else
+    {
+        retVal = vecToSound.X() / distToSound;
+    }
+    return retVal;
 }
 
 bool
@@ -175,7 +195,7 @@ MediaAudio::ChannelSelect(Mushware::U32& outChannel)
         const MediaAudioChannelDef& defRef = ChannelDef(m_nextChannel);
         if (defRef.Activity() == MediaAudioChannelDef::kActivityIdle)
         {
-            outChannel = i;
+            outChannel = m_nextChannel;
             found = true;
         }
         ++m_nextChannel;

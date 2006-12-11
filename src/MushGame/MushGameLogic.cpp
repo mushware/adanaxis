@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } o9Dxm/e8GypZNPSRXLgJNQ
 /*
- * $Id: MushGameLogic.cpp,v 1.37 2006/11/21 10:08:24 southa Exp $
+ * $Id: MushGameLogic.cpp,v 1.38 2006/11/23 14:40:29 southa Exp $
  * $Log: MushGameLogic.cpp,v $
+ * Revision 1.38  2006/11/23 14:40:29  southa
+ * Intro cutscene
+ *
  * Revision 1.37  2006/11/21 10:08:24  southa
  * Initial cut scene handling
  *
@@ -657,12 +660,14 @@ MushGameLogic::TickerSequence(void)
     {
         PlayerTicker(*p);
     }
+    MediaAudio::Sgl().Ticker();
 }
 
 void
 MushGameLogic::CameraMove(MushGameCamera& inCamera)
 {
     inCamera.FromTiedObjectUpdate();
+    MediaAudio::Sgl().ListenerPostSet(inCamera.Post());
 }
 
 void

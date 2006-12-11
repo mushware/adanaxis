@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } ccLCYRn/kYU+5Rp9coVdng
 /*
- * $Id: MediaAudioSDL.cpp,v 1.28 2006/12/11 13:28:23 southa Exp $
+ * $Id: MediaAudioSDL.cpp,v 1.29 2006/12/11 15:01:48 southa Exp $
  * $Log: MediaAudioSDL.cpp,v $
+ * Revision 1.29  2006/12/11 15:01:48  southa
+ * Snapshot
+ *
  * Revision 1.28  2006/12/11 13:28:23  southa
  * Snapshot
  *
@@ -217,10 +220,32 @@ MediaAudioSDL::PlayMusic(const string& inFilename)
 }
 
 void
+MediaAudioSDL::ChannelUpdate(Mushware::U32 inChannel)
+{
+    MediaAudioSDLChannelDef& channelDef( dynamic_cast<MediaAudioSDLChannelDef&>(ChannelDefWRef(inChannel)) );
+    MUSHCOREASSERT(channelDef.Positional());
+    
+    tVal volume = channelDef.Volume() * ImpliedVolume(channelDef);
+    Mix_Volume(inChannel, static_cast<int>(volume * m_audioVolume));
+
+    tVal impliedPanning = ImpliedPanning(channelDef);
+    tVal panLeft = ( impliedPanning < 0.0 ) ? 1.0 : (1.0 - impliedPanning);
+    tVal panRight = ( impliedPanning > 0.0 ) ? 1.0 : (1.0 + impliedPanning);
+    
+    Mix_SetPanning(inChannel, static_cast<U8>(255 * panLeft), static_cast<U8>(255 * panRight));
+}
+
+void
 MediaAudioSDL::ChannelTrigger(Mushware::U32 inChannel)
 {
-    MediaAudioSDLChannelDef& channelDef( dynamic_cast<MediaAudioSDLChannelDef&>(ChannelDefWRef(channel)) );
-    MUHSCOREASSERT(channelDef.ActiveSample() != NULL);
+    MediaAudioSDLChannelDef& channelDef( dynamic_cast<MediaAudioSDLChannelDef&>(ChannelDefWRef(inChannel)) );
+    MUSHCOREASSERT(channelDef.ActiveSample() != NULL);
+    
+    tVal volume = channelDef.Volume();
+    if (channelDef.Positional())
+    {
+        volume *= ImpliedVolume(channelDef);
+    }
     
     if (channelDef.ActiveSample()->MixChunkGet() == NULL)
     {
@@ -234,22 +259,27 @@ MediaAudioSDL::ChannelTrigger(Mushware::U32 inChannel)
         throw MushcoreDeviceFail("Mix_PlayChannel returned bad channel number");
     }
     
-    tVal volume = ImpliedVolume()* channelDef.Volume() * m_audioVolume;
-    Mix_Volume(inChannel, static_cast<int>(volume)); // Also a fix for SDL bug
+    if (channelDef.Positional())
+    {
+        ChannelUpdate(inChannel);
+    }
+    else
+    {
+        Mix_Volume(inChannel, static_cast<int>(volume * m_audioVolume));        
+        Mix_SetPanning(inChannel,255,255);
+    }
     
-    
-    tVal impliedPanning = ImpliedPanning();
-    Mix_SetPanning(inChannel, impliedPanning);
-    ChannelStateSet(inChannel, MediaAudioChannelDef::kActivityPlaying, &inSound);
+    channelDef.ActivitySet(MediaAudioChannelDef::kActivityPlaying);
 }
 
 void
-MediaAudioSDL::Play(MediaSound& inSound, Mushware::tVal inVolume, Mushware::t4Val inPosition)
+MediaAudioSDL::Play(MediaSound& inSound, Mushware::tVal inVolume, Mushware::t4Val inPosition,
+                    Mushware::U32 inFlags)
 {
     U32 channel;
     if (ChannelSelect(channel))
     {
-        MUSHCOREASSERT(inChannel < m_softChannels);
+        MUSHCOREASSERT(channel < m_softChannels);
         
         MediaAudioSDLChannelDef& channelDef( dynamic_cast<MediaAudioSDLChannelDef&>(ChannelDefWRef(channel)) );
         channelDef.VolumeSet(inVolume);
@@ -258,30 +288,28 @@ MediaAudioSDL::Play(MediaSound& inSound, Mushware::tVal inVolume, Mushware::t4Va
         channelDef.LoopSet(false);
         channelDef.ActiveSampleSet(&inSound);
         ChannelTrigger(channel);
+        if (inFlags & kFlagsTiedToListener)
+        {
+            // No position updates for this channel 
+            channelDef.PositionalSet(false);
+        }
     }
 }
 
 void
 MediaAudioSDL::Play(MediaSound& inSound)
 {
-    if (inSound.MixChunkGet() == NULL)
+    U32 channel;
+    if (ChannelSelect(channel))
     {
-        inSound.Load();
-    }
-    S32 channel=Mix_PlayChannel(-1, inSound.MixChunkGet(), 0);
-
-    if (channel >= static_cast<S32>(m_softChannels))
-    {
-        throw MushcoreDeviceFail("Mix_PlayChannel returned bad channel number");
-    }
-    else if (channel == -1)
-    {
-        if (++m_errCtr < 100) cerr << "Failed to play sound '" << inSound.FilenameGet() << "': " << string(Mix_GetError());
-    }
-    else
-    {
-        Mix_Volume(channel, m_audioVolume); // Also a fix for SDL bug
-        ChannelStateSet(channel, MediaAudioChannelDef::kActivityPlaying, &inSound);
+        MUSHCOREASSERT(channel < m_softChannels);
+        
+        MediaAudioSDLChannelDef& channelDef( dynamic_cast<MediaAudioSDLChannelDef&>(ChannelDefWRef(channel)) );
+        channelDef.VolumeSet(1.0);
+        channelDef.PositionalSet(false);
+        channelDef.LoopSet(false);
+        channelDef.ActiveSampleSet(&inSound);
+        ChannelTrigger(channel);
     }
 }
 
@@ -312,26 +340,25 @@ MediaAudioSDL::Play(MediaSoundStream& inSoundStream, U32 inLoop)
 }
 
 void
-MediaAudioSDL::ChannelStateSet(Mushware::U32 inChannel, Mushware::U32 inState, MediaSound *inSound)
-{
-    MUSHCOREASSERT(inChannel < m_softChannels);
-
-    MediaAudioSDLChannelDef& channelDef(dynamic_cast<MediaAudioSDLChannelDef&>(ChannelDefWRef(inChannel)));
-    
-    channelDef.ActiveSampleSet(inSound);
-    channelDef.ActivitySet(inState);
-}
-
-void
 MediaAudioSDL::Ticker(void)
 {
     for (U32 i=0; i<m_softChannels; ++i)
     {
-        if (ChannelDef(i).Activity() != MediaAudioChannelDef::kActivityIdle)
+        MediaAudioSDLChannelDef& channelDef(dynamic_cast<MediaAudioSDLChannelDef&>(ChannelDefWRef(i)));
+        
+        if (channelDef.Activity() != MediaAudioChannelDef::kActivityIdle)
         {
+            
             if (Mix_Playing(i) == 0)
             {
-                ChannelStateSet(i, MediaAudioChannelDef::kActivityIdle, NULL);
+                channelDef.ActivitySet(MediaAudioChannelDef::kActivityIdle);
+            }
+            else
+            {
+                if (channelDef.Positional())
+                {
+                    ChannelUpdate(i);
+                }
             }
         }
     }
@@ -415,5 +442,6 @@ void
 MediaAudioSDL::AudioVolumeSet(Mushware::tVal inVolume)
 {
     m_audioVolume = static_cast<U32>(inVolume*128);
+    cout << "AudioVolumeSet inVolume=" << inVolume << " m_audioVolume=" << m_audioVolume << endl; 
 }
 
