@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } NkO0g6TshWQZ+4+THDCdtQ
 /*
- * $Id: MediaAudio.h,v 1.27 2006/07/26 16:37:22 southa Exp $
+ * $Id: MediaAudio.h,v 1.28 2006/12/11 13:28:23 southa Exp $
  * $Log: MediaAudio.h,v $
+ * Revision 1.28  2006/12/11 13:28:23  southa
+ * Snapshot
+ *
  * Revision 1.27  2006/07/26 16:37:22  southa
  * Options menu
  *
@@ -80,7 +83,6 @@
 
 #include "MediaStandard.h"
 
-#include "mushMushcore.h"
 #include "MediaAudioChannelDef.h"
 
 class MediaSound;
@@ -89,6 +91,7 @@ class MediaSoundStream;
 class MediaAudio : public MushcoreAbstractSingleton<MediaAudio>
 {
 public:
+    MediaAudio();
     virtual ~MediaAudio();
     virtual void PlayMusic(const std::string& inName) = 0;
     virtual void Play(MediaSound& inSound) = 0;
@@ -107,11 +110,17 @@ public:
     const MediaAudioChannelDef& ChannelDef(Mushware::U32 inIndex);
     MediaAudioChannelDef& ChannelDefWRef(Mushware::U32 inIndex);
     void ChannelDefsResize(Mushware::U32 inSize, const MediaAudioChannelDef& inDef);
-                           
+    bool ChannelSelect(Mushware::U32& outChannel);
+    Mushware::tVal ImpliedVolume(const MediaAudioChannelDef& inDef);
+    Mushware::tVal ImpliedPanning(const MediaAudioChannelDef& inDef);
+    
     static MediaAudio *SingletonFactory(void);
     
 private:
-    std::vector<MediaAudioChannelDef *> m_channelDefs;    
+    std::vector<MediaAudioChannelDef *> m_channelDefs;
+    MushMeshPosticity m_listenerPost; //:readwrite
+    Mushware::tVal m_distanceFactor;
+    Mushware::U32 m_nextChannel;
 };
 
 //%includeGuardEnd {

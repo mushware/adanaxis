@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } YOS1PmDuCOSGA2BFY+sCOQ
 /*
- * $Id: MediaAudioNull.cpp,v 1.13 2005/05/19 13:02:08 southa Exp $
+ * $Id: MediaAudioNull.cpp,v 1.14 2006/06/01 15:39:13 southa Exp $
  * $Log: MediaAudioNull.cpp,v $
+ * Revision 1.14  2006/06/01 15:39:13  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.13  2005/05/19 13:02:08  southa
  * Mac release work
  *
@@ -80,6 +83,11 @@ MediaAudioNull::PlayMusic(const string& inName)
 
 void
 MediaAudioNull::Play(MediaSound& inSound)
+{
+}
+
+void
+MediaAudioNull::Play(MediaSound& inSound, Mushware::tVal inVolume, Mushware::t4Val inPosition)
 {
 }
 

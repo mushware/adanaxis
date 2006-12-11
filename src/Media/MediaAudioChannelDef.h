@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } rWs5FySrT5xJm9zo10DhWQ
 /*
- * $Id$
- * $Log$
+ * $Id: MediaAudioChannelDef.h,v 1.1 2006/12/11 13:28:23 southa Exp $
+ * $Log: MediaAudioChannelDef.h,v $
+ * Revision 1.1  2006/12/11 13:28:23  southa
+ * Snapshot
+ *
  */
 
 #include "MediaStandard.h"
@@ -47,6 +50,7 @@ private:
     Mushware::tVal m_volume; //:readwrite
     Mushware::t4Val m_position; //:readwrite
     bool m_positional; //:readwrite
+    bool m_loop; //:readwrite
     
 //%classPrototypes {
 public:
@@ -58,6 +62,8 @@ public:
     void PositionSet(const Mushware::t4Val& inValue) { m_position=inValue; }
     const bool& Positional(void) const { return m_positional; }
     void PositionalSet(const bool& inValue) { m_positional=inValue; }
+    const bool& Loop(void) const { return m_loop; }
+    void LoopSet(const bool& inValue) { m_loop=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -65,7 +71,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } 72vpza6davmwoRKvQXq5UA
+//%classPrototypes } l1NIqY9gNva3J6cQI7lOIA
 };
 //%inlineHeader {
 inline std::ostream&

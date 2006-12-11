@@ -19,15 +19,19 @@
  ****************************************************************************/
 //%Header } x4lGD8QS4IQs4NaFlJyuRA
 /*
- * $Id$
- * $Log$
+ * $Id: MediaAudioChannelDef.cpp,v 1.1 2006/12/11 13:28:23 southa Exp $
+ * $Log: MediaAudioChannelDef.cpp,v $
+ * Revision 1.1  2006/12/11 13:28:23  southa
+ * Snapshot
+ *
  */
 
 #include "MediaAudioChannelDef.h"
 
 MediaAudioChannelDef::MediaAudioChannelDef() :
     m_activity(kActivityIdle),
-    m_positional(false)
+    m_positional(false),
+    m_loop(false)
 {    
 }
 
@@ -67,7 +71,8 @@ MediaAudioChannelDef::AutoPrint(std::ostream& ioOut) const
     ioOut << "activity=" << m_activity << ", ";
     ioOut << "volume=" << m_volume << ", ";
     ioOut << "position=" << m_position << ", ";
-    ioOut << "positional=" << m_positional;
+    ioOut << "positional=" << m_positional << ", ";
+    ioOut << "loop=" << m_loop;
     ioOut << "]";
 }
 bool
@@ -95,6 +100,10 @@ MediaAudioChannelDef::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::st
     {
         ioIn >> m_positional;
     }
+    else if (inTagStr == "loop")
+    {
+        ioIn >> m_loop;
+    }
     else 
     {
         return false;
@@ -112,5 +121,7 @@ MediaAudioChannelDef::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_position;
     ioOut.TagSet("positional");
     ioOut << m_positional;
+    ioOut.TagSet("loop");
+    ioOut << m_loop;
 }
-//%outOfLineFunctions } WJDBG60eaa6DdqZ9GFVgIQ
+//%outOfLineFunctions } ATlXKKNj2EXNfKNXFQQkrw

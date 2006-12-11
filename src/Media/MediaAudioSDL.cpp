@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } ccLCYRn/kYU+5Rp9coVdng
 /*
- * $Id: MediaAudioSDL.cpp,v 1.27 2006/11/12 14:39:50 southa Exp $
+ * $Id: MediaAudioSDL.cpp,v 1.28 2006/12/11 13:28:23 southa Exp $
  * $Log: MediaAudioSDL.cpp,v $
+ * Revision 1.28  2006/12/11 13:28:23  southa
+ * Snapshot
+ *
  * Revision 1.27  2006/11/12 14:39:50  southa
  * Player weapons amd audio fix
  *
@@ -214,9 +217,48 @@ MediaAudioSDL::PlayMusic(const string& inFilename)
 }
 
 void
+MediaAudioSDL::ChannelTrigger(Mushware::U32 inChannel)
+{
+    MediaAudioSDLChannelDef& channelDef( dynamic_cast<MediaAudioSDLChannelDef&>(ChannelDefWRef(channel)) );
+    MUHSCOREASSERT(channelDef.ActiveSample() != NULL);
+    
+    if (channelDef.ActiveSample()->MixChunkGet() == NULL)
+    {
+        channelDef.ActiveSample()->Load();
+    }
+    
+    if (static_cast<S32>(inChannel) != Mix_PlayChannel(inChannel,
+                                                       channelDef.ActiveSample()->MixChunkGet(),
+                                                       channelDef.Loop() ? -1 : 0))
+    {
+        throw MushcoreDeviceFail("Mix_PlayChannel returned bad channel number");
+    }
+    
+    tVal volume = ImpliedVolume()* channelDef.Volume() * m_audioVolume;
+    Mix_Volume(inChannel, static_cast<int>(volume)); // Also a fix for SDL bug
+    
+    
+    tVal impliedPanning = ImpliedPanning();
+    Mix_SetPanning(inChannel, impliedPanning);
+    ChannelStateSet(inChannel, MediaAudioChannelDef::kActivityPlaying, &inSound);
+}
+
+void
 MediaAudioSDL::Play(MediaSound& inSound, Mushware::tVal inVolume, Mushware::t4Val inPosition)
 {
-    
+    U32 channel;
+    if (ChannelSelect(channel))
+    {
+        MUSHCOREASSERT(inChannel < m_softChannels);
+        
+        MediaAudioSDLChannelDef& channelDef( dynamic_cast<MediaAudioSDLChannelDef&>(ChannelDefWRef(channel)) );
+        channelDef.VolumeSet(inVolume);
+        channelDef.PositionSet(inPosition);
+        channelDef.PositionalSet(true);
+        channelDef.LoopSet(false);
+        channelDef.ActiveSampleSet(&inSound);
+        ChannelTrigger(channel);
+    }
 }
 
 void

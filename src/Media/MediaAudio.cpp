@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } RrZ30myX902oWo35J1ovVw
 /*
- * $Id: MediaAudio.cpp,v 1.25 2006/06/01 15:39:13 southa Exp $
+ * $Id: MediaAudio.cpp,v 1.26 2006/12/11 13:28:23 southa Exp $
  * $Log: MediaAudio.cpp,v $
+ * Revision 1.26  2006/12/11 13:28:23  southa
+ * Snapshot
+ *
  * Revision 1.25  2006/06/01 15:39:13  southa
  * DrawArray verification and fixes
  *
@@ -73,7 +76,12 @@ using namespace std;
 
 MUSHCORE_SINGLETON_INSTANCE(MediaAudio);
 
-
+MediaAudio::MediaAudio() :
+    m_listenerPost(MushMeshPosticity::Identity()),
+    m_distanceFactor(0.01),
+    m_nextChannel(0)
+{
+}
 
 MediaAudio::~MediaAudio()
 {
@@ -125,6 +133,58 @@ MediaAudio::ChannelDefsResize(Mushware::U32 inSize, const MediaAudioChannelDef& 
             throw MushcoreLogicFail("Bad type passed to MediaAudio::ChannelDefsResize");
         }
     }
+}
+
+Mushware::tVal
+MediaAudio::ImpliedVolume(const MediaAudioChannelDef& inDef)
+{
+    tVal retVal;
+    t4Val vecToSound = inDef.Position() - m_listenerPost.Pos();
+    tVal squaredToSound = vecToSound.MagnitudeSquared();
+    
+    squaredToSound *= m_distanceFactor;
+    
+    if (squaredToSound < 1.0)
+    {
+        // Source close - avoid divide by zero
+        retVal = 1.0;
+    }
+    else
+    {
+        retVal = 1.0 / squaredToSound;
+    }
+    return retVal;
+}
+
+Mushware::tVal
+MediaAudio::ImpliedPanning(const MediaAudioChannelDef& inDef)
+{
+    t4Val vecToSound = m_listenerPost.AngPos().Conjugate().RotatedVector(inDef.Position() - m_listenerPost.Pos());
+    
+    return vecToSound.X() / vecToSound.Magnitude();
+}
+
+bool
+MediaAudio::ChannelSelect(Mushware::U32& outChannel)
+{
+    bool found = false;
+    Mushware::U32 numChannels = m_channelDefs.size();
+    
+    for (U32 i=0; i<numChannels && !found; ++i)
+    {
+        const MediaAudioChannelDef& defRef = ChannelDef(m_nextChannel);
+        if (defRef.Activity() == MediaAudioChannelDef::kActivityIdle)
+        {
+            outChannel = i;
+            found = true;
+        }
+        ++m_nextChannel;
+        if (m_nextChannel >= numChannels)
+        {
+            m_nextChannel = 0;   
+        }
+    }
+    return found;
 }
 
 MediaAudio *

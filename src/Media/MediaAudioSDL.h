@@ -25,8 +25,11 @@
 /* Name changed from MediaAudio to MediaAudioSDL 2002/08/23 */
 
 /*
- * $Id: MediaAudioSDL.h,v 1.15 2006/07/28 16:52:21 southa Exp $
+ * $Id: MediaAudioSDL.h,v 1.16 2006/12/11 13:28:23 southa Exp $
  * $Log: MediaAudioSDL.h,v $
+ * Revision 1.16  2006/12/11 13:28:23  southa
+ * Snapshot
+ *
  * Revision 1.15  2006/07/28 16:52:21  southa
  * Options work
  *
@@ -119,6 +122,7 @@ public:
     virtual ~MediaAudioSDL();
     void PlayMusic(const std::string& inName);
     void Play(MediaSound& inSound);
+    void Play(MediaSound& inSound, Mushware::tVal inVolume, Mushware::t4Val inPosition);
     void Play(MediaSoundStream& inSoundStream, Mushware::U32 inLoop=10000);
     void SoundHalt(MediaSound& inSound);
     void Load(MediaSound& inSound) const;
