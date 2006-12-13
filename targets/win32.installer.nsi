@@ -103,7 +103,7 @@ CreateShortCut "$STARTMENU\Programs\MUSH_APP_NAME\MUSH_APP_NAME.lnk" "$OUTDIR\MU
 CreateShortCut "$STARTMENU\Programs\MUSH_APP_NAME\MUSH_APP_NAME (Safe Mode).lnk" "$OUTDIR\MUSH_APP_PACKAGE.exe" "load('start_safe.txt')"
 
 CreateShortCut "$STARTMENU\Programs\MUSH_APP_NAME\Uninstall MUSH_APP_NAME.lnk" "$INSTDIR\Uninstall MUSH_APP_NAME.exe"
-CreateShortCut "$STARTMENU\Programs\MUSH_APP_NAME\About MUSH_APP_NAME.lnk" "$INSTDIR\About_MUSH_APP_UNDERSCORED_NAME.pdf"
+CreateShortCut "$STARTMENU\Programs\MUSH_APP_NAME\About MUSH_APP_NAME.lnk" "$INSTDIR\About_MUSH_UNDERSCORED_APP_NAME.pdf"
 CreateShortCut "$STARTMENU\Programs\MUSH_APP_NAME\Explore MUSH_APP_NAME Files.lnk" "$INSTDIR\"
 CreateShortCut "$STARTMENU\Programs\MUSH_APP_NAME\Mushware web site.lnk" "$INSTDIR\Mushware web site.url"
 

@@ -1,6 +1,9 @@
 # Target definition file
-# $Id: tesseracttrainer.def,v 1.16 2005/06/09 15:26:06 southa Exp $
+# $Id: tesseracttrainer.def,v 1.16.2.1 2006/12/13 15:12:22 southa Exp $
 # $Log: tesseracttrainer.def,v $
+# Revision 1.16.2.1  2006/12/13 15:12:22  southa
+# Fixed installer
+#
 # Revision 1.16  2005/06/09 15:26:06  southa
 # X11 tweaks
 #
@@ -57,6 +60,7 @@ Use: targets/app.acinclude.m4 as acinclude.m4
 
 Subst: MUSH_APP_PACKAGE 'tesseracttrainer'
 Subst: MUSH_APP_NAME 'Tesseract Trainer'
+Subst: MUSH_UNDERSCORED_APP_NAME 'Tesseract Trainer'
 Subst: MUSH_APP_MAJOR_VERSION '0'
 Subst: MUSH_APP_MINOR_VERSION '1'
 Subst: MUSH_APP_MICRO_VERSION '5'
