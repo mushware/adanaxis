@@ -114,7 +114,8 @@
 			<Tool
 				Name="VCPreBuildEventTool"
 				Description="Running SourceConditioner.pl, which handles code autogeneration within the source files"
-				CommandLine="cd ..\.. &amp;&amp; echo This build event is not essential.  Remove it if it causes trouble &amp;&amp; perl -w SourceConditioner.pl"/>
+				CommandLine="cd ..\.. &amp;&amp; echo This build event is not essential.  Remove it if it causes trouble &amp;&amp; perl -w SourceConditioner.pl"
+				ExcludedFromBuild="TRUE"/>
 			<Tool
 				Name="VCPreLinkEventTool"/>
 			<Tool
