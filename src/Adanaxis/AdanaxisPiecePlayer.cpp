@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } gq+r6M5XzKqE/mgjgvunrQ
 /*
- * $Id: AdanaxisPiecePlayer.cpp,v 1.10 2006/11/03 18:46:33 southa Exp $
+ * $Id: AdanaxisPiecePlayer.cpp,v 1.11 2006/12/14 00:33:48 southa Exp $
  * $Log: AdanaxisPiecePlayer.cpp,v $
+ * Revision 1.11  2006/12/14 00:33:48  southa
+ * Control fix and audio pacing
+ *
  * Revision 1.10  2006/11/03 18:46:33  southa
  * Damage effectors
  *
@@ -291,10 +294,6 @@ AdanaxisPiecePlayer::ControlInfoConsume(MushGameLogic& ioLogic, const MushGameMe
             }
             else
             {
-                if (axisNum == AdanaxisConfig::kAxisW)
-                {
-                    cout << "Dumped as invalid m_lastAxes[kAxisW]=" << m_lastAxes[axisNum] << " axisValue=" << axisValue << endl;
-                }
                 m_lastAxisValid[axisNum] = true;
             }
             m_lastAxes[axisNum] = axisValue;
