@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } pz9Ij69Gp+RQuOHP0yYqgg
 /*
- * $Id: MushGameLogic.h,v 1.24 2006/11/21 10:08:24 southa Exp $
+ * $Id: MushGameLogic.h,v 1.25 2006/11/23 14:40:29 southa Exp $
  * $Log: MushGameLogic.h,v $
+ * Revision 1.25  2006/11/23 14:40:29  southa
+ * Intro cutscene
+ *
  * Revision 1.24  2006/11/21 10:08:24  southa
  * Initial cut scene handling
  *
@@ -147,6 +150,7 @@ public:
     virtual void ClientMailboxConsume(MushGameMailbox& inMailbox);
     virtual void ServerMailboxConsume(MushGameMailbox& inMailbox);
     virtual void TimingSequence(void);
+    virtual void Tick100msSequence(void);
     virtual void ClientReceiveSequence(void);
     virtual void ServerReceiveSequence(void);
     virtual void ClientSendSequence(void);

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } JEl8u3tSeBwn5gc+6YHOmQ
 /*
- * $Id: MushMeshDivide.h,v 1.3 2005/05/19 13:02:10 southa Exp $
+ * $Id: MushMeshDivide.h,v 1.4 2006/06/01 15:39:29 southa Exp $
  * $Log: MushMeshDivide.h,v $
+ * Revision 1.4  2006/06/01 15:39:29  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.3  2005/05/19 13:02:10  southa
  * Mac release work
  *
@@ -107,9 +110,6 @@ MushMeshDivide::Divide(std::vector<V>& outVert, MushMeshGroup& outGroup,
         ++destFace1;
         destFacet1=0;
     }
-    //std::cout << "inGroup= " << inGroup << endl;
-    //std::cout << "outGroup= " << outGroup << endl;
-    //throw "die";
 }
 
 //%includeGuardEnd {

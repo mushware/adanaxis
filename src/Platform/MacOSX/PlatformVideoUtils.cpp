@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } vRSkWrGbuq+m7eRcwoLkDA
 /*
- * $Id: PlatformVideoUtils.cpp,v 1.21 2006/07/28 16:52:25 southa Exp $
+ * $Id: PlatformVideoUtils.cpp,v 1.22 2006/11/25 21:26:33 southa Exp $
  * $Log: PlatformVideoUtils.cpp,v $
+ * Revision 1.22  2006/11/25 21:26:33  southa
+ * Display mode definitions
+ *
  * Revision 1.21  2006/07/28 16:52:25  southa
  * Options work
  *
@@ -177,7 +180,7 @@ const GLModeDef&
 PlatformVideoUtils::PreviousModeDef(const GLModeDef& inModeDef) const
 {
     U32 modeNum = ModeDefFind(inModeDef);
-    cout << "modeNum=" << modeNum;
+
     if (modeNum == 0)
     {
         modeNum = m_modeDefs.size() - 1;

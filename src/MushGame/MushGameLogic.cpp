@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } o9Dxm/e8GypZNPSRXLgJNQ
 /*
- * $Id: MushGameLogic.cpp,v 1.38 2006/11/23 14:40:29 southa Exp $
+ * $Id: MushGameLogic.cpp,v 1.39 2006/12/11 18:54:18 southa Exp $
  * $Log: MushGameLogic.cpp,v $
+ * Revision 1.39  2006/12/11 18:54:18  southa
+ * Positional audio
+ *
  * Revision 1.38  2006/11/23 14:40:29  southa
  * Intro cutscene
  *
@@ -317,10 +320,6 @@ MushGameLogic::JobMessageConsume(MushGameLogic& ioLogic, const MushGameMessage& 
     }
     else
     {
-        // MushcoreXMLOStream xmlOut(std::cout);
-        // xmlOut << SaveData().JobList();
-        // xmlOut << HostSaveData().JobList();
-        
         throw MushcoreDataFail(std::string("Unknown job ID '")+jobName+"' in message type '"+inMessage.AutoName()+"'");
     }
 }
@@ -660,7 +659,20 @@ MushGameLogic::TickerSequence(void)
     {
         PlayerTicker(*p);
     }
-    MediaAudio::Sgl().Ticker();
+    
+    Mushware::U32 timeNow = MushGameUtil::AppHandler().MillisecondsGet();
+
+    if (timeNow - VolatileData().Last100msTickMsec() >= 100)
+    {
+        Tick100msSequence();
+        VolatileData().Last100msTickMsecSet(timeNow);
+    }
+}
+
+void
+MushGameLogic::Tick100msSequence(void)
+{
+    MediaAudio::Sgl().Ticker();    
 }
 
 void

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } p0GuLXistjNnwtBEutxN2Q
 /*
- * $Id: MushMesh4Face.cpp,v 1.8 2006/06/01 15:39:28 southa Exp $
+ * $Id: MushMesh4Face.cpp,v 1.9 2006/06/19 15:57:17 southa Exp $
  * $Log: MushMesh4Face.cpp,v $
+ * Revision 1.9  2006/06/19 15:57:17  southa
+ * Materials
+ *
  * Revision 1.8  2006/06/01 15:39:28  southa
  * DrawArray verification and fixes
  *
@@ -114,9 +117,6 @@ MushMesh4Face::ConnectedVertexInFacetFind(Mushware::U32& outNum, Mushware::U32 i
     tVertexConnectivity::iterator vertexConnection = m_vertexConnectivity.find(inVertNum);
     if (vertexConnection == m_vertexConnectivity.end())
     {
-        cout << "inFacetNum=" << inFacetNum << endl;
-        MushcoreXMLOStream xmlOut(cout);
-        xmlOut << *this;
         ostringstream message;
         message << "Request for connected vertex " << inVertNum << " not in face";
         throw MushcoreDataFail(message.str());

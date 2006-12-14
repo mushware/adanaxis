@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } NYmv5MZn7NEYPYHpc3JV8Q
 /*
- * $Id: MushGLV.cpp,v 1.20 2006/09/07 16:38:51 southa Exp $
+ * $Id: MushGLV.cpp,v 1.21 2006/11/09 23:53:59 southa Exp $
  * $Log: MushGLV.cpp,v $
+ * Revision 1.21  2006/11/09 23:53:59  southa
+ * Explosion and texture loading
+ *
  * Revision 1.20  2006/09/07 16:38:51  southa
  * Vertex shader
  *
@@ -328,7 +331,7 @@ MushGLV::DrawArraysVerify(GLenum inMode, GLint inFirst, GLsizei inCount) const
 		if (pVertexBuffer->IsVertexBuffer())
 		{
 			U32 requiredSize = inFirst + inCount;
-			// cout << "pVertexArray=" << pVertexArray << ", inFirst=" << inFirst << ", inCount=" << inCount << ", Size()=" << pVertexBuffer->Size() << endl;
+
 		    MUSHCOREASSERT(requiredSize <= pVertexBuffer->Size());
 			
 			pVertexBuffer->Bind();
@@ -345,7 +348,6 @@ MushGLV::DrawArraysVerify(GLenum inMode, GLint inFirst, GLsizei inCount) const
 		{
 			U32 requiredSize = inFirst + inCount;
 
-			// cout << "pColourArray=" << pColourArray << ", inFirst=" << inFirst << ", inCount=" << inCount << ", Size()=" << pColourBuffer->Size() << endl;
 		    MUSHCOREASSERT(requiredSize <= pColourBuffer->Size());
 
 			pColourBuffer->Bind();
@@ -364,7 +366,6 @@ MushGLV::DrawArraysVerify(GLenum inMode, GLint inFirst, GLsizei inCount) const
 			
 			if (pTexCoordBuffer->IsVertexBuffer())
 			{
-				// cout << "pTexCoordArray=" << pTexCoordArray << ", inFirst=" << inFirst << ", inCount=" << inCount << ", Size()=" << pTexCoordBuffer->Size() << endl;
 				MUSHCOREASSERT(requiredSize <= pTexCoordBuffer->Size());
 				pTexCoordBuffer->Bind();
 				BufferValidate(sizeof(MushGLBuffers::tTexCoord) * requiredSize);

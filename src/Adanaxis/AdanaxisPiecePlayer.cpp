@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } gq+r6M5XzKqE/mgjgvunrQ
 /*
- * $Id: AdanaxisPiecePlayer.cpp,v 1.9 2006/11/02 09:47:33 southa Exp $
+ * $Id: AdanaxisPiecePlayer.cpp,v 1.10 2006/11/03 18:46:33 southa Exp $
  * $Log: AdanaxisPiecePlayer.cpp,v $
+ * Revision 1.10  2006/11/03 18:46:33  southa
+ * Damage effectors
+ *
  * Revision 1.9  2006/11/02 09:47:33  southa
  * Player weapon control
  *
@@ -131,6 +134,7 @@
 
 #include "AdanaxisPiecePlayer.h"
 
+#include "AdanaxisAppHandler.h"
 #include "AdanaxisConfig.h"
 #include "AdanaxisEvents.h"
 #include "AdanaxisIntern.h"
@@ -155,6 +159,8 @@ AdanaxisPiecePlayer::AdanaxisPiecePlayer(const std::string& inID, const MushRuby
 	m_projectileMeshRef("projectile")
 {
     RubyPieceConstructor(inID, inParams, AdanaxisIntern::Sgl().AdanaxisPiecePlayer());
+    m_lastAxes.resize(AdanaxisConfig::kNumAxes, 0);
+    m_lastAxisValid.resize(AdanaxisConfig::kNumAxes, false);
 }
 
 AdanaxisPiecePlayer::~AdanaxisPiecePlayer()
@@ -172,9 +178,11 @@ AdanaxisPiecePlayer::PreControl(MushGameLogic& ioLogic)
 void
 AdanaxisPiecePlayer::Move(MushGameLogic& ioLogic, const tVal inFrameslice)
 {
+    MushMeshPosticity entryPost = Post();
     MushGamePiece::Move(ioLogic, inFrameslice);
 
     PostWRef().InPlaceVelocityAdd();
+    MushMeshPosticity exitPost = Post();
 }
 
 void
@@ -206,7 +214,13 @@ AdanaxisPiecePlayer::AxisDeltaHandle(Mushware::tVal inDelta, Mushware::U32 inAxi
             default:
                 throw MushcoreLogicFail("Axis value fault");
         }
+
         Post().AngPos().VectorRotate(vel);
+        if (vel.Magnitude() > 10.0)
+        {
+            cout << "inDelta=" << inDelta << endl;
+            MUSHCOREASSERT(false);
+        }
         PostWRef().VelWRef() += vel;
     }
     else
@@ -264,37 +278,30 @@ AdanaxisPiecePlayer::ControlInfoConsume(MushGameLogic& ioLogic, const MushGameMe
     Mushware::U32 axisEventsSize = inMessage.AxisEvents().size();
     Mushware::U32 lastAxesSize = m_lastAxes.size();
     
-    if (lastAxesSize > 0)
+    for (U32 i=0; i<axisEventsSize; ++i)
     {
-        for (U32 i=0; i<axisEventsSize; ++i)
+        U32 axisNum = inMessage.AxisEvents()[i].first;
+        tVal axisValue = inMessage.AxisEvents()[i].second;
+        
+        if (axisNum <= lastAxesSize)
         {
-            U32 axisNum = inMessage.AxisEvents()[i].first;
-            tVal axisValue = inMessage.AxisEvents()[i].second;
-            
-            if (axisNum <= lastAxesSize)
+            if (m_lastAxisValid[axisNum])
             {
                 AxisDeltaHandle(m_lastAxes[axisNum] - axisValue, axisNum);
-                m_lastAxes[axisNum] = axisValue;
             }
             else
             {
-                throw MushcoreDataFail(std::string("Axis number too high in")+AutoName());
+                if (axisNum == AdanaxisConfig::kAxisW)
+                {
+                    cout << "Dumped as invalid m_lastAxes[kAxisW]=" << m_lastAxes[axisNum] << " axisValue=" << axisValue << endl;
+                }
+                m_lastAxisValid[axisNum] = true;
             }
+            m_lastAxes[axisNum] = axisValue;
         }
-    }
-    else
-    {
-        m_lastAxes.resize(AdanaxisConfig::kNumAxes, 0);
-        lastAxesSize = m_lastAxes.size();
-        for (U32 i=0; i<axisEventsSize; ++i)
+        else
         {
-            U32 axisNum = inMessage.AxisEvents()[i].first;
-            tVal axisValue = inMessage.AxisEvents()[i].second;
-            
-            if (axisNum <= lastAxesSize)
-            {
-                m_lastAxes[axisNum] = axisValue;
-            }
+            throw MushcoreDataFail(std::string("Axis number too high in")+AutoName());
         }
     }
     
@@ -473,6 +480,7 @@ AdanaxisPiecePlayer::AutoPrint(std::ostream& ioOut) const
     ioOut << "[";
     MushGamePiecePlayer::AutoPrint(ioOut);
     ioOut << "lastAxes=" << m_lastAxes << ", ";
+    ioOut << "lastAxisValid=" << m_lastAxisValid << ", ";
     ioOut << "projectileMeshRef=" << m_projectileMeshRef;
     ioOut << "]";
 }
@@ -488,6 +496,10 @@ AdanaxisPiecePlayer::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::str
     else if (inTagStr == "lastAxes")
     {
         ioIn >> m_lastAxes;
+    }
+    else if (inTagStr == "lastAxisValid")
+    {
+        ioIn >> m_lastAxisValid;
     }
     else if (inTagStr == "projectileMeshRef")
     {
@@ -509,7 +521,9 @@ AdanaxisPiecePlayer::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     MushGamePiecePlayer::AutoXMLPrint(ioOut);
     ioOut.TagSet("lastAxes");
     ioOut << m_lastAxes;
+    ioOut.TagSet("lastAxisValid");
+    ioOut << m_lastAxisValid;
     ioOut.TagSet("projectileMeshRef");
     ioOut << m_projectileMeshRef;
 }
-//%outOfLineFunctions } id3utxZnuurbzRNn59r7aQ
+//%outOfLineFunctions } WcArcTkDTA8IQuMVJMnmWA

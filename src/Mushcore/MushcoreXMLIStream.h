@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } FTjMuoWgWldTNGYATLOOjw
 /*
- * $Id: MushcoreXMLIStream.h,v 1.33 2006/06/16 12:11:06 southa Exp $
+ * $Id: MushcoreXMLIStream.h,v 1.34 2006/06/29 10:12:36 southa Exp $
  * $Log: MushcoreXMLIStream.h,v $
+ * Revision 1.34  2006/06/29 10:12:36  southa
+ * 64 bit compatibility fixes
+ *
  * Revision 1.33  2006/06/16 12:11:06  southa
  * Ruby subclasses
  *
@@ -209,7 +212,6 @@ MushcoreXMLIStream::ByteTake(void)
     {
         InputFetch();
     }
-    // cout << "took '" << m_contentStr[m_contentStart] << "'" << endl;
     return m_contentStr[m_contentStart++];
 }
 
@@ -268,6 +270,19 @@ inline void
 operator>>(MushcoreXMLIStream& ioIn, std::vector<T>& outObj)
 {
     ioIn.ObjectRead(outObj);
+}
+
+template<>
+inline void
+operator>>(MushcoreXMLIStream& ioIn, std::vector<bool>& outObj)
+{
+    std::vector<Mushware::tXMLVal> xmlVals;
+    ioIn.ObjectRead(xmlVals);
+    outObj.resize(xmlVals.size());
+    for (Mushware::U32 i=0; i<outObj.size(); ++i)
+    {
+        outObj[i] = !(!xmlVals[i]);
+    }
 }
 
 template<class T>

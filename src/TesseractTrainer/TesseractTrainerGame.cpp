@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 0c6cEpe2NbQ1Mx+x8GRiCA
 /*
- * $Id: TesseractTrainerGame.cpp,v 1.25 2005/07/02 00:42:38 southa Exp $
+ * $Id: TesseractTrainerGame.cpp,v 1.26 2006/05/11 10:43:18 southa Exp $
  * $Log: TesseractTrainerGame.cpp,v $
+ * Revision 1.26  2006/05/11 10:43:18  southa
+ * Project updates
+ *
  * Revision 1.25  2005/07/02 00:42:38  southa
  * Conditioning tweaks
  *
@@ -533,7 +536,7 @@ TesseractTrainerGame::SwapIn(GameAppHandler& inAppHandler)
         MushGLV::Sgl().Acquaint();
         if (MushcoreEnv::Sgl().VariableExists("TT_DUMP_MUSHGLV"))
         {
-            std::cout << MushGLV::Sgl() << endl;
+            MushcoreLog::Sgl().InfoLog() << MushGLV::Sgl() << endl;
         }
     }
     catch (...)

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } H3ST5h4h3xAlbP2DXml2uQ
 /*
- * $Id: MushGamePiecePlayer.cpp,v 1.2 2006/10/09 16:00:17 southa Exp $
+ * $Id: MushGamePiecePlayer.cpp,v 1.3 2006/11/02 09:47:33 southa Exp $
  * $Log: MushGamePiecePlayer.cpp,v $
+ * Revision 1.3  2006/11/02 09:47:33  southa
+ * Player weapon control
+ *
  * Revision 1.2  2006/10/09 16:00:17  southa
  * Intern generation
  *
@@ -104,6 +107,7 @@ void
 MushGamePiecePlayer::ControlMailboxNameSet(const std::string& inName)
 {
     m_controlMailboxRef.NameSet(inName);
+    m_controlMailboxRef.WRef().DiscardAll(); // Purge mailbox
     m_useControlMailbox = true;
 }
 
@@ -151,7 +155,6 @@ MushGamePiecePlayer::ServerSideFire(MushGameLogic& ioLogic)
 void
 MushGamePiecePlayer::UplinkPlayerConsume(MushGameLogic& ioLogic, const MushGameMessageUplinkPlayer& inMessage)
 {
-    // cout << inMessage << endl;
     PostSet(inMessage.Post());
     if (inMessage.FireState() && !FireState())
     {

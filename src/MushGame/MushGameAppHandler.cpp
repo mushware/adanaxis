@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } bC49LKe3G5tsyGqAVa5gyw
 /*
- * $Id: MushGameAppHandler.cpp,v 1.21 2006/11/08 18:30:54 southa Exp $
+ * $Id: MushGameAppHandler.cpp,v 1.22 2006/11/25 21:26:32 southa Exp $
  * $Log: MushGameAppHandler.cpp,v $
+ * Revision 1.22  2006/11/25 21:26:32  southa
+ * Display mode definitions
+ *
  * Revision 1.21  2006/11/08 18:30:54  southa
  * Key and axis configuration
  *
@@ -357,6 +360,7 @@ MushGameAppHandler::FillControlPipe(void)
                 aControlInfo.reset(new MushGameMessageControlInfo);
                 aControlInfo->TimestampSet(msecNow);
             }
+
             aControlInfo->AxisEventsWRef().push_back(tMessage::tAxisEvent(i, axisDefRef.Pos()));
             axisDefRef.PosHasMovedSet(false);
         }

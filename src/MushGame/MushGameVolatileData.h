@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } zS6MRI08vU38Tp9aNbV8RQ
 /*
- * $Id: MushGameVolatileData.h,v 1.11 2006/11/08 11:35:00 southa Exp $
+ * $Id: MushGameVolatileData.h,v 1.12 2006/11/21 10:08:24 southa Exp $
  * $Log: MushGameVolatileData.h,v $
+ * Revision 1.12  2006/11/21 10:08:24  southa
+ * Initial cut scene handling
+ *
  * Revision 1.11  2006/11/08 11:35:00  southa
  * Basic frame rate independence
  *
@@ -100,6 +103,7 @@ private:
     Mushware::tVal m_averageMsecPerFrame; //:readwrite
     Mushware::U32 m_movesThisFrame; //:readwrite
     Mushware::U32 m_cutSceneNum; //:readwrite
+    Mushware::U32 m_last100msTickMsec; //:readwrite
     
 //%classPrototypes {
 public:
@@ -129,6 +133,8 @@ public:
     void MovesThisFrameSet(const Mushware::U32& inValue) { m_movesThisFrame=inValue; }
     const Mushware::U32& CutSceneNum(void) const { return m_cutSceneNum; }
     void CutSceneNumSet(const Mushware::U32& inValue) { m_cutSceneNum=inValue; }
+    const Mushware::U32& Last100msTickMsec(void) const { return m_last100msTickMsec; }
+    void Last100msTickMsecSet(const Mushware::U32& inValue) { m_last100msTickMsec=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -136,7 +142,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } IVVOCO21CIdeqCqUGEXB6Q
+//%classPrototypes } OB7+aF99uQvAV3cKjdMwvQ
 };
 //%inlineHeader {
 inline std::ostream&

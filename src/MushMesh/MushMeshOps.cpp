@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } HaLoYu5we87ZVmvqmawJFQ
 /*
- * $Id: MushMeshOps.cpp,v 1.7 2005/07/18 13:13:36 southa Exp $
+ * $Id: MushMeshOps.cpp,v 1.8 2006/06/01 15:39:30 southa Exp $
  * $Log: MushMeshOps.cpp,v $
+ * Revision 1.8  2006/06/01 15:39:30  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.7  2005/07/18 13:13:36  southa
  * Extrude to point and projectile mesh
  *
@@ -136,11 +139,6 @@ MushMeshOps::RotationMatrixToQuaternionPair(Mushware::tQValPair& outPair, const 
     
     t4x4Val mS = PreQuaternionToMatrix(qS.Conjugate());
     t4x4Val mP = mS * inMatrix;
-    
-    //std::cout << "mA=" << inMatrix << endl;
-    //std::cout << "qS=" << qS << endl;
-    //std::cout << "mS=" << mS << endl;
-    //std::cout << "mP=" << mP << endl;
     
     tVal p11 = mP.RCGet(1, 1);
     tVal p22 = mP.RCGet(2, 2);

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 8tMCfPZonLS7CeXZGLc+9g
 /*
- * $Id: TesseractTrainerPixelSource.cpp,v 1.7 2006/06/01 15:40:00 southa Exp $
+ * $Id: TesseractTrainerPixelSource.cpp,v 1.8 2006/06/29 23:57:57 southa Exp $
  * $Log: TesseractTrainerPixelSource.cpp,v $
+ * Revision 1.8  2006/06/29 23:57:57  southa
+ * Mac OS X library fixes
+ *
  * Revision 1.7  2006/06/01 15:40:00  southa
  * DrawArray verification and fixes
  *
@@ -68,12 +71,10 @@ TesseractTrainerPixelSource::BufferFill(Mushware::U32 * const outPtr, const Mush
 {
     tVal scale = static_cast<tVal>(std::max(inSize.X(), inSize.Y())) / std::sqrt(2.0);
     tVal scale_m1 = static_cast<tVal>(std::max(inSize.X(), inSize.Y()) - 1) / std::sqrt(2.0);
-    //cout << "scale=" <<scale << endl;
+
     t3x3Val transform(t3Val(1/scale_m1, 0, -(inSize.X()/(2*scale))),
                       t3Val(0, 1/scale_m1, -(inSize.Y()/(2*scale))),
                       t3Val(0, 0, 1));
-    //cout << "transform=" << transform << endl;
-    //cout << "inSize=" << inSize << endl;
 
     for (U32 y=0; y<inSize.Y(); ++y)
     {
@@ -100,10 +101,6 @@ TesseractTrainerPixelSource::BufferFill(Mushware::U32 * const outPtr, const Mush
             *destPtr++ = 0xff;
             *destPtr++ = 0xff;
             *destPtr++ = static_cast<U8>(alpha * 0xff);
-            if (x == 0 || x == 127 || x == 128 || x == 255)
-            {
-                //cout << "orig. vert=" << t3Val(x, y, 1) << ", vert=" << vert << "alpha=" << alpha << endl;   
-            }
         }
     }
 }

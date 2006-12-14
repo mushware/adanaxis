@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } eAXK2shReRuPxk9ARzaGHA
 /*
- * $Id: MushGameUtil.cpp,v 1.15 2006/09/29 10:47:56 southa Exp $
+ * $Id: MushGameUtil.cpp,v 1.16 2006/10/04 13:35:24 southa Exp $
  * $Log: MushGameUtil.cpp,v $
+ * Revision 1.16  2006/10/04 13:35:24  southa
+ * Selective targetting
+ *
  * Revision 1.15  2006/09/29 10:47:56  southa
  * Object AI
  *
@@ -271,5 +274,4 @@ MushGameUtil::ObjectNameDecode(std::string& outPrefix, Mushware::U32& outNumber,
     {
         throw MushcoreDataFail("Cannot decode object name from '"+inName+"'");
     }
-    // cout << "Decoded " << inName << " to '" << outPrefix << "' '" << outNumber << "'" << endl; 
 }

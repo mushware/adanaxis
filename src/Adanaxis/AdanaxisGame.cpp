@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } 0Sg2qcftBJTnB0QxDEkq2Q
 /*
- * $Id: AdanaxisGame.cpp,v 1.55 2006/11/09 23:53:59 southa Exp $
+ * $Id: AdanaxisGame.cpp,v 1.56 2006/11/25 21:26:31 southa Exp $
  * $Log: AdanaxisGame.cpp,v $
+ * Revision 1.56  2006/11/25 21:26:31  southa
+ * Display mode definitions
+ *
  * Revision 1.55  2006/11/09 23:53:59  southa
  * Explosion and texture loading
  *
@@ -308,7 +311,7 @@ AdanaxisGame::LocalGameCreate(MushGameAppHandler& inAppHandler)
 
 void
 AdanaxisGame::Init(MushGameAppHandler& inAppHandler)
-{    
+{
     MushMeshLibraryBase::SingletonMutate(new AdanaxisMeshLibrary);
     MushMesh4Maker::SingletonMutate(new MushMeshLibraryMaker);
 
@@ -434,7 +437,7 @@ AdanaxisGame::SwapIn(MushGameAppHandler& inAppHandler)
             MushGLV::Sgl().Acquaint();
             if (MushcoreEnv::Sgl().VariableExists("MUSHGL_DUMP_MUSHGLV"))
             {
-                std::cout << MushGLV::Sgl() << endl;
+                MushcoreLog::Sgl().InfoLog() << MushGLV::Sgl() << endl;
             }
         }
         else

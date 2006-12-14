@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } lrxo7zjvVsITCt7aHzGlWA
 /*
- * $Id: MushMesh4Util.cpp,v 1.2 2005/08/01 17:58:25 southa Exp $
+ * $Id: MushMesh4Util.cpp,v 1.3 2006/06/01 15:39:28 southa Exp $
  * $Log: MushMesh4Util.cpp,v $
+ * Revision 1.3  2006/06/01 15:39:28  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.2  2005/08/01 17:58:25  southa
  * Object explosion
  *
@@ -159,13 +162,6 @@ MushMesh4Util::NullFacetsRemove(MushMesh4Mesh& ioMesh, Mushware::U32 inFaceNum)
         }
         srcVertexNum += srcGroupSize;
     }
-    
-#if 0
-    cout << "srcVertexListRef=" << srcVertexListRef << endl;
-    cout << "srcGroupSizeRef=" << srcGroupSizeRef << endl;
-    cout << "newVertexList=" << newVertexList << endl;
-    cout << "newGroupSizeList=" << newGroupSizeList << endl;
-#endif
     
     if (modified)
     {

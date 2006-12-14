@@ -25,8 +25,11 @@
 /* Name changed from MediaAudio to MediaAudioSDL 2002/08/23 */
 
 /*
- * $Id: MediaAudioSDL.h,v 1.17 2006/12/11 15:01:48 southa Exp $
+ * $Id: MediaAudioSDL.h,v 1.18 2006/12/11 18:54:18 southa Exp $
  * $Log: MediaAudioSDL.h,v $
+ * Revision 1.18  2006/12/11 18:54:18  southa
+ * Positional audio
+ *
  * Revision 1.17  2006/12/11 15:01:48  southa
  * Snapshot
  *
@@ -147,6 +150,7 @@ private:
     Mix_Music *m_music;
     Mushware::U32 m_audioVolume;
     mutable Mushware::U32 m_errCtr;
+    Mushware::U32 m_lastTickerMsec;
 };
 
 //%includeGuardEnd {

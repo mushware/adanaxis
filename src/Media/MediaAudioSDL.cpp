@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } ccLCYRn/kYU+5Rp9coVdng
 /*
- * $Id: MediaAudioSDL.cpp,v 1.29 2006/12/11 15:01:48 southa Exp $
+ * $Id: MediaAudioSDL.cpp,v 1.30 2006/12/11 18:54:18 southa Exp $
  * $Log: MediaAudioSDL.cpp,v $
+ * Revision 1.30  2006/12/11 18:54:18  southa
+ * Positional audio
+ *
  * Revision 1.29  2006/12/11 15:01:48  southa
  * Snapshot
  *
@@ -197,6 +200,8 @@ MediaAudioSDL::MediaAudioSDL():
     }
     m_softChannels = Mix_AllocateChannels(audioSoftChannels);
     ChannelDefsResize(m_softChannels, MediaAudioSDLChannelDef());
+    
+    m_lastTickerMsec = SDL_GetTicks();
 }
 
 MediaAudioSDL::~MediaAudioSDL()
@@ -276,6 +281,15 @@ void
 MediaAudioSDL::Play(MediaSound& inSound, Mushware::tVal inVolume, Mushware::t4Val inPosition,
                     Mushware::U32 inFlags)
 {
+    if (SDL_GetTicks() - m_lastTickerMsec > 10000)
+    {
+        static bool errorReported = false;
+        if (!errorReported)
+        {
+            MushcoreLog::Sgl().WarningLog() << "MediaAudioSDL tikcer not being called" << endl;
+            errorReported = true;
+        }
+    }
     U32 channel;
     if (ChannelSelect(channel))
     {
@@ -362,6 +376,7 @@ MediaAudioSDL::Ticker(void)
             }
         }
     }
+    m_lastTickerMsec = SDL_GetTicks();
 }
 
 void
@@ -442,6 +457,5 @@ void
 MediaAudioSDL::AudioVolumeSet(Mushware::tVal inVolume)
 {
     m_audioVolume = static_cast<U32>(inVolume*128);
-    cout << "AudioVolumeSet inVolume=" << inVolume << " m_audioVolume=" << m_audioVolume << endl; 
 }
 

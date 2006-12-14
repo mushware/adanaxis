@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } Mac7dWHONvkZIg39sQnwww
 /*
- * $Id: AdanaxisLogic.cpp,v 1.31 2006/11/14 20:28:37 southa Exp $
+ * $Id: AdanaxisLogic.cpp,v 1.32 2006/11/21 10:08:23 southa Exp $
  * $Log: AdanaxisLogic.cpp,v $
+ * Revision 1.32  2006/11/21 10:08:23  southa
+ * Initial cut scene handling
+ *
  * Revision 1.31  2006/11/14 20:28:37  southa
  * Added rail gun
  *
@@ -559,7 +562,6 @@ AdanaxisLogic::EffectorsFullCollide(void)
                     MushCollisionResolver::Sgl().Resolve(collInfo, *p, *q);
                     if (collInfo.SeparatingDistance() <= 0 && projOwner != q->Id())
                     {
-                        // cout << "Hit k" << endl;
                         collInfo.ObjectName1Set(p->Id());
                         collInfo.ObjectName2Set(q->Id());
                         collInfo.ObjectNamesValidSet(true);
@@ -577,7 +579,6 @@ AdanaxisLogic::EffectorsFullCollide(void)
                     MushCollisionResolver::Sgl().Resolve(collInfo, *p, *q);
                     if (collInfo.SeparatingDistance() <= 0 && projOwner != q->Id())
                     {
-                        // cout << "Hit p" << endl;
                         collInfo.ObjectName1Set(p->Id());
                         collInfo.ObjectName2Set(q->Id());
                         collInfo.ObjectNamesValidSet(true);

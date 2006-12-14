@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } WMShka8Hj2wrlOceGnqYjw
 /*
- * $Id: AdanaxisPiecePlayer.h,v 1.3 2006/10/17 15:28:01 southa Exp $
+ * $Id: AdanaxisPiecePlayer.h,v 1.4 2006/10/30 17:03:51 southa Exp $
  * $Log: AdanaxisPiecePlayer.h,v $
+ * Revision 1.4  2006/10/30 17:03:51  southa
+ * Remnants creation
+ *
  * Revision 1.3  2006/10/17 15:28:01  southa
  * Player collisions
  *
@@ -100,6 +103,7 @@ public:
     
 private:
     std::vector<Mushware::tVal> m_lastAxes;
+    std::vector<bool> m_lastAxisValid;
 	MushcoreDataRef<MushMesh4Mesh> m_projectileMeshRef;
 
     static Mushware::tRubyValue m_rubyKlass; // Must duplicate this in derived classes

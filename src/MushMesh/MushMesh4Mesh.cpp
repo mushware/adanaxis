@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } oYzojPrY+iq5d6Z2oF715A
 /*
- * $Id: MushMesh4Mesh.cpp,v 1.21 2006/09/09 11:16:41 southa Exp $
+ * $Id: MushMesh4Mesh.cpp,v 1.22 2006/10/05 15:39:17 southa Exp $
  * $Log: MushMesh4Mesh.cpp,v $
+ * Revision 1.22  2006/10/05 15:39:17  southa
+ * Explosion handling
+ *
  * Revision 1.21  2006/09/09 11:16:41  southa
  * One-time vertex buffer generation
  *
@@ -260,8 +263,6 @@ MushMesh4Mesh::NumFacetsBuild(void) const
 void
 MushMesh4Mesh::FaceConnectivityBuild(Mushware::U32 inFaceNum) const
 {
-    // cout << "Face connectivity for face " << inFaceNum <<  endl;
-
     const MushMesh4Face& srcFaceRef = Face(inFaceNum);
     
     const MushMesh4Face::tVertexList& srcUniqueVertexListRef = srcFaceRef.UniqueVertexList();
@@ -357,7 +358,6 @@ MushMesh4Mesh::FaceConnectivityBuild(Mushware::U32 inFaceNum) const
         }
         if (faceConnected)
         {
-            // cout << "Face " << inFaceNum << " is connected to face " << i << " via " << srcFacetNum << " -> " << testFacetNum << endl;
             tFace::tFaceConnection connection;
             connection.FaceNumSet(i);
             connection.LocalFacetNumSet(srcFacetNum);
