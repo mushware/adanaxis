@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } zS6MRI08vU38Tp9aNbV8RQ
 /*
- * $Id: MushGameVolatileData.h,v 1.12 2006/11/21 10:08:24 southa Exp $
+ * $Id: MushGameVolatileData.h,v 1.13 2006/12/14 00:33:49 southa Exp $
  * $Log: MushGameVolatileData.h,v $
+ * Revision 1.13  2006/12/14 00:33:49  southa
+ * Control fix and audio pacing
+ *
  * Revision 1.12  2006/11/21 10:08:24  southa
  * Initial cut scene handling
  *
@@ -97,6 +100,7 @@ private:
     Mushware::tMsec m_lastGameMsec; //:readwrite
     Mushware::tMsec m_frameMsec; //:readwrite
     MushRubyValue m_rubyGame; //:readwrite
+	MushRubyValue m_rubyLogic; //:readwrite
     Mushware::U32 m_gameMode; //:readwrite
     bool m_preCache; //:readwrite
     bool m_isMenuBackdrop; //:readwrite
@@ -121,6 +125,8 @@ public:
     void FrameMsecSet(const Mushware::tMsec& inValue) { m_frameMsec=inValue; }
     const MushRubyValue& RubyGame(void) const { return m_rubyGame; }
     void RubyGameSet(const MushRubyValue& inValue) { m_rubyGame=inValue; }
+    const MushRubyValue& RubyLogic(void) const { return m_rubyLogic; }
+    void RubyLogicSet(const MushRubyValue& inValue) { m_rubyLogic=inValue; }
     const Mushware::U32& GameMode(void) const { return m_gameMode; }
     void GameModeSet(const Mushware::U32& inValue) { m_gameMode=inValue; }
     const bool& PreCache(void) const { return m_preCache; }
@@ -142,7 +148,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } OB7+aF99uQvAV3cKjdMwvQ
+//%classPrototypes } vBR/v8nVESdG2DBnpmliJg
 };
 //%inlineHeader {
 inline std::ostream&

@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } WBiqbvbumO43Eps7fHh03A
 /*
- * $Id: AdanaxisIntern.h,v 1.16 2006/11/14 20:28:36 southa Exp $
+ * $Id: AdanaxisIntern.h,v 1.17 2006/11/21 10:08:23 southa Exp $
  * $Log: AdanaxisIntern.h,v $
+ * Revision 1.17  2006/11/21 10:08:23  southa
+ * Initial cut scene handling
+ *
  * Revision 1.16  2006/11/14 20:28:36  southa
  * Added rail gun
  *
@@ -87,7 +90,9 @@
     @m_state
     mCollisionEventConsume
     mCutSceneRender
+    mHandlePreCacheEnd
     mMenuRender
+    mReceiveSequence
     mRender
   }
   classes = %w{
@@ -126,7 +131,9 @@ public:
     Mushware::tRubyID ATm_state(void) { return m_ATm_state; }
     Mushware::tRubyID mCollisionEventConsume(void) { return m_mCollisionEventConsume; }
     Mushware::tRubyID mCutSceneRender(void) { return m_mCutSceneRender; }
+    Mushware::tRubyID mHandlePreCacheEnd(void) { return m_mHandlePreCacheEnd; }
     Mushware::tRubyID mMenuRender(void) { return m_mMenuRender; }
+    Mushware::tRubyID mReceiveSequence(void) { return m_mReceiveSequence; }
     Mushware::tRubyID mRender(void) { return m_mRender; }
 private:
     MushRubyValue m_klassAdanaxisEventFire;
@@ -145,9 +152,11 @@ private:
     Mushware::tRubyID m_ATm_state;
     Mushware::tRubyID m_mCollisionEventConsume;
     Mushware::tRubyID m_mCutSceneRender;
+    Mushware::tRubyID m_mHandlePreCacheEnd;
     Mushware::tRubyID m_mMenuRender;
+    Mushware::tRubyID m_mReceiveSequence;
     Mushware::tRubyID m_mRender;
-//%declarations } 7a9483578b3e5136733fa5fcdec392bb
+//%declarations } 176e39c2c2f9c7133abd58eaed482b80
 
 //%classPrototypes {
 public:

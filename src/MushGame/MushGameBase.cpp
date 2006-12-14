@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 72jYu/IZevqg7bsvRKLvxw
 /*
- * $Id: MushGameBase.cpp,v 1.7 2006/11/01 13:04:21 southa Exp $
+ * $Id: MushGameBase.cpp,v 1.8 2006/11/25 21:26:33 southa Exp $
  * $Log: MushGameBase.cpp,v $
+ * Revision 1.8  2006/11/25 21:26:33  southa
+ * Display mode definitions
+ *
  * Revision 1.7  2006/11/01 13:04:21  southa
  * Initial weapon handling
  *
@@ -45,6 +48,8 @@
  */
 
 #include "MushGameBase.h"
+
+#include "MushGameIntern.h"
 
 #include "API/mushMushGL.h"
 
@@ -83,12 +88,20 @@ MushGameBase::KeyboardSignal(const GLKeyboardSignal& inSignal, MushGameAppHandle
     }
     else if (inSignal.keyValue == 27 && inSignal.keyDown)
     {
-        if (LogicRef().Ref().IsGameMode())
+        if (LogicRef().Ref().IsGameMode() || LogicRef().Ref().IsCutSceneMode())
         {
             LogicRef().WRef().MenuModeEnter();
         }
         keyHandled = true;
     }
+    else if (LogicRef().Ref().IsCutSceneMode())
+    {
+        MushRubyExec::Sgl().Call(VolatileDataRef().Ref().RubyGame(), MushGameIntern::Sgl().mCutSceneKeypress(),
+                                 MushRubyValue(inSignal.keyValue),
+                                 MushRubyValue(inSignal.keyModifier),
+                                 MushRubyValue(inSignal.keyDown));
+    }
+    
     return keyHandled;
 }
 

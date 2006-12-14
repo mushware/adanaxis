@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } mqRyosjSblx9ADjVCHc1/g
 /*
- * $Id: AdanaxisIntern.cpp,v 1.13 2006/11/14 20:28:36 southa Exp $
+ * $Id: AdanaxisIntern.cpp,v 1.14 2006/11/21 10:08:23 southa Exp $
  * $Log: AdanaxisIntern.cpp,v $
+ * Revision 1.14  2006/11/21 10:08:23  southa
+ * Initial cut scene handling
+ *
  * Revision 1.13  2006/11/14 20:28:36  southa
  * Added rail gun
  *
@@ -85,7 +88,9 @@ AdanaxisIntern::AdanaxisIntern()
     m_ATm_state = MushRubyIntern::SymbolID("@m_state");
     m_mCollisionEventConsume = MushRubyIntern::SymbolID("mCollisionEventConsume");
     m_mCutSceneRender = MushRubyIntern::SymbolID("mCutSceneRender");
+    m_mHandlePreCacheEnd = MushRubyIntern::SymbolID("mHandlePreCacheEnd");
     m_mMenuRender = MushRubyIntern::SymbolID("mMenuRender");
+    m_mReceiveSequence = MushRubyIntern::SymbolID("mReceiveSequence");
     m_mRender = MushRubyIntern::SymbolID("mRender");
-//%initialisations } 8f9c639a63e521c0714eb0b11128ce54
+//%initialisations } bef48bbd37bd692b48b28c6a132b17e0
 }

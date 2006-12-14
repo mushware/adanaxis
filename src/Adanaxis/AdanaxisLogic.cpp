@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } Mac7dWHONvkZIg39sQnwww
 /*
- * $Id: AdanaxisLogic.cpp,v 1.32 2006/11/21 10:08:23 southa Exp $
+ * $Id: AdanaxisLogic.cpp,v 1.33 2006/12/14 00:33:48 southa Exp $
  * $Log: AdanaxisLogic.cpp,v $
+ * Revision 1.33  2006/12/14 00:33:48  southa
+ * Control fix and audio pacing
+ *
  * Revision 1.32  2006/11/21 10:08:23  southa
  * Initial cut scene handling
  *
@@ -627,7 +630,7 @@ AdanaxisLogic::PreCacheSequence(void)
     
     if (m_preCacheResult >= 100)
     {
-        MushRubyExec::Sgl().Call(VolatileData().RubySpace(), MushRubyIntern::mHandleGameStart());
+        MushRubyExec::Sgl().Call(VolatileData().RubySpace(), AdanaxisIntern::Sgl().mHandlePreCacheEnd());
         PreCacheModeExit();
     }
 }
@@ -648,6 +651,13 @@ AdanaxisLogic::RenderSequence(void)
     }
     
     MushGameLogic::RenderSequence();
+}
+
+void
+AdanaxisLogic::ReceiveSequence(void)
+{
+    MushGameLogic::ReceiveSequence();
+    MushRubyExec::Sgl().Call(VolatileData().RubyLogic(), AdanaxisIntern::Sgl().mReceiveSequence());
 }
 
 void

@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } 0Sg2qcftBJTnB0QxDEkq2Q
 /*
- * $Id: AdanaxisGame.cpp,v 1.56 2006/11/25 21:26:31 southa Exp $
+ * $Id: AdanaxisGame.cpp,v 1.57 2006/12/14 00:33:44 southa Exp $
  * $Log: AdanaxisGame.cpp,v $
+ * Revision 1.57  2006/12/14 00:33:44  southa
+ * Control fix and audio pacing
+ *
  * Revision 1.56  2006/11/25 21:26:31  southa
  * Display mode definitions
  *
@@ -333,6 +336,7 @@ AdanaxisGame::Init(MushGameAppHandler& inAppHandler)
     UpdateFromConfig();
     
 	VolatileData().RubyGameSet(MushRubyExec::Sgl().Call("$currentGame.mLoad"));
+	VolatileData().RubyLogicSet(MushRubyExec::Sgl().Eval("$currentLogic"));
 	VolatileData().RubySpaceSet(MushRubyExec::Sgl().Call("$currentGame.mSpace"));
 	MushRubyExec::Sgl().Call(VolatileData().RubySpace(), "mInitialPiecesCreate");
 	VolatileData().IsMenuBackdropSet(MushRubyExec::Sgl().Call(VolatileData().RubySpace(), "mIsMenuBackdrop").Bool());

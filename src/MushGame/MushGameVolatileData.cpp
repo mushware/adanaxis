@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } mGoZWUiZsKFfWNio1FcVLw
 /*
- * $Id: MushGameVolatileData.cpp,v 1.12 2006/11/21 10:08:24 southa Exp $
+ * $Id: MushGameVolatileData.cpp,v 1.13 2006/12/14 00:33:49 southa Exp $
  * $Log: MushGameVolatileData.cpp,v $
+ * Revision 1.13  2006/12/14 00:33:49  southa
+ * Control fix and audio pacing
+ *
  * Revision 1.12  2006/11/21 10:08:24  southa
  * Initial cut scene handling
  *
@@ -71,6 +74,7 @@ MushGameVolatileData::MushGameVolatileData() :
     m_lastGameMsec(0),
     m_frameMsec(0),
     m_rubyGame(Mushware::kRubyQnil),
+    m_rubyLogic(Mushware::kRubyQnil),
     m_gameMode(kGameModeMenu),
     m_preCache(false),
     m_isMenuBackdrop(false),
@@ -119,6 +123,7 @@ MushGameVolatileData::AutoPrint(std::ostream& ioOut) const
     ioOut << "lastGameMsec=" << m_lastGameMsec << ", ";
     ioOut << "frameMsec=" << m_frameMsec << ", ";
     ioOut << "rubyGame=" << m_rubyGame << ", ";
+    ioOut << "rubyLogic=" << m_rubyLogic << ", ";
     ioOut << "gameMode=" << m_gameMode << ", ";
     ioOut << "preCache=" << m_preCache << ", ";
     ioOut << "isMenuBackdrop=" << m_isMenuBackdrop << ", ";
@@ -164,6 +169,10 @@ MushGameVolatileData::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::st
     else if (inTagStr == "rubyGame")
     {
         ioIn >> m_rubyGame;
+    }
+    else if (inTagStr == "rubyLogic")
+    {
+        ioIn >> m_rubyLogic;
     }
     else if (inTagStr == "gameMode")
     {
@@ -216,6 +225,8 @@ MushGameVolatileData::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_frameMsec;
     ioOut.TagSet("rubyGame");
     ioOut << m_rubyGame;
+    ioOut.TagSet("rubyLogic");
+    ioOut << m_rubyLogic;
     ioOut.TagSet("gameMode");
     ioOut << m_gameMode;
     ioOut.TagSet("preCache");
@@ -231,4 +242,4 @@ MushGameVolatileData::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("last100msTickMsec");
     ioOut << m_last100msTickMsec;
 }
-//%outOfLineFunctions } PuTbYM8vv27+IuEzRgE5jQ
+//%outOfLineFunctions } cW173fn4jFpwriKTrZtOng

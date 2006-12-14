@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } 3LuiErcM0vO3wOyNDCFVeQ
 /*
- * $Id: AdanaxisLogic.h,v 1.22 2006/11/03 18:46:33 southa Exp $
+ * $Id: AdanaxisLogic.h,v 1.23 2006/11/21 10:08:24 southa Exp $
  * $Log: AdanaxisLogic.h,v $
+ * Revision 1.23  2006/11/21 10:08:24  southa
+ * Initial cut scene handling
+ *
  * Revision 1.22  2006/11/03 18:46:33  southa
  * Damage effectors
  *
@@ -120,6 +123,7 @@ public:
     virtual void KhaziMove(void);
     virtual void MoveSequence(void);
     virtual void CollideSequence(void);
+    virtual void ReceiveSequence(void);
     virtual void PreCacheSequence(void);
     virtual void RenderSequence(void);
     virtual void CutSceneSequence(void);

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 8fTAEuGpO9TKg8SBLTUQaw
 /*
- * $Id: MushGameIntern.cpp,v 1.4 2006/10/17 11:05:55 southa Exp $
+ * $Id: MushGameIntern.cpp,v 1.5 2006/10/17 15:28:02 southa Exp $
  * $Log: MushGameIntern.cpp,v $
+ * Revision 1.5  2006/10/17 15:28:02  southa
+ * Player collisions
+ *
  * Revision 1.4  2006/10/17 11:05:55  southa
  * Expiry events
  *
@@ -52,7 +55,8 @@ MushGameIntern::MushGameIntern()
     m_ATm_chunkNum2 = MushRubyIntern::SymbolID("@m_chunkNum2");
     m_ATm_renderScale = MushRubyIntern::SymbolID("@m_renderScale");
     m_mActionTimer = MushRubyIntern::SymbolID("mActionTimer");
+    m_mCutSceneKeypress = MushRubyIntern::SymbolID("mCutSceneKeypress");
     m_mEventConsume = MushRubyIntern::SymbolID("mEventConsume");
     m_mEventHandle = MushRubyIntern::SymbolID("mEventHandle");
-//%initialisations } 3fe70ef9b9740000270cf67524a0a741
+//%initialisations } 2d59f911eb5af794f303a1d7ca7f31ab
 }
