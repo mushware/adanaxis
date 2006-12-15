@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } vRVSInP3NlIJ5gemKhyPvA
 /*
- * $Id: MushFile.h,v 1.1 2006/11/06 12:56:31 southa Exp $
+ * $Id: MushFile.h,v 1.2 2006/11/07 11:08:54 southa Exp $
  * $Log: MushFile.h,v $
+ * Revision 1.2  2006/11/07 11:08:54  southa
+ * Texture loading from mushfiles
+ *
  * Revision 1.1  2006/11/06 12:56:31  southa
  * MushFile work
  *
@@ -33,6 +36,7 @@
 #include "MushFileAccessor.h"
 #include "MushFileFile.h"
 #include "MushFileFilename.h"
+#include "MushFileKeys.h"
 #include "MushFileStandard.h"
 
 //%includeGuardEnd {
