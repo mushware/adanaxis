@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } k6FUmFChxKsln5+gWstxRQ
 /*
- * $Id: MushFileAccessor.h,v 1.1 2006/11/06 12:56:32 southa Exp $
+ * $Id: MushFileAccessor.h,v 1.2 2006/11/06 19:27:51 southa Exp $
  * $Log: MushFileAccessor.h,v $
+ * Revision 1.2  2006/11/06 19:27:51  southa
+ * Mushfile handling
+ *
  * Revision 1.1  2006/11/06 12:56:32  southa
  * MushFile work
  *
@@ -62,6 +65,8 @@ protected:
     Mushware::tSize ChunkDataGet(std::vector<Mushware::U8>& ioData, const std::string& inID);
 
 private:
+    void DataDecrypt(Mushware::U8 *iopData, const Mushware::U8 *inpKey, Mushware::tSize inSize);
+
     std::string m_filename; //:readwrite
     bool m_loaded; //:read
     std::map<std::string, Mushware::tSize> m_chunkList;

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } MGQ0Ulmz4XgP1whKx5Pg8w
 /*
- * $Id$
- * $Log$
+ * $Id: MushFileDirEntry.cpp,v 1.1 2006/11/06 12:56:32 southa Exp $
+ * $Log: MushFileDirEntry.cpp,v $
+ * Revision 1.1  2006/11/06 12:56:32  southa
+ * MushFile work
+ *
  */
 
 #include "MushFileDirEntry.h"
@@ -60,7 +63,8 @@ MushFileDirEntry::AutoPrint(std::ostream& ioOut) const
     ioOut << "[";
     ioOut << "filename=" << m_filename << ", ";
     ioOut << "size=" << m_size << ", ";
-    ioOut << "offset=" << m_offset;
+    ioOut << "offset=" << m_offset << ", ";
+    ioOut << "keyNum=" << m_keyNum;
     ioOut << "]";
 }
 bool
@@ -84,6 +88,10 @@ MushFileDirEntry::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string
     {
         ioIn >> m_offset;
     }
+    else if (inTagStr == "keyNum")
+    {
+        ioIn >> m_keyNum;
+    }
     else 
     {
         return false;
@@ -99,5 +107,7 @@ MushFileDirEntry::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_size;
     ioOut.TagSet("offset");
     ioOut << m_offset;
+    ioOut.TagSet("keyNum");
+    ioOut << m_keyNum;
 }
-//%outOfLineFunctions } D9Qz9vSjZ8Z1VUAGCMyacw
+//%outOfLineFunctions } LaKJZq3qyqXw+iL0JwwmZA

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } w7E0fT2jMm6nn3HLuj+ttQ
 /*
- * $Id: MushFileDirectory.cpp,v 1.1 2006/11/06 12:56:32 southa Exp $
+ * $Id: MushFileDirectory.cpp,v 1.2 2006/11/06 19:27:51 southa Exp $
  * $Log: MushFileDirectory.cpp,v $
+ * Revision 1.2  2006/11/06 19:27:51  southa
+ * Mushfile handling
+ *
  * Revision 1.1  2006/11/06 12:56:32  southa
  * MushFile work
  *
@@ -54,7 +57,7 @@ MushFileDirectory::Load(void)
         entry.SizeSet(accessor.NumberRead());
         std::string filename = accessor.StringRead();
         entry.FilenameSet(filename);
-        
+        entry.KeyNumSet(0);
         if (m_entries.find(filename) != m_entries.end())
         {
             throw MushcoreFileFail(m_filename, "Duplicate file '"+filename+"' within file");

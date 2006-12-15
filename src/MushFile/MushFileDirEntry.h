@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } u7HheW/jj+BZx6X2IytANA
 /*
- * $Id: MushFileDirEntry.h,v 1.1 2006/11/06 12:56:32 southa Exp $
+ * $Id: MushFileDirEntry.h,v 1.2 2006/11/06 19:27:51 southa Exp $
  * $Log: MushFileDirEntry.h,v $
+ * Revision 1.2  2006/11/06 19:27:51  southa
+ * Mushfile handling
+ *
  * Revision 1.1  2006/11/06 12:56:32  southa
  * MushFile work
  *
@@ -43,6 +46,7 @@ private:
     std::string m_filename; //:readwrite
     Mushware::tSize m_size; //:readwrite
     Mushware::tSize m_offset; //:readwrite
+    Mushware::U32 m_keyNum; //:readwrite
     
 //%classPrototypes {
 public:
@@ -52,6 +56,8 @@ public:
     void SizeSet(const Mushware::tSize& inValue) { m_size=inValue; }
     const Mushware::tSize& Offset(void) const { return m_offset; }
     void OffsetSet(const Mushware::tSize& inValue) { m_offset=inValue; }
+    const Mushware::U32& KeyNum(void) const { return m_keyNum; }
+    void KeyNumSet(const Mushware::U32& inValue) { m_keyNum=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -59,7 +65,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } +6sdz2q3iaQkSauc1BGy7w
+//%classPrototypes } bvNzRgZDIXYHfwu3Oy5esw
 };
 //%inlineHeader {
 inline std::ostream&

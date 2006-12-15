@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } fIyM/XLdEniRZka5Jb+a2A
 /*
- * $Id: MushFileAccessor.cpp,v 1.1 2006/11/06 12:56:31 southa Exp $
+ * $Id: MushFileAccessor.cpp,v 1.2 2006/11/06 19:27:51 southa Exp $
  * $Log: MushFileAccessor.cpp,v $
+ * Revision 1.2  2006/11/06 19:27:51  southa
+ * Mushfile handling
+ *
  * Revision 1.1  2006/11/06 12:56:31  southa
  * MushFile work
  *
@@ -29,6 +32,7 @@
 #include "MushFileAccessor.h"
 
 #include "MushFileDirEntry.h"
+#include "MushFileKeys.h"
 
 using namespace Mushware;
 using namespace std;
@@ -39,7 +43,6 @@ MushFileAccessor::MushFileAccessor(const std::string& inFilename) :
     m_readPos(0),
     m_endPos(0)
 {
-    
 }
 
 Mushware::tSize
@@ -238,6 +241,15 @@ MushFileAccessor::StringRead(void)
 }
 
 void
+MushFileAccessor::DataDecrypt(Mushware::U8 *iopData, const Mushware::U8 *inpKey, Mushware::tSize inSize)
+{
+    for (Mushware::tSize i=0; i<inSize; ++i)
+    {
+        iopData[i] ^= inpKey[inSize % MushFileKeys::kKeySize];
+    }
+}
+
+void
 MushFileAccessor::LoadData(std::vector<Mushware::U8>& outData, const MushFileDirEntry& inEntry)
 {
     if (!m_loaded)
@@ -263,6 +275,17 @@ MushFileAccessor::LoadData(std::vector<Mushware::U8>& outData, const MushFileDir
         if (std::fread(&outData[0], 1, inEntry.Size(), file) != inEntry.Size())
         {
             throw MushcoreFileFail(m_filename, "Unexpected end of file");
+        }
+        
+        const U8 *pKey = NULL;
+        
+        if (!MushFileKeys::Sgl().Lookup(pKey, inEntry.KeyNum()))
+        {
+            throw MushcoreFileFail(m_filename, "Could not open file");
+        }
+        if (pKey != NULL)
+        {
+            DataDecrypt(&outData[0], pKey, inEntry.Size());
         }
     }
     catch (std::exception& e)
