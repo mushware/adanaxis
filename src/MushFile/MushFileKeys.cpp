@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } wdVBt3eyleBph99DM4VB7w
 /*
- * $Id$
- * $Log$
+ * $Id: MushFileKeys.cpp,v 1.1 2006/12/15 14:03:28 southa Exp $
+ * $Log: MushFileKeys.cpp,v $
+ * Revision 1.1  2006/12/15 14:03:28  southa
+ * File key handling
+ *
  */
 
 #include "MushFileKeys.h"
@@ -50,10 +53,16 @@ MushFileKeys::Lookup(const Mushware::U8 *& outpData, Mushware::U32 inID)
     return retVal;
 }
 
+bool
+MushFileKeys::Exists(Mushware::U32 inID)
+{
+    return m_keyEntries.find(inID) != m_keyEntries.end();
+}
+
 void
 MushFileKeys::KeyEntryAdd(Mushware::U32 inID, Mushware::U8 *inpData)
 {
-    if (m_keyEntries.find(inID) == m_keyEntries.end())
+    if (m_keyEntries.find(inID) != m_keyEntries.end())
     {
         MushcoreLog::Sgl().WarningLog() << "Replacing file key " << inID << endl;
     }

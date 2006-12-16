@@ -16,8 +16,11 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-# $Id$
-# $Log$
+# $Id: ProcessMush.rb,v 1.1 2006/11/05 09:32:13 southa Exp $
+# $Log: ProcessMush.rb,v $
+# Revision 1.1  2006/11/05 09:32:13  southa
+# Mush file generation
+#
 
 $LOAD_PATH.push File.dirname($0)
 require 'FileMush.rb'
@@ -27,6 +30,7 @@ class ProcessMush
     @m_srcPath = inParams[:source_path] || '.'
     @m_destPath = inParams[:destination_path] || '.'
     @m_mushFile = inParams[:mush_file] || 'output.mush'
+    @m_keyNum = inParams[:key_number] || 0
   end
   
   def mSrcFilenameMake(inName)
@@ -40,8 +44,8 @@ class ProcessMush
   end
   
   def mProcessFile(inMushFile, inSrcFilename, inDestFilename)
-    puts "File #{inSrcFilename} -> mush::#{@m_mushFile}:/#{inDestFilename}"
-    inMushFile.mFileAdd(inSrcFilename, inDestFilename)
+    puts "File #{inSrcFilename} -> mush::#{@m_mushFile}:/#{inDestFilename} [key #{@m_keyNum}]"
+    inMushFile.mFileAdd(inSrcFilename, inDestFilename, @m_keyNum)
   end
   
   def mProcess(inParams = {})

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } xn5oNgprtnehV9hRbLEeKQ
 /*
- * $Id: MushFileDirectory.h,v 1.1 2006/11/06 12:56:32 southa Exp $
+ * $Id: MushFileDirectory.h,v 1.2 2006/11/06 19:27:51 southa Exp $
  * $Log: MushFileDirectory.h,v $
+ * Revision 1.2  2006/11/06 19:27:51  southa
+ * Mushfile handling
+ *
  * Revision 1.1  2006/11/06 12:56:32  southa
  * MushFile work
  *
@@ -49,15 +52,16 @@ public:
 protected:
     
 private:
+    typedef std::map<std::string, MushFileDirEntry> tEntries;
     std::string m_filename; //:read
     bool m_loaded; //:read
-    std::map<std::string, MushFileDirEntry> m_entries; //:read
+    tEntries m_entries; //:read
     
 //%classPrototypes {
 public:
     const std::string& Filename(void) const { return m_filename; }
     const bool& Loaded(void) const { return m_loaded; }
-    const std::map<std::string, MushFileDirEntry>& Entries(void) const { return m_entries; }
+    const tEntries& Entries(void) const { return m_entries; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -65,7 +69,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } 9BsVmKvoSwzWL4169BmHfw
+//%classPrototypes } L45ScWMZoCj6BQlStqtafw
 };
 //%inlineHeader {
 inline std::ostream&

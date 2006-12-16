@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 2E/GKy6tr6CafayxMUaMug
 /*
- * $Id$
- * $Log$
+ * $Id: MushFileKeys.h,v 1.1 2006/12/15 14:03:28 southa Exp $
+ * $Log: MushFileKeys.h,v $
+ * Revision 1.1  2006/12/15 14:03:28  southa
+ * File key handling
+ *
  */
 
 #include "MushFileStandard.h"
@@ -40,6 +43,7 @@ public:
     MushFileKeys();
     
     bool Lookup(const Mushware::U8 *& outpData, Mushware::U32 inID);
+    bool Exists(Mushware::U32 inID);
     void KeyEntryAdd(Mushware::U32 inID, Mushware::U8 *inpData);
     
 private:

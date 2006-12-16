@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } fIyM/XLdEniRZka5Jb+a2A
 /*
- * $Id: MushFileAccessor.cpp,v 1.2 2006/11/06 19:27:51 southa Exp $
+ * $Id: MushFileAccessor.cpp,v 1.3 2006/12/15 14:03:27 southa Exp $
  * $Log: MushFileAccessor.cpp,v $
+ * Revision 1.3  2006/12/15 14:03:27  southa
+ * File key handling
+ *
  * Revision 1.2  2006/11/06 19:27:51  southa
  * Mushfile handling
  *
@@ -92,7 +95,7 @@ MushFileAccessor::Load(void)
         {
             throw MushcoreFileFail(m_filename, "Header not present in mushfile");
         }
-        U8 expectedHeader[kHeaderSize] = {'M', 'U', 'S', 'H', 0, 0, 0, 1};
+        U8 expectedHeader[kHeaderSize] = {'M', 'U', 'S', 'H', 0, 0, 1, 0};
         if (memcmp(header, expectedHeader, kHeaderSize) != 0)
         {
             throw MushcoreFileFail(m_filename, "Bad header in mushfile");
@@ -245,7 +248,7 @@ MushFileAccessor::DataDecrypt(Mushware::U8 *iopData, const Mushware::U8 *inpKey,
 {
     for (Mushware::tSize i=0; i<inSize; ++i)
     {
-        iopData[i] ^= inpKey[inSize % MushFileKeys::kKeySize];
+        iopData[i] ^= inpKey[i % MushFileKeys::kKeySize];
     }
 }
 

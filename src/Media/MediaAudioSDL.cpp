@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } ccLCYRn/kYU+5Rp9coVdng
 /*
- * $Id: MediaAudioSDL.cpp,v 1.30 2006/12/11 18:54:18 southa Exp $
+ * $Id: MediaAudioSDL.cpp,v 1.31 2006/12/14 00:33:48 southa Exp $
  * $Log: MediaAudioSDL.cpp,v $
+ * Revision 1.31  2006/12/14 00:33:48  southa
+ * Control fix and audio pacing
+ *
  * Revision 1.30  2006/12/11 18:54:18  southa
  * Positional audio
  *
@@ -261,20 +264,22 @@ MediaAudioSDL::ChannelTrigger(Mushware::U32 inChannel)
                                                        channelDef.ActiveSample()->MixChunkGet(),
                                                        channelDef.Loop() ? -1 : 0))
     {
-        throw MushcoreDeviceFail("Mix_PlayChannel returned bad channel number");
-    }
-    
-    if (channelDef.Positional())
-    {
-        ChannelUpdate(inChannel);
+        MushcoreLog::Sgl().ErrorLog() << "Failed to play sound" << endl;
     }
     else
     {
-        Mix_Volume(inChannel, static_cast<int>(volume * m_audioVolume));        
-        Mix_SetPanning(inChannel,255,255);
+        if (channelDef.Positional())
+        {
+            ChannelUpdate(inChannel);
+        }
+        else
+        {
+            Mix_Volume(inChannel, static_cast<int>(volume * m_audioVolume));        
+            Mix_SetPanning(inChannel,255,255);
+        }
+        
+        channelDef.ActivitySet(MediaAudioChannelDef::kActivityPlaying);
     }
-    
-    channelDef.ActivitySet(MediaAudioChannelDef::kActivityPlaying);
 }
 
 void

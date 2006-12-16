@@ -336,6 +336,7 @@
 		7A5DB886080804C000163474 /* GameReg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A5DB884080804C000163474 /* GameReg.cpp */; };
 		7A5DB887080804C000163474 /* GameReg.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A5DB883080804C000163474 /* GameReg.h */; };
 		7A5DB888080804C000163474 /* GameReg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A5DB884080804C000163474 /* GameReg.cpp */; };
+		7A5E94F30B34080400D4B99E /* MushSecretKeys.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AF480230B331F0B00664BED /* MushSecretKeys.cpp */; };
 		7A5EACDE0B29AD58008D2EE7 /* MushGLRuby.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A5EACDC0B29AD58008D2EE7 /* MushGLRuby.h */; };
 		7A5EACDF0B29AD58008D2EE7 /* MushGLRuby.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A5EACDD0B29AD58008D2EE7 /* MushGLRuby.cpp */; };
 		7A5F017A0A3EB2E40086C680 /* MushRubyDataObj.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A5F01780A3EB2E40086C680 /* MushRubyDataObj.h */; };
@@ -2418,7 +2419,6 @@
 		7AE697D30A42129E004D7B75 /* MushMeshRubyBasePrism.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AE697D10A42129E004D7B75 /* MushMeshRubyBasePrism.cpp */; };
 		7AF47F320B32D64E00664BED /* MushFileKeys.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AF47F300B32D64E00664BED /* MushFileKeys.h */; };
 		7AF47F330B32D64E00664BED /* MushFileKeys.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AF47F310B32D64E00664BED /* MushFileKeys.cpp */; };
-		7AF480240B331F0B00664BED /* MushSecretKeys.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AF480230B331F0B00664BED /* MushSecretKeys.cpp */; };
 		7AFB11E4088C052000F097A3 /* AdanaxisPieceKhazi.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AFB11E2088C052000F097A3 /* AdanaxisPieceKhazi.h */; };
 		7AFB11E5088C052000F097A3 /* AdanaxisPieceKhazi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AFB11E3088C052000F097A3 /* AdanaxisPieceKhazi.cpp */; };
 		7AFB11E6088C052000F097A3 /* AdanaxisPieceKhazi.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AFB11E2088C052000F097A3 /* AdanaxisPieceKhazi.h */; };
@@ -9463,7 +9463,7 @@
 				7A5C48D00B2D751A009085F9 /* MediaAudioSDLChannelDef.cpp in Sources */,
 				7A5C48D70B2D79EA009085F9 /* MediaAudioChannelDef.cpp in Sources */,
 				7AF47F330B32D64E00664BED /* MushFileKeys.cpp in Sources */,
-				7AF480240B331F0B00664BED /* MushSecretKeys.cpp in Sources */,
+				7A5E94F30B34080400D4B99E /* MushSecretKeys.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -16,8 +16,11 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-# $Id: FileMush.rb,v 1.2 2006/11/06 12:56:31 southa Exp $
+# $Id: FileMush.rb,v 1.3 2006/11/06 19:27:51 southa Exp $
 # $Log: FileMush.rb,v $
+# Revision 1.3  2006/11/06 19:27:51  southa
+# Mushfile handling
+#
 # Revision 1.2  2006/11/06 12:56:31  southa
 # MushFile work
 #
@@ -27,7 +30,7 @@
 
 class FileMush
   @@c_idString = 'MUSH'
-  @@c_nativeVersion = [0, 0, 0, 1]
+  @@c_nativeVersion = [0, 0, 1, 0]
   @@c_chunkData = 'DATA'
   @@c_chunkDirectory = 'DIRC'
   @@c_chunkMessage = 'MSG '
@@ -109,20 +112,34 @@ EOS
     
   end
   
+  def mDataEncrypt(ioData, inKeyNum)
+    keyData = MushSecretKeys.Lookup(inKeyNum)
+    keySize = keyData.size
+    puts "Unusual key size #{keySize}" unless keySize == 65536
+    ioData.size.times do |i|
+      ioData[i] ^= keyData[i % keySize]
+    end
+  end
+  
   def mDataWrite
     mChunkWrite(@@c_chunkData) do |chunk|
       @m_directory.each do |dirEntry|
         File.open(dirEntry[:src_filename]) do |file|
           readSize = dirEntry[:filesize]
           data = file.read(readSize)
-          # Encrypt here
+          
+          mDataEncrypt(data, dirEntry[:key_number]) if dirEntry[:key_number] != 0
+          
           while data.size % 4 != 0
             data += 0.chr
           end
           chunk << data
+          print '.'
+          STDOUT.flush
         end
       end
     end
+    puts '.'
   end
 
   def mDirectoryWrite
@@ -132,6 +149,9 @@ EOS
         chunk << mNumber(offset)
         chunk << mNumber(dirEntry[:filesize])
         chunk << mString(dirEntry[:dest_filename])
+        chunk << mNumber(dirEntry[:key_number])
+        chunk << mNumber(0) # Spare
+        chunk << mNumber(0) # Spare
         offset += mAlign(dirEntry[:filesize])
       end
     end
@@ -153,14 +173,15 @@ EOS
     @m_file = nil
   end
 
-  def mFileAdd(inSrcFilename, inDestFilename)
+  def mFileAdd(inSrcFilename, inDestFilename, inKeyNum)
     fileStat = File.stat(inSrcFilename)
     raise(RuntimeError, "Cannot open file #{inSrcFilename}") unless fileStat
 
     @m_directory.push({
       :src_filename => inSrcFilename,
       :dest_filename => inDestFilename,
-      :filesize => fileStat.size
+      :filesize => fileStat.size,
+      :key_number => inKeyNum
     })
     
   end

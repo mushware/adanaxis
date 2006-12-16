@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } vh/xCnesmbXGxXqZK5YEaA
 /*
- * $Id: MushGLTexture.cpp,v 1.19 2006/11/12 14:39:50 southa Exp $
+ * $Id: MushGLTexture.cpp,v 1.20 2006/11/12 20:09:55 southa Exp $
  * $Log: MushGLTexture.cpp,v $
+ * Revision 1.20  2006/11/12 20:09:55  southa
+ * Missile guidance
+ *
  * Revision 1.19  2006/11/12 14:39:50  southa
  * Player weapons amd audio fix
  *
@@ -489,9 +492,17 @@ MushGLTexture::RubyPreCache(Mushware::tRubyArgC inArgC, Mushware::tRubyValue *in
 		
 		std::string textureName = MushRubyValue(inpArgV[0]).String();
 		
-		MushGLTexture *pTexture = MushcoreData<MushGLTexture>::Sgl().Get(textureName);
-		pTexture->Make();
-		pTexture->Bind();
+		MushGLTexture *pTexture = NULL;
+        
+        if (MushcoreData<MushGLTexture>::Sgl().GetIfExists(pTexture, textureName))
+        {
+            pTexture->Make();
+            pTexture->Bind();
+        }
+        else
+        {
+            MushcoreLog::Sgl().InfoLog() << "Ignored texture precache for " << textureName << endl;
+        }
 	}
 	catch (MushcoreFail& e)
 	{

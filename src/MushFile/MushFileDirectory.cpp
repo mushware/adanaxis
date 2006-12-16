@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } w7E0fT2jMm6nn3HLuj+ttQ
 /*
- * $Id: MushFileDirectory.cpp,v 1.2 2006/11/06 19:27:51 southa Exp $
+ * $Id: MushFileDirectory.cpp,v 1.3 2006/12/15 14:03:28 southa Exp $
  * $Log: MushFileDirectory.cpp,v $
+ * Revision 1.3  2006/12/15 14:03:28  southa
+ * File key handling
+ *
  * Revision 1.2  2006/11/06 19:27:51  southa
  * Mushfile handling
  *
@@ -32,6 +35,7 @@
 #include "MushFileDirectory.h"
 
 #include "MushFileAccessor.h"
+#include "MushFileKeys.h"
 
 using namespace Mushware;
 using namespace std;
@@ -57,7 +61,9 @@ MushFileDirectory::Load(void)
         entry.SizeSet(accessor.NumberRead());
         std::string filename = accessor.StringRead();
         entry.FilenameSet(filename);
-        entry.KeyNumSet(0);
+        entry.KeyNumSet(accessor.NumberRead());
+        accessor.NumberRead(); // Spare
+        accessor.NumberRead(); // Spare
         if (m_entries.find(filename) != m_entries.end())
         {
             throw MushcoreFileFail(m_filename, "Duplicate file '"+filename+"' within file");
@@ -70,11 +76,23 @@ MushFileDirectory::Load(void)
 bool
 MushFileDirectory::Exists(const std::string& inName)
 {
+    bool retVal = false;
     if (!m_loaded)
     {
         Load();
     }
-    return (m_entries.find(inName) != m_entries.end());
+    
+    tEntries::const_iterator p = m_entries.find(inName);
+    
+    if (p != m_entries.end())
+    {
+        // If we don't have the key, the file doesn't exist
+        if (MushFileKeys::Sgl().Exists(p->second.KeyNum()))
+        {
+            retVal = true;
+        }
+    }
+    return retVal;
 }
 
 bool
