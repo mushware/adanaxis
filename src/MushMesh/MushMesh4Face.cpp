@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } p0GuLXistjNnwtBEutxN2Q
 /*
- * $Id: MushMesh4Face.cpp,v 1.9 2006/06/19 15:57:17 southa Exp $
+ * $Id: MushMesh4Face.cpp,v 1.10 2006/12/14 00:33:49 southa Exp $
  * $Log: MushMesh4Face.cpp,v $
+ * Revision 1.10  2006/12/14 00:33:49  southa
+ * Control fix and audio pacing
+ *
  * Revision 1.9  2006/06/19 15:57:17  southa
  * Materials
  *
@@ -83,6 +86,22 @@ MushMesh4Face::AllTouch(void)
     m_uniqueVertexListValid = false;
     m_faceConnectivityValid = false;
     m_vertexConnectivityValid = false;
+}
+
+void
+MushMesh4Face::Purge(void)
+{
+    // Extrusion data may be required for animation
+    m_extrusionMap.clear();
+    m_extrudedFaces.resize(0);
+    m_extrusionTransformList.resize(0);
+    
+    m_uniqueVertexListValid = false;
+    m_uniqueVertexList.resize(0);
+    m_faceConnectivityValid = false;
+    m_faceConnectivity.resize(0);
+    m_vertexConnectivityValid = false;
+    m_vertexConnectivity.clear();
 }
 
 void

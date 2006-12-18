@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } XsVs/rr7rRJFJzKi6eatxg
 /*
- * $Id: AdanaxisUtil.cpp,v 1.35 2006/10/15 17:12:54 southa Exp $
+ * $Id: AdanaxisUtil.cpp,v 1.36 2006/10/19 15:41:36 southa Exp $
  * $Log: AdanaxisUtil.cpp,v $
+ * Revision 1.36  2006/10/19 15:41:36  southa
+ * Item handling
+ *
  * Revision 1.35  2006/10/15 17:12:54  southa
  * Scripted explosions
  *
@@ -192,6 +195,19 @@ AdanaxisUtil::MissingSkinsCreate(AdanaxisLogic& ioLogic)
         }
 		MushcoreData<MushGLBuffers>::Sgl().GetOrCreate(p->first);
 	}
+}
+
+void
+AdanaxisUtil::MeshPurge(AdanaxisLogic& ioLogic)
+{
+	typedef MushcoreData<MushMesh4Mesh> tMeshData;
+	
+	tMeshData::iterator endIter = tMeshData::Sgl().end();
+	for (tMeshData::iterator p = tMeshData::Sgl().begin(); p != endIter; ++p)
+	{
+        MUSHCOREASSERT(p->second != NULL);
+        p->second->Purge();
+    }
 }
 
 void

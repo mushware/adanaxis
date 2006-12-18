@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } YrK9KiG4XjKqbWo1rVGU4w
 /*
- * $Id: MushMesh4Mesh.h,v 1.23 2006/10/05 15:39:18 southa Exp $
+ * $Id: MushMesh4Mesh.h,v 1.24 2006/11/14 14:02:16 southa Exp $
  * $Log: MushMesh4Mesh.h,v $
+ * Revision 1.24  2006/11/14 14:02:16  southa
+ * Ball projectiles
+ *
  * Revision 1.23  2006/10/05 15:39:18  southa
  * Explosion handling
  *
@@ -184,7 +187,8 @@ public:
     void AllTouch(void); // Called from constructor
     void VerticesTouch(void); // Called from constructor
     void Prebuild(void);
-	
+	void Purge(void);
+    
 	void BaseGive(MushMesh4Base *pBase); // Takes ownership of the base generator
 	const MushMesh4Base *BaseGet(void) const;
 	MushMesh4Base *BaseWGet(void);
@@ -245,8 +249,6 @@ private:
     mutable tConnectivity m_connectivity;
     mutable tCentroid m_centroid;
     mutable tBoundingRadius m_boundingRadius;
-    mutable std::vector<tCentroid> m_faceCentroids;
-    mutable std::vector<tBoundingRadius> m_faceBoundingRadii;
     mutable Mushware::U32 m_numConnections;
     mutable Mushware::U32 m_numFacets;
     

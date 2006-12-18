@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } Ph0uMhoM5NBsrdR1fYXcQw
 /*
- * $Id: MushMesh4Face.h,v 1.8 2006/06/01 15:39:28 southa Exp $
+ * $Id: MushMesh4Face.h,v 1.9 2006/06/19 15:57:17 southa Exp $
  * $Log: MushMesh4Face.h,v $
+ * Revision 1.9  2006/06/19 15:57:17  southa
+ * Materials
+ *
  * Revision 1.8  2006/06/01 15:39:28  southa
  * DrawArray verification and fixes
  *
@@ -85,6 +88,7 @@ public:
     
     void VerticesTouch(void); // Called from constructor
     void AllTouch(void); // Called from constructor
+    void Purge(void);
     
     void FacetLimitsGet(Mushware::U32& outStart, Mushware::U32& outEnd, Mushware::U32 inFacetNum) const;
     bool ConnectedVertexInFacetFind(Mushware::U32& outNum, Mushware::U32 inFacetNum, Mushware::U32 inVertNum) const;

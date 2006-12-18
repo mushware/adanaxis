@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } B8mSgw4FqoBVewtmsej6Zw
 /*
- * $Id: AdanaxisUtil.h,v 1.11 2006/08/01 17:21:30 southa Exp $
+ * $Id: AdanaxisUtil.h,v 1.12 2006/10/05 15:39:17 southa Exp $
  * $Log: AdanaxisUtil.h,v $
+ * Revision 1.12  2006/10/05 15:39:17  southa
+ * Explosion handling
+ *
  * Revision 1.11  2006/08/01 17:21:30  southa
  * River demo
  *
@@ -69,6 +72,7 @@ class AdanaxisUtil
 {
 public:
     static void MissingSkinsCreate(AdanaxisLogic& ioLogic);
+    static void MeshPurge(AdanaxisLogic& ioLogic);
     static void TestPiecesCreate(AdanaxisLogic& ioLogic);
     static void TestDecoCreate(AdanaxisLogic& ioLogic);
     static void TestSkinsCreate(AdanaxisLogic& ioLogic);

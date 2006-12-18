@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } 0Sg2qcftBJTnB0QxDEkq2Q
 /*
- * $Id: AdanaxisGame.cpp,v 1.57 2006/12/14 00:33:44 southa Exp $
+ * $Id: AdanaxisGame.cpp,v 1.58 2006/12/14 15:59:23 southa Exp $
  * $Log: AdanaxisGame.cpp,v $
+ * Revision 1.58  2006/12/14 15:59:23  southa
+ * Fire and cutscene fixes
+ *
  * Revision 1.57  2006/12/14 00:33:44  southa
  * Control fix and audio pacing
  *
@@ -343,6 +346,7 @@ AdanaxisGame::Init(MushGameAppHandler& inAppHandler)
     SaveData().SpaceNameSet(MushRubyExec::Sgl().Call("$currentGame.mSpaceName").String());
     
 	AdanaxisUtil::MissingSkinsCreate(Logic());
+    //AdanaxisUtil::MeshPurge(Logic());
 
     MediaAudio::Sgl().AudioVolumeSet(m_config.AudioVolume() / 100.0);
     MediaAudio::Sgl().MusicVolumeSet(m_config.MusicVolume() / 100.0);
