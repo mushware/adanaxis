@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } 0Sg2qcftBJTnB0QxDEkq2Q
 /*
- * $Id: AdanaxisGame.cpp,v 1.58 2006/12/14 15:59:23 southa Exp $
+ * $Id: AdanaxisGame.cpp,v 1.59 2006/12/18 15:39:35 southa Exp $
  * $Log: AdanaxisGame.cpp,v $
+ * Revision 1.59  2006/12/18 15:39:35  southa
+ * Palette changes
+ *
  * Revision 1.58  2006/12/14 15:59:23  southa
  * Fire and cutscene fixes
  *
@@ -251,7 +254,7 @@ AdanaxisGame::Process(MushGameAppHandler& inAppHandler)
     Logic().MainSequence();
     
     // Start the clock once we're going
-    if (!Logic().IsPreCacheMode() && !SaveData().ClockStarted())
+    if (!Logic().IsPrecacheMode() && !SaveData().ClockStarted())
     {
         if (Logic().IsGameMode())
         {
@@ -463,7 +466,7 @@ AdanaxisGame::SwapIn(MushGameAppHandler& inAppHandler)
 
     GLUtils::CheckGLError();
     
-    Logic().PreCacheModeEnter();
+    Logic().PrecacheModeEnter();
     
     dynamic_cast<AdanaxisRender&>(SaveData().RenderRef().WRef()).RenderPreludeSet();
     

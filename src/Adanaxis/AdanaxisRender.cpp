@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } rQkTih3VUd7Xp8cDeV3ZYA
 /*
- * $Id: AdanaxisRender.cpp,v 1.60 2006/11/21 10:08:24 southa Exp $
+ * $Id: AdanaxisRender.cpp,v 1.61 2006/12/14 15:59:23 southa Exp $
  * $Log: AdanaxisRender.cpp,v $
+ * Revision 1.61  2006/12/14 15:59:23  southa
+ * Fire and cutscene fixes
+ *
  * Revision 1.60  2006/11/21 10:08:24  southa
  * Initial cut scene handling
  *
@@ -226,7 +229,7 @@ AdanaxisRender::AdanaxisRender() :
 }
 
 void
-AdanaxisRender::PreCacheRender(MushGameLogic& ioLogic, const MushGameCamera& inCamera)
+AdanaxisRender::PrecacheRender(MushGameLogic& ioLogic, const MushGameCamera& inCamera)
 {
     AdanaxisVolatileData *pVolData = dynamic_cast<AdanaxisVolatileData *>(&ioLogic.VolatileData());
     
@@ -252,8 +255,8 @@ AdanaxisRender::PreCacheRender(MushGameLogic& ioLogic, const MushGameCamera& inC
     U32 mbUsed = static_cast<U32>(MushGLTexture::ByteCount() / 1048576);
     
     MushRubyExec::Sgl().Call(pVolData->RubyGame(),
-                             MushRubyIntern::mPreCacheRender(),
-                             MushRubyValue(pLogic->PreCachePercentage()),
+                             MushRubyIntern::mPrecacheRender(),
+                             MushRubyValue(pLogic->PrecachePercentage()),
                              MushRubyValue(mbUsed)
                              );
 

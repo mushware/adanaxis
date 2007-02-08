@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } Mac7dWHONvkZIg39sQnwww
 /*
- * $Id: AdanaxisLogic.cpp,v 1.33 2006/12/14 00:33:48 southa Exp $
+ * $Id: AdanaxisLogic.cpp,v 1.34 2006/12/14 15:59:23 southa Exp $
  * $Log: AdanaxisLogic.cpp,v $
+ * Revision 1.34  2006/12/14 15:59:23  southa
+ * Fire and cutscene fixes
+ *
  * Revision 1.33  2006/12/14 00:33:48  southa
  * Control fix and audio pacing
  *
@@ -624,14 +627,14 @@ AdanaxisLogic::CollideSequence(void)
 }
 
 void
-AdanaxisLogic::PreCacheSequence(void)
+AdanaxisLogic::PrecacheSequence(void)
 {
-    m_preCacheResult = MushRubyValue(MushRubyExec::Sgl().Call(VolatileData().RubySpace(), MushRubyIntern::mPreCache())).U32();
+    m_preCacheResult = MushRubyValue(MushRubyExec::Sgl().Call(VolatileData().RubySpace(), MushRubyIntern::mPrecache())).U32();
     
     if (m_preCacheResult >= 100)
     {
-        MushRubyExec::Sgl().Call(VolatileData().RubySpace(), AdanaxisIntern::Sgl().mHandlePreCacheEnd());
-        PreCacheModeExit();
+        MushRubyExec::Sgl().Call(VolatileData().RubySpace(), AdanaxisIntern::Sgl().mHandlePrecacheEnd());
+        PrecacheModeExit();
     }
 }
 

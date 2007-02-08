@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } Up/Zo/AbGEsGQw3FmjqFGg
 /*
- * $Id: MushGameRender.cpp,v 1.3 2006/06/01 15:39:26 southa Exp $
+ * $Id: MushGameRender.cpp,v 1.4 2006/07/20 12:22:22 southa Exp $
  * $Log: MushGameRender.cpp,v $
+ * Revision 1.4  2006/07/20 12:22:22  southa
+ * Precache display
+ *
  * Revision 1.3  2006/06/01 15:39:26  southa
  * DrawArray verification and fixes
  *
@@ -37,7 +40,7 @@
 MUSHCORE_DATA_INSTANCE(MushGameRender);
 
 void
-MushGameRender::PreCacheRender(MushGameLogic& ioLogic, const MushGameCamera& inCamera)
+MushGameRender::PrecacheRender(MushGameLogic& ioLogic, const MushGameCamera& inCamera)
 {
     // No operation
 }

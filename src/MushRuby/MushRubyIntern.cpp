@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } lqALCPGBahbk4ibyVPO8LQ
 /*
- * $Id: MushRubyIntern.cpp,v 1.23 2006/10/06 14:48:19 southa Exp $
+ * $Id: MushRubyIntern.cpp,v 1.24 2006/10/08 11:31:33 southa Exp $
  * $Log: MushRubyIntern.cpp,v $
+ * Revision 1.24  2006/10/08 11:31:33  southa
+ * Hit points
+ *
  * Revision 1.23  2006/10/06 14:48:19  southa
  * Material animation
  *
@@ -123,8 +126,8 @@ MUSHRUBYINTERN_DEFINE(mBanner);
 MUSHRUBYINTERN_DEFINE(mHandleGameStart);
 MUSHRUBYINTERN_DEFINE(mInitialise);
 MUSHRUBYINTERN_DEFINE(mKeypress);
-MUSHRUBYINTERN_DEFINE(mPreCache);
-MUSHRUBYINTERN_DEFINE(mPreCacheRender);
+MUSHRUBYINTERN_DEFINE(mPrecache);
+MUSHRUBYINTERN_DEFINE(mPrecacheRender);
 MUSHRUBYINTERN_DEFINE(mRegisteredDestroy);
 MUSHRUBYINTERN_DEFINE(mRender);
 MUSHRUBYINTERN_DEFINE(mReset);
@@ -186,8 +189,8 @@ MushRubyIntern::Initialise(void)
 	MUSHRUBYINTERN_INIT(mHandleGameStart);
 	MUSHRUBYINTERN_INIT(mInitialise);
 	MUSHRUBYINTERN_INIT(mKeypress);
-	MUSHRUBYINTERN_INIT(mPreCache);
-	MUSHRUBYINTERN_INIT(mPreCacheRender);
+	MUSHRUBYINTERN_INIT(mPrecache);
+	MUSHRUBYINTERN_INIT(mPrecacheRender);
 	MUSHRUBYINTERN_INIT(mRegisteredDestroy);
 	MUSHRUBYINTERN_INIT(mRender);
 	MUSHRUBYINTERN_INIT(mReset);

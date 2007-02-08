@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } mqRyosjSblx9ADjVCHc1/g
 /*
- * $Id: AdanaxisIntern.cpp,v 1.14 2006/11/21 10:08:23 southa Exp $
+ * $Id: AdanaxisIntern.cpp,v 1.15 2006/12/14 15:59:23 southa Exp $
  * $Log: AdanaxisIntern.cpp,v $
+ * Revision 1.15  2006/12/14 15:59:23  southa
+ * Fire and cutscene fixes
+ *
  * Revision 1.14  2006/11/21 10:08:23  southa
  * Initial cut scene handling
  *
@@ -88,7 +91,7 @@ AdanaxisIntern::AdanaxisIntern()
     m_ATm_state = MushRubyIntern::SymbolID("@m_state");
     m_mCollisionEventConsume = MushRubyIntern::SymbolID("mCollisionEventConsume");
     m_mCutSceneRender = MushRubyIntern::SymbolID("mCutSceneRender");
-    m_mHandlePreCacheEnd = MushRubyIntern::SymbolID("mHandlePreCacheEnd");
+    m_mHandlePrecacheEnd = MushRubyIntern::SymbolID("mHandlePrecacheEnd");
     m_mMenuRender = MushRubyIntern::SymbolID("mMenuRender");
     m_mReceiveSequence = MushRubyIntern::SymbolID("mReceiveSequence");
     m_mRender = MushRubyIntern::SymbolID("mRender");

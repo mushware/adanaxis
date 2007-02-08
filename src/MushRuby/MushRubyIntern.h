@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } n1eaCj2fb8dNPgbT0uOuEQ
 /*
- * $Id: MushRubyIntern.h,v 1.23 2006/10/06 14:48:19 southa Exp $
+ * $Id: MushRubyIntern.h,v 1.24 2006/10/08 11:31:33 southa Exp $
  * $Log: MushRubyIntern.h,v $
+ * Revision 1.24  2006/10/08 11:31:33  southa
+ * Hit points
+ *
  * Revision 1.23  2006/10/06 14:48:19  southa
  * Material animation
  *
@@ -138,8 +141,8 @@ public:
 	MUSHRUBYINTERN_DECLARE(mHandleGameStart);
 	MUSHRUBYINTERN_DECLARE(mInitialise);
 	MUSHRUBYINTERN_DECLARE(mKeypress);
-	MUSHRUBYINTERN_DECLARE(mPreCacheRender);
-	MUSHRUBYINTERN_DECLARE(mPreCache);
+	MUSHRUBYINTERN_DECLARE(mPrecacheRender);
+	MUSHRUBYINTERN_DECLARE(mPrecache);
 	MUSHRUBYINTERN_DECLARE(mRegisteredDestroy);
 	MUSHRUBYINTERN_DECLARE(mRender);
 	MUSHRUBYINTERN_DECLARE(mReset);

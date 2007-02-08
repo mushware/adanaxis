@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } pz9Ij69Gp+RQuOHP0yYqgg
 /*
- * $Id: MushGameLogic.h,v 1.25 2006/11/23 14:40:29 southa Exp $
+ * $Id: MushGameLogic.h,v 1.26 2006/12/14 00:33:49 southa Exp $
  * $Log: MushGameLogic.h,v $
+ * Revision 1.26  2006/12/14 00:33:49  southa
+ * Control fix and audio pacing
+ *
  * Revision 1.25  2006/11/23 14:40:29  southa
  * Intro cutscene
  *
@@ -168,13 +171,13 @@ public:
     virtual void CameraMove(MushGameCamera& inCamera);
     virtual void CameraSequence(void);
     virtual void MenuSequence(void);
-    virtual void PreCacheSequence(void);
+    virtual void PrecacheSequence(void);
     virtual void RenderSequence(void);
     virtual void CutSceneSequence(void);
     virtual void MainSequence(void);
 
     virtual bool IsMenuMode(void) const;
-    virtual bool IsPreCacheMode(void) const;
+    virtual bool IsPrecacheMode(void) const;
     virtual bool IsGameMode(void) const;
     virtual bool IsCutSceneMode(void) const;
     virtual void MenuModeEnter(void);
@@ -182,8 +185,8 @@ public:
     virtual void CutSceneModeEnter(void);
     virtual void CutSceneModeExit(void);
     virtual void QuitModeEnter(void);
-    virtual void PreCacheModeEnter(void);
-    virtual void PreCacheModeExit(void);
+    virtual void PrecacheModeEnter(void);
+    virtual void PrecacheModeExit(void);
     
     virtual void ClientNewPlayerHandle(Mushware::U32 inPlayerNum);
     

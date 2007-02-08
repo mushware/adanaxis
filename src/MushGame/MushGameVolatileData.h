@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } zS6MRI08vU38Tp9aNbV8RQ
 /*
- * $Id: MushGameVolatileData.h,v 1.13 2006/12/14 00:33:49 southa Exp $
+ * $Id: MushGameVolatileData.h,v 1.14 2006/12/14 15:59:24 southa Exp $
  * $Log: MushGameVolatileData.h,v $
+ * Revision 1.14  2006/12/14 15:59:24  southa
+ * Fire and cutscene fixes
+ *
  * Revision 1.13  2006/12/14 00:33:49  southa
  * Control fix and audio pacing
  *
@@ -129,8 +132,8 @@ public:
     void RubyLogicSet(const MushRubyValue& inValue) { m_rubyLogic=inValue; }
     const Mushware::U32& GameMode(void) const { return m_gameMode; }
     void GameModeSet(const Mushware::U32& inValue) { m_gameMode=inValue; }
-    const bool& PreCache(void) const { return m_preCache; }
-    void PreCacheSet(const bool& inValue) { m_preCache=inValue; }
+    const bool& Precache(void) const { return m_preCache; }
+    void PrecacheSet(const bool& inValue) { m_preCache=inValue; }
     const bool& IsMenuBackdrop(void) const { return m_isMenuBackdrop; }
     void IsMenuBackdropSet(const bool& inValue) { m_isMenuBackdrop=inValue; }
     const Mushware::tVal& AverageMsecPerFrame(void) const { return m_averageMsecPerFrame; }

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } enN/2yMMLp9+iHXmBKi3mw
 /*
- * $Id: MushGameRender.h,v 1.4 2006/06/01 15:39:26 southa Exp $
+ * $Id: MushGameRender.h,v 1.5 2006/07/20 12:22:22 southa Exp $
  * $Log: MushGameRender.h,v $
+ * Revision 1.5  2006/07/20 12:22:22  southa
+ * Precache display
+ *
  * Revision 1.4  2006/06/01 15:39:26  southa
  * DrawArray verification and fixes
  *
@@ -51,7 +54,7 @@ public:
     virtual ~MushGameRender() {}
     virtual void GroupingNameSet(const std::string& inName) { m_groupingName = inName; }
 
-    virtual void PreCacheRender(MushGameLogic& ioLogic, const MushGameCamera& inCamera);
+    virtual void PrecacheRender(MushGameLogic& ioLogic, const MushGameCamera& inCamera);
     virtual void FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCamera);
     
 private:

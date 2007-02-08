@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } 3LuiErcM0vO3wOyNDCFVeQ
 /*
- * $Id: AdanaxisLogic.h,v 1.23 2006/11/21 10:08:24 southa Exp $
+ * $Id: AdanaxisLogic.h,v 1.24 2006/12/14 15:59:23 southa Exp $
  * $Log: AdanaxisLogic.h,v $
+ * Revision 1.24  2006/12/14 15:59:23  southa
+ * Fire and cutscene fixes
+ *
  * Revision 1.23  2006/11/21 10:08:24  southa
  * Initial cut scene handling
  *
@@ -124,7 +127,7 @@ public:
     virtual void MoveSequence(void);
     virtual void CollideSequence(void);
     virtual void ReceiveSequence(void);
-    virtual void PreCacheSequence(void);
+    virtual void PrecacheSequence(void);
     virtual void RenderSequence(void);
     virtual void CutSceneSequence(void);
     virtual void ProjectilesKhaziFullCollide(void);
@@ -143,7 +146,7 @@ public:
     virtual const AdanaxisSaveData& ConstSaveData(void) const;
     virtual AdanaxisVolatileData& VolatileData(void) const;
     virtual const AdanaxisVolatileData& ConstVolatileData(void) const;
-    virtual Mushware::U32 PreCachePercentage(void) const { return m_preCacheResult; }
+    virtual Mushware::U32 PrecachePercentage(void) const { return m_preCacheResult; }
     
 protected:
     virtual void CollisionHandle(MushGamePiece *iopPiece1, MushGamePiece *iopPiece2, const MushCollisionInfo& inCollInfo);
@@ -165,7 +168,7 @@ public:
     void EndTimeSet(const Mushware::tMsec& inValue) { m_endTime=inValue; }
     const Mushware::tMsec& RecordTime(void) const { return m_recordTime; }
     void RecordTimeSet(const Mushware::tMsec& inValue) { m_recordTime=inValue; }
-    const Mushware::U32& PreCacheResult(void) const { return m_preCacheResult; }
+    const Mushware::U32& PrecacheResult(void) const { return m_preCacheResult; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;

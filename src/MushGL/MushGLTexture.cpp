@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } vh/xCnesmbXGxXqZK5YEaA
 /*
- * $Id: MushGLTexture.cpp,v 1.20 2006/11/12 20:09:55 southa Exp $
+ * $Id: MushGLTexture.cpp,v 1.21 2006/12/16 10:57:23 southa Exp $
  * $Log: MushGLTexture.cpp,v $
+ * Revision 1.21  2006/12/16 10:57:23  southa
+ * Encrypted files
+ *
  * Revision 1.20  2006/11/12 20:09:55  southa
  * Missile guidance
  *
@@ -481,13 +484,13 @@ MushGLTexture::RubyDefine(Mushware::tRubyArgC inArgC, Mushware::tRubyValue *inpA
 }
 
 Mushware::tRubyValue
-MushGLTexture::RubyPreCache(Mushware::tRubyArgC inArgC, Mushware::tRubyValue *inpArgV, Mushware::tRubyValue inSelf)
+MushGLTexture::RubyPrecache(Mushware::tRubyArgC inArgC, Mushware::tRubyValue *inpArgV, Mushware::tRubyValue inSelf)
 {
 	try
 	{
 		if (inArgC != 1)
 		{
-			throw MushRubyFail("Wrong number of parameters to RubyPreCache");	
+			throw MushRubyFail("Wrong number of parameters to RubyPrecache");	
 		}
 		
 		std::string textureName = MushRubyValue(inpArgV[0]).String();
@@ -517,7 +520,7 @@ MushGLTexture::RubyInstall(void)
 {
 	Mushware::tRubyValue klass = MushRubyUtil::ClassDefine("MushGLTexture");
 	MushRubyUtil::SingletonMethodDefine(klass, "cRubyDefine", RubyDefine);
-	MushRubyUtil::SingletonMethodDefine(klass, "cRubyPreCache", RubyPreCache);
+	MushRubyUtil::SingletonMethodDefine(klass, "cRubyPrecache", RubyPrecache);
 }	
 
 void

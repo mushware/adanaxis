@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } Ar42jtgdnOp/aDGG4D3TXg
 /*
- * $Id: AdanaxisRender.h,v 1.11 2006/07/28 16:52:19 southa Exp $
+ * $Id: AdanaxisRender.h,v 1.12 2006/08/01 17:21:27 southa Exp $
  * $Log: AdanaxisRender.h,v $
+ * Revision 1.12  2006/08/01 17:21:27  southa
+ * River demo
+ *
  * Revision 1.11  2006/07/28 16:52:19  southa
  * Options work
  *
@@ -74,7 +77,7 @@ public:
     AdanaxisRender();
     virtual ~AdanaxisRender() {}
     
-    virtual void PreCacheRender(MushGameLogic& ioLogic, const MushGameCamera& inCamera);
+    virtual void PrecacheRender(MushGameLogic& ioLogic, const MushGameCamera& inCamera);
     virtual void FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCamera);
     virtual void ScanRender(AdanaxisLogic& ioLogic, MushRenderMesh *inpRenderMesh, const MushGameCamera& inCamera);
     virtual void Overplot(MushGameLogic& ioLogic, const MushGameCamera& inCamera);

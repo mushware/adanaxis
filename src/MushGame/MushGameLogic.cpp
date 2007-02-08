@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } o9Dxm/e8GypZNPSRXLgJNQ
 /*
- * $Id: MushGameLogic.cpp,v 1.39 2006/12/11 18:54:18 southa Exp $
+ * $Id: MushGameLogic.cpp,v 1.40 2006/12/14 00:33:49 southa Exp $
  * $Log: MushGameLogic.cpp,v $
+ * Revision 1.40  2006/12/14 00:33:49  southa
+ * Control fix and audio pacing
+ *
  * Revision 1.39  2006/12/11 18:54:18  southa
  * Positional audio
  *
@@ -236,14 +239,17 @@ MushGameLogic::TargetPieceSelect(const MushMeshPosticity& inPost, const std::str
     const t4Val& objPos = inPost.Pos();
     
     std::string::size_type pos = 0;
-    std::string::size_type commaPos = 0;
+    std::string::size_type foundPos = 0;
     
     do
     {
-        commaPos = inTypes.find(',', pos);
-        TargetPieceSearch(pieceID, distToPieceSquared, objPos, inTypes.substr(pos, commaPos - pos), inExcludeID);
-        pos = commaPos + 1;
-    } while (pieceID == "" && commaPos != string::npos);
+        foundPos = inTypes.find_first_of("+,", pos);
+        TargetPieceSearch(pieceID, distToPieceSquared, objPos, inTypes.substr(pos, foundPos - pos), inExcludeID);
+        pos = foundPos + 1;
+        /* Always keep searching after a plus, but only keep searching after a comma if
+         * we've found nothing so far
+         */
+    } while (foundPos != string::npos && (inTypes[foundPos] == '+' || pieceID == ""));
     
     return pieceID;
 }
@@ -704,7 +710,7 @@ MushGameLogic::CutSceneSequence(void)
 }
 
 void
-MushGameLogic::PreCacheSequence(void)
+MushGameLogic::PrecacheSequence(void)
 {
 }
 
@@ -715,9 +721,9 @@ MushGameLogic::RenderSequence(void)
     MushcoreData<MushGameCamera>& cameraData = SaveData().CamerasWRef();
     for (tIterator p = cameraData.Begin(); p != cameraData.End(); ++p)
     {
-        if (IsPreCacheMode())
+        if (IsPrecacheMode())
         {
-            SaveData().RenderRef().WRef().PreCacheRender(*this, *p->second);        
+            SaveData().RenderRef().WRef().PrecacheRender(*this, *p->second);        
         }
         else
         {
@@ -762,10 +768,10 @@ MushGameLogic::MainSequence(void)
         try { MenuSequence(); }
         catch (MushcoreNonFatalFail& e) { ExceptionHandle(&e, "MenuSequence"); }
     }
-    if (IsPreCacheMode())
+    if (IsPrecacheMode())
     {
-        try { PreCacheSequence(); }
-        catch (MushcoreNonFatalFail& e) { ExceptionHandle(&e, "PreCacheSequence"); }
+        try { PrecacheSequence(); }
+        catch (MushcoreNonFatalFail& e) { ExceptionHandle(&e, "PrecacheSequence"); }
     }
     try { RenderSequence(); }
     catch (MushcoreNonFatalFail& e) { ExceptionHandle(&e, "RenderSequence"); }
@@ -781,7 +787,7 @@ MushGameLogic::MenuModeEnter(void)
 {
     MushGameUtil::AppHandler().KeyRepeatSet(true);
     VolatileData().GameModeSet(MushGameVolatileData::kGameModeMenu);
-    PreCacheModeEnter();
+    PrecacheModeEnter();
 }
 
 void
@@ -789,7 +795,7 @@ MushGameLogic::GameModeEnter(void)
 {
     MushGameUtil::AppHandler().KeyRepeatSet(false);
     VolatileData().GameModeSet(MushGameVolatileData::kGameModeGame);
-    PreCacheModeEnter();
+    PrecacheModeEnter();
 }
 
 void
@@ -797,7 +803,7 @@ MushGameLogic::CutSceneModeEnter(void)
 {
     MushGameUtil::AppHandler().KeyRepeatSet(false);
     VolatileData().GameModeSet(MushGameVolatileData::kGameModeCutScene);
-    PreCacheModeEnter();
+    PrecacheModeEnter();
 }
 
 void
@@ -815,16 +821,16 @@ MushGameLogic::QuitModeEnter(void)
 }
 
 void
-MushGameLogic::PreCacheModeEnter(void)
+MushGameLogic::PrecacheModeEnter(void)
 {
     MushGLTexture::ByteCountSet(0);
-    VolatileData().PreCacheSet(true);
+    VolatileData().PrecacheSet(true);
 }
 
 void
-MushGameLogic::PreCacheModeExit(void)
+MushGameLogic::PrecacheModeExit(void)
 {
-    VolatileData().PreCacheSet(false);
+    VolatileData().PrecacheSet(false);
 }
 
 bool
@@ -835,9 +841,9 @@ MushGameLogic::IsMenuMode(void) const
 
 
 bool
-MushGameLogic::IsPreCacheMode(void) const
+MushGameLogic::IsPrecacheMode(void) const
 {
-    return VolatileData().PreCache();    
+    return VolatileData().Precache();    
 }
 
 bool

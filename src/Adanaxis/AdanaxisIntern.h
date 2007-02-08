@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } WBiqbvbumO43Eps7fHh03A
 /*
- * $Id: AdanaxisIntern.h,v 1.17 2006/11/21 10:08:23 southa Exp $
+ * $Id: AdanaxisIntern.h,v 1.18 2006/12/14 15:59:23 southa Exp $
  * $Log: AdanaxisIntern.h,v $
+ * Revision 1.18  2006/12/14 15:59:23  southa
+ * Fire and cutscene fixes
+ *
  * Revision 1.17  2006/11/21 10:08:23  southa
  * Initial cut scene handling
  *
@@ -90,7 +93,7 @@
     @m_state
     mCollisionEventConsume
     mCutSceneRender
-    mHandlePreCacheEnd
+    mHandlePrecacheEnd
     mMenuRender
     mReceiveSequence
     mRender
@@ -131,7 +134,7 @@ public:
     Mushware::tRubyID ATm_state(void) { return m_ATm_state; }
     Mushware::tRubyID mCollisionEventConsume(void) { return m_mCollisionEventConsume; }
     Mushware::tRubyID mCutSceneRender(void) { return m_mCutSceneRender; }
-    Mushware::tRubyID mHandlePreCacheEnd(void) { return m_mHandlePreCacheEnd; }
+    Mushware::tRubyID mHandlePrecacheEnd(void) { return m_mHandlePrecacheEnd; }
     Mushware::tRubyID mMenuRender(void) { return m_mMenuRender; }
     Mushware::tRubyID mReceiveSequence(void) { return m_mReceiveSequence; }
     Mushware::tRubyID mRender(void) { return m_mRender; }
@@ -152,7 +155,7 @@ private:
     Mushware::tRubyID m_ATm_state;
     Mushware::tRubyID m_mCollisionEventConsume;
     Mushware::tRubyID m_mCutSceneRender;
-    Mushware::tRubyID m_mHandlePreCacheEnd;
+    Mushware::tRubyID m_mHandlePrecacheEnd;
     Mushware::tRubyID m_mMenuRender;
     Mushware::tRubyID m_mReceiveSequence;
     Mushware::tRubyID m_mRender;

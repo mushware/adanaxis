@@ -2914,6 +2914,7 @@
 		7A5C9F630809869B0017E78B /* GameCode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameCode.cpp; sourceTree = "<group>"; };
 		7A5DB883080804C000163474 /* GameReg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameReg.h; sourceTree = "<group>"; };
 		7A5DB884080804C000163474 /* GameReg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameReg.cpp; sourceTree = "<group>"; };
+		7A5E0A410B64E6FD005D1C4E /* AdanaxisPieceLibrary.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AdanaxisPieceLibrary.rb; sourceTree = "<group>"; };
 		7A5EACDC0B29AD58008D2EE7 /* MushGLRuby.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushGLRuby.h; sourceTree = "<group>"; };
 		7A5EACDD0B29AD58008D2EE7 /* MushGLRuby.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushGLRuby.cpp; sourceTree = "<group>"; };
 		7A5F01780A3EB2E40086C680 /* MushRubyDataObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushRubyDataObj.h; sourceTree = "<group>"; };
@@ -2933,6 +2934,9 @@
 		7A5F71110A3F21B0006F24A8 /* MushMeshRubyRotation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushMeshRubyRotation.cpp; sourceTree = "<group>"; };
 		7A5F71790A3F2669006F24A8 /* MushMeshRubyTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushMeshRubyTools.h; sourceTree = "<group>"; };
 		7A5F717A0A3F2669006F24A8 /* MushMeshRubyTools.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushMeshRubyTools.cpp; sourceTree = "<group>"; };
+		7A5F7F050B7B3E7A002A59E4 /* dialogues.xml */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; path = dialogues.xml; sourceTree = "<group>"; };
+		7A5F7F060B7B3E7A002A59E4 /* manifest.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = manifest.txt; sourceTree = "<group>"; };
+		7A5F7F070B7B3E7A002A59E4 /* space.rb */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.ruby; path = space.rb; sourceTree = "<group>"; };
 		7A5FA8C905A4CC1F00AA22E5 /* MushPie.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = MushPie.cpp; sourceTree = "<group>"; };
 		7A5FA8CA05A4CC1F00AA22E5 /* MushPie.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = MushPie.h; sourceTree = "<group>"; };
 		7A60C9960A9E762F00026EEC /* AdanaxisPieceProjectile.rb */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = text.script.ruby; path = AdanaxisPieceProjectile.rb; sourceTree = "<group>"; tabWidth = 2; };
@@ -4393,6 +4397,7 @@
 				7A3E0D1B0A4821C10078B650 /* local1 */,
 				7A97ECE80A6A808600369FD6 /* local2 */,
 				7A6176830A7FB32F00B97CA2 /* local3 */,
+				7A5F7F040B7B3E7A002A59E4 /* local4 */,
 				7A58280E0A791B55005FD788 /* menu1 */,
 				7A6176870A7FB34800B97CA2 /* river1 */,
 				7A6174D60A7F8B5E00B97CA2 /* ReadMe.txt */,
@@ -4806,6 +4811,16 @@
 				7A5C9EF6080979900017E78B /* CodeGenCommands.h */,
 			);
 			path = CodeGen;
+			sourceTree = "<group>";
+		};
+		7A5F7F040B7B3E7A002A59E4 /* local4 */ = {
+			isa = PBXGroup;
+			children = (
+				7A5F7F050B7B3E7A002A59E4 /* dialogues.xml */,
+				7A5F7F060B7B3E7A002A59E4 /* manifest.txt */,
+				7A5F7F070B7B3E7A002A59E4 /* space.rb */,
+			);
+			path = local4;
 			sourceTree = "<group>";
 		};
 		7A6176830A7FB32F00B97CA2 /* local3 */ = {
@@ -6418,6 +6433,7 @@
 				7A5A70890AFBB34000AA6637 /* AdanaxisPieceEffector.rb */,
 				7A5944700AE7837600DFF4CD /* AdanaxisPieceItem.rb */,
 				7ACFCE510A90A40C00A55B7D /* AdanaxisPieceKhazi.rb */,
+				7A5E0A410B64E6FD005D1C4E /* AdanaxisPieceLibrary.rb */,
 				7A597B610AD15C620071174E /* AdanaxisPiecePlayer.rb */,
 				7A60C9960A9E762F00026EEC /* AdanaxisPieceProjectile.rb */,
 				7A5A571C0AF6484600444AC6 /* AdanaxisRemnant.rb */,

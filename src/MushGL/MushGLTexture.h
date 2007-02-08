@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } AYQWMxoJ+uDPAQUnlwSk/w
 /*
- * $Id: MushGLTexture.h,v 1.11 2006/11/07 11:08:54 southa Exp $
+ * $Id: MushGLTexture.h,v 1.12 2006/11/09 23:53:59 southa Exp $
  * $Log: MushGLTexture.h,v $
+ * Revision 1.12  2006/11/09 23:53:59  southa
+ * Explosion and texture loading
+ *
  * Revision 1.11  2006/11/07 11:08:54  southa
  * Texture loading from mushfiles
  *
@@ -102,7 +105,7 @@ public:
     static void RubyInstall(void);
 
 	static Mushware::tRubyValue RubyDefine(Mushware::tRubyArgC inArgC, Mushware::tRubyValue *inpArgV, Mushware::tRubyValue inSelf);
-	static Mushware::tRubyValue RubyPreCache(Mushware::tRubyArgC inArgC, Mushware::tRubyValue *inpArgV, Mushware::tRubyValue inSelf);
+	static Mushware::tRubyValue RubyPrecache(Mushware::tRubyArgC inArgC, Mushware::tRubyValue *inpArgV, Mushware::tRubyValue inSelf);
 		
 private:
     enum 
