@@ -10,8 +10,11 @@
 #
 ##############################################################################
 
-# $Id: SourceConditioner.pl,v 1.55 2006/10/04 21:39:34 southa Exp $
+# $Id: SourceConditioner.pl,v 1.56 2006/10/14 16:59:42 southa Exp $
 # $Log: SourceConditioner.pl,v $
+# Revision 1.56  2006/10/14 16:59:42  southa
+# Ruby Deco objects
+#
 # Revision 1.55  2006/10/04 21:39:34  southa
 # Source processing
 #
@@ -209,8 +212,10 @@ my @gCHeaders = (
 ' *',
 ' * Copyright: Andy Southgate 2002-2006',
 ' *',
-' * All rights reserved.  Distribution prohibited.  For information, please',
-' * contact the author via http://www.mushware.com/.',
+' * All rights reserved.  Distribution of this source file or the data',
+' * contained within it is prohibited unless expressly permitted by Mushware',
+' * Limited.  For information, please contact the author via',
+' * http://www.mushware.com/.',
 ' *',
 ' * This software carries NO WARRANTY of any kind.',
 ' *',
@@ -247,7 +252,7 @@ my @gCHeaders = (
 ' *',
 ' ****************************************************************************/'
 ],
-'^Adanaxis.*\.rb$' => [
+'^(Adanaxis.*|space)\.rb$' => [
 '##############################################################################',
 '#',
 '# File @FILENAME@',

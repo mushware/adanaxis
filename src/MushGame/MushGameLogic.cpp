@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } o9Dxm/e8GypZNPSRXLgJNQ
 /*
- * $Id: MushGameLogic.cpp,v 1.40 2006/12/14 00:33:49 southa Exp $
+ * $Id: MushGameLogic.cpp,v 1.41 2007/02/08 17:55:15 southa Exp $
  * $Log: MushGameLogic.cpp,v $
+ * Revision 1.41  2007/02/08 17:55:15  southa
+ * Common routines in space generation
+ *
  * Revision 1.40  2006/12/14 00:33:49  southa
  * Control fix and audio pacing
  *
@@ -741,17 +744,21 @@ MushGameLogic::MainSequence(void)
     catch (MushcoreNonFatalFail& e) { ExceptionHandle(&e, "ReceiveSequence"); }
     try { SendSequence(); }
     catch (MushcoreNonFatalFail& e) { ExceptionHandle(&e, "SendSequence"); }
-    if (IsGameMode() || VolatileData().IsMenuBackdrop())
+    
+    if (!IsPrecacheMode()) // Never move during precache
     {
-        for (U32 i=0; i<VolatileData().MovesThisFrame(); ++i)
+        if (IsGameMode() || VolatileData().IsMenuBackdrop())
         {
-            try { MoveSequence(); }
-            catch (MushcoreNonFatalFail& e) { ExceptionHandle(&e, "MoveSequence"); }
-            try { CollideSequence(); }
-            catch (MushcoreNonFatalFail& e) { ExceptionHandle(&e, "CollideSequence"); }
-            if (i>10)
+            for (U32 i=0; i<VolatileData().MovesThisFrame(); ++i)
             {
-                throw MushcoreLogicFail("Move overrun");
+                try { MoveSequence(); }
+                catch (MushcoreNonFatalFail& e) { ExceptionHandle(&e, "MoveSequence"); }
+                try { CollideSequence(); }
+                catch (MushcoreNonFatalFail& e) { ExceptionHandle(&e, "CollideSequence"); }
+                if (i>10)
+                {
+                    throw MushcoreLogicFail("Move overrun");
+                }
             }
         }
     }
