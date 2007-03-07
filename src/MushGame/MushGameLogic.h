@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } pz9Ij69Gp+RQuOHP0yYqgg
 /*
- * $Id: MushGameLogic.h,v 1.26 2006/12/14 00:33:49 southa Exp $
+ * $Id: MushGameLogic.h,v 1.27 2007/02/08 17:55:15 southa Exp $
  * $Log: MushGameLogic.h,v $
+ * Revision 1.27  2007/02/08 17:55:15  southa
+ * Common routines in space generation
+ *
  * Revision 1.26  2006/12/14 00:33:49  southa
  * Control fix and audio pacing
  *
@@ -180,10 +183,12 @@ public:
     virtual bool IsPrecacheMode(void) const;
     virtual bool IsGameMode(void) const;
     virtual bool IsCutSceneMode(void) const;
+    virtual bool IsEpilogueMode(void) const;
     virtual void MenuModeEnter(void);
     virtual void GameModeEnter(void);
     virtual void CutSceneModeEnter(void);
     virtual void CutSceneModeExit(void);
+    virtual void EpilogueModeEnter(void);
     virtual void QuitModeEnter(void);
     virtual void PrecacheModeEnter(void);
     virtual void PrecacheModeExit(void);

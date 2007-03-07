@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } abz8WfQdtsWpPxv12NZxhA
 /*
- * $Id: MushGameRuby.h,v 1.20 2006/11/23 14:40:30 southa Exp $
+ * $Id: MushGameRuby.h,v 1.21 2006/12/11 18:54:19 southa Exp $
  * $Log: MushGameRuby.h,v $
+ * Revision 1.21  2006/12/11 18:54:19  southa
+ * Positional audio
+ *
  * Revision 1.20  2006/11/23 14:40:30  southa
  * Intro cutscene
  *
@@ -98,6 +101,7 @@ public:
     static Mushware::tRubyValue GameModeEnter(Mushware::tRubyValue inSelf);
     static Mushware::tRubyValue CutSceneModeEnter(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
     static Mushware::tRubyValue CutSceneModeExit(Mushware::tRubyValue inSelf);
+    static Mushware::tRubyValue EpilogueModeEnter(Mushware::tRubyValue inSelf);
     static Mushware::tRubyValue NewGameEnter(Mushware::tRubyValue inSelf);
     static Mushware::tRubyValue Quit(Mushware::tRubyValue inSelf);
     static Mushware::tRubyValue AxisName(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);

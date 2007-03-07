@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } WBiqbvbumO43Eps7fHh03A
 /*
- * $Id: AdanaxisIntern.h,v 1.18 2006/12/14 15:59:23 southa Exp $
+ * $Id: AdanaxisIntern.h,v 1.19 2007/02/08 17:55:14 southa Exp $
  * $Log: AdanaxisIntern.h,v $
+ * Revision 1.19  2007/02/08 17:55:14  southa
+ * Common routines in space generation
+ *
  * Revision 1.18  2006/12/14 15:59:23  southa
  * Fire and cutscene fixes
  *
@@ -94,6 +97,7 @@
     mCollisionEventConsume
     mCutSceneRender
     mHandlePrecacheEnd
+    mSpawn
     mMenuRender
     mReceiveSequence
     mRender
@@ -135,6 +139,7 @@ public:
     Mushware::tRubyID mCollisionEventConsume(void) { return m_mCollisionEventConsume; }
     Mushware::tRubyID mCutSceneRender(void) { return m_mCutSceneRender; }
     Mushware::tRubyID mHandlePrecacheEnd(void) { return m_mHandlePrecacheEnd; }
+    Mushware::tRubyID mSpawn(void) { return m_mSpawn; }
     Mushware::tRubyID mMenuRender(void) { return m_mMenuRender; }
     Mushware::tRubyID mReceiveSequence(void) { return m_mReceiveSequence; }
     Mushware::tRubyID mRender(void) { return m_mRender; }
@@ -156,10 +161,11 @@ private:
     Mushware::tRubyID m_mCollisionEventConsume;
     Mushware::tRubyID m_mCutSceneRender;
     Mushware::tRubyID m_mHandlePrecacheEnd;
+    Mushware::tRubyID m_mSpawn;
     Mushware::tRubyID m_mMenuRender;
     Mushware::tRubyID m_mReceiveSequence;
     Mushware::tRubyID m_mRender;
-//%declarations } 176e39c2c2f9c7133abd58eaed482b80
+//%declarations } e5679e313afeba8b7e54763b0a4f4dfc
 
 //%classPrototypes {
 public:

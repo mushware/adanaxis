@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } hwIlNOCEH5GsgwGY+rP1Kg
 /*
- * $Id: MushRubyValue.cpp,v 1.19 2006/10/12 22:04:49 southa Exp $
+ * $Id: MushRubyValue.cpp,v 1.20 2006/11/08 18:30:54 southa Exp $
  * $Log: MushRubyValue.cpp,v $
+ * Revision 1.20  2006/11/08 18:30:54  southa
+ * Key and axis configuration
+ *
  * Revision 1.19  2006/10/12 22:04:49  southa
  * Collision events
  *
@@ -251,7 +254,7 @@ MushRubyValue::Bool(void) const
 	{
 		retVal = true;	
 	}
-	else if (m_value == Qfalse)
+	else if (m_value == Qfalse || m_value == Qnil)
 	{
 		retVal = false;
 	}

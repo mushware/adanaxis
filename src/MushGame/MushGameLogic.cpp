@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } o9Dxm/e8GypZNPSRXLgJNQ
 /*
- * $Id: MushGameLogic.cpp,v 1.41 2007/02/08 17:55:15 southa Exp $
+ * $Id: MushGameLogic.cpp,v 1.42 2007/03/06 11:34:01 southa Exp $
  * $Log: MushGameLogic.cpp,v $
+ * Revision 1.42  2007/03/06 11:34:01  southa
+ * Space and precache fixes
+ *
  * Revision 1.41  2007/02/08 17:55:15  southa
  * Common routines in space generation
  *
@@ -181,6 +184,10 @@ MushGameLogic::PieceLookup(const std::string& inName) const
     {
         case MushGameData::kCharPlayer:
             pPiece = &SaveData().PlayersList().Get(objNum);
+            if (pPiece->ExpireFlag())
+            {
+                throw MushcoreDataFail("Expired object type '"+inName+"'");
+            }
             break;
 
         default:
@@ -209,15 +216,18 @@ MushGameLogic::TargetPieceSearch(std::string& ioID,
             const MushcoreMaptor<MushGamePiecePlayer>& playerData = SaveData().PlayersList();
             for (tIterator p = playerData.begin(); p != playerData.end(); ++p)
             {
-                t4Val vecToObj = inPos - p->Post().Pos();
-                tVal distToObjSquared = vecToObj.MagnitudeSquared();
-                if (ioID == "" || distToObjSquared < ioDistSquared)
+                if (!p->ExpireFlag())
                 {
-                    std::string newID = MushGameUtil::ObjectName(inObjType, p.Key());
-                    if (newID != inExcludeID)
+                    t4Val vecToObj = inPos - p->Post().Pos();
+                    tVal distToObjSquared = vecToObj.MagnitudeSquared();
+                    if (ioID == "" || distToObjSquared < ioDistSquared)
                     {
-                        ioDistSquared = distToObjSquared;
-                        ioID = newID;
+                        std::string newID = MushGameUtil::ObjectName(inObjType, p.Key());
+                        if (newID != inExcludeID)
+                        {
+                            ioDistSquared = distToObjSquared;
+                            ioID = newID;
+                        }
                     }
                 }
             }
@@ -506,7 +516,7 @@ MushGameLogic::TimingSequence(void)
         VolatileData().MovesThisFrameSet(movesThisFrame);
     }
     
-    if (IsGameMode() && timeDiff < 1e9)
+    if (IsGameMode() || IsEpilogueMode() && timeDiff < 1e9)
     {
         VolatileData().GameMsecSet(VolatileData().GameMsec() + timeDiff);
     }
@@ -747,7 +757,7 @@ MushGameLogic::MainSequence(void)
     
     if (!IsPrecacheMode()) // Never move during precache
     {
-        if (IsGameMode() || VolatileData().IsMenuBackdrop())
+        if (IsGameMode() || IsEpilogueMode() || VolatileData().IsMenuBackdrop())
         {
             for (U32 i=0; i<VolatileData().MovesThisFrame(); ++i)
             {
@@ -821,6 +831,12 @@ MushGameLogic::CutSceneModeExit(void)
 }
 
 void
+MushGameLogic::EpilogueModeEnter(void)
+{
+    VolatileData().GameModeSet(MushGameVolatileData::kGameModeEpilogue);
+}
+
+void
 MushGameLogic::QuitModeEnter(void)
 {
     VolatileData().GameModeSet(MushGameVolatileData::kGameModeQuit);
@@ -863,6 +879,12 @@ bool
 MushGameLogic::IsCutSceneMode(void) const
 {
     return VolatileData().GameMode() == MushGameVolatileData::kGameModeCutScene;    
+}
+
+bool
+MushGameLogic::IsEpilogueMode(void) const
+{
+    return VolatileData().GameMode() == MushGameVolatileData::kGameModeEpilogue;    
 }
 
 void

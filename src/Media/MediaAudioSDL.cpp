@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } ccLCYRn/kYU+5Rp9coVdng
 /*
- * $Id: MediaAudioSDL.cpp,v 1.31 2006/12/14 00:33:48 southa Exp $
+ * $Id: MediaAudioSDL.cpp,v 1.32 2006/12/16 10:57:22 southa Exp $
  * $Log: MediaAudioSDL.cpp,v $
+ * Revision 1.32  2006/12/16 10:57:22  southa
+ * Encrypted files
+ *
  * Revision 1.31  2006/12/14 00:33:48  southa
  * Control fix and audio pacing
  *
@@ -291,7 +294,7 @@ MediaAudioSDL::Play(MediaSound& inSound, Mushware::tVal inVolume, Mushware::t4Va
         static bool errorReported = false;
         if (!errorReported)
         {
-            MushcoreLog::Sgl().WarningLog() << "MediaAudioSDL tikcer not being called" << endl;
+            MushcoreLog::Sgl().WarningLog() << "MediaAudioSDL ticker not being called" << endl;
             errorReported = true;
         }
     }

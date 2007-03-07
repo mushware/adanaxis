@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } WMShka8Hj2wrlOceGnqYjw
 /*
- * $Id: AdanaxisPiecePlayer.h,v 1.4 2006/10/30 17:03:51 southa Exp $
+ * $Id: AdanaxisPiecePlayer.h,v 1.5 2006/12/14 00:33:48 southa Exp $
  * $Log: AdanaxisPiecePlayer.h,v $
+ * Revision 1.5  2006/12/14 00:33:48  southa
+ * Control fix and audio pacing
+ *
  * Revision 1.4  2006/10/30 17:03:51  southa
  * Remnants creation
  *
@@ -93,9 +96,11 @@ public:
     virtual void AxisDeltaHandle(Mushware::tVal inDelta, Mushware::U32 inAxisNum);
     virtual void KeyChangeHandle(MushGameLogic& ioLogic, bool inState, Mushware::U32 inKeyNum);
     virtual void ControlInfoConsume(MushGameLogic& ioLogic, const MushGameMessageControlInfo& inMessage);
+#if 0
     virtual void FirePieceCreate(MushGameLogic& ioLogic, const MushGameMessageFire& inMessage);
     virtual void FireConsume(MushGameLogic& ioLogic, const MushGameMessageFire& inMessage);
-
+#endif
+    
     static Mushware::tRubyValue RubyCreate(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
     
     static Mushware::tRubyValue Klass(void);

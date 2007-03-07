@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } yY7ZZkvIHHOoUzJzTAQPOQ
 /*
- * $Id: MushGameRuby.cpp,v 1.24 2006/11/25 21:26:33 southa Exp $
+ * $Id: MushGameRuby.cpp,v 1.25 2006/12/11 18:54:18 southa Exp $
  * $Log: MushGameRuby.cpp,v $
+ * Revision 1.25  2006/12/11 18:54:18  southa
+ * Positional audio
+ *
  * Revision 1.24  2006/11/25 21:26:33  southa
  * Display mode definitions
  *
@@ -172,6 +175,13 @@ Mushware::tRubyValue
 MushGameRuby::CutSceneModeExit(Mushware::tRubyValue inSelf)
 {
     MushGameUtil::LogicWRef().CutSceneModeExit();
+    return kRubyQnil;
+}
+
+Mushware::tRubyValue
+MushGameRuby::EpilogueModeEnter(Mushware::tRubyValue inSelf)
+{
+    MushGameUtil::LogicWRef().EpilogueModeEnter();
     return kRubyQnil;
 }
 
@@ -799,7 +809,10 @@ MushGameRuby::TargetPieceSelect(Mushware::tRubyValue inSelf, Mushware::tRubyValu
     }
     catch (std::exception& e)
     {
-        MushRubyUtil::Raise(e.what());       
+#ifdef MISHCORE_DEBUG
+        MushcoreLog::Sgl().InfoLog() << "Routine targeting failure: " << e.what() << endl;
+#endif
+        pieceID = "";       
     }
 
     if (pieceID == "")
@@ -819,6 +832,7 @@ MushGameRuby::MethodsInstall(void)
     MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cGameModeEnter", GameModeEnter);
     MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cCutSceneModeEnter", CutSceneModeEnter);
     MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cCutSceneModeExit", CutSceneModeExit);
+    MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cEpilogueModeEnter", EpilogueModeEnter);
     MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cNewGameEnter", NewGameEnter);
     MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cQuit", Quit);
     MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cAxisKeySymbols", AxisKeySymbols);

@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } zadk8cle2hIJ/tR0KH/bYw
 /*
- * $Id: AdanaxisVolatileData.cpp,v 1.10 2006/08/01 17:21:30 southa Exp $
+ * $Id: AdanaxisVolatileData.cpp,v 1.11 2006/11/12 20:09:55 southa Exp $
  * $Log: AdanaxisVolatileData.cpp,v $
+ * Revision 1.11  2006/11/12 20:09:55  southa
+ * Missile guidance
+ *
  * Revision 1.10  2006/08/01 17:21:30  southa
  * River demo
  *
@@ -87,7 +90,9 @@ AdanaxisVolatileData::AutoPrint(std::ostream& ioOut) const
     ioOut << "rubySpace=" << m_rubySpace << ", ";
     ioOut << "brightness=" << m_brightness << ", ";
     ioOut << "scannerOn=" << m_scannerOn << ", ";
-    ioOut << "playerTargetID=" << m_playerTargetID;
+    ioOut << "playerTargetID=" << m_playerTargetID << ", ";
+    ioOut << "khaziCount=" << m_khaziCount << ", ";
+    ioOut << "playerCount=" << m_playerCount;
     ioOut << "]";
 }
 bool
@@ -127,6 +132,14 @@ AdanaxisVolatileData::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::st
     {
         ioIn >> m_playerTargetID;
     }
+    else if (inTagStr == "khaziCount")
+    {
+        ioIn >> m_khaziCount;
+    }
+    else if (inTagStr == "playerCount")
+    {
+        ioIn >> m_playerCount;
+    }
     else if (MushGameVolatileData::AutoXMLDataProcess(ioIn, inTagStr))
     {
         // Tag consumed by base class
@@ -155,5 +168,9 @@ AdanaxisVolatileData::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_scannerOn;
     ioOut.TagSet("playerTargetID");
     ioOut << m_playerTargetID;
+    ioOut.TagSet("khaziCount");
+    ioOut << m_khaziCount;
+    ioOut.TagSet("playerCount");
+    ioOut << m_playerCount;
 }
-//%outOfLineFunctions } Haym/5ntDpkYvEPKkSPvyw
+//%outOfLineFunctions } noJAi2lAxJgmvs5gpWZXIA

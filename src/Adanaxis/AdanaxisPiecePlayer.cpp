@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } gq+r6M5XzKqE/mgjgvunrQ
 /*
- * $Id: AdanaxisPiecePlayer.cpp,v 1.11 2006/12/14 00:33:48 southa Exp $
+ * $Id: AdanaxisPiecePlayer.cpp,v 1.12 2006/12/14 00:46:57 southa Exp $
  * $Log: AdanaxisPiecePlayer.cpp,v $
+ * Revision 1.12  2006/12/14 00:46:57  southa
+ * Control fix and audio pacing
+ *
  * Revision 1.11  2006/12/14 00:33:48  southa
  * Control fix and audio pacing
  *
@@ -181,11 +184,13 @@ AdanaxisPiecePlayer::PreControl(MushGameLogic& ioLogic)
 void
 AdanaxisPiecePlayer::Move(MushGameLogic& ioLogic, const tVal inFrameslice)
 {
-    MushMeshPosticity entryPost = Post();
+    if (ExpireFlag())
+    {
+        PostWRef().VelWRef().ToAdditiveIdentitySet();
+    }
     MushGamePiece::Move(ioLogic, inFrameslice);
 
     PostWRef().InPlaceVelocityAdd();
-    MushMeshPosticity exitPost = Post();
 }
 
 void
@@ -315,6 +320,7 @@ AdanaxisPiecePlayer::ControlInfoConsume(MushGameLogic& ioLogic, const MushGameMe
     }
 }
 
+#if 0
 void
 AdanaxisPiecePlayer::FirePieceCreate(MushGameLogic& ioLogic, const MushGameMessageFire& inMessage)
 {
@@ -393,6 +399,7 @@ AdanaxisPiecePlayer::FireConsume(MushGameLogic& ioLogic, const MushGameMessageFi
         pVolData->ScannerOnSet(false);
     }
 }
+#endif
 
 Mushware::tRubyValue
 AdanaxisPiecePlayer::RubyCreate(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0)

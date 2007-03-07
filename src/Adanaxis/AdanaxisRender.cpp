@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } rQkTih3VUd7Xp8cDeV3ZYA
 /*
- * $Id: AdanaxisRender.cpp,v 1.62 2007/02/08 17:55:14 southa Exp $
+ * $Id: AdanaxisRender.cpp,v 1.63 2007/03/07 11:29:24 southa Exp $
  * $Log: AdanaxisRender.cpp,v $
+ * Revision 1.63  2007/03/07 11:29:24  southa
+ * Level permission
+ *
  * Revision 1.62  2007/02/08 17:55:14  southa
  * Common routines in space generation
  *
@@ -615,7 +618,7 @@ AdanaxisRender::Overplot(MushGameLogic& ioLogic, const MushGameCamera& inCamera)
                 orthoGL.MoveToEdge(-1,1);
                 orthoGL.MoveRelative(0.01, -0.04);
                 ostringstream message;
-                message << logicRef.KhaziCount() << " left";
+                message << logicRef.VolatileData().KhaziCount() << " left";
                 GLString glStr(message.str(), GLFontRef("font-mono1", 0.02), -1);
                 glStr.Render();
             }
@@ -657,7 +660,7 @@ AdanaxisRender::Overplot(MushGameLogic& ioLogic, const MushGameCamera& inCamera)
 #endif
 #endif
         
-        if (logicRef.KhaziCount() == 0)
+        if (logicRef.IsEpilogueMode())
         {
             if (logicRef.EndTime() > logicRef.StartTime())
             {

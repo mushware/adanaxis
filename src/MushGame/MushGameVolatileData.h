@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } zS6MRI08vU38Tp9aNbV8RQ
 /*
- * $Id: MushGameVolatileData.h,v 1.14 2006/12/14 15:59:24 southa Exp $
+ * $Id: MushGameVolatileData.h,v 1.15 2007/02/08 17:55:15 southa Exp $
  * $Log: MushGameVolatileData.h,v $
+ * Revision 1.15  2007/02/08 17:55:15  southa
+ * Common routines in space generation
+ *
  * Revision 1.14  2006/12/14 15:59:24  southa
  * Fire and cutscene fixes
  *
@@ -84,6 +87,7 @@ public:
         kGameModeMenu,
         kGameModeGame,
         kGameModeCutScene,
+        kGameModeEpilogue,
         kGameModeQuit,
         kGameModeNext
     };

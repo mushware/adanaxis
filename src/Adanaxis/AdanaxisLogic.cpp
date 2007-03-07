@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } Mac7dWHONvkZIg39sQnwww
 /*
- * $Id: AdanaxisLogic.cpp,v 1.34 2006/12/14 15:59:23 southa Exp $
+ * $Id: AdanaxisLogic.cpp,v 1.35 2007/02/08 17:55:14 southa Exp $
  * $Log: AdanaxisLogic.cpp,v $
+ * Revision 1.35  2007/02/08 17:55:14  southa
+ * Common routines in space generation
+ *
  * Revision 1.34  2006/12/14 15:59:23  southa
  * Fire and cutscene fixes
  *
@@ -136,7 +139,6 @@ using namespace std;
 
 AdanaxisLogic::AdanaxisLogic() :
     MushGameLogic(),
-    m_khaziCount(1),
     m_preCacheResult(0)
 {
 }
@@ -640,19 +642,7 @@ AdanaxisLogic::PrecacheSequence(void)
 
 void
 AdanaxisLogic::RenderSequence(void)
-{
-    m_khaziCount = 0;
-    AdanaxisData::tKhaziList::iterator khaziEndIter = SaveData().KhaziListWRef().end();
-    for (AdanaxisData::tKhaziList::iterator p = SaveData().KhaziListWRef().begin(); p != khaziEndIter; ++p)
-    {
-        ++m_khaziCount;
-    }  
-    
-    if (m_khaziCount != 0)
-    {
-        EndTimeSet(FrameMsec());
-    }
-    
+{    
     MushGameLogic::RenderSequence();
 }
 
@@ -666,6 +656,69 @@ AdanaxisLogic::ReceiveSequence(void)
 void
 AdanaxisLogic::CutSceneSequence(void)
 {
+}
+
+void
+AdanaxisLogic::TickerSequence(void)
+{
+    MushGameLogic::TickerSequence();
+    
+    U32 count = 0;
+    AdanaxisData::tKhaziList::iterator khaziEndIter = SaveData().KhaziListWRef().end();
+    for (AdanaxisData::tKhaziList::iterator p = SaveData().KhaziListWRef().begin();
+         p != khaziEndIter; ++p)
+    {
+        ++count;
+    }  
+    
+    VolatileData().KhaziCountSet(count);
+    
+    U32 playerCount = 0;
+    count = 0;
+    typedef MushcoreMaptor<MushGamePiecePlayer>::iterator tIterator;
+    MushcoreMaptor<MushGamePiecePlayer>& playerData = SaveData().PlayersListWRef();
+    for (tIterator p = playerData.begin(); p != playerData.end(); ++p)
+    {
+        ++count;
+        if (!p->ExpireFlag())
+        {
+            ++playerCount;
+        }
+    }
+    
+    VolatileData().PlayerCountSet(playerCount);
+    
+    if (playerCount == 0 && count != 0)
+    {
+        // No live players but some dead    VolatileData().GameModeSet(MushGameVolatileData::kGameModeGame);
+
+        if (IsGameMode())
+        {
+            EndTimeSet(FrameMsec());
+            EpilogueModeEnter();
+        }
+    }
+    else if (IsGameMode() && VolatileData().KhaziCount() == 0)
+    {
+        NoKhaziSequence();
+    }
+}
+
+void
+AdanaxisLogic::NoKhaziSequence(void)
+{
+    if (!MushRubyExec::Sgl().Call(VolatileData().RubyGame(),
+                                  AdanaxisIntern::Sgl().mSpawn()).Bool())
+    {
+        LevelEndSequence();
+    }
+}
+
+void
+AdanaxisLogic::LevelEndSequence(void)
+{
+    EndTimeSet(FrameMsec());
+    EpilogueModeEnter();
 }
 
 MushGamePiece&
@@ -778,7 +831,6 @@ AdanaxisLogic::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
     MushGameLogic::AutoPrint(ioOut);
-    ioOut << "khaziCount=" << m_khaziCount << ", ";
     ioOut << "startTime=" << m_startTime << ", ";
     ioOut << "endTime=" << m_endTime << ", ";
     ioOut << "recordTime=" << m_recordTime << ", ";
@@ -793,10 +845,6 @@ AdanaxisLogic::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& i
         AutoInputPrologue(ioIn);
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
-    }
-    else if (inTagStr == "khaziCount")
-    {
-        ioIn >> m_khaziCount;
     }
     else if (inTagStr == "startTime")
     {
@@ -828,8 +876,6 @@ void
 AdanaxisLogic::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
     MushGameLogic::AutoXMLPrint(ioOut);
-    ioOut.TagSet("khaziCount");
-    ioOut << m_khaziCount;
     ioOut.TagSet("startTime");
     ioOut << m_startTime;
     ioOut.TagSet("endTime");
@@ -839,4 +885,4 @@ AdanaxisLogic::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("preCacheResult");
     ioOut << m_preCacheResult;
 }
-//%outOfLineFunctions } a70sQwDFt5hHHuygTk9r7A
+//%outOfLineFunctions } Z0Z9PTBbpc9t5Nkb2A35jA

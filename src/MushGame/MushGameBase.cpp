@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 72jYu/IZevqg7bsvRKLvxw
 /*
- * $Id: MushGameBase.cpp,v 1.8 2006/11/25 21:26:33 southa Exp $
+ * $Id: MushGameBase.cpp,v 1.9 2006/12/14 15:59:24 southa Exp $
  * $Log: MushGameBase.cpp,v $
+ * Revision 1.9  2006/12/14 15:59:24  southa
+ * Fire and cutscene fixes
+ *
  * Revision 1.8  2006/11/25 21:26:33  southa
  * Display mode definitions
  *
@@ -88,7 +91,7 @@ MushGameBase::KeyboardSignal(const GLKeyboardSignal& inSignal, MushGameAppHandle
     }
     else if (inSignal.keyValue == 27 && inSignal.keyDown)
     {
-        if (LogicRef().Ref().IsGameMode() || LogicRef().Ref().IsCutSceneMode())
+        if (!LogicRef().Ref().IsMenuMode())
         {
             LogicRef().WRef().MenuModeEnter();
         }

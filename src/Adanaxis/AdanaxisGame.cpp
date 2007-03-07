@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } 0Sg2qcftBJTnB0QxDEkq2Q
 /*
- * $Id: AdanaxisGame.cpp,v 1.59 2006/12/18 15:39:35 southa Exp $
+ * $Id: AdanaxisGame.cpp,v 1.60 2007/02/08 17:55:14 southa Exp $
  * $Log: AdanaxisGame.cpp,v $
+ * Revision 1.60  2007/02/08 17:55:14  southa
+ * Common routines in space generation
+ *
  * Revision 1.59  2006/12/18 15:39:35  southa
  * Palette changes
  *
@@ -484,7 +487,7 @@ AdanaxisGame::SwapOut(MushGameAppHandler& inAppHandler)
     tMsec recordTime = m_config.RecordTime(SaveData().SpaceName());
     if (recordTime == 0 || gameTime < recordTime)
     {
-        if (Logic().KhaziCount() == 0)
+        if (Logic().VolatileData().KhaziCount() == 0)
         {
             m_config.RecordTimeSet(SaveData().SpaceName(), gameTime);
         }

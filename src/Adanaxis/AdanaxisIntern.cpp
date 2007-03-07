@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } mqRyosjSblx9ADjVCHc1/g
 /*
- * $Id: AdanaxisIntern.cpp,v 1.15 2006/12/14 15:59:23 southa Exp $
+ * $Id: AdanaxisIntern.cpp,v 1.16 2007/02/08 17:55:14 southa Exp $
  * $Log: AdanaxisIntern.cpp,v $
+ * Revision 1.16  2007/02/08 17:55:14  southa
+ * Common routines in space generation
+ *
  * Revision 1.15  2006/12/14 15:59:23  southa
  * Fire and cutscene fixes
  *
@@ -92,8 +95,10 @@ AdanaxisIntern::AdanaxisIntern()
     m_mCollisionEventConsume = MushRubyIntern::SymbolID("mCollisionEventConsume");
     m_mCutSceneRender = MushRubyIntern::SymbolID("mCutSceneRender");
     m_mHandlePrecacheEnd = MushRubyIntern::SymbolID("mHandlePrecacheEnd");
+    m_mSpawn = MushRubyIntern::SymbolID("mSpawn");
     m_mMenuRender = MushRubyIntern::SymbolID("mMenuRender");
     m_mReceiveSequence = MushRubyIntern::SymbolID("mReceiveSequence");
     m_mRender = MushRubyIntern::SymbolID("mRender");
-//%initialisations } bef48bbd37bd692b48b28c6a132b17e0
+//%initialisations } 7c1e19078b0932de6a2a064a3452d5ce
 }
+ 
