@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } fh7altI5opktY3DzVNPCDA
 /*
- * $Id: AdanaxisConfig.h,v 1.16 2006/11/02 12:23:22 southa Exp $
+ * $Id: AdanaxisConfig.h,v 1.17 2006/11/25 21:26:31 southa Exp $
  * $Log: AdanaxisConfig.h,v $
+ * Revision 1.17  2006/11/25 21:26:31  southa
+ * Display mode definitions
+ *
  * Revision 1.16  2006/11/02 12:23:22  southa
  * Weapon selection
  *
@@ -128,7 +131,7 @@ public:
     MushGameKeyDef& KeyDefWRef(Mushware::U32 inKeyDefNum) { MushcoreUtil::BoundsCheck(inKeyDefNum, m_keyDefs.size()); return m_keyDefs[inKeyDefNum]; }
     void AxisDefSet(const MushGameAxisDef& inDef, Mushware::U32 inAxisDefNum) { MushcoreUtil::BoundsCheck(inAxisDefNum, m_axisDefs.size()); m_axisDefs[inAxisDefNum] = inDef; }
     void KeyDefSet(const MushGameKeyDef& inDef, Mushware::U32 inKeyDefNum) { MushcoreUtil::BoundsCheck(inKeyDefNum, m_keyDefs.size()); m_keyDefs[inKeyDefNum] = inDef; }
-    Mushware::tMsec RecordTime(const std::string& inName);
+    Mushware::tMsec RecordTime(const std::string& inName) const;
     void RecordTimeSet(const std::string& inName, Mushware::tMsec inTime) { m_recordTimes[inName] = inTime; }
     
 private:

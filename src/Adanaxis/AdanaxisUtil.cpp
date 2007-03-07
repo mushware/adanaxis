@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } XsVs/rr7rRJFJzKi6eatxg
 /*
- * $Id: AdanaxisUtil.cpp,v 1.36 2006/10/19 15:41:36 southa Exp $
+ * $Id: AdanaxisUtil.cpp,v 1.37 2006/12/18 15:39:35 southa Exp $
  * $Log: AdanaxisUtil.cpp,v $
+ * Revision 1.37  2006/12/18 15:39:35  southa
+ * Palette changes
+ *
  * Revision 1.36  2006/10/19 15:41:36  southa
  * Item handling
  *
@@ -132,6 +135,7 @@
 #include "AdanaxisUtil.h"
 
 #include "AdanaxisAppHandler.h"
+#include "AdanaxisConfig.h"
 #include "AdanaxisMeshLibrary.h"
 #include "AdanaxisSaveData.h"
 #include "AdanaxisVolatileData.h"
@@ -151,6 +155,17 @@ AdanaxisUtil::AppHandler(void)
         throw MushcoreRequestFail("AppHandler of wrong type for AdanaxisAppHandler");
     }
     return *pAppHandler;
+}
+
+const AdanaxisConfig&
+AdanaxisUtil::Config(void)
+{
+    const AdanaxisConfig *pConfig = dynamic_cast<const AdanaxisConfig *>(&AppHandler().Config());
+    if (pConfig == NULL)
+    {
+        throw MushcoreRequestFail("Config of wrong type for AdanaxisConfig");
+    }
+    return *pConfig;
 }
 
 AdanaxisMeshLibrary&

@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } B8mSgw4FqoBVewtmsej6Zw
 /*
- * $Id: AdanaxisUtil.h,v 1.12 2006/10/05 15:39:17 southa Exp $
+ * $Id: AdanaxisUtil.h,v 1.13 2006/12/18 15:39:35 southa Exp $
  * $Log: AdanaxisUtil.h,v $
+ * Revision 1.13  2006/12/18 15:39:35  southa
+ * Palette changes
+ *
  * Revision 1.12  2006/10/05 15:39:17  southa
  * Explosion handling
  *
@@ -66,6 +69,7 @@
 #include "AdanaxisLogic.h"
 
 class AdanaxisAppHandler;
+class AdanaxisConfig;
 class AdanaxisMeshLibrary;
 
 class AdanaxisUtil
@@ -81,6 +85,7 @@ public:
     static void ExploCreate(AdanaxisLogic& ioLogic, const MushMeshPosticity& inPost, Mushware::tVal inSize, Mushware::tVal inSpeed);
     
     static AdanaxisAppHandler& AppHandler(void);
+    static const AdanaxisConfig& Config(void);
     static AdanaxisMeshLibrary& MeshLibrary(void);
     static AdanaxisLogic& Logic(MushGameLogic& ioLogic);
 };

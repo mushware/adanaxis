@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } nD/Irg6+j8tkN0uh3Wk1EQ
 /*
- * $Id: AdanaxisRuby.cpp,v 1.5 2006/10/17 15:28:02 southa Exp $
+ * $Id: AdanaxisRuby.cpp,v 1.6 2006/11/12 20:09:55 southa Exp $
  * $Log: AdanaxisRuby.cpp,v $
+ * Revision 1.6  2006/11/12 20:09:55  southa
+ * Missile guidance
+ *
  * Revision 1.5  2006/10/17 15:28:02  southa
  * Player collisions
  *
@@ -37,6 +40,9 @@
  */
 
 #include "AdanaxisRuby.h"
+
+#include "AdanaxisConfig.h"
+#include "AdanaxisUtil.h"
 
 #include "API/mushMushMeshRuby.h"
 
@@ -69,9 +75,26 @@ AdanaxisRuby::PlayerTargetID(Mushware::tRubyValue inSelf)
     return MushRubyValue(VolatileData().PlayerTargetID()).Value();
 }    
 
+Mushware::tRubyValue
+AdanaxisRuby::RecordTime(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0)
+{
+    MushRubyValue retVal;
+    MushRubyValue param0(inArg0);
+    
+    Mushware::tMsec recordTime = AdanaxisUtil::Config().RecordTime(param0.String());
+    
+    if (recordTime != 0)
+    {
+        retVal = MushRubyValue(static_cast<U32>(recordTime));
+    }
+    
+    return retVal.Value();
+}    
+
 void
 AdanaxisRuby::AdanaxisInstall(void)
 {
     MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cPlayerPosition", PlayerPosition);
     MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cPlayerTargetID", PlayerTargetID);
+    MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cRecordTime", RecordTime);
 }

@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } oopg9ep1Y8Gi4lDebmHn9g
 /*
- * $Id: AdanaxisGame.h,v 1.23 2006/08/01 17:21:23 southa Exp $
+ * $Id: AdanaxisGame.h,v 1.24 2006/11/25 21:26:31 southa Exp $
  * $Log: AdanaxisGame.h,v $
+ * Revision 1.24  2006/11/25 21:26:31  southa
+ * Display mode definitions
+ *
  * Revision 1.23  2006/08/01 17:21:23  southa
  * River demo
  *
@@ -122,7 +125,7 @@ public:
     virtual void PreviousModeDef(void);
     virtual void NextModeDef(void);
     virtual void BrightnessSet(Mushware::tVal inValue);
-
+    
     virtual void UpdateFromConfig(void);
     virtual void UpdateToConfig(void);
     virtual void ConfigSave(void);

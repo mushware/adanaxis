@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } rQkTih3VUd7Xp8cDeV3ZYA
 /*
- * $Id: AdanaxisRender.cpp,v 1.61 2006/12/14 15:59:23 southa Exp $
+ * $Id: AdanaxisRender.cpp,v 1.62 2007/02/08 17:55:14 southa Exp $
  * $Log: AdanaxisRender.cpp,v $
+ * Revision 1.62  2007/02/08 17:55:14  southa
+ * Common routines in space generation
+ *
  * Revision 1.61  2006/12/14 15:59:23  southa
  * Fire and cutscene fixes
  *
@@ -642,6 +645,7 @@ AdanaxisRender::Overplot(MushGameLogic& ioLogic, const MushGameCamera& inCamera)
             GLString glStr(message.str(), GLFontRef("font-mono1", 0.02), 1);
             glStr.Render();
         }
+#if 0
         {
             orthoGL.MoveToEdge(1,1);
             orthoGL.MoveRelative(-0.01, -0.10);
@@ -650,6 +654,7 @@ AdanaxisRender::Overplot(MushGameLogic& ioLogic, const MushGameCamera& inCamera)
             GLString glStr(message.str(), GLFontRef("font-mono1", 0.02), 1);
             glStr.Render();
         }
+#endif
 #endif
         
         if (logicRef.KhaziCount() == 0)

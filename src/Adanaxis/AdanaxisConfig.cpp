@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } nn/isq5fn0Vgn3AN/MiYyA
 /*
- * $Id: AdanaxisConfig.cpp,v 1.17 2006/08/01 17:21:22 southa Exp $
+ * $Id: AdanaxisConfig.cpp,v 1.18 2006/11/25 21:26:31 southa Exp $
  * $Log: AdanaxisConfig.cpp,v $
+ * Revision 1.18  2006/11/25 21:26:31  southa
+ * Display mode definitions
+ *
  * Revision 1.17  2006/08/01 17:21:22  southa
  * River demo
  *
@@ -155,7 +158,7 @@ AdanaxisConfig::KeysToDefaultSet(void)
 }
 
 Mushware::tMsec
-AdanaxisConfig::RecordTime(const std::string& inName)
+AdanaxisConfig::RecordTime(const std::string& inName) const
 {
     tRecordTimes::const_iterator p = m_recordTimes.find(inName);
     return (p == m_recordTimes.end()) ? 0 : p->second;
