@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } rQkTih3VUd7Xp8cDeV3ZYA
 /*
- * $Id: AdanaxisRender.cpp,v 1.64 2007/03/07 16:59:44 southa Exp $
+ * $Id: AdanaxisRender.cpp,v 1.65 2007/03/08 18:38:14 southa Exp $
  * $Log: AdanaxisRender.cpp,v $
+ * Revision 1.65  2007/03/08 18:38:14  southa
+ * Level progression
+ *
  * Revision 1.64  2007/03/07 16:59:44  southa
  * Khazi spawning and level ends
  *
@@ -630,27 +633,13 @@ AdanaxisRender::Overplot(MushGameLogic& ioLogic, const MushGameCamera& inCamera)
         
         if (logicRef.SaveData().ClockStarted())
         {
-            {
-                orthoGL.MoveToEdge(-1,1);
-                orthoGL.MoveRelative(0.01, -0.04);
-                ostringstream message;
-                message << logicRef.VolatileData().KhaziCount() << " left";
-                GLString glStr(message.str(), GLFontRef("font-mono1", 0.02), -1);
-                glStr.Render();
-            }
             if (logicRef.EndTime() > logicRef.StartTime())
             {
-                orthoGL.MoveToEdge(1,1);
-                orthoGL.MoveRelative(-0.01, -0.04);
                 ostringstream message;
                 message << GameTimer::MsecToLongString(logicRef.EndTime() - logicRef.StartTime());
-                GLString glStr(message.str(), GLFontRef("font-mono1", 0.02), 1);
-                glStr.Render();
-            }
-            {
-                orthoGL.MoveToEdge(0,-1);
-                orthoGL.MoveRelative(0, 0.04);
-                GLString glStr(AdanaxisUtil::AppHandler().AxisNames(), GLFontRef("font-mono1", 0.02), 0);
+                orthoGL.MoveToEdge(0,1);
+                orthoGL.MoveRelative(-0.00*message.str().size(), -0.03);
+                GLString glStr(message.str(), GLFontRef("font-mono1", 0.02), 0);
                 glStr.Render();
             }
         }
