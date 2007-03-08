@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } mqRyosjSblx9ADjVCHc1/g
 /*
- * $Id: AdanaxisIntern.cpp,v 1.16 2007/02/08 17:55:14 southa Exp $
+ * $Id: AdanaxisIntern.cpp,v 1.17 2007/03/07 16:59:43 southa Exp $
  * $Log: AdanaxisIntern.cpp,v $
+ * Revision 1.17  2007/03/07 16:59:43  southa
+ * Khazi spawning and level ends
+ *
  * Revision 1.16  2007/02/08 17:55:14  southa
  * Common routines in space generation
  *
@@ -94,11 +97,12 @@ AdanaxisIntern::AdanaxisIntern()
     m_ATm_state = MushRubyIntern::SymbolID("@m_state");
     m_mCollisionEventConsume = MushRubyIntern::SymbolID("mCollisionEventConsume");
     m_mCutSceneRender = MushRubyIntern::SymbolID("mCutSceneRender");
+    m_mEpilogueRender = MushRubyIntern::SymbolID("mEpilogueRender");
     m_mHandlePrecacheEnd = MushRubyIntern::SymbolID("mHandlePrecacheEnd");
     m_mSpawn = MushRubyIntern::SymbolID("mSpawn");
     m_mMenuRender = MushRubyIntern::SymbolID("mMenuRender");
     m_mReceiveSequence = MushRubyIntern::SymbolID("mReceiveSequence");
     m_mRender = MushRubyIntern::SymbolID("mRender");
-//%initialisations } 7c1e19078b0932de6a2a064a3452d5ce
+//%initialisations } 8920bbe3c9868d78a71bd0a9d3980877
 }
  

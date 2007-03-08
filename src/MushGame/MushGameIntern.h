@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } mlN3NFYShD8lw+CPV54eBg
 /*
- * $Id: MushGameIntern.h,v 1.6 2006/12/14 15:59:24 southa Exp $
+ * $Id: MushGameIntern.h,v 1.7 2007/03/08 11:00:30 southa Exp $
  * $Log: MushGameIntern.h,v $
+ * Revision 1.7  2007/03/08 11:00:30  southa
+ * Level epilogue
+ *
  * Revision 1.6  2006/12/14 15:59:24  southa
  * Fire and cutscene fixes
  *
@@ -59,6 +62,8 @@
      mActionTimer
      mCutSceneKeypress
      mEpilogueKeypress
+     mEpilogueStartDead
+     mEpilogueStartWon
      mEventConsume
      mEventHandle
  }
@@ -84,6 +89,8 @@ public:
     Mushware::tRubyID mActionTimer(void) { return m_mActionTimer; }
     Mushware::tRubyID mCutSceneKeypress(void) { return m_mCutSceneKeypress; }
     Mushware::tRubyID mEpilogueKeypress(void) { return m_mEpilogueKeypress; }
+    Mushware::tRubyID mEpilogueStartDead(void) { return m_mEpilogueStartDead; }
+    Mushware::tRubyID mEpilogueStartWon(void) { return m_mEpilogueStartWon; }
     Mushware::tRubyID mEventConsume(void) { return m_mEventConsume; }
     Mushware::tRubyID mEventHandle(void) { return m_mEventHandle; }
 private:
@@ -97,9 +104,11 @@ private:
     Mushware::tRubyID m_mActionTimer;
     Mushware::tRubyID m_mCutSceneKeypress;
     Mushware::tRubyID m_mEpilogueKeypress;
+    Mushware::tRubyID m_mEpilogueStartDead;
+    Mushware::tRubyID m_mEpilogueStartWon;
     Mushware::tRubyID m_mEventConsume;
     Mushware::tRubyID m_mEventHandle;
-//%declarations } 01732ef4cdbeecd8a9216290ecba94bb
+//%declarations } 4785328cf9bf433a6a8d515bc2580892
 //%classPrototypes {
 public:
 //%classPrototypes } 0ImSRh0/JBpOMwe5g8vGcA

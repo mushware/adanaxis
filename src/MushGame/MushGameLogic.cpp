@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } o9Dxm/e8GypZNPSRXLgJNQ
 /*
- * $Id: MushGameLogic.cpp,v 1.43 2007/03/07 16:59:44 southa Exp $
+ * $Id: MushGameLogic.cpp,v 1.44 2007/03/08 11:00:30 southa Exp $
  * $Log: MushGameLogic.cpp,v $
+ * Revision 1.44  2007/03/08 11:00:30  southa
+ * Level epilogue
+ *
  * Revision 1.43  2007/03/07 16:59:44  southa
  * Khazi spawning and level ends
  *
@@ -157,6 +160,7 @@
 #include "MushGameAddress.h"
 #include "MushGameAppHandler.h"
 #include "MushGameAnimPostManip.h"
+#include "MushGameIntern.h"
 #include "MushGameJob.h"
 #include "MushGameLink.h"
 #include "MushGameMessageWake.h"
@@ -842,6 +846,17 @@ MushGameLogic::EpilogueModeEnter(MushGameData::tGameResult inResult)
         VolatileData().GameResultSet(inResult);
         Mushware::tMsec timeNow = MushGameUtil::AppHandler().MillisecondsGet();
         VolatileData().EpilogueStartMsecSet(timeNow);
+        
+        if (inResult == MushGameData::kGameResultWon)
+        {
+            MushRubyExec::Sgl().Call(VolatileData().RubyGame(),
+                                     MushGameIntern::Sgl().mEpilogueStartWon());
+        }
+        else
+        {
+            MushRubyExec::Sgl().Call(VolatileData().RubyGame(),
+                                     MushGameIntern::Sgl().mEpilogueStartDead());
+        }
     }
 }
 

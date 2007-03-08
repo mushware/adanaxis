@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } WBiqbvbumO43Eps7fHh03A
 /*
- * $Id: AdanaxisIntern.h,v 1.19 2007/02/08 17:55:14 southa Exp $
+ * $Id: AdanaxisIntern.h,v 1.20 2007/03/07 16:59:43 southa Exp $
  * $Log: AdanaxisIntern.h,v $
+ * Revision 1.20  2007/03/07 16:59:43  southa
+ * Khazi spawning and level ends
+ *
  * Revision 1.19  2007/02/08 17:55:14  southa
  * Common routines in space generation
  *
@@ -96,6 +99,7 @@
     @m_state
     mCollisionEventConsume
     mCutSceneRender
+    mEpilogueRender
     mHandlePrecacheEnd
     mSpawn
     mMenuRender
@@ -138,6 +142,7 @@ public:
     Mushware::tRubyID ATm_state(void) { return m_ATm_state; }
     Mushware::tRubyID mCollisionEventConsume(void) { return m_mCollisionEventConsume; }
     Mushware::tRubyID mCutSceneRender(void) { return m_mCutSceneRender; }
+    Mushware::tRubyID mEpilogueRender(void) { return m_mEpilogueRender; }
     Mushware::tRubyID mHandlePrecacheEnd(void) { return m_mHandlePrecacheEnd; }
     Mushware::tRubyID mSpawn(void) { return m_mSpawn; }
     Mushware::tRubyID mMenuRender(void) { return m_mMenuRender; }
@@ -160,12 +165,13 @@ private:
     Mushware::tRubyID m_ATm_state;
     Mushware::tRubyID m_mCollisionEventConsume;
     Mushware::tRubyID m_mCutSceneRender;
+    Mushware::tRubyID m_mEpilogueRender;
     Mushware::tRubyID m_mHandlePrecacheEnd;
     Mushware::tRubyID m_mSpawn;
     Mushware::tRubyID m_mMenuRender;
     Mushware::tRubyID m_mReceiveSequence;
     Mushware::tRubyID m_mRender;
-//%declarations } e5679e313afeba8b7e54763b0a4f4dfc
+//%declarations } 6cef7d0cb2bb6fd125ef206f86366e2d
 
 //%classPrototypes {
 public:

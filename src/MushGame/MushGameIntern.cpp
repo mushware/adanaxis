@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 8fTAEuGpO9TKg8SBLTUQaw
 /*
- * $Id: MushGameIntern.cpp,v 1.6 2006/12/14 15:59:24 southa Exp $
+ * $Id: MushGameIntern.cpp,v 1.7 2007/03/08 11:00:29 southa Exp $
  * $Log: MushGameIntern.cpp,v $
+ * Revision 1.7  2007/03/08 11:00:29  southa
+ * Level epilogue
+ *
  * Revision 1.6  2006/12/14 15:59:24  southa
  * Fire and cutscene fixes
  *
@@ -60,7 +63,9 @@ MushGameIntern::MushGameIntern()
     m_mActionTimer = MushRubyIntern::SymbolID("mActionTimer");
     m_mCutSceneKeypress = MushRubyIntern::SymbolID("mCutSceneKeypress");
     m_mEpilogueKeypress = MushRubyIntern::SymbolID("mEpilogueKeypress");
+    m_mEpilogueStartDead = MushRubyIntern::SymbolID("mEpilogueStartDead");
+    m_mEpilogueStartWon = MushRubyIntern::SymbolID("mEpilogueStartWon");
     m_mEventConsume = MushRubyIntern::SymbolID("mEventConsume");
     m_mEventHandle = MushRubyIntern::SymbolID("mEventHandle");
-//%initialisations } 61337aa0c6a16d1f0f3a3df5ecfc9906
+//%initialisations } 0255ae92c4d04fdd6b3da29a5af39c41
 }

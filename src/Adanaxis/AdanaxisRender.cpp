@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } rQkTih3VUd7Xp8cDeV3ZYA
 /*
- * $Id: AdanaxisRender.cpp,v 1.63 2007/03/07 11:29:24 southa Exp $
+ * $Id: AdanaxisRender.cpp,v 1.64 2007/03/07 16:59:44 southa Exp $
  * $Log: AdanaxisRender.cpp,v $
+ * Revision 1.64  2007/03/07 16:59:44  southa
+ * Khazi spawning and level ends
+ *
  * Revision 1.63  2007/03/07 11:29:24  southa
  * Level permission
  *
@@ -527,7 +530,7 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
         MushGLUtil::OrthoEpilogue();
         MushGLUtil::IdentityEpilogue();
     }
-    else    
+    else     
     {
         MushGLUtil::IdentityPrologue();
         MushGLUtil::OrthoPrologue();
@@ -538,6 +541,19 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
         MushRubyExec::Sgl().Call(pVolData->RubyGame(),
                                  AdanaxisIntern::Sgl().mRender(),
                                  MushRubyValue(timeNow));
+        MushGLUtil::OrthoEpilogue();
+        MushGLUtil::IdentityEpilogue();
+    }
+    
+    if (ioLogic.IsEpilogueMode())
+    {
+        MushGLUtil::IdentityPrologue();
+        MushGLUtil::OrthoPrologue();
+        GLState::ColourSet(1.0,1.0,1.0,1.0);
+        
+        MushRubyExec::Sgl().Call(pVolData->RubyGame(),
+                                 AdanaxisIntern::Sgl().mEpilogueRender());
+        
         MushGLUtil::OrthoEpilogue();
         MushGLUtil::IdentityEpilogue();
     }
@@ -662,28 +678,31 @@ AdanaxisRender::Overplot(MushGameLogic& ioLogic, const MushGameCamera& inCamera)
         
         if (logicRef.IsEpilogueMode())
         {
-            if (logicRef.EndTime() > logicRef.StartTime())
             {
-                orthoGL.MoveTo(0, 0.04);
+                orthoGL.MoveTo(0, -0.3);
                 ostringstream message;
-                message << "Time:   " << GameTimer::MsecToLongString(logicRef.EndTime() - logicRef.StartTime());
-                GLString glStr(message.str(), GLFontRef("font-mono1", 0.03), 0);
-                glStr.Render();        
-            }
-            if (logicRef.RecordTime() != 0)
-            {
-                orthoGL.MoveTo(0, -0.04);
-                ostringstream message;
-                message << "Record: " << GameTimer::MsecToLongString(logicRef.RecordTime());
-                GLString glStr(message.str(), GLFontRef("font-mono1", 0.03), 0);
-                glStr.Render();        
-            }
-            {
-                orthoGL.MoveTo(0, -0.2);
-                ostringstream message;
-                message << "(Esc to exit)";
+                message << "(Space to continue)";
                 GLString glStr(message.str(), GLFontRef("font-mono1", 0.02), 0);
                 glStr.Render();        
+            }
+            if (logicRef.EpilogueWon())
+            {
+                if (logicRef.EndTime() > logicRef.StartTime())
+                {
+                    orthoGL.MoveTo(0, 0.04);
+                    ostringstream message;
+                    message << "Time:   " << GameTimer::MsecToLongString(logicRef.EndTime() - logicRef.StartTime());
+                    GLString glStr(message.str(), GLFontRef("font-mono1", 0.03), 0);
+                    glStr.Render();        
+                }
+                if (logicRef.RecordTime() != 0)
+                {
+                    orthoGL.MoveTo(0, -0.04);
+                    ostringstream message;
+                    message << "Record: " << GameTimer::MsecToLongString(logicRef.RecordTime());
+                    GLString glStr(message.str(), GLFontRef("font-mono1", 0.03), 0);
+                    glStr.Render();        
+                }
             }
         }
     }

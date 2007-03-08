@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } Mac7dWHONvkZIg39sQnwww
 /*
- * $Id: AdanaxisLogic.cpp,v 1.36 2007/03/07 16:59:43 southa Exp $
+ * $Id: AdanaxisLogic.cpp,v 1.37 2007/03/08 11:00:29 southa Exp $
  * $Log: AdanaxisLogic.cpp,v $
+ * Revision 1.37  2007/03/08 11:00:29  southa
+ * Level epilogue
+ *
  * Revision 1.36  2007/03/07 16:59:43  southa
  * Khazi spawning and level ends
  *
@@ -721,7 +724,7 @@ void
 AdanaxisLogic::LevelEndSequence(void)
 {
     EndTimeSet(FrameMsec());
-    EpilogueModeEnter(MushGameData::kGameResultWin);
+    EpilogueModeEnter(MushGameData::kGameResultWon);
 }
 
 MushGamePiece&
