@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } Mac7dWHONvkZIg39sQnwww
 /*
- * $Id: AdanaxisLogic.cpp,v 1.35 2007/02/08 17:55:14 southa Exp $
+ * $Id: AdanaxisLogic.cpp,v 1.36 2007/03/07 16:59:43 southa Exp $
  * $Log: AdanaxisLogic.cpp,v $
+ * Revision 1.36  2007/03/07 16:59:43  southa
+ * Khazi spawning and level ends
+ *
  * Revision 1.35  2007/02/08 17:55:14  southa
  * Common routines in space generation
  *
@@ -695,7 +698,7 @@ AdanaxisLogic::TickerSequence(void)
         if (IsGameMode())
         {
             EndTimeSet(FrameMsec());
-            EpilogueModeEnter();
+            EpilogueModeEnter(MushGameData::kGameResultDead);
         }
     }
     else if (IsGameMode() && VolatileData().KhaziCount() == 0)
@@ -718,7 +721,7 @@ void
 AdanaxisLogic::LevelEndSequence(void)
 {
     EndTimeSet(FrameMsec());
-    EpilogueModeEnter();
+    EpilogueModeEnter(MushGameData::kGameResultWin);
 }
 
 MushGamePiece&

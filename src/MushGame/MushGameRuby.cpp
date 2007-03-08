@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } yY7ZZkvIHHOoUzJzTAQPOQ
 /*
- * $Id: MushGameRuby.cpp,v 1.25 2006/12/11 18:54:18 southa Exp $
+ * $Id: MushGameRuby.cpp,v 1.26 2007/03/07 16:59:45 southa Exp $
  * $Log: MushGameRuby.cpp,v $
+ * Revision 1.26  2007/03/07 16:59:45  southa
+ * Khazi spawning and level ends
+ *
  * Revision 1.25  2006/12/11 18:54:18  southa
  * Positional audio
  *
@@ -175,13 +178,6 @@ Mushware::tRubyValue
 MushGameRuby::CutSceneModeExit(Mushware::tRubyValue inSelf)
 {
     MushGameUtil::LogicWRef().CutSceneModeExit();
-    return kRubyQnil;
-}
-
-Mushware::tRubyValue
-MushGameRuby::EpilogueModeEnter(Mushware::tRubyValue inSelf)
-{
-    MushGameUtil::LogicWRef().EpilogueModeEnter();
     return kRubyQnil;
 }
 
@@ -825,6 +821,12 @@ MushGameRuby::TargetPieceSelect(Mushware::tRubyValue inSelf, Mushware::tRubyValu
     }
 }
 
+Mushware::tRubyValue
+MushGameRuby::EpilogueWon(Mushware::tRubyValue inSelf)
+{
+    return MushRubyValue(MushGameUtil::LogicWRef().EpilogueWon()).Value();
+}
+
 void
 MushGameRuby::MethodsInstall(void)
 {
@@ -832,7 +834,6 @@ MushGameRuby::MethodsInstall(void)
     MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cGameModeEnter", GameModeEnter);
     MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cCutSceneModeEnter", CutSceneModeEnter);
     MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cCutSceneModeExit", CutSceneModeExit);
-    MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cEpilogueModeEnter", EpilogueModeEnter);
     MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cNewGameEnter", NewGameEnter);
     MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cQuit", Quit);
     MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cAxisKeySymbols", AxisKeySymbols);
@@ -870,4 +871,5 @@ MushGameRuby::MethodsInstall(void)
     MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cFreeMsec", FreeMsec);
     MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cPieceLookup", PieceLookup);
     MushRubyUtil::SingletonMethodDefineThreeParams(Klass(), "cTargetPieceSelect", TargetPieceSelect);
+    MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cEpilogueWon", EpilogueWon);
 }

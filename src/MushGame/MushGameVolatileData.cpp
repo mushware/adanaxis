@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } mGoZWUiZsKFfWNio1FcVLw
 /*
- * $Id: MushGameVolatileData.cpp,v 1.13 2006/12/14 00:33:49 southa Exp $
+ * $Id: MushGameVolatileData.cpp,v 1.14 2006/12/14 15:59:24 southa Exp $
  * $Log: MushGameVolatileData.cpp,v $
+ * Revision 1.14  2006/12/14 15:59:24  southa
+ * Fire and cutscene fixes
+ *
  * Revision 1.13  2006/12/14 00:33:49  southa
  * Control fix and audio pacing
  *
@@ -76,10 +79,11 @@ MushGameVolatileData::MushGameVolatileData() :
     m_rubyGame(Mushware::kRubyQnil),
     m_rubyLogic(Mushware::kRubyQnil),
     m_gameMode(kGameModeMenu),
-    m_preCache(false),
+    m_precache(false),
     m_isMenuBackdrop(false),
     m_averageMsecPerFrame(1000.0/60.0),
-    m_movesThisFrame(1)
+    m_movesThisFrame(1),
+    m_gameResult(MushGameData::kGameResultNone)
 {
 }
 
@@ -125,12 +129,14 @@ MushGameVolatileData::AutoPrint(std::ostream& ioOut) const
     ioOut << "rubyGame=" << m_rubyGame << ", ";
     ioOut << "rubyLogic=" << m_rubyLogic << ", ";
     ioOut << "gameMode=" << m_gameMode << ", ";
-    ioOut << "preCache=" << m_preCache << ", ";
+    ioOut << "precache=" << m_precache << ", ";
     ioOut << "isMenuBackdrop=" << m_isMenuBackdrop << ", ";
     ioOut << "averageMsecPerFrame=" << m_averageMsecPerFrame << ", ";
     ioOut << "movesThisFrame=" << m_movesThisFrame << ", ";
     ioOut << "cutSceneNum=" << m_cutSceneNum << ", ";
-    ioOut << "last100msTickMsec=" << m_last100msTickMsec;
+    ioOut << "last100msTickMsec=" << m_last100msTickMsec << ", ";
+    ioOut << "epilogueStartMsec=" << m_epilogueStartMsec << ", ";
+    ioOut << "gameResult=" << m_gameResult;
     ioOut << "]";
 }
 bool
@@ -178,9 +184,9 @@ MushGameVolatileData::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::st
     {
         ioIn >> m_gameMode;
     }
-    else if (inTagStr == "preCache")
+    else if (inTagStr == "precache")
     {
-        ioIn >> m_preCache;
+        ioIn >> m_precache;
     }
     else if (inTagStr == "isMenuBackdrop")
     {
@@ -201,6 +207,14 @@ MushGameVolatileData::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::st
     else if (inTagStr == "last100msTickMsec")
     {
         ioIn >> m_last100msTickMsec;
+    }
+    else if (inTagStr == "epilogueStartMsec")
+    {
+        ioIn >> m_epilogueStartMsec;
+    }
+    else if (inTagStr == "gameResult")
+    {
+        ioIn >> m_gameResult;
     }
     else 
     {
@@ -229,8 +243,8 @@ MushGameVolatileData::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_rubyLogic;
     ioOut.TagSet("gameMode");
     ioOut << m_gameMode;
-    ioOut.TagSet("preCache");
-    ioOut << m_preCache;
+    ioOut.TagSet("precache");
+    ioOut << m_precache;
     ioOut.TagSet("isMenuBackdrop");
     ioOut << m_isMenuBackdrop;
     ioOut.TagSet("averageMsecPerFrame");
@@ -241,5 +255,9 @@ MushGameVolatileData::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_cutSceneNum;
     ioOut.TagSet("last100msTickMsec");
     ioOut << m_last100msTickMsec;
+    ioOut.TagSet("epilogueStartMsec");
+    ioOut << m_epilogueStartMsec;
+    ioOut.TagSet("gameResult");
+    ioOut << m_gameResult;
 }
-//%outOfLineFunctions } cW173fn4jFpwriKTrZtOng
+//%outOfLineFunctions } rfq8iUu1tUV4NV0iR0kL9Q

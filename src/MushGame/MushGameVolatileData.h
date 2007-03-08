@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } zS6MRI08vU38Tp9aNbV8RQ
 /*
- * $Id: MushGameVolatileData.h,v 1.15 2007/02/08 17:55:15 southa Exp $
+ * $Id: MushGameVolatileData.h,v 1.16 2007/03/07 16:59:45 southa Exp $
  * $Log: MushGameVolatileData.h,v $
+ * Revision 1.16  2007/03/07 16:59:45  southa
+ * Khazi spawning and level ends
+ *
  * Revision 1.15  2007/02/08 17:55:15  southa
  * Common routines in space generation
  *
@@ -74,6 +77,8 @@
 
 #include "MushGameStandard.h"
 
+#include "MushGameData.h"
+
 #include "API/mushMushRuby.h"
 
 //:generate virtual standard ostream xml1
@@ -97,7 +102,6 @@ public:
     virtual void GroupingNameSet(const std::string& inName) {}
 
 protected:
-
     
 private:
     Mushware::U32 m_playerUplinkPeriodMsec; //:readwrite
@@ -109,12 +113,14 @@ private:
     MushRubyValue m_rubyGame; //:readwrite
 	MushRubyValue m_rubyLogic; //:readwrite
     Mushware::U32 m_gameMode; //:readwrite
-    bool m_preCache; //:readwrite
+    bool m_precache; //:readwrite
     bool m_isMenuBackdrop; //:readwrite
     Mushware::tVal m_averageMsecPerFrame; //:readwrite
     Mushware::U32 m_movesThisFrame; //:readwrite
     Mushware::U32 m_cutSceneNum; //:readwrite
     Mushware::U32 m_last100msTickMsec; //:readwrite
+    Mushware::tMsec m_epilogueStartMsec; //:readwrite
+    Mushware::U32 m_gameResult; //:readwrite
     
 //%classPrototypes {
 public:
@@ -136,8 +142,8 @@ public:
     void RubyLogicSet(const MushRubyValue& inValue) { m_rubyLogic=inValue; }
     const Mushware::U32& GameMode(void) const { return m_gameMode; }
     void GameModeSet(const Mushware::U32& inValue) { m_gameMode=inValue; }
-    const bool& Precache(void) const { return m_preCache; }
-    void PrecacheSet(const bool& inValue) { m_preCache=inValue; }
+    const bool& Precache(void) const { return m_precache; }
+    void PrecacheSet(const bool& inValue) { m_precache=inValue; }
     const bool& IsMenuBackdrop(void) const { return m_isMenuBackdrop; }
     void IsMenuBackdropSet(const bool& inValue) { m_isMenuBackdrop=inValue; }
     const Mushware::tVal& AverageMsecPerFrame(void) const { return m_averageMsecPerFrame; }
@@ -148,6 +154,10 @@ public:
     void CutSceneNumSet(const Mushware::U32& inValue) { m_cutSceneNum=inValue; }
     const Mushware::U32& Last100msTickMsec(void) const { return m_last100msTickMsec; }
     void Last100msTickMsecSet(const Mushware::U32& inValue) { m_last100msTickMsec=inValue; }
+    const Mushware::tMsec& EpilogueStartMsec(void) const { return m_epilogueStartMsec; }
+    void EpilogueStartMsecSet(const Mushware::tMsec& inValue) { m_epilogueStartMsec=inValue; }
+    const Mushware::U32& GameResult(void) const { return m_gameResult; }
+    void GameResultSet(const Mushware::U32& inValue) { m_gameResult=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -155,7 +165,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } vBR/v8nVESdG2DBnpmliJg
+//%classPrototypes } rV3eficqQ3lBm3TOcMIl6g
 };
 //%inlineHeader {
 inline std::ostream&

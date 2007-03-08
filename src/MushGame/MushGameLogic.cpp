@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } o9Dxm/e8GypZNPSRXLgJNQ
 /*
- * $Id: MushGameLogic.cpp,v 1.42 2007/03/06 11:34:01 southa Exp $
+ * $Id: MushGameLogic.cpp,v 1.43 2007/03/07 16:59:44 southa Exp $
  * $Log: MushGameLogic.cpp,v $
+ * Revision 1.43  2007/03/07 16:59:44  southa
+ * Khazi spawning and level ends
+ *
  * Revision 1.42  2007/03/06 11:34:01  southa
  * Space and precache fixes
  *
@@ -831,9 +834,15 @@ MushGameLogic::CutSceneModeExit(void)
 }
 
 void
-MushGameLogic::EpilogueModeEnter(void)
+MushGameLogic::EpilogueModeEnter(MushGameData::tGameResult inResult)
 {
-    VolatileData().GameModeSet(MushGameVolatileData::kGameModeEpilogue);
+    if (VolatileData().GameMode() != MushGameVolatileData::kGameModeEpilogue)
+    {
+        VolatileData().GameModeSet(MushGameVolatileData::kGameModeEpilogue);
+        VolatileData().GameResultSet(inResult);
+        Mushware::tMsec timeNow = MushGameUtil::AppHandler().MillisecondsGet();
+        VolatileData().EpilogueStartMsecSet(timeNow);
+    }
 }
 
 void
@@ -885,6 +894,12 @@ bool
 MushGameLogic::IsEpilogueMode(void) const
 {
     return VolatileData().GameMode() == MushGameVolatileData::kGameModeEpilogue;    
+}
+
+bool
+MushGameLogic::EpilogueWon(void) const
+{
+    return VolatileData().GameResult() == MushGameData::kGameResultWon;    
 }
 
 void

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } ntJSLwt7PJWQN4kA9w6N3Q
 /*
- * $Id: MushGameData.h,v 1.4 2005/08/01 13:09:58 southa Exp $
+ * $Id: MushGameData.h,v 1.5 2006/06/01 15:39:21 southa Exp $
  * $Log: MushGameData.h,v $
+ * Revision 1.5  2006/06/01 15:39:21  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.4  2005/08/01 13:09:58  southa
  * Collision messaging
  *
@@ -41,8 +44,8 @@
 
 #include "MushGameStandard.h"
 
-#include "MushGameSaveData.h"
-#include "MushGameVolatileData.h"
+class MushGameSaveData;
+class MushGameVolatileData;
 
 //:generate virtual standard ostream xml1
 class MushGameData : public MushcoreVirtualObject
@@ -55,10 +58,19 @@ public:
         kCharJob = 'j'
     };
     
+    enum tGameResult
+    {
+        kGameResultInvalid,
+        kGameResultNone,
+        kGameResultDead,
+        kGameResultLost,
+        kGameResultWon
+    };
+    
     MushGameData(const std::string& inName="");
     virtual ~MushGameData() {}
-    virtual void GroupingNameSet(const std::string& inName) { m_saveDataRef.NameSet(inName); m_volatileDataRef.NameSet(inName); }
-    
+    virtual void GroupingNameSet(const std::string& inName);
+
 private:
     MushcoreDataRef<MushGameSaveData> m_saveDataRef; //:readwrite :wref
     MushcoreDataRef<MushGameVolatileData> m_volatileDataRef; //:readwrite :wref

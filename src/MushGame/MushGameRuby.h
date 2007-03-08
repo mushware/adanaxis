@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } abz8WfQdtsWpPxv12NZxhA
 /*
- * $Id: MushGameRuby.h,v 1.21 2006/12/11 18:54:19 southa Exp $
+ * $Id: MushGameRuby.h,v 1.22 2007/03/07 16:59:45 southa Exp $
  * $Log: MushGameRuby.h,v $
+ * Revision 1.22  2007/03/07 16:59:45  southa
+ * Khazi spawning and level ends
+ *
  * Revision 1.21  2006/12/11 18:54:19  southa
  * Positional audio
  *
@@ -101,7 +104,6 @@ public:
     static Mushware::tRubyValue GameModeEnter(Mushware::tRubyValue inSelf);
     static Mushware::tRubyValue CutSceneModeEnter(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
     static Mushware::tRubyValue CutSceneModeExit(Mushware::tRubyValue inSelf);
-    static Mushware::tRubyValue EpilogueModeEnter(Mushware::tRubyValue inSelf);
     static Mushware::tRubyValue NewGameEnter(Mushware::tRubyValue inSelf);
     static Mushware::tRubyValue Quit(Mushware::tRubyValue inSelf);
     static Mushware::tRubyValue AxisName(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
@@ -139,6 +141,7 @@ public:
     static Mushware::tRubyValue FreeMsec(Mushware::tRubyValue inSelf);
     static Mushware::tRubyValue PieceLookup(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
     static Mushware::tRubyValue TargetPieceSelect(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0, Mushware::tRubyValue inArg1, Mushware::tRubyValue inArg2);
+    static Mushware::tRubyValue EpilogueWon(Mushware::tRubyValue inSelf);
     
     static void MethodsInstall(void);
     

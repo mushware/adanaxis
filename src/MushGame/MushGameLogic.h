@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } pz9Ij69Gp+RQuOHP0yYqgg
 /*
- * $Id: MushGameLogic.h,v 1.27 2007/02/08 17:55:15 southa Exp $
+ * $Id: MushGameLogic.h,v 1.28 2007/03/07 16:59:44 southa Exp $
  * $Log: MushGameLogic.h,v $
+ * Revision 1.28  2007/03/07 16:59:44  southa
+ * Khazi spawning and level ends
+ *
  * Revision 1.27  2007/02/08 17:55:15  southa
  * Common routines in space generation
  *
@@ -184,11 +187,12 @@ public:
     virtual bool IsGameMode(void) const;
     virtual bool IsCutSceneMode(void) const;
     virtual bool IsEpilogueMode(void) const;
+    virtual bool EpilogueWon(void) const;
     virtual void MenuModeEnter(void);
     virtual void GameModeEnter(void);
     virtual void CutSceneModeEnter(void);
     virtual void CutSceneModeExit(void);
-    virtual void EpilogueModeEnter(void);
+    virtual void EpilogueModeEnter(MushGameData::tGameResult inResult);
     virtual void QuitModeEnter(void);
     virtual void PrecacheModeEnter(void);
     virtual void PrecacheModeExit(void);

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } IW18pK1CcNk16/tpw0Y0eA
 /*
- * $Id: MushGameData.cpp,v 1.2 2005/07/02 00:42:37 southa Exp $
+ * $Id: MushGameData.cpp,v 1.3 2006/06/01 15:39:21 southa Exp $
  * $Log: MushGameData.cpp,v $
+ * Revision 1.3  2006/06/01 15:39:21  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.2  2005/07/02 00:42:37  southa
  * Conditioning tweaks
  *
@@ -38,6 +41,14 @@ MushGameData::MushGameData(const std::string& inName) :
     m_volatileDataRef(inName)
 {
 }
+
+void
+MushGameData::GroupingNameSet(const std::string& inName)
+{
+    m_saveDataRef.NameSet(inName);
+    m_volatileDataRef.NameSet(inName);
+}
+
 //%outOfLineFunctions {
 
 const char *MushGameData::AutoName(void) const

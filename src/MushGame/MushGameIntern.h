@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } mlN3NFYShD8lw+CPV54eBg
 /*
- * $Id: MushGameIntern.h,v 1.5 2006/10/17 15:28:02 southa Exp $
+ * $Id: MushGameIntern.h,v 1.6 2006/12/14 15:59:24 southa Exp $
  * $Log: MushGameIntern.h,v $
+ * Revision 1.6  2006/12/14 15:59:24  southa
+ * Fire and cutscene fixes
+ *
  * Revision 1.5  2006/10/17 15:28:02  southa
  * Player collisions
  *
@@ -55,6 +58,7 @@
      @m_renderScale
      mActionTimer
      mCutSceneKeypress
+     mEpilogueKeypress
      mEventConsume
      mEventHandle
  }
@@ -79,6 +83,7 @@ public:
     Mushware::tRubyID ATm_renderScale(void) { return m_ATm_renderScale; }
     Mushware::tRubyID mActionTimer(void) { return m_mActionTimer; }
     Mushware::tRubyID mCutSceneKeypress(void) { return m_mCutSceneKeypress; }
+    Mushware::tRubyID mEpilogueKeypress(void) { return m_mEpilogueKeypress; }
     Mushware::tRubyID mEventConsume(void) { return m_mEventConsume; }
     Mushware::tRubyID mEventHandle(void) { return m_mEventHandle; }
 private:
@@ -91,9 +96,10 @@ private:
     Mushware::tRubyID m_ATm_renderScale;
     Mushware::tRubyID m_mActionTimer;
     Mushware::tRubyID m_mCutSceneKeypress;
+    Mushware::tRubyID m_mEpilogueKeypress;
     Mushware::tRubyID m_mEventConsume;
     Mushware::tRubyID m_mEventHandle;
-//%declarations } 0fae22b62e25347f33ebeae49b559dd6
+//%declarations } 01732ef4cdbeecd8a9216290ecba94bb
 //%classPrototypes {
 public:
 //%classPrototypes } 0ImSRh0/JBpOMwe5g8vGcA

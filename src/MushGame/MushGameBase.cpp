@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 72jYu/IZevqg7bsvRKLvxw
 /*
- * $Id: MushGameBase.cpp,v 1.9 2006/12/14 15:59:24 southa Exp $
+ * $Id: MushGameBase.cpp,v 1.10 2007/03/07 16:59:44 southa Exp $
  * $Log: MushGameBase.cpp,v $
+ * Revision 1.10  2007/03/07 16:59:44  southa
+ * Khazi spawning and level ends
+ *
  * Revision 1.9  2006/12/14 15:59:24  southa
  * Fire and cutscene fixes
  *
@@ -100,6 +103,13 @@ MushGameBase::KeyboardSignal(const GLKeyboardSignal& inSignal, MushGameAppHandle
     else if (LogicRef().Ref().IsCutSceneMode())
     {
         MushRubyExec::Sgl().Call(VolatileDataRef().Ref().RubyGame(), MushGameIntern::Sgl().mCutSceneKeypress(),
+                                 MushRubyValue(inSignal.keyValue),
+                                 MushRubyValue(inSignal.keyModifier),
+                                 MushRubyValue(inSignal.keyDown));
+    }
+    else if (LogicRef().Ref().IsEpilogueMode())
+    {
+        MushRubyExec::Sgl().Call(VolatileDataRef().Ref().RubyGame(), MushGameIntern::Sgl().mEpilogueKeypress(),
                                  MushRubyValue(inSignal.keyValue),
                                  MushRubyValue(inSignal.keyModifier),
                                  MushRubyValue(inSignal.keyDown));

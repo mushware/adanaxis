@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 8fTAEuGpO9TKg8SBLTUQaw
 /*
- * $Id: MushGameIntern.cpp,v 1.5 2006/10/17 15:28:02 southa Exp $
+ * $Id: MushGameIntern.cpp,v 1.6 2006/12/14 15:59:24 southa Exp $
  * $Log: MushGameIntern.cpp,v $
+ * Revision 1.6  2006/12/14 15:59:24  southa
+ * Fire and cutscene fixes
+ *
  * Revision 1.5  2006/10/17 15:28:02  southa
  * Player collisions
  *
@@ -56,7 +59,8 @@ MushGameIntern::MushGameIntern()
     m_ATm_renderScale = MushRubyIntern::SymbolID("@m_renderScale");
     m_mActionTimer = MushRubyIntern::SymbolID("mActionTimer");
     m_mCutSceneKeypress = MushRubyIntern::SymbolID("mCutSceneKeypress");
+    m_mEpilogueKeypress = MushRubyIntern::SymbolID("mEpilogueKeypress");
     m_mEventConsume = MushRubyIntern::SymbolID("mEventConsume");
     m_mEventHandle = MushRubyIntern::SymbolID("mEventHandle");
-//%initialisations } 2d59f911eb5af794f303a1d7ca7f31ab
+//%initialisations } 61337aa0c6a16d1f0f3a3df5ecfc9906
 }
