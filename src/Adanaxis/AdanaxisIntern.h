@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } WBiqbvbumO43Eps7fHh03A
 /*
- * $Id: AdanaxisIntern.h,v 1.20 2007/03/07 16:59:43 southa Exp $
+ * $Id: AdanaxisIntern.h,v 1.21 2007/03/08 18:38:14 southa Exp $
  * $Log: AdanaxisIntern.h,v $
+ * Revision 1.21  2007/03/08 18:38:14  southa
+ * Level progression
+ *
  * Revision 1.20  2007/03/07 16:59:43  southa
  * Khazi spawning and level ends
  *
@@ -101,7 +104,7 @@
     mCutSceneRender
     mEpilogueRender
     mHandlePrecacheEnd
-    mSpawn
+    mKhaziCountUpdate
     mMenuRender
     mReceiveSequence
     mRender
@@ -144,7 +147,7 @@ public:
     Mushware::tRubyID mCutSceneRender(void) { return m_mCutSceneRender; }
     Mushware::tRubyID mEpilogueRender(void) { return m_mEpilogueRender; }
     Mushware::tRubyID mHandlePrecacheEnd(void) { return m_mHandlePrecacheEnd; }
-    Mushware::tRubyID mSpawn(void) { return m_mSpawn; }
+    Mushware::tRubyID mKhaziCountUpdate(void) { return m_mKhaziCountUpdate; }
     Mushware::tRubyID mMenuRender(void) { return m_mMenuRender; }
     Mushware::tRubyID mReceiveSequence(void) { return m_mReceiveSequence; }
     Mushware::tRubyID mRender(void) { return m_mRender; }
@@ -167,11 +170,11 @@ private:
     Mushware::tRubyID m_mCutSceneRender;
     Mushware::tRubyID m_mEpilogueRender;
     Mushware::tRubyID m_mHandlePrecacheEnd;
-    Mushware::tRubyID m_mSpawn;
+    Mushware::tRubyID m_mKhaziCountUpdate;
     Mushware::tRubyID m_mMenuRender;
     Mushware::tRubyID m_mReceiveSequence;
     Mushware::tRubyID m_mRender;
-//%declarations } 6cef7d0cb2bb6fd125ef206f86366e2d
+//%declarations } 9e068b259bbed3060ce40d4d0170c8cf
 
 //%classPrototypes {
 public:

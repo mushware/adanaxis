@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } ntJSLwt7PJWQN4kA9w6N3Q
 /*
- * $Id: MushGameData.h,v 1.5 2006/06/01 15:39:21 southa Exp $
+ * $Id: MushGameData.h,v 1.6 2007/03/08 11:00:29 southa Exp $
  * $Log: MushGameData.h,v $
+ * Revision 1.6  2007/03/08 11:00:29  southa
+ * Level epilogue
+ *
  * Revision 1.5  2006/06/01 15:39:21  southa
  * DrawArray verification and fixes
  *
@@ -58,13 +61,14 @@ public:
         kCharJob = 'j'
     };
     
+    // These values should agree with those in MushGame.rb
     enum tGameResult
     {
-        kGameResultInvalid,
-        kGameResultNone,
-        kGameResultDead,
-        kGameResultLost,
-        kGameResultWon
+        kGameResultInvalid=0,
+        kGameResultNone=1,
+        kGameResultDead=2,
+        kGameResultLost=3,
+        kGameResultWon=4
     };
     
     MushGameData(const std::string& inName="");

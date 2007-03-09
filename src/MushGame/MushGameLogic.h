@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } pz9Ij69Gp+RQuOHP0yYqgg
 /*
- * $Id: MushGameLogic.h,v 1.28 2007/03/07 16:59:44 southa Exp $
+ * $Id: MushGameLogic.h,v 1.29 2007/03/08 11:00:30 southa Exp $
  * $Log: MushGameLogic.h,v $
+ * Revision 1.29  2007/03/08 11:00:30  southa
+ * Level epilogue
+ *
  * Revision 1.28  2007/03/07 16:59:44  southa
  * Khazi spawning and level ends
  *
@@ -192,7 +195,7 @@ public:
     virtual void GameModeEnter(void);
     virtual void CutSceneModeEnter(void);
     virtual void CutSceneModeExit(void);
-    virtual void EpilogueModeEnter(MushGameData::tGameResult inResult);
+    virtual void EpilogueModeEnter(Mushware::U32 inResult);
     virtual void QuitModeEnter(void);
     virtual void PrecacheModeEnter(void);
     virtual void PrecacheModeExit(void);

@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } 3LuiErcM0vO3wOyNDCFVeQ
 /*
- * $Id: AdanaxisLogic.h,v 1.25 2007/02/08 17:55:14 southa Exp $
+ * $Id: AdanaxisLogic.h,v 1.26 2007/03/07 16:59:44 southa Exp $
  * $Log: AdanaxisLogic.h,v $
+ * Revision 1.26  2007/03/07 16:59:44  southa
+ * Khazi spawning and level ends
+ *
  * Revision 1.25  2007/02/08 17:55:14  southa
  * Common routines in space generation
  *
@@ -133,9 +136,7 @@ public:
     virtual void PrecacheSequence(void);
     virtual void RenderSequence(void);
     virtual void CutSceneSequence(void);
-    virtual void TickerSequence(void);
-    virtual void NoKhaziSequence(void);
-    virtual void LevelEndSequence(void);
+    virtual void Tick100msSequence(void);
     virtual void ProjectilesKhaziFullCollide(void);
     virtual void KhaziKhaziFullCollide(void);
     virtual void ProjectilesPlayersFullCollide(void);

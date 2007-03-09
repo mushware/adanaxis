@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } o9Dxm/e8GypZNPSRXLgJNQ
 /*
- * $Id: MushGameLogic.cpp,v 1.44 2007/03/08 11:00:30 southa Exp $
+ * $Id: MushGameLogic.cpp,v 1.45 2007/03/08 18:38:15 southa Exp $
  * $Log: MushGameLogic.cpp,v $
+ * Revision 1.45  2007/03/08 18:38:15  southa
+ * Level progression
+ *
  * Revision 1.44  2007/03/08 11:00:30  southa
  * Level epilogue
  *
@@ -838,7 +841,7 @@ MushGameLogic::CutSceneModeExit(void)
 }
 
 void
-MushGameLogic::EpilogueModeEnter(MushGameData::tGameResult inResult)
+MushGameLogic::EpilogueModeEnter(Mushware::U32 inResult)
 {
     if (VolatileData().GameMode() != MushGameVolatileData::kGameModeEpilogue)
     {

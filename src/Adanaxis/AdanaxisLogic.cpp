@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } Mac7dWHONvkZIg39sQnwww
 /*
- * $Id: AdanaxisLogic.cpp,v 1.37 2007/03/08 11:00:29 southa Exp $
+ * $Id: AdanaxisLogic.cpp,v 1.38 2007/03/08 18:38:14 southa Exp $
  * $Log: AdanaxisLogic.cpp,v $
+ * Revision 1.38  2007/03/08 18:38:14  southa
+ * Level progression
+ *
  * Revision 1.37  2007/03/08 11:00:29  southa
  * Level epilogue
  *
@@ -665,36 +668,72 @@ AdanaxisLogic::CutSceneSequence(void)
 }
 
 void
-AdanaxisLogic::TickerSequence(void)
+AdanaxisLogic::Tick100msSequence(void)
 {
-    MushGameLogic::TickerSequence();
+    MushGameLogic::Tick100msSequence();
     
-    U32 count = 0;
+    U32 khaziCount = 0;
+    U32 redCount = 0;
+    U32 blueCount = 0;
+    
+    std::string blueID = "kb";
+    
     AdanaxisData::tKhaziList::iterator khaziEndIter = SaveData().KhaziListWRef().end();
     for (AdanaxisData::tKhaziList::iterator p = SaveData().KhaziListWRef().begin();
          p != khaziEndIter; ++p)
     {
-        ++count;
+        if (p->Id().substr(0,2) == blueID)
+        {
+            ++blueCount;
+        }
+        else
+        {
+            ++redCount;
+        }
+        ++khaziCount;
     }  
     
-    VolatileData().KhaziCountSet(count);
     
+    bool khaziUpdate = false;
+    if (khaziCount != VolatileData().KhaziCount() ||
+        redCount != VolatileData().KhaziRedCount() ||
+        blueCount != VolatileData().KhaziBlueCount())
+    {
+        khaziUpdate = true;
+    }
+    
+    VolatileData().KhaziCountSet(khaziCount);
+    VolatileData().KhaziRedCountSet(redCount);
+    VolatileData().KhaziBlueCountSet(blueCount);
+    
+    
+    U32 gameState = MushGameData::kGameResultNone;
+    if (khaziUpdate)
+    {
+        gameState = MushRubyExec::Sgl().Call(VolatileData().RubyGame(),
+                                             AdanaxisIntern::Sgl().mKhaziCountUpdate(),
+                                             MushRubyValue(khaziCount),
+                                             MushRubyValue(redCount),
+                                             MushRubyValue(blueCount)
+                                             ).U32();
+    }
+    
+    U32 livePlayerCount = 0;
     U32 playerCount = 0;
-    count = 0;
     typedef MushcoreMaptor<MushGamePiecePlayer>::iterator tIterator;
     MushcoreMaptor<MushGamePiecePlayer>& playerData = SaveData().PlayersListWRef();
     for (tIterator p = playerData.begin(); p != playerData.end(); ++p)
     {
-        ++count;
+        ++playerCount;
         if (!p->ExpireFlag())
         {
-            ++playerCount;
+            ++livePlayerCount;
         }
     }
     
-    VolatileData().PlayerCountSet(playerCount);
+    VolatileData().PlayerCountSet(livePlayerCount);
     
-    if (playerCount == 0 && count != 0)
+    if (livePlayerCount == 0 && playerCount != 0)
     {
         // No live players but some dead    VolatileData().GameModeSet(MushGameVolatileData::kGameModeGame);
 
@@ -704,27 +743,12 @@ AdanaxisLogic::TickerSequence(void)
             EpilogueModeEnter(MushGameData::kGameResultDead);
         }
     }
-    else if (IsGameMode() && VolatileData().KhaziCount() == 0)
+    else if (gameState == MushGameData::kGameResultLost ||
+             gameState == MushGameData::kGameResultWon)
     {
-        NoKhaziSequence();
+        EndTimeSet(FrameMsec());
+        EpilogueModeEnter(gameState);
     }
-}
-
-void
-AdanaxisLogic::NoKhaziSequence(void)
-{
-    if (!MushRubyExec::Sgl().Call(VolatileData().RubyGame(),
-                                  AdanaxisIntern::Sgl().mSpawn()).Bool())
-    {
-        LevelEndSequence();
-    }
-}
-
-void
-AdanaxisLogic::LevelEndSequence(void)
-{
-    EndTimeSet(FrameMsec());
-    EpilogueModeEnter(MushGameData::kGameResultWon);
 }
 
 MushGamePiece&

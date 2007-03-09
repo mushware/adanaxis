@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } zadk8cle2hIJ/tR0KH/bYw
 /*
- * $Id: AdanaxisVolatileData.cpp,v 1.11 2006/11/12 20:09:55 southa Exp $
+ * $Id: AdanaxisVolatileData.cpp,v 1.12 2007/03/07 16:59:44 southa Exp $
  * $Log: AdanaxisVolatileData.cpp,v $
+ * Revision 1.12  2007/03/07 16:59:44  southa
+ * Khazi spawning and level ends
+ *
  * Revision 1.11  2006/11/12 20:09:55  southa
  * Missile guidance
  *
@@ -46,7 +49,11 @@
 
 AdanaxisVolatileData::AdanaxisVolatileData() :
     m_rubySpace(Mushware::kRubyQnil),
-    m_scannerOn(false)
+    m_scannerOn(false),
+    m_khaziCount(0),
+    m_khaziRedCount(0),
+    m_khaziBlueCount(0),
+    m_playerCount(0)
 {
 }
 
@@ -92,6 +99,8 @@ AdanaxisVolatileData::AutoPrint(std::ostream& ioOut) const
     ioOut << "scannerOn=" << m_scannerOn << ", ";
     ioOut << "playerTargetID=" << m_playerTargetID << ", ";
     ioOut << "khaziCount=" << m_khaziCount << ", ";
+    ioOut << "khaziRedCount=" << m_khaziRedCount << ", ";
+    ioOut << "khaziBlueCount=" << m_khaziBlueCount << ", ";
     ioOut << "playerCount=" << m_playerCount;
     ioOut << "]";
 }
@@ -136,6 +145,14 @@ AdanaxisVolatileData::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::st
     {
         ioIn >> m_khaziCount;
     }
+    else if (inTagStr == "khaziRedCount")
+    {
+        ioIn >> m_khaziRedCount;
+    }
+    else if (inTagStr == "khaziBlueCount")
+    {
+        ioIn >> m_khaziBlueCount;
+    }
     else if (inTagStr == "playerCount")
     {
         ioIn >> m_playerCount;
@@ -170,7 +187,11 @@ AdanaxisVolatileData::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_playerTargetID;
     ioOut.TagSet("khaziCount");
     ioOut << m_khaziCount;
+    ioOut.TagSet("khaziRedCount");
+    ioOut << m_khaziRedCount;
+    ioOut.TagSet("khaziBlueCount");
+    ioOut << m_khaziBlueCount;
     ioOut.TagSet("playerCount");
     ioOut << m_playerCount;
 }
-//%outOfLineFunctions } noJAi2lAxJgmvs5gpWZXIA
+//%outOfLineFunctions } 6TpZm0SEsllT8I5q/IgUrg

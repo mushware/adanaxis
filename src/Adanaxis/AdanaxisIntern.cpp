@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } mqRyosjSblx9ADjVCHc1/g
 /*
- * $Id: AdanaxisIntern.cpp,v 1.17 2007/03/07 16:59:43 southa Exp $
+ * $Id: AdanaxisIntern.cpp,v 1.18 2007/03/08 18:38:14 southa Exp $
  * $Log: AdanaxisIntern.cpp,v $
+ * Revision 1.18  2007/03/08 18:38:14  southa
+ * Level progression
+ *
  * Revision 1.17  2007/03/07 16:59:43  southa
  * Khazi spawning and level ends
  *
@@ -99,10 +102,10 @@ AdanaxisIntern::AdanaxisIntern()
     m_mCutSceneRender = MushRubyIntern::SymbolID("mCutSceneRender");
     m_mEpilogueRender = MushRubyIntern::SymbolID("mEpilogueRender");
     m_mHandlePrecacheEnd = MushRubyIntern::SymbolID("mHandlePrecacheEnd");
-    m_mSpawn = MushRubyIntern::SymbolID("mSpawn");
+    m_mKhaziCountUpdate = MushRubyIntern::SymbolID("mKhaziCountUpdate");
     m_mMenuRender = MushRubyIntern::SymbolID("mMenuRender");
     m_mReceiveSequence = MushRubyIntern::SymbolID("mReceiveSequence");
     m_mRender = MushRubyIntern::SymbolID("mRender");
-//%initialisations } 8920bbe3c9868d78a71bd0a9d3980877
+//%initialisations } 1d4972035893cd8726f778ba5ae2c595
 }
  

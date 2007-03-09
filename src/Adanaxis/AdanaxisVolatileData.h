@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } /G5prPJmGC4DIKgcQWm0Bg
 /*
- * $Id: AdanaxisVolatileData.h,v 1.12 2006/11/12 20:09:55 southa Exp $
+ * $Id: AdanaxisVolatileData.h,v 1.13 2007/03/07 16:59:44 southa Exp $
  * $Log: AdanaxisVolatileData.h,v $
+ * Revision 1.13  2007/03/07 16:59:44  southa
+ * Khazi spawning and level ends
+ *
  * Revision 1.12  2006/11/12 20:09:55  southa
  * Missile guidance
  *
@@ -89,6 +92,8 @@ private:
     bool m_scannerOn; //:readwrite
     std::string m_playerTargetID; //:readwrite
     Mushware::U32 m_khaziCount; //:readwrite
+    Mushware::U32 m_khaziRedCount; //:readwrite
+    Mushware::U32 m_khaziBlueCount; //:readwrite
     Mushware::U32 m_playerCount; //:readwrite
     
 //%classPrototypes {
@@ -112,6 +117,10 @@ public:
     void PlayerTargetIDSet(const std::string& inValue) { m_playerTargetID=inValue; }
     const Mushware::U32& KhaziCount(void) const { return m_khaziCount; }
     void KhaziCountSet(const Mushware::U32& inValue) { m_khaziCount=inValue; }
+    const Mushware::U32& KhaziRedCount(void) const { return m_khaziRedCount; }
+    void KhaziRedCountSet(const Mushware::U32& inValue) { m_khaziRedCount=inValue; }
+    const Mushware::U32& KhaziBlueCount(void) const { return m_khaziBlueCount; }
+    void KhaziBlueCountSet(const Mushware::U32& inValue) { m_khaziBlueCount=inValue; }
     const Mushware::U32& PlayerCount(void) const { return m_playerCount; }
     void PlayerCountSet(const Mushware::U32& inValue) { m_playerCount=inValue; }
     virtual const char *AutoName(void) const;
@@ -121,7 +130,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } jfzKuGxxE6L7mtouMtYKOQ
+//%classPrototypes } ZyVf48Arw4mgdZ2sHFc8nA
 };
 //%inlineHeader {
 inline std::ostream&
