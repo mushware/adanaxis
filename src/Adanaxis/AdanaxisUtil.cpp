@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } XsVs/rr7rRJFJzKi6eatxg
 /*
- * $Id: AdanaxisUtil.cpp,v 1.37 2006/12/18 15:39:35 southa Exp $
+ * $Id: AdanaxisUtil.cpp,v 1.38 2007/03/07 11:29:25 southa Exp $
  * $Log: AdanaxisUtil.cpp,v $
+ * Revision 1.38  2007/03/07 11:29:25  southa
+ * Level permission
+ *
  * Revision 1.37  2006/12/18 15:39:35  southa
  * Palette changes
  *
@@ -161,6 +164,17 @@ const AdanaxisConfig&
 AdanaxisUtil::Config(void)
 {
     const AdanaxisConfig *pConfig = dynamic_cast<const AdanaxisConfig *>(&AppHandler().Config());
+    if (pConfig == NULL)
+    {
+        throw MushcoreRequestFail("Config of wrong type for AdanaxisConfig");
+    }
+    return *pConfig;
+}
+
+AdanaxisConfig&
+AdanaxisUtil::ConfigWRef(void)
+{
+    AdanaxisConfig *pConfig = dynamic_cast<AdanaxisConfig *>(&AppHandler().ConfigWRef());
     if (pConfig == NULL)
     {
         throw MushcoreRequestFail("Config of wrong type for AdanaxisConfig");

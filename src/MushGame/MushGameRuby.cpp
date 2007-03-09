@@ -3,7 +3,7 @@
  *
  * File: src/MushGame/MushGameRuby.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } yY7ZZkvIHHOoUzJzTAQPOQ
+//%Header } j1yQVneL+5MtyXUhYiB6CQ
 /*
- * $Id: MushGameRuby.cpp,v 1.27 2007/03/08 11:00:30 southa Exp $
+ * $Id: MushGameRuby.cpp,v 1.28 2007/03/08 18:38:15 southa Exp $
  * $Log: MushGameRuby.cpp,v $
+ * Revision 1.28  2007/03/08 18:38:15  southa
+ * Level progression
+ *
  * Revision 1.27  2007/03/08 11:00:30  southa
  * Level epilogue
  *
@@ -544,6 +547,12 @@ MushGameRuby::DisplayReset(Mushware::tRubyValue inSelf)
 {
     try
     {
+        if (MushGLV::Sgl().ContextValid())
+        {
+            // Purge all textures
+            MushGLUtil::Purge();
+            MushGLV::Sgl().Purge();
+        }  
         MushGameUtil::AppHandler().DisplayReset();
     }
     catch (std::exception& e)

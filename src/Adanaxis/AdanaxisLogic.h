@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } 3LuiErcM0vO3wOyNDCFVeQ
 /*
- * $Id: AdanaxisLogic.h,v 1.26 2007/03/07 16:59:44 southa Exp $
+ * $Id: AdanaxisLogic.h,v 1.27 2007/03/09 11:29:13 southa Exp $
  * $Log: AdanaxisLogic.h,v $
+ * Revision 1.27  2007/03/09 11:29:13  southa
+ * Game end actions
+ *
  * Revision 1.26  2007/03/07 16:59:44  southa
  * Khazi spawning and level ends
  *
@@ -145,9 +148,11 @@ public:
     virtual void ProjectilesItemsFullCollide(void);
     virtual void EffectorsFullCollide(void);    
     virtual void MenuModeEnter(void);
+    virtual void EndTimeSetIfZero(Mushware::U32 inTime) { if (m_endTime == 0) m_endTime = inTime; }
     
     virtual void CollisionConsume(MushGameLogic& ioLogic, const MushGameMessageCollision& inMessage);
     virtual void CollisionMessageConsume(MushGameLogic& ioLogic, const MushGameMessage& inMessage);
+    virtual bool IfRecordSet(void);
     
     virtual AdanaxisSaveData& SaveData(void) const;
     virtual const AdanaxisSaveData& ConstSaveData(void) const;

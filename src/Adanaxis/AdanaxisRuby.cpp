@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } nD/Irg6+j8tkN0uh3Wk1EQ
 /*
- * $Id: AdanaxisRuby.cpp,v 1.6 2006/11/12 20:09:55 southa Exp $
+ * $Id: AdanaxisRuby.cpp,v 1.7 2007/03/07 11:29:24 southa Exp $
  * $Log: AdanaxisRuby.cpp,v $
+ * Revision 1.7  2007/03/07 11:29:24  southa
+ * Level permission
+ *
  * Revision 1.6  2006/11/12 20:09:55  southa
  * Missile guidance
  *
@@ -42,6 +45,7 @@
 #include "AdanaxisRuby.h"
 
 #include "AdanaxisConfig.h"
+#include "AdanaxisRecords.h"
 #include "AdanaxisUtil.h"
 
 #include "API/mushMushMeshRuby.h"
@@ -81,7 +85,7 @@ AdanaxisRuby::RecordTime(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg
     MushRubyValue retVal;
     MushRubyValue param0(inArg0);
     
-    Mushware::tMsec recordTime = AdanaxisUtil::Config().RecordTime(param0.String());
+    Mushware::tMsec recordTime = AdanaxisRecords::Sgl().RecordTime(param0.String());
     
     if (recordTime != 0)
     {

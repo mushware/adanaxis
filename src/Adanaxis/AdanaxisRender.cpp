@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } rQkTih3VUd7Xp8cDeV3ZYA
 /*
- * $Id: AdanaxisRender.cpp,v 1.65 2007/03/08 18:38:14 southa Exp $
+ * $Id: AdanaxisRender.cpp,v 1.66 2007/03/08 21:51:02 southa Exp $
  * $Log: AdanaxisRender.cpp,v $
+ * Revision 1.66  2007/03/08 21:51:02  southa
+ * Count display
+ *
  * Revision 1.65  2007/03/08 18:38:14  southa
  * Level progression
  *
@@ -604,20 +607,19 @@ AdanaxisRender::Overplot(MushGameLogic& ioLogic, const MushGameCamera& inCamera)
     
     AdanaxisLogic &logicRef = dynamic_cast<AdanaxisLogic &>(ioLogic);
     
+    GLFontRef fontMedium("font-mono1", 0.02);
+    GLFontRef fontLarge("font-mono1", 0.03);
+    
     if (m_renderPrelude != 0)
     {
-        orthoGL.MoveToEdge(1,-1);
-        orthoGL.MoveRelative(-0.08, 0.08);
-        GLString glStr1(MushcoreInfo::Sgl().PackageID(), GLFontRef("font-mono1", 0.015), 1);
-        glStr1.Render();
         orthoGL.MoveToEdge(0,0);
-        GLString glStr2("Generating texture cache", GLFontRef("font-mono1", 0.03), 0);
+        GLString glStr2("Generating texture cache", fontLarge, 0);
         glStr2.Render();
         
         if (MushcoreGlobalConfig::Sgl().Exists("FIRST_RUN"))
         {
             orthoGL.MoveRelative(0, -0.08);
-            GLString glStr3("(This may take a minute or two)", GLFontRef("font-mono1", 0.02), 0);
+            GLString glStr3("(This may take a minute or two)", fontMedium, 0);
             glStr3.Render();
         }
     }
@@ -627,7 +629,7 @@ AdanaxisRender::Overplot(MushGameLogic& ioLogic, const MushGameCamera& inCamera)
         {
             orthoGL.MoveToEdge(0,1);
             orthoGL.MoveRelative(0, -0.08);
-            GLString glStr("Fish-eye scanner", GLFontRef("font-mono1", 0.02), 0);
+            GLString glStr("Fish-eye scanner", fontMedium, 0);
             glStr.Render();
         }
         
@@ -639,27 +641,27 @@ AdanaxisRender::Overplot(MushGameLogic& ioLogic, const MushGameCamera& inCamera)
                 message << GameTimer::MsecToLongString(logicRef.EndTime() - logicRef.StartTime());
                 orthoGL.MoveToEdge(0,1);
                 orthoGL.MoveRelative(-0.00*message.str().size(), -0.03);
-                GLString glStr(message.str(), GLFontRef("font-mono1", 0.02), 0);
+                GLString glStr(message.str(), fontMedium, 0);
                 glStr.Render();
             }
         }
         
 #ifdef MUSHCORE_DEBUG
         {
-            orthoGL.MoveToEdge(1,1);
-            orthoGL.MoveRelative(-0.01, -0.07);
+            orthoGL.MoveToEdge(0,1);
+            orthoGL.MoveRelative(0, -0.07);
             ostringstream message;
             message << setprecision(1) << fixed << (static_cast<U32>(10000.0 / logicRef.VolatileData().AverageMsecPerFrame()) / 10.0) << " fps";
-            GLString glStr(message.str(), GLFontRef("font-mono1", 0.02), 1);
+            GLString glStr(message.str(), fontMedium, 0);
             glStr.Render();
         }
 #if 0
         {
-            orthoGL.MoveToEdge(1,1);
-            orthoGL.MoveRelative(-0.01, -0.10);
+            orthoGL.MoveToEdge(0,1);
+            orthoGL.MoveRelative(0, -0.10);
             ostringstream message;
             message << logicRef.VolatileData().MovesThisFrame() << " mtf";
-            GLString glStr(message.str(), GLFontRef("font-mono1", 0.02), 1);
+            GLString glStr(message.str(), fontMedium, 0);
             glStr.Render();
         }
 #endif
@@ -671,7 +673,7 @@ AdanaxisRender::Overplot(MushGameLogic& ioLogic, const MushGameCamera& inCamera)
                 orthoGL.MoveTo(0, -0.3);
                 ostringstream message;
                 message << "(Space to continue)";
-                GLString glStr(message.str(), GLFontRef("font-mono1", 0.02), 0);
+                GLString glStr(message.str(), fontMedium, 0);
                 glStr.Render();        
             }
             if (logicRef.EpilogueWon())
@@ -681,7 +683,7 @@ AdanaxisRender::Overplot(MushGameLogic& ioLogic, const MushGameCamera& inCamera)
                     orthoGL.MoveTo(0, 0.04);
                     ostringstream message;
                     message << "Time:   " << GameTimer::MsecToLongString(logicRef.EndTime() - logicRef.StartTime());
-                    GLString glStr(message.str(), GLFontRef("font-mono1", 0.03), 0);
+                    GLString glStr(message.str(), fontLarge, 0);
                     glStr.Render();        
                 }
                 if (logicRef.RecordTime() != 0)
@@ -689,7 +691,7 @@ AdanaxisRender::Overplot(MushGameLogic& ioLogic, const MushGameCamera& inCamera)
                     orthoGL.MoveTo(0, -0.04);
                     ostringstream message;
                     message << "Record: " << GameTimer::MsecToLongString(logicRef.RecordTime());
-                    GLString glStr(message.str(), GLFontRef("font-mono1", 0.03), 0);
+                    GLString glStr(message.str(), fontLarge, 0);
                     glStr.Render();        
                 }
             }

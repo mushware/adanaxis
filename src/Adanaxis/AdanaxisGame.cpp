@@ -3,7 +3,7 @@
  *
  * File: src/Adanaxis/AdanaxisGame.cpp
  *
- * Copyright: Andy Southgate 2005-2006
+ * Copyright: Andy Southgate 2005-2007
  *
  * This file may be used and distributed under the terms of the Mushware
  * software licence version 1.1, under the terms for 'Proprietary original
@@ -15,10 +15,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 0Sg2qcftBJTnB0QxDEkq2Q
+//%Header } Z0i2K+7kHTuXJiioToXHlg
 /*
- * $Id: AdanaxisGame.cpp,v 1.60 2007/02/08 17:55:14 southa Exp $
+ * $Id: AdanaxisGame.cpp,v 1.61 2007/03/07 16:59:43 southa Exp $
  * $Log: AdanaxisGame.cpp,v $
+ * Revision 1.61  2007/03/07 16:59:43  southa
+ * Khazi spawning and level ends
+ *
  * Revision 1.60  2007/02/08 17:55:14  southa
  * Common routines in space generation
  *
@@ -206,6 +209,7 @@
 #include "AdanaxisAppHandler.h"
 #include "AdanaxisClient.h"
 #include "AdanaxisMeshLibrary.h"
+#include "AdanaxisRecords.h"
 #include "AdanaxisRender.h"
 #include "AdanaxisRuby.h"
 #include "AdanaxisSaveData.h"
@@ -332,6 +336,7 @@ AdanaxisGame::Init(MushGameAppHandler& inAppHandler)
     LocalGameCreate(inAppHandler);
     
     MushGameConfigUtils::ConfigAcquire(&m_config);
+    AdanaxisRecords::Sgl().Load();
     
     if (AdanaxisUtil::AppHandler().FirstGame() && m_config.SafeMode())
     {
@@ -356,12 +361,9 @@ AdanaxisGame::Init(MushGameAppHandler& inAppHandler)
 
     MediaAudio::Sgl().AudioVolumeSet(m_config.AudioVolume() / 100.0);
     MediaAudio::Sgl().MusicVolumeSet(m_config.MusicVolume() / 100.0);
-    if (m_config.MusicVolume() > 0)
-    {
-        // MediaAudio::Sgl().MusicFadeIn(300);
-    }
+    MediaAudio::Sgl().MusicFadeOut(1000); // Level starts music once it loads
     
-    Logic().RecordTimeSet(m_config.RecordTime(SaveData().SpaceName()));
+    Logic().RecordTimeSet(AdanaxisRecords::Sgl().RecordTime(SaveData().SpaceName()));
     Logic().MenuModeEnter();
     Logic().StartTimeSet(0);
     Logic().EndTimeSet(0);
@@ -445,8 +447,14 @@ AdanaxisGame::SwapIn(MushGameAppHandler& inAppHandler)
     {
         const GLModeDef& modeDefRef = m_config.ModeDef();
         
-        if (modeDefRef != inAppHandler.CurrentModeDefGet())
+        if (!inAppHandler.ScreenEntered() || modeDefRef != inAppHandler.CurrentModeDefGet())
         {
+            if (MushGLV::Sgl().ContextValid())
+            {
+                // Purge all textures
+                MushGLUtil::Purge();
+                MushGLV::Sgl().Purge();
+            } 
             inAppHandler.EnterScreen(modeDefRef);
             MushGLV::Sgl().Acquaint();
             if (MushcoreEnv::Sgl().VariableExists("MUSHGL_DUMP_MUSHGLV"))
@@ -456,8 +464,9 @@ AdanaxisGame::SwapIn(MushGameAppHandler& inAppHandler)
         }
         else
         {
-            MushGLUtil::Purge();
+            // Screen alread valid - just purge the level-specific textures
             MushGLV::Sgl().Acquaint();
+            MushGLUtil::PurgeNonResident();
         }
     }
     catch (...)
@@ -476,23 +485,12 @@ AdanaxisGame::SwapIn(MushGameAppHandler& inAppHandler)
 #ifdef MUSHCORE_DEBUG
     MushGLUtil::ShaderTest();
 #endif
-}
+}  
 
 void
 AdanaxisGame::SwapOut(MushGameAppHandler& inAppHandler)
 {
     MushGameBase::SwapOut(inAppHandler);
-
-    tMsec gameTime = Logic().EndTime() - Logic().StartTime();
-    tMsec recordTime = m_config.RecordTime(SaveData().SpaceName());
-    if (recordTime == 0 || gameTime < recordTime)
-    {
-        if (Logic().VolatileData().KhaziCount() == 0)
-        {
-            m_config.RecordTimeSet(SaveData().SpaceName(), gameTime);
-        }
-    }
-
     ConfigSave();
 }
 

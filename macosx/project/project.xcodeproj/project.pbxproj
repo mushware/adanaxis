@@ -1023,6 +1023,8 @@
 		7A66E42705FB25C500135328 /* mushMushGL.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A66E42505FB25C500135328 /* mushMushGL.h */; };
 		7A66E44405FB260600135328 /* MushGL.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A66E44005FB260600135328 /* MushGL.h */; };
 		7A66E44505FB260600135328 /* MushGL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A66E44105FB260600135328 /* MushGL.cpp */; };
+		7A6917390BA1C4F300C84ACA /* AdanaxisRecords.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A6917370BA1C4F300C84ACA /* AdanaxisRecords.h */; };
+		7A69173A0BA1C4F300C84ACA /* AdanaxisRecords.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A6917380BA1C4F300C84ACA /* AdanaxisRecords.cpp */; };
 		7A69DF0807626B89004F23F7 /* TestMushMeshQuaternion.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A69DF0607626B89004F23F7 /* TestMushMeshQuaternion.h */; };
 		7A69DF0907626B89004F23F7 /* TestMushMeshQuaternion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A69DF0707626B89004F23F7 /* TestMushMeshQuaternion.cpp */; };
 		7A6AC8D905B972140019F752 /* TestMushcoreVirtualPointerObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A6AC8D705B972140019F752 /* TestMushcoreVirtualPointerObject.h */; };
@@ -3528,6 +3530,8 @@
 		7A66E42505FB25C500135328 /* mushMushGL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mushMushGL.h; sourceTree = "<group>"; };
 		7A66E44005FB260600135328 /* MushGL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushGL.h; sourceTree = "<group>"; };
 		7A66E44105FB260600135328 /* MushGL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushGL.cpp; sourceTree = "<group>"; };
+		7A6917370BA1C4F300C84ACA /* AdanaxisRecords.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdanaxisRecords.h; sourceTree = "<group>"; };
+		7A6917380BA1C4F300C84ACA /* AdanaxisRecords.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AdanaxisRecords.cpp; sourceTree = "<group>"; };
 		7A69DF0607626B89004F23F7 /* TestMushMeshQuaternion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestMushMeshQuaternion.h; sourceTree = "<group>"; };
 		7A69DF0707626B89004F23F7 /* TestMushMeshQuaternion.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestMushMeshQuaternion.cpp; sourceTree = "<group>"; };
 		7A6AC8D705B972140019F752 /* TestMushcoreVirtualPointerObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestMushcoreVirtualPointerObject.h; sourceTree = "<group>"; };
@@ -5896,6 +5900,8 @@
 				7AD42BF50866FAB0002348BD /* AdanaxisPiecePlayer.h */,
 				7ACFAC190A6E2B670046377F /* AdanaxisPieceWorld.cpp */,
 				7ACFAC180A6E2B670046377F /* AdanaxisPieceWorld.h */,
+				7A6917380BA1C4F300C84ACA /* AdanaxisRecords.cpp */,
+				7A6917370BA1C4F300C84ACA /* AdanaxisRecords.h */,
 				7A218C3A08729E8900EEA4E1 /* AdanaxisRender.cpp */,
 				7A218C3908729E8900EEA4E1 /* AdanaxisRender.h */,
 				7A3E0DCA0A48387C0078B650 /* AdanaxisRuby.cpp */,
@@ -7640,6 +7646,7 @@
 				7A5C48CF0B2D751A009085F9 /* MediaAudioSDLChannelDef.h in Headers */,
 				7A5C48D60B2D79EA009085F9 /* MediaAudioChannelDef.h in Headers */,
 				7AF47F320B32D64E00664BED /* MushFileKeys.h in Headers */,
+				7A6917390BA1C4F300C84ACA /* AdanaxisRecords.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9480,6 +9487,7 @@
 				7A5C48D70B2D79EA009085F9 /* MediaAudioChannelDef.cpp in Sources */,
 				7AF47F330B32D64E00664BED /* MushFileKeys.cpp in Sources */,
 				7A5E94F30B34080400D4B99E /* MushSecretKeys.cpp in Sources */,
+				7A69173A0BA1C4F300C84ACA /* AdanaxisRecords.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -3,7 +3,7 @@
  *
  * File: src/GL/SDLAppHandler.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } X577BrzUUfCyG/exJzzEYQ
+//%Header } CkSk48jyH/Lvp9pXNnIBSQ
 /*
- * $Id: SDLAppHandler.cpp,v 1.64 2006/11/08 18:30:54 southa Exp $
+ * $Id: SDLAppHandler.cpp,v 1.65 2006/11/25 21:26:32 southa Exp $
  * $Log: SDLAppHandler.cpp,v $
+ * Revision 1.65  2006/11/25 21:26:32  southa
+ * Display mode definitions
+ *
  * Revision 1.64  2006/11/08 18:30:54  southa
  * Key and axis configuration
  *
@@ -242,7 +245,8 @@ SDLAppHandler::SDLAppHandler():
     m_controlBuffer(kControlBufferSize, SDLControlEntry(0)),
     m_controlBufferIndex(0),
     m_firstDelta(true),
-    m_mouseSensitivity(1.0)
+    m_mouseSensitivity(1.0),
+    m_screenEntered(false)
 {
     m_deviceList.resize(kNumDevices);
     for (U32 i=0; i<kNumDevices; ++i)
@@ -438,6 +442,7 @@ SDLAppHandler::EnterScreen(const GLModeDef& inDef)
     
     m_modeDef=inDef;
     PlatformVideoUtils::AppActivate();
+    m_screenEntered = true;
 }
 
 const GLModeDef&

@@ -7,7 +7,7 @@
  *
  * File: src/GL/SDLAppHandler.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } VUfBvm3qobPEj3YM/Njzcg
+//%Header } R4H4sEMlVCpKH2ncEhuaTQ
 /*
- * $Id: SDLAppHandler.h,v 1.32 2006/07/28 16:52:20 southa Exp $
+ * $Id: SDLAppHandler.h,v 1.33 2006/07/31 11:01:37 southa Exp $
  * $Log: SDLAppHandler.h,v $
+ * Revision 1.33  2006/07/31 11:01:37  southa
+ * Music and dialogues
+ *
  * Revision 1.32  2006/07/28 16:52:20  southa
  * Options work
  *
@@ -137,6 +140,7 @@ public:
     bool keyDirection;
 };
 
+// These don't work because this isn't the first class in the file
 //:xml1base GLAppHandler
 //:generate virtual standard ostream xml1
 class SDLAppHandler : public GLAppHandler
@@ -166,7 +170,7 @@ public:
     virtual Mushware::tVal DeviceAxis(Mushware::U32 inDevice, Mushware::U32 inAxis);
     virtual void KeyRepeatSet(bool inValue);
     virtual void MouseSensitivitySet(Mushware::tVal inValue) { m_mouseSensitivity = inValue; }
-    
+    virtual bool ScreenEntered(void) const { return m_screenEntered; }
 protected:
     virtual void Initialise(void);
     virtual void Idle(void);
@@ -210,6 +214,7 @@ private:
     bool m_doQuit;
     tDeviceList m_deviceList;
     Mushware::tVal m_mouseSensitivity;
+    bool m_screenEntered;
 };
 //%includeGuardEnd {
 #endif

@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } fh7altI5opktY3DzVNPCDA
 /*
- * $Id: AdanaxisConfig.h,v 1.17 2006/11/25 21:26:31 southa Exp $
+ * $Id: AdanaxisConfig.h,v 1.18 2007/03/07 11:29:24 southa Exp $
  * $Log: AdanaxisConfig.h,v $
+ * Revision 1.18  2007/03/07 11:29:24  southa
+ * Level permission
+ *
  * Revision 1.17  2006/11/25 21:26:31  southa
  * Display mode definitions
  *
@@ -131,20 +134,16 @@ public:
     MushGameKeyDef& KeyDefWRef(Mushware::U32 inKeyDefNum) { MushcoreUtil::BoundsCheck(inKeyDefNum, m_keyDefs.size()); return m_keyDefs[inKeyDefNum]; }
     void AxisDefSet(const MushGameAxisDef& inDef, Mushware::U32 inAxisDefNum) { MushcoreUtil::BoundsCheck(inAxisDefNum, m_axisDefs.size()); m_axisDefs[inAxisDefNum] = inDef; }
     void KeyDefSet(const MushGameKeyDef& inDef, Mushware::U32 inKeyDefNum) { MushcoreUtil::BoundsCheck(inKeyDefNum, m_keyDefs.size()); m_keyDefs[inKeyDefNum] = inDef; }
-    Mushware::tMsec RecordTime(const std::string& inName) const;
-    void RecordTimeSet(const std::string& inName, Mushware::tMsec inTime) { m_recordTimes[inName] = inTime; }
     
 private:
     enum
     {
         kVersion = 20061125,
     };
-    typedef std::map< std::string, Mushware::tMsec > tRecordTimes;
     
     std::vector<MushGameAxisDef> m_axisDefs; //:read
     std::vector<MushGameKeyDef> m_keyDefs; //:read
     GLModeDef m_modeDef; //:readwrite
-    tRecordTimes m_recordTimes;
 
 //%classPrototypes {
 public:

@@ -3,7 +3,7 @@
  *
  * File: src/MushGame/MushGameBase.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 72jYu/IZevqg7bsvRKLvxw
+//%Header } qaimAaDYJVQ7OZuHkQlxQw
 /*
- * $Id: MushGameBase.cpp,v 1.10 2007/03/07 16:59:44 southa Exp $
+ * $Id: MushGameBase.cpp,v 1.11 2007/03/08 11:00:29 southa Exp $
  * $Log: MushGameBase.cpp,v $
+ * Revision 1.11  2007/03/08 11:00:29  southa
+ * Level epilogue
+ *
  * Revision 1.10  2007/03/07 16:59:44  southa
  * Khazi spawning and level ends
  *
@@ -75,7 +78,7 @@ MushGameBase::SwapOut(MushGameAppHandler& inHandler)
 {
     if (MushGLV::Sgl().ContextValid())
     {
-        MushGLUtil::Purge();
+        MushGLUtil::PurgeNonResident();
         MushGLV::Sgl().Purge();
     }
 }

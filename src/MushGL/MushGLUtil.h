@@ -7,7 +7,7 @@
  *
  * File: src/MushGL/MushGLUtil.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 0OQkM+NcUqCBag3zq+cczA
+//%Header } bR7tngDc3OTOVBH1X7Q1Og
 /*
- * $Id: MushGLUtil.h,v 1.6 2006/09/07 10:02:37 southa Exp $
+ * $Id: MushGLUtil.h,v 1.7 2006/09/07 16:38:51 southa Exp $
  * $Log: MushGLUtil.h,v $
+ * Revision 1.7  2006/09/07 16:38:51  southa
+ * Vertex shader
+ *
  * Revision 1.6  2006/09/07 10:02:37  southa
  * Shader interface
  *
@@ -77,7 +80,9 @@ public:
     static void BufferPurge(void);
     static void ShaderPurge(void);
     static void TexturePurge(void);
+    static void TexturePurgeNonResident(void);
     static void Purge(void);
+    static void PurgeNonResident(void);
     
     static void ShaderTest(void);
 

@@ -3,7 +3,7 @@
  *
  * File: src/MushGL/MushGLPixelSource.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } vz1knUYnzwX5FNm6RC5EZw
+//%Header } f9YGqMS1ldzAaXM2tQFU8g
 /*
- * $Id: MushGLPixelSource.cpp,v 1.9 2006/06/27 11:58:08 southa Exp $
+ * $Id: MushGLPixelSource.cpp,v 1.10 2006/11/09 23:53:59 southa Exp $
  * $Log: MushGLPixelSource.cpp,v $
+ * Revision 1.10  2006/11/09 23:53:59  southa
+ * Explosion and texture loading
+ *
  * Revision 1.9  2006/06/27 11:58:08  southa
  * Warning fixes
  *
@@ -64,7 +67,8 @@ MUSHCORE_INSTALLER(MushGLPixelSource::Install);
 MushGLPixelSource::MushGLPixelSource() :
     m_storageType("GL"),
 	m_cacheable(true),
-    m_compress(false)
+    m_compress(false),
+    m_resident(false)
 {
 }
 
@@ -92,6 +96,10 @@ MushGLPixelSource::ParamDecode(const MushRubyValue& inName, const MushRubyValue&
 	else if (nameStr == "compress")
 	{
 		m_compress = inValue.Bool();
+	}
+	else if (nameStr == "resident")
+	{
+		m_resident = inValue.Bool();
 	}
 	else
 	{
@@ -164,7 +172,8 @@ MushGLPixelSource::AutoPrint(std::ostream& ioOut) const
     ioOut << "storageType=" << m_storageType << ", ";
     ioOut << "size=" << m_size << ", ";
     ioOut << "cacheable=" << m_cacheable << ", ";
-    ioOut << "compress=" << m_compress;
+    ioOut << "compress=" << m_compress << ", ";
+    ioOut << "resident=" << m_resident;
     ioOut << "]";
 }
 bool
@@ -196,6 +205,10 @@ MushGLPixelSource::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::strin
     {
         ioIn >> m_compress;
     }
+    else if (inTagStr == "resident")
+    {
+        ioIn >> m_resident;
+    }
     else 
     {
         return false;
@@ -215,5 +228,7 @@ MushGLPixelSource::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_cacheable;
     ioOut.TagSet("compress");
     ioOut << m_compress;
+    ioOut.TagSet("resident");
+    ioOut << m_resident;
 }
-//%outOfLineFunctions } d8xEo15VopdWn4VpyqzCUg
+//%outOfLineFunctions } e+oDlasCM53DxZHVQdIBjg

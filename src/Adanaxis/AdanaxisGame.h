@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } oopg9ep1Y8Gi4lDebmHn9g
 /*
- * $Id: AdanaxisGame.h,v 1.24 2006/11/25 21:26:31 southa Exp $
+ * $Id: AdanaxisGame.h,v 1.25 2007/03/07 11:29:24 southa Exp $
  * $Log: AdanaxisGame.h,v $
+ * Revision 1.25  2007/03/07 11:29:24  southa
+ * Level permission
+ *
  * Revision 1.24  2006/11/25 21:26:31  southa
  * Display mode definitions
  *
@@ -131,7 +134,6 @@ public:
     virtual void ConfigSave(void);
     virtual const MushGameConfigBase& Config(void) const { return m_config; }
     virtual MushGameConfigBase& ConfigWRef(void) { return m_config; }
-
     
     static void Install(void);
     

@@ -3,7 +3,7 @@
  *
  * File: src/MushGL/MushGLUtil.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } vl7jY3WxF4VnrsvzzFB2Cw
+//%Header } K7HrnH+vIiH4q4+CMaK9uA
 /*
- * $Id: MushGLUtil.cpp,v 1.8 2006/09/07 16:38:51 southa Exp $
+ * $Id: MushGLUtil.cpp,v 1.9 2006/11/25 21:26:32 southa Exp $
  * $Log: MushGLUtil.cpp,v $
+ * Revision 1.9  2006/11/25 21:26:32  southa
+ * Display mode definitions
+ *
  * Revision 1.8  2006/09/07 16:38:51  southa
  * Vertex shader
  *
@@ -293,11 +296,33 @@ MushGLUtil::TexturePurge(void)
 }
 
 void
+MushGLUtil::TexturePurgeNonResident(void)
+{
+    typedef MushcoreData<MushGLTexture> tData;
+    for (tData::iterator p = tData::Sgl().begin(); p != tData::Sgl().end(); ++p)
+    {
+        MUSHCOREASSERT(p->second != NULL);
+        if (!p->second->Resident())
+        {
+            p->second->Purge();
+        }
+    }
+}
+
+void
 MushGLUtil::Purge(void)
 {
     BufferPurge();
     ShaderPurge();
     TexturePurge();
+}
+
+void
+MushGLUtil::PurgeNonResident(void)
+{
+    BufferPurge();
+    ShaderPurge();
+    TexturePurgeNonResident();
 }
 
 void

@@ -10,8 +10,11 @@
 #
 ##############################################################################
 
-# $Id: SourceConditioner.pl,v 1.56 2006/10/14 16:59:42 southa Exp $
+# $Id: SourceConditioner.pl,v 1.57 2007/03/06 11:34:00 southa Exp $
 # $Log: SourceConditioner.pl,v $
+# Revision 1.57  2007/03/06 11:34:00  southa
+# Space and precache fixes
+#
 # Revision 1.56  2006/10/14 16:59:42  southa
 # Ruby Deco objects
 #
@@ -210,7 +213,7 @@ my @gCHeaders = (
 ' *',
 ' * File: @FILENAME@',
 ' *',
-' * Copyright: Andy Southgate 2002-2006',
+' * Copyright: Andy Southgate 2002-2007',
 ' *',
 ' * All rights reserved.  Distribution of this source file or the data',
 ' * contained within it is prohibited unless expressly permitted by Mushware',
@@ -257,7 +260,7 @@ my @gCHeaders = (
 '#',
 '# File @FILENAME@',
 '#',
-'# Copyright Andy Southgate 2006',
+'# Copyright Andy Southgate 2006-2007',
 '#',
 '# This file may be used and distributed under the terms of the Mushware',
 '# software licence version 1.1, under the terms for \'Proprietary original',
@@ -276,7 +279,7 @@ my @gCHeaders = (
 '#',
 '# File @FILENAME@',
 '#',
-'# Author Andy Southgate 2006',
+'# Author Andy Southgate 2006-2007',
 '#',
 '# This file contains original work by Andy Southgate.  The author and his',
 '# employer (Mushware Limited) irrevocably waive all of their copyright rights',
@@ -296,7 +299,7 @@ my @gCHeaders = (
   ' *',
   ' * File: @FILENAME@',
   ' *',
-  ' * Copyright: Andy Southgate 2005-2006',
+  ' * Copyright: Andy Southgate 2005-2007',
   ' *',
   ' * This file may be used and distributed under the terms of the Mushware',
   ' * software licence version 1.1, under the terms for \'Proprietary original',
@@ -315,7 +318,7 @@ my @gCHeaders = (
   ' *',
   ' * File: @FILENAME@',
   ' *',
-  ' * Author: Andy Southgate 2002-2006',
+  ' * Author: Andy Southgate 2002-2007',
   ' *',
   ' * This file contains original work by Andy Southgate.  The author and his',
   ' * employer (Mushware Limited) irrevocably waive all of their copyright rights',

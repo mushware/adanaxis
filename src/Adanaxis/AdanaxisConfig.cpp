@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } nn/isq5fn0Vgn3AN/MiYyA
 /*
- * $Id: AdanaxisConfig.cpp,v 1.18 2006/11/25 21:26:31 southa Exp $
+ * $Id: AdanaxisConfig.cpp,v 1.19 2007/03/07 11:29:24 southa Exp $
  * $Log: AdanaxisConfig.cpp,v $
+ * Revision 1.19  2007/03/07 11:29:24  southa
+ * Level permission
+ *
  * Revision 1.18  2006/11/25 21:26:31  southa
  * Display mode definitions
  *
@@ -157,12 +160,6 @@ AdanaxisConfig::KeysToDefaultSet(void)
     }
 }
 
-Mushware::tMsec
-AdanaxisConfig::RecordTime(const std::string& inName) const
-{
-    tRecordTimes::const_iterator p = m_recordTimes.find(inName);
-    return (p == m_recordTimes.end()) ? 0 : p->second;
-}
 
 void
 AdanaxisConfig::AutoInputPrologue(MushcoreXMLIStream& ioIn)
@@ -172,7 +169,6 @@ AdanaxisConfig::AutoInputPrologue(MushcoreXMLIStream& ioIn)
     m_modeDef = GLModeDef(kDisplayXSize, kDisplayYSize, true);
     m_axisDefs.resize(0);
     m_keyDefs.resize(0);
-    m_recordTimes.clear();
 }
 
 void
@@ -230,8 +226,7 @@ AdanaxisConfig::AutoPrint(std::ostream& ioOut) const
     MushGameConfigBase::AutoPrint(ioOut);
     ioOut << "axisDefs=" << m_axisDefs << ", ";
     ioOut << "keyDefs=" << m_keyDefs << ", ";
-    ioOut << "modeDef=" << m_modeDef << ", ";
-    ioOut << "recordTimes=" << m_recordTimes;
+    ioOut << "modeDef=" << m_modeDef;
     ioOut << "]";
 }
 bool
@@ -255,10 +250,6 @@ AdanaxisConfig::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
     {
         ioIn >> m_modeDef;
     }
-    else if (inTagStr == "recordTimes")
-    {
-        ioIn >> m_recordTimes;
-    }
     else if (MushGameConfigBase::AutoXMLDataProcess(ioIn, inTagStr))
     {
         // Tag consumed by base class
@@ -279,7 +270,5 @@ AdanaxisConfig::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_keyDefs;
     ioOut.TagSet("modeDef");
     ioOut << m_modeDef;
-    ioOut.TagSet("recordTimes");
-    ioOut << m_recordTimes;
 }
-//%outOfLineFunctions } QQLSrKg4xqa2JIMBhmmyWw
+//%outOfLineFunctions } 0z5IuGLuZlruFVT79m8qHQ

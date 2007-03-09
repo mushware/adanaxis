@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } B8mSgw4FqoBVewtmsej6Zw
 /*
- * $Id: AdanaxisUtil.h,v 1.13 2006/12/18 15:39:35 southa Exp $
+ * $Id: AdanaxisUtil.h,v 1.14 2007/03/07 11:29:25 southa Exp $
  * $Log: AdanaxisUtil.h,v $
+ * Revision 1.14  2007/03/07 11:29:25  southa
+ * Level permission
+ *
  * Revision 1.13  2006/12/18 15:39:35  southa
  * Palette changes
  *
@@ -86,6 +89,7 @@ public:
     
     static AdanaxisAppHandler& AppHandler(void);
     static const AdanaxisConfig& Config(void);
+    static AdanaxisConfig& ConfigWRef(void);
     static AdanaxisMeshLibrary& MeshLibrary(void);
     static AdanaxisLogic& Logic(MushGameLogic& ioLogic);
 };

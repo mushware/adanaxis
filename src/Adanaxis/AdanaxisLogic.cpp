@@ -3,7 +3,7 @@
  *
  * File: src/Adanaxis/AdanaxisLogic.cpp
  *
- * Copyright: Andy Southgate 2005-2006
+ * Copyright: Andy Southgate 2005-2007
  *
  * This file may be used and distributed under the terms of the Mushware
  * software licence version 1.1, under the terms for 'Proprietary original
@@ -15,10 +15,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } Mac7dWHONvkZIg39sQnwww
+//%Header } stbnKxftF7zm1Z3BNG1/hA
 /*
- * $Id: AdanaxisLogic.cpp,v 1.38 2007/03/08 18:38:14 southa Exp $
+ * $Id: AdanaxisLogic.cpp,v 1.39 2007/03/09 11:29:13 southa Exp $
  * $Log: AdanaxisLogic.cpp,v $
+ * Revision 1.39  2007/03/09 11:29:13  southa
+ * Game end actions
+ *
  * Revision 1.38  2007/03/08 18:38:14  southa
  * Level progression
  *
@@ -138,8 +141,10 @@
 #include "AdanaxisLogic.h"
 
 #include "AdanaxisAppHandler.h"
+#include "AdanaxisConfig.h"
 #include "AdanaxisData.h"
 #include "AdanaxisIntern.h"
+#include "AdanaxisRecords.h"
 #include "AdanaxisRender.h"
 #include "AdanaxisUtil.h"
 
@@ -733,21 +738,28 @@ AdanaxisLogic::Tick100msSequence(void)
     
     VolatileData().PlayerCountSet(livePlayerCount);
     
-    if (livePlayerCount == 0 && playerCount != 0)
+    if (IsGameMode())
     {
-        // No live players but some dead    VolatileData().GameModeSet(MushGameVolatileData::kGameModeGame);
-
-        if (IsGameMode())
+        if (livePlayerCount == 0 && playerCount != 0)
         {
-            EndTimeSet(FrameMsec());
-            EpilogueModeEnter(MushGameData::kGameResultDead);
+            // No live players but some dead
+            if (IsGameMode())
+            {
+                EndTimeSetIfZero(FrameMsec());
+                EpilogueModeEnter(MushGameData::kGameResultDead);
+            }
         }
-    }
-    else if (gameState == MushGameData::kGameResultLost ||
-             gameState == MushGameData::kGameResultWon)
-    {
-        EndTimeSet(FrameMsec());
-        EpilogueModeEnter(gameState);
+        else if (gameState == MushGameData::kGameResultLost)
+        {
+            EndTimeSetIfZero(FrameMsec());
+            EpilogueModeEnter(gameState);
+        }
+        else if (gameState == MushGameData::kGameResultWon)
+        {
+            EndTimeSetIfZero(FrameMsec());
+            IfRecordSet();
+            EpilogueModeEnter(gameState);
+        }
     }
 }
 
@@ -826,6 +838,21 @@ AdanaxisLogic::MenuModeEnter(void)
     
     MushGameLogic::MenuModeEnter();
 }
+
+bool
+AdanaxisLogic::IfRecordSet(void)
+{
+    bool retVal = false;
+    
+    tMsec gameTime = EndTime() - StartTime();
+    tMsec recordTime = AdanaxisRecords::Sgl().RecordTime(SaveData().SpaceName());
+    if (recordTime == 0 || gameTime < recordTime)
+    {
+        AdanaxisRecords::Sgl().RecordTimeSet(SaveData().SpaceName(), gameTime);
+        retVal = true;
+    }
+    return retVal;
+}  
 
 //%outOfLineFunctions {
 

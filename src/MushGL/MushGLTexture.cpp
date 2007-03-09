@@ -3,7 +3,7 @@
  *
  * File: src/MushGL/MushGLTexture.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } vh/xCnesmbXGxXqZK5YEaA
+//%Header } WY2u1HXX7TVJTgoF5glRyg
 /*
- * $Id: MushGLTexture.cpp,v 1.21 2006/12/16 10:57:23 southa Exp $
+ * $Id: MushGLTexture.cpp,v 1.22 2007/02/08 17:55:14 southa Exp $
  * $Log: MushGLTexture.cpp,v $
+ * Revision 1.22  2007/02/08 17:55:14  southa
+ * Common routines in space generation
+ *
  * Revision 1.21  2006/12/16 10:57:23  southa
  * Encrypted files
  *
@@ -137,6 +140,7 @@ MushGLTexture::Make(void)
 		}
 		pSrc->ToTextureCreate(*this);
 		m_cacheable = pSrc->Cacheable();
+		m_resident = pSrc->Resident();
 		
 		// Built this texture the hard way, so save to cache
 		m_cacheSaveRequired = m_cacheable;
@@ -468,12 +472,15 @@ MushGLTexture::RubyDefine(Mushware::tRubyArgC inArgC, Mushware::tRubyValue *inpA
 		MushGLPixelSource& pixelSource = MushGLResolverPixelSource::Sgl().ParamHashResolve(paramHash);
 		std::string textureName = pixelSource.Name();
 		
-		MushGLTexture *pTexture = MushcoreData<MushGLTexture>::Sgl().Give(textureName, new MushGLTexture);
-		pTexture->NameSet(textureName);
-		pTexture->CacheableSet(pixelSource.Cacheable());
-		std::ostringstream hashStream;
-		hashStream << paramHash;
-		pTexture->UniqueIdentifierSet(hashStream.str());
+        if (!MushcoreData<MushGLTexture>::Sgl().Exists(textureName))
+        {
+            MushGLTexture *pTexture = MushcoreData<MushGLTexture>::Sgl().Give(textureName, new MushGLTexture);
+            pTexture->NameSet(textureName);
+            pTexture->CacheableSet(pixelSource.Cacheable());
+            std::ostringstream hashStream;
+            hashStream << paramHash;
+            pTexture->UniqueIdentifierSet(hashStream.str());
+        }
 	}
 	catch (MushcoreFail& e)
 	{
@@ -577,7 +584,8 @@ MushGLTexture::AutoPrint(std::ostream& ioOut) const
     ioOut << "cacheSaveRequired=" << m_cacheSaveRequired << ", ";
     ioOut << "compress=" << m_compress << ", ";
     ioOut << "made=" << m_made << ", ";
-    ioOut << "saveable=" << m_saveable;
+    ioOut << "saveable=" << m_saveable << ", ";
+    ioOut << "resident=" << m_resident;
     ioOut << "]";
 }
 bool
@@ -653,6 +661,10 @@ MushGLTexture::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& i
     {
         ioIn >> m_saveable;
     }
+    else if (inTagStr == "resident")
+    {
+        ioIn >> m_resident;
+    }
     else 
     {
         return false;
@@ -694,6 +706,8 @@ MushGLTexture::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_made;
     ioOut.TagSet("saveable");
     ioOut << m_saveable;
+    ioOut.TagSet("resident");
+    ioOut << m_resident;
 }
-//%outOfLineFunctions } VKOa5rKnPvep/vVpGpU9eg
+//%outOfLineFunctions } raNisx1TBOC+/Ea48R7FHw
 

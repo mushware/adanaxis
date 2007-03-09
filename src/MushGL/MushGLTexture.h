@@ -7,7 +7,7 @@
  *
  * File: src/MushGL/MushGLTexture.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } AYQWMxoJ+uDPAQUnlwSk/w
+//%Header } M3l27y1AKgnUC/y7boOgRQ
 /*
- * $Id: MushGLTexture.h,v 1.12 2006/11/09 23:53:59 southa Exp $
+ * $Id: MushGLTexture.h,v 1.13 2007/02/08 17:55:14 southa Exp $
  * $Log: MushGLTexture.h,v $
+ * Revision 1.13  2007/02/08 17:55:14  southa
+ * Common routines in space generation
+ *
  * Revision 1.12  2006/11/09 23:53:59  southa
  * Explosion and texture loading
  *
@@ -83,7 +86,8 @@ public:
 		m_cacheSaveRequired(false),
 		m_compress(false),
         m_made(false),
-        m_saveable(true)
+        m_saveable(true),
+        m_resident(false)
     {}
 
     void Make(void);
@@ -141,6 +145,7 @@ private:
 	bool m_compress; //:readwrite
     bool m_made;
     bool m_saveable; //:readwrite
+    bool m_resident; //:readwrite
     
     static Mushware::tSize m_byteCount;
     
@@ -158,6 +163,8 @@ public:
     void CompressSet(const bool& inValue) { m_compress=inValue; }
     const bool& Saveable(void) const { return m_saveable; }
     void SaveableSet(const bool& inValue) { m_saveable=inValue; }
+    const bool& Resident(void) const { return m_resident; }
+    void ResidentSet(const bool& inValue) { m_resident=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -165,7 +172,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } OGMrW6kuUbbjh65Lc4qcFg
+//%classPrototypes } qO/uHtdHXFb5ixOoQT+26g
 };
 //%inlineHeader {
 inline std::ostream&
