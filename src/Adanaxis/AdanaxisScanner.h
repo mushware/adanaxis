@@ -7,7 +7,7 @@
  *
  * File: src/Adanaxis/AdanaxisScanner.h
  *
- * Copyright: Andy Southgate 2005-2006
+ * Copyright: Andy Southgate 2005-2007
  *
  * This file may be used and distributed under the terms of the Mushware
  * software licence version 1.1, under the terms for 'Proprietary original
@@ -19,10 +19,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } XLKRQITGeEosZnXBO0QSEw
+//%Header } GQz6unj7K37r7064vOXNMw
 /*
- * $Id: AdanaxisScanner.h,v 1.5 2006/10/20 15:38:52 southa Exp $
+ * $Id: AdanaxisScanner.h,v 1.6 2006/11/12 20:09:55 southa Exp $
  * $Log: AdanaxisScanner.h,v $
+ * Revision 1.6  2006/11/12 20:09:55  southa
+ * Missile guidance
+ *
  * Revision 1.5  2006/10/20 15:38:52  southa
  * Item collection
  *
@@ -65,18 +68,18 @@ public:
     {
         kSymbolScanWhite = 0,
         kSymbolScanRed = 1,
-        kSymbolScanGreen = 2,
-        kSymbolScanX = 8,
-        kSymbolScanY = 9,
-        kSymbolScanZ = 10,
-        kSymbolScanW = 11,
-        kSymbolCrosshairSpecial = 16,
-        kSymbolCrosshairOnTarget = 17,
-        kSymbolCrosshairIdle = 18,
-        kSymbolCrosshairInBoundary = 19,
+        kSymbolScanGreen = 1,
+        kSymbolScanX = 16,
+        kSymbolScanY = 17,
+        kSymbolScanZ = 18,
+        kSymbolScanW = 19,
+        kSymbolCrosshairSpecial = 24,
+        kSymbolCrosshairOnTarget = 25,
+        kSymbolCrosshairIdle = 26,
+        kSymbolCrosshairInBoundary = 27,
         
-        kSymbolHitPointsBarBorder = 24,
-        kSymbolHitPointsBarInterior = 25,
+        kSymbolHitPointsBarBorder = 32,
+        kSymbolHitPointsBarInterior = 33,
         
         kTargetStateInvalid = 0,
         kTargetStateIdle,

@@ -3,7 +3,7 @@
  *
  * File: src/Adanaxis/AdanaxisScanner.cpp
  *
- * Copyright: Andy Southgate 2005-2006
+ * Copyright: Andy Southgate 2005-2007
  *
  * This file may be used and distributed under the terms of the Mushware
  * software licence version 1.1, under the terms for 'Proprietary original
@@ -15,10 +15,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } jTomsRfJomSPXOWn3jd6fw
+//%Header } 4Lh9zsr0AY3HSYj9Glvqlw
 /*
- * $Id: AdanaxisScanner.cpp,v 1.8 2006/10/20 15:38:52 southa Exp $
+ * $Id: AdanaxisScanner.cpp,v 1.9 2006/11/12 20:09:55 southa Exp $
  * $Log: AdanaxisScanner.cpp,v $
+ * Revision 1.9  2006/11/12 20:09:55  southa
+ * Missile guidance
+ *
  * Revision 1.8  2006/10/20 15:38:52  southa
  * Item collection
  *

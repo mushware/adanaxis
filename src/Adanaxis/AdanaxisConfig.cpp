@@ -3,7 +3,7 @@
  *
  * File: src/Adanaxis/AdanaxisConfig.cpp
  *
- * Copyright: Andy Southgate 2005-2006
+ * Copyright: Andy Southgate 2005-2007
  *
  * This file may be used and distributed under the terms of the Mushware
  * software licence version 1.1, under the terms for 'Proprietary original
@@ -15,10 +15,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } nn/isq5fn0Vgn3AN/MiYyA
+//%Header } tRR47/9aZofgU4ATnDVtfQ
 /*
- * $Id: AdanaxisConfig.cpp,v 1.19 2007/03/07 11:29:24 southa Exp $
+ * $Id: AdanaxisConfig.cpp,v 1.20 2007/03/09 19:50:11 southa Exp $
  * $Log: AdanaxisConfig.cpp,v $
+ * Revision 1.20  2007/03/09 19:50:11  southa
+ * Resident textures
+ *
  * Revision 1.19  2007/03/07 11:29:24  southa
  * Level permission
  *

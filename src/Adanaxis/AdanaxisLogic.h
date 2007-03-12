@@ -7,7 +7,7 @@
  *
  * File: src/Adanaxis/AdanaxisLogic.h
  *
- * Copyright: Andy Southgate 2005-2006
+ * Copyright: Andy Southgate 2005-2007
  *
  * This file may be used and distributed under the terms of the Mushware
  * software licence version 1.1, under the terms for 'Proprietary original
@@ -19,10 +19,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 3LuiErcM0vO3wOyNDCFVeQ
+//%Header } AIxiLCQtCbzrO6qeGBTz1Q
 /*
- * $Id: AdanaxisLogic.h,v 1.27 2007/03/09 11:29:13 southa Exp $
+ * $Id: AdanaxisLogic.h,v 1.28 2007/03/09 19:50:11 southa Exp $
  * $Log: AdanaxisLogic.h,v $
+ * Revision 1.28  2007/03/09 19:50:11  southa
+ * Resident textures
+ *
  * Revision 1.27  2007/03/09 11:29:13  southa
  * Game end actions
  *

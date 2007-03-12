@@ -3,7 +3,7 @@
  *
  * File: src/Adanaxis/AdanaxisRuby.cpp
  *
- * Copyright: Andy Southgate 2005-2006
+ * Copyright: Andy Southgate 2005-2007
  *
  * This file may be used and distributed under the terms of the Mushware
  * software licence version 1.1, under the terms for 'Proprietary original
@@ -15,10 +15,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } nD/Irg6+j8tkN0uh3Wk1EQ
+//%Header } u23vbNfX5drZiCudCudkVw
 /*
- * $Id: AdanaxisRuby.cpp,v 1.7 2007/03/07 11:29:24 southa Exp $
+ * $Id: AdanaxisRuby.cpp,v 1.8 2007/03/09 19:50:12 southa Exp $
  * $Log: AdanaxisRuby.cpp,v $
+ * Revision 1.8  2007/03/09 19:50:12  southa
+ * Resident textures
+ *
  * Revision 1.7  2007/03/07 11:29:24  southa
  * Level permission
  *

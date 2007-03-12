@@ -7,7 +7,7 @@
  *
  * File: src/Adanaxis/AdanaxisGame.h
  *
- * Copyright: Andy Southgate 2005-2006
+ * Copyright: Andy Southgate 2005-2007
  *
  * This file may be used and distributed under the terms of the Mushware
  * software licence version 1.1, under the terms for 'Proprietary original
@@ -19,10 +19,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } oopg9ep1Y8Gi4lDebmHn9g
+//%Header } aCUWLOgSJYjOQGX0fWrmNg
 /*
- * $Id: AdanaxisGame.h,v 1.25 2007/03/07 11:29:24 southa Exp $
+ * $Id: AdanaxisGame.h,v 1.26 2007/03/09 19:50:11 southa Exp $
  * $Log: AdanaxisGame.h,v $
+ * Revision 1.26  2007/03/09 19:50:11  southa
+ * Resident textures
+ *
  * Revision 1.25  2007/03/07 11:29:24  southa
  * Level permission
  *
