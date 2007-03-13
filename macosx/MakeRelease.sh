@@ -9,8 +9,11 @@
 #
 ##############################################################################
 #
-# $Id: MakeRelease.sh,v 1.10 2006/06/22 19:07:25 southa Exp $
+# $Id: MakeRelease.sh,v 1.11 2007/03/13 21:45:10 southa Exp $
 # $Log: MakeRelease.sh,v $
+# Revision 1.11  2007/03/13 21:45:10  southa
+# Release process
+#
 # Revision 1.10  2006/06/22 19:07:25  southa
 # Build fixes
 #
@@ -56,8 +59,9 @@ version="$3"
 builddir="$4"
 datadir="$5"
 releasedir="release/$name"
-readmedir="release/$name/Documents"
-appdir="$builddir/$name.app"
+readmedir="release/$name"
+sourceapp="$builddir/$name.app"
+appdir="$releasedir/$name.app"
 resourcesdir="$appdir/Contents/Resources/mushware-resources"
 
 SetFile="/Developer/Tools/SetFile"
@@ -65,13 +69,12 @@ SetFile="/Developer/Tools/SetFile"
 echo "Building MacOS X release for project '$name' version '$version'"
 echo "from '$builddir' and '$datadir' to '$releasedir'"
 
-exit 1
-
 echo 'This scripts expects that the macosxlibs checkout is present.'
 
 rm -rf "$releasedir"
-mkdir -p release
-cp -pR "$appdir" "$releasedir"
+mkdir -p "$releasedir"
+cp -pR "$sourceapp" "$appdir"
+rm -f "$resourcesdir"
 cp -pR "$datadir" "$resourcesdir"
 
 find "$resourcesdir" -type d -name 'CVS' -prune -exec rm -rf "{}" \;
@@ -79,6 +82,8 @@ find "$resourcesdir" -name '.DS_Store' -exec rm -f "{}" \;
 find "$resourcesdir" -name 'Makefile*' -exec rm -f "{}" \;
 
 rm -rf "$resourcesdir/mushware-cache"
+rm -rf "$resourcesdir/pixelsrc"
+rm -rf "$resourcesdir/wavesrc"
 
 cp "$resourcesdir/system/start.txt" "$resourcesdir/system/start_backup.txt"
 
@@ -92,16 +97,15 @@ cp COPYING "${readmedir}/Licence.txt"
 cp ChangeLog "${readmedir}/ChangeLog.txt"
 
 # Copy the source tar archive, removing the data directory in the pipe
-gunzip -c "$package-$version.tar.gz" | tar --delete "$package-$version/data-*" | GZIP=--best gzip > "$releasedir/system/$package-src-$version.tar.gz"
+gunzip -c "$package-$version.tar.gz" | tar --delete "$package-$version/data-*" | GZIP=--best gzip > "$resourcesdir/system/$package-src-$version.tar.gz"
 
 ditto -xz -rsrc "macosx/Mushware web site.webloc.cpgz" "${releasedir}"
-cp "macosx/Start_in_Recovery_Mode.app" "${releasedir}/Start in Recovery Mode.app"
 
 echo Fixing up file types
 find "${releasedir}" -name '*.txt' -exec $SetFile -a E "{}" \;
 find "${releasedir}" -name '*.pdf' -exec echo $SetFile -a E "{}" \;
 # find ${releasedir} -name '*.url' -exec $SetFile -a E -t LINK -c MSIE {} \;
-ln -s "system/$name.app" "${releasedir}/$name.app"
+
 echo Setting permissions
 find "${releasedir}" -perm +0100 -exec chmod 0777 "{}" \;
 find "${releasedir}" -false -perm +0100 -exec chmod 0666 "{}" \;

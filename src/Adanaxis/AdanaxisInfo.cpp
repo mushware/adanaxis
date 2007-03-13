@@ -3,7 +3,7 @@
  *
  * File: src/Adanaxis/AdanaxisInfo.cpp
  *
- * Copyright: Andy Southgate 2005-2006
+ * Copyright: Andy Southgate 2005-2007
  *
  * This file may be used and distributed under the terms of the Mushware
  * software licence version 1.1, under the terms for 'Proprietary original
@@ -15,10 +15,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } PSJpfP8sO8yPNETGwQRxew
+//%Header } mChjAahBQVUbxHruhg+DGg
 /*
- * $Id: AdanaxisInfo.cpp,v 1.5 2006/08/01 13:41:15 southa Exp $
+ * $Id: AdanaxisInfo.cpp,v 1.6 2006/10/02 17:25:04 southa Exp $
  * $Log: AdanaxisInfo.cpp,v $
+ * Revision 1.6  2006/10/02 17:25:04  southa
+ * Object lookup and target selection
+ *
  * Revision 1.5  2006/08/01 13:41:15  southa
  * Pre-release updates
  *
@@ -43,7 +46,7 @@
 #endif
 
 #ifndef VERSION
-#define VERSION "0.1.2"
+#define VERSION "0.7.0"
 #endif
 
 #include "AdanaxisSTL.h"
