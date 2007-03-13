@@ -3,7 +3,7 @@
  *
  * File: src/Adanaxis/AdanaxisPieceKhazi.cpp
  *
- * Copyright: Andy Southgate 2005-2006
+ * Copyright: Andy Southgate 2005-2007
  *
  * This file may be used and distributed under the terms of the Mushware
  * software licence version 1.1, under the terms for 'Proprietary original
@@ -15,10 +15,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } YCa3eNmcxUH2q0Oxh6SpTA
+//%Header } sWGoOMkjobSsdFNEqLLovA
 /*
- * $Id: AdanaxisPieceKhazi.cpp,v 1.30 2006/10/30 17:03:51 southa Exp $
+ * $Id: AdanaxisPieceKhazi.cpp,v 1.31 2006/11/12 20:09:54 southa Exp $
  * $Log: AdanaxisPieceKhazi.cpp,v $
+ * Revision 1.31  2006/11/12 20:09:54  southa
+ * Missile guidance
+ *
  * Revision 1.30  2006/10/30 17:03:51  southa
  * Remnants creation
  *
@@ -175,6 +178,20 @@ AdanaxisPieceKhazi::MessageConsume(MushGameLogic& ioLogic, const MushGameMessage
     MushGamePiece::MessageConsume(ioLogic, inMessage);
 }
 
+void
+AdanaxisPieceKhazi::Load(Mushware::tRubyValue inSelf)
+{
+    MushGamePiece::Load(inSelf);
+    MushRubyUtil::InstanceVarSet(inSelf, AdanaxisIntern::Sgl().ATm_scannerSymbol(), MushRubyValue(m_scannerSymbol).Value());    
+}
+
+void
+AdanaxisPieceKhazi::Save(Mushware::tRubyValue inSelf)
+{
+    MushGamePiece::Save(inSelf);
+    m_scannerSymbol = MushRubyValue(MushRubyUtil::InstanceVar(inSelf, AdanaxisIntern::Sgl().ATm_scannerSymbol())).U32();
+}
+
 Mushware::tRubyValue
 AdanaxisPieceKhazi::RubyCreate(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0)
 {
@@ -258,6 +275,7 @@ AdanaxisPieceKhazi::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
     MushGamePiece::AutoPrint(ioOut);
+    ioOut << "scannerSymbol=" << m_scannerSymbol;
     ioOut << "]";
 }
 bool
@@ -268,6 +286,10 @@ AdanaxisPieceKhazi::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::stri
         AutoInputPrologue(ioIn);
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
+    }
+    else if (inTagStr == "scannerSymbol")
+    {
+        ioIn >> m_scannerSymbol;
     }
     else if (MushGamePiece::AutoXMLDataProcess(ioIn, inTagStr))
     {
@@ -283,5 +305,7 @@ void
 AdanaxisPieceKhazi::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
     MushGamePiece::AutoXMLPrint(ioOut);
+    ioOut.TagSet("scannerSymbol");
+    ioOut << m_scannerSymbol;
 }
-//%outOfLineFunctions } UJRpiKhuu/YO//32wwZeSw
+//%outOfLineFunctions } C1byWwx5hf/nK0Z4mOiH+w

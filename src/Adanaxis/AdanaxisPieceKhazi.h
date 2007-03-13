@@ -7,7 +7,7 @@
  *
  * File: src/Adanaxis/AdanaxisPieceKhazi.h
  *
- * Copyright: Andy Southgate 2005-2006
+ * Copyright: Andy Southgate 2005-2007
  *
  * This file may be used and distributed under the terms of the Mushware
  * software licence version 1.1, under the terms for 'Proprietary original
@@ -19,10 +19,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } Bm3nTDDsM5QE9iTgAOLr3w
+//%Header } IpARunwO5qQsms23hWw/vg
 /*
- * $Id: AdanaxisPieceKhazi.h,v 1.20 2006/10/17 15:28:01 southa Exp $
+ * $Id: AdanaxisPieceKhazi.h,v 1.21 2006/10/30 17:03:51 southa Exp $
  * $Log: AdanaxisPieceKhazi.h,v $
+ * Revision 1.21  2006/10/30 17:03:51  southa
+ * Remnants creation
+ *
  * Revision 1.20  2006/10/17 15:28:01  southa
  * Player collisions
  *
@@ -112,6 +115,8 @@ public:
     virtual const MushMeshPosticity& CollisionPost(void) const { return Post(); }
     virtual void EventHandle(MushGameLogic& ioLogic, MushRubyValue inEvent, MushRubyValue inParams);
     
+    virtual void Load(Mushware::tRubyValue inSelf);
+    virtual void Save(Mushware::tRubyValue inSelf);
     static Mushware::tRubyValue RubyCreate(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
     
     static Mushware::tRubyValue Klass(void);
@@ -119,11 +124,15 @@ public:
     
 protected:
     
-private:        
+private:
+    Mushware::U32 m_scannerSymbol; //:readwrite
+    
     static Mushware::tRubyValue m_rubyKlass;
 
 //%classPrototypes {
 public:
+    const Mushware::U32& ScannerSymbol(void) const { return m_scannerSymbol; }
+    void ScannerSymbolSet(const Mushware::U32& inValue) { m_scannerSymbol=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -131,7 +140,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } 1oBgFruy5qHAaudtV+Hcmg
+//%classPrototypes } cJwqJhjplXRRI6EbXGapew
 };
 
 //%inlineHeader {

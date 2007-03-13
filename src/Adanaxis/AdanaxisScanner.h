@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } GQz6unj7K37r7064vOXNMw
 /*
- * $Id: AdanaxisScanner.h,v 1.6 2006/11/12 20:09:55 southa Exp $
+ * $Id: AdanaxisScanner.h,v 1.7 2007/03/12 21:06:00 southa Exp $
  * $Log: AdanaxisScanner.h,v $
+ * Revision 1.7  2007/03/12 21:06:00  southa
+ * Scanner symbols
+ *
  * Revision 1.6  2006/11/12 20:09:55  southa
  * Missile guidance
  *
@@ -66,9 +69,9 @@ public:
     
     enum
     {
-        kSymbolScanWhite = 0,
-        kSymbolScanRed = 1,
-        kSymbolScanGreen = 1,
+        kSymbolScanWhite = 8,
+        kSymbolScanRed = 9,
+        kSymbolScanGreen = 10,
         kSymbolScanX = 16,
         kSymbolScanY = 17,
         kSymbolScanZ = 18,

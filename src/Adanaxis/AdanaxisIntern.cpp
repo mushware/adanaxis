@@ -3,7 +3,7 @@
  *
  * File: src/Adanaxis/AdanaxisIntern.cpp
  *
- * Copyright: Andy Southgate 2005-2006
+ * Copyright: Andy Southgate 2005-2007
  *
  * This file may be used and distributed under the terms of the Mushware
  * software licence version 1.1, under the terms for 'Proprietary original
@@ -15,10 +15,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } mqRyosjSblx9ADjVCHc1/g
+//%Header } YHBMLNKsjv2dEAjYLw4KNA
 /*
- * $Id: AdanaxisIntern.cpp,v 1.18 2007/03/08 18:38:14 southa Exp $
+ * $Id: AdanaxisIntern.cpp,v 1.19 2007/03/09 11:29:12 southa Exp $
  * $Log: AdanaxisIntern.cpp,v $
+ * Revision 1.19  2007/03/09 11:29:12  southa
+ * Game end actions
+ *
  * Revision 1.18  2007/03/08 18:38:14  southa
  * Level progression
  *
@@ -96,6 +99,7 @@ AdanaxisIntern::AdanaxisIntern()
     m_ATm_acceleration = MushRubyIntern::SymbolID("@m_acceleration");
     m_ATm_keyNum = MushRubyIntern::SymbolID("@m_keyNum");
     m_ATm_rail = MushRubyIntern::SymbolID("@m_rail");
+    m_ATm_scannerSymbol = MushRubyIntern::SymbolID("@m_scannerSymbol");
     m_ATm_speedLimit = MushRubyIntern::SymbolID("@m_speedLimit");
     m_ATm_state = MushRubyIntern::SymbolID("@m_state");
     m_mCollisionEventConsume = MushRubyIntern::SymbolID("mCollisionEventConsume");
@@ -106,6 +110,6 @@ AdanaxisIntern::AdanaxisIntern()
     m_mMenuRender = MushRubyIntern::SymbolID("mMenuRender");
     m_mReceiveSequence = MushRubyIntern::SymbolID("mReceiveSequence");
     m_mRender = MushRubyIntern::SymbolID("mRender");
-//%initialisations } 1d4972035893cd8726f778ba5ae2c595
+//%initialisations } 168a2c8df0c2bf2c6f79b56012cbcd06
 }
  

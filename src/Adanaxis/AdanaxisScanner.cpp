@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } 4Lh9zsr0AY3HSYj9Glvqlw
 /*
- * $Id: AdanaxisScanner.cpp,v 1.9 2006/11/12 20:09:55 southa Exp $
+ * $Id: AdanaxisScanner.cpp,v 1.10 2007/03/12 21:06:00 southa Exp $
  * $Log: AdanaxisScanner.cpp,v $
+ * Revision 1.10  2007/03/12 21:06:00  southa
+ * Scanner symbols
+ *
  * Revision 1.9  2006/11/12 20:09:55  southa
  * Missile guidance
  *
@@ -170,7 +173,7 @@ AdanaxisScanner::ScanObjectRender(AdanaxisLogic& ioLogic, MushRenderMesh *inpMes
     }
     else
     {
-        alpha = 0.3 + 0.7*(std::fabs(xwAngle) / xwAngleLimit);
+        alpha *= 0.6 + 0.4*(std::fabs(xwAngle) / xwAngleLimit);
     }
     
     tVal ywAngle = atan2(objPost.Pos().Y(), -objPost.Pos().W());
@@ -183,24 +186,32 @@ AdanaxisScanner::ScanObjectRender(AdanaxisLogic& ioLogic, MushRenderMesh *inpMes
     }
     else
     {
-        MushcoreUtil::Constrain<tVal>(alpha, 0, 0.3 + 0.7*(std::fabs(ywAngle) / ywAngleLimit));
+        alpha *= 0.6 + 0.4*(std::fabs(ywAngle) / ywAngleLimit);
     }
     
     U32 scanSymbol;
+    const AdanaxisPieceKhazi *pKhazi = dynamic_cast<const AdanaxisPieceKhazi *>(&inPiece);
     
-    switch (inObjType)
+    if (pKhazi != NULL)
     {
-        case kObjectTypeItem:
-            scanSymbol = kSymbolScanGreen;
-            break;
-            
-        case kObjectTypeKhazi:
-            scanSymbol = kSymbolScanWhite;
-            break;
-            
-        default:
-            scanSymbol = kSymbolScanWhite;
-            break;
+        scanSymbol = pKhazi->ScannerSymbol();
+    }
+    else
+    {
+        switch (inObjType)
+        {
+            case kObjectTypeItem:
+                scanSymbol = kSymbolScanGreen;
+                break;
+                
+            case kObjectTypeKhazi:
+                scanSymbol = kSymbolScanWhite;
+                break;
+                
+            default:
+                scanSymbol = kSymbolScanWhite;
+                break;
+        }
     }
     
     if (std::fabs(objPost.PosWRef().W()) > 0)

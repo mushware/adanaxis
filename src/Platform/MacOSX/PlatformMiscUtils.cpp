@@ -3,7 +3,7 @@
  *
  * File: src/Platform/MacOSX/PlatformMiscUtils.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } DrRdUlvo6OVowDenPoqf+A
+//%Header } eUUeCJ1Cfr5OjIMLBtYBHw
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.41 2006/06/01 20:13:01 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.42 2006/07/28 16:52:25 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.42  2006/07/28 16:52:25  southa
+ * Options work
+ *
  * Revision 1.41  2006/06/01 20:13:01  southa
  * Initial texture caching
  *
@@ -176,7 +179,11 @@ void
 PlatformMiscUtils::Initialise(void)
 {
     char *home = getenv("HOME");
-    if (home != NULL)
+    if (home == NULL)
+    {
+        throw MushcoreFatalFail("Cannot determine home directory - environment variable HOME not set");
+    }
+    else
     {
         MushcoreGlobalConfig::Sgl().Set("HOME", home);
     }

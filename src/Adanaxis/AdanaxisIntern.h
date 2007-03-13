@@ -7,7 +7,7 @@
  *
  * File: src/Adanaxis/AdanaxisIntern.h
  *
- * Copyright: Andy Southgate 2005-2006
+ * Copyright: Andy Southgate 2005-2007
  *
  * This file may be used and distributed under the terms of the Mushware
  * software licence version 1.1, under the terms for 'Proprietary original
@@ -19,10 +19,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } WBiqbvbumO43Eps7fHh03A
+//%Header } 5ZauR8sNBFSBn2hrVeessg
 /*
- * $Id: AdanaxisIntern.h,v 1.21 2007/03/08 18:38:14 southa Exp $
+ * $Id: AdanaxisIntern.h,v 1.22 2007/03/09 11:29:13 southa Exp $
  * $Log: AdanaxisIntern.h,v $
+ * Revision 1.22  2007/03/09 11:29:13  southa
+ * Game end actions
+ *
  * Revision 1.21  2007/03/08 18:38:14  southa
  * Level progression
  *
@@ -98,6 +101,7 @@
     @m_acceleration
     @m_keyNum
     @m_rail
+    @m_scannerSymbol
     @m_speedLimit
     @m_state
     mCollisionEventConsume
@@ -141,6 +145,7 @@ public:
     Mushware::tRubyID ATm_acceleration(void) { return m_ATm_acceleration; }
     Mushware::tRubyID ATm_keyNum(void) { return m_ATm_keyNum; }
     Mushware::tRubyID ATm_rail(void) { return m_ATm_rail; }
+    Mushware::tRubyID ATm_scannerSymbol(void) { return m_ATm_scannerSymbol; }
     Mushware::tRubyID ATm_speedLimit(void) { return m_ATm_speedLimit; }
     Mushware::tRubyID ATm_state(void) { return m_ATm_state; }
     Mushware::tRubyID mCollisionEventConsume(void) { return m_mCollisionEventConsume; }
@@ -164,6 +169,7 @@ private:
     Mushware::tRubyID m_ATm_acceleration;
     Mushware::tRubyID m_ATm_keyNum;
     Mushware::tRubyID m_ATm_rail;
+    Mushware::tRubyID m_ATm_scannerSymbol;
     Mushware::tRubyID m_ATm_speedLimit;
     Mushware::tRubyID m_ATm_state;
     Mushware::tRubyID m_mCollisionEventConsume;
@@ -174,7 +180,7 @@ private:
     Mushware::tRubyID m_mMenuRender;
     Mushware::tRubyID m_mReceiveSequence;
     Mushware::tRubyID m_mRender;
-//%declarations } 9e068b259bbed3060ce40d4d0170c8cf
+//%declarations } 444baff6918e0e0321675e0ac5736a53
 
 //%classPrototypes {
 public:

@@ -3532,6 +3532,7 @@
 		7A66E44105FB260600135328 /* MushGL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushGL.cpp; sourceTree = "<group>"; };
 		7A6917370BA1C4F300C84ACA /* AdanaxisRecords.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdanaxisRecords.h; sourceTree = "<group>"; };
 		7A6917380BA1C4F300C84ACA /* AdanaxisRecords.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AdanaxisRecords.cpp; sourceTree = "<group>"; };
+		7A6975DD0BA6ADA1008DCB62 /* AdanaxisScanner.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AdanaxisScanner.rb; sourceTree = "<group>"; };
 		7A69DF0607626B89004F23F7 /* TestMushMeshQuaternion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestMushMeshQuaternion.h; sourceTree = "<group>"; };
 		7A69DF0707626B89004F23F7 /* TestMushMeshQuaternion.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestMushMeshQuaternion.cpp; sourceTree = "<group>"; };
 		7A6AC8D705B972140019F752 /* TestMushcoreVirtualPointerObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestMushcoreVirtualPointerObject.h; sourceTree = "<group>"; };
@@ -6444,6 +6445,7 @@
 				7A60C9960A9E762F00026EEC /* AdanaxisPieceProjectile.rb */,
 				7A5A571C0AF6484600444AC6 /* AdanaxisRemnant.rb */,
 				7A5B14F20A57AF580047BD0B /* AdanaxisRender.rb */,
+				7A6975DD0BA6ADA1008DCB62 /* AdanaxisScanner.rb */,
 				7A8C8F760AAF47AE00963E87 /* AdanaxisShaderLibrary.rb */,
 				7A3E0D230A4822460078B650 /* AdanaxisSpace.rb */,
 				7AFA31910AD18BE500B73920 /* AdanaxisTargetSelect.rb */,
