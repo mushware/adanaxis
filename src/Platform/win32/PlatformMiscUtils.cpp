@@ -3,7 +3,7 @@
  *
  * File: src/Platform/win32/PlatformMiscUtils.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } dAboIY5Kp9P01iutrXBmlw
+//%Header } LpD9mKNNh8BkyLOBhcqZvg
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.39 2006/08/03 15:07:58 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.40 2006/10/04 13:35:26 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.40  2006/10/04 13:35:26  southa
+ * Selective targetting
+ *
  * Revision 1.39  2006/08/03 15:07:58  southa
  * Cache purge fix
  *
@@ -172,7 +175,7 @@ PlatformMiscUtils::Initialise(void)
 }
 
 string
-PlatformMiscUtils::GetApplPath(int argc, char *argv[])
+PlatformMiscUtils::GetResourcesPath(int argc, char *argv[])
 {
     string systemPath=GetSystemPath(argc, argv);
     string::size_type pos = systemPath.rfind('/', systemPath.length());
@@ -430,7 +433,7 @@ PlatformMiscUtils::ShowUpdateAlert(void)
 	    
         case IDYES:
         {
-            string updateFile=MushcoreGlobalConfig::Sgl().Get("SYSTEMPATH").StringGet()+"/UpdateCheck.url";
+            string updateFile=MushcoreGlobalConfig::Sgl().Get("SYSTEM_PATH").StringGet()+"/UpdateCheck.url";
             LaunchFile(updateFile);
             exit(0);
         }

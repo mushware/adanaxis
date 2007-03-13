@@ -3,7 +3,7 @@
  *
  * File: src/Main/SDLApp/SecondaryMain.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } GWXXnrKpknyTferjr2TZPQ
+//%Header } iq/M/29BciHx/MWfKkILcw
 /*
- * $Id: SecondaryMain.cpp,v 1.8 2006/06/22 19:07:30 southa Exp $
+ * $Id: SecondaryMain.cpp,v 1.9 2006/06/29 10:12:34 southa Exp $
  * $Log: SecondaryMain.cpp,v $
+ * Revision 1.9  2006/06/29 10:12:34  southa
+ * 64 bit compatibility fixes
+ *
  * Revision 1.8  2006/06/22 19:07:30  southa
  * Build fixes
  *
@@ -176,10 +179,10 @@ int main(int argc, char *argv[])
 {
     int retVal = 0;
     PlatformMiscUtils::Initialise();
-    MushcoreGlobalConfig::Sgl().Set("APPLPATH", PlatformMiscUtils::GetApplPath(argc, argv));
-    // cerr << "Application path is " << MushcoreGlobalConfig::Sgl().Get("APPLPATH") << endl;
-    MushcoreGlobalConfig::Sgl().Set("SYSTEMPATH", PlatformMiscUtils::GetSystemPath(argc, argv));
-    // cerr << "System path is " << MushcoreGlobalConfig::Sgl().Get("SYSTEMPATH") << endl;
+    MushcoreGlobalConfig::Sgl().Set("RESOURCES_PATH", PlatformMiscUtils::GetResourcesPath(argc, argv));
+    cerr << "Resources path is " << MushcoreGlobalConfig::Sgl().Get("RESOURCES_PATH") << endl;
+    MushcoreGlobalConfig::Sgl().Set("SYSTEM_PATH", PlatformMiscUtils::GetSystemPath(argc, argv));
+    cerr << "System path is " << MushcoreGlobalConfig::Sgl().Get("SYSTEM_PATH") << endl;
 
     string str;
     for (int i=1; i<argc; i++)
@@ -192,7 +195,7 @@ int main(int argc, char *argv[])
 
     if (str == "")
     {
-        str="load($SYSTEMPATH+'/start.txt')";
+        str="load($SYSTEM_PATH+'/start.txt')";
     }
     try
     {

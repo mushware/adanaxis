@@ -3546,6 +3546,7 @@
 		7A6AFEFA0AE500A000AAFDA7 /* AdanaxisDashboard.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AdanaxisDashboard.rb; sourceTree = "<group>"; };
 		7A6AFEFD0AE5010C00AAFDA7 /* MushDashboard.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = MushDashboard.rb; sourceTree = "<group>"; };
 		7A6AFF020AE5031100AAFDA7 /* MushView.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = MushView.rb; sourceTree = "<group>"; };
+		7A6B30210BA74FBC00CDB9A8 /* MakeRelease.sh */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.sh; name = MakeRelease.sh; path = ../MakeRelease.sh; sourceTree = SOURCE_ROOT; };
 		7A6CE13405A5899B00777D9B /* MushPiePiece.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushPiePiece.h; sourceTree = "<group>"; };
 		7A6CE13505A5899B00777D9B /* MushPiePiece.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushPiePiece.cpp; sourceTree = "<group>"; };
 		7A6CE19E05A58DF000777D9B /* autogen.pl */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.perl; name = autogen.pl; path = ../autogen.pl; sourceTree = "<group>"; };
@@ -5844,6 +5845,7 @@
 				7A59A5D60AFDC15B00ABD3E5 /* FileMush.rb */,
 				7A5A5B3A0AD4FD410066FCA2 /* ImageProcess.rb */,
 				7A97AAF70A653A6600921057 /* MakeDocs.rb */,
+				7A6B30210BA74FBC00CDB9A8 /* MakeRelease.sh */,
 				7A6CE1A005A58DF000777D9B /* prebuild.sh */,
 				7A5A5B3D0AD4FD860066FCA2 /* ProcessAnimation.rb */,
 				7A5894110AE6459100CD90EA /* ProcessCosmos.rb */,
@@ -8558,7 +8560,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "pwd\ncd ../macosxlibs\n/bin/sh CopyLibs.sh \"$TARGET_BUILD_DIR/$FRAMEWORKS_FOLDER_PATH\"\ndate\necho Done\n\n";
+			shellScript = "pwd\ncd ../macosxlibs\n/bin/sh CopyLibs.sh \"$TARGET_BUILD_DIR/$FRAMEWORKS_FOLDER_PATH\"\n\nln -s \"$PROJECT_DIR/../../data-adanaxis\" \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/mushware-resources\"\nrm -f \"$PROJECT_DIR/../../data-adanaxis/data-adanaxis\"\ndate\necho Done\n\n\n";
 		};
 		7A719B6D05A9A28400C42A20 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } eUUeCJ1Cfr5OjIMLBtYBHw
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.42 2006/07/28 16:52:25 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.43 2007/03/13 12:22:51 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.43  2007/03/13 12:22:51  southa
+ * Scanner symbols
+ *
  * Revision 1.42  2006/07/28 16:52:25  southa
  * Options work
  *
@@ -195,40 +198,24 @@ PlatformMiscUtils::Initialise(void)
 }
 
 string
-PlatformMiscUtils::GetApplPath(int argc, char *argv[])
+PlatformMiscUtils::GetResourcesPath(int argc, char *argv[])
 {
-    string systemPath=GetSystemPath(argc, argv);
-    string::size_type pos=string::npos;
-    pos = systemPath.rfind('/', pos-1);
-    if (pos==string::npos) pos = systemPath.rfind('\\', pos-1);
-    if (pos==string::npos || pos == 0)
+    UInt8 resourcesDir[MAXPATHLEN] = "";
+    CFURLRef url = CFBundleCopyResourcesDirectoryURL(CFBundleGetMainBundle());
+    if (!CFURLGetFileSystemRepresentation(url, true, resourcesDir, MAXPATHLEN))
     {
-        cerr << "Couldn't decode application path from '" << systemPath << "'" << endl;
-        exit(1);
+        cerr << "Cannot establish system path" << endl;
     }
-    systemPath.resize(pos);
-
-    return systemPath;
+    CFRelease(url);
+    
+    std::string resourcesStr(reinterpret_cast<const char *>(resourcesDir));
+    return resourcesStr+"/mushware-resources";
 }
 
 string
 PlatformMiscUtils::GetSystemPath(int argc, char *argv[])
 {
-    string appPath;
-    char *pBuffer=new char[MAXPATHLEN];
-    if (getcwd(pBuffer, MAXPATHLEN) &&
-        strlen(pBuffer) > 1)
-    {
-        appPath=string(pBuffer);
-    }
-    else
-    {
-        cerr << "Couldn't decode system path from '" << appPath << "'" << endl;
-        exit(1);
-    }
-    delete[] pBuffer;
-
-    return appPath;
+    return GetResourcesPath(argc, argv) + "/system";
 }
 
 void
@@ -427,7 +414,7 @@ PlatformMiscUtils::ShowUpdateAlert(void)
         {
             case kAlertStdAlertOKButton:
             {
-                string updateFile=MushcoreGlobalConfig::Sgl().Get("SYSTEMPATH").StringGet()+"/UpdateCheck.url";
+                string updateFile=MushcoreGlobalConfig::Sgl().Get("SYSTEM_PATH").StringGet()+"/UpdateCheck.url";
                 LaunchFile(updateFile);
                 exit(0);
             }

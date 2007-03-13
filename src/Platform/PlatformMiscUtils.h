@@ -7,7 +7,7 @@
  *
  * File: src/Platform/PlatformMiscUtils.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } nsV76GW3owDjusQMHIpipw
+//%Header } Ay16hfzESIbe/vc98s9yrw
 /*
- * $Id: PlatformMiscUtils.h,v 1.30 2006/06/26 12:55:12 southa Exp $
+ * $Id: PlatformMiscUtils.h,v 1.31 2006/07/28 16:52:25 southa Exp $
  * $Log: PlatformMiscUtils.h,v $
+ * Revision 1.31  2006/07/28 16:52:25  southa
+ * Options work
+ *
  * Revision 1.30  2006/06/26 12:55:12  southa
  * win32 installer updates
  *
@@ -101,7 +104,7 @@
 class PlatformMiscUtils
 {
 public:
-    static std::string GetApplPath(int argc, char *argv[]);
+    static std::string GetResourcesPath(int argc, char *argv[]);
     static std::string GetSystemPath(int argc, char *argv[]);
     static std::string GetUserDataPath(int argc, char *argv[]);
     static void TweakArgs(std::string& ioString);

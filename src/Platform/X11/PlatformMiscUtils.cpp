@@ -3,7 +3,7 @@
  *
  * File: src/Platform/X11/PlatformMiscUtils.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } IvAhPSVPf1x+MLMRSmlIow
+//%Header } n699h4E6vRdwHSrlSs8lxQ
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.28 2006/07/28 16:52:26 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.29 2006/08/03 16:32:48 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.29  2006/08/03 16:32:48  southa
+ * X11 release work
+ *
  * Revision 1.28  2006/07/28 16:52:26  southa
  * Options work
  *
@@ -153,7 +156,7 @@ PlatformMiscUtils::Initialise(void)
 }
 
 string
-PlatformMiscUtils::GetApplPath(int argc, char *argv[])
+PlatformMiscUtils::GetResourcesPath(int argc, char *argv[])
 {
     string systemPath=GetSystemPath(argc, argv);
     string::size_type pos=string::npos;

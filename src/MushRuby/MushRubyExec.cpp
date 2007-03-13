@@ -3,7 +3,7 @@
  *
  * File: src/MushRuby/MushRubyExec.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } ZcziFKLJA7zY/8U6Ju48NA
+//%Header } GFHdYZkRu+Oc9hL9CdJvtw
 /*
- * $Id: MushRubyExec.cpp,v 1.9 2006/07/08 16:06:00 southa Exp $
+ * $Id: MushRubyExec.cpp,v 1.10 2006/07/28 11:14:29 southa Exp $
  * $Log: MushRubyExec.cpp,v $
+ * Revision 1.10  2006/07/28 11:14:29  southa
+ * Records for multiple spaces
+ *
  * Revision 1.9  2006/07/08 16:06:00  southa
  * Ruby menus and key handling
  *
@@ -252,7 +255,7 @@ MushRubyExec::ConfigSet(void)
 {
 	tRubyValue configHash = rb_hash_new();
 	
-	rb_hash_aset(configHash, rb_str_new2("APPLPATH"), rb_str_new2(MushcoreEnv::Sgl().VariableGet("APPLPATH").StringGet().c_str()));					   
+	rb_hash_aset(configHash, rb_str_new2("RESOURCES_PATH"), rb_str_new2(MushcoreEnv::Sgl().VariableGet("RESOURCES_PATH").StringGet().c_str()));					   
 	
 #ifdef MUSHCORE_DEBUG
 	rb_hash_aset(configHash, rb_str_new2("DEBUG"), Mushware::kRubyQtrue);					   

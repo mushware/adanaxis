@@ -9,8 +9,11 @@
 #
 ##############################################################################
 #
-# $Id: MakeRelease.sh,v 1.9 2005/08/02 14:37:44 southa Exp $
+# $Id: MakeRelease.sh,v 1.10 2006/06/22 19:07:25 southa Exp $
 # $Log: MakeRelease.sh,v $
+# Revision 1.10  2006/06/22 19:07:25  southa
+# Build fixes
+#
 # Revision 1.9  2005/08/02 14:37:44  southa
 # Adanaxis control demo work
 #
@@ -54,30 +57,30 @@ builddir="$4"
 datadir="$5"
 releasedir="release/$name"
 readmedir="release/$name/Documents"
-appdir="$datadir/system/$name.app"
+appdir="$builddir/$name.app"
+resourcesdir="$appdir/Contents/Resources/mushware-resources"
 
 SetFile="/Developer/Tools/SetFile"
 
 echo "Building MacOS X release for project '$name' version '$version'"
 echo "from '$builddir' and '$datadir' to '$releasedir'"
 
-echo 'This scripts expects that the XCode application is built and'
-echo 'installed in the data directory, and the macosxlibs checkout is present.'
+exit 1
 
-rm -rf "$appdir"
-cp -pR "$builddir/$name.app" "$appdir"
+echo 'This scripts expects that the macosxlibs checkout is present.'
 
 rm -rf "$releasedir"
 mkdir -p release
-cp -pR "$datadir" "$releasedir"
+cp -pR "$appdir" "$releasedir"
+cp -pR "$datadir" "$resourcesdir"
 
-find "$releasedir" -type d -name 'CVS' -prune -exec rm -rf "{}" \;
-find "$releasedir" -name '.DS_Store' -exec rm -f "{}" \;
-find "$releasedir" -name 'Makefile*' -exec rm -f "{}" \;
+find "$resourcesdir" -type d -name 'CVS' -prune -exec rm -rf "{}" \;
+find "$resourcesdir" -name '.DS_Store' -exec rm -f "{}" \;
+find "$resourcesdir" -name 'Makefile*' -exec rm -f "{}" \;
 
-rm -rf "$releasedir/mushware-cache"
+rm -rf "$resourcesdir/mushware-cache"
 
-cp "$releasedir/system/start.txt" "$releasedir/system/start_backup.txt"
+cp "$resourcesdir/system/start.txt" "$resourcesdir/system/start_backup.txt"
 
 mkdir -p "$readmedir"
 for filename in
