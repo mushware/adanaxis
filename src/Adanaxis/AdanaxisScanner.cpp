@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } 4Lh9zsr0AY3HSYj9Glvqlw
 /*
- * $Id: AdanaxisScanner.cpp,v 1.10 2007/03/12 21:06:00 southa Exp $
+ * $Id: AdanaxisScanner.cpp,v 1.11 2007/03/13 12:22:51 southa Exp $
  * $Log: AdanaxisScanner.cpp,v $
+ * Revision 1.11  2007/03/13 12:22:51  southa
+ * Scanner symbols
+ *
  * Revision 1.10  2007/03/12 21:06:00  southa
  * Scanner symbols
  *
@@ -189,28 +192,43 @@ AdanaxisScanner::ScanObjectRender(AdanaxisLogic& ioLogic, MushRenderMesh *inpMes
         alpha *= 0.6 + 0.4*(std::fabs(ywAngle) / ywAngleLimit);
     }
     
-    U32 scanSymbol;
+    U32 scanSymbol = kSymbolScanNone;
     const AdanaxisPieceKhazi *pKhazi = dynamic_cast<const AdanaxisPieceKhazi *>(&inPiece);
     
-    if (pKhazi != NULL)
+    if (ioLogic.VolatileData().JammerCount() > 0)
     {
-        scanSymbol = pKhazi->ScannerSymbol();
-    }
-    else
-    {
-        switch (inObjType)
+        if (pKhazi != NULL && pKhazi->IsJammer())
         {
-            case kObjectTypeItem:
-                scanSymbol = kSymbolScanGreen;
-                break;
-                
-            case kObjectTypeKhazi:
-                scanSymbol = kSymbolScanWhite;
-                break;
-                
-            default:
-                scanSymbol = kSymbolScanWhite;
-                break;
+            scanSymbol = kSymbolScanYellow;
+        }
+        else
+        {
+            pKhazi = NULL;
+        }
+    }
+    
+    if (scanSymbol == kSymbolScanNone)
+    {
+        if (pKhazi != NULL)
+        {
+            scanSymbol = pKhazi->ScannerSymbol();
+        }
+        else
+        {
+            switch (inObjType)
+            {
+                case kObjectTypeItem:
+                    scanSymbol = kSymbolScanGreen;
+                    break;
+                    
+                case kObjectTypeKhazi:
+                    scanSymbol = kSymbolScanWhite;
+                    break;
+                    
+                default:
+                    scanSymbol = kSymbolScanWhite;
+                    break;
+            }
         }
     }
     

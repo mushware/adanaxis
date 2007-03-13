@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } 5ZauR8sNBFSBn2hrVeessg
 /*
- * $Id: AdanaxisIntern.h,v 1.22 2007/03/09 11:29:13 southa Exp $
+ * $Id: AdanaxisIntern.h,v 1.23 2007/03/13 12:22:50 southa Exp $
  * $Log: AdanaxisIntern.h,v $
+ * Revision 1.23  2007/03/13 12:22:50  southa
+ * Scanner symbols
+ *
  * Revision 1.22  2007/03/09 11:29:13  southa
  * Game end actions
  *
@@ -99,6 +102,7 @@
 :data1begin
   ids = %w{
     @m_acceleration
+    @m_isJammer
     @m_keyNum
     @m_rail
     @m_scannerSymbol
@@ -143,6 +147,7 @@ public:
     MushRubyValue& AdanaxisPiecePlayer(void) { return m_klassAdanaxisPiecePlayer; }
     MushRubyValue& AdanaxisPieceProjectile(void) { return m_klassAdanaxisPieceProjectile; }
     Mushware::tRubyID ATm_acceleration(void) { return m_ATm_acceleration; }
+    Mushware::tRubyID ATm_isJammer(void) { return m_ATm_isJammer; }
     Mushware::tRubyID ATm_keyNum(void) { return m_ATm_keyNum; }
     Mushware::tRubyID ATm_rail(void) { return m_ATm_rail; }
     Mushware::tRubyID ATm_scannerSymbol(void) { return m_ATm_scannerSymbol; }
@@ -167,6 +172,7 @@ private:
     MushRubyValue m_klassAdanaxisPiecePlayer;
     MushRubyValue m_klassAdanaxisPieceProjectile;
     Mushware::tRubyID m_ATm_acceleration;
+    Mushware::tRubyID m_ATm_isJammer;
     Mushware::tRubyID m_ATm_keyNum;
     Mushware::tRubyID m_ATm_rail;
     Mushware::tRubyID m_ATm_scannerSymbol;
@@ -180,7 +186,7 @@ private:
     Mushware::tRubyID m_mMenuRender;
     Mushware::tRubyID m_mReceiveSequence;
     Mushware::tRubyID m_mRender;
-//%declarations } 444baff6918e0e0321675e0ac5736a53
+//%declarations } 1214e77e3fd62a7f5db96572d8061848
 
 //%classPrototypes {
 public:

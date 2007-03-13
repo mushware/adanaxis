@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } IpARunwO5qQsms23hWw/vg
 /*
- * $Id: AdanaxisPieceKhazi.h,v 1.21 2006/10/30 17:03:51 southa Exp $
+ * $Id: AdanaxisPieceKhazi.h,v 1.22 2007/03/13 12:22:51 southa Exp $
  * $Log: AdanaxisPieceKhazi.h,v $
+ * Revision 1.22  2007/03/13 12:22:51  southa
+ * Scanner symbols
+ *
  * Revision 1.21  2006/10/30 17:03:51  southa
  * Remnants creation
  *
@@ -126,6 +129,7 @@ protected:
     
 private:
     Mushware::U32 m_scannerSymbol; //:readwrite
+    bool m_isJammer; //:readwrite
     
     static Mushware::tRubyValue m_rubyKlass;
 
@@ -133,6 +137,8 @@ private:
 public:
     const Mushware::U32& ScannerSymbol(void) const { return m_scannerSymbol; }
     void ScannerSymbolSet(const Mushware::U32& inValue) { m_scannerSymbol=inValue; }
+    const bool& IsJammer(void) const { return m_isJammer; }
+    void IsJammerSet(const bool& inValue) { m_isJammer=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -140,7 +146,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } cJwqJhjplXRRI6EbXGapew
+//%classPrototypes } MzKIkHoo6OcXnUTGl+fD0g
 };
 
 //%inlineHeader {

@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } YHBMLNKsjv2dEAjYLw4KNA
 /*
- * $Id: AdanaxisIntern.cpp,v 1.19 2007/03/09 11:29:12 southa Exp $
+ * $Id: AdanaxisIntern.cpp,v 1.20 2007/03/13 12:22:50 southa Exp $
  * $Log: AdanaxisIntern.cpp,v $
+ * Revision 1.20  2007/03/13 12:22:50  southa
+ * Scanner symbols
+ *
  * Revision 1.19  2007/03/09 11:29:12  southa
  * Game end actions
  *
@@ -97,6 +100,7 @@ AdanaxisIntern::AdanaxisIntern()
     m_klassAdanaxisPiecePlayer = MushRubyValue(MushRubyUtil::Class("AdanaxisPiecePlayer"));
     m_klassAdanaxisPieceProjectile = MushRubyValue(MushRubyUtil::Class("AdanaxisPieceProjectile"));
     m_ATm_acceleration = MushRubyIntern::SymbolID("@m_acceleration");
+    m_ATm_isJammer = MushRubyIntern::SymbolID("@m_isJammer");
     m_ATm_keyNum = MushRubyIntern::SymbolID("@m_keyNum");
     m_ATm_rail = MushRubyIntern::SymbolID("@m_rail");
     m_ATm_scannerSymbol = MushRubyIntern::SymbolID("@m_scannerSymbol");
@@ -110,6 +114,6 @@ AdanaxisIntern::AdanaxisIntern()
     m_mMenuRender = MushRubyIntern::SymbolID("mMenuRender");
     m_mReceiveSequence = MushRubyIntern::SymbolID("mReceiveSequence");
     m_mRender = MushRubyIntern::SymbolID("mRender");
-//%initialisations } 168a2c8df0c2bf2c6f79b56012cbcd06
+//%initialisations } 5ecab06a905cbc0e6a9db2fe7883678f
 }
  

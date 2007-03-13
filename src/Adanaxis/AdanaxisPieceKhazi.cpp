@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } sWGoOMkjobSsdFNEqLLovA
 /*
- * $Id: AdanaxisPieceKhazi.cpp,v 1.31 2006/11/12 20:09:54 southa Exp $
+ * $Id: AdanaxisPieceKhazi.cpp,v 1.32 2007/03/13 12:22:50 southa Exp $
  * $Log: AdanaxisPieceKhazi.cpp,v $
+ * Revision 1.32  2007/03/13 12:22:50  southa
+ * Scanner symbols
+ *
  * Revision 1.31  2006/11/12 20:09:54  southa
  * Missile guidance
  *
@@ -183,6 +186,7 @@ AdanaxisPieceKhazi::Load(Mushware::tRubyValue inSelf)
 {
     MushGamePiece::Load(inSelf);
     MushRubyUtil::InstanceVarSet(inSelf, AdanaxisIntern::Sgl().ATm_scannerSymbol(), MushRubyValue(m_scannerSymbol).Value());    
+    MushRubyUtil::InstanceVarSet(inSelf, AdanaxisIntern::Sgl().ATm_isJammer(), MushRubyValue(m_isJammer).Value());    
 }
 
 void
@@ -190,6 +194,7 @@ AdanaxisPieceKhazi::Save(Mushware::tRubyValue inSelf)
 {
     MushGamePiece::Save(inSelf);
     m_scannerSymbol = MushRubyValue(MushRubyUtil::InstanceVar(inSelf, AdanaxisIntern::Sgl().ATm_scannerSymbol())).U32();
+    m_isJammer = MushRubyValue(MushRubyUtil::InstanceVar(inSelf, AdanaxisIntern::Sgl().ATm_isJammer())).Bool();
 }
 
 Mushware::tRubyValue
@@ -275,7 +280,8 @@ AdanaxisPieceKhazi::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
     MushGamePiece::AutoPrint(ioOut);
-    ioOut << "scannerSymbol=" << m_scannerSymbol;
+    ioOut << "scannerSymbol=" << m_scannerSymbol << ", ";
+    ioOut << "isJammer=" << m_isJammer;
     ioOut << "]";
 }
 bool
@@ -290,6 +296,10 @@ AdanaxisPieceKhazi::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::stri
     else if (inTagStr == "scannerSymbol")
     {
         ioIn >> m_scannerSymbol;
+    }
+    else if (inTagStr == "isJammer")
+    {
+        ioIn >> m_isJammer;
     }
     else if (MushGamePiece::AutoXMLDataProcess(ioIn, inTagStr))
     {
@@ -307,5 +317,7 @@ AdanaxisPieceKhazi::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     MushGamePiece::AutoXMLPrint(ioOut);
     ioOut.TagSet("scannerSymbol");
     ioOut << m_scannerSymbol;
+    ioOut.TagSet("isJammer");
+    ioOut << m_isJammer;
 }
-//%outOfLineFunctions } C1byWwx5hf/nK0Z4mOiH+w
+//%outOfLineFunctions } ynGBruq1+UwNjshPhQEu7Q

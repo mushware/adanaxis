@@ -3,7 +3,7 @@
  *
  * File: src/Adanaxis/AdanaxisVolatileData.cpp
  *
- * Copyright: Andy Southgate 2005-2006
+ * Copyright: Andy Southgate 2005-2007
  *
  * This file may be used and distributed under the terms of the Mushware
  * software licence version 1.1, under the terms for 'Proprietary original
@@ -15,10 +15,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } zadk8cle2hIJ/tR0KH/bYw
+//%Header } HnEzTQJoOduWd34Ay6J3Ag
 /*
- * $Id: AdanaxisVolatileData.cpp,v 1.12 2007/03/07 16:59:44 southa Exp $
+ * $Id: AdanaxisVolatileData.cpp,v 1.13 2007/03/09 11:29:13 southa Exp $
  * $Log: AdanaxisVolatileData.cpp,v $
+ * Revision 1.13  2007/03/09 11:29:13  southa
+ * Game end actions
+ *
  * Revision 1.12  2007/03/07 16:59:44  southa
  * Khazi spawning and level ends
  *
@@ -101,6 +104,7 @@ AdanaxisVolatileData::AutoPrint(std::ostream& ioOut) const
     ioOut << "khaziCount=" << m_khaziCount << ", ";
     ioOut << "khaziRedCount=" << m_khaziRedCount << ", ";
     ioOut << "khaziBlueCount=" << m_khaziBlueCount << ", ";
+    ioOut << "jammerCount=" << m_jammerCount << ", ";
     ioOut << "playerCount=" << m_playerCount;
     ioOut << "]";
 }
@@ -153,6 +157,10 @@ AdanaxisVolatileData::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::st
     {
         ioIn >> m_khaziBlueCount;
     }
+    else if (inTagStr == "jammerCount")
+    {
+        ioIn >> m_jammerCount;
+    }
     else if (inTagStr == "playerCount")
     {
         ioIn >> m_playerCount;
@@ -191,7 +199,9 @@ AdanaxisVolatileData::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_khaziRedCount;
     ioOut.TagSet("khaziBlueCount");
     ioOut << m_khaziBlueCount;
+    ioOut.TagSet("jammerCount");
+    ioOut << m_jammerCount;
     ioOut.TagSet("playerCount");
     ioOut << m_playerCount;
 }
-//%outOfLineFunctions } 6TpZm0SEsllT8I5q/IgUrg
+//%outOfLineFunctions } /5yg32y1Fj01BeumnRiB3A

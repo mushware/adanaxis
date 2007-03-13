@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } stbnKxftF7zm1Z3BNG1/hA
 /*
- * $Id: AdanaxisLogic.cpp,v 1.39 2007/03/09 11:29:13 southa Exp $
+ * $Id: AdanaxisLogic.cpp,v 1.40 2007/03/09 19:50:11 southa Exp $
  * $Log: AdanaxisLogic.cpp,v $
+ * Revision 1.40  2007/03/09 19:50:11  southa
+ * Resident textures
+ *
  * Revision 1.39  2007/03/09 11:29:13  southa
  * Game end actions
  *
@@ -680,6 +683,7 @@ AdanaxisLogic::Tick100msSequence(void)
     U32 khaziCount = 0;
     U32 redCount = 0;
     U32 blueCount = 0;
+    U32 jammerCount = 0;
     
     std::string blueID = "kb";
     
@@ -694,6 +698,10 @@ AdanaxisLogic::Tick100msSequence(void)
         else
         {
             ++redCount;
+        }
+        if (p->IsJammer())
+        {
+            ++jammerCount;   
         }
         ++khaziCount;
     }  
@@ -710,7 +718,7 @@ AdanaxisLogic::Tick100msSequence(void)
     VolatileData().KhaziCountSet(khaziCount);
     VolatileData().KhaziRedCountSet(redCount);
     VolatileData().KhaziBlueCountSet(blueCount);
-    
+    VolatileData().JammerCountSet(jammerCount);
     
     U32 gameState = MushGameData::kGameResultNone;
     if (khaziUpdate)

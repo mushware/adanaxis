@@ -7,7 +7,7 @@
  *
  * File: src/Adanaxis/AdanaxisVolatileData.h
  *
- * Copyright: Andy Southgate 2005-2006
+ * Copyright: Andy Southgate 2005-2007
  *
  * This file may be used and distributed under the terms of the Mushware
  * software licence version 1.1, under the terms for 'Proprietary original
@@ -19,10 +19,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } /G5prPJmGC4DIKgcQWm0Bg
+//%Header } NdTqCs+4sUA+6YBBf94GDQ
 /*
- * $Id: AdanaxisVolatileData.h,v 1.13 2007/03/07 16:59:44 southa Exp $
+ * $Id: AdanaxisVolatileData.h,v 1.14 2007/03/09 11:29:13 southa Exp $
  * $Log: AdanaxisVolatileData.h,v $
+ * Revision 1.14  2007/03/09 11:29:13  southa
+ * Game end actions
+ *
  * Revision 1.13  2007/03/07 16:59:44  southa
  * Khazi spawning and level ends
  *
@@ -94,6 +97,7 @@ private:
     Mushware::U32 m_khaziCount; //:readwrite
     Mushware::U32 m_khaziRedCount; //:readwrite
     Mushware::U32 m_khaziBlueCount; //:readwrite
+    Mushware::U32 m_jammerCount; //:readwrite
     Mushware::U32 m_playerCount; //:readwrite
     
 //%classPrototypes {
@@ -121,6 +125,8 @@ public:
     void KhaziRedCountSet(const Mushware::U32& inValue) { m_khaziRedCount=inValue; }
     const Mushware::U32& KhaziBlueCount(void) const { return m_khaziBlueCount; }
     void KhaziBlueCountSet(const Mushware::U32& inValue) { m_khaziBlueCount=inValue; }
+    const Mushware::U32& JammerCount(void) const { return m_jammerCount; }
+    void JammerCountSet(const Mushware::U32& inValue) { m_jammerCount=inValue; }
     const Mushware::U32& PlayerCount(void) const { return m_playerCount; }
     void PlayerCountSet(const Mushware::U32& inValue) { m_playerCount=inValue; }
     virtual const char *AutoName(void) const;
@@ -130,7 +136,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } ZyVf48Arw4mgdZ2sHFc8nA
+//%classPrototypes } hc63MacSmmVrfbQQhvNAyg
 };
 //%inlineHeader {
 inline std::ostream&
