@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } bR7tngDc3OTOVBH1X7Q1Og
 /*
- * $Id: MushGLUtil.h,v 1.7 2006/09/07 16:38:51 southa Exp $
+ * $Id: MushGLUtil.h,v 1.8 2007/03/09 19:50:13 southa Exp $
  * $Log: MushGLUtil.h,v $
+ * Revision 1.8  2007/03/09 19:50:13  southa
+ * Resident textures
+ *
  * Revision 1.7  2006/09/07 16:38:51  southa
  * Vertex shader
  *
@@ -59,6 +62,8 @@ public:
     static void IdentityEpilogue(void);
     static void OrthoPrologue(void);
     static void OrthoEpilogue(void);
+    static void UnitaryPrologue(void);
+    static void UnitaryEpilogue(void);
     static void DisplayPrologue(void);
     static void DisplayEpilogue(void);
     static void ClearScreen(void);

@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } NdTqCs+4sUA+6YBBf94GDQ
 /*
- * $Id: AdanaxisVolatileData.h,v 1.14 2007/03/09 11:29:13 southa Exp $
+ * $Id: AdanaxisVolatileData.h,v 1.15 2007/03/13 18:21:37 southa Exp $
  * $Log: AdanaxisVolatileData.h,v $
+ * Revision 1.15  2007/03/13 18:21:37  southa
+ * Scanner jamming
+ *
  * Revision 1.14  2007/03/09 11:29:13  southa
  * Game end actions
  *
@@ -99,6 +102,7 @@ private:
     Mushware::U32 m_khaziBlueCount; //:readwrite
     Mushware::U32 m_jammerCount; //:readwrite
     Mushware::U32 m_playerCount; //:readwrite
+    std::vector<Mushware::tVal> m_damageAmounts; //:readwrite
     
 //%classPrototypes {
 public:
@@ -129,6 +133,8 @@ public:
     void JammerCountSet(const Mushware::U32& inValue) { m_jammerCount=inValue; }
     const Mushware::U32& PlayerCount(void) const { return m_playerCount; }
     void PlayerCountSet(const Mushware::U32& inValue) { m_playerCount=inValue; }
+    const std::vector<Mushware::tVal>& DamageAmounts(void) const { return m_damageAmounts; }
+    void DamageAmountsSet(const std::vector<Mushware::tVal>& inValue) { m_damageAmounts=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -136,7 +142,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } hc63MacSmmVrfbQQhvNAyg
+//%classPrototypes } CqMHF49PUTgG0g81ADuAOg
 };
 //%inlineHeader {
 inline std::ostream&

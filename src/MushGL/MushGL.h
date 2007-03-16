@@ -7,7 +7,7 @@
  *
  * File: src/MushGL/MushGL.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } glfKswkbeoueNs++v5RKqA
+//%Header } aqtkX1hsdAsHx0nmyV8Ckg
 /*
- * $Id: MushGL.h,v 1.16 2006/07/24 18:46:48 southa Exp $
+ * $Id: MushGL.h,v 1.17 2006/09/07 16:38:50 southa Exp $
  * $Log: MushGL.h,v $
+ * Revision 1.17  2006/09/07 16:38:50  southa
+ * Vertex shader
+ *
  * Revision 1.16  2006/07/24 18:46:48  southa
  * Depth sorting
  *
@@ -83,6 +86,7 @@
 #include "MushGLCamera.h"
 #include "MushGLClaimer.h"
 #include "MushGLControl.h"
+#include "MushGLDraw.h"
 #include "MushGLFont.h"
 #include "MushGLJob.h"
 #include "MushGLJobRender.h"

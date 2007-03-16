@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } Xf3bye/YTJtAd1JW+UBrog
 /*
- * $Id: AdanaxisRender.cpp,v 1.67 2007/03/09 19:50:12 southa Exp $
+ * $Id: AdanaxisRender.cpp,v 1.68 2007/03/12 21:05:59 southa Exp $
  * $Log: AdanaxisRender.cpp,v $
+ * Revision 1.68  2007/03/12 21:05:59  southa
+ * Scanner symbols
+ *
  * Revision 1.67  2007/03/09 19:50:12  southa
  * Resident textures
  *
@@ -244,6 +247,13 @@ AdanaxisRender::AdanaxisRender() :
     m_halfAngleAttractor(M_PI/12),
     m_renderPrelude(0)
 {
+    const MushcoreScalar *pScalar;    
+    if (MushcoreEnv::Sgl().VariableGetIfExists(pScalar, "SYSTEM_PATH"))
+    {
+        AutoFileIfExistsLoad(pScalar->StringGet()+"/AdanaxisRender.xml");
+    }
+    MushcoreLog::Sgl().XMLInfoLog() << m_damageVertices;
+    m_damageColours.resize(m_damageVertices.size());
 }
 
 void
@@ -507,7 +517,8 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
     
     MushGLUtil::OrthoPrologue();
 
-    Overplot(ioLogic, inCamera);
+    DamagePlot(ioLogic, inCamera);
+    OverPlot(ioLogic, inCamera);
 
     MushGLUtil::OrthoEpilogue();
     
@@ -603,8 +614,28 @@ void AdanaxisRender::ScanRender(AdanaxisLogic& ioLogic, MushRenderMesh *inpRende
 }
 
 void
-AdanaxisRender::Overplot(MushGameLogic& ioLogic, const MushGameCamera& inCamera)
+AdanaxisRender::DamagePlot(MushGameLogic& ioLogic, const MushGameCamera& inCamera)
 {
+
+    MushGLUtil::UnitaryPrologue();
+
+    MushGLState::Sgl().RenderStateSet(MushGLState::kRenderState2D);
+
+    GLState::ColourSet(1.0,0,0,0.5);
+     
+    for (U32 i=0; i<m_damageVertices.size(); ++i)
+    {
+        MushGLDraw::QuadsDraw(m_damageVertices[i], m_damageColours[i]);
+    }
+    
+    MushGLUtil::UnitaryEpilogue();
+}
+
+void
+AdanaxisRender::OverPlot(MushGameLogic& ioLogic, const MushGameCamera& inCamera)
+{
+    MushGLUtil::OrthoPrologue();
+
     GLState::ColourSet(1.0,1.0,1.0,0.3);
     GLUtils orthoGL;
     
@@ -701,6 +732,7 @@ AdanaxisRender::Overplot(MushGameLogic& ioLogic, const MushGameCamera& inCamera)
         }
     }
     orthoGL.MoveTo(0, 0);
+    MushGLUtil::OrthoEpilogue();
 }
 
 //%outOfLineFunctions {
@@ -741,7 +773,9 @@ AdanaxisRender::AutoPrint(std::ostream& ioOut) const
     ioOut << "halfAngleAttractor=" << m_halfAngleAttractor << ", ";
     ioOut << "renderPrelude=" << m_renderPrelude << ", ";
     ioOut << "renderList=" << m_renderList << ", ";
-    ioOut << "scanner=" << m_scanner;
+    ioOut << "scanner=" << m_scanner << ", ";
+    ioOut << "damageVertices=" << m_damageVertices << ", ";
+    ioOut << "damageColours=" << m_damageColours;
     ioOut << "]";
 }
 bool
@@ -777,6 +811,14 @@ AdanaxisRender::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
     {
         ioIn >> m_scanner;
     }
+    else if (inTagStr == "damageVertices")
+    {
+        ioIn >> m_damageVertices;
+    }
+    else if (inTagStr == "damageColours")
+    {
+        ioIn >> m_damageColours;
+    }
     else 
     {
         return false;
@@ -798,5 +840,9 @@ AdanaxisRender::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_renderList;
     ioOut.TagSet("scanner");
     ioOut << m_scanner;
+    ioOut.TagSet("damageVertices");
+    ioOut << m_damageVertices;
+    ioOut.TagSet("damageColours");
+    ioOut << m_damageColours;
 }
-//%outOfLineFunctions } lPoADamzmMQs/iY6Xaqgng
+//%outOfLineFunctions } 0ejRNpOKxTIwR0lGU7c+uw

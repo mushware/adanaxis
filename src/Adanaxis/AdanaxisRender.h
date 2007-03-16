@@ -7,7 +7,7 @@
  *
  * File: src/Adanaxis/AdanaxisRender.h
  *
- * Copyright: Andy Southgate 2005-2006
+ * Copyright: Andy Southgate 2005-2007
  *
  * This file may be used and distributed under the terms of the Mushware
  * software licence version 1.1, under the terms for 'Proprietary original
@@ -19,10 +19,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } Ar42jtgdnOp/aDGG4D3TXg
+//%Header } PzP9jWQw0nNNZUi3UI/r5A
 /*
- * $Id: AdanaxisRender.h,v 1.12 2006/08/01 17:21:27 southa Exp $
+ * $Id: AdanaxisRender.h,v 1.13 2007/02/08 17:55:14 southa Exp $
  * $Log: AdanaxisRender.h,v $
+ * Revision 1.13  2007/02/08 17:55:14  southa
+ * Common routines in space generation
+ *
  * Revision 1.12  2006/08/01 17:21:27  southa
  * River demo
  *
@@ -80,19 +83,28 @@ public:
     virtual void PrecacheRender(MushGameLogic& ioLogic, const MushGameCamera& inCamera);
     virtual void FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCamera);
     virtual void ScanRender(AdanaxisLogic& ioLogic, MushRenderMesh *inpRenderMesh, const MushGameCamera& inCamera);
-    virtual void Overplot(MushGameLogic& ioLogic, const MushGameCamera& inCamera);
+    virtual void DamagePlot(MushGameLogic& ioLogic, const MushGameCamera& inCamera);
+    virtual void OverPlot(MushGameLogic& ioLogic, const MushGameCamera& inCamera);
     virtual void RenderPreludeSet(Mushware::U32 inValue = 3) { m_renderPrelude = inValue; }
     virtual void SortAndDespatch(MushGameLogic& ioLogic, std::vector<MushGLJobRender *> inJobs);
     
-protected:
+private:
+    typedef Mushware::t2GLVal tDamageVertex;
+    typedef std::vector<tDamageVertex> tDamageVertices;
+    typedef std::vector<tDamageVertices> tDamageVerticesList;
+    typedef Mushware::t4GLVal tDamageColour;
+    typedef std::vector<tDamageColour> tDamageColours;
+    typedef std::vector<tDamageColours> tDamageColoursList;
+    
     MushGLProjection m_projection;
     Mushware::tVal m_halfAngle; //:readwrite
     Mushware::tVal m_halfAngleAttractor; //:readwrite
     Mushware::U32 m_renderPrelude;
     std::vector<MushGLJobRender *> m_renderList;
     AdanaxisScanner m_scanner;
-    
-private:
+    tDamageVerticesList m_damageVertices;
+    tDamageColoursList m_damageColours;
+
 //%classPrototypes {
 public:
     const Mushware::tVal& HalfAngle(void) const { return m_halfAngle; }

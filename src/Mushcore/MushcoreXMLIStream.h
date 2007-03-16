@@ -7,7 +7,7 @@
  *
  * File: src/Mushcore/MushcoreXMLIStream.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } FTjMuoWgWldTNGYATLOOjw
+//%Header } MN8T+zhWXDPQ4h0EDXx2rA
 /*
- * $Id: MushcoreXMLIStream.h,v 1.34 2006/06/29 10:12:36 southa Exp $
+ * $Id: MushcoreXMLIStream.h,v 1.35 2006/12/14 00:33:50 southa Exp $
  * $Log: MushcoreXMLIStream.h,v $
+ * Revision 1.35  2006/12/14 00:33:50  southa
+ * Control fix and audio pacing
+ *
  * Revision 1.34  2006/06/29 10:12:36  southa
  * 64 bit compatibility fixes
  *
@@ -144,7 +147,9 @@ public:
     std::string DataUntilTake(const std::string& inStr);
     const std::string& TagNameGet(void) const { return m_tagName; }
     Mushware::U8 ByteGet(void);
+    Mushware::U8 DiscardWhitespaceByteGet(void);
     Mushware::U8 ByteTake(void);
+    Mushware::U8 DiscardWhitespaceByteTake(void);
     
     template<class T> void ObjectRead(T *& outpObj);   
     template<class T> void ObjectRead(std::vector<T>& outVector);
@@ -206,6 +211,20 @@ MushcoreXMLIStream::ByteGet(void)
 }
 
 inline Mushware::U8
+MushcoreXMLIStream::DiscardWhitespaceByteGet(void)
+{
+    Mushware::U8 retVal = ByteGet();
+    
+    while (retVal == ' ' || retVal == 9)
+    {
+        ByteTake();
+        retVal = ByteGet();
+    }
+    
+    return retVal;
+}
+
+inline Mushware::U8
 MushcoreXMLIStream::ByteTake(void)
 {
     if (m_contentStart >= m_contentStr.size())
@@ -213,6 +232,19 @@ MushcoreXMLIStream::ByteTake(void)
         InputFetch();
     }
     return m_contentStr[m_contentStart++];
+}
+
+inline Mushware::U8
+MushcoreXMLIStream::DiscardWhitespaceByteTake(void)
+{
+    Mushware::U8 retVal;
+    
+    do
+    {
+        retVal = ByteTake();
+    } while (retVal == ' ' || retVal == 9);
+    
+    return retVal;
 }
 
 inline void
@@ -416,10 +448,10 @@ MushcoreXMLIStream::ObjectRead(std::vector<T>& outVector)
     // Decode the (x,y,z) sequence
     bool hasTag = CompositePrologue();
 
-    if (ByteGet() == ')')
+    if (DiscardWhitespaceByteGet() == ')')
     {
         // Consume the end marker
-        ByteTake();
+        DiscardWhitespaceByteTake();
     }
     else
     {
@@ -437,7 +469,7 @@ MushcoreXMLIStream::ObjectRead(std::vector<T>& outVector)
                 throw;
             }
             
-            Mushware::U8 nextByte = ByteTake();
+            Mushware::U8 nextByte = DiscardWhitespaceByteTake();
             if (nextByte == ',')
             {
             }
@@ -475,7 +507,7 @@ MushcoreXMLIStream::ObjectRead(std::vector<T *>& outVector)
             *this >> newPtr;
             outVector.push_back(newPtr);
 
-            Mushware::U8 nextByte = ByteTake();
+            Mushware::U8 nextByte = DiscardWhitespaceByteTake();
             if (nextByte == ',')
             {
             }
@@ -500,10 +532,10 @@ MushcoreXMLIStream::ObjectRead(std::list<T>& outVector)
     // Decode the (x,y,z) sequence
     bool hasTag = CompositePrologue();
     
-    if (ByteGet() == ')')
+    if (DiscardWhitespaceByteGet() == ')')
     {
         // Consume the end marker
-        ByteTake();
+        DiscardWhitespaceByteTake();
     }
     else
     {
@@ -521,7 +553,7 @@ MushcoreXMLIStream::ObjectRead(std::list<T>& outVector)
                 throw;
             }
             
-            Mushware::U8 nextByte = ByteTake();
+            Mushware::U8 nextByte = DiscardWhitespaceByteTake();
             if (nextByte == ',')
             {
             }
@@ -546,10 +578,10 @@ MushcoreXMLIStream::ObjectRead(std::list<T *>& outVector)
     
     bool hasTag = CompositePrologue();
     
-    if (ByteGet() == ')')
+    if (DiscardWhitespaceByteGet() == ')')
     {
         // Consume the end marker
-        ByteTake();
+        DiscardWhitespaceByteTake();
     }
     else
     {
@@ -559,7 +591,7 @@ MushcoreXMLIStream::ObjectRead(std::list<T *>& outVector)
             *this >> newPtr;
             outVector.push_back(newPtr);
             
-            Mushware::U8 nextByte = ByteTake();
+            Mushware::U8 nextByte = DiscardWhitespaceByteTake();
             if (nextByte == ',')
             {
             }
@@ -584,10 +616,10 @@ MushcoreXMLIStream::ObjectRead(std::deque<T>& outVector)
     // Decode the (x,y,z) sequence
     bool hasTag = CompositePrologue();
     
-    if (ByteGet() == ')')
+    if (DiscardWhitespaceByteGet() == ')')
     {
         // Consume the end marker
-        ByteTake();
+        DiscardWhitespaceByteTake();
     }
     else
     {
@@ -605,7 +637,7 @@ MushcoreXMLIStream::ObjectRead(std::deque<T>& outVector)
                 throw;
             }
             
-            Mushware::U8 nextByte = ByteTake();
+            Mushware::U8 nextByte = DiscardWhitespaceByteTake();
             if (nextByte == ',')
             {
             }
@@ -630,10 +662,10 @@ MushcoreXMLIStream::ObjectRead(std::deque<T *>& outVector)
     
     bool hasTag = CompositePrologue();
     
-    if (ByteGet() == ')')
+    if (DiscardWhitespaceByteGet() == ')')
     {
         // Consume the end marker
-        ByteTake();
+        DiscardWhitespaceByteTake();
     }
     else
     {
@@ -643,7 +675,7 @@ MushcoreXMLIStream::ObjectRead(std::deque<T *>& outVector)
             *this >> newPtr;
             outVector.push_back(newPtr);
             
-            Mushware::U8 nextByte = ByteTake();
+            Mushware::U8 nextByte = DiscardWhitespaceByteTake();
             if (nextByte == ',')
             {
             }
@@ -666,10 +698,10 @@ MushcoreXMLIStream::ObjectRead(std::map<T, U>& outMap)
 {
     bool hasTag = CompositePrologue();
 
-    if (ByteGet() == ')')
+    if (DiscardWhitespaceByteGet() == ')')
     {
         // Consume the end marker
-        ByteTake();
+        DiscardWhitespaceByteTake();
     }
     else
     {
@@ -678,7 +710,7 @@ MushcoreXMLIStream::ObjectRead(std::map<T, U>& outMap)
             T keyValue;
             *this >> keyValue;
 
-            if (ByteTake() != '=')
+            if (DiscardWhitespaceByteTake() != '=')
             {
                 Throw("Bad separator in map");
             }
@@ -687,7 +719,7 @@ MushcoreXMLIStream::ObjectRead(std::map<T, U>& outMap)
             *this >> valueValue;
             outMap[keyValue] = valueValue;
             
-            Mushware::U8 nextByte = ByteTake();
+            Mushware::U8 nextByte = DiscardWhitespaceByteTake();
             if (nextByte == ',')
             {
             }
@@ -710,10 +742,10 @@ MushcoreXMLIStream::ObjectRead(std::map<T, U *>& outMap)
 {
     bool hasTag = CompositePrologue();
     
-    if (ByteGet() == ')')
+    if (DiscardWhitespaceByteGet() == ')')
     {
         // Consume the end marker
-        ByteTake();
+        DiscardWhitespaceByteTake();
     }
     else
     {
@@ -722,7 +754,7 @@ MushcoreXMLIStream::ObjectRead(std::map<T, U *>& outMap)
             T keyValue;
             *this >> keyValue;
             
-            if (ByteTake() != '=')
+            if (DiscardWhitespaceByteTake() != '=')
             {
                 Throw("Bad separator in map");
             }
@@ -732,7 +764,7 @@ MushcoreXMLIStream::ObjectRead(std::map<T, U *>& outMap)
             *this >> valuePtr;
             outMap[keyValue] = valuePtr;
             
-            Mushware::U8 nextByte = ByteTake();
+            Mushware::U8 nextByte = DiscardWhitespaceByteTake();
             if (nextByte == ',')
             {
             }
@@ -758,7 +790,7 @@ MushcoreXMLIStream::ObjectRead(std::pair<T, U>& outObj)
     T keyValue;
     *this >> keyValue;
     
-    if (ByteTake() != '=')
+    if (DiscardWhitespaceByteTake() != '=')
     {
         Throw("Bad separator in pair");
     }
@@ -768,7 +800,7 @@ MushcoreXMLIStream::ObjectRead(std::pair<T, U>& outObj)
     outObj.first = keyValue;
     outObj.second = valueValue;
     
-    Mushware::U8 nextByte = ByteTake();
+    Mushware::U8 nextByte = DiscardWhitespaceByteTake();
     if (nextByte != ')')
     {
         Throw("Bad delimiter in pair");

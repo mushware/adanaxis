@@ -3,7 +3,7 @@
  *
  * File: src/Mushcore/MushcoreXMLIStream.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } rdYojx13YYIWomCDMArN/g
+//%Header } 6mBWVs19DTaLERwNdtfY0w
 /*
- * $Id: MushcoreXMLIStream.cpp,v 1.26 2006/06/16 12:11:06 southa Exp $
+ * $Id: MushcoreXMLIStream.cpp,v 1.27 2006/06/29 10:12:35 southa Exp $
  * $Log: MushcoreXMLIStream.cpp,v $
+ * Revision 1.27  2006/06/29 10:12:35  southa
+ * 64 bit compatibility fixes
+ *
  * Revision 1.26  2006/06/16 12:11:06  southa
  * Ruby subclasses
  *
@@ -409,7 +412,11 @@ MushcoreXMLIStream::CompositePrologue(void)
         ByteTake(); // Consume >
         hasTag = true;
     }
-    U8 byteValue = ByteTake();
+    
+    U8 byteValue;
+
+    byteValue = DiscardWhitespaceByteTake();
+    
     if (byteValue != '(')
     {
         ostringstream message;

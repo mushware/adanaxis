@@ -1,7 +1,7 @@
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushGL/MushGL.cpp
+ * File: src/MushGL/MushGLDraw.cpp
  *
  * Author: Andy Southgate 2002-2007
  *
@@ -17,20 +17,40 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 7lyKDokFF1nSl+ocfdsVTA
+//%Header } /RqmIFA9eflC/FQMn36oJw
 /*
- * $Id: MushGL.cpp,v 1.3 2006/06/01 15:39:16 southa Exp $
- * $Log: MushGL.cpp,v $
- * Revision 1.3  2006/06/01 15:39:16  southa
- * DrawArray verification and fixes
- *
- * Revision 1.2  2005/05/19 13:02:09  southa
- * Mac release work
- *
- * Revision 1.1  2004/03/07 12:05:56  southa
- * Rendering work
- *
+ * $Id$
+ * $Log$
  */
 
-#include "MushGL.h"
+#include "MushGLDraw.h"
 
+using namespace Mushware;
+using namespace std;
+
+void
+MushGLDraw::QuadsDraw(std::vector<Mushware::t2GLVal> inVertices,
+                      std::vector<Mushware::t4GLVal> inColours)
+{
+    U32 quadLimit = inVertices.size();
+    U32 colourLimit = inColours.size();
+    
+    if ((quadLimit % 4) != 0 ||
+        (colourLimit % 4) != 0)
+    {
+        throw MushcoreDataFail("MushGLDraw::DrawQuad: Wrong vertex or colour size");
+    }
+    
+    glBegin(GL_QUADS);
+
+    for (U32 i=0; i < quadLimit; ++i)
+    {
+        if (i < colourLimit)
+        {
+            glColor4fv(&inColours[i].X());
+        }
+        glVertex2fv(&inVertices[i].X());
+    }
+    
+    glEnd();
+}

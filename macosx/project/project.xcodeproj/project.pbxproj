@@ -1023,6 +1023,8 @@
 		7A66E42705FB25C500135328 /* mushMushGL.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A66E42505FB25C500135328 /* mushMushGL.h */; };
 		7A66E44405FB260600135328 /* MushGL.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A66E44005FB260600135328 /* MushGL.h */; };
 		7A66E44505FB260600135328 /* MushGL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A66E44105FB260600135328 /* MushGL.cpp */; };
+		7A68D2750BAB0DE0009F2015 /* MushGLDraw.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A68D2730BAB0DE0009F2015 /* MushGLDraw.h */; };
+		7A68D2760BAB0DE0009F2015 /* MushGLDraw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A68D2740BAB0DE0009F2015 /* MushGLDraw.cpp */; };
 		7A6917390BA1C4F300C84ACA /* AdanaxisRecords.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A6917370BA1C4F300C84ACA /* AdanaxisRecords.h */; };
 		7A69173A0BA1C4F300C84ACA /* AdanaxisRecords.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A6917380BA1C4F300C84ACA /* AdanaxisRecords.cpp */; };
 		7A69DF0807626B89004F23F7 /* TestMushMeshQuaternion.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A69DF0607626B89004F23F7 /* TestMushMeshQuaternion.h */; };
@@ -3530,6 +3532,9 @@
 		7A66E42505FB25C500135328 /* mushMushGL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mushMushGL.h; sourceTree = "<group>"; };
 		7A66E44005FB260600135328 /* MushGL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushGL.h; sourceTree = "<group>"; };
 		7A66E44105FB260600135328 /* MushGL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushGL.cpp; sourceTree = "<group>"; };
+		7A68D2730BAB0DE0009F2015 /* MushGLDraw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushGLDraw.h; sourceTree = "<group>"; };
+		7A68D2740BAB0DE0009F2015 /* MushGLDraw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushGLDraw.cpp; sourceTree = "<group>"; };
+		7A68D2850BAB1911009F2015 /* AdanaxisRender.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = AdanaxisRender.xml; sourceTree = "<group>"; };
 		7A6917370BA1C4F300C84ACA /* AdanaxisRecords.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdanaxisRecords.h; sourceTree = "<group>"; };
 		7A6917380BA1C4F300C84ACA /* AdanaxisRecords.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AdanaxisRecords.cpp; sourceTree = "<group>"; };
 		7A6975DD0BA6ADA1008DCB62 /* AdanaxisScanner.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AdanaxisScanner.rb; sourceTree = "<group>"; };
@@ -5790,6 +5795,8 @@
 				7A70CD11085DE6A90055C6FB /* MushGLControl.cpp */,
 				7A70CD10085DE6A90055C6FB /* MushGLControl.h */,
 				7ACED0DB09F8429700055E66 /* MushGLFont.cpp */,
+				7A68D2740BAB0DE0009F2015 /* MushGLDraw.cpp */,
+				7A68D2730BAB0DE0009F2015 /* MushGLDraw.h */,
 				7ACED0DA09F8429700055E66 /* MushGLFont.h */,
 				7AD2990A0876952D00367963 /* MushGLJob.cpp */,
 				7AD299090876952D00367963 /* MushGLJob.h */,
@@ -5959,6 +5966,7 @@
 		7A70D1F4085DF8870055C6FB /* system */ = {
 			isa = PBXGroup;
 			children = (
+				7A68D2850BAB1911009F2015 /* AdanaxisRender.xml */,
 				7A44BC59089FABB800A08A3F /* objects.xml */,
 				7A70D1F5085DF8870055C6FB /* start.txt */,
 				7A70D1F6085DF8870055C6FB /* start_safe.txt */,
@@ -7651,6 +7659,7 @@
 				7A5C48D60B2D79EA009085F9 /* MediaAudioChannelDef.h in Headers */,
 				7AF47F320B32D64E00664BED /* MushFileKeys.h in Headers */,
 				7A6917390BA1C4F300C84ACA /* AdanaxisRecords.h in Headers */,
+				7A68D2750BAB0DE0009F2015 /* MushGLDraw.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9492,6 +9501,7 @@
 				7AF47F330B32D64E00664BED /* MushFileKeys.cpp in Sources */,
 				7A5E94F30B34080400D4B99E /* MushSecretKeys.cpp in Sources */,
 				7A69173A0BA1C4F300C84ACA /* AdanaxisRecords.cpp in Sources */,
+				7A68D2760BAB0DE0009F2015 /* MushGLDraw.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,7 +1,11 @@
+//%includeGuardStart {
+#ifndef MUSHGLDRAW_H
+#define MUSHGLDRAW_H
+//%includeGuardStart } CgU/vbrcygOZPIBiH5rEjg
 //%Header {
 /*****************************************************************************
  *
- * File: src/MushGL/MushGL.cpp
+ * File: src/MushGL/MushGLDraw.h
  *
  * Author: Andy Southgate 2002-2007
  *
@@ -17,20 +21,24 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 7lyKDokFF1nSl+ocfdsVTA
+//%Header } VX5AXO/eCXOacubEdLGLOQ
 /*
- * $Id: MushGL.cpp,v 1.3 2006/06/01 15:39:16 southa Exp $
- * $Log: MushGL.cpp,v $
- * Revision 1.3  2006/06/01 15:39:16  southa
- * DrawArray verification and fixes
- *
- * Revision 1.2  2005/05/19 13:02:09  southa
- * Mac release work
- *
- * Revision 1.1  2004/03/07 12:05:56  southa
- * Rendering work
- *
+ * $Id$
+ * $Log$
  */
 
-#include "MushGL.h"
+#include "API/mushMushMesh.h"
 
+#include "MushGLStandard.h"
+
+class MushGLDraw
+{
+public:
+    static void QuadsDraw(std::vector<Mushware::t2GLVal> inVertices,
+                          std::vector<Mushware::t4GLVal> inColours);
+};
+
+
+//%includeGuardEnd {
+#endif
+//%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

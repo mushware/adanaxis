@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } K7HrnH+vIiH4q4+CMaK9uA
 /*
- * $Id: MushGLUtil.cpp,v 1.9 2006/11/25 21:26:32 southa Exp $
+ * $Id: MushGLUtil.cpp,v 1.10 2007/03/09 19:50:13 southa Exp $
  * $Log: MushGLUtil.cpp,v $
+ * Revision 1.10  2007/03/09 19:50:13  southa
+ * Resident textures
+ *
  * Revision 1.9  2006/11/25 21:26:32  southa
  * Display mode definitions
  *
@@ -94,6 +97,7 @@ MushGLUtil::OrthoPrologue(void)
     // The screen should be enclosed by a square with corners (-0.5,-0.5) and
     // (0.5,0.5) with aspect ratio 1.  The screen is a rectangle within the square
     glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
     t2Val screenRatios(ScreenRatios()*0.5);
     gluOrtho2D(-screenRatios.X(),screenRatios.X(),-screenRatios.Y(),screenRatios.Y());
     glMatrixMode(GL_MODELVIEW);
@@ -102,6 +106,23 @@ MushGLUtil::OrthoPrologue(void)
 
 void
 MushGLUtil::OrthoEpilogue(void)
+{
+}
+
+void
+MushGLUtil::UnitaryPrologue(void)
+{
+    // The screen should be enclosed by a square with corners (-0.5,-0.5) and
+    // (0.5,0.5).  The screen is the square
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    gluOrtho2D(-0.5,0.5,-0.5,0.5);
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+}
+
+void
+MushGLUtil::UnitaryEpilogue(void)
 {
 }
 

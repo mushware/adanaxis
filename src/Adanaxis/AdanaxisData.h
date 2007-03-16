@@ -7,7 +7,7 @@
  *
  * File: src/Adanaxis/AdanaxisData.h
  *
- * Copyright: Andy Southgate 2005-2006
+ * Copyright: Andy Southgate 2005-2007
  *
  * This file may be used and distributed under the terms of the Mushware
  * software licence version 1.1, under the terms for 'Proprietary original
@@ -19,10 +19,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } hH+7Rt7oZ4mWOapWNM0mmw
+//%Header } AFECRnHUou7LU9/DDFV7UA
 /*
- * $Id: AdanaxisData.h,v 1.2 2006/06/01 15:38:47 southa Exp $
+ * $Id: AdanaxisData.h,v 1.3 2006/08/01 17:21:23 southa Exp $
  * $Log: AdanaxisData.h,v $
+ * Revision 1.3  2006/08/01 17:21:23  southa
+ * River demo
+ *
  * Revision 1.2  2006/06/01 15:38:47  southa
  * DrawArray verification and fixes
  *
