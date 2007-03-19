@@ -7,7 +7,7 @@
  *
  * File: src/Adanaxis/AdanaxisRuby.h
  *
- * Copyright: Andy Southgate 2005-2006
+ * Copyright: Andy Southgate 2005-2007
  *
  * This file may be used and distributed under the terms of the Mushware
  * software licence version 1.1, under the terms for 'Proprietary original
@@ -19,10 +19,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } gEqqVEDekPhwNL6FyxZYWg
+//%Header } Pb5DcV7KPUmlHPXIdZyGWw
 /*
- * $Id: AdanaxisRuby.h,v 1.5 2006/11/12 20:09:55 southa Exp $
+ * $Id: AdanaxisRuby.h,v 1.6 2007/03/07 11:29:24 southa Exp $
  * $Log: AdanaxisRuby.h,v $
+ * Revision 1.6  2007/03/07 11:29:24  southa
+ * Level permission
+ *
  * Revision 1.5  2006/11/12 20:09:55  southa
  * Missile guidance
  *
@@ -57,6 +60,7 @@ public:
 	static Mushware::tRubyValue PlayerPosition(Mushware::tRubyValue inSelf);
     static Mushware::tRubyValue PlayerTargetID(Mushware::tRubyValue inSelf);
     static Mushware::tRubyValue RecordTime(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
+    static Mushware::tRubyValue DamageIconSet(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0, Mushware::tRubyValue inArg1);
     
 private:
     static MushcoreDataRef<MushGameLogic> s_logicRef;

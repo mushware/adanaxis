@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } Xf3bye/YTJtAd1JW+UBrog
 /*
- * $Id: AdanaxisRender.cpp,v 1.68 2007/03/12 21:05:59 southa Exp $
+ * $Id: AdanaxisRender.cpp,v 1.69 2007/03/16 19:50:44 southa Exp $
  * $Log: AdanaxisRender.cpp,v $
+ * Revision 1.69  2007/03/16 19:50:44  southa
+ * Damage indicators
+ *
  * Revision 1.68  2007/03/12 21:05:59  southa
  * Scanner symbols
  *
@@ -252,8 +255,9 @@ AdanaxisRender::AdanaxisRender() :
     {
         AutoFileIfExistsLoad(pScalar->StringGet()+"/AdanaxisRender.xml");
     }
-    MushcoreLog::Sgl().XMLInfoLog() << m_damageVertices;
+    
     m_damageColours.resize(m_damageVertices.size());
+    m_damageAlphaFactors.resize(m_damageVertices.size());
 }
 
 void
@@ -616,7 +620,8 @@ void AdanaxisRender::ScanRender(AdanaxisLogic& ioLogic, MushRenderMesh *inpRende
 void
 AdanaxisRender::DamagePlot(MushGameLogic& ioLogic, const MushGameCamera& inCamera)
 {
-
+    AdanaxisVolatileData& volData = dynamic_cast<AdanaxisVolatileData &>(ioLogic.VolatileData());
+    
     MushGLUtil::UnitaryPrologue();
 
     MushGLState::Sgl().RenderStateSet(MushGLState::kRenderState2D);
@@ -625,7 +630,19 @@ AdanaxisRender::DamagePlot(MushGameLogic& ioLogic, const MushGameCamera& inCamer
      
     for (U32 i=0; i<m_damageVertices.size(); ++i)
     {
-        MushGLDraw::QuadsDraw(m_damageVertices[i], m_damageColours[i]);
+        if (i < volData.NumDamageIcons())
+        {
+            tVal alpha = volData.DamageIcon(i);
+            if (alpha > 0.0)
+            {
+                U32 numAlphaFactors = std::min(m_damageColours[i].size(), m_damageAlphaFactors[i].size());
+                for (U32 j=0; j < numAlphaFactors; ++j)
+                {
+                    m_damageColours[i][j].WSet(alpha * m_damageAlphaFactors[i][j]);
+                }
+                MushGLDraw::QuadsDraw(m_damageVertices[i], m_damageColours[i]);
+            }
+        }        
     }
     
     MushGLUtil::UnitaryEpilogue();
@@ -775,7 +792,8 @@ AdanaxisRender::AutoPrint(std::ostream& ioOut) const
     ioOut << "renderList=" << m_renderList << ", ";
     ioOut << "scanner=" << m_scanner << ", ";
     ioOut << "damageVertices=" << m_damageVertices << ", ";
-    ioOut << "damageColours=" << m_damageColours;
+    ioOut << "damageColours=" << m_damageColours << ", ";
+    ioOut << "damageAlphaFactors=" << m_damageAlphaFactors;
     ioOut << "]";
 }
 bool
@@ -819,6 +837,10 @@ AdanaxisRender::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
     {
         ioIn >> m_damageColours;
     }
+    else if (inTagStr == "damageAlphaFactors")
+    {
+        ioIn >> m_damageAlphaFactors;
+    }
     else 
     {
         return false;
@@ -844,5 +866,7 @@ AdanaxisRender::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_damageVertices;
     ioOut.TagSet("damageColours");
     ioOut << m_damageColours;
+    ioOut.TagSet("damageAlphaFactors");
+    ioOut << m_damageAlphaFactors;
 }
-//%outOfLineFunctions } 0ejRNpOKxTIwR0lGU7c+uw
+//%outOfLineFunctions } ED67VoigBiyea/CHjMTuWw

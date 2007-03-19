@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } u23vbNfX5drZiCudCudkVw
 /*
- * $Id: AdanaxisRuby.cpp,v 1.8 2007/03/09 19:50:12 southa Exp $
+ * $Id: AdanaxisRuby.cpp,v 1.9 2007/03/12 21:06:00 southa Exp $
  * $Log: AdanaxisRuby.cpp,v $
+ * Revision 1.9  2007/03/12 21:06:00  southa
+ * Scanner symbols
+ *
  * Revision 1.8  2007/03/09 19:50:12  southa
  * Resident textures
  *
@@ -98,10 +101,23 @@ AdanaxisRuby::RecordTime(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg
     return retVal.Value();
 }    
 
+Mushware::tRubyValue
+AdanaxisRuby::DamageIconSet(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0,
+                            Mushware::tRubyValue inArg1)
+{
+    MushRubyValue param0(inArg0);
+    MushRubyValue param1(inArg1);
+    
+    VolatileData().DamageIconSet(param0.U32(), param1.Val());
+    
+    return kRubyQnil;
+}
+
 void
 AdanaxisRuby::AdanaxisInstall(void)
 {
     MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cPlayerPosition", PlayerPosition);
     MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cPlayerTargetID", PlayerTargetID);
     MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cRecordTime", RecordTime);
+    MushRubyUtil::SingletonMethodDefineTwoParams(Klass(), "cDamageIconSet", DamageIconSet);
 }

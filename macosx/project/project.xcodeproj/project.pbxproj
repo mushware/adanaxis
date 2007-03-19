@@ -3537,6 +3537,7 @@
 		7A68D2850BAB1911009F2015 /* AdanaxisRender.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = AdanaxisRender.xml; sourceTree = "<group>"; };
 		7A6917370BA1C4F300C84ACA /* AdanaxisRecords.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdanaxisRecords.h; sourceTree = "<group>"; };
 		7A6917380BA1C4F300C84ACA /* AdanaxisRecords.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AdanaxisRecords.cpp; sourceTree = "<group>"; };
+		7A69654D0BAECF5C00344F3A /* AdanaxisVTools.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AdanaxisVTools.rb; sourceTree = "<group>"; };
 		7A6975DD0BA6ADA1008DCB62 /* AdanaxisScanner.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AdanaxisScanner.rb; sourceTree = "<group>"; };
 		7A69DF0607626B89004F23F7 /* TestMushMeshQuaternion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestMushMeshQuaternion.h; sourceTree = "<group>"; };
 		7A69DF0707626B89004F23F7 /* TestMushMeshQuaternion.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestMushMeshQuaternion.cpp; sourceTree = "<group>"; };
@@ -6461,6 +6462,7 @@
 				7AFA31910AD18BE500B73920 /* AdanaxisTargetSelect.rb */,
 				7AAFF0A60A46E84F0005F57F /* AdanaxisTextureLibrary.rb */,
 				7AA5753E0AD9100800CEA8BA /* AdanaxisUtil.rb */,
+				7A69654D0BAECF5C00344F3A /* AdanaxisVTools.rb */,
 				7A59056C0AFB4AD70088FC20 /* AdanaxisWaveLibrary.rb */,
 				7AA67B8E0AF8C0C400A1C04F /* AdanaxisWeapon.rb */,
 				7AA67B8B0AF8BF1100A1C04F /* AdanaxisWeaponLibrary.rb */,

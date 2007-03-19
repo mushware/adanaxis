@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } HnEzTQJoOduWd34Ay6J3Ag
 /*
- * $Id: AdanaxisVolatileData.cpp,v 1.14 2007/03/13 18:21:37 southa Exp $
+ * $Id: AdanaxisVolatileData.cpp,v 1.15 2007/03/16 19:50:44 southa Exp $
  * $Log: AdanaxisVolatileData.cpp,v $
+ * Revision 1.15  2007/03/16 19:50:44  southa
+ * Damage indicators
+ *
  * Revision 1.14  2007/03/13 18:21:37  southa
  * Scanner jamming
  *
@@ -59,7 +62,8 @@ AdanaxisVolatileData::AdanaxisVolatileData() :
     m_khaziCount(0),
     m_khaziRedCount(0),
     m_khaziBlueCount(0),
-    m_playerCount(0)
+    m_playerCount(0),
+    m_damageIcons(6) // size is 6
 {
 }
 
@@ -109,7 +113,7 @@ AdanaxisVolatileData::AutoPrint(std::ostream& ioOut) const
     ioOut << "khaziBlueCount=" << m_khaziBlueCount << ", ";
     ioOut << "jammerCount=" << m_jammerCount << ", ";
     ioOut << "playerCount=" << m_playerCount << ", ";
-    ioOut << "damageAmounts=" << m_damageAmounts;
+    ioOut << "damageIcons=" << m_damageIcons;
     ioOut << "]";
 }
 bool
@@ -169,9 +173,9 @@ AdanaxisVolatileData::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::st
     {
         ioIn >> m_playerCount;
     }
-    else if (inTagStr == "damageAmounts")
+    else if (inTagStr == "damageIcons")
     {
-        ioIn >> m_damageAmounts;
+        ioIn >> m_damageIcons;
     }
     else if (MushGameVolatileData::AutoXMLDataProcess(ioIn, inTagStr))
     {
@@ -211,7 +215,7 @@ AdanaxisVolatileData::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_jammerCount;
     ioOut.TagSet("playerCount");
     ioOut << m_playerCount;
-    ioOut.TagSet("damageAmounts");
-    ioOut << m_damageAmounts;
+    ioOut.TagSet("damageIcons");
+    ioOut << m_damageIcons;
 }
-//%outOfLineFunctions } pcYyFsFdsvI/jmhx25qavA
+//%outOfLineFunctions } 3BIJVFwIqtUozHgc0QCYWQ

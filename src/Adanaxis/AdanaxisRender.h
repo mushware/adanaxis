@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } PzP9jWQw0nNNZUi3UI/r5A
 /*
- * $Id: AdanaxisRender.h,v 1.13 2007/02/08 17:55:14 southa Exp $
+ * $Id: AdanaxisRender.h,v 1.14 2007/03/16 19:50:44 southa Exp $
  * $Log: AdanaxisRender.h,v $
+ * Revision 1.14  2007/03/16 19:50:44  southa
+ * Damage indicators
+ *
  * Revision 1.13  2007/02/08 17:55:14  southa
  * Common routines in space generation
  *
@@ -95,6 +98,8 @@ private:
     typedef Mushware::t4GLVal tDamageColour;
     typedef std::vector<tDamageColour> tDamageColours;
     typedef std::vector<tDamageColours> tDamageColoursList;
+    typedef std::vector<Mushware::tVal> tDamageAlphaFactors;
+    typedef std::vector<tDamageAlphaFactors> tDamageAlphaFactorsList;
     
     MushGLProjection m_projection;
     Mushware::tVal m_halfAngle; //:readwrite
@@ -104,6 +109,7 @@ private:
     AdanaxisScanner m_scanner;
     tDamageVerticesList m_damageVertices;
     tDamageColoursList m_damageColours;
+    tDamageAlphaFactorsList m_damageAlphaFactors;
 
 //%classPrototypes {
 public:
