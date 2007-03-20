@@ -3,7 +3,7 @@
  *
  * File: src/MushGL/MushGLV.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } NYmv5MZn7NEYPYHpc3JV8Q
+//%Header } /PbgVyo7+t2K2WR3hAwFPw
 /*
- * $Id: MushGLV.cpp,v 1.21 2006/11/09 23:53:59 southa Exp $
+ * $Id: MushGLV.cpp,v 1.22 2006/12/14 00:33:49 southa Exp $
  * $Log: MushGLV.cpp,v $
+ * Revision 1.22  2006/12/14 00:33:49  southa
+ * Control fix and audio pacing
+ *
  * Revision 1.21  2006/11/09 23:53:59  southa
  * Explosion and texture loading
  *
@@ -235,7 +238,6 @@ MushGLV::Acquaint(void)
 	{
 		m_hasS3TC = false;
 	}
-	m_useS3TC = m_hasS3TC;
     
 	if (!safeMode &&
         m_extensions.find(" GL_ARB_shader_objects ") != string::npos &&

@@ -3,7 +3,7 @@
  *
  * File: src/Adanaxis/AdanaxisSaveData.cpp
  *
- * Copyright: Andy Southgate 2005-2006
+ * Copyright: Andy Southgate 2005-2007
  *
  * This file may be used and distributed under the terms of the Mushware
  * software licence version 1.1, under the terms for 'Proprietary original
@@ -15,10 +15,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } VNan5sNdD8AXrUJEgevfNg
+//%Header } kELirrwJoPeSG5YoHnaYyQ
 /*
- * $Id: AdanaxisSaveData.cpp,v 1.15 2006/10/19 15:41:36 southa Exp $
+ * $Id: AdanaxisSaveData.cpp,v 1.16 2006/11/03 18:46:33 southa Exp $
  * $Log: AdanaxisSaveData.cpp,v $
+ * Revision 1.16  2006/11/03 18:46:33  southa
+ * Damage effectors
+ *
  * Revision 1.15  2006/10/19 15:41:36  southa
  * Item handling
  *
@@ -112,7 +115,8 @@ AdanaxisSaveData::AutoPrint(std::ostream& ioOut) const
     ioOut << "itemList=" << m_itemList << ", ";
     ioOut << "effectorList=" << m_effectorList << ", ";
     ioOut << "clockStarted=" << m_clockStarted << ", ";
-    ioOut << "spaceName=" << m_spaceName;
+    ioOut << "spaceName=" << m_spaceName << ", ";
+    ioOut << "gameDifficulty=" << m_gameDifficulty;
     ioOut << "]";
 }
 bool
@@ -148,6 +152,10 @@ AdanaxisSaveData::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string
     {
         ioIn >> m_spaceName;
     }
+    else if (inTagStr == "gameDifficulty")
+    {
+        ioIn >> m_gameDifficulty;
+    }
     else if (MushGameSaveData::AutoXMLDataProcess(ioIn, inTagStr))
     {
         // Tag consumed by base class
@@ -174,5 +182,7 @@ AdanaxisSaveData::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_clockStarted;
     ioOut.TagSet("spaceName");
     ioOut << m_spaceName;
+    ioOut.TagSet("gameDifficulty");
+    ioOut << m_gameDifficulty;
 }
-//%outOfLineFunctions } s8VAd+n9rapL63f+np+ZHw
+//%outOfLineFunctions } 2efw3RzS9oSQ1UsPmcTnIA

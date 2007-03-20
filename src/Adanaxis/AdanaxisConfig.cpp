@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } tRR47/9aZofgU4ATnDVtfQ
 /*
- * $Id: AdanaxisConfig.cpp,v 1.20 2007/03/09 19:50:11 southa Exp $
+ * $Id: AdanaxisConfig.cpp,v 1.21 2007/03/12 21:05:59 southa Exp $
  * $Log: AdanaxisConfig.cpp,v $
+ * Revision 1.21  2007/03/12 21:05:59  southa
+ * Scanner symbols
+ *
  * Revision 1.20  2007/03/09 19:50:11  southa
  * Resident textures
  *
@@ -103,6 +106,9 @@ AdanaxisConfig::ToDefaultSet(void)
     m_modeDef = GLModeDef(kDisplayXSize, kDisplayYSize, true);
     AxesToDefaultSet();
     KeysToDefaultSet();
+    m_configDifficulty = 0;
+    m_useGLCompression = 1;
+    m_useGLShader = 1;
 }
 
 void
@@ -229,7 +235,10 @@ AdanaxisConfig::AutoPrint(std::ostream& ioOut) const
     MushGameConfigBase::AutoPrint(ioOut);
     ioOut << "axisDefs=" << m_axisDefs << ", ";
     ioOut << "keyDefs=" << m_keyDefs << ", ";
-    ioOut << "modeDef=" << m_modeDef;
+    ioOut << "modeDef=" << m_modeDef << ", ";
+    ioOut << "configDifficulty=" << m_configDifficulty << ", ";
+    ioOut << "useGLCompression=" << m_useGLCompression << ", ";
+    ioOut << "useGLShader=" << m_useGLShader;
     ioOut << "]";
 }
 bool
@@ -253,6 +262,18 @@ AdanaxisConfig::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
     {
         ioIn >> m_modeDef;
     }
+    else if (inTagStr == "configDifficulty")
+    {
+        ioIn >> m_configDifficulty;
+    }
+    else if (inTagStr == "useGLCompression")
+    {
+        ioIn >> m_useGLCompression;
+    }
+    else if (inTagStr == "useGLShader")
+    {
+        ioIn >> m_useGLShader;
+    }
     else if (MushGameConfigBase::AutoXMLDataProcess(ioIn, inTagStr))
     {
         // Tag consumed by base class
@@ -273,5 +294,11 @@ AdanaxisConfig::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_keyDefs;
     ioOut.TagSet("modeDef");
     ioOut << m_modeDef;
+    ioOut.TagSet("configDifficulty");
+    ioOut << m_configDifficulty;
+    ioOut.TagSet("useGLCompression");
+    ioOut << m_useGLCompression;
+    ioOut.TagSet("useGLShader");
+    ioOut << m_useGLShader;
 }
-//%outOfLineFunctions } 0z5IuGLuZlruFVT79m8qHQ
+//%outOfLineFunctions } ZjUgfZDxs1gUaSH6BJy7ew

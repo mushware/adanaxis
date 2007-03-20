@@ -7,7 +7,7 @@
  *
  * File: src/MushGL/MushGLV.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } JUBCCFXz/CzIx64ACD8wjA
+//%Header } HDqe8S2HaqHUeirv6oBX7w
 /*
- * $Id: MushGLV.h,v 1.22 2006/09/07 10:02:38 southa Exp $
+ * $Id: MushGLV.h,v 1.23 2006/09/07 16:38:51 southa Exp $
  * $Log: MushGLV.h,v $
+ * Revision 1.23  2006/09/07 16:38:51  southa
+ * Vertex shader
+ *
  * Revision 1.22  2006/09/07 10:02:38  southa
  * Shader interface
  *
@@ -114,6 +117,7 @@ public:
     bool HasVertexBuffer(void) const { return m_hasVertexBuffer; }
     bool UseVertexBuffer(void) const { return m_hasVertexBuffer; }
     bool UseS3TC(void) const { return m_hasS3TC && m_useS3TC; }
+    bool UseShader(void) const { return m_hasShader && m_useShader; }
     void BindBuffer(GLenum target, GLuint buffer) const { if (m_fpBindBuffer != NULL) m_fpBindBuffer(target, buffer); }
     
     void BufferData(GLenum target, GLsizeiptr size, const GLvoid *data, GLenum usage) const { if (m_fpBufferData != NULL) m_fpBufferData(target, size, data, usage); }

@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } Pb5DcV7KPUmlHPXIdZyGWw
 /*
- * $Id: AdanaxisRuby.h,v 1.6 2007/03/07 11:29:24 southa Exp $
+ * $Id: AdanaxisRuby.h,v 1.7 2007/03/19 16:01:35 southa Exp $
  * $Log: AdanaxisRuby.h,v $
+ * Revision 1.7  2007/03/19 16:01:35  southa
+ * Damage indicators
+ *
  * Revision 1.6  2007/03/07 11:29:24  southa
  * Level permission
  *
@@ -61,7 +64,13 @@ public:
     static Mushware::tRubyValue PlayerTargetID(Mushware::tRubyValue inSelf);
     static Mushware::tRubyValue RecordTime(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
     static Mushware::tRubyValue DamageIconSet(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0, Mushware::tRubyValue inArg1);
-    
+    static Mushware::tRubyValue ConfigDifficulty(Mushware::tRubyValue inSelf);
+    static Mushware::tRubyValue ConfigDifficultySet(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
+    static Mushware::tRubyValue GameDifficulty(Mushware::tRubyValue inSelf);
+    static Mushware::tRubyValue UseGLCompression(Mushware::tRubyValue inSelf);
+    static Mushware::tRubyValue UseGLCompressionSet(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
+    static Mushware::tRubyValue UseGLShader(Mushware::tRubyValue inSelf);
+    static Mushware::tRubyValue UseGLShaderSet(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
 private:
     static MushcoreDataRef<MushGameLogic> s_logicRef;
 };

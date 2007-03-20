@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } Z0i2K+7kHTuXJiioToXHlg
 /*
- * $Id: AdanaxisGame.cpp,v 1.61 2007/03/07 16:59:43 southa Exp $
+ * $Id: AdanaxisGame.cpp,v 1.62 2007/03/09 19:50:11 southa Exp $
  * $Log: AdanaxisGame.cpp,v $
+ * Revision 1.62  2007/03/09 19:50:11  southa
+ * Resident textures
+ *
  * Revision 1.61  2007/03/07 16:59:43  southa
  * Khazi spawning and level ends
  *
@@ -337,11 +340,13 @@ AdanaxisGame::Init(MushGameAppHandler& inAppHandler)
     
     MushGameConfigUtils::ConfigAcquire(&m_config);
     AdanaxisRecords::Sgl().Load();
-    
+        
     if (AdanaxisUtil::AppHandler().FirstGame() && m_config.SafeMode())
     {
         m_config.ModeDefSet(GLModeDef(640, 480, false));
         m_config.TextureDetailSet(0);
+        m_config.UseGLCompressionSet(0);
+        m_config.UseGLShaderSet(0);
         MushGameDialogueUtils::NamedDialoguesAdd(SaveData().DialoguesWRef(), "^safemode");
     }
     
@@ -349,6 +354,7 @@ AdanaxisGame::Init(MushGameAppHandler& inAppHandler)
 
     UpdateFromConfig();
     
+    SaveData().GameDifficultySet(AdanaxisUtil::Config().ConfigDifficulty()); // 
 	VolatileData().RubyGameSet(MushRubyExec::Sgl().Call("$currentGame.mLoad"));
 	VolatileData().RubyLogicSet(MushRubyExec::Sgl().Eval("$currentLogic"));
 	VolatileData().RubySpaceSet(MushRubyExec::Sgl().Call("$currentGame.mSpace"));
@@ -461,6 +467,35 @@ AdanaxisGame::SwapIn(MushGameAppHandler& inAppHandler)
             {
                 MushcoreLog::Sgl().InfoLog() << MushGLV::Sgl() << endl;
             }
+            
+            if (MushGLV::Sgl().HasS3TC())
+            {
+                m_config.UseGLCompressionSet(m_config.UseGLCompression() % 2);        
+            }
+            else
+            {
+                m_config.UseGLCompressionSet(2);        
+            }
+            MushGLV::Sgl().UseS3TCSet(m_config.UseGLCompression() == 1);
+            
+            if (MushGLV::Sgl().HasShader())
+            {
+                m_config.UseGLShaderSet(m_config.UseGLShader() % 2);
+                try
+                {
+                    MushGLUtil::ShaderTest();
+                }
+                catch (std::exception &e)
+                {
+                    MushcoreLog::Sgl().WarningLog() << "GL Shader test failed - disabling : " << e.what() << endl;
+                    m_config.UseGLShaderSet(2);        
+                }
+            }
+            else
+            {
+                m_config.UseGLShaderSet(2);        
+            }
+            MushGLV::Sgl().UseShaderSet(m_config.UseGLShader() == 1);
         }
         else
         {
@@ -481,10 +516,6 @@ AdanaxisGame::SwapIn(MushGameAppHandler& inAppHandler)
     Logic().PrecacheModeEnter();
     
     dynamic_cast<AdanaxisRender&>(SaveData().RenderRef().WRef()).RenderPreludeSet();
-    
-#ifdef MUSHCORE_DEBUG
-    MushGLUtil::ShaderTest();
-#endif
 }  
 
 void

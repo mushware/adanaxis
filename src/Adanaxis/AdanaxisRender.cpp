@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } Xf3bye/YTJtAd1JW+UBrog
 /*
- * $Id: AdanaxisRender.cpp,v 1.69 2007/03/16 19:50:44 southa Exp $
+ * $Id: AdanaxisRender.cpp,v 1.70 2007/03/19 16:01:35 southa Exp $
  * $Log: AdanaxisRender.cpp,v $
+ * Revision 1.70  2007/03/19 16:01:35  southa
+ * Damage indicators
+ *
  * Revision 1.69  2007/03/16 19:50:44  southa
  * Damage indicators
  *
@@ -390,13 +393,13 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
         
         MushRenderMesh *pRenderMesh = &wireframeRender;
         
-        if ((pLogic->FrameMsec() % 1000) > 1000)
+        if (MushGLV::Sgl().UseShader() && ioLogic.GameMsec() % 4000 > 2000)
         {
-            pRenderMesh = &solidRender;
+            pRenderMesh = &shaderRender;
         }
         else
         {
-            pRenderMesh = &shaderRender;
+            pRenderMesh = &solidRender;
         }
         
         MushGameCamera camera(inCamera);

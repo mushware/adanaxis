@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } u23vbNfX5drZiCudCudkVw
 /*
- * $Id: AdanaxisRuby.cpp,v 1.9 2007/03/12 21:06:00 southa Exp $
+ * $Id: AdanaxisRuby.cpp,v 1.10 2007/03/19 16:01:35 southa Exp $
  * $Log: AdanaxisRuby.cpp,v $
+ * Revision 1.10  2007/03/19 16:01:35  southa
+ * Damage indicators
+ *
  * Revision 1.9  2007/03/12 21:06:00  southa
  * Scanner symbols
  *
@@ -113,6 +116,63 @@ AdanaxisRuby::DamageIconSet(Mushware::tRubyValue inSelf, Mushware::tRubyValue in
     return kRubyQnil;
 }
 
+Mushware::tRubyValue
+AdanaxisRuby::ConfigDifficulty(Mushware::tRubyValue inSelf)
+{
+    return MushRubyValue(AdanaxisUtil::Config().ConfigDifficulty()).Value();
+}
+
+Mushware::tRubyValue
+AdanaxisRuby::ConfigDifficultySet(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0)
+{
+    MushRubyValue param0(inArg0);
+    
+    AdanaxisUtil::ConfigWRef().ConfigDifficultySet(param0.U32());
+    
+    return kRubyQnil;
+}
+
+Mushware::tRubyValue
+AdanaxisRuby::GameDifficulty(Mushware::tRubyValue inSelf)
+{
+    return MushRubyValue(SaveData().GameDifficulty()).Value();
+}
+
+Mushware::tRubyValue
+AdanaxisRuby::UseGLCompression(Mushware::tRubyValue inSelf)
+{
+    return MushRubyValue(AdanaxisUtil::Config().UseGLCompression()).Value();
+}
+
+Mushware::tRubyValue
+AdanaxisRuby::UseGLCompressionSet(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0)
+{
+    MushRubyValue param0(inArg0);
+    
+    AdanaxisUtil::ConfigWRef().UseGLCompressionSet(param0.U32());
+
+    MushGLV::Sgl().UseS3TCSet(param0.U32() == 1);
+    
+    return kRubyQnil;
+}
+
+Mushware::tRubyValue
+AdanaxisRuby::UseGLShader(Mushware::tRubyValue inSelf)
+{
+    return MushRubyValue(AdanaxisUtil::Config().UseGLShader()).Value();
+}
+
+Mushware::tRubyValue
+AdanaxisRuby::UseGLShaderSet(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0)
+{
+    MushRubyValue param0(inArg0);
+    
+    AdanaxisUtil::ConfigWRef().UseGLShaderSet(param0.U32());
+    MushGLV::Sgl().UseShaderSet(param0.U32() == 1);
+    
+    return kRubyQnil;
+}
+
 void
 AdanaxisRuby::AdanaxisInstall(void)
 {
@@ -120,4 +180,11 @@ AdanaxisRuby::AdanaxisInstall(void)
     MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cPlayerTargetID", PlayerTargetID);
     MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cRecordTime", RecordTime);
     MushRubyUtil::SingletonMethodDefineTwoParams(Klass(), "cDamageIconSet", DamageIconSet);
+    MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cConfigDifficulty", ConfigDifficulty);
+    MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cConfigDifficultySet", ConfigDifficultySet);
+    MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cGameDifficulty", GameDifficulty);
+    MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cUseGLCompression", UseGLCompression);
+    MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cUseGLCompressionSet", UseGLCompressionSet);
+    MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cUseGLShader", UseGLShader);
+    MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cUseGLShaderSet", UseGLShaderSet);
 }

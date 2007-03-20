@@ -7,7 +7,7 @@
  *
  * File: src/Adanaxis/AdanaxisSaveData.h
  *
- * Copyright: Andy Southgate 2005-2006
+ * Copyright: Andy Southgate 2005-2007
  *
  * This file may be used and distributed under the terms of the Mushware
  * software licence version 1.1, under the terms for 'Proprietary original
@@ -19,10 +19,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } JnCiOhBV5nBVM4ynsgQMsQ
+//%Header } PgTMRGenOcOyg/056/ip9Q
 /*
- * $Id: AdanaxisSaveData.h,v 1.16 2006/10/19 15:41:36 southa Exp $
+ * $Id: AdanaxisSaveData.h,v 1.17 2006/11/03 18:46:33 southa Exp $
  * $Log: AdanaxisSaveData.h,v $
+ * Revision 1.17  2006/11/03 18:46:33  southa
+ * Damage effectors
+ *
  * Revision 1.16  2006/10/19 15:41:36  southa
  * Item handling
  *
@@ -114,6 +117,7 @@ private:
     tEffectorList m_effectorList; //:read :wref
     bool m_clockStarted; //:readwrite
     std::string m_spaceName; //:readwrite
+    Mushware::U32 m_gameDifficulty; //:readwrite
     
 //%classPrototypes {
 public:
@@ -133,6 +137,8 @@ public:
     void ClockStartedSet(const bool& inValue) { m_clockStarted=inValue; }
     const std::string& SpaceName(void) const { return m_spaceName; }
     void SpaceNameSet(const std::string& inValue) { m_spaceName=inValue; }
+    const Mushware::U32& GameDifficulty(void) const { return m_gameDifficulty; }
+    void GameDifficultySet(const Mushware::U32& inValue) { m_gameDifficulty=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -140,7 +146,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } SR+c1MnsalRIIV2ydcFNHw
+//%classPrototypes } iT5eilLaL+GAYTjczA6NtQ
 };
 
 //%inlineHeader {

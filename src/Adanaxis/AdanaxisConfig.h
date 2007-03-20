@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } gJF31m/VR7BOO354DC/mYQ
 /*
- * $Id: AdanaxisConfig.h,v 1.19 2007/03/09 19:50:11 southa Exp $
+ * $Id: AdanaxisConfig.h,v 1.20 2007/03/12 21:05:59 southa Exp $
  * $Log: AdanaxisConfig.h,v $
+ * Revision 1.20  2007/03/12 21:05:59  southa
+ * Scanner symbols
+ *
  * Revision 1.19  2007/03/09 19:50:11  southa
  * Resident textures
  *
@@ -147,13 +150,22 @@ private:
     std::vector<MushGameAxisDef> m_axisDefs; //:read
     std::vector<MushGameKeyDef> m_keyDefs; //:read
     GLModeDef m_modeDef; //:readwrite
-
+    Mushware::U32 m_configDifficulty; //:readwrite
+    Mushware::U32 m_useGLCompression; //:readwrite
+    Mushware::U32 m_useGLShader; //:readwrite
+    
 //%classPrototypes {
 public:
     const std::vector<MushGameAxisDef>& AxisDefs(void) const { return m_axisDefs; }
     const std::vector<MushGameKeyDef>& KeyDefs(void) const { return m_keyDefs; }
     const GLModeDef& ModeDef(void) const { return m_modeDef; }
     void ModeDefSet(const GLModeDef& inValue) { m_modeDef=inValue; }
+    const Mushware::U32& ConfigDifficulty(void) const { return m_configDifficulty; }
+    void ConfigDifficultySet(const Mushware::U32& inValue) { m_configDifficulty=inValue; }
+    const Mushware::U32& UseGLCompression(void) const { return m_useGLCompression; }
+    void UseGLCompressionSet(const Mushware::U32& inValue) { m_useGLCompression=inValue; }
+    const Mushware::U32& UseGLShader(void) const { return m_useGLShader; }
+    void UseGLShaderSet(const Mushware::U32& inValue) { m_useGLShader=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -161,7 +173,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } J+HjtniTqbK27MbU4ZlT8A
+//%classPrototypes } SMAZz30YFeMMxNGRa8cY0g
 };
 //%inlineHeader {
 inline std::ostream&
@@ -171,7 +183,6 @@ operator<<(std::ostream& ioOut, const AdanaxisConfig& inObj)
     return ioOut;
 }
 //%inlineHeader } fTUu9zxKe0/BLgROv3OE8g
-
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw
