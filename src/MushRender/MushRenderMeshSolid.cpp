@@ -3,7 +3,7 @@
  *
  * File: src/MushRender/MushRenderMeshSolid.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } A/GPso4jrQBD0hPDpi3qXg
+//%Header } gfNsThCmT0hAhMS/2HkW2w
 /*
- * $Id: MushRenderMeshSolid.cpp,v 1.13 2006/09/09 11:16:42 southa Exp $
+ * $Id: MushRenderMeshSolid.cpp,v 1.14 2006/11/14 14:02:17 southa Exp $
  * $Log: MushRenderMeshSolid.cpp,v $
+ * Revision 1.14  2006/11/14 14:02:17  southa
+ * Ball projectiles
+ *
  * Revision 1.13  2006/09/09 11:16:42  southa
  * One-time vertex buffer generation
  *
@@ -139,9 +142,10 @@ MushRenderMeshSolid::RenderJobCreate(MushGLJobRender& outRender,
         for (U32 i=0; i < p4Mesh->NumMaterials(); ++i)
         {
             const MushGLMaterial& materialRef = dynamic_cast<const MushGLMaterial&>(p4Mesh->MaterialRef(i));
-            MushGLTexture *pTexture = &materialRef.TexRef(i);
+            MushGLTexture *pTexture = &materialRef.AnimatedTexRef(inSpec.MaterialAnimator());
             workSpecRef.TextureSet(pTexture, i);
         }
+
         outRender.SortValueSet(SortDepth(inSpec, *p4Mesh));
         jobCreated = true;
     }
@@ -200,11 +204,8 @@ MushRenderMeshSolid::OutputBufferGenerate(const MushRenderSpec& inSpec, const Mu
     {
         pTexCoordMesh = &inMesh.TexCoordDelegate().Ref();
     }
-    
-    
-    
+
     const MushMesh4Mesh::tVertices& srcVertices = inMesh.Vertices(); // Source vertices
-    // const U32 srcVerticesSize = srcVertices.size(); // Number of source vertices
     const MushMesh4Mesh::tTexCoords& srcTexCoords = pTexCoordMesh->TexCoords(); // Source texture coordinates
     const U32 srcTexCoordsSize = srcTexCoords.size(); // Number of source texture coordinates
     
@@ -279,11 +280,23 @@ MushRenderMeshSolid::OutputBufferGenerate(const MushRenderSpec& inSpec, const Mu
         glDestBuffersRef.EyeVerticesWRef(); // Projected vertex workspace
     MushMesh4Mesh::tVertices& eyeVertices = eyeWorkspace.DataWRef();
     // Create the projected vertices
-    MushRenderUtil::Transform(eyeVertices, srcVertices, inSpec.ModelToEyeMattress());
-    // U32 eyeVerticesSize = eyeVertices.size(); // Size of projected vertex vector array
+    switch (inMesh.TransformType())
+    {
+        case MushMesh4Mesh::kTransformTypeBillboard:
+            MushRenderUtil::Transform(eyeVertices, srcVertices, inSpec.ModelToEyeBillboardMattress());
+            break;
+            
+        case MushMesh4Mesh::kTransformTypeBillboardRandom:
+            // This gives a different random orientation, so a bit wrong
+            MushRenderUtil::Transform(eyeVertices, srcVertices, inSpec.ModelToEyeBillboardRandomMattress());
+            break;
+       
+        default:
+            MushRenderUtil::Transform(eyeVertices, srcVertices, inSpec.ModelToEyeMattress());
+            break;
+    }
     
-    
-    
+            
     const MushGLBuffers::tTriangleList& vertexTriangleList = glDestBuffersRef.VertexTriangleList();
     Mushware::U32 vertexTriangleListSize = vertexTriangleList.size();
     const MushGLBuffers::tTriangleList& texCoordTriangleList = glDestTexCoordBuffersRef.TexCoordTriangleList();

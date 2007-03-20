@@ -3,7 +3,7 @@
  *
  * File: src/Adanaxis/AdanaxisPieceDeco.cpp
  *
- * Copyright: Andy Southgate 2005-2006
+ * Copyright: Andy Southgate 2005-2007
  *
  * This file may be used and distributed under the terms of the Mushware
  * software licence version 1.1, under the terms for 'Proprietary original
@@ -15,10 +15,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } Xbi0vrfUMDnmd9NKsSwjUQ
+//%Header } SBBDSIIkVx+tNPis94tGjw
 /*
- * $Id: AdanaxisPieceDeco.cpp,v 1.32 2006/10/16 15:25:57 southa Exp $
+ * $Id: AdanaxisPieceDeco.cpp,v 1.33 2006/10/30 17:03:51 southa Exp $
  * $Log: AdanaxisPieceDeco.cpp,v $
+ * Revision 1.33  2006/10/30 17:03:51  southa
+ * Remnants creation
+ *
  * Revision 1.32  2006/10/16 15:25:57  southa
  * Explosion lifetimes
  *
@@ -201,9 +204,9 @@ AdanaxisPieceDeco::RubyCreate(Mushware::tRubyValue inSelf, Mushware::tRubyValue 
     AdanaxisVolatileData::tDecoList& dataRef = AdanaxisRuby::VolatileData().DecoListWRef();
     
     /* This object contains a reference (MushcoreMaptorRef) to an object
-    * in SaveData().DecoList(), which is a MushcoreMaptor<AdanaxisPieceDeco>.
-    * The next line points the MushcoreMaptorRef at that MushcoreMaptor
-    */
+     * in SaveData().DecoList(), which is a MushcoreMaptor<AdanaxisPieceDeco>.
+     * The next line points the MushcoreMaptorRef at that MushcoreMaptor
+     */
     AdanaxisVolatileData::tDecoList::key_type key = dataRef.NextKey();
     
     ostringstream idStream;

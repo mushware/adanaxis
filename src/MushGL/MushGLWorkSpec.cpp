@@ -3,7 +3,7 @@
  *
  * File: src/MushGL/MushGLWorkSpec.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } B/Uhyb8oyTGYwsbcQe79PQ
+//%Header } Rkui8tuVN4wq5D8DMrYxWQ
 /*
- * $Id: MushGLWorkSpec.cpp,v 1.10 2006/06/20 19:06:52 southa Exp $
+ * $Id: MushGLWorkSpec.cpp,v 1.11 2006/09/09 11:16:40 southa Exp $
  * $Log: MushGLWorkSpec.cpp,v $
+ * Revision 1.11  2006/09/09 11:16:40  southa
+ * One-time vertex buffer generation
+ *
  * Revision 1.10  2006/06/20 19:06:52  southa
  * Object creation
  *
@@ -58,6 +61,8 @@
 #include "MushGLClaimer.h"
 #include "MushGLState.h"
 #include "MushGLTexture.h"
+
+#include "API/mushGL.h"
 
 using namespace Mushware;
 using namespace std;
@@ -140,7 +145,7 @@ MushGLWorkSpec::Execute(MushGLBuffers::tDataRef& ioDataRef, MushGLBuffers::tShar
         }
         break;
     }
-
+    
     MushGLV::Sgl().DrawArrays(m_renderType, 0, vertexSize);
     
     stateRef.TexturesDisable();

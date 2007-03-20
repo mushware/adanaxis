@@ -7,7 +7,7 @@
  *
  * File: src/MushRender/MushRenderSpec.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 6hLRNoZfeBvP570tKfB/gA
+//%Header } EfdlGAWUV0OSfVLuWDHxDA
 /*
- * $Id: MushRenderSpec.h,v 1.16 2006/10/06 14:48:19 southa Exp $
+ * $Id: MushRenderSpec.h,v 1.17 2006/11/14 14:02:17 southa Exp $
  * $Log: MushRenderSpec.h,v $
+ * Revision 1.17  2006/11/14 14:02:17  southa
+ * Ball projectiles
+ *
  * Revision 1.16  2006/10/06 14:48:19  southa
  * Material animation
  *
@@ -91,6 +94,8 @@ public:
     virtual ~MushRenderSpec() {}
     
     const tMattress ModelToEyeMattress(void) const { return m_view * ScaledModelMattress(); }
+    const tMattress ModelToEyeBillboardMattress(void) const { return m_view * ScaledModelBillboardMattress(); }
+    const tMattress ModelToEyeBillboardRandomMattress(void) const { return m_view * ScaledModelBillboardRandomMattress(); }
     const tMattress ModelToClipMattress(void) const { return m_projection.Mattress() * ModelToEyeMattress(); }
     const tMattress ModelToClipBillboardMattress(void) const;
     const tMattress ModelToClipBillboardRandomMattress(void) const;
@@ -151,7 +156,6 @@ MushRenderSpec::ModelToClipBillboardMattress(void) const
 {
     tMattress billModel = ModelToEyeMattress();
     
-    // billModel.MatrixSet(MushMeshTools::MatrixRotateInAxis(MushMeshTools::kAxisXY, MushcoreUtil::RandomVal(0,2*M_PI)));    
     billModel.MatrixSet(ScaleMatrix());
     
     return m_projection.Mattress() * billModel;

@@ -3,7 +3,7 @@
  *
  * File: src/MushRender/MushRenderSpec.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } ct6tn+dNsUgrYUjoy0CuvQ
+//%Header } 3g/AFEXzEj0n9yOqGniX4A
 /*
- * $Id: MushRenderSpec.cpp,v 1.11 2006/10/06 11:54:58 southa Exp $
+ * $Id: MushRenderSpec.cpp,v 1.12 2006/10/06 14:48:19 southa Exp $
  * $Log: MushRenderSpec.cpp,v $
+ * Revision 1.12  2006/10/06 14:48:19  southa
+ * Material animation
+ *
  * Revision 1.11  2006/10/06 11:54:58  southa
  * Scaled rendering
  *

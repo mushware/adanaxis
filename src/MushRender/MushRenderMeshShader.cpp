@@ -3,7 +3,7 @@
  *
  * File: src/MushRender/MushRenderMeshShader.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } XKDM1ZJgQpb3nz4x0n57Og
+//%Header } 9oDDcolvt4z9BhHISppNQQ
 /*
- * $Id: MushRenderMeshShader.cpp,v 1.6 2006/10/06 14:48:19 southa Exp $
+ * $Id: MushRenderMeshShader.cpp,v 1.7 2006/11/14 14:02:17 southa Exp $
  * $Log: MushRenderMeshShader.cpp,v $
+ * Revision 1.7  2006/11/14 14:02:17  southa
+ * Ball projectiles
+ *
  * Revision 1.6  2006/10/06 14:48:19  southa
  * Material animation
  *
@@ -206,12 +209,6 @@ MushRenderMeshShader::OutputBufferGenerate(const MushRenderSpec& inSpec, const M
     Mushware::U32 vertexTriangleListSize = vertexTriangleList.size();
     const MushGLBuffers::tTriangleList& texCoordTriangleList = pDestTexCoord->TexCoordTriangleList();
     Mushware::U32 texCoordTriangleListSize = texCoordTriangleList.size();
-    
-    if (vertexTriangleListSize == 0)
-    {
-        MushcoreLog::Sgl().XMLInfoLog() << inMesh;
-        abort();   
-    }
     
     // Build the output buffers
     bool unmapSuccess = true;
