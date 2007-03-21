@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } j1yQVneL+5MtyXUhYiB6CQ
 /*
- * $Id: MushGameRuby.cpp,v 1.28 2007/03/08 18:38:15 southa Exp $
+ * $Id: MushGameRuby.cpp,v 1.29 2007/03/09 19:50:13 southa Exp $
  * $Log: MushGameRuby.cpp,v $
+ * Revision 1.29  2007/03/09 19:50:13  southa
+ * Resident textures
+ *
  * Revision 1.28  2007/03/08 18:38:15  southa
  * Level progression
  *
@@ -720,9 +723,12 @@ MushGameRuby::SoundPlay(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0
     MushRubyValue param0(inArg0);
     try
     {
+        std::vector<std::string> flagStrings;
+        std::string sampleName = MushGameUtil::StripFlags(flagStrings, param0.String());
+
         const MushMeshPosticity& postRef = MushMeshRubyPost::Ref(inArg1);
         
-        MediaAudio::Sgl().Play(*MushcoreDataRef<MediaSound>(param0.String()).Get(),
+        MediaAudio::Sgl().Play(*MushcoreDataRef<MediaSound>(sampleName).Get(),
                                1.0, // Volume
                                postRef.Pos(),
                                0);
@@ -740,9 +746,12 @@ MushGameRuby::TiedSoundPlay(Mushware::tRubyValue inSelf, Mushware::tRubyValue in
     MushRubyValue param0(inArg0);
     try
     {
+        std::vector<std::string> flagStrings;
+        std::string sampleName = MushGameUtil::StripFlags(flagStrings, param0.String());
+
         const MushMeshPosticity& postRef = MushMeshRubyPost::Ref(inArg1);
         
-        MediaAudio::Sgl().Play(*MushcoreDataRef<MediaSound>(param0.String()).Get(),
+        MediaAudio::Sgl().Play(*MushcoreDataRef<MediaSound>(sampleName).Get(),
                                1.0, // Volume
                                postRef.Pos(),
                                MediaAudio::kFlagsTiedToListener);
@@ -761,7 +770,10 @@ MushGameRuby::SoundStreamPlay(Mushware::tRubyValue inSelf, Mushware::tRubyValue 
     MushRubyValue param1(inArg1);
     try
     {
-        MediaAudio::Sgl().Play(*MushcoreDataRef<MediaSoundStream>(param0.String()).Get());
+        std::vector<std::string> flagStrings;
+        std::string sampleName = MushGameUtil::StripFlags(flagStrings, param0.String());
+        
+        MediaAudio::Sgl().Play(*MushcoreDataRef<MediaSoundStream>(sampleName).Get());
     }
     catch (std::exception& e)
     {

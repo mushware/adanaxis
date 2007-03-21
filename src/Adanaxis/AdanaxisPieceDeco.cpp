@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } SBBDSIIkVx+tNPis94tGjw
 /*
- * $Id: AdanaxisPieceDeco.cpp,v 1.34 2007/03/20 20:36:55 southa Exp $
+ * $Id: AdanaxisPieceDeco.cpp,v 1.35 2007/03/21 11:56:06 southa Exp $
  * $Log: AdanaxisPieceDeco.cpp,v $
+ * Revision 1.35  2007/03/21 11:56:06  southa
+ * Rail effects and damage icons
+ *
  * Revision 1.34  2007/03/20 20:36:55  southa
  * Solid renderer fixes
  *
@@ -180,14 +183,14 @@ AdanaxisPieceDeco::Render(MushGLJobRender& outRender,
     tVal alpha =  1.0 - (0.0 + ioLogic.FrameMsec() - m_launchMsec) / m_lifeMsec;
     MushcoreUtil::Constrain<tVal>(alpha, 0, 1);
 
+    renderSpec.MaterialAnimatorSet(1.0 - alpha);
+    
     if (AlphaStutter() > 0.0)
     {
         alpha = MushcoreUtil::RandomVal(alpha * (1-AlphaStutter()), alpha);
     }
     
     inRender.ColourZMiddleSet(inRender.ColourZMiddle().ElementwiseProduct(t4Val(1,1,1,alpha)));
-
-    renderSpec.MaterialAnimatorSet(1.0 - alpha);
 
     return inRender.RenderJobCreate(outRender, renderSpec, Mesh());
 }

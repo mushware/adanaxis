@@ -7,7 +7,7 @@
  *
  * File: src/Media/MediaAudio.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } NkO0g6TshWQZ+4+THDCdtQ
+//%Header } GKxP5HiipBzqObQgJ65BBQ
 /*
- * $Id: MediaAudio.h,v 1.29 2006/12/11 15:01:47 southa Exp $
+ * $Id: MediaAudio.h,v 1.30 2006/12/11 18:54:18 southa Exp $
  * $Log: MediaAudio.h,v $
+ * Revision 1.30  2006/12/11 18:54:18  southa
+ * Positional audio
+ *
  * Revision 1.29  2006/12/11 15:01:47  southa
  * Snapshot
  *
@@ -97,7 +100,8 @@ class MediaAudio : public MushcoreAbstractSingleton<MediaAudio>
 public:
     enum
     {
-        kFlagsTiedToListener = 1
+        kFlagsTiedToListener = 1,
+        kFlagsPinned = 2
     };
     MediaAudio();
     virtual ~MediaAudio();

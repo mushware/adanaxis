@@ -3,7 +3,7 @@
  *
  * File: src/Media/MediaAudio.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } RrZ30myX902oWo35J1ovVw
+//%Header } Us6stC4HQgK7oBK/5R1Cgg
 /*
- * $Id: MediaAudio.cpp,v 1.27 2006/12/11 15:01:43 southa Exp $
+ * $Id: MediaAudio.cpp,v 1.28 2006/12/11 18:54:18 southa Exp $
  * $Log: MediaAudio.cpp,v $
+ * Revision 1.28  2006/12/11 18:54:18  southa
+ * Positional audio
+ *
  * Revision 1.27  2006/12/11 15:01:43  southa
  * Snapshot
  *

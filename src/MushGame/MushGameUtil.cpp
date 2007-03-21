@@ -3,7 +3,7 @@
  *
  * File: src/MushGame/MushGameUtil.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } eAXK2shReRuPxk9ARzaGHA
+//%Header } 5M6mZbEAj2APrSnI9ul8YA
 /*
- * $Id: MushGameUtil.cpp,v 1.16 2006/10/04 13:35:24 southa Exp $
+ * $Id: MushGameUtil.cpp,v 1.17 2006/12/14 00:33:49 southa Exp $
  * $Log: MushGameUtil.cpp,v $
+ * Revision 1.17  2006/12/14 00:33:49  southa
+ * Control fix and audio pacing
+ *
  * Revision 1.16  2006/10/04 13:35:24  southa
  * Selective targetting
  *
@@ -275,3 +278,23 @@ MushGameUtil::ObjectNameDecode(std::string& outPrefix, Mushware::U32& outNumber,
         throw MushcoreDataFail("Cannot decode object name from '"+inName+"'");
     }
 }
+
+std::string
+MushGameUtil::StripFlags(std::vector<std::string> outFlags, const std::string& inString)
+{
+    string::size_type startPos = 0;
+    string::size_type endPos = 0;
+    while (inString.size() > startPos && inString[startPos] == '[')
+    {
+        endPos = inString.find(']', startPos);
+        if (endPos == string::npos)
+        {
+            throw MushcoreDataFail("Malformed flags in '"+inString+"'");   
+        }
+        outFlags.push_back(inString.substr(startPos+1, endPos-startPos-1));
+        startPos = endPos+1;
+    }
+    
+    return inString.substr(startPos);
+}
+

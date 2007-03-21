@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } Xf3bye/YTJtAd1JW+UBrog
 /*
- * $Id: AdanaxisRender.cpp,v 1.71 2007/03/20 17:31:24 southa Exp $
+ * $Id: AdanaxisRender.cpp,v 1.72 2007/03/20 20:36:55 southa Exp $
  * $Log: AdanaxisRender.cpp,v $
+ * Revision 1.72  2007/03/20 20:36:55  southa
+ * Solid renderer fixes
+ *
  * Revision 1.71  2007/03/20 17:31:24  southa
  * Difficulty and GL options
  *
@@ -692,10 +695,10 @@ AdanaxisRender::OverPlot(MushGameLogic& ioLogic, const MushGameCamera& inCamera)
         
         if (logicRef.SaveData().ClockStarted())
         {
-            if (logicRef.EndTime() > logicRef.StartTime())
+            if (logicRef.GameMsec() > logicRef.StartTime())
             {
                 ostringstream message;
-                message << GameTimer::MsecToLongString(logicRef.EndTime() - logicRef.StartTime());
+                message << GameTimer::MsecToLongString(logicRef.GameMsec() - logicRef.StartTime());
                 orthoGL.MoveToEdge(0,1);
                 orthoGL.MoveRelative(-0.00*message.str().size(), -0.03);
                 GLString glStr(message.str(), fontMedium, 0);
