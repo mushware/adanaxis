@@ -3,7 +3,7 @@
  *
  * File: src/MushGame/MushGameIntern.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 8fTAEuGpO9TKg8SBLTUQaw
+//%Header } z893A6OqbF+Lz1KLSzrQmw
 /*
- * $Id: MushGameIntern.cpp,v 1.7 2007/03/08 11:00:29 southa Exp $
+ * $Id: MushGameIntern.cpp,v 1.8 2007/03/08 18:38:15 southa Exp $
  * $Log: MushGameIntern.cpp,v $
+ * Revision 1.8  2007/03/08 18:38:15  southa
+ * Level progression
+ *
  * Revision 1.7  2007/03/08 11:00:29  southa
  * Level epilogue
  *
@@ -55,10 +58,12 @@ MushGameIntern::MushGameIntern()
 //%initialisations {
     m_klassMushEventCollision = MushRubyValue(MushRubyUtil::Class("MushEventCollision"));
     m_klassMushEventExpiry = MushRubyValue(MushRubyUtil::Class("MushEventExpiry"));
+    m_ATm_alphaStutter = MushRubyIntern::SymbolID("@m_alphaStutter");
     m_ATm_piece1 = MushRubyIntern::SymbolID("@m_piece1");
     m_ATm_piece2 = MushRubyIntern::SymbolID("@m_piece2");
     m_ATm_chunkNum1 = MushRubyIntern::SymbolID("@m_chunkNum1");
     m_ATm_chunkNum2 = MushRubyIntern::SymbolID("@m_chunkNum2");
+    m_ATm_collisionPoint = MushRubyIntern::SymbolID("@m_collisionPoint");
     m_ATm_renderScale = MushRubyIntern::SymbolID("@m_renderScale");
     m_mActionTimer = MushRubyIntern::SymbolID("mActionTimer");
     m_mCutSceneKeypress = MushRubyIntern::SymbolID("mCutSceneKeypress");
@@ -67,5 +72,5 @@ MushGameIntern::MushGameIntern()
     m_mEpilogueStartWon = MushRubyIntern::SymbolID("mEpilogueStartWon");
     m_mEventConsume = MushRubyIntern::SymbolID("mEventConsume");
     m_mEventHandle = MushRubyIntern::SymbolID("mEventHandle");
-//%initialisations } 0255ae92c4d04fdd6b3da29a5af39c41
+//%initialisations } 5c66046b49bdbc5fd2fabbf6bbaf33cd
 }

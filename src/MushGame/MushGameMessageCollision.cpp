@@ -3,7 +3,7 @@
  *
  * File: src/MushGame/MushGameMessageCollision.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 1v0gxN1HJj5gA6gMJ/jSTw
+//%Header } jliX+XQVdl7ma3xsdxIRsQ
 /*
- * $Id: MushGameMessageCollision.cpp,v 1.2 2006/06/01 15:39:24 southa Exp $
+ * $Id: MushGameMessageCollision.cpp,v 1.3 2006/10/12 22:04:48 southa Exp $
  * $Log: MushGameMessageCollision.cpp,v $
+ * Revision 1.3  2006/10/12 22:04:48  southa
+ * Collision events
+ *
  * Revision 1.2  2006/06/01 15:39:24  southa
  * DrawArray verification and fixes
  *
@@ -32,6 +35,8 @@
 #include "MushGameMessageCollision.h"
 
 #include "MushGameIntern.h"
+
+#include "API/mushMushMeshRuby.h"
 
 using namespace Mushware;
 using namespace std;
@@ -47,6 +52,13 @@ MushGameMessageCollision::RubyObjectMake(void)
     {
         MushRubyUtil::InstanceVarSet(retVal, MushGameIntern::Sgl().ATm_chunkNum1(), MushRubyValue(m_chunkNum1).Value());
         MushRubyUtil::InstanceVarSet(retVal, MushGameIntern::Sgl().ATm_chunkNum2(), MushRubyValue(m_chunkNum2).Value());
+    }
+    // else leave undefined
+    if (m_collisionPointValid)
+    {
+        tRubyValue collPoint = MushMeshRubyVector::NewInstance();
+        MushMeshRubyVector::WRef(collPoint) = m_collisionPoint;
+        MushRubyUtil::InstanceVarSet(retVal, MushGameIntern::Sgl().ATm_collisionPoint(), collPoint);
     }
     // else leave undefined
     
@@ -107,8 +119,10 @@ MushGameMessageCollision::AutoPrint(std::ostream& ioOut) const
     }
     ioOut << "chunkNum1=" << m_chunkNum1 << ", ";
     ioOut << "chunkNum2=" << m_chunkNum2 << ", ";
+    ioOut << "collisionPoint=" << m_collisionPoint << ", ";
     ioOut << "chunkNumsValid=" << m_chunkNumsValid << ", ";
-    ioOut << "piecesValid=" << m_piecesValid;
+    ioOut << "piecesValid=" << m_piecesValid << ", ";
+    ioOut << "collisionPointValid=" << m_collisionPointValid;
     ioOut << "]";
 }
 bool
@@ -144,6 +158,10 @@ MushGameMessageCollision::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std
     {
         ioIn >> m_chunkNum2;
     }
+    else if (inTagStr == "collisionPoint")
+    {
+        ioIn >> m_collisionPoint;
+    }
     else if (inTagStr == "chunkNumsValid")
     {
         ioIn >> m_chunkNumsValid;
@@ -151,6 +169,10 @@ MushGameMessageCollision::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std
     else if (inTagStr == "piecesValid")
     {
         ioIn >> m_piecesValid;
+    }
+    else if (inTagStr == "collisionPointValid")
+    {
+        ioIn >> m_collisionPointValid;
     }
     else if (MushGameMessage::AutoXMLDataProcess(ioIn, inTagStr))
     {
@@ -178,9 +200,13 @@ MushGameMessageCollision::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_chunkNum1;
     ioOut.TagSet("chunkNum2");
     ioOut << m_chunkNum2;
+    ioOut.TagSet("collisionPoint");
+    ioOut << m_collisionPoint;
     ioOut.TagSet("chunkNumsValid");
     ioOut << m_chunkNumsValid;
     ioOut.TagSet("piecesValid");
     ioOut << m_piecesValid;
+    ioOut.TagSet("collisionPointValid");
+    ioOut << m_collisionPointValid;
 }
-//%outOfLineFunctions } VMsKkYm+ZSgVJZFxP7Af+g
+//%outOfLineFunctions } kVk8++XNoa9VBYTtQsZh5A

@@ -3,7 +3,7 @@
  *
  * File: src/MushGame/MushGamePiece.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } rVCNunlW+wZoonHnGB5a7Q
+//%Header } lbK92W0eIx4DoRSJjebwEQ
 /*
- * $Id: MushGamePiece.cpp,v 1.21 2006/10/17 11:05:55 southa Exp $
+ * $Id: MushGamePiece.cpp,v 1.22 2006/10/17 15:28:02 southa Exp $
  * $Log: MushGamePiece.cpp,v $
+ * Revision 1.22  2006/10/17 15:28:02  southa
+ * Player collisions
+ *
  * Revision 1.21  2006/10/17 11:05:55  southa
  * Expiry events
  *
@@ -108,6 +111,7 @@ MushGamePiece::MushGamePiece(const std::string& inID) :
     m_expireFlag(false),
     m_hitPoints(0),
     m_initialHitPoints(0),
+    m_alphaStutter(0),
     m_rubyObj(Mushware::kRubyQnil)
 {
     m_buffersRef.NameSet(MushGLBuffers::NextBufferNumAdvance());
@@ -267,6 +271,7 @@ MushGamePiece::Save(Mushware::tRubyValue inSelf)
             RenderScaleSet(MushMeshRubyVector::Ref(value));
         }
     }
+    m_alphaStutter = MushRubyValue(MushRubyUtil::InstanceVar(inSelf, MushGameIntern::Sgl().ATm_alphaStutter())).Val();
 }
 
 MushRubyValue
@@ -456,6 +461,7 @@ MushGamePiece::AutoPrint(std::ostream& ioOut) const
     ioOut << "expireFlag=" << m_expireFlag << ", ";
     ioOut << "hitPoints=" << m_hitPoints << ", ";
     ioOut << "initialHitPoints=" << m_initialHitPoints << ", ";
+    ioOut << "alphaStutter=" << m_alphaStutter << ", ";
     ioOut << "buffersRef=" << m_buffersRef << ", ";
     ioOut << "sharedBuffersRef=" << m_sharedBuffersRef << ", ";
     ioOut << "rubyObj=" << m_rubyObj << ", ";
@@ -507,6 +513,10 @@ MushGamePiece::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& i
     {
         ioIn >> m_initialHitPoints;
     }
+    else if (inTagStr == "alphaStutter")
+    {
+        ioIn >> m_alphaStutter;
+    }
     else if (inTagStr == "buffersRef")
     {
         ioIn >> m_buffersRef;
@@ -550,6 +560,8 @@ MushGamePiece::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_hitPoints;
     ioOut.TagSet("initialHitPoints");
     ioOut << m_initialHitPoints;
+    ioOut.TagSet("alphaStutter");
+    ioOut << m_alphaStutter;
     ioOut.TagSet("buffersRef");
     ioOut << m_buffersRef;
     ioOut.TagSet("sharedBuffersRef");
@@ -559,4 +571,4 @@ MushGamePiece::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("rubyObjMonkey");
     ioOut << m_rubyObjMonkey;
 }
-//%outOfLineFunctions } mjrtdnG8B72VF720g4qiww
+//%outOfLineFunctions } WoMS8+EJ4jxOO52ja6lkuQ

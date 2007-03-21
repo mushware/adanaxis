@@ -3,7 +3,7 @@
  *
  * File: src/MushCollision/MushCollisionResolver.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } ymdD2Lh32YJKehH+HKSuAg
+//%Header } 1uefOWcKCDY4W2xTWkEYpg
 /*
- * $Id: MushCollisionResolver.cpp,v 1.6 2006/10/12 22:04:48 southa Exp $
+ * $Id: MushCollisionResolver.cpp,v 1.7 2006/11/14 20:28:37 southa Exp $
  * $Log: MushCollisionResolver.cpp,v $
+ * Revision 1.7  2006/11/14 20:28:37  southa
+ * Added rail gun
+ *
  * Revision 1.6  2006/10/12 22:04:48  southa
  * Collision events
  *
@@ -118,6 +121,23 @@ MushCollisionResolver::WCylinderResolve(MushCollisionInfo& outCollInfo, const Mu
             minDistanceSep = distanceSep;
             chunkNum2 = j;
         }                
+    }
+    
+    // Recalculate the point of contact with the nearest chunk
+    if (numChunks2 > 0)
+    {
+        // Bring centroidRef2 onto the axis of the cylinder
+        t4Val pointVec = centroidsRef2[chunkNum2] - centroidsRef1[0];
+        inPiece1.CollisionPost().AngPos().Conjugate().VectorRotate(pointVec);
+        // pointVec now in cylinder object space
+        pointVec.XSet(0);
+        pointVec.YSet(0);
+        pointVec.ZSet(0);
+        inPiece1.CollisionPost().AngPos().VectorRotate(pointVec);
+        pointVec += centroidsRef1[0];
+        
+        outCollInfo.CollisionPointSet(pointVec);
+        outCollInfo.CollisionPointValidSet(true);
     }
     
     outCollInfo.SeparatingDistanceSet(minDistanceSep);

@@ -3,7 +3,7 @@
  *
  * File: src/MushCollision/MushCollisionInfo.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,7 +17,7 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } OhkB4+wLY2tpRyaHhubwOw
+//%Header } p/ikJGkkR4psPYeu/GiL5A
 /*
  *  MushCollisionInfo.cpp
  *  project
@@ -67,9 +67,11 @@ MushCollisionInfo::AutoPrint(std::ostream& ioOut) const
     ioOut << "objectName2=" << m_objectName2 << ", ";
     ioOut << "chunkNum1=" << m_chunkNum1 << ", ";
     ioOut << "chunkNum2=" << m_chunkNum2 << ", ";
+    ioOut << "collisionPoint=" << m_collisionPoint << ", ";
     ioOut << "objectNamesValid=" << m_objectNamesValid << ", ";
     ioOut << "chunkNumsValid=" << m_chunkNumsValid << ", ";
-    ioOut << "objectPointersValid=" << m_objectPointersValid;
+    ioOut << "objectPointersValid=" << m_objectPointersValid << ", ";
+    ioOut << "collisionPointValid=" << m_collisionPointValid;
     ioOut << "]";
 }
 bool
@@ -101,6 +103,10 @@ MushCollisionInfo::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::strin
     {
         ioIn >> m_chunkNum2;
     }
+    else if (inTagStr == "collisionPoint")
+    {
+        ioIn >> m_collisionPoint;
+    }
     else if (inTagStr == "objectNamesValid")
     {
         ioIn >> m_objectNamesValid;
@@ -112,6 +118,10 @@ MushCollisionInfo::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::strin
     else if (inTagStr == "objectPointersValid")
     {
         ioIn >> m_objectPointersValid;
+    }
+    else if (inTagStr == "collisionPointValid")
+    {
+        ioIn >> m_collisionPointValid;
     }
     else 
     {
@@ -132,11 +142,15 @@ MushCollisionInfo::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_chunkNum1;
     ioOut.TagSet("chunkNum2");
     ioOut << m_chunkNum2;
+    ioOut.TagSet("collisionPoint");
+    ioOut << m_collisionPoint;
     ioOut.TagSet("objectNamesValid");
     ioOut << m_objectNamesValid;
     ioOut.TagSet("chunkNumsValid");
     ioOut << m_chunkNumsValid;
     ioOut.TagSet("objectPointersValid");
     ioOut << m_objectPointersValid;
+    ioOut.TagSet("collisionPointValid");
+    ioOut << m_collisionPointValid;
 }
-//%outOfLineFunctions } TV37g1aiRMsB5r9TpAsffQ
+//%outOfLineFunctions } 5MagyiLHMt7rU5HPQj9wTQ

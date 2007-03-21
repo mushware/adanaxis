@@ -7,7 +7,7 @@
  *
  * File: src/MushGame/MushGameIntern.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } mlN3NFYShD8lw+CPV54eBg
+//%Header } RIS7HPsOToqqsgLbG2XOkQ
 /*
- * $Id: MushGameIntern.h,v 1.7 2007/03/08 11:00:30 southa Exp $
+ * $Id: MushGameIntern.h,v 1.8 2007/03/08 18:38:15 southa Exp $
  * $Log: MushGameIntern.h,v $
+ * Revision 1.8  2007/03/08 18:38:15  southa
+ * Level progression
+ *
  * Revision 1.7  2007/03/08 11:00:30  southa
  * Level epilogue
  *
@@ -54,10 +57,12 @@
 /*
 :data1begin
  ids = %w{
+     @m_alphaStutter
      @m_piece1
      @m_piece2
      @m_chunkNum1
      @m_chunkNum2
+     @m_collisionPoint
      @m_renderScale
      mActionTimer
      mCutSceneKeypress
@@ -81,10 +86,12 @@ public:
 public:
     MushRubyValue& MushEventCollision(void) { return m_klassMushEventCollision; }
     MushRubyValue& MushEventExpiry(void) { return m_klassMushEventExpiry; }
+    Mushware::tRubyID ATm_alphaStutter(void) { return m_ATm_alphaStutter; }
     Mushware::tRubyID ATm_piece1(void) { return m_ATm_piece1; }
     Mushware::tRubyID ATm_piece2(void) { return m_ATm_piece2; }
     Mushware::tRubyID ATm_chunkNum1(void) { return m_ATm_chunkNum1; }
     Mushware::tRubyID ATm_chunkNum2(void) { return m_ATm_chunkNum2; }
+    Mushware::tRubyID ATm_collisionPoint(void) { return m_ATm_collisionPoint; }
     Mushware::tRubyID ATm_renderScale(void) { return m_ATm_renderScale; }
     Mushware::tRubyID mActionTimer(void) { return m_mActionTimer; }
     Mushware::tRubyID mCutSceneKeypress(void) { return m_mCutSceneKeypress; }
@@ -96,10 +103,12 @@ public:
 private:
     MushRubyValue m_klassMushEventCollision;
     MushRubyValue m_klassMushEventExpiry;
+    Mushware::tRubyID m_ATm_alphaStutter;
     Mushware::tRubyID m_ATm_piece1;
     Mushware::tRubyID m_ATm_piece2;
     Mushware::tRubyID m_ATm_chunkNum1;
     Mushware::tRubyID m_ATm_chunkNum2;
+    Mushware::tRubyID m_ATm_collisionPoint;
     Mushware::tRubyID m_ATm_renderScale;
     Mushware::tRubyID m_mActionTimer;
     Mushware::tRubyID m_mCutSceneKeypress;
@@ -108,7 +117,7 @@ private:
     Mushware::tRubyID m_mEpilogueStartWon;
     Mushware::tRubyID m_mEventConsume;
     Mushware::tRubyID m_mEventHandle;
-//%declarations } 4785328cf9bf433a6a8d515bc2580892
+//%declarations } b39fc8734ce9546cb78ce9378ed2129e
 //%classPrototypes {
 public:
 //%classPrototypes } 0ImSRh0/JBpOMwe5g8vGcA

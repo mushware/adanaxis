@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } stbnKxftF7zm1Z3BNG1/hA
 /*
- * $Id: AdanaxisLogic.cpp,v 1.40 2007/03/09 19:50:11 southa Exp $
+ * $Id: AdanaxisLogic.cpp,v 1.41 2007/03/13 18:21:37 southa Exp $
  * $Log: AdanaxisLogic.cpp,v $
+ * Revision 1.41  2007/03/13 18:21:37  southa
+ * Scanner jamming
+ *
  * Revision 1.40  2007/03/09 19:50:11  southa
  * Resident textures
  *
@@ -339,6 +342,16 @@ AdanaxisLogic::CollisionHandle(MushGamePiece *iopPiece1, MushGamePiece *iopPiece
     else
     {
         collMesg.ChunkNumsValidSet(false);
+    }
+    
+    if (inCollInfo.CollisionPointValid())
+    {
+        collMesg.CollisionPointSet(inCollInfo.CollisionPoint());
+        collMesg.CollisionPointValidSet(true);
+    }
+    else
+    {
+        collMesg.CollisionPointValidSet(false);
     }
     
     MushRubyValue collObj(collMesg.RubyObjectMake());

@@ -7,7 +7,7 @@
  *
  * File: src/MushGame/MushGamePiece.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } QiW5KaWfX1mBGolg1jxMIg
+//%Header } /HYnAUhSv7cTb+D5WdbqSQ
 /*
- * $Id: MushGamePiece.h,v 1.23 2006/10/17 11:05:55 southa Exp $
+ * $Id: MushGamePiece.h,v 1.24 2006/10/17 15:28:02 southa Exp $
  * $Log: MushGamePiece.h,v $
+ * Revision 1.24  2006/10/17 15:28:02  southa
+ * Player collisions
+ *
  * Revision 1.23  2006/10/17 11:05:55  southa
  * Expiry events
  *
@@ -150,6 +153,7 @@ private:
     bool m_expireFlag; //:readwrite   
     Mushware::tVal m_hitPoints; //:readwrite
     Mushware::tVal m_initialHitPoints; //:readwrite
+    Mushware::tVal m_alphaStutter; //:readwrite
     
     MushGLBuffers::tDataRef m_buffersRef; //:read :wref
     MushGLBuffers::tSharedDataRef m_sharedBuffersRef; //:read :wref
@@ -185,6 +189,8 @@ public:
     void HitPointsSet(const Mushware::tVal& inValue) { m_hitPoints=inValue; }
     const Mushware::tVal& InitialHitPoints(void) const { return m_initialHitPoints; }
     void InitialHitPointsSet(const Mushware::tVal& inValue) { m_initialHitPoints=inValue; }
+    const Mushware::tVal& AlphaStutter(void) const { return m_alphaStutter; }
+    void AlphaStutterSet(const Mushware::tVal& inValue) { m_alphaStutter=inValue; }
     const MushGLBuffers::tDataRef& BuffersRef(void) const { return m_buffersRef; }
     // Writable reference for m_buffersRef
     MushGLBuffers::tDataRef& BuffersRefWRef(void) { return m_buffersRef; }
@@ -200,7 +206,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } U25icEESEpgSemwqCSlKuw
+//%classPrototypes } 2uX1Pw56raLSBjulPQwRQw
 };
 //%inlineHeader {
 inline std::ostream&

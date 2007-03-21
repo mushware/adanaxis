@@ -7,7 +7,7 @@
  *
  * File: src/MushCollision/MushCollisionInfo.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } M7UhIENwDvfEsDghIncTBw
+//%Header } o1KtHYDff+EMHNeBEITfcg
 /*
- * $Id: MushCollisionInfo.h,v 1.3 2006/06/01 15:39:15 southa Exp $
+ * $Id: MushCollisionInfo.h,v 1.4 2006/10/12 22:04:48 southa Exp $
  * $Log: MushCollisionInfo.h,v $
+ * Revision 1.4  2006/10/12 22:04:48  southa
+ * Collision events
+ *
  * Revision 1.3  2006/06/01 15:39:15  southa
  * DrawArray verification and fixes
  *
@@ -43,18 +46,19 @@
 class MushCollisionInfo : public MushcoreVirtualObject
 {
 public:
-    MushCollisionInfo() : m_objectNamesValid(false), m_chunkNumsValid(false) {}
+    MushCollisionInfo() : m_objectNamesValid(false), m_chunkNumsValid(false), m_collisionPointValid(false) {}
     
 private:
     Mushware::tVal m_separatingDistance; //:readwrite
     std::string m_objectName1; //:readwrite
     std::string m_objectName2; //:readwrite
-    
     Mushware::U32 m_chunkNum1; //:readwrite
     Mushware::U32 m_chunkNum2; //:readwrite
+    Mushware::t4Val m_collisionPoint; //:readwrite
     bool m_objectNamesValid; //:readwrite
     bool m_chunkNumsValid; //:readwrite
     bool m_objectPointersValid; //:readwrite
+    bool m_collisionPointValid; //:readwrite
     
 //%classPrototypes {
 public:
@@ -68,12 +72,16 @@ public:
     void ChunkNum1Set(const Mushware::U32& inValue) { m_chunkNum1=inValue; }
     const Mushware::U32& ChunkNum2(void) const { return m_chunkNum2; }
     void ChunkNum2Set(const Mushware::U32& inValue) { m_chunkNum2=inValue; }
+    const Mushware::t4Val& CollisionPoint(void) const { return m_collisionPoint; }
+    void CollisionPointSet(const Mushware::t4Val& inValue) { m_collisionPoint=inValue; }
     const bool& ObjectNamesValid(void) const { return m_objectNamesValid; }
     void ObjectNamesValidSet(const bool& inValue) { m_objectNamesValid=inValue; }
     const bool& ChunkNumsValid(void) const { return m_chunkNumsValid; }
     void ChunkNumsValidSet(const bool& inValue) { m_chunkNumsValid=inValue; }
     const bool& ObjectPointersValid(void) const { return m_objectPointersValid; }
     void ObjectPointersValidSet(const bool& inValue) { m_objectPointersValid=inValue; }
+    const bool& CollisionPointValid(void) const { return m_collisionPointValid; }
+    void CollisionPointValidSet(const bool& inValue) { m_collisionPointValid=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -81,7 +89,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } ylpGT1OVFIgLVBxm4I4lpg
+//%classPrototypes } NkEXN9Y/nsbsukoDOFr7mw
 };
 //%inlineHeader {
 inline std::ostream&
