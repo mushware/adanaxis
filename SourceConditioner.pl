@@ -10,8 +10,11 @@
 #
 ##############################################################################
 
-# $Id: SourceConditioner.pl,v 1.57 2007/03/06 11:34:00 southa Exp $
+# $Id: SourceConditioner.pl,v 1.58 2007/03/09 19:50:09 southa Exp $
 # $Log: SourceConditioner.pl,v $
+# Revision 1.58  2007/03/09 19:50:09  southa
+# Resident textures
+#
 # Revision 1.57  2007/03/06 11:34:00  southa
 # Space and precache fixes
 #
@@ -255,7 +258,7 @@ my @gCHeaders = (
 ' *',
 ' ****************************************************************************/'
 ],
-'^(Adanaxis.*|space)\.rb$' => [
+'^space\.rb$' => [
 '##############################################################################',
 '#',
 '# File @FILENAME@',
@@ -263,7 +266,23 @@ my @gCHeaders = (
 '# Copyright Andy Southgate 2006-2007',
 '#',
 '# This file may be used and distributed under the terms of the Mushware',
-'# software licence version 1.1, under the terms for \'Proprietary original',
+'# Commercial Software Licence version 1.2.  If not supplied with this software',
+'# a copy of the licence can be obtained from Mushware Limited via',
+'# http://www.mushware.com/.',
+'#', 
+'# This software carries NO WARRANTY of any kind.',
+'#',
+'##############################################################################'
+  ],
+'^Adanaxis.*\.rb$' => [
+'##############################################################################',
+'#',
+'# File @FILENAME@',
+'#',
+'# Copyright Andy Southgate 2006-2007',
+'#',
+'# This file may be used and distributed under the terms of the Mushware',
+'# Software Licence version 1.2, under the terms for \'Proprietary original',
 '# source files\'.  If not supplied with this software, a copy of the licence',
 '# can be obtained from Mushware Limited via http://www.mushware.com/.',
 '# One of your options under that licence is to use and distribute this file',
@@ -302,7 +321,7 @@ my @gCHeaders = (
   ' * Copyright: Andy Southgate 2005-2007',
   ' *',
   ' * This file may be used and distributed under the terms of the Mushware',
-  ' * software licence version 1.1, under the terms for \'Proprietary original',
+  ' * Software Licence version 1.2, under the terms for \'Proprietary original',
   ' * source files\'.  If not supplied with this software, a copy of the licence',
   ' * can be obtained from Mushware Limited via http://www.mushware.com/.',
   ' * One of your options under that licence is to use and distribute this file',

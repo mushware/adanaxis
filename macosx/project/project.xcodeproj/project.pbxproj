@@ -3532,6 +3532,12 @@
 		7A66E42505FB25C500135328 /* mushMushGL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mushMushGL.h; sourceTree = "<group>"; };
 		7A66E44005FB260600135328 /* MushGL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushGL.h; sourceTree = "<group>"; };
 		7A66E44105FB260600135328 /* MushGL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushGL.cpp; sourceTree = "<group>"; };
+		7A6842820BB3EBCB00A7E83F /* dialogues.xml */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; path = dialogues.xml; sourceTree = "<group>"; };
+		7A6842830BB3EBCB00A7E83F /* manifest.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = manifest.txt; sourceTree = "<group>"; };
+		7A6842840BB3EBCB00A7E83F /* space.rb */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.ruby; path = space.rb; sourceTree = "<group>"; };
+		7A6842870BB3ECB200A7E83F /* dialogues.xml */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; path = dialogues.xml; sourceTree = "<group>"; };
+		7A6842880BB3ECB200A7E83F /* manifest.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = manifest.txt; sourceTree = "<group>"; };
+		7A6842890BB3ECB200A7E83F /* space.rb */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.ruby; path = space.rb; sourceTree = "<group>"; };
 		7A68D2730BAB0DE0009F2015 /* MushGLDraw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushGLDraw.h; sourceTree = "<group>"; };
 		7A68D2740BAB0DE0009F2015 /* MushGLDraw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushGLDraw.cpp; sourceTree = "<group>"; };
 		7A68D2850BAB1911009F2015 /* AdanaxisRender.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = AdanaxisRender.xml; sourceTree = "<group>"; };
@@ -3825,6 +3831,7 @@
 		7ABCE94E05AB45CE00A00CC6 /* snapshot.def */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = snapshot.def; sourceTree = "<group>"; };
 		7ABCE96F05AB463800A00CC6 /* app.Makefile.am */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = app.Makefile.am; sourceTree = "<group>"; };
 		7ABCE97005AB463800A00CC6 /* sdl_app.configure.in */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = sdl_app.configure.in; sourceTree = "<group>"; };
+		7ABD1AFD0BB2EFE700C572AF /* commercial.COPYING */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; name = commercial.COPYING; path = ../../targets/commercial.COPYING; sourceTree = SOURCE_ROOT; };
 		7ABDE4E20A69400100636DC1 /* AdanaxisLevels.rb */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = text.script.ruby; path = AdanaxisLevels.rb; sourceTree = "<group>"; tabWidth = 2; };
 		7ABDE4ED0A6943F000636DC1 /* manifest.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = manifest.txt; sourceTree = "<group>"; };
 		7AC4391C0861E020006D73D3 /* MushGamePiecePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushGamePiecePlayer.h; sourceTree = "<group>"; };
@@ -4406,6 +4413,8 @@
 		7A3E0D170A4821B30078B650 /* spaces */ = {
 			isa = PBXGroup;
 			children = (
+				7A6842810BB3EBCB00A7E83F /* level1 */,
+				7A6842860BB3ECB200A7E83F /* level2 */,
 				7A3E0D1B0A4821C10078B650 /* local1 */,
 				7A97ECE80A6A808600369FD6 /* local2 */,
 				7A6176830A7FB32F00B97CA2 /* local3 */,
@@ -5764,6 +5773,7 @@
 				7ACC30A405AB116F001A0873 /* tesseracttrainer.ChangeLog */,
 				7ACC30A505AB116F001A0873 /* app.COPYING */,
 				7ACC30A605AB116F001A0873 /* app.INSTALL */,
+				7ABD1AFD0BB2EFE700C572AF /* commercial.COPYING */,
 				7ACC30A705AB116F001A0873 /* NEWS */,
 				7ACC30A805AB116F001A0873 /* README */,
 				7ACC30A905AB116F001A0873 /* README.linux */,
@@ -5841,6 +5851,26 @@
 				7AC6AB78087964F60078A331 /* MushGLWorkspace.h */,
 			);
 			path = MushGL;
+			sourceTree = "<group>";
+		};
+		7A6842810BB3EBCB00A7E83F /* level1 */ = {
+			isa = PBXGroup;
+			children = (
+				7A6842820BB3EBCB00A7E83F /* dialogues.xml */,
+				7A6842830BB3EBCB00A7E83F /* manifest.txt */,
+				7A6842840BB3EBCB00A7E83F /* space.rb */,
+			);
+			path = level1;
+			sourceTree = "<group>";
+		};
+		7A6842860BB3ECB200A7E83F /* level2 */ = {
+			isa = PBXGroup;
+			children = (
+				7A6842870BB3ECB200A7E83F /* dialogues.xml */,
+				7A6842880BB3ECB200A7E83F /* manifest.txt */,
+				7A6842890BB3ECB200A7E83F /* space.rb */,
+			);
+			path = level2;
 			sourceTree = "<group>";
 		};
 		7A6CE19605A58DB000777D9B /* scripts */ = {
