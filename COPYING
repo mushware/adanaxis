@@ -1,22 +1,22 @@
-Mushware software licence version 1.1
+Mushware Software Licence version 1.2
 =====================================
 
 1.  The software is provided WITHOUT WARRANTY of any kind.
 
-2.  In the following text, the terms 'Package', 'The Author' and
-    'The Company' refer to definitions given in Schedule 1.
+2.  In the following text, the terms 'Package', 'The Author' and 'The Company'
+    refer to definitions given in Schedule 1.
     
-3.  This Package may be used, installed, and redistributed in unmodified
-    form without restriction.
+3.  This Package may be used, installed, and redistributed in unmodified form
+    without restriction.
 
-4.  Distribution of modified versions of this Package is permitted but
-    subject to the conditions below and those imposed by the licences of
-    libraries used by this Package.
+4.  Distribution of modified versions of this Package is permitted but subject
+    to the conditions below and those imposed by the licences of libraries used
+    by this Package.
 
-5.  If Schedule 3 contains no files, it is the intention that this licence be
-    compatible with version 2 of the GNU General Public License.  If Schedule 3
-    contains no files you may, at your option, replace this licence with
-    version 2 of the GNU General Public License.
+5.  If the Package contains none of the files described in Schedule 3, it is the
+    intention that this licence be compatible with version 2 of the GNU General
+    Public License.  In this case only you may, at your option, replace this
+    licence with version 2 of the GNU General Public License.
 
 Proprietary original source code
 ================================
@@ -39,7 +39,7 @@ Other proprietary files
      specified in Schedule 3.
     
 7.2  The Company grants you a licence to use and distribute these files only
-     as part of a distribution which is substantially the same as the original
+     as part of a distribution which is essentially the same as the original
      Package.  If the resulting modified distribution contains files listed in
      schedule 3 or derivative works thereof, the only permitted modifications
      are those required to correct the operation of the software or tailor it
@@ -76,12 +76,13 @@ The Author:   Andy Southgate of 64 Fen Road, Cambridge, CB4 1TX, England.
               Please use this address for correspondance.
 
 This Package: The software, package or installer named
-              Adanaxis version 0.7.0
+              Snapshot version 0.0.1
 
 Schedule 2: Proprietary original source files
 =============================================
 
-Proprietary original source code files for this Package:
+Proprietary original source code files for this Package are those meeting any of
+these conditions:
 
   Filenames starting with 'Adanaxis'
   Filenames starting with 'MushMeshLibrary'
@@ -90,9 +91,17 @@ Proprietary original source code files for this Package:
 Schedule 3: Other proprietary files
 ====================================
 
-Other proprietary files for this Package:
+Other proprietary files for this Package are those meeting any of these
+conditions:
 
-(empty list)
+  Files within directories named 'mush'
+  Filenames ending with '.mush'
+  Filenames starting with 'MushSecret'
+  Object and executable files derived from the above
+
+The Company is obliged to protect content licenced from third parties, so
+executable files capable of loading protected content files fall into this
+category and are listed above. 
 
 Schedule 4: Libraries
 =====================

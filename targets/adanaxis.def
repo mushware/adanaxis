@@ -1,6 +1,9 @@
 # Target definition file
-# $Id: adanaxis.def,v 1.14 2006/11/06 12:56:32 southa Exp $
+# $Id: adanaxis.def,v 1.15 2007/03/13 22:56:47 southa Exp $
 # $Log: adanaxis.def,v $
+# Revision 1.15  2007/03/13 22:56:47  southa
+# Release work
+#
 # Revision 1.14  2006/11/06 12:56:32  southa
 # MushFile work
 #
@@ -95,6 +98,6 @@ Modules: x11/man/adanaxis.*
 
 Create: data-adanaxis/Makefile.am
 PkgData:
-Modules: pixels mushruby ruby spaces/local1 spaces/local2 spaces/local3 spaces/menu1 spaces/river1 waves system/.*\.xml$ system/.*\.txt$
+Modules: pixels mushruby ruby spaces/level1 spaces/level2 spaces/local1 spaces/local2 spaces/local3 spaces/menu1 spaces/river1 waves system/.*\.xml$ system/.*\.txt$
 ExtraDist:
 Modules: \.*pdf$
