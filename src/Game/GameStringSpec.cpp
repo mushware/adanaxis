@@ -3,7 +3,7 @@
  *
  * File: src/Game/GameStringSpec.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } z/HXGdSH5Q+AAbXyxzWlIw
+//%Header } SD5cjtuu5TKmYq1XdrTiFw
 /*
- * $Id: GameStringSpec.cpp,v 1.6 2005/07/04 15:59:00 southa Exp $
+ * $Id: GameStringSpec.cpp,v 1.7 2006/06/01 15:39:00 southa Exp $
  * $Log: GameStringSpec.cpp,v $
+ * Revision 1.7  2006/06/01 15:39:00  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.6  2005/07/04 15:59:00  southa
  * Adanaxis work
  *
@@ -42,6 +45,20 @@
  */
 
 #include "GameStringSpec.h"
+
+GameStringSpec::GameStringSpec() :
+  m_posticity(MushMeshPosticity::Identity()),
+  m_startColour(GLColour(1,1,1,1)),
+  m_midColour(GLColour(1,1,1,1)),
+  m_endColour(GLColour(1,1,1,1)),
+  m_startTime(0),
+  m_endTime(0),
+  m_fadeTime(0),
+  m_startSize(0),
+  m_midSize(0),
+  m_endSize(0)
+{
+}
 
 //%outOfLineFunctions {
 

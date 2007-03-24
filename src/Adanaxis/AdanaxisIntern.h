@@ -10,7 +10,7 @@
  * Copyright: Andy Southgate 2005-2007
  *
  * This file may be used and distributed under the terms of the Mushware
- * software licence version 1.1, under the terms for 'Proprietary original
+ * Software Licence version 1.2, under the terms for 'Proprietary original
  * source files'.  If not supplied with this software, a copy of the licence
  * can be obtained from Mushware Limited via http://www.mushware.com/.
  * One of your options under that licence is to use and distribute this file
@@ -19,10 +19,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 5ZauR8sNBFSBn2hrVeessg
+//%Header } d+fG5VtaXWDxT567aeT23A
 /*
- * $Id: AdanaxisIntern.h,v 1.23 2007/03/13 12:22:50 southa Exp $
+ * $Id: AdanaxisIntern.h,v 1.24 2007/03/13 18:21:37 southa Exp $
  * $Log: AdanaxisIntern.h,v $
+ * Revision 1.24  2007/03/13 18:21:37  southa
+ * Scanner jamming
+ *
  * Revision 1.23  2007/03/13 12:22:50  southa
  * Scanner symbols
  *
@@ -111,6 +114,7 @@
     mCollisionEventConsume
     mCutSceneRender
     mEpilogueRender
+    mGameModeTick
     mHandlePrecacheEnd
     mKhaziCountUpdate
     mMenuRender
@@ -156,6 +160,7 @@ public:
     Mushware::tRubyID mCollisionEventConsume(void) { return m_mCollisionEventConsume; }
     Mushware::tRubyID mCutSceneRender(void) { return m_mCutSceneRender; }
     Mushware::tRubyID mEpilogueRender(void) { return m_mEpilogueRender; }
+    Mushware::tRubyID mGameModeTick(void) { return m_mGameModeTick; }
     Mushware::tRubyID mHandlePrecacheEnd(void) { return m_mHandlePrecacheEnd; }
     Mushware::tRubyID mKhaziCountUpdate(void) { return m_mKhaziCountUpdate; }
     Mushware::tRubyID mMenuRender(void) { return m_mMenuRender; }
@@ -181,12 +186,13 @@ private:
     Mushware::tRubyID m_mCollisionEventConsume;
     Mushware::tRubyID m_mCutSceneRender;
     Mushware::tRubyID m_mEpilogueRender;
+    Mushware::tRubyID m_mGameModeTick;
     Mushware::tRubyID m_mHandlePrecacheEnd;
     Mushware::tRubyID m_mKhaziCountUpdate;
     Mushware::tRubyID m_mMenuRender;
     Mushware::tRubyID m_mReceiveSequence;
     Mushware::tRubyID m_mRender;
-//%declarations } 1214e77e3fd62a7f5db96572d8061848
+//%declarations } a633cb6618e9186586c6555587ce416f
 
 //%classPrototypes {
 public:

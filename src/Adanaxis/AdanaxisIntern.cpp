@@ -6,7 +6,7 @@
  * Copyright: Andy Southgate 2005-2007
  *
  * This file may be used and distributed under the terms of the Mushware
- * software licence version 1.1, under the terms for 'Proprietary original
+ * Software Licence version 1.2, under the terms for 'Proprietary original
  * source files'.  If not supplied with this software, a copy of the licence
  * can be obtained from Mushware Limited via http://www.mushware.com/.
  * One of your options under that licence is to use and distribute this file
@@ -15,10 +15,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } YHBMLNKsjv2dEAjYLw4KNA
+//%Header } sKKcpqnI7UzSu42CxiF/4Q
 /*
- * $Id: AdanaxisIntern.cpp,v 1.20 2007/03/13 12:22:50 southa Exp $
+ * $Id: AdanaxisIntern.cpp,v 1.21 2007/03/13 18:21:36 southa Exp $
  * $Log: AdanaxisIntern.cpp,v $
+ * Revision 1.21  2007/03/13 18:21:36  southa
+ * Scanner jamming
+ *
  * Revision 1.20  2007/03/13 12:22:50  southa
  * Scanner symbols
  *
@@ -109,11 +112,12 @@ AdanaxisIntern::AdanaxisIntern()
     m_mCollisionEventConsume = MushRubyIntern::SymbolID("mCollisionEventConsume");
     m_mCutSceneRender = MushRubyIntern::SymbolID("mCutSceneRender");
     m_mEpilogueRender = MushRubyIntern::SymbolID("mEpilogueRender");
+    m_mGameModeTick = MushRubyIntern::SymbolID("mGameModeTick");
     m_mHandlePrecacheEnd = MushRubyIntern::SymbolID("mHandlePrecacheEnd");
     m_mKhaziCountUpdate = MushRubyIntern::SymbolID("mKhaziCountUpdate");
     m_mMenuRender = MushRubyIntern::SymbolID("mMenuRender");
     m_mReceiveSequence = MushRubyIntern::SymbolID("mReceiveSequence");
     m_mRender = MushRubyIntern::SymbolID("mRender");
-//%initialisations } 5ecab06a905cbc0e6a9db2fe7883678f
+//%initialisations } 8313c942987026e6948b4d7019ef30c8
 }
  

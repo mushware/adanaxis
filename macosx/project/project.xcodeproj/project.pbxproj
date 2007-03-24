@@ -4132,6 +4132,10 @@
 		7ADBEEE20867142900CFB0B1 /* MushGameReceiver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushGameReceiver.cpp; sourceTree = "<group>"; };
 		7ADBEEED0867163D00CFB0B1 /* MushGameUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushGameUtil.h; sourceTree = "<group>"; };
 		7ADBEEEE0867163D00CFB0B1 /* MushGameUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushGameUtil.cpp; sourceTree = "<group>"; };
+		7ADEBFC60BB5901A00B59F08 /* AdanaxisTriggeredEvent.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AdanaxisTriggeredEvent.rb; sourceTree = "<group>"; };
+		7ADEC0100BB59A6400B59F08 /* dialogues.xml */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; path = dialogues.xml; sourceTree = "<group>"; };
+		7ADEC0110BB59A6400B59F08 /* manifest.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = manifest.txt; sourceTree = "<group>"; };
+		7ADEC0120BB59A6400B59F08 /* space.rb */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.ruby; path = space.rb; sourceTree = "<group>"; };
 		7ADEF6EF0876CB7A00820697 /* MushGLClaimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushGLClaimer.h; sourceTree = "<group>"; };
 		7ADEF6F00876CB7A00820697 /* MushGLClaimer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushGLClaimer.cpp; sourceTree = "<group>"; };
 		7AE2756D083C88B200F22CA3 /* tesseracttrainer.def */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = tesseracttrainer.def; sourceTree = "<group>"; };
@@ -4416,6 +4420,7 @@
 			children = (
 				7A6842810BB3EBCB00A7E83F /* level1 */,
 				7A6842860BB3ECB200A7E83F /* level2 */,
+				7ADEC00F0BB59A6400B59F08 /* level3 */,
 				7A3E0D1B0A4821C10078B650 /* local1 */,
 				7A97ECE80A6A808600369FD6 /* local2 */,
 				7A6176830A7FB32F00B97CA2 /* local3 */,
@@ -6493,6 +6498,7 @@
 				7A3E0D230A4822460078B650 /* AdanaxisSpace.rb */,
 				7AFA31910AD18BE500B73920 /* AdanaxisTargetSelect.rb */,
 				7AAFF0A60A46E84F0005F57F /* AdanaxisTextureLibrary.rb */,
+				7ADEBFC60BB5901A00B59F08 /* AdanaxisTriggeredEvent.rb */,
 				7AA5753E0AD9100800CEA8BA /* AdanaxisUtil.rb */,
 				7A69654D0BAECF5C00344F3A /* AdanaxisVTools.rb */,
 				7A59056C0AFB4AD70088FC20 /* AdanaxisWaveLibrary.rb */,
@@ -6739,6 +6745,16 @@
 				7AD205BC086829C800F891C0 /* MushGameVolatileData.h */,
 			);
 			path = MushGame;
+			sourceTree = "<group>";
+		};
+		7ADEC00F0BB59A6400B59F08 /* level3 */ = {
+			isa = PBXGroup;
+			children = (
+				7ADEC0100BB59A6400B59F08 /* dialogues.xml */,
+				7ADEC0110BB59A6400B59F08 /* manifest.txt */,
+				7ADEC0120BB59A6400B59F08 /* space.rb */,
+			);
+			path = level3;
 			sourceTree = "<group>";
 		};
 		7AF480220B331EC400664BED /* MushSecret */ = {

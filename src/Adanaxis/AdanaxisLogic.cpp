@@ -6,7 +6,7 @@
  * Copyright: Andy Southgate 2005-2007
  *
  * This file may be used and distributed under the terms of the Mushware
- * software licence version 1.1, under the terms for 'Proprietary original
+ * Software Licence version 1.2, under the terms for 'Proprietary original
  * source files'.  If not supplied with this software, a copy of the licence
  * can be obtained from Mushware Limited via http://www.mushware.com/.
  * One of your options under that licence is to use and distribute this file
@@ -15,10 +15,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } stbnKxftF7zm1Z3BNG1/hA
+//%Header } A6pYLrXxaSjBm4DpNkHwLQ
 /*
- * $Id: AdanaxisLogic.cpp,v 1.41 2007/03/13 18:21:37 southa Exp $
+ * $Id: AdanaxisLogic.cpp,v 1.42 2007/03/21 11:56:06 southa Exp $
  * $Log: AdanaxisLogic.cpp,v $
+ * Revision 1.42  2007/03/21 11:56:06  southa
+ * Rail effects and damage icons
+ *
  * Revision 1.41  2007/03/13 18:21:37  southa
  * Scanner jamming
  *
@@ -781,7 +784,11 @@ AdanaxisLogic::Tick100msSequence(void)
             IfRecordSet();
             EpilogueModeEnter(gameState);
         }
+        
+        MushRubyExec::Sgl().Call(VolatileData().RubyGame(),
+                                 AdanaxisIntern::Sgl().mGameModeTick());
     }
+    
 }
 
 MushGamePiece&

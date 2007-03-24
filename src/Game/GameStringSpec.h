@@ -7,7 +7,7 @@
  *
  * File: src/Game/GameStringSpec.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } cCXc/mX/0MpJBzgASxaNGw
+//%Header } CGWHz9D0mm2Rar6gAdO7lA
 /*
- * $Id: GameStringSpec.h,v 1.5 2005/07/04 15:59:00 southa Exp $
+ * $Id: GameStringSpec.h,v 1.6 2006/06/01 15:39:00 southa Exp $
  * $Log: GameStringSpec.h,v $
+ * Revision 1.6  2006/06/01 15:39:00  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.5  2005/07/04 15:59:00  southa
  * Adanaxis work
  *
@@ -51,6 +54,7 @@
 class GameStringSpec : public MushcoreVirtualObject
 {
 public:
+    GameStringSpec();
     virtual ~GameStringSpec() {}
         
 private:
