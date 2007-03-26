@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } A6pYLrXxaSjBm4DpNkHwLQ
 /*
- * $Id: AdanaxisLogic.cpp,v 1.42 2007/03/21 11:56:06 southa Exp $
+ * $Id: AdanaxisLogic.cpp,v 1.43 2007/03/24 18:07:24 southa Exp $
  * $Log: AdanaxisLogic.cpp,v $
+ * Revision 1.43  2007/03/24 18:07:24  southa
+ * Level 3 work
+ *
  * Revision 1.42  2007/03/21 11:56:06  southa
  * Rail effects and damage icons
  *
@@ -737,7 +740,8 @@ AdanaxisLogic::Tick100msSequence(void)
     VolatileData().JammerCountSet(jammerCount);
     
     U32 gameState = MushGameData::kGameResultNone;
-    if (khaziUpdate)
+    
+    if (khaziUpdate || redCount == 0)
     {
         gameState = MushRubyExec::Sgl().Call(VolatileData().RubyGame(),
                                              AdanaxisIntern::Sgl().mKhaziCountUpdate(),

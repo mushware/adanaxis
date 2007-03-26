@@ -7,7 +7,7 @@
  *
  * File: src/MushMeshRuby/MushMeshRubyTools.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } bXehXXY7VVdSW1knmNpOqw
+//%Header } bes5fnAf1xT1KrYurE5FtA
 /*
- * $Id: MushMeshRubyTools.h,v 1.3 2006/07/18 16:58:38 southa Exp $
+ * $Id: MushMeshRubyTools.h,v 1.4 2006/08/20 14:19:22 southa Exp $
  * $Log: MushMeshRubyTools.h,v $
+ * Revision 1.4  2006/08/20 14:19:22  southa
+ * Seek operation
+ *
  * Revision 1.3  2006/07/18 16:58:38  southa
  * Texture fixes
  *
@@ -55,6 +58,7 @@ protected:
 	static Mushware::tRubyValue RandomOrientation(Mushware::tRubyValue inSelf);
 	static Mushware::tRubyValue RandomUnitVector(Mushware::tRubyValue inSelf);
 	static Mushware::tRubyValue RandomAngularVelocity(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
+	static Mushware::tRubyValue RandomSeedSet(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
 	static Mushware::tRubyValue SeekRotation(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0, Mushware::tRubyValue inArg1);
     static Mushware::tRubyValue TurnToFace(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0,
                                            Mushware::tRubyValue inArg1, Mushware::tRubyValue inArg2);

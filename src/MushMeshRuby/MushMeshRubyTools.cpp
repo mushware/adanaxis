@@ -3,7 +3,7 @@
  *
  * File: src/MushMeshRuby/MushMeshRubyTools.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } oKuIr5eVL2esfxDutcXp9Q
+//%Header } 3VYstokBMbVTW6GI4B/N4Q
 /*
- * $Id: MushMeshRubyTools.cpp,v 1.4 2006/07/18 16:58:38 southa Exp $
+ * $Id: MushMeshRubyTools.cpp,v 1.5 2006/08/20 14:19:22 southa Exp $
  * $Log: MushMeshRubyTools.cpp,v $
+ * Revision 1.5  2006/08/20 14:19:22  southa
+ * Seek operation
+ *
  * Revision 1.4  2006/07/18 16:58:38  southa
  * Texture fixes
  *
@@ -133,6 +136,13 @@ MushMeshRubyTools::RandomAngularVelocity(Mushware::tRubyValue inSelf, Mushware::
 }
 
 Mushware::tRubyValue
+MushMeshRubyTools::RandomSeedSet(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0)
+{
+	srand(MushRubyValue(inArg0).U32());
+	return kRubyQnil;;
+}
+
+Mushware::tRubyValue
 MushMeshRubyTools::SeekRotation(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0,
                                 Mushware::tRubyValue inArg1)
 {
@@ -182,6 +192,7 @@ MushMeshRubyTools::RubyInstall(void)
 	MushRubyUtil::SingletonMethodDefineNoParams(ObjKlass(), "cRandomOrientation", RandomOrientation);
 	MushRubyUtil::SingletonMethodDefineNoParams(ObjKlass(), "cRandomUnitVector", RandomUnitVector);
 	MushRubyUtil::SingletonMethodDefineOneParam(ObjKlass(), "cRandomAngularVelocity", RandomAngularVelocity);
+	MushRubyUtil::SingletonMethodDefineOneParam(ObjKlass(), "cRandomSeedSet", RandomSeedSet);
 	MushRubyUtil::SingletonMethodDefineTwoParams(ObjKlass(), "cSeekRotation", SeekRotation);
 	MushRubyUtil::SingletonMethodDefineThreeParams(ObjKlass(), "cTurnToFace", TurnToFace);
 	MushRubyUtil::SingletonMethodDefineThreeParams(ObjKlass(), "cSlerp", Slerp);
