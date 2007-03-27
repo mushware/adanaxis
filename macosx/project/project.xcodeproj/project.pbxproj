@@ -3548,6 +3548,7 @@
 		7A6993210BB4402300D0FC67 /* AdanaxisAIKhaziCarrier.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AdanaxisAIKhaziCarrier.rb; sourceTree = "<group>"; };
 		7A69DF0607626B89004F23F7 /* TestMushMeshQuaternion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestMushMeshQuaternion.h; sourceTree = "<group>"; };
 		7A69DF0707626B89004F23F7 /* TestMushMeshQuaternion.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestMushMeshQuaternion.cpp; sourceTree = "<group>"; };
+		7A69E6860BB9487900792ECB /* AdanaxisAIKhaziAttendant.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AdanaxisAIKhaziAttendant.rb; sourceTree = "<group>"; };
 		7A6AC8D705B972140019F752 /* TestMushcoreVirtualPointerObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestMushcoreVirtualPointerObject.h; sourceTree = "<group>"; };
 		7A6AC8D805B972140019F752 /* TestMushcoreVirtualPointerObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestMushcoreVirtualPointerObject.cpp; sourceTree = "<group>"; };
 		7A6AC92D05B9727A0019F752 /* TestMushcoreObjectBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestMushcoreObjectBase.h; sourceTree = "<group>"; };
@@ -6469,6 +6470,7 @@
 				7A5F18250A3DC12700B46F5F /* Adanaxis.rb */,
 				7A619A760A974B1900FAA06C /* AdanaxisAI.rb */,
 				7A59645C0ACE8CEA007FAA8F /* AdanaxisAIKhazi.rb */,
+				7A69E6860BB9487900792ECB /* AdanaxisAIKhaziAttendant.rb */,
 				7A6993210BB4402300D0FC67 /* AdanaxisAIKhaziCarrier.rb */,
 				7A9FAEF40B07771900167096 /* AdanaxisAIProjectile.rb */,
 				7A614A980A62951900E8FCEF /* AdanaxisControl.rb */,
