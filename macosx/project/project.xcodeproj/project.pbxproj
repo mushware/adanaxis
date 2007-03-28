@@ -4154,6 +4154,9 @@
 		7AE697920A420EA3004D7B75 /* MushMeshLibraryPrism.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushMeshLibraryPrism.cpp; sourceTree = "<group>"; };
 		7AE697D00A42129E004D7B75 /* MushMeshRubyBasePrism.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushMeshRubyBasePrism.h; sourceTree = "<group>"; };
 		7AE697D10A42129E004D7B75 /* MushMeshRubyBasePrism.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushMeshRubyBasePrism.cpp; sourceTree = "<group>"; };
+		7AE74EB00BBABAF600795392 /* dialogues.xml */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; path = dialogues.xml; sourceTree = "<group>"; };
+		7AE74EB10BBABAF600795392 /* manifest.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = manifest.txt; sourceTree = "<group>"; };
+		7AE74EB20BBABAF600795392 /* space.rb */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.ruby; path = space.rb; sourceTree = "<group>"; };
 		7AF47F300B32D64E00664BED /* MushFileKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushFileKeys.h; sourceTree = "<group>"; };
 		7AF47F310B32D64E00664BED /* MushFileKeys.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushFileKeys.cpp; sourceTree = "<group>"; };
 		7AF47FD40B33134400664BED /* KeyGen.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = KeyGen.rb; path = "../../../core-keys/KeyGen.rb"; sourceTree = SOURCE_ROOT; };
@@ -4441,6 +4444,7 @@
 				7ADEC00F0BB59A6400B59F08 /* level3 */,
 				7A2B9F6A0BB95C9000A746AE /* level4 */,
 				7A6869610BBA5CE3004774B3 /* level5 */,
+				7AE74EAF0BBABAF600795392 /* level6 */,
 				7A3E0D1B0A4821C10078B650 /* local1 */,
 				7A97ECE80A6A808600369FD6 /* local2 */,
 				7A6176830A7FB32F00B97CA2 /* local3 */,
@@ -6787,6 +6791,16 @@
 				7ADEC0120BB59A6400B59F08 /* space.rb */,
 			);
 			path = level3;
+			sourceTree = "<group>";
+		};
+		7AE74EAF0BBABAF600795392 /* level6 */ = {
+			isa = PBXGroup;
+			children = (
+				7AE74EB00BBABAF600795392 /* dialogues.xml */,
+				7AE74EB10BBABAF600795392 /* manifest.txt */,
+				7AE74EB20BBABAF600795392 /* space.rb */,
+			);
+			path = level6;
 			sourceTree = "<group>";
 		};
 		7AF480220B331EC400664BED /* MushSecret */ = {
