@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } FG1UBO0d8qPi+PGHUglZwQ
 /*
- * $Id: MediaAudioSDL.cpp,v 1.33 2007/03/07 16:59:44 southa Exp $
+ * $Id: MediaAudioSDL.cpp,v 1.34 2007/04/16 08:41:09 southa Exp $
  * $Log: MediaAudioSDL.cpp,v $
+ * Revision 1.34  2007/04/16 08:41:09  southa
+ * Level and header mods
+ *
  * Revision 1.33  2007/03/07 16:59:44  southa
  * Khazi spawning and level ends
  *
@@ -240,7 +243,8 @@ MediaAudioSDL::ChannelUpdate(Mushware::U32 inChannel)
     MUSHCOREASSERT(channelDef.Positional());
     
     tVal volume = channelDef.Volume() * ImpliedVolume(channelDef);
-    Mix_Volume(inChannel, static_cast<int>(volume * m_audioVolume));
+    tVal baseVolume = channelDef.Voice() ? m_voiceVolume : m_audioVolume;
+    Mix_Volume(inChannel, static_cast<int>(volume * baseVolume));
 
     tVal impliedPanning = ImpliedPanning(channelDef);
     tVal panLeft = ( impliedPanning < 0.0 ) ? 1.0 : (1.0 - impliedPanning);
@@ -256,6 +260,8 @@ MediaAudioSDL::ChannelTrigger(Mushware::U32 inChannel)
     MUSHCOREASSERT(channelDef.ActiveSample() != NULL);
     
     tVal volume = channelDef.Volume();
+    tVal baseVolume = channelDef.Voice() ? m_voiceVolume : m_audioVolume;
+    
     if (channelDef.Positional())
     {
         volume *= ImpliedVolume(channelDef);
@@ -280,7 +286,7 @@ MediaAudioSDL::ChannelTrigger(Mushware::U32 inChannel)
         }
         else
         {
-            Mix_Volume(inChannel, static_cast<int>(volume * m_audioVolume));        
+            Mix_Volume(inChannel, static_cast<int>(volume * baseVolume));        
             Mix_SetPanning(inChannel,255,255);
         }
         
@@ -311,6 +317,7 @@ MediaAudioSDL::Play(MediaSound& inSound, Mushware::tVal inVolume, Mushware::t4Va
         channelDef.PositionSet(inPosition);
         channelDef.PositionalSet(true);
         channelDef.LoopSet(false);
+        channelDef.VoiceSet(false);
         channelDef.ActiveSampleSet(&inSound);
         ChannelTrigger(channel);
         if (inFlags & kFlagsTiedToListener)
@@ -333,6 +340,25 @@ MediaAudioSDL::Play(MediaSound& inSound)
         channelDef.VolumeSet(1.0);
         channelDef.PositionalSet(false);
         channelDef.LoopSet(false);
+        channelDef.VoiceSet(false);
+        channelDef.ActiveSampleSet(&inSound);
+        ChannelTrigger(channel);
+    }
+}
+
+void
+MediaAudioSDL::VoicePlay(MediaSound& inSound)
+{
+    U32 channel;
+    if (ChannelSelect(channel))
+    {
+        MUSHCOREASSERT(channel < m_softChannels);
+        
+        MediaAudioSDLChannelDef& channelDef( dynamic_cast<MediaAudioSDLChannelDef&>(ChannelDefWRef(channel)) );
+        channelDef.VolumeSet(1.0);
+        channelDef.PositionalSet(false);
+        channelDef.LoopSet(false);
+        channelDef.VoiceSet(true);
         channelDef.ActiveSampleSet(&inSound);
         ChannelTrigger(channel);
     }
@@ -341,16 +367,32 @@ MediaAudioSDL::Play(MediaSound& inSound)
 void
 MediaAudioSDL::Load(MediaSoundStream& inSoundStream)
 {
+    /* Loading music from a .mush file keeps an image of the compressed file
+     * in memory
+     */
     if (m_music != NULL)
     {
         Mix_FreeMusic(m_music);
         m_music=NULL;
     }
+
     string filename(inSoundStream.FilenameGet());
-    m_music = Mix_LoadMUS(filename.c_str());
-    if (m_music == NULL)
+    
+    m_musicMushFile.OpenForRead(filename);
+    MediaRWops mediaRWops(m_musicMushFile);
+    
+    SDL_RWops *pSrc = mediaRWops.RWops();
+    if (pSrc == NULL)
     {
-        if (++m_errCtr < 100) cerr << "Failed to play music '" << filename << "': " << string(Mix_GetError());
+        if (++m_errCtr < 100) cerr << "Failed to open file '" << filename << "': " << string(SDL_GetError());
+    }
+    else
+    {
+        m_music = Mix_LoadMUS_RW(pSrc);
+        if (m_music == NULL)
+        {
+            if (++m_errCtr < 100) cerr << "Failed to play music '" << filename << "': " << string(Mix_GetError());
+        }
     }
 }
 
@@ -416,14 +458,14 @@ MediaAudioSDL::Load(MediaSound &inSound) const
     srcFile.OpenForRead(filename);
     MediaRWops mediaRWops(srcFile);
     
-    SDL_RWops *src = mediaRWops.RWops();
-    if (src == NULL)
+    SDL_RWops *pSrc = mediaRWops.RWops();
+    if (pSrc == NULL)
     {
         if (++m_errCtr < 100) cerr << "Failed to open file '" << filename << "': " << string(SDL_GetError());
     }
     else
     {
-        Mix_Chunk *chunk = Mix_LoadWAV_RW(src, false); // Don't free after play
+        Mix_Chunk *chunk = Mix_LoadWAV_RW(pSrc, false); // Don't free after play
         if (chunk == NULL)
         {
              if (++m_errCtr < 100) cerr << "Failed to load sound '" << filename << "': " << string(Mix_GetError());
@@ -468,5 +510,11 @@ void
 MediaAudioSDL::AudioVolumeSet(Mushware::tVal inVolume)
 {
     m_audioVolume = static_cast<U32>(inVolume*128);
+}
+
+void
+MediaAudioSDL::VoiceVolumeSet(Mushware::tVal inVolume)
+{
+    m_voiceVolume = static_cast<U32>(inVolume*128);
 }
 

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } j1yQVneL+5MtyXUhYiB6CQ
 /*
- * $Id: MushGameRuby.cpp,v 1.29 2007/03/09 19:50:13 southa Exp $
+ * $Id: MushGameRuby.cpp,v 1.30 2007/03/21 18:06:11 southa Exp $
  * $Log: MushGameRuby.cpp,v $
+ * Revision 1.30  2007/03/21 18:06:11  southa
+ * Tied sound fixes
+ *
  * Revision 1.29  2007/03/09 19:50:13  southa
  * Resident textures
  *
@@ -594,7 +597,24 @@ MushGameRuby::MusicVolumeSet(Mushware::tRubyValue inSelf, Mushware::tRubyValue i
     MushRubyValue value(inArg0);
     MushGameUtil::AppHandler().ConfigWRef().MusicVolumeSet(value.U32());
     MediaAudio::Sgl().MusicVolumeSet(value.U32() / 100.0);
+    
+    return Mushware::kRubyQnil;
+}
 
+Mushware::tRubyValue
+MushGameRuby::VoiceVolume(Mushware::tRubyValue inSelf)
+{
+    U32 retVal = MushGameUtil::AppHandler().Config().VoiceVolume();
+    return MushRubyValue(retVal).Value();
+}
+
+Mushware::tRubyValue
+MushGameRuby::VoiceVolumeSet(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0)
+{
+    MushRubyValue value(inArg0);
+    MushGameUtil::AppHandler().ConfigWRef().VoiceVolumeSet(value.U32());
+    MediaAudio::Sgl().VoiceVolumeSet(value.U32() / 100.0);
+    
     return Mushware::kRubyQnil;
 }
 
@@ -763,11 +783,29 @@ MushGameRuby::TiedSoundPlay(Mushware::tRubyValue inSelf, Mushware::tRubyValue in
     return Mushware::kRubyQnil;
 }
 
+
 Mushware::tRubyValue
-MushGameRuby::SoundStreamPlay(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0, Mushware::tRubyValue inArg1)
+MushGameRuby::VoicePlay(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0)
 {
     MushRubyValue param0(inArg0);
-    MushRubyValue param1(inArg1);
+    try
+    {
+        std::vector<std::string> flagStrings;
+        std::string sampleName = MushGameUtil::StripFlags(flagStrings, param0.String());
+        
+        MediaAudio::Sgl().VoicePlay(*MushcoreDataRef<MediaSound>(sampleName).Get());
+    }
+    catch (std::exception& e)
+    {
+        MushRubyUtil::Raise(e.what());       
+    }
+    return Mushware::kRubyQnil;
+}
+
+Mushware::tRubyValue
+MushGameRuby::SoundStreamPlay(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0)
+{
+    MushRubyValue param0(inArg0);
     try
     {
         std::vector<std::string> flagStrings;
@@ -894,6 +932,8 @@ MushGameRuby::MethodsInstall(void)
     MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cAudioVolumeSet", AudioVolumeSet);
     MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cMusicVolume", MusicVolume);
     MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cMusicVolumeSet", MusicVolumeSet);
+    MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cVoiceVolume", VoiceVolume);
+    MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cVoiceVolumeSet", VoiceVolumeSet);
     MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cTextureDetail", TextureDetail);
     MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cTextureDetailSet", TextureDetailSet);
     MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cMouseSensitivity", MouseSensitivity);
@@ -906,7 +946,8 @@ MushGameRuby::MethodsInstall(void)
     MushRubyUtil::SingletonMethodDefineTwoParams(Klass(), "cSoundStreamDefine", SoundStreamDefine);
     MushRubyUtil::SingletonMethodDefineTwoParams(Klass(), "cSoundPlay", SoundPlay);
     MushRubyUtil::SingletonMethodDefineTwoParams(Klass(), "cTiedSoundPlay", TiedSoundPlay);
-    MushRubyUtil::SingletonMethodDefineTwoParams(Klass(), "cSoundStreamPlay", SoundStreamPlay);
+    MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cVoicePlay", VoicePlay);
+    MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cSoundStreamPlay", SoundStreamPlay);
     MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cPackageID", PackageID);
     MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cGameMsec", GameMsec);
     MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cFreeMsec", FreeMsec);

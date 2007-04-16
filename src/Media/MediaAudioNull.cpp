@@ -3,7 +3,7 @@
  *
  * File: src/Media/MediaAudioNull.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } YOS1PmDuCOSGA2BFY+sCOQ
+//%Header } 3Q7fcXztA5AKc5tr4IP2ng
 /*
- * $Id: MediaAudioNull.cpp,v 1.15 2006/12/11 15:01:48 southa Exp $
+ * $Id: MediaAudioNull.cpp,v 1.16 2006/12/11 18:54:18 southa Exp $
  * $Log: MediaAudioNull.cpp,v $
+ * Revision 1.16  2006/12/11 18:54:18  southa
+ * Positional audio
+ *
  * Revision 1.15  2006/12/11 15:01:48  southa
  * Snapshot
  *
@@ -97,6 +100,11 @@ MediaAudioNull::Play(MediaSound& inSound, Mushware::tVal inVolume, Mushware::t4V
 
 void
 MediaAudioNull::Play(MediaSoundStream& inSoundStream, U32 inLoop)
+{
+}
+
+void
+MediaAudioNull::VoicePlay(MediaSound& inSound)
 {
 }
 

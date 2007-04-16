@@ -7,7 +7,7 @@
  *
  * File: src/Media/MediaAudioChannelDef.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } rWs5FySrT5xJm9zo10DhWQ
+//%Header } J5P6c5krEP/NNUoFYmok/w
 /*
- * $Id: MediaAudioChannelDef.h,v 1.1 2006/12/11 13:28:23 southa Exp $
+ * $Id: MediaAudioChannelDef.h,v 1.2 2006/12/11 15:01:48 southa Exp $
  * $Log: MediaAudioChannelDef.h,v $
+ * Revision 1.2  2006/12/11 15:01:48  southa
+ * Snapshot
+ *
  * Revision 1.1  2006/12/11 13:28:23  southa
  * Snapshot
  *
@@ -51,6 +54,7 @@ private:
     Mushware::t4Val m_position; //:readwrite
     bool m_positional; //:readwrite
     bool m_loop; //:readwrite
+    bool m_voice; //:readwrite
     
 //%classPrototypes {
 public:
@@ -64,6 +68,8 @@ public:
     void PositionalSet(const bool& inValue) { m_positional=inValue; }
     const bool& Loop(void) const { return m_loop; }
     void LoopSet(const bool& inValue) { m_loop=inValue; }
+    const bool& Voice(void) const { return m_voice; }
+    void VoiceSet(const bool& inValue) { m_voice=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -71,7 +77,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } l1NIqY9gNva3J6cQI7lOIA
+//%classPrototypes } KPq16VQdmmErseeau90Q6A
 };
 //%inlineHeader {
 inline std::ostream&

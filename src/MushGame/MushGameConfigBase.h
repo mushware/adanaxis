@@ -7,7 +7,7 @@
  *
  * File: src/MushGame/MushGameConfigBase.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } j+QdgpgaMWOYWMDzkr6iXg
+//%Header } Z5QT+HDEtycAF4WkJtjh4g
 /*
- * $Id: MushGameConfigBase.h,v 1.3 2006/07/26 16:37:23 southa Exp $
+ * $Id: MushGameConfigBase.h,v 1.4 2006/07/28 16:52:23 southa Exp $
  * $Log: MushGameConfigBase.h,v $
+ * Revision 1.4  2006/07/28 16:52:23  southa
+ * Options work
+ *
  * Revision 1.3  2006/07/26 16:37:23  southa
  * Options menu
  *
@@ -52,6 +55,7 @@ private:
     Mushware::U32 m_textureDetail; //:readwrite
     Mushware::U32 m_audioVolume; //:readwrite
     Mushware::U32 m_musicVolume; //:readwrite
+    Mushware::U32 m_voiceVolume; //:readwrite
     Mushware::tVal m_mouseSensitivity; //:readwrite
     Mushware::tVal m_brightness; //:readwrite
     
@@ -68,6 +72,8 @@ public:
     void AudioVolumeSet(const Mushware::U32& inValue) { m_audioVolume=inValue; }
     const Mushware::U32& MusicVolume(void) const { return m_musicVolume; }
     void MusicVolumeSet(const Mushware::U32& inValue) { m_musicVolume=inValue; }
+    const Mushware::U32& VoiceVolume(void) const { return m_voiceVolume; }
+    void VoiceVolumeSet(const Mushware::U32& inValue) { m_voiceVolume=inValue; }
     const Mushware::tVal& MouseSensitivity(void) const { return m_mouseSensitivity; }
     void MouseSensitivitySet(const Mushware::tVal& inValue) { m_mouseSensitivity=inValue; }
     const Mushware::tVal& Brightness(void) const { return m_brightness; }
@@ -77,7 +83,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } cPzV5s8KgqAQkqzbQOSa5g
+//%classPrototypes } lgrtmWkCD91kTefxHNuxHg
 };
 
 //%inlineHeader {

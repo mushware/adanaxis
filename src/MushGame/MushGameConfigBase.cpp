@@ -3,7 +3,7 @@
  *
  * File: src/MushGame/MushGameConfigBase.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } WGW0jWLT0tHoC21nwBZAtQ
+//%Header } XUhUmgkLLrF2UgFr78vkXA
 /*
- * $Id: MushGameConfigBase.cpp,v 1.5 2006/07/28 16:52:23 southa Exp $
+ * $Id: MushGameConfigBase.cpp,v 1.6 2006/08/01 23:21:53 southa Exp $
  * $Log: MushGameConfigBase.cpp,v $
+ * Revision 1.6  2006/08/01 23:21:53  southa
+ * Rendering demo content
+ *
  * Revision 1.5  2006/07/28 16:52:23  southa
  * Options work
  *
@@ -55,6 +58,7 @@ MushGameConfigBase::ToDefaultSet(void)
     m_textureDetail = 1;
     m_audioVolume = 100;
     m_musicVolume = 100;
+    m_voiceVolume = 100;
     m_safeMode = 0;
     m_mouseSensitivity = 1;
     m_brightness = 1;
@@ -82,6 +86,7 @@ MushGameConfigBase::AutoPrint(std::ostream& ioOut) const
     ioOut << "textureDetail=" << m_textureDetail << ", ";
     ioOut << "audioVolume=" << m_audioVolume << ", ";
     ioOut << "musicVolume=" << m_musicVolume << ", ";
+    ioOut << "voiceVolume=" << m_voiceVolume << ", ";
     ioOut << "mouseSensitivity=" << m_mouseSensitivity << ", ";
     ioOut << "brightness=" << m_brightness << ", ";
     ioOut << "safeMode=" << m_safeMode;
@@ -112,6 +117,10 @@ MushGameConfigBase::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::stri
     {
         ioIn >> m_musicVolume;
     }
+    else if (inTagStr == "voiceVolume")
+    {
+        ioIn >> m_voiceVolume;
+    }
     else if (inTagStr == "mouseSensitivity")
     {
         ioIn >> m_mouseSensitivity;
@@ -141,6 +150,8 @@ MushGameConfigBase::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_audioVolume;
     ioOut.TagSet("musicVolume");
     ioOut << m_musicVolume;
+    ioOut.TagSet("voiceVolume");
+    ioOut << m_voiceVolume;
     ioOut.TagSet("mouseSensitivity");
     ioOut << m_mouseSensitivity;
     ioOut.TagSet("brightness");
@@ -148,4 +159,4 @@ MushGameConfigBase::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("safeMode");
     ioOut << m_safeMode;
 }
-//%outOfLineFunctions } /Xh6R7toYIiT+2Th1lxRRA
+//%outOfLineFunctions } Og5mtznPPt6612TqsyLg/Q

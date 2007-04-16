@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } GKxP5HiipBzqObQgJ65BBQ
 /*
- * $Id: MediaAudio.h,v 1.30 2006/12/11 18:54:18 southa Exp $
+ * $Id: MediaAudio.h,v 1.31 2007/03/21 18:06:05 southa Exp $
  * $Log: MediaAudio.h,v $
+ * Revision 1.31  2007/03/21 18:06:05  southa
+ * Tied sound fixes
+ *
  * Revision 1.30  2006/12/11 18:54:18  southa
  * Positional audio
  *
@@ -110,6 +113,7 @@ public:
     virtual void Play(MediaSound& inSound, Mushware::tVal inVolume, Mushware::t4Val inPosition,
                       Mushware::U32 inFlags) = 0;
     virtual void Play(MediaSoundStream& inSoundStream, Mushware::U32 inLoop=10000) = 0;
+    virtual void VoicePlay(MediaSound& inSound) = 0;
     virtual void SoundHalt(MediaSound& inSound) = 0;
     virtual void Load(MediaSound& inSound) const = 0;
     virtual void Load(MediaSoundStream& inSoundStream) = 0;
@@ -119,6 +123,7 @@ public:
     virtual void MusicFadeOut(Mushware::tVal inMsec) = 0;
     virtual void MusicVolumeSet(Mushware::tVal inVolume) = 0;
     virtual void AudioVolumeSet(Mushware::tVal inVolume) = 0;
+    virtual void VoiceVolumeSet(Mushware::tVal inVolume) = 0;
     
     const MediaAudioChannelDef& ChannelDef(Mushware::U32 inIndex);
     MediaAudioChannelDef& ChannelDefWRef(Mushware::U32 inIndex);

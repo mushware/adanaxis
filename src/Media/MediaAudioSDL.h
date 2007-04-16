@@ -7,7 +7,7 @@
  *
  * File: src/Media/MediaAudioSDL.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,12 +21,15 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } vvu0jaD31bFVZCLJ1xDZzg
+//%Header } aKlH2KqubpjZH6Yn+yJKVQ
 /* Name changed from MediaAudio to MediaAudioSDL 2002/08/23 */
 
 /*
- * $Id: MediaAudioSDL.h,v 1.18 2006/12/11 18:54:18 southa Exp $
+ * $Id: MediaAudioSDL.h,v 1.19 2006/12/14 00:33:48 southa Exp $
  * $Log: MediaAudioSDL.h,v $
+ * Revision 1.19  2006/12/14 00:33:48  southa
+ * Control fix and audio pacing
+ *
  * Revision 1.18  2006/12/11 18:54:18  southa
  * Positional audio
  *
@@ -130,6 +133,7 @@ public:
     void Play(MediaSound& inSound);
     void Play(MediaSound& inSound, Mushware::tVal inVolume, Mushware::t4Val inPosition,
               Mushware::U32 inFlags);
+    void VoicePlay(MediaSound& inSound);
     void Play(MediaSoundStream& inSoundStream, Mushware::U32 inLoop=10000);
     void SoundHalt(MediaSound& inSound);
     void Load(MediaSound& inSound) const;
@@ -140,6 +144,7 @@ public:
     virtual void MusicFadeOut(Mushware::tVal inMsec);
     virtual void MusicVolumeSet(Mushware::tVal inVolume);
     virtual void AudioVolumeSet(Mushware::tVal inVolume);
+    virtual void VoiceVolumeSet(Mushware::tVal inVolume);
 
 protected:
     void ChannelUpdate(Mushware::U32 inChannel);
@@ -149,8 +154,10 @@ private:
     Mushware::U32 m_softChannels;
     Mix_Music *m_music;
     Mushware::U32 m_audioVolume;
+    Mushware::U32 m_voiceVolume;
     mutable Mushware::U32 m_errCtr;
     Mushware::U32 m_lastTickerMsec;
+    MushFileFile m_musicMushFile;
 };
 
 //%includeGuardEnd {

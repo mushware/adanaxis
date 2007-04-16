@@ -16,8 +16,11 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-# $Id: ProcessMush.rb,v 1.1 2006/11/05 09:32:13 southa Exp $
+# $Id: ProcessMush.rb,v 1.2 2006/12/16 10:57:22 southa Exp $
 # $Log: ProcessMush.rb,v $
+# Revision 1.2  2006/12/16 10:57:22  southa
+# Encrypted files
+#
 # Revision 1.1  2006/11/05 09:32:13  southa
 # Mush file generation
 #
@@ -31,6 +34,7 @@ class ProcessMush
     @m_destPath = inParams[:destination_path] || '.'
     @m_mushFile = inParams[:mush_file] || 'output.mush'
     @m_keyNum = inParams[:key_number] || 0
+    @m_srcFilenames = []
   end
   
   def mSrcFilenameMake(inName)
@@ -48,15 +52,28 @@ class ProcessMush
     inMushFile.mFileAdd(inSrcFilename, inDestFilename, @m_keyNum)
   end
   
-  def mProcess(inParams = {})
-    @m_srcRegexp = inParams[:source_regexp] || /^(mush|artb|sdog)-/
-    
-    @m_srcFilenames = []
-
-    Dir.foreach(@m_srcPath) do |filename|
-      if filename =~ @m_srcRegexp
-        @m_srcFilenames << filename
+  def mFilenamesAdd(inSelector)
+    if inSelector.kind_of?(Regexp)
+      Dir.foreach(@m_srcPath) do |filename|
+        if filename =~ inSelector
+          mFilenamesAdd(filename)
+        end
       end
+    elsif inSelector.kind_of?(Array)
+      inSelector.each do |filename|
+        mFilenamesAdd(filename)
+      end
+    elsif inSelector.kind_of?(String)
+      @m_srcFilenames << inSelector
+    else
+      raise "Wrong param type for mFilenamesAdd"
+    end
+  end
+  
+  def mProcess(inParams = {})
+
+    if @m_srcFilenames == []
+      mFilenamesAdd(inParams[:source_regexp] || /^(mush|artb|sdog)-/)
     end
 
     FileMush.cOpenWrite(@m_mushFile) do |mushFile|

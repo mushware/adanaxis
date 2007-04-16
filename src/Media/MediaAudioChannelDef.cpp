@@ -3,7 +3,7 @@
  *
  * File: src/Media/MediaAudioChannelDef.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } x4lGD8QS4IQs4NaFlJyuRA
+//%Header } CE9HIr03aPiTFexULC0gbQ
 /*
- * $Id: MediaAudioChannelDef.cpp,v 1.1 2006/12/11 13:28:23 southa Exp $
+ * $Id: MediaAudioChannelDef.cpp,v 1.2 2006/12/11 15:01:47 southa Exp $
  * $Log: MediaAudioChannelDef.cpp,v $
+ * Revision 1.2  2006/12/11 15:01:47  southa
+ * Snapshot
+ *
  * Revision 1.1  2006/12/11 13:28:23  southa
  * Snapshot
  *
@@ -31,7 +34,8 @@
 MediaAudioChannelDef::MediaAudioChannelDef() :
     m_activity(kActivityIdle),
     m_positional(false),
-    m_loop(false)
+    m_loop(false),
+    m_voice(false)
 {    
 }
 
@@ -72,7 +76,8 @@ MediaAudioChannelDef::AutoPrint(std::ostream& ioOut) const
     ioOut << "volume=" << m_volume << ", ";
     ioOut << "position=" << m_position << ", ";
     ioOut << "positional=" << m_positional << ", ";
-    ioOut << "loop=" << m_loop;
+    ioOut << "loop=" << m_loop << ", ";
+    ioOut << "voice=" << m_voice;
     ioOut << "]";
 }
 bool
@@ -104,6 +109,10 @@ MediaAudioChannelDef::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::st
     {
         ioIn >> m_loop;
     }
+    else if (inTagStr == "voice")
+    {
+        ioIn >> m_voice;
+    }
     else 
     {
         return false;
@@ -123,5 +132,7 @@ MediaAudioChannelDef::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_positional;
     ioOut.TagSet("loop");
     ioOut << m_loop;
+    ioOut.TagSet("voice");
+    ioOut << m_voice;
 }
-//%outOfLineFunctions } ATlXKKNj2EXNfKNXFQQkrw
+//%outOfLineFunctions } UdoixiBSWyzNPSeltHefvQ

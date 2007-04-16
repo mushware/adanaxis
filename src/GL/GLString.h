@@ -7,7 +7,7 @@
  *
  * File: src/GL/GLString.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } Sh42gtEYYWZFoFo1QlvT+w
+//%Header } thR730AnPuf4tF/evF+k5w
 /*
- * $Id: GLString.h,v 1.17 2005/06/20 14:30:33 southa Exp $
+ * $Id: GLString.h,v 1.18 2006/06/01 15:38:53 southa Exp $
  * $Log: GLString.h,v $
+ * Revision 1.18  2006/06/01 15:38:53  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.17  2005/06/20 14:30:33  southa
  * Adanaxis work
  *
@@ -87,7 +90,7 @@
 class GLString : public GLRenderable, public MushcoreVirtualObject
 {
 public:
-    GLString() {}
+    GLString() : m_alignment(0) {}
     GLString(const std::string& inValue, const GLFontRef& inFont, Mushware::tVal inAlign);
     void AlignmentSet(Mushware::tVal inAlign) { m_alignment=inAlign; }
     void TextSet(const std::string& inStr) { m_value=inStr; }
@@ -98,6 +101,7 @@ private:
     GLFontRef m_fontRef;
     std::string m_value;
     Mushware::tVal m_alignment;
+    
 //%classPrototypes {
 public:
     virtual const char *AutoName(void) const;

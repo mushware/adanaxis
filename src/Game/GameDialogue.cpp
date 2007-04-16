@@ -3,7 +3,7 @@
  *
  * File: src/Game/GameDialogue.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 4xqdhFCU1OwTEJubgm2zbA
+//%Header } 8vaLmOzpiDQAK4V0YrR93w
 /*
- * $Id: GameDialogue.cpp,v 1.34 2005/07/04 15:59:00 southa Exp $
+ * $Id: GameDialogue.cpp,v 1.35 2006/06/01 15:38:57 southa Exp $
  * $Log: GameDialogue.cpp,v $
+ * Revision 1.35  2006/06/01 15:38:57  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.34  2005/07/04 15:59:00  southa
  * Adanaxis work
  *
@@ -140,6 +143,19 @@ GameDialogue::Move(void)
         if (m_age == specRef.StartTime())
         {
             MediaAudio::Sgl().Play(*specRef.SoundRef().Get());
+        }
+    }
+    
+    for (U32 i=0; i<m_voices.size(); ++i)
+    {
+        GameSoundSpec& specRef = m_voices[i];
+        if (m_age < specRef.StartTime())
+        {
+            expired = false;
+        }
+        if (m_age == specRef.StartTime())
+        {
+            MediaAudio::Sgl().VoicePlay(*specRef.SoundRef().Get());
         }
     }
     
@@ -267,6 +283,7 @@ GameDialogue::AutoPrint(std::ostream& ioOut) const
     ioOut << "[";
     ioOut << "strings=" << m_strings << ", ";
     ioOut << "sounds=" << m_sounds << ", ";
+    ioOut << "voices=" << m_voices << ", ";
     ioOut << "soundStreams=" << m_soundStreams << ", ";
     ioOut << "killSound=" << m_killSound << ", ";
     ioOut << "age=" << m_age << ", ";
@@ -289,6 +306,10 @@ GameDialogue::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& in
     else if (inTagStr == "sounds")
     {
         ioIn >> m_sounds;
+    }
+    else if (inTagStr == "voices")
+    {
+        ioIn >> m_voices;
     }
     else if (inTagStr == "soundStreams")
     {
@@ -319,6 +340,8 @@ GameDialogue::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_strings;
     ioOut.TagSet("sounds");
     ioOut << m_sounds;
+    ioOut.TagSet("voices");
+    ioOut << m_voices;
     ioOut.TagSet("soundStreams");
     ioOut << m_soundStreams;
     ioOut.TagSet("killSound");
@@ -328,4 +351,4 @@ GameDialogue::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("expired");
     ioOut << m_expired;
 }
-//%outOfLineFunctions } pMZF79hRXwW8iK1Da/c4IQ
+//%outOfLineFunctions } Am34aQYzizZgZ0u4fxbKPw

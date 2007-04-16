@@ -7,7 +7,7 @@
  *
  * File: src/Game/GameDialogue.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 3nM2apF6KJGi+V2wHzhqRQ
+//%Header } FdGoOyWEWPGWEUB92gk/Yg
 /*
- * $Id: GameDialogue.h,v 1.26 2005/07/02 00:42:37 southa Exp $
+ * $Id: GameDialogue.h,v 1.27 2006/06/01 15:38:57 southa Exp $
  * $Log: GameDialogue.h,v $
+ * Revision 1.27  2006/06/01 15:38:57  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.26  2005/07/02 00:42:37  southa
  * Conditioning tweaks
  *
@@ -73,6 +76,7 @@ public:
 private:
     std::vector<GameStringSpec> m_strings;
     std::vector<GameSoundSpec> m_sounds;
+    std::vector<GameSoundSpec> m_voices;
     std::vector<GameSoundStreamSpec> m_soundStreams;
     std::string m_killSound;
     Mushware::tVal m_age;

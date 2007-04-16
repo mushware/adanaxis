@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } +tMXTn5hhHAkalFpr5zgXw
 /*
- * $Id: AdanaxisRuby.h,v 1.8 2007/03/20 17:31:24 southa Exp $
+ * $Id: AdanaxisRuby.h,v 1.9 2007/04/16 08:41:09 southa Exp $
  * $Log: AdanaxisRuby.h,v $
+ * Revision 1.9  2007/04/16 08:41:09  southa
+ * Level and header mods
+ *
  * Revision 1.8  2007/03/20 17:31:24  southa
  * Difficulty and GL options
  *
@@ -64,6 +67,7 @@ public:
 	static AdanaxisVolatileData& VolatileData(void);
 	static void LogicNameSet(const std::string& inName) { s_logicRef.NameSet(inName); }
 	static Mushware::tRubyValue PlayerPosition(Mushware::tRubyValue inSelf);
+	static Mushware::tRubyValue PlayerOrientationForce(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
     static Mushware::tRubyValue PlayerTargetID(Mushware::tRubyValue inSelf);
     static Mushware::tRubyValue RecordTime(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
     static Mushware::tRubyValue DamageIconSet(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0, Mushware::tRubyValue inArg1);

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 5dkO+eg2P4Bh997GvySFQg
 /*
- * $Id: MushGameRuby.h,v 1.24 2007/03/08 18:38:15 southa Exp $
+ * $Id: MushGameRuby.h,v 1.25 2007/04/16 08:41:10 southa Exp $
  * $Log: MushGameRuby.h,v $
+ * Revision 1.25  2007/04/16 08:41:10  southa
+ * Level and header mods
+ *
  * Revision 1.24  2007/03/08 18:38:15  southa
  * Level progression
  *
@@ -130,6 +133,8 @@ public:
     static Mushware::tRubyValue AudioVolumeSet(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
     static Mushware::tRubyValue MusicVolume(Mushware::tRubyValue inSelf);
     static Mushware::tRubyValue MusicVolumeSet(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
+    static Mushware::tRubyValue VoiceVolume(Mushware::tRubyValue inSelf);
+    static Mushware::tRubyValue VoiceVolumeSet(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
     static Mushware::tRubyValue TextureDetail(Mushware::tRubyValue inSelf);
     static Mushware::tRubyValue TextureDetailSet(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
     static Mushware::tRubyValue MouseSensitivity(Mushware::tRubyValue inSelf);
@@ -142,7 +147,8 @@ public:
     static Mushware::tRubyValue SoundStreamDefine(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0, Mushware::tRubyValue inArg1);
     static Mushware::tRubyValue SoundPlay(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0, Mushware::tRubyValue inArg1);
     static Mushware::tRubyValue TiedSoundPlay(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0, Mushware::tRubyValue inArg1);
-    static Mushware::tRubyValue SoundStreamPlay(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0, Mushware::tRubyValue inArg1);
+    static Mushware::tRubyValue VoicePlay(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
+    static Mushware::tRubyValue SoundStreamPlay(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
     static Mushware::tRubyValue PackageID(Mushware::tRubyValue inSelf);
     static Mushware::tRubyValue GameMsec(Mushware::tRubyValue inSelf);
     static Mushware::tRubyValue FreeMsec(Mushware::tRubyValue inSelf);

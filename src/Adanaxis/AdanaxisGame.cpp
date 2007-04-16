@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } 7d8XNXTzlBe/E65+Bc7mXg
 /*
- * $Id: AdanaxisGame.cpp,v 1.63 2007/03/20 17:31:23 southa Exp $
+ * $Id: AdanaxisGame.cpp,v 1.64 2007/04/16 08:41:07 southa Exp $
  * $Log: AdanaxisGame.cpp,v $
+ * Revision 1.64  2007/04/16 08:41:07  southa
+ * Level and header mods
+ *
  * Revision 1.63  2007/03/20 17:31:23  southa
  * Difficulty and GL options
  *
@@ -370,6 +373,7 @@ AdanaxisGame::Init(MushGameAppHandler& inAppHandler)
 
     MediaAudio::Sgl().AudioVolumeSet(m_config.AudioVolume() / 100.0);
     MediaAudio::Sgl().MusicVolumeSet(m_config.MusicVolume() / 100.0);
+    MediaAudio::Sgl().VoiceVolumeSet(m_config.VoiceVolume() / 100.0);
     MediaAudio::Sgl().MusicFadeOut(1000); // Level starts music once it loads
     
     Logic().RecordTimeSet(AdanaxisRecords::Sgl().RecordTime(SaveData().SpaceName()));

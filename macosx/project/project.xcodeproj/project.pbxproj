@@ -4161,6 +4161,10 @@
 		7AF47F310B32D64E00664BED /* MushFileKeys.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushFileKeys.cpp; sourceTree = "<group>"; };
 		7AF47FD40B33134400664BED /* KeyGen.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = KeyGen.rb; path = "../../../core-keys/KeyGen.rb"; sourceTree = SOURCE_ROOT; };
 		7AF480230B331F0B00664BED /* MushSecretKeys.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = MushSecretKeys.cpp; path = "../../../core-keys/MushSecretKeys.cpp"; sourceTree = SOURCE_ROOT; };
+		7AF6B7500BD378AE0034ABFB /* MakeMush.rb */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.ruby; path = MakeMush.rb; sourceTree = "<group>"; };
+		7AF6B7640BD386040034ABFB /* dialogues.xml */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; path = dialogues.xml; sourceTree = "<group>"; };
+		7AF6B7650BD386040034ABFB /* manifest.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = manifest.txt; sourceTree = "<group>"; };
+		7AF6B7660BD386040034ABFB /* space.rb */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.ruby; path = space.rb; sourceTree = "<group>"; };
 		7AFA31910AD18BE500B73920 /* AdanaxisTargetSelect.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AdanaxisTargetSelect.rb; sourceTree = "<group>"; };
 		7AFB11E2088C052000F097A3 /* AdanaxisPieceKhazi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdanaxisPieceKhazi.h; sourceTree = "<group>"; };
 		7AFB11E3088C052000F097A3 /* AdanaxisPieceKhazi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AdanaxisPieceKhazi.cpp; sourceTree = "<group>"; };
@@ -4439,6 +4443,7 @@
 		7A3E0D170A4821B30078B650 /* spaces */ = {
 			isa = PBXGroup;
 			children = (
+				7AF6B7630BD386040034ABFB /* intro1 */,
 				7A6842810BB3EBCB00A7E83F /* level1 */,
 				7A6842860BB3ECB200A7E83F /* level2 */,
 				7ADEC00F0BB59A6400B59F08 /* level3 */,
@@ -4471,6 +4476,7 @@
 		7A4446810B05000800C819B8 /* wavesrc */ = {
 			isa = PBXGroup;
 			children = (
+				7AF6B7210BD378AD0034ABFB /* voice */,
 				7A4446820B05000800C819B8 /* 2006-11-10-1 */,
 				7A4446940B05000800C819B8 /* 2006-11-10-2 */,
 				7A4446A80B05000800C819B8 /* MakeMush.rb */,
@@ -6809,6 +6815,24 @@
 				7AF480230B331F0B00664BED /* MushSecretKeys.cpp */,
 			);
 			name = MushSecret;
+			sourceTree = "<group>";
+		};
+		7AF6B7210BD378AD0034ABFB /* voice */ = {
+			isa = PBXGroup;
+			children = (
+				7AF6B7500BD378AE0034ABFB /* MakeMush.rb */,
+			);
+			path = voice;
+			sourceTree = "<group>";
+		};
+		7AF6B7630BD386040034ABFB /* intro1 */ = {
+			isa = PBXGroup;
+			children = (
+				7AF6B7640BD386040034ABFB /* dialogues.xml */,
+				7AF6B7650BD386040034ABFB /* manifest.txt */,
+				7AF6B7660BD386040034ABFB /* space.rb */,
+			);
+			path = intro1;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

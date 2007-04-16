@@ -7,7 +7,7 @@
  *
  * File: src/Media/MediaAudioNull.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } +TqwNDFCDF610zYAXeniiA
+//%Header } ERHDHgUjm2LdKit8Iy51HQ
 /*
- * $Id: MediaAudioNull.h,v 1.14 2006/12/11 13:28:23 southa Exp $
+ * $Id: MediaAudioNull.h,v 1.15 2006/12/11 18:54:18 southa Exp $
  * $Log: MediaAudioNull.h,v $
+ * Revision 1.15  2006/12/11 18:54:18  southa
+ * Positional audio
+ *
  * Revision 1.14  2006/12/11 13:28:23  southa
  * Snapshot
  *
@@ -80,6 +83,7 @@ public:
     virtual void Play(MediaSound& inSound, Mushware::tVal inVolume, Mushware::t4Val inPosition,
                       Mushware::U32 inFlags);
     virtual void Play(MediaSoundStream& inSoundStream, Mushware::U32 inLoop=10000);
+    virtual void VoicePlay(MediaSound& inSound);
     virtual void SoundHalt(MediaSound& inSound);
     virtual void Load(MediaSound& inSound) const;
     virtual void Load(MediaSoundStream& inSoundStream) {}
@@ -89,6 +93,7 @@ public:
     virtual void MusicFadeOut(Mushware::tVal inMsec) {}
     virtual void MusicVolumeSet(Mushware::tVal inVolume) {}
     virtual void AudioVolumeSet(Mushware::tVal inVolume) {}
+    virtual void VoiceVolumeSet(Mushware::tVal inVolume) {}
 
 private:
 };

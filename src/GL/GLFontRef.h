@@ -7,7 +7,7 @@
  *
  * File: src/GL/GLFontRef.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } LMk5grjZT/qvEfNZZlx9NA
+//%Header } hJVso5ZlQDSuPex4jxFlSw
 /*
-* $Id: GLFontRef.h,v 1.15 2005/06/20 14:30:33 southa Exp $
+* $Id: GLFontRef.h,v 1.16 2006/06/01 15:38:50 southa Exp $
 * $Log: GLFontRef.h,v $
+* Revision 1.16  2006/06/01 15:38:50  southa
+* DrawArray verification and fixes
+*
 * Revision 1.15  2005/06/20 14:30:33  southa
 * Adanaxis work
 *
@@ -80,7 +83,7 @@ class GLFont;
 class GLFontRef : public MushcoreVirtualObject
 {
 public:
-    GLFontRef(): m_fontPtr(NULL) {}
+    GLFontRef(): m_size(1.0), m_fontPtr(NULL) {}
     virtual ~GLFontRef() {}
     
     explicit GLFontRef(const std::string& inName, Mushware::tVal inSize=1.0): m_name(inName), m_size(inSize), m_fontPtr(NULL) {}

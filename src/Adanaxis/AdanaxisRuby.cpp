@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } Iz5wCHDgUTzGRuTtfwnQtg
 /*
- * $Id: AdanaxisRuby.cpp,v 1.11 2007/03/20 17:31:24 southa Exp $
+ * $Id: AdanaxisRuby.cpp,v 1.12 2007/04/16 08:41:08 southa Exp $
  * $Log: AdanaxisRuby.cpp,v $
+ * Revision 1.12  2007/04/16 08:41:08  southa
+ * Level and header mods
+ *
  * Revision 1.11  2007/03/20 17:31:24  southa
  * Difficulty and GL options
  *
@@ -83,6 +86,18 @@ AdanaxisRuby::PlayerPosition(Mushware::tRubyValue inSelf)
         MushMeshRubyVector::WRef(retVal) = p->Post().Pos();
     }
     return retVal;
+}    
+
+Mushware::tRubyValue
+AdanaxisRuby::PlayerOrientationForce(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0)
+{
+    typedef MushcoreMaptor<MushGamePiecePlayer>::iterator tIterator;
+    MushcoreMaptor<MushGamePiecePlayer>& playerData = SaveData().PlayersListWRef();
+    for (tIterator p = playerData.begin(); p != playerData.end(); ++p)
+    {
+        p->PostWRef().AngPosSet(MushMeshRubyRotation::Ref(inArg0));
+    }
+    return kRubyQnil;
 }    
 
 Mushware::tRubyValue
@@ -180,6 +195,7 @@ void
 AdanaxisRuby::AdanaxisInstall(void)
 {
     MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cPlayerPosition", PlayerPosition);
+    MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cPlayerOrientationForce", PlayerOrientationForce);
     MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cPlayerTargetID", PlayerTargetID);
     MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cRecordTime", RecordTime);
     MushRubyUtil::SingletonMethodDefineTwoParams(Klass(), "cDamageIconSet", DamageIconSet);
