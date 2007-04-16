@@ -3,7 +3,7 @@
  *
  * File: src/MushGame/MushGameLogic.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } o9Dxm/e8GypZNPSRXLgJNQ
+//%Header } GsPzC+Lwr5unXfKDyFk0MQ
 /*
- * $Id: MushGameLogic.cpp,v 1.45 2007/03/08 18:38:15 southa Exp $
+ * $Id: MushGameLogic.cpp,v 1.46 2007/03/09 11:29:13 southa Exp $
  * $Log: MushGameLogic.cpp,v $
+ * Revision 1.46  2007/03/09 11:29:13  southa
+ * Game end actions
+ *
  * Revision 1.45  2007/03/08 18:38:15  southa
  * Level progression
  *

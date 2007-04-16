@@ -7,7 +7,7 @@
  *
  * File: src/MushGame/MushGameRuby.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } abz8WfQdtsWpPxv12NZxhA
+//%Header } 5dkO+eg2P4Bh997GvySFQg
 /*
- * $Id: MushGameRuby.h,v 1.23 2007/03/08 11:00:30 southa Exp $
+ * $Id: MushGameRuby.h,v 1.24 2007/03/08 18:38:15 southa Exp $
  * $Log: MushGameRuby.h,v $
+ * Revision 1.24  2007/03/08 18:38:15  southa
+ * Level progression
+ *
  * Revision 1.23  2007/03/08 11:00:30  southa
  * Level epilogue
  *

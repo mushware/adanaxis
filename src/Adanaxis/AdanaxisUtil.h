@@ -10,7 +10,7 @@
  * Copyright: Andy Southgate 2005-2007
  *
  * This file may be used and distributed under the terms of the Mushware
- * software licence version 1.1, under the terms for 'Proprietary original
+ * Software Licence version 1.2, under the terms for 'Proprietary original
  * source files'.  If not supplied with this software, a copy of the licence
  * can be obtained from Mushware Limited via http://www.mushware.com/.
  * One of your options under that licence is to use and distribute this file
@@ -19,10 +19,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } +aR2/qcMWwep3vwoUHAMzA
+//%Header } 5dfRix6T/nWTpt3DQYDctw
 /*
- * $Id: AdanaxisUtil.h,v 1.15 2007/03/09 19:50:12 southa Exp $
+ * $Id: AdanaxisUtil.h,v 1.16 2007/03/12 21:06:00 southa Exp $
  * $Log: AdanaxisUtil.h,v $
+ * Revision 1.16  2007/03/12 21:06:00  southa
+ * Scanner symbols
+ *
  * Revision 1.15  2007/03/09 19:50:12  southa
  * Resident textures
  *

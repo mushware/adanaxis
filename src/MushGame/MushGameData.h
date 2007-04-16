@@ -7,7 +7,7 @@
  *
  * File: src/MushGame/MushGameData.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } ntJSLwt7PJWQN4kA9w6N3Q
+//%Header } X+IePKAVhL/Q07z67fkoEw
 /*
- * $Id: MushGameData.h,v 1.6 2007/03/08 11:00:29 southa Exp $
+ * $Id: MushGameData.h,v 1.7 2007/03/09 11:29:13 southa Exp $
  * $Log: MushGameData.h,v $
+ * Revision 1.7  2007/03/09 11:29:13  southa
+ * Game end actions
+ *
  * Revision 1.6  2007/03/08 11:00:29  southa
  * Level epilogue
  *

@@ -6,7 +6,7 @@
  * Copyright: Andy Southgate 2005-2007
  *
  * This file may be used and distributed under the terms of the Mushware
- * software licence version 1.1, under the terms for 'Proprietary original
+ * Software Licence version 1.2, under the terms for 'Proprietary original
  * source files'.  If not supplied with this software, a copy of the licence
  * can be obtained from Mushware Limited via http://www.mushware.com/.
  * One of your options under that licence is to use and distribute this file
@@ -15,10 +15,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } SBBDSIIkVx+tNPis94tGjw
+//%Header } TpqIHaE2NQxpluTqZxm0uA
 /*
- * $Id: AdanaxisPieceDeco.cpp,v 1.35 2007/03/21 11:56:06 southa Exp $
+ * $Id: AdanaxisPieceDeco.cpp,v 1.36 2007/03/21 18:05:58 southa Exp $
  * $Log: AdanaxisPieceDeco.cpp,v $
+ * Revision 1.36  2007/03/21 18:05:58  southa
+ * Tied sound fixes
+ *
  * Revision 1.35  2007/03/21 11:56:06  southa
  * Rail effects and damage icons
  *

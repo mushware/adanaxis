@@ -6,7 +6,7 @@
  * Copyright: Andy Southgate 2005-2007
  *
  * This file may be used and distributed under the terms of the Mushware
- * software licence version 1.1, under the terms for 'Proprietary original
+ * Software Licence version 1.2, under the terms for 'Proprietary original
  * source files'.  If not supplied with this software, a copy of the licence
  * can be obtained from Mushware Limited via http://www.mushware.com/.
  * One of your options under that licence is to use and distribute this file
@@ -15,10 +15,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } cyEiDhBmNW5pWshLRC8PEg
+//%Header } 8WzeEMAQ5nxR3CIRoKJp9Q
 /*
- * $Id$
- * $Log$
+ * $Id: AdanaxisRecords.cpp,v 1.1 2007/03/09 19:50:11 southa Exp $
+ * $Log: AdanaxisRecords.cpp,v $
+ * Revision 1.1  2007/03/09 19:50:11  southa
+ * Resident textures
+ *
  */
 
 #include "AdanaxisRecords.h"

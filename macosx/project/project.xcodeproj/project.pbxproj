@@ -8386,9 +8386,12 @@
 		20286C28FDCF999611CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			buildConfigurationList = 7A19619A0899A34800B8B840 /* Build configuration list for PBXProject "project" */;
+			compatibilityVersion = "Xcode 2.4";
 			hasScannedForEncodings = 1;
 			mainGroup = 20286C29FDCF999611CA2CEA /* project */;
 			projectDirPath = "";
+			projectRoot = "";
+			shouldCheckCompatibility = 1;
 			targets = (
 				7A70CD4B085DEE2D0055C6FB /* Adanaxis */,
 				7A62B6F805A49C0B002A5F1C /* All */,

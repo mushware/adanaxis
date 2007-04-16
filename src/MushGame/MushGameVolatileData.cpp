@@ -3,7 +3,7 @@
  *
  * File: src/MushGame/MushGameVolatileData.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } mGoZWUiZsKFfWNio1FcVLw
+//%Header } KjTGGZJJ7RdcZomHkSHYpg
 /*
- * $Id: MushGameVolatileData.cpp,v 1.14 2006/12/14 15:59:24 southa Exp $
+ * $Id: MushGameVolatileData.cpp,v 1.15 2007/03/08 11:00:30 southa Exp $
  * $Log: MushGameVolatileData.cpp,v $
+ * Revision 1.15  2007/03/08 11:00:30  southa
+ * Level epilogue
+ *
  * Revision 1.14  2006/12/14 15:59:24  southa
  * Fire and cutscene fixes
  *

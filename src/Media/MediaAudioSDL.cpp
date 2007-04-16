@@ -3,7 +3,7 @@
  *
  * File: src/Media/MediaAudioSDL.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } ccLCYRn/kYU+5Rp9coVdng
+//%Header } FG1UBO0d8qPi+PGHUglZwQ
 /*
- * $Id: MediaAudioSDL.cpp,v 1.32 2006/12/16 10:57:22 southa Exp $
+ * $Id: MediaAudioSDL.cpp,v 1.33 2007/03/07 16:59:44 southa Exp $
  * $Log: MediaAudioSDL.cpp,v $
+ * Revision 1.33  2007/03/07 16:59:44  southa
+ * Khazi spawning and level ends
+ *
  * Revision 1.32  2006/12/16 10:57:22  southa
  * Encrypted files
  *

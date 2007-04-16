@@ -6,7 +6,7 @@
  * Copyright: Andy Southgate 2005-2007
  *
  * This file may be used and distributed under the terms of the Mushware
- * software licence version 1.1, under the terms for 'Proprietary original
+ * Software Licence version 1.2, under the terms for 'Proprietary original
  * source files'.  If not supplied with this software, a copy of the licence
  * can be obtained from Mushware Limited via http://www.mushware.com/.
  * One of your options under that licence is to use and distribute this file
@@ -15,10 +15,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } Z0i2K+7kHTuXJiioToXHlg
+//%Header } 7d8XNXTzlBe/E65+Bc7mXg
 /*
- * $Id: AdanaxisGame.cpp,v 1.62 2007/03/09 19:50:11 southa Exp $
+ * $Id: AdanaxisGame.cpp,v 1.63 2007/03/20 17:31:23 southa Exp $
  * $Log: AdanaxisGame.cpp,v $
+ * Revision 1.63  2007/03/20 17:31:23  southa
+ * Difficulty and GL options
+ *
  * Revision 1.62  2007/03/09 19:50:11  southa
  * Resident textures
  *

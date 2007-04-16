@@ -10,7 +10,7 @@
  * Copyright: Andy Southgate 2005-2007
  *
  * This file may be used and distributed under the terms of the Mushware
- * software licence version 1.1, under the terms for 'Proprietary original
+ * Software Licence version 1.2, under the terms for 'Proprietary original
  * source files'.  If not supplied with this software, a copy of the licence
  * can be obtained from Mushware Limited via http://www.mushware.com/.
  * One of your options under that licence is to use and distribute this file
@@ -19,10 +19,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } PzP9jWQw0nNNZUi3UI/r5A
+//%Header } wVlp3pm2MeX6NsiMM++CNA
 /*
- * $Id: AdanaxisRender.h,v 1.14 2007/03/16 19:50:44 southa Exp $
+ * $Id: AdanaxisRender.h,v 1.15 2007/03/19 16:01:35 southa Exp $
  * $Log: AdanaxisRender.h,v $
+ * Revision 1.15  2007/03/19 16:01:35  southa
+ * Damage indicators
+ *
  * Revision 1.14  2007/03/16 19:50:44  southa
  * Damage indicators
  *

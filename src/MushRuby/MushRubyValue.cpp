@@ -3,7 +3,7 @@
  *
  * File: src/MushRuby/MushRubyValue.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } hwIlNOCEH5GsgwGY+rP1Kg
+//%Header } SHvtxxB3U6rYTUMt5ljHVg
 /*
- * $Id: MushRubyValue.cpp,v 1.20 2006/11/08 18:30:54 southa Exp $
+ * $Id: MushRubyValue.cpp,v 1.21 2007/03/07 16:59:45 southa Exp $
  * $Log: MushRubyValue.cpp,v $
+ * Revision 1.21  2007/03/07 16:59:45  southa
+ * Khazi spawning and level ends
+ *
  * Revision 1.20  2006/11/08 18:30:54  southa
  * Key and axis configuration
  *

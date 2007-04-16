@@ -6,7 +6,7 @@
  * Copyright: Andy Southgate 2005-2007
  *
  * This file may be used and distributed under the terms of the Mushware
- * software licence version 1.1, under the terms for 'Proprietary original
+ * Software Licence version 1.2, under the terms for 'Proprietary original
  * source files'.  If not supplied with this software, a copy of the licence
  * can be obtained from Mushware Limited via http://www.mushware.com/.
  * One of your options under that licence is to use and distribute this file
@@ -15,10 +15,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } cqQaDiQhBaLOwaroJ7h5bA
+//%Header } 8r603cVEraLNM6qZ1PWnFQ
 /*
- * $Id: AdanaxisData.cpp,v 1.3 2006/08/01 17:21:23 southa Exp $
+ * $Id: AdanaxisData.cpp,v 1.4 2007/03/16 19:50:44 southa Exp $
  * $Log: AdanaxisData.cpp,v $
+ * Revision 1.4  2007/03/16 19:50:44  southa
+ * Damage indicators
+ *
  * Revision 1.3  2006/08/01 17:21:23  southa
  * River demo
  *

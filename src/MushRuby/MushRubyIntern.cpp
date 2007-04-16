@@ -3,7 +3,7 @@
  *
  * File: src/MushRuby/MushRubyIntern.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } lqALCPGBahbk4ibyVPO8LQ
+//%Header } YkR+zNU6XCcJpeU4W2cvOQ
 /*
- * $Id: MushRubyIntern.cpp,v 1.24 2006/10/08 11:31:33 southa Exp $
+ * $Id: MushRubyIntern.cpp,v 1.25 2007/02/08 17:55:15 southa Exp $
  * $Log: MushRubyIntern.cpp,v $
+ * Revision 1.25  2007/02/08 17:55:15  southa
+ * Common routines in space generation
+ *
  * Revision 1.24  2006/10/08 11:31:33  southa
  * Hit points
  *

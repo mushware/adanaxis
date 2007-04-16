@@ -3,7 +3,7 @@
  *
  * File: src/MushGame/MushGameRender.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } Up/Zo/AbGEsGQw3FmjqFGg
+//%Header } jWz1s09vnK7cEgYPhPYFdA
 /*
- * $Id: MushGameRender.cpp,v 1.4 2006/07/20 12:22:22 southa Exp $
+ * $Id: MushGameRender.cpp,v 1.5 2007/02/08 17:55:15 southa Exp $
  * $Log: MushGameRender.cpp,v $
+ * Revision 1.5  2007/02/08 17:55:15  southa
+ * Common routines in space generation
+ *
  * Revision 1.4  2006/07/20 12:22:22  southa
  * Precache display
  *
