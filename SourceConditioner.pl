@@ -10,8 +10,11 @@
 #
 ##############################################################################
 
-# $Id: SourceConditioner.pl,v 1.58 2007/03/09 19:50:09 southa Exp $
+# $Id: SourceConditioner.pl,v 1.59 2007/03/23 12:27:33 southa Exp $
 # $Log: SourceConditioner.pl,v $
+# Revision 1.59  2007/03/23 12:27:33  southa
+# Added levels and Cistern mesh
+#
 # Revision 1.58  2007/03/09 19:50:09  southa
 # Resident textures
 #
@@ -258,7 +261,7 @@ my @gCHeaders = (
 ' *',
 ' ****************************************************************************/'
 ],
-'^space\.rb$' => [
+'^space-f\.rb$' => [
 '##############################################################################',
 '#',
 '# File @FILENAME@',

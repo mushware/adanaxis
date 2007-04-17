@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } GsPzC+Lwr5unXfKDyFk0MQ
 /*
- * $Id: MushGameLogic.cpp,v 1.46 2007/03/09 11:29:13 southa Exp $
+ * $Id: MushGameLogic.cpp,v 1.47 2007/04/16 08:41:10 southa Exp $
  * $Log: MushGameLogic.cpp,v $
+ * Revision 1.47  2007/04/16 08:41:10  southa
+ * Level and header mods
+ *
  * Revision 1.46  2007/03/09 11:29:13  southa
  * Game end actions
  *
@@ -857,6 +860,11 @@ MushGameLogic::EpilogueModeEnter(Mushware::U32 inResult)
         {
             MushRubyExec::Sgl().Call(VolatileData().RubyGame(),
                                      MushGameIntern::Sgl().mEpilogueStartWon());
+        }
+        else if (inResult == MushGameData::kGameResultLost)
+        {
+            MushRubyExec::Sgl().Call(VolatileData().RubyGame(),
+                                     MushGameIntern::Sgl().mEpilogueStartLost());
         }
         else
         {

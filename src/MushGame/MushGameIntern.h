@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } RIS7HPsOToqqsgLbG2XOkQ
 /*
- * $Id: MushGameIntern.h,v 1.8 2007/03/08 18:38:15 southa Exp $
+ * $Id: MushGameIntern.h,v 1.9 2007/03/21 11:56:06 southa Exp $
  * $Log: MushGameIntern.h,v $
+ * Revision 1.9  2007/03/21 11:56:06  southa
+ * Rail effects and damage icons
+ *
  * Revision 1.8  2007/03/08 18:38:15  southa
  * Level progression
  *
@@ -68,6 +71,7 @@
      mCutSceneKeypress
      mEpilogueKeypress
      mEpilogueStartDead
+     mEpilogueStartLost
      mEpilogueStartWon
      mEventConsume
      mEventHandle
@@ -97,6 +101,7 @@ public:
     Mushware::tRubyID mCutSceneKeypress(void) { return m_mCutSceneKeypress; }
     Mushware::tRubyID mEpilogueKeypress(void) { return m_mEpilogueKeypress; }
     Mushware::tRubyID mEpilogueStartDead(void) { return m_mEpilogueStartDead; }
+    Mushware::tRubyID mEpilogueStartLost(void) { return m_mEpilogueStartLost; }
     Mushware::tRubyID mEpilogueStartWon(void) { return m_mEpilogueStartWon; }
     Mushware::tRubyID mEventConsume(void) { return m_mEventConsume; }
     Mushware::tRubyID mEventHandle(void) { return m_mEventHandle; }
@@ -114,10 +119,11 @@ private:
     Mushware::tRubyID m_mCutSceneKeypress;
     Mushware::tRubyID m_mEpilogueKeypress;
     Mushware::tRubyID m_mEpilogueStartDead;
+    Mushware::tRubyID m_mEpilogueStartLost;
     Mushware::tRubyID m_mEpilogueStartWon;
     Mushware::tRubyID m_mEventConsume;
     Mushware::tRubyID m_mEventHandle;
-//%declarations } b39fc8734ce9546cb78ce9378ed2129e
+//%declarations } 001f11739b95ec0bd280144f65d24b6d
 //%classPrototypes {
 public:
 //%classPrototypes } 0ImSRh0/JBpOMwe5g8vGcA

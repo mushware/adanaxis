@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } z893A6OqbF+Lz1KLSzrQmw
 /*
- * $Id: MushGameIntern.cpp,v 1.8 2007/03/08 18:38:15 southa Exp $
+ * $Id: MushGameIntern.cpp,v 1.9 2007/03/21 11:56:06 southa Exp $
  * $Log: MushGameIntern.cpp,v $
+ * Revision 1.9  2007/03/21 11:56:06  southa
+ * Rail effects and damage icons
+ *
  * Revision 1.8  2007/03/08 18:38:15  southa
  * Level progression
  *
@@ -69,8 +72,9 @@ MushGameIntern::MushGameIntern()
     m_mCutSceneKeypress = MushRubyIntern::SymbolID("mCutSceneKeypress");
     m_mEpilogueKeypress = MushRubyIntern::SymbolID("mEpilogueKeypress");
     m_mEpilogueStartDead = MushRubyIntern::SymbolID("mEpilogueStartDead");
+    m_mEpilogueStartLost = MushRubyIntern::SymbolID("mEpilogueStartLost");
     m_mEpilogueStartWon = MushRubyIntern::SymbolID("mEpilogueStartWon");
     m_mEventConsume = MushRubyIntern::SymbolID("mEventConsume");
     m_mEventHandle = MushRubyIntern::SymbolID("mEventHandle");
-//%initialisations } 5c66046b49bdbc5fd2fabbf6bbaf33cd
+//%initialisations } c10868ae0468ef14379b985d088a8472
 }
