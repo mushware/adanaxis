@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 3cOUjreNyepUQhXMHWR1jQ
 /*
- * $Id: PlatformInputUtils.h,v 1.19 2006/07/08 16:06:01 southa Exp $
+ * $Id: PlatformInputUtils.h,v 1.20 2007/04/18 09:23:23 southa Exp $
  * $Log: PlatformInputUtils.h,v $
+ * Revision 1.20  2007/04/18 09:23:23  southa
+ * Header and level fixes
+ *
  * Revision 1.19  2006/07/08 16:06:01  southa
  * Ruby menus and key handling
  *
@@ -99,7 +102,16 @@
 class PlatformInputUtils
 {
 public:
+    enum
+    {
+        kKeyModShift = 1<<0,
+        kKeyModCtrl = 1<<1,
+        kKeyModAlt = 1<<2,
+        kKeyModMeta = 1<<3
+    };
+    
     static void MouseDeltaOverrideGet(Mushware::S32& ioXDelta, Mushware::S32& ioYDelta);
+    static Mushware::U32 CurrentKeyModifiers(void);
 };
 
 

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } nNw9qVohlyy/i7/KJR2RkQ
 /*
- * $Id: MushGameAppHandler.h,v 1.16 2006/11/25 21:26:32 southa Exp $
+ * $Id: MushGameAppHandler.h,v 1.17 2007/04/18 09:22:38 southa Exp $
  * $Log: MushGameAppHandler.h,v $
+ * Revision 1.17  2007/04/18 09:22:38  southa
+ * Header and level fixes
+ *
  * Revision 1.16  2006/11/25 21:26:32  southa
  * Display mode definitions
  *
@@ -127,6 +130,7 @@ protected:
         kAppStateQuitting
     };
     
+    virtual void Initialise(void);
     virtual void CurrentSwapOut(void);
     virtual void CurrentSwapIn(const std::string& inName);
     

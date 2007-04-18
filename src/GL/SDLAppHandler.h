@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } R4H4sEMlVCpKH2ncEhuaTQ
 /*
- * $Id: SDLAppHandler.h,v 1.33 2006/07/31 11:01:37 southa Exp $
+ * $Id: SDLAppHandler.h,v 1.34 2007/03/09 19:50:12 southa Exp $
  * $Log: SDLAppHandler.h,v $
+ * Revision 1.34  2007/03/09 19:50:12  southa
+ * Resident textures
+ *
  * Revision 1.33  2006/07/31 11:01:37  southa
  * Music and dialogues
  *
@@ -171,6 +174,8 @@ public:
     virtual void KeyRepeatSet(bool inValue);
     virtual void MouseSensitivitySet(Mushware::tVal inValue) { m_mouseSensitivity = inValue; }
     virtual bool ScreenEntered(void) const { return m_screenEntered; }
+    virtual bool ShiftAtStartupPressed(void) const { return m_shiftAtStartupPressed; }
+    
 protected:
     virtual void Initialise(void);
     virtual void Idle(void);
@@ -215,6 +220,7 @@ private:
     tDeviceList m_deviceList;
     Mushware::tVal m_mouseSensitivity;
     bool m_screenEntered;
+    bool m_shiftAtStartupPressed;
 };
 //%includeGuardEnd {
 #endif

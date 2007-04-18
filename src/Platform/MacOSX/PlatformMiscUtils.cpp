@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } eUUeCJ1Cfr5OjIMLBtYBHw
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.43 2007/03/13 12:22:51 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.44 2007/03/13 21:45:11 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.44  2007/03/13 21:45:11  southa
+ * Release process
+ *
  * Revision 1.43  2007/03/13 12:22:51  southa
  * Scanner symbols
  *
@@ -295,8 +298,9 @@ PlatformMiscUtils::ScanDirectory(vector<std::string>& outFilenames, const string
     while (entry = readdir(dirPtr), entry != NULL)
     {
         struct stat statInfo;
-        lstat(entry->d_name, &statInfo);
-        if(S_ISREG(statInfo.st_mode))
+        lstat((inDirName+"/"+entry->d_name).c_str(), &statInfo);
+
+        if (S_ISREG(statInfo.st_mode))
         {
             string name=entry->d_name;
             if (name != "." && name != ".." && name != "CVS")

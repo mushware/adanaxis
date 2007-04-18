@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } iq/M/29BciHx/MWfKkILcw
 /*
- * $Id: SecondaryMain.cpp,v 1.9 2006/06/29 10:12:34 southa Exp $
+ * $Id: SecondaryMain.cpp,v 1.10 2007/03/13 21:45:11 southa Exp $
  * $Log: SecondaryMain.cpp,v $
+ * Revision 1.10  2007/03/13 21:45:11  southa
+ * Release process
+ *
  * Revision 1.9  2006/06/29 10:12:34  southa
  * 64 bit compatibility fixes
  *
@@ -180,10 +183,13 @@ int main(int argc, char *argv[])
     int retVal = 0;
     PlatformMiscUtils::Initialise();
     MushcoreGlobalConfig::Sgl().Set("RESOURCES_PATH", PlatformMiscUtils::GetResourcesPath(argc, argv));
-    cerr << "Resources path is " << MushcoreGlobalConfig::Sgl().Get("RESOURCES_PATH") << endl;
     MushcoreGlobalConfig::Sgl().Set("SYSTEM_PATH", PlatformMiscUtils::GetSystemPath(argc, argv));
-    cerr << "System path is " << MushcoreGlobalConfig::Sgl().Get("SYSTEM_PATH") << endl;
 
+#ifdef MUSHCORE_DEBUG
+    cout << "Resources path is " << MushcoreGlobalConfig::Sgl().Get("RESOURCES_PATH") << endl;
+    cout << "System path is " << MushcoreGlobalConfig::Sgl().Get("SYSTEM_PATH") << endl;
+#endif
+    
     string str;
     for (int i=1; i<argc; i++)
     {

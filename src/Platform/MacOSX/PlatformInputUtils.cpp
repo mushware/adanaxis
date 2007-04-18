@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } Aw4nLf9KxzsnbU+QPwjv9Q
 /*
- * $Id: PlatformInputUtils.cpp,v 1.19 2006/07/08 16:06:01 southa Exp $
+ * $Id: PlatformInputUtils.cpp,v 1.20 2007/04/18 09:23:23 southa Exp $
  * $Log: PlatformInputUtils.cpp,v $
+ * Revision 1.20  2007/04/18 09:23:23  southa
+ * Header and level fixes
+ *
  * Revision 1.19  2006/07/08 16:06:01  southa
  * Ruby menus and key handling
  *
@@ -97,6 +100,7 @@
 #include "mushGL.h"
 
 #include <ApplicationServices/ApplicationServices.h>
+#include <Carbon/Carbon.h>
 
 using namespace Mushware;
 using namespace std;
@@ -110,3 +114,28 @@ PlatformInputUtils::MouseDeltaOverrideGet(S32& ioXDelta, S32& ioYDelta)
     ioYDelta=yDelta;
 }
 
+Mushware::U32
+PlatformInputUtils::CurrentKeyModifiers(void)
+{
+    U32 retVal = 0;
+    
+    UInt32 keyMods = GetCurrentKeyModifiers();
+    
+    if ((keyMods & shiftKey) != 0)
+    {
+        retVal |= kKeyModShift;
+    }
+    if ((keyMods & controlKey) != 0)
+    {
+        retVal |= kKeyModCtrl;
+    }
+    if ((keyMods & optionKey) != 0)
+    {
+        retVal |= kKeyModAlt;
+    }
+    if ((keyMods & cmdKey) != 0)
+    {
+        retVal |= kKeyModMeta;
+    }
+    return retVal;
+}

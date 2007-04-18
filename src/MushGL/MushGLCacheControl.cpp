@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } e0xSqc6EhVrEiWTLqskegw
 /*
- * $Id: MushGLCacheControl.cpp,v 1.5 2006/08/03 16:32:48 southa Exp $
+ * $Id: MushGLCacheControl.cpp,v 1.6 2007/04/18 09:22:33 southa Exp $
  * $Log: MushGLCacheControl.cpp,v $
+ * Revision 1.6  2007/04/18 09:22:33  southa
+ * Header and level fixes
+ *
  * Revision 1.5  2006/08/03 16:32:48  southa
  * X11 release work
  *
@@ -138,6 +141,8 @@ MushGLCacheControl::TextureCachePath(void) const
 void
 MushGLCacheControl::CachePurge(void)
 {
+    U32 removedCount = 0;
+    
     std::vector<std::string> filenames;
     std::string packageName = MushcoreInfo::Sgl().PackageName();
     
@@ -148,6 +153,7 @@ MushGLCacheControl::CachePurge(void)
     for (U32 i=0; i<filenames.size(); ++i)
     {
         std::string& filename = filenames[i];
+        
         if (regExp.Search(filename))
         {
             std::string fullFilename = m_globalCachePath+"/"+filename;
@@ -157,13 +163,19 @@ MushGLCacheControl::CachePurge(void)
             if (packageName == creator.substr(0, packageName.size()))
             {
                  // File has right name and creator, so delete it
-                if (std::remove(fullFilename.c_str()) != 0)
+                if (std::remove(fullFilename.c_str()) == 0)
+                {
+                    ++removedCount;
+                }
+                else
                 {
                     MushcoreLog::Sgl().InfoLog() << "Failed to remove cache file '" << fullFilename << "'" << endl;
                 }
             }
         }
     }
+    
+    MushcoreLog::Sgl().InfoLog() << "Removed " << removedCount << " cached textures" << endl;
 }
 
 //%outOfLineFunctions {

@@ -1,4 +1,4 @@
-Mushware Software Licence version 1.2
+Mushware Software Licence version 1.3
 =====================================
 
 1.  The software is provided WITHOUT WARRANTY of any kind.
@@ -87,6 +87,7 @@ these conditions:
   Filenames starting with 'Adanaxis'
   Filenames starting with 'MushMeshLibrary'
   Filenames starting with 'MushSkin'
+  Files named 'space.rb'
 
 Schedule 3: Other proprietary files
 ====================================
@@ -100,8 +101,8 @@ conditions:
   Object and executable files derived from the above
 
 The Company is obliged to protect content licenced from third parties, so
-executable files capable of loading protected content files fall into this
-category and are listed above. 
+executable files capable of loading protected content (.mush) files fall into
+the final category.
 
 Schedule 4: Libraries
 =====================
@@ -109,20 +110,20 @@ Schedule 4: Libraries
 This Package includes and/or uses libraries with the following
 licences, which are reproduced in schedule 5.
 
-expat           expat licence
-glut            glut licence
-libogg          Xiphophorus licence
-libSDL          GNU LIBRARY GENERAL PUBLIC LICENSE
-libSDL_mixer    GNU LIBRARY GENERAL PUBLIC LICENSE
-libtiff         libtiff licence
-libvorbis       Xiphophorus licence
-libvorbisfile   Xiphophorus licence
-ModernUI        zlib licence
-pcre            pcre licence (without C++ wrapper)
-ruby            ruby licence
-smpeg           GNU LIBRARY GENERAL PUBLIC LICENSE
-win32 installer nullsoft licence
-zlib            zlib licence
+expat            expat licence
+glut             glut licence
+libogg           Xiphophorus licence
+libSDL           GNU LIBRARY GENERAL PUBLIC LICENSE
+libSDL_mixer     GNU LIBRARY GENERAL PUBLIC LICENSE
+libtiff          libtiff licence
+libvorbis        Xiphophorus licence
+libvorbisfile    Xiphophorus licence
+ModernUI         zlib licence
+pcre             pcre licence (without C++ wrapper)
+ruby             ruby licence
+smpeg            GNU LIBRARY GENERAL PUBLIC LICENSE
+win32 installer  nullsoft licence
+zlib             zlib licence
 
 Schedule 5: Referenced licences
 ===============================

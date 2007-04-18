@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } zkpYTheeNjP7gg2iX8lCdQ
 /*
- * $Id: MushGameAppHandler.cpp,v 1.23 2006/12/14 00:33:49 southa Exp $
+ * $Id: MushGameAppHandler.cpp,v 1.24 2007/04/18 09:22:37 southa Exp $
  * $Log: MushGameAppHandler.cpp,v $
+ * Revision 1.24  2007/04/18 09:22:37  southa
+ * Header and level fixes
+ *
  * Revision 1.23  2006/12/14 00:33:49  southa
  * Control fix and audio pacing
  *
@@ -108,6 +111,17 @@ MushGameAppHandler::MushGameAppHandler(const std::string& inName) :
     m_lastAxesValid(false)
 {
     GroupingNameSet(inName);
+}
+
+void
+MushGameAppHandler::Initialise(void)
+{
+    MushGLAppHandler::Initialise();
+    if (ShiftAtStartupPressed())
+    {
+        MushcoreLog::Sgl().WarningLog() << "Entering safe mode because shift key held at startup" << endl;
+        MushcoreEnv::Sgl().VariableSet("SAFE_MODE", 1);   
+    }
 }
 
 void

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } CkSk48jyH/Lvp9pXNnIBSQ
 /*
- * $Id: SDLAppHandler.cpp,v 1.65 2006/11/25 21:26:32 southa Exp $
+ * $Id: SDLAppHandler.cpp,v 1.66 2007/03/09 19:50:12 southa Exp $
  * $Log: SDLAppHandler.cpp,v $
+ * Revision 1.66  2007/03/09 19:50:12  southa
+ * Resident textures
+ *
  * Revision 1.65  2006/11/25 21:26:32  southa
  * Display mode definitions
  *
@@ -246,7 +249,8 @@ SDLAppHandler::SDLAppHandler():
     m_controlBufferIndex(0),
     m_firstDelta(true),
     m_mouseSensitivity(1.0),
-    m_screenEntered(false)
+    m_screenEntered(false),
+    m_shiftAtStartupPressed(false)
 {
     m_deviceList.resize(kNumDevices);
     for (U32 i=0; i<kNumDevices; ++i)
@@ -264,6 +268,11 @@ SDLAppHandler::Initialise(void)
     m_unboundedMouseY=0;
     m_firstDelta=true;
     MediaJoystick::Sgl();
+    
+    if ((PlatformInputUtils::CurrentKeyModifiers() & PlatformInputUtils::kKeyModShift) != 0)
+    {
+        m_shiftAtStartupPressed = true;
+    }
 }
 
 void

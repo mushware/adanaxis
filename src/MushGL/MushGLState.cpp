@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } BykXag7toLifUzC7TJBKug
 /*
- * $Id: MushGLState.cpp,v 1.8 2006/09/07 16:38:51 southa Exp $
+ * $Id: MushGLState.cpp,v 1.9 2007/04/18 09:22:36 southa Exp $
  * $Log: MushGLState.cpp,v $
+ * Revision 1.9  2007/04/18 09:22:36  southa
+ * Header and level fixes
+ *
  * Revision 1.8  2006/09/07 16:38:51  southa
  * Vertex shader
  *
@@ -91,7 +94,10 @@ MushGLState::Reset(void)
     }
     ActiveTextureZeroBased(0);
     ClientActiveTextureZeroBased(0);
-    m_standardShader.WRef().Bind();
+    if (MushGLV::Sgl().HasShader())
+    {
+        m_standardShader.WRef().Bind();
+    }
 }
 
 void

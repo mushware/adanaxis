@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } XRulyu4NIYKa9oF0oL5OJg
 /*
- * $Id: GameCommandHandler.cpp,v 1.27 2006/06/01 20:12:58 southa Exp $
+ * $Id: GameCommandHandler.cpp,v 1.28 2007/04/18 09:22:11 southa Exp $
  * $Log: GameCommandHandler.cpp,v $
+ * Revision 1.28  2007/04/18 09:22:11  southa
+ * Header and level fixes
+ *
  * Revision 1.27  2006/06/01 20:12:58  southa
  * Initial texture caching
  *
@@ -156,7 +159,9 @@ GameCommandHandler::SetSavePath(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
     if (found)
     {
         MushcoreGlobalConfig::Sgl().Set("GLOBAL_SAVE_PATH", dirPath);
+#ifdef MUSHCORE_DEBUG
         cout << "Save path is '" << dirPath << "'" << endl;
+#endif
     }
     else
     {
@@ -202,7 +207,9 @@ GameCommandHandler::SetCachePath(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
     if (found)
     {
         MushcoreGlobalConfig::Sgl().Set("GLOBAL_CACHE_PATH", dirPath);
+#ifdef MUSHCORE_DEBUG
         cout << "Cache path is '" << dirPath << "'" << endl;
+#endif
     }
     else
     {

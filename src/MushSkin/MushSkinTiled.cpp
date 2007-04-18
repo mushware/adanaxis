@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } 9mFt1bSUFLaYyg1N3XtwoQ
 /*
- * $Id: MushSkinTiled.cpp,v 1.12 2006/10/19 15:41:37 southa Exp $
+ * $Id: MushSkinTiled.cpp,v 1.13 2007/04/18 09:23:05 southa Exp $
  * $Log: MushSkinTiled.cpp,v $
+ * Revision 1.13  2007/04/18 09:23:05  southa
+ * Header and level fixes
+ *
  * Revision 1.12  2006/10/19 15:41:37  southa
  * Item handling
  *
@@ -182,7 +185,10 @@ MushSkinTiled::TexCoordsGenerate(MushMesh4Mesh& ioMesh)
                 MushcoreLog::Sgl().XMLErrorLog() << ioMesh;
                 throw;
             }
+
+#ifdef MUSHCORE_DEBUG
             U32 tileTexCoordBase = texCoordNum;
+#endif
             
 			U32 numVertices = facetVertices.size();
             for (U32 i=0; i<numVertices; ++i)

@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } u+LxfqH6KzunLJFUu6RzcQ
 /*
- * $Id: AdanaxisRecords.cpp,v 1.2 2007/04/16 08:41:08 southa Exp $
+ * $Id: AdanaxisRecords.cpp,v 1.3 2007/04/18 09:22:03 southa Exp $
  * $Log: AdanaxisRecords.cpp,v $
+ * Revision 1.3  2007/04/18 09:22:03  southa
+ * Header and level fixes
+ *
  * Revision 1.2  2007/04/16 08:41:08  southa
  * Level and header mods
  *
@@ -60,10 +63,8 @@ AdanaxisRecords::RecordTime(Mushware::U32 inDifficulty, const std::string& inNam
 void
 AdanaxisRecords::RecordTimeSet(Mushware::U32 inDifficulty, const std::string& inName, Mushware::tMsec inTime)
 {
-    cout << "Pre " << m_recordTimeSet << endl;
     tRecordTimes& recRef = m_recordTimeSet[inDifficulty];
     recRef[inName] = inTime;
-    cout << "Post " << m_recordTimeSet << endl;
     Save();    
 }
 
@@ -128,7 +129,7 @@ AdanaxisRecords::AutoInputEpilogue(MushcoreXMLIStream& ioIn)
     {
 #ifndef MUSHCORE_DEBUG
         // Debug allows falsified record file
-        m_recordTimes.clear();
+        m_recordTimeSet.clear();
 #endif
         MushcoreLog::Sgl().ErrorLog() << "Invalid records file" << endl;
     }
