@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } T6B3uTgauzxD50DPw+3uQw
 /*
- * $Id: AdanaxisVolatileData.cpp,v 1.17 2007/04/16 08:41:09 southa Exp $
+ * $Id: AdanaxisVolatileData.cpp,v 1.18 2007/04/18 09:22:05 southa Exp $
  * $Log: AdanaxisVolatileData.cpp,v $
+ * Revision 1.18  2007/04/18 09:22:05  southa
+ * Header and level fixes
+ *
  * Revision 1.17  2007/04/16 08:41:09  southa
  * Level and header mods
  *
@@ -69,7 +72,7 @@ AdanaxisVolatileData::AdanaxisVolatileData() :
     m_khaziRedCount(0),
     m_khaziBlueCount(0),
     m_playerCount(0),
-    m_damageIcons(6) // size is 6
+    m_damageIcons(6, 0) // size is 6
 {
 }
 

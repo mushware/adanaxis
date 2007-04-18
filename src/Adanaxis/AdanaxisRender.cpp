@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } oLiwZ/5aV/LrBg1GMJ088A
 /*
- * $Id: AdanaxisRender.cpp,v 1.74 2007/04/16 08:41:08 southa Exp $
+ * $Id: AdanaxisRender.cpp,v 1.75 2007/04/18 09:22:03 southa Exp $
  * $Log: AdanaxisRender.cpp,v $
+ * Revision 1.75  2007/04/18 09:22:03  southa
+ * Header and level fixes
+ *
  * Revision 1.74  2007/04/16 08:41:08  southa
  * Level and header mods
  *
@@ -705,9 +708,9 @@ AdanaxisRender::OverPlot(MushGameLogic& ioLogic, const MushGameCamera& inCamera)
             {
                 ostringstream message;
                 message << GameTimer::MsecToLongString(logicRef.GameMsec() - logicRef.StartTime());
-                orthoGL.MoveToEdge(0,1);
-                orthoGL.MoveRelative(-0.00*message.str().size(), -0.03);
-                GLString glStr(message.str(), fontMedium, 0);
+                orthoGL.MoveToEdge(1,1);
+                orthoGL.MoveRelative(-0.03, -0.03);
+                GLString glStr(message.str(), fontMedium, 1);
                 glStr.Render();
             }
         }
