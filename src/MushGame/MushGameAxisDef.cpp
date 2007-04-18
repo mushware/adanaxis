@@ -3,7 +3,7 @@
  *
  * File: src/MushGame/MushGameAxisDef.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } MJLMNaraKdT0cf2Xdn+zyg
+//%Header } O1qh+ulPqNL/Nc4sWCJb7g
 /*
- * $Id: MushGameAxisDef.cpp,v 1.7 2006/07/12 11:22:41 southa Exp $
+ * $Id: MushGameAxisDef.cpp,v 1.8 2006/11/08 18:30:54 southa Exp $
  * $Log: MushGameAxisDef.cpp,v $
+ * Revision 1.8  2006/11/08 18:30:54  southa
+ * Key and axis configuration
+ *
  * Revision 1.7  2006/07/12 11:22:41  southa
  * Advanced control menu
  *

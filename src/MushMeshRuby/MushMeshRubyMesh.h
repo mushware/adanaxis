@@ -7,7 +7,7 @@
  *
  * File: src/MushMeshRuby/MushMeshRubyMesh.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } hSrHx4/wCdfB19VcRmiYhw
+//%Header } udEGccmduVXXoDsz2VKIdw
 /*
- * $Id: MushMeshRubyMesh.h,v 1.8 2006/07/17 14:43:41 southa Exp $
+ * $Id: MushMeshRubyMesh.h,v 1.9 2006/11/14 14:02:17 southa Exp $
  * $Log: MushMeshRubyMesh.h,v $
+ * Revision 1.9  2006/11/14 14:02:17  southa
+ * Ball projectiles
+ *
  * Revision 1.8  2006/07/17 14:43:41  southa
  * Billboarded deco objects
  *

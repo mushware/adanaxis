@@ -7,7 +7,7 @@
  *
  * File: src/MushMesh/MushMeshTriangularArray.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } TNGcKRHpQqsGP6kY6IRtJw
+//%Header } K5IdOd6rfd3yO3kEJQ9HKA
 /*
- * $Id: MushMeshTriangularArray.h,v 1.9 2005/07/04 15:59:00 southa Exp $
+ * $Id: MushMeshTriangularArray.h,v 1.10 2006/06/01 15:39:33 southa Exp $
  * $Log: MushMeshTriangularArray.h,v $
+ * Revision 1.10  2006/06/01 15:39:33  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.9  2005/07/04 15:59:00  southa
  * Adanaxis work
  *

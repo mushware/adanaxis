@@ -7,7 +7,7 @@
  *
  * File: src/Mushcore/MushcoreAppSignal.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } uopqTGcPmYILSVM6nHve8g
+//%Header } 19tq0OSV0HN+rcngwdXE4g
 /*
- * $Id: MushcoreAppSignal.h,v 1.7 2005/05/19 13:02:14 southa Exp $
+ * $Id: MushcoreAppSignal.h,v 1.8 2006/06/01 15:39:41 southa Exp $
  * $Log: MushcoreAppSignal.h,v $
+ * Revision 1.8  2006/06/01 15:39:41  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.7  2005/05/19 13:02:14  southa
  * Mac release work
  *

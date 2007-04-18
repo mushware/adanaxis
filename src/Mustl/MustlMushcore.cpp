@@ -3,7 +3,7 @@
  *
  * File: src/Mustl/MustlMushcore.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } Q9/LJPJ6BUeFtFVDwUB32A
+//%Header } lC60trmo1BIes0p/0KmnVw
 /*
- * $Id: MustlMushcore.cpp,v 1.5 2005/05/19 13:02:19 southa Exp $
+ * $Id: MustlMushcore.cpp,v 1.6 2006/06/01 15:39:53 southa Exp $
  * $Log: MustlMushcore.cpp,v $
+ * Revision 1.6  2006/06/01 15:39:53  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.5  2005/05/19 13:02:19  southa
  * Mac release work
  *

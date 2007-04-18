@@ -3,7 +3,7 @@
  *
  * File: src/Media/MediaSoundStream.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } PBod8HMi8jriZbQcQlQicg
+//%Header } D+QmVOgQ9D9W6YhD58bqZw
 /*
- * $Id: MediaSoundStream.cpp,v 1.21 2006/06/01 15:39:14 southa Exp $
+ * $Id: MediaSoundStream.cpp,v 1.22 2006/07/31 11:01:37 southa Exp $
  * $Log: MediaSoundStream.cpp,v $
+ * Revision 1.22  2006/07/31 11:01:37  southa
+ * Music and dialogues
+ *
  * Revision 1.21  2006/06/01 15:39:14  southa
  * DrawArray verification and fixes
  *

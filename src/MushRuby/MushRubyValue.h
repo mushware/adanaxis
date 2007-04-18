@@ -7,7 +7,7 @@
  *
  * File: src/MushRuby/MushRubyValue.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 5BOLwI3DhgfDHotOLswDpg
+//%Header } /cav86/ee6R4vV1cLpUs3w
 /*
- * $Id: MushRubyValue.h,v 1.17 2006/10/12 22:04:49 southa Exp $
+ * $Id: MushRubyValue.h,v 1.18 2006/11/08 18:30:54 southa Exp $
  * $Log: MushRubyValue.h,v $
+ * Revision 1.18  2006/11/08 18:30:54  southa
+ * Key and axis configuration
+ *
  * Revision 1.17  2006/10/12 22:04:49  southa
  * Collision events
  *

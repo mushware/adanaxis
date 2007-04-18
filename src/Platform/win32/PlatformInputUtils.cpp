@@ -3,7 +3,7 @@
  *
  * File: src/Platform/win32/PlatformInputUtils.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } p/velz2TSLslKI8kFYOmIw
+//%Header } RRqRe7Sh2HawjZTlRdSSOQ
 /*
- * $Id: PlatformInputUtils.cpp,v 1.16 2006/06/01 15:39:58 southa Exp $
+ * $Id: PlatformInputUtils.cpp,v 1.17 2006/07/08 16:06:01 southa Exp $
  * $Log: PlatformInputUtils.cpp,v $
+ * Revision 1.17  2006/07/08 16:06:01  southa
+ * Ruby menus and key handling
+ *
  * Revision 1.16  2006/06/01 15:39:58  southa
  * DrawArray verification and fixes
  *

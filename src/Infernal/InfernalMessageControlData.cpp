@@ -3,7 +3,7 @@
  *
  * File: src/Infernal/InfernalMessageControlData.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } z2Hj5X4sOJoDlXRQscaqNw
+//%Header } 5ZMPepKDYd2d9y1dNphWoA
 /*
- * $Id: InfernalMessageControlData.cpp,v 1.6 2006/06/01 15:39:03 southa Exp $
+ * $Id: InfernalMessageControlData.cpp,v 1.7 2006/06/01 20:12:58 southa Exp $
  * $Log: InfernalMessageControlData.cpp,v $
+ * Revision 1.7  2006/06/01 20:12:58  southa
+ * Initial texture caching
+ *
  * Revision 1.6  2006/06/01 15:39:03  southa
  * DrawArray verification and fixes
  *

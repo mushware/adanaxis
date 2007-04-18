@@ -7,7 +7,7 @@
  *
  * File: src/MushMeshRuby/MushMeshRubyRotation.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } NU6ZSof2ssS4JvX3KgPtTw
+//%Header } glN7eBVRDsJxwZNS52M+MA
 /*
- * $Id: MushMeshRubyRotation.h,v 1.2 2006/06/20 19:06:54 southa Exp $
+ * $Id: MushMeshRubyRotation.h,v 1.3 2006/08/20 14:19:22 southa Exp $
  * $Log: MushMeshRubyRotation.h,v $
+ * Revision 1.3  2006/08/20 14:19:22  southa
+ * Seek operation
+ *
  * Revision 1.2  2006/06/20 19:06:54  southa
  * Object creation
  *

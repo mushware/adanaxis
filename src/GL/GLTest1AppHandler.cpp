@@ -3,7 +3,7 @@
  *
  * File: src/GL/GLTest1AppHandler.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } Gdnr62exRbAWwz3jg2bxyQ
+//%Header } Vexn0wFN6iT2UYNhMN79jQ
 /*
- * $Id: GLTest1AppHandler.cpp,v 1.35 2006/06/01 15:38:53 southa Exp $
+ * $Id: GLTest1AppHandler.cpp,v 1.36 2006/11/25 21:26:32 southa Exp $
  * $Log: GLTest1AppHandler.cpp,v $
+ * Revision 1.36  2006/11/25 21:26:32  southa
+ * Display mode definitions
+ *
  * Revision 1.35  2006/06/01 15:38:53  southa
  * DrawArray verification and fixes
  *

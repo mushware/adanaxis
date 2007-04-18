@@ -7,7 +7,7 @@
  *
  * File: src/MushMesh/MushMeshWorkspaceBased.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } r0Cud/Kdg4Tl3wxyTrivDw
+//%Header } NhfoQk8FT+Tl2a5tfL2x4w
 /*
- * $Id: MushMeshWorkspaceBased.h,v 1.5 2005/05/19 13:02:11 southa Exp $
+ * $Id: MushMeshWorkspaceBased.h,v 1.6 2006/06/01 15:39:33 southa Exp $
  * $Log: MushMeshWorkspaceBased.h,v $
+ * Revision 1.6  2006/06/01 15:39:33  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.5  2005/05/19 13:02:11  southa
  * Mac release work
  *

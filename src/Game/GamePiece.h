@@ -7,7 +7,7 @@
  *
  * File: src/Game/GamePiece.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 6lT/KYE1UWagB4BmDN/nAw
+//%Header } /4XqfDYi5tDoM/P7lU3r1A
 /*
- * $Id: GamePiece.h,v 1.24 2005/05/19 13:02:02 southa Exp $
+ * $Id: GamePiece.h,v 1.25 2006/06/01 15:38:58 southa Exp $
  * $Log: GamePiece.h,v $
+ * Revision 1.25  2006/06/01 15:38:58  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.24  2005/05/19 13:02:02  southa
  * Mac release work
  *

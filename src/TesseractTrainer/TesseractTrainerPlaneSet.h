@@ -7,7 +7,7 @@
  *
  * File: src/TesseractTrainer/TesseractTrainerPlaneSet.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } Pe0DGuBCxs1AFNwiskoeJg
+//%Header } I9kUN88JzrnG5va5irPEMQ
 /*
- * $Id: TesseractTrainerPlaneSet.h,v 1.2 2005/05/19 13:02:22 southa Exp $
+ * $Id: TesseractTrainerPlaneSet.h,v 1.3 2006/06/01 15:40:00 southa Exp $
  * $Log: TesseractTrainerPlaneSet.h,v $
+ * Revision 1.3  2006/06/01 15:40:00  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.2  2005/05/19 13:02:22  southa
  * Mac release work
  *

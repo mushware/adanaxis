@@ -7,7 +7,7 @@
  *
  * File: src/Game/GameFrameTimer.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } Q7/illArWq5w/J8ERcsw9A
+//%Header } vNGB25JXfCxKTOtcgr+7wA
 /*
- * $Id: GameFrameTimer.h,v 1.8 2005/05/19 13:02:02 southa Exp $
+ * $Id: GameFrameTimer.h,v 1.9 2006/06/01 15:38:57 southa Exp $
  * $Log: GameFrameTimer.h,v $
+ * Revision 1.9  2006/06/01 15:38:57  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.8  2005/05/19 13:02:02  southa
  * Mac release work
  *

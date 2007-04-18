@@ -6,7 +6,7 @@
  * Copyright: Andy Southgate 2005-2007
  *
  * This file may be used and distributed under the terms of the Mushware
- * Software Licence version 1.2, under the terms for 'Proprietary original
+ * Software Licence version 1.3, under the terms for 'Proprietary original
  * source files'.  If not supplied with this software, a copy of the licence
  * can be obtained from Mushware Limited via http://www.mushware.com/.
  * One of your options under that licence is to use and distribute this file
@@ -15,10 +15,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 7d8XNXTzlBe/E65+Bc7mXg
+//%Header } ugKqE0KA5pb38rpJeXIe0g
 /*
- * $Id: AdanaxisGame.cpp,v 1.64 2007/04/16 08:41:07 southa Exp $
+ * $Id: AdanaxisGame.cpp,v 1.65 2007/04/16 18:50:59 southa Exp $
  * $Log: AdanaxisGame.cpp,v $
+ * Revision 1.65  2007/04/16 18:50:59  southa
+ * Voice work
+ *
  * Revision 1.64  2007/04/16 08:41:07  southa
  * Level and header mods
  *
@@ -376,7 +379,7 @@ AdanaxisGame::Init(MushGameAppHandler& inAppHandler)
     MediaAudio::Sgl().VoiceVolumeSet(m_config.VoiceVolume() / 100.0);
     MediaAudio::Sgl().MusicFadeOut(1000); // Level starts music once it loads
     
-    Logic().RecordTimeSet(AdanaxisRecords::Sgl().RecordTime(SaveData().SpaceName()));
+    Logic().RecordTimeSet(AdanaxisRecords::Sgl().RecordTime(SaveData().GameDifficulty(), SaveData().SpaceName()));
     Logic().MenuModeEnter();
     Logic().StartTimeSet(0);
     Logic().EndTimeSet(0);

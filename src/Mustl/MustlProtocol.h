@@ -7,7 +7,7 @@
  *
  * File: src/Mustl/MustlProtocol.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } iV4Cd/wBZ+a153ZSyO8vTg
+//%Header } 7tIjDqIeT4yiJ9eEtGmyFg
 /*
- * $Id: MustlProtocol.h,v 1.8 2005/05/19 13:02:19 southa Exp $
+ * $Id: MustlProtocol.h,v 1.9 2006/06/01 15:39:54 southa Exp $
  * $Log: MustlProtocol.h,v $
+ * Revision 1.9  2006/06/01 15:39:54  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.8  2005/05/19 13:02:19  southa
  * Mac release work
  *

@@ -7,7 +7,7 @@
  *
  * File: src/MushCollision/MushCollisionList.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } LtrlQdj9Zu7RWxZV2YRV6g
+//%Header } NxWBAqVa0K+ReYo9vzm/fA
 /*
- * $Id: MushCollisionList.h,v 1.1 2005/07/27 18:09:59 southa Exp $
+ * $Id: MushCollisionList.h,v 1.2 2006/06/01 15:39:15 southa Exp $
  * $Log: MushCollisionList.h,v $
+ * Revision 1.2  2006/06/01 15:39:15  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.1  2005/07/27 18:09:59  southa
  * Collision checking
  *

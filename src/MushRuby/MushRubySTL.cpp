@@ -3,7 +3,7 @@
  *
  * File: src/MushRuby/MushRubySTL.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } f4sEHAXXHE5Y/7WT7mf1Rw
+//%Header } F9E4tMYTK9esCimuSndwxQ
 /*
- * $Id$
- * $Log$
+ * $Id: MushRubySTL.cpp,v 1.1 2006/04/20 00:22:45 southa Exp $
+ * $Log: MushRubySTL.cpp,v $
+ * Revision 1.1  2006/04/20 00:22:45  southa
+ * Added ruby executive
+ *
  */
 
 #include "MushRubySTL.h"

@@ -10,8 +10,11 @@
 #
 ##############################################################################
 
-# $Id: SourceConditioner.pl,v 1.59 2007/03/23 12:27:33 southa Exp $
+# $Id: SourceConditioner.pl,v 1.60 2007/04/17 10:08:11 southa Exp $
 # $Log: SourceConditioner.pl,v $
+# Revision 1.60  2007/04/17 10:08:11  southa
+# Voice work
+#
 # Revision 1.59  2007/03/23 12:27:33  southa
 # Added levels and Cistern mesh
 #
@@ -269,7 +272,7 @@ my @gCHeaders = (
 '# Copyright Andy Southgate 2006-2007',
 '#',
 '# This file may be used and distributed under the terms of the Mushware',
-'# Commercial Software Licence version 1.2.  If not supplied with this software',
+'# Commercial Software Licence version 1.3.  If not supplied with this software',
 '# a copy of the licence can be obtained from Mushware Limited via',
 '# http://www.mushware.com/.',
 '#', 
@@ -277,7 +280,7 @@ my @gCHeaders = (
 '#',
 '##############################################################################'
   ],
-'^Adanaxis.*\.rb$' => [
+'^(Adanaxis.*\.rb|space\.rb|manifest.txt)$' => [
 '##############################################################################',
 '#',
 '# File @FILENAME@',
@@ -285,7 +288,7 @@ my @gCHeaders = (
 '# Copyright Andy Southgate 2006-2007',
 '#',
 '# This file may be used and distributed under the terms of the Mushware',
-'# Software Licence version 1.2, under the terms for \'Proprietary original',
+'# Software Licence version 1.3, under the terms for \'Proprietary original',
 '# source files\'.  If not supplied with this software, a copy of the licence',
 '# can be obtained from Mushware Limited via http://www.mushware.com/.',
 '# One of your options under that licence is to use and distribute this file',
@@ -295,7 +298,7 @@ my @gCHeaders = (
 '#',
 '##############################################################################'
 ],
-'.*\.rb$' =>
+'(.*\.rb|.*\.txt)$' =>
 [
 '##############################################################################',
 '#',
@@ -324,7 +327,7 @@ my @gCHeaders = (
   ' * Copyright: Andy Southgate 2005-2007',
   ' *',
   ' * This file may be used and distributed under the terms of the Mushware',
-  ' * Software Licence version 1.2, under the terms for \'Proprietary original',
+  ' * Software Licence version 1.3, under the terms for \'Proprietary original',
   ' * source files\'.  If not supplied with this software, a copy of the licence',
   ' * can be obtained from Mushware Limited via http://www.mushware.com/.',
   ' * One of your options under that licence is to use and distribute this file',
@@ -364,6 +367,7 @@ SourceProcess::AddArrayProcessor('\.h$', \&OldBlocksStrip);
 SourceProcess::AddArrayProcessor('\.h$', \&ProcessFileHeader);
 SourceProcess::AddArrayProcessor('\.cpp$', \&ProcessFileHeader);
 SourceProcess::AddArrayProcessor('\.c$', \&ProcessFileHeader);
+SourceProcess::AddArrayProcessor('\.txt$', \&ProcessFileHeader);
 SourceProcess::AddArrayProcessor('\.h$', \&ProcessHeader);
 SourceProcess::AddArrayProcessor('\.cpp$', \&ProcessCPP);
 SourceProcess::AddArrayProcessor('\.h$', \&ProcessIncludeGuard);
@@ -1310,7 +1314,7 @@ sub HeaderGenerate($$$)
                 $line =~ s/\@FILENAME\@/$userFilename/;
                 push @headerStore, $line;
             }
-            if ($filename =~ /\.rb$/)
+            if ($filename =~ /\.(rb|txt)$/)
             {
                 SourceProcess::CommentStartSet('#');                
             }

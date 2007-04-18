@@ -7,7 +7,7 @@
  *
  * File: src/Mushcore/MushcoreAutoMonkey.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } ql6j7wYRM3gGisEGTVY8JA
+//%Header } 9lBXu9pWRLf41827iqmIew
 /*
- * $Id: MushcoreAutoMonkey.h,v 1.9 2006/06/01 15:39:41 southa Exp $
+ * $Id: MushcoreAutoMonkey.h,v 1.10 2006/10/16 14:36:51 southa Exp $
  * $Log: MushcoreAutoMonkey.h,v $
+ * Revision 1.10  2006/10/16 14:36:51  southa
+ * Deco handling
+ *
  * Revision 1.9  2006/06/01 15:39:41  southa
  * DrawArray verification and fixes
  *

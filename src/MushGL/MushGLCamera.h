@@ -7,7 +7,7 @@
  *
  * File: src/MushGL/MushGLCamera.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } jNedmfdtJ0Q+QB4kIlXVuQ
+//%Header } lP7ipzxeQTl9DZ0bOIkg3Q
 /*
- * $Id$
- * $Log$
+ * $Id: MushGLCamera.h,v 1.1 2006/07/24 18:46:49 southa Exp $
+ * $Log: MushGLCamera.h,v $
+ * Revision 1.1  2006/07/24 18:46:49  southa
+ * Depth sorting
+ *
  */
 
 #include "MushGLStandard.h"

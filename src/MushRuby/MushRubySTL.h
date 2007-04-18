@@ -7,7 +7,7 @@
  *
  * File: src/MushRuby/MushRubySTL.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } aoFZfqUq5FiuS/KAQV7brQ
+//%Header } bDTkSe+LvLfzywChRcEeXw
 /*
- * $Id: MushRubySTL.h,v 1.1 2006/04/20 00:22:45 southa Exp $
+ * $Id: MushRubySTL.h,v 1.2 2006/06/22 19:07:35 southa Exp $
  * $Log: MushRubySTL.h,v $
+ * Revision 1.2  2006/06/22 19:07:35  southa
+ * Build fixes
+ *
  * Revision 1.1  2006/04/20 00:22:45  southa
  * Added ruby executive
  *

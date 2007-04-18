@@ -3,7 +3,7 @@
  *
  * File: src/MushMeshRuby/MushMeshRubyBaseWorldSphere.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } r7AZ2pAa13akh7s4qWkeJg
+//%Header } s2Uj33K7Tgwxfz/vGpKNmg
 /*
- * $Id$
- * $Log$
+ * $Id: MushMeshRubyBaseWorldSphere.cpp,v 1.1 2006/09/12 15:28:50 southa Exp $
+ * $Log: MushMeshRubyBaseWorldSphere.cpp,v $
+ * Revision 1.1  2006/09/12 15:28:50  southa
+ * World sphere
+ *
  */
 
 #include "MushMeshRubyBaseWorldSphere.h"

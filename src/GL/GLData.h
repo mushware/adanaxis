@@ -7,7 +7,7 @@
  *
  * File: src/GL/GLData.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } fSFjqPZnjQkvw/5AueGfCA
+//%Header } K3cDH9/38clCwJ75Dpzspw
 /*
- * $Id: GLData.h,v 1.19 2005/05/19 13:01:58 southa Exp $
+ * $Id: GLData.h,v 1.20 2006/06/01 15:38:50 southa Exp $
  * $Log: GLData.h,v $
+ * Revision 1.20  2006/06/01 15:38:50  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.19  2005/05/19 13:01:58  southa
  * Mac release work
  *

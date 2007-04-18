@@ -7,7 +7,7 @@
  *
  * File: src/MushRuby/win32/win32.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,7 +21,7 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } rDU+nCUAxJuzGcSI2+09iw
+//%Header } CEXA8Mh4jtcJ7kMhpZRIaw
 #ifndef RUBY_WIN32_H
 #define RUBY_WIN32_H
 

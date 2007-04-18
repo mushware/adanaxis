@@ -3,7 +3,7 @@
  *
  * File: src/Mustl/MustlConfigDef.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 93qDRmjn0sVzGwcurPvc0w
+//%Header } QzqlLM0Z7f9WSoug34SW8g
 /*
- * $Id: MustlConfigDef.cpp,v 1.9 2005/05/19 13:02:18 southa Exp $
+ * $Id: MustlConfigDef.cpp,v 1.10 2006/06/01 15:39:50 southa Exp $
  * $Log: MustlConfigDef.cpp,v $
+ * Revision 1.10  2006/06/01 15:39:50  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.9  2005/05/19 13:02:18  southa
  * Mac release work
  *

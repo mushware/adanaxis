@@ -7,7 +7,7 @@
  *
  * File: src/MushGL/MushGLVertexBuffer.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } IqSxvqRd3OSDd+9vhv6sYw
+//%Header } aaoDJUAF55e2e1cIWOgGBg
 /*
- * $Id: MushGLVertexBuffer.h,v 1.13 2006/07/28 19:24:34 southa Exp $
+ * $Id: MushGLVertexBuffer.h,v 1.14 2006/09/09 15:59:28 southa Exp $
  * $Log: MushGLVertexBuffer.h,v $
+ * Revision 1.14  2006/09/09 15:59:28  southa
+ * Shader colour calculations
+ *
  * Revision 1.13  2006/07/28 19:24:34  southa
  * Pre-release work
  *

@@ -7,7 +7,7 @@
  *
  * File: src/MushRuby/MushRubyStandard.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } Yh+jb7Kt8ubaZEY+Q2v/cg
+//%Header } JSWDubq51SkH6oKwFODqDA
 /*
- * $Id: MushRubyStandard.h,v 1.7 2006/06/22 19:07:35 southa Exp $
+ * $Id: MushRubyStandard.h,v 1.8 2006/06/29 11:40:40 southa Exp $
  * $Log: MushRubyStandard.h,v $
+ * Revision 1.8  2006/06/29 11:40:40  southa
+ * X11 and 64 bit fixes
+ *
  * Revision 1.7  2006/06/22 19:07:35  southa
  * Build fixes
  *

@@ -7,7 +7,7 @@
  *
  * File: src/GL/GLLights.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } xOmPbhZWj38qeLLpPJwDIg
+//%Header } QMp+fZ3eFbWt3hXOzkWDOA
 /*
- * $Id: GLLights.h,v 1.12 2005/05/19 13:01:59 southa Exp $
+ * $Id: GLLights.h,v 1.13 2006/06/01 15:38:51 southa Exp $
  * $Log: GLLights.h,v $
+ * Revision 1.13  2006/06/01 15:38:51  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.12  2005/05/19 13:01:59  southa
  * Mac release work
  *

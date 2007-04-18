@@ -3,7 +3,7 @@
  *
  * File: src/Mushcore/MushcoreBisonDefs.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } ENwbZyMVZU4qpnq/Q45vTg
+//%Header } boC6HFp8lVwfGQ1I6rM4kg
 /*
- * $Id: MushcoreBisonDefs.cpp,v 1.5 2005/05/19 13:02:14 southa Exp $
+ * $Id: MushcoreBisonDefs.cpp,v 1.6 2006/06/01 15:39:42 southa Exp $
  * $Log: MushcoreBisonDefs.cpp,v $
+ * Revision 1.6  2006/06/01 15:39:42  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.5  2005/05/19 13:02:14  southa
  * Mac release work
  *

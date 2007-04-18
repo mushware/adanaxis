@@ -7,7 +7,7 @@
  *
  * File: src/Game/GameCode.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } nSzL1oPOiK+S1sMCpeFlCQ
+//%Header } 8HZUV4uXoOlUPn6zZjY+oA
 /*
- * $Id: GameCode.h,v 1.3 2005/06/20 14:30:34 southa Exp $
+ * $Id: GameCode.h,v 1.4 2006/06/01 15:38:56 southa Exp $
  * $Log: GameCode.h,v $
+ * Revision 1.4  2006/06/01 15:38:56  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.3  2005/06/20 14:30:34  southa
  * Adanaxis work
  *

@@ -6,7 +6,7 @@
  * Copyright: Andy Southgate 2005-2007
  *
  * This file may be used and distributed under the terms of the Mushware
- * Software Licence version 1.2, under the terms for 'Proprietary original
+ * Software Licence version 1.3, under the terms for 'Proprietary original
  * source files'.  If not supplied with this software, a copy of the licence
  * can be obtained from Mushware Limited via http://www.mushware.com/.
  * One of your options under that licence is to use and distribute this file
@@ -15,10 +15,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } sKKcpqnI7UzSu42CxiF/4Q
+//%Header } wnzZwEQ6yC0/EOblAes+2Q
 /*
- * $Id: AdanaxisIntern.cpp,v 1.21 2007/03/13 18:21:36 southa Exp $
+ * $Id: AdanaxisIntern.cpp,v 1.22 2007/03/24 18:07:24 southa Exp $
  * $Log: AdanaxisIntern.cpp,v $
+ * Revision 1.22  2007/03/24 18:07:24  southa
+ * Level 3 work
+ *
  * Revision 1.21  2007/03/13 18:21:36  southa
  * Scanner jamming
  *

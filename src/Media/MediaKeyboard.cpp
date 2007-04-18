@@ -3,7 +3,7 @@
  *
  * File: src/Media/MediaKeyboard.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 7mgogG6D/5MIAEtL8RcBUQ
+//%Header } zUTLjSawWr0aOORTNWYzRQ
 /*
- * $Id: MediaKeyboard.cpp,v 1.5 2006/07/11 19:49:04 southa Exp $
+ * $Id: MediaKeyboard.cpp,v 1.6 2006/11/08 18:30:54 southa Exp $
  * $Log: MediaKeyboard.cpp,v $
+ * Revision 1.6  2006/11/08 18:30:54  southa
+ * Key and axis configuration
+ *
  * Revision 1.5  2006/07/11 19:49:04  southa
  * Control menu
  *

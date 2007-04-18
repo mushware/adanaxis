@@ -7,7 +7,7 @@
  *
  * File: src/Mushcore/MushcoreVirtualObject.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } ZJHiYzPkd5zOdbg4vrXLtw
+//%Header } QgDtzjniFGV4IMTMT/joOw
 /*
- * $Id: MushcoreVirtualObject.h,v 1.8 2005/06/20 14:30:38 southa Exp $
+ * $Id: MushcoreVirtualObject.h,v 1.9 2006/06/01 15:39:48 southa Exp $
  * $Log: MushcoreVirtualObject.h,v $
+ * Revision 1.9  2006/06/01 15:39:48  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.8  2005/06/20 14:30:38  southa
  * Adanaxis work
  *

@@ -3,7 +3,7 @@
  *
  * File: src/MushGame/MushGameMailbox.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } SeavInJF8x8EDNWB0E8ZAw
+//%Header } AQ1fSkGKFK16Q0hDdNYLKg
 /*
- * $Id: MushGameMailbox.cpp,v 1.7 2006/04/11 23:30:08 southa Exp $
+ * $Id: MushGameMailbox.cpp,v 1.8 2006/06/01 15:39:23 southa Exp $
  * $Log: MushGameMailbox.cpp,v $
+ * Revision 1.8  2006/06/01 15:39:23  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.7  2006/04/11 23:30:08  southa
  * Created MushRuby from ruby-1.8.4
  *

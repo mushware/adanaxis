@@ -3,7 +3,7 @@
  *
  * File: src/GL/GLModeDef.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } vhAMnmvsnbGEXwx1Py1zUQ
+//%Header } CPG6+kh7OORl3O4TDsbUNQ
 /*
- * $Id$
- * $Log$
+ * $Id: GLModeDef.cpp,v 1.13 2006/11/25 21:26:31 southa Exp $
+ * $Log: GLModeDef.cpp,v $
+ * Revision 1.13  2006/11/25 21:26:31  southa
+ * Display mode definitions
+ *
  */
 
 #include "GLModeDef.h"

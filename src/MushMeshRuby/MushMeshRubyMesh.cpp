@@ -3,7 +3,7 @@
  *
  * File: src/MushMeshRuby/MushMeshRubyMesh.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } oR7WPhSKmfGQldTVFg6TpQ
+//%Header } 0KUsdpENqvUhvM1ZIKmL0A
 /*
- * $Id: MushMeshRubyMesh.cpp,v 1.13 2006/09/12 15:28:51 southa Exp $
+ * $Id: MushMeshRubyMesh.cpp,v 1.14 2006/11/14 14:02:16 southa Exp $
  * $Log: MushMeshRubyMesh.cpp,v $
+ * Revision 1.14  2006/11/14 14:02:16  southa
+ * Ball projectiles
+ *
  * Revision 1.13  2006/09/12 15:28:51  southa
  * World sphere
  *

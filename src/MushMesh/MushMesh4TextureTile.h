@@ -7,7 +7,7 @@
  *
  * File: src/MushMesh/MushMesh4TextureTile.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } Gpt6onVQ6MJeAFRAfWsomw
+//%Header } GfMIDjRlW39N0Jpt2axHew
 /*
- * $Id: MushMesh4TextureTile.h,v 1.4 2006/06/09 21:07:13 southa Exp $
+ * $Id: MushMesh4TextureTile.h,v 1.5 2006/07/18 16:58:38 southa Exp $
  * $Log: MushMesh4TextureTile.h,v $
+ * Revision 1.5  2006/07/18 16:58:38  southa
+ * Texture fixes
+ *
  * Revision 1.4  2006/06/09 21:07:13  southa
  * Tiled skin generation
  *

@@ -7,7 +7,7 @@
  *
  * File: src/Mushcore/MushcoreStreamUtil.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } kFmNM8TKYcO+lnEIcj/UJw
+//%Header } XISgRsOF3/rXzQwtvNcnAw
 /*
- * $Id: MushcoreStreamUtil.h,v 1.8 2005/05/19 13:02:16 southa Exp $
+ * $Id: MushcoreStreamUtil.h,v 1.9 2006/06/01 15:39:48 southa Exp $
  * $Log: MushcoreStreamUtil.h,v $
+ * Revision 1.9  2006/06/01 15:39:48  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.8  2005/05/19 13:02:16  southa
  * Mac release work
  *

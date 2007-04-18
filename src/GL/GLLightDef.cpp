@@ -3,7 +3,7 @@
  *
  * File: src/GL/GLLightDef.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 2m+iQB8L2Sy/gp/Uwpz/8g
+//%Header } Id7EUBqTFXneVKK6mELLrA
 /*
- * $Id: GLLightDef.cpp,v 1.14 2005/05/19 13:01:59 southa Exp $
+ * $Id: GLLightDef.cpp,v 1.15 2006/06/01 15:38:51 southa Exp $
  * $Log: GLLightDef.cpp,v $
+ * Revision 1.15  2006/06/01 15:38:51  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.14  2005/05/19 13:01:59  southa
  * Mac release work
  *

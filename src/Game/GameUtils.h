@@ -7,7 +7,7 @@
  *
  * File: src/Game/GameUtils.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } J0udDM7POyP/9ApbCDx+qA
+//%Header } X/5wNaWdCqRyW/zgI3N31g
 /*
- * $Id: GameUtils.h,v 1.4 2005/06/29 11:11:15 southa Exp $
+ * $Id: GameUtils.h,v 1.5 2006/06/01 15:39:01 southa Exp $
  * $Log: GameUtils.h,v $
+ * Revision 1.5  2006/06/01 15:39:01  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.4  2005/06/29 11:11:15  southa
  * Camera and rendering work
  *

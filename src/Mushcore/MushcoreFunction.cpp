@@ -3,7 +3,7 @@
  *
  * File: src/Mushcore/MushcoreFunction.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } bztal+F59qjH8YxAcqQWgw
+//%Header } kSheGpSodCJSZBG9f0EMqw
 /*
- * $Id: MushcoreFunction.cpp,v 1.10 2005/05/19 13:02:15 southa Exp $
+ * $Id: MushcoreFunction.cpp,v 1.11 2006/06/01 15:39:44 southa Exp $
  * $Log: MushcoreFunction.cpp,v $
+ * Revision 1.11  2006/06/01 15:39:44  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.10  2005/05/19 13:02:15  southa
  * Mac release work
  *

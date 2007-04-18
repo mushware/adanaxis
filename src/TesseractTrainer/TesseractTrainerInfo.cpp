@@ -3,7 +3,7 @@
  *
  * File: src/TesseractTrainer/TesseractTrainerInfo.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } V9rmXEiEoju5aWlcEhtMTw
+//%Header } xz63eNV8Qxup1SPlcelwEQ
 /*
- * $Id: TesseractTrainerInfo.cpp,v 1.6 2005/06/08 20:59:52 southa Exp $
+ * $Id: TesseractTrainerInfo.cpp,v 1.7 2006/06/01 15:40:00 southa Exp $
  * $Log: TesseractTrainerInfo.cpp,v $
+ * Revision 1.7  2006/06/01 15:40:00  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.6  2005/06/08 20:59:52  southa
  * X11 release
  *

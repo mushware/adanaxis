@@ -7,7 +7,7 @@
  *
  * File: src/MushGL/MushGLWorkspace.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } UgiYok4TqX0Bpi5y/7fOug
+//%Header } 01CbVGgTXATkXjows/7evg
 /*
- * $Id: MushGLWorkspace.h,v 1.1 2005/07/04 15:59:00 southa Exp $
+ * $Id: MushGLWorkspace.h,v 1.2 2006/06/01 15:39:19 southa Exp $
  * $Log: MushGLWorkspace.h,v $
+ * Revision 1.2  2006/06/01 15:39:19  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.1  2005/07/04 15:59:00  southa
  * Adanaxis work
  *

@@ -3,7 +3,7 @@
  *
  * File: src/Infernal/InfernalFacetContext.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } Vz8I8ZoYcFxeL9KicMIrVA
+//%Header } QRR7ERJQ9NV09RRVwrVNMA
 /*
- * $Id: InfernalFacetContext.cpp,v 1.6 2005/07/02 00:42:37 southa Exp $
+ * $Id: InfernalFacetContext.cpp,v 1.7 2006/06/01 15:39:02 southa Exp $
  * $Log: InfernalFacetContext.cpp,v $
+ * Revision 1.7  2006/06/01 15:39:02  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.6  2005/07/02 00:42:37  southa
  * Conditioning tweaks
  *

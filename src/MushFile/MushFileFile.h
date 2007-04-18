@@ -7,7 +7,7 @@
  *
  * File: src/MushFile/MushFileFile.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } TfWDwhULX4Amspgb97Dc5A
+//%Header } Cv0lbJVOu55nY2LOMFGkZw
 /*
- * $Id: MushFileFile.h,v 1.2 2006/11/06 19:27:51 southa Exp $
+ * $Id: MushFileFile.h,v 1.3 2006/11/07 11:08:54 southa Exp $
  * $Log: MushFileFile.h,v $
+ * Revision 1.3  2006/11/07 11:08:54  southa
+ * Texture loading from mushfiles
+ *
  * Revision 1.2  2006/11/06 19:27:51  southa
  * Mushfile handling
  *

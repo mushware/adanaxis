@@ -7,7 +7,7 @@
  *
  * File: src/Mushcore/MushcorePickle.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } toT/8iPxDzLVa/Gx9amMgw
+//%Header } udCsE9vD738AK35k2A/YUw
 /*
- * $Id: MushcorePickle.h,v 1.7 2005/05/19 13:02:16 southa Exp $
+ * $Id: MushcorePickle.h,v 1.8 2006/06/01 15:39:46 southa Exp $
  * $Log: MushcorePickle.h,v $
+ * Revision 1.8  2006/06/01 15:39:46  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.7  2005/05/19 13:02:16  southa
  * Mac release work
  *

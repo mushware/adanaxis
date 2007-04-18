@@ -7,7 +7,7 @@
  *
  * File: src/Game/GameAppHandler.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } QoyRB5Hk0+4TG530/QbOgg
+//%Header } cMxxHMyOGht7kqWzgqgz4A
 /*
- * $Id: GameAppHandler.h,v 1.27 2005/05/19 13:02:01 southa Exp $
+ * $Id: GameAppHandler.h,v 1.28 2006/06/01 15:38:56 southa Exp $
  * $Log: GameAppHandler.h,v $
+ * Revision 1.28  2006/06/01 15:38:56  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.27  2005/05/19 13:02:01  southa
  * Mac release work
  *

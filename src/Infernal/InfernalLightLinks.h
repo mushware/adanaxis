@@ -7,7 +7,7 @@
  *
  * File: src/Infernal/InfernalLightLinks.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } Lnvt54F6wsgGKJ3hpnhDHA
+//%Header } Fov3M8/kwKDFcUmhrHiT7w
 /*
- * $Id: InfernalLightLinks.h,v 1.5 2005/05/19 13:02:05 southa Exp $
+ * $Id: InfernalLightLinks.h,v 1.6 2006/06/01 15:39:03 southa Exp $
  * $Log: InfernalLightLinks.h,v $
+ * Revision 1.6  2006/06/01 15:39:03  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.5  2005/05/19 13:02:05  southa
  * Mac release work
  *

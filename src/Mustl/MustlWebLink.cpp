@@ -3,7 +3,7 @@
  *
  * File: src/Mustl/MustlWebLink.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } Kac74/+eQQWSj2q5xmYuFA
+//%Header } p2Kp61hVmrEnjdcPwnXhTQ
 /*
- * $Id: MustlWebLink.cpp,v 1.29 2006/06/01 15:39:55 southa Exp $
+ * $Id: MustlWebLink.cpp,v 1.30 2006/06/29 10:12:36 southa Exp $
  * $Log: MustlWebLink.cpp,v $
+ * Revision 1.30  2006/06/29 10:12:36  southa
+ * 64 bit compatibility fixes
+ *
  * Revision 1.29  2006/06/01 15:39:55  southa
  * DrawArray verification and fixes
  *

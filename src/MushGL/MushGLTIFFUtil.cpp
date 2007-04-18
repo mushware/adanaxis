@@ -3,7 +3,7 @@
  *
  * File: src/MushGL/MushGLTIFFUtil.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } h1Go2vLqhxcDo4G+8KTIWw
+//%Header } EzhJwVdbrpgkBRj83y0y9w
 /*
- * $Id: MushGLTIFFUtil.cpp,v 1.3 2006/07/28 16:52:21 southa Exp $
+ * $Id: MushGLTIFFUtil.cpp,v 1.4 2006/08/03 15:07:58 southa Exp $
  * $Log: MushGLTIFFUtil.cpp,v $
+ * Revision 1.4  2006/08/03 15:07:58  southa
+ * Cache purge fix
+ *
  * Revision 1.3  2006/07/28 16:52:21  southa
  * Options work
  *

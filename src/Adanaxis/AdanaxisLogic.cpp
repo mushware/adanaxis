@@ -6,7 +6,7 @@
  * Copyright: Andy Southgate 2005-2007
  *
  * This file may be used and distributed under the terms of the Mushware
- * Software Licence version 1.2, under the terms for 'Proprietary original
+ * Software Licence version 1.3, under the terms for 'Proprietary original
  * source files'.  If not supplied with this software, a copy of the licence
  * can be obtained from Mushware Limited via http://www.mushware.com/.
  * One of your options under that licence is to use and distribute this file
@@ -15,10 +15,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } A6pYLrXxaSjBm4DpNkHwLQ
+//%Header } uRd/C67+BhB+F4sXUsaH6A
 /*
- * $Id: AdanaxisLogic.cpp,v 1.43 2007/03/24 18:07:24 southa Exp $
+ * $Id: AdanaxisLogic.cpp,v 1.44 2007/03/26 16:31:36 southa Exp $
  * $Log: AdanaxisLogic.cpp,v $
+ * Revision 1.44  2007/03/26 16:31:36  southa
+ * L2 work
+ *
  * Revision 1.43  2007/03/24 18:07:24  southa
  * Level 3 work
  *
@@ -877,10 +880,10 @@ AdanaxisLogic::IfRecordSet(void)
     bool retVal = false;
     
     tMsec gameTime = EndTime() - StartTime();
-    tMsec recordTime = AdanaxisRecords::Sgl().RecordTime(SaveData().SpaceName());
+    tMsec recordTime = AdanaxisRecords::Sgl().RecordTime(SaveData().GameDifficulty(), SaveData().SpaceName());
     if (recordTime == 0 || gameTime < recordTime)
     {
-        AdanaxisRecords::Sgl().RecordTimeSet(SaveData().SpaceName(), gameTime);
+        AdanaxisRecords::Sgl().RecordTimeSet(SaveData().GameDifficulty(), SaveData().SpaceName(), gameTime);
         retVal = true;
     }
     return retVal;

@@ -7,7 +7,7 @@
  *
  * File: src/MushMesh/MushMeshQuaternionPair.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } agje8R8XMktBLfLA1CPa/g
+//%Header } Ydc3S66mQJhNx3uuyPykVw
 /*
- * $Id: MushMeshQuaternionPair.h,v 1.13 2006/06/01 15:39:32 southa Exp $
+ * $Id: MushMeshQuaternionPair.h,v 1.14 2006/06/14 11:20:07 southa Exp $
  * $Log: MushMeshQuaternionPair.h,v $
+ * Revision 1.14  2006/06/14 11:20:07  southa
+ * Ruby mesh generation
+ *
  * Revision 1.13  2006/06/01 15:39:32  southa
  * DrawArray verification and fixes
  *

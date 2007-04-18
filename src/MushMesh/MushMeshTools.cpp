@@ -3,7 +3,7 @@
  *
  * File: src/MushMesh/MushMeshTools.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } cQoVIV2DdH4LiqrKzfp8tw
+//%Header } AX04tcaOpdDR0Ri6GTqC/A
 /*
- * $Id: MushMeshTools.cpp,v 1.15 2006/07/18 16:58:38 southa Exp $
+ * $Id: MushMeshTools.cpp,v 1.16 2006/08/20 14:19:21 southa Exp $
  * $Log: MushMeshTools.cpp,v $
+ * Revision 1.16  2006/08/20 14:19:21  southa
+ * Seek operation
+ *
  * Revision 1.15  2006/07/18 16:58:38  southa
  * Texture fixes
  *

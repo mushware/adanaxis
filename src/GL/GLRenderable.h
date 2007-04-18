@@ -7,7 +7,7 @@
  *
  * File: src/GL/GLRenderable.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } u5a7aDmcMTPeQgN/qzWrEg
+//%Header } vL0yhbxL4XxLcuJ1j7+fOw
 /*
- * $Id: GLRenderable.h,v 1.13 2005/05/19 13:01:59 southa Exp $
+ * $Id: GLRenderable.h,v 1.14 2006/06/01 15:38:52 southa Exp $
  * $Log: GLRenderable.h,v $
+ * Revision 1.14  2006/06/01 15:38:52  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.13  2005/05/19 13:01:59  southa
  * Mac release work
  *

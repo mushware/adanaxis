@@ -6,7 +6,7 @@
  * Copyright: Andy Southgate 2005-2007
  *
  * This file may be used and distributed under the terms of the Mushware
- * Software Licence version 1.2, under the terms for 'Proprietary original
+ * Software Licence version 1.3, under the terms for 'Proprietary original
  * source files'.  If not supplied with this software, a copy of the licence
  * can be obtained from Mushware Limited via http://www.mushware.com/.
  * One of your options under that licence is to use and distribute this file
@@ -15,10 +15,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } Iz5wCHDgUTzGRuTtfwnQtg
+//%Header } shOQoy0mscnTFs76gRugFw
 /*
- * $Id: AdanaxisRuby.cpp,v 1.12 2007/04/16 08:41:08 southa Exp $
+ * $Id: AdanaxisRuby.cpp,v 1.13 2007/04/16 18:50:59 southa Exp $
  * $Log: AdanaxisRuby.cpp,v $
+ * Revision 1.13  2007/04/16 18:50:59  southa
+ * Voice work
+ *
  * Revision 1.12  2007/04/16 08:41:08  southa
  * Level and header mods
  *
@@ -112,7 +115,7 @@ AdanaxisRuby::RecordTime(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg
     MushRubyValue retVal;
     MushRubyValue param0(inArg0);
     
-    Mushware::tMsec recordTime = AdanaxisRecords::Sgl().RecordTime(param0.String());
+    Mushware::tMsec recordTime = AdanaxisRecords::Sgl().RecordTime(AdanaxisUtil::Config().ConfigDifficulty(), param0.String());
     
     if (recordTime != 0)
     {

@@ -3,7 +3,7 @@
  *
  * File: src/GL/GLSTL.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } E4a8mljEWS22QTCoB6J2WQ
+//%Header } dVqAwUMfWOTvGHLrdPL3uQ
 /*
- * $Id: GLSTL.cpp,v 1.5 2005/05/19 13:01:59 southa Exp $
+ * $Id: GLSTL.cpp,v 1.6 2006/06/01 15:38:52 southa Exp $
  * $Log: GLSTL.cpp,v $
+ * Revision 1.6  2006/06/01 15:38:52  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.5  2005/05/19 13:01:59  southa
  * Mac release work
  *

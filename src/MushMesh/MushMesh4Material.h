@@ -7,7 +7,7 @@
  *
  * File: src/MushMesh/MushMesh4Material.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 7UvikX8idpVAxy72TO4JQw
+//%Header } id5YjiZjssYtgu03D5JArg
 /*
- * $Id: MushMesh4Material.h,v 1.1 2006/06/19 15:57:18 southa Exp $
+ * $Id: MushMesh4Material.h,v 1.2 2006/10/19 15:41:36 southa Exp $
  * $Log: MushMesh4Material.h,v $
+ * Revision 1.2  2006/10/19 15:41:36  southa
+ * Item handling
+ *
  * Revision 1.1  2006/06/19 15:57:18  southa
  * Materials
  *

@@ -10,7 +10,7 @@
  * Copyright: Andy Southgate 2005-2007
  *
  * This file may be used and distributed under the terms of the Mushware
- * Software Licence version 1.2, under the terms for 'Proprietary original
+ * Software Licence version 1.3, under the terms for 'Proprietary original
  * source files'.  If not supplied with this software, a copy of the licence
  * can be obtained from Mushware Limited via http://www.mushware.com/.
  * One of your options under that licence is to use and distribute this file
@@ -19,10 +19,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } XqYUToVGTbjcz1Xxm6qvMA
+//%Header } giWabCmOWBjWEjWbj1FE6Q
 /*
- * $Id: AdanaxisRecords.h,v 1.1 2007/03/09 19:50:12 southa Exp $
+ * $Id: AdanaxisRecords.h,v 1.2 2007/04/16 08:41:08 southa Exp $
  * $Log: AdanaxisRecords.h,v $
+ * Revision 1.2  2007/04/16 08:41:08  southa
+ * Level and header mods
+ *
  * Revision 1.1  2007/03/09 19:50:12  southa
  * Resident textures
  *
@@ -36,8 +39,8 @@ class AdanaxisRecords : public MushcoreSingleton<AdanaxisRecords>, public Mushco
 public:
     AdanaxisRecords();
     virtual ~AdanaxisRecords() {}
-    virtual Mushware::tMsec RecordTime(const std::string& inName) const;
-    virtual void RecordTimeSet(const std::string& inName, Mushware::tMsec inTime);
+    virtual Mushware::tMsec RecordTime(Mushware::U32 inDifficulty, const std::string& inName) const;
+    virtual void RecordTimeSet(Mushware::U32 inDifficulty, const std::string& inName, Mushware::tMsec inTime);
 
     virtual void Load(void);
     
@@ -51,14 +54,14 @@ protected:
 private:
     enum
     {
-        kVersion = 20070309
+        kVersion = 20070417
     };
     typedef std::map< std::string, Mushware::tMsec > tRecordTimes;
-    
+    typedef std::map< Mushware::U32, tRecordTimes > tRecordTimeSet;
     Mushware::U32 ChecksumCalc(void) const;
 
     Mushware::U32 m_version; //:read
-    tRecordTimes m_recordTimes;
+    tRecordTimeSet m_recordTimeSet;
     Mushware::U32 m_checksum;
     
 //%classPrototypes {

@@ -3,7 +3,7 @@
  *
  * File: src/MushMesh/MushMesh4Util.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } lrxo7zjvVsITCt7aHzGlWA
+//%Header } hKKQjlNxdvMJbNptBcloJA
 /*
- * $Id: MushMesh4Util.cpp,v 1.3 2006/06/01 15:39:28 southa Exp $
+ * $Id: MushMesh4Util.cpp,v 1.4 2006/12/14 00:33:50 southa Exp $
  * $Log: MushMesh4Util.cpp,v $
+ * Revision 1.4  2006/12/14 00:33:50  southa
+ * Control fix and audio pacing
+ *
  * Revision 1.3  2006/06/01 15:39:28  southa
  * DrawArray verification and fixes
  *

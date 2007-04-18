@@ -3,7 +3,7 @@
  *
  * File: src/MushFile/MushFileRuby.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } eDanUv+oK5eOEEiPwWQ+Pg
+//%Header } EaANT61QRrMEe8ckCvMYWg
 /*
- * $Id: MushFileRuby.cpp,v 1.1 2006/11/06 12:56:32 southa Exp $
+ * $Id: MushFileRuby.cpp,v 1.2 2006/11/07 11:08:54 southa Exp $
  * $Log: MushFileRuby.cpp,v $
+ * Revision 1.2  2006/11/07 11:08:54  southa
+ * Texture loading from mushfiles
+ *
  * Revision 1.1  2006/11/06 12:56:32  southa
  * MushFile work
  *

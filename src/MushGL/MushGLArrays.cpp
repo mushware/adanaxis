@@ -3,7 +3,7 @@
  *
  * File: src/MushGL/MushGLArrays.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } l5IKc4N86fQqFe/khIX+aA
+//%Header } BnwhF/W+69tpBqr5BOOloA
 /*
- *$Id: MushGLArrays.cpp,v 1.2 2005/05/19 13:02:09 southa Exp $
+ *$Id: MushGLArrays.cpp,v 1.3 2006/06/01 15:39:16 southa Exp $
  * $Log: MushGLArrays.cpp,v $
+ * Revision 1.3  2006/06/01 15:39:16  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.2  2005/05/19 13:02:09  southa
  * Mac release work
  *

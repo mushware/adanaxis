@@ -3,7 +3,7 @@
  *
  * File: src/MushPie/MushPiePiece.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } ThyMTpw4iuSxluVCFjz9jQ
+//%Header } NEWD0kiUSXBc/dBXVFQYEQ
 /*
- * $Id: MushPiePiece.cpp,v 1.13 2005/07/02 00:42:38 southa Exp $
+ * $Id: MushPiePiece.cpp,v 1.14 2006/06/01 15:39:36 southa Exp $
  * $Log: MushPiePiece.cpp,v $
+ * Revision 1.14  2006/06/01 15:39:36  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.13  2005/07/02 00:42:38  southa
  * Conditioning tweaks
  *

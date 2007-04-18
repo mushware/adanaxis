@@ -3,7 +3,7 @@
  *
  * File: src/MushGame/MushGamePiecePlayer.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } H3ST5h4h3xAlbP2DXml2uQ
+//%Header } nenVE31cHHxr+tomVwRI8Q
 /*
- * $Id: MushGamePiecePlayer.cpp,v 1.3 2006/11/02 09:47:33 southa Exp $
+ * $Id: MushGamePiecePlayer.cpp,v 1.4 2006/12/14 00:33:49 southa Exp $
  * $Log: MushGamePiecePlayer.cpp,v $
+ * Revision 1.4  2006/12/14 00:33:49  southa
+ * Control fix and audio pacing
+ *
  * Revision 1.3  2006/11/02 09:47:33  southa
  * Player weapon control
  *

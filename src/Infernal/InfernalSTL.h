@@ -7,7 +7,7 @@
  *
  * File: src/Infernal/InfernalSTL.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } c34/teN4Up44TZa0Iis9Hg
+//%Header } dQnO+Xy1cjqZkxHSUNI95Q
 /*
- * $Id: InfernalSTL.h,v 1.5 2006/06/01 15:39:05 southa Exp $
+ * $Id: InfernalSTL.h,v 1.6 2006/06/22 19:07:29 southa Exp $
  * $Log: InfernalSTL.h,v $
+ * Revision 1.6  2006/06/22 19:07:29  southa
+ * Build fixes
+ *
  * Revision 1.5  2006/06/01 15:39:05  southa
  * DrawArray verification and fixes
  *

@@ -7,7 +7,7 @@
  *
  * File: src/MushMesh/MushMeshPosticity.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } t1Ub7qKwTGZ73wEUmUwLzw
+//%Header } deaErO72D0NEh/5eXtG+VA
 /*
- * $Id: MushMeshPosticity.h,v 1.6 2006/06/20 19:06:52 southa Exp $
+ * $Id: MushMeshPosticity.h,v 1.7 2006/06/30 15:05:35 southa Exp $
  * $Log: MushMeshPosticity.h,v $
+ * Revision 1.7  2006/06/30 15:05:35  southa
+ * Texture and buffer purge
+ *
  * Revision 1.6  2006/06/20 19:06:52  southa
  * Object creation
  *

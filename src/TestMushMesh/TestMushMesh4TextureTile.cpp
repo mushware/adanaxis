@@ -3,7 +3,7 @@
  *
  * File: src/TestMushMesh/TestMushMesh4TextureTile.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } HQFNuJCoSOs5LfF+JM9ETw
+//%Header } PYMDjY0anyk/n9cDX570EQ
 /*
- * $Id: TestMushMesh4TextureTile.cpp,v 1.1 2006/05/01 17:39:01 southa Exp $
+ * $Id: TestMushMesh4TextureTile.cpp,v 1.2 2006/05/02 17:32:13 southa Exp $
  * $Log: TestMushMesh4TextureTile.cpp,v $
+ * Revision 1.2  2006/05/02 17:32:13  southa
+ * Texturing
+ *
  * Revision 1.1  2006/05/01 17:39:01  southa
  * Texture generation
  *

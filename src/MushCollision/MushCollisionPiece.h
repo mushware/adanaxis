@@ -7,7 +7,7 @@
  *
  * File: src/MushCollision/MushCollisionPiece.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } ilonAQsnHWEXhewV2G7+ug
+//%Header } LX43K9AXZEla1+GuWUipSA
 /*
- * $Id: MushCollisionPiece.h,v 1.4 2006/06/01 15:39:15 southa Exp $
+ * $Id: MushCollisionPiece.h,v 1.5 2006/11/14 20:28:37 southa Exp $
  * $Log: MushCollisionPiece.h,v $
+ * Revision 1.5  2006/11/14 20:28:37  southa
+ * Added rail gun
+ *
  * Revision 1.4  2006/06/01 15:39:15  southa
  * DrawArray verification and fixes
  *

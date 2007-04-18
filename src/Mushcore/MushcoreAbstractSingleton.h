@@ -7,7 +7,7 @@
  *
  * File: src/Mushcore/MushcoreAbstractSingleton.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } ArPRl9K1ViT9G4mTJS91Tg
+//%Header } RCYP4MJWa7a1HSSqGxLUVQ
 /*
- * $Id: MushcoreAbstractSingleton.h,v 1.10 2005/07/04 11:10:43 southa Exp $
+ * $Id: MushcoreAbstractSingleton.h,v 1.11 2006/06/01 15:39:40 southa Exp $
  * $Log: MushcoreAbstractSingleton.h,v $
+ * Revision 1.11  2006/06/01 15:39:40  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.10  2005/07/04 11:10:43  southa
  * Rendering pipeline
  *

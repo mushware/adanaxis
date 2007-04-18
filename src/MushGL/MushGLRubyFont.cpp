@@ -3,7 +3,7 @@
  *
  * File: src/MushGL/MushGLRubyFont.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } x7wDRgXhtyz4ur55Gakesw
+//%Header } L4CATiZhDUkQGLT1zDSrkw
 /*
- * $Id: MushGLRubyFont.cpp,v 1.3 2006/10/17 20:43:01 southa Exp $
+ * $Id: MushGLRubyFont.cpp,v 1.4 2006/11/23 14:40:29 southa Exp $
  * $Log: MushGLRubyFont.cpp,v $
+ * Revision 1.4  2006/11/23 14:40:29  southa
+ * Intro cutscene
+ *
  * Revision 1.3  2006/10/17 20:43:01  southa
  * Dashboard work
  *

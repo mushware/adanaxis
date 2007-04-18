@@ -3,7 +3,7 @@
  *
  * File: src/Mushcore/MushcoreBison.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,7 +17,7 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } hEvOjqoMs0P9uZV4B0H6vw
+//%Header } Gj4fVgSMj6vInuAtCnV36g
 
 #define YYBISON 1  /* Identify Bison output.  */
 
@@ -37,8 +37,11 @@
 #define	NEG	263
 
  /*
- * $Id: MushcoreBison.cpp,v 1.14 2005/05/19 13:02:14 southa Exp $
+ * $Id: MushcoreBison.cpp,v 1.15 2006/06/01 15:39:41 southa Exp $
  * $Log: MushcoreBison.cpp,v $
+ * Revision 1.15  2006/06/01 15:39:41  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.14  2005/05/19 13:02:14  southa
  * Mac release work
  *

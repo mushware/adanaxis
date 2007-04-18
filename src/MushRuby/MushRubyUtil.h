@@ -7,7 +7,7 @@
  *
  * File: src/MushRuby/MushRubyUtil.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } ZnwDjEM1+TPkZ9HrL5mg7A
+//%Header } BthwmP56TznoesNWeAh6qA
 /*
- * $Id: MushRubyUtil.h,v 1.16 2006/10/12 22:04:49 southa Exp $
+ * $Id: MushRubyUtil.h,v 1.17 2006/11/03 18:46:34 southa Exp $
  * $Log: MushRubyUtil.h,v $
+ * Revision 1.17  2006/11/03 18:46:34  southa
+ * Damage effectors
+ *
  * Revision 1.16  2006/10/12 22:04:49  southa
  * Collision events
  *

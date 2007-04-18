@@ -3,7 +3,7 @@
  *
  * File: src/Mustl/MustlServer.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } V2lbxtMvywtWj1gOSRgyag
+//%Header } ws/qksbjNKDHCupWA6UEuQ
 /*
- * $Id: MustlServer.cpp,v 1.21 2005/05/19 13:02:19 southa Exp $
+ * $Id: MustlServer.cpp,v 1.22 2006/06/01 15:39:54 southa Exp $
  * $Log: MustlServer.cpp,v $
+ * Revision 1.22  2006/06/01 15:39:54  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.21  2005/05/19 13:02:19  southa
  * Mac release work
  *

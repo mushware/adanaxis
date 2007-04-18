@@ -7,7 +7,7 @@
  *
  * File: src/TestMushMesh/TestMushMeshBox.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 30sotOXGdb32F7C5g1AgRg
+//%Header } xpKMMMOfiAzLYe5i8APchA
 /*
- * $Id: TestMushMeshBox.h,v 1.3 2005/05/19 13:02:23 southa Exp $
+ * $Id: TestMushMeshBox.h,v 1.4 2006/06/01 15:40:01 southa Exp $
  * $Log: TestMushMeshBox.h,v $
+ * Revision 1.4  2006/06/01 15:40:01  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.3  2005/05/19 13:02:23  southa
  * Mac release work
  *

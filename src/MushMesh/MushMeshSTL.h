@@ -7,7 +7,7 @@
  *
  * File: src/MushMesh/MushMeshSTL.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } h2TbW9e5Ad0JeCaDM2OvDg
+//%Header } ykPNenMvEhhNyiuTaNT51g
 /*
- * $Id: MushMeshSTL.h,v 1.6 2006/06/01 15:39:32 southa Exp $
+ * $Id: MushMeshSTL.h,v 1.7 2006/06/22 19:07:32 southa Exp $
  * $Log: MushMeshSTL.h,v $
+ * Revision 1.7  2006/06/22 19:07:32  southa
+ * Build fixes
+ *
  * Revision 1.6  2006/06/01 15:39:32  southa
  * DrawArray verification and fixes
  *

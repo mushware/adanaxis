@@ -7,7 +7,7 @@
  *
  * File: src/Game/GameSoundSpec.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } yvHj+8mTdXYAmjJnI2vQ7A
+//%Header } gQzXTM1VgqZooR2OJytwWA
 /*
- * $Id: GameSoundSpec.h,v 1.3 2005/06/20 14:30:34 southa Exp $
+ * $Id: GameSoundSpec.h,v 1.4 2006/06/01 15:39:00 southa Exp $
  * $Log: GameSoundSpec.h,v $
+ * Revision 1.4  2006/06/01 15:39:00  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.3  2005/06/20 14:30:34  southa
  * Adanaxis work
  *

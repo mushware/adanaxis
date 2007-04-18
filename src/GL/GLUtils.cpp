@@ -3,7 +3,7 @@
  *
  * File: src/GL/GLUtils.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } Ul/ywOJEcqLYC5pn+rdcLg
+//%Header } YI4gvdhuJkORVyhsGoB24A
 /*
- * $Id: GLUtils.cpp,v 1.62 2006/06/01 15:38:55 southa Exp $
+ * $Id: GLUtils.cpp,v 1.63 2006/11/25 21:26:32 southa Exp $
  * $Log: GLUtils.cpp,v $
+ * Revision 1.63  2006/11/25 21:26:32  southa
+ * Display mode definitions
+ *
  * Revision 1.62  2006/06/01 15:38:55  southa
  * DrawArray verification and fixes
  *

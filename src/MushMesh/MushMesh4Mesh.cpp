@@ -3,7 +3,7 @@
  *
  * File: src/MushMesh/MushMesh4Mesh.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } oYzojPrY+iq5d6Z2oF715A
+//%Header } BishmWz6KYnHGxtjfcYuxA
 /*
- * $Id: MushMesh4Mesh.cpp,v 1.23 2006/12/14 00:33:49 southa Exp $
+ * $Id: MushMesh4Mesh.cpp,v 1.24 2006/12/18 15:39:35 southa Exp $
  * $Log: MushMesh4Mesh.cpp,v $
+ * Revision 1.24  2006/12/18 15:39:35  southa
+ * Palette changes
+ *
  * Revision 1.23  2006/12/14 00:33:49  southa
  * Control fix and audio pacing
  *

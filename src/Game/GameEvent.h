@@ -7,7 +7,7 @@
  *
  * File: src/Game/GameEvent.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } b9oTKsoqj0Lv259N0V8BKw
+//%Header } nfKKGmGRTBmH9YQTNV+i+g
 /*
- * $Id: GameEvent.h,v 1.15 2005/05/19 13:02:02 southa Exp $
+ * $Id: GameEvent.h,v 1.16 2006/06/01 15:38:57 southa Exp $
  * $Log: GameEvent.h,v $
+ * Revision 1.16  2006/06/01 15:38:57  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.15  2005/05/19 13:02:02  southa
  * Mac release work
  *

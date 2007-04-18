@@ -3,7 +3,7 @@
  *
  * File: src/Infernal/InfernalContract.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } n6Q53F6zLlMZL/wQeMp7Sw
+//%Header } JGf4PNpCtQXCBAvZbvNw/w
 /*
- * $Id: InfernalContract.cpp,v 1.19 2006/06/01 20:12:58 southa Exp $
+ * $Id: InfernalContract.cpp,v 1.20 2006/07/08 16:05:57 southa Exp $
  * $Log: InfernalContract.cpp,v $
+ * Revision 1.20  2006/07/08 16:05:57  southa
+ * Ruby menus and key handling
+ *
  * Revision 1.19  2006/06/01 20:12:58  southa
  * Initial texture caching
  *

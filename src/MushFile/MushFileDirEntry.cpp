@@ -3,7 +3,7 @@
  *
  * File: src/MushFile/MushFileDirEntry.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } MGQ0Ulmz4XgP1whKx5Pg8w
+//%Header } djorZCmvafqwb38y81zlEg
 /*
- * $Id: MushFileDirEntry.cpp,v 1.1 2006/11/06 12:56:32 southa Exp $
+ * $Id: MushFileDirEntry.cpp,v 1.2 2006/12/15 14:03:28 southa Exp $
  * $Log: MushFileDirEntry.cpp,v $
+ * Revision 1.2  2006/12/15 14:03:28  southa
+ * File key handling
+ *
  * Revision 1.1  2006/11/06 12:56:32  southa
  * MushFile work
  *

@@ -7,7 +7,7 @@
  *
  * File: src/API/mushPie.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } c05jqvQkSvnmHQeC6a9U7g
+//%Header } qrAJuQVl8NZ1R6nV2RnCJg
 /*
- * $Id: mushPie.h,v 1.2 2005/05/19 13:01:57 southa Exp $
+ * $Id: mushPie.h,v 1.3 2006/06/01 15:38:46 southa Exp $
  * $Log: mushPie.h,v $
+ * Revision 1.3  2006/06/01 15:38:46  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.2  2005/05/19 13:01:57  southa
  * Mac release work
  *

@@ -7,7 +7,7 @@
  *
  * File: src/GL/GLQuad.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } k5usTcf/RWDgv7/MdJqFTg
+//%Header } YDlWT5X2Rj/cqPMJaHYTVw
 /*
- * $Id: GLQuad.h,v 1.15 2005/05/19 13:01:59 southa Exp $
+ * $Id: GLQuad.h,v 1.16 2006/06/01 15:38:52 southa Exp $
  * $Log: GLQuad.h,v $
+ * Revision 1.16  2006/06/01 15:38:52  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.15  2005/05/19 13:01:59  southa
  * Mac release work
  *

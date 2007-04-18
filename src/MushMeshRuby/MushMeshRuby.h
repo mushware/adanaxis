@@ -7,7 +7,7 @@
  *
  * File: src/MushMeshRuby/MushMeshRuby.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } W0cKUfOSC2OQawh30P8bUQ
+//%Header } NciJN12N+TyA9HvkqQN10g
 /*
- * $Id: MushMeshRuby.h,v 1.1 2006/06/12 11:59:38 southa Exp $
+ * $Id: MushMeshRuby.h,v 1.2 2006/06/21 12:17:58 southa Exp $
  * $Log: MushMeshRuby.h,v $
+ * Revision 1.2  2006/06/21 12:17:58  southa
+ * Ruby object generation
+ *
  * Revision 1.1  2006/06/12 11:59:38  southa
  * Ruby wrapper for MushMeshVector
  *

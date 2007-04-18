@@ -3,7 +3,7 @@
  *
  * File: src/MushGame/MushGamePlayer.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } OxxqzgTKUBxsgfNF8zF/uA
+//%Header } UFubAzUDHLxe6cKtnMh2Tg
 /*
- * $Id: MushGamePlayer.cpp,v 1.12 2005/07/18 13:13:36 southa Exp $
+ * $Id: MushGamePlayer.cpp,v 1.13 2006/06/01 15:39:25 southa Exp $
  * $Log: MushGamePlayer.cpp,v $
+ * Revision 1.13  2006/06/01 15:39:25  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.12  2005/07/18 13:13:36  southa
  * Extrude to point and projectile mesh
  *

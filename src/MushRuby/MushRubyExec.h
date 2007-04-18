@@ -7,7 +7,7 @@
  *
  * File: src/MushRuby/MushRubyExec.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } UpB+98ShDY+5JMJVLGBArQ
+//%Header } gw16R+GuYbzypN9+uFdH3Q
 /*
- * $Id: MushRubyExec.h,v 1.6 2006/07/08 16:06:00 southa Exp $
+ * $Id: MushRubyExec.h,v 1.7 2006/07/28 11:14:29 southa Exp $
  * $Log: MushRubyExec.h,v $
+ * Revision 1.7  2006/07/28 11:14:29  southa
+ * Records for multiple spaces
+ *
  * Revision 1.6  2006/07/08 16:06:00  southa
  * Ruby menus and key handling
  *

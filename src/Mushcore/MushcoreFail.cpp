@@ -3,7 +3,7 @@
  *
  * File: src/Mushcore/MushcoreFail.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } DBvLySRUjXvJP63OuNBWNA
+//%Header } b/bk2AdzvQWaQN3RtGMHAQ
 /*
- * $Id: MushcoreFail.cpp,v 1.7 2005/05/19 13:02:15 southa Exp $
+ * $Id: MushcoreFail.cpp,v 1.8 2006/06/01 15:39:43 southa Exp $
  * $Log: MushcoreFail.cpp,v $
+ * Revision 1.8  2006/06/01 15:39:43  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.7  2005/05/19 13:02:15  southa
  * Mac release work
  *

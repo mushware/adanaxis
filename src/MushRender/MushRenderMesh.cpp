@@ -3,7 +3,7 @@
  *
  * File: src/MushRender/MushRenderMesh.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } nAlXQAIXh98l6rrr70+y5w
+//%Header } J58iC+PMDH3E+C2BXFwekw
 /*
- * $Id: MushRenderMesh.cpp,v 1.7 2006/09/09 11:16:41 southa Exp $
+ * $Id: MushRenderMesh.cpp,v 1.8 2006/11/06 20:37:28 southa Exp $
  * $Log: MushRenderMesh.cpp,v $
+ * Revision 1.8  2006/11/06 20:37:28  southa
+ * Alloc and bounding radius fixes
+ *
  * Revision 1.7  2006/09/09 11:16:41  southa
  * One-time vertex buffer generation
  *

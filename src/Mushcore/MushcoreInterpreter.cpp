@@ -3,7 +3,7 @@
  *
  * File: src/Mushcore/MushcoreInterpreter.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } lyv8yH+iZl8UMFZFYZzXGw
+//%Header } wde/zVnSA6RMUuhte3jB3A
 /*
- * $Id: MushcoreInterpreter.cpp,v 1.15 2005/07/29 08:27:47 southa Exp $
+ * $Id: MushcoreInterpreter.cpp,v 1.16 2006/06/01 15:39:45 southa Exp $
  * $Log: MushcoreInterpreter.cpp,v $
+ * Revision 1.16  2006/06/01 15:39:45  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.15  2005/07/29 08:27:47  southa
  * Collision work
  *

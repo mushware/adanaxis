@@ -3,7 +3,7 @@
  *
  * File: src/MushGame/MushGameLinkLocal.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } /bjKzobDr8F0EZ2Ram6hzA
+//%Header } W2NTbKNbo2aDEtNpf7oS1g
 /*
- * $Id: MushGameLinkLocal.cpp,v 1.5 2005/07/02 00:42:37 southa Exp $
+ * $Id: MushGameLinkLocal.cpp,v 1.6 2006/06/01 15:39:23 southa Exp $
  * $Log: MushGameLinkLocal.cpp,v $
+ * Revision 1.6  2006/06/01 15:39:23  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.5  2005/07/02 00:42:37  southa
  * Conditioning tweaks
  *

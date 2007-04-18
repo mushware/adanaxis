@@ -7,7 +7,7 @@
  *
  * File: src/GL/GLState.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,11 +21,14 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } gVjHmMjwczZaoPVkRCvpXw
+//%Header } F+zroS+J6BAZEhrHjWDxdQ
 
 /*
- * $Id: GLState.h,v 1.17 2005/09/06 12:15:35 southa Exp $
+ * $Id: GLState.h,v 1.18 2006/06/01 15:38:53 southa Exp $
  * $Log: GLState.h,v $
+ * Revision 1.18  2006/06/01 15:38:53  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.17  2005/09/06 12:15:35  southa
  * Texture and rendering work
  *

@@ -3,7 +3,7 @@
  *
  * File: src/Game/GameRouter.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } Hs4BQXuOUjn+PSzRpLSLMg
+//%Header } 85ixODqj6HDN9rYcTIHE5Q
 /*
- * $Id: GameRouter.cpp,v 1.32 2005/05/19 13:02:03 southa Exp $
+ * $Id: GameRouter.cpp,v 1.33 2006/06/01 15:38:59 southa Exp $
  * $Log: GameRouter.cpp,v $
+ * Revision 1.33  2006/06/01 15:38:59  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.32  2005/05/19 13:02:03  southa
  * Mac release work
  *

@@ -7,7 +7,7 @@
  *
  * File: src/MushRuby/MushRubyFail.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } hTk4d/BuNJMOCr+nQfG6nw
+//%Header } eCYzaUQ8aPwgOxrVFufn/Q
 /*
- * $Id$
- * $Log$
+ * $Id: MushRubyFail.h,v 1.1 2006/04/20 00:22:45 southa Exp $
+ * $Log: MushRubyFail.h,v $
+ * Revision 1.1  2006/04/20 00:22:45  southa
+ * Added ruby executive
+ *
  */
 
 #include "MushRubyStandard.h"

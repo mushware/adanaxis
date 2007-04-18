@@ -3,10 +3,10 @@
  *
  * File: src/Adanaxis/AdanaxisPieceWorld.cpp
  *
- * Copyright: Andy Southgate 2005-2006
+ * Copyright: Andy Southgate 2005-2007
  *
  * This file may be used and distributed under the terms of the Mushware
- * software licence version 1.1, under the terms for 'Proprietary original
+ * Software Licence version 1.3, under the terms for 'Proprietary original
  * source files'.  If not supplied with this software, a copy of the licence
  * can be obtained from Mushware Limited via http://www.mushware.com/.
  * One of your options under that licence is to use and distribute this file
@@ -15,10 +15,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 4/aItzPaY/pRS+Cp7uX3Fw
+//%Header } 2EulC+1R5M9aDrzk63YhfQ
 /*
- * $Id: AdanaxisPieceWorld.cpp,v 1.3 2006/08/01 17:21:26 southa Exp $
+ * $Id: AdanaxisPieceWorld.cpp,v 1.4 2006/09/09 11:16:39 southa Exp $
  * $Log: AdanaxisPieceWorld.cpp,v $
+ * Revision 1.4  2006/09/09 11:16:39  southa
+ * One-time vertex buffer generation
+ *
  * Revision 1.3  2006/08/01 17:21:26  southa
  * River demo
  *

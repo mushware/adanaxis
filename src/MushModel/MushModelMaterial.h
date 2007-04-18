@@ -7,7 +7,7 @@
  *
  * File: src/MushModel/MushModelMaterial.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } uCVSr7JmmmC5K0vOswCy9w
+//%Header } VMQm1Y2ZxqpIGX28b1h+Qw
 /*
- * $Id: MushModelMaterial.h,v 1.7 2005/06/20 14:30:37 southa Exp $
+ * $Id: MushModelMaterial.h,v 1.8 2006/06/01 15:39:35 southa Exp $
  * $Log: MushModelMaterial.h,v $
+ * Revision 1.8  2006/06/01 15:39:35  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.7  2005/06/20 14:30:37  southa
  * Adanaxis work
  *

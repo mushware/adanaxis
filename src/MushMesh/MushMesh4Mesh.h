@@ -7,7 +7,7 @@
  *
  * File: src/MushMesh/MushMesh4Mesh.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } YrK9KiG4XjKqbWo1rVGU4w
+//%Header } RGX//0zTB9Uwo5t7TBkHGg
 /*
- * $Id: MushMesh4Mesh.h,v 1.24 2006/11/14 14:02:16 southa Exp $
+ * $Id: MushMesh4Mesh.h,v 1.25 2006/12/18 15:39:35 southa Exp $
  * $Log: MushMesh4Mesh.h,v $
+ * Revision 1.25  2006/12/18 15:39:35  southa
+ * Palette changes
+ *
  * Revision 1.24  2006/11/14 14:02:16  southa
  * Ball projectiles
  *

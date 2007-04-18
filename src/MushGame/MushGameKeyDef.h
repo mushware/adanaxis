@@ -7,7 +7,7 @@
  *
  * File: src/MushGame/MushGameKeyDef.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 0XyESJoYf4vvwzHYpkSADw
+//%Header } 3YH2jLTnIsCoogVUeFJ0uw
 /*
- * $Id: MushGameKeyDef.h,v 1.5 2006/11/02 12:23:22 southa Exp $
+ * $Id: MushGameKeyDef.h,v 1.6 2006/11/08 18:30:54 southa Exp $
  * $Log: MushGameKeyDef.h,v $
+ * Revision 1.6  2006/11/08 18:30:54  southa
+ * Key and axis configuration
+ *
  * Revision 1.5  2006/11/02 12:23:22  southa
  * Weapon selection
  *

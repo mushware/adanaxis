@@ -3,7 +3,7 @@
  *
  * File: src/MushGame/MushGameAppHandler.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } bC49LKe3G5tsyGqAVa5gyw
+//%Header } zkpYTheeNjP7gg2iX8lCdQ
 /*
- * $Id: MushGameAppHandler.cpp,v 1.22 2006/11/25 21:26:32 southa Exp $
+ * $Id: MushGameAppHandler.cpp,v 1.23 2006/12/14 00:33:49 southa Exp $
  * $Log: MushGameAppHandler.cpp,v $
+ * Revision 1.23  2006/12/14 00:33:49  southa
+ * Control fix and audio pacing
+ *
  * Revision 1.22  2006/11/25 21:26:32  southa
  * Display mode definitions
  *
@@ -677,6 +680,14 @@ MushGameAppHandler::KeyboardSignal(const GLKeyboardSignal& inSignal)
         inSignal.KeyDown())
     {
         // Emergency quit
+        QuitStateEnter();
+        keyHandled=true;
+    }
+    else if (inSignal.KeyValue() == 'q' &&
+        MediaKeyboard::HasModifier(inSignal.KeyModifier(), MediaKeyboard::kModMeta) &&
+        inSignal.KeyDown())
+    {
+        // Mac Command-Quit = also emergency quit
         QuitStateEnter();
         keyHandled=true;
     }

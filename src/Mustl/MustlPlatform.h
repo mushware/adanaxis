@@ -7,7 +7,7 @@
  *
  * File: src/Mustl/MustlPlatform.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,11 +21,14 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } IpuDpT0pUAY1hAbQQM0zyQ
+//%Header } MAIG6+YC0z/D1DzbEHzk0Q
 
 /*
- * $Id: MustlPlatform.h,v 1.10 2005/05/19 13:02:19 southa Exp $
+ * $Id: MustlPlatform.h,v 1.11 2006/06/01 15:39:53 southa Exp $
  * $Log: MustlPlatform.h,v $
+ * Revision 1.11  2006/06/01 15:39:53  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.10  2005/05/19 13:02:19  southa
  * Mac release work
  *

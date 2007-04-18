@@ -3,7 +3,7 @@
  *
  * File: src/Game/GameCommandHandler.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } PMe9tcdK+gyaRddssClULw
+//%Header } XRulyu4NIYKa9oF0oL5OJg
 /*
- * $Id: GameCommandHandler.cpp,v 1.26 2006/06/01 15:38:56 southa Exp $
+ * $Id: GameCommandHandler.cpp,v 1.27 2006/06/01 20:12:58 southa Exp $
  * $Log: GameCommandHandler.cpp,v $
+ * Revision 1.27  2006/06/01 20:12:58  southa
+ * Initial texture caching
+ *
  * Revision 1.26  2006/06/01 15:38:56  southa
  * DrawArray verification and fixes
  *

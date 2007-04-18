@@ -7,7 +7,7 @@
  *
  * File: src/GL/GLStandard.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 0R+Ye4SBf8jdvaM7l0X5uA
+//%Header } myEvJ5AvqY0aHqD9lNyvzA
 /*
- * $Id: GLStandard.h,v 1.29 2006/06/23 00:35:04 southa Exp $
+ * $Id: GLStandard.h,v 1.30 2006/06/29 10:12:33 southa Exp $
  * $Log: GLStandard.h,v $
+ * Revision 1.30  2006/06/29 10:12:33  southa
+ * 64 bit compatibility fixes
+ *
  * Revision 1.29  2006/06/23 00:35:04  southa
  * win32 build fixes
  *

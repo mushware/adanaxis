@@ -7,7 +7,7 @@
  *
  * File: src/MushFile/MushFileKeys.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 2E/GKy6tr6CafayxMUaMug
+//%Header } KOr/u8Xx6UgyzzGzg2mr1g
 /*
- * $Id: MushFileKeys.h,v 1.1 2006/12/15 14:03:28 southa Exp $
+ * $Id: MushFileKeys.h,v 1.2 2006/12/16 10:57:23 southa Exp $
  * $Log: MushFileKeys.h,v $
+ * Revision 1.2  2006/12/16 10:57:23  southa
+ * Encrypted files
+ *
  * Revision 1.1  2006/12/15 14:03:28  southa
  * File key handling
  *

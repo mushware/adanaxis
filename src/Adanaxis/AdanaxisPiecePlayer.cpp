@@ -6,7 +6,7 @@
  * Copyright: Andy Southgate 2005-2007
  *
  * This file may be used and distributed under the terms of the Mushware
- * Software Licence version 1.2, under the terms for 'Proprietary original
+ * Software Licence version 1.3, under the terms for 'Proprietary original
  * source files'.  If not supplied with this software, a copy of the licence
  * can be obtained from Mushware Limited via http://www.mushware.com/.
  * One of your options under that licence is to use and distribute this file
@@ -15,10 +15,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } c0qGhoh9ptGiUZnUftLaag
+//%Header } NakSYndAI0IrqBBZFk2p3g
 /*
- * $Id: AdanaxisPiecePlayer.cpp,v 1.13 2007/03/07 16:59:44 southa Exp $
+ * $Id: AdanaxisPiecePlayer.cpp,v 1.14 2007/04/16 08:41:08 southa Exp $
  * $Log: AdanaxisPiecePlayer.cpp,v $
+ * Revision 1.14  2007/04/16 08:41:08  southa
+ * Level and header mods
+ *
  * Revision 1.13  2007/03/07 16:59:44  southa
  * Khazi spawning and level ends
  *

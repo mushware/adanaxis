@@ -7,7 +7,7 @@
  *
  * File: src/Media/MediaRWops.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } bOKMZ1LcbJxVDVatKvWKkw
+//%Header } LAizokfdyQ59fagIj3w14g
 /*
- * $Id$
- * $Log$
+ * $Id: MediaRWops.h,v 1.1 2006/11/06 12:56:31 southa Exp $
+ * $Log: MediaRWops.h,v $
+ * Revision 1.1  2006/11/06 12:56:31  southa
+ * MushFile work
+ *
  */
 
 #include "MediaStandard.h"

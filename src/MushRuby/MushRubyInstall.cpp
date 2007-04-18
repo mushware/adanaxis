@@ -3,7 +3,7 @@
  *
  * File: src/MushRuby/MushRubyInstall.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } OdQ+sHC8Eym9cO1lHw6idQ
+//%Header } DDs7LPLB7vzosgny5Xos+g
 /*
- * $Id$
- * $Log$
+ * $Id: MushRubyInstall.cpp,v 1.1 2006/04/21 00:10:43 southa Exp $
+ * $Log: MushRubyInstall.cpp,v $
+ * Revision 1.1  2006/04/21 00:10:43  southa
+ * MushGLFont ruby module
+ *
  */
 
 #include "MushRubyInstall.h"

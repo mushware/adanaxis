@@ -7,7 +7,7 @@
  *
  * File: src/MushGame/MushGameStandard.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } o+BSM01bjQYGzqTGFYVwpg
+//%Header } VNAuBPSg3ag/sLGo+XjwKQ
 /*
- * $Id: MushGameStandard.h,v 1.6 2006/06/22 19:07:32 southa Exp $
+ * $Id: MushGameStandard.h,v 1.7 2006/10/09 16:00:17 southa Exp $
  * $Log: MushGameStandard.h,v $
+ * Revision 1.7  2006/10/09 16:00:17  southa
+ * Intern generation
+ *
  * Revision 1.6  2006/06/22 19:07:32  southa
  * Build fixes
  *

@@ -7,10 +7,10 @@
  *
  * File: src/MushMeshLibrary/MushMeshLibrarySingleFacet.h
  *
- * Copyright: Andy Southgate 2005-2006
+ * Copyright: Andy Southgate 2005-2007
  *
  * This file may be used and distributed under the terms of the Mushware
- * software licence version 1.1, under the terms for 'Proprietary original
+ * Software Licence version 1.3, under the terms for 'Proprietary original
  * source files'.  If not supplied with this software, a copy of the licence
  * can be obtained from Mushware Limited via http://www.mushware.com/.
  * One of your options under that licence is to use and distribute this file
@@ -19,10 +19,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } rzTMv1++NG1XvEjjPwfgnw
+//%Header } 3UvchxlyzADwlUlU9siEUQ
 /*
- * $Id: MushMeshLibrarySingleFacet.h,v 1.1 2006/07/17 14:43:41 southa Exp $
+ * $Id: MushMeshLibrarySingleFacet.h,v 1.2 2006/08/01 17:21:35 southa Exp $
  * $Log: MushMeshLibrarySingleFacet.h,v $
+ * Revision 1.2  2006/08/01 17:21:35  southa
+ * River demo
+ *
  * Revision 1.1  2006/07/17 14:43:41  southa
  * Billboarded deco objects
  *

@@ -7,7 +7,7 @@
  *
  * File: src/GL/GLTextureRef.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } fcEsyss3Ge2JKaBPQmUlhg
+//%Header } Qr/IPvbER9zkoS6bL9PcVw
 /*
- * $Id: GLTextureRef.h,v 1.22 2005/06/30 14:26:36 southa Exp $
+ * $Id: GLTextureRef.h,v 1.23 2006/06/01 15:38:54 southa Exp $
  * $Log: GLTextureRef.h,v $
+ * Revision 1.23  2006/06/01 15:38:54  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.22  2005/06/30 14:26:36  southa
  * Adanaxis work
  *

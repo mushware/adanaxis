@@ -3,7 +3,7 @@
  *
  * File: src/MushMesh/MushMeshUtils.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } uMIeKTxPFJ/ODQy1qs/MkQ
+//%Header } /uwVMO1/mwW7JQt5RpsLgg
 /*
- * $Id: MushMeshUtils.cpp,v 1.11 2005/07/04 15:59:00 southa Exp $
+ * $Id: MushMeshUtils.cpp,v 1.12 2006/06/01 15:39:33 southa Exp $
  * $Log: MushMeshUtils.cpp,v $
+ * Revision 1.12  2006/06/01 15:39:33  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.11  2005/07/04 15:59:00  southa
  * Adanaxis work
  *

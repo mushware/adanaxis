@@ -3,7 +3,7 @@
  *
  * File: src/MustlGame/MustlGameSTL.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } iRAFmEQ0D7xKAJDDbGgH9g
+//%Header } /F+6n+i3/h2iPSLb2DQwNQ
 /*
- * $Id: MustlGameSTL.cpp,v 1.3 2005/05/19 13:02:20 southa Exp $
+ * $Id: MustlGameSTL.cpp,v 1.4 2006/06/01 15:39:56 southa Exp $
  * $Log: MustlGameSTL.cpp,v $
+ * Revision 1.4  2006/06/01 15:39:56  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.3  2005/05/19 13:02:20  southa
  * Mac release work
  *

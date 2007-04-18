@@ -3,7 +3,7 @@
  *
  * File: src/MushMeshRuby/MushMeshRubyBasePrism.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } ceyqk6w3RyXgPXeMYSSUcQ
+//%Header } TKAvtjeecH9RmmhW57fUxg
 /*
- * $Id: MushMeshRubyBasePrism.cpp,v 1.1 2006/06/16 01:02:33 southa Exp $
+ * $Id: MushMeshRubyBasePrism.cpp,v 1.2 2006/06/16 12:11:04 southa Exp $
  * $Log: MushMeshRubyBasePrism.cpp,v $
+ * Revision 1.2  2006/06/16 12:11:04  southa
+ * Ruby subclasses
+ *
  * Revision 1.1  2006/06/16 01:02:33  southa
  * Ruby mesh generation
  *

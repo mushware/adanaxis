@@ -3,7 +3,7 @@
  *
  * File: src/MushMesh/MushMeshDisplacement.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } wVZg6ptzAxvq0Ysg1vHzCw
+//%Header } 2l7aR/nRLhHw8SOliHj3hA
 /*
- * $Id: MushMeshDisplacement.cpp,v 1.1 2005/07/12 20:39:05 southa Exp $
+ * $Id: MushMeshDisplacement.cpp,v 1.2 2006/06/01 15:39:29 southa Exp $
  * $Log: MushMeshDisplacement.cpp,v $
+ * Revision 1.2  2006/06/01 15:39:29  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.1  2005/07/12 20:39:05  southa
  * Mesh library work
  *

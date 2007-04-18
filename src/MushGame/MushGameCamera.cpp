@@ -3,7 +3,7 @@
  *
  * File: src/MushGame/MushGameCamera.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } B/4MJzXGrSbE0MA0fiUXlA
+//%Header } JwGK0YFCvLvhXQNIhU/jng
 /*
- * $Id: MushGameCamera.cpp,v 1.6 2006/06/01 15:39:20 southa Exp $
+ * $Id: MushGameCamera.cpp,v 1.7 2006/07/24 18:46:50 southa Exp $
  * $Log: MushGameCamera.cpp,v $
+ * Revision 1.7  2006/07/24 18:46:50  southa
+ * Depth sorting
+ *
  * Revision 1.6  2006/06/01 15:39:20  southa
  * DrawArray verification and fixes
  *

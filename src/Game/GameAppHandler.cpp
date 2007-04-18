@@ -3,7 +3,7 @@
  *
  * File: src/Game/GameAppHandler.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } UR7ck0WDr1290ME0NAb0JA
+//%Header } /IIVNm94sYdkFAveVKtzeA
 /*
- * $Id: GameAppHandler.cpp,v 1.61 2006/06/01 15:38:55 southa Exp $
+ * $Id: GameAppHandler.cpp,v 1.62 2006/07/08 16:05:56 southa Exp $
  * $Log: GameAppHandler.cpp,v $
+ * Revision 1.62  2006/07/08 16:05:56  southa
+ * Ruby menus and key handling
+ *
  * Revision 1.61  2006/06/01 15:38:55  southa
  * DrawArray verification and fixes
  *

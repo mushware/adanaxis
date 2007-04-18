@@ -7,7 +7,7 @@
  *
  * File: src/Media/MediaKeyboard.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 8+s43zymtGuWatXc9oMynA
+//%Header } eq8ik7MXQ/NgS/3vOGF68w
 /*
- * $Id: MediaKeyboard.h,v 1.4 2006/07/21 10:52:06 southa Exp $
+ * $Id: MediaKeyboard.h,v 1.5 2006/11/08 18:30:54 southa Exp $
  * $Log: MediaKeyboard.h,v $
+ * Revision 1.5  2006/11/08 18:30:54  southa
+ * Key and axis configuration
+ *
  * Revision 1.4  2006/07/21 10:52:06  southa
  * win32 build fixes
  *

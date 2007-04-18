@@ -7,7 +7,7 @@
  *
  * File: src/MushMeshRuby/MushMeshRubyExtruder.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } S7V3kxLWibt3+09EwtVFFQ
+//%Header } hz/YwH9ElvmpPHRbIQlz7g
 /*
- * $Id$
- * $Log$
+ * $Id: MushMeshRubyExtruder.h,v 1.1 2006/06/14 11:20:08 southa Exp $
+ * $Log: MushMeshRubyExtruder.h,v $
+ * Revision 1.1  2006/06/14 11:20:08  southa
+ * Ruby mesh generation
+ *
  */
 
 #include "MushMeshRubyStandard.h"

@@ -7,7 +7,7 @@
  *
  * File: src/GL/GLTest1AppHandler.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } X0we+133bZvw1Bi8ChZwgg
+//%Header } 5ASX+r7vrXjuwJ2yfsayMA
 /*
- * $Id: GLTest1AppHandler.h,v 1.18 2005/05/19 13:02:00 southa Exp $
+ * $Id: GLTest1AppHandler.h,v 1.19 2006/06/01 15:38:53 southa Exp $
  * $Log: GLTest1AppHandler.h,v $
+ * Revision 1.19  2006/06/01 15:38:53  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.18  2005/05/19 13:02:00  southa
  * Mac release work
  *

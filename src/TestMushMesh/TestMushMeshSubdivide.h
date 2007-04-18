@@ -7,7 +7,7 @@
  *
  * File: src/TestMushMesh/TestMushMeshSubdivide.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } NSJ74kS+Lsq797NRz/qQLQ
+//%Header } ZwPc+l2wjKeoe81uTq6IPA
 /*
- * $Id: TestMushMeshSubdivide.h,v 1.11 2005/05/19 13:02:23 southa Exp $
+ * $Id: TestMushMeshSubdivide.h,v 1.12 2006/06/01 15:40:02 southa Exp $
  * $Log: TestMushMeshSubdivide.h,v $
+ * Revision 1.12  2006/06/01 15:40:02  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.11  2005/05/19 13:02:23  southa
  * Mac release work
  *

@@ -7,7 +7,7 @@
  *
  * File: src/MushGL/MushGLRuby.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 8Q0XWSnnfxmEBtFinmGeBw
+//%Header } l1NWCnVDHRuepl/MyPhlqg
 /*
- * $Id$
- * $Log$
+ * $Id: MushGLRuby.h,v 1.1 2006/12/11 13:28:24 southa Exp $
+ * $Log: MushGLRuby.h,v $
+ * Revision 1.1  2006/12/11 13:28:24  southa
+ * Snapshot
+ *
  */
 
 #include "MushGLStandard.h"

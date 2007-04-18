@@ -3,7 +3,7 @@
  *
  * File: src/Mustl/MustlFail.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 62y9n2vmcwoNSxOIdC4xoA
+//%Header } eU8XS/Coj3Ub78jKYZbhCA
 /*
- * $Id: MustlFail.cpp,v 1.10 2005/05/19 13:02:18 southa Exp $
+ * $Id: MustlFail.cpp,v 1.11 2006/06/01 15:39:51 southa Exp $
  * $Log: MustlFail.cpp,v $
+ * Revision 1.11  2006/06/01 15:39:51  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.10  2005/05/19 13:02:18  southa
  * Mac release work
  *

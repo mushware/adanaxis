@@ -7,7 +7,7 @@
  *
  * File: src/MushRuby/MushRuby.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } Wr9YgRvUclXifNHyxB/v3A
+//%Header } MEfBV8/wn7JjG3V/EPwQsA
 /*
- * $Id: MushRuby.h,v 1.8 2006/06/16 12:11:05 southa Exp $
+ * $Id: MushRuby.h,v 1.9 2006/06/20 19:06:54 southa Exp $
  * $Log: MushRuby.h,v $
+ * Revision 1.9  2006/06/20 19:06:54  southa
+ * Object creation
+ *
  * Revision 1.8  2006/06/16 12:11:05  southa
  * Ruby subclasses
  *

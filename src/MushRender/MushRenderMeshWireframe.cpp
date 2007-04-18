@@ -3,7 +3,7 @@
  *
  * File: src/MushRender/MushRenderMeshWireframe.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } GBnKh1xP//zYsMvzXoAYTg
+//%Header } ijtqOpTskOU6W7bzGQHvmg
 /*
- * $Id: MushRenderMeshWireframe.cpp,v 1.8 2006/07/24 18:46:51 southa Exp $
+ * $Id: MushRenderMeshWireframe.cpp,v 1.9 2006/11/14 14:02:17 southa Exp $
  * $Log: MushRenderMeshWireframe.cpp,v $
+ * Revision 1.9  2006/11/14 14:02:17  southa
+ * Ball projectiles
+ *
  * Revision 1.8  2006/07/24 18:46:51  southa
  * Depth sorting
  *

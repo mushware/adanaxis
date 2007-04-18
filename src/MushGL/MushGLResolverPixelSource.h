@@ -7,7 +7,7 @@
  *
  * File: src/MushGL/MushGLResolverPixelSource.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 8D+czxodqWkqx/95U0bYng
+//%Header } fYp+Qf/9lTdz/7m/1OiiFQ
 /*
- * $Id: MushGLResolverPixelSource.h,v 1.5 2006/06/06 17:58:32 southa Exp $
+ * $Id: MushGLResolverPixelSource.h,v 1.6 2006/06/07 12:15:19 southa Exp $
  * $Log: MushGLResolverPixelSource.h,v $
+ * Revision 1.6  2006/06/07 12:15:19  southa
+ * Grid and test textures
+ *
  * Revision 1.5  2006/06/06 17:58:32  southa
  * Ruby texture definition
  *

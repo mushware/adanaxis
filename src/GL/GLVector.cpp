@@ -3,7 +3,7 @@
  *
  * File: src/GL/GLVector.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } nZGWAKNxmZO03rslz/8w3A
+//%Header } b2Nl1nmIFd5q3tPKiw+bCA
 /*
- * $Id: GLVector.cpp,v 1.14 2005/05/19 13:02:01 southa Exp $
+ * $Id: GLVector.cpp,v 1.15 2006/06/01 15:38:55 southa Exp $
  * $Log: GLVector.cpp,v $
+ * Revision 1.15  2006/06/01 15:38:55  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.14  2005/05/19 13:02:01  southa
  * Mac release work
  *

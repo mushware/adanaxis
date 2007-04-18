@@ -7,7 +7,7 @@
  *
  * File: src/Game/GameBase.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } MILKZyB/LOFs5zSCSkwHig
+//%Header } rscBlCJ87BdH4dWw6aoWPA
 /*
- * $Id: GameBase.h,v 1.24 2005/05/19 13:02:01 southa Exp $
+ * $Id: GameBase.h,v 1.25 2006/06/01 15:38:56 southa Exp $
  * $Log: GameBase.h,v $
+ * Revision 1.25  2006/06/01 15:38:56  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.24  2005/05/19 13:02:01  southa
  * Mac release work
  *

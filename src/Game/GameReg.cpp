@@ -3,7 +3,7 @@
  *
  * File: src/Game/GameReg.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } w2A217EHVnN/AC475uoR/A
+//%Header } a9CYPHKgFbuwMez9Nor3Gw
 /*
- * $Id: GameReg.cpp,v 1.11 2006/07/08 16:05:56 southa Exp $
+ * $Id: GameReg.cpp,v 1.12 2006/11/25 21:26:32 southa Exp $
  * $Log: GameReg.cpp,v $
+ * Revision 1.12  2006/11/25 21:26:32  southa
+ * Display mode definitions
+ *
  * Revision 1.11  2006/07/08 16:05:56  southa
  * Ruby menus and key handling
  *

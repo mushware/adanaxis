@@ -3,10 +3,10 @@
  *
  * File: src/Adanaxis/AdanaxisPlayer.cpp
  *
- * Copyright: Andy Southgate 2005-2006
+ * Copyright: Andy Southgate 2005-2007
  *
  * This file may be used and distributed under the terms of the Mushware
- * software licence version 1.1, under the terms for 'Proprietary original
+ * Software Licence version 1.3, under the terms for 'Proprietary original
  * source files'.  If not supplied with this software, a copy of the licence
  * can be obtained from Mushware Limited via http://www.mushware.com/.
  * One of your options under that licence is to use and distribute this file
@@ -15,10 +15,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } vHDbpnIep+mzmlVV3IuGGg
+//%Header } +JDFqTDpikqZsgxVygZSxg
 /*
- * $Id: AdanaxisPlayer.cpp,v 1.26 2006/08/25 11:06:08 southa Exp $
+ * $Id: AdanaxisPlayer.cpp,v 1.27 2006/09/09 11:16:40 southa Exp $
  * $Log: AdanaxisPlayer.cpp,v $
+ * Revision 1.27  2006/09/09 11:16:40  southa
+ * One-time vertex buffer generation
+ *
  * Revision 1.26  2006/08/25 11:06:08  southa
  * Snapshot
  *

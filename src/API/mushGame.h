@@ -7,7 +7,7 @@
  *
  * File: src/API/mushGame.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } YWXySZjGhl1XCS7zEKqYeA
+//%Header } bfuWcjyPZ9c4235PoQ5pWA
 /*
- * $Id: mushGame.h,v 1.8 2005/06/14 20:39:40 southa Exp $
+ * $Id: mushGame.h,v 1.9 2006/06/01 15:38:44 southa Exp $
  * $Log: mushGame.h,v $
+ * Revision 1.9  2006/06/01 15:38:44  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.8  2005/06/14 20:39:40  southa
  * Adanaxis work
  *

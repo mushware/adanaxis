@@ -7,7 +7,7 @@
  *
  * File: src/MushGame/MushGameMessageFire.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } NJrEm6W4rDdhxl2X3HQ+6A
+//%Header } bgaXMV78ziDdzw5w2Porjg
 /*
- * $Id: MushGameMessageFire.h,v 1.2 2005/07/18 13:13:36 southa Exp $
+ * $Id: MushGameMessageFire.h,v 1.3 2006/06/01 15:39:24 southa Exp $
  * $Log: MushGameMessageFire.h,v $
+ * Revision 1.3  2006/06/01 15:39:24  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.2  2005/07/18 13:13:36  southa
  * Extrude to point and projectile mesh
  *

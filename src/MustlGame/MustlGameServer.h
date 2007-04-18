@@ -7,7 +7,7 @@
  *
  * File: src/MustlGame/MustlGameServer.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } jTkRU3nq18BRvkqdj0FTpQ
+//%Header } l6khafOy6uNFCjIumusUhQ
 /*
- * $Id: MustlGameServer.h,v 1.6 2006/06/01 15:39:57 southa Exp $
+ * $Id: MustlGameServer.h,v 1.7 2006/06/01 20:13:01 southa Exp $
  * $Log: MustlGameServer.h,v $
+ * Revision 1.7  2006/06/01 20:13:01  southa
+ * Initial texture caching
+ *
  * Revision 1.6  2006/06/01 15:39:57  southa
  * DrawArray verification and fixes
  *

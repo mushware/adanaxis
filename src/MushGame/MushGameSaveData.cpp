@@ -3,7 +3,7 @@
  *
  * File: src/MushGame/MushGameSaveData.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } VmmV8fh8x7DVoVc/E9Sx+A
+//%Header } neirrKkWuntQUj7zCAr0sA
 /*
- * $Id: MushGameSaveData.cpp,v 1.14 2006/07/31 11:01:38 southa Exp $
+ * $Id: MushGameSaveData.cpp,v 1.15 2006/10/17 15:28:03 southa Exp $
  * $Log: MushGameSaveData.cpp,v $
+ * Revision 1.15  2006/10/17 15:28:03  southa
+ * Player collisions
+ *
  * Revision 1.14  2006/07/31 11:01:38  southa
  * Music and dialogues
  *

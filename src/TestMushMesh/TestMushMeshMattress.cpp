@@ -3,7 +3,7 @@
  *
  * File: src/TestMushMesh/TestMushMeshMattress.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } ak+mwGgtbHc3vI8d5Llqtw
+//%Header } Io6m/yHkiYqiNd4acE7Vcg
 /*
- * $Id: TestMushMeshMattress.cpp,v 1.2 2005/07/19 13:44:26 southa Exp $
+ * $Id: TestMushMeshMattress.cpp,v 1.3 2006/06/01 15:40:01 southa Exp $
  * $Log: TestMushMeshMattress.cpp,v $
+ * Revision 1.3  2006/06/01 15:40:01  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.2  2005/07/19 13:44:26  southa
  * MushMesh4Chunk work
  *

@@ -7,7 +7,7 @@
  *
  * File: src/Mushcore/MushcoreConfig.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } PQ0fNo6c3YcestISU70NkA
+//%Header } b+gIWve3sM8CWNNrltQ/7Q
 /*
- * $Id: MushcoreConfig.h,v 1.12 2005/05/19 13:02:14 southa Exp $
+ * $Id: MushcoreConfig.h,v 1.13 2006/06/01 15:39:42 southa Exp $
  * $Log: MushcoreConfig.h,v $
+ * Revision 1.13  2006/06/01 15:39:42  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.12  2005/05/19 13:02:14  southa
  * Mac release work
  *

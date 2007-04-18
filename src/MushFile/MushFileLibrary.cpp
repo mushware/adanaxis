@@ -3,7 +3,7 @@
  *
  * File: src/MushFile/MushFileLibrary.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } c3ylueSV/lJwBs7EptLXFQ
+//%Header } x7/Z4FdjiioErIx4ycmNyQ
 /*
- * $Id: MushFileLibrary.cpp,v 1.1 2006/11/06 12:56:32 southa Exp $
+ * $Id: MushFileLibrary.cpp,v 1.2 2006/11/06 19:27:52 southa Exp $
  * $Log: MushFileLibrary.cpp,v $
+ * Revision 1.2  2006/11/06 19:27:52  southa
+ * Mushfile handling
+ *
  * Revision 1.1  2006/11/06 12:56:32  southa
  * MushFile work
  *

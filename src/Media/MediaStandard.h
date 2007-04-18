@@ -7,7 +7,7 @@
  *
  * File: src/Media/MediaStandard.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } vc39BxijmUcLgo29BoIh0w
+//%Header } 5cYezFtY/kHdNlh5IbgslA
 /*
- * $Id: MediaStandard.h,v 1.15 2006/11/06 12:56:31 southa Exp $
+ * $Id: MediaStandard.h,v 1.16 2006/12/11 13:28:23 southa Exp $
  * $Log: MediaStandard.h,v $
+ * Revision 1.16  2006/12/11 13:28:23  southa
+ * Snapshot
+ *
  * Revision 1.15  2006/11/06 12:56:31  southa
  * MushFile work
  *

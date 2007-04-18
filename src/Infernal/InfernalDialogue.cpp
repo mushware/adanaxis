@@ -3,7 +3,7 @@
  *
  * File: src/Infernal/InfernalDialogue.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } IRdYgyhl836uaCHuJoazIg
+//%Header } rT/cALzl7k5FvC1+7ZaBtQ
 /*
- * $Id: InfernalDialogue.cpp,v 1.4 2005/05/19 13:02:04 southa Exp $
+ * $Id: InfernalDialogue.cpp,v 1.5 2006/06/01 15:39:02 southa Exp $
  * $Log: InfernalDialogue.cpp,v $
+ * Revision 1.5  2006/06/01 15:39:02  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.4  2005/05/19 13:02:04  southa
  * Mac release work
  *

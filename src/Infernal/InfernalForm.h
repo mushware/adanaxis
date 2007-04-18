@@ -7,7 +7,7 @@
  *
  * File: src/Infernal/InfernalForm.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } D4zCxdHnWiRZVl3nkStO1w
+//%Header } k8DwvvjxfD2gsA+900/aPw
 /*
- * $Id: InfernalForm.h,v 1.6 2005/06/20 14:30:35 southa Exp $
+ * $Id: InfernalForm.h,v 1.7 2006/06/01 15:39:03 southa Exp $
  * $Log: InfernalForm.h,v $
+ * Revision 1.7  2006/06/01 15:39:03  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.6  2005/06/20 14:30:35  southa
  * Adanaxis work
  *

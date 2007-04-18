@@ -7,7 +7,7 @@
  *
  * File: src/MushGame/MushGameCamera.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } lsHtNJKYG2fgi6Muwtd8AQ
+//%Header } 75IawwPmDUmA8sEeKcN1tw
 /*
- * $Id: MushGameCamera.h,v 1.8 2006/07/24 18:46:50 southa Exp $
+ * $Id: MushGameCamera.h,v 1.9 2006/10/02 17:25:05 southa Exp $
  * $Log: MushGameCamera.h,v $
+ * Revision 1.9  2006/10/02 17:25:05  southa
+ * Object lookup and target selection
+ *
  * Revision 1.8  2006/07/24 18:46:50  southa
  * Depth sorting
  *

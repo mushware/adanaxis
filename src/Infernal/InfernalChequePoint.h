@@ -7,7 +7,7 @@
  *
  * File: src/Infernal/InfernalChequePoint.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } KUk77kDC4oRgPLkaOAOw0g
+//%Header } z0LV2w1I7qhachR/uBKJQg
 /*
- * $Id: InfernalChequePoint.h,v 1.6 2005/05/19 13:02:04 southa Exp $
+ * $Id: InfernalChequePoint.h,v 1.7 2006/06/01 15:39:01 southa Exp $
  * $Log: InfernalChequePoint.h,v $
+ * Revision 1.7  2006/06/01 15:39:01  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.6  2005/05/19 13:02:04  southa
  * Mac release work
  *

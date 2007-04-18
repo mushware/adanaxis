@@ -3,7 +3,7 @@
  *
  * File: src/Media/MediaSound.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } me924xa0+Lyfst6KDBi6wg
+//%Header } ZNvsqBdG6zrpHWHrEXxyFQ
 /*
- * $Id: MediaSound.cpp,v 1.23 2006/06/01 15:39:14 southa Exp $
+ * $Id: MediaSound.cpp,v 1.24 2006/11/12 14:39:50 southa Exp $
  * $Log: MediaSound.cpp,v $
+ * Revision 1.24  2006/11/12 14:39:50  southa
+ * Player weapons amd audio fix
+ *
  * Revision 1.23  2006/06/01 15:39:14  southa
  * DrawArray verification and fixes
  *

@@ -6,7 +6,7 @@
  * Copyright: Andy Southgate 2005-2007
  *
  * This file may be used and distributed under the terms of the Mushware
- * Software Licence version 1.2, under the terms for 'Proprietary original
+ * Software Licence version 1.3, under the terms for 'Proprietary original
  * source files'.  If not supplied with this software, a copy of the licence
  * can be obtained from Mushware Limited via http://www.mushware.com/.
  * One of your options under that licence is to use and distribute this file
@@ -15,10 +15,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 03+QdrkGj4T4vJLGfcvSyg
+//%Header } oLiwZ/5aV/LrBg1GMJ088A
 /*
- * $Id: AdanaxisRender.cpp,v 1.73 2007/03/21 18:06:00 southa Exp $
+ * $Id: AdanaxisRender.cpp,v 1.74 2007/04/16 08:41:08 southa Exp $
  * $Log: AdanaxisRender.cpp,v $
+ * Revision 1.74  2007/04/16 08:41:08  southa
+ * Level and header mods
+ *
  * Revision 1.73  2007/03/21 18:06:00  southa
  * Tied sound fixes
  *

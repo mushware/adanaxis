@@ -7,7 +7,7 @@
  *
  * File: src/MushMeshRuby/MushMeshRubyBase.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } YyHlro2+ToCGeor+kl6VKg
+//%Header } qiS55gKJz6aDLc2hHzgzYg
 /*
- * $Id: MushMeshRubyBase.h,v 1.1 2006/06/16 12:11:04 southa Exp $
+ * $Id: MushMeshRubyBase.h,v 1.2 2006/07/07 07:57:29 southa Exp $
  * $Log: MushMeshRubyBase.h,v $
+ * Revision 1.2  2006/07/07 07:57:29  southa
+ * Key translation
+ *
  * Revision 1.1  2006/06/16 12:11:04  southa
  * Ruby subclasses
  *

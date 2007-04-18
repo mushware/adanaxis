@@ -3,7 +3,7 @@
  *
  * File: src/Mustl/MustlTimer.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 9/Cnp1nIV1yaroRrPR603w
+//%Header } OccgvS5jk5QQtlHr6IjeqQ
 /*
- * $Id: MustlTimer.cpp,v 1.9 2005/05/19 13:02:20 southa Exp $
+ * $Id: MustlTimer.cpp,v 1.10 2006/06/01 15:39:55 southa Exp $
  * $Log: MustlTimer.cpp,v $
+ * Revision 1.10  2006/06/01 15:39:55  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.9  2005/05/19 13:02:20  southa
  * Mac release work
  *

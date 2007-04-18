@@ -3,7 +3,7 @@
  *
  * File: src/MushRuby/MushRubyObj.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } IOUYm2lPQ/rUS1xME87xdA
+//%Header } 5LQwA3bC85mzKTnrMCQbBw
 /*
- * $Id$
- * $Log$
+ * $Id: MushRubyObj.cpp,v 1.1 2006/06/13 19:30:39 southa Exp $
+ * $Log: MushRubyObj.cpp,v $
+ * Revision 1.1  2006/06/13 19:30:39  southa
+ * Ruby mesh generation
+ *
  */
 
 #include "MushRubyObj.h"

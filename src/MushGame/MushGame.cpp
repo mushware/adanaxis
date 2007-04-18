@@ -3,7 +3,7 @@
  *
  * File: src/MushGame/MushGame.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } NLpEgvh755EkJU3QLFPt0w
+//%Header } aU8COIylPE+itnteQZDjRg
 /*
- * $Id: MushGame.cpp,v 1.1 2005/06/14 20:39:41 southa Exp $
+ * $Id: MushGame.cpp,v 1.2 2006/06/01 15:39:19 southa Exp $
  * $Log: MushGame.cpp,v $
+ * Revision 1.2  2006/06/01 15:39:19  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.1  2005/06/14 20:39:41  southa
  * Adanaxis work
  *

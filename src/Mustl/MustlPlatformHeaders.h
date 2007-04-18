@@ -7,7 +7,7 @@
  *
  * File: src/Mustl/MustlPlatformHeaders.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } +HyN2jtsAzzDTyWJCE3NDw
+//%Header } bf22vFhSIMOxm954i4wRzA
 /*
- * $Id: MustlPlatformHeaders.h,v 1.17 2006/06/01 15:39:54 southa Exp $
+ * $Id: MustlPlatformHeaders.h,v 1.18 2006/06/01 20:13:01 southa Exp $
  * $Log: MustlPlatformHeaders.h,v $
+ * Revision 1.18  2006/06/01 20:13:01  southa
+ * Initial texture caching
+ *
  * Revision 1.17  2006/06/01 15:39:54  southa
  * DrawArray verification and fixes
  *

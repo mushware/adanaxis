@@ -3,7 +3,7 @@
  *
  * File: src/Media/MediaAudioSDLChannelDef.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 5jSpT6mHTXyypsvWsDc0HA
+//%Header } MskeVh2LiPSsJc3pIUsGEg
 /*
- * $Id$
- * $Log$
+ * $Id: MediaAudioSDLChannelDef.cpp,v 1.1 2006/12/11 13:28:23 southa Exp $
+ * $Log: MediaAudioSDLChannelDef.cpp,v $
+ * Revision 1.1  2006/12/11 13:28:23  southa
+ * Snapshot
+ *
  */
 
 #include "MediaAudioSDLChannelDef.h"

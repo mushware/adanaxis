@@ -3,7 +3,7 @@
  *
  * File: src/TestMushMesh/TestMushMeshArray.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } Ko3OQH5cXQsX+VqzzzFVtA
+//%Header } WAo6CxAocoINCgdU3RP2Fg
 /*
- * $Id: TestMushMeshArray.cpp,v 1.8 2005/05/19 13:02:22 southa Exp $
+ * $Id: TestMushMeshArray.cpp,v 1.9 2006/06/01 15:40:01 southa Exp $
  * $Log: TestMushMeshArray.cpp,v $
+ * Revision 1.9  2006/06/01 15:40:01  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.8  2005/05/19 13:02:22  southa
  * Mac release work
  *

@@ -3,7 +3,7 @@
  *
  * File: src/MushMeshRuby/MushMeshRubyPost.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } qET4CzgnHaT7yIw64k1ecg
+//%Header } JESAIOFQUDdI1OeMg17UXg
 /*
- * $Id$
- * $Log$
+ * $Id: MushMeshRubyPost.cpp,v 1.1 2006/06/20 19:06:53 southa Exp $
+ * $Log: MushMeshRubyPost.cpp,v $
+ * Revision 1.1  2006/06/20 19:06:53  southa
+ * Object creation
+ *
  */
 
 #include "MushMeshRubyPost.h"

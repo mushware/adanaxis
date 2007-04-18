@@ -3,7 +3,7 @@
  *
  * File: src/GL/GLRender.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } o4v1MoTeJxQw9NnKC/dMPg
+//%Header } B72hrbyC9veGkO/KDFdOyg
 /*
- * $Id: GLRender.cpp,v 1.10 2005/05/19 13:01:59 southa Exp $
+ * $Id: GLRender.cpp,v 1.11 2006/06/01 15:38:52 southa Exp $
  * $Log: GLRender.cpp,v $
+ * Revision 1.11  2006/06/01 15:38:52  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.10  2005/05/19 13:01:59  southa
  * Mac release work
  *

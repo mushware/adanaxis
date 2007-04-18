@@ -3,7 +3,7 @@
  *
  * File: src/Platform/win32/PlatformVideoUtils.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } HfHgcDcZFYWXROWCCS7SCQ
+//%Header } KCxXYygl0O3Oosas7+Vmbw
 /*
- * $Id: PlatformVideoUtils.cpp,v 1.22 2006/06/01 15:39:58 southa Exp $
+ * $Id: PlatformVideoUtils.cpp,v 1.23 2006/06/30 17:26:11 southa Exp $
  * $Log: PlatformVideoUtils.cpp,v $
+ * Revision 1.23  2006/06/30 17:26:11  southa
+ * Render prelude
+ *
  * Revision 1.22  2006/06/01 15:39:58  southa
  * DrawArray verification and fixes
  *

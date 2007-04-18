@@ -7,7 +7,7 @@
  *
  * File: src/Mushcore/MushcoreData.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,11 +21,14 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } pOLO6RJHVHhScT3XZBgPtA
+//%Header } y2ICmvbDmIrYgQ7QRZO49g
 
 /*
- * $Id: MushcoreData.h,v 1.29 2005/07/29 14:59:50 southa Exp $
+ * $Id: MushcoreData.h,v 1.30 2006/06/01 15:39:42 southa Exp $
  * $Log: MushcoreData.h,v $
+ * Revision 1.30  2006/06/01 15:39:42  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.29  2005/07/29 14:59:50  southa
  * Maptor access
  *

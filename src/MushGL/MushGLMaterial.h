@@ -7,7 +7,7 @@
  *
  * File: src/MushGL/MushGLMaterial.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } pVNnocdRpPu4/VVhDtWttw
+//%Header } nWa5C/BGY6w6sbIvFKgwOA
 /*
- * $Id: MushGLMaterial.h,v 1.5 2006/06/20 19:06:52 southa Exp $
+ * $Id: MushGLMaterial.h,v 1.6 2006/10/06 14:48:19 southa Exp $
  * $Log: MushGLMaterial.h,v $
+ * Revision 1.6  2006/10/06 14:48:19  southa
+ * Material animation
+ *
  * Revision 1.5  2006/06/20 19:06:52  southa
  * Object creation
  *

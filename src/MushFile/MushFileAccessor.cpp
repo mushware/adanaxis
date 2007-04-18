@@ -3,7 +3,7 @@
  *
  * File: src/MushFile/MushFileAccessor.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } fIyM/XLdEniRZka5Jb+a2A
+//%Header } kxYuqBhctbMpx4LYn75eHg
 /*
- * $Id: MushFileAccessor.cpp,v 1.3 2006/12/15 14:03:27 southa Exp $
+ * $Id: MushFileAccessor.cpp,v 1.4 2006/12/16 10:57:22 southa Exp $
  * $Log: MushFileAccessor.cpp,v $
+ * Revision 1.4  2006/12/16 10:57:22  southa
+ * Encrypted files
+ *
  * Revision 1.3  2006/12/15 14:03:27  southa
  * File key handling
  *

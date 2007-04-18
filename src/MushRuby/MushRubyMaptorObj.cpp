@@ -3,7 +3,7 @@
  *
  * File: src/MushRuby/MushRubyMaptorObj.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } R4fRtPwz4XzGgRK/SgSJUw
+//%Header } NXmSgsnZzbrmrhhQATbC6w
 /*
- * $Id$
- * $Log$
+ * $Id: MushRubyMaptorObj.cpp,v 1.1 2006/06/20 19:06:55 southa Exp $
+ * $Log: MushRubyMaptorObj.cpp,v $
+ * Revision 1.1  2006/06/20 19:06:55  southa
+ * Object creation
+ *
  */
 
 #include "MushRubyMaptorObj.h"

@@ -3,7 +3,7 @@
  *
  * File: src/Infernal/InfernalDataUtils.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } ZBXbU+rU9NE4JwZj3t+t/Q
+//%Header } IQmkeVDS8Bl0wbT7F05sqg
 /*
- * $Id: InfernalDataUtils.cpp,v 1.5 2005/05/19 13:02:04 southa Exp $
+ * $Id: InfernalDataUtils.cpp,v 1.6 2006/06/01 15:39:02 southa Exp $
  * $Log: InfernalDataUtils.cpp,v $
+ * Revision 1.6  2006/06/01 15:39:02  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.5  2005/05/19 13:02:04  southa
  * Mac release work
  *

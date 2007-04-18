@@ -7,7 +7,7 @@
  *
  * File: src/MushGame/MushGameDialogueUtils.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } hhlc46CpbGBzeGpOc3nWpA
+//%Header } xFkcq2HBP6vF9KpMR0i77w
 /*
- * $Id: MushGameDialogueUtils.h,v 1.2 2006/06/01 15:39:21 southa Exp $
+ * $Id: MushGameDialogueUtils.h,v 1.3 2006/06/30 15:05:35 southa Exp $
  * $Log: MushGameDialogueUtils.h,v $
+ * Revision 1.3  2006/06/30 15:05:35  southa
+ * Texture and buffer purge
+ *
  * Revision 1.2  2006/06/01 15:39:21  southa
  * DrawArray verification and fixes
  *

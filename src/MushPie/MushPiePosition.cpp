@@ -3,7 +3,7 @@
  *
  * File: src/MushPie/MushPiePosition.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } pIwMMjCIkjHb8r+N+9Ne5w
+//%Header } pnARIeNNWwZ3CSI0Mi8zrw
 /*
- * $Id: MushPiePosition.cpp,v 1.2 2005/05/19 13:02:13 southa Exp $
+ * $Id: MushPiePosition.cpp,v 1.3 2006/05/11 10:43:16 southa Exp $
  * $Log: MushPiePosition.cpp,v $
+ * Revision 1.3  2006/05/11 10:43:16  southa
+ * Project updates
+ *
  * Revision 1.2  2005/05/19 13:02:13  southa
  * Mac release work
  *

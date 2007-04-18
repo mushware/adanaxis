@@ -7,7 +7,7 @@
  *
  * File: src/TestMushcore/TestMushcoreObjectSub.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } VoN1WLyr8NF/hEw2fzcZUA
+//%Header } k/IeLX7IRVVg/R4rjtfi7w
 /*
- * $Id: TestMushcoreObjectSub.h,v 1.6 2005/06/20 14:30:40 southa Exp $
+ * $Id: TestMushcoreObjectSub.h,v 1.7 2006/06/01 15:40:05 southa Exp $
  * $Log: TestMushcoreObjectSub.h,v $
+ * Revision 1.7  2006/06/01 15:40:05  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.6  2005/06/20 14:30:40  southa
  * Adanaxis work
  *

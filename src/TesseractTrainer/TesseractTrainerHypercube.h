@@ -7,7 +7,7 @@
  *
  * File: src/TesseractTrainer/TesseractTrainerHypercube.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } wdf3o76m0am0zHR6XXY/NA
+//%Header } XXgHu07ZjGMbhTEAHbCEEw
 /*
- * $Id: TesseractTrainerHypercube.h,v 1.5 2005/05/19 13:02:22 southa Exp $
+ * $Id: TesseractTrainerHypercube.h,v 1.6 2006/06/01 15:39:59 southa Exp $
  * $Log: TesseractTrainerHypercube.h,v $
+ * Revision 1.6  2006/06/01 15:39:59  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.5  2005/05/19 13:02:22  southa
  * Mac release work
  *

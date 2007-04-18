@@ -7,7 +7,7 @@
  *
  * File: src/MushMeshRuby/MushMeshRubyDisplacement.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } RqIYygnsvbiaEc0+PyskZQ
+//%Header } lqtvZj5+IuX26NZAVT+OSw
 /*
- * $Id: MushMeshRubyDisplacement.h,v 1.1 2006/06/12 16:01:23 southa Exp $
+ * $Id: MushMeshRubyDisplacement.h,v 1.2 2006/06/13 19:30:37 southa Exp $
  * $Log: MushMeshRubyDisplacement.h,v $
+ * Revision 1.2  2006/06/13 19:30:37  southa
+ * Ruby mesh generation
+ *
  * Revision 1.1  2006/06/12 16:01:23  southa
  * Ruby mesh generation
  *

@@ -3,7 +3,7 @@
  *
  * File: src/TesseractTrainer/TesseractTrainerPixelSource.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 8tMCfPZonLS7CeXZGLc+9g
+//%Header } iu/uX3tBMBPR/rfZXhgiPw
 /*
- * $Id: TesseractTrainerPixelSource.cpp,v 1.8 2006/06/29 23:57:57 southa Exp $
+ * $Id: TesseractTrainerPixelSource.cpp,v 1.9 2006/12/14 00:33:50 southa Exp $
  * $Log: TesseractTrainerPixelSource.cpp,v $
+ * Revision 1.9  2006/12/14 00:33:50  southa
+ * Control fix and audio pacing
+ *
  * Revision 1.8  2006/06/29 23:57:57  southa
  * Mac OS X library fixes
  *

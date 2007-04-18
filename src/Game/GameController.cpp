@@ -3,7 +3,7 @@
  *
  * File: src/Game/GameController.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 1vanRSF2ysIQQIzWD6lbiw
+//%Header } TQQdXcE7xecqn+gTXr5NeQ
 /*
- * $Id: GameController.cpp,v 1.22 2006/06/01 15:38:57 southa Exp $
+ * $Id: GameController.cpp,v 1.23 2006/07/08 16:05:56 southa Exp $
  * $Log: GameController.cpp,v $
+ * Revision 1.23  2006/07/08 16:05:56  southa
+ * Ruby menus and key handling
+ *
  * Revision 1.22  2006/06/01 15:38:57  southa
  * DrawArray verification and fixes
  *

@@ -7,7 +7,7 @@
  *
  * File: src/Mushcore/MushcoreMaptor.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } ChL6aTElKIc1rPHNw0/j3A
+//%Header } A3hWE/Z+mkM4UVFGMFG9JA
 /*
- * $Id: MushcoreMaptor.h,v 1.7 2006/06/21 12:17:59 southa Exp $
+ * $Id: MushcoreMaptor.h,v 1.8 2006/10/02 17:25:06 southa Exp $
  * $Log: MushcoreMaptor.h,v $
+ * Revision 1.8  2006/10/02 17:25:06  southa
+ * Object lookup and target selection
+ *
  * Revision 1.7  2006/06/21 12:17:59  southa
  * Ruby object generation
  *

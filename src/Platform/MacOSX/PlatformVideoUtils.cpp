@@ -3,7 +3,7 @@
  *
  * File: src/Platform/MacOSX/PlatformVideoUtils.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } vRSkWrGbuq+m7eRcwoLkDA
+//%Header } gNdwSMf5xIpttE1WeIDxUA
 /*
- * $Id: PlatformVideoUtils.cpp,v 1.22 2006/11/25 21:26:33 southa Exp $
+ * $Id: PlatformVideoUtils.cpp,v 1.23 2006/12/14 00:33:50 southa Exp $
  * $Log: PlatformVideoUtils.cpp,v $
+ * Revision 1.23  2006/12/14 00:33:50  southa
+ * Control fix and audio pacing
+ *
  * Revision 1.22  2006/11/25 21:26:33  southa
  * Display mode definitions
  *

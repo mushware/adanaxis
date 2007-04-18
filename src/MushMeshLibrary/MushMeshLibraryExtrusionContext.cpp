@@ -3,10 +3,10 @@
  *
  * File: src/MushMeshLibrary/MushMeshLibraryExtrusionContext.cpp
  *
- * Copyright: Andy Southgate 2005-2006
+ * Copyright: Andy Southgate 2005-2007
  *
  * This file may be used and distributed under the terms of the Mushware
- * software licence version 1.1, under the terms for 'Proprietary original
+ * Software Licence version 1.3, under the terms for 'Proprietary original
  * source files'.  If not supplied with this software, a copy of the licence
  * can be obtained from Mushware Limited via http://www.mushware.com/.
  * One of your options under that licence is to use and distribute this file
@@ -15,10 +15,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } i/78u2KESIF2bFZLa4R/7A
+//%Header } T/QIAKCy2S36BBI3TH5EyA
 /*
- * $Id: MushMeshLibraryExtrusionContext.cpp,v 1.2 2006/06/01 15:39:34 southa Exp $
+ * $Id: MushMeshLibraryExtrusionContext.cpp,v 1.3 2006/08/01 17:21:34 southa Exp $
  * $Log: MushMeshLibraryExtrusionContext.cpp,v $
+ * Revision 1.3  2006/08/01 17:21:34  southa
+ * River demo
+ *
  * Revision 1.2  2006/06/01 15:39:34  southa
  * DrawArray verification and fixes
  *

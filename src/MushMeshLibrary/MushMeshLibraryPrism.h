@@ -7,10 +7,10 @@
  *
  * File: src/MushMeshLibrary/MushMeshLibraryPrism.h
  *
- * Copyright: Andy Southgate 2005-2006
+ * Copyright: Andy Southgate 2005-2007
  *
  * This file may be used and distributed under the terms of the Mushware
- * software licence version 1.1, under the terms for 'Proprietary original
+ * Software Licence version 1.3, under the terms for 'Proprietary original
  * source files'.  If not supplied with this software, a copy of the licence
  * can be obtained from Mushware Limited via http://www.mushware.com/.
  * One of your options under that licence is to use and distribute this file
@@ -19,10 +19,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } pE8u7VATiH4Q+O9U+8Oj+Q
+//%Header } SNxYBeASwgdD23U2bsWyqg
 /*
- * $Id: MushMeshLibraryPrism.h,v 1.2 2006/06/16 12:11:04 southa Exp $
+ * $Id: MushMeshLibraryPrism.h,v 1.3 2006/08/01 17:21:35 southa Exp $
  * $Log: MushMeshLibraryPrism.h,v $
+ * Revision 1.3  2006/08/01 17:21:35  southa
+ * River demo
+ *
  * Revision 1.2  2006/06/16 12:11:04  southa
  * Ruby subclasses
  *

@@ -7,7 +7,7 @@
  *
  * File: src/TestMushcore/TestMushcoreVirtualPointerObject.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } OZ06z+58QKrhxvBC6vnabw
+//%Header } a5c/6hb/wv6UcZoX5HT6sQ
 /*
- * $Id: TestMushcoreVirtualPointerObject.h,v 1.6 2005/07/12 20:39:05 southa Exp $
+ * $Id: TestMushcoreVirtualPointerObject.h,v 1.7 2006/06/01 15:40:06 southa Exp $
  * $Log: TestMushcoreVirtualPointerObject.h,v $
+ * Revision 1.7  2006/06/01 15:40:06  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.6  2005/07/12 20:39:05  southa
  * Mesh library work
  *

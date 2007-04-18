@@ -6,7 +6,7 @@
  * Copyright: Andy Southgate 2005-2007
  *
  * This file may be used and distributed under the terms of the Mushware
- * Software Licence version 1.2, under the terms for 'Proprietary original
+ * Software Licence version 1.3, under the terms for 'Proprietary original
  * source files'.  If not supplied with this software, a copy of the licence
  * can be obtained from Mushware Limited via http://www.mushware.com/.
  * One of your options under that licence is to use and distribute this file
@@ -15,10 +15,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 8WzeEMAQ5nxR3CIRoKJp9Q
+//%Header } u+LxfqH6KzunLJFUu6RzcQ
 /*
- * $Id: AdanaxisRecords.cpp,v 1.1 2007/03/09 19:50:11 southa Exp $
+ * $Id: AdanaxisRecords.cpp,v 1.2 2007/04/16 08:41:08 southa Exp $
  * $Log: AdanaxisRecords.cpp,v $
+ * Revision 1.2  2007/04/16 08:41:08  southa
+ * Level and header mods
+ *
  * Revision 1.1  2007/03/09 19:50:11  southa
  * Resident textures
  *
@@ -37,16 +40,30 @@ AdanaxisRecords::AdanaxisRecords() :
 }
 
 Mushware::tMsec
-AdanaxisRecords::RecordTime(const std::string& inName) const
+AdanaxisRecords::RecordTime(Mushware::U32 inDifficulty, const std::string& inName) const
 {
-    tRecordTimes::const_iterator p = m_recordTimes.find(inName);
-    return (p == m_recordTimes.end()) ? 0 : p->second;
+    tMsec retVal = 0;
+    
+    tRecordTimeSet::const_iterator p = m_recordTimeSet.find(inDifficulty);
+    
+    if (p != m_recordTimeSet.end())
+    {
+        tRecordTimes::const_iterator q = p->second.find(inName);
+        if (q != p->second.end())
+        {
+            retVal = q->second;
+        }
+    }
+    return retVal;
 }
 
 void
-AdanaxisRecords::RecordTimeSet(const std::string& inName, Mushware::tMsec inTime)
+AdanaxisRecords::RecordTimeSet(Mushware::U32 inDifficulty, const std::string& inName, Mushware::tMsec inTime)
 {
-    m_recordTimes[inName] = inTime;
+    cout << "Pre " << m_recordTimeSet << endl;
+    tRecordTimes& recRef = m_recordTimeSet[inDifficulty];
+    recRef[inName] = inTime;
+    cout << "Post " << m_recordTimeSet << endl;
     Save();    
 }
 
@@ -81,7 +98,7 @@ AdanaxisRecords::Load(void)
             if (!AutoFileIfExistsLoad(pScalar->StringGet()))
             {
                 MushcoreLog::Sgl().InfoLog() << "Creating new records file '" << pScalar->StringGet() << "'" << endl;
-                m_recordTimes.clear();
+                m_recordTimeSet.clear();
                 Save();
             }
             if (m_version != kVersion)
@@ -93,7 +110,7 @@ AdanaxisRecords::Load(void)
     }
     catch (MushcoreFail& e)
     {
-        m_recordTimes.clear();
+        m_recordTimeSet.clear();
         MushcoreLog::Sgl().ErrorLog() << "Loading records: " << e.what() << endl;
     }
 }
@@ -101,7 +118,7 @@ AdanaxisRecords::Load(void)
 void
 AdanaxisRecords::AutoInputPrologue(MushcoreXMLIStream& ioIn)
 {
-    m_recordTimes.clear();
+    m_recordTimeSet.clear();
 }
 
 void
@@ -128,16 +145,22 @@ Mushware::U32
 AdanaxisRecords::ChecksumCalc(void) const
 {
     U32 checksum = 473623;
-    for (tRecordTimes::const_iterator p = m_recordTimes.begin();
-         p != m_recordTimes.end(); ++p)
+    for (tRecordTimeSet::const_iterator p = m_recordTimeSet.begin();
+         p != m_recordTimeSet.end(); ++p)
     {
-        for (U32 i=0; i<p->first.size(); ++i)
+        const tRecordTimes& recRef = p->second;
+
+        for (tRecordTimes::const_iterator q = recRef.begin();
+             q != recRef.end(); ++q)
         {
-            checksum += p->first[i];
+            for (U32 i=0; i<q->first.size(); ++i)
+            {
+                checksum += q->first[i];
+            }
+            checksum ^= checksum << 9;
+            checksum ^= q->second;
+            checksum ^= checksum >> 11;
         }
-        checksum ^= checksum << 9;
-        checksum ^= p->second;
-        checksum ^= checksum >> 11;
     }
     return checksum;
 }
@@ -176,7 +199,7 @@ AdanaxisRecords::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
     ioOut << "version=" << m_version << ", ";
-    ioOut << "recordTimes=" << m_recordTimes << ", ";
+    ioOut << "recordTimeSet=" << m_recordTimeSet << ", ";
     ioOut << "checksum=" << m_checksum;
     ioOut << "]";
 }
@@ -193,9 +216,9 @@ AdanaxisRecords::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string&
     {
         ioIn >> m_version;
     }
-    else if (inTagStr == "recordTimes")
+    else if (inTagStr == "recordTimeSet")
     {
-        ioIn >> m_recordTimes;
+        ioIn >> m_recordTimeSet;
     }
     else if (inTagStr == "checksum")
     {
@@ -212,9 +235,9 @@ AdanaxisRecords::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
     ioOut.TagSet("version");
     ioOut << m_version;
-    ioOut.TagSet("recordTimes");
-    ioOut << m_recordTimes;
+    ioOut.TagSet("recordTimeSet");
+    ioOut << m_recordTimeSet;
     ioOut.TagSet("checksum");
     ioOut << m_checksum;
 }
-//%outOfLineFunctions } liWk3gsDVlLq6aLs1NPwbA
+//%outOfLineFunctions } iK+WNp2Yr7Q4wzyLAVjyGw

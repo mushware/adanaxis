@@ -3,7 +3,7 @@
  *
  * File: src/TestMushcore/TestMushcoreObject.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } VpHjnzHnc2Bo6Bri/Ej9PQ
+//%Header } H298ENxIeCiTVo62ddeEvg
 /*
- * $Id: TestMushcoreObject.cpp,v 1.25 2005/07/02 00:42:39 southa Exp $
+ * $Id: TestMushcoreObject.cpp,v 1.26 2006/06/01 15:40:04 southa Exp $
  * $Log: TestMushcoreObject.cpp,v $
+ * Revision 1.26  2006/06/01 15:40:04  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.25  2005/07/02 00:42:39  southa
  * Conditioning tweaks
  *

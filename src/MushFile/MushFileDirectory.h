@@ -7,7 +7,7 @@
  *
  * File: src/MushFile/MushFileDirectory.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } xn5oNgprtnehV9hRbLEeKQ
+//%Header } DMRGnLDRDuQY4y/nOtm/Fg
 /*
- * $Id: MushFileDirectory.h,v 1.2 2006/11/06 19:27:51 southa Exp $
+ * $Id: MushFileDirectory.h,v 1.3 2006/12/16 10:57:22 southa Exp $
  * $Log: MushFileDirectory.h,v $
+ * Revision 1.3  2006/12/16 10:57:22  southa
+ * Encrypted files
+ *
  * Revision 1.2  2006/11/06 19:27:51  southa
  * Mushfile handling
  *

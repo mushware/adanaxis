@@ -7,7 +7,7 @@
  *
  * File: src/Media/MediaJoystick.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } nlg7ZoUUJE4V0m9XajTdLg
+//%Header } i0kk63WdoYiCW1djxS6GyA
 /*
- * $Id$
- * $Log$
+ * $Id: MediaJoystick.h,v 1.1 2006/07/11 19:49:04 southa Exp $
+ * $Log: MediaJoystick.h,v $
+ * Revision 1.1  2006/07/11 19:49:04  southa
+ * Control menu
+ *
  */
 
 #include "MediaStandard.h"

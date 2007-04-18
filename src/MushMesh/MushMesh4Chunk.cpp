@@ -3,7 +3,7 @@
  *
  * File: src/MushMesh/MushMesh4Chunk.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } FaZzlC8FBT0ByV0McMoFjQ
+//%Header } 6+08IlqssSgB9vBLMxXqEg
 /*
- * $Id: MushMesh4Chunk.cpp,v 1.1 2005/07/19 13:44:26 southa Exp $
+ * $Id: MushMesh4Chunk.cpp,v 1.2 2006/06/01 15:39:27 southa Exp $
  * $Log: MushMesh4Chunk.cpp,v $
+ * Revision 1.2  2006/06/01 15:39:27  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.1  2005/07/19 13:44:26  southa
  * MushMesh4Chunk work
  *

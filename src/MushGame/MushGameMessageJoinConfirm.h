@@ -7,7 +7,7 @@
  *
  * File: src/MushGame/MushGameMessageJoinConfirm.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 33IVGYRZWq8thSHn9Cg3vw
+//%Header } cW2/a+cG41TcajWAmvYCKQ
 /*
- * $Id: MushGameMessageJoinConfirm.h,v 1.3 2005/06/23 17:25:25 southa Exp $
+ * $Id: MushGameMessageJoinConfirm.h,v 1.4 2006/06/01 15:39:24 southa Exp $
  * $Log: MushGameMessageJoinConfirm.h,v $
+ * Revision 1.4  2006/06/01 15:39:24  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.3  2005/06/23 17:25:25  southa
  * MushGame link work
  *

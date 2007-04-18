@@ -7,7 +7,7 @@
  *
  * File: src/MushGL/MushGLStandard.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 4aNrDWDcHhvbi/ZjV2ZFxA
+//%Header } 90oRy1maQWnypU6Mcy9v2w
 /*
- * $Id: MushGLStandard.h,v 1.17 2006/06/29 10:12:34 southa Exp $
+ * $Id: MushGLStandard.h,v 1.18 2006/09/07 10:02:37 southa Exp $
  * $Log: MushGLStandard.h,v $
+ * Revision 1.18  2006/09/07 10:02:37  southa
+ * Shader interface
+ *
  * Revision 1.17  2006/06/29 10:12:34  southa
  * 64 bit compatibility fixes
  *

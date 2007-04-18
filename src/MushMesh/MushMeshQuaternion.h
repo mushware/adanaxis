@@ -7,7 +7,7 @@
  *
  * File: src/MushMesh/MushMeshQuaternion.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } Y0cteuk9W7W+QeEoBh1joA
+//%Header } gFiLJGRx+P2I0iq6cVvmRA
 /*
- * $Id: MushMeshQuaternion.h,v 1.12 2005/07/19 10:07:06 southa Exp $
+ * $Id: MushMeshQuaternion.h,v 1.13 2006/06/01 15:39:32 southa Exp $
  * $Log: MushMeshQuaternion.h,v $
+ * Revision 1.13  2006/06/01 15:39:32  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.12  2005/07/19 10:07:06  southa
  * Adanaxis work
  *

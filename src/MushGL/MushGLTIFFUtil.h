@@ -7,7 +7,7 @@
  *
  * File: src/MushGL/MushGLTIFFUtil.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } FUSjt7oP2HjWF6m1BxppWw
+//%Header } BZIsCdYiVKYUwepyGm6mYw
 /*
- * $Id: MushGLTIFFUtil.h,v 1.1 2006/06/05 11:48:25 southa Exp $
+ * $Id: MushGLTIFFUtil.h,v 1.2 2006/07/28 16:52:21 southa Exp $
  * $Log: MushGLTIFFUtil.h,v $
+ * Revision 1.2  2006/07/28 16:52:21  southa
+ * Options work
+ *
  * Revision 1.1  2006/06/05 11:48:25  southa
  * Noise textures
  *

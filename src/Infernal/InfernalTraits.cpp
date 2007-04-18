@@ -3,7 +3,7 @@
  *
  * File: src/Infernal/InfernalTraits.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } UI2Qh7JV27Si9XZhFEhdIg
+//%Header } +c2UT584Rh9rdrA9nOGaYw
 /*
- * $Id: InfernalTraits.cpp,v 1.5 2006/06/01 15:39:07 southa Exp $
+ * $Id: InfernalTraits.cpp,v 1.6 2006/06/29 10:12:34 southa Exp $
  * $Log: InfernalTraits.cpp,v $
+ * Revision 1.6  2006/06/29 10:12:34  southa
+ * 64 bit compatibility fixes
+ *
  * Revision 1.5  2006/06/01 15:39:07  southa
  * DrawArray verification and fixes
  *

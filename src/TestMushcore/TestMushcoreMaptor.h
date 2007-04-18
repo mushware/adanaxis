@@ -7,7 +7,7 @@
  *
  * File: src/TestMushcore/TestMushcoreMaptor.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 361WYZOtBxYgrgdVU/cuEg
+//%Header } Vs7dgowBRsFCElLu0/tIPQ
 /*
- * $Id: TestMushcoreMaptor.h,v 1.1 2005/07/29 11:53:41 southa Exp $
+ * $Id: TestMushcoreMaptor.h,v 1.2 2006/06/01 15:40:04 southa Exp $
  * $Log: TestMushcoreMaptor.h,v $
+ * Revision 1.2  2006/06/01 15:40:04  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.1  2005/07/29 11:53:41  southa
  * MushcoreMaptor created
  *

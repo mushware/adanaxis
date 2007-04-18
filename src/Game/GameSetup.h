@@ -7,7 +7,7 @@
  *
  * File: src/Game/GameSetup.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } wghvR7XY7ttGX+TY0ahFfA
+//%Header } nspUCund/JqZarcB4sDveQ
 /*
- * $Id: GameSetup.h,v 1.20 2005/06/20 14:30:34 southa Exp $
+ * $Id: GameSetup.h,v 1.21 2006/06/01 15:38:59 southa Exp $
  * $Log: GameSetup.h,v $
+ * Revision 1.21  2006/06/01 15:38:59  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.20  2005/06/20 14:30:34  southa
  * Adanaxis work
  *

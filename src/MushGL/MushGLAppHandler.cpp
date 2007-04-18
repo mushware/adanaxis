@@ -3,7 +3,7 @@
  *
  * File: src/MushGL/MushGLAppHandler.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 5cmU8+It71fih41nw9UknA
+//%Header } H0Lv8eFissct+XX0iSLWig
 /*
- * $Id: MushGLAppHandler.cpp,v 1.1 2005/07/05 13:52:22 southa Exp $
+ * $Id: MushGLAppHandler.cpp,v 1.2 2006/06/01 15:39:16 southa Exp $
  * $Log: MushGLAppHandler.cpp,v $
+ * Revision 1.2  2006/06/01 15:39:16  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.1  2005/07/05 13:52:22  southa
  * Adanaxis work
  *

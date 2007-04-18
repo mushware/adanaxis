@@ -7,7 +7,7 @@
  *
  * File: src/TestMushMesh/TestMushMeshTools.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } I//vP+u23kIqhtgoUF+l4Q
+//%Header } O1scXSc7UHv9t+MVzsy98Q
 /*
- * $Id: TestMushMeshTools.h,v 1.1 2006/06/08 20:17:32 southa Exp $
+ * $Id: TestMushMeshTools.h,v 1.2 2006/06/09 11:43:04 southa Exp $
  * $Log: TestMushMeshTools.h,v $
+ * Revision 1.2  2006/06/09 11:43:04  southa
+ * Facet to texture transformation
+ *
  * Revision 1.1  2006/06/08 20:17:32  southa
  * Texture tile generation method 2
  *

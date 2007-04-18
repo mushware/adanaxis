@@ -3,7 +3,7 @@
  *
  * File: src/Game/GameConfig.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } wOUvHwg/SCyjbaQcyxMtbQ
+//%Header } G7NV3X5APPkHL5fRBJ4SdQ
 /*
- * $Id: GameConfig.cpp,v 1.36 2006/06/01 15:38:56 southa Exp $
+ * $Id: GameConfig.cpp,v 1.37 2006/11/25 21:26:32 southa Exp $
  * $Log: GameConfig.cpp,v $
+ * Revision 1.37  2006/11/25 21:26:32  southa
+ * Display mode definitions
+ *
  * Revision 1.36  2006/06/01 15:38:56  southa
  * DrawArray verification and fixes
  *

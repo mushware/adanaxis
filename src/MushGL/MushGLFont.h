@@ -7,7 +7,7 @@
  *
  * File: src/MushGL/MushGLFont.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } GszAZNIc4XTjBhyVnPxI7g
+//%Header } WZ1mJxVus3AbsJ6ppqQHtA
 /*
- * $Id: MushGLFont.h,v 1.8 2006/10/17 20:43:01 southa Exp $
+ * $Id: MushGLFont.h,v 1.9 2006/12/11 13:28:24 southa Exp $
  * $Log: MushGLFont.h,v $
+ * Revision 1.9  2006/12/11 13:28:24  southa
+ * Snapshot
+ *
  * Revision 1.8  2006/10/17 20:43:01  southa
  * Dashboard work
  *

@@ -7,7 +7,7 @@
  *
  * File: src/MushMesh/MushMesh4LinkFaceFace.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } x9Jh/aevxvGbGDpgXWGD9w
+//%Header } QFgCZykW9WhJywJmAKekIA
 /*
- * $Id: MushMesh4LinkFaceFace.h,v 1.1 2005/07/13 16:45:05 southa Exp $
+ * $Id: MushMesh4LinkFaceFace.h,v 1.2 2006/06/01 15:39:28 southa Exp $
  * $Log: MushMesh4LinkFaceFace.h,v $
+ * Revision 1.2  2006/06/01 15:39:28  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.1  2005/07/13 16:45:05  southa
  * Extrusion work
  *

@@ -3,10 +3,10 @@
  *
  * File: src/Adanaxis/AdanaxisPieceProjectile.cpp
  *
- * Copyright: Andy Southgate 2005-2006
+ * Copyright: Andy Southgate 2005-2007
  *
  * This file may be used and distributed under the terms of the Mushware
- * software licence version 1.1, under the terms for 'Proprietary original
+ * Software Licence version 1.3, under the terms for 'Proprietary original
  * source files'.  If not supplied with this software, a copy of the licence
  * can be obtained from Mushware Limited via http://www.mushware.com/.
  * One of your options under that licence is to use and distribute this file
@@ -15,10 +15,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } AKn0HlU4NeCX3ptHFWodSQ
+//%Header } pQ5BRw+L1Th8huxU49D5bg
 /*
- * $Id: AdanaxisPieceProjectile.cpp,v 1.18 2006/11/12 14:39:50 southa Exp $
+ * $Id: AdanaxisPieceProjectile.cpp,v 1.19 2006/11/12 20:09:54 southa Exp $
  * $Log: AdanaxisPieceProjectile.cpp,v $
+ * Revision 1.19  2006/11/12 20:09:54  southa
+ * Missile guidance
+ *
  * Revision 1.18  2006/11/12 14:39:50  southa
  * Player weapons amd audio fix
  *

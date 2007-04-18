@@ -7,7 +7,7 @@
  *
  * File: src/MushGL/MushGLWorkSpec.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } d0PLtMuUJJgR2LEeb5ey+g
+//%Header } BZyu/wg46trB+Iw52bW3GQ
 /*
- * $Id: MushGLWorkSpec.h,v 1.6 2006/06/20 19:06:52 southa Exp $
+ * $Id: MushGLWorkSpec.h,v 1.7 2006/09/09 11:16:41 southa Exp $
  * $Log: MushGLWorkSpec.h,v $
+ * Revision 1.7  2006/09/09 11:16:41  southa
+ * One-time vertex buffer generation
+ *
  * Revision 1.6  2006/06/20 19:06:52  southa
  * Object creation
  *

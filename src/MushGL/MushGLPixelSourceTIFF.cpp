@@ -3,7 +3,7 @@
  *
  * File: src/MushGL/MushGLPixelSourceTIFF.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } SaBXzXzmz9pA2fL3GoZFMQ
+//%Header } b2R9I21mLtaCUT6e0Rfwuw
 /*
- * $Id: MushGLPixelSourceTIFF.cpp,v 1.7 2006/11/07 11:08:54 southa Exp $
+ * $Id: MushGLPixelSourceTIFF.cpp,v 1.8 2006/11/09 23:53:59 southa Exp $
  * $Log: MushGLPixelSourceTIFF.cpp,v $
+ * Revision 1.8  2006/11/09 23:53:59  southa
+ * Explosion and texture loading
+ *
  * Revision 1.7  2006/11/07 11:08:54  southa
  * Texture loading from mushfiles
  *

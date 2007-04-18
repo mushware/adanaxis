@@ -7,7 +7,7 @@
  *
  * File: src/Mushcore/MushcoreInstaller.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } PrawP4g9KR4/8l4yzD6HLg
+//%Header } bryt9NEhurLYqcQ5pgm7fA
 /*
- * $Id: MushcoreInstaller.h,v 1.9 2006/06/01 15:39:45 southa Exp $
+ * $Id: MushcoreInstaller.h,v 1.10 2006/06/06 17:58:34 southa Exp $
  * $Log: MushcoreInstaller.h,v $
+ * Revision 1.10  2006/06/06 17:58:34  southa
+ * Ruby texture definition
+ *
  * Revision 1.9  2006/06/01 15:39:45  southa
  * DrawArray verification and fixes
  *

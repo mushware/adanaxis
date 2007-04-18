@@ -7,7 +7,7 @@
  *
  * File: src/GL/GLTextureSpr.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } ca+b/JE2kWZT/41XiIQgTg
+//%Header } 1juF01xWxs/YY+Wh3aaY3Q
 /*
- * $Id: GLTextureSpr.h,v 1.12 2005/05/19 13:02:00 southa Exp $
+ * $Id: GLTextureSpr.h,v 1.13 2006/06/01 15:38:54 southa Exp $
  * $Log: GLTextureSpr.h,v $
+ * Revision 1.13  2006/06/01 15:38:54  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.12  2005/05/19 13:02:00  southa
  * Mac release work
  *

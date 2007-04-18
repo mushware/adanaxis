@@ -7,7 +7,7 @@
  *
  * File: src/MushGL/MushGLCacheControl.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 8UDpRyydYFs+83Uhgt0k6g
+//%Header } Jni0kebaqtFUXU09GjTL9w
 /*
- * $Id: MushGLCacheControl.h,v 1.1 2006/06/05 11:48:24 southa Exp $
+ * $Id: MushGLCacheControl.h,v 1.2 2006/07/28 16:52:21 southa Exp $
  * $Log: MushGLCacheControl.h,v $
+ * Revision 1.2  2006/07/28 16:52:21  southa
+ * Options work
+ *
  * Revision 1.1  2006/06/05 11:48:24  southa
  * Noise textures
  *

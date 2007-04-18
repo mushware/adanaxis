@@ -7,7 +7,7 @@
  *
  * File: src/Mushcore/MushcoreParamList.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } qOnDs1g6Q5cwNHP7z2iRVA
+//%Header } QXKL+NurFs071iLrb9eZuA
 /*
- * $Id: MushcoreParamList.h,v 1.10 2005/05/19 13:02:16 southa Exp $
+ * $Id: MushcoreParamList.h,v 1.11 2006/06/01 15:39:46 southa Exp $
  * $Log: MushcoreParamList.h,v $
+ * Revision 1.11  2006/06/01 15:39:46  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.10  2005/05/19 13:02:16  southa
  * Mac release work
  *

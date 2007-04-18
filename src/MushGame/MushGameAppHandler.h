@@ -7,7 +7,7 @@
  *
  * File: src/MushGame/MushGameAppHandler.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } rqKVCOMdajoYPgaQgbClmg
+//%Header } nNw9qVohlyy/i7/KJR2RkQ
 /*
- * $Id: MushGameAppHandler.h,v 1.15 2006/07/31 11:01:38 southa Exp $
+ * $Id: MushGameAppHandler.h,v 1.16 2006/11/25 21:26:32 southa Exp $
  * $Log: MushGameAppHandler.h,v $
+ * Revision 1.16  2006/11/25 21:26:32  southa
+ * Display mode definitions
+ *
  * Revision 1.15  2006/07/31 11:01:38  southa
  * Music and dialogues
  *

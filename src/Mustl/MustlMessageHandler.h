@@ -7,7 +7,7 @@
  *
  * File: src/Mustl/MustlMessageHandler.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } uREud0TMFED4ZSY9i9c7Ag
+//%Header } SszVFav5qZ3m8LyC4tgD4Q
 /*
- * $Id: MustlMessageHandler.h,v 1.7 2006/06/01 15:39:53 southa Exp $
+ * $Id: MustlMessageHandler.h,v 1.8 2006/06/01 20:13:01 southa Exp $
  * $Log: MustlMessageHandler.h,v $
+ * Revision 1.8  2006/06/01 20:13:01  southa
+ * Initial texture caching
+ *
  * Revision 1.7  2006/06/01 15:39:53  southa
  * DrawArray verification and fixes
  *

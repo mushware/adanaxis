@@ -3,7 +3,7 @@
  *
  * File: src/Media/MediaJoystick.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } kz7WHlIvN6zEx7WiK5g+5A
+//%Header } Po5lbIePjsONtVWMiD5o/g
 /*
- * $Id: MediaJoystick.cpp,v 1.1 2006/07/11 19:49:04 southa Exp $
+ * $Id: MediaJoystick.cpp,v 1.2 2006/07/21 10:52:06 southa Exp $
  * $Log: MediaJoystick.cpp,v $
+ * Revision 1.2  2006/07/21 10:52:06  southa
+ * win32 build fixes
+ *
  * Revision 1.1  2006/07/11 19:49:04  southa
  * Control menu
  *

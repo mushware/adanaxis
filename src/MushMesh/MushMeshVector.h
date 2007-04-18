@@ -7,7 +7,7 @@
  *
  * File: src/MushMesh/MushMeshVector.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } HwAE/QIL5vyQn3et9Ekwtg
+//%Header } 9mxYorayc4AeMS1ncqmYQQ
 /*
- * $Id: MushMeshVector.h,v 1.27 2006/06/05 11:48:25 southa Exp $
+ * $Id: MushMeshVector.h,v 1.28 2006/06/06 17:58:33 southa Exp $
  * $Log: MushMeshVector.h,v $
+ * Revision 1.28  2006/06/06 17:58:33  southa
+ * Ruby texture definition
+ *
  * Revision 1.27  2006/06/05 11:48:25  southa
  * Noise textures
  *

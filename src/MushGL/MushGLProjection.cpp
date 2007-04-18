@@ -3,7 +3,7 @@
  *
  * File: src/MushGL/MushGLProjection.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 9Kn/SS5ndAEKfUwMxD5NnA
+//%Header } YUOeiI3EP3ttEEljc2eU+A
 /*
- * $Id: MushGLProjection.cpp,v 1.6 2006/07/24 18:46:49 southa Exp $
+ * $Id: MushGLProjection.cpp,v 1.7 2006/07/25 20:31:03 southa Exp $
  * $Log: MushGLProjection.cpp,v $
+ * Revision 1.7  2006/07/25 20:31:03  southa
+ * Scanner work
+ *
  * Revision 1.6  2006/07/24 18:46:49  southa
  * Depth sorting
  *

@@ -7,7 +7,7 @@
  *
  * File: src/API/mushMushFile.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } tl+6VUfYJd/T1sGz8cCGQQ
+//%Header } b82ERQhVlISPlMIYmWMORw
 /*
- * $Id$
- * $Log$
+ * $Id: mushMushFile.h,v 1.1 2006/11/06 12:56:31 southa Exp $
+ * $Log: mushMushFile.h,v $
+ * Revision 1.1  2006/11/06 12:56:31  southa
+ * MushFile work
+ *
  */
 
 #if defined(HAVE_CONFIG_H)  && !defined(MUSHWARE_CONFIG_H)

@@ -7,7 +7,7 @@
  *
  * File: src/MushGame/MushGameSaveData.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } jVIqo6l6rVjwbe9qE13NKA
+//%Header } aD3b2AtKfTMx1iRbY+oe2Q
 /*
- * $Id: MushGameSaveData.h,v 1.14 2006/10/02 17:25:06 southa Exp $
+ * $Id: MushGameSaveData.h,v 1.15 2006/10/17 15:28:03 southa Exp $
  * $Log: MushGameSaveData.h,v $
+ * Revision 1.15  2006/10/17 15:28:03  southa
+ * Player collisions
+ *
  * Revision 1.14  2006/10/02 17:25:06  southa
  * Object lookup and target selection
  *

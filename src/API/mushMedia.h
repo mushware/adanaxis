@@ -7,7 +7,7 @@
  *
  * File: src/API/mushMedia.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } xglA/S/dKRVjJ+0DXVQ5IQ
+//%Header } fMYZCIhiB8hikiw9MgESeA
 /*
- * $Id: mushMedia.h,v 1.32 2006/07/07 07:57:28 southa Exp $
+ * $Id: mushMedia.h,v 1.33 2006/07/11 19:49:03 southa Exp $
  * $Log: mushMedia.h,v $
+ * Revision 1.33  2006/07/11 19:49:03  southa
+ * Control menu
+ *
  * Revision 1.32  2006/07/07 07:57:28  southa
  * Key translation
  *

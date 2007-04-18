@@ -7,7 +7,7 @@
  *
  * File: src/MushGame/MushGameHostData.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } Fb2mVWjhgMvz2BHZP4h5oQ
+//%Header } 4+qNKGwNUmCY9+Kad2b/SA
 /*
- * $Id: MushGameHostData.h,v 1.1 2005/06/21 15:57:47 southa Exp $
+ * $Id: MushGameHostData.h,v 1.2 2006/06/01 15:39:22 southa Exp $
  * $Log: MushGameHostData.h,v $
+ * Revision 1.2  2006/06/01 15:39:22  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.1  2005/06/21 15:57:47  southa
  * MushGame work
  *

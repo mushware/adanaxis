@@ -3,7 +3,7 @@
  *
  * File: src/MushGame/MushGameMessage.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,9 +17,9 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } f/pnOVaeQGA1D3rHY1MWPw
+//%Header } frFELJmW1wH7+A+G++Ve2Q
 /*
- * $Id: MushGameMessage.cpp,v 1.6 2006/04/11 23:30:08 southa Exp $
+ * $Id: MushGameMessage.cpp,v 1.7 2006/06/01 15:39:23 southa Exp $
  * $Log
  */
 

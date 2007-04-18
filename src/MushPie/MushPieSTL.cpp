@@ -3,7 +3,7 @@
  *
  * File: src/MushPie/MushPieSTL.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 0uMsG6KOYAwwBARanE+RbQ
+//%Header } RHiVVZfysx7GhK866I95jw
 /*
- * $Id: MushPieSTL.cpp,v 1.2 2005/05/19 13:02:13 southa Exp $
+ * $Id: MushPieSTL.cpp,v 1.3 2006/06/01 15:39:37 southa Exp $
  * $Log: MushPieSTL.cpp,v $
+ * Revision 1.3  2006/06/01 15:39:37  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.2  2005/05/19 13:02:13  southa
  * Mac release work
  *

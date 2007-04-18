@@ -7,7 +7,7 @@
  *
  * File: src/Game/GameGraphicModel.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 7NPiMev8ERo+GfKaD6SlSw
+//%Header } QhM8+/z+nn1W4L4P8KKiAA
 /*
- * $Id: GameGraphicModel.h,v 1.14 2005/05/19 13:02:02 southa Exp $
+ * $Id: GameGraphicModel.h,v 1.15 2006/06/01 15:38:58 southa Exp $
  * $Log: GameGraphicModel.h,v $
+ * Revision 1.15  2006/06/01 15:38:58  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.14  2005/05/19 13:02:02  southa
  * Mac release work
  *

@@ -3,7 +3,7 @@
  *
  * File: src/TesseractTrainer/TesseractTrainerGame.cpp
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -17,10 +17,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 0c6cEpe2NbQ1Mx+x8GRiCA
+//%Header } gEq4ajKe4dSSFMhCt0ILVA
 /*
- * $Id: TesseractTrainerGame.cpp,v 1.26 2006/05/11 10:43:18 southa Exp $
+ * $Id: TesseractTrainerGame.cpp,v 1.27 2006/12/14 00:33:50 southa Exp $
  * $Log: TesseractTrainerGame.cpp,v $
+ * Revision 1.27  2006/12/14 00:33:50  southa
+ * Control fix and audio pacing
+ *
  * Revision 1.26  2006/05/11 10:43:18  southa
  * Project updates
  *

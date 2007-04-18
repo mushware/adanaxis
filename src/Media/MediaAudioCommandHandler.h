@@ -7,7 +7,7 @@
  *
  * File: src/Media/MediaAudioCommandHandler.h
  *
- * Author: Andy Southgate 2002-2006
+ * Author: Andy Southgate 2002-2007
  *
  * This file contains original work by Andy Southgate.  The author and his
  * employer (Mushware Limited) irrevocably waive all of their copyright rights
@@ -21,10 +21,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } VbVZQTwgDemjutAKU+zeNA
+//%Header } WhbmBftIKQuNrZ55YlNk2A
 /*
- * $Id: MediaAudioCommandHandler.h,v 1.15 2005/05/19 13:02:08 southa Exp $
+ * $Id: MediaAudioCommandHandler.h,v 1.16 2006/06/01 15:39:13 southa Exp $
  * $Log: MediaAudioCommandHandler.h,v $
+ * Revision 1.16  2006/06/01 15:39:13  southa
+ * DrawArray verification and fixes
+ *
  * Revision 1.15  2005/05/19 13:02:08  southa
  * Mac release work
  *
