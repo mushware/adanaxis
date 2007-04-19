@@ -9,8 +9,11 @@
 #
 ##############################################################################
 #
-# $Id: MakeRelease.sh,v 1.11 2007/03/13 21:45:10 southa Exp $
+# $Id: MakeRelease.sh,v 1.12 2007/03/13 22:56:46 southa Exp $
 # $Log: MakeRelease.sh,v $
+# Revision 1.12  2007/03/13 22:56:46  southa
+# Release work
+#
 # Revision 1.11  2007/03/13 21:45:10  southa
 # Release process
 #
@@ -88,13 +91,14 @@ rm -rf "$resourcesdir/wavesrc"
 cp "$resourcesdir/system/start.txt" "$resourcesdir/system/start_backup.txt"
 
 mkdir -p "$readmedir"
-for filename in
+for filename in 
 do
 ditto -rsrcFork "$filename" "${readmedir}"
 done
 
 cp COPYING "${readmedir}/Licence.txt"
-cp ChangeLog "${readmedir}/ChangeLog.txt"
+# cp ChangeLog "${readmedir}/ChangeLog.txt"
+mv "$resourcesdir/About_${name}.pdf" "${readmedir}"
 
 # Copy the source tar archive, removing the data directory in the pipe
 gunzip -c "$package-$version.tar.gz" | tar --delete "$package-$version/data-*" | GZIP=--best gzip > "$resourcesdir/system/$package-src-$version.tar.gz"
