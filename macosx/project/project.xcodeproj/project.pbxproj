@@ -3551,6 +3551,8 @@
 		7A68FDBA0BD8BCFA00630249 /* dialogues.xml */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; path = dialogues.xml; sourceTree = "<group>"; };
 		7A68FDBB0BD8BCFA00630249 /* manifest.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = manifest.txt; sourceTree = "<group>"; };
 		7A68FDBC0BD8BCFA00630249 /* space.rb */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.ruby; path = space.rb; sourceTree = "<group>"; };
+		7A68FF580BD8CC5C00630249 /* AdanaxisAIKhaziInert.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AdanaxisAIKhaziInert.rb; sourceTree = "<group>"; };
+		7A68FF5B0BD8CE0700630249 /* AdanaxisAIKhaziWarehouse.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AdanaxisAIKhaziWarehouse.rb; sourceTree = "<group>"; };
 		7A69021F0BD5519D00FF89CF /* dialogues.xml */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; path = dialogues.xml; sourceTree = "<group>"; };
 		7A6902200BD5519D00FF89CF /* manifest.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = manifest.txt; sourceTree = "<group>"; };
 		7A6902210BD5519D00FF89CF /* space.rb */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.ruby; path = space.rb; sourceTree = "<group>"; };
@@ -6541,7 +6543,9 @@
 				7A69E6860BB9487900792ECB /* AdanaxisAIKhaziAttendant.rb */,
 				7A6993210BB4402300D0FC67 /* AdanaxisAIKhaziCarrier.rb */,
 				7A6869F20BBA760C004774B3 /* AdanaxisAIKhaziHarpik.rb */,
+				7A68FF580BD8CC5C00630249 /* AdanaxisAIKhaziInert.rb */,
 				7A6902320BD55A1600FF89CF /* AdanaxisAIKhaziRail.rb */,
+				7A68FF5B0BD8CE0700630249 /* AdanaxisAIKhaziWarehouse.rb */,
 				7A9FAEF40B07771900167096 /* AdanaxisAIProjectile.rb */,
 				7A614A980A62951900E8FCEF /* AdanaxisControl.rb */,
 				7A6AFEFA0AE500A000AAFDA7 /* AdanaxisDashboard.rb */,
