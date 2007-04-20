@@ -3548,6 +3548,9 @@
 		7A68D2730BAB0DE0009F2015 /* MushGLDraw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushGLDraw.h; sourceTree = "<group>"; };
 		7A68D2740BAB0DE0009F2015 /* MushGLDraw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushGLDraw.cpp; sourceTree = "<group>"; };
 		7A68D2850BAB1911009F2015 /* AdanaxisRender.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = AdanaxisRender.xml; sourceTree = "<group>"; };
+		7A68FDBA0BD8BCFA00630249 /* dialogues.xml */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; path = dialogues.xml; sourceTree = "<group>"; };
+		7A68FDBB0BD8BCFA00630249 /* manifest.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = manifest.txt; sourceTree = "<group>"; };
+		7A68FDBC0BD8BCFA00630249 /* space.rb */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.ruby; path = space.rb; sourceTree = "<group>"; };
 		7A69021F0BD5519D00FF89CF /* dialogues.xml */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; path = dialogues.xml; sourceTree = "<group>"; };
 		7A6902200BD5519D00FF89CF /* manifest.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = manifest.txt; sourceTree = "<group>"; };
 		7A6902210BD5519D00FF89CF /* space.rb */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.ruby; path = space.rb; sourceTree = "<group>"; };
@@ -4455,6 +4458,7 @@
 				7A6869610BBA5CE3004774B3 /* level5 */,
 				7AE74EAF0BBABAF600795392 /* level6 */,
 				7A69021E0BD5519D00FF89CF /* level7 */,
+				7A68FDB90BD8BCFA00630249 /* level8 */,
 				7A3E0D1B0A4821C10078B650 /* local1 */,
 				7A97ECE80A6A808600369FD6 /* local2 */,
 				7A6176830A7FB32F00B97CA2 /* local3 */,
@@ -5922,6 +5926,16 @@
 				7A6869640BBA5CE3004774B3 /* space.rb */,
 			);
 			path = level5;
+			sourceTree = "<group>";
+		};
+		7A68FDB90BD8BCFA00630249 /* level8 */ = {
+			isa = PBXGroup;
+			children = (
+				7A68FDBA0BD8BCFA00630249 /* dialogues.xml */,
+				7A68FDBB0BD8BCFA00630249 /* manifest.txt */,
+				7A68FDBC0BD8BCFA00630249 /* space.rb */,
+			);
+			path = level8;
 			sourceTree = "<group>";
 		};
 		7A69021E0BD5519D00FF89CF /* level7 */ = {
