@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } gCJjrWXaDjT6xhF2+DIzXQ
 /*
- * $Id: AdanaxisSaveData.cpp,v 1.18 2007/04/16 08:41:09 southa Exp $
+ * $Id: AdanaxisSaveData.cpp,v 1.19 2007/04/18 09:22:04 southa Exp $
  * $Log: AdanaxisSaveData.cpp,v $
+ * Revision 1.19  2007/04/18 09:22:04  southa
+ * Header and level fixes
+ *
  * Revision 1.18  2007/04/16 08:41:09  southa
  * Level and header mods
  *
@@ -122,7 +125,8 @@ AdanaxisSaveData::AutoPrint(std::ostream& ioOut) const
     ioOut << "effectorList=" << m_effectorList << ", ";
     ioOut << "clockStarted=" << m_clockStarted << ", ";
     ioOut << "spaceName=" << m_spaceName << ", ";
-    ioOut << "gameDifficulty=" << m_gameDifficulty;
+    ioOut << "gameDifficulty=" << m_gameDifficulty << ", ";
+    ioOut << "primaryType=" << m_primaryType;
     ioOut << "]";
 }
 bool
@@ -162,6 +166,10 @@ AdanaxisSaveData::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string
     {
         ioIn >> m_gameDifficulty;
     }
+    else if (inTagStr == "primaryType")
+    {
+        ioIn >> m_primaryType;
+    }
     else if (MushGameSaveData::AutoXMLDataProcess(ioIn, inTagStr))
     {
         // Tag consumed by base class
@@ -190,5 +198,7 @@ AdanaxisSaveData::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_spaceName;
     ioOut.TagSet("gameDifficulty");
     ioOut << m_gameDifficulty;
+    ioOut.TagSet("primaryType");
+    ioOut << m_primaryType;
 }
-//%outOfLineFunctions } 2efw3RzS9oSQ1UsPmcTnIA
+//%outOfLineFunctions } YjifGfaRhP1ISoZrKnsc9Q

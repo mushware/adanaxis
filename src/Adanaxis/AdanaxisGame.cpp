@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } ugKqE0KA5pb38rpJeXIe0g
 /*
- * $Id: AdanaxisGame.cpp,v 1.65 2007/04/16 18:50:59 southa Exp $
+ * $Id: AdanaxisGame.cpp,v 1.66 2007/04/18 09:22:00 southa Exp $
  * $Log: AdanaxisGame.cpp,v $
+ * Revision 1.66  2007/04/18 09:22:00  southa
+ * Header and level fixes
+ *
  * Revision 1.65  2007/04/16 18:50:59  southa
  * Voice work
  *
@@ -370,6 +373,7 @@ AdanaxisGame::Init(MushGameAppHandler& inAppHandler)
 	MushRubyExec::Sgl().Call(VolatileData().RubySpace(), "mInitialPiecesCreate");
 	VolatileData().IsMenuBackdropSet(MushRubyExec::Sgl().Call(VolatileData().RubySpace(), "mIsMenuBackdrop").Bool());
     SaveData().SpaceNameSet(MushRubyExec::Sgl().Call("$currentGame.mSpaceName").String());
+    SaveData().PrimaryTypeSet(MushRubyExec::Sgl().Call(VolatileData().RubySpace(), "mPrimary").U32());
     
 	AdanaxisUtil::MissingSkinsCreate(Logic());
     //AdanaxisUtil::MeshPurge(Logic());

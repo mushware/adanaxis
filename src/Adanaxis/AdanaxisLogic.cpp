@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } uRd/C67+BhB+F4sXUsaH6A
 /*
- * $Id: AdanaxisLogic.cpp,v 1.44 2007/03/26 16:31:36 southa Exp $
+ * $Id: AdanaxisLogic.cpp,v 1.45 2007/04/18 09:22:01 southa Exp $
  * $Log: AdanaxisLogic.cpp,v $
+ * Revision 1.45  2007/04/18 09:22:01  southa
+ * Header and level fixes
+ *
  * Revision 1.44  2007/03/26 16:31:36  southa
  * L2 work
  *
@@ -707,20 +710,32 @@ AdanaxisLogic::Tick100msSequence(void)
     U32 blueCount = 0;
     U32 jammerCount = 0;
     
+    std::string redID = "kr";
     std::string blueID = "kb";
+    switch (SaveData().PrimaryType())
+    {
+        case AdanaxisData::kPrimaryTypeRed:
+            redID += "p";
+            break;
+        
+        case AdanaxisData::kPrimaryTypeBlue:
+            blueID += "p";
+            break;
+    }
     
     AdanaxisData::tKhaziList::iterator khaziEndIter = SaveData().KhaziListWRef().end();
     for (AdanaxisData::tKhaziList::iterator p = SaveData().KhaziListWRef().begin();
          p != khaziEndIter; ++p)
     {
-        if (p->Id().substr(0,2) == blueID)
+        if (p->Id().substr(0,blueID.size()) == blueID)
         {
             ++blueCount;
         }
-        else
+        else if (p->Id().substr(0,redID.size()) == redID)
         {
             ++redCount;
         }
+
         if (p->IsJammer())
         {
             ++jammerCount;   

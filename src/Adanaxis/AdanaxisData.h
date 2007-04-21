@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } Cej2shXtXrq4p8lgY5jY5A
 /*
- * $Id: AdanaxisData.h,v 1.5 2007/04/16 08:41:07 southa Exp $
+ * $Id: AdanaxisData.h,v 1.6 2007/04/18 09:22:00 southa Exp $
  * $Log: AdanaxisData.h,v $
+ * Revision 1.6  2007/04/18 09:22:00  southa
+ * Header and level fixes
+ *
  * Revision 1.5  2007/04/16 08:41:07  southa
  * Level and header mods
  *
@@ -52,7 +55,12 @@ public:
     enum
     {
         kCharProjectile = 'f',
-        kCharKhazi = 'k'
+        kCharKhazi = 'k',
+        
+        // PrimaryType must match values in AdanaxisSpace.rb
+        kPrimaryTypeNone = 0,
+        kPrimaryTypeRed = 1,
+        kPrimaryTypeBlue = 2
     };
     typedef AdanaxisSaveData::tProjectile tProjectile;
     typedef AdanaxisSaveData::tProjectileList tProjectileList;
