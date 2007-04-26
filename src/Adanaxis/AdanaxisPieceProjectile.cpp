@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } pQ5BRw+L1Th8huxU49D5bg
 /*
- * $Id: AdanaxisPieceProjectile.cpp,v 1.19 2006/11/12 20:09:54 southa Exp $
+ * $Id: AdanaxisPieceProjectile.cpp,v 1.20 2007/04/18 09:22:02 southa Exp $
  * $Log: AdanaxisPieceProjectile.cpp,v $
+ * Revision 1.20  2007/04/18 09:22:02  southa
+ * Header and level fixes
+ *
  * Revision 1.19  2006/11/12 20:09:54  southa
  * Missile guidance
  *
@@ -146,6 +149,14 @@ AdanaxisPieceProjectile::Render(MushGLJobRender& outRender,
     
     renderSpec.ProjectionSet(inCamera.Projection());
     
+    tVal alpha =  1.0;
+    
+    if (AlphaStutter() > 0.0)
+    {
+        alpha = MushcoreUtil::RandomVal(alpha * (1-AlphaStutter()), alpha);
+    }
+    inRender.ColourZMiddleSet(inRender.ColourZMiddle().ElementwiseProduct(t4Val(1,1,1,alpha)));
+
     bool jobCreated = inRender.RenderJobCreate(outRender, renderSpec, Mesh());
     return jobCreated;
 }

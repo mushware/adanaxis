@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } oLiwZ/5aV/LrBg1GMJ088A
 /*
- * $Id: AdanaxisRender.cpp,v 1.75 2007/04/18 09:22:03 southa Exp $
+ * $Id: AdanaxisRender.cpp,v 1.76 2007/04/18 20:08:39 southa Exp $
  * $Log: AdanaxisRender.cpp,v $
+ * Revision 1.76  2007/04/18 20:08:39  southa
+ * Tweaks and fixes
+ *
  * Revision 1.75  2007/04/18 09:22:03  southa
  * Header and level fixes
  *
@@ -369,9 +372,11 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
     tVal backdropAlpha = 0.8 * brightness;
     tVal decoAlpha = 1.2 * brightness;
     tVal meshAlpha = 0.4 * brightness;
+    tVal projectileAlpha = 1.2 * brightness;
     MushcoreUtil::Constrain<tVal>(backdropAlpha, 0, 1);
     MushcoreUtil::Constrain<tVal>(decoAlpha, 0, 1);
     MushcoreUtil::Constrain<tVal>(meshAlpha, 0, 1);
+    MushcoreUtil::Constrain<tVal>(projectileAlpha, 0, 1);
         
     m_projection.ViewHalfRadiansSet(m_halfAngle);
     m_projection.FromAspectNearFarMake(aspectRatio, 1.0, 10000.0);
@@ -434,7 +439,6 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
             }
         }
         
-        pRenderMesh->ColourZMiddleSet(t4Val(1.0,1.0,1.0,meshAlpha*2));
         pRenderMesh->ColourZLeftSet(t4Val(1.0,0.3,0.3,0.0));
         pRenderMesh->ColourZRightSet(t4Val(0.3,1.0,0.3,0.0));
 
@@ -443,6 +447,8 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
         tProjectileList::iterator projectileEndIter = pSaveData->ProjectileListWRef().end();
         for (tProjectileList::iterator p = pSaveData->ProjectileListWRef().begin(); p != projectileEndIter; ++p)
         {
+            pRenderMesh->ColourZMiddleSet(t4Val(1.0,1.0,1.0,projectileAlpha));
+
             MUSHCOREASSERT(m_renderList.back() != NULL);
             
             if (p->Render(*m_renderList.back(), ioLogic, *pRenderMesh, camera))
