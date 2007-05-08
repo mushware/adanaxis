@@ -3587,6 +3587,10 @@
 		7A6AFEFD0AE5010C00AAFDA7 /* MushDashboard.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = MushDashboard.rb; sourceTree = "<group>"; };
 		7A6AFF020AE5031100AAFDA7 /* MushView.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = MushView.rb; sourceTree = "<group>"; };
 		7A6B30210BA74FBC00CDB9A8 /* MakeRelease.sh */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.sh; name = MakeRelease.sh; path = ../MakeRelease.sh; sourceTree = SOURCE_ROOT; };
+		7A6C683E0BEA7DFF00A37F64 /* dialogues.xml */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; path = dialogues.xml; sourceTree = "<group>"; };
+		7A6C683F0BEA7DFF00A37F64 /* manifest.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = manifest.txt; sourceTree = "<group>"; };
+		7A6C68400BEA7DFF00A37F64 /* space.rb */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.ruby; path = space.rb; sourceTree = "<group>"; };
+		7A6C68610BEA837300A37F64 /* AdanaxisAIKhaziVendor.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AdanaxisAIKhaziVendor.rb; sourceTree = "<group>"; };
 		7A6CE13405A5899B00777D9B /* MushPiePiece.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushPiePiece.h; sourceTree = "<group>"; };
 		7A6CE13505A5899B00777D9B /* MushPiePiece.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushPiePiece.cpp; sourceTree = "<group>"; };
 		7A6CE19E05A58DF000777D9B /* autogen.pl */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.perl; name = autogen.pl; path = ../autogen.pl; sourceTree = "<group>"; };
@@ -4474,6 +4478,7 @@
 				7A685E0E0BE0B0ED007C9052 /* level9 */,
 				7A6962BD0BE1F96200BEBE0D /* level10 */,
 				7A691F670BE92ED800570FBF /* level11 */,
+				7A6C683D0BEA7DFF00A37F64 /* level12 */,
 				7A3E0D1B0A4821C10078B650 /* local1 */,
 				7A97ECE80A6A808600369FD6 /* local2 */,
 				7A6176830A7FB32F00B97CA2 /* local3 */,
@@ -5993,6 +5998,16 @@
 			path = level10;
 			sourceTree = "<group>";
 		};
+		7A6C683D0BEA7DFF00A37F64 /* level12 */ = {
+			isa = PBXGroup;
+			children = (
+				7A6C683E0BEA7DFF00A37F64 /* dialogues.xml */,
+				7A6C683F0BEA7DFF00A37F64 /* manifest.txt */,
+				7A6C68400BEA7DFF00A37F64 /* space.rb */,
+			);
+			path = level12;
+			sourceTree = "<group>";
+		};
 		7A6CE19605A58DB000777D9B /* scripts */ = {
 			isa = PBXGroup;
 			children = (
@@ -6589,6 +6604,7 @@
 				7A68FF580BD8CC5C00630249 /* AdanaxisAIKhaziInert.rb */,
 				7A685E150BE0B3E8007C9052 /* AdanaxisAIKhaziLimescale.rb */,
 				7A6902320BD55A1600FF89CF /* AdanaxisAIKhaziRail.rb */,
+				7A6C68610BEA837300A37F64 /* AdanaxisAIKhaziVendor.rb */,
 				7A68FF5B0BD8CE0700630249 /* AdanaxisAIKhaziWarehouse.rb */,
 				7A9FAEF40B07771900167096 /* AdanaxisAIProjectile.rb */,
 				7A614A980A62951900E8FCEF /* AdanaxisControl.rb */,
