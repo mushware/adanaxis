@@ -3572,6 +3572,9 @@
 		7A69654D0BAECF5C00344F3A /* AdanaxisVTools.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AdanaxisVTools.rb; sourceTree = "<group>"; };
 		7A6975DD0BA6ADA1008DCB62 /* AdanaxisScanner.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AdanaxisScanner.rb; sourceTree = "<group>"; };
 		7A6993210BB4402300D0FC67 /* AdanaxisAIKhaziCarrier.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AdanaxisAIKhaziCarrier.rb; sourceTree = "<group>"; };
+		7A69D0B40BF20A8B007CB99F /* dialogues.xml */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; path = dialogues.xml; sourceTree = "<group>"; };
+		7A69D0B50BF20A8B007CB99F /* manifest.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = manifest.txt; sourceTree = "<group>"; };
+		7A69D0B60BF20A8B007CB99F /* space.rb */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.ruby; path = space.rb; sourceTree = "<group>"; };
 		7A69DF0607626B89004F23F7 /* TestMushMeshQuaternion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestMushMeshQuaternion.h; sourceTree = "<group>"; };
 		7A69DF0707626B89004F23F7 /* TestMushMeshQuaternion.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestMushMeshQuaternion.cpp; sourceTree = "<group>"; };
 		7A69E6860BB9487900792ECB /* AdanaxisAIKhaziAttendant.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AdanaxisAIKhaziAttendant.rb; sourceTree = "<group>"; };
@@ -4479,6 +4482,7 @@
 				7A6962BD0BE1F96200BEBE0D /* level10 */,
 				7A691F670BE92ED800570FBF /* level11 */,
 				7A6C683D0BEA7DFF00A37F64 /* level12 */,
+				7A69D0B30BF20A8B007CB99F /* level13 */,
 				7A3E0D1B0A4821C10078B650 /* local1 */,
 				7A97ECE80A6A808600369FD6 /* local2 */,
 				7A6176830A7FB32F00B97CA2 /* local3 */,
@@ -5996,6 +6000,16 @@
 				7A6962C00BE1F96200BEBE0D /* space.rb */,
 			);
 			path = level10;
+			sourceTree = "<group>";
+		};
+		7A69D0B30BF20A8B007CB99F /* level13 */ = {
+			isa = PBXGroup;
+			children = (
+				7A69D0B40BF20A8B007CB99F /* dialogues.xml */,
+				7A69D0B50BF20A8B007CB99F /* manifest.txt */,
+				7A69D0B60BF20A8B007CB99F /* space.rb */,
+			);
+			path = level13;
 			sourceTree = "<group>";
 		};
 		7A6C683D0BEA7DFF00A37F64 /* level12 */ = {
