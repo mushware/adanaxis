@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } uRd/C67+BhB+F4sXUsaH6A
 /*
- * $Id: AdanaxisLogic.cpp,v 1.45 2007/04/18 09:22:01 southa Exp $
+ * $Id: AdanaxisLogic.cpp,v 1.46 2007/04/21 09:41:06 southa Exp $
  * $Log: AdanaxisLogic.cpp,v $
+ * Revision 1.46  2007/04/21 09:41:06  southa
+ * Level work
+ *
  * Revision 1.45  2007/04/18 09:22:01  southa
  * Header and level fixes
  *
@@ -750,6 +753,13 @@ AdanaxisLogic::Tick100msSequence(void)
         blueCount != VolatileData().KhaziBlueCount())
     {
         khaziUpdate = true;
+    }
+    
+    if (jammerCount == 0 && VolatileData().JammerCount() != 0)
+    {
+        MushRubyExec::Sgl().Call(VolatileData().RubyGame(),
+                                 AdanaxisIntern::Sgl().mJammersEliminated()
+                                 );
     }
     
     VolatileData().KhaziCountSet(khaziCount);

@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } wnzZwEQ6yC0/EOblAes+2Q
 /*
- * $Id: AdanaxisIntern.cpp,v 1.22 2007/03/24 18:07:24 southa Exp $
+ * $Id: AdanaxisIntern.cpp,v 1.23 2007/04/18 09:22:01 southa Exp $
  * $Log: AdanaxisIntern.cpp,v $
+ * Revision 1.23  2007/04/18 09:22:01  southa
+ * Header and level fixes
+ *
  * Revision 1.22  2007/03/24 18:07:24  southa
  * Level 3 work
  *
@@ -117,10 +120,11 @@ AdanaxisIntern::AdanaxisIntern()
     m_mEpilogueRender = MushRubyIntern::SymbolID("mEpilogueRender");
     m_mGameModeTick = MushRubyIntern::SymbolID("mGameModeTick");
     m_mHandlePrecacheEnd = MushRubyIntern::SymbolID("mHandlePrecacheEnd");
+    m_mJammersEliminated = MushRubyIntern::SymbolID("mJammersEliminated");
     m_mKhaziCountUpdate = MushRubyIntern::SymbolID("mKhaziCountUpdate");
     m_mMenuRender = MushRubyIntern::SymbolID("mMenuRender");
     m_mReceiveSequence = MushRubyIntern::SymbolID("mReceiveSequence");
     m_mRender = MushRubyIntern::SymbolID("mRender");
-//%initialisations } 8313c942987026e6948b4d7019ef30c8
+//%initialisations } 433040bc9f4bb345bad8e0c344bff7ca
 }
  

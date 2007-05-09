@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } 0SJ9cZfTfFGwh/elmExZag
 /*
- * $Id: AdanaxisIntern.h,v 1.25 2007/03/24 18:07:24 southa Exp $
+ * $Id: AdanaxisIntern.h,v 1.26 2007/04/18 09:22:01 southa Exp $
  * $Log: AdanaxisIntern.h,v $
+ * Revision 1.26  2007/04/18 09:22:01  southa
+ * Header and level fixes
+ *
  * Revision 1.25  2007/03/24 18:07:24  southa
  * Level 3 work
  *
@@ -119,6 +122,7 @@
     mEpilogueRender
     mGameModeTick
     mHandlePrecacheEnd
+    mJammersEliminated
     mKhaziCountUpdate
     mMenuRender
     mReceiveSequence
@@ -165,6 +169,7 @@ public:
     Mushware::tRubyID mEpilogueRender(void) { return m_mEpilogueRender; }
     Mushware::tRubyID mGameModeTick(void) { return m_mGameModeTick; }
     Mushware::tRubyID mHandlePrecacheEnd(void) { return m_mHandlePrecacheEnd; }
+    Mushware::tRubyID mJammersEliminated(void) { return m_mJammersEliminated; }
     Mushware::tRubyID mKhaziCountUpdate(void) { return m_mKhaziCountUpdate; }
     Mushware::tRubyID mMenuRender(void) { return m_mMenuRender; }
     Mushware::tRubyID mReceiveSequence(void) { return m_mReceiveSequence; }
@@ -191,11 +196,12 @@ private:
     Mushware::tRubyID m_mEpilogueRender;
     Mushware::tRubyID m_mGameModeTick;
     Mushware::tRubyID m_mHandlePrecacheEnd;
+    Mushware::tRubyID m_mJammersEliminated;
     Mushware::tRubyID m_mKhaziCountUpdate;
     Mushware::tRubyID m_mMenuRender;
     Mushware::tRubyID m_mReceiveSequence;
     Mushware::tRubyID m_mRender;
-//%declarations } a633cb6618e9186586c6555587ce416f
+//%declarations } c16cd73c99a53b5afc6cbe51a20f8cfa
 
 //%classPrototypes {
 public:

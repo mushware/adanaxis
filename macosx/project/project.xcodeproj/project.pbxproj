@@ -3755,6 +3755,9 @@
 		7AA0FB8A08844AF100997505 /* MushMeshLibraryFGenExtrude.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushMeshLibraryFGenExtrude.h; sourceTree = "<group>"; };
 		7AA0FB8B08844AF100997505 /* MushMeshLibraryFGenExtrude.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushMeshLibraryFGenExtrude.cpp; sourceTree = "<group>"; };
 		7AA5753E0AD9100800CEA8BA /* AdanaxisUtil.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AdanaxisUtil.rb; sourceTree = "<group>"; };
+		7AA6412D0BF220460069AAC4 /* dialogues.xml */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; path = dialogues.xml; sourceTree = "<group>"; };
+		7AA6412E0BF220460069AAC4 /* manifest.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = manifest.txt; sourceTree = "<group>"; };
+		7AA6412F0BF220460069AAC4 /* space.rb */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.ruby; path = space.rb; sourceTree = "<group>"; };
 		7AA67B8B0AF8BF1100A1C04F /* AdanaxisWeaponLibrary.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AdanaxisWeaponLibrary.rb; sourceTree = "<group>"; };
 		7AA67B8E0AF8C0C400A1C04F /* AdanaxisWeapon.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AdanaxisWeapon.rb; sourceTree = "<group>"; };
 		7AAE6B9C07AFC36C0085C60F /* TesseractTrainerAppHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = TesseractTrainerAppHandler.cpp; sourceTree = "<group>"; };
@@ -4483,6 +4486,7 @@
 				7A691F670BE92ED800570FBF /* level11 */,
 				7A6C683D0BEA7DFF00A37F64 /* level12 */,
 				7A69D0B30BF20A8B007CB99F /* level13 */,
+				7AA6412C0BF220460069AAC4 /* level14 */,
 				7A3E0D1B0A4821C10078B650 /* local1 */,
 				7A97ECE80A6A808600369FD6 /* local2 */,
 				7A6176830A7FB32F00B97CA2 /* local3 */,
@@ -6382,6 +6386,16 @@
 				7A581A7C0AB55F48004F3E11 /* MushMeshLibraryWorldSphere.h */,
 			);
 			path = MushMeshLibrary;
+			sourceTree = "<group>";
+		};
+		7AA6412C0BF220460069AAC4 /* level14 */ = {
+			isa = PBXGroup;
+			children = (
+				7AA6412D0BF220460069AAC4 /* dialogues.xml */,
+				7AA6412E0BF220460069AAC4 /* manifest.txt */,
+				7AA6412F0BF220460069AAC4 /* space.rb */,
+			);
+			path = level14;
 			sourceTree = "<group>";
 		};
 		7AAE6B9B07AFC36C0085C60F /* TesseractTrainer */ = {
