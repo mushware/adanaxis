@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } NakSYndAI0IrqBBZFk2p3g
 /*
- * $Id: AdanaxisPiecePlayer.cpp,v 1.14 2007/04/16 08:41:08 southa Exp $
+ * $Id: AdanaxisPiecePlayer.cpp,v 1.15 2007/04/18 09:22:02 southa Exp $
  * $Log: AdanaxisPiecePlayer.cpp,v $
+ * Revision 1.15  2007/04/18 09:22:02  southa
+ * Header and level fixes
+ *
  * Revision 1.14  2007/04/16 08:41:08  southa
  * Level and header mods
  *
@@ -184,7 +187,32 @@ void
 AdanaxisPiecePlayer::PreControl(MushGameLogic& ioLogic)
 {
     PostWRef().VelWRef().ToAdditiveIdentitySet();
-    PostWRef().AngVelWRef().ToRotationIdentitySet();
+    
+    tQValPair angVel = Post().AngPos().Conjugate();
+    
+    AdanaxisSaveData& saveData = AdanaxisUtil::Logic(ioLogic).SaveData();
+    AdanaxisVolatileData& volData = AdanaxisUtil::Logic(ioLogic).VolatileData();
+    
+    if (saveData.RetinaSpin() > 0.001)
+    {
+        tVal speed = saveData.RetinaSpin() * (saveData.GameDifficulty() + 1.0);
+        angVel.OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis(MushMeshTools::kAxisXY, speed * M_PI/800));
+        angVel.OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis(MushMeshTools::kAxisXZ, speed * M_PI/740));
+        angVel.OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis(MushMeshTools::kAxisYZ, speed * M_PI/650));
+        angVel.OuterMultiplyBy(Post().AngPos());
+        angVel.InPlaceNormalise();
+        PostWRef().AngVelSet(angVel);
+        
+        if (volData.JammerCount() == 0)
+        {
+            // Stop retina spin once countermeasures removed
+            saveData.RetinaSpinSet(saveData.RetinaSpin() * 0.99);
+        }
+    }
+    else
+    {
+        PostWRef().AngVelWRef().ToRotationIdentitySet();
+    }
 }
 
 void
@@ -325,87 +353,6 @@ AdanaxisPiecePlayer::ControlInfoConsume(MushGameLogic& ioLogic, const MushGameMe
         KeyChangeHandle(ioLogic, keyState, keyNum);
     }
 }
-
-#if 0
-void
-AdanaxisPiecePlayer::FirePieceCreate(MushGameLogic& ioLogic, const MushGameMessageFire& inMessage)
-{
-    AdanaxisSaveData::tProjectileList& dataRef =
-        AdanaxisUtil::Logic(ioLogic).SaveData().ProjectileListWRef();
-
-    AdanaxisSaveData::tProjectileList::key_type key = dataRef.NextKey();
-    
-    ostringstream idStream;
-    idStream << key;
-    
-	AdanaxisPieceProjectile& projectileRef = *new AdanaxisPieceProjectile(idStream.str());
-    dataRef.Give(&projectileRef, key);
-    
-    projectileRef.IdSet("f:"+idStream.str());
-    projectileRef.OwnerSet(Id());
-    projectileRef.LifeMsecSet(15000); // FIXME
-    
-    // Create projectile in player's coordinates
-    projectileRef.PostWRef().ToIdentitySet();
-    
-    t4Val posOffset = t4Val(1,0,0,0);
-    if (inMessage.Count() % 2 == 0)
-    {
-        posOffset = t4Val(0,0,0,0) - posOffset;
-    }
-
-    projectileRef.PostWRef().PosWRef() += posOffset;
-
-    // Get the player forward velocity but not transverse
-    t4Val playerVel = inMessage.Post().Vel();
-    inMessage.Post().AngPos().Conjugate().VectorRotate(playerVel);
-    
-    projectileRef.PostWRef().AngVelWRef().ToRotationIdentitySet();
-    projectileRef.PostWRef().AngVelWRef().OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis(0, 0.02));
-    projectileRef.PostWRef().AngVelWRef().OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis(2, 0.017));
-    projectileRef.PostWRef().AngVelWRef().OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis(5, 0.013));
-    projectileRef.PostWRef().VelSet(t4Val(0, 0, 0, playerVel.W() - 1.0)); //FIXME
-    
-    // Now transform to world coordinates
-    // Reorientate the player space vectors to world space
-    inMessage.Post().AngPos().VectorRotate(projectileRef.PostWRef().PosWRef());
-    inMessage.Post().AngPos().VectorRotate(projectileRef.PostWRef().VelWRef());
-
-    // Move to player position
-    projectileRef.PostWRef().PosWRef() += inMessage.Post().Pos();
-    projectileRef.PostWRef().AngPosWRef().OuterMultiplyBy(inMessage.Post().AngPos());
-    
-    tQValPair angVel = inMessage.Post().AngPos().Conjugate();
-    angVel.OuterMultiplyBy(projectileRef.Post().AngVel());
-    angVel.OuterMultiplyBy(inMessage.Post().AngPos());
-
-    projectileRef.PostWRef().AngVelSet(angVel);
-    
-    // Create the mesh for this object
-    projectileRef.MeshWRef() = m_projectileMeshRef.Ref();
-	projectileRef.SharedBuffersNameSet(m_projectileMeshRef.Name());
-    
-    // Create the flare effect
-    MushMeshPosticity flarePost = projectileRef.Post();
-    flarePost.PosWRef() -= 1 * flarePost.Vel();
-    AdanaxisUtil::FlareCreate(dynamic_cast<AdanaxisLogic&>(ioLogic),
-                              flarePost,
-                              0.5, // size
-                              0  // speed
-                              );
-}
-
-void
-AdanaxisPiecePlayer::FireConsume(MushGameLogic& ioLogic, const MushGameMessageFire& inMessage)
-{    
-    AdanaxisVolatileData *pVolData = dynamic_cast<AdanaxisVolatileData *>(&ioLogic.VolatileData());
-    
-    if (pVolData != NULL)
-    {
-        pVolData->ScannerOnSet(false);
-    }
-}
-#endif
 
 Mushware::tRubyValue
 AdanaxisPiecePlayer::RubyCreate(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0)

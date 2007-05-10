@@ -3733,6 +3733,9 @@
 		7A8FBC9A07F4572E00BAAFBE /* mushMushPie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mushMushPie.h; sourceTree = "<group>"; };
 		7A9502BB0A498BC100F4CE37 /* AdanaxisRubyDeco.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdanaxisRubyDeco.h; sourceTree = "<group>"; };
 		7A9502BC0A498BC100F4CE37 /* AdanaxisRubyDeco.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AdanaxisRubyDeco.cpp; sourceTree = "<group>"; };
+		7A953D120BF34EAB00881901 /* dialogues.xml */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; path = dialogues.xml; sourceTree = "<group>"; };
+		7A953D130BF34EAB00881901 /* manifest.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = manifest.txt; sourceTree = "<group>"; };
+		7A953D140BF34EAB00881901 /* space.rb */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.ruby; path = space.rb; sourceTree = "<group>"; };
 		7A9778FD089E9BA500802242 /* adanaxis.ChangeLog */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = adanaxis.ChangeLog; sourceTree = "<group>"; };
 		7A9778FE089E9BA500802242 /* adanaxis.def */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = adanaxis.def; sourceTree = "<group>"; };
 		7A97AAF70A653A6600921057 /* MakeDocs.rb */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = text.script.ruby; name = MakeDocs.rb; path = ../../doc/MakeDocs.rb; sourceTree = SOURCE_ROOT; tabWidth = 2; };
@@ -4492,6 +4495,7 @@
 				7A69D0B30BF20A8B007CB99F /* level13 */,
 				7AA6412C0BF220460069AAC4 /* level14 */,
 				7A68D4BF0BF31A98003CF91A /* level15 */,
+				7A953D110BF34EAB00881901 /* level16 */,
 				7A3E0D1B0A4821C10078B650 /* local1 */,
 				7A97ECE80A6A808600369FD6 /* local2 */,
 				7A6176830A7FB32F00B97CA2 /* local3 */,
@@ -6360,6 +6364,16 @@
 				7AC6AB82087969E50078A331 /* MushRenderUtil.h */,
 			);
 			path = MushRender;
+			sourceTree = "<group>";
+		};
+		7A953D110BF34EAB00881901 /* level16 */ = {
+			isa = PBXGroup;
+			children = (
+				7A953D120BF34EAB00881901 /* dialogues.xml */,
+				7A953D130BF34EAB00881901 /* manifest.txt */,
+				7A953D140BF34EAB00881901 /* space.rb */,
+			);
+			path = level16;
 			sourceTree = "<group>";
 		};
 		7A97ECE80A6A808600369FD6 /* local2 */ = {

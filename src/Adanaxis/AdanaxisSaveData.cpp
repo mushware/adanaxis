@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } gCJjrWXaDjT6xhF2+DIzXQ
 /*
- * $Id: AdanaxisSaveData.cpp,v 1.19 2007/04/18 09:22:04 southa Exp $
+ * $Id: AdanaxisSaveData.cpp,v 1.20 2007/04/21 09:41:06 southa Exp $
  * $Log: AdanaxisSaveData.cpp,v $
+ * Revision 1.20  2007/04/21 09:41:06  southa
+ * Level work
+ *
  * Revision 1.19  2007/04/18 09:22:04  southa
  * Header and level fixes
  *
@@ -81,7 +84,8 @@
 #include "AdanaxisSaveData.h"
 
 AdanaxisSaveData::AdanaxisSaveData() :
-    m_clockStarted(false)
+    m_clockStarted(false),
+    m_retinaSpin(0.0)
 {
 }
 
@@ -126,7 +130,8 @@ AdanaxisSaveData::AutoPrint(std::ostream& ioOut) const
     ioOut << "clockStarted=" << m_clockStarted << ", ";
     ioOut << "spaceName=" << m_spaceName << ", ";
     ioOut << "gameDifficulty=" << m_gameDifficulty << ", ";
-    ioOut << "primaryType=" << m_primaryType;
+    ioOut << "primaryType=" << m_primaryType << ", ";
+    ioOut << "retinaSpin=" << m_retinaSpin;
     ioOut << "]";
 }
 bool
@@ -170,6 +175,10 @@ AdanaxisSaveData::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string
     {
         ioIn >> m_primaryType;
     }
+    else if (inTagStr == "retinaSpin")
+    {
+        ioIn >> m_retinaSpin;
+    }
     else if (MushGameSaveData::AutoXMLDataProcess(ioIn, inTagStr))
     {
         // Tag consumed by base class
@@ -200,5 +209,7 @@ AdanaxisSaveData::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_gameDifficulty;
     ioOut.TagSet("primaryType");
     ioOut << m_primaryType;
+    ioOut.TagSet("retinaSpin");
+    ioOut << m_retinaSpin;
 }
-//%outOfLineFunctions } YjifGfaRhP1ISoZrKnsc9Q
+//%outOfLineFunctions } PWqDPWvjM7dC98aBOvJYeA

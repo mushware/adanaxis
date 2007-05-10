@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } JGGMtrTQ/FygaXDKftfwUQ
 /*
- * $Id: AdanaxisSaveData.h,v 1.20 2007/04/18 09:22:04 southa Exp $
+ * $Id: AdanaxisSaveData.h,v 1.21 2007/04/21 09:41:07 southa Exp $
  * $Log: AdanaxisSaveData.h,v $
+ * Revision 1.21  2007/04/21 09:41:07  southa
+ * Level work
+ *
  * Revision 1.20  2007/04/18 09:22:04  southa
  * Header and level fixes
  *
@@ -128,6 +131,7 @@ private:
     std::string m_spaceName; //:readwrite
     Mushware::U32 m_gameDifficulty; //:readwrite
     Mushware::U32 m_primaryType; //:readwrite
+    Mushware::tVal m_retinaSpin; //:readwrite
     
 //%classPrototypes {
 public:
@@ -151,6 +155,8 @@ public:
     void GameDifficultySet(const Mushware::U32& inValue) { m_gameDifficulty=inValue; }
     const Mushware::U32& PrimaryType(void) const { return m_primaryType; }
     void PrimaryTypeSet(const Mushware::U32& inValue) { m_primaryType=inValue; }
+    const Mushware::tVal& RetinaSpin(void) const { return m_retinaSpin; }
+    void RetinaSpinSet(const Mushware::tVal& inValue) { m_retinaSpin=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -158,7 +164,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } x1fnp30Ik37goJu/g4pCSg
+//%classPrototypes } wH+X8SU5bDd2U9U/A1RCiA
 };
 
 //%inlineHeader {
