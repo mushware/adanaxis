@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } NakSYndAI0IrqBBZFk2p3g
 /*
- * $Id: AdanaxisPiecePlayer.cpp,v 1.15 2007/04/18 09:22:02 southa Exp $
+ * $Id: AdanaxisPiecePlayer.cpp,v 1.16 2007/05/10 14:06:26 southa Exp $
  * $Log: AdanaxisPiecePlayer.cpp,v $
+ * Revision 1.16  2007/05/10 14:06:26  southa
+ * Level 16 and retina spin
+ *
  * Revision 1.15  2007/04/18 09:22:02  southa
  * Header and level fixes
  *
@@ -195,7 +198,7 @@ AdanaxisPiecePlayer::PreControl(MushGameLogic& ioLogic)
     
     if (saveData.RetinaSpin() > 0.001)
     {
-        tVal speed = saveData.RetinaSpin() * (saveData.GameDifficulty() + 1.0);
+        tVal speed = saveData.RetinaSpin();
         angVel.OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis(MushMeshTools::kAxisXY, speed * M_PI/800));
         angVel.OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis(MushMeshTools::kAxisXZ, speed * M_PI/740));
         angVel.OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis(MushMeshTools::kAxisYZ, speed * M_PI/650));
