@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } NakSYndAI0IrqBBZFk2p3g
 /*
- * $Id: AdanaxisPiecePlayer.cpp,v 1.16 2007/05/10 14:06:26 southa Exp $
+ * $Id: AdanaxisPiecePlayer.cpp,v 1.17 2007/05/12 14:20:48 southa Exp $
  * $Log: AdanaxisPiecePlayer.cpp,v $
+ * Revision 1.17  2007/05/12 14:20:48  southa
+ * Level 16
+ *
  * Revision 1.16  2007/05/10 14:06:26  southa
  * Level 16 and retina spin
  *
@@ -190,14 +193,15 @@ void
 AdanaxisPiecePlayer::PreControl(MushGameLogic& ioLogic)
 {
     PostWRef().VelWRef().ToAdditiveIdentitySet();
-    
-    tQValPair angVel = Post().AngPos().Conjugate();
-    
+
     AdanaxisSaveData& saveData = AdanaxisUtil::Logic(ioLogic).SaveData();
-    AdanaxisVolatileData& volData = AdanaxisUtil::Logic(ioLogic).VolatileData();
-    
+
     if (saveData.RetinaSpin() > 0.001)
     {
+        tQValPair angVel = Post().AngPos().Conjugate();
+        
+        AdanaxisVolatileData& volData = AdanaxisUtil::Logic(ioLogic).VolatileData();
+        
         tVal speed = saveData.RetinaSpin();
         angVel.OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis(MushMeshTools::kAxisXY, speed * M_PI/800));
         angVel.OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis(MushMeshTools::kAxisXZ, speed * M_PI/740));

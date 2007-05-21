@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } uRd/C67+BhB+F4sXUsaH6A
 /*
- * $Id: AdanaxisLogic.cpp,v 1.46 2007/04/21 09:41:06 southa Exp $
+ * $Id: AdanaxisLogic.cpp,v 1.47 2007/05/09 19:24:44 southa Exp $
  * $Log: AdanaxisLogic.cpp,v $
+ * Revision 1.47  2007/05/09 19:24:44  southa
+ * Level 14
+ *
  * Revision 1.46  2007/04/21 09:41:06  southa
  * Level work
  *
@@ -630,13 +633,17 @@ AdanaxisLogic::EffectorsFullCollide(void)
                 {
                     MushCollisionInfo collInfo;
                     MushCollisionResolver::Sgl().Resolve(collInfo, *p, *q);
-                    if (collInfo.SeparatingDistance() <= 0 && projOwner != q->Id())
+                    if (collInfo.SeparatingDistance() <= 0)
                     {
-                        collInfo.ObjectName1Set(p->Id());
-                        collInfo.ObjectName2Set(q->Id());
-                        collInfo.ObjectNamesValidSet(true);
-                        
-                        CollisionHandle(&*p, &*q, collInfo);
+                        // Rail effectors mustn't collide with their firer, but other effectors do
+                        if (!p->Rail() || projOwner != q->Id())
+                        {
+                            collInfo.ObjectName1Set(p->Id());
+                            collInfo.ObjectName2Set(q->Id());
+                            collInfo.ObjectNamesValidSet(true);
+                            
+                            CollisionHandle(&*p, &*q, collInfo);
+                        }
                     }
                 }
             }
