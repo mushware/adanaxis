@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } H4p36W9y6OtJCQWkz9j/3Q
 /*
- * $Id: AdanaxisPieceEffector.cpp,v 1.2 2006/11/14 20:28:37 southa Exp $
+ * $Id: AdanaxisPieceEffector.cpp,v 1.3 2007/04/18 09:22:01 southa Exp $
  * $Log: AdanaxisPieceEffector.cpp,v $
+ * Revision 1.3  2007/04/18 09:22:01  southa
+ * Header and level fixes
+ *
  * Revision 1.2  2006/11/14 20:28:37  southa
  * Added rail gun
  *
@@ -56,6 +59,8 @@ AdanaxisPieceEffector::~AdanaxisPieceEffector()
 void
 AdanaxisPieceEffector::Move(MushGameLogic& ioLogic, const tVal inFrameslice)
 {
+    MushGamePiece::Move(ioLogic, inFrameslice);
+
     PostWRef().InPlaceVelocityAdd();
     
     if (m_launchMsec == 0)
