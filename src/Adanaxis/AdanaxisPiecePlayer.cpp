@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } NakSYndAI0IrqBBZFk2p3g
 /*
- * $Id: AdanaxisPiecePlayer.cpp,v 1.17 2007/05/12 14:20:48 southa Exp $
+ * $Id: AdanaxisPiecePlayer.cpp,v 1.18 2007/05/21 17:04:43 southa Exp $
  * $Log: AdanaxisPiecePlayer.cpp,v $
+ * Revision 1.18  2007/05/21 17:04:43  southa
+ * Player effectors
+ *
  * Revision 1.17  2007/05/12 14:20:48  southa
  * Level 16
  *
@@ -192,20 +195,44 @@ AdanaxisPiecePlayer::~AdanaxisPiecePlayer()
 void
 AdanaxisPiecePlayer::PreControl(MushGameLogic& ioLogic)
 {
-    PostWRef().VelWRef().ToAdditiveIdentitySet();
-
+    if (m_controlReleased)
+    {
+        // Limit velocity only
+        tVal mag = Post().Vel().Magnitude();
+        if (mag > 1.0)
+        {
+            PostWRef().VelWRef() /= mag;
+        }
+    }
+    else
+    {
+        PostWRef().VelWRef().ToAdditiveIdentitySet();
+    }
+    
     AdanaxisSaveData& saveData = AdanaxisUtil::Logic(ioLogic).SaveData();
-
-    if (saveData.RetinaSpin() > 0.001)
+    tVal retinaSpin = saveData.RetinaSpin();
+    
+    if (m_controlReleased)
+    {
+        retinaSpin += 0.03;
+        MushcoreUtil::Constrain<tVal>(retinaSpin, 0.1, 10);
+        saveData.RetinaSpinSet(retinaSpin);
+    }
+    
+    if (retinaSpin > 0.001)
     {
         tQValPair angVel = Post().AngPos().Conjugate();
         
         AdanaxisVolatileData& volData = AdanaxisUtil::Logic(ioLogic).VolatileData();
         
-        tVal speed = saveData.RetinaSpin();
-        angVel.OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis(MushMeshTools::kAxisXY, speed * M_PI/800));
-        angVel.OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis(MushMeshTools::kAxisXZ, speed * M_PI/740));
-        angVel.OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis(MushMeshTools::kAxisYZ, speed * M_PI/650));
+        angVel.OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis(MushMeshTools::kAxisXY, retinaSpin * M_PI/800));
+        angVel.OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis(MushMeshTools::kAxisXZ, retinaSpin * M_PI/740));
+        angVel.OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis(MushMeshTools::kAxisYZ, retinaSpin * M_PI/650));
+        if (m_controlReleased)
+        {
+            angVel.OuterMultiplyBy(MushMeshTools::QuaternionRotateInAxis(MushMeshTools::kAxisXW, retinaSpin * M_PI/3000));
+        }
+        
         angVel.OuterMultiplyBy(Post().AngPos());
         angVel.InPlaceNormalise();
         PostWRef().AngVelSet(angVel);
@@ -265,12 +292,10 @@ AdanaxisPiecePlayer::AxisDeltaHandle(Mushware::tVal inDelta, Mushware::U32 inAxi
         }
 
         Post().AngPos().VectorRotate(vel);
-        if (vel.Magnitude() > 10.0)
+        if (vel.Magnitude() < 10.0)
         {
-            cout << "inDelta=" << inDelta << endl;
-            MUSHCOREASSERT(false);
+            PostWRef().VelWRef() += vel;
         }
-        PostWRef().VelWRef() += vel;
     }
     else
     {
@@ -361,6 +386,20 @@ AdanaxisPiecePlayer::ControlInfoConsume(MushGameLogic& ioLogic, const MushGameMe
     }
 }
 
+void
+AdanaxisPiecePlayer::Load(Mushware::tRubyValue inSelf)
+{
+    MushGamePiece::Load(inSelf);
+    MushRubyUtil::InstanceVarSet(inSelf, AdanaxisIntern::Sgl().ATm_controlReleased(), MushRubyValue(m_controlReleased).Value());    
+}
+
+void
+AdanaxisPiecePlayer::Save(Mushware::tRubyValue inSelf)
+{
+    MushGamePiece::Save(inSelf);
+    m_controlReleased = MushRubyValue(MushRubyUtil::InstanceVar(inSelf, AdanaxisIntern::Sgl().ATm_controlReleased())).Bool();
+}
+
 Mushware::tRubyValue
 AdanaxisPiecePlayer::RubyCreate(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0)
 {
@@ -447,7 +486,8 @@ AdanaxisPiecePlayer::AutoPrint(std::ostream& ioOut) const
     MushGamePiecePlayer::AutoPrint(ioOut);
     ioOut << "lastAxes=" << m_lastAxes << ", ";
     ioOut << "lastAxisValid=" << m_lastAxisValid << ", ";
-    ioOut << "projectileMeshRef=" << m_projectileMeshRef;
+    ioOut << "projectileMeshRef=" << m_projectileMeshRef << ", ";
+    ioOut << "controlReleased=" << m_controlReleased;
     ioOut << "]";
 }
 bool
@@ -471,6 +511,10 @@ AdanaxisPiecePlayer::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::str
     {
         ioIn >> m_projectileMeshRef;
     }
+    else if (inTagStr == "controlReleased")
+    {
+        ioIn >> m_controlReleased;
+    }
     else if (MushGamePiecePlayer::AutoXMLDataProcess(ioIn, inTagStr))
     {
         // Tag consumed by base class
@@ -491,5 +535,7 @@ AdanaxisPiecePlayer::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_lastAxisValid;
     ioOut.TagSet("projectileMeshRef");
     ioOut << m_projectileMeshRef;
+    ioOut.TagSet("controlReleased");
+    ioOut << m_controlReleased;
 }
-//%outOfLineFunctions } WcArcTkDTA8IQuMVJMnmWA
+//%outOfLineFunctions } 4txW8eKkdKTh2IfH/cC3jw

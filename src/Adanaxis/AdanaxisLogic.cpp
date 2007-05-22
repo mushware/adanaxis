@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } uRd/C67+BhB+F4sXUsaH6A
 /*
- * $Id: AdanaxisLogic.cpp,v 1.47 2007/05/09 19:24:44 southa Exp $
+ * $Id: AdanaxisLogic.cpp,v 1.48 2007/05/21 17:04:43 southa Exp $
  * $Log: AdanaxisLogic.cpp,v $
+ * Revision 1.48  2007/05/21 17:04:43  southa
+ * Player effectors
+ *
  * Revision 1.47  2007/05/09 19:24:44  southa
  * Level 14
  *
@@ -666,6 +669,22 @@ AdanaxisLogic::MoveSequence(void)
 void
 AdanaxisLogic::CollideSequence(void)
 {
+    // Reset the player 'colliding with effector' flags
+    typedef MushcoreMaptor<MushGamePiecePlayer>::iterator tIterator;
+    MushcoreMaptor<MushGamePiecePlayer>& playerData = SaveData().PlayersListWRef();
+    for (tIterator p = playerData.begin(); p != playerData.end(); ++p)
+    {
+        AdanaxisPiecePlayer *pPlayer = dynamic_cast<AdanaxisPiecePlayer *>(&*p);
+        if (pPlayer != NULL)
+        {
+            pPlayer->ControlReleasedSet(false);
+        }
+        else
+        {
+            cout << "p" << endl;
+        }
+    }
+    
     MushCollisionResolver::Sgl().FrameMsecSet(VolatileData().FrameMsec());
     KhaziKhaziFullCollide();
     ProjectilesKhaziFullCollide();

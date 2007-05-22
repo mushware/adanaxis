@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } z6y+VPxApqJcYE3m9Z996A
 /*
- * $Id: AdanaxisPiecePlayer.h,v 1.7 2007/04/16 08:41:08 southa Exp $
+ * $Id: AdanaxisPiecePlayer.h,v 1.8 2007/04/18 09:22:02 southa Exp $
  * $Log: AdanaxisPiecePlayer.h,v $
+ * Revision 1.8  2007/04/18 09:22:02  southa
+ * Header and level fixes
+ *
  * Revision 1.7  2007/04/16 08:41:08  southa
  * Level and header mods
  *
@@ -102,11 +105,9 @@ public:
     virtual void AxisDeltaHandle(Mushware::tVal inDelta, Mushware::U32 inAxisNum);
     virtual void KeyChangeHandle(MushGameLogic& ioLogic, bool inState, Mushware::U32 inKeyNum);
     virtual void ControlInfoConsume(MushGameLogic& ioLogic, const MushGameMessageControlInfo& inMessage);
-#if 0
-    virtual void FirePieceCreate(MushGameLogic& ioLogic, const MushGameMessageFire& inMessage);
-    virtual void FireConsume(MushGameLogic& ioLogic, const MushGameMessageFire& inMessage);
-#endif
     
+    virtual void Load(Mushware::tRubyValue inSelf);
+    virtual void Save(Mushware::tRubyValue inSelf);
     static Mushware::tRubyValue RubyCreate(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
     
     static Mushware::tRubyValue Klass(void);
@@ -116,11 +117,14 @@ private:
     std::vector<Mushware::tVal> m_lastAxes;
     std::vector<bool> m_lastAxisValid;
 	MushcoreDataRef<MushMesh4Mesh> m_projectileMeshRef;
-
+    bool m_controlReleased; //:readwrite
+    
     static Mushware::tRubyValue m_rubyKlass; // Must duplicate this in derived classes
 
 //%classPrototypes {
 public:
+    const bool& ControlReleased(void) const { return m_controlReleased; }
+    void ControlReleasedSet(const bool& inValue) { m_controlReleased=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -128,7 +132,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } 1oBgFruy5qHAaudtV+Hcmg
+//%classPrototypes } iMR/VnJlAmkxTbPpXgji+Q
 };
 //%inlineHeader {
 inline std::ostream&
