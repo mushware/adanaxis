@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } ByFmTdqjKsHzSPC2ZgYt3A
 /*
- * $Id: AdanaxisPieceItem.h,v 1.3 2006/10/30 17:03:51 southa Exp $
+ * $Id: AdanaxisPieceItem.h,v 1.4 2007/04/18 09:22:02 southa Exp $
  * $Log: AdanaxisPieceItem.h,v $
+ * Revision 1.4  2007/04/18 09:22:02  southa
+ * Header and level fixes
+ *
  * Revision 1.3  2006/10/30 17:03:51  southa
  * Remnants creation
  *
@@ -65,12 +68,15 @@ public:
     static void RubyInstall(void);
     
 private:
+    std::string m_owner; //:readwrite
     Mushware::tMsec m_lifeMsec; //:readwrite
     Mushware::tMsec m_creationMsec; //:readwrite
     
     static Mushware::tRubyValue m_rubyKlass; // Must duplicate this in derived classes
 //%classPrototypes {
 public:
+    const std::string& Owner(void) const { return m_owner; }
+    void OwnerSet(const std::string& inValue) { m_owner=inValue; }
     const Mushware::tMsec& LifeMsec(void) const { return m_lifeMsec; }
     void LifeMsecSet(const Mushware::tMsec& inValue) { m_lifeMsec=inValue; }
     const Mushware::tMsec& CreationMsec(void) const { return m_creationMsec; }
@@ -82,7 +88,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } eqNPlXHhLU0vcGHYgWj9tw
+//%classPrototypes } 9X9ffiZuoqSSscug7FGgYQ
 };
 //%inlineHeader {
 inline std::ostream&

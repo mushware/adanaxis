@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } QQWttx3M2Tr+DqRsk1jhWg
 /*
- * $Id: AdanaxisPieceItem.cpp,v 1.2 2006/10/30 17:03:51 southa Exp $
+ * $Id: AdanaxisPieceItem.cpp,v 1.3 2007/04/18 09:22:02 southa Exp $
  * $Log: AdanaxisPieceItem.cpp,v $
+ * Revision 1.3  2007/04/18 09:22:02  southa
+ * Header and level fixes
+ *
  * Revision 1.2  2006/10/30 17:03:51  southa
  * Remnants creation
  *
@@ -98,6 +101,7 @@ void
 AdanaxisPieceItem::Load(Mushware::tRubyValue inSelf)
 {
     MushGamePiece::Load(inSelf);
+    MushRubyUtil::InstanceVarSet(inSelf, MushRubyIntern::ATm_owner(), MushRubyValue(m_owner).Value());    
     MushRubyUtil::InstanceVarSet(inSelf, MushRubyIntern::ATm_lifeMsec(), MushRubyValue(static_cast<U32>(m_lifeMsec)).Value());    
 }
 
@@ -105,6 +109,7 @@ void
 AdanaxisPieceItem::Save(Mushware::tRubyValue inSelf)
 {
     MushGamePiece::Save(inSelf);
+    m_owner = MushRubyValue(MushRubyUtil::InstanceVar(inSelf, MushRubyIntern::ATm_owner())).String();
     m_lifeMsec = MushRubyValue(MushRubyUtil::InstanceVar(inSelf, MushRubyIntern::ATm_lifeMsec())).U32();
 }
 
@@ -191,6 +196,7 @@ AdanaxisPieceItem::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
     MushGamePiece::AutoPrint(ioOut);
+    ioOut << "owner=" << m_owner << ", ";
     ioOut << "lifeMsec=" << m_lifeMsec << ", ";
     ioOut << "creationMsec=" << m_creationMsec;
     ioOut << "]";
@@ -203,6 +209,10 @@ AdanaxisPieceItem::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::strin
         AutoInputPrologue(ioIn);
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
+    }
+    else if (inTagStr == "owner")
+    {
+        ioIn >> m_owner;
     }
     else if (inTagStr == "lifeMsec")
     {
@@ -226,9 +236,11 @@ void
 AdanaxisPieceItem::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
     MushGamePiece::AutoXMLPrint(ioOut);
+    ioOut.TagSet("owner");
+    ioOut << m_owner;
     ioOut.TagSet("lifeMsec");
     ioOut << m_lifeMsec;
     ioOut.TagSet("creationMsec");
     ioOut << m_creationMsec;
 }
-//%outOfLineFunctions } 9DTORHF8EF+Z7rqnzJ/2MA
+//%outOfLineFunctions } YZeoSe0OKVGJGl8rrDlMSA

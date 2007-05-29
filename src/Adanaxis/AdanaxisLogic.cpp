@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } uRd/C67+BhB+F4sXUsaH6A
 /*
- * $Id: AdanaxisLogic.cpp,v 1.48 2007/05/21 17:04:43 southa Exp $
+ * $Id: AdanaxisLogic.cpp,v 1.49 2007/05/22 12:59:09 southa Exp $
  * $Log: AdanaxisLogic.cpp,v $
+ * Revision 1.49  2007/05/22 12:59:09  southa
+ * Vortex effect on player
+ *
  * Revision 1.48  2007/05/21 17:04:43  southa
  * Player effectors
  *
@@ -558,6 +561,42 @@ AdanaxisLogic::ItemsPlayersFullCollide(void)
 }
 
 void
+AdanaxisLogic::ItemsKhaziFullCollide(void)
+{
+    typedef AdanaxisSaveData::tItemList tList1;
+    typedef AdanaxisSaveData::tKhaziList tList2;
+    
+    const tList1& list1Ref = SaveData().ItemList();
+    const tList2& list2Ref = SaveData().KhaziList();
+    
+    tList1::const_iterator list1EndIter = list1Ref.end();
+    tList2::const_iterator list2EndIter = list2Ref.end();
+    for (tList1::const_iterator p = list1Ref.begin(); p != list1EndIter; ++p)
+    {
+        std::string itemOwner = p->Owner();
+        if (!p->ExpireFlag())
+        {
+            for (tList2::const_iterator q = list2Ref.begin(); q != list2EndIter; ++q)
+            {
+                if (!q->ExpireFlag() && itemOwner != q->Id())
+                {
+                    MushCollisionInfo collInfo;
+                    MushCollisionResolver::Sgl().Resolve(collInfo, *p, *q);
+                    if (collInfo.SeparatingDistance() <= 0)
+                    {
+                        collInfo.ObjectName1Set(p->Id());
+                        collInfo.ObjectName2Set(q->Id());
+                        collInfo.ObjectNamesValidSet(true);
+                        
+                        CollisionHandle(&*p, &*q, collInfo);
+                    }
+                }
+            }
+        }
+    }
+}
+
+void
 AdanaxisLogic::ProjectilesItemsFullCollide(void)
 {
     typedef AdanaxisSaveData::tItemList tList1;
@@ -691,6 +730,7 @@ AdanaxisLogic::CollideSequence(void)
     ProjectilesPlayersFullCollide();
     KhaziPlayersFullCollide();
     ItemsPlayersFullCollide();
+    ItemsKhaziFullCollide();
     ProjectilesItemsFullCollide();
     
     /* Effectors must be last.  Only effectors can be created in the previous

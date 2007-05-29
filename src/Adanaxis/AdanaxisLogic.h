@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } l12bxr2fvEaGs7sGC0AACg
 /*
- * $Id: AdanaxisLogic.h,v 1.30 2007/04/16 08:41:08 southa Exp $
+ * $Id: AdanaxisLogic.h,v 1.31 2007/04/18 09:22:01 southa Exp $
  * $Log: AdanaxisLogic.h,v $
+ * Revision 1.31  2007/04/18 09:22:01  southa
+ * Header and level fixes
+ *
  * Revision 1.30  2007/04/16 08:41:08  southa
  * Level and header mods
  *
@@ -154,6 +157,7 @@ public:
     virtual void ProjectilesPlayersFullCollide(void);
     virtual void KhaziPlayersFullCollide(void);
     virtual void ItemsPlayersFullCollide(void);
+    virtual void ItemsKhaziFullCollide(void);
     virtual void ProjectilesItemsFullCollide(void);
     virtual void EffectorsFullCollide(void);    
     virtual void MenuModeEnter(void);
