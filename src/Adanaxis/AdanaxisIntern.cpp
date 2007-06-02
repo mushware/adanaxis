@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } wnzZwEQ6yC0/EOblAes+2Q
 /*
- * $Id: AdanaxisIntern.cpp,v 1.24 2007/05/09 19:24:44 southa Exp $
+ * $Id: AdanaxisIntern.cpp,v 1.25 2007/05/22 12:59:09 southa Exp $
  * $Log: AdanaxisIntern.cpp,v $
+ * Revision 1.25  2007/05/22 12:59:09  southa
+ * Vortex effect on player
+ *
  * Revision 1.24  2007/05/09 19:24:44  southa
  * Level 14
  *
@@ -126,9 +129,11 @@ AdanaxisIntern::AdanaxisIntern()
     m_mHandlePrecacheEnd = MushRubyIntern::SymbolID("mHandlePrecacheEnd");
     m_mJammersEliminated = MushRubyIntern::SymbolID("mJammersEliminated");
     m_mKhaziCountUpdate = MushRubyIntern::SymbolID("mKhaziCountUpdate");
+    m_mLoad = MushRubyIntern::SymbolID("mLoad");
     m_mMenuRender = MushRubyIntern::SymbolID("mMenuRender");
     m_mReceiveSequence = MushRubyIntern::SymbolID("mReceiveSequence");
     m_mRender = MushRubyIntern::SymbolID("mRender");
-//%initialisations } 260d4f51775aa56a81dd6bae8a39cf76
+    m_mSpaceNameSet = MushRubyIntern::SymbolID("mSpaceNameSet");
+//%initialisations } e51c700407da058de4fc2cbd8975c468
 }
  

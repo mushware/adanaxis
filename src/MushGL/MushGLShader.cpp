@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } XuVkaJqZePwJzcZ7Cr975Q
 /*
- * $Id: MushGLShader.cpp,v 1.8 2006/11/14 14:02:16 southa Exp $
+ * $Id: MushGLShader.cpp,v 1.9 2007/04/18 09:22:36 southa Exp $
  * $Log: MushGLShader.cpp,v $
+ * Revision 1.9  2007/04/18 09:22:36  southa
+ * Header and level fixes
+ *
  * Revision 1.8  2006/11/14 14:02:16  southa
  * Ball projectiles
  *
@@ -353,7 +356,8 @@ MushGLShader::Make(void)
     {
         m_vertexShaderHandle = MushGLV::Sgl().CreateShaderObject(GL_VERTEX_SHADER_ARB);
     }
-    if (m_programHandle == kGLHandleNull)
+    if (m_programHandle == kGLHandleNull && (m_fragmentShaderHandle != kGLHandleNull ||
+                                             m_vertexShaderHandle != kGLHandleNull))
     {
         m_programHandle = MushGLV::Sgl().CreateProgramObject();
     }
@@ -432,54 +436,57 @@ MushGLShader::Make(void)
     
     MushGLUtil::ThrowIfGLError("Attaching shader objects to program");
     
-    MushGLV::Sgl().LinkProgram(m_programHandle);
-    
-    std::string infoLog = InfoLogGet(m_programHandle);
-    
-    if (!LinkStatusGet(m_programHandle))
+    if (m_programHandle != kGLHandleNull)
     {
-#ifdef MUSHCORE_DEBUG
-        Dump(MushcoreLog::Sgl().ErrorLog());
-#endif
-        throw MushcoreSyntaxFail("Shader linker failed: " + infoLog);
-    }
-    if (infoLog != "")
-    {
-        MushcoreLog::Sgl().InfoLog() << "Shader link info:" << endl;
-        MushcoreLog::Sgl().InfoLog() << infoLog << endl;
-    }
-    
-    MushGLUtil::ThrowIfGLError("Linking shader");
-    
-#ifdef MUSHCORE_DEBUG
-    MushGLV::Sgl().ValidateProgram(m_programHandle);
-    
-    infoLog = InfoLogGet(m_programHandle);
-    
-    if (!ValidateStatusGet(m_programHandle))
-    {
-        Dump(MushcoreLog::Sgl().ErrorLog());
-        throw MushcoreSyntaxFail("Shader validation failed: " + infoLog);
-    }
-    if (infoLog != "")
-    {
-        MushcoreLog::Sgl().InfoLog() << "Shader validation info:" << endl;
-        MushcoreLog::Sgl().InfoLog() << infoLog << endl;
-    } 
-#endif
-    
-    // Read standard uniform variable locations
-    m_mush_ProjectionOffset = UniformLocationGet("mush_ProjectionOffset");
-    m_mush_ModelViewOffset = UniformLocationGet("mush_ModelViewOffset");
-    m_mush_ModelViewProjectionOffset = UniformLocationGet("mush_ModelViewProjectionOffset");
-    m_mush_FValue = UniformLocationGet("mush_FValue");
-    
-    m_mush_Colours.resize(kNumColourAttrib);
-    for (U32 i=0; i<m_mush_Colours.size(); ++i)
-    {
-        ostringstream nameStream;
-        nameStream << "mush_Colour" << i;
-        m_mush_Colours[i] = UniformLocationGet(nameStream.str());
+        MushGLV::Sgl().LinkProgram(m_programHandle);
+        
+        std::string infoLog = InfoLogGet(m_programHandle);
+        
+        if (!LinkStatusGet(m_programHandle))
+        {
+    #ifdef MUSHCORE_DEBUG
+            Dump(MushcoreLog::Sgl().ErrorLog());
+    #endif
+            throw MushcoreSyntaxFail("Shader linker failed: " + infoLog);
+        }
+        if (infoLog != "")
+        {
+            MushcoreLog::Sgl().InfoLog() << "Shader link info:" << endl;
+            MushcoreLog::Sgl().InfoLog() << infoLog << endl;
+        }
+        
+        MushGLUtil::ThrowIfGLError("Linking shader");
+        
+    #ifdef MUSHCORE_DEBUG
+        MushGLV::Sgl().ValidateProgram(m_programHandle);
+        
+        infoLog = InfoLogGet(m_programHandle);
+        
+        if (!ValidateStatusGet(m_programHandle))
+        {
+            Dump(MushcoreLog::Sgl().ErrorLog());
+            throw MushcoreSyntaxFail("Shader validation failed: " + infoLog);
+        }
+        if (infoLog != "")
+        {
+            MushcoreLog::Sgl().InfoLog() << "Shader validation info:" << endl;
+            MushcoreLog::Sgl().InfoLog() << infoLog << endl;
+        } 
+    #endif
+        
+        // Read standard uniform variable locations
+        m_mush_ProjectionOffset = UniformLocationGet("mush_ProjectionOffset");
+        m_mush_ModelViewOffset = UniformLocationGet("mush_ModelViewOffset");
+        m_mush_ModelViewProjectionOffset = UniformLocationGet("mush_ModelViewProjectionOffset");
+        m_mush_FValue = UniformLocationGet("mush_FValue");
+        
+        m_mush_Colours.resize(kNumColourAttrib);
+        for (U32 i=0; i<m_mush_Colours.size(); ++i)
+        {
+            ostringstream nameStream;
+            nameStream << "mush_Colour" << i;
+            m_mush_Colours[i] = UniformLocationGet(nameStream.str());
+        }
     }
     
     m_made = true;

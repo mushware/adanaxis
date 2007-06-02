@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } BykXag7toLifUzC7TJBKug
 /*
- * $Id: MushGLState.cpp,v 1.9 2007/04/18 09:22:36 southa Exp $
+ * $Id: MushGLState.cpp,v 1.10 2007/04/18 12:44:38 southa Exp $
  * $Log: MushGLState.cpp,v $
+ * Revision 1.10  2007/04/18 12:44:38  southa
+ * Cache purge fix and pre-release tweaks
+ *
  * Revision 1.9  2007/04/18 09:22:36  southa
  * Header and level fixes
  *
@@ -87,6 +90,8 @@ MushGLState::InvalidateAll(void)
 void
 MushGLState::Reset(void)
 {
+    static bool resetErrorLogged = false;
+    
     ArraysDisable();
     for (Mushware::U32 i=0; i<m_textureStates.size(); ++i)
     {
@@ -96,7 +101,22 @@ MushGLState::Reset(void)
     ClientActiveTextureZeroBased(0);
     if (MushGLV::Sgl().HasShader())
     {
-        m_standardShader.WRef().Bind();
+        try
+        {
+            m_standardShader.WRef().Bind();
+        }
+        catch (std::exception& e)
+        {
+            if (!resetErrorLogged)
+            {
+                MushcoreLog::Sgl().WarningLog() << "Shader binding failed in reset: " << e.what() << endl;
+                m_standardShader.WRef().Dump(MushcoreLog::Sgl().WarningLog());
+                MushcoreLog::Sgl().WarningLog() << "(This error is reported once only)" << endl;
+                resetErrorLogged = true;
+                
+                // Ignore error - shader test will catch this problem
+            }
+        }    
     }
 }
 

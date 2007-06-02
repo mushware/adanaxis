@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } dNl5b1jvSO1JXx9Bo8kgEw
 /*
- * $Id: AdanaxisInfo.cpp,v 1.8 2007/04/16 08:41:08 southa Exp $
+ * $Id: AdanaxisInfo.cpp,v 1.9 2007/04/18 09:22:00 southa Exp $
  * $Log: AdanaxisInfo.cpp,v $
+ * Revision 1.9  2007/04/18 09:22:00  southa
+ * Header and level fixes
+ *
  * Revision 1.8  2007/04/16 08:41:08  southa
  * Level and header mods
  *
@@ -52,7 +55,7 @@
 #endif
 
 #ifndef VERSION
-#define VERSION "0.7.0"
+#define VERSION "0.7.2"
 #endif
 
 #include "AdanaxisSTL.h"

@@ -1,3 +1,8 @@
+2007-06-02  Andy Southgate <andy.southgate@mushware.com>
+	* Version 0.7.2 released
+    * Fixed control configuration
+    * Fixed shader binding error at startup on some hardware
+    
 2007-04-20  Andy Southgate <andy.southgate@mushware.com>
 	* Version 0.7.0 released
     * Weapons and gameplay

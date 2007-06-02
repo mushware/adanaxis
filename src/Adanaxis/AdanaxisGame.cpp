@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } ugKqE0KA5pb38rpJeXIe0g
 /*
- * $Id: AdanaxisGame.cpp,v 1.67 2007/04/21 09:41:06 southa Exp $
+ * $Id: AdanaxisGame.cpp,v 1.68 2007/05/10 14:06:26 southa Exp $
  * $Log: AdanaxisGame.cpp,v $
+ * Revision 1.68  2007/05/10 14:06:26  southa
+ * Level 16 and retina spin
+ *
  * Revision 1.67  2007/04/21 09:41:06  southa
  * Level work
  *
@@ -226,6 +229,7 @@
 
 #include "AdanaxisAppHandler.h"
 #include "AdanaxisClient.h"
+#include "AdanaxisIntern.h"
 #include "AdanaxisMeshLibrary.h"
 #include "AdanaxisRecords.h"
 #include "AdanaxisRender.h"
@@ -369,16 +373,32 @@ AdanaxisGame::Init(MushGameAppHandler& inAppHandler)
 
     UpdateFromConfig();
     
-    SaveData().GameDifficultySet(AdanaxisUtil::Config().ConfigDifficulty()); // 
-	VolatileData().RubyGameSet(MushRubyExec::Sgl().Call("$currentGame.mLoad"));
-	VolatileData().RubyLogicSet(MushRubyExec::Sgl().Eval("$currentLogic"));
-	VolatileData().RubySpaceSet(MushRubyExec::Sgl().Call("$currentGame.mSpace"));
-	MushRubyExec::Sgl().Call(VolatileData().RubySpace(), "mInitialPiecesCreate");
-	VolatileData().IsMenuBackdropSet(MushRubyExec::Sgl().Call(VolatileData().RubySpace(), "mIsMenuBackdrop").Bool());
+    SaveData().GameDifficultySet(AdanaxisUtil::Config().ConfigDifficulty());
+
+    try
+    {
+        VolatileData().RubyGameSet(MushRubyExec::Sgl().Eval("$currentGame"));
+        VolatileData().RubyGame().Call(AdanaxisIntern::Sgl().mLoad());
+    }
+    catch (MushRubyFail& e)
+    {
+        MushcoreLog::Sgl().ErrorLog() << "Game failed to initialise: " << e.what() << endl;
+#ifdef MUSHCORE_DEBUG
+        throw;
+#else
+        MushRubyExec::Sgl().Call(VolatileData().RubyGame(), AdanaxisIntern::Sgl().mSpaceNameSet(), MushRubyValue("menu1"));
+        VolatileData().RubyGame().Call(AdanaxisIntern::Sgl().mLoad());
+        MushGameDialogueUtils::NamedDialoguesAdd(SaveData().DialoguesWRef(), "^levelfailed");
+#endif
+    }
+    VolatileData().RubyLogicSet(MushRubyExec::Sgl().Eval("$currentLogic"));
+    VolatileData().RubySpaceSet(MushRubyExec::Sgl().Call("$currentGame.mSpace"));
+    MushRubyExec::Sgl().Call(VolatileData().RubySpace(), "mInitialPiecesCreate");
+    VolatileData().IsMenuBackdropSet(MushRubyExec::Sgl().Call(VolatileData().RubySpace(), "mIsMenuBackdrop").Bool());
     SaveData().SpaceNameSet(MushRubyExec::Sgl().Call("$currentGame.mSpaceName").String());
     SaveData().PrimaryTypeSet(MushRubyExec::Sgl().Call(VolatileData().RubySpace(), "mPrimary").U32());
     SaveData().RetinaSpinSet(MushRubyExec::Sgl().Call(VolatileData().RubySpace(), "mRetinaSpin").Val());
-    
+
 	AdanaxisUtil::MissingSkinsCreate(Logic());
     //AdanaxisUtil::MeshPurge(Logic());
 

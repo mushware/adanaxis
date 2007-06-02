@@ -9,8 +9,11 @@
 #
 ##############################################################################
 #
-# $Id: MakeRelease.sh,v 1.12 2007/03/13 22:56:46 southa Exp $
+# $Id: MakeRelease.sh,v 1.13 2007/04/19 12:57:57 southa Exp $
 # $Log: MakeRelease.sh,v $
+# Revision 1.13  2007/04/19 12:57:57  southa
+# Prerelease work
+#
 # Revision 1.12  2007/03/13 22:56:46  southa
 # Release work
 #
@@ -50,9 +53,9 @@
 
 # Script for generating the Mac OS X release
 
-if test "x$5" = "x"
+if test "x$6" = "x"
 then
-echo "Usage: $0 <name> <package name> <version> <build directory> <data directory>"
+echo "Usage: $0 <name> <package name> <version> <build directory> <data directory> <demo flag>"
 exit 1
 fi
 
@@ -64,8 +67,15 @@ datadir="$5"
 releasedir="release/$name"
 readmedir="release/$name"
 sourceapp="$builddir/$name.app"
-appdir="$releasedir/$name.app"
+appdir="$releasedir/$name $version.app"
 resourcesdir="$appdir/Contents/Resources/mushware-resources"
+if [ "$6" = "1" ]; then
+  demo=1
+  imageSuffix="-demo"
+else
+  demo=0
+  imageSuffix="-full"
+fi
 
 SetFile="/Developer/Tools/SetFile"
 
@@ -87,6 +97,11 @@ find "$resourcesdir" -name 'Makefile*' -exec rm -f "{}" \;
 rm -rf "$resourcesdir/mushware-cache"
 rm -rf "$resourcesdir/pixelsrc"
 rm -rf "$resourcesdir/wavesrc"
+
+if [ $demo == 1 ]; then
+  ruby scripts/MakeDemo.rb "$releasedir" "$resourcesdir"
+  if [ "$?" -ne "0" ]; then exit 1; fi
+fi
 
 cp "$resourcesdir/system/start.txt" "$resourcesdir/system/start_backup.txt"
 
@@ -115,8 +130,8 @@ find "${releasedir}" -perm +0100 -exec chmod 0777 "{}" \;
 find "${releasedir}" -false -perm +0100 -exec chmod 0666 "{}" \;
 
 echo Bulding disk image
-imagename="release/$package-macosx-$version.dmg"
-tempimagename="release/temp_$package-macosx-$version.dmg"
+imagename="release/${package}$imageSuffix-macosx-$version.dmg"
+tempimagename="release/temp_${package}$imageSuffix-macosx-$version.dmg"
 rm -f "${tempimagename}" "${imagename}"
 hdiutil create -ov -anyowners -fs HFS+ -srcFolder "${releasedir}" "${tempimagename}"
 hdiutil convert -ov -format UDZO -o "${imagename}" "${tempimagename}"

@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } 0SJ9cZfTfFGwh/elmExZag
 /*
- * $Id: AdanaxisIntern.h,v 1.27 2007/05/09 19:24:44 southa Exp $
+ * $Id: AdanaxisIntern.h,v 1.28 2007/05/22 12:59:09 southa Exp $
  * $Log: AdanaxisIntern.h,v $
+ * Revision 1.28  2007/05/22 12:59:09  southa
+ * Vortex effect on player
+ *
  * Revision 1.27  2007/05/09 19:24:44  southa
  * Level 14
  *
@@ -128,9 +131,11 @@
     mHandlePrecacheEnd
     mJammersEliminated
     mKhaziCountUpdate
+    mLoad
     mMenuRender
     mReceiveSequence
     mRender
+    mSpaceNameSet
   }
   classes = %w{
     AdanaxisEventFire
@@ -176,9 +181,11 @@ public:
     Mushware::tRubyID mHandlePrecacheEnd(void) { return m_mHandlePrecacheEnd; }
     Mushware::tRubyID mJammersEliminated(void) { return m_mJammersEliminated; }
     Mushware::tRubyID mKhaziCountUpdate(void) { return m_mKhaziCountUpdate; }
+    Mushware::tRubyID mLoad(void) { return m_mLoad; }
     Mushware::tRubyID mMenuRender(void) { return m_mMenuRender; }
     Mushware::tRubyID mReceiveSequence(void) { return m_mReceiveSequence; }
     Mushware::tRubyID mRender(void) { return m_mRender; }
+    Mushware::tRubyID mSpaceNameSet(void) { return m_mSpaceNameSet; }
 private:
     MushRubyValue m_klassAdanaxisEventFire;
     MushRubyValue m_klassAdanaxisEventKeyState;
@@ -204,10 +211,12 @@ private:
     Mushware::tRubyID m_mHandlePrecacheEnd;
     Mushware::tRubyID m_mJammersEliminated;
     Mushware::tRubyID m_mKhaziCountUpdate;
+    Mushware::tRubyID m_mLoad;
     Mushware::tRubyID m_mMenuRender;
     Mushware::tRubyID m_mReceiveSequence;
     Mushware::tRubyID m_mRender;
-//%declarations } 6b741ea1e4788a907309b33186239efa
+    Mushware::tRubyID m_mSpaceNameSet;
+//%declarations } 04f55751597c1f12538e9bfb4af628d0
 
 //%classPrototypes {
 public:

@@ -3575,6 +3575,10 @@
 		7A6962C00BE1F96200BEBE0D /* space.rb */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.ruby; path = space.rb; sourceTree = "<group>"; };
 		7A69654D0BAECF5C00344F3A /* AdanaxisVTools.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AdanaxisVTools.rb; sourceTree = "<group>"; };
 		7A6975DD0BA6ADA1008DCB62 /* AdanaxisScanner.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AdanaxisScanner.rb; sourceTree = "<group>"; };
+		7A697E040C119AA40053A2F2 /* MakeDemo.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = MakeDemo.rb; sourceTree = "<group>"; };
+		7A697E2E0C11B7B80053A2F2 /* manifest.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = manifest.txt; sourceTree = "<group>"; };
+		7A697EC50C11C4180053A2F2 /* dialogues.xml */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; path = dialogues.xml; sourceTree = "<group>"; };
+		7A697EC60C11C4180053A2F2 /* space.rb */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.ruby; path = space.rb; sourceTree = "<group>"; };
 		7A6993210BB4402300D0FC67 /* AdanaxisAIKhaziCarrier.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AdanaxisAIKhaziCarrier.rb; sourceTree = "<group>"; };
 		7A69B0610BF869D00068A5BC /* dialogues.xml */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; path = dialogues.xml; sourceTree = "<group>"; };
 		7A69B0620BF869D00068A5BC /* manifest.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = manifest.txt; sourceTree = "<group>"; };
@@ -3608,6 +3612,9 @@
 		7A6C683F0BEA7DFF00A37F64 /* manifest.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = manifest.txt; sourceTree = "<group>"; };
 		7A6C68400BEA7DFF00A37F64 /* space.rb */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.ruby; path = space.rb; sourceTree = "<group>"; };
 		7A6C68610BEA837300A37F64 /* AdanaxisAIKhaziVendor.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AdanaxisAIKhaziVendor.rb; sourceTree = "<group>"; };
+		7A6C68ED0C0EE76600F2FC8B /* dialogues.xml */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; path = dialogues.xml; sourceTree = "<group>"; };
+		7A6C68EE0C0EE76600F2FC8B /* manifest.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = manifest.txt; sourceTree = "<group>"; };
+		7A6C68EF0C0EE76700F2FC8B /* space.rb */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.ruby; path = space.rb; sourceTree = "<group>"; };
 		7A6CE13405A5899B00777D9B /* MushPiePiece.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushPiePiece.h; sourceTree = "<group>"; };
 		7A6CE13505A5899B00777D9B /* MushPiePiece.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushPiePiece.cpp; sourceTree = "<group>"; };
 		7A6CE19E05A58DF000777D9B /* autogen.pl */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.perl; name = autogen.pl; path = ../autogen.pl; sourceTree = "<group>"; };
@@ -4513,6 +4520,8 @@
 				7A69B0600BF869D00068A5BC /* level18 */,
 				7A92840D0C05EF27004275C0 /* level19 */,
 				7A69CE7B0C09BF0000632812 /* level20 */,
+				7A6C68EC0C0EE76600F2FC8B /* level21 */,
+				7A697E2D0C11B7B80053A2F2 /* level22 */,
 				7A3E0D1B0A4821C10078B650 /* local1 */,
 				7A97ECE80A6A808600369FD6 /* local2 */,
 				7A6176830A7FB32F00B97CA2 /* local3 */,
@@ -6042,6 +6051,16 @@
 			path = level10;
 			sourceTree = "<group>";
 		};
+		7A697E2D0C11B7B80053A2F2 /* level22 */ = {
+			isa = PBXGroup;
+			children = (
+				7A697EC50C11C4180053A2F2 /* dialogues.xml */,
+				7A697EC60C11C4180053A2F2 /* space.rb */,
+				7A697E2E0C11B7B80053A2F2 /* manifest.txt */,
+			);
+			path = level22;
+			sourceTree = "<group>";
+		};
 		7A69B0600BF869D00068A5BC /* level18 */ = {
 			isa = PBXGroup;
 			children = (
@@ -6092,6 +6111,16 @@
 			path = level12;
 			sourceTree = "<group>";
 		};
+		7A6C68EC0C0EE76600F2FC8B /* level21 */ = {
+			isa = PBXGroup;
+			children = (
+				7A6C68ED0C0EE76600F2FC8B /* dialogues.xml */,
+				7A6C68EE0C0EE76600F2FC8B /* manifest.txt */,
+				7A6C68EF0C0EE76700F2FC8B /* space.rb */,
+			);
+			path = level21;
+			sourceTree = "<group>";
+		};
 		7A6CE19605A58DB000777D9B /* scripts */ = {
 			isa = PBXGroup;
 			children = (
@@ -6101,6 +6130,7 @@
 				7AB661DE083BEDF0009D477D /* CopyLibs.sh */,
 				7A59A5D60AFDC15B00ABD3E5 /* FileMush.rb */,
 				7A5A5B3A0AD4FD410066FCA2 /* ImageProcess.rb */,
+				7A697E040C119AA40053A2F2 /* MakeDemo.rb */,
 				7A97AAF70A653A6600921057 /* MakeDocs.rb */,
 				7A6B30210BA74FBC00CDB9A8 /* MakeRelease.sh */,
 				7A6CE1A005A58DF000777D9B /* prebuild.sh */,
