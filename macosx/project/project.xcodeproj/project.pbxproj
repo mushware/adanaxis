@@ -6055,8 +6055,8 @@
 			isa = PBXGroup;
 			children = (
 				7A697EC50C11C4180053A2F2 /* dialogues.xml */,
-				7A697EC60C11C4180053A2F2 /* space.rb */,
 				7A697E2E0C11B7B80053A2F2 /* manifest.txt */,
+				7A697EC60C11C4180053A2F2 /* space.rb */,
 			);
 			path = level22;
 			sourceTree = "<group>";
