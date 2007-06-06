@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } wnEoZ3B+FGzuvSKJ0xP5lg
 /*
- * $Id: AdanaxisPieceKhazi.cpp,v 1.34 2007/04/16 08:41:08 southa Exp $
+ * $Id: AdanaxisPieceKhazi.cpp,v 1.35 2007/04/18 09:22:02 southa Exp $
  * $Log: AdanaxisPieceKhazi.cpp,v $
+ * Revision 1.35  2007/04/18 09:22:02  southa
+ * Header and level fixes
+ *
  * Revision 1.34  2007/04/16 08:41:08  southa
  * Level and header mods
  *
@@ -177,6 +180,15 @@ AdanaxisPieceKhazi::Render(MushGLJobRender& outRender,
     
     renderSpec.ProjectionSet(inCamera.Projection());
 
+    if (m_isStealth)
+    {
+        AdanaxisVolatileData *pVolData = dynamic_cast<AdanaxisVolatileData *>(&ioLogic.VolatileData());
+        if (pVolData->JammerCount() > 0)
+        {
+            inRender.ColourZMiddleSet(inRender.ColourZMiddle().ElementwiseProduct(t4Val(1,1,1,0.05)));
+        }
+    }
+    
     return inRender.RenderJobCreate(outRender, renderSpec, Mesh());
 }
 
@@ -193,6 +205,7 @@ AdanaxisPieceKhazi::Load(Mushware::tRubyValue inSelf)
     MushGamePiece::Load(inSelf);
     MushRubyUtil::InstanceVarSet(inSelf, AdanaxisIntern::Sgl().ATm_scannerSymbol(), MushRubyValue(m_scannerSymbol).Value());    
     MushRubyUtil::InstanceVarSet(inSelf, AdanaxisIntern::Sgl().ATm_isJammer(), MushRubyValue(m_isJammer).Value());    
+    MushRubyUtil::InstanceVarSet(inSelf, AdanaxisIntern::Sgl().ATm_isStealth(), MushRubyValue(m_isStealth).Value());    
 }
 
 void
@@ -201,6 +214,7 @@ AdanaxisPieceKhazi::Save(Mushware::tRubyValue inSelf)
     MushGamePiece::Save(inSelf);
     m_scannerSymbol = MushRubyValue(MushRubyUtil::InstanceVar(inSelf, AdanaxisIntern::Sgl().ATm_scannerSymbol())).U32();
     m_isJammer = MushRubyValue(MushRubyUtil::InstanceVar(inSelf, AdanaxisIntern::Sgl().ATm_isJammer())).Bool();
+    m_isStealth = MushRubyValue(MushRubyUtil::InstanceVar(inSelf, AdanaxisIntern::Sgl().ATm_isStealth())).Bool();
 }
 
 Mushware::tRubyValue
@@ -287,7 +301,8 @@ AdanaxisPieceKhazi::AutoPrint(std::ostream& ioOut) const
     ioOut << "[";
     MushGamePiece::AutoPrint(ioOut);
     ioOut << "scannerSymbol=" << m_scannerSymbol << ", ";
-    ioOut << "isJammer=" << m_isJammer;
+    ioOut << "isJammer=" << m_isJammer << ", ";
+    ioOut << "isStealth=" << m_isStealth;
     ioOut << "]";
 }
 bool
@@ -307,6 +322,10 @@ AdanaxisPieceKhazi::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::stri
     {
         ioIn >> m_isJammer;
     }
+    else if (inTagStr == "isStealth")
+    {
+        ioIn >> m_isStealth;
+    }
     else if (MushGamePiece::AutoXMLDataProcess(ioIn, inTagStr))
     {
         // Tag consumed by base class
@@ -325,5 +344,7 @@ AdanaxisPieceKhazi::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_scannerSymbol;
     ioOut.TagSet("isJammer");
     ioOut << m_isJammer;
+    ioOut.TagSet("isStealth");
+    ioOut << m_isStealth;
 }
-//%outOfLineFunctions } ynGBruq1+UwNjshPhQEu7Q
+//%outOfLineFunctions } JCbK10kejuEdcr3rQa9vcg

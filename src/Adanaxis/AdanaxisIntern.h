@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } 0SJ9cZfTfFGwh/elmExZag
 /*
- * $Id: AdanaxisIntern.h,v 1.28 2007/05/22 12:59:09 southa Exp $
+ * $Id: AdanaxisIntern.h,v 1.29 2007/06/02 15:56:58 southa Exp $
  * $Log: AdanaxisIntern.h,v $
+ * Revision 1.29  2007/06/02 15:56:58  southa
+ * Shader fix and prerelease work
+ *
  * Revision 1.28  2007/05/22 12:59:09  southa
  * Vortex effect on player
  *
@@ -119,6 +122,7 @@
     @m_acceleration
     @m_controlReleased
     @m_isJammer
+    @m_isStealth
     @m_keyNum
     @m_rail
     @m_scannerSymbol
@@ -169,6 +173,7 @@ public:
     Mushware::tRubyID ATm_acceleration(void) { return m_ATm_acceleration; }
     Mushware::tRubyID ATm_controlReleased(void) { return m_ATm_controlReleased; }
     Mushware::tRubyID ATm_isJammer(void) { return m_ATm_isJammer; }
+    Mushware::tRubyID ATm_isStealth(void) { return m_ATm_isStealth; }
     Mushware::tRubyID ATm_keyNum(void) { return m_ATm_keyNum; }
     Mushware::tRubyID ATm_rail(void) { return m_ATm_rail; }
     Mushware::tRubyID ATm_scannerSymbol(void) { return m_ATm_scannerSymbol; }
@@ -199,6 +204,7 @@ private:
     Mushware::tRubyID m_ATm_acceleration;
     Mushware::tRubyID m_ATm_controlReleased;
     Mushware::tRubyID m_ATm_isJammer;
+    Mushware::tRubyID m_ATm_isStealth;
     Mushware::tRubyID m_ATm_keyNum;
     Mushware::tRubyID m_ATm_rail;
     Mushware::tRubyID m_ATm_scannerSymbol;
@@ -216,7 +222,7 @@ private:
     Mushware::tRubyID m_mReceiveSequence;
     Mushware::tRubyID m_mRender;
     Mushware::tRubyID m_mSpaceNameSet;
-//%declarations } 04f55751597c1f12538e9bfb4af628d0
+//%declarations } 80201d4adcec402df6302761ac1d1e31
 
 //%classPrototypes {
 public:

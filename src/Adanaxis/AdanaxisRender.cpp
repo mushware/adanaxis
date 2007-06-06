@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } oLiwZ/5aV/LrBg1GMJ088A
 /*
- * $Id: AdanaxisRender.cpp,v 1.76 2007/04/18 20:08:39 southa Exp $
+ * $Id: AdanaxisRender.cpp,v 1.77 2007/04/26 13:12:40 southa Exp $
  * $Log: AdanaxisRender.cpp,v $
+ * Revision 1.77  2007/04/26 13:12:40  southa
+ * Limescale and level 9
+ *
  * Revision 1.76  2007/04/18 20:08:39  southa
  * Tweaks and fixes
  *
@@ -494,7 +497,6 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
             }
         }
         
-        pRenderMesh->ColourZMiddleSet(t4Val(1.0,1.0,1.0,meshAlpha));
         pRenderMesh->ColourZLeftSet(t4Val(1.0,0.3,0.3,0.0));
         pRenderMesh->ColourZRightSet(t4Val(0.3,1.0,0.3,0.0));
         
@@ -505,6 +507,8 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
         {
             MUSHCOREASSERT(m_renderList.back() != NULL);
             
+            pRenderMesh->ColourZMiddleSet(t4Val(1.0,1.0,1.0,meshAlpha));
+
             if (p->Render(*m_renderList.back(), ioLogic, *pRenderMesh, camera))
             {
                 m_renderList.push_back(new MushGLJobRender);
@@ -619,13 +623,17 @@ void AdanaxisRender::ScanRender(AdanaxisLogic& ioLogic, MushRenderMesh *inpRende
     m_scanner.ScanBegin();
     
     AdanaxisSaveData *pSaveData = dynamic_cast<AdanaxisSaveData *>(&ioLogic.SaveData());
+    AdanaxisVolatileData *pVolData = dynamic_cast<AdanaxisVolatileData *>(&ioLogic.VolatileData());
     
     typedef AdanaxisSaveData::tKhaziList tKhaziList;
     
     tKhaziList::iterator khaziEndIter = pSaveData->KhaziListWRef().end();
     for (tKhaziList::iterator p = pSaveData->KhaziListWRef().begin(); p != khaziEndIter; ++p)
     {
-        m_scanner.ScanObjectRender(ioLogic, inpRenderMesh, inCamera, *p, AdanaxisScanner::kObjectTypeKhazi);
+        if (!p->IsStealth() || pVolData->JammerCount() == 0)
+        {
+            m_scanner.ScanObjectRender(ioLogic, inpRenderMesh, inCamera, *p, AdanaxisScanner::kObjectTypeKhazi);
+        }
     }
     
     typedef AdanaxisSaveData::tItemList tItemList;

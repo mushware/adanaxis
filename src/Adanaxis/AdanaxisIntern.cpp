@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } wnzZwEQ6yC0/EOblAes+2Q
 /*
- * $Id: AdanaxisIntern.cpp,v 1.25 2007/05/22 12:59:09 southa Exp $
+ * $Id: AdanaxisIntern.cpp,v 1.26 2007/06/02 15:56:58 southa Exp $
  * $Log: AdanaxisIntern.cpp,v $
+ * Revision 1.26  2007/06/02 15:56:58  southa
+ * Shader fix and prerelease work
+ *
  * Revision 1.25  2007/05/22 12:59:09  southa
  * Vortex effect on player
  *
@@ -117,6 +120,7 @@ AdanaxisIntern::AdanaxisIntern()
     m_ATm_acceleration = MushRubyIntern::SymbolID("@m_acceleration");
     m_ATm_controlReleased = MushRubyIntern::SymbolID("@m_controlReleased");
     m_ATm_isJammer = MushRubyIntern::SymbolID("@m_isJammer");
+    m_ATm_isStealth = MushRubyIntern::SymbolID("@m_isStealth");
     m_ATm_keyNum = MushRubyIntern::SymbolID("@m_keyNum");
     m_ATm_rail = MushRubyIntern::SymbolID("@m_rail");
     m_ATm_scannerSymbol = MushRubyIntern::SymbolID("@m_scannerSymbol");
@@ -134,6 +138,6 @@ AdanaxisIntern::AdanaxisIntern()
     m_mReceiveSequence = MushRubyIntern::SymbolID("mReceiveSequence");
     m_mRender = MushRubyIntern::SymbolID("mRender");
     m_mSpaceNameSet = MushRubyIntern::SymbolID("mSpaceNameSet");
-//%initialisations } e51c700407da058de4fc2cbd8975c468
+//%initialisations } 645b3e21e09f73995beac7fb23de7b3a
 }
  
