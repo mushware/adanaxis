@@ -3549,6 +3549,7 @@
 		7A6869630BBA5CE3004774B3 /* manifest.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = manifest.txt; sourceTree = "<group>"; };
 		7A6869640BBA5CE3004774B3 /* space.rb */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.ruby; path = space.rb; sourceTree = "<group>"; };
 		7A6869F20BBA760C004774B3 /* AdanaxisAIKhaziHarpik.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AdanaxisAIKhaziHarpik.rb; sourceTree = "<group>"; };
+		7A689C080C16C86A00583EC7 /* AdanaxisAIKhaziBleach.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AdanaxisAIKhaziBleach.rb; sourceTree = "<group>"; };
 		7A68D2730BAB0DE0009F2015 /* MushGLDraw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushGLDraw.h; sourceTree = "<group>"; };
 		7A68D2740BAB0DE0009F2015 /* MushGLDraw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushGLDraw.cpp; sourceTree = "<group>"; };
 		7A68D2850BAB1911009F2015 /* AdanaxisRender.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = AdanaxisRender.xml; sourceTree = "<group>"; };
@@ -6743,6 +6744,7 @@
 				7A619A760A974B1900FAA06C /* AdanaxisAI.rb */,
 				7A59645C0ACE8CEA007FAA8F /* AdanaxisAIKhazi.rb */,
 				7A69E6860BB9487900792ECB /* AdanaxisAIKhaziAttendant.rb */,
+				7A689C080C16C86A00583EC7 /* AdanaxisAIKhaziBleach.rb */,
 				7A6993210BB4402300D0FC67 /* AdanaxisAIKhaziCarrier.rb */,
 				7A68D4C80BF31C66003CF91A /* AdanaxisAIKhaziFloater.rb */,
 				7A6869F20BBA760C004774B3 /* AdanaxisAIKhaziHarpik.rb */,
