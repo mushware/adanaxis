@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } wnzZwEQ6yC0/EOblAes+2Q
 /*
- * $Id: AdanaxisIntern.cpp,v 1.26 2007/06/02 15:56:58 southa Exp $
+ * $Id: AdanaxisIntern.cpp,v 1.27 2007/06/06 15:11:21 southa Exp $
  * $Log: AdanaxisIntern.cpp,v $
+ * Revision 1.27  2007/06/06 15:11:21  southa
+ * Level 23
+ *
  * Revision 1.26  2007/06/02 15:56:58  southa
  * Shader fix and prerelease work
  *
@@ -126,6 +129,7 @@ AdanaxisIntern::AdanaxisIntern()
     m_ATm_scannerSymbol = MushRubyIntern::SymbolID("@m_scannerSymbol");
     m_ATm_speedLimit = MushRubyIntern::SymbolID("@m_speedLimit");
     m_ATm_state = MushRubyIntern::SymbolID("@m_state");
+    m_ATm_thrustReleased = MushRubyIntern::SymbolID("@m_thrustReleased");
     m_mCollisionEventConsume = MushRubyIntern::SymbolID("mCollisionEventConsume");
     m_mCutSceneRender = MushRubyIntern::SymbolID("mCutSceneRender");
     m_mEpilogueRender = MushRubyIntern::SymbolID("mEpilogueRender");
@@ -138,6 +142,6 @@ AdanaxisIntern::AdanaxisIntern()
     m_mReceiveSequence = MushRubyIntern::SymbolID("mReceiveSequence");
     m_mRender = MushRubyIntern::SymbolID("mRender");
     m_mSpaceNameSet = MushRubyIntern::SymbolID("mSpaceNameSet");
-//%initialisations } 645b3e21e09f73995beac7fb23de7b3a
+//%initialisations } eaea143ec38d643ffb9a389254c69a09
 }
  

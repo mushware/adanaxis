@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } NakSYndAI0IrqBBZFk2p3g
 /*
- * $Id: AdanaxisPiecePlayer.cpp,v 1.18 2007/05/21 17:04:43 southa Exp $
+ * $Id: AdanaxisPiecePlayer.cpp,v 1.19 2007/05/22 12:59:09 southa Exp $
  * $Log: AdanaxisPiecePlayer.cpp,v $
+ * Revision 1.19  2007/05/22 12:59:09  southa
+ * Vortex effect on player
+ *
  * Revision 1.18  2007/05/21 17:04:43  southa
  * Player effectors
  *
@@ -212,11 +215,19 @@ AdanaxisPiecePlayer::PreControl(MushGameLogic& ioLogic)
     AdanaxisSaveData& saveData = AdanaxisUtil::Logic(ioLogic).SaveData();
     tVal retinaSpin = saveData.RetinaSpin();
     
-    if (m_controlReleased)
+    
+    if (!saveData.PermanentSpin())
     {
-        retinaSpin += 0.03;
-        MushcoreUtil::Constrain<tVal>(retinaSpin, 0.1, 10);
-        saveData.RetinaSpinSet(retinaSpin);
+        if (m_controlReleased)
+        {
+            retinaSpin += 0.03;
+            MushcoreUtil::Constrain<tVal>(retinaSpin, 0.1, 10);
+            saveData.RetinaSpinSet(retinaSpin);
+        }
+        else
+        {
+            saveData.RetinaSpinSet(saveData.RetinaSpin() * 0.95);
+        }
     }
     
     if (retinaSpin > 0.001)
@@ -237,7 +248,7 @@ AdanaxisPiecePlayer::PreControl(MushGameLogic& ioLogic)
         angVel.InPlaceNormalise();
         PostWRef().AngVelSet(angVel);
         
-        if (volData.JammerCount() == 0)
+        if (saveData.PermanentSpin() && volData.JammerCount() == 0)
         {
             // Stop retina spin once countermeasures removed
             saveData.RetinaSpinSet(saveData.RetinaSpin() * 0.99);
@@ -246,6 +257,13 @@ AdanaxisPiecePlayer::PreControl(MushGameLogic& ioLogic)
     else
     {
         PostWRef().AngVelWRef().ToRotationIdentitySet();
+    }
+    
+    if (m_thrustReleased)
+    {
+        t4Val vel(0, 0, 0, -0.5 - 0.25*saveData.GameDifficulty());
+        Post().AngPos().VectorRotate(vel);
+        PostWRef().VelWRef() += vel;
     }
 }
 
@@ -284,7 +302,10 @@ AdanaxisPiecePlayer::AxisDeltaHandle(Mushware::tVal inDelta, Mushware::U32 inAxi
                 break;
                 
             case AdanaxisConfig::kAxisW:
-                vel = t4Val(0,0,0,inDelta);
+                if (!m_thrustReleased)
+                {
+                    vel = t4Val(0,0,0,inDelta);
+                }
                 break;
                 
             default:
@@ -391,6 +412,7 @@ AdanaxisPiecePlayer::Load(Mushware::tRubyValue inSelf)
 {
     MushGamePiece::Load(inSelf);
     MushRubyUtil::InstanceVarSet(inSelf, AdanaxisIntern::Sgl().ATm_controlReleased(), MushRubyValue(m_controlReleased).Value());    
+    MushRubyUtil::InstanceVarSet(inSelf, AdanaxisIntern::Sgl().ATm_thrustReleased(), MushRubyValue(m_thrustReleased).Value());    
 }
 
 void
@@ -398,6 +420,7 @@ AdanaxisPiecePlayer::Save(Mushware::tRubyValue inSelf)
 {
     MushGamePiece::Save(inSelf);
     m_controlReleased = MushRubyValue(MushRubyUtil::InstanceVar(inSelf, AdanaxisIntern::Sgl().ATm_controlReleased())).Bool();
+    m_thrustReleased = MushRubyValue(MushRubyUtil::InstanceVar(inSelf, AdanaxisIntern::Sgl().ATm_thrustReleased())).Bool();
 }
 
 Mushware::tRubyValue
@@ -487,7 +510,8 @@ AdanaxisPiecePlayer::AutoPrint(std::ostream& ioOut) const
     ioOut << "lastAxes=" << m_lastAxes << ", ";
     ioOut << "lastAxisValid=" << m_lastAxisValid << ", ";
     ioOut << "projectileMeshRef=" << m_projectileMeshRef << ", ";
-    ioOut << "controlReleased=" << m_controlReleased;
+    ioOut << "controlReleased=" << m_controlReleased << ", ";
+    ioOut << "thrustReleased=" << m_thrustReleased;
     ioOut << "]";
 }
 bool
@@ -515,6 +539,10 @@ AdanaxisPiecePlayer::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::str
     {
         ioIn >> m_controlReleased;
     }
+    else if (inTagStr == "thrustReleased")
+    {
+        ioIn >> m_thrustReleased;
+    }
     else if (MushGamePiecePlayer::AutoXMLDataProcess(ioIn, inTagStr))
     {
         // Tag consumed by base class
@@ -537,5 +565,7 @@ AdanaxisPiecePlayer::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_projectileMeshRef;
     ioOut.TagSet("controlReleased");
     ioOut << m_controlReleased;
+    ioOut.TagSet("thrustReleased");
+    ioOut << m_thrustReleased;
 }
-//%outOfLineFunctions } 4txW8eKkdKTh2IfH/cC3jw
+//%outOfLineFunctions } okU9DNgnBZkd0o+IfTu+9Q

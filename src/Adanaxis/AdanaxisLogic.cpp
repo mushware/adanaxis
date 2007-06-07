@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } uRd/C67+BhB+F4sXUsaH6A
 /*
- * $Id: AdanaxisLogic.cpp,v 1.49 2007/05/22 12:59:09 southa Exp $
+ * $Id: AdanaxisLogic.cpp,v 1.50 2007/05/29 13:25:57 southa Exp $
  * $Log: AdanaxisLogic.cpp,v $
+ * Revision 1.50  2007/05/29 13:25:57  southa
+ * Level 20
+ *
  * Revision 1.49  2007/05/22 12:59:09  southa
  * Vortex effect on player
  *
@@ -717,10 +720,6 @@ AdanaxisLogic::CollideSequence(void)
         if (pPlayer != NULL)
         {
             pPlayer->ControlReleasedSet(false);
-        }
-        else
-        {
-            cout << "p" << endl;
         }
     }
     

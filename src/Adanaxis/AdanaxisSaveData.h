@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } JGGMtrTQ/FygaXDKftfwUQ
 /*
- * $Id: AdanaxisSaveData.h,v 1.21 2007/04/21 09:41:07 southa Exp $
+ * $Id: AdanaxisSaveData.h,v 1.22 2007/05/10 14:06:26 southa Exp $
  * $Log: AdanaxisSaveData.h,v $
+ * Revision 1.22  2007/05/10 14:06:26  southa
+ * Level 16 and retina spin
+ *
  * Revision 1.21  2007/04/21 09:41:07  southa
  * Level work
  *
@@ -132,6 +135,8 @@ private:
     Mushware::U32 m_gameDifficulty; //:readwrite
     Mushware::U32 m_primaryType; //:readwrite
     Mushware::tVal m_retinaSpin; //:readwrite
+    Mushware::tVal m_permanentSpin; //:readwrite
+    Mushware::tVal m_permanentThrust; //:readwrite
     
 //%classPrototypes {
 public:
@@ -157,6 +162,10 @@ public:
     void PrimaryTypeSet(const Mushware::U32& inValue) { m_primaryType=inValue; }
     const Mushware::tVal& RetinaSpin(void) const { return m_retinaSpin; }
     void RetinaSpinSet(const Mushware::tVal& inValue) { m_retinaSpin=inValue; }
+    const Mushware::tVal& PermanentSpin(void) const { return m_permanentSpin; }
+    void PermanentSpinSet(const Mushware::tVal& inValue) { m_permanentSpin=inValue; }
+    const Mushware::tVal& PermanentThrust(void) const { return m_permanentThrust; }
+    void PermanentThrustSet(const Mushware::tVal& inValue) { m_permanentThrust=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -164,7 +173,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } wH+X8SU5bDd2U9U/A1RCiA
+//%classPrototypes } zeLOxdA5K2eszde1Ecl34g
 };
 
 //%inlineHeader {

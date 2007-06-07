@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } ugKqE0KA5pb38rpJeXIe0g
 /*
- * $Id: AdanaxisGame.cpp,v 1.68 2007/05/10 14:06:26 southa Exp $
+ * $Id: AdanaxisGame.cpp,v 1.69 2007/06/02 15:56:58 southa Exp $
  * $Log: AdanaxisGame.cpp,v $
+ * Revision 1.69  2007/06/02 15:56:58  southa
+ * Shader fix and prerelease work
+ *
  * Revision 1.68  2007/05/10 14:06:26  southa
  * Level 16 and retina spin
  *
@@ -398,6 +401,8 @@ AdanaxisGame::Init(MushGameAppHandler& inAppHandler)
     SaveData().SpaceNameSet(MushRubyExec::Sgl().Call("$currentGame.mSpaceName").String());
     SaveData().PrimaryTypeSet(MushRubyExec::Sgl().Call(VolatileData().RubySpace(), "mPrimary").U32());
     SaveData().RetinaSpinSet(MushRubyExec::Sgl().Call(VolatileData().RubySpace(), "mRetinaSpin").Val());
+    SaveData().PermanentSpinSet(MushRubyExec::Sgl().Call(VolatileData().RubySpace(), "mPermanentSpin").Bool());
+    SaveData().PermanentThrustSet(MushRubyExec::Sgl().Call(VolatileData().RubySpace(), "mPermanentThrust").Bool());
 
 	AdanaxisUtil::MissingSkinsCreate(Logic());
     //AdanaxisUtil::MeshPurge(Logic());

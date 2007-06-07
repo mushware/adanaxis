@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } 0SJ9cZfTfFGwh/elmExZag
 /*
- * $Id: AdanaxisIntern.h,v 1.29 2007/06/02 15:56:58 southa Exp $
+ * $Id: AdanaxisIntern.h,v 1.30 2007/06/06 15:11:21 southa Exp $
  * $Log: AdanaxisIntern.h,v $
+ * Revision 1.30  2007/06/06 15:11:21  southa
+ * Level 23
+ *
  * Revision 1.29  2007/06/02 15:56:58  southa
  * Shader fix and prerelease work
  *
@@ -128,6 +131,7 @@
     @m_scannerSymbol
     @m_speedLimit
     @m_state
+    @m_thrustReleased
     mCollisionEventConsume
     mCutSceneRender
     mEpilogueRender
@@ -179,6 +183,7 @@ public:
     Mushware::tRubyID ATm_scannerSymbol(void) { return m_ATm_scannerSymbol; }
     Mushware::tRubyID ATm_speedLimit(void) { return m_ATm_speedLimit; }
     Mushware::tRubyID ATm_state(void) { return m_ATm_state; }
+    Mushware::tRubyID ATm_thrustReleased(void) { return m_ATm_thrustReleased; }
     Mushware::tRubyID mCollisionEventConsume(void) { return m_mCollisionEventConsume; }
     Mushware::tRubyID mCutSceneRender(void) { return m_mCutSceneRender; }
     Mushware::tRubyID mEpilogueRender(void) { return m_mEpilogueRender; }
@@ -210,6 +215,7 @@ private:
     Mushware::tRubyID m_ATm_scannerSymbol;
     Mushware::tRubyID m_ATm_speedLimit;
     Mushware::tRubyID m_ATm_state;
+    Mushware::tRubyID m_ATm_thrustReleased;
     Mushware::tRubyID m_mCollisionEventConsume;
     Mushware::tRubyID m_mCutSceneRender;
     Mushware::tRubyID m_mEpilogueRender;
@@ -222,7 +228,7 @@ private:
     Mushware::tRubyID m_mReceiveSequence;
     Mushware::tRubyID m_mRender;
     Mushware::tRubyID m_mSpaceNameSet;
-//%declarations } 80201d4adcec402df6302761ac1d1e31
+//%declarations } 5bfadd11ed379df0d2976f869c615ca3
 
 //%classPrototypes {
 public:

@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } gCJjrWXaDjT6xhF2+DIzXQ
 /*
- * $Id: AdanaxisSaveData.cpp,v 1.20 2007/04/21 09:41:06 southa Exp $
+ * $Id: AdanaxisSaveData.cpp,v 1.21 2007/05/10 14:06:26 southa Exp $
  * $Log: AdanaxisSaveData.cpp,v $
+ * Revision 1.21  2007/05/10 14:06:26  southa
+ * Level 16 and retina spin
+ *
  * Revision 1.20  2007/04/21 09:41:06  southa
  * Level work
  *
@@ -85,7 +88,9 @@
 
 AdanaxisSaveData::AdanaxisSaveData() :
     m_clockStarted(false),
-    m_retinaSpin(0.0)
+    m_retinaSpin(0.0),
+    m_permanentSpin(false),
+    m_permanentThrust(false)
 {
 }
 
@@ -131,7 +136,9 @@ AdanaxisSaveData::AutoPrint(std::ostream& ioOut) const
     ioOut << "spaceName=" << m_spaceName << ", ";
     ioOut << "gameDifficulty=" << m_gameDifficulty << ", ";
     ioOut << "primaryType=" << m_primaryType << ", ";
-    ioOut << "retinaSpin=" << m_retinaSpin;
+    ioOut << "retinaSpin=" << m_retinaSpin << ", ";
+    ioOut << "permanentSpin=" << m_permanentSpin << ", ";
+    ioOut << "permanentThrust=" << m_permanentThrust;
     ioOut << "]";
 }
 bool
@@ -179,6 +186,14 @@ AdanaxisSaveData::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string
     {
         ioIn >> m_retinaSpin;
     }
+    else if (inTagStr == "permanentSpin")
+    {
+        ioIn >> m_permanentSpin;
+    }
+    else if (inTagStr == "permanentThrust")
+    {
+        ioIn >> m_permanentThrust;
+    }
     else if (MushGameSaveData::AutoXMLDataProcess(ioIn, inTagStr))
     {
         // Tag consumed by base class
@@ -211,5 +226,9 @@ AdanaxisSaveData::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_primaryType;
     ioOut.TagSet("retinaSpin");
     ioOut << m_retinaSpin;
+    ioOut.TagSet("permanentSpin");
+    ioOut << m_permanentSpin;
+    ioOut.TagSet("permanentThrust");
+    ioOut << m_permanentThrust;
 }
-//%outOfLineFunctions } PWqDPWvjM7dC98aBOvJYeA
+//%outOfLineFunctions } M5d8+gY3Ulgip3BW/0Qv9A

@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } z6y+VPxApqJcYE3m9Z996A
 /*
- * $Id: AdanaxisPiecePlayer.h,v 1.8 2007/04/18 09:22:02 southa Exp $
+ * $Id: AdanaxisPiecePlayer.h,v 1.9 2007/05/22 12:59:10 southa Exp $
  * $Log: AdanaxisPiecePlayer.h,v $
+ * Revision 1.9  2007/05/22 12:59:10  southa
+ * Vortex effect on player
+ *
  * Revision 1.8  2007/04/18 09:22:02  southa
  * Header and level fixes
  *
@@ -118,6 +121,7 @@ private:
     std::vector<bool> m_lastAxisValid;
 	MushcoreDataRef<MushMesh4Mesh> m_projectileMeshRef;
     bool m_controlReleased; //:readwrite
+    bool m_thrustReleased; //:readwrite
     
     static Mushware::tRubyValue m_rubyKlass; // Must duplicate this in derived classes
 
@@ -125,6 +129,8 @@ private:
 public:
     const bool& ControlReleased(void) const { return m_controlReleased; }
     void ControlReleasedSet(const bool& inValue) { m_controlReleased=inValue; }
+    const bool& ThrustReleased(void) const { return m_thrustReleased; }
+    void ThrustReleasedSet(const bool& inValue) { m_thrustReleased=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -132,7 +138,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } iMR/VnJlAmkxTbPpXgji+Q
+//%classPrototypes } wDA6Femhobd+J7OcG6hSOA
 };
 //%inlineHeader {
 inline std::ostream&
