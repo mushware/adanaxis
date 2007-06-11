@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } BZIsCdYiVKYUwepyGm6mYw
 /*
- * $Id: MushGLTIFFUtil.h,v 1.2 2006/07/28 16:52:21 southa Exp $
+ * $Id: MushGLTIFFUtil.h,v 1.3 2007/04/18 09:22:36 southa Exp $
  * $Log: MushGLTIFFUtil.h,v $
+ * Revision 1.3  2007/04/18 09:22:36  southa
+ * Header and level fixes
+ *
  * Revision 1.2  2006/07/28 16:52:21  southa
  * Options work
  *
@@ -40,6 +43,8 @@ class MushGLTIFFUtil
 public:
 	static void RGBASave(const std::string& inFilename, const std::string& inDesc,
 						 const Mushware::t2U32& inSize, const Mushware::U8 *pData);
+    static void RGBASave(const std::string& inFilename, const std::string& inDesc,
+                         const Mushware::t2U32& inSize, std::vector<Mushware::U8> inData);
 	static void ValSave(const std::string& inFilename, const std::string& inDesc,
 						const Mushware::t2U32& inSize, const Mushware::tVal *inpData);
 	static void TextureSave(const std::string& inFilename, const std::string& inDesc);

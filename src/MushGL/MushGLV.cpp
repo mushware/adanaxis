@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } /PbgVyo7+t2K2WR3hAwFPw
 /*
- * $Id: MushGLV.cpp,v 1.22 2006/12/14 00:33:49 southa Exp $
+ * $Id: MushGLV.cpp,v 1.23 2007/03/20 17:31:24 southa Exp $
  * $Log: MushGLV.cpp,v $
+ * Revision 1.23  2007/03/20 17:31:24  southa
+ * Difficulty and GL options
+ *
  * Revision 1.22  2006/12/14 00:33:49  southa
  * Control fix and audio pacing
  *
@@ -240,6 +243,7 @@ MushGLV::Acquaint(void)
 	}
     
 	if (!safeMode &&
+        m_extensions.find(" GL_ARB_shading_language_100 ") != string::npos &&
         m_extensions.find(" GL_ARB_shader_objects ") != string::npos &&
         m_extensions.find(" GL_ARB_vertex_shader ") != string::npos &&
         m_extensions.find(" GL_ARB_fragment_shader ") != string::npos)

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } EzhJwVdbrpgkBRj83y0y9w
 /*
- * $Id: MushGLTIFFUtil.cpp,v 1.4 2006/08/03 15:07:58 southa Exp $
+ * $Id: MushGLTIFFUtil.cpp,v 1.5 2007/04/18 09:22:36 southa Exp $
  * $Log: MushGLTIFFUtil.cpp,v $
+ * Revision 1.5  2007/04/18 09:22:36  southa
+ * Header and level fixes
+ *
  * Revision 1.4  2006/08/03 15:07:58  southa
  * Cache purge fix
  *
@@ -122,6 +125,17 @@ MushGLTIFFUtil::RGBASave(const std::string& inFilename, const std::string& inDes
 }
 
 void
+MushGLTIFFUtil::RGBASave(const std::string& inFilename, const std::string& inDesc,
+						 const Mushware::t2U32& inSize, std::vector<Mushware::U8> inData)
+{
+    if (inData.size() != 4*inSize.X()*inSize.Y())
+    {
+        throw MushcoreRequestFail("TIFF dimensions and data size do not match");
+    }
+    RGBASave(inFilename, inDesc, inSize, &inData[0]);
+}    
+
+void
 MushGLTIFFUtil::ValSave(const std::string& inFilename, const std::string& inDesc,
 						const Mushware::t2U32& inSize, const Mushware::tVal *inpData)
 {
@@ -167,11 +181,9 @@ MushGLTIFFUtil::TextureSave(const std::string& inFilename, const std::string& in
 	GLint width=0, height=0;
 	glGetTexLevelParameteriv(GL_TEXTURE_2D, baseLevel, GL_TEXTURE_WIDTH, &width);
 	glGetTexLevelParameteriv(GL_TEXTURE_2D, baseLevel, GL_TEXTURE_HEIGHT, &height);
-	
 	U32 bufferSize = 4*width*height;
 	
 	std::vector<U8> texData(bufferSize+1);
-	
 	texData[bufferSize] = 0xA5;
 	
 	glGetTexImage(GL_TEXTURE_2D, baseLevel, GL_RGBA, GL_UNSIGNED_BYTE, &texData[0]);

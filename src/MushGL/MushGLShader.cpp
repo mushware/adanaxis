@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } XuVkaJqZePwJzcZ7Cr975Q
 /*
- * $Id: MushGLShader.cpp,v 1.9 2007/04/18 09:22:36 southa Exp $
+ * $Id: MushGLShader.cpp,v 1.10 2007/06/02 15:56:59 southa Exp $
  * $Log: MushGLShader.cpp,v $
+ * Revision 1.10  2007/06/02 15:56:59  southa
+ * Shader fix and prerelease work
+ *
  * Revision 1.9  2007/04/18 09:22:36  southa
  * Header and level fixes
  *
@@ -366,23 +369,17 @@ MushGLShader::Make(void)
     if (m_fragmentShaderHandle != kGLHandleNull)
     {
         const GLChar *charPtr = m_fragmentShader.c_str();
-        MushGLV::Sgl().ShaderSource(m_fragmentShaderHandle,
-                                    1,
-                                    &charPtr,
-                                    NULL);
+        MushGLV::Sgl().ShaderSource(m_fragmentShaderHandle, 1, &charPtr, NULL);
     }
     
     if (m_vertexShaderHandle != kGLHandleNull)
     {
         const GLChar *charPtr = m_vertexShader.c_str();
-        MushGLV::Sgl().ShaderSource(m_vertexShaderHandle,
-                                    1,
-                                    &charPtr,
-                                    NULL);
+        MushGLV::Sgl().ShaderSource(m_vertexShaderHandle, 1, &charPtr, NULL);
     }
     
     MushGLUtil::ThrowIfGLError("Adding shader source");
-
+    
     if (m_fragmentShaderHandle != kGLHandleNull)
     {
         MushGLV::Sgl().CompileShader(m_fragmentShaderHandle);
@@ -538,7 +535,7 @@ MushGLShader::Purge(void)
     }
     
     MushGLUtil::CheckGLError("Purging shader");
-}    
+}
 
 //%outOfLineFunctions {
 

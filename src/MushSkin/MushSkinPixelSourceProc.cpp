@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } T0JIKRw9MOfD0T3VLpYWjA
 /*
- * $Id: MushSkinPixelSourceProc.cpp,v 1.4 2006/08/01 17:21:39 southa Exp $
+ * $Id: MushSkinPixelSourceProc.cpp,v 1.5 2007/04/18 09:23:04 southa Exp $
  * $Log: MushSkinPixelSourceProc.cpp,v $
+ * Revision 1.5  2007/04/18 09:23:04  southa
+ * Header and level fixes
+ *
  * Revision 1.4  2006/08/01 17:21:39  southa
  * River demo
  *
@@ -128,7 +131,7 @@ void
 MushSkinPixelSourceProc::ToTextureCreate(MushGLTexture& outTexture)
 {
     U32 pixelDataSize = 4*Size().X()*Size().Y();
-    std::vector<U8> pixelData(pixelDataSize, 0);
+    m_u8Data = std::vector<U8>(pixelDataSize, 0);
     
     const MushMesh4Mesh::tTextureTiles& texTilesRef = Mesh().TextureTiles();
     U32 numTexTiles = texTilesRef.size();
@@ -154,7 +157,7 @@ MushSkinPixelSourceProc::ToTextureCreate(MushGLTexture& outTexture)
             {
                 throw MushcoreDataFail("Pixel data overrun");
             }
-            U8 *pTileData = &pixelData[pixelOffset];
+            U8 *pTileData = &m_u8Data[pixelOffset];
 			
             // objectEndPos is one pixel beyond the end of the generated data
 #if 0
@@ -169,7 +172,7 @@ MushSkinPixelSourceProc::ToTextureCreate(MushGLTexture& outTexture)
                 LineGenerate(pTileData, endX - startX, objectPos, objectEndPos);
             }
             
-            MUSHCOREASSERT(pTileData <= &pixelData[pixelDataSize]);
+            MUSHCOREASSERT(pTileData <= &m_u8Data[pixelDataSize]);
         }
     }
 	
@@ -180,7 +183,24 @@ MushSkinPixelSourceProc::ToTextureCreate(MushGLTexture& outTexture)
     outTexture.SizeSet(t4U32(Size().X(), Size().Y(), 1, 1));
     outTexture.PixelTypeRGBASet();
     outTexture.StorageTypeGLSet();
-    outTexture.PixelDataUse(&pixelData[0]);
+    outTexture.PixelDataUse(&m_u8Data[0]);
+}
+
+void
+MushSkinPixelSourceProc::DataCreate(void)
+{
+}
+
+void
+MushSkinPixelSourceProc::DataRelease(void)
+{
+    m_u8Data.resize(0);
+}
+
+const std::vector<Mushware::U8>&
+MushSkinPixelSourceProc::DataRGBAU8Get(void) const
+{
+    return m_u8Data;
 }
 
 void
@@ -261,6 +281,7 @@ MushSkinPixelSourceProc::AutoPrint(std::ostream& ioOut) const
     ioOut << "offset=" << m_offset << ", ";
     ioOut << "numOctaves=" << m_numOctaves << ", ";
     ioOut << "octaveRatio=" << m_octaveRatio << ", ";
+    ioOut << "u8Data=" << m_u8Data << ", ";
     if (m_pPaletteTexture == NULL)
     {
         ioOut << "pPaletteTexture=NULL"  << ", ";
@@ -324,6 +345,10 @@ MushSkinPixelSourceProc::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std:
     {
         ioIn >> m_octaveRatio;
     }
+    else if (inTagStr == "u8Data")
+    {
+        ioIn >> m_u8Data;
+    }
     else if (inTagStr == "pPaletteTexture")
     {
         ioIn >> m_pPaletteTexture;
@@ -364,9 +389,11 @@ MushSkinPixelSourceProc::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_numOctaves;
     ioOut.TagSet("octaveRatio");
     ioOut << m_octaveRatio;
+    ioOut.TagSet("u8Data");
+    ioOut << m_u8Data;
     ioOut.TagSet("pPaletteTexture");
     ioOut << m_pPaletteTexture;
     ioOut.TagSet("pMesh");
     ioOut << m_pMesh;
 }
-//%outOfLineFunctions } Veymhd0262A77TM4uXGO4Q
+//%outOfLineFunctions } ehxN5v5h1cskDbBj8McsqQ

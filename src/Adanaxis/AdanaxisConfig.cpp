@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } 6/Gsg/pxZE7Ik5feMfHTrA
 /*
- * $Id: AdanaxisConfig.cpp,v 1.23 2007/04/16 08:41:07 southa Exp $
+ * $Id: AdanaxisConfig.cpp,v 1.24 2007/04/18 09:22:00 southa Exp $
  * $Log: AdanaxisConfig.cpp,v $
+ * Revision 1.24  2007/04/18 09:22:00  southa
+ * Header and level fixes
+ *
  * Revision 1.23  2007/04/16 08:41:07  southa
  * Level and header mods
  *
@@ -112,7 +115,7 @@ AdanaxisConfig::ToDefaultSet(void)
     m_modeDef = GLModeDef(kDisplayXSize, kDisplayYSize, true);
     AxesToDefaultSet();
     KeysToDefaultSet();
-    m_configDifficulty = 0;
+    m_configDifficulty = 1;
     m_useGLCompression = 1;
     m_useGLShader = 1;
 }

@@ -1,6 +1,9 @@
 # Target definition file
-# $Id: adanaxis.def,v 1.16 2007/03/24 14:06:28 southa Exp $
+# $Id: adanaxis.def,v 1.17 2007/06/02 15:57:02 southa Exp $
 # $Log: adanaxis.def,v $
+# Revision 1.17  2007/06/02 15:57:02  southa
+# Shader fix and prerelease work
+#
 # Revision 1.16  2007/03/24 14:06:28  southa
 # Cistern AI
 #
@@ -60,7 +63,7 @@ Subst: MUSH_APP_NAME 'Adanaxis'
 Subst: MUSH_APP_UNDERSCORED_NAME 'Adanaxis'
 Subst: MUSH_APP_MAJOR_VERSION '0'
 Subst: MUSH_APP_MINOR_VERSION '7'
-Subst: MUSH_APP_MICRO_VERSION '2'
+Subst: MUSH_APP_MICRO_VERSION '3'
 Subst: MUSH_APP_VERSION 'MUSH_APP_MAJOR_VERSION.MUSH_APP_MINOR_VERSION.MUSH_APP_MICRO_VERSION'
 Subst: MUSH_DATA_DIR 'data-adanaxis'
 Subst: MUSH_DATA_MAKEFILE 'data-adanaxis/Makefile'

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 0MU/VlR1Y8LFY7lFyFGFBw
 /*
- * $Id: MushGLShader.h,v 1.3 2006/09/09 15:59:28 southa Exp $
+ * $Id: MushGLShader.h,v 1.4 2007/04/18 09:22:36 southa Exp $
  * $Log: MushGLShader.h,v $
+ * Revision 1.4  2007/04/18 09:22:36  southa
+ * Header and level fixes
+ *
  * Revision 1.3  2006/09/09 15:59:28  southa
  * Shader colour calculations
  *
@@ -63,7 +66,7 @@ public:
     void Test(void);
     void Purge(void);
     void AttribsApply(const MushGLAttribs& inAttribs);
-
+    
 protected:
     std::string SourceGet(Mushware::GLHandle inShader) const;
     std::string InfoLogGet(Mushware::GLHandle inShader) const;
@@ -71,7 +74,7 @@ protected:
     bool LinkStatusGet(Mushware::GLHandle inProgram) const;
     bool ValidateStatusGet(Mushware::GLHandle inProgram) const;
     GLint UniformLocationGet(const std::string& inName);
-    
+
 private:
     Mushware::GLHandle m_programHandle; //:xmlignore (because underlying type is void *)
     Mushware::GLHandle m_fragmentShaderHandle; //:xmlignore (because underlying type is void *)

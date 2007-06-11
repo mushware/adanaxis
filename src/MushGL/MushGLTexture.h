@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } M3l27y1AKgnUC/y7boOgRQ
 /*
- * $Id: MushGLTexture.h,v 1.13 2007/02/08 17:55:14 southa Exp $
+ * $Id: MushGLTexture.h,v 1.14 2007/03/09 19:50:13 southa Exp $
  * $Log: MushGLTexture.h,v $
+ * Revision 1.14  2007/03/09 19:50:13  southa
+ * Resident textures
+ *
  * Revision 1.13  2007/02/08 17:55:14  southa
  * Common routines in space generation
  *
@@ -70,6 +73,8 @@
 
 #include "mushMushRuby.h"
 
+class MushGLPixelSource;
+
 //:generate virtual standard ostream xml1 nocopy
 class MushGLTexture : public MushcoreVirtualObject
 {
@@ -83,7 +88,6 @@ public:
         m_pixelType(kPixelTypeNone),
         m_storageType(kStorageTypeNone),
 		m_cacheable(true),
-		m_cacheSaveRequired(false),
 		m_compress(false),
         m_made(false),
         m_saveable(true),
@@ -126,7 +130,7 @@ private:
 
     void PixelDataGLRGBAUse(void *pData);
     void PixelDataU8RGBAUse(void *pData);
-    void ToCacheSave(void);
+    void ToCacheSave(const MushGLPixelSource& inSrc);
 	bool FromCacheLoad(void);
 	
     std::vector<Mushware::U8> m_u8Data;
@@ -141,7 +145,6 @@ private:
 	std::string m_name; //:readwrite
     std::string m_cacheFilename;
 	bool m_cacheable; //:readwrite
-	bool m_cacheSaveRequired;
 	bool m_compress; //:readwrite
     bool m_made;
     bool m_saveable; //:readwrite

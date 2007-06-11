@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } kSpZJaClZ1AGAVBRXcCLKg
 /*
- * $Id: MushGLPixelSource.h,v 1.11 2006/11/09 23:53:59 southa Exp $
+ * $Id: MushGLPixelSource.h,v 1.12 2007/03/09 19:50:13 southa Exp $
  * $Log: MushGLPixelSource.h,v $
+ * Revision 1.12  2007/03/09 19:50:13  southa
+ * Resident textures
+ *
  * Revision 1.11  2006/11/09 23:53:59  southa
  * Explosion and texture loading
  *
@@ -77,6 +80,10 @@ public:
     virtual void BufferFill(Mushware::U32 * const outPtr, const Mushware::t2U32 inSize) const; // Deprecated
     virtual void ToTextureCreate(MushGLTexture& outTexture);
 	
+    virtual void DataCreate(void);
+    virtual void DataRelease(void);
+    virtual const std::vector<Mushware::U8>& DataRGBAU8Get(void) const;
+    
 	static void Install(void);
 	
 private:

@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } g/3gmrhXtv7U2eKBDNNvVg
 /*
- * $Id: MushSkinPixelSourceProc.h,v 1.3 2006/08/01 17:21:39 southa Exp $
+ * $Id: MushSkinPixelSourceProc.h,v 1.4 2007/04/18 09:23:04 southa Exp $
  * $Log: MushSkinPixelSourceProc.h,v $
+ * Revision 1.4  2007/04/18 09:23:04  southa
+ * Header and level fixes
+ *
  * Revision 1.3  2006/08/01 17:21:39  southa
  * River demo
  *
@@ -43,6 +46,10 @@ class MushSkinPixelSourceProc : public MushGLPixelSource
 public:
     MushSkinPixelSourceProc();
     virtual void ToTextureCreate(MushGLTexture& outTexture);
+    virtual void DataCreate(void);
+    virtual void DataRelease(void);
+    virtual const std::vector<Mushware::U8>& DataRGBAU8Get(void) const;
+
     virtual void ParamDecode(const MushRubyValue& inName, const MushRubyValue& inValue);
 	
 	bool PaletteTextureValid(void) const
@@ -84,7 +91,8 @@ private:
 	Mushware::t4Val m_offset; //:read
 	Mushware::U32 m_numOctaves; //:read
 	Mushware::tVal m_octaveRatio; //:read
-	
+    std::vector<Mushware::U8> m_u8Data;
+    
     mutable MushGLTexture *m_pPaletteTexture; //Not owned by this object
 	mutable MushMesh4Mesh *m_pMesh; //:read
 	

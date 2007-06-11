@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } ugKqE0KA5pb38rpJeXIe0g
 /*
- * $Id: AdanaxisGame.cpp,v 1.69 2007/06/02 15:56:58 southa Exp $
+ * $Id: AdanaxisGame.cpp,v 1.70 2007/06/07 13:23:02 southa Exp $
  * $Log: AdanaxisGame.cpp,v $
+ * Revision 1.70  2007/06/07 13:23:02  southa
+ * Level 24
+ *
  * Revision 1.69  2007/06/02 15:56:58  southa
  * Shader fix and prerelease work
  *
@@ -508,7 +511,7 @@ AdanaxisGame::SwapIn(MushGameAppHandler& inAppHandler)
             MushGLV::Sgl().Acquaint();
             if (MushcoreEnv::Sgl().VariableExists("MUSHGL_DUMP_MUSHGLV"))
             {
-                MushcoreLog::Sgl().InfoLog() << MushGLV::Sgl() << endl;
+                MushcoreLog::Sgl().ErrorLog() << MushGLV::Sgl() << endl;
             }
             
             if (MushGLV::Sgl().HasS3TC())

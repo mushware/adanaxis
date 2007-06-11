@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } WY2u1HXX7TVJTgoF5glRyg
 /*
- * $Id: MushGLTexture.cpp,v 1.22 2007/02/08 17:55:14 southa Exp $
+ * $Id: MushGLTexture.cpp,v 1.23 2007/03/09 19:50:13 southa Exp $
  * $Log: MushGLTexture.cpp,v $
+ * Revision 1.23  2007/03/09 19:50:13  southa
+ * Resident textures
+ *
  * Revision 1.22  2007/02/08 17:55:14  southa
  * Common routines in space generation
  *
@@ -138,13 +141,21 @@ MushGLTexture::Make(void)
 			MUSHCOREASSERT(false);
 			throw MushcoreRequestFail("MushGLTexture::Make failure");
 		}
+        pSrc->DataCreate();
+
 		pSrc->ToTextureCreate(*this);
 		m_cacheable = pSrc->Cacheable();
 		m_resident = pSrc->Resident();
 		
 		// Built this texture the hard way, so save to cache
-		m_cacheSaveRequired = m_cacheable;
-		m_made = true;
+		if (m_cacheable && MushGLCacheControl::Sgl().PermitCache())
+		{
+		    ToCacheSave(*pSrc);
+        }
+        
+        pSrc->DataRelease();
+		
+        m_made = true;
 	}
 }
 
@@ -162,21 +173,6 @@ MushGLTexture::Bind(void)
     }
 	
     MushGLV::Sgl().BindTexture2D(m_bindingName);
-	
-	if (m_cacheSaveRequired)
-	{
-		m_cacheSaveRequired = false;
-		if (m_cacheable && MushGLCacheControl::Sgl().PermitCache())
-		{
-		    ToCacheSave();
-			
-			if (MushGLCacheControl::Sgl().PermitCompression())
-			{
-				// Remake to load the compressed version
-				Make();
-			}
-		}
-	}
 }
 
 void
@@ -192,14 +188,16 @@ MushGLTexture::Purge(void)
 }
 
 void
-MushGLTexture::ToCacheSave(void)
+MushGLTexture::ToCacheSave(const MushGLPixelSource& inSrc)
 {
 	try
 	{
         if (m_saveable)
         {
             m_cacheFilename = MushGLCacheControl::Sgl().TextureCacheFilenameMake(m_uniqueIdentifier);
-            MushGLTIFFUtil::TextureSave(m_cacheFilename, m_uniqueIdentifier);
+            MushGLTIFFUtil::RGBASave(m_cacheFilename, m_uniqueIdentifier,
+                                     Mushware::t2U32(m_size.X(), m_size.Y()),
+                                     inSrc.DataRGBAU8Get());
         }
 	}
 	catch (MushcoreNonFatalFail& e)
@@ -225,7 +223,7 @@ MushGLTexture::FromCacheLoad(void)
 		MushcoreLog::Sgl().InfoLog() << "Loaded cache texture: '" << m_name << "' from '" << m_cacheFilename << "'" << endl;
 		success = true;
 		
-#ifdef MUSHCORE_DEBUG
+#if 0
         if (m_saveable)
         {
             std::string saveFilename = m_cacheFilename.substr(0, m_cacheFilename.size()-5);
@@ -581,7 +579,6 @@ MushGLTexture::AutoPrint(std::ostream& ioOut) const
     ioOut << "name=" << m_name << ", ";
     ioOut << "cacheFilename=" << m_cacheFilename << ", ";
     ioOut << "cacheable=" << m_cacheable << ", ";
-    ioOut << "cacheSaveRequired=" << m_cacheSaveRequired << ", ";
     ioOut << "compress=" << m_compress << ", ";
     ioOut << "made=" << m_made << ", ";
     ioOut << "saveable=" << m_saveable << ", ";
@@ -645,10 +642,6 @@ MushGLTexture::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& i
     {
         ioIn >> m_cacheable;
     }
-    else if (inTagStr == "cacheSaveRequired")
-    {
-        ioIn >> m_cacheSaveRequired;
-    }
     else if (inTagStr == "compress")
     {
         ioIn >> m_compress;
@@ -698,8 +691,6 @@ MushGLTexture::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_cacheFilename;
     ioOut.TagSet("cacheable");
     ioOut << m_cacheable;
-    ioOut.TagSet("cacheSaveRequired");
-    ioOut << m_cacheSaveRequired;
     ioOut.TagSet("compress");
     ioOut << m_compress;
     ioOut.TagSet("made");
@@ -709,5 +700,5 @@ MushGLTexture::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("resident");
     ioOut << m_resident;
 }
-//%outOfLineFunctions } raNisx1TBOC+/Ea48R7FHw
+//%outOfLineFunctions } zGOFhbfFVqp1DBXHHwgAAg
 

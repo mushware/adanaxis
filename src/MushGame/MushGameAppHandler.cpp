@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } zkpYTheeNjP7gg2iX8lCdQ
 /*
- * $Id: MushGameAppHandler.cpp,v 1.24 2007/04/18 09:22:37 southa Exp $
+ * $Id: MushGameAppHandler.cpp,v 1.25 2007/04/18 12:44:38 southa Exp $
  * $Log: MushGameAppHandler.cpp,v $
+ * Revision 1.25  2007/04/18 12:44:38  southa
+ * Cache purge fix and pre-release tweaks
+ *
  * Revision 1.24  2007/04/18 09:22:37  southa
  * Header and level fixes
  *
@@ -177,7 +180,11 @@ MushGameAppHandler::QuitStateEnter(void)
         }
         if (permitPurge)
         {
+#ifdef MUSHCORE_DEBUG
+            MushcoreLog::Sgl().InfoLog() << "MUSHCORE_DEBUG prevented texture cache purging" << endl;
+#else
             MushGLCacheControl::Sgl().CachePurge();
+#endif
         }
         
         AppQuit(); // Quit immediately

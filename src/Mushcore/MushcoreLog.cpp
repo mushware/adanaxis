@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } dbTHd+LeRoodIg9tkOmqTQ
 /*
- * $Id: MushcoreLog.cpp,v 1.8 2006/08/02 15:41:47 southa Exp $
+ * $Id: MushcoreLog.cpp,v 1.9 2007/04/18 09:23:10 southa Exp $
  * $Log: MushcoreLog.cpp,v $
+ * Revision 1.9  2007/04/18 09:23:10  southa
+ * Header and level fixes
+ *
  * Revision 1.8  2006/08/02 15:41:47  southa
  * Prerelease work
  *
@@ -68,7 +71,7 @@ MushcoreLog::MushcoreLog() :
     m_enableWarningLog(true),
     m_enableInfoLog(true),
 #else
-    m_enableWarningLog(false),
+    m_enableWarningLog(true),
     m_enableInfoLog(false),
 #endif
     m_errorHeaderDone(false),

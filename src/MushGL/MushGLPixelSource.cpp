@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } f9YGqMS1ldzAaXM2tQFU8g
 /*
- * $Id: MushGLPixelSource.cpp,v 1.10 2006/11/09 23:53:59 southa Exp $
+ * $Id: MushGLPixelSource.cpp,v 1.11 2007/03/09 19:50:12 southa Exp $
  * $Log: MushGLPixelSource.cpp,v $
+ * Revision 1.11  2007/03/09 19:50:12  southa
+ * Resident textures
+ *
  * Revision 1.10  2006/11/09 23:53:59  southa
  * Explosion and texture loading
  *
@@ -127,6 +130,24 @@ void
 MushGLPixelSource::ToTextureCreate(MushGLTexture& outTexture)
 {
     throw MushcoreRequestFail("Cannot create texture from this pixel source");
+}
+
+void 
+MushGLPixelSource::DataCreate(void)
+{
+    // No operation
+}
+
+void 
+MushGLPixelSource::DataRelease(void)
+{
+    // No operation
+}
+
+const std::vector<Mushware::U8>&
+MushGLPixelSource::DataRGBAU8Get(void) const
+{
+    throw MushcoreRequestFail("Cannot get data from this pixel source");
 }
 
 void
