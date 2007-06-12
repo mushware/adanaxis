@@ -9,8 +9,11 @@
 #
 ##############################################################################
 #
-# $Id$
-# $Log$
+# $Id: AmendToType.rb,v 1.1 2007/06/12 13:36:22 southa Exp $
+# $Log: AmendToType.rb,v $
+# Revision 1.1  2007/06/12 13:36:22  southa
+# Demo configuration
+#
 
 require 'optparse'
 
@@ -27,9 +30,9 @@ class AmendToType < MushObject
   def mAdanaxisToDemo  
     skipDirs = %w{ . .. intro1 menu1 demoend1 }
 
-    Dir.foreach("#{resourcesDir}/spaces") do |dirName|
+    Dir.foreach("#{@m_resourcesDir}/spaces") do |dirName|
       unless skipDirs.index(dirName)
-        thisPath = "#{resourcesDir}/spaces/#{dirName}"
+        thisPath = "#{@m_resourcesDir}/spaces/#{dirName}"
         if File.directory?(thisPath)
           if File.file?(thisPath+"/demo_manifest.txt")
             File.delete(thisPath+"/manifest.txt")
@@ -47,7 +50,7 @@ class AmendToType < MushObject
     rmList = %w{ mush/voice-full.mush }
 
     rmList.each do |filename|
-      File.delete("#{resourcesDir}/#{filename}")
+      File.delete("#{@m_resourcesDir}/#{filename}")
       puts "Deleted file #{filename} for demo"
     end
   end
@@ -86,4 +89,4 @@ end.parse!
 
 amend.mProcess
 
-exit 1
+puts "#{$0} done."
