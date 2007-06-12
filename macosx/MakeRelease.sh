@@ -9,8 +9,11 @@
 #
 ##############################################################################
 #
-# $Id: MakeRelease.sh,v 1.14 2007/06/02 15:56:58 southa Exp $
+# $Id: MakeRelease.sh,v 1.15 2007/06/12 13:36:22 southa Exp $
 # $Log: MakeRelease.sh,v $
+# Revision 1.15  2007/06/12 13:36:22  southa
+# Demo configuration
+#
 # Revision 1.14  2007/06/02 15:56:58  southa
 # Shader fix and prerelease work
 #
@@ -67,17 +70,19 @@ package="$2"
 version="$3"
 builddir="$4"
 datadir="$5"
-releasedir="release/$name"
-readmedir="release/$name"
-sourceapp="$builddir/$name.app"
-appdir="$releasedir/$name $version.app"
-resourcesdir="$appdir/Contents/Resources/mushware-resources"
 if [ "$6" = "1" ]; then
   type='demo'
+  appSuffix=' Demo'
 else
   type='full'
+  appSuffix=''
 fi
 imageSuffix="-$type"
+releasedir="release/$name $version$appSuffix"
+readmedir="$releasedir"
+appdir="$releasedir/$name $version$appSuffix.app"
+sourceapp="$builddir/$name.app"
+resourcesdir="$appdir/Contents/Resources/mushware-resources"
 
 SetFile="/Developer/Tools/SetFile"
 
