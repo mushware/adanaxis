@@ -3627,6 +3627,12 @@
 		7A6AFEFD0AE5010C00AAFDA7 /* MushDashboard.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = MushDashboard.rb; sourceTree = "<group>"; };
 		7A6AFF020AE5031100AAFDA7 /* MushView.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = MushView.rb; sourceTree = "<group>"; };
 		7A6B30210BA74FBC00CDB9A8 /* MakeRelease.sh */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.sh; name = MakeRelease.sh; path = ../MakeRelease.sh; sourceTree = SOURCE_ROOT; };
+		7A6B6BEC0C1EBF1900CB4A6C /* AmendToType.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AmendToType.rb; sourceTree = "<group>"; };
+		7A6B6BF00C1EC62100CB4A6C /* MushObject.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = MushObject.rb; sourceTree = "<group>"; };
+		7A6B6C190C1ECEAE00CB4A6C /* demo_manifest.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = demo_manifest.txt; sourceTree = "<group>"; };
+		7A6B6C1C0C1ECEED00CB4A6C /* demo_manifest.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = demo_manifest.txt; sourceTree = "<group>"; };
+		7A6B6C220C1ED0F000CB4A6C /* demo_manifest.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = demo_manifest.txt; sourceTree = "<group>"; };
+		7A6B6C270C1ED40500CB4A6C /* demo_manifest.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = demo_manifest.txt; sourceTree = "<group>"; };
 		7A6C683E0BEA7DFF00A37F64 /* dialogues.xml */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; path = dialogues.xml; sourceTree = "<group>"; };
 		7A6C683F0BEA7DFF00A37F64 /* manifest.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = manifest.txt; sourceTree = "<group>"; };
 		7A6C68400BEA7DFF00A37F64 /* space.rb */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.ruby; path = space.rb; sourceTree = "<group>"; };
@@ -6003,6 +6009,7 @@
 		7A6842810BB3EBCB00A7E83F /* level1 */ = {
 			isa = PBXGroup;
 			children = (
+				7A6B6C1C0C1ECEED00CB4A6C /* demo_manifest.txt */,
 				7A6842820BB3EBCB00A7E83F /* dialogues.xml */,
 				7A6842830BB3EBCB00A7E83F /* manifest.txt */,
 				7A6842840BB3EBCB00A7E83F /* space.rb */,
@@ -6063,6 +6070,7 @@
 		7A68FDB90BD8BCFA00630249 /* level8 */ = {
 			isa = PBXGroup;
 			children = (
+				7A6B6C270C1ED40500CB4A6C /* demo_manifest.txt */,
 				7A68FDBA0BD8BCFA00630249 /* dialogues.xml */,
 				7A68FDBB0BD8BCFA00630249 /* manifest.txt */,
 				7A68FDBC0BD8BCFA00630249 /* space.rb */,
@@ -6213,6 +6221,7 @@
 		7A6CE19605A58DB000777D9B /* scripts */ = {
 			isa = PBXGroup;
 			children = (
+				7A6B6BEC0C1EBF1900CB4A6C /* AmendToType.rb */,
 				7A8A6E74067C5CE60025D379 /* COBHandler.pm */,
 				7A6CE19E05A58DF000777D9B /* autogen.pl */,
 				7A8A6E7F067C5D7B0025D379 /* COBTranslate.pl */,
@@ -6222,6 +6231,7 @@
 				7A697E040C119AA40053A2F2 /* MakeDemo.rb */,
 				7A97AAF70A653A6600921057 /* MakeDocs.rb */,
 				7A6B30210BA74FBC00CDB9A8 /* MakeRelease.sh */,
+				7A6B6BF00C1EC62100CB4A6C /* MushObject.rb */,
 				7A6CE1A005A58DF000777D9B /* prebuild.sh */,
 				7A5A5B3D0AD4FD860066FCA2 /* ProcessAnimation.rb */,
 				7A5894110AE6459100CD90EA /* ProcessCosmos.rb */,
@@ -7132,6 +7142,7 @@
 		7AE74EAF0BBABAF600795392 /* level6 */ = {
 			isa = PBXGroup;
 			children = (
+				7A6B6C220C1ED0F000CB4A6C /* demo_manifest.txt */,
 				7AE74EB00BBABAF600795392 /* dialogues.xml */,
 				7AE74EB10BBABAF600795392 /* manifest.txt */,
 				7AE74EB20BBABAF600795392 /* space.rb */,
@@ -7158,6 +7169,7 @@
 		7AF6B7630BD386040034ABFB /* intro1 */ = {
 			isa = PBXGroup;
 			children = (
+				7A6B6C190C1ECEAE00CB4A6C /* demo_manifest.txt */,
 				7AF6B7640BD386040034ABFB /* dialogues.xml */,
 				7AF6B7650BD386040034ABFB /* manifest.txt */,
 				7AF6B7660BD386040034ABFB /* space.rb */,

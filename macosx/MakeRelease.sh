@@ -9,8 +9,11 @@
 #
 ##############################################################################
 #
-# $Id: MakeRelease.sh,v 1.13 2007/04/19 12:57:57 southa Exp $
+# $Id: MakeRelease.sh,v 1.14 2007/06/02 15:56:58 southa Exp $
 # $Log: MakeRelease.sh,v $
+# Revision 1.14  2007/06/02 15:56:58  southa
+# Shader fix and prerelease work
+#
 # Revision 1.13  2007/04/19 12:57:57  southa
 # Prerelease work
 #
@@ -70,12 +73,11 @@ sourceapp="$builddir/$name.app"
 appdir="$releasedir/$name $version.app"
 resourcesdir="$appdir/Contents/Resources/mushware-resources"
 if [ "$6" = "1" ]; then
-  demo=1
-  imageSuffix="-demo"
+  type='demo'
 else
-  demo=0
-  imageSuffix="-full"
+  type='full'
 fi
+imageSuffix="-$type"
 
 SetFile="/Developer/Tools/SetFile"
 
@@ -98,10 +100,8 @@ rm -rf "$resourcesdir/mushware-cache"
 rm -rf "$resourcesdir/pixelsrc"
 rm -rf "$resourcesdir/wavesrc"
 
-if [ $demo == 1 ]; then
-  ruby scripts/MakeDemo.rb "$releasedir" "$resourcesdir"
-  if [ "$?" -ne "0" ]; then exit 1; fi
-fi
+ruby scripts/AmendToType.rb --releasedir="$releasedir" --resourcesdir="$resourcesdir" \
+  --type="$type" --name="$name" || exit 1
 
 cp "$resourcesdir/system/start.txt" "$resourcesdir/system/start_backup.txt"
 
