@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } ugKqE0KA5pb38rpJeXIe0g
 /*
- * $Id: AdanaxisGame.cpp,v 1.70 2007/06/07 13:23:02 southa Exp $
+ * $Id: AdanaxisGame.cpp,v 1.71 2007/06/11 20:06:14 southa Exp $
  * $Log: AdanaxisGame.cpp,v $
+ * Revision 1.71  2007/06/11 20:06:14  southa
+ * Compatibility fixes and level 27
+ *
  * Revision 1.70  2007/06/07 13:23:02  southa
  * Level 24
  *
@@ -406,6 +409,7 @@ AdanaxisGame::Init(MushGameAppHandler& inAppHandler)
     SaveData().RetinaSpinSet(MushRubyExec::Sgl().Call(VolatileData().RubySpace(), "mRetinaSpin").Val());
     SaveData().PermanentSpinSet(MushRubyExec::Sgl().Call(VolatileData().RubySpace(), "mPermanentSpin").Bool());
     SaveData().PermanentThrustSet(MushRubyExec::Sgl().Call(VolatileData().RubySpace(), "mPermanentThrust").Bool());
+    SaveData().SpeedAugmentationSet(MushRubyExec::Sgl().Call(VolatileData().RubySpace(), "mSpeedAugmentation").Bool());
 
 	AdanaxisUtil::MissingSkinsCreate(Logic());
     //AdanaxisUtil::MeshPurge(Logic());

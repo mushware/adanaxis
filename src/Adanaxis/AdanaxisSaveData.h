@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } JGGMtrTQ/FygaXDKftfwUQ
 /*
- * $Id: AdanaxisSaveData.h,v 1.22 2007/05/10 14:06:26 southa Exp $
+ * $Id: AdanaxisSaveData.h,v 1.23 2007/06/07 13:23:03 southa Exp $
  * $Log: AdanaxisSaveData.h,v $
+ * Revision 1.23  2007/06/07 13:23:03  southa
+ * Level 24
+ *
  * Revision 1.22  2007/05/10 14:06:26  southa
  * Level 16 and retina spin
  *
@@ -137,6 +140,7 @@ private:
     Mushware::tVal m_retinaSpin; //:readwrite
     Mushware::tVal m_permanentSpin; //:readwrite
     Mushware::tVal m_permanentThrust; //:readwrite
+    Mushware::tVal m_speedAugmentation; //:readwrite
     
 //%classPrototypes {
 public:
@@ -166,6 +170,8 @@ public:
     void PermanentSpinSet(const Mushware::tVal& inValue) { m_permanentSpin=inValue; }
     const Mushware::tVal& PermanentThrust(void) const { return m_permanentThrust; }
     void PermanentThrustSet(const Mushware::tVal& inValue) { m_permanentThrust=inValue; }
+    const Mushware::tVal& SpeedAugmentation(void) const { return m_speedAugmentation; }
+    void SpeedAugmentationSet(const Mushware::tVal& inValue) { m_speedAugmentation=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -173,7 +179,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } zeLOxdA5K2eszde1Ecl34g
+//%classPrototypes } 2mlGh1qkeP5MjeZ4WabLrA
 };
 
 //%inlineHeader {

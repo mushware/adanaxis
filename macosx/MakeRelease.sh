@@ -9,8 +9,11 @@
 #
 ##############################################################################
 #
-# $Id: MakeRelease.sh,v 1.15 2007/06/12 13:36:22 southa Exp $
+# $Id: MakeRelease.sh,v 1.16 2007/06/12 14:46:16 southa Exp $
 # $Log: MakeRelease.sh,v $
+# Revision 1.16  2007/06/12 14:46:16  southa
+# Demo creation
+#
 # Revision 1.15  2007/06/12 13:36:22  southa
 # Demo configuration
 #
@@ -127,7 +130,7 @@ ditto -xz -rsrc "macosx/Mushware web site.webloc.cpgz" "${releasedir}"
 
 echo Fixing up file types
 find "${releasedir}" -name '*.txt' -exec $SetFile -a E "{}" \;
-find "${releasedir}" -name '*.pdf' -exec echo $SetFile -a E "{}" \;
+find "${releasedir}" -name '*.pdf' -exec $SetFile -a E "{}" \;
 # find ${releasedir} -name '*.url' -exec $SetFile -a E -t LINK -c MSIE {} \;
 
 echo Setting permissions

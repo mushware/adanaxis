@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } z6y+VPxApqJcYE3m9Z996A
 /*
- * $Id: AdanaxisPiecePlayer.h,v 1.9 2007/05/22 12:59:10 southa Exp $
+ * $Id: AdanaxisPiecePlayer.h,v 1.10 2007/06/07 13:23:03 southa Exp $
  * $Log: AdanaxisPiecePlayer.h,v $
+ * Revision 1.10  2007/06/07 13:23:03  southa
+ * Level 24
+ *
  * Revision 1.9  2007/05/22 12:59:10  southa
  * Vortex effect on player
  *
@@ -105,7 +108,7 @@ public:
     virtual void PreControl(MushGameLogic& ioLogic);
     virtual void Move(MushGameLogic& ioLogic, const Mushware::tVal inFrameslice);
 
-    virtual void AxisDeltaHandle(Mushware::tVal inDelta, Mushware::U32 inAxisNum);
+    virtual void AxisDeltaHandle(MushGameLogic& ioLogic, Mushware::tVal inDelta, Mushware::U32 inAxisNum);
     virtual void KeyChangeHandle(MushGameLogic& ioLogic, bool inState, Mushware::U32 inKeyNum);
     virtual void ControlInfoConsume(MushGameLogic& ioLogic, const MushGameMessageControlInfo& inMessage);
     

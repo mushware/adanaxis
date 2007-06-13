@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } NakSYndAI0IrqBBZFk2p3g
 /*
- * $Id: AdanaxisPiecePlayer.cpp,v 1.19 2007/05/22 12:59:09 southa Exp $
+ * $Id: AdanaxisPiecePlayer.cpp,v 1.20 2007/06/07 13:23:03 southa Exp $
  * $Log: AdanaxisPiecePlayer.cpp,v $
+ * Revision 1.20  2007/06/07 13:23:03  southa
+ * Level 24
+ *
  * Revision 1.19  2007/05/22 12:59:09  southa
  * Vortex effect on player
  *
@@ -280,7 +283,7 @@ AdanaxisPiecePlayer::Move(MushGameLogic& ioLogic, const tVal inFrameslice)
 }
 
 void
-AdanaxisPiecePlayer::AxisDeltaHandle(Mushware::tVal inDelta, Mushware::U32 inAxisNum)
+AdanaxisPiecePlayer::AxisDeltaHandle(MushGameLogic& ioLogic, Mushware::tVal inDelta, Mushware::U32 inAxisNum)
 {
     if (inAxisNum <= AdanaxisConfig::kAxisW)
     {
@@ -305,6 +308,10 @@ AdanaxisPiecePlayer::AxisDeltaHandle(Mushware::tVal inDelta, Mushware::U32 inAxi
                 if (!m_thrustReleased)
                 {
                     vel = t4Val(0,0,0,inDelta);
+                    if (AdanaxisUtil::Logic(ioLogic).SaveData().SpeedAugmentation())
+                    {
+                        vel *= 5;
+                    }
                 }
                 break;
                 
@@ -313,7 +320,7 @@ AdanaxisPiecePlayer::AxisDeltaHandle(Mushware::tVal inDelta, Mushware::U32 inAxi
         }
 
         Post().AngPos().VectorRotate(vel);
-        if (vel.Magnitude() < 10.0)
+        if (vel.Magnitude() < 100.0)
         {
             PostWRef().VelWRef() += vel;
         }
@@ -382,7 +389,7 @@ AdanaxisPiecePlayer::ControlInfoConsume(MushGameLogic& ioLogic, const MushGameMe
         {
             if (m_lastAxisValid[axisNum])
             {
-                AxisDeltaHandle(m_lastAxes[axisNum] - axisValue, axisNum);
+                AxisDeltaHandle(ioLogic, m_lastAxes[axisNum] - axisValue, axisNum);
             }
             else
             {

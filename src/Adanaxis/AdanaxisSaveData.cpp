@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } gCJjrWXaDjT6xhF2+DIzXQ
 /*
- * $Id: AdanaxisSaveData.cpp,v 1.21 2007/05/10 14:06:26 southa Exp $
+ * $Id: AdanaxisSaveData.cpp,v 1.22 2007/06/07 13:23:03 southa Exp $
  * $Log: AdanaxisSaveData.cpp,v $
+ * Revision 1.22  2007/06/07 13:23:03  southa
+ * Level 24
+ *
  * Revision 1.21  2007/05/10 14:06:26  southa
  * Level 16 and retina spin
  *
@@ -90,7 +93,8 @@ AdanaxisSaveData::AdanaxisSaveData() :
     m_clockStarted(false),
     m_retinaSpin(0.0),
     m_permanentSpin(false),
-    m_permanentThrust(false)
+    m_permanentThrust(false),
+    m_speedAugmentation(false)
 {
 }
 
@@ -138,7 +142,8 @@ AdanaxisSaveData::AutoPrint(std::ostream& ioOut) const
     ioOut << "primaryType=" << m_primaryType << ", ";
     ioOut << "retinaSpin=" << m_retinaSpin << ", ";
     ioOut << "permanentSpin=" << m_permanentSpin << ", ";
-    ioOut << "permanentThrust=" << m_permanentThrust;
+    ioOut << "permanentThrust=" << m_permanentThrust << ", ";
+    ioOut << "speedAugmentation=" << m_speedAugmentation;
     ioOut << "]";
 }
 bool
@@ -194,6 +199,10 @@ AdanaxisSaveData::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string
     {
         ioIn >> m_permanentThrust;
     }
+    else if (inTagStr == "speedAugmentation")
+    {
+        ioIn >> m_speedAugmentation;
+    }
     else if (MushGameSaveData::AutoXMLDataProcess(ioIn, inTagStr))
     {
         // Tag consumed by base class
@@ -230,5 +239,7 @@ AdanaxisSaveData::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_permanentSpin;
     ioOut.TagSet("permanentThrust");
     ioOut << m_permanentThrust;
+    ioOut.TagSet("speedAugmentation");
+    ioOut << m_speedAugmentation;
 }
-//%outOfLineFunctions } M5d8+gY3Ulgip3BW/0Qv9A
+//%outOfLineFunctions } Ci9HvrzWE7BpRwFFLu/c0w
