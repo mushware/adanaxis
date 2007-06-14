@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } T6B3uTgauzxD50DPw+3uQw
 /*
- * $Id: AdanaxisVolatileData.cpp,v 1.19 2007/04/18 20:08:40 southa Exp $
+ * $Id: AdanaxisVolatileData.cpp,v 1.20 2007/05/09 19:24:44 southa Exp $
  * $Log: AdanaxisVolatileData.cpp,v $
+ * Revision 1.20  2007/05/09 19:24:44  southa
+ * Level 14
+ *
  * Revision 1.19  2007/04/18 20:08:40  southa
  * Tweaks and fixes
  *
@@ -124,6 +127,8 @@ AdanaxisVolatileData::AutoPrint(std::ostream& ioOut) const
     ioOut << "khaziCount=" << m_khaziCount << ", ";
     ioOut << "khaziRedCount=" << m_khaziRedCount << ", ";
     ioOut << "khaziBlueCount=" << m_khaziBlueCount << ", ";
+    ioOut << "khaziRedTotal=" << m_khaziRedTotal << ", ";
+    ioOut << "khaziBlueTotal=" << m_khaziBlueTotal << ", ";
     ioOut << "jammerCount=" << m_jammerCount << ", ";
     ioOut << "playerCount=" << m_playerCount << ", ";
     ioOut << "damageIcons=" << m_damageIcons;
@@ -178,6 +183,14 @@ AdanaxisVolatileData::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::st
     {
         ioIn >> m_khaziBlueCount;
     }
+    else if (inTagStr == "khaziRedTotal")
+    {
+        ioIn >> m_khaziRedTotal;
+    }
+    else if (inTagStr == "khaziBlueTotal")
+    {
+        ioIn >> m_khaziBlueTotal;
+    }
     else if (inTagStr == "jammerCount")
     {
         ioIn >> m_jammerCount;
@@ -224,6 +237,10 @@ AdanaxisVolatileData::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_khaziRedCount;
     ioOut.TagSet("khaziBlueCount");
     ioOut << m_khaziBlueCount;
+    ioOut.TagSet("khaziRedTotal");
+    ioOut << m_khaziRedTotal;
+    ioOut.TagSet("khaziBlueTotal");
+    ioOut << m_khaziBlueTotal;
     ioOut.TagSet("jammerCount");
     ioOut << m_jammerCount;
     ioOut.TagSet("playerCount");
@@ -231,4 +248,4 @@ AdanaxisVolatileData::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("damageIcons");
     ioOut << m_damageIcons;
 }
-//%outOfLineFunctions } 3BIJVFwIqtUozHgc0QCYWQ
+//%outOfLineFunctions } s4z9CuHpl0+/oMcTbhtTPA

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } xFkcq2HBP6vF9KpMR0i77w
 /*
- * $Id: MushGameDialogueUtils.h,v 1.3 2006/06/30 15:05:35 southa Exp $
+ * $Id: MushGameDialogueUtils.h,v 1.4 2007/04/18 09:22:39 southa Exp $
  * $Log: MushGameDialogueUtils.h,v $
+ * Revision 1.4  2007/04/18 09:22:39  southa
+ * Header and level fixes
+ *
  * Revision 1.3  2006/06/30 15:05:35  southa
  * Texture and buffer purge
  *
@@ -48,6 +51,7 @@ public:
                                   const std::string& inRegExp);
     static void MoveAndRender(MushcoreData<MushGameDialogue>& ioDialogues,
                               MushGameAppHandler& inAppHandler);
+    static void ExpireAll(MushcoreData<MushGameDialogue>& outDialogues);
 };
 
 //%includeGuardEnd {

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 1dEV7DsyeK1Ck2FlsKyw8g
 /*
- * $Id: MushGameDialogueUtils.cpp,v 1.4 2006/07/31 11:01:38 southa Exp $
+ * $Id: MushGameDialogueUtils.cpp,v 1.5 2007/04/18 09:22:39 southa Exp $
  * $Log: MushGameDialogueUtils.cpp,v $
+ * Revision 1.5  2007/04/18 09:22:39  southa
+ * Header and level fixes
+ *
  * Revision 1.4  2006/07/31 11:01:38  southa
  * Music and dialogues
  *
@@ -77,4 +80,14 @@ MushGameDialogueUtils::MoveAndRender(MushcoreData<MushGameDialogue>& ioDialogues
     }
     
     GLUtils::OrthoEpilogue();    
+}
+
+void
+MushGameDialogueUtils::ExpireAll(MushcoreData<MushGameDialogue>& outDialogues)
+{
+    for (MushcoreData<MushGameDialogue>::tIterator p = outDialogues.Begin();
+         p != outDialogues.End();)
+    {
+        p->second->ExpireNow();
+    }
 }

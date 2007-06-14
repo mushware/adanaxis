@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } gw16R+GuYbzypN9+uFdH3Q
 /*
- * $Id: MushRubyExec.h,v 1.7 2006/07/28 11:14:29 southa Exp $
+ * $Id: MushRubyExec.h,v 1.8 2007/04/18 09:23:02 southa Exp $
  * $Log: MushRubyExec.h,v $
+ * Revision 1.8  2007/04/18 09:23:02  southa
+ * Header and level fixes
+ *
  * Revision 1.7  2006/07/28 11:14:29  southa
  * Records for multiple spaces
  *
@@ -67,6 +70,12 @@ public:
                        MushRubyValue inArg0, MushRubyValue inArg1);
     MushRubyValue Call(MushRubyValue inRecv, Mushware::tRubyID inFunc,
                        MushRubyValue inArg0, MushRubyValue inArg1, MushRubyValue inArg2);
+    MushRubyValue Call(MushRubyValue inRecv, Mushware::tRubyID inFunc,
+                       MushRubyValue inArg0, MushRubyValue inArg1, MushRubyValue inArg2,
+                       MushRubyValue inArg3);
+    MushRubyValue Call(MushRubyValue inRecv, Mushware::tRubyID inFunc,
+                       MushRubyValue inArg0, MushRubyValue inArg1, MushRubyValue inArg2,
+                       MushRubyValue inArg3, MushRubyValue inArg4);
     void Require(const std::string& inStr);
     
 protected:
@@ -80,7 +89,7 @@ protected:
 private:
     enum
     {
-        kMaxArgs = 4
+        kMaxArgs = 5
     };
     
     Mushware::tRubyValue m_callReceiver;

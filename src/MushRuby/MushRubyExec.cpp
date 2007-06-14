@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } GFHdYZkRu+Oc9hL9CdJvtw
 /*
- * $Id: MushRubyExec.cpp,v 1.10 2006/07/28 11:14:29 southa Exp $
+ * $Id: MushRubyExec.cpp,v 1.11 2007/03/13 21:45:11 southa Exp $
  * $Log: MushRubyExec.cpp,v $
+ * Revision 1.11  2007/03/13 21:45:11  southa
+ * Release process
+ *
  * Revision 1.10  2006/07/28 11:14:29  southa
  * Records for multiple spaces
  *
@@ -234,6 +237,59 @@ MushRubyExec::Call(MushRubyValue inRecv, Mushware::tRubyID inFunc,
     m_callArgs[1] = inArg1.Value();
     m_callArgs[2] = inArg2.Value();
     m_callNumArgs = 3;
+    
+    retVal = rb_protect(StaticWrapProtect, 0, &rubyError);
+    
+    if (rubyError)
+    {
+        throw MushRubyFail();
+    }
+    return MushRubyValue(retVal);
+}
+
+MushRubyValue
+MushRubyExec::Call(MushRubyValue inRecv, Mushware::tRubyID inFunc,
+                   MushRubyValue inArg0, MushRubyValue inArg1, MushRubyValue inArg2,
+                   MushRubyValue inArg3)
+{
+	tRubyValue retVal;
+    tRubyError rubyError;
+    
+    m_callReceiver = inRecv.Value();
+    m_callFunction = inFunc;
+    MUSHCOREASSERT(m_callArgs.size() >= 4);
+    m_callArgs[0] = inArg0.Value();
+    m_callArgs[1] = inArg1.Value();
+    m_callArgs[2] = inArg2.Value();
+    m_callArgs[3] = inArg3.Value();
+    m_callNumArgs = 4;
+    
+    retVal = rb_protect(StaticWrapProtect, 0, &rubyError);
+    
+    if (rubyError)
+    {
+        throw MushRubyFail();
+    }
+    return MushRubyValue(retVal);
+}
+
+MushRubyValue
+MushRubyExec::Call(MushRubyValue inRecv, Mushware::tRubyID inFunc,
+                   MushRubyValue inArg0, MushRubyValue inArg1, MushRubyValue inArg2,
+                   MushRubyValue inArg3, MushRubyValue inArg4)
+{
+	tRubyValue retVal;
+    tRubyError rubyError;
+    
+    m_callReceiver = inRecv.Value();
+    m_callFunction = inFunc;
+    MUSHCOREASSERT(m_callArgs.size() >= 5);
+    m_callArgs[0] = inArg0.Value();
+    m_callArgs[1] = inArg1.Value();
+    m_callArgs[2] = inArg2.Value();
+    m_callArgs[3] = inArg3.Value();
+    m_callArgs[4] = inArg4.Value();
+    m_callNumArgs = 5;
     
     retVal = rb_protect(StaticWrapProtect, 0, &rubyError);
     

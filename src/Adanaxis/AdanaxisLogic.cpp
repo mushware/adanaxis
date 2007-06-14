@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } uRd/C67+BhB+F4sXUsaH6A
 /*
- * $Id: AdanaxisLogic.cpp,v 1.50 2007/05/29 13:25:57 southa Exp $
+ * $Id: AdanaxisLogic.cpp,v 1.51 2007/06/07 13:23:03 southa Exp $
  * $Log: AdanaxisLogic.cpp,v $
+ * Revision 1.51  2007/06/07 13:23:03  southa
+ * Level 24
+ *
  * Revision 1.50  2007/05/29 13:25:57  southa
  * Level 20
  *
@@ -776,10 +779,14 @@ AdanaxisLogic::Tick100msSequence(void)
     U32 khaziCount = 0;
     U32 redCount = 0;
     U32 blueCount = 0;
+    U32 redTotal = 0;
+    U32 blueTotal = 0;
     U32 jammerCount = 0;
     
     std::string redID = "kr";
     std::string blueID = "kb";
+    std::string redTotalID = "kr";
+    std::string blueTotalID = "kb";
     switch (SaveData().PrimaryType())
     {
         case AdanaxisData::kPrimaryTypeRed:
@@ -803,7 +810,15 @@ AdanaxisLogic::Tick100msSequence(void)
         {
             ++redCount;
         }
-
+        if (p->Id().substr(0,blueTotalID.size()) == blueTotalID)
+        {
+            ++blueTotal;
+        }
+        else if (p->Id().substr(0,redTotalID.size()) == redTotalID)
+        {
+            ++redTotal;
+        }
+        
         if (p->IsJammer())
         {
             ++jammerCount;   
@@ -815,7 +830,9 @@ AdanaxisLogic::Tick100msSequence(void)
     bool khaziUpdate = false;
     if (khaziCount != VolatileData().KhaziCount() ||
         redCount != VolatileData().KhaziRedCount() ||
-        blueCount != VolatileData().KhaziBlueCount())
+        blueCount != VolatileData().KhaziBlueCount() ||
+        redTotal != VolatileData().KhaziRedTotal() ||
+        blueTotal != VolatileData().KhaziBlueTotal())
     {
         khaziUpdate = true;
     }
@@ -830,6 +847,8 @@ AdanaxisLogic::Tick100msSequence(void)
     VolatileData().KhaziCountSet(khaziCount);
     VolatileData().KhaziRedCountSet(redCount);
     VolatileData().KhaziBlueCountSet(blueCount);
+    VolatileData().KhaziRedTotalSet(redTotal);
+    VolatileData().KhaziBlueTotalSet(blueTotal);
     VolatileData().JammerCountSet(jammerCount);
     
     U32 gameState = MushGameData::kGameResultNone;
@@ -840,7 +859,9 @@ AdanaxisLogic::Tick100msSequence(void)
                                              AdanaxisIntern::Sgl().mKhaziCountUpdate(),
                                              MushRubyValue(khaziCount),
                                              MushRubyValue(redCount),
-                                             MushRubyValue(blueCount)
+                                             MushRubyValue(blueCount),
+                                             MushRubyValue(redTotal),
+                                             MushRubyValue(blueTotal)
                                              ).U32();
     }
     

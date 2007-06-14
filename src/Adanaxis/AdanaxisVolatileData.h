@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } ZQ9OCwgMtQKHXM6W+FN5IQ
 /*
- * $Id: AdanaxisVolatileData.h,v 1.18 2007/04/16 08:41:09 southa Exp $
+ * $Id: AdanaxisVolatileData.h,v 1.19 2007/04/18 09:22:05 southa Exp $
  * $Log: AdanaxisVolatileData.h,v $
+ * Revision 1.19  2007/04/18 09:22:05  southa
+ * Header and level fixes
+ *
  * Revision 1.18  2007/04/16 08:41:09  southa
  * Level and header mods
  *
@@ -113,6 +116,8 @@ private:
     Mushware::U32 m_khaziCount; //:readwrite
     Mushware::U32 m_khaziRedCount; //:readwrite
     Mushware::U32 m_khaziBlueCount; //:readwrite
+    Mushware::U32 m_khaziRedTotal; //:readwrite
+    Mushware::U32 m_khaziBlueTotal; //:readwrite
     Mushware::U32 m_jammerCount; //:readwrite
     Mushware::U32 m_playerCount; //:readwrite
     std::vector<Mushware::tVal> m_damageIcons;
@@ -142,6 +147,10 @@ public:
     void KhaziRedCountSet(const Mushware::U32& inValue) { m_khaziRedCount=inValue; }
     const Mushware::U32& KhaziBlueCount(void) const { return m_khaziBlueCount; }
     void KhaziBlueCountSet(const Mushware::U32& inValue) { m_khaziBlueCount=inValue; }
+    const Mushware::U32& KhaziRedTotal(void) const { return m_khaziRedTotal; }
+    void KhaziRedTotalSet(const Mushware::U32& inValue) { m_khaziRedTotal=inValue; }
+    const Mushware::U32& KhaziBlueTotal(void) const { return m_khaziBlueTotal; }
+    void KhaziBlueTotalSet(const Mushware::U32& inValue) { m_khaziBlueTotal=inValue; }
     const Mushware::U32& JammerCount(void) const { return m_jammerCount; }
     void JammerCountSet(const Mushware::U32& inValue) { m_jammerCount=inValue; }
     const Mushware::U32& PlayerCount(void) const { return m_playerCount; }
@@ -153,7 +162,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } hc63MacSmmVrfbQQhvNAyg
+//%classPrototypes } 0c1iPHDxelbsfzcokZN9HA
 };
 //%inlineHeader {
 inline std::ostream&
