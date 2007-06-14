@@ -16,8 +16,11 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-# $Id: SourceProcess.rb,v 1.2 2006/10/04 21:39:35 southa Exp $
+# $Id: SourceProcess.rb,v 1.3 2006/10/09 16:00:16 southa Exp $
 # $Log: SourceProcess.rb,v $
+# Revision 1.3  2006/10/09 16:00:16  southa
+# Intern generation
+#
 # Revision 1.2  2006/10/04 21:39:35  southa
 # Source processing
 #
@@ -168,8 +171,6 @@ class SourceProcess
       puts "Replacing from #{startLine} to #{endLine}"
       
       @m_content[startLine..endLine] = newContent
-      
-      puts @m_content.inspect
     end
   end
 end

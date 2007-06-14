@@ -4,10 +4,12 @@ require 'Find'
 
 infile = ARGV[0]
 outfile = ARGV[1]
-appname = ARGV[2]
+appName = ARGV[2]
+instName = ARGV[3]
+outFilename= ARGV[4]
 
-puts "Generating installer file '#{infile}' from '#{outfile}'"
-
+puts "Generating #{appName} installer file '#{infile}' from '#{outfile}'"
+puts "Installed name '#{instName}', installer filename '#{outFilename}'"
 content = File.new(infile).readlines
 
 fileNames = []
@@ -30,10 +32,14 @@ Find.find('../release') do |f|
 end
 
 content.collect! do |line|
-  case line
-    when /@INSTFILES@/:  dirNames.map { |name| "CreateDirectory \"$INSTDIR\\#{name}\"\n"} + fileNames.map { |name| "File \"/oname=#{name}\" \"..\\release\\#{appname}\\#{name}\"\n" }
-    when /@UNINSTFILES@/: fileNames.map { |name| "Delete \"$INSTDIR\\#{name}\"\n" } + dirNames.reverse.map { |name| "RmDir \"$INSTDIR\\#{name}\"\n" }
-    else line
+  loop do
+    line = case line
+      when /@INSTFILES@/:  dirNames.map { |name| "CreateDirectory \"$INSTDIR\\#{name}\"\n"} + fileNames.map { |name| "File \"/oname=#{name}\" \"..\\release\\#{appName}\\#{name}\"\n" }
+      when /@UNINSTFILES@/: fileNames.map { |name| "Delete \"$INSTDIR\\#{name}\"\n" } + dirNames.reverse.map { |name| "RmDir \"$INSTDIR\\#{name}\"\n" }
+      when /(.*)@NSI_APP_NAME@(.*)/: $1+instName+$2+"\n"
+      when /(.*)@NSI_OUTFILE@(.*)/: $1+outFilename+$2+"\n"
+      else break(line)
+    end
   end
 end
 
@@ -42,4 +48,3 @@ content.flatten!
 File.open(outfile, "w") do |file|
   content.each { |line| file << line }
 end
-

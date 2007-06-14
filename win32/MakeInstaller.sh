@@ -1,5 +1,4 @@
 #!/bin/sh
-
 ##############################################################################
 #
 # This file contains original work by Andy Southgate.  Contact details can be
@@ -9,10 +8,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-
 #
-# $Id: MakeInstaller.sh,v 1.7 2006/06/26 17:03:35 southa Exp $
+# $Id: MakeInstaller.sh,v 1.8 2007/06/14 01:03:53 southa Exp $
 # $Log: MakeInstaller.sh,v $
+# Revision 1.8  2007/06/14 01:03:53  southa
+# win32 build fixes
+#
 # Revision 1.7  2006/06/26 17:03:35  southa
 # win32 installer tweaks
 #
@@ -34,12 +35,11 @@
 # Revision 1.1  2002/08/07 12:36:14  southa
 # Created
 #
-
 # Script for generating the win32 installer.
 
-if test "x$4" = "x"
+if test "x$6" = "x"
 then
-echo 'Usage: $0 <name> <version> <build directory> <data directory>'
+echo "Usage: $0 <name> <package name> <version> <build directory> <data directory> <demo flag>"
 exit 1
 fi
 
@@ -48,11 +48,19 @@ package="$2"
 version="$3"
 builddir="$4"
 datadir="$5"
+if [ "$6" = "1" ]; then
+  type='demo'
+  appSuffix=' Demo'
+else
+  type='full'
+  appSuffix=''
+fi
+imageSuffix="-$type"
 releasedir="release/$name"
 readmedir="release/$name/documents"
 appdir="$datadir/system/"
-
-echo "Building win32 installer for '$name$' version '$version'"
+resourcesdir="$releasedir"
+echo "Building win32 installer for '$name' version '$version'"
 echo "from '$builddir' and '$datadir' to '$releasedir'"
 
 cp -pR "$builddir/$package.exe" "$appdir"
@@ -69,7 +77,12 @@ cp -pR "$datadir" "$releasedir"
 find "$releasedir" -type d -name 'CVS' -prune -exec rm -rf "{}" \;
 find "$releasedir" -name '.DS_Store' -exec rm -f "{}" \;
 find "$releasedir" -name 'Makefile*' -exec rm -f "{}" \;
-find "$releasedir" -name 'mushware-cache' -exec rm -f "{}" \;
+rm -rf "$releasedir/mushware-cache"
+rm -rf "$releasedir/pixelsrc"
+rm -rf "$releasedir/wavesrc"
+
+ruby scripts/AmendToType.rb --releasedir="$releasedir" --resourcesdir="$resourcesdir" \
+  --type="$type" --name="$name" || exit 1
 
 cp "$releasedir/system/start.txt" "$releasedir/system/start_backup.txt"
 
@@ -94,7 +107,7 @@ echo 'Building win32 installer'
 cp 'win32/Mushware web site.url' "$releasedir"
 
 cd win32
-ruby FileListToNSI.rb installer.nsi installer_new.nsi "$name"
+ruby FileListToNSI.rb installer.nsi installer_new.nsi "$name" "${name}$appSuffix $version" "${package}$imageSuffix-win32-$version.exe" || exit 1
 makensis installer_new.nsi
 
 echo 'Done'

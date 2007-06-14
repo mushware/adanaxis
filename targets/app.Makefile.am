@@ -10,8 +10,11 @@
 ##############################################################################
 
 #
-# $Id: app.Makefile.am,v 1.5 2007/06/02 15:57:02 southa Exp $
+# $Id: app.Makefile.am,v 1.6 2007/06/05 12:15:16 southa Exp $
 # $Log: app.Makefile.am,v $
+# Revision 1.6  2007/06/05 12:15:16  southa
+# Level 21
+#
 # Revision 1.5  2007/06/02 15:57:02  southa
 # Shader fix and prerelease work
 #
@@ -51,8 +54,9 @@ mac-release: $(GZIPFILE)
 	(cd $(top_srcdir);$(SHELL) macosx/MakeRelease.sh 'MUSH_APP_NAME' 'MUSH_APP_PACKAGE' '@APP_VERSION@' 'MUSH_MACOSX_BUILD_PATH' 'MUSH_DATA_PATH' 1)
 	(cd $(top_srcdir);$(SHELL) macosx/MakeRelease.sh 'MUSH_APP_NAME' 'MUSH_APP_PACKAGE' '@APP_VERSION@' 'MUSH_MACOSX_BUILD_PATH' 'MUSH_DATA_PATH' 0)
 
-win32-release: dist
-	(cd $(top_srcdir);$(SHELL) win32/MakeInstaller.sh 'MUSH_APP_NAME' 'MUSH_APP_PACKAGE' '@APP_VERSION@' 'MUSH_WIN32_BUILD_PATH' 'MUSH_DATA_PATH')
+win32-release: $(GZIPFILE)
+	(cd $(top_srcdir);$(SHELL) win32/MakeInstaller.sh 'MUSH_APP_NAME' 'MUSH_APP_PACKAGE' '@APP_VERSION@' 'MUSH_WIN32_BUILD_PATH' 'MUSH_DATA_PATH' 1)
+	(cd $(top_srcdir);$(SHELL) win32/MakeInstaller.sh 'MUSH_APP_NAME' 'MUSH_APP_PACKAGE' '@APP_VERSION@' 'MUSH_WIN32_BUILD_PATH' 'MUSH_DATA_PATH' 0)
 
 $(GZIPFILE): dist
 
