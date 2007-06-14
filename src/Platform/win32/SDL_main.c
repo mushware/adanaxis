@@ -1,3 +1,10 @@
+//%Header {
+/*****************************************************************************
+ *
+ * File: src/Platform/win32/SDL_main.c
+ *
+ ****************************************************************************/
+//%Header } 6myNzXQ/js5hvgojgydQwA
 /*
     SDL_main.c, placed in the public domain by Sam Lantinga  4/13/98
 

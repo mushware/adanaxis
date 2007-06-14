@@ -3538,6 +3538,12 @@
 		7A66E42505FB25C500135328 /* mushMushGL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mushMushGL.h; sourceTree = "<group>"; };
 		7A66E44005FB260600135328 /* MushGL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MushGL.h; sourceTree = "<group>"; };
 		7A66E44105FB260600135328 /* MushGL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MushGL.cpp; sourceTree = "<group>"; };
+		7A683F9F0C2137F7009A2968 /* dialogues.xml */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; path = dialogues.xml; sourceTree = "<group>"; };
+		7A683FA00C2137F7009A2968 /* manifest.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = manifest.txt; sourceTree = "<group>"; };
+		7A683FA10C2137F7009A2968 /* space.rb */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.ruby; path = space.rb; sourceTree = "<group>"; };
+		7A683FA30C213941009A2968 /* dialogues.xml */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; path = dialogues.xml; sourceTree = "<group>"; };
+		7A683FA40C213942009A2968 /* manifest.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = manifest.txt; sourceTree = "<group>"; };
+		7A683FA50C213942009A2968 /* space.rb */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.ruby; path = space.rb; sourceTree = "<group>"; };
 		7A6842820BB3EBCB00A7E83F /* dialogues.xml */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; path = dialogues.xml; sourceTree = "<group>"; };
 		7A6842830BB3EBCB00A7E83F /* manifest.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = manifest.txt; sourceTree = "<group>"; };
 		7A6842840BB3EBCB00A7E83F /* space.rb */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.ruby; path = space.rb; sourceTree = "<group>"; };
@@ -4531,6 +4537,7 @@
 			isa = PBXGroup;
 			children = (
 				7A6AF7B70C1E863D003F6303 /* demoend1 */,
+				7A683FA20C213941009A2968 /* gameend1 */,
 				7AF6B7630BD386040034ABFB /* intro1 */,
 				7A6842810BB3EBCB00A7E83F /* level1 */,
 				7A6842860BB3ECB200A7E83F /* level2 */,
@@ -4561,6 +4568,7 @@
 				7AF752A90C1DB8B800AA8B41 /* level27 */,
 				7A6AF7B30C1E844C003F6303 /* level28 */,
 				7A6887CC0C20112A008FD7AE /* level29 */,
+				7A683F9E0C2137F7009A2968 /* level30 */,
 				7A3E0D1B0A4821C10078B650 /* local1 */,
 				7A97ECE80A6A808600369FD6 /* local2 */,
 				7A6176830A7FB32F00B97CA2 /* local3 */,
@@ -6008,6 +6016,26 @@
 				7AC6AB78087964F60078A331 /* MushGLWorkspace.h */,
 			);
 			path = MushGL;
+			sourceTree = "<group>";
+		};
+		7A683F9E0C2137F7009A2968 /* level30 */ = {
+			isa = PBXGroup;
+			children = (
+				7A683F9F0C2137F7009A2968 /* dialogues.xml */,
+				7A683FA00C2137F7009A2968 /* manifest.txt */,
+				7A683FA10C2137F7009A2968 /* space.rb */,
+			);
+			path = level30;
+			sourceTree = "<group>";
+		};
+		7A683FA20C213941009A2968 /* gameend1 */ = {
+			isa = PBXGroup;
+			children = (
+				7A683FA30C213941009A2968 /* dialogues.xml */,
+				7A683FA40C213942009A2968 /* manifest.txt */,
+				7A683FA50C213942009A2968 /* space.rb */,
+			);
+			path = gameend1;
 			sourceTree = "<group>";
 		};
 		7A6842810BB3EBCB00A7E83F /* level1 */ = {
