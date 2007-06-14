@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } tNW5bVfToKFgjNWBBgAqpQ
 /*
- * $Id: MushCollisionPiece.cpp,v 1.5 2006/11/14 20:28:37 southa Exp $
+ * $Id: MushCollisionPiece.cpp,v 1.6 2007/04/18 09:22:30 southa Exp $
  * $Log: MushCollisionPiece.cpp,v $
+ * Revision 1.6  2007/04/18 09:22:30  southa
+ * Header and level fixes
+ *
  * Revision 1.5  2006/11/14 20:28:37  southa
  * Added rail gun
  *
@@ -116,6 +119,7 @@ void
 MushCollisionPiece::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
+    ioOut << "shrinkFactor=" << m_shrinkFactor << ", ";
     ioOut << "collSpace=" << m_collSpace;
     ioOut << "]";
 }
@@ -127,6 +131,10 @@ MushCollisionPiece::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::stri
         AutoInputPrologue(ioIn);
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
+    }
+    else if (inTagStr == "shrinkFactor")
+    {
+        ioIn >> m_shrinkFactor;
     }
     else if (inTagStr == "collSpace")
     {
@@ -141,7 +149,9 @@ MushCollisionPiece::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::stri
 void
 MushCollisionPiece::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
+    ioOut.TagSet("shrinkFactor");
+    ioOut << m_shrinkFactor;
     ioOut.TagSet("collSpace");
     ioOut << m_collSpace;
 }
-//%outOfLineFunctions } eFXYCQeLBEGTe+atLRenOA
+//%outOfLineFunctions } 1S2V/lUZGZVaV3r7yu08mQ

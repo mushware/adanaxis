@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 1uefOWcKCDY4W2xTWkEYpg
 /*
- * $Id: MushCollisionResolver.cpp,v 1.7 2006/11/14 20:28:37 southa Exp $
+ * $Id: MushCollisionResolver.cpp,v 1.8 2007/03/21 11:56:06 southa Exp $
  * $Log: MushCollisionResolver.cpp,v $
+ * Revision 1.8  2007/03/21 11:56:06  southa
+ * Rail effects and damage icons
+ *
  * Revision 1.7  2006/11/14 20:28:37  southa
  * Added rail gun
  *
@@ -70,11 +73,11 @@ MushCollisionResolver::ChunkResolve(MushCollisionInfo& outCollInfo, const MushCo
     
     for (U32 i=0; i<numChunks1; ++i)
     {
-        tVal boundingRadius1 = meshRef1.ChunkBoundingRadius(i);
+        tVal boundingRadius1 = meshRef1.ChunkBoundingRadius(i) * inPiece1.ShrinkFactor();
         
         for (U32 j=0; j<numChunks2; ++j)
         {
-            tVal boundingRadius2 = meshRef2.ChunkBoundingRadius(j);
+            tVal boundingRadius2 = meshRef2.ChunkBoundingRadius(j) * inPiece2.ShrinkFactor();
             
             tVal distanceSep = (centroidsRef1[i] - centroidsRef2[j]).Magnitude() - boundingRadius1 - boundingRadius2;
             if ((i == 0 && j == 0) || distanceSep < minDistanceSep)
@@ -107,7 +110,7 @@ MushCollisionResolver::WCylinderResolve(MushCollisionInfo& outCollInfo, const Mu
     
     for (U32 j=0; j<numChunks2; ++j)
     {
-        tVal boundingRadius2 = meshRef2.ChunkBoundingRadius(j);
+        tVal boundingRadius2 = meshRef2.ChunkBoundingRadius(j) * inPiece2.ShrinkFactor();
         t4Val vecSep = centroidsRef1[0] - centroidsRef2[j];
 
         inPiece1.CollisionPost().AngPos().Conjugate().VectorRotate(vecSep);

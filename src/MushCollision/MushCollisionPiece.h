@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } LX43K9AXZEla1+GuWUipSA
 /*
- * $Id: MushCollisionPiece.h,v 1.5 2006/11/14 20:28:37 southa Exp $
+ * $Id: MushCollisionPiece.h,v 1.6 2007/04/18 09:22:31 southa Exp $
  * $Log: MushCollisionPiece.h,v $
+ * Revision 1.6  2007/04/18 09:22:31  southa
+ * Header and level fixes
+ *
  * Revision 1.5  2006/11/14 20:28:37  southa
  * Added rail gun
  *
@@ -50,6 +53,8 @@
 class MushCollisionPiece : public virtual MushcoreVirtualObject
 {
 public:
+    MushCollisionPiece() : m_shrinkFactor(1.0) {}
+    virtual ~MushCollisionPiece() {}
     virtual const MushMesh4Mesh& CollisionMesh(void) const;
     virtual const MushMeshPosticity& CollisionPost(void) const;
     virtual bool CollisionIsWCylinder(void) const;
@@ -63,10 +68,13 @@ protected:
     void CollisionChunkWorldCentroidsBuild(void) const;
         
 private:
+    Mushware::tVal m_shrinkFactor; //:readwrite
     mutable MushCollisionWorkspace m_collSpace;
     
 //%classPrototypes {
 public:
+    const Mushware::tVal& ShrinkFactor(void) const { return m_shrinkFactor; }
+    void ShrinkFactorSet(const Mushware::tVal& inValue) { m_shrinkFactor=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -74,7 +82,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } 1oBgFruy5qHAaudtV+Hcmg
+//%classPrototypes } fuWU4SUp/NTWTjOSg8Cpzw
 };
 
 inline const Mushware::t4Val&

@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } pQ5BRw+L1Th8huxU49D5bg
 /*
- * $Id: AdanaxisPieceProjectile.cpp,v 1.20 2007/04/18 09:22:02 southa Exp $
+ * $Id: AdanaxisPieceProjectile.cpp,v 1.21 2007/04/26 13:12:40 southa Exp $
  * $Log: AdanaxisPieceProjectile.cpp,v $
+ * Revision 1.21  2007/04/26 13:12:40  southa
+ * Limescale and level 9
+ *
  * Revision 1.20  2007/04/18 09:22:02  southa
  * Header and level fixes
  *
@@ -100,6 +103,9 @@ AdanaxisPieceProjectile::AdanaxisPieceProjectile(const std::string& inID, const 
     m_launchMsec(0)
 {
     RubyPieceConstructor(inID, inParams, AdanaxisIntern::Sgl().AdanaxisPieceProjectile());
+    
+    // Projectiles are never as big as their chunk size suggests
+    ShrinkFactorSet(0.1);
 }
 
 AdanaxisPieceProjectile::~AdanaxisPieceProjectile()
