@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } XuVkaJqZePwJzcZ7Cr975Q
 /*
- * $Id: MushGLShader.cpp,v 1.10 2007/06/02 15:56:59 southa Exp $
+ * $Id: MushGLShader.cpp,v 1.11 2007/06/11 20:06:15 southa Exp $
  * $Log: MushGLShader.cpp,v $
+ * Revision 1.11  2007/06/11 20:06:15  southa
+ * Compatibility fixes and level 27
+ *
  * Revision 1.10  2007/06/02 15:56:59  southa
  * Shader fix and prerelease work
  *
@@ -107,9 +110,9 @@ MushGLShader::SourceGet(Mushware::GLHandle inShader) const
         sourceStream << subTypeStr << " shader, " << sourceSize << " source bytes, ";
         sourceStream << (CompileStatusGet(inShader) ? "compiled" : "not compiled") << endl;
         
-        GLChar sourceBuffer[sourceSize+2];
+        std::vector<GLChar> sourceBuffer(sourceSize+2);
         sourceBuffer[sourceSize+1] = 'A';
-        MushGLV::Sgl().GetShaderSource(inShader, sourceSize, NULL, sourceBuffer);
+        MushGLV::Sgl().GetShaderSource(inShader, sourceSize, NULL, &sourceBuffer[0]);
         if (sourceBuffer[sourceSize+1] != 'A')
         {
             throw MushcoreLogicFail("Buffer overrun in GetShaderSource");
@@ -119,7 +122,7 @@ MushGLShader::SourceGet(Mushware::GLHandle inShader) const
             MushcoreLog::Sgl().WarningLog() << "GetShaderSource terminator not where expected" << endl;
         }
         
-        sourceStream << sourceBuffer;
+        sourceStream << &sourceBuffer[0];
     }
     return sourceStream.str();
 }
@@ -134,9 +137,9 @@ MushGLShader::InfoLogGet(Mushware::GLHandle inShader) const
         MushGLV::Sgl().GetObjectParameteriv(inShader,
                                             GL_OBJECT_INFO_LOG_LENGTH_ARB,
                                             &infoLogSize);
-        GLChar infoLogBuffer[infoLogSize+2];
+        std::vector<GLChar> infoLogBuffer(infoLogSize+2);
         infoLogBuffer[infoLogSize+1] = 'A';
-        MushGLV::Sgl().GetInfoLog(inShader, infoLogSize, NULL, infoLogBuffer);
+        MushGLV::Sgl().GetInfoLog(inShader, infoLogSize, NULL, &infoLogBuffer[0]);
         if (infoLogBuffer[infoLogSize+1] != 'A')
         {
             throw MushcoreLogicFail("Buffer overrun in GetShaderSource");
@@ -146,7 +149,7 @@ MushGLShader::InfoLogGet(Mushware::GLHandle inShader) const
             MushcoreLog::Sgl().WarningLog() << "GetShaderSource terminator not where expected" << endl;
         }
         
-        infoLogStream << infoLogBuffer;
+        infoLogStream << &infoLogBuffer[0];
     }
     return infoLogStream.str();
 }
@@ -234,7 +237,7 @@ MushGLShader::UniformDump(std::ostream& ioOut) const
 
         for (GLint i=0; i<numUniforms; ++i)
         {
-            GLChar buffer[maxLength+2];
+            std::vector<GLChar> buffer(maxLength+2);
             GLsizei length = 0;
             GLint size = 0;
             GLenum type = 0;
@@ -245,7 +248,7 @@ MushGLShader::UniformDump(std::ostream& ioOut) const
                                             &length,
                                             &size,
                                             &type,
-                                            buffer);
+                                            &buffer[0]);
             
             ioOut << "Uniform " << i << " " << MushGLUtil::DataTypeToString(type);
             ioOut << " (size " << size << "): " << buffer << endl;                      

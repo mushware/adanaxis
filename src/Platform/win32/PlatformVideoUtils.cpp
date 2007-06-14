@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } KCxXYygl0O3Oosas7+Vmbw
 /*
- * $Id: PlatformVideoUtils.cpp,v 1.23 2006/06/30 17:26:11 southa Exp $
+ * $Id: PlatformVideoUtils.cpp,v 1.24 2007/04/18 09:23:24 southa Exp $
  * $Log: PlatformVideoUtils.cpp,v $
+ * Revision 1.24  2007/04/18 09:23:24  southa
+ * Header and level fixes
+ *
  * Revision 1.23  2006/06/30 17:26:11  southa
  * Render prelude
  *
@@ -144,9 +147,9 @@ PlatformVideoUtils::PlatformVideoUtils() :
         }
     }
 
-    m_modeDefs.push_back(GLModeDef("640x480 window",640,480,32,0, GLModeDef::kScreenWindow, GLModeDef::kCursorShow, GLModeDef::kSyncSoft));
-    m_modeDefs.push_back(GLModeDef("800x600 window",800,600,32,0, GLModeDef::kScreenWindow, GLModeDef::kCursorShow, GLModeDef::kSyncSoft));
-    
+    m_modeDefs.push_back(GLModeDef(640, 480, false));
+    m_modeDefs.push_back(GLModeDef(800, 600, false));
+        
     // Find all display modes available on the default display and add them
     // to the list
     
@@ -192,53 +195,68 @@ PlatformVideoUtils::PlatformVideoUtils() :
     {
         U32 xSize = m_modesSoFar[i].first;
         U32 ySize = m_modesSoFar[i].second;
-        
-        std::ostringstream modeStrm;
-        modeStrm << xSize << "x" << ySize;
-        m_modeDefs.push_back(GLModeDef(modeStrm.str(), xSize, ySize, 32, 0,  GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncSoft));
+        m_modeDefs.push_back(GLModeDef(xSize, ySize, true));
     }
 }
 
-U32
-PlatformVideoUtils::DefaultModeGet(void) const
+const GLModeDef&
+PlatformVideoUtils::DefaultModeDef(void) const
 {
-    U32 retVal=0;
+    U32 modeNum = 0;
+    
     for (U32 i=2; i < m_modeDefs.size(); ++i)
     {
-        if (m_modeDefs[i].WidthGet() == 640 &&
-            m_modeDefs[i].HeightGet() == 480)
+        if (m_modeDefs[i].Width() == 1024 &&
+            m_modeDefs[i].Height() == 768)
         {
-            retVal = i;   
+            modeNum = i;   
+        }
+    }
+    return m_modeDefs[modeNum];
+}
+
+Mushware::U32
+PlatformVideoUtils::ModeDefFind(const GLModeDef& inModeDef) const
+{
+    U32 retVal = 0;
+    for (U32 i=1; i<m_modeDefs.size(); ++i)
+    {
+        if (inModeDef == m_modeDefs[i])
+        {
+            retVal = i;
         }
     }
     return retVal;
 }
 
 const GLModeDef&
-PlatformVideoUtils::ModeDefGet(U32 inNum)
+PlatformVideoUtils::PreviousModeDef(const GLModeDef& inModeDef) const
 {
-    if (inNum >= m_modeDefs.size())
+    U32 modeNum = ModeDefFind(inModeDef);
+
+    if (modeNum == 0)
     {
-        ostringstream message;
-        message << "Mode number " << inNum << " too high (max " << m_modeDefs.size() << ")";
-        throw(MushcoreReferenceFail(message.str()));
+        modeNum = m_modeDefs.size() - 1;
     }
-    return m_modeDefs[inNum];
+    else
+    {
+        --modeNum;
+    }
+    return m_modeDefs[modeNum];
 }
 
-U32
-PlatformVideoUtils::PreviousModeDef(U32 inNum) const
+const GLModeDef&
+PlatformVideoUtils::NextModeDef(const GLModeDef& inModeDef) const
 {
-    if (inNum == 0) return m_modeDefs.size()-1;
-    return inNum-1;
-}
-
-
-U32
-PlatformVideoUtils::NextModeDef(U32 inNum) const
-{
-    if (inNum+1 >= m_modeDefs.size()) return 0;
-    return inNum+1;
+    U32 modeNum = ModeDefFind(inModeDef);
+    
+    ++modeNum;
+    if (modeNum >= m_modeDefs.size())
+    {
+        modeNum = 0;
+    }
+    
+    return m_modeDefs[modeNum];
 }
 
 U32
@@ -250,21 +268,7 @@ PlatformVideoUtils::NumModesGet(void) const
 void
 PlatformVideoUtils::RenderModeInfo(U32 inNum) const
 {
-    const GLModeDef& modeDef=PlatformVideoUtils::Sgl().ModeDefGet(inNum);
-    GLState::ColourSet(1.0,1.0,1.0,0.8);
-GLUtils::PushMatrix();
-    GLUtils gl;
-    GLString glStr;
-    gl.MoveTo(0,0.05);
-
-    glStr=GLString("Display mode", GLFontRef("font-mono1", 0.03), 0);
-    glStr.Render();
-
-    gl.MoveTo(0,0);
-    
-    glStr=GLString(modeDef.NameGet(), GLFontRef("font-mono1", 0.04), 0);
-    glStr.Render();
-    GLUtils::PopMatrix();
+    throw MushcoreLogicFail("RenderModeInfo deprecated");
 }
 
 void

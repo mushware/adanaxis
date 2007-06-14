@@ -23,7 +23,7 @@
 				InlineFunctionExpansion="0"
 				FavorSizeOrSpeed="1"
 				OptimizeForProcessor="3"
-				AdditionalIncludeDirectories="..\..\src;..\..\src\API;C:\msvclibs\GnuWin32\include;&quot;C:\msvclibs\Expat-1.95.8\Source\lib&quot;;&quot;C:\msvclibs\SDL-1.2.8\include&quot;;&quot;C:\msvclibs\SDL_mixer-1.2.6\include&quot;"
+				AdditionalIncludeDirectories="..\..\src;..\..\src\API;C:\msvclibs\GnuWin32\include;&quot;C:\msvclibs\Expat-1.95.8\Source\lib&quot;;&quot;C:\msvclibs\SDL-1.2.11\include&quot;;&quot;C:\msvclibs\SDL_mixer-1.2.7&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_CONSOLE"
 				MinimalRebuild="TRUE"
 				BasicRuntimeChecks="0"
@@ -41,7 +41,7 @@
 				AdditionalDependencies="WS2_32.lib Winmm.lib dxguid.lib Iphlpapi.lib OPENGL32.lib GLU32.lib libexpat.lib libpcre.a SDL.lib SDL_mixer.lib libtiff.lib"
 				OutputFile="$(OutDir)/adanaxis_debug.exe"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="C:\msvclibs\GnuWin32\lib;&quot;C:\msvclibs\Expat-1.95.8\Libs&quot;;&quot;C:\msvclibs\SDL-1.2.8\lib&quot;;&quot;C:\msvclibs\SDL_mixer-1.2.6\lib&quot;"
+				AdditionalLibraryDirectories="C:\msvclibs\GnuWin32\lib;&quot;C:\msvclibs\Expat-1.95.8\Libs&quot;;&quot;C:\msvclibs\SDL-1.2.11\lib&quot;;&quot;C:\msvclibs\SDL_mixer-1.2.7\lib&quot;"
 				IgnoreAllDefaultLibraries="FALSE"
 				IgnoreDefaultLibraryNames=""
 				GenerateDebugInformation="TRUE"
@@ -56,7 +56,8 @@
 			<Tool
 				Name="VCPreBuildEventTool"
 				Description="Runs SourceConditioner.pm, which handles code autogeneration within the source files"
-				CommandLine="cd ..\.. &amp;&amp; echo This build event is not essential.  Remove it if it causes trouble &amp;&amp; C:\cygwin\bin\perl -w SourceConditioner.pl"/>
+				CommandLine="cd ..\.. &amp;&amp; echo This build event is not essential.  Remove it if it causes trouble &amp;&amp; C:\cygwin\bin\perl -w SourceConditioner.pl"
+				ExcludedFromBuild="TRUE"/>
 			<Tool
 				Name="VCPreLinkEventTool"/>
 			<Tool
@@ -85,7 +86,7 @@
 				InlineFunctionExpansion="2"
 				EnableIntrinsicFunctions="TRUE"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="..\..\src;..\..\src\API;C:\msvclibs\GnuWin32\include;&quot;C:\msvclibs\Expat-1.95.8\Source\lib&quot;;&quot;C:\msvclibs\SDL-1.2.7\include&quot;;&quot;C:\msvclibs\SDL_mixer-1.2.5\include&quot;"
+				AdditionalIncludeDirectories="..\..\src;..\..\src\API;C:\msvclibs\GnuWin32\include;&quot;C:\msvclibs\Expat-1.95.8\Source\lib&quot;;&quot;C:\msvclibs\SDL-1.2.11\include&quot;;&quot;C:\msvclibs\SDL_mixer-1.2.7\include&quot;"
 				PreprocessorDefinitions="WIN32;_WINDOWS;NDEBUG"
 				StringPooling="TRUE"
 				RuntimeLibrary="2"
@@ -104,7 +105,7 @@
 				OutputFile="$(OutDir)/adanaxisrenderingdemo.exe"
 				Version="0.1.1"
 				LinkIncremental="1"
-				AdditionalLibraryDirectories="C:\msvclibs\GnuWin32\lib;&quot;C:\msvclibs\Expat-1.95.8\Libs&quot;;&quot;C:\msvclibs\SDL-1.2.7\lib&quot;;&quot;C:\msvclibs\SDL_mixer-1.2.5\lib&quot;"
+				AdditionalLibraryDirectories="C:\msvclibs\GnuWin32\lib;&quot;C:\msvclibs\Expat-1.95.8\Libs&quot;;&quot;C:\msvclibs\SDL-1.2.11\lib&quot;;&quot;C:\msvclibs\SDL_mixer-1.2.7\lib&quot;"
 				IgnoreAllDefaultLibraries="FALSE"
 				GenerateDebugInformation="FALSE"
 				SubSystem="2"
@@ -836,6 +837,12 @@
 					RelativePath="..\..\src\Adanaxis\AdanaxisData.h">
 				</File>
 				<File
+					RelativePath="..\..\src\Adanaxis\AdanaxisEvents.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\Adanaxis\AdanaxisEvents.h">
+				</File>
+				<File
 					RelativePath="..\..\src\Adanaxis\AdanaxisGame.cpp">
 				</File>
 				<File
@@ -846,6 +853,12 @@
 				</File>
 				<File
 					RelativePath="..\..\src\Adanaxis\AdanaxisInfo.h">
+				</File>
+				<File
+					RelativePath="..\..\src\Adanaxis\AdanaxisIntern.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\Adanaxis\AdanaxisIntern.h">
 				</File>
 				<File
 					RelativePath="..\..\src\Adanaxis\AdanaxisLogic.cpp">
@@ -860,16 +873,40 @@
 					RelativePath="..\..\src\Adanaxis\AdanaxisMeshLibrary.h">
 				</File>
 				<File
+					RelativePath="..\..\src\Adanaxis\AdanaxisPiece.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\Adanaxis\AdanaxisPiece.h">
+				</File>
+				<File
 					RelativePath="..\..\src\Adanaxis\AdanaxisPieceDeco.cpp">
 				</File>
 				<File
 					RelativePath="..\..\src\Adanaxis\AdanaxisPieceDeco.h">
 				</File>
 				<File
+					RelativePath="..\..\src\Adanaxis\AdanaxisPieceEffector.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\Adanaxis\AdanaxisPieceEffector.h">
+				</File>
+				<File
+					RelativePath="..\..\src\Adanaxis\AdanaxisPieceItem.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\Adanaxis\AdanaxisPieceItem.h">
+				</File>
+				<File
 					RelativePath="..\..\src\Adanaxis\AdanaxisPieceKhazi.cpp">
 				</File>
 				<File
 					RelativePath="..\..\src\Adanaxis\AdanaxisPieceKhazi.h">
+				</File>
+				<File
+					RelativePath="..\..\src\Adanaxis\AdanaxisPiecePlayer.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\Adanaxis\AdanaxisPiecePlayer.h">
 				</File>
 				<File
 					RelativePath="..\..\src\Adanaxis\AdanaxisPieceProjectile.cpp">
@@ -884,10 +921,10 @@
 					RelativePath="..\..\src\Adanaxis\AdanaxisPieceWorld.h">
 				</File>
 				<File
-					RelativePath="..\..\src\Adanaxis\AdanaxisPlayer.cpp">
+					RelativePath="..\..\src\Adanaxis\AdanaxisRecords.cpp">
 				</File>
 				<File
-					RelativePath="..\..\src\Adanaxis\AdanaxisPlayer.h">
+					RelativePath="..\..\src\Adanaxis\AdanaxisRecords.h">
 				</File>
 				<File
 					RelativePath="..\..\src\Adanaxis\AdanaxisRender.cpp">
@@ -906,12 +943,6 @@
 				</File>
 				<File
 					RelativePath="..\..\src\Adanaxis\AdanaxisRubyDeco.h">
-				</File>
-				<File
-					RelativePath="..\..\src\Adanaxis\AdanaxisRubyKhazi.cpp">
-				</File>
-				<File
-					RelativePath="..\..\src\Adanaxis\AdanaxisRubyKhazi.h">
 				</File>
 				<File
 					RelativePath="..\..\src\Adanaxis\AdanaxisRubyWorld.cpp">
@@ -993,6 +1024,9 @@
 					RelativePath="..\..\src\Api\mushMushcoreSTL.h">
 				</File>
 				<File
+					RelativePath="..\..\src\Api\mushMushFile.h">
+				</File>
+				<File
 					RelativePath="..\..\src\Api\mushMushGame.h">
 				</File>
 				<File
@@ -1042,6 +1076,12 @@
 					RelativePath="..\..\src\Media\MediaAudio.h">
 				</File>
 				<File
+					RelativePath="..\..\src\Media\MediaAudioChannelDef.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\Media\MediaAudioChannelDef.h">
+				</File>
+				<File
 					RelativePath="..\..\src\Media\MediaAudioCommandHandler.cpp">
 				</File>
 				<File
@@ -1060,6 +1100,12 @@
 					RelativePath="..\..\src\Media\MediaAudioSDL.h">
 				</File>
 				<File
+					RelativePath="..\..\src\Media\MediaAudioSDLChannelDef.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\Media\MediaAudioSDLChannelDef.h">
+				</File>
+				<File
 					RelativePath="..\..\src\Media\MediaJoystick.cpp">
 				</File>
 				<File
@@ -1070,6 +1116,12 @@
 				</File>
 				<File
 					RelativePath="..\..\src\Media\MediaKeyboard.h">
+				</File>
+				<File
+					RelativePath="..\..\src\Media\MediaRWops.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\Media\MediaRWops.h">
 				</File>
 				<File
 					RelativePath="..\..\src\Media\MediaSDL.cpp">
@@ -1121,6 +1173,12 @@
 					RelativePath="..\..\src\MushGL\MushGLArrays.h">
 				</File>
 				<File
+					RelativePath="..\..\src\MushGL\MushGLAttribs.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushGL\MushGLAttribs.h">
+				</File>
+				<File
 					RelativePath="..\..\src\MushGL\MushGLBuffers.cpp">
 				</File>
 				<File
@@ -1149,6 +1207,12 @@
 				</File>
 				<File
 					RelativePath="..\..\src\MushGL\MushGLControl.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushGL\MushGLDraw.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushGL\MushGLDraw.h">
 				</File>
 				<File
 					RelativePath="..\..\src\MushGL\MushGLFont.cpp">
@@ -1199,10 +1263,28 @@
 					RelativePath="..\..\src\MushGL\MushGLResolverPixelSource.h">
 				</File>
 				<File
+					RelativePath="..\..\src\MushGL\MushGLRuby.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushGL\MushGLRuby.h">
+				</File>
+				<File
 					RelativePath="..\..\src\MushGL\MushGLRubyFont.cpp">
 				</File>
 				<File
 					RelativePath="..\..\src\MushGL\MushGLRubyFont.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushGL\MushGLRubyShader.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushGL\MushGLRubyShader.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushGL\MushGLShader.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushGL\MushGLShader.h">
 				</File>
 				<File
 					RelativePath="..\..\src\MushGL\MushGLStandard.cpp">
@@ -1279,6 +1361,12 @@
 				</File>
 				<File
 					RelativePath="..\..\src\MushRender\MushRenderMeshDiagnostic.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushRender\MushRenderMeshShader.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushRender\MushRenderMeshShader.h">
 				</File>
 				<File
 					RelativePath="..\..\src\MushRender\MushRenderMeshSolid.cpp">
@@ -1914,6 +2002,12 @@
 				<File
 					RelativePath="..\..\src\MushMeshLibrary\MushMeshLibraryVGenExtrude.h">
 				</File>
+				<File
+					RelativePath="..\..\src\MushMeshLibrary\MushMeshLibraryWorldSphere.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMeshLibrary\MushMeshLibraryWorldSphere.h">
+				</File>
 			</Filter>
 			<Filter
 				Name="MushGame"
@@ -2009,6 +2103,12 @@
 					RelativePath="..\..\src\MushGame\MushGameDigest.h">
 				</File>
 				<File
+					RelativePath="..\..\src\MushGame\MushGameEvents.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushGame\MushGameEvents.h">
+				</File>
+				<File
 					RelativePath="..\..\src\MushGame\MushGameHostData.cpp">
 				</File>
 				<File
@@ -2025,6 +2125,12 @@
 				</File>
 				<File
 					RelativePath="..\..\src\MushGame\MushGameHostVolatileData.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushGame\MushGameIntern.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushGame\MushGameIntern.h">
 				</File>
 				<File
 					RelativePath="..\..\src\MushGame\MushGameJob.cpp">
@@ -2151,6 +2257,12 @@
 				</File>
 				<File
 					RelativePath="..\..\src\MushGame\MushGamePiece.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushGame\MushGamePiecePlayer.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushGame\MushGamePiecePlayer.h">
 				</File>
 				<File
 					RelativePath="..\..\src\MushGame\MushGamePlayer.cpp">
@@ -2347,6 +2459,12 @@
 					RelativePath="..\..\src\MushMeshRuby\MushMeshRubyBaseSingleFacet.h">
 				</File>
 				<File
+					RelativePath="..\..\src\MushMeshRuby\MushMeshRubyBaseWorldSphere.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushMeshRuby\MushMeshRubyBaseWorldSphere.h">
+				</File>
+				<File
 					RelativePath="..\..\src\MushMeshRuby\MushMeshRubyDisplacement.cpp">
 				</File>
 				<File
@@ -2417,12 +2535,6 @@
 					RelativePath="..\..\src\MushSkin\MushSkinLineGenerator.h">
 				</File>
 				<File
-					RelativePath="..\..\src\MushSkin\MushSkinMaterial.cpp">
-				</File>
-				<File
-					RelativePath="..\..\src\MushSkin\MushSkinMaterial.h">
-				</File>
-				<File
 					RelativePath="..\..\src\MushSkin\MushSkinPixelSourceCellNoise.cpp">
 				</File>
 				<File
@@ -2459,6 +2571,12 @@
 					RelativePath="..\..\src\MushSkin\MushSkinPixelSourceTileShow.h">
 				</File>
 				<File
+					RelativePath="..\..\src\MushSkin\MushSkinSingular.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushSkin\MushSkinSingular.h">
+				</File>
+				<File
 					RelativePath="..\..\src\MushSkin\MushSkinStandard.cpp">
 				</File>
 				<File
@@ -2481,6 +2599,77 @@
 				</File>
 				<File
 					RelativePath="..\..\src\MushSkin\MushSkinUtil.h">
+				</File>
+			</Filter>
+			<Filter
+				Name="MushSecret"
+				Filter="">
+				<File
+					RelativePath="..\..\..\core-keys\MushSecretKeys.cpp">
+				</File>
+			</Filter>
+			<Filter
+				Name="MushFile"
+				Filter="">
+				<File
+					RelativePath="..\..\src\MushFile\MushFile.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushFile\MushFile.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushFile\MushFileAccessor.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushFile\MushFileAccessor.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushFile\MushFileDirectory.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushFile\MushFileDirectory.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushFile\MushFileDirEntry.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushFile\MushFileDirEntry.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushFile\MushFileFile.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushFile\MushFileFile.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushFile\MushFileFilename.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushFile\MushFileFilename.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushFile\MushFileKeys.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushFile\MushFileKeys.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushFile\MushFileLibrary.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushFile\MushFileLibrary.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushFile\MushFileRuby.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushFile\MushFileRuby.h">
+				</File>
+				<File
+					RelativePath="..\..\src\MushFile\MushFileStandard.cpp">
+				</File>
+				<File
+					RelativePath="..\..\src\MushFile\MushFileStandard.h">
 				</File>
 			</Filter>
 		</Filter>

@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } cityylqlnE9KOMrIq3RLfA
 /*
- * $Id: MushFileStandard.h,v 1.1 2006/11/06 12:56:32 southa Exp $
+ * $Id: MushFileStandard.h,v 1.2 2007/04/18 09:22:33 southa Exp $
  * $Log: MushFileStandard.h,v $
+ * Revision 1.2  2007/04/18 09:22:33  southa
+ * Header and level fixes
+ *
  * Revision 1.1  2006/11/06 12:56:32  southa
  * MushFile work
  *
@@ -62,7 +65,7 @@ operator>>(MushcoreXMLIStream& ioIn, MushFile::tSourceType& outObj)
 {
     Mushware::tXMLVal xmlVal;
     ioIn.ObjectRead(xmlVal);
-    outObj = static_cast<MushFile::tSourceType>(xmlVal);
+    outObj = static_cast<MushFile::tSourceType>(static_cast<Mushware::U32>(xmlVal));
 }
 
 //%includeGuardEnd {

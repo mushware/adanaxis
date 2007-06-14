@@ -11,8 +11,11 @@
 ##############################################################################
 
 #
-# $Id: MakeInstaller.sh,v 1.6 2006/06/26 12:55:13 southa Exp $
+# $Id: MakeInstaller.sh,v 1.7 2006/06/26 17:03:35 southa Exp $
 # $Log: MakeInstaller.sh,v $
+# Revision 1.7  2006/06/26 17:03:35  southa
+# win32 installer tweaks
+#
 # Revision 1.6  2006/06/26 12:55:13  southa
 # win32 installer updates
 #
@@ -80,7 +83,7 @@ cp COPYING "${readmedir}/Licence.txt"
 cp ChangeLog "${readmedir}/ChangeLog.txt"
 
 # Copy the source tar archive, removing the data directory in the pipe
-gunzip -c "$package-$version.tar.gz" | tar --delete "$package-$version/data-*" | GZIP=--best gzip > "$releasedir/system/$package-src-$version.tar.gz"
+gunzip -c "$package-$version.tar.gz" | tar --wildcards --delete "$package-$version/data-*" | GZIP=--best gzip > "$releasedir/system/$package-src-$version.tar.gz"
 
 echo 'Converting text and XML file to DOS line endings'
 find "$releasedir" \( -iname '*.xml' -o -iname '*.txt' \) -exec unix2dos {} \;
@@ -91,7 +94,7 @@ echo 'Building win32 installer'
 cp 'win32/Mushware web site.url' "$releasedir"
 
 cd win32
-c:/ruby/bin/ruby FileListToNSI.rb installer.nsi installer_new.nsi "$name"
+ruby FileListToNSI.rb installer.nsi installer_new.nsi "$name"
 makensis installer_new.nsi
 
 echo 'Done'

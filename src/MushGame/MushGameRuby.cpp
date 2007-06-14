@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } j1yQVneL+5MtyXUhYiB6CQ
 /*
- * $Id: MushGameRuby.cpp,v 1.30 2007/03/21 18:06:11 southa Exp $
+ * $Id: MushGameRuby.cpp,v 1.31 2007/04/16 18:51:01 southa Exp $
  * $Log: MushGameRuby.cpp,v $
+ * Revision 1.31  2007/04/16 18:51:01  southa
+ * Voice work
+ *
  * Revision 1.30  2007/03/21 18:06:11  southa
  * Tied sound fixes
  *
@@ -874,7 +877,7 @@ MushGameRuby::TargetPieceSelect(Mushware::tRubyValue inSelf, Mushware::tRubyValu
     }
     catch (std::exception& e)
     {
-#ifdef MISHCORE_DEBUG
+#ifdef MUSHCORE_DEBUG
         MushcoreLog::Sgl().InfoLog() << "Routine targeting failure: " << e.what() << endl;
 #endif
         pieceID = "";       

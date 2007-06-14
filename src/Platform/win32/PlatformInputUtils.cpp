@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } RRqRe7Sh2HawjZTlRdSSOQ
 /*
- * $Id: PlatformInputUtils.cpp,v 1.17 2006/07/08 16:06:01 southa Exp $
+ * $Id: PlatformInputUtils.cpp,v 1.18 2007/04/18 09:23:24 southa Exp $
  * $Log: PlatformInputUtils.cpp,v $
+ * Revision 1.18  2007/04/18 09:23:24  southa
+ * Header and level fixes
+ *
  * Revision 1.17  2006/07/08 16:06:01  southa
  * Ruby menus and key handling
  *
@@ -97,4 +100,32 @@ using namespace std;
 void
 PlatformInputUtils::MouseDeltaOverrideGet(S32& ioXDelta, S32& ioYDelta)
 {
+}
+
+Mushware::U32
+PlatformInputUtils::CurrentKeyModifiers(void)
+{
+    U32 retVal = 0;
+    
+    if ((GetAsyncKeyState(VK_LSHIFT) & (1<<15)) != 0 ||
+        (GetAsyncKeyState(VK_RSHIFT) & (1<<15)) != 0)
+    {
+        retVal |= kKeyModShift;
+    }
+    if ((GetAsyncKeyState(VK_LCONTROL) & (1<<15)) != 0 ||
+        (GetAsyncKeyState(VK_RCONTROL) & (1<<15)) != 0)
+    {
+        retVal |= kKeyModCtrl;
+    }
+    if ((GetAsyncKeyState(VK_LMENU) & (1<<15)) != 0 ||
+        (GetAsyncKeyState(VK_RMENU) & (1<<15)) != 0)
+    {
+        retVal |= kKeyModAlt;
+    }
+    if ((GetAsyncKeyState(VK_LWIN) & (1<<15)) != 0 ||
+        (GetAsyncKeyState(VK_RWIN) & (1<<15)) != 0)
+    {
+        retVal |= kKeyModMeta;
+    }
+    return retVal;
 }

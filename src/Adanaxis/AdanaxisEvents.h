@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } lux+Ke8jIsvwTCElkqGblA
 /*
- * $Id: AdanaxisEvents.h,v 1.2 2006/11/03 18:46:33 southa Exp $
+ * $Id: AdanaxisEvents.h,v 1.3 2007/04/18 09:22:00 southa Exp $
  * $Log: AdanaxisEvents.h,v $
+ * Revision 1.3  2007/04/18 09:22:00  southa
+ * Header and level fixes
+ *
  * Revision 1.2  2006/11/03 18:46:33  southa
  * Damage effectors
  *
@@ -31,7 +34,7 @@
  *
  */
 
-#include "MushGameStandard.h"
+#include "AdanaxisStandard.h"
 
 //:generate virtual standard ostream xml1
 class AdanaxisEvents : public MushcoreVirtualObject, public MushcoreSingleton<AdanaxisEvents>

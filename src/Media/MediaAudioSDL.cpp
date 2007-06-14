@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } FG1UBO0d8qPi+PGHUglZwQ
 /*
- * $Id: MediaAudioSDL.cpp,v 1.34 2007/04/16 08:41:09 southa Exp $
+ * $Id: MediaAudioSDL.cpp,v 1.35 2007/04/16 18:51:00 southa Exp $
  * $Log: MediaAudioSDL.cpp,v $
+ * Revision 1.35  2007/04/16 18:51:00  southa
+ * Voice work
+ *
  * Revision 1.34  2007/04/16 08:41:09  southa
  * Level and header mods
  *
@@ -388,6 +391,7 @@ MediaAudioSDL::Load(MediaSoundStream& inSoundStream)
     }
     else
     {
+        // If Mix_LoadMUS_RW is missing you need SDL_mixer 1.2.7 or later
         m_music = Mix_LoadMUS_RW(pSrc);
         if (m_music == NULL)
         {

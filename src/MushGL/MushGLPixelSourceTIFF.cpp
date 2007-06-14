@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } b2R9I21mLtaCUT6e0Rfwuw
 /*
- * $Id: MushGLPixelSourceTIFF.cpp,v 1.8 2006/11/09 23:53:59 southa Exp $
+ * $Id: MushGLPixelSourceTIFF.cpp,v 1.9 2007/04/18 09:22:35 southa Exp $
  * $Log: MushGLPixelSourceTIFF.cpp,v $
+ * Revision 1.9  2007/04/18 09:22:35  southa
+ * Header and level fixes
+ *
  * Revision 1.8  2006/11/09 23:53:59  southa
  * Explosion and texture loading
  *
@@ -67,6 +70,50 @@ MushGLPixelSourceTIFF::MushGLPixelSourceTIFF()
 	CacheableSet(false);	
 }
 
+
+// Veneers matching tifflib types to MushFile types (because the size of tsize_t varies)
+static tiffio::tsize_t
+MushGLPixelSourceTIFFRead(tiffio::thandle_t inHandle, tiffio::tdata_t inData, tiffio::tsize_t inSize)
+{
+    return MushFileFile::TIFFRead(inHandle, inData, inSize);
+}
+
+static tiffio::tsize_t
+MushGLPixelSourceTIFFWrite(tiffio::thandle_t inHandle, tiffio::tdata_t inData, tiffio::tsize_t inSize)
+{
+    return MushFileFile::TIFFRead(inHandle, inData, inSize);
+}
+
+static tiffio::toff_t
+MushGLPixelSourceTIFFSeek(tiffio::thandle_t inHandle, tiffio::toff_t inOffset, int inFrom)
+{
+   return MushFileFile::TIFFSeek(inHandle, inOffset, inFrom);
+}
+
+static int
+MushGLPixelSourceTIFFClose(tiffio::thandle_t inHandle)
+{
+   return MushFileFile::TIFFClose(inHandle);
+}
+
+static tiffio::toff_t
+MushGLPixelSourceTIFFSize(tiffio::thandle_t inHandle)
+{
+    return MushFileFile::TIFFSize(inHandle);
+}
+
+static int
+MushGLPixelSourceTIFFMapFileProc(tiffio::thandle_t inHandle, tiffio::tdata_t *inData, tiffio::toff_t *inOffset)
+{
+    throw MushcoreLogicFail("TIFFMapFileProc called");
+}
+
+static void
+MushGLPixelSourceTIFFUnmapFileProc(tiffio::thandle_t inHandle, tiffio::tdata_t inData, tiffio::toff_t inOffset)
+{
+    throw MushcoreLogicFail("TIFFUnmapFileProc called");
+}
+
 void
 MushGLPixelSourceTIFF::ToTextureCreate(MushGLTexture& outTexture)
 {
@@ -89,14 +136,14 @@ MushGLPixelSourceTIFF::ToTextureCreate(MushGLTexture& outTexture)
     else if (srcFile.SourceIsMush())
     {
         pTIFF = tiffio::TIFFClientOpen(srcFile.Name().c_str(), "rm", // m-> no memory-mapped files
-                                       &srcFile, // Handle
-                                       MushFileFile::TIFFRead,  // readproc
-                                       MushFileFile::TIFFWrite, // writeproc
-                                       MushFileFile::TIFFSeek,  // seekproc
-                                       MushFileFile::TIFFClose, // closeproc
-                                       MushFileFile::TIFFSize,  // sizeproc
-                                       NULL, // mapproc
-                                       NULL); //unmapproc
+                                       reinterpret_cast<tiffio::thandle_t>(&srcFile), // Handle
+                                       MushGLPixelSourceTIFFRead,  // readproc
+                                       MushGLPixelSourceTIFFWrite, // writeproc
+                                       MushGLPixelSourceTIFFSeek,  // seekproc
+                                       MushGLPixelSourceTIFFClose, // closeproc
+                                       MushGLPixelSourceTIFFSize,  // sizeproc
+                                       MushGLPixelSourceTIFFMapFileProc,  // mapproc
+                                       MushGLPixelSourceTIFFUnmapFileProc); //unmapproc
     }
     
 #ifndef MUSHCORE_DEBUG
