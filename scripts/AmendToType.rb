@@ -9,8 +9,11 @@
 #
 ##############################################################################
 #
-# $Id: AmendToType.rb,v 1.1 2007/06/12 13:36:22 southa Exp $
+# $Id: AmendToType.rb,v 1.2 2007/06/12 14:13:09 southa Exp $
 # $Log: AmendToType.rb,v $
+# Revision 1.2  2007/06/12 14:13:09  southa
+# Demo creation
+#
 # Revision 1.1  2007/06/12 13:36:22  southa
 # Demo configuration
 #
@@ -53,6 +56,16 @@ class AmendToType < MushObject
       File.delete("#{@m_resourcesDir}/#{filename}")
       puts "Deleted file #{filename} for demo"
     end
+    
+    startFilename = "#{@m_resourcesDir}/system/start.txt"
+    
+    File.open(startFilename, "r+") do |file|
+      content = file.readlines
+      content.collect! { |x| x.gsub(/adanaxisrecords\.xml/, 'adanaxisdemorecords.xml') }
+      file.rewind
+      file.print content
+    end
+    puts "Changed records filename in start.txt"
   end
   
   def mBanner

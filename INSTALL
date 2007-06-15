@@ -10,8 +10,8 @@ Unix/POSIX/Linux/FreeBSD
 
 Download and unpack the source and data files and build thus:
 
-tar xvzf adanaxis-0.7.3.tar.gz
-cd adanaxis-0.7.3
+tar xvzf adanaxis-1.0.0.tar.gz
+cd adanaxis-1.0.0
 ./configure
 # (spend a few days getting the libraries that configure asks for)
 make

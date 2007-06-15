@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } giWabCmOWBjWEjWbj1FE6Q
 /*
- * $Id: AdanaxisRecords.h,v 1.2 2007/04/16 08:41:08 southa Exp $
+ * $Id: AdanaxisRecords.h,v 1.3 2007/04/18 09:22:03 southa Exp $
  * $Log: AdanaxisRecords.h,v $
+ * Revision 1.3  2007/04/18 09:22:03  southa
+ * Header and level fixes
+ *
  * Revision 1.2  2007/04/16 08:41:08  southa
  * Level and header mods
  *
@@ -54,7 +57,7 @@ protected:
 private:
     enum
     {
-        kVersion = 20070417
+        kVersion = 20070615
     };
     typedef std::map< std::string, Mushware::tMsec > tRecordTimes;
     typedef std::map< Mushware::U32, tRecordTimes > tRecordTimeSet;

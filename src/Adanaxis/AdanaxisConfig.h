@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } qsoKsqgIyROP3u3EoUJUMQ
 /*
- * $Id: AdanaxisConfig.h,v 1.22 2007/04/16 08:41:07 southa Exp $
+ * $Id: AdanaxisConfig.h,v 1.23 2007/04/18 09:22:00 southa Exp $
  * $Log: AdanaxisConfig.h,v $
+ * Revision 1.23  2007/04/18 09:22:00  southa
+ * Header and level fixes
+ *
  * Revision 1.22  2007/04/16 08:41:07  southa
  * Level and header mods
  *
@@ -150,7 +153,7 @@ public:
 private:
     enum
     {
-        kVersion = 20061125,
+        kVersion = 20070615,
     };
     
     std::vector<MushGameAxisDef> m_axisDefs; //:read

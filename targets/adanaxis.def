@@ -1,6 +1,9 @@
 # Target definition file
-# $Id: adanaxis.def,v 1.17 2007/06/02 15:57:02 southa Exp $
+# $Id: adanaxis.def,v 1.18 2007/06/11 20:06:18 southa Exp $
 # $Log: adanaxis.def,v $
+# Revision 1.18  2007/06/11 20:06:18  southa
+# Compatibility fixes and level 27
+#
 # Revision 1.17  2007/06/02 15:57:02  southa
 # Shader fix and prerelease work
 #
@@ -61,9 +64,9 @@ Use: targets/app.acinclude.m4 as acinclude.m4
 Subst: MUSH_APP_PACKAGE 'adanaxis'
 Subst: MUSH_APP_NAME 'Adanaxis'
 Subst: MUSH_APP_UNDERSCORED_NAME 'Adanaxis'
-Subst: MUSH_APP_MAJOR_VERSION '0'
-Subst: MUSH_APP_MINOR_VERSION '7'
-Subst: MUSH_APP_MICRO_VERSION '3'
+Subst: MUSH_APP_MAJOR_VERSION '1'
+Subst: MUSH_APP_MINOR_VERSION '0'
+Subst: MUSH_APP_MICRO_VERSION '0'
 Subst: MUSH_APP_VERSION 'MUSH_APP_MAJOR_VERSION.MUSH_APP_MINOR_VERSION.MUSH_APP_MICRO_VERSION'
 Subst: MUSH_DATA_DIR 'data-adanaxis'
 Subst: MUSH_DATA_MAKEFILE 'data-adanaxis/Makefile'
