@@ -1,3 +1,9 @@
+2007-06-15  Andy Southgate <andy.southgate@mushware.com>
+	* Version 1.0.0 released
+    * Fixed startup on Mac OS X 10.3.9 and 10.2.8
+    * New demo levels
+    * Gameplay hints and tweaks
+    
 2007-06-02  Andy Southgate <andy.southgate@mushware.com>
 	* Version 0.7.2 released
     * Fixed control configuration
