@@ -9,8 +9,11 @@
 #
 ##############################################################################
 #
-# $Id: AmendToType.rb,v 1.3 2007/06/15 12:45:49 southa Exp $
+# $Id: AmendToType.rb,v 1.4 2007/06/16 07:13:40 southa Exp $
 # $Log: AmendToType.rb,v $
+# Revision 1.4  2007/06/16 07:13:40  southa
+# Licence corrections
+#
 # Revision 1.3  2007/06/15 12:45:49  southa
 # Prerelease work
 #
@@ -35,7 +38,7 @@ class AmendToType < MushObject
   mush_accessor :m_releaseDir, :m_resourcesDir, :m_name, :m_type
 
   def mAdanaxisToDemo
-    File.copy('targets/app.COPYING', "#{@m_resourcesDir}/COPYING") or raise "Licence copy failed"
+    File.copy('COPYING-DEMO', "#{@m_resourcesDir}/COPYING") or raise "Licence copy failed"
     puts "Replaced COPYING file with demo licence"
     
     skipDirs = %w{ . .. intro1 menu1 demoend1 }
@@ -78,7 +81,7 @@ class AmendToType < MushObject
   end
   
   def mAdanaxisToFull
-    File.copy('targets/commercial.COPYING', "#{@m_resourcesDir}/COPYING") or raise "Licence copy failed"
+    File.copy('COPYING-FULL', "#{@m_resourcesDir}/COPYING") or raise "Licence copy failed"
     puts "Replaced COPYING file with commercial licence"
   end
   
