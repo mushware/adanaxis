@@ -1,6 +1,9 @@
 # Target definition file
-# $Id: adanaxis.def,v 1.20 2007/06/16 07:13:40 southa Exp $
+# $Id: adanaxis.def,v 1.21 2007/06/16 11:04:34 southa Exp $
 # $Log: adanaxis.def,v $
+# Revision 1.21  2007/06/16 11:04:34  southa
+# Licence fix
+#
 # Revision 1.20  2007/06/16 07:13:40  southa
 # Licence corrections
 #
@@ -72,7 +75,7 @@ Subst: MUSH_APP_NAME 'Adanaxis'
 Subst: MUSH_APP_UNDERSCORED_NAME 'Adanaxis'
 Subst: MUSH_APP_MAJOR_VERSION '1'
 Subst: MUSH_APP_MINOR_VERSION '0'
-Subst: MUSH_APP_MICRO_VERSION '1'
+Subst: MUSH_APP_MICRO_VERSION '2'
 Subst: MUSH_APP_VERSION 'MUSH_APP_MAJOR_VERSION.MUSH_APP_MINOR_VERSION.MUSH_APP_MICRO_VERSION'
 Subst: MUSH_DATA_DIR 'data-adanaxis'
 Subst: MUSH_DATA_MAKEFILE 'data-adanaxis/Makefile'
