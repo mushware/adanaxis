@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } dNl5b1jvSO1JXx9Bo8kgEw
 /*
- * $Id: AdanaxisInfo.cpp,v 1.11 2007/06/11 20:06:14 southa Exp $
+ * $Id: AdanaxisInfo.cpp,v 1.12 2007/06/15 12:45:49 southa Exp $
  * $Log: AdanaxisInfo.cpp,v $
+ * Revision 1.12  2007/06/15 12:45:49  southa
+ * Prerelease work
+ *
  * Revision 1.11  2007/06/11 20:06:14  southa
  * Compatibility fixes and level 27
  *
@@ -61,7 +64,7 @@
 #endif
 
 #ifndef VERSION
-#define VERSION "1.0.0"
+#define VERSION "1.0.1"
 #endif
 
 #include "AdanaxisSTL.h"

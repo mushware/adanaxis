@@ -1,6 +1,9 @@
 # Target definition file
-# $Id: adanaxis.def,v 1.18 2007/06/11 20:06:18 southa Exp $
+# $Id: adanaxis.def,v 1.19 2007/06/15 12:45:50 southa Exp $
 # $Log: adanaxis.def,v $
+# Revision 1.19  2007/06/15 12:45:50  southa
+# Prerelease work
+#
 # Revision 1.18  2007/06/11 20:06:18  southa
 # Compatibility fixes and level 27
 #
@@ -66,7 +69,7 @@ Subst: MUSH_APP_NAME 'Adanaxis'
 Subst: MUSH_APP_UNDERSCORED_NAME 'Adanaxis'
 Subst: MUSH_APP_MAJOR_VERSION '1'
 Subst: MUSH_APP_MINOR_VERSION '0'
-Subst: MUSH_APP_MICRO_VERSION '0'
+Subst: MUSH_APP_MICRO_VERSION '1'
 Subst: MUSH_APP_VERSION 'MUSH_APP_MAJOR_VERSION.MUSH_APP_MINOR_VERSION.MUSH_APP_MICRO_VERSION'
 Subst: MUSH_DATA_DIR 'data-adanaxis'
 Subst: MUSH_DATA_MAKEFILE 'data-adanaxis/Makefile'
@@ -76,7 +79,7 @@ Subst: MUSH_WIN32_BUILD_PATH '$(top_srcdir)/VisualC/project/Release'
 Subst: MUSH_TOP_SUBDIRS 'src MUSH_DATA_DIR'
 Use: targets/app.Makefile.am as Makefile.am
 Use: targets/sdl_app.configure.in as configure.in
-Use: targets/app.COPYING as COPYING
+Use: targets/commercial.COPYING as COPYING
 Use: targets/app.INSTALL as INSTALL
 Use: targets/app.AUTHORS as AUTHORS
 Use: targets/app.README as README

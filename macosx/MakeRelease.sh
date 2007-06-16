@@ -9,8 +9,11 @@
 #
 ##############################################################################
 #
-# $Id: MakeRelease.sh,v 1.16 2007/06/12 14:46:16 southa Exp $
+# $Id: MakeRelease.sh,v 1.17 2007/06/13 14:08:46 southa Exp $
 # $Log: MakeRelease.sh,v $
+# Revision 1.17  2007/06/13 14:08:46  southa
+# Level 29
+#
 # Revision 1.16  2007/06/12 14:46:16  southa
 # Demo creation
 #
@@ -119,8 +122,8 @@ do
 ditto -rsrcFork "$filename" "${readmedir}"
 done
 
-cp COPYING "${readmedir}/Licence.txt"
-# cp ChangeLog "${readmedir}/ChangeLog.txt"
+cp "$resourcesdir/COPYING" "${readmedir}/Licence.txt"
+cp ChangeLog "${resourcesdir}/ChangeLog.txt"
 mv "$resourcesdir/About_${name}.pdf" "${readmedir}"
 
 # Copy the source tar archive, removing the data directory in the pipe

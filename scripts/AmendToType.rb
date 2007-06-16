@@ -9,8 +9,11 @@
 #
 ##############################################################################
 #
-# $Id: AmendToType.rb,v 1.2 2007/06/12 14:13:09 southa Exp $
+# $Id: AmendToType.rb,v 1.3 2007/06/15 12:45:49 southa Exp $
 # $Log: AmendToType.rb,v $
+# Revision 1.3  2007/06/15 12:45:49  southa
+# Prerelease work
+#
 # Revision 1.2  2007/06/12 14:13:09  southa
 # Demo creation
 #
@@ -19,6 +22,7 @@
 #
 
 require 'optparse'
+require 'ftools'
 
 $LOAD_PATH.push File.dirname($0)
 require 'MushObject.rb'
@@ -30,7 +34,10 @@ class AmendToType < MushObject
 
   mush_accessor :m_releaseDir, :m_resourcesDir, :m_name, :m_type
 
-  def mAdanaxisToDemo  
+  def mAdanaxisToDemo
+    File.copy('targets/app.COPYING', "#{@m_resourcesDir}/COPYING") or raise "Licence copy failed"
+    puts "Replaced COPYING file with demo licence"
+    
     skipDirs = %w{ . .. intro1 menu1 demoend1 }
 
     Dir.foreach("#{@m_resourcesDir}/spaces") do |dirName|
@@ -66,6 +73,13 @@ class AmendToType < MushObject
       file.print content
     end
     puts "Changed records filename in start.txt"
+    
+    
+  end
+  
+  def mAdanaxisToFull
+    File.copy('targets/commercial.COPYING', "#{@m_resourcesDir}/COPYING") or raise "Licence copy failed"
+    puts "Replaced COPYING file with commercial licence"
   end
   
   def mBanner
@@ -77,7 +91,11 @@ class AmendToType < MushObject
   
   def mProcess
     mBanner
-    mAdanaxisToDemo if @m_type == :demo
+    if @m_type == :demo
+      mAdanaxisToDemo
+    else
+      mAdanaxisToFull
+    end
   end
 end
 
