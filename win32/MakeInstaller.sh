@@ -9,8 +9,11 @@
 #
 ##############################################################################
 #
-# $Id: MakeInstaller.sh,v 1.8 2007/06/14 01:03:53 southa Exp $
+# $Id: MakeInstaller.sh,v 1.9 2007/06/14 14:59:15 southa Exp $
 # $Log: MakeInstaller.sh,v $
+# Revision 1.9  2007/06/14 14:59:15  southa
+# win32 fixes
+#
 # Revision 1.8  2007/06/14 01:03:53  southa
 # win32 build fixes
 #
@@ -92,7 +95,7 @@ do
 cp "$filename" "${readmedir}"
 done
 
-cp COPYING "${readmedir}/Licence.txt"
+cp "$releasedir/COPYING" "${readmedir}/Licence.txt"
 cp ChangeLog "${readmedir}/ChangeLog.txt"
 
 # Copy the source tar archive, removing the data directory in the pipe

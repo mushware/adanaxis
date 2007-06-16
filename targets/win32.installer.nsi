@@ -49,6 +49,7 @@ SetCompressor lzma
   !define MUI_FINISHPAGE_RUN_FUNCTION desktopCreate
 
   !insertmacro MUI_PAGE_WELCOME
+  !insertmacro MUI_PAGE_LICENSE "..\release\Adanaxis\documents\Licence.txt"
   !insertmacro MUI_PAGE_DIRECTORY
   !insertmacro MUI_PAGE_INSTFILES
   !insertmacro MUI_PAGE_FINISH
@@ -73,7 +74,7 @@ VIAddVersionKey "CompanyName" "Mushware Limited"
 VIAddVersionKey "LegalCopyright" "©Mushware Limited and Andy Southgate"
 VIAddVersionKey "FileVersion" "MUSH_APP_VERSION"
 VIAddVersionKey "FileDescription" "Mushware software installer.  See http://www.mushware.com/."
-VIProductVersion "0.MUSH_APP_VERSION"
+VIProductVersion "MUSH_APP_VERSION.0"
 
 Icon icons/MUSH_APP_PACKAGE_inst_app.ico
 UninstallIcon icons/MUSH_APP_PACKAGE_uninst_app.ico
@@ -96,7 +97,7 @@ WriteRegStr HKEY_LOCAL_MACHINE "Software\Microsoft\Windows\CurrentVersion\Uninst
 
 SetOutPath "$INSTDIR\system"
 CreateShortCut "$INSTDIR\@NSI_APP_NAME@.lnk" "$OUTDIR\MUSH_APP_PACKAGE.exe" 
-CreateShortCut "$INSTDIR\@NSI_APP_NAME@ (Safe Mode).lnk" "$OUTDIR\MUSH_APP_PACKAGE.exe" "load('start_safe.txt')"
+CreateShortCut "$INSTDIR\@NSI_APP_NAME@ (Recovery Mode).lnk" "$OUTDIR\MUSH_APP_PACKAGE.exe" "load('start_safe.txt')"
 
 CreateDirectory "$STARTMENU\Programs\@NSI_APP_NAME@"
 CreateShortCut "$STARTMENU\Programs\@NSI_APP_NAME@\@NSI_APP_NAME@.lnk" "$OUTDIR\MUSH_APP_PACKAGE.exe"
