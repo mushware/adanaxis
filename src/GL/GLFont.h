@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } KSzePMmD/JfanCcqUvkxTQ
 /*
- * $Id: GLFont.h,v 1.16 2006/06/01 15:38:50 southa Exp $
+ * $Id: GLFont.h,v 1.17 2007/04/18 09:22:06 southa Exp $
  * $Log: GLFont.h,v $
+ * Revision 1.17  2007/04/18 09:22:06  southa
+ * Header and level fixes
+ *
  * Revision 1.16  2006/06/01 15:38:50  southa
  * DrawArray verification and fixes
  *
@@ -82,7 +85,7 @@
 class GLFont
 {
 public:
-    GLFont::GLFont(const std::string& inName);
+    GLFont(const std::string& inName);
 
     void RenderCharacter(Mushware::U32 inChar) const;
     void RenderString(const std::string& inStr, Mushware::tVal inAlign=-1.0) const;

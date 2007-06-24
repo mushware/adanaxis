@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } Y+WzijXDRsG7dDElPwQlbQ
 /*
- * $Id: PlatformVideoUtils.cpp,v 1.21 2006/08/03 13:49:58 southa Exp $
+ * $Id: PlatformVideoUtils.cpp,v 1.22 2007/04/18 09:23:23 southa Exp $
  * $Log: PlatformVideoUtils.cpp,v $
+ * Revision 1.22  2007/04/18 09:23:23  southa
+ * Header and level fixes
+ *
  * Revision 1.21  2006/08/03 13:49:58  southa
  * X11 release work
  *
@@ -112,24 +115,13 @@ PlatformVideoUtils *PlatformVideoUtils::m_instance=NULL;
 
 PlatformVideoUtils::PlatformVideoUtils()
 {
-    m_modeDefs.push_back(GLModeDef("640x480 window",640,480,32,0, 
-        GLModeDef::kScreenWindow, GLModeDef::kCursorShow, GLModeDef::kSyncSoft));
-    m_modeDefs.push_back(GLModeDef("800x600 window",800,600,32,0, 
-        GLModeDef::kScreenWindow, GLModeDef::kCursorShow, GLModeDef::kSyncSoft));
-
-    m_modeDefs.push_back(GLModeDef("640x480",640,480,32,0, 
-        GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncSoft));
-
-    m_modeDefs.push_back(GLModeDef("800x600",800,600,32,0, 
-        GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncSoft));
-
-    m_modeDefs.push_back(GLModeDef("1024x768",1024,768,32,0, 
-        GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncSoft));
-
-    m_modeDefs.push_back(GLModeDef("1280x1024",1280,1024,32,0, 
-        GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncSoft));
-    m_modeDefs.push_back(GLModeDef("1600x1200",1600,1200,32,0, 
-        GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncSoft));
+    m_modeDefs.push_back(GLModeDef(640, 480, false));
+    m_modeDefs.push_back(GLModeDef(800, 600, false));
+    m_modeDefs.push_back(GLModeDef(640, 480, true));
+    m_modeDefs.push_back(GLModeDef(800, 600, true));
+    m_modeDefs.push_back(GLModeDef(1024, 768, true));
+    m_modeDefs.push_back(GLModeDef(1280, 1024, true));
+    m_modeDefs.push_back(GLModeDef(1600, 1200, true));
 
     for (U32 i=0; i<10; ++i)
     {
@@ -146,10 +138,7 @@ PlatformVideoUtils::PlatformVideoUtils()
                 xmlIStrm >> modeDef;
                 if (modeDef.size() >= 2)
 	        {
-	            std::ostringstream modeName;
-	            modeName << "User: " << modeDef[0] << "x" << modeDef[1];
-	            m_modeDefs.push_back(GLModeDef(modeName.str(),modeDef[0],modeDef[1],
-		        32,0, GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncSoft));
+	            m_modeDefs.push_back(GLModeDef(modeDef[0], modeDef[1], true));
                 }
 	    }
 	    catch (MushcoreFail& e)
@@ -179,7 +168,7 @@ PlatformVideoUtils::PlatformVideoUtils()
             bool addMode = true;
             for (U32 j=0; j<m_modeDefs.size(); ++j)
             {
-                if (pMode->w == m_modeDefs[i].WidthGet() && pMode->h == m_modeDefs[i].HeightGet())
+                if (pMode->w == m_modeDefs[i].Width() && pMode->h == m_modeDefs[i].Height())
                 {
                     // Mode already there so don't add
                     addMode = false;
@@ -187,46 +176,70 @@ PlatformVideoUtils::PlatformVideoUtils()
             }
             if (addMode)
             {
-	        std::ostringstream modeName;
-	        modeName << pMode->w << "x" << pMode->h;
-                m_modeDefs.push_back(GLModeDef(modeName.str(), pMode->w, pMode->h, 32, 0, 
-                    GLModeDef::kScreenFull, GLModeDef::kCursorHide, GLModeDef::kSyncSoft));
+                m_modeDefs.push_back(GLModeDef(pMode->w, pMode->h, true));
             }
         }
     }
 }
 
-U32
-PlatformVideoUtils::DefaultModeGet(void) const
+const GLModeDef&
+PlatformVideoUtils::DefaultModeDef(void) const
 {
-    return 0;
+    U32 modeNum = 0;
+    
+    for (U32 i=2; i < m_modeDefs.size(); ++i)
+    {
+        if (m_modeDefs[i].Width() == 1024 &&
+            m_modeDefs[i].Height() == 768)
+        {
+            modeNum = i;   
+        }
+    }
+    return m_modeDefs[modeNum];
+}
+
+Mushware::U32
+PlatformVideoUtils::ModeDefFind(const GLModeDef& inModeDef) const
+{
+    U32 retVal = 0;
+    for (U32 i=1; i<m_modeDefs.size(); ++i)
+    {
+        if (inModeDef == m_modeDefs[i])
+        {
+            retVal = i;
+        }
+    }
+    return retVal;
 }
 
 const GLModeDef&
-PlatformVideoUtils::ModeDefGet(U32 inNum)
+PlatformVideoUtils::PreviousModeDef(const GLModeDef& inModeDef) const
 {
-    if (inNum >= m_modeDefs.size())
+    U32 modeNum = ModeDefFind(inModeDef);
+
+    if (modeNum == 0)
     {
-        ostringstream message;
-        message << "Mode number " << inNum << " too high (max " << 
-m_modeDefs.size() << ")";
-        throw(MushcoreReferenceFail(message.str()));
+        modeNum = m_modeDefs.size() - 1;
     }
-    return m_modeDefs[inNum];
+    else
+    {
+        --modeNum;
+    }
+    return m_modeDefs[modeNum];
 }
 
-U32
-PlatformVideoUtils::PreviousModeDef(U32 inNum) const
+const GLModeDef&
+PlatformVideoUtils::NextModeDef(const GLModeDef& inModeDef) const
 {
-    if (inNum == 0) return m_modeDefs.size()-1;
-    return inNum-1;
-}
-
-U32
-PlatformVideoUtils::NextModeDef(U32 inNum) const
-{
-    if (inNum+1 >= m_modeDefs.size()) return 0;
-    return inNum+1;
+    U32 modeNum = ModeDefFind(inModeDef);
+    
+    ++modeNum;
+    if (modeNum >= m_modeDefs.size())
+    {
+        modeNum = 0;
+    }
+    
+    return m_modeDefs[modeNum];
 }
 
 U32
@@ -238,21 +251,7 @@ PlatformVideoUtils::NumModesGet(void) const
 void
 PlatformVideoUtils::RenderModeInfo(U32 inNum) const
 {
-    const GLModeDef& modeDef=PlatformVideoUtils::Sgl().ModeDefGet(inNum);
-    GLState::ColourSet(1.0,1.0,1.0,0.8);
-GLUtils::PushMatrix();
-    GLUtils gl;
-    GLString glStr;
-    gl.MoveTo(0,0.05);
-
-    glStr=GLString("Display mode", GLFontRef("font-mono1", 0.03), 0);
-    glStr.Render();
-
-    gl.MoveTo(0,0);
-
-    glStr=GLString(modeDef.NameGet(), GLFontRef("font-mono1", 0.04), 0);
-    glStr.Render();
-    GLUtils::PopMatrix();
+    throw MushcoreLogicFail("RenderModeInfo deprecated");
 }
 
 void

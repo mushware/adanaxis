@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } X/5wNaWdCqRyW/zgI3N31g
 /*
- * $Id: GameUtils.h,v 1.5 2006/06/01 15:39:01 southa Exp $
+ * $Id: GameUtils.h,v 1.6 2007/04/18 09:22:16 southa Exp $
  * $Log: GameUtils.h,v $
+ * Revision 1.6  2007/04/18 09:22:16  southa
+ * Header and level fixes
+ *
  * Revision 1.5  2006/06/01 15:39:01  southa
  * DrawArray verification and fixes
  *
@@ -50,7 +53,7 @@ class GameUtils
 {
 public:
     static Mushware::U32 Rotate(Mushware::U32 inVal, Mushware::U32 inRot);
-    static Mushware::U32 GameUtils::HashGenerate(Mushware::U32 inCode);
+    static Mushware::U32 HashGenerate(Mushware::U32 inCode);
     static bool CodeVerify(const std::string& inCode);
     static GameAppHandler *AppHandlerPtr(void);
     static GameAppHandler& AppHandler(void);

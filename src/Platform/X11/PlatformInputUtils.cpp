@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } aOlAilxXGwka81M6LulF9Q
 /*
- * $Id: PlatformInputUtils.cpp,v 1.18 2006/07/08 16:06:01 southa Exp $
+ * $Id: PlatformInputUtils.cpp,v 1.19 2007/04/18 09:23:23 southa Exp $
  * $Log: PlatformInputUtils.cpp,v $
+ * Revision 1.19  2007/04/18 09:23:23  southa
+ * Header and level fixes
+ *
  * Revision 1.18  2006/07/08 16:06:01  southa
  * Ruby menus and key handling
  *
@@ -102,3 +105,10 @@ PlatformInputUtils::MouseDeltaOverrideGet(S32& ioXDelta, S32& ioYDelta)
 {
 }
 
+Mushware::U32
+PlatformInputUtils::CurrentKeyModifiers(void)
+{
+    U32 retVal = 0;
+    // Stub
+    return retVal;
+}

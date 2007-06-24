@@ -25,8 +25,11 @@
 /* Name changed from MediaAudio to MediaAudioSDL 2002/08/23 */
 
 /*
- * $Id: MediaAudioSDL.h,v 1.19 2006/12/14 00:33:48 southa Exp $
+ * $Id: MediaAudioSDL.h,v 1.20 2007/04/16 18:51:00 southa Exp $
  * $Log: MediaAudioSDL.h,v $
+ * Revision 1.20  2007/04/16 18:51:00  southa
+ * Voice work
+ *
  * Revision 1.19  2006/12/14 00:33:48  southa
  * Control fix and audio pacing
  *
@@ -158,6 +161,7 @@ private:
     mutable Mushware::U32 m_errCtr;
     Mushware::U32 m_lastTickerMsec;
     MushFileFile m_musicMushFile;
+    void *m_fpMix_LoadMUS_RW;
 };
 
 //%includeGuardEnd {

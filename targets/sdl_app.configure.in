@@ -62,8 +62,8 @@ else
 fi
 
 dnl Remove NDEBUG for development work
-CFLAGS="$CFLAGS -I\${srcdir} -I\${srcdir}/API -DNDEBUG -O3"
-CPPFLAGS="$CPPFLAGS -I\${srcdir} -I\${srcdir}/API -DNDEBUG -O3"
+CFLAGS="$CFLAGS -I\${srcdir} -I\${srcdir}/API -DNDEBUG"
+CPPFLAGS="$CPPFLAGS -I\${srcdir} -I\${srcdir}/API -DNDEBUG"
 
 AC_HEADER_DIRENT
 AC_HEADER_STDC
@@ -207,6 +207,29 @@ Mix_ChannelFinished(0)
 AC_DEFINE(HAVE_MIX_CHANNELFINISHED,1,[Define if Mix_ChannelFinished exists in SDL_mixer.h])
 ],[
 AC_MSG_WARN([Old version of SDL_mixer.  End-of-channel events disabled.])
+]
+)
+
+AC_TRY_COMPILE([
+#define USE_RWOPS 1
+#if defined(HAVE_SDL_SDL_MIXER_H)
+#include <SDL/SDL_mixer.h>
+#else
+#if defined(HAVE_SDL_MIXER_H)
+#include <SDL_mixer.h>
+#else
+#include "SDL_mixer.h"
+#endif
+#endif
+
+#undef main
+],[
+Mix_LoadMUS_RW(0)
+],
+[
+AC_DEFINE(HAVE_MIX_LOADMUS_RW,1,[Define if Mix_LoadMUS_RW exists in SDL_mixer.h])
+],[
+AC_MSG_WARN([Old version of SDL_mixer (no Mix_LoadMUS_RW).  Music load from .mush files disabled.])
 ]
 )
 

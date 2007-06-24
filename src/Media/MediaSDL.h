@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 4S3o/utfk1OTI5FQPjKhMg
 /*
- * $Id: MediaSDL.h,v 1.30 2006/07/11 19:49:05 southa Exp $
+ * $Id: MediaSDL.h,v 1.31 2007/04/18 09:22:27 southa Exp $
  * $Log: MediaSDL.h,v $
+ * Revision 1.31  2007/04/18 09:22:27  southa
+ * Header and level fixes
+ *
  * Revision 1.30  2006/07/11 19:49:05  southa
  * Control menu
  *
@@ -139,6 +142,7 @@
 #endif
 #endif
 
+#define USE_RWOPS 1
 #if defined(HAVE_SDL_SDL_MIXER_H)
 #include <SDL/SDL_mixer.h>
 #else
