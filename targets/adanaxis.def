@@ -1,6 +1,9 @@
 # Target definition file
-# $Id: adanaxis.def,v 1.23 2007/06/24 21:09:42 southa Exp $
+# $Id: adanaxis.def,v 1.24 2007/06/25 15:59:49 southa Exp $
 # $Log: adanaxis.def,v $
+# Revision 1.24  2007/06/25 15:59:49  southa
+# X11 compatibility
+#
 # Revision 1.23  2007/06/24 21:09:42  southa
 # X11 support
 #
@@ -119,12 +122,11 @@ Modules: Platform/MacOSX Platform/win32 +.*\.c$ Platform/X11 +.*\.y$ +.*\.mkf$ +
 Append: Makefile.am
 
 ExtraDist:
-Modules: prebuild.sh adanaxis\.spec\.* macosx/project/.*\.plist README\.* .*\.pl .*\.pm macosx/project/project.xcodeproj/.*pbx(proj|user) macosx/MakeRelease.sh macosx/Start_in_Recovery_Mode.(app|scpt) macosx/adanaxis_app.icns win32/adanaxis.*\.ico win32/MakeInstaller.sh win32/installer.nsi win32/FileListToNSI.rb VisualC/project/adanaxis.*\.(sln|aps|rc|vcproj|ico) x11/icons/adanaxis\..*\.png$ COPYING-FULL COPYING-DEMO
+Modules: prebuild.sh adanaxis\.spec\.* macosx/project/.*\.plist README\.* .*\.pl .*\.pm macosx/project/project.xcodeproj/.*pbx(proj|user) macosx/MakeRelease.sh macosx/adanaxis_app.icns win32/adanaxis.*\.ico win32/MakeInstaller.sh win32/installer.nsi win32/FileListToNSI.rb VisualC/project/adanaxis.*\.(sln|aps|rc|vcproj|ico) x11/icons/adanaxis\..*\.png$ COPYING-FULL COPYING-DEMO
 Manual:
-Modules: x11/man/adanaxis.*
+Modules: x11/man/adanaxis\..*
 
 Create: data-adanaxis/Makefile.am
 PkgData:
-Modules: pixels pixels/cosmos mush mushruby ruby +spaces waves system/.*\.xml$ system/.*\.txt$
+Modules: pixels pixels/cosmos mush mushruby ruby +spaces waves system/.*\.xml$ system/.*\.txt$ .*\.pdf$
 ExtraDist:
-Modules: \.*pdf$

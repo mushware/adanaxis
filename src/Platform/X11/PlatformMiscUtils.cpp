@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } n699h4E6vRdwHSrlSs8lxQ
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.30 2007/03/13 21:45:11 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.31 2007/06/25 15:59:48 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.31  2007/06/25 15:59:48  southa
+ * X11 compatibility
+ *
  * Revision 1.30  2007/03/13 21:45:11  southa
  * Release process
  *
@@ -378,12 +381,13 @@ PlatformMiscUtils::LaunchURL(const string& inURL)
     browserCommands.push_back("opera -newbrowser");
     browserCommands.push_back("mozilla");
     browserCommands.push_back("konqueror");
+    browserCommands.push_back("epiphany --new-window");
     browserCommands.push_back("netscape");
 
     for (U32 i=0; i < browserCommands.size(); ++i)
     {
         string launchCommand = browserCommands[i];
-        launchCommand += " '"+inURL+"' &";
+        launchCommand += " '"+inURL+"'";
         if (system(launchCommand.c_str()) == 0)
         {
             return;

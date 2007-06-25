@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } FG1UBO0d8qPi+PGHUglZwQ
 /*
- * $Id: MediaAudioSDL.cpp,v 1.37 2007/06/24 21:09:39 southa Exp $
+ * $Id: MediaAudioSDL.cpp,v 1.38 2007/06/25 15:59:43 southa Exp $
  * $Log: MediaAudioSDL.cpp,v $
+ * Revision 1.38  2007/06/25 15:59:43  southa
+ * X11 compatibility
+ *
  * Revision 1.37  2007/06/24 21:09:39  southa
  * X11 support
  *
@@ -234,7 +237,7 @@ MediaAudioSDL::MediaAudioSDL():
     {
         MushcoreLog::Sgl().WarningLog() << "SDL_mixer version is " << static_cast<U32>(pVersion->major) <<
             "." << static_cast<U32>(pVersion->minor)  << "." << static_cast<U32>(pVersion->patch) <<
-            " but >= 1.2.7 required.  OGG load from .mush file disabled" << endl;
+            " but >= 1.2.7 would be better.  OGG music load from .mush file disabled" << endl;
        
     }
     else

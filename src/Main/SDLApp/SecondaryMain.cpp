@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } iq/M/29BciHx/MWfKkILcw
 /*
- * $Id: SecondaryMain.cpp,v 1.11 2007/04/18 12:44:37 southa Exp $
+ * $Id: SecondaryMain.cpp,v 1.12 2007/06/25 15:59:43 southa Exp $
  * $Log: SecondaryMain.cpp,v $
+ * Revision 1.12  2007/06/25 15:59:43  southa
+ * X11 compatibility
+ *
  * Revision 1.11  2007/04/18 12:44:37  southa
  * Cache purge fix and pre-release tweaks
  *
@@ -202,11 +205,37 @@ int main(int argc, char *argv[])
 
     PlatformMiscUtils::TweakArgs(str);
 
+    if (MushcoreRegExp("--help\\b").Search(str))
+    {
+         cout << "Options:" << endl;
+         cout << "  --help              Display this message" << endl;
+         cout << "  --doc               Open the documentation (if possible)" << endl;
+         cout << "  --safe, --recover   Start in recovery mode" << endl;
+         exit(0);
+    }
+    
+    if (MushcoreRegExp("--doc\\b").Search(str))
+    {
+        std::vector<std::string> filenames;
+        PlatformMiscUtils::ScanDirectory(filenames, MushcoreGlobalConfig::Sgl().Get("RESOURCES_PATH").StringGet());
+        
+        MushcoreRegExp pdfExp("\\.pdf$");
+        for (U32 i=0; i<filenames.size(); ++i)
+        {
+            if (pdfExp.Search(filenames[i]))
+            {
+                PlatformMiscUtils::LaunchURL("file://"+MushcoreGlobalConfig::Sgl().Get("RESOURCES_PATH").StringGet()+
+                        "/"+filenames[i]);
+            }
+        }
+        exit(0);
+    }
+    
     if (str == "")
     {
         str="load($SYSTEM_PATH+'/start.txt')";
     }
-    else if (str == "--recover" || str == "--safe" )
+    else if (MushcoreRegExp("--safe\\b").Search(str) || MushcoreRegExp("--recover\\b").Search(str))
     {
         str="load($SYSTEM_PATH+'/start_safe.txt')";
     }
