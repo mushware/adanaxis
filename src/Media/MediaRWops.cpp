@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } ZI86PyCnqBLWlcJZZkAnWA
 /*
- * $Id: MediaRWops.cpp,v 1.3 2006/11/06 20:37:28 southa Exp $
+ * $Id: MediaRWops.cpp,v 1.4 2007/04/18 09:22:27 southa Exp $
  * $Log: MediaRWops.cpp,v $
+ * Revision 1.4  2007/04/18 09:22:27  southa
+ * Header and level fixes
+ *
  * Revision 1.3  2006/11/06 20:37:28  southa
  * Alloc and bounding radius fixes
  *
@@ -69,7 +72,11 @@ MediaRWops::RWops(void)
         m_pRWops = SDL_RWFromConstMem(m_mushFile.DataStart(), m_mushFile.DataSize());
         retVal = m_pRWops;
     }
-    
+    else
+    {
+        throw MushcoreFileFail(m_mushFile.Name(), "File not found");
+    }
+
     if (retVal == NULL)
     {
         throw MushcoreFileFail(m_mushFile.Name(), "MediaRWops cannot open file of this type");

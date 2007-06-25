@@ -27,7 +27,7 @@
   eval.c -
 
  
-  $Date: 2006/04/11 23:30:09 $
+  $Date: 2006/04/21 00:10:43 $
   created at: Thu Jun 10 14:22:17 JST 1993
 
   Copyright (C) 1993-2003 Yukihiro Matsumoto
@@ -1327,8 +1327,10 @@ ruby_init()
     if (initialized)
 	return;
     initialized = 1;
+    
 #ifdef HAVE_NATIVETHREAD
     ruby_thid = NATIVETHREAD_CURRENT();
+    printf("sizeof(pthread_self())=%lu\n", sizeof(pthread_self()));
 #endif
 
     ruby_frame = top_frame = &frame;
@@ -11536,6 +11538,12 @@ static void*
 thread_timer(dummy)
     void *dummy;
 {
+    /* Mushware change - added patch for bug 5339 */
+    sigset_t all_signals;
+    sigfillset(&all_signals);
+    pthread_sigmask(SIG_BLOCK, &all_signals, 0);
+    /* End Mushware change */
+    
     for (;;) {
 #ifdef HAVE_NANOSLEEP
 	struct timespec req, rem;

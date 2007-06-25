@@ -711,7 +711,8 @@ static char *dln_libs_to_be_linked[] = { EXTLIB, 0 };
 #include <pthread.h>
 #endif
 typedef pthread_t rb_nativethread_t;
-# define NATIVETHREAD_CURRENT() pthread_self()
+/* Mushware change - cast pthread_self to hide strange bug on x11 amd64 2007-06-25 */
+# define NATIVETHREAD_CURRENT() (pthread_t) pthread_self()
 # define NATIVETHREAD_EQUAL(t1,t2) pthread_equal((t1),(t2))
 # define HAVE_NATIVETHREAD
 #elif defined(_WIN32) || defined(_WIN32_WCE)

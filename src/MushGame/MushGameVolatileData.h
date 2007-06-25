@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } uBos0qz9CuePBVHccRa/8g
 /*
- * $Id: MushGameVolatileData.h,v 1.17 2007/03/08 11:00:30 southa Exp $
+ * $Id: MushGameVolatileData.h,v 1.18 2007/04/16 08:41:10 southa Exp $
  * $Log: MushGameVolatileData.h,v $
+ * Revision 1.18  2007/04/16 08:41:10  southa
+ * Level and header mods
+ *
  * Revision 1.17  2007/03/08 11:00:30  southa
  * Level epilogue
  *
@@ -114,12 +117,13 @@ private:
     Mushware::tMsec m_lastGameMsec; //:readwrite
     Mushware::tMsec m_frameMsec; //:readwrite
     MushRubyValue m_rubyGame; //:readwrite
-	MushRubyValue m_rubyLogic; //:readwrite
+    MushRubyValue m_rubyLogic; //:readwrite
     Mushware::U32 m_gameMode; //:readwrite
     bool m_precache; //:readwrite
     bool m_isMenuBackdrop; //:readwrite
     Mushware::tVal m_averageMsecPerFrame; //:readwrite
     Mushware::U32 m_movesThisFrame; //:readwrite
+    Mushware::tVal m_moveTicker; //:readwrite
     Mushware::U32 m_cutSceneNum; //:readwrite
     Mushware::U32 m_last100msTickMsec; //:readwrite
     Mushware::tMsec m_epilogueStartMsec; //:readwrite
@@ -153,6 +157,8 @@ public:
     void AverageMsecPerFrameSet(const Mushware::tVal& inValue) { m_averageMsecPerFrame=inValue; }
     const Mushware::U32& MovesThisFrame(void) const { return m_movesThisFrame; }
     void MovesThisFrameSet(const Mushware::U32& inValue) { m_movesThisFrame=inValue; }
+    const Mushware::tVal& MoveTicker(void) const { return m_moveTicker; }
+    void MoveTickerSet(const Mushware::tVal& inValue) { m_moveTicker=inValue; }
     const Mushware::U32& CutSceneNum(void) const { return m_cutSceneNum; }
     void CutSceneNumSet(const Mushware::U32& inValue) { m_cutSceneNum=inValue; }
     const Mushware::U32& Last100msTickMsec(void) const { return m_last100msTickMsec; }
@@ -168,7 +174,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } rV3eficqQ3lBm3TOcMIl6g
+//%classPrototypes } gh/Xaua8Sz1c8JJ7F0GEvA
 };
 //%inlineHeader {
 inline std::ostream&

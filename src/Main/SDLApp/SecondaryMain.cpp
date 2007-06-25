@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } iq/M/29BciHx/MWfKkILcw
 /*
- * $Id: SecondaryMain.cpp,v 1.10 2007/03/13 21:45:11 southa Exp $
+ * $Id: SecondaryMain.cpp,v 1.11 2007/04/18 12:44:37 southa Exp $
  * $Log: SecondaryMain.cpp,v $
+ * Revision 1.11  2007/04/18 12:44:37  southa
+ * Cache purge fix and pre-release tweaks
+ *
  * Revision 1.10  2007/03/13 21:45:11  southa
  * Release process
  *
@@ -203,6 +206,11 @@ int main(int argc, char *argv[])
     {
         str="load($SYSTEM_PATH+'/start.txt')";
     }
+    else if (str == "--recover" || str == "--safe" )
+    {
+        str="load($SYSTEM_PATH+'/start_safe.txt')";
+    }
+    
     try
     {
         try

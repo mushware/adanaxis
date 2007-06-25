@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } FG1UBO0d8qPi+PGHUglZwQ
 /*
- * $Id: MediaAudioSDL.cpp,v 1.36 2007/06/14 01:03:52 southa Exp $
+ * $Id: MediaAudioSDL.cpp,v 1.37 2007/06/24 21:09:39 southa Exp $
  * $Log: MediaAudioSDL.cpp,v $
+ * Revision 1.37  2007/06/24 21:09:39  southa
+ * X11 support
+ *
  * Revision 1.36  2007/06/14 01:03:52  southa
  * win32 build fixes
  *
@@ -229,7 +232,9 @@ MediaAudioSDL::MediaAudioSDL():
     const SDL_version *pVersion = Mix_Linked_Version();
     if (pVersion->major <= 1 && pVersion->minor <= 2 && pVersion->patch <= 6)
     {
-        MushcoreLog::Sgl().WarningLog() << "SDL_mixer version is " << pVersion->major << "." << pVersion->minor  << "." << pVersion->patch << " but >= 1.2.7 required.  OGG load from .mush file disabled" << endl;
+        MushcoreLog::Sgl().WarningLog() << "SDL_mixer version is " << static_cast<U32>(pVersion->major) <<
+            "." << static_cast<U32>(pVersion->minor)  << "." << static_cast<U32>(pVersion->patch) <<
+            " but >= 1.2.7 required.  OGG load from .mush file disabled" << endl;
        
     }
     else
@@ -404,7 +409,7 @@ MediaAudioSDL::Load(MediaSoundStream& inSoundStream)
     if (m_fpMix_LoadMUS_RW == NULL)
     {
         string filename(inSoundStream.FilenameGet());
-    
+        
         m_musicMushFile.OpenForRead(filename);
         try
         {
@@ -429,19 +434,25 @@ MediaAudioSDL::Load(MediaSoundStream& inSoundStream)
     else
     {
         string filename(inSoundStream.FilenameGet());
-    
+
         m_musicMushFile.OpenForRead(filename);
         MediaRWops mediaRWops(m_musicMushFile);
-    
-        SDL_RWops *pSrc = mediaRWops.RWops();
-        if (pSrc == NULL)
+
+        SDL_RWops *pSrc = NULL;
+        
+        try
+        {
+            pSrc = mediaRWops.RWops();
+        }
+        catch (MushcoreFileFail& e)
         {
             if (++m_errCtr < 100)
             {
-                MushcoreLog::Sgl().WarningLog() << "Failed to open file '" << filename << "': " << string(SDL_GetError());
+                MushcoreLog::Sgl().WarningLog() << e.what() << endl;
             }
         }
-        else
+        
+        if (pSrc != NULL)
         {
             // If Mix_LoadMUS_RW is missing you need SDL_mixer 1.2.7 or later
             m_music = reinterpret_cast<Mix_Music * (*)(SDL_RWops *rw)>(m_fpMix_LoadMUS_RW)(pSrc);
@@ -516,15 +527,21 @@ MediaAudioSDL::Load(MediaSound &inSound) const
     srcFile.OpenForRead(filename);
     MediaRWops mediaRWops(srcFile);
     
-    SDL_RWops *pSrc = mediaRWops.RWops();
-    if (pSrc == NULL)
+    SDL_RWops *pSrc = NULL;
+    
+    try
+    {
+        pSrc = mediaRWops.RWops();
+    }
+    catch (MushcoreFileFail& e)
     {
         if (++m_errCtr < 100)
         {
-            MushcoreLog::Sgl().WarningLog() << "Failed to open file '" << filename << "': " << string(SDL_GetError());
+            MushcoreLog::Sgl().WarningLog() << e.what() << endl;
         }
     }
-    else
+    
+    if (pSrc != NULL)
     {
         Mix_Chunk *chunk = Mix_LoadWAV_RW(pSrc, false); // Don't free after play
         if (chunk == NULL)

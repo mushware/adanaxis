@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } KjTGGZJJ7RdcZomHkSHYpg
 /*
- * $Id: MushGameVolatileData.cpp,v 1.15 2007/03/08 11:00:30 southa Exp $
+ * $Id: MushGameVolatileData.cpp,v 1.16 2007/04/16 08:41:10 southa Exp $
  * $Log: MushGameVolatileData.cpp,v $
+ * Revision 1.16  2007/04/16 08:41:10  southa
+ * Level and header mods
+ *
  * Revision 1.15  2007/03/08 11:00:30  southa
  * Level epilogue
  *
@@ -86,6 +89,7 @@ MushGameVolatileData::MushGameVolatileData() :
     m_isMenuBackdrop(false),
     m_averageMsecPerFrame(1000.0/60.0),
     m_movesThisFrame(1),
+    m_moveTicker(0),
     m_gameResult(MushGameData::kGameResultNone)
 {
 }
@@ -136,6 +140,7 @@ MushGameVolatileData::AutoPrint(std::ostream& ioOut) const
     ioOut << "isMenuBackdrop=" << m_isMenuBackdrop << ", ";
     ioOut << "averageMsecPerFrame=" << m_averageMsecPerFrame << ", ";
     ioOut << "movesThisFrame=" << m_movesThisFrame << ", ";
+    ioOut << "moveTicker=" << m_moveTicker << ", ";
     ioOut << "cutSceneNum=" << m_cutSceneNum << ", ";
     ioOut << "last100msTickMsec=" << m_last100msTickMsec << ", ";
     ioOut << "epilogueStartMsec=" << m_epilogueStartMsec << ", ";
@@ -203,6 +208,10 @@ MushGameVolatileData::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::st
     {
         ioIn >> m_movesThisFrame;
     }
+    else if (inTagStr == "moveTicker")
+    {
+        ioIn >> m_moveTicker;
+    }
     else if (inTagStr == "cutSceneNum")
     {
         ioIn >> m_cutSceneNum;
@@ -254,6 +263,8 @@ MushGameVolatileData::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_averageMsecPerFrame;
     ioOut.TagSet("movesThisFrame");
     ioOut << m_movesThisFrame;
+    ioOut.TagSet("moveTicker");
+    ioOut << m_moveTicker;
     ioOut.TagSet("cutSceneNum");
     ioOut << m_cutSceneNum;
     ioOut.TagSet("last100msTickMsec");
@@ -263,4 +274,4 @@ MushGameVolatileData::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("gameResult");
     ioOut << m_gameResult;
 }
-//%outOfLineFunctions } rfq8iUu1tUV4NV0iR0kL9Q
+//%outOfLineFunctions } GaLE4T+fOSVZnS7d7gyk2Q

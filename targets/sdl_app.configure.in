@@ -82,6 +82,8 @@ AC_CHECK_SIZEOF(time_t, 0)
 dnl Checks for typedefs, structures, and compiler characteristics.
 AC_C_BIGENDIAN
 
+dnl binreloc support
+AM_BINRELOC
 
 dnl Checks for libraries.
 AC_CHECK_HEADER(windows.h)

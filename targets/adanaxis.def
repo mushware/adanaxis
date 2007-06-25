@@ -1,6 +1,9 @@
 # Target definition file
-# $Id: adanaxis.def,v 1.22 2007/06/16 11:09:32 southa Exp $
+# $Id: adanaxis.def,v 1.23 2007/06/24 21:09:42 southa Exp $
 # $Log: adanaxis.def,v $
+# Revision 1.23  2007/06/24 21:09:42  southa
+# X11 support
+#
 # Revision 1.22  2007/06/16 11:09:32  southa
 # Prerelease
 #
@@ -105,8 +108,9 @@ Subst: MUSH_BUILD_REQUIRES ''
 Use: targets/sdl_app.spec as adanaxis.spec.generic
 
 Create: src/Makefile.am
-
-Program: adanaxisbinary
+Output: AM_CFLAGS=$(BINRELOC_CFLAGS) -DMUSH_DATA_DIR=\"$(datadir)\"
+Output: AM_CPPFLAGS=$(BINRELOC_CFLAGS) -DMUSH_DATA_DIR=\"$(datadir)\"
+Program: adanaxis
 Modules: API Game GL Main/SDLApp Media Mushcore MushFile MushGame MushGL MushCollision MushMesh MushMeshLibrary MushMeshRuby MushPie MushRender MushRuby MushSkin Platform Support Adanaxis
 
 ExtraDist:
@@ -115,7 +119,7 @@ Modules: Platform/MacOSX Platform/win32 +.*\.c$ Platform/X11 +.*\.y$ +.*\.mkf$ +
 Append: Makefile.am
 
 ExtraDist:
-Modules: prebuild.sh adanaxis\.spec\.* macosx/project/.*\.plist README\.* .*\.pl .*\.pm macosx/project/project.xcodeproj/.*pbx(proj|user) macosx/MakeRelease.sh macosx/Start_in_Recovery_Mode.(app|scpt) macosx/adanaxis_app.icns win32/adanaxis.*\.ico win32/MakeInstaller.sh win32/installer.nsi win32/FileListToNSI.rb VisualC/project/adanaxis.*\.(sln|aps|rc|vcproj|ico) x11/icons/adanaxis\..*\.png$
+Modules: prebuild.sh adanaxis\.spec\.* macosx/project/.*\.plist README\.* .*\.pl .*\.pm macosx/project/project.xcodeproj/.*pbx(proj|user) macosx/MakeRelease.sh macosx/Start_in_Recovery_Mode.(app|scpt) macosx/adanaxis_app.icns win32/adanaxis.*\.ico win32/MakeInstaller.sh win32/installer.nsi win32/FileListToNSI.rb VisualC/project/adanaxis.*\.(sln|aps|rc|vcproj|ico) x11/icons/adanaxis\..*\.png$ COPYING-FULL COPYING-DEMO
 Manual:
 Modules: x11/man/adanaxis.*
 

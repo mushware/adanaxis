@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } GsPzC+Lwr5unXfKDyFk0MQ
 /*
- * $Id: MushGameLogic.cpp,v 1.47 2007/04/16 08:41:10 southa Exp $
+ * $Id: MushGameLogic.cpp,v 1.48 2007/04/17 10:08:20 southa Exp $
  * $Log: MushGameLogic.cpp,v $
+ * Revision 1.48  2007/04/17 10:08:20  southa
+ * Voice work
+ *
  * Revision 1.47  2007/04/16 08:41:10  southa
  * Level and header mods
  *
@@ -515,28 +518,47 @@ MushGameLogic::TimingSequence(void)
     Mushware::U32 timeNow = MushGameUtil::AppHandler().MillisecondsGet();
     Mushware::U32 timeDiff = timeNow - static_cast<U32>(VolatileData().LastGameMsec());
     
-    // If generating less than 20 fps, slow down the game speed 
-    if (timeDiff > 50)
-    {
-        timeDiff = 50;
-    }
-    
     VolatileData().AverageMsecPerFrameSet(VolatileData().AverageMsecPerFrame() * 0.8 + timeDiff * 0.2);
     
-    // Assume 60fps for move-per-frame calculation.  Smoothness will degrade on non-60Hz displays
-    tVal idealMovesThisFrame = VolatileData().AverageMsecPerFrame() * 60.0 / 1000.0;
-    if (std::fabs(VolatileData().MovesThisFrame() - idealMovesThisFrame) > 0.7)
+    // Move rate is 60Hz
+    tVal msecPerMove = 1000.0 / 60.0;
+    tVal idealMoveTicker = timeNow / msecPerMove;
+    
+    tVal idealMovesThisFrame = idealMoveTicker - VolatileData().MoveTicker();
+
+    if (idealMovesThisFrame < 0 || idealMovesThisFrame > 100)
     {
-        U32 movesThisFrame = static_cast<U32>(idealMovesThisFrame + 0.5);
-        MushcoreUtil::Constrain<U32>(movesThisFrame, 1, 5);
-        VolatileData().MovesThisFrameSet(movesThisFrame);
+        // Counters wrongly set - use one frame
+        idealMovesThisFrame = 0;
+    }
+
+    U32 movesThisFrame = static_cast<U32>(idealMovesThisFrame + 0.49);
+    
+    MushcoreUtil::Constrain<U32>(movesThisFrame, 0, 5);
+
+    VolatileData().MovesThisFrameSet(movesThisFrame);
+    
+    if (IsGameMode() || IsEpilogueMode())
+    {
+        VolatileData().GameMsecSet(VolatileData().GameMsec() +
+                static_cast<tMsec>(movesThisFrame * msecPerMove));
     }
     
-    if (IsGameMode() || IsEpilogueMode() && timeDiff < 1e9)
+    tVal newMoveTicker = VolatileData().MoveTicker() + movesThisFrame;
+
+    if (idealMoveTicker - newMoveTicker > 5.0)
     {
-        VolatileData().GameMsecSet(VolatileData().GameMsec() + timeDiff);
+        // Ideal ticker running ahead - drop frames
+        newMoveTicker = idealMoveTicker - 5.0;
     }
-    
+    else if (idealMoveTicker - newMoveTicker < -5.0)
+    {
+        // Overrun
+        newMoveTicker = idealMoveTicker;
+    }
+
+    VolatileData().MoveTickerSet(newMoveTicker);
+
     VolatileData().LastGameMsecSet(timeNow);
     VolatileData().FrameMsecSet(VolatileData().GameMsec());
 }
