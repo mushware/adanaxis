@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 9LhPd3esgjiGTsZec7nkWQ
 /*
- * $Id: PlatformVideoUtils.h,v 1.18 2006/11/25 21:26:33 southa Exp $
+ * $Id: PlatformVideoUtils.h,v 1.19 2007/04/18 09:23:23 southa Exp $
  * $Log: PlatformVideoUtils.h,v $
+ * Revision 1.19  2007/04/18 09:23:23  southa
+ * Header and level fixes
+ *
  * Revision 1.18  2006/11/25 21:26:33  southa
  * Display mode definitions
  *
@@ -91,6 +94,7 @@ public:
     PlatformVideoUtils();
     static PlatformVideoUtils& Sgl(void) {return *((m_instance==NULL)?m_instance=new PlatformVideoUtils:m_instance);}
 
+    void Acquaint(void);
     const GLModeDef& PreviousModeDef(const GLModeDef& inModeDef) const;
     const GLModeDef& NextModeDef(const GLModeDef& inModeDef) const;
     const GLModeDef& DefaultModeDef(void) const;

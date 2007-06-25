@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } Y+WzijXDRsG7dDElPwQlbQ
 /*
- * $Id: PlatformVideoUtils.cpp,v 1.22 2007/04/18 09:23:23 southa Exp $
+ * $Id: PlatformVideoUtils.cpp,v 1.23 2007/06/24 21:09:42 southa Exp $
  * $Log: PlatformVideoUtils.cpp,v $
+ * Revision 1.23  2007/06/24 21:09:42  southa
+ * X11 support
+ *
  * Revision 1.22  2007/04/18 09:23:23  southa
  * Header and level fixes
  *
@@ -115,6 +118,11 @@ PlatformVideoUtils *PlatformVideoUtils::m_instance=NULL;
 
 PlatformVideoUtils::PlatformVideoUtils()
 {
+}
+
+void
+PlatformVideoUtils::Acquaint(void)
+{
     m_modeDefs.push_back(GLModeDef(640, 480, false));
     m_modeDefs.push_back(GLModeDef(800, 600, false));
     m_modeDefs.push_back(GLModeDef(640, 480, true));
@@ -158,17 +166,16 @@ PlatformVideoUtils::PlatformVideoUtils()
             ppModes = SDL_ListModes(NULL, SDL_FULLSCREEN|SDL_HWSURFACE);
         }
     }
-
+    
     if (ppModes != NULL && ppModes != (SDL_Rect **) -1)
     {
         for (U32 i=0; ppModes[i] != NULL; ++i)
         {
-            SDL_Rect *pMode = ppModes[i];
-
+            const SDL_Rect *pMode = ppModes[i];
             bool addMode = true;
             for (U32 j=0; j<m_modeDefs.size(); ++j)
             {
-                if (pMode->w == m_modeDefs[i].Width() && pMode->h == m_modeDefs[i].Height())
+                if (pMode->w == m_modeDefs[j].Width() && pMode->h == m_modeDefs[j].Height())
                 {
                     // Mode already there so don't add
                     addMode = false;
@@ -180,78 +187,6 @@ PlatformVideoUtils::PlatformVideoUtils()
             }
         }
     }
-}
-
-const GLModeDef&
-PlatformVideoUtils::DefaultModeDef(void) const
-{
-    U32 modeNum = 0;
-    
-    for (U32 i=2; i < m_modeDefs.size(); ++i)
-    {
-        if (m_modeDefs[i].Width() == 1024 &&
-            m_modeDefs[i].Height() == 768)
-        {
-            modeNum = i;   
-        }
-    }
-    return m_modeDefs[modeNum];
-}
-
-Mushware::U32
-PlatformVideoUtils::ModeDefFind(const GLModeDef& inModeDef) const
-{
-    U32 retVal = 0;
-    for (U32 i=1; i<m_modeDefs.size(); ++i)
-    {
-        if (inModeDef == m_modeDefs[i])
-        {
-            retVal = i;
-        }
-    }
-    return retVal;
-}
-
-const GLModeDef&
-PlatformVideoUtils::PreviousModeDef(const GLModeDef& inModeDef) const
-{
-    U32 modeNum = ModeDefFind(inModeDef);
-
-    if (modeNum == 0)
-    {
-        modeNum = m_modeDefs.size() - 1;
-    }
-    else
-    {
-        --modeNum;
-    }
-    return m_modeDefs[modeNum];
-}
-
-const GLModeDef&
-PlatformVideoUtils::NextModeDef(const GLModeDef& inModeDef) const
-{
-    U32 modeNum = ModeDefFind(inModeDef);
-    
-    ++modeNum;
-    if (modeNum >= m_modeDefs.size())
-    {
-        modeNum = 0;
-    }
-    
-    return m_modeDefs[modeNum];
-}
-
-U32
-PlatformVideoUtils::NumModesGet(void) const
-{
-    return m_modeDefs.size();
-}
-
-void
-PlatformVideoUtils::RenderModeInfo(U32 inNum) const
-{
-    throw MushcoreLogicFail("RenderModeInfo deprecated");
 }
 
 void

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } Zt0ORFgHY7Ga51/+T0jRpw
 /*
- * $Id: PlatformUtils.cpp,v 1.19 2006/06/01 15:39:57 southa Exp $
+ * $Id: PlatformUtils.cpp,v 1.20 2007/04/18 09:23:23 southa Exp $
  * $Log: PlatformUtils.cpp,v $
+ * Revision 1.20  2007/04/18 09:23:23  southa
+ * Header and level fixes
+ *
  * Revision 1.19  2006/06/01 15:39:57  southa
  * DrawArray verification and fixes
  *
@@ -89,3 +92,75 @@
 
 using namespace Mushware;
 using namespace std;
+
+const GLModeDef&
+PlatformVideoUtils::DefaultModeDef(void) const
+{
+    U32 modeNum = 0;
+    
+    for (U32 i=2; i < m_modeDefs.size(); ++i)
+    {
+        if (m_modeDefs[i].Width() == 1024 &&
+            m_modeDefs[i].Height() == 768)
+        {
+            modeNum = i;   
+        }
+    }
+    return m_modeDefs[modeNum];
+}
+
+Mushware::U32
+PlatformVideoUtils::ModeDefFind(const GLModeDef& inModeDef) const
+{
+    U32 retVal = 0;
+    for (U32 i=1; i<m_modeDefs.size(); ++i)
+    {
+        if (inModeDef == m_modeDefs[i])
+        {
+            retVal = i;
+        }
+    }
+    return retVal;
+}
+
+const GLModeDef&
+PlatformVideoUtils::PreviousModeDef(const GLModeDef& inModeDef) const
+{
+    U32 modeNum = ModeDefFind(inModeDef);
+
+    if (modeNum == 0)
+    {
+        modeNum = m_modeDefs.size() - 1;
+    }
+    else
+    {
+        --modeNum;
+    }
+    return m_modeDefs[modeNum];
+}
+
+const GLModeDef&
+PlatformVideoUtils::NextModeDef(const GLModeDef& inModeDef) const
+{
+    U32 modeNum = ModeDefFind(inModeDef);
+    
+    ++modeNum;
+    if (modeNum >= m_modeDefs.size())
+    {
+        modeNum = 0;
+    }
+    
+    return m_modeDefs[modeNum];
+}
+
+U32
+PlatformVideoUtils::NumModesGet(void) const
+{
+    return m_modeDefs.size();
+}
+
+void
+PlatformVideoUtils::RenderModeInfo(U32 inNum) const
+{
+    throw MushcoreLogicFail("RenderModeInfo deprecated");
+}

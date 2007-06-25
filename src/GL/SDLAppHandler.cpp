@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } CkSk48jyH/Lvp9pXNnIBSQ
 /*
- * $Id: SDLAppHandler.cpp,v 1.66 2007/03/09 19:50:12 southa Exp $
+ * $Id: SDLAppHandler.cpp,v 1.67 2007/04/18 12:44:37 southa Exp $
  * $Log: SDLAppHandler.cpp,v $
+ * Revision 1.67  2007/04/18 12:44:37  southa
+ * Cache purge fix and pre-release tweaks
+ *
  * Revision 1.66  2007/03/09 19:50:12  southa
  * Resident textures
  *
@@ -366,7 +369,8 @@ SDLAppHandler::EnterScreen(const GLModeDef& inDef)
 {
     GLUtils::Decache();
 
-    PlatformVideoUtils::Sgl().ModeChangePrologue();
+    PlatformVideoUtils::Sgl().ModeChangePrologue(); // Can quit SDL video
+
     MediaSDL::Sgl().InitVideoIfRequired();
     
     SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 8);
@@ -377,12 +381,13 @@ SDLAppHandler::EnterScreen(const GLModeDef& inDef)
     SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 16);
     SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
     
-#if (SDL_MAJOR_VERSION >= 1) && (SDL_MINOR_VERSION >= 2) && (SDL_PATCHLEVEL >= 6)
+#if (SDL_MAJOR_VERSION * 10000 + SDL_MINOR_VERSION * 100 + SDL_PATCHLEVEL) >= 10206
+    // Attributes supported from SDL version 1.2.6 onwards
     SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 1);
     SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 4);
 #endif
     
-#if (SDL_MAJOR_VERSION >= 1) && (SDL_MINOR_VERSION >= 2) && (SDL_PATCHLEVEL >= 10)
+#if (SDL_MAJOR_VERSION * 10000 + SDL_MINOR_VERSION * 100 + SDL_PATCHLEVEL) >= 10210
     // Attributes supported from SDL version 1.2.10 onwards
     SDL_GL_SetAttribute(SDL_GL_SWAP_CONTROL, 1);
 #endif
@@ -450,6 +455,7 @@ SDLAppHandler::EnterScreen(const GLModeDef& inDef)
     }
     
     m_modeDef=inDef;
+    PlatformVideoUtils::Sgl().Acquaint();
     PlatformVideoUtils::AppActivate();
     m_screenEntered = true;
 }
