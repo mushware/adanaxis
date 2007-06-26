@@ -3,27 +3,27 @@ Please report bugs at http://www.mushware.com/
 Platform-specific details can be found in README.linux, README.win32 and
 README.macosx files.
 
-To compile and install Adanaxis from this distribution:
+To compile and install Adanaxis Demo from this distribution:
 
 Unix/POSIX/Linux/FreeBSD
 ========================
 
 Download and unpack the source and data files and build thus:
 
-tar xvzf adanaxis-1.1.0.tar.gz
-cd adanaxis-1.1.0
+tar xvzf adanaxis_demo-1.1.0.tar.gz
+cd adanaxis_demo-1.1.0
 ./configure
 # (spend a few days getting the libraries that configure asks for)
 make
 make install
-adanaxis
+adanaxis_demo
 
 Alternatively, the application can be started without installing, but
 this must be done from the system directory.
 
 make
-cd data-adanaxis
-../../src/adanaxisbinary
+cd data-adanaxis_demo
+../../src/adanaxis_demobinary
 
 Mac OS X
 ========
