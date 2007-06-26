@@ -8,8 +8,11 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-# $Id: autogen.pl,v 1.11 2006/06/22 19:07:24 southa Exp $
+# $Id: autogen.pl,v 1.12 2006/06/29 09:28:59 southa Exp $
 # $Log: autogen.pl,v $
+# Revision 1.12  2006/06/29 09:28:59  southa
+# X11 updates
+#
 # Revision 1.11  2006/06/22 19:07:24  southa
 # Build fixes
 #
@@ -61,6 +64,8 @@ my $gVerbose=0;
 my $gTargetDirectory='targets';
 my $gTarget;
 my $gTargetType = TARGETTYPE_NONE;
+my $gType='none';
+my $gDist='none';
 
 my %gConfig;
 my %gContext;
@@ -74,25 +79,25 @@ sub FilenamesGet($$$$);
 sub FilenamesGet($$$$)
 {
     my ($outputRef, $prefix, $regExp, $recurse) = @_;
-    
+
     my $handle = new DirHandle;
-    
+
     my $dir = $prefix;
     $dir = "." if $dir eq "";
 
     print "Entering directory $dir\n" if ($gVerbose);
-    
+
     $handle->open($dir) or die "Couldn't open $prefix: $!";
-    
+
     while (defined(my $suffix = $handle->read()))
     {
         %gContext = ();
         $gContext{FILE} = $suffix;
         $gContext{PATH} = $prefix;
-        
+
         my $filename="$prefix/$suffix";
         $filename = $suffix if $prefix eq "";
-        
+
         if ( -d $filename )
         {
             if (substr($suffix,0,1) ne "." && $suffix ne "CVS")
@@ -131,7 +136,7 @@ sub Use($$)
     print "Using $source as $target\n" if ($gVerbose);
     open INUSE, $source or die "Couldn't open '$source': $!";
     open OUTUSE, ">$target" or die "Couldn't open '$target': $!";
-    
+
     while (<INUSE>)
     {
         print OUTUSE Substitute($_);
@@ -144,16 +149,16 @@ sub Modules($$)
 
     my $entryDir = Cwd::getcwd();
     chdir $gConfig{'PATH'};
-    
+
     my @sourceFiles;
     my @headerFiles;
-    
+
     foreach my $moduleName (split(' ', $modules))
     {
         unless ($moduleName =~ /^\s*$/) # Ignore whitespace-only
         {
             print "Adding module '$moduleName'\n" if ($gVerbose);
-            
+
             my $recurse = 0;
             if ($moduleName =~ s/^\+//)
             {
@@ -162,7 +167,7 @@ sub Modules($$)
 
             my $modulePath = $moduleName;
             my $moduleExp = $moduleName;
-            
+
             if ( -d $modulePath )
             {
                 # Module is directory
@@ -182,7 +187,7 @@ sub Modules($$)
             }
 
             my $searchExp = "";
-            
+
             if ($moduleExp =~ /[*+?|]/)
             {
                 # Modulename has wildcards
@@ -214,7 +219,7 @@ sub Modules($$)
             {
                 die "No module named '$moduleName' (no directory '$gConfig{'PATH'}/$modulePath')";
             }
-            
+
             if ($searchExp ne "")
             {
 	            print "Searching in '$modulePath' using expression '$searchExp'\n" if ($gVerbose);
@@ -246,7 +251,7 @@ sub Modules($$)
         }
     }
     chdir $entryDir;
-    
+
 # Now have filelists
     if ($gTargetType == TARGETTYPE_LIBRARY)
     {
@@ -260,12 +265,12 @@ sub Modules($$)
     {
         push @$outputRef,
         "bin_PROGRAMS=$gConfig{'PROGRAM'}",
-        "$gConfig{'PROGRAM'}_SOURCES=".join(' ', @sourceFiles).' '.join(' ', @headerFiles);        
+        "$gConfig{'PROGRAM'}_SOURCES=".join(' ', @sourceFiles).' '.join(' ', @headerFiles);
     }
     elsif ($gTargetType == TARGETTYPE_EXTRADIST)
     {
         push @$outputRef,
-        "EXTRA_DIST=".join(" ", @sourceFiles)." ".join(" ", @headerFiles);        
+        "EXTRA_DIST=".join(" ", @sourceFiles)." ".join(" ", @headerFiles);
     }
     elsif ($gTargetType == TARGETTYPE_PKGDATA)
     {
@@ -281,16 +286,16 @@ sub Modules($$)
     {
         die "No target specified (Program: or Library:) when Modules: command issued";
     }
-}    
+}
 
 sub FileRead($$)
 {
     my ($contentRef, $filename) = @_;
-    
+
     print "Reading file $filename\n" if $gVerbose;
-        
+
         open(FILE, $filename) or die "File open for read failed for $filename: $!";
-    
+
     while (<FILE>)
     {
         push(@$contentRef, $_);
@@ -301,11 +306,11 @@ sub FileRead($$)
 sub FileWrite($$)
 {
     my ($contentRef, $filename) = @_;
-    
+
     print "Writing file $filename\n" if $gVerbose;
-        
+
     open(FILE, ">>$filename") or die "File open for write failed for $filename: $!";
-    
+
     foreach (@$contentRef)
     {
         print FILE $_, "\n";
@@ -319,17 +324,28 @@ sub Process($)
 
     my @output;
     my $outputFilename="";
-    
+
     foreach my $command (@$contentRef)
     {
         chomp $command;
         $command =~ s/#.*//; # Remove comments
-            
-        if ($command =~ /^\s*$/)
+
+        next if ($command =~ /^\s*$/);
+
+        if ($command =~ /IfType:/)
         {
-            # skip blank line   
+            if ($command =~ s/IfType:\s*(\S+)\s+//) # Modifies command
+            {
+                # Ignore if type doesn't match
+                next unless ($1 =~ /$gType/);
+            }
+            else
+            {
+                die "Malformed command '$command'";
+            }
         }
-        elsif ($command =~ /Use:/)
+
+        if ($command =~ /Use:/)
         {
             if ($command =~ /Use:\s*(\S+)\s+as\s+(\S+)\s*$/)
             {
@@ -393,7 +409,8 @@ sub Process($)
             if ($command =~ /Program:\s*(\S+)\s*$/)
             {
                 $gTargetType = TARGETTYPE_PROGRAM;
-                $gConfig{'PROGRAM'} = $1;   
+                $gConfig{'PROGRAM'} = Substitute($1);
+                $gConfig{'PROGRAM'} =~ s/-//g;
             }
             else
             {
@@ -404,7 +421,7 @@ sub Process($)
         {
             if ($command =~ /ExtraDist:\s*$/)
             {
-                $gTargetType = TARGETTYPE_EXTRADIST;   
+                $gTargetType = TARGETTYPE_EXTRADIST;
             }
             else
             {
@@ -415,7 +432,7 @@ sub Process($)
         {
             if ($command =~ /PkgData:\s*$/)
             {
-                $gTargetType = TARGETTYPE_PKGDATA;   
+                $gTargetType = TARGETTYPE_PKGDATA;
             }
             else
             {
@@ -426,7 +443,7 @@ sub Process($)
         {
             if ($command =~ /Manual:\s*$/)
             {
-                $gTargetType = TARGETTYPE_MANUAL;   
+                $gTargetType = TARGETTYPE_MANUAL;
             }
             else
             {
@@ -436,8 +453,8 @@ sub Process($)
         elsif ($command =~ /Modules:/)
         {
             if ($command =~ /Modules:\s*(.*)$/)
-            {   
-                Modules(\@output, $1);
+            {
+                Modules(\@output, Substitute($1));
             }
             else
             {
@@ -447,7 +464,7 @@ sub Process($)
         elsif ($command =~ /Output:/)
         {
             if ($command =~ /Output:\s*(.*)$/)
-            {   
+            {
                 push @output, $1;
             }
             else
@@ -458,7 +475,7 @@ sub Process($)
         elsif ($command =~ /Test:/)
         {
             if ($command =~ /Test:\s*$/)
-            {   
+            {
                 push @output,
                 '',
                 'test: test_@PACKAGE@',
@@ -475,7 +492,7 @@ sub Process($)
         elsif ($command =~ /Subst:/)
         {
             if ($command =~ /Subst:\s*(\w+)\s+'([^']*)'$/)
-            {   
+            {
                 $gVars{$1} = Substitute($2);
                 print "Subst varaible $1 = $gVars{$1}\n" if $gVerbose;
             }
@@ -489,7 +506,7 @@ sub Process($)
             die "Unknown command '$command'";
         }
     }
-    
+
     if ($outputFilename ne "")
     {
         FileWrite(\@output, $outputFilename);
@@ -500,12 +517,12 @@ sub UsagePrint()
 {
     print <<EOT;
 Usage: $0 [options] <target name>
-    
+
 Autogenerates configuration files for the specified target
-    
+
 --help                  Print this text
 --verbose               Verbose
---targetdir=<directory> Search that directory for targets 
+--targetdir=<directory> Search that directory for targets
 
 List of available targets:
 EOT
@@ -518,7 +535,9 @@ sub Main()
     GetOptions(
                'help' => \$help,
                'verbose' => \$gVerbose,
-               'targetdir=s' => \$gTargetDirectory
+               'targetdir=s' => \$gTargetDirectory,
+               'type=s' => \$gType,
+               'dist=s' => \$gDist,
                );
 
     if ($help || @ARGV != 1)
@@ -527,18 +546,18 @@ sub Main()
         return 1;
     }
     $gTarget=$ARGV[0];
-    
+
     die "Try without the '.def'" if ($gTarget =~ /\.def$/);
-    
+
     my $targetFilename = "$gTargetDirectory/$gTarget.def";
     unless ( -f $targetFilename )
     {
         die "No target named $gTarget (No file named '$targetFilename')";
     }
-    print "Configuring for target '$gTarget'...\n";
-    
+    print "Configuring for target '$gTarget', type '$gType', dist '$gDist'...\n";
+
     my @configFile;
-    
+
     FileRead(\@configFile, $targetFilename);
     Process(\@configFile);
     foreach my $command('aclocal', 'autoheader', 'automake', 'autoconf')

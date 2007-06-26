@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } CkSk48jyH/Lvp9pXNnIBSQ
 /*
- * $Id: SDLAppHandler.cpp,v 1.67 2007/04/18 12:44:37 southa Exp $
+ * $Id: SDLAppHandler.cpp,v 1.68 2007/06/25 17:58:47 southa Exp $
  * $Log: SDLAppHandler.cpp,v $
+ * Revision 1.68  2007/06/25 17:58:47  southa
+ * X11 fixes
+ *
  * Revision 1.67  2007/04/18 12:44:37  southa
  * Cache purge fix and pre-release tweaks
  *
@@ -271,7 +274,7 @@ SDLAppHandler::Initialise(void)
     m_unboundedMouseY=0;
     m_firstDelta=true;
     MediaJoystick::Sgl();
-    
+
     if ((PlatformInputUtils::CurrentKeyModifiers() & PlatformInputUtils::kKeyModShift) != 0)
     {
         m_shiftAtStartupPressed = true;
@@ -299,7 +302,7 @@ SDLAppHandler::KeyboardSignal(const GLKeyboardSignal& inSignal)
     }
 
     AddToControlBuffer(keyValue, inSignal.keyDown);
-    
+
     m_keyState[keyValue]=inSignal.keyDown;
     if (inSignal.keyDown)
     {
@@ -372,7 +375,7 @@ SDLAppHandler::EnterScreen(const GLModeDef& inDef)
     PlatformVideoUtils::Sgl().ModeChangePrologue(); // Can quit SDL video
 
     MediaSDL::Sgl().InitVideoIfRequired();
-    
+
     SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 8);
     SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 8);
     SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 8);
@@ -380,18 +383,18 @@ SDLAppHandler::EnterScreen(const GLModeDef& inDef)
 
     SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 16);
     SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
-    
+
 #if (SDL_MAJOR_VERSION * 10000 + SDL_MINOR_VERSION * 100 + SDL_PATCHLEVEL) >= 10206
     // Attributes supported from SDL version 1.2.6 onwards
     SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 1);
     SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 4);
 #endif
-    
+
 #if (SDL_MAJOR_VERSION * 10000 + SDL_MINOR_VERSION * 100 + SDL_PATCHLEVEL) >= 10210
     // Attributes supported from SDL version 1.2.10 onwards
     SDL_GL_SetAttribute(SDL_GL_SWAP_CONTROL, 1);
 #endif
-    
+
     m_width=inDef.Width();
     m_height=inDef.Height();
     m_bpp=32;
@@ -408,6 +411,16 @@ SDLAppHandler::EnterScreen(const GLModeDef& inDef)
 
     SDL_Surface *surface=SDL_SetVideoMode(m_width, m_height, m_bpp, sdlFlags);
 
+#if (SDL_MAJOR_VERSION * 10000 + SDL_MINOR_VERSION * 100 + SDL_PATCHLEVEL) >= 10206
+    if (surface == NULL)
+    {
+        cerr << "SDL video mode failed - trying without FSAA" << endl;
+        SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 0);
+        SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 0);
+        surface=SDL_SetVideoMode(m_width, m_height, m_bpp, sdlFlags);
+    }
+#endif
+
     if (surface == NULL)
     {
         cerr << "SDL video mode failed again - trying for any mode" << endl;
@@ -421,7 +434,7 @@ SDLAppHandler::EnterScreen(const GLModeDef& inDef)
         SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 5);
         surface=SDL_SetVideoMode(m_width, m_height, m_bpp, sdlFlags|SDL_ANYFORMAT);
     }
-    
+
     PlatformVideoUtils::Sgl().ModeChangeEpilogue();
     if (surface == NULL) throw(MushcoreDeviceFail("Could not select a video mode"));
 
@@ -443,7 +456,7 @@ SDLAppHandler::EnterScreen(const GLModeDef& inDef)
     {
         m_keyState[i] = false;
     }
-    
+
     if (inDef.FullScreen())
     {
         SDL_WM_GrabInput(SDL_GRAB_ON);
@@ -453,7 +466,7 @@ SDLAppHandler::EnterScreen(const GLModeDef& inDef)
         // Don't grab input so that user can still work
         SDL_WM_GrabInput(SDL_GRAB_OFF);
     }
-    
+
     m_modeDef=inDef;
     PlatformVideoUtils::Sgl().Acquaint();
     PlatformVideoUtils::AppActivate();
@@ -501,7 +514,7 @@ SDLAppHandler::SetCursorState(bool inValue)
     {
         SDL_ShowCursor(SDL_ENABLE);
         PlatformVideoUtils::ForceShowCursor();
-    }    
+    }
 }
 
 void
@@ -540,7 +553,7 @@ SDLAppHandler::Signal(const MushcoreAppSignal& inSignal)
         }
         break;
     }
-}    
+}
 
 void
 SDLAppHandler::MainLoop(void)
@@ -564,7 +577,7 @@ void
 SDLAppHandler::AddToControlBuffer(U32 inKeyValue, bool inKeyDirection)
 {
     MUSHCOREASSERT(m_controlBufferIndex < m_controlBuffer.size());
-    
+
     SDLControlEntry& controlEntry = m_controlBuffer[m_controlBufferIndex];
     controlEntry.timestamp = MillisecondsGet();
     controlEntry.keyValue = inKeyValue;
@@ -605,7 +618,7 @@ SDLAppHandler::PollForControlEvents(void)
                 m_mouseY=event.motion.y;
                 S32 mouseDeltaX = event.motion.xrel;
                 S32 mouseDeltaY = event.motion.yrel;
-                
+
                 if (!CurrentModeDefGet().FullScreen())
                 {
                     PlatformInputUtils::MouseDeltaOverrideGet(mouseDeltaX, mouseDeltaY);
@@ -637,7 +650,7 @@ SDLAppHandler::PollForControlEvents(void)
             case SDL_QUIT:
                 m_doQuit=true;
                 break;
-                
+
             case SDL_JOYAXISMOTION:
             {
                 if (event.jaxis.which < kNumDevices && event.jaxis.axis < kAxesPerDevice)
@@ -648,7 +661,7 @@ SDLAppHandler::PollForControlEvents(void)
                 }
             }
             break;
-            
+
             case SDL_JOYBUTTONDOWN:
             case SDL_JOYBUTTONUP:
             {
@@ -664,7 +677,7 @@ SDLAppHandler::PollForControlEvents(void)
                 }
             }
             break;
-            
+
             case SDL_JOYHATMOTION:
             {
                 if (event.jhat.which < kNumDevices)
@@ -673,7 +686,7 @@ SDLAppHandler::PollForControlEvents(void)
                     bool rightState = (event.jhat.value & SDL_HAT_RIGHT) != 0;
                     bool upState = (event.jhat.value & SDL_HAT_UP) != 0;
                     bool downState = (event.jhat.value & SDL_HAT_DOWN) != 0;
-                    
+
                     U32 keyBase = MediaKeyboard::kKeyStick0 +
                         MediaKeyboard::kKeyStickSpacing * event.jhat.which +
                         MediaKeyboard::kKeyStickHat +
@@ -696,16 +709,16 @@ SDLAppHandler::PollForControlEvents(void)
                                             m_mouseX, m_mouseY));
                 }
             }
-            break;    
-                
+            break;
+
             default:
                 // Ignore
                 break;
         }
-        
+
         if (++loopCtr > 100) break;
     }
-    
+
     if (loopCtr > 100)
     {
         MushcoreLog::Sgl().WarningLog() << "event loopCtr overrun";

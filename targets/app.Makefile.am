@@ -10,8 +10,11 @@
 ##############################################################################
 
 #
-# $Id: app.Makefile.am,v 1.7 2007/06/14 14:59:14 southa Exp $
+# $Id: app.Makefile.am,v 1.8 2007/06/25 15:59:49 southa Exp $
 # $Log: app.Makefile.am,v $
+# Revision 1.8  2007/06/25 15:59:49  southa
+# X11 compatibility
+#
 # Revision 1.7  2007/06/14 14:59:14  southa
 # win32 fixes
 #
@@ -67,15 +70,7 @@ $(BZIPFILE):$(GZIPFILE)
 	rm -f $(BZIPFILE)
 	gunzip -c $(GZIPFILE) | bzip2 --best > $(BZIPFILE)
 
-rpm:
-	@echo
-	@echo No rpm target.  Available targets are mdk-rpm, redhat-rpm and suse-rpm
-	@exit 1
-
-%-rpm:MUSH_APP_PACKAGE.spec.%
-	cp -f $< MUSH_APP_PACKAGE.spec
-	rm -f $(BZIPFILE)
-	$(MAKE) $(BZIPFILE)
+rpm:MUSH_APP_PACKAGE.spec $(BZIPFILE)
 	rpm -ta $(BZIPFILE)
 
 # Blank line required - configuration scripts append here

@@ -1,6 +1,9 @@
 # Target definition file
-# $Id: adanaxis.def,v 1.24 2007/06/25 15:59:49 southa Exp $
+# $Id: adanaxis.def,v 1.25 2007/06/25 20:37:14 southa Exp $
 # $Log: adanaxis.def,v $
+# Revision 1.25  2007/06/25 20:37:14  southa
+# X11 fixes
+#
 # Revision 1.24  2007/06/25 15:59:49  southa
 # X11 compatibility
 #
@@ -79,9 +82,15 @@ Name: 'Adanaxis'
 
 Use: targets/app.acinclude.m4 as acinclude.m4
 
-Subst: MUSH_APP_PACKAGE 'adanaxis'
-Subst: MUSH_APP_NAME 'Adanaxis'
-Subst: MUSH_APP_UNDERSCORED_NAME 'Adanaxis'
+IfType: demo Subst: MUSH_APP_PACKAGE 'adanaxis_demo'
+IfType: full Subst: MUSH_APP_PACKAGE 'adanaxis'
+IfType: gpl Subst: MUSH_APP_PACKAGE 'adanaxis_gpl'
+IfType: demo Subst: MUSH_APP_NAME 'Adanaxis Demo'
+IfType: full Subst: MUSH_APP_NAME 'Adanaxis'
+IfType: gpl Subst: MUSH_APP_NAME 'Adanaxis GPL'
+IfType: demo Subst: MUSH_APP_UNDERSCORED_NAME 'Adanaxis_Demo'
+IfType: full Subst: MUSH_APP_UNDERSCORED_NAME 'Adanaxis'
+IfType: gpl Subst: MUSH_APP_UNDERSCORED_NAME 'Adanaxis_GPL'
 Subst: MUSH_APP_MAJOR_VERSION '1'
 Subst: MUSH_APP_MINOR_VERSION '1'
 Subst: MUSH_APP_MICRO_VERSION '0'
@@ -94,15 +103,17 @@ Subst: MUSH_WIN32_BUILD_PATH '$(top_srcdir)/VisualC/project/Release'
 Subst: MUSH_TOP_SUBDIRS 'src MUSH_DATA_DIR'
 Use: targets/app.Makefile.am as Makefile.am
 Use: targets/sdl_app.configure.in as configure.in
-Use: targets/commercial.COPYING as COPYING-FULL
-Use: targets/app.COPYING as COPYING-DEMO
-Use: targets/app.COPYING as COPYING
+IfType: (demo|gpl) Use: targets/app.COPYING as COPYING
+IfType: full Use: targets/commercial.COPYING as COPYING
 Use: targets/app.INSTALL as INSTALL
 Use: targets/app.AUTHORS as AUTHORS
 Use: targets/app.README as README
 Use: targets/adanaxis.ChangeLog as ChangeLog
 Use: targets/adanaxis.ChangeLog as NEWS
 Use: targets/win32.installer.nsi as win32/installer.nsi
+IfType: (demo|full) Use: ../core-keys/MushSecretKeys.cpp as src/MushSecret/MushSecretKeys.cpp
+IfType: gpl Use: targets/empty.MushSecretKeys.cpp as src/MushSecret/MushSecretKeys.cpp
+
 Subst: MUSH_APP_RELEASE '1mdk'
 Subst: MUSH_BUILD_REQUIRES 'BuildRequires: gcc-c++,XFree86-devel,libMesaGLU1-devel,libMesaglut3-devel,libpcre0-devel,libexpat0-devel,libungif4-devel,libtiff3-devel,libSDL1.2-devel,libalsa1-devel,libsmpeg0.4-devel,libogg0-devel,libvorbis0-devel,libSDL_mixer1.2-devel'
 Use: targets/sdl_app.spec.mdk as adanaxis.spec.mdk
@@ -113,8 +124,8 @@ Use: targets/sdl_app.spec as adanaxis.spec.generic
 Create: src/Makefile.am
 Output: AM_CFLAGS=$(BINRELOC_CFLAGS) -DMUSH_DATA_DIR=\"$(datadir)\"
 Output: AM_CPPFLAGS=$(BINRELOC_CFLAGS) -DMUSH_DATA_DIR=\"$(datadir)\"
-Program: adanaxis
-Modules: API Game GL Main/SDLApp Media Mushcore MushFile MushGame MushGL MushCollision MushMesh MushMeshLibrary MushMeshRuby MushPie MushRender MushRuby MushSkin Platform Support Adanaxis
+Program: MUSH_APP_PACKAGE
+Modules: API Game GL Main/SDLApp Media Mushcore MushFile MushGame MushGL MushCollision MushMesh MushMeshLibrary MushMeshRuby MushPie MushRender MushRuby MushSecret MushSkin Platform Support Adanaxis
 
 ExtraDist:
 Modules: Platform/MacOSX Platform/win32 +.*\.c$ Platform/X11 +.*\.y$ +.*\.mkf$ +.*\.flex$ +.*\.m$
@@ -123,10 +134,13 @@ Append: Makefile.am
 
 ExtraDist:
 Modules: prebuild.sh adanaxis\.spec\.* macosx/project/.*\.plist README\.* .*\.pl .*\.pm macosx/project/project.xcodeproj/.*pbx(proj|user) macosx/MakeRelease.sh macosx/adanaxis_app.icns win32/adanaxis.*\.ico win32/MakeInstaller.sh win32/installer.nsi win32/FileListToNSI.rb VisualC/project/adanaxis.*\.(sln|aps|rc|vcproj|ico) x11/icons/adanaxis\..*\.png$ COPYING-FULL COPYING-DEMO
+
 Manual:
-Modules: x11/man/adanaxis\..*
+Modules: x11/man/MUSH_APP_PACKAGE\..*
 
 Create: data-adanaxis/Makefile.am
 PkgData:
-Modules: pixels pixels/cosmos mush mushruby ruby +spaces waves system/.*\.xml$ system/.*\.txt$ .*\.pdf$
+IfType: demo Modules: pixels pixels/cosmos mush mushruby ruby spaces/demoend1 spaces/intro1 spaces/menu1 spaces/level1 spaces/level6 spaces/level8 spaces/level2/manifest.txt spaces/level30/manifest.txt spaces/level3/manifest.txt spaces/level4/manifest.txt spaces/level5/manifest.txt spaces/level6/manifest.txt spaces/level7/manifest.txt spaces/level9/manifest.txt spaces/level10/manifest.txt spaces/level11/manifest.txt spaces/level12/manifest.txt spaces/level13/manifest.txt spaces/level14/manifest.txt spaces/level15/manifest.txt spaces/level16/manifest.txt spaces/level17/manifest.txt spaces/level18/manifest.txt spaces/level19/manifest.txt spaces/level20/manifest.txt spaces/level21/manifest.txt spaces/level22/manifest.txt spaces/level23/manifest.txt spaces/level24/manifest.txt spaces/level25/manifest.txt spaces/level26/manifest.txt spaces/level27/manifest.txt spaces/level28/manifest.txt spaces/level29/manifest.txt spaces/level30/manifest.txt waves system/.*\.xml$ system/.*\.txt$ .*\.pdf$
+IfType: full Modules: pixels pixels/cosmos mush mushruby ruby +spaces waves system/.*\.xml$ system/.*\.txt$ .*\.pdf$
+IfType: gpl Modules: pixels pixels/cosmos mushruby ruby +spaces waves system/.*\.xml$ system/.*\.txt$ .*\.pdf$
 ExtraDist:

@@ -17,8 +17,11 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-# $Id: ProcessIntern.rb,v 1.3 2006/11/05 09:32:13 southa Exp $
-# $Log: ProcessIntern.rb,v $
+# $Id: DebianInit.rb,v 1.1 2007/06/26 10:46:07 southa Exp $
+# $Log: DebianInit.rb,v $
+# Revision 1.1  2007/06/26 10:46:07  southa
+# Created
+#
 
 require 'optparse'
 
@@ -28,7 +31,7 @@ class DebianInit
 autoconf
 automake
 freeglut3-dev
-g++      
+g++
 gcc
 libc6-dev
 libexpat1-dev
@@ -70,10 +73,24 @@ kdevelop
 kdegames
 kdegraphics
 kscreensaver
+mesa-utils
 rss-glx
 shermans-aquarium
 xscreensaver-gl
     }
+
+    @m_nvidiaKernelPackages = %w{
+gcc
+module-assistant
+nvidia-kernel-common
+    }
+
+    @m_nvidiaUserPackages = %w{
+nvidia-glx
+nvidia-settings
+nvidia-xconfig
+    }
+
    @m_yes = false
   end
 
@@ -95,6 +112,7 @@ xscreensaver-gl
         puts "**************** Package #{package} failed to install"
       end
     end
+    return failures == []
   end
 
   def mDevelInstall
@@ -109,6 +127,35 @@ xscreensaver-gl
     mPackagesInstall(@m_userPackages)
   end
 
+  def mNVidiaInstall
+    puts "Make sure your APT has non-free and contrib sources"
+    mPackagesInstall(@m_nvidiaKernelPackages) or raise("++++Package installation failed")
+    system("sudo m-a update") or raise("++++Command failed")
+    system("sudo m-a prepare") or raise("++++Command failed")
+    system("sudo m-a auto-install nvidia") or raise("++++Command failed")
+    mPackagesInstall(@m_nvidiaUserPackages) or raise("++++Package installation failed")
+    system("sudo nvidia-xconfig") or raise("++++Command failed")
+    system("sudo dpkg-reconfigure xserver-xorg") or raise("++++Command failed")
+    system("sudo sh -c 'grep -q ^nvidia /etc/modules || echo nvidia >> /etc/modules'") or raise("++++Command failed")
+    system("sudo modprobe nvidia") or raise("++++Command failed")
+    puts "Now type 'sudo invoke-rc.d gdm restart' to restart your X Session"
+  end
+
+  def mBashrcAppend
+    unless system("grep -q 'Mushware appends' ~/.bashrc")
+      File.open(ENV['HOME']+"/.bashrc", "a") do |file|
+        file.puts <<EOS
+# Mushware appends
+export CVSROOT=:pserver:southa@ispanak.local:/cvs
+export PATH="$PATH:$HOME/local/bin"
+export MANPATH="$MANPATH:$HOME/local/share/man"
+alias h=history
+EOS
+      end
+    end
+  end
+
+
   def mYesSet(inValue)
     @m_yes = inValue
   end
@@ -119,6 +166,8 @@ debianInit = DebianInit.new
 installDevel = false
 installPackaging = false
 installUser = false
+installNVidia = false
+appendBashrc = false
 
 OptionParser.new do |opts|
   action = false
@@ -141,14 +190,23 @@ OptionParser.new do |opts|
     installUser = true
   end
 
-  opts.on("--all", "Installs all packages required by this archive") do
+  opts.on("--nvidia", "Install NVidia drivers") do
+    installNVidia = true
+  end
+
+  opts.on("--bashrc", "Append to .bashrc") do
+    appendBashrc = true
+  end
+
+  opts.on("--all", "Installs all devel, packaging and user packages") do
     installDevel = true
     installPackaging = true
     installUser = true
   end
 
   opts.separator ""
-  opts.separator "This script sets up a base installation of debian 4.0 to build this archive.  Unless you are Andy Southgate, you probably don't want to run this as-is."
+  opts.separator "This script sets up a base installation of debian 4.0 to build this archive."
+  opts.separator "Unless you are Andy Southgate, you probably don't want to run this as-is."
   opts.separator "Prerequisites:"
   opts.separator "Your user ID in /etc/sudoers:"
   opts.separator ">su root"
@@ -161,5 +219,7 @@ end.parse!
 debianInit.mDevelInstall if installDevel
 debianInit.mPackagingInstall if installPackaging
 debianInit.mUserInstall if installUser
+debianInit.mNVidiaInstall if installNVidia
+debianInit.mBashrcAppend if appendBashrc
 
 puts "#{$0} done."
