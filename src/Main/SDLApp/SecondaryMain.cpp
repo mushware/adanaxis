@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } iq/M/29BciHx/MWfKkILcw
 /*
- * $Id: SecondaryMain.cpp,v 1.13 2007/06/25 20:37:11 southa Exp $
+ * $Id: SecondaryMain.cpp,v 1.14 2007/06/27 13:38:29 southa Exp $
  * $Log: SecondaryMain.cpp,v $
+ * Revision 1.14  2007/06/27 13:38:29  southa
+ * Debian packaging
+ *
  * Revision 1.13  2007/06/25 20:37:11  southa
  * X11 fixes
  *
@@ -231,14 +234,21 @@ int main(int argc, char *argv[])
             {
                 std::vector<std::string> filenames;
 
-                PlatformMiscUtils::ScanDirectory(filenames, paths[i]);
+                try
+                {
+                    PlatformMiscUtils::ScanDirectory(filenames, paths[i]);
+                }
+                catch (MushcoreFail& e)
+                {
+                    // Ignore non-existent directories
+                }
                 for (U32 j=0; j<filenames.size(); ++j)
                 {
-                    searchFiles.push_back(path+"/"+filenames[j]);
+                    searchFiles.push_back(paths[i]+"/"+filenames[j]);
                 }
             }
+cout << paths << endl << searchFiles << endl;
         }
-cout << paths << endl;
         MushcoreRegExp pdfExp("\\.pdf$");
         for (U32 i=0; i<searchFiles.size(); ++i)
         {

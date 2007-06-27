@@ -9,14 +9,12 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-# $Id: prebuild.sh,v 1.3 2007/06/27 12:58:09 southa Exp $
-# $Log: prebuild.sh,v $
-# Revision 1.3  2007/06/27 12:58:09  southa
-# Debian packaging
-#
+
+# $Id: app.prebuild.sh,v 1.1 2007/06/27 11:56:44 southa Exp $
+# $Log: app.prebuild.sh,v $
 # Revision 1.1  2007/06/27 11:56:44  southa
 # Debian packaging
-
+#
 # Revision 1.2  2005/05/27 19:25:23  southa
 # win32 build fixes
 #

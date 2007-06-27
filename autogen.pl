@@ -8,8 +8,11 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-# $Id: autogen.pl,v 1.14 2007/06/27 11:56:42 southa Exp $
+# $Id: autogen.pl,v 1.15 2007/06/27 12:58:08 southa Exp $
 # $Log: autogen.pl,v $
+# Revision 1.15  2007/06/27 12:58:08  southa
+# Debian packaging
+#
 # Revision 1.14  2007/06/27 11:56:42  southa
 # Debian packaging
 #
@@ -65,6 +68,7 @@ use constant TARGETTYPE_LIBRARY => 3;
 use constant TARGETTYPE_EXTRADIST => 4;
 use constant TARGETTYPE_PKGDATA => 5;
 use constant TARGETTYPE_MANUAL => 6;
+use constant TARGETTYPE_DOC => 7;
 
 my $gVerbose=0;
 my $gTargetDirectory='targets';
@@ -113,7 +117,7 @@ sub FilenamesGet($$$$)
         }
         elsif ( -f $filename )
         {
-            if ($filename =~ /~$/ || $suffix =~ /^\./)
+            if ($filename =~ /~$/ || $suffix =~ /^\./ || $suffix =~ /\.bak$/)
             {
                 # Discard
             }
@@ -287,6 +291,11 @@ sub Modules($$)
     {
         push @$outputRef,
         "dist_man_MANS=".join(" ", @sourceFiles)." ".join(" ", @headerFiles);
+    }
+    elsif ($gTargetType == TARGETTYPE_DOC)
+    {
+        push @$outputRef,
+        "dist_doc_DATA=".join(" ", @sourceFiles)." ".join(" ", @headerFiles);
     }
     else
     {
@@ -488,6 +497,17 @@ sub Process($)
             if ($command =~ /Manual:\s*$/)
             {
                 $gTargetType = TARGETTYPE_MANUAL;
+            }
+            else
+            {
+                die "Malformed command '$command'";
+            }
+        }
+        elsif ($command =~ /Doc:/)
+        {
+            if ($command =~ /Doc:\s*$/)
+            {
+                $gTargetType = TARGETTYPE_DOC;
             }
             else
             {

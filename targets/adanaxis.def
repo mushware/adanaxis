@@ -1,6 +1,9 @@
 # Target definition file
-# $Id: adanaxis.def,v 1.27 2007/06/27 11:56:44 southa Exp $
+# $Id: adanaxis.def,v 1.28 2007/06/27 12:58:34 southa Exp $
 # $Log: adanaxis.def,v $
+# Revision 1.28  2007/06/27 12:58:34  southa
+# Debian packaging
+#
 # Revision 1.27  2007/06/27 11:56:44  southa
 # Debian packaging
 #
@@ -155,14 +158,18 @@ Modules: Platform/MacOSX Platform/win32 +.*\.c$ Platform/X11 +.*\.y$ +.*\.mkf$ +
 Append: Makefile.am
 
 ExtraDist:
-Modules: prebuild.sh adanaxis\.spec\.* macosx/project/.*\.plist README\.* .*\.pl .*\.pm macosx/project/project.xcodeproj/.*pbx(proj|user) macosx/MakeRelease.sh macosx/adanaxis_app.icns scripts/AmendToType.rb scripts/FileMush.rb scripts/ImageProcess.rb scripts/MushObject.rb scripts/ProcessAnimation.rb scripts/ProcessCosmos.rb scripts/ProcessIntern.rb scripts/ProcessMush.rb scripts/SourceProcess.rb win32/adanaxis.*\.ico win32/MakeInstaller.sh win32/installer.nsi win32/FileListToNSI.rb VisualC/project/adanaxis.*\.(sln|aps|rc|vcproj|ico) x11/icons/adanaxis\..*\.png$ x11/icons/adanaxis\..*\.xpm$ x11/icons/adanaxis\..*\.png$
+Modules: autogen.pl prebuild.sh adanaxis\.spec\.* macosx/project/.*\.plist README\.* .*\.pl .*\.pm macosx/project/project.xcodeproj/.*pbx(proj|user) macosx/MakeRelease.sh macosx/adanaxis_app.icns scripts/AmendToType.rb scripts/FileMush.rb scripts/ImageProcess.rb scripts/MushObject.rb scripts/ProcessAnimation.rb scripts/ProcessCosmos.rb scripts/ProcessIntern.rb scripts/ProcessMush.rb scripts/SourceProcess.rb targets/adanaxis\..* targets/app\..* targets/commercial\..* targets/empty\..* targets/sdl_app\..* targets/win32.installer.nsi  win32/adanaxis.*\.ico win32/MakeInstaller.sh win32/installer.nsi win32/FileListToNSI.rb VisualC/project/adanaxis.*\.(sln|aps|rc|vcproj|ico) x11/icons/adanaxis\..*\.png$ x11/icons/adanaxis\..*\.xpm$ x11/icons/adanaxis\..*\.png$
 
 Manual:
 Modules: x11/man/MUSH_APP_PACKAGE\..*
 
 Create: data-adanaxis/Makefile.am
 PkgData:
-IfType: demo Modules: pixels pixels/cosmos mush mushruby ruby spaces/demoend1 spaces/intro1 spaces/menu1 spaces/level1 spaces/level6 spaces/level8 spaces/level2/manifest.txt spaces/level30/manifest.txt spaces/level3/manifest.txt spaces/level4/manifest.txt spaces/level5/manifest.txt spaces/level6/manifest.txt spaces/level7/manifest.txt spaces/level9/manifest.txt spaces/level10/manifest.txt spaces/level11/manifest.txt spaces/level12/manifest.txt spaces/level13/manifest.txt spaces/level14/manifest.txt spaces/level15/manifest.txt spaces/level16/manifest.txt spaces/level17/manifest.txt spaces/level18/manifest.txt spaces/level19/manifest.txt spaces/level20/manifest.txt spaces/level21/manifest.txt spaces/level22/manifest.txt spaces/level23/manifest.txt spaces/level24/manifest.txt spaces/level25/manifest.txt spaces/level26/manifest.txt spaces/level27/manifest.txt spaces/level28/manifest.txt spaces/level29/manifest.txt spaces/level30/manifest.txt waves system/.*\.xml$ system/.*\.txt$ .*\.pdf$
-IfType: full Modules: pixels pixels/cosmos mush mushruby ruby +spaces waves system/.*\.xml$ system/.*\.txt$ .*\.pdf$
+IfType: demo Modules: pixels pixels/cosmos mush mushruby ruby spaces/demoend1 spaces/intro1 spaces/menu1 spaces/level1 spaces/level6 spaces/level8 spaces/level2/manifest.txt spaces/level30/manifest.txt spaces/level3/manifest.txt spaces/level4/manifest.txt spaces/level5/manifest.txt spaces/level6/manifest.txt spaces/level7/manifest.txt spaces/level9/manifest.txt spaces/level10/manifest.txt spaces/level11/manifest.txt spaces/level12/manifest.txt spaces/level13/manifest.txt spaces/level14/manifest.txt spaces/level15/manifest.txt spaces/level16/manifest.txt spaces/level17/manifest.txt spaces/level18/manifest.txt spaces/level19/manifest.txt spaces/level20/manifest.txt spaces/level21/manifest.txt spaces/level22/manifest.txt spaces/level23/manifest.txt spaces/level24/manifest.txt spaces/level25/manifest.txt spaces/level26/manifest.txt spaces/level27/manifest.txt spaces/level28/manifest.txt spaces/level29/manifest.txt spaces/level30/manifest.txt waves system/.*\.xml$ system/.*\.txt$
+IfType: full Modules: pixels pixels/cosmos mush mushruby ruby +spaces waves system/.*\.xml$ system/.*\.txt$
 IfType: gpl Modules: pixels pixels/cosmos mushruby ruby +spaces waves system/.*\.xml$ system/.*\.txt$ .*\.pdf$
+
+Doc:
+Modules: .*\.pdf$
+
 ExtraDist:

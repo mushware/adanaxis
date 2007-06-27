@@ -1,9 +1,10 @@
 ?package(MUSH_APP_PACKAGE):needs="X11" section="Games/Arcade"\
-  title="MUSH_APP_NAME" command="/usr/games/MUSH_APP_PACKAGE" \
+  title="MUSH_APP_NAME" longtitle="MUSH_APP_NAME" command="/usr/games/MUSH_APP_PACKAGE" \
   icon16x16="/usr/share/pixmaps/MUSH_APP_PACKAGE16x16.xpm" \
   icon32x32="/usr/share/pixmaps/MUSH_APP_PACKAGE32x32.xpm"
 
 ?package(MUSH_APP_PACKAGE):needs="X11" section="Games/Arcade"\
-  title="MUSH_APP_NAME (Recovery Mode)" command="/usr/games/MUSH_APP_PACKAGE --recover" \
+  title="MUSH_APP_NAME (Recovery Mode)" longtitle="Start MUSH_APP_NAME in recovery mode" \
+  command="/usr/games/MUSH_APP_PACKAGE --recover" \
   icon16x16="/usr/share/pixmaps/MUSH_APP_PACKAGE16x16.xpm" \
   icon32x32="/usr/share/pixmaps/MUSH_APP_PACKAGE32x32.xpm"
