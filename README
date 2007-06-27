@@ -1,14 +1,21 @@
-Adanaxis
+Adanaxis GPL
 
 The documentation for this package is supplied in a PDF file named
-data-adanaxis/About_Adanaxis.pdf
+data-adanaxis/About_Adanaxis_GPL.pdf
 
 There may be a limited amount of man infomation accesible after
 installation using:
 
-man adanaxis
+man adanaxisgpl
 
 at the command line.
 
+For package builders the commands of the type
+
+perl autogen.pl adanaxisgpl --type=full --dist=debian
+
+may be useful for generating package configuration files.
+
 Andy Southgate
 andy.southgate@mushware.com
+http://www.mushware.com/
