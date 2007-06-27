@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } iq/M/29BciHx/MWfKkILcw
 /*
- * $Id: SecondaryMain.cpp,v 1.12 2007/06/25 15:59:43 southa Exp $
+ * $Id: SecondaryMain.cpp,v 1.13 2007/06/25 20:37:11 southa Exp $
  * $Log: SecondaryMain.cpp,v $
+ * Revision 1.13  2007/06/25 20:37:11  southa
+ * X11 fixes
+ *
  * Revision 1.12  2007/06/25 15:59:43  southa
  * X11 compatibility
  *
@@ -188,14 +191,15 @@ int main(int argc, char *argv[])
 {
     int retVal = 0;
     PlatformMiscUtils::Initialise();
-    MushcoreGlobalConfig::Sgl().Set("RESOURCES_PATH", PlatformMiscUtils::GetResourcesPath(argc, argv));
+    std::string resourcesPath = PlatformMiscUtils::GetResourcesPath(argc, argv);
+    MushcoreGlobalConfig::Sgl().Set("RESOURCES_PATH", resourcesPath);
     MushcoreGlobalConfig::Sgl().Set("SYSTEM_PATH", PlatformMiscUtils::GetSystemPath(argc, argv));
 
 #ifdef MUSHCORE_DEBUG
-    cout << "Resources path is " << MushcoreGlobalConfig::Sgl().Get("RESOURCES_PATH") << endl;
+    cout << "Resources path is " << resourcesPath << endl;
     cout << "System path is " << MushcoreGlobalConfig::Sgl().Get("SYSTEM_PATH") << endl;
 #endif
-    
+
     string str;
     for (int i=1; i<argc; i++)
     {
@@ -213,24 +217,40 @@ int main(int argc, char *argv[])
          cout << "  --safe, --recover   Start in recovery mode" << endl;
          exit(0);
     }
-    
+
     if (MushcoreRegExp("--doc\\b").Search(str))
     {
-        std::vector<std::string> filenames;
-        PlatformMiscUtils::ScanDirectory(filenames, MushcoreGlobalConfig::Sgl().Get("RESOURCES_PATH").StringGet());
-        
-        MushcoreRegExp pdfExp("\\.pdf$");
-        for (U32 i=0; i<filenames.size(); ++i)
+        std::vector<std::string> searchFiles;
+
         {
-            if (pdfExp.Search(filenames[i]))
+            std::vector<std::string> paths;
+            paths.push_back(resourcesPath+"/../doc/"+PACKAGE+"-"+VERSION);
+            paths.push_back(resourcesPath+"/../doc/"+PACKAGE);
+            paths.push_back(resourcesPath);
+            for (U32 i=0; i<paths.size(); ++i)
             {
-                PlatformMiscUtils::LaunchURL("file://"+MushcoreGlobalConfig::Sgl().Get("RESOURCES_PATH").StringGet()+
-                        "/"+filenames[i]);
+                std::vector<std::string> filenames;
+
+                PlatformMiscUtils::ScanDirectory(filenames, paths[i]);
+                for (U32 j=0; j<filenames.size(); ++j)
+                {
+                    searchFiles.push_back(path+"/"+filenames[j]);
+                }
+            }
+        }
+cout << paths << endl;
+        MushcoreRegExp pdfExp("\\.pdf$");
+        for (U32 i=0; i<searchFiles.size(); ++i)
+        {
+            if (pdfExp.Search(searchFiles[i]))
+            {
+                PlatformMiscUtils::LaunchURL("file://"+searchFiles[i]);
+                break;
             }
         }
         exit(0);
     }
-    
+
     if (str == "")
     {
         str="load($SYSTEM_PATH+'/start.txt')";
@@ -239,7 +259,7 @@ int main(int argc, char *argv[])
     {
         str="load($SYSTEM_PATH+'/start_safe.txt')";
     }
-    
+
     try
     {
         try
@@ -250,7 +270,7 @@ int main(int argc, char *argv[])
         {
             cerr << "Exception: " << e.what() << endl;
         }
-        
+
         MushcoreAppHandler::Sgl().Initialise();
         MushcoreAppHandler::Sgl().MainLoop();
     }
