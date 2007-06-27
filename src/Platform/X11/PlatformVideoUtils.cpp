@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } Y+WzijXDRsG7dDElPwQlbQ
 /*
- * $Id: PlatformVideoUtils.cpp,v 1.23 2007/06/24 21:09:42 southa Exp $
+ * $Id: PlatformVideoUtils.cpp,v 1.24 2007/06/25 17:58:50 southa Exp $
  * $Log: PlatformVideoUtils.cpp,v $
+ * Revision 1.24  2007/06/25 17:58:50  southa
+ * X11 fixes
+ *
  * Revision 1.23  2007/06/24 21:09:42  southa
  * X11 support
  *
@@ -125,11 +128,14 @@ PlatformVideoUtils::Acquaint(void)
 {
     m_modeDefs.push_back(GLModeDef(640, 480, false));
     m_modeDefs.push_back(GLModeDef(800, 600, false));
-    m_modeDefs.push_back(GLModeDef(640, 480, true));
-    m_modeDefs.push_back(GLModeDef(800, 600, true));
-    m_modeDefs.push_back(GLModeDef(1024, 768, true));
-    m_modeDefs.push_back(GLModeDef(1280, 1024, true));
-    m_modeDefs.push_back(GLModeDef(1600, 1200, true));
+
+    std::vector< std::pair<U32, U32> > modesSoFar;
+
+    modesSoFar.push_back(std::pair<U32, U32>(640, 480));
+    modesSoFar.push_back(std::pair<U32, U32>(800, 600));
+    modesSoFar.push_back(std::pair<U32, U32>(1024, 768));
+    modesSoFar.push_back(std::pair<U32, U32>(1280, 1024));
+    modesSoFar.push_back(std::pair<U32, U32>(1600, 1200));
 
     for (U32 i=0; i<10; ++i)
     {
@@ -146,7 +152,7 @@ PlatformVideoUtils::Acquaint(void)
                 xmlIStrm >> modeDef;
                 if (modeDef.size() >= 2)
 	        {
-	            m_modeDefs.push_back(GLModeDef(modeDef[0], modeDef[1], true));
+	            modesSoFar.push_back(std::pair<U32, U32>(modeDef[0], modeDef[1]));
                 }
 	    }
 	    catch (MushcoreFail& e)
@@ -166,26 +172,29 @@ PlatformVideoUtils::Acquaint(void)
             ppModes = SDL_ListModes(NULL, SDL_FULLSCREEN|SDL_HWSURFACE);
         }
     }
-    
+
     if (ppModes != NULL && ppModes != (SDL_Rect **) -1)
     {
         for (U32 i=0; ppModes[i] != NULL; ++i)
         {
             const SDL_Rect *pMode = ppModes[i];
-            bool addMode = true;
-            for (U32 j=0; j<m_modeDefs.size(); ++j)
+
+            std::pair<U32, U32> newSize(pMode->w, pMode->h);
+
+            if (std::find(modesSoFar.begin(), modesSoFar.end(), newSize) == modesSoFar.end())
             {
-                if (pMode->w == m_modeDefs[j].Width() && pMode->h == m_modeDefs[j].Height())
-                {
-                    // Mode already there so don't add
-                    addMode = false;
-                }
-            }
-            if (addMode)
-            {
-                m_modeDefs.push_back(GLModeDef(pMode->w, pMode->h, true));
+                modesSoFar.push_back(newSize);
             }
         }
+    }
+
+    std::sort(modesSoFar.begin(), modesSoFar.end());
+
+    for (U32 i=0; i<modesSoFar.size(); ++i)
+    {
+        U32 xSize = modesSoFar[i].first;
+        U32 ySize = modesSoFar[i].second;
+        m_modeDefs.push_back(GLModeDef(xSize, ySize, true));
     }
 }
 

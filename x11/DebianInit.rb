@@ -17,8 +17,11 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-# $Id: DebianInit.rb,v 1.1 2007/06/26 10:46:07 southa Exp $
+# $Id: DebianInit.rb,v 1.2 2007/06/26 16:27:51 southa Exp $
 # $Log: DebianInit.rb,v $
+# Revision 1.2  2007/06/26 16:27:51  southa
+# X11 tweaks
+#
 # Revision 1.1  2007/06/26 10:46:07  southa
 # Created
 #
@@ -77,6 +80,7 @@ mesa-utils
 rss-glx
 shermans-aquarium
 xscreensaver-gl
+mc
     }
 
     @m_nvidiaKernelPackages = %w{

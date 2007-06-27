@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } xFkcq2HBP6vF9KpMR0i77w
 /*
- * $Id: MushGameDialogueUtils.h,v 1.4 2007/04/18 09:22:39 southa Exp $
+ * $Id: MushGameDialogueUtils.h,v 1.5 2007/06/14 18:55:11 southa Exp $
  * $Log: MushGameDialogueUtils.h,v $
+ * Revision 1.5  2007/06/14 18:55:11  southa
+ * Level and display tweaks
+ *
  * Revision 1.4  2007/04/18 09:22:39  southa
  * Header and level fixes
  *
@@ -50,7 +53,8 @@ public:
     static void NamedDialoguesAdd(MushcoreData<MushGameDialogue>& outDialogues,
                                   const std::string& inRegExp);
     static void MoveAndRender(MushcoreData<MushGameDialogue>& ioDialogues,
-                              MushGameAppHandler& inAppHandler);
+                              MushGameAppHandler& inAppHandler,
+                              Mushware::U32 inMoves);
     static void ExpireAll(MushcoreData<MushGameDialogue>& outDialogues);
 };
 

@@ -8,8 +8,11 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-# $Id: autogen.pl,v 1.12 2006/06/29 09:28:59 southa Exp $
+# $Id: autogen.pl,v 1.13 2007/06/26 16:27:50 southa Exp $
 # $Log: autogen.pl,v $
+# Revision 1.13  2007/06/26 16:27:50  southa
+# X11 tweaks
+#
 # Revision 1.12  2006/06/29 09:28:59  southa
 # X11 updates
 #
@@ -232,9 +235,9 @@ sub Modules($$)
                 $gTargetType == TARGETTYPE_PROGRAM)
 				{
 						print "Source searching in '$modulePath'\n" if ($gVerbose);
-						FilenamesGet(\@sourceFiles, $modulePath, '/.*\.cpp\b', $recurse);
-						FilenamesGet(\@sourceFiles, $modulePath, '/.*\.c\b', $recurse);
-							FilenamesGet(\@headerFiles, $modulePath, '/.*\.h\b', $recurse);
+						FilenamesGet(\@sourceFiles, $modulePath, '/.*\.cpp$', $recurse);
+						FilenamesGet(\@sourceFiles, $modulePath, '/.*\.c$', $recurse);
+							FilenamesGet(\@headerFiles, $modulePath, '/.*\.h$', $recurse);
 				}
 				else
 				{
@@ -332,12 +335,50 @@ sub Process($)
 
         next if ($command =~ /^\s*$/);
 
+        if ($command =~ /IfNotType:/)
+        {
+            if ($command =~ s/IfNotType:\s*(\S+)\s+//) # Modifies command
+            {
+                # Ignore if type matches
+                next if ($gType =~ /$1/);
+            }
+            else
+            {
+                die "Malformed command '$command'";
+            }
+        }
+
         if ($command =~ /IfType:/)
         {
             if ($command =~ s/IfType:\s*(\S+)\s+//) # Modifies command
             {
                 # Ignore if type doesn't match
-                next unless ($1 =~ /$gType/);
+                next unless ($gType =~ /$1/);
+            }
+            else
+            {
+                die "Malformed command '$command'";
+            }
+        }
+        if ($command =~ /IfNotDist:/)
+        {
+            if ($command =~ s/IfNotDist:\s*(\S+)\s+//) # Modifies command
+            {
+                # Ignore if type matches
+                next if ($gDist =~ /$1/);
+            }
+            else
+            {
+                die "Malformed command '$command'";
+            }
+        }
+
+        if ($command =~ /IfDist:/)
+        {
+            if ($command =~ s/IfDist:\s*(\S+)\s+//) # Modifies command
+            {
+                # Ignore if type doesn't match
+                next unless ($gDist =~ /$1/);
             }
             else
             {
@@ -496,6 +537,17 @@ sub Process($)
                 $gVars{$1} = Substitute($2);
                 print "Subst varaible $1 = $gVars{$1}\n" if $gVerbose;
             }
+            else
+            {
+                die "Malformed command '$command'";
+            }
+        }
+        elsif ($command =~ /Error:/)
+        {
+            if ($command =~ /Error:\s*(.*)$/)
+            {
+                die "Error: '$1'";
+             }
             else
             {
                 die "Malformed command '$command'";

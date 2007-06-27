@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } gNdwSMf5xIpttE1WeIDxUA
 /*
- * $Id: PlatformVideoUtils.cpp,v 1.23 2006/12/14 00:33:50 southa Exp $
+ * $Id: PlatformVideoUtils.cpp,v 1.24 2007/04/18 09:23:23 southa Exp $
  * $Log: PlatformVideoUtils.cpp,v $
+ * Revision 1.24  2007/04/18 09:23:23  southa
+ * Header and level fixes
+ *
  * Revision 1.23  2006/12/14 00:33:50  southa
  * Control fix and audio pacing
  *
@@ -107,118 +110,46 @@ PlatformVideoUtils::PlatformVideoUtils()
 {
     m_modeDefs.push_back(GLModeDef(640, 480, false));
     m_modeDefs.push_back(GLModeDef(800, 600, false));
-    
+
     // Find all display modes available on all displays and add them to the list
-    
+
     CGDirectDisplayID displayArray[32];
     CGDisplayCount numDisplays;
-    
+
     CGGetActiveDisplayList(sizeof(displayArray)/sizeof(displayArray[0]), displayArray, &numDisplays);
 
     std::vector< std::pair<long, long> > modesSoFar;
-    
+
     for (CGDisplayCount displayNum=0; displayNum < numDisplays; ++displayNum)
     {
         CFArrayRef displayModeArrayRef = CGDisplayAvailableModes(displayArray[displayNum]) ;
-        
+
         for (CFIndex modeNum=0; modeNum < CFArrayGetCount(displayModeArrayRef); ++modeNum)
         {
             CFDictionaryRef displayMode = reinterpret_cast<CFDictionaryRef>(CFArrayGetValueAtIndex(displayModeArrayRef, modeNum));
 
             CFNumberRef widthRef = reinterpret_cast<CFNumberRef>(CFDictionaryGetValue(displayMode, kCGDisplayWidth)) ;
             CFNumberRef heightRef = reinterpret_cast<CFNumberRef>(CFDictionaryGetValue(displayMode, kCGDisplayHeight)) ;
-            
+
             std::pair<long, long> newSize;
             CFNumberGetValue(widthRef, kCFNumberLongType, &newSize.first);
             CFNumberGetValue(heightRef, kCFNumberLongType, &newSize.second);
-            
+
             if (std::find(modesSoFar.begin(), modesSoFar.end(), newSize) == modesSoFar.end())
             {
                 modesSoFar.push_back(newSize);
             }
         }
     }
-    
+
     std::sort(modesSoFar.begin(), modesSoFar.end());
-    
+
     for (U32 i=0; i<modesSoFar.size(); ++i)
     {
         U32 xSize = modesSoFar[i].first;
         U32 ySize = modesSoFar[i].second;
         m_modeDefs.push_back(GLModeDef(xSize, ySize, true));
     }
-}
-
-const GLModeDef&
-PlatformVideoUtils::DefaultModeDef(void) const
-{
-    U32 modeNum = 0;
-    
-    for (U32 i=2; i < m_modeDefs.size(); ++i)
-    {
-        if (m_modeDefs[i].Width() == 1024 &&
-            m_modeDefs[i].Height() == 768)
-        {
-            modeNum = i;   
-        }
-    }
-    return m_modeDefs[modeNum];
-}
-
-Mushware::U32
-PlatformVideoUtils::ModeDefFind(const GLModeDef& inModeDef) const
-{
-    U32 retVal = 0;
-    for (U32 i=1; i<m_modeDefs.size(); ++i)
-    {
-        if (inModeDef == m_modeDefs[i])
-        {
-            retVal = i;
-        }
-    }
-    return retVal;
-}
-
-const GLModeDef&
-PlatformVideoUtils::PreviousModeDef(const GLModeDef& inModeDef) const
-{
-    U32 modeNum = ModeDefFind(inModeDef);
-
-    if (modeNum == 0)
-    {
-        modeNum = m_modeDefs.size() - 1;
-    }
-    else
-    {
-        --modeNum;
-    }
-    return m_modeDefs[modeNum];
-}
-
-const GLModeDef&
-PlatformVideoUtils::NextModeDef(const GLModeDef& inModeDef) const
-{
-    U32 modeNum = ModeDefFind(inModeDef);
-    
-    ++modeNum;
-    if (modeNum >= m_modeDefs.size())
-    {
-        modeNum = 0;
-    }
-    
-    return m_modeDefs[modeNum];
-}
-
-U32
-PlatformVideoUtils::NumModesGet(void) const
-{
-    return m_modeDefs.size();
-}
-
-void
-PlatformVideoUtils::RenderModeInfo(U32 inNum) const
-{
-    throw MushcoreLogicFail("RenderModeInfo deprecated");
 }
 
 void
@@ -255,5 +186,5 @@ PlatformVideoUtils::ModeChangePrologue(void)
 void
 PlatformVideoUtils::ModeChangeEpilogue(void)
 {
-    
+
 }

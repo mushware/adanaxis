@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } oLiwZ/5aV/LrBg1GMJ088A
 /*
- * $Id: AdanaxisRender.cpp,v 1.77 2007/04/26 13:12:40 southa Exp $
+ * $Id: AdanaxisRender.cpp,v 1.78 2007/06/06 15:11:22 southa Exp $
  * $Log: AdanaxisRender.cpp,v $
+ * Revision 1.78  2007/06/06 15:11:22  southa
+ * Level 23
+ *
  * Revision 1.77  2007/04/26 13:12:40  southa
  * Limescale and level 9
  *
@@ -274,12 +277,12 @@ AdanaxisRender::AdanaxisRender() :
     m_halfAngleAttractor(M_PI/12),
     m_renderPrelude(0)
 {
-    const MushcoreScalar *pScalar;    
+    const MushcoreScalar *pScalar;
     if (MushcoreEnv::Sgl().VariableGetIfExists(pScalar, "SYSTEM_PATH"))
     {
         AutoFileIfExistsLoad(pScalar->StringGet()+"/AdanaxisRender.xml");
     }
-    
+
     m_damageColours.resize(m_damageVertices.size());
     m_damageAlphaFactors.resize(m_damageVertices.size());
 }
@@ -288,19 +291,19 @@ void
 AdanaxisRender::PrecacheRender(MushGameLogic& ioLogic, const MushGameCamera& inCamera)
 {
     AdanaxisVolatileData *pVolData = dynamic_cast<AdanaxisVolatileData *>(&ioLogic.VolatileData());
-    
+
     if (pVolData == NULL)
     {
         throw MushcoreDataFail("Uninitialised AdanaxisVolatileData");
     }
-    
+
     AdanaxisLogic *pLogic = dynamic_cast<AdanaxisLogic *>(&ioLogic);
-    
+
     if (pLogic == NULL)
     {
         throw MushcoreDataFail("Uninitialised AdanaxisLogic");
     }
-    
+
     MushGLUtil::DisplayPrologue();
     MushGLUtil::ClearScreen();
     MushGLUtil::IdentityPrologue();
@@ -309,7 +312,7 @@ AdanaxisRender::PrecacheRender(MushGameLogic& ioLogic, const MushGameCamera& inC
     MushGLState::Sgl().RenderStateSet(MushGLState::kRenderState2D);
 
     U32 mbUsed = static_cast<U32>(MushGLTexture::ByteCount() / 1048576);
-    
+
     MushRubyExec::Sgl().Call(pVolData->RubyGame(),
                              MushRubyIntern::mPrecacheRender(),
                              MushRubyValue(pLogic->PrecachePercentage()),
@@ -318,25 +321,25 @@ AdanaxisRender::PrecacheRender(MushGameLogic& ioLogic, const MushGameCamera& inC
 
     MushGLUtil::OrthoEpilogue();
     MushGLUtil::IdentityEpilogue();
-    MushGLUtil::DisplayEpilogue();    
+    MushGLUtil::DisplayEpilogue();
 }
 
 void
 AdanaxisRender::SortAndDespatch(MushGameLogic& ioLogic, std::vector<MushGLJobRender *> inJobs)
 {
     U32 numJobs = inJobs.size();
-    
+
     std::vector< std::pair<tVal, U32> > sortList(numJobs);
-    
+
     for (U32 i=0; i<numJobs; ++i)
     {
         MUSHCOREASSERT(inJobs[i] != NULL);
-        sortList[i].first = inJobs[i]->SortValue(); 
-        sortList[i].second = i; 
+        sortList[i].first = inJobs[i]->SortValue();
+        sortList[i].second = i;
     }
-    
+
     std::sort(sortList.begin(), sortList.end());
-    
+
     for (U32 i=0; i<numJobs; ++i)
     {
         MushGLJobRender *pJob = inJobs[sortList[i].second];
@@ -350,26 +353,26 @@ void
 AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCamera)
 {
     AdanaxisLogic *pLogic = dynamic_cast<AdanaxisLogic *>(&ioLogic);
-    
+
     if (pLogic == NULL)
     {
         throw MushcoreDataFail("Uninitialised AdanaxisLogic");
     }
-    
+
     AdanaxisSaveData *pSaveData = dynamic_cast<AdanaxisSaveData *>(&ioLogic.SaveData());
-    
+
     if (pSaveData == NULL)
     {
         throw MushcoreDataFail("Uninitialised AdanaxisSaveData");
     }
-    
+
     AdanaxisVolatileData *pVolData = dynamic_cast<AdanaxisVolatileData *>(&ioLogic.VolatileData());
-    
+
     if (pVolData == NULL)
     {
         throw MushcoreDataFail("Uninitialised AdanaxisVolatileData");
     }
-    
+
     tVal aspectRatio = MushGLUtil::ScreenAspectRatio();
     tVal brightness = std::pow(pVolData->Brightness(), 2) / 2;
     tVal backdropAlpha = 0.8 * brightness;
@@ -380,12 +383,15 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
     MushcoreUtil::Constrain<tVal>(decoAlpha, 0, 1);
     MushcoreUtil::Constrain<tVal>(meshAlpha, 0, 1);
     MushcoreUtil::Constrain<tVal>(projectileAlpha, 0, 1);
-        
+
+    U32 movesThisFrame = pVolData->MovesThisFrame();
+    MushcoreUtil::Constrain<U32>(movesThisFrame, 0, 5);
+
     m_projection.ViewHalfRadiansSet(m_halfAngle);
     m_projection.FromAspectNearFarMake(aspectRatio, 1.0, 10000.0);
 
     m_halfAngle = m_halfAngle * 0.90 + m_halfAngleAttractor * 0.1;
-    
+
     if (pVolData->ScannerOn())
     {
         m_halfAngleAttractor = 0.4*M_PI;
@@ -394,28 +400,28 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
     {
         m_halfAngleAttractor = M_PI/12;
     }
-    
+
     MushGLUtil::DisplayPrologue();
     MushGLUtil::ClearScreen();
-    
+
     GLColour(0.8,0.8,0.8,0.5).Apply();
-    
+
     if (m_renderPrelude == 0)
     {
         m_renderList.resize(0);
         m_renderList.push_back(new MushGLJobRender);
 
         MushGLUtil::IdentityPrologue();
-        
+
         MushGLState::Sgl().RenderStateSet(MushGLState::kRenderState4D);
-        
+
         MushRenderMeshDiagnostic diagnosticRender;
         MushRenderMeshWireframe wireframeRender;
         MushRenderMeshSolid solidRender;
         MushRenderMeshShader shaderRender;
-        
+
         MushRenderMesh *pRenderMesh = &wireframeRender;
-        
+
         if (MushGLV::Sgl().UseShader()) // && AdanaxisUtil::AppHandler().MillisecondsGet() % 4000 > 2000)
         {
             pRenderMesh = &shaderRender;
@@ -424,15 +430,15 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
         {
             pRenderMesh = &solidRender;
         }
-        
+
         MushGameCamera camera(inCamera);
-        
+
         pRenderMesh->ColourZMiddleSet(t4Val(1.0,1.0,1.0,backdropAlpha));
         pRenderMesh->ColourZLeftSet(t4Val(1.0,0.3,0.3,0.0));
         pRenderMesh->ColourZRightSet(t4Val(0.3,1.0,0.3,0.0));
 
         camera.ProjectionSet(m_projection);
-        
+
         {
             typedef AdanaxisVolatileData::tWorldList tWorldList;
             tWorldList::iterator worldEndIter = pVolData->WorldListWRef().end();
@@ -441,40 +447,40 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
                 p->Render(ioLogic, *pRenderMesh, camera);
             }
         }
-        
+
         pRenderMesh->ColourZLeftSet(t4Val(1.0,0.3,0.3,0.0));
         pRenderMesh->ColourZRightSet(t4Val(0.3,1.0,0.3,0.0));
 
         typedef AdanaxisSaveData::tProjectileList tProjectileList;
-        
+
         tProjectileList::iterator projectileEndIter = pSaveData->ProjectileListWRef().end();
         for (tProjectileList::iterator p = pSaveData->ProjectileListWRef().begin(); p != projectileEndIter; ++p)
         {
             pRenderMesh->ColourZMiddleSet(t4Val(1.0,1.0,1.0,projectileAlpha));
 
             MUSHCOREASSERT(m_renderList.back() != NULL);
-            
+
             if (p->Render(*m_renderList.back(), ioLogic, *pRenderMesh, camera))
             {
                 m_renderList.push_back(new MushGLJobRender);
             }
-        }    
-        
+        }
+
         typedef AdanaxisSaveData::tItemList tItemList;
-        
+
         tItemList::iterator itemEndIter = pSaveData->ItemListWRef().end();
         for (tItemList::iterator p = pSaveData->ItemListWRef().begin(); p != itemEndIter; ++p)
         {
             pRenderMesh->ColourZMiddleSet(t4Val(1.0,1.0,1.0,meshAlpha));
 
             MUSHCOREASSERT(m_renderList.back() != NULL);
-            
+
             if (p->Render(*m_renderList.back(), ioLogic, *pRenderMesh, camera))
             {
                 m_renderList.push_back(new MushGLJobRender);
             }
-        }    
-        
+        }
+
         pRenderMesh->ColourZMiddleSet(t4Val(1.0,1.0,1.0,decoAlpha));
         pRenderMesh->ColourZLeftSet(t4Val(1.0,0.3,0.3,0.0));
         pRenderMesh->ColourZRightSet(t4Val(0.3,1.0,0.3,0.0));
@@ -482,62 +488,62 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
         if (!pVolData->ScannerOn())
         {
             typedef AdanaxisVolatileData::tDecoList tDecoList;
-            
+
             tDecoList::iterator decoEndIter = pVolData->DecoListWRef().end();
             for (tDecoList::iterator p = pVolData->DecoListWRef().begin(); p != decoEndIter; ++p)
             {
                 pRenderMesh->ColourZMiddleSet(t4Val(1.0,1.0,1.0,decoAlpha));
 
                 MUSHCOREASSERT(m_renderList.back() != NULL);
-                
+
                 if (p->Render(*m_renderList.back(), ioLogic, *pRenderMesh, camera))
                 {
                     m_renderList.push_back(new MushGLJobRender);
                 }
             }
         }
-        
+
         pRenderMesh->ColourZLeftSet(t4Val(1.0,0.3,0.3,0.0));
         pRenderMesh->ColourZRightSet(t4Val(0.3,1.0,0.3,0.0));
-        
+
         typedef AdanaxisSaveData::tKhaziList tKhaziList;
-        
+
         tKhaziList::iterator khaziEndIter = pSaveData->KhaziListWRef().end();
         for (tKhaziList::iterator p = pSaveData->KhaziListWRef().begin(); p != khaziEndIter; ++p)
         {
             MUSHCOREASSERT(m_renderList.back() != NULL);
-            
+
             pRenderMesh->ColourZMiddleSet(t4Val(1.0,1.0,1.0,meshAlpha));
 
             if (p->Render(*m_renderList.back(), ioLogic, *pRenderMesh, camera))
             {
                 m_renderList.push_back(new MushGLJobRender);
             }
-        }    
-        
+        }
+
         SortAndDespatch(ioLogic, m_renderList);
 
         // Reset modelview and projection matrices
         MushGLUtil::IdentityPrologue();
         MushGLUtil::IdentityEpilogue();
-        
+
         if (ioLogic.IsGameMode())
         {
             ScanRender(*pLogic, &*pRenderMesh, camera);
         }
-                
+
         U32 renderListSize = m_renderList.size();
         for (U32 i=0; i + 1 < renderListSize; ++i)
         {
-            MUSHCOREASSERT(m_renderList[i] != NULL);            
+            MUSHCOREASSERT(m_renderList[i] != NULL);
             delete m_renderList[i];
             m_renderList[i] = NULL;
         }
         m_renderList.resize(0);
-        
+
         MushGLUtil::IdentityEpilogue();
     }
-    
+
     MushGLState::Sgl().ResetWriteAll();
     GLState::ContextReset();
 
@@ -545,25 +551,26 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
 
     MushGLUtil::IdentityPrologue();
 
-    MushGameDialogueUtils::MoveAndRender(pSaveData->DialoguesWRef(), AdanaxisUtil::AppHandler());
-    
+    MushGameDialogueUtils::MoveAndRender(pSaveData->DialoguesWRef(),
+        AdanaxisUtil::AppHandler(), movesThisFrame);
+
     MushGLUtil::OrthoPrologue();
 
     DamagePlot(ioLogic, inCamera);
     OverPlot(ioLogic, inCamera);
 
     MushGLUtil::OrthoEpilogue();
-    
+
     MushGLUtil::IdentityEpilogue();
-    
+
     if (ioLogic.IsMenuMode())
     {
         MushGLUtil::IdentityPrologue();
         MushGLUtil::OrthoPrologue();
         GLState::ColourSet(1.0,1.0,1.0,1.0);
-        
+
         U32 timeNow = AdanaxisUtil::AppHandler().MillisecondsGet();
-        
+
         MushRubyExec::Sgl().Call(pVolData->RubyGame(),
                                  AdanaxisIntern::Sgl().mMenuRender(),
                                  MushRubyValue(timeNow));
@@ -575,58 +582,58 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
         MushGLUtil::IdentityPrologue();
         MushGLUtil::OrthoPrologue();
         GLState::ColourSet(1.0,1.0,1.0,1.0);
-        
+
         MushRubyExec::Sgl().Call(pVolData->RubyGame(),
                                  AdanaxisIntern::Sgl().mCutSceneRender(),
                                  MushRubyValue(pVolData->CutSceneNum()));
         MushGLUtil::OrthoEpilogue();
         MushGLUtil::IdentityEpilogue();
     }
-    else     
+    else
     {
         MushGLUtil::IdentityPrologue();
         MushGLUtil::OrthoPrologue();
         GLState::ColourSet(1.0,1.0,1.0,1.0);
-        
+
         U32 timeNow = AdanaxisUtil::AppHandler().MillisecondsGet();
-        
+
         MushRubyExec::Sgl().Call(pVolData->RubyGame(),
                                  AdanaxisIntern::Sgl().mRender(),
                                  MushRubyValue(timeNow));
         MushGLUtil::OrthoEpilogue();
         MushGLUtil::IdentityEpilogue();
     }
-    
+
     if (ioLogic.IsEpilogueMode())
     {
         MushGLUtil::IdentityPrologue();
         MushGLUtil::OrthoPrologue();
         GLState::ColourSet(1.0,1.0,1.0,1.0);
-        
+
         MushRubyExec::Sgl().Call(pVolData->RubyGame(),
                                  AdanaxisIntern::Sgl().mEpilogueRender());
-        
+
         MushGLUtil::OrthoEpilogue();
         MushGLUtil::IdentityEpilogue();
     }
-    
+
     MushGLUtil::DisplayEpilogue();
-    
+
     if (m_renderPrelude > 0)
     {
-        --m_renderPrelude;   
+        --m_renderPrelude;
     }
 }
 
 void AdanaxisRender::ScanRender(AdanaxisLogic& ioLogic, MushRenderMesh *inpRenderMesh, const MushGameCamera& inCamera)
 {
     m_scanner.ScanBegin();
-    
+
     AdanaxisSaveData *pSaveData = dynamic_cast<AdanaxisSaveData *>(&ioLogic.SaveData());
     AdanaxisVolatileData *pVolData = dynamic_cast<AdanaxisVolatileData *>(&ioLogic.VolatileData());
-    
+
     typedef AdanaxisSaveData::tKhaziList tKhaziList;
-    
+
     tKhaziList::iterator khaziEndIter = pSaveData->KhaziListWRef().end();
     for (tKhaziList::iterator p = pSaveData->KhaziListWRef().begin(); p != khaziEndIter; ++p)
     {
@@ -635,17 +642,17 @@ void AdanaxisRender::ScanRender(AdanaxisLogic& ioLogic, MushRenderMesh *inpRende
             m_scanner.ScanObjectRender(ioLogic, inpRenderMesh, inCamera, *p, AdanaxisScanner::kObjectTypeKhazi);
         }
     }
-    
+
     typedef AdanaxisSaveData::tItemList tItemList;
-    
+
     tItemList::iterator itemEndIter = pSaveData->ItemListWRef().end();
     for (tItemList::iterator p = pSaveData->ItemListWRef().begin(); p != itemEndIter; ++p)
     {
         m_scanner.ScanObjectRender(ioLogic, inpRenderMesh, inCamera, *p, AdanaxisScanner::kObjectTypeItem);
     }
-    
+
     m_scanner.ScanCrosshairRender(ioLogic, inpRenderMesh, inCamera);
-    
+
     ioLogic.VolatileData().PlayerTargetIDSet(m_scanner.TargetID());
 }
 
@@ -653,13 +660,13 @@ void
 AdanaxisRender::DamagePlot(MushGameLogic& ioLogic, const MushGameCamera& inCamera)
 {
     AdanaxisVolatileData& volData = dynamic_cast<AdanaxisVolatileData &>(ioLogic.VolatileData());
-    
+
     MushGLUtil::UnitaryPrologue();
 
     MushGLState::Sgl().RenderStateSet(MushGLState::kRenderState2D);
 
     GLState::ColourSet(1.0,0,0,0.5);
-     
+
     for (U32 i=0; i<m_damageVertices.size(); ++i)
     {
         if (i < volData.NumDamageIcons())
@@ -674,9 +681,9 @@ AdanaxisRender::DamagePlot(MushGameLogic& ioLogic, const MushGameCamera& inCamer
                 }
                 MushGLDraw::QuadsDraw(m_damageVertices[i], m_damageColours[i]);
             }
-        }        
+        }
     }
-    
+
     MushGLUtil::UnitaryEpilogue();
 }
 
@@ -687,18 +694,18 @@ AdanaxisRender::OverPlot(MushGameLogic& ioLogic, const MushGameCamera& inCamera)
 
     GLState::ColourSet(1.0,1.0,1.0,0.3);
     GLUtils orthoGL;
-    
+
     AdanaxisLogic &logicRef = dynamic_cast<AdanaxisLogic &>(ioLogic);
-    
+
     GLFontRef fontMedium("font-mono1", 0.02);
     GLFontRef fontLarge("font-mono1", 0.03);
-    
+
     if (m_renderPrelude != 0)
     {
         orthoGL.MoveToEdge(0,0);
         GLString glStr2("Generating texture cache", fontLarge, 0);
         glStr2.Render();
-        
+
         if (MushcoreGlobalConfig::Sgl().Exists("FIRST_RUN"))
         {
             orthoGL.MoveRelative(0, -0.08);
@@ -715,7 +722,7 @@ AdanaxisRender::OverPlot(MushGameLogic& ioLogic, const MushGameCamera& inCamera)
             GLString glStr("Fish-eye scanner", fontMedium, 0);
             glStr.Render();
         }
-        
+
         if (logicRef.SaveData().ClockStarted())
         {
             if (logicRef.GameMsec() > logicRef.StartTime())
@@ -728,7 +735,7 @@ AdanaxisRender::OverPlot(MushGameLogic& ioLogic, const MushGameCamera& inCamera)
                 glStr.Render();
             }
         }
-        
+
 #ifdef MUSHCORE_DEBUG
         {
             orthoGL.MoveToEdge(0,1);
@@ -749,7 +756,7 @@ AdanaxisRender::OverPlot(MushGameLogic& ioLogic, const MushGameCamera& inCamera)
         }
 #endif
 #endif
-        
+
         if (logicRef.IsEpilogueMode())
         {
             {
@@ -757,7 +764,7 @@ AdanaxisRender::OverPlot(MushGameLogic& ioLogic, const MushGameCamera& inCamera)
                 ostringstream message;
                 message << "(Space to continue)";
                 GLString glStr(message.str(), fontMedium, 0);
-                glStr.Render();        
+                glStr.Render();
             }
             if (logicRef.EpilogueWon())
             {
@@ -767,7 +774,7 @@ AdanaxisRender::OverPlot(MushGameLogic& ioLogic, const MushGameCamera& inCamera)
                     ostringstream message;
                     message << "Time:   " << GameTimer::MsecToLongString(logicRef.EndTime() - logicRef.StartTime());
                     GLString glStr(message.str(), fontLarge, 0);
-                    glStr.Render();        
+                    glStr.Render();
                 }
                 if (logicRef.RecordTime() != 0)
                 {
@@ -775,7 +782,7 @@ AdanaxisRender::OverPlot(MushGameLogic& ioLogic, const MushGameCamera& inCamera)
                     ostringstream message;
                     message << "Record: " << GameTimer::MsecToLongString(logicRef.RecordTime());
                     GLString glStr(message.str(), fontLarge, 0);
-                    glStr.Render();        
+                    glStr.Render();
                 }
             }
         }

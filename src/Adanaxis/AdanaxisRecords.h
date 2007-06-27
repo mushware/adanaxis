@@ -21,8 +21,11 @@
  ****************************************************************************/
 //%Header } giWabCmOWBjWEjWbj1FE6Q
 /*
- * $Id: AdanaxisRecords.h,v 1.3 2007/04/18 09:22:03 southa Exp $
+ * $Id: AdanaxisRecords.h,v 1.4 2007/06/15 12:45:50 southa Exp $
  * $Log: AdanaxisRecords.h,v $
+ * Revision 1.4  2007/06/15 12:45:50  southa
+ * Prerelease work
+ *
  * Revision 1.3  2007/04/18 09:22:03  southa
  * Header and level fixes
  *
@@ -46,14 +49,15 @@ public:
     virtual void RecordTimeSet(Mushware::U32 inDifficulty, const std::string& inName, Mushware::tMsec inTime);
 
     virtual void Load(void);
-    
-    virtual void AutoInputPrologue(MushcoreXMLIStream& ioIn);   
-    virtual void AutoInputEpilogue(MushcoreXMLIStream& ioIn);   
+
+    virtual void AutoInputPrologue(MushcoreXMLIStream& ioIn);
+    virtual void AutoInputEpilogue(MushcoreXMLIStream& ioIn);
     virtual void AutoOutputPrologue(MushcoreXMLOStream& ioOut) const;
 
 protected:
     virtual void Save(void);
-    
+    virtual std::string DerivedFilename(void);
+
 private:
     enum
     {
@@ -66,7 +70,7 @@ private:
     Mushware::U32 m_version; //:read
     tRecordTimeSet m_recordTimeSet;
     Mushware::U32 m_checksum;
-    
+
 //%classPrototypes {
 public:
     const Mushware::U32& Version(void) const { return m_version; }

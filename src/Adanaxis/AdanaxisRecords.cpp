@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } u+LxfqH6KzunLJFUu6RzcQ
 /*
- * $Id: AdanaxisRecords.cpp,v 1.3 2007/04/18 09:22:03 southa Exp $
+ * $Id: AdanaxisRecords.cpp,v 1.4 2007/04/18 12:44:36 southa Exp $
  * $Log: AdanaxisRecords.cpp,v $
+ * Revision 1.4  2007/04/18 12:44:36  southa
+ * Cache purge fix and pre-release tweaks
+ *
  * Revision 1.3  2007/04/18 09:22:03  southa
  * Header and level fixes
  *
@@ -46,9 +49,9 @@ Mushware::tMsec
 AdanaxisRecords::RecordTime(Mushware::U32 inDifficulty, const std::string& inName) const
 {
     tMsec retVal = 0;
-    
+
     tRecordTimeSet::const_iterator p = m_recordTimeSet.find(inDifficulty);
-    
+
     if (p != m_recordTimeSet.end())
     {
         tRecordTimes::const_iterator q = p->second.find(inName);
@@ -65,7 +68,24 @@ AdanaxisRecords::RecordTimeSet(Mushware::U32 inDifficulty, const std::string& in
 {
     tRecordTimes& recRef = m_recordTimeSet[inDifficulty];
     recRef[inName] = inTime;
-    Save();    
+    Save();
+}
+
+std::string
+AdanaxisRecords::DerivedFilename(void)
+{
+    std::string retVal;
+
+    const MushcoreScalar *pScalar = NULL;
+    if (MushcoreEnv::Sgl().VariableGetIfExists(pScalar, "RECORDS_PATH"))
+    {
+        retVal = pScalar->StringGet() + "/" + MushcoreInfo::Sgl().PackageName() + "records.xml";
+    }
+    else
+    {
+        throw MushcoreRequestFail("RECORDS_PATH not set");
+    }
+    return retVal;
 }
 
 void
@@ -73,40 +93,31 @@ AdanaxisRecords::Save(void)
 {
     m_checksum = ChecksumCalc();
 
-    const MushcoreScalar *pScalar = NULL;    
-    if (MushcoreEnv::Sgl().VariableGetIfExists(pScalar, "RECORDS_FILENAME"))
+    try
     {
-        try
-        {
-            AutoFileSave(pScalar->StringGet());
-        }
-        catch (MushcoreFail& e)
-        {
-            MushcoreLog::Sgl().ErrorLog() << "Saving records: " << e.what() << endl;
-        }
+        AutoFileSave(DerivedFilename());
+    }
+    catch (MushcoreFail& e)
+    {
+        MushcoreLog::Sgl().ErrorLog() << "Saving records: " << e.what() << endl;
     }
 }
 
 void
 AdanaxisRecords::Load(void)
 {
-    const MushcoreScalar *pScalar = NULL;
-    
     try
     {
-        if (MushcoreEnv::Sgl().VariableGetIfExists(pScalar, "RECORDS_FILENAME"))
+        if (!AutoFileIfExistsLoad(DerivedFilename()))
         {
-            if (!AutoFileIfExistsLoad(pScalar->StringGet()))
-            {
-                MushcoreLog::Sgl().InfoLog() << "Creating new records file '" << pScalar->StringGet() << "'" << endl;
-                m_recordTimeSet.clear();
-                Save();
-            }
-            if (m_version != kVersion)
-            {
-                m_version = kVersion;
-                throw MushcoreDataFail("Incompatible records file version - discarding");
-            }
+            MushcoreLog::Sgl().InfoLog() << "Creating new records file '" << DerivedFilename() << "'" << endl;
+            m_recordTimeSet.clear();
+            Save();
+        }
+        if (m_version != kVersion)
+        {
+            m_version = kVersion;
+            throw MushcoreDataFail("Incompatible records file version - discarding");
         }
     }
     catch (MushcoreFail& e)
@@ -225,7 +236,7 @@ AdanaxisRecords::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string&
     {
         ioIn >> m_checksum;
     }
-    else 
+    else
     {
         return false;
     }

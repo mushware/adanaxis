@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } 1dEV7DsyeK1Ck2FlsKyw8g
 /*
- * $Id: MushGameDialogueUtils.cpp,v 1.5 2007/04/18 09:22:39 southa Exp $
+ * $Id: MushGameDialogueUtils.cpp,v 1.6 2007/06/14 18:55:11 southa Exp $
  * $Log: MushGameDialogueUtils.cpp,v $
+ * Revision 1.6  2007/06/14 18:55:11  southa
+ * Level and display tweaks
+ *
  * Revision 1.5  2007/04/18 09:22:39  southa
  * Header and level fixes
  *
@@ -42,6 +45,9 @@
 
 #include "API/mushGL.h"
 
+using namespace Mushware;
+using namespace std;
+
 void
 MushGameDialogueUtils::NamedDialoguesAdd(
     MushcoreData<MushGameDialogue>& outDialogues,
@@ -55,19 +61,24 @@ MushGameDialogueUtils::NamedDialoguesAdd(
         {
             outDialogues.Give(p->first, new MushGameDialogue(*p->second));
         }
-    }   
+    }
 }
 
 void
 MushGameDialogueUtils::MoveAndRender(MushcoreData<MushGameDialogue>& ioDialogues,
-                                     MushGameAppHandler& inAppHandler)
+                                     MushGameAppHandler& inAppHandler,
+                                     Mushware::U32 inMoves)
 {
+    MUSHCOREASSERT(inMoves < 100);
     GLUtils::OrthoPrologue();
-    
+
     for (MushcoreData<MushGameDialogue>::tIterator p = ioDialogues.Begin();
          p != ioDialogues.End();)
     {
-        p->second->Move();
+        for (U32 i=0; i<inMoves; ++i)
+        {
+            p->second->Move();
+        }
         GLUtils::PushMatrix();
         p->second->Render();
         GLUtils::PopMatrix();
@@ -78,8 +89,8 @@ MushGameDialogueUtils::MoveAndRender(MushcoreData<MushGameDialogue>& ioDialogues
             ioDialogues.Delete(oldP);
         }
     }
-    
-    GLUtils::OrthoEpilogue();    
+
+    GLUtils::OrthoEpilogue();
 }
 
 void

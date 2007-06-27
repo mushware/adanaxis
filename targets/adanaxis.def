@@ -1,6 +1,9 @@
 # Target definition file
-# $Id: adanaxis.def,v 1.25 2007/06/25 20:37:14 southa Exp $
+# $Id: adanaxis.def,v 1.26 2007/06/26 16:27:51 southa Exp $
 # $Log: adanaxis.def,v $
+# Revision 1.26  2007/06/26 16:27:51  southa
+# X11 tweaks
+#
 # Revision 1.25  2007/06/25 20:37:14  southa
 # X11 fixes
 #
@@ -80,7 +83,8 @@
 
 Name: 'Adanaxis'
 
-Use: targets/app.acinclude.m4 as acinclude.m4
+IfNotType: (demo|full|gpl) Error: Please supply --type=demo, --type=full or --type=gpl
+IfNotDist: (none|debian) Error: Please supply --dist=none, --dist=debian or no dist option
 
 IfType: demo Subst: MUSH_APP_PACKAGE 'adanaxis_demo'
 IfType: full Subst: MUSH_APP_PACKAGE 'adanaxis'
@@ -91,6 +95,7 @@ IfType: gpl Subst: MUSH_APP_NAME 'Adanaxis GPL'
 IfType: demo Subst: MUSH_APP_UNDERSCORED_NAME 'Adanaxis_Demo'
 IfType: full Subst: MUSH_APP_UNDERSCORED_NAME 'Adanaxis'
 IfType: gpl Subst: MUSH_APP_UNDERSCORED_NAME 'Adanaxis_GPL'
+
 Subst: MUSH_APP_MAJOR_VERSION '1'
 Subst: MUSH_APP_MINOR_VERSION '1'
 Subst: MUSH_APP_MICRO_VERSION '0'
@@ -101,6 +106,8 @@ Subst: MUSH_DATA_PATH '$(top_srcdir)/MUSH_DATA_DIR'
 Subst: MUSH_MACOSX_BUILD_PATH '$(top_srcdir)/macosx/project/build/Deployment'
 Subst: MUSH_WIN32_BUILD_PATH '$(top_srcdir)/VisualC/project/Release'
 Subst: MUSH_TOP_SUBDIRS 'src MUSH_DATA_DIR'
+
+Use: targets/app.acinclude.m4 as acinclude.m4
 Use: targets/app.Makefile.am as Makefile.am
 Use: targets/sdl_app.configure.in as configure.in
 IfType: (demo|gpl) Use: targets/app.COPYING as COPYING
@@ -111,8 +118,18 @@ Use: targets/app.README as README
 Use: targets/adanaxis.ChangeLog as ChangeLog
 Use: targets/adanaxis.ChangeLog as NEWS
 Use: targets/win32.installer.nsi as win32/installer.nsi
+IfType: (demo|gpl) Use: targets/empty.prebuild.sh as prebuild.sh
+IfType: full Use: targets/app.prebuild.sh as prebuild.sh
 IfType: (demo|full) Use: ../core-keys/MushSecretKeys.cpp as src/MushSecret/MushSecretKeys.cpp
 IfType: gpl Use: targets/empty.MushSecretKeys.cpp as src/MushSecret/MushSecretKeys.cpp
+
+# Debian specifics
+Use: targets/adanaxis.debian.changelog as debian/changelog
+Use: targets/adanaxis.debian.control as debian/control
+Use: targets/adanaxis.debian.copyright as debian/copyright
+Use: targets/adanaxis.debian.menu as debian/menu
+Use: targets/adanaxis.debian.rules as debian/rules
+Use: targets/adanaxis.debian.watch as debian/watch
 
 Subst: MUSH_APP_RELEASE '1mdk'
 Subst: MUSH_BUILD_REQUIRES 'BuildRequires: gcc-c++,XFree86-devel,libMesaGLU1-devel,libMesaglut3-devel,libpcre0-devel,libexpat0-devel,libungif4-devel,libtiff3-devel,libSDL1.2-devel,libalsa1-devel,libsmpeg0.4-devel,libogg0-devel,libvorbis0-devel,libSDL_mixer1.2-devel'
@@ -133,7 +150,7 @@ Modules: Platform/MacOSX Platform/win32 +.*\.c$ Platform/X11 +.*\.y$ +.*\.mkf$ +
 Append: Makefile.am
 
 ExtraDist:
-Modules: prebuild.sh adanaxis\.spec\.* macosx/project/.*\.plist README\.* .*\.pl .*\.pm macosx/project/project.xcodeproj/.*pbx(proj|user) macosx/MakeRelease.sh macosx/adanaxis_app.icns win32/adanaxis.*\.ico win32/MakeInstaller.sh win32/installer.nsi win32/FileListToNSI.rb VisualC/project/adanaxis.*\.(sln|aps|rc|vcproj|ico) x11/icons/adanaxis\..*\.png$ COPYING-FULL COPYING-DEMO
+Modules: prebuild.sh adanaxis\.spec\.* macosx/project/.*\.plist README\.* .*\.pl .*\.pm macosx/project/project.xcodeproj/.*pbx(proj|user) macosx/MakeRelease.sh macosx/adanaxis_app.icns scripts/AmendToType.rb scripts/FileMush.rb scripts/ImageProcess.rb scripts/MushObject.rb scripts/ProcessAnimation.rb scripts/ProcessCosmos.rb scripts/ProcessIntern.rb scripts/ProcessMush.rb scripts/SourceProcess.rb win32/adanaxis.*\.ico win32/MakeInstaller.sh win32/installer.nsi win32/FileListToNSI.rb VisualC/project/adanaxis.*\.(sln|aps|rc|vcproj|ico) x11/icons/adanaxis\..*\.png$ x11/icons/adanaxis\..*\.xpm$ x11/icons/adanaxis\..*\.png$
 
 Manual:
 Modules: x11/man/MUSH_APP_PACKAGE\..*

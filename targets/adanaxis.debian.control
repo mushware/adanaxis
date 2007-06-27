@@ -1,0 +1,23 @@
+Source: MUSH_APP_PACKAGE
+Section: non-free/games
+Priority: optional
+Maintainer: Andy Southgate <andy.southgate@mushware.com>
+Build-Depends: debhelper (>= 5), autotools-dev, autoconf, automake, freeglut3-dev, libexpat1-dev, libjpeg62-dev, libpcre3-dev, libsdl1.2-dev, libsdl-mixer1.2-dev, libtiff4-dev, libgl1-mesa-dev, libglu1-mesa-dev, libogg-dev, libvorbis-dev
+Standards-Version: 3.7.2
+
+Package: MUSH_APP_PACKAGE
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Action game in four spatial dimensions
+ Adanaxis is fast-moving first person shooter set in deep space, where the
+ fundamentals of space itself are changed.  By adding another dimension to
+ space this game provides an environment with movement in four directions
+ and six planes of rotation.  Initially the game explains the 4D control
+ system via a graphical sequence, before moving on to 30 levels of gameplay
+ with numerous enemy, ally, weapon and mission types.  Features include
+ simulated 4D texturing, mouse and joystick control, and original music.
+ Screenshots, movies and further information are available at
+ http://www.mushware.com/.
+ .
+ Hardware-accelerated 3D is recommended, ideally with support for OpenGL
+ Shading Language.

@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } Wn9CtHgzeIT2Muk6Sf8H8A
 /*
- * $Id: AdanaxisScanner.cpp,v 1.13 2007/04/16 08:41:09 southa Exp $
+ * $Id: AdanaxisScanner.cpp,v 1.14 2007/04/18 09:22:04 southa Exp $
  * $Log: AdanaxisScanner.cpp,v $
+ * Revision 1.14  2007/04/18 09:22:04  southa
+ * Header and level fixes
+ *
  * Revision 1.13  2007/04/16 08:41:09  southa
  * Level and header mods
  *
@@ -72,7 +75,7 @@ AdanaxisScanner::AdanaxisScanner() :
     m_targetState(kTargetStateIdle),
     m_targetHitPointRatio(0)
 {
-    
+
 }
 
 void
@@ -80,12 +83,12 @@ AdanaxisScanner::ScanSymbolRender(Mushware::t4Val& inPos, Mushware::t4Val inPara
                                   Mushware::tVal inAlpha, Mushware::U32 inSymbol)
 {
     MushGLFont& fontRef = m_symbolFontRef.WRef();
-    
+
     fontRef.ColourSet(t4Val(1,1,1,inAlpha));
     fontRef.RenderSymbolAtSize(inSymbol, inPos, m_symbolSize);
 
     fontRef.ColourSet(t4Val(1,1,1,std::pow(1.0*inAlpha, 0.4)));
-    
+
     tVal outerRadius = 0.7;
     tVal dotSize = 0.3;
     t4Val wOffset = t4Val(0, 0, 0, 0);
@@ -113,13 +116,13 @@ AdanaxisScanner::ScanObjectRender(AdanaxisLogic& ioLogic, MushRenderMesh *inpMes
                                   Mushware::U32 inObjType)
 {
     MUSHCOREASSERT(inpMeshRender != NULL);
-    
+
     MushMeshPosticity objPost = inPiece.Post();
     MushMeshPosticity cameraPost = inCamera.Post();
     const MushMesh4Mesh& meshRef = inPiece.Mesh();
-    
+
     // t4Val cameraToObj = objPost.Pos() - cameraPos.Pos();
-    
+
     objPost.PosWRef() -= cameraPost.Pos();
     cameraPost.AngPosWRef().Conjugate().VectorRotate(objPost.PosWRef());
     cameraPost.PosWRef() -= cameraPost.Pos();
@@ -128,11 +131,11 @@ AdanaxisScanner::ScanObjectRender(AdanaxisLogic& ioLogic, MushRenderMesh *inpMes
     MushRenderSpec renderSpec;
     MushMeshOps::PosticityToMattress(renderSpec.ModelWRef(), objPost);
     MushMeshOps::PosticityToMattress(renderSpec.ViewWRef(), cameraPost);
-    renderSpec.ViewWRef().InPlaceInvert();    
+    renderSpec.ViewWRef().InPlaceInvert();
     renderSpec.ProjectionSet(inCamera.Projection());
 
     t4Val eyePos = renderSpec.ModelToEyeMattress() * t4Val(0,0,0,0);
-    
+
     // Check whether the camera is on target on this object
     if (inObjType == kObjectTypeKhazi && m_targetState != kTargetStateOnTarget)
     {
@@ -165,14 +168,14 @@ AdanaxisScanner::ScanObjectRender(AdanaxisLogic& ioLogic, MushRenderMesh *inpMes
             }
         }
     }
-    
+
     tVal angleRunOff = M_PI/50;
     tVal xwAngleLimit = renderSpec.Projection().XHalfAngle() - angleRunOff;
     tVal ywAngleLimit = renderSpec.Projection().YHalfAngle() - angleRunOff;
     tVal xwAngle = atan2(objPost.Pos().X(), -objPost.Pos().W());
-    
+
     tVal alpha = 1;
-    
+
     if (std::fabs(xwAngle) > xwAngleLimit)
     {
         tVal runOffFraction = (std::fabs(xwAngle) - xwAngleLimit) / (M_PI - xwAngleLimit);
@@ -184,7 +187,7 @@ AdanaxisScanner::ScanObjectRender(AdanaxisLogic& ioLogic, MushRenderMesh *inpMes
     {
         alpha *= 0.6 + 0.4*(std::fabs(xwAngle) / xwAngleLimit);
     }
-    
+
     tVal ywAngle = atan2(objPost.Pos().Y(), -objPost.Pos().W());
     if (std::fabs(ywAngle) > ywAngleLimit)
     {
@@ -197,10 +200,10 @@ AdanaxisScanner::ScanObjectRender(AdanaxisLogic& ioLogic, MushRenderMesh *inpMes
     {
         alpha *= 0.6 + 0.4*(std::fabs(ywAngle) / ywAngleLimit);
     }
-    
+
     U32 scanSymbol = kSymbolScanNone;
     const AdanaxisPieceKhazi *pKhazi = dynamic_cast<const AdanaxisPieceKhazi *>(&inPiece);
-    
+
     if (ioLogic.VolatileData().JammerCount() > 0)
     {
         if (pKhazi != NULL && pKhazi->IsJammer())
@@ -212,7 +215,7 @@ AdanaxisScanner::ScanObjectRender(AdanaxisLogic& ioLogic, MushRenderMesh *inpMes
             pKhazi = NULL;
         }
     }
-    
+
     if (scanSymbol == kSymbolScanNone)
     {
         if (pKhazi != NULL)
@@ -226,28 +229,28 @@ AdanaxisScanner::ScanObjectRender(AdanaxisLogic& ioLogic, MushRenderMesh *inpMes
                 case kObjectTypeItem:
                     scanSymbol = kSymbolScanGreen;
                     break;
-                    
+
                 case kObjectTypeKhazi:
                     scanSymbol = kSymbolScanWhite;
                     break;
-                    
+
                 default:
                     scanSymbol = kSymbolScanWhite;
                     break;
             }
         }
     }
-    
+
     if (std::fabs(objPost.PosWRef().W()) > 0)
     {
         objPost.PosWRef() /= std::fabs(objPost.PosWRef().W());
         objPost.PosWRef() *= 100;
         MushMeshOps::PosticityToMattress(renderSpec.ModelWRef(), objPost);
         MushMeshOps::PosticityToMattress(renderSpec.ViewWRef(), cameraPost);
-        renderSpec.ViewWRef().InPlaceInvert();    
+        renderSpec.ViewWRef().InPlaceInvert();
         t4Val clipPos = renderSpec.ModelToClipMattress() * t4Val(0,0,0,0);
-        
-        m_symbolSize = 4 * t2Val(1, renderSpec.Projection().AspectRatio()); 
+
+        m_symbolSize = 4 * t2Val(1, renderSpec.Projection().AspectRatio());
         ScanSymbolRender(clipPos, eyePos, alpha, scanSymbol);
     }
 }
@@ -256,31 +259,33 @@ void
 AdanaxisScanner::ScanCrosshairRender(AdanaxisLogic& ioLogic, MushRenderMesh *inpMeshRender,
                                      const MushGameCamera& inCamera)
 {
+    U32 movesThisFrame = ioLogic.VolatileData().MovesThisFrame();
+
     MushMeshPosticity cameraPost = inCamera.Post();
-    
+
     MushMeshPosticity crossPost(MushMeshPosticity::Identity());
-    
+
     crossPost.PosSet(cameraPost.Pos() + cameraPost.AngPos().RotatedVector(t4Val(0,0,0,-10)));
 
     MushRenderSpec renderSpec;
     MushMeshOps::PosticityToMattress(renderSpec.ModelWRef(), crossPost);
     MushMeshOps::PosticityToMattress(renderSpec.ViewWRef(), cameraPost);
-    renderSpec.ViewWRef().InPlaceInvert();    
+    renderSpec.ViewWRef().InPlaceInvert();
     renderSpec.ProjectionSet(inCamera.Projection());
     t4Val sightClipPos = renderSpec.ModelToClipMattress() * t4Val(0,0,0,0);
     t4Val barClipPos = sightClipPos + t4Val(0,-0.5,0,0);
-    
-    m_symbolSize = 1 * t2Val(1, renderSpec.Projection().AspectRatio()); 
-    
+
+    m_symbolSize = 1 * t2Val(1, renderSpec.Projection().AspectRatio());
+
     U32 symbol;
-    const tVal rotSpeed = 0.025;
+    const tVal rotSpeed = 0.025 * movesThisFrame;
     bool hitPointsBar = false;
-    
+
     switch (m_targetState)
     {
         case kTargetStateIdle:
             symbol = kSymbolCrosshairIdle;
-            
+
             if (m_sightAngle == 0 ||
                 ceil(m_sightAngle / (M_PI/2)) != ceil((m_sightAngle + rotSpeed) / (M_PI/2)))
             {
@@ -291,7 +296,7 @@ AdanaxisScanner::ScanCrosshairRender(AdanaxisLogic& ioLogic, MushRenderMesh *inp
                 m_sightAngle += rotSpeed;
             }
             break;
-            
+
         case kTargetStateInBoundary:
             symbol = kSymbolCrosshairInBoundary;
             if (m_sightAngle == 0 ||
@@ -305,19 +310,19 @@ AdanaxisScanner::ScanCrosshairRender(AdanaxisLogic& ioLogic, MushRenderMesh *inp
             }
             hitPointsBar = true;
             break;
-            
+
         case kTargetStateOnTarget:
             symbol = kSymbolCrosshairOnTarget;
             m_sightAngle += rotSpeed;
             hitPointsBar = true;
             break;
-            
+
         default:
             symbol = kSymbolCrosshairSpecial;
             m_sightAngle = 0;
             break;
     }
-    
+
     // Render sight
     MushGLFont& fontRef = m_symbolFontRef.WRef();
     fontRef.ColourSet(t4Val(1,1,1,0.3));

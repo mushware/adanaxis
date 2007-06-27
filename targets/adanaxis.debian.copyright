@@ -1,0 +1,21 @@
+This package was debianized by Andy Southgate <andy.southgate@mushware.com> on
+Wed, 27 Jun 2007 08:38:40 +0100.
+
+It was downloaded from http://www.mushware.com/
+
+Upstream Author: Andy Southgate <andy.southgate@mushware.com>
+
+Copyright: (c) 2002-2007 Andy Southgate, Mushware Limited (http://www.mushware.com/).
+           Ruby interpreter:
+             Copyright (C) 1993-2003 Yukihiro Matsumoto
+             Copyright (C) 2000  Network Applied Communication Laboratory, Inc.
+             Copyright (C) 2000  Information-technology Promotion Agency, Japan
+             Copyright (C) 1997 - 2002, Makoto Matsumoto and Takuji Nishimura,
+             Copyright (C) 1993, 94, 95, 96, 97, 98 Free Software Foundation, Inc.
+           Cosmos images (c) 1960-2006 NASA (http://www.nasa.gov/), STScI (http://hubblesite.org/)
+           pixels*.mush (if present) (c) 2007 Artbeats, Inc (http://www.artbeats.com/)
+           voice*.mush (if present) (c) 2007 Linda Bard, StudioBard (http://www.studiobard.com/)
+           waves*.mush (if present) (c) 2007 Sounddogs.com, Inc (http://www.sounddogs.com/)
+
+License:
+
