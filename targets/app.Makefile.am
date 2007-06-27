@@ -10,8 +10,11 @@
 ##############################################################################
 
 #
-# $Id: app.Makefile.am,v 1.9 2007/06/26 16:27:51 southa Exp $
+# $Id: app.Makefile.am,v 1.10 2007/06/27 12:58:34 southa Exp $
 # $Log: app.Makefile.am,v $
+# Revision 1.10  2007/06/27 12:58:34  southa
+# Debian packaging
+#
 # Revision 1.9  2007/06/26 16:27:51  southa
 # X11 tweaks
 #
@@ -46,6 +49,7 @@ DIST_SUBDIRS = @TOP_SUBDIRS@
 RUNFILE=${DESTDIR}${bindir}/MUSH_APP_PACKAGE
 RUNFILESAFE=${DESTDIR}${bindir}/MUSH_APP_PACKAGE-recover
 GZIPFILE=MUSH_APP_PACKAGE-@APP_VERSION@.tar.gz
+ORIGGZIPFILE=MUSH_APP_PACKAGE-@APP_VERSION@.orig.tar.gz
 BZIPFILE=MUSH_APP_PACKAGE-@APP_VERSION@.tar.bz2
 
 DATAMAKEFILE=data-MUSH_APP_PACKAGE/Makefile.am
@@ -77,7 +81,7 @@ rpm:MUSH_APP_PACKAGE.spec $(BZIPFILE)
 	rpm -ta $(BZIPFILE)
 
 debian-release: $(GZIPFILE)
-	cp -f $(GZIPFILE) ..
+	cp -f $(ORIGGZIPFILE) ..
 	chmod +x debian/rules
 	dpkg-buildpackage -rfakeroot
 
