@@ -1,5 +1,5 @@
 #!/bin/sh
-# preinst script for adanaxis
+# preinst script for adanaxis[...]
 #
 # see: dh_installdeb(1)
 

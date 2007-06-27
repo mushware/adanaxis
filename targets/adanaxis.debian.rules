@@ -38,7 +38,7 @@ build-stamp:  config.status
 
 	# Add here commands to compile the package.
 	$(MAKE)
-	#docbook-to-man debian/adanaxis.sgml > adanaxis.1
+	#docbook-to-man debian/MUSH_APP_PACKAGE.sgml > MUSH_APP_PACKAGE.1
 
 	touch $@
 
@@ -65,8 +65,8 @@ install: build
 	dh_clean -k
 	dh_installdirs
 
-	# Add here commands to install the package into debian/adanaxis.
-	$(MAKE) DESTDIR=$(CURDIR)/debian/adanaxis install
+	# Add here commands to install the package into debian/MUSH_APP_PACKAGE.
+	$(MAKE) DESTDIR=$(CURDIR)/debian/MUSH_APP_PACKAGE install
 
 # Build architecture-independent files here.
 binary-indep: build install
@@ -82,9 +82,9 @@ binary-arch: build install
 #	dh_install
 	dh_installmenu
 
-	# Mushware add-ins
-	dh_install x11/icons/adanaxis16x16.xpm usr/share/pixmaps
-	dh_install x11/icons/adanaxis32x32.xpm usr/share/pixmaps
+	# Mushware add-ins - menu icons
+	dh_install x11/icons/MUSH_APP_PACKAGE16x16.xpm usr/share/pixmaps
+	dh_install x11/icons/MUSH_APP_PACKAGE32x32.xpm usr/share/pixmaps
 	# End Mushware add-ins
 
 #	dh_installdebconf
@@ -99,7 +99,9 @@ binary-arch: build install
 	dh_installman
 	dh_link
 	dh_strip
-	dh_compress
+	# Mushware change - don't compress .pdfs so that 'MUSH_APP_PACKAGE --doc' can launch them
+	dh_compress --exclude=.pdf
+	# End Mushware change
 	dh_fixperms
 #	dh_perl
 #	dh_makeshlibs

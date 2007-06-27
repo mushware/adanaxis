@@ -1,6 +1,9 @@
 # Target definition file
-# $Id: adanaxis.def,v 1.28 2007/06/27 12:58:34 southa Exp $
+# $Id: adanaxis.def,v 1.29 2007/06/27 15:30:42 southa Exp $
 # $Log: adanaxis.def,v $
+# Revision 1.29  2007/06/27 15:30:42  southa
+# X11 packaging
+#
 # Revision 1.28  2007/06/27 12:58:34  southa
 # Debian packaging
 #
@@ -92,9 +95,9 @@ Name: 'Adanaxis'
 IfNotType: (demo|full|gpl) Error: Please supply --type=demo, --type=full or --type=gpl
 IfNotDist: (none|debian) Error: Please supply --dist=none, --dist=debian or no dist option
 
-IfType: demo Subst: MUSH_APP_PACKAGE 'adanaxis_demo'
+IfType: demo Subst: MUSH_APP_PACKAGE 'adanaxisdemo'
 IfType: full Subst: MUSH_APP_PACKAGE 'adanaxis'
-IfType: gpl Subst: MUSH_APP_PACKAGE 'adanaxis_gpl'
+IfType: gpl Subst: MUSH_APP_PACKAGE 'adanaxisgpl'
 IfType: demo Subst: MUSH_APP_NAME 'Adanaxis Demo'
 IfType: full Subst: MUSH_APP_NAME 'Adanaxis'
 IfType: gpl Subst: MUSH_APP_NAME 'Adanaxis GPL'

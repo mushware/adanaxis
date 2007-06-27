@@ -10,5 +10,12 @@ man MUSH_APP_PACKAGE
 
 at the command line.
 
+For package builders the commands of the type
+
+perl autogen.pl MUSH_APP_PACKAGE --type=full --dist=debian
+
+may be useful for generating package configuration files.
+
 Andy Southgate
 andy.southgate@mushware.com
+http://www.mushware.com/

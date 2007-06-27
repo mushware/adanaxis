@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } iq/M/29BciHx/MWfKkILcw
 /*
- * $Id: SecondaryMain.cpp,v 1.14 2007/06/27 13:38:29 southa Exp $
+ * $Id: SecondaryMain.cpp,v 1.15 2007/06/27 15:30:41 southa Exp $
  * $Log: SecondaryMain.cpp,v $
+ * Revision 1.15  2007/06/27 15:30:41  southa
+ * X11 packaging
+ *
  * Revision 1.14  2007/06/27 13:38:29  southa
  * Debian packaging
  *
@@ -247,15 +250,24 @@ int main(int argc, char *argv[])
                     searchFiles.push_back(paths[i]+"/"+filenames[j]);
                 }
             }
-cout << paths << endl << searchFiles << endl;
         }
+        bool found = false;
         MushcoreRegExp pdfExp("\\.pdf$");
-        for (U32 i=0; i<searchFiles.size(); ++i)
+        for (U32 i=0; i<searchFiles.size() && !found; ++i)
         {
             if (pdfExp.Search(searchFiles[i]))
             {
                 PlatformMiscUtils::LaunchURL("file://"+searchFiles[i]);
-                break;
+                found = true;
+            }
+        }
+        pdfExp.SearchPatternSet("\\.pdf\\."); // Debian keeps its documents gzipped
+        for (U32 i=0; i<searchFiles.size() && !found; ++i)
+        {
+            if (pdfExp.Search(searchFiles[i]))
+            {
+                PlatformMiscUtils::LaunchURL("file://"+searchFiles[i]);
+                found = true;
             }
         }
         exit(0);
