@@ -1,6 +1,9 @@
 # Target definition file
-# $Id: adanaxis.def,v 1.26 2007/06/26 16:27:51 southa Exp $
+# $Id: adanaxis.def,v 1.27 2007/06/27 11:56:44 southa Exp $
 # $Log: adanaxis.def,v $
+# Revision 1.27  2007/06/27 11:56:44  southa
+# Debian packaging
+#
 # Revision 1.26  2007/06/26 16:27:51  southa
 # X11 tweaks
 #
@@ -130,6 +133,8 @@ Use: targets/adanaxis.debian.copyright as debian/copyright
 Use: targets/adanaxis.debian.menu as debian/menu
 Use: targets/adanaxis.debian.rules as debian/rules
 Use: targets/adanaxis.debian.watch as debian/watch
+Append: debian/copyright
+OutputFile: COPYING
 
 Subst: MUSH_APP_RELEASE '1mdk'
 Subst: MUSH_BUILD_REQUIRES 'BuildRequires: gcc-c++,XFree86-devel,libMesaGLU1-devel,libMesaglut3-devel,libpcre0-devel,libexpat0-devel,libungif4-devel,libtiff3-devel,libSDL1.2-devel,libalsa1-devel,libsmpeg0.4-devel,libogg0-devel,libvorbis0-devel,libSDL_mixer1.2-devel'

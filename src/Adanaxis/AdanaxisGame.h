@@ -10,7 +10,7 @@
  * Copyright: Andy Southgate 2005-2007
  *
  * This file may be used and distributed under the terms of the Mushware
- * Software Licence version 1.3, under the terms for 'Proprietary original
+ * Software Licence version 1.4, under the terms for 'Proprietary original
  * source files'.  If not supplied with this software, a copy of the licence
  * can be obtained from Mushware Limited via http://www.mushware.com/.
  * One of your options under that licence is to use and distribute this file
@@ -19,10 +19,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } Cg1XRErgnQj96zliWwW24w
+//%Header } LWjscf4Fh9/mLohS5CkFhA
 /*
- * $Id: AdanaxisGame.h,v 1.28 2007/04/16 08:41:07 southa Exp $
+ * $Id: AdanaxisGame.h,v 1.29 2007/04/18 09:22:00 southa Exp $
  * $Log: AdanaxisGame.h,v $
+ * Revision 1.29  2007/04/18 09:22:00  southa
+ * Header and level fixes
+ *
  * Revision 1.28  2007/04/16 08:41:07  southa
  * Level and header mods
  *

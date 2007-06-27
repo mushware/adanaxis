@@ -10,7 +10,7 @@
  * Copyright: Andy Southgate 2005-2007
  *
  * This file may be used and distributed under the terms of the Mushware
- * Software Licence version 1.3, under the terms for 'Proprietary original
+ * Software Licence version 1.4, under the terms for 'Proprietary original
  * source files'.  If not supplied with this software, a copy of the licence
  * can be obtained from Mushware Limited via http://www.mushware.com/.
  * One of your options under that licence is to use and distribute this file
@@ -19,10 +19,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } lux+Ke8jIsvwTCElkqGblA
+//%Header } Ut9KFZFG7x3GNMSV9eZvWg
 /*
- * $Id: AdanaxisEvents.h,v 1.3 2007/04/18 09:22:00 southa Exp $
+ * $Id: AdanaxisEvents.h,v 1.4 2007/06/14 01:03:52 southa Exp $
  * $Log: AdanaxisEvents.h,v $
+ * Revision 1.4  2007/06/14 01:03:52  southa
+ * win32 build fixes
+ *
  * Revision 1.3  2007/04/18 09:22:00  southa
  * Header and level fixes
  *

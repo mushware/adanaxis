@@ -1,11 +1,11 @@
-Mushware Software Licence version 1.3
+Mushware Software Licence version 1.4
 =====================================
 
 1.  The software is provided WITHOUT WARRANTY of any kind.
 
 2.  In the following text, the terms 'Package', 'The Author' and 'The Company'
     refer to definitions given in Schedule 1.
-    
+
 3.  This Package may be used, installed, and redistributed in unmodified form
     without restriction.
 
@@ -23,7 +23,7 @@ Proprietary original source code
 
 6.1  Proprietary original source code consists of those files listed in
      Schedule 2.
-     
+
 6.2  Proprietary original source code files are copyrighted by or licenced to
      the Company.  At your option, they may be used and distributed under
      either:
@@ -37,7 +37,7 @@ Other proprietary files
 
 7.1  Other proprietary files are those on the list of proprietary files
      specified in Schedule 3.
-    
+
 7.2  The Company grants you a licence to use and distribute these files only
      as part of a distribution which is essentially the same as the original
      Package.  If the resulting modified distribution contains files listed in
@@ -71,7 +71,7 @@ Schedule 1: Definitions
 
 The Company:  Mushware Limited, number 3410722 registered in England,
               registered office 47 Lower Brook St, Ipswich, England.
-     
+
 The Author:   Andy Southgate of 64 Fen Road, Cambridge, CB4 1TX, England.
               Please use this address for correspondance.
 
@@ -97,7 +97,7 @@ conditions:
 
   Files within directories named 'mush'
   Filenames ending with '.mush'
-  Filenames starting with 'MushSecret'
+  Filenames starting with 'MushSecret' that contain compilable code
   Object and executable files derived from the above
 
 The Company is obliged to protect content licenced from third parties, so
@@ -690,7 +690,7 @@ such a program is covered only if its contents constitute a work based
 on the Library (independent of the use of the Library in a tool for
 writing it).  Whether that is true depends on what the Library does
 and what the program that uses the Library does.
-  
+
   1. You may copy and distribute verbatim copies of the Library's
 complete source code as you receive it, in any medium, provided that
 you conspicuously and appropriately publish on each copy an
@@ -1022,7 +1022,7 @@ DAMAGES.
 Copyright (c) 1988-1997 Sam Leffler
 Copyright (c) 1991-1997 Silicon Graphics, Inc.
 
-Permission to use, copy, modify, distribute, and sell this software and 
+Permission to use, copy, modify, distribute, and sell this software and
 its documentation for any purpose is hereby granted without fee, provided
 that (i) the above copyright notices and this permission notice appear in
 all copies of the software and related documentation, and (ii) the names of
@@ -1030,15 +1030,15 @@ Sam Leffler and Silicon Graphics may not be used in any advertising or
 publicity relating to the software without the specific, prior written
 permission of Sam Leffler and Silicon Graphics.
 
-THE SOFTWARE IS PROVIDED "AS-IS" AND WITHOUT WARRANTY OF ANY KIND, 
-EXPRESS, IMPLIED OR OTHERWISE, INCLUDING WITHOUT LIMITATION, ANY 
-WARRANTY OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.  
+THE SOFTWARE IS PROVIDED "AS-IS" AND WITHOUT WARRANTY OF ANY KIND,
+EXPRESS, IMPLIED OR OTHERWISE, INCLUDING WITHOUT LIMITATION, ANY
+WARRANTY OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.
 
 IN NO EVENT SHALL SAM LEFFLER OR SILICON GRAPHICS BE LIABLE FOR
 ANY SPECIAL, INCIDENTAL, INDIRECT OR CONSEQUENTIAL DAMAGES OF ANY KIND,
 OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS,
-WHETHER OR NOT ADVISED OF THE POSSIBILITY OF DAMAGE, AND ON ANY THEORY OF 
-LIABILITY, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE 
+WHETHER OR NOT ADVISED OF THE POSSIBILITY OF DAMAGE, AND ON ANY THEORY OF
+LIABILITY, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE
 OF THIS SOFTWARE
 
 ----- end libtiff licence -----
@@ -1167,9 +1167,9 @@ You can redistribute it and/or modify it under either the terms of the GPL
      For the list of those files and their copying conditions, see the
      file LEGAL.
 
-  5. The scripts and library files supplied as input to or produced as 
+  5. The scripts and library files supplied as input to or produced as
      output from the software do not automatically fall under the
-     copyright of the software, but belong to whomever generated them, 
+     copyright of the software, but belong to whomever generated them,
      and may be sold commercially, and may be aggregated with this
      software.
 
@@ -1272,11 +1272,11 @@ random.c
     This is a faster version by taking Shawn Cokus's optimization,
     Matthe Bellew's simplification, Isaku Wada's real version.
 
-    Before using, initialize the state by using init_genrand(seed) 
+    Before using, initialize the state by using init_genrand(seed)
     or init_by_array(init_key, key_length).
 
     Copyright (C) 1997 - 2002, Makoto Matsumoto and Takuji Nishimura,
-    All rights reserved.                          
+    All rights reserved.
 
     Redistribution and use in source and binary forms, with or without
     modification, are permitted provided that the following conditions
@@ -1289,8 +1289,8 @@ random.c
 	 notice, this list of conditions and the following disclaimer in the
 	 documentation and/or other materials provided with the distribution.
 
-      3. The names of its contributors may not be used to endorse or promote 
-	 products derived from this software without specific prior written 
+      3. The names of its contributors may not be used to endorse or promote
+	 products derived from this software without specific prior written
 	 permission.
 
     THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
@@ -1493,7 +1493,7 @@ ext/nkf/nkf-utf8/utf8tbl.c:
   copyrighted semi-public-domain software.
 
     Copyright (C) 1987, Fujitsu LTD. (Itaru ICHIKAWA)
-       Everyone is permitted to do anything on this program 
+       Everyone is permitted to do anything on this program
        including copying, modifying, improving,
        as long as you don't try to pretend that you wrote it.
        i.e., the above copyright notice has to appear in all copies.
@@ -1544,7 +1544,7 @@ ext/win32ole/win32ole.c:
 
     Other modifications Copyright (c) 1997, 1998 by Gurusamy Sarathy
     <gsar@umich.edu> and Jan Dubois <jan.dubois@ibm.net>
- 
+
     You may distribute under the terms of either the GNU General Public
     License or the Artistic License, as specified in the README file
     of the Perl distribution.

@@ -6,7 +6,7 @@
  * Copyright: Andy Southgate 2005-2007
  *
  * This file may be used and distributed under the terms of the Mushware
- * Software Licence version 1.3, under the terms for 'Proprietary original
+ * Software Licence version 1.4, under the terms for 'Proprietary original
  * source files'.  If not supplied with this software, a copy of the licence
  * can be obtained from Mushware Limited via http://www.mushware.com/.
  * One of your options under that licence is to use and distribute this file
@@ -15,10 +15,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } 6/Gsg/pxZE7Ik5feMfHTrA
+//%Header } Vjkzrv0A3x9QC18VN1bMwA
 /*
- * $Id: AdanaxisConfig.cpp,v 1.24 2007/04/18 09:22:00 southa Exp $
+ * $Id: AdanaxisConfig.cpp,v 1.25 2007/06/11 20:06:14 southa Exp $
  * $Log: AdanaxisConfig.cpp,v $
+ * Revision 1.25  2007/06/11 20:06:14  southa
+ * Compatibility fixes and level 27
+ *
  * Revision 1.24  2007/04/18 09:22:00  southa
  * Header and level fixes
  *

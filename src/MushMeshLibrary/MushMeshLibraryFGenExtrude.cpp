@@ -6,7 +6,7 @@
  * Copyright: Andy Southgate 2005-2007
  *
  * This file may be used and distributed under the terms of the Mushware
- * Software Licence version 1.3, under the terms for 'Proprietary original
+ * Software Licence version 1.4, under the terms for 'Proprietary original
  * source files'.  If not supplied with this software, a copy of the licence
  * can be obtained from Mushware Limited via http://www.mushware.com/.
  * One of your options under that licence is to use and distribute this file
@@ -15,10 +15,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } mjdyRkj9xD1xL8qCqDRIRw
+//%Header } eBhMxVqNyOi+STpzPUR15w
 /*
- * $Id: MushMeshLibraryFGenExtrude.cpp,v 1.12 2006/08/01 17:21:34 southa Exp $
+ * $Id: MushMeshLibraryFGenExtrude.cpp,v 1.13 2007/04/18 09:22:53 southa Exp $
  * $Log: MushMeshLibraryFGenExtrude.cpp,v $
+ * Revision 1.13  2007/04/18 09:22:53  southa
+ * Header and level fixes
+ *
  * Revision 1.12  2006/08/01 17:21:34  southa
  * River demo
  *

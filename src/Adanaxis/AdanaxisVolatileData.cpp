@@ -6,7 +6,7 @@
  * Copyright: Andy Southgate 2005-2007
  *
  * This file may be used and distributed under the terms of the Mushware
- * Software Licence version 1.3, under the terms for 'Proprietary original
+ * Software Licence version 1.4, under the terms for 'Proprietary original
  * source files'.  If not supplied with this software, a copy of the licence
  * can be obtained from Mushware Limited via http://www.mushware.com/.
  * One of your options under that licence is to use and distribute this file
@@ -15,10 +15,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } T6B3uTgauzxD50DPw+3uQw
+//%Header } HVvBfjBQVV3i1hnrW9jmLw
 /*
- * $Id: AdanaxisVolatileData.cpp,v 1.20 2007/05/09 19:24:44 southa Exp $
+ * $Id: AdanaxisVolatileData.cpp,v 1.21 2007/06/14 18:55:11 southa Exp $
  * $Log: AdanaxisVolatileData.cpp,v $
+ * Revision 1.21  2007/06/14 18:55:11  southa
+ * Level and display tweaks
+ *
  * Revision 1.20  2007/05/09 19:24:44  southa
  * Level 14
  *

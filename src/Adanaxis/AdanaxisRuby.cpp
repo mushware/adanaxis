@@ -6,7 +6,7 @@
  * Copyright: Andy Southgate 2005-2007
  *
  * This file may be used and distributed under the terms of the Mushware
- * Software Licence version 1.3, under the terms for 'Proprietary original
+ * Software Licence version 1.4, under the terms for 'Proprietary original
  * source files'.  If not supplied with this software, a copy of the licence
  * can be obtained from Mushware Limited via http://www.mushware.com/.
  * One of your options under that licence is to use and distribute this file
@@ -15,10 +15,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } shOQoy0mscnTFs76gRugFw
+//%Header } 28UUgiiWuDbIFvhBUqIK8Q
 /*
- * $Id: AdanaxisRuby.cpp,v 1.13 2007/04/16 18:50:59 southa Exp $
+ * $Id: AdanaxisRuby.cpp,v 1.14 2007/04/18 09:22:03 southa Exp $
  * $Log: AdanaxisRuby.cpp,v $
+ * Revision 1.14  2007/04/18 09:22:03  southa
+ * Header and level fixes
+ *
  * Revision 1.13  2007/04/16 18:50:59  southa
  * Voice work
  *

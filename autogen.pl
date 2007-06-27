@@ -8,8 +8,11 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-# $Id: autogen.pl,v 1.13 2007/06/26 16:27:50 southa Exp $
+# $Id: autogen.pl,v 1.14 2007/06/27 11:56:42 southa Exp $
 # $Log: autogen.pl,v $
+# Revision 1.14  2007/06/27 11:56:42  southa
+# Debian packaging
+#
 # Revision 1.13  2007/06/26 16:27:50  southa
 # X11 tweaks
 #
@@ -507,6 +510,23 @@ sub Process($)
             if ($command =~ /Output:\s*(.*)$/)
             {
                 push @output, $1;
+            }
+            else
+            {
+                die "Malformed command '$command'";
+            }
+        }
+        elsif ($command =~ /OutputFile:/)
+        {
+            if ($command =~ /OutputFile:\s*(.*)$/)
+            {
+                open INOUTPUTFILE, $1 or die "Couldn't open '$1': $!";
+                while (<INOUTPUTFILE>)
+                {
+                    chomp;
+                    push @output, Substitute($_);
+                }
+                close INOUTPUTFILE;
             }
             else
             {

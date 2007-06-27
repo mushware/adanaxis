@@ -6,7 +6,7 @@
  * Copyright: Andy Southgate 2005-2007
  *
  * This file may be used and distributed under the terms of the Mushware
- * Software Licence version 1.3, under the terms for 'Proprietary original
+ * Software Licence version 1.4, under the terms for 'Proprietary original
  * source files'.  If not supplied with this software, a copy of the licence
  * can be obtained from Mushware Limited via http://www.mushware.com/.
  * One of your options under that licence is to use and distribute this file
@@ -15,10 +15,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } Qf1CQq+Gn9y7BJq65PzZrw
+//%Header } /YgqPd+VXEK4HYrO4p83Ow
 /*
- * $Id: MushMeshLibraryBase.cpp,v 1.10 2006/09/12 15:28:50 southa Exp $
+ * $Id: MushMeshLibraryBase.cpp,v 1.11 2007/04/18 09:22:53 southa Exp $
  * $Log: MushMeshLibraryBase.cpp,v $
+ * Revision 1.11  2007/04/18 09:22:53  southa
+ * Header and level fixes
+ *
  * Revision 1.10  2006/09/12 15:28:50  southa
  * World sphere
  *

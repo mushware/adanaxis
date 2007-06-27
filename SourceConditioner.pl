@@ -10,8 +10,11 @@
 #
 ##############################################################################
 
-# $Id: SourceConditioner.pl,v 1.60 2007/04/17 10:08:11 southa Exp $
+# $Id: SourceConditioner.pl,v 1.61 2007/04/18 09:21:50 southa Exp $
 # $Log: SourceConditioner.pl,v $
+# Revision 1.61  2007/04/18 09:21:50  southa
+# Header and level fixes
+#
 # Revision 1.60  2007/04/17 10:08:11  southa
 # Voice work
 #
@@ -272,10 +275,10 @@ my @gCHeaders = (
 '# Copyright Andy Southgate 2006-2007',
 '#',
 '# This file may be used and distributed under the terms of the Mushware',
-'# Commercial Software Licence version 1.3.  If not supplied with this software',
+'# Commercial Software Licence version 1.4.  If not supplied with this software',
 '# a copy of the licence can be obtained from Mushware Limited via',
 '# http://www.mushware.com/.',
-'#', 
+'#',
 '# This software carries NO WARRANTY of any kind.',
 '#',
 '##############################################################################'
@@ -288,12 +291,12 @@ my @gCHeaders = (
 '# Copyright Andy Southgate 2006-2007',
 '#',
 '# This file may be used and distributed under the terms of the Mushware',
-'# Software Licence version 1.3, under the terms for \'Proprietary original',
+'# Software Licence version 1.4, under the terms for \'Proprietary original',
 '# source files\'.  If not supplied with this software, a copy of the licence',
 '# can be obtained from Mushware Limited via http://www.mushware.com/.',
 '# One of your options under that licence is to use and distribute this file',
 '# under the terms of the GNU General Public Licence version 2.',
-'#', 
+'#',
 '# This software carries NO WARRANTY of any kind.',
 '#',
 '##############################################################################'
@@ -327,12 +330,12 @@ my @gCHeaders = (
   ' * Copyright: Andy Southgate 2005-2007',
   ' *',
   ' * This file may be used and distributed under the terms of the Mushware',
-  ' * Software Licence version 1.3, under the terms for \'Proprietary original',
+  ' * Software Licence version 1.4, under the terms for \'Proprietary original',
   ' * source files\'.  If not supplied with this software, a copy of the licence',
   ' * can be obtained from Mushware Limited via http://www.mushware.com/.',
   ' * One of your options under that licence is to use and distribute this file',
   ' * under the terms of the GNU General Public Licence version 2.',
-  ' *', 
+  ' *',
   ' * This software carries NO WARRANTY of any kind.',
   ' *',
   ' ****************************************************************************/'
@@ -393,7 +396,7 @@ sub XMLBaseGenerate($)
 {
     my ($infoRef) = @_;
     $$infoRef{XML_BASES} = [];
-    
+
     my $commandsRef = $$infoRef{COMMANDS};
     my $xmlBasesRef = $$infoRef{XML_BASES};
     foreach my $command (@$commandsRef)
@@ -412,7 +415,7 @@ sub XMLBaseGenerate($)
 sub TemplateDataGenerate($$)
 {
     my ($infoRef, $templateLine) = @_;
-    
+
     if ($templateLine eq "")
     {
         $infoRef->{OUTER_CLASSNAME} = $infoRef->{CLASSNAME};
@@ -421,12 +424,12 @@ sub TemplateDataGenerate($$)
     else
     {
         $infoRef->{TEMPLATE_PREFIX} = $templateLine;
-        
+
         die "Malformed template directive '$templateLine'" unless ($templateLine =~ /<(.*)>/);
 
         my $typedSuffix = $1;
         my $untypedSuffix = "<";
-        
+
         while ($typedSuffix =~ s/,?\s*\w+\s+(\w+)//)
         {
             if ($untypedSuffix ne "<")
@@ -436,13 +439,13 @@ sub TemplateDataGenerate($$)
             $untypedSuffix .= $1;
         }
         $untypedSuffix .= ">";
-        
+
         if ($untypedSuffix eq "<>")
         {
             die "Cannot decode template directive '$typedSuffix'";
         }
-        
-        $infoRef->{TEMPLATE_SUFFIX} = $untypedSuffix;  
+
+        $infoRef->{TEMPLATE_SUFFIX} = $untypedSuffix;
         $infoRef->{OUTER_CLASSNAME} = $infoRef->{CLASSNAME}.$infoRef->{TEMPLATE_SUFFIX};
         $infoRef->{INLINE} = 1;
     }
@@ -451,15 +454,15 @@ sub TemplateDataGenerate($$)
 sub HeaderInfoCreate($$)
 {
     my ($infoRef, $contentRef) = @_;
-    
+
     my $state = HS_SCAN_FOR_CLASS;
     my $lineNum = 0;
-    
+
     foreach my $lineRef (@$contentRef)
     {
         my $line = "$lineRef";
         chomp $line;
-        
+
         # remove comments
         my $comments = "";
         if ($line =~ s#//(.*)##)
@@ -470,7 +473,7 @@ sub HeaderInfoCreate($$)
         {
             $comments .= $1;
         }
-                
+
         if ($state == HS_SCAN_FOR_CLASS)
         {
             if ($line =~ /^template/)
@@ -520,7 +523,7 @@ sub HeaderInfoCreate($$)
                 $$infoRef{CLOSING_LINE} = $lineNum;
                 $state = HS_DONE;
             }
-        
+
             if ($line =~ /^\s+(mutable\s+|const\s+)?(typename\s+$gExprScopedType|$gExprScopedType)\s*($gExprTemplateSuffix)?\s+($gExprVariableExpr)\s*;/)
             {
                 my $template = $3;
@@ -528,13 +531,13 @@ sub HeaderInfoCreate($$)
                 AttributeAdd($infoRef, $2.$template, $4, $comments);
             }
         }
-        
+
         if ($line =~ /^\s*}\s*;?\s*$/)
         {
             # line closing the last function or the class definition.
             # +1 -> choose the next one.
             $$infoRef{LAST_LINE} = $lineNum+1;
-        }            
+        }
         ++$lineNum;
     }
     $$infoRef{EOF_LINE} = $lineNum;
@@ -547,14 +550,14 @@ sub HeaderInfoCreate($$)
 sub ClassLineRead($$)
 {
     my ($infoRef, $line) = @_;
-    
+
     unless ($line =~ /class\s+(\S+)\s*/)
     {
         die "Couldn't detect class name from $line";
     }
-    
+
     $$infoRef{CLASSNAME} = $1;
-    
+
     if ($line =~ /class\s+\S+\s*:\s*(\S.+)/)
     {
         $$infoRef{BASES} = $1;
@@ -570,20 +573,20 @@ sub CommandsAdd($$)
     my ($infoRef, $command) = @_;
 
     $$infoRef{COMMANDS} = [] unless defined ($$infoRef{COMMANDS});
-    
+
     my $commandsRef = $$infoRef{COMMANDS};
-    
+
     push @$commandsRef, $command;
 }
 
 sub AttributeAdd($$$$)
 {
     my ($infoRef, $type, $name, $commands) = @_;
-    
+
     $$infoRef{ATTRIBUTES} = [] unless defined ($$infoRef{ATTRIBUTES});
-    
+
     my $attributesRef = $$infoRef{ATTRIBUTES};
-    
+
     push @$attributesRef, $type;
     push @$attributesRef, $name;
     push @$attributesRef, $commands;
@@ -592,7 +595,7 @@ sub AttributeAdd($$$$)
 sub HeaderInfoPrint($)
 {
     my ($infoRef) = @_;
-    
+
     my $className = $$infoRef{CLASSNAME};
     print "Class: $className\n" if defined($className);
 
@@ -601,7 +604,7 @@ sub HeaderInfoPrint($)
         my $value = $$infoRef{$_};
         print "$_: $value\n" if defined($value);
     }
-    
+
     my $attributesRef = $$infoRef{ATTRIBUTES};
     if (defined($attributesRef))
     {
@@ -681,11 +684,11 @@ sub VarBaseNameGet($)
 sub AccessPrototypeGenerate($$)
 {
     my ($outputRef, $infoRef) = @_;
-    
+
     my $className = $$infoRef{CLASSNAME};
-    
+
     die "No class found for standard functions" unless defined ($className);
-    
+
     my $attributesRef = $$infoRef{ATTRIBUTES};
     if (defined($attributesRef))
     {
@@ -696,7 +699,7 @@ sub AccessPrototypeGenerate($$)
             my $comment = $$attributesRef[$i+2];
             my $trimmedAttr = VarNameTrim($attr);
             my $capitalisedAttr = uc(substr($trimmedAttr,0,1)).substr($trimmedAttr,1);
-            
+
             if ($comment =~ /(:read\b|:readwrite)\b/)
             {
                 push @$outputRef, "$gConfig{INDENT}const $type& ${capitalisedAttr}(void) const { return $attr; }";
@@ -713,7 +716,7 @@ sub AccessPrototypeGenerate($$)
             if ($comment =~ /:toggle\b/)
             {
                 push @$outputRef, "$gConfig{INDENT}void ${capitalisedAttr}Toggle(void) { $attr=!($attr); }";
-            }                
+            }
         }
     }
 }
@@ -733,11 +736,11 @@ sub StandardPrototypeGenerate($$)
     my $virtual = $$infoRef{VIRTUAL};
 
     die "No class found for standard functions" unless defined ($className);
-    
-    push @$outputRef, "$gConfig{INDENT}${virtual}const char *$gConfig{AUTO_PREFIX}Name(void) const;"; 
-    push @$outputRef, "$gConfig{INDENT}${virtual}MushcoreVirtualObject *$gConfig{AUTO_PREFIX}Clone(void) const;"; 
-    push @$outputRef, "$gConfig{INDENT}${virtual}MushcoreVirtualObject *$gConfig{AUTO_PREFIX}Create(void) const;"; 
-    push @$outputRef, "$gConfig{INDENT}static MushcoreVirtualObject *$gConfig{AUTO_PREFIX}VirtualFactory(void);"; 
+
+    push @$outputRef, "$gConfig{INDENT}${virtual}const char *$gConfig{AUTO_PREFIX}Name(void) const;";
+    push @$outputRef, "$gConfig{INDENT}${virtual}MushcoreVirtualObject *$gConfig{AUTO_PREFIX}Clone(void) const;";
+    push @$outputRef, "$gConfig{INDENT}${virtual}MushcoreVirtualObject *$gConfig{AUTO_PREFIX}Create(void) const;";
+    push @$outputRef, "$gConfig{INDENT}static MushcoreVirtualObject *$gConfig{AUTO_PREFIX}VirtualFactory(void);";
 }
 
 sub StandardFunctionGenerate($$)
@@ -749,9 +752,9 @@ sub StandardFunctionGenerate($$)
     my $templatePrefix = $$infoRef{TEMPLATE_PREFIX};
 
     die "No class found for standard functions" unless defined ($className);
-    
+
     die "Cannot generate 'standard' inline " if $$infoRef{INLINE};
-    
+
     my $cloneCommand;
     if ($$infoRef{NOCOPY} || $$infoRef{ABSTRACT})
     {
@@ -761,7 +764,7 @@ sub StandardFunctionGenerate($$)
     {
         $cloneCommand = "return new $className(*this)";
     }
-    
+
     push @$outputRef,
 $templatePrefix,
 "const char *".
@@ -811,8 +814,8 @@ sub OstreamWritePrototypeGenerate($$)
     my $virtual = $$infoRef{VIRTUAL};
 
     die "No class found for ostream writer" unless defined ($className);
-    
-    push @$outputRef, "$gConfig{INDENT}${virtual}void $gConfig{AUTO_PREFIX}Print(std::ostream& ioOut) const;"; 
+
+    push @$outputRef, "$gConfig{INDENT}${virtual}void $gConfig{AUTO_PREFIX}Print(std::ostream& ioOut) const;";
 }
 
 sub OstreamWriteFunctionGenerate($$)
@@ -856,16 +859,16 @@ sub OstreamWriteFunctionGenerate($$)
             my $indirection = IndirectionGet($attr);
             my $comma = "";
             $comma = " << \", \"" unless ($i+3 == @$attributesRef);
-           
+
             my $line = "    ioOut << \"$trimmedAttr=\" << ";
             if ($comment =~ /:fnpointer\b/)
             {
-                $line .= '(void *)';   
+                $line .= '(void *)';
             }
             $line .= TypeSpecial($type, $attr);
-            
+
             $line .= "$comma;";
-            
+
             if ($indirection > 0)
             {
                 push @$outputRef,
@@ -885,7 +888,7 @@ sub OstreamWriteFunctionGenerate($$)
         }
     }
     push @$outputRef, "    ioOut << \"]\";";
-    push @$outputRef, "}";  
+    push @$outputRef, "}";
 }
 
 sub OstreamOperatorGenerate($$)
@@ -897,7 +900,7 @@ sub OstreamOperatorGenerate($$)
     my $templatePrefix = $$infoRef{TEMPLATE_PREFIX};
 
     die "No class found for ostream operator" unless defined ($className);
-    
+
     if ($templatePrefix ne "")
     {
         push @$outputRef, $templatePrefix;
@@ -924,8 +927,8 @@ sub BasicOperatorsPrototypeGenerate($$)
     my $virtual = $$infoRef{VIRTUAL};
 
     die "No class found for BasicOperators writer" unless defined ($className);
-    
-    push @$outputRef, "$gConfig{INDENT}${virtual}bool $gConfig{AUTO_PREFIX}Equals(const $className& inObj) const;"; 
+
+    push @$outputRef, "$gConfig{INDENT}${virtual}bool $gConfig{AUTO_PREFIX}Equals(const $className& inObj) const;";
 }
 
 sub BasicOperatorsFunctionGenerate($$)
@@ -943,13 +946,13 @@ sub BasicOperatorsFunctionGenerate($$)
         push @$outputRef, $templatePrefix;
     }
     my $decPrefix = $$infoRef{INLINE}?"inline ":"";
-        
+
     push @$outputRef,
 "${decPrefix}bool",
 "${outerClassName}::$gConfig{AUTO_PREFIX}Equals(const $className& inObj) const",
 "{",
 "    return 1";
-    
+
     my $xmlBases = $$infoRef{XML_BASES};
     if (defined($xmlBases))
     {
@@ -958,7 +961,7 @@ sub BasicOperatorsFunctionGenerate($$)
             push @$outputRef, "        && ${base}::$gConfig{AUTO_PREFIX}Equals(inObj)";
         }
     }
-    
+
     my $attributesRef = $$infoRef{ATTRIBUTES};
     if (defined($attributesRef))
     {
@@ -970,7 +973,7 @@ sub BasicOperatorsFunctionGenerate($$)
             my $attr = $$attributesRef[$i+1];
             my $indirection = IndirectionGet($attr);
             my $line = "        && ";
-            
+
             if ($indirection > 0)
             {
                 my $baseName = VarBaseNameGet($attr);
@@ -1027,8 +1030,8 @@ sub XMLIStreamWritePrototypeGenerate($$)
     my $virtual = $$infoRef{VIRTUAL};
 
     die "No class found for XMLIStream writer" unless defined ($className);
-    
-    push @$outputRef, "$gConfig{INDENT}${virtual}bool $gConfig{AUTO_PREFIX}XMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);"; 
+
+    push @$outputRef, "$gConfig{INDENT}${virtual}bool $gConfig{AUTO_PREFIX}XMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);";
 }
 
 sub XMLIStreamWriteFunctionGenerate($$)
@@ -1040,27 +1043,27 @@ sub XMLIStreamWriteFunctionGenerate($$)
     my $templatePrefix = $$infoRef{TEMPLATE_PREFIX};
 
     die "No class found for XMLIStream writer" unless defined ($className);
-    
+
     if ($templatePrefix ne "")
     {
         push @$outputRef, $templatePrefix;
     }
     my $decPrefix = $$infoRef{INLINE}?"inline ":"";
-   
+
     push @$outputRef,
 "${decPrefix}bool",
 "${outerClassName}::$gConfig{AUTO_PREFIX}XMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr)",
 "{";
-    
+
     my $else = "";
     if ($$infoRef{VIRTUAL} ne "")
     {
         push @$outputRef,
 "    if (inTagStr == \"obj\")",
 "    {",
-"        AutoInputPrologue(ioIn);",        
+"        AutoInputPrologue(ioIn);",
 "        ioIn >> *this;",
-"        AutoInputEpilogue(ioIn);",        
+"        AutoInputEpilogue(ioIn);",
 "    }";
         $else = "else ";
     }
@@ -1102,20 +1105,20 @@ sub XMLIStreamWriteFunctionGenerate($$)
 "    {",
 "        return false;",
 "    }",
-"    return true;",        
+"    return true;",
 "}";
 }
 
 sub XMLIStreamOperatorGenerate($$)
 {
     my ($outputRef, $infoRef) = @_;
-    
+
     my $className = $$infoRef{CLASSNAME};
     my $outerClassName = $$infoRef{OUTER_CLASSNAME};
     my $templatePrefix = $$infoRef{TEMPLATE_PREFIX};
-    
+
     # XMLIStream operator
-    
+
     if ($$infoRef{VIRTUAL} eq "")
     {
         if ($templatePrefix ne "")
@@ -1128,7 +1131,7 @@ sub XMLIStreamOperatorGenerate($$)
             "{",
             "    throw MushcoreDataFail(\"Cannot read XML object type '$className'\");",
             "    return ioIn;",
-            "}";    
+            "}";
     }
 }
 
@@ -1146,8 +1149,8 @@ sub XMLOStreamWritePrototypeGenerate($$)
     my $virtual = $$infoRef{VIRTUAL};
 
     die "No class found for XMLOStream writer" unless defined ($className);
-    
-    push @$outputRef, "$gConfig{INDENT}${virtual}void $gConfig{AUTO_PREFIX}XMLPrint(MushcoreXMLOStream& ioOut) const;"; 
+
+    push @$outputRef, "$gConfig{INDENT}${virtual}void $gConfig{AUTO_PREFIX}XMLPrint(MushcoreXMLOStream& ioOut) const;";
 }
 
 sub XMLOStreamWriteFunctionGenerate($$)
@@ -1159,14 +1162,14 @@ sub XMLOStreamWriteFunctionGenerate($$)
     my $templatePrefix = $$infoRef{TEMPLATE_PREFIX};
 
     die "No class found for XMLOStream writer" unless defined ($className);
-    
+
     if ($templatePrefix ne "")
     {
         push @$outputRef, $templatePrefix;
     }
-    
+
     my $decPrefix = $$infoRef{INLINE}?"inline ":"";
-    
+
     push @$outputRef, "${decPrefix}void";
     push @$outputRef, "${outerClassName}::$gConfig{AUTO_PREFIX}XMLPrint(MushcoreXMLOStream& ioOut) const";
     push @$outputRef,
@@ -1179,7 +1182,7 @@ sub XMLOStreamWriteFunctionGenerate($$)
             push @$outputRef, "    ${base}::$gConfig{AUTO_PREFIX}XMLPrint(ioOut);";
         }
     }
-    
+
     my $attributesRef = $$infoRef{ATTRIBUTES};
     if (defined($attributesRef))
     {
@@ -1191,10 +1194,10 @@ sub XMLOStreamWriteFunctionGenerate($$)
             next if ($comment =~ /:(xml|)ignore\b/);
             my $trimmedAttr = VarNameTrim($attr);
             my $indirection = IndirectionGet($attr);
-            
+
             push @$outputRef,
 "    ioOut.TagSet(\"$trimmedAttr\");";
-           
+
             if ($indirection > 0)
             {
                 push @$outputRef,
@@ -1213,13 +1216,13 @@ sub XMLOStreamWriteFunctionGenerate($$)
 sub XMLOStreamOperatorGenerate($$)
 {
     my ($outputRef, $infoRef) = @_;
-    
+
     my $className = $$infoRef{CLASSNAME};
     my $outerClassName = $$infoRef{OUTER_CLASSNAME};
     my $templatePrefix = $$infoRef{TEMPLATE_PREFIX};
-    
+
     # XMLOStream operator
-    
+
     if ($$infoRef{VIRTUAL} eq "")
     {
         if ($templatePrefix ne "")
@@ -1232,7 +1235,7 @@ sub XMLOStreamOperatorGenerate($$)
             "{",
             "    inObj.$gConfig{AUTO_PREFIX}XMLPrint(ioOut);",
             "    return ioOut;",
-            "}";    
+            "}";
     }
 }
 
@@ -1252,7 +1255,7 @@ sub OldHeaderStrip($)
     my $headerPresent=0;
     my $started = 0;
     my $ended = 0;
-    
+
     foreach (@$arrayRef)
     {
         unless ($started)
@@ -1278,7 +1281,7 @@ sub OldHeaderStrip($)
         }
         ++$lineNum;
     }
-    
+
     if ($headerPresent && $started && $ended)
     {
         splice @$arrayRef, $headerStart, $headerEnd-$headerStart;
@@ -1290,23 +1293,23 @@ sub HeaderGenerate($$$)
     my ($arrayRef, $filename, $headersRef) = @_;
 
     my $line=0;
-    my $leafname="";    
+    my $leafname="";
 
     if ($filename =~ /\/([^\/]+)$/)
     {
         $leafname = $1;
     }
-        
+
     my $userFilename = $filename;
-    
+
     $userFilename =~ s/^\.\///;
-    
+
     # find appropriate header
     for (my $i=0; $i < @$headersRef; $i += 2)
     {
         if ($leafname =~ /$$headersRef[$i]/)
         {
-            my $chosenRef = @$headersRef[$i+1];         
+            my $chosenRef = @$headersRef[$i+1];
             my @headerStore;
             foreach my $lineRef (@$chosenRef)
             {
@@ -1316,7 +1319,7 @@ sub HeaderGenerate($$$)
             }
             if ($filename =~ /\.(rb|txt)$/)
             {
-                SourceProcess::CommentStartSet('#');                
+                SourceProcess::CommentStartSet('#');
             }
             SourceProcess::BlockReplace(\@$arrayRef, \@headerStore, 'Header', 0);
             last;
@@ -1344,10 +1347,10 @@ sub OldIncludeGuardStrip($$)
     $defName =~ s/[-\.]/_/g;
     my $line=0;
     my $endifLine=0;
-    
+
     SourceProcess::BlockReplace(\@$arrayRef, [], 'includeGuardStart', 0);
     SourceProcess::BlockReplace(\@$arrayRef, [], 'includeGuardEnd', scalar @$arrayRef);
-        
+
     foreach (@$arrayRef)
     {
         if (/\#ifndef\s+$defName/)
@@ -1380,9 +1383,9 @@ sub IncludeGuardGenerate
     my $defName=$1;
     $defName = uc $defName;
     $defName =~ s/[-\.]/_/g;
-    
+
     print "Adding include guards #ifdef $defName\n" if ($gVerbose);
-    
+
     SourceProcess::BlockReplace(\@$arrayRef, ["#ifndef $defName", "#define $defName"], 'includeGuardStart', 0);
     SourceProcess::BlockReplace(\@$arrayRef, ["#endif"], 'includeGuardEnd', scalar @$arrayRef);
 }
@@ -1421,15 +1424,15 @@ sub ProcessTouchCFile($$)
 sub DefinitionsWrite($$$)
 {
     my ($outputRef, $infoRef, $command) = @_;
-    
+
     # Standard
     if ($command =~ /\bgenerate.*\bstandard\b/)
-    {            
+    {
         StandardFunctionGenerate($outputRef, $infoRef);
     }
     # BasicOperators
     if ($command =~ /\bgenerate.*\bbasic(.*)\b/)
-    {            
+    {
         BasicOperatorsFunctionGenerate($outputRef, $infoRef);
     }
     # std::ostream
@@ -1449,14 +1452,14 @@ sub ProcessHeader($$)
 {
     my ($contentRef, $filename) = @_;
     my %headerInfo;
-    
+
     HeaderInfoCreate(\%headerInfo, \@$contentRef);
     HeaderInfoPrint(\%headerInfo) if $gVerbose;
-    
+
     my @classPrototypes;
     my @inlineHeader;
     my @inlineNamespaced;
-    
+
     my $commandsRef = $headerInfo{COMMANDS};
 
     if (defined($commandsRef))
@@ -1466,7 +1469,7 @@ sub ProcessHeader($$)
         $headerInfo{ABSTRACT} = 0;
         $headerInfo{INLINE} = 0;
         $headerInfo{VIRTUAL} = "virtual ";
-        
+
         # Member accessors and modifers
         AccessPrototypeGenerate(\@classPrototypes, \%headerInfo);
 
@@ -1479,17 +1482,17 @@ sub ProcessHeader($$)
             $headerInfo{NOCOPY} = 1 if $$commandsRef[$i] =~ /\bnocopy\b/;
             $headerInfo{NOCOPY} = 0 if $$commandsRef[$i] =~ /\bcopy\b/;
             $headerInfo{ABSTRACT} = 1 if $$commandsRef[$i] =~ /\babstract\b/;
-            
+
             die "notvirtual should be nonvirtual" if $$commandsRef[$i] =~ /\bnotvirtual\b/;
-            
+
             # Standard functions
             if ($$commandsRef[$i] =~ /\bgenerate.*\bstandard\b/)
-            {            
+            {
                 StandardPrototypeGenerate(\@classPrototypes, \%headerInfo);
             }
             # BasicOperators
             if ($$commandsRef[$i] =~ /\bgenerate.*\bbasic(.*)\b/)
-            {            
+            {
                 BasicOperatorsPrototypeGenerate(\@classPrototypes, \%headerInfo);
                 BasicOperatorsInlineGenerate(\@inlineHeader, \%headerInfo);
             }
@@ -1499,7 +1502,7 @@ sub ProcessHeader($$)
                 OstreamWritePrototypeGenerate(\@classPrototypes, \%headerInfo);
                 OstreamOperatorGenerate(\@inlineHeader, \%headerInfo);
             }
- 
+
             # MushcoreXMLIStream/MushcoreXMLOStream
             if ($$commandsRef[$i] =~ /\bgenerate.*\bxml1(.*)\b/)
             {
@@ -1508,28 +1511,28 @@ sub ProcessHeader($$)
                 XMLOStreamWritePrototypeGenerate(\@classPrototypes, \%headerInfo);
                 XMLOStreamOperatorGenerate(\@inlineHeader, \%headerInfo);
             }
-            
+
             if ($headerInfo{INLINE})
             {
                 DefinitionsWrite(\@inlineHeader, \%headerInfo, $$commandsRef[$i]);
             }
         }
     }
-    
+
     if (scalar @inlineNamespaced > 0)
     {
         # Add the namespace shell
-        splice @inlineNamespaced, 0, 0, ("namespace $gConfig{NAMESPACE}", "{", ""); 
+        splice @inlineNamespaced, 0, 0, ("namespace $gConfig{NAMESPACE}", "{", "");
         push @inlineNamespaced, "", "} // end namespace $gConfig{NAMESPACE}";
     }
-    
+
     # Replacements should be from the bottom up so that the
     # line numbers remain valid
     my $lastLine = $headerInfo{LAST_LINE};
     SourceProcess::BlockReplace(\@$contentRef, \@inlineHeader, 'inlineHeader', $lastLine);
 
     SourceProcess::BlockReplace(\@$contentRef, \@inlineNamespaced, 'inlineNamespaced', $lastLine);
-    
+
     my $closingLine = $headerInfo{CLOSING_LINE};
     SourceProcess::BlockReplace(\@$contentRef, \@classPrototypes, 'classPrototypes', $closingLine);
 
@@ -1540,13 +1543,13 @@ sub ProcessCPP($$)
     my ($contentRef, $filename) = @_;
 
     my $headerFilename = $filename;
-    
+
     unless ($headerFilename =~ s/\.[^.]+$/.h/)
     {
         print "Cannot translate '$filename' to header filename\n" if $gVerbose;
         return;
     }
-    
+
     unless ( -f $headerFilename )
     {
         print "Header for $filename ($headerFilename) not present\n" if $gVerbose;
@@ -1560,14 +1563,14 @@ sub ProcessCPP($$)
         SourceProcess::ReadFile(\@headerContents, $headerFilename);
         HeaderInfoCreate(\%headerInfo, \@headerContents);
     }
-    
+
     my @outOfLineCode;
     my $commandsRef = $headerInfo{COMMANDS};
     $headerInfo{NOCOPY} = 0;
     $headerInfo{ABSTRACT} = 0;
     $headerInfo{INLINE} = 0;
     $headerInfo{VIRTUAL} = "virtual ";
-    
+
     if (defined($commandsRef))
     {
         for (my $i=0; $i < @$commandsRef; $i += 1)
@@ -1579,7 +1582,7 @@ sub ProcessCPP($$)
             $headerInfo{NOCOPY} = 1 if $$commandsRef[$i] =~ /\bnocopy\b/;
             $headerInfo{NOCOPY} = 0 if $$commandsRef[$i] =~ /\bcopy\b/;
             $headerInfo{ABSTRACT} = 1 if $$commandsRef[$i] =~ /\babstract\b/;
-           
+
             unless ($headerInfo{INLINE})
             {
                 DefinitionsWrite(\@outOfLineCode, \%headerInfo, $$commandsRef[$i]);
@@ -1608,7 +1611,7 @@ sub ProcessRubySequences($$)
 sub ProcessProcessDirective($)
 {
     my ($filename) = @_;
-  
+
     my @processDirectives;
     open(FILE, $filename) or die "File open for read failed for $filename: $!";
     while (<FILE>)
@@ -1628,11 +1631,11 @@ sub ProcessProcessDirective($)
         my $scriptFilename = $1;
         my $params = $2;
         print "Process directive $directive = $1\n";
-      
+
         die "Malformed filename" unless $scriptFilename =~ /\.([^.]+)$/;
         my $extension = $1;
         my $command = "";
-          
+
         if ($extension eq 'rb')
         {
             $command = "ruby '$gScriptPath/$scriptFilename' '$filename' $params";
@@ -1641,7 +1644,7 @@ sub ProcessProcessDirective($)
         {
             die "Unknown script extension .$extension";
         }
-        
+
         if (system($command) != 0)
         {
             die "Process directive '$directive' in file '$filename' failed";

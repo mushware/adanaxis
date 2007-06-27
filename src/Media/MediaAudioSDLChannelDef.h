@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } JL21oay8WaF85VbS6/8WOQ
 /*
- * $Id: MediaAudioSDLChannelDef.h,v 1.2 2006/12/11 18:54:18 southa Exp $
+ * $Id: MediaAudioSDLChannelDef.h,v 1.3 2007/04/18 09:22:26 southa Exp $
  * $Log: MediaAudioSDLChannelDef.h,v $
+ * Revision 1.3  2007/04/18 09:22:26  southa
+ * Header and level fixes
+ *
  * Revision 1.2  2006/12/11 18:54:18  southa
  * Positional audio
  *
@@ -48,13 +51,13 @@ class MediaAudioSDLChannelDef : public MediaAudioChannelDef
 {
 public:
     MediaAudioSDLChannelDef();
-    
+
     MediaSound *ActiveSample(void) const { return m_pActiveSample; }
     void ActiveSampleSet(MediaSound *inpValue) { m_pActiveSample = inpValue; }
 
 private:
     MediaSound *m_pActiveSample; //:ignore
-    
+
 //%classPrototypes {
 public:
     virtual const char *AutoName(void) const;
@@ -64,7 +67,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } 33phoI6mWzD3Si7A0HHbvA
+//%classPrototypes } 1oBgFruy5qHAaudtV+Hcmg
 };
 //%inlineHeader {
 inline std::ostream&

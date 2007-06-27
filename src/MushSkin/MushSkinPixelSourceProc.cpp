@@ -6,7 +6,7 @@
  * Copyright: Andy Southgate 2005-2007
  *
  * This file may be used and distributed under the terms of the Mushware
- * Software Licence version 1.3, under the terms for 'Proprietary original
+ * Software Licence version 1.4, under the terms for 'Proprietary original
  * source files'.  If not supplied with this software, a copy of the licence
  * can be obtained from Mushware Limited via http://www.mushware.com/.
  * One of your options under that licence is to use and distribute this file
@@ -15,10 +15,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } T0JIKRw9MOfD0T3VLpYWjA
+//%Header } 13Ykq61AVzNLZsNvUDFWnw
 /*
- * $Id: MushSkinPixelSourceProc.cpp,v 1.5 2007/04/18 09:23:04 southa Exp $
+ * $Id: MushSkinPixelSourceProc.cpp,v 1.6 2007/06/11 20:06:17 southa Exp $
  * $Log: MushSkinPixelSourceProc.cpp,v $
+ * Revision 1.6  2007/06/11 20:06:17  southa
+ * Compatibility fixes and level 27
+ *
  * Revision 1.5  2007/04/18 09:23:04  southa
  * Header and level fixes
  *

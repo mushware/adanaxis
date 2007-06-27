@@ -10,7 +10,7 @@
  * Copyright: Andy Southgate 2005-2007
  *
  * This file may be used and distributed under the terms of the Mushware
- * Software Licence version 1.3, under the terms for 'Proprietary original
+ * Software Licence version 1.4, under the terms for 'Proprietary original
  * source files'.  If not supplied with this software, a copy of the licence
  * can be obtained from Mushware Limited via http://www.mushware.com/.
  * One of your options under that licence is to use and distribute this file
@@ -19,10 +19,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } b64aEMcmcpDc3H5/OcbaUw
+//%Header } A/YjhXIl4PmyLWI8Cq30vg
 /*
- * $Id: AdanaxisPieceProjectile.h,v 1.16 2006/11/12 20:09:54 southa Exp $
+ * $Id: AdanaxisPieceProjectile.h,v 1.17 2007/04/18 09:22:02 southa Exp $
  * $Log: AdanaxisPieceProjectile.h,v $
+ * Revision 1.17  2007/04/18 09:22:02  southa
+ * Header and level fixes
+ *
  * Revision 1.16  2006/11/12 20:09:54  southa
  * Missile guidance
  *

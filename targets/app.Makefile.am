@@ -10,8 +10,11 @@
 ##############################################################################
 
 #
-# $Id: app.Makefile.am,v 1.8 2007/06/25 15:59:49 southa Exp $
+# $Id: app.Makefile.am,v 1.9 2007/06/26 16:27:51 southa Exp $
 # $Log: app.Makefile.am,v $
+# Revision 1.9  2007/06/26 16:27:51  southa
+# X11 tweaks
+#
 # Revision 1.8  2007/06/25 15:59:49  southa
 # X11 compatibility
 #
@@ -72,5 +75,10 @@ $(BZIPFILE):$(GZIPFILE)
 
 rpm:MUSH_APP_PACKAGE.spec $(BZIPFILE)
 	rpm -ta $(BZIPFILE)
+
+debian-release: $(GZIPFILE)
+	cp -f $(GZIPFILE) ..
+	chmod +x debian/rules
+	dpkg-buildpackage -rfakeroot
 
 # Blank line required - configuration scripts append here

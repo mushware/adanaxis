@@ -6,7 +6,7 @@
  * Copyright: Andy Southgate 2005-2007
  *
  * This file may be used and distributed under the terms of the Mushware
- * Software Licence version 1.3, under the terms for 'Proprietary original
+ * Software Licence version 1.4, under the terms for 'Proprietary original
  * source files'.  If not supplied with this software, a copy of the licence
  * can be obtained from Mushware Limited via http://www.mushware.com/.
  * One of your options under that licence is to use and distribute this file
@@ -15,10 +15,13 @@
  * This software carries NO WARRANTY of any kind.
  *
  ****************************************************************************/
-//%Header } pQ5BRw+L1Th8huxU49D5bg
+//%Header } KgaVCZ2FqFKpcAJm637Jjg
 /*
- * $Id: AdanaxisPieceProjectile.cpp,v 1.21 2007/04/26 13:12:40 southa Exp $
+ * $Id: AdanaxisPieceProjectile.cpp,v 1.22 2007/06/14 22:24:28 southa Exp $
  * $Log: AdanaxisPieceProjectile.cpp,v $
+ * Revision 1.22  2007/06/14 22:24:28  southa
+ * Level and gameplay tweaks
+ *
  * Revision 1.21  2007/04/26 13:12:40  southa
  * Limescale and level 9
  *
