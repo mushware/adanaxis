@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } GFHdYZkRu+Oc9hL9CdJvtw
 /*
- * $Id: MushRubyExec.cpp,v 1.11 2007/03/13 21:45:11 southa Exp $
+ * $Id: MushRubyExec.cpp,v 1.12 2007/06/14 18:55:12 southa Exp $
  * $Log: MushRubyExec.cpp,v $
+ * Revision 1.12  2007/06/14 18:55:12  southa
+ * Level and display tweaks
+ *
  * Revision 1.11  2007/03/13 21:45:11  southa
  * Release process
  *
@@ -331,19 +334,19 @@ MushRubyExec::Initialise(void)
 	ruby_init_loadpath();
 #endif
 
-	MushRubyIntern::Initialise();
+    MushRubyIntern::Initialise();
 	
-	ConfigSet();
-    ruby_script("init.rb");
+    ConfigSet();
     
+    // Must have an absolute path here
     MushcoreScalar rubyPath;
     if (MushcoreEnv::Sgl().VariableGetIfExists(rubyPath, "RUBY_PATH"))
     {
         Eval("$LOAD_PATH.push('"+rubyPath.StringGet()+"')");
         Eval("$LOAD_PATH.push('"+rubyPath.StringGet()+"/../mushruby')");
+        ruby_script((rubyPath.StringGet()+"/ruby/init.rb").c_str());
+        rb_set_safe_level(2);
+        MushRubyInstall::Sgl().Execute();
+        Require("init.rb");
     }
-    rb_set_safe_level(2);
-    MushRubyInstall::Sgl().Execute();
-
-    Require("init.rb");
 }

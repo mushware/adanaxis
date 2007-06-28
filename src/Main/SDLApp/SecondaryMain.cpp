@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } iq/M/29BciHx/MWfKkILcw
 /*
- * $Id: SecondaryMain.cpp,v 1.15 2007/06/27 15:30:41 southa Exp $
+ * $Id: SecondaryMain.cpp,v 1.16 2007/06/27 19:54:16 southa Exp $
  * $Log: SecondaryMain.cpp,v $
+ * Revision 1.16  2007/06/27 19:54:16  southa
+ * X11 release
+ *
  * Revision 1.15  2007/06/27 15:30:41  southa
  * X11 packaging
  *
@@ -320,5 +323,8 @@ int main(int argc, char *argv[])
         throw;
         retVal = 1;
     }
+    
+    PlatformMiscUtils::Finalise();
+    
     return retVal;
 }

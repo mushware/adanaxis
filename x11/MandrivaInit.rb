@@ -72,20 +72,8 @@ kate
 kdevelop
 kdegames
 kdegraphics
-kscreensaver
 xscreensaver-gl
 mc
-    }
-
-    @m_nvidiaKernelPackages = %w{
-gcc
-kernel-source-2.6
-    }
-
-    @m_nvidiaUserPackages = %w{
-nvidia-glx
-nvidia-settings
-nvidia-xconfig
     }
 
    @m_yes = false
@@ -125,21 +113,7 @@ nvidia-xconfig
   end
 
   def mNVidiaInstall
-    mSourcesSetup
-    #mPackagesInstall(@m_nvidiaKernelPackages) or raise("++++Package installation failed")
-    #system("sudo urpmi.update -a") or raise("++++Command failed")
-    # system("sudo urpmi kernel") or raise("++++Command failed")
-
-    system("sudo urpmi --auto nvidia97xx-kernel-`uname -r`") or raise("++++Command failed")
-    puts "Get and install driver from NVidia web site:"
-    puts "http://nvidia.com/content/drivers/drivers.asp"
-return
-    mPackagesInstall(@m_nvidiaUserPackages) or raise("++++Package installation failed")
-    system("sudo nvidia-xconfig") or raise("++++Command failed")
-    system("sudo dpkg-reconfigure xserver-xorg") or raise("++++Command failed")
-    system("sudo sh -c 'grep -q ^nvidia /etc/modules || echo nvidia >> /etc/modules'") or raise("++++Command failed")
-    system("sudo modprobe nvidia") or raise("++++Command failed")
-    puts "Now type 'sudo invoke-rc.d gdm restart' to restart your X Session"
+    puts "Nothing required for this distro"
   end
 
   def mBashrcAppend
@@ -160,7 +134,8 @@ EOS
     system("sudo urpmi.addmedia main ftp://ftp.lip6.fr/pub/linux/distributions/Mandrakelinux/official/2007.1/i586/media/main/release with media_info/synthesis.hdlist.cz")
     system("sudo urpmi.addmedia --update main_updates ftp://ftp.lip6.fr/pub/linux/distributions/Mandrakelinux/official/2007.1/i586/media/main/updates with media_info/synthesis.hdlist.cz")
     system("sudo urpmi.addmedia contrib ftp://ftp.lip6.fr/pub/linux/distributions/Mandrakelinux/official/2007.1/i586/media/contrib/release with media_info/synthesis.hdlist.cz") 
-    system("sudo urpmi.addmedia --update contrib_updates ftp://ftp.lip6.fr/pub/linux/distributions/Mandrakelinux/official/2007.1/i586/media/contrib/updates with media_info/synthesis.hdlist.cz")
+    system("sudo urpmi.addmedia --u
+pdate contrib_updates ftp://ftp.lip6.fr/pub/linux/distributions/Mandrakelinux/official/2007.1/i586/media/contrib/updates with media_info/synthesis.hdlist.cz")
     system("sudo urpmi.addmedia non-free ftp://ftp.lip6.fr/pub/linux/distributions/Mandrakelinux/official/2007.1/i586/media/non-free/release with media_info/synthesis.hdlist.cz")
   end
 

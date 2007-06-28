@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } Y+WzijXDRsG7dDElPwQlbQ
 /*
- * $Id: PlatformVideoUtils.cpp,v 1.24 2007/06/25 17:58:50 southa Exp $
+ * $Id: PlatformVideoUtils.cpp,v 1.25 2007/06/27 11:56:44 southa Exp $
  * $Log: PlatformVideoUtils.cpp,v $
+ * Revision 1.25  2007/06/27 11:56:44  southa
+ * Debian packaging
+ *
  * Revision 1.24  2007/06/25 17:58:50  southa
  * X11 fixes
  *
@@ -234,4 +237,50 @@ void
 PlatformVideoUtils::ModeChangeEpilogue(void)
 {
 }
+
+bool
+PlatformVideoUtils::ModeSelectFixAttempt(Mushware::U32 inIteration)
+{
+    bool tryAgain=false;
+    
+    switch (inIteration)
+    {
+        case 0:
+        {
+            char *pDisplay = getenv("DISPLAY");
+            if (pDisplay == NULL)
+            {
+                MushcoreLog::Sgl().ErrorLog() << "DISPLAY environment variable not set - cannot access X display" << endl;
+            }
+            else
+            {
+                std::string displayEnv(pDisplay);
+                if (displayEnv.size() >= 2 && displayEnv.substr(displayEnv.size()-2, 2) == ":1")
+                {
+                    /* Patch for '3D desktop' problem where we are presented with a virtual display :1
+                    * but must open :0 for 3D support
+                    */
+                    displayEnv.replace(displayEnv.size()-2, 2, ":0");
+                    setenv("DISPLAY", displayEnv.c_str(), 1 /* overwrite */);
+                    MushcoreLog::Sgl().ErrorLog() << "Altered DISPLAY environment from '" << pDisplay << "' to '" << displayEnv <<
+                            "' in attempt to solve virtual desktop problem" << endl;
+                    
+                    MediaSDL::Sgl().QuitVideoIfRequired();
+                    MediaSDL::Sgl().InitVideoIfRequired();
+                    
+
+                    setenv("DISPLAY=", displayEnv.c_str(), 1 /* overwrite */);
+
+                    tryAgain = true;
+                }
+            }
+        }
+        break;
+
+        default:
+            break;
+    }
+    return tryAgain;
+}
+
 

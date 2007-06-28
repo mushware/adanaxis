@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } Ay16hfzESIbe/vc98s9yrw
 /*
- * $Id: PlatformMiscUtils.h,v 1.31 2006/07/28 16:52:25 southa Exp $
+ * $Id: PlatformMiscUtils.h,v 1.32 2007/03/13 21:45:11 southa Exp $
  * $Log: PlatformMiscUtils.h,v $
+ * Revision 1.32  2007/03/13 21:45:11  southa
+ * Release process
+ *
  * Revision 1.31  2006/07/28 16:52:25  southa
  * Options work
  *
@@ -109,6 +112,7 @@ public:
     static std::string GetUserDataPath(int argc, char *argv[]);
     static void TweakArgs(std::string& ioString);
     static void Initialise(void);
+    static void Finalise(void);
     static bool DirectoryExists(const std::string& inName);
     static void MakePrivateDirectory(const std::string& inName);
     static void MakePublicDirectory(const std::string& inName);
@@ -124,6 +128,9 @@ public:
     static void SleepMsec(Mushware::U32 inMsec);
     static bool FunctionPointerGetIfExists(void *& outPtr, const std::string& inName);
     static void FunctionPointerGet(void *& outPtr, const std::string& inName);
+
+private:
+    static std::string s_displayEnv;
 };
 //%includeGuardEnd {
 #endif

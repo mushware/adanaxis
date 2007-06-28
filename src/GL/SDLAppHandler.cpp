@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } CkSk48jyH/Lvp9pXNnIBSQ
 /*
- * $Id: SDLAppHandler.cpp,v 1.68 2007/06/25 17:58:47 southa Exp $
+ * $Id: SDLAppHandler.cpp,v 1.69 2007/06/26 16:27:50 southa Exp $
  * $Log: SDLAppHandler.cpp,v $
+ * Revision 1.69  2007/06/26 16:27:50  southa
+ * X11 tweaks
+ *
  * Revision 1.68  2007/06/25 17:58:47  southa
  * X11 fixes
  *
@@ -384,12 +387,6 @@ SDLAppHandler::EnterScreen(const GLModeDef& inDef)
     SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 16);
     SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 
-#if (SDL_MAJOR_VERSION * 10000 + SDL_MINOR_VERSION * 100 + SDL_PATCHLEVEL) >= 10206
-    // Attributes supported from SDL version 1.2.6 onwards
-    SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 1);
-    SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 4);
-#endif
-
 #if (SDL_MAJOR_VERSION * 10000 + SDL_MINOR_VERSION * 100 + SDL_PATCHLEVEL) >= 10210
     // Attributes supported from SDL version 1.2.10 onwards
     SDL_GL_SetAttribute(SDL_GL_SWAP_CONTROL, 1);
@@ -409,34 +406,49 @@ SDLAppHandler::EnterScreen(const GLModeDef& inDef)
         sdlFlags=SDL_OPENGL;
     }
 
-    SDL_Surface *surface=SDL_SetVideoMode(m_width, m_height, m_bpp, sdlFlags);
+    bool carryOn = true;
+    
+    SDL_Surface *pSurface = NULL;
+    
+    for (U32 i=0; i<16 && carryOn; ++i)
+    {
+#if (SDL_MAJOR_VERSION * 10000 + SDL_MINOR_VERSION * 100 + SDL_PATCHLEVEL) >= 10206
+    // Attributes supported from SDL version 1.2.6 onwards
+        SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 1);
+        SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 4);
+#endif
+        
+        pSurface=SDL_SetVideoMode(m_width, m_height, m_bpp, sdlFlags);
 
 #if (SDL_MAJOR_VERSION * 10000 + SDL_MINOR_VERSION * 100 + SDL_PATCHLEVEL) >= 10206
-    if (surface == NULL)
-    {
-        cerr << "SDL video mode failed - trying without FSAA" << endl;
-        SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 0);
-        SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 0);
-        surface=SDL_SetVideoMode(m_width, m_height, m_bpp, sdlFlags);
-    }
+        if (pSurface == NULL)
+        {
+            MushcoreLog::Sgl().WarningLog() << "SDL video mode failed - trying without FSAA" << endl;
+            SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 0);
+            SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 0);
+            pSurface=SDL_SetVideoMode(m_width, m_height, m_bpp, sdlFlags);
+        }
 #endif
 
-    if (surface == NULL)
-    {
-        cerr << "SDL video mode failed again - trying for any mode" << endl;
-        surface=SDL_SetVideoMode(m_width, m_height, m_bpp, sdlFlags|SDL_ANYFORMAT);
+        if (pSurface == NULL)
+        {
+            MushcoreLog::Sgl().WarningLog() << "SDL video mode failed again - trying for ANYFORMAT mode" << endl;
+            pSurface=SDL_SetVideoMode(m_width, m_height, m_bpp, sdlFlags|SDL_ANYFORMAT);
+        }
+        
+        if (pSurface != NULL)
+        {
+            // Mode successful
+            carryOn = false;
+        }
+        else
+        {
+            carryOn = PlatformVideoUtils::Sgl().ModeSelectFixAttempt(i);
+        }
     }
-    if (surface == NULL)
-    {
-        cerr << "SDL video mode failed again - reducing bpp to 15" << endl;
-        SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 5);
-        SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 5);
-        SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 5);
-        surface=SDL_SetVideoMode(m_width, m_height, m_bpp, sdlFlags|SDL_ANYFORMAT);
-    }
-
+    
     PlatformVideoUtils::Sgl().ModeChangeEpilogue();
-    if (surface == NULL) throw(MushcoreDeviceFail("Could not select a video mode"));
+    if (pSurface == NULL) throw(MushcoreDeviceFail("Could not select a compatible display mode"));
 
 
     // Got video mode

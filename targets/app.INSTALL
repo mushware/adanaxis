@@ -19,10 +19,10 @@ make install
 MUSH_APP_PACKAGE
 
 Alternatively, the application can be started without installing.  In this
-case the data path enviroment variable must be set.
+case the data path enviroment variable must be set.  For example:
 
 make
-export MUSH_APP_PACKAGE_DATA_DIR=data-MUSH_APP_PACKAGE
+export MUSH_APP_PACKAGE_DATA_DIR=$HOME/MUSH_APP_PACKAGE-MUSH_APP_VERSION/data-MUSH_APP_PACKAGE
 src/MUSH_APP_PACKAGE
 
 Mac OS X

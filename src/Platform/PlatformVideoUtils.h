@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 9LhPd3esgjiGTsZec7nkWQ
 /*
- * $Id: PlatformVideoUtils.h,v 1.19 2007/04/18 09:23:23 southa Exp $
+ * $Id: PlatformVideoUtils.h,v 1.20 2007/06/25 17:58:49 southa Exp $
  * $Log: PlatformVideoUtils.h,v $
+ * Revision 1.20  2007/06/25 17:58:49  southa
+ * X11 fixes
+ *
  * Revision 1.19  2007/04/18 09:23:23  southa
  * Header and level fixes
  *
@@ -103,6 +106,8 @@ public:
     void ModeChangePrologue(void);
     void ModeChangeEpilogue(void);
     void ModeAdd(Mushware::U32 inWidth, Mushware::U32 inHeight);
+    bool ModeSelectFixAttempt(Mushware::U32 inIteration);
+
 
     static void VBLWait(void);
     static void ForceShowCursor(void);

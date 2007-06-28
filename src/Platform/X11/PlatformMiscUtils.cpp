@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } n699h4E6vRdwHSrlSs8lxQ
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.31 2007/06/25 15:59:48 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.32 2007/06/25 20:37:14 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.32  2007/06/25 20:37:14  southa
+ * X11 fixes
+ *
  * Revision 1.31  2007/06/25 15:59:48  southa
  * X11 compatibility
  *
@@ -149,6 +152,8 @@
 using namespace Mushware;
 using namespace std;
 
+std::string PlatformMiscUtils::s_displayEnv = "";
+
 void
 PlatformMiscUtils::Initialise(void)
 {
@@ -157,10 +162,30 @@ PlatformMiscUtils::Initialise(void)
     {
         MushcoreGlobalConfig::Sgl().Set("HOME", home);
     }
+    
+    char *display = getenv("DISPLAY");
+    if (display == NULL)
+    {
+        s_displayEnv = "";
+    }
+    else
+    {
+        s_displayEnv = std::string(display);
+    }
+    
     // Ignore SIGPIPE.  It's raised if we send on an unconnected socket
     if (signal(SIGPIPE, SIG_IGN) == SIG_ERR)
     {
         cerr << "Failed to attach signal handler" << endl;
+    }
+}
+
+void
+PlatformMiscUtils::Finalise(void)
+{
+    if (s_displayEnv != "")
+    {
+        setenv("DISPLAY", s_displayEnv.c_str(), 1 /* overwrite */);
     }
 }
 
