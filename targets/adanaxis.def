@@ -16,8 +16,11 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-# $Id: MandrivaInit.rb,v 1.2 2007/06/28 15:15:18 southa Exp $
-# $Log: MandrivaInit.rb,v $# Revision 1.30  2007/06/27 19:54:16  southa
+# $Id: adanaxis.def,v 1.31 2007/06/29 12:05:04 southa Exp $
+# $Log: adanaxis.def,v $
+# Revision 1.31  2007/06/29 12:05:04  southa
+# Mandriva packaging
+## Revision 1.30  2007/06/27 19:54:16  southa
 # X11 release
 #
 # Revision 1.29  2007/06/27 15:30:42  southa
@@ -183,13 +186,17 @@ Modules: autogen.pl prebuild.sh adanaxis\.spec\.* macosx/project/.*\.plist READM
 Manual:
 Modules: x11/man/MUSH_APP_PACKAGE\..*
 
+# For Mandriva leave the PDF in the data dir, as the packager doesn't set --docdir for configure
+Subst: MUSH_EXTRA_PKGDATA ''
+IfDist: mandriva Subst: MUSH_EXTRA_PKGDATA '.*\.pdf$'
+
 Create: data-adanaxis/Makefile.am
 PkgData:
-IfType: demo Modules: pixels pixels/cosmos mush mushruby ruby spaces/demoend1 spaces/intro1 spaces/menu1 spaces/level1 spaces/level6 spaces/level8 spaces/level2/manifest.txt spaces/level30/manifest.txt spaces/level3/manifest.txt spaces/level4/manifest.txt spaces/level5/manifest.txt spaces/level6/manifest.txt spaces/level7/manifest.txt spaces/level9/manifest.txt spaces/level10/manifest.txt spaces/level11/manifest.txt spaces/level12/manifest.txt spaces/level13/manifest.txt spaces/level14/manifest.txt spaces/level15/manifest.txt spaces/level16/manifest.txt spaces/level17/manifest.txt spaces/level18/manifest.txt spaces/level19/manifest.txt spaces/level20/manifest.txt spaces/level21/manifest.txt spaces/level22/manifest.txt spaces/level23/manifest.txt spaces/level24/manifest.txt spaces/level25/manifest.txt spaces/level26/manifest.txt spaces/level27/manifest.txt spaces/level28/manifest.txt spaces/level29/manifest.txt spaces/level30/manifest.txt waves system/.*\.xml$ system/.*\.txt$
-IfType: full Modules: pixels pixels/cosmos mush mushruby ruby +spaces waves system/.*\.xml$ system/.*\.txt$
-IfType: gpl Modules: pixels pixels/cosmos mushruby ruby +spaces waves system/.*\.xml$ system/.*\.txt$ .*\.pdf$
+IfType: demo Modules: pixels pixels/cosmos mush mushruby ruby spaces/demoend1 spaces/intro1 spaces/menu1 spaces/level1 spaces/level6 spaces/level8 spaces/level2/manifest.txt spaces/level30/manifest.txt spaces/level3/manifest.txt spaces/level4/manifest.txt spaces/level5/manifest.txt spaces/level6/manifest.txt spaces/level7/manifest.txt spaces/level9/manifest.txt spaces/level10/manifest.txt spaces/level11/manifest.txt spaces/level12/manifest.txt spaces/level13/manifest.txt spaces/level14/manifest.txt spaces/level15/manifest.txt spaces/level16/manifest.txt spaces/level17/manifest.txt spaces/level18/manifest.txt spaces/level19/manifest.txt spaces/level20/manifest.txt spaces/level21/manifest.txt spaces/level22/manifest.txt spaces/level23/manifest.txt spaces/level24/manifest.txt spaces/level25/manifest.txt spaces/level26/manifest.txt spaces/level27/manifest.txt spaces/level28/manifest.txt spaces/level29/manifest.txt spaces/level30/manifest.txt waves system/.*\.xml$ system/.*\.txt$ MUSH_EXTRA_PKGDATA
+IfType: full Modules: pixels pixels/cosmos mush mushruby ruby +spaces waves system/.*\.xml$ system/.*\.txt$ MUSH_EXTRA_PKGDATA
+IfType: gpl Modules: pixels pixels/cosmos mushruby ruby +spaces waves system/.*\.xml$ system/.*\.txt$ MUSH_EXTRA_PKGDATA
 
 Doc:
-Modules: .*\.pdf$
+IfNotDist: mandriva Modules: .*\.pdf$
 
 ExtraDist:
