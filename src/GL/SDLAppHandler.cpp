@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } CkSk48jyH/Lvp9pXNnIBSQ
 /*
- * $Id: SDLAppHandler.cpp,v 1.69 2007/06/26 16:27:50 southa Exp $
+ * $Id: SDLAppHandler.cpp,v 1.70 2007/06/28 15:15:14 southa Exp $
  * $Log: SDLAppHandler.cpp,v $
+ * Revision 1.70  2007/06/28 15:15:14  southa
+ * Mandriva fixes
+ *
  * Revision 1.69  2007/06/26 16:27:50  southa
  * X11 tweaks
  *
@@ -375,23 +378,6 @@ SDLAppHandler::EnterScreen(const GLModeDef& inDef)
 {
     GLUtils::Decache();
 
-    PlatformVideoUtils::Sgl().ModeChangePrologue(); // Can quit SDL video
-
-    MediaSDL::Sgl().InitVideoIfRequired();
-
-    SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 8);
-    SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 8);
-    SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 8);
-    SDL_GL_SetAttribute(SDL_GL_ALPHA_SIZE, 0);
-
-    SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 16);
-    SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
-
-#if (SDL_MAJOR_VERSION * 10000 + SDL_MINOR_VERSION * 100 + SDL_PATCHLEVEL) >= 10210
-    // Attributes supported from SDL version 1.2.10 onwards
-    SDL_GL_SetAttribute(SDL_GL_SWAP_CONTROL, 1);
-#endif
-
     m_width=inDef.Width();
     m_height=inDef.Height();
     m_bpp=32;
@@ -410,10 +396,30 @@ SDLAppHandler::EnterScreen(const GLModeDef& inDef)
     
     SDL_Surface *pSurface = NULL;
     
+    
+    
     for (U32 i=0; i<16 && carryOn; ++i)
     {
+        PlatformVideoUtils::Sgl().ModeChangePrologue(); // Can quit SDL video
+    
+        MediaSDL::Sgl().InitVideoIfRequired();
+    
+        SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 8);
+        SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 8);
+        SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 8);
+        SDL_GL_SetAttribute(SDL_GL_ALPHA_SIZE, 0);
+    
+        SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 16);
+        SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+
+#if (SDL_MAJOR_VERSION * 10000 + SDL_MINOR_VERSION * 100 + SDL_PATCHLEVEL) >= 10210
+        // Attributes supported from SDL version 1.2.10 onwards
+        SDL_GL_SetAttribute(SDL_GL_SWAP_CONTROL, 1);
+#endif
+
+
 #if (SDL_MAJOR_VERSION * 10000 + SDL_MINOR_VERSION * 100 + SDL_PATCHLEVEL) >= 10206
-    // Attributes supported from SDL version 1.2.6 onwards
+        // Attributes supported from SDL version 1.2.6 onwards
         SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 1);
         SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 4);
 #endif
@@ -449,7 +455,6 @@ SDLAppHandler::EnterScreen(const GLModeDef& inDef)
     
     PlatformVideoUtils::Sgl().ModeChangeEpilogue();
     if (pSurface == NULL) throw(MushcoreDeviceFail("Could not select a compatible display mode"));
-
 
     // Got video mode
     if (m_width > m_height)

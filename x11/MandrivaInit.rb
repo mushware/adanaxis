@@ -17,8 +17,11 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-# $Id: DebianInit.rb,v 1.3 2007/06/27 11:56:44 southa Exp $
-# $Log: DebianInit.rb,v $
+# $Id: MandrivaInit.rb,v 1.2 2007/06/28 15:15:18 southa Exp $
+# $Log: MandrivaInit.rb,v $
+# Revision 1.2  2007/06/28 15:15:18  southa
+# Mandriva fixes
+#
 # Revision 1.3  2007/06/27 11:56:44  southa
 # Debian packaging
 #
@@ -53,18 +56,9 @@ make
 }
 
     @m_packagingPackages = %w{
-autoconf2.5
-automake
-dh-make
-debhelper
-devscripts
-fakeroot
-gnupg
-lintian
-linda
-pbuilder
-debian-policy
-developers-reference
+rpm-build
+spec-helper
+rpmlint
 }
 
     @m_userPackages = %w{
@@ -105,7 +99,47 @@ mc
   end
 
   def mPackagingInstall
-    mPackagesInstall(@m_packagingPackages)
+#mPackagesInstall(@m_packagingPackages)
+    system("mkdir -p ~/rpm/{BUILD,RPMS/i586,RPMS/x86_64,RPMS/noarch,SOURCES,SRPMS,SPECS,tmp}") or raise "+++ Command failed"
+    
+    macrosFile = ENV['HOME']+"/.rpmmacros"
+    unless File.file?(macrosFile)
+      File.open(macrosFile, "w") do |file|
+        file.print <<EOS
+%_topdir                %(echo $HOME)/rpm
+%_tmppath               %(echo $HOME)/rpm/tmp
+
+# If you want your packages to be GPG signed automatically, add these three lines
+# replacing 'Mandrivalinux' with your GPG name. You may also use rpm --resign
+# to sign the packages later.
+# %_signature             gpg
+# %_gpg_name              Mandrivalinux
+# %_gpg_path              ~/.gnupg
+
+# Add your name and e-mail into the %packager field below. You may also want to
+# also replace vendor with yourself.
+%packager               Andy Southgate <andy.southgate@mushware.com>
+%distribution           Mandriva Linux
+%vendor                 Mushware Limited
+
+# If you want your packages to have your own distsuffix instead of mdv, add it
+# here like this
+# %distsuffix             foo
+EOS
+
+    rcFile = ENV['HOME']+"/.rpmrc"
+    unless File.file?(rcFile)
+      File.open(rcFile, "w") do |file|
+        file.print <<EOS
+buildarchtranslate: i386: i586
+buildarchtranslate: i486: i586
+buildarchtranslate: i586: i586
+buildarchtranslate: i686: i586
+EOS
+
+      end
+    end
+    
   end
 
   def mUserInstall
@@ -188,7 +222,7 @@ OptionParser.new do |opts|
   end
 
   opts.separator ""
-  opts.separator "This script sets up a base installation of debian 4.0 to build this archive."
+  opts.separator "This script sets up a base installation of Mandrive 2007.0 to build this archive."
   opts.separator "Unless you are Andy Southgate, you probably don't want to run this as-is."
   opts.separator "Prerequisites:"
   opts.separator "Your user ID in /etc/sudoers:"

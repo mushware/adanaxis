@@ -8,8 +8,11 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-# $Id: autogen.pl,v 1.15 2007/06/27 12:58:08 southa Exp $
+# $Id: autogen.pl,v 1.16 2007/06/27 15:30:40 southa Exp $
 # $Log: autogen.pl,v $
+# Revision 1.16  2007/06/27 15:30:40  southa
+# X11 packaging
+#
 # Revision 1.15  2007/06/27 12:58:08  southa
 # Debian packaging
 #
@@ -402,7 +405,7 @@ sub Process($)
         {
             if ($command =~ /Use:\s*(\S+)\s+as\s+(\S+)\s*$/)
             {
-                Use($1, $2);
+                Use(Substitute($1), Substitute($2));
             }
             else
             {

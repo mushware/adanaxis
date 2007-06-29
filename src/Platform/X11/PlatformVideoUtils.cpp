@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } Y+WzijXDRsG7dDElPwQlbQ
 /*
- * $Id: PlatformVideoUtils.cpp,v 1.25 2007/06/27 11:56:44 southa Exp $
+ * $Id: PlatformVideoUtils.cpp,v 1.26 2007/06/28 15:15:18 southa Exp $
  * $Log: PlatformVideoUtils.cpp,v $
+ * Revision 1.26  2007/06/28 15:15:18  southa
+ * Mandriva fixes
+ *
  * Revision 1.25  2007/06/27 11:56:44  southa
  * Debian packaging
  *
@@ -262,12 +265,8 @@ PlatformVideoUtils::ModeSelectFixAttempt(Mushware::U32 inIteration)
                     */
                     displayEnv.replace(displayEnv.size()-2, 2, ":0");
                     setenv("DISPLAY", displayEnv.c_str(), 1 /* overwrite */);
-                    MushcoreLog::Sgl().ErrorLog() << "Altered DISPLAY environment from '" << pDisplay << "' to '" << displayEnv <<
-                            "' in attempt to solve virtual desktop problem" << endl;
-                    
-                    MediaSDL::Sgl().QuitVideoIfRequired();
-                    MediaSDL::Sgl().InitVideoIfRequired();
-                    
+                    MushcoreLog::Sgl().WarningLog() << "Altered DISPLAY environment from '" << pDisplay << "' to '" << displayEnv <<
+                            "' in an attempt to solve virtual desktop problem" << endl;
 
                     setenv("DISPLAY=", displayEnv.c_str(), 1 /* overwrite */);
 

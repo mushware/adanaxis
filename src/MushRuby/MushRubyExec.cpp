@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } GFHdYZkRu+Oc9hL9CdJvtw
 /*
- * $Id: MushRubyExec.cpp,v 1.12 2007/06/14 18:55:12 southa Exp $
+ * $Id: MushRubyExec.cpp,v 1.13 2007/06/28 15:15:16 southa Exp $
  * $Log: MushRubyExec.cpp,v $
+ * Revision 1.13  2007/06/28 15:15:16  southa
+ * Mandriva fixes
+ *
  * Revision 1.12  2007/06/14 18:55:12  southa
  * Level and display tweaks
  *
@@ -68,6 +71,7 @@
 #include "MushRubySTL.h"
 
 using namespace Mushware;
+using namespace std;
 
 MUSHCORE_SINGLETON_INSTANCE(MushRubyExec);
 
@@ -312,16 +316,16 @@ MushRubyExec::Require(const std::string& inStr)
 void
 MushRubyExec::ConfigSet(void)
 {
-	tRubyValue configHash = rb_hash_new();
-	
-	rb_hash_aset(configHash, rb_str_new2("RESOURCES_PATH"), rb_str_new2(MushcoreEnv::Sgl().VariableGet("RESOURCES_PATH").StringGet().c_str()));					   
-	
+    tRubyValue configHash = rb_hash_new();
+
+    rb_hash_aset(configHash, rb_str_new2("RESOURCES_PATH"), rb_str_new2(MushcoreEnv::Sgl().VariableGet("RESOURCES_PATH").StringGet().c_str()));
+
 #ifdef MUSHCORE_DEBUG
-	rb_hash_aset(configHash, rb_str_new2("DEBUG"), Mushware::kRubyQtrue);					   
+    rb_hash_aset(configHash, rb_str_new2("DEBUG"), Mushware::kRubyQtrue);
 #else
-	rb_hash_aset(configHash, rb_str_new2("DEBUG"), Mushware::kRubyQfalse);					      
+    rb_hash_aset(configHash, rb_str_new2("DEBUG"), Mushware::kRubyQfalse);
 #endif
-    
+
     rb_gv_set("$MUSHCONFIG", configHash);
 }
 
@@ -331,7 +335,7 @@ MushRubyExec::Initialise(void)
     ruby_init();
 
 #ifdef MUSHCORE_DEBUG
-	ruby_init_loadpath();
+    ruby_init_loadpath();
 #endif
 
     MushRubyIntern::Initialise();
@@ -342,11 +346,17 @@ MushRubyExec::Initialise(void)
     MushcoreScalar rubyPath;
     if (MushcoreEnv::Sgl().VariableGetIfExists(rubyPath, "RUBY_PATH"))
     {
+        MushcoreRegExp pathExp("^(/|\\w+:/|\\\\|\\w+:\\\\)");
+        if (!pathExp.Search(rubyPath.StringGet()))
+        {
+            MushcoreLog::Sgl().WarningLog() << "Path to ruby scripts set to '" << rubyPath.StringGet() << "' but should be absolute" << endl;
+        }
+
         Eval("$LOAD_PATH.push('"+rubyPath.StringGet()+"')");
         Eval("$LOAD_PATH.push('"+rubyPath.StringGet()+"/../mushruby')");
         ruby_script((rubyPath.StringGet()+"/ruby/init.rb").c_str());
-        rb_set_safe_level(2);
-        MushRubyInstall::Sgl().Execute();
-        Require("init.rb");
     }
+    rb_set_safe_level(2);
+    MushRubyInstall::Sgl().Execute();
+    Require("init.rb");
 }

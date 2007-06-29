@@ -1,16 +1,16 @@
 2007-06-15  Andy Southgate <andy.southgate@mushware.com>
-	* Version 1.0.0 released
+    * Version 1.0.0 released
     * Fixed startup on Mac OS X 10.3.9 and 10.2.8
     * New demo levels
     * Gameplay hints and tweaks
-    
+
 2007-06-02  Andy Southgate <andy.southgate@mushware.com>
-	* Version 0.7.2 released
+    * Version 0.7.2 released
     * Fixed control configuration
     * Fixed shader binding error at startup on some hardware
-    
+
 2007-04-20  Andy Southgate <andy.southgate@mushware.com>
-	* Version 0.7.0 released
+    * Version 0.7.0 released
     * Weapons and gameplay
     * Initial 7 levels
     * Familiarisation sequence
@@ -18,14 +18,14 @@
     * Commercial audio and explosion graphics
 
 2006-08-03  Andy Southgate <andy.southgate@mushware.com>
-	* Version 0.1.1 released
-	* Solid rendering
-	* Joystick control
-	* Menu system
-	* Rendering demo content
+    * Version 0.1.1 released
+    * Solid rendering
+    * Joystick control
+    * Menu system
+    * Rendering demo content
 
 2005-08-03  Andy Southgate <andy.southgate@mushware.com>
-	* Version 0.0.1 released
+    * Version 0.0.1 released
 
 2005-08-01  Andy Southgate <andy.southgate@mushware.com>
-	* Control demo created with basic wireframe and mouse control
+    * Control demo created with basic wireframe and mouse control
