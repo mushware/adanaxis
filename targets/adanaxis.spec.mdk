@@ -1,6 +1,9 @@
 # Spec file for Mandriva Linux
-# $Id: adanaxis.spec.mdk,v 1.1 2007/06/29 12:05:04 southa Exp $
+# $Id: adanaxis.spec.mdk,v 1.2 2007/06/29 14:41:54 southa Exp $
 # $Log: adanaxis.spec.mdk,v $
+# Revision 1.2  2007/06/29 14:41:54  southa
+# Mandriva release
+#
 # Revision 1.1  2007/06/29 12:05:04  southa
 # Mandriva packaging
 #
@@ -91,7 +94,7 @@ Exec=%{_bindir}/%{name}
 Icon=%{name}
 Terminal=false
 Type=Application
-StartupNotify=true
+StartupNotify=false
 Categories=GNOME;GTK;KDE;MoreApplications;Games;Arcade;X-MandrivaLinux-MoreApplications-Games-Arcade;
 EOF
 
@@ -105,7 +108,7 @@ Exec=%{_bindir}/%{name} --recover
 Icon=%{name}
 Terminal=false
 Type=Application
-StartupNotify=true
+StartupNotify=false
 Categories=GNOME;GTK;KDE;MoreApplications;Games;Arcade;X-MandrivaLinux-MoreApplications-Games-Arcade;
 EOF
 

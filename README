@@ -1,18 +1,18 @@
-Adanaxis
+Adanaxis Demo
 
 The documentation for this package is supplied in a PDF file named
-data-adanaxis/About_Adanaxis.pdf
+data-adanaxis/About_Adanaxis_Demo.pdf
 
 There may be a limited amount of man infomation accesible after
 installation using:
 
-man adanaxis
+man adanaxisdemo
 
 at the command line.
 
 For package builders the commands of the type
 
-perl autogen.pl adanaxis --type=full --dist=debian
+perl autogen.pl adanaxisdemo --type=full --dist=debian
 
 may be useful for generating package configuration files.
 

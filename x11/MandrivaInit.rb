@@ -17,8 +17,11 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-# $Id: MandrivaInit.rb,v 1.2 2007/06/28 15:15:18 southa Exp $
+# $Id: MandrivaInit.rb,v 1.3 2007/06/29 12:05:04 southa Exp $
 # $Log: MandrivaInit.rb,v $
+# Revision 1.3  2007/06/29 12:05:04  southa
+# Mandriva packaging
+#
 # Revision 1.2  2007/06/28 15:15:18  southa
 # Mandriva fixes
 #
@@ -99,7 +102,7 @@ mc
   end
 
   def mPackagingInstall
-#mPackagesInstall(@m_packagingPackages)
+    mPackagesInstall(@m_packagingPackages)
     system("mkdir -p ~/rpm/{BUILD,RPMS/i586,RPMS/x86_64,RPMS/noarch,SOURCES,SRPMS,SPECS,tmp}") or raise "+++ Command failed"
     
     macrosFile = ENV['HOME']+"/.rpmmacros"
@@ -126,7 +129,8 @@ mc
 # here like this
 # %distsuffix             foo
 EOS
-
+      end
+    end
     rcFile = ENV['HOME']+"/.rpmrc"
     unless File.file?(rcFile)
       File.open(rcFile, "w") do |file|
@@ -139,7 +143,6 @@ EOS
 
       end
     end
-    
   end
 
   def mUserInstall

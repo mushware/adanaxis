@@ -16,8 +16,11 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-# $Id: adanaxis.def,v 1.31 2007/06/29 12:05:04 southa Exp $
+# $Id: adanaxis.def,v 1.32 2007/06/29 14:41:53 southa Exp $
 # $Log: adanaxis.def,v $
+# Revision 1.32  2007/06/29 14:41:53  southa
+# Mandriva release
+#
 # Revision 1.31  2007/06/29 12:05:04  southa
 # Mandriva packaging
 ## Revision 1.30  2007/06/27 19:54:16  southa
@@ -166,7 +169,7 @@ OutputFile: COPYING
 
 # Mandriva specifics
 Subst: MUSH_APP_RELEASE '1'
-IfDist: mandriva Use: targets/adanaxis.spec.mdk as adanaxis.spec
+IfDist: mandriva Use: targets/adanaxis.spec.mdk as MUSH_APP_PACKAGE.spec
 IfDist: mandriva Use: x11/icons/MUSH_APP_PACKAGE-icons.tar.bz2 as MUSH_APP_PACKAGE-icons.tar.bz2
 
 Create: src/Makefile.am

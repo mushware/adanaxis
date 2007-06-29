@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } Y+WzijXDRsG7dDElPwQlbQ
 /*
- * $Id: PlatformVideoUtils.cpp,v 1.26 2007/06/28 15:15:18 southa Exp $
+ * $Id: PlatformVideoUtils.cpp,v 1.27 2007/06/29 12:05:03 southa Exp $
  * $Log: PlatformVideoUtils.cpp,v $
+ * Revision 1.27  2007/06/29 12:05:03  southa
+ * Mandriva packaging
+ *
  * Revision 1.26  2007/06/28 15:15:18  southa
  * Mandriva fixes
  *
@@ -258,12 +261,24 @@ PlatformVideoUtils::ModeSelectFixAttempt(Mushware::U32 inIteration)
             else
             {
                 std::string displayEnv(pDisplay);
+                bool isModified = false;
                 if (displayEnv.size() >= 2 && displayEnv.substr(displayEnv.size()-2, 2) == ":1")
                 {
                     /* Patch for '3D desktop' problem where we are presented with a virtual display :1
                     * but must open :0 for 3D support
                     */
                     displayEnv.replace(displayEnv.size()-2, 2, ":0");
+                    isModified = true;
+                }
+                else if (displayEnv.size() >= 4 && displayEnv.substr(displayEnv.size()-4, 2) == ":1")
+                {
+                    // Same for :1.0
+                    displayEnv.replace(displayEnv.size()-4, 2, ":0");
+                    isModified = true;
+                }
+                
+                if (isModified)
+                {
                     setenv("DISPLAY", displayEnv.c_str(), 1 /* overwrite */);
                     MushcoreLog::Sgl().WarningLog() << "Altered DISPLAY environment from '" << pDisplay << "' to '" << displayEnv <<
                             "' in an attempt to solve virtual desktop problem" << endl;
