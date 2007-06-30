@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } Ay16hfzESIbe/vc98s9yrw
 /*
- * $Id: PlatformMiscUtils.h,v 1.32 2007/03/13 21:45:11 southa Exp $
+ * $Id: PlatformMiscUtils.h,v 1.33 2007/06/28 15:15:17 southa Exp $
  * $Log: PlatformMiscUtils.h,v $
+ * Revision 1.33  2007/06/28 15:15:17  southa
+ * Mandriva fixes
+ *
  * Revision 1.32  2007/03/13 21:45:11  southa
  * Release process
  *
@@ -128,9 +131,11 @@ public:
     static void SleepMsec(Mushware::U32 inMsec);
     static bool FunctionPointerGetIfExists(void *& outPtr, const std::string& inName);
     static void FunctionPointerGet(void *& outPtr, const std::string& inName);
-
+    static void HelpFileOpen(void);
+    
 private:
     static std::string s_displayEnv;
+    static bool s_openHelpOnExit;
 };
 //%includeGuardEnd {
 #endif

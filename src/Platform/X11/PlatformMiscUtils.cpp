@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } n699h4E6vRdwHSrlSs8lxQ
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.32 2007/06/25 20:37:14 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.33 2007/06/28 15:15:17 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.33  2007/06/28 15:15:17  southa
+ * Mandriva fixes
+ *
  * Revision 1.32  2007/06/25 20:37:14  southa
  * X11 fixes
  *
@@ -153,6 +156,7 @@ using namespace Mushware;
 using namespace std;
 
 std::string PlatformMiscUtils::s_displayEnv = "";
+bool PlatformMiscUtils::s_openHelpOnExit = false;
 
 void
 PlatformMiscUtils::Initialise(void)
@@ -186,6 +190,24 @@ PlatformMiscUtils::Finalise(void)
     if (s_displayEnv != "")
     {
         setenv("DISPLAY", s_displayEnv.c_str(), 1 /* overwrite */);
+    }
+    
+    if (s_openHelpOnExit)
+    {
+        bool success = false;
+    
+        std::string exeName(br_find_exe(MushcoreInfo::Sgl().PackageName().c_str()));
+
+        if (system((exeName+" --doc").c_str()) == 0)
+        {
+            success = true;
+        }
+        
+        if (!success)
+        {
+            cout << "Failed to open help file - try /usr/share/" << MushcoreInfo::Sgl().PackageName() <<
+                    " or /usr/share/doc/" << MushcoreInfo::Sgl().PackageName() << endl;
+        }
     }
 }
 
@@ -458,6 +480,12 @@ PlatformMiscUtils::FunctionPointerGet(void *& outPtr, const std::string& inName)
     {
         throw MushcoreRequestFail("Unknown symbol '"+inName+"'");
     }
+}
+
+void
+PlatformMiscUtils::HelpFileOpen(void)
+{
+    s_openHelpOnExit = true;
 }
 
 // Binreloc code follows:

@@ -17,26 +17,29 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-# $Id: DebianBuildAll.rb,v 1.1 2007/06/27 19:54:17 southa Exp $
-# $Log: DebianBuildAll.rb,v $
+# $Id: MandrivaBuildAll.rb,v 1.1 2007/06/29 16:48:30 southa Exp $
+# $Log: MandrivaBuildAll.rb,v $
+# Revision 1.1  2007/06/29 16:48:30  southa
+# Mandriva build
+#
 # Revision 1.1  2007/06/27 19:54:17  southa
 # X11 release
 #
 
 commands = [
 "rm -rf ~/rpm/BUILD/*/* ~/rpm/RPMS/*/* ~/rpm/tmp/* ~/rpm/SPECS/* ~/rpm/SRPMS/*",
-"make distclean",
-"rm -f *.spec *.tar.gz *.tar.bz2 ~/rpm/BUILD/*/* ~/rpm/tmp/*",
+"echo `test -f Makefile && make distclean`",
+"rm -rf *.spec *.tar.gz *.tar.bz2 ~/rpm/BUILD/*/* ~/rpm/tmp/*",
 "perl autogen.pl adanaxis --type=full --dist=mandriva",
 "./configure",
 "make rpm",
 "make distclean",
-"rm -f *.spec *.tar.gz *.tar.bz2 ~/rpm/BUILD/*/* ~/rpm/tmp/*",
+"rm -rf *.spec *.tar.gz *.tar.bz2 ~/rpm/BUILD/*/* ~/rpm/tmp/*",
 "perl autogen.pl adanaxis --type=demo --dist=mandriva",
 "./configure",
 "make rpm",
 "make distclean",
-"rm -f *.spec *.tar.gz *.tar.bz2 ~/rpm/BUILD/*/* ~/rpm/tmp/*",
+"rm -rf *.spec *.tar.gz *.tar.bz2 ~/rpm/BUILD/*/* ~/rpm/tmp/*",
 "perl autogen.pl adanaxis --type=gpl --dist=mandriva",
 "./configure",
 "make rpm",

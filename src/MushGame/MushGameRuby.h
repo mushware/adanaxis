@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 5dkO+eg2P4Bh997GvySFQg
 /*
- * $Id: MushGameRuby.h,v 1.25 2007/04/16 08:41:10 southa Exp $
+ * $Id: MushGameRuby.h,v 1.26 2007/04/16 18:51:01 southa Exp $
  * $Log: MushGameRuby.h,v $
+ * Revision 1.26  2007/04/16 18:51:01  southa
+ * Voice work
+ *
  * Revision 1.25  2007/04/16 08:41:10  southa
  * Level and header mods
  *
@@ -156,6 +159,7 @@ public:
     static Mushware::tRubyValue TargetPieceSelect(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0, Mushware::tRubyValue inArg1, Mushware::tRubyValue inArg2);
     static Mushware::tRubyValue EpilogueWon(Mushware::tRubyValue inSelf);
     static Mushware::tRubyValue EpilogueRunMsec(Mushware::tRubyValue inSelf);
+    static Mushware::tRubyValue HelpFileOpen(Mushware::tRubyValue inSelf);
     
     static void MethodsInstall(void);
     

@@ -17,20 +17,25 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-# $Id: MandrivaInit.rb,v 1.2 2007/06/28 15:15:18 southa Exp $
-# $Log: MandrivaInit.rb,v $
+# $Id: MakeIcons.rb,v 1.1 2007/06/29 11:03:13 southa Exp $
+# $Log: MakeIcons.rb,v $
+# Revision 1.1  2007/06/29 11:03:13  southa
+# Created
+#
 
 # Mandriva packages
 
 require 'ftools'
 
+path = File.dirname(__FILE__)
+
 for size in ["16","32","48"]
-  File.copy("adanaxis-#{size}.png", "adanaxisdemo-#{size}.png")
-  File.copy("adanaxis-#{size}.png", "adanaxisgpl-#{size}.png")
+  File.copy(path+"/adanaxis-#{size}.png", path+"/adanaxisdemo-#{size}.png")
+  File.copy(path+"/adanaxis-#{size}.png", path+"/adanaxisgpl-#{size}.png")
 end
 
 for name in ["adanaxis", "adanaxisdemo", "adanaxisgpl"]
-  system("tar cjf #{name}-icons.tar.bz2 #{name}-??.png") or raise "+++ Command failed"
+  system("cd #{path} && tar cjf #{name}-icons.tar.bz2 #{name}-??.png") or raise "+++ Command failed"
 end
 
 puts "Done."

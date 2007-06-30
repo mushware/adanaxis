@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } j1yQVneL+5MtyXUhYiB6CQ
 /*
- * $Id: MushGameRuby.cpp,v 1.31 2007/04/16 18:51:01 southa Exp $
+ * $Id: MushGameRuby.cpp,v 1.32 2007/06/14 01:03:53 southa Exp $
  * $Log: MushGameRuby.cpp,v $
+ * Revision 1.32  2007/06/14 01:03:53  southa
+ * win32 build fixes
+ *
  * Revision 1.31  2007/04/16 18:51:01  southa
  * Voice work
  *
@@ -908,6 +911,20 @@ MushGameRuby::EpilogueRunMsec(Mushware::tRubyValue inSelf)
     return MushRubyValue(timeDiff).Value();
 }
 
+Mushware::tRubyValue
+MushGameRuby::HelpFileOpen(Mushware::tRubyValue inSelf)
+{
+    try
+    {
+        PlatformMiscUtils::HelpFileOpen();
+    }
+    catch (std::exception& e)
+    {
+        MushRubyUtil::Raise(e.what());
+    }
+    return Mushware::kRubyQnil;
+}
+
 void
 MushGameRuby::MethodsInstall(void)
 {
@@ -958,4 +975,5 @@ MushGameRuby::MethodsInstall(void)
     MushRubyUtil::SingletonMethodDefineThreeParams(Klass(), "cTargetPieceSelect", TargetPieceSelect);
     MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cEpilogueWon", EpilogueWon);
     MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cEpilogueRunMsec", EpilogueRunMsec);
+    MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cHelpFileOpen", HelpFileOpen);
 }

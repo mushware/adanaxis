@@ -16,8 +16,11 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-# $Id: adanaxis.def,v 1.32 2007/06/29 14:41:53 southa Exp $
+# $Id: adanaxis.def,v 1.33 2007/06/29 16:48:30 southa Exp $
 # $Log: adanaxis.def,v $
+# Revision 1.33  2007/06/29 16:48:30  southa
+# Mandriva build
+#
 # Revision 1.32  2007/06/29 14:41:53  southa
 # Mandriva release
 #
@@ -132,7 +135,7 @@ IfType: gpl Subst: MUSH_APP_UNDERSCORED_NAME 'Adanaxis_GPL'
 
 Subst: MUSH_APP_MAJOR_VERSION '1'
 Subst: MUSH_APP_MINOR_VERSION '1'
-Subst: MUSH_APP_MICRO_VERSION '0'
+Subst: MUSH_APP_MICRO_VERSION '2'
 Subst: MUSH_APP_VERSION 'MUSH_APP_MAJOR_VERSION.MUSH_APP_MINOR_VERSION.MUSH_APP_MICRO_VERSION'
 Subst: MUSH_DATA_DIR 'data-adanaxis'
 Subst: MUSH_DATA_MAKEFILE 'data-adanaxis/Makefile'
@@ -177,6 +180,8 @@ Output: AM_CFLAGS=$(BINRELOC_CFLAGS) -DMUSH_DATA_DIR=\"$(datadir)\"
 Output: AM_CPPFLAGS=$(BINRELOC_CFLAGS) -DMUSH_DATA_DIR=\"$(datadir)\"
 Program: MUSH_APP_PACKAGE
 Modules: API Game GL Main/SDLApp Media Mushcore MushFile MushGame MushGL MushCollision MushMesh MushMeshLibrary MushMeshRuby MushPie MushRender MushRuby MushSecret MushSkin Platform Support Adanaxis
+# Replace Modules with the following to just build a stub application
+# Modules: Stub
 
 ExtraDist:
 Modules: Platform/MacOSX Platform/win32 +.*\.c$ Platform/X11 +.*\.y$ +.*\.mkf$ +.*\.flex$ +.*\.m$
@@ -184,7 +189,7 @@ Modules: Platform/MacOSX Platform/win32 +.*\.c$ Platform/X11 +.*\.y$ +.*\.mkf$ +
 Append: Makefile.am
 
 ExtraDist:
-Modules: autogen.pl prebuild.sh adanaxis\.spec\.* macosx/project/.*\.plist README\.* .*\.pl .*\.pm macosx/project/project.xcodeproj/.*pbx(proj|user) macosx/MakeRelease.sh macosx/adanaxis_app.icns scripts/AmendToType.rb scripts/FileMush.rb scripts/ImageProcess.rb scripts/MushObject.rb scripts/ProcessAnimation.rb scripts/ProcessCosmos.rb scripts/ProcessIntern.rb scripts/ProcessMush.rb scripts/SourceProcess.rb targets/adanaxis\..* targets/app\..* targets/commercial\..* targets/empty\..* targets/sdl_app\..* targets/win32.installer.nsi  win32/adanaxis.*\.ico win32/MakeInstaller.sh win32/installer.nsi win32/FileListToNSI.rb VisualC/project/adanaxis.*\.(sln|aps|rc|vcproj|ico) x11/icons/adanaxis\..*\.png$ x11/icons/adanaxis\..*\.xpm$ x11/icons/adanaxis\..*\.png$
+Modules: autogen.pl prebuild.sh MUSH_APP_PACKAGE.spec macosx/project/.*\.plist README\.* .*\.pl .*\.pm macosx/project/project.xcodeproj/.*pbx(proj|user) macosx/MakeRelease.sh macosx/adanaxis_app.icns scripts/AmendToType.rb scripts/FileMush.rb scripts/ImageProcess.rb scripts/MushObject.rb scripts/ProcessAnimation.rb scripts/ProcessCosmos.rb scripts/ProcessIntern.rb scripts/ProcessMush.rb scripts/SourceProcess.rb targets/adanaxis\..* targets/app\..* targets/commercial\..* targets/empty\..* targets/sdl_app\..* targets/win32.installer.nsi  win32/adanaxis.*\.ico win32/MakeInstaller.sh win32/installer.nsi win32/FileListToNSI.rb VisualC/project/adanaxis.*\.(sln|aps|rc|vcproj|ico) x11/icons/adanaxis\..*\.png$ x11/icons/adanaxis\..*\.xpm$ x11/icons/adanaxis\..*\.png$
 
 Manual:
 Modules: x11/man/MUSH_APP_PACKAGE\..*
