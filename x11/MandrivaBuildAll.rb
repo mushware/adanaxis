@@ -1,7 +1,7 @@
 #!/usr/bin/ruby -w
 ##############################################################################
 #
-# File x11/MandrivaBuildAll.rb
+# File x11/DebianInit.rb
 #
 # Author Andy Southgate 2007
 #
@@ -17,14 +17,8 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-# $Id: MandrivaBuildAll.rb,v 1.3 2007/06/30 16:02:14 southa Exp $
+# $Id: MandrivaBuildAll.rb,v 1.1 2007/06/29 16:48:30 southa Exp $
 # $Log: MandrivaBuildAll.rb,v $
-# Revision 1.3  2007/06/30 16:02:14  southa
-# Generic packaging
-#
-# Revision 1.2  2007/06/30 11:45:46  southa
-# X11 release
-#
 # Revision 1.1  2007/06/29 16:48:30  southa
 # Mandriva build
 #
@@ -33,7 +27,7 @@
 #
 
 commands = [
-"rm -rf ~/rpm/BUILD/*/* ~/rpm/RPMS/*/* ~/rpm/tmp/* ~/rpm/SOURCES/* ~/rpm/SPECS/* ~/rpm/SRPMS/*",
+"rm -rf ~/rpm/BUILD/*/* ~/rpm/RPMS/*/* ~/rpm/tmp/* ~/rpm/SPECS/* ~/rpm/SRPMS/*",
 "echo `test -f Makefile && make distclean`",
 "rm -rf *.spec *.tar.gz *.tar.bz2 ~/rpm/BUILD/*/* ~/rpm/tmp/*",
 "perl autogen.pl adanaxis --type=full --dist=mandriva",
