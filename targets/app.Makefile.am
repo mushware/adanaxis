@@ -10,8 +10,11 @@
 ##############################################################################
 
 #
-# $Id: app.Makefile.am,v 1.12 2007/06/27 19:54:16 southa Exp $
+# $Id: app.Makefile.am,v 1.13 2007/06/30 11:45:46 southa Exp $
 # $Log: app.Makefile.am,v $
+# Revision 1.13  2007/06/30 11:45:46  southa
+# X11 release
+#
 # Revision 1.12  2007/06/27 19:54:16  southa
 # X11 release
 #
@@ -84,8 +87,8 @@ $(BZIPFILE):$(GZIPFILE)
 	rm -f $(BZIPFILE)
 	gunzip -c $(GZIPFILE) | bzip2 --best > $(BZIPFILE)
 
-rpm:MUSH_APP_PACKAGE.spec $(GZIPFILE) $(ICONSFILE)
-	cp $(ICONSFILE) ~/rpm/SOURCES/$(ICONSFILE)
+rpm:MUSH_APP_PACKAGE.spec $(GZIPFILE)
+# cp $(ICONSFILE) ~/rpm/SOURCES/$(ICONSFILE)
 	cp $(GZIPFILE) ~/rpm/SOURCES/$(GZIPFILE)
 	rpmbuild -ba $<
 

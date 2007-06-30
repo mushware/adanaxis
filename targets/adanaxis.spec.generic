@@ -1,0 +1,153 @@
+# Spec file for Mandriva Linux
+# $Id: adanaxis.spec.mdk,v 1.3 2007/06/29 16:48:30 southa Exp $
+# $Log: adanaxis.spec.mdk,v $
+# Revision 1.3  2007/06/29 16:48:30  southa
+# Mandriva build
+#
+# Revision 1.2  2007/06/29 14:41:54  southa
+# Mandriva release
+#
+# Revision 1.1  2007/06/29 12:05:04  southa
+# Mandriva packaging
+#
+
+# This is a 'generic' RPM spec, designed to produce binary RPMs usable on most systems.
+# For a more specific one, try:
+# perl autogen.pl --type=gpl --dist=mandriva adanaxis
+
+%define name    MUSH_APP_PACKAGE
+%define version MUSH_APP_VERSION
+%define release MUSH_APP_RELEASEgeneric
+
+%define section More Applications/Games/Arcade
+%define title   MUSH_APP_NAME
+%define longtitle MUSH_APP_NAME - an action game in four spatial dimensions
+
+%define Summary Action game in four spatial dimensions
+
+Summary:        %Summary
+Name:           %name
+Version:        %version
+Release:        %release
+License:        Shareware
+Group:          Games/Arcade
+URL:            http://www.mushware.com/
+
+Source0:        http://www.mushware.com/files/%name-%version.tar.gz
+
+BuildRoot:      %_tmppath/%name-buildroot
+
+# Buildrequires not used for generic RPM - package naming not consistent between distros
+# Buildrequires:       autoconf2.5 automake binutils libmesaglut3-devel gcc gcc-c++ glibc-devel
+# Buildrequires:       libexpat0-devel libjpeg62-devel libmesagl1-devel libmesaglu1-devel libpcre0-devel
+# Buildrequires:       libSDL1.2-devel libSDL_mixer1.2-devel libtiff3-devel make
+
+%description
+Adanaxis is fast-moving first person shooter set in deep space, where the
+fundamentals of space itself are changed.  By adding another dimension to
+space this game provides an environment with movement in four directions
+and six planes of rotation.  Initially the game explains the 4D control
+system via a graphical sequence, before moving on to 30 levels of gameplay
+with numerous enemy, ally, weapon and mission types.  Features include
+simulated 4D texturing, mouse and joystick control, and original music.
+Screenshots, movies and further information are available at
+http://www.mushware.com/.
+
+Hardware-accelerated 3D is recommended, ideally with support for OpenGL
+Shading Language.
+
+%prep
+%setup -q
+
+%build
+# Use autopackage's apbuild for wider compatibility
+export CC=apgcc
+export CXX=apg++
+# libtiff has had ABI stability issues so link statically
+export APBUILD_STATIC=tiff
+./configure
+make
+
+%install
+rm -rf %buildroot
+%makeinstall
+
+# Old-style menu
+
+mkdir -p %buildroot/%_menudir
+cat > %buildroot/%_menudir/%name << EOF
+?package(%name): \
+command="%_bindir/%name" \
+needs="X11" \
+icon="%name.png" \
+section="%section" \
+title="%title" \
+longtitle="%longtitle"
+
+?package(%name): \
+command="%_bindir/%name --recover" \
+needs="X11" \
+icon="%name.png" \
+section="%section" \
+title="%title (Recovery Mode)" \
+longtitle="%longtitle (Launch in Recovery Mode)"
+EOF
+
+# New-style menu
+
+mkdir -p %{buildroot}%{_datadir}/applications
+cat > %{buildroot}%{_datadir}/applications/mushware-%{name}.desktop <<EOF
+[Desktop Entry]
+Encoding=UTF-8
+Name=%{title}
+Comment=%{longtitle}
+Exec=%{_bindir}/%{name} 
+Icon=%{name}
+Terminal=false
+Type=Application
+StartupNotify=false
+Categories=GNOME;GTK;KDE;MoreApplications;Games;Arcade;X-MandrivaLinux-MoreApplications-Games-Arcade;
+EOF
+
+mkdir -p %{buildroot}%{_datadir}/applications
+cat > %{buildroot}%{_datadir}/applications/mushware-%{name}-recover.desktop <<EOF
+[Desktop Entry]
+Encoding=UTF-8
+Name=%{title} (Recovery Mode)
+Comment=%{longtitle} (Launch in Recovery Mode)
+Exec=%{_bindir}/%{name} --recover
+Icon=%{name}
+Terminal=false
+Type=Application
+StartupNotify=false
+Categories=GNOME;GTK;KDE;MoreApplications;Games;Arcade;X-MandrivaLinux-MoreApplications-Games-Arcade;
+EOF
+
+%__install -D -m 644 x11/icons/%{name}-48.png %buildroot/%_liconsdir/%name.png
+%__install -D -m 644 x11/icons/%{name}-32.png %buildroot/%_iconsdir/%name.png
+%__install -D -m 644 x11/icons/%{name}-16.png %buildroot/%_miconsdir/%name.png
+
+%post
+
+%postun
+
+%clean
+rm -rf %buildroot
+
+%files
+%defattr(0755,root,root,0755)
+%_bindir/*
+%defattr(0644,root,root,0755)
+%doc COPYING README INSTALL ChangeLog AUTHORS
+%_datadir/MUSH_APP_PACKAGE/*
+%_datadir/applications/mushware-%{name}.desktop
+%_datadir/applications/mushware-%{name}-recover.desktop
+%_menudir/*
+%_miconsdir/%name.png
+%_iconsdir/%name.png
+%_liconsdir/%name.png
+%_mandir/man6/%{name}*.6*
+
+%changelog
+* Fri Jun 29 2007 Andy Southgate <andy.southgate@mushware.com> 1.1.0-1mushmdk
+- Created from skel.spec

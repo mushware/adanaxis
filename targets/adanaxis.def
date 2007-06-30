@@ -16,8 +16,11 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-# $Id: adanaxis.def,v 1.33 2007/06/29 16:48:30 southa Exp $
+# $Id: adanaxis.def,v 1.34 2007/06/30 11:45:46 southa Exp $
 # $Log: adanaxis.def,v $
+# Revision 1.34  2007/06/30 11:45:46  southa
+# X11 release
+#
 # Revision 1.33  2007/06/29 16:48:30  southa
 # Mandriva build
 #
@@ -120,18 +123,21 @@
 
 Name: 'Adanaxis'
 
-IfNotType: (demo|full|gpl) Error: Please supply --type=demo, --type=full or --type=gpl
-IfNotDist: (none|debian|mandriva) Error: Please supply --dist=none, --dist=debian, --dist=mandriva or no dist option
+IfNotType: (demo|full|gpl|stub) Error: Please supply --type=demo, --type=full, --type=gpl ot --type=stub
+IfNotDist: (none|debian|mandriva|genericrpm) Error: Please supply --dist=none, --dist=debian, --dist=mandriva, --dist= genericrpm or no dist option
 
 IfType: demo Subst: MUSH_APP_PACKAGE 'adanaxisdemo'
 IfType: full Subst: MUSH_APP_PACKAGE 'adanaxis'
 IfType: gpl Subst: MUSH_APP_PACKAGE 'adanaxisgpl'
+IfType: stub Subst: MUSH_APP_PACKAGE 'adanaxisstub'
 IfType: demo Subst: MUSH_APP_NAME 'Adanaxis Demo'
 IfType: full Subst: MUSH_APP_NAME 'Adanaxis'
 IfType: gpl Subst: MUSH_APP_NAME 'Adanaxis GPL'
+IfType: stub Subst: MUSH_APP_NAME 'Adanaxis Stub'
 IfType: demo Subst: MUSH_APP_UNDERSCORED_NAME 'Adanaxis_Demo'
 IfType: full Subst: MUSH_APP_UNDERSCORED_NAME 'Adanaxis'
 IfType: gpl Subst: MUSH_APP_UNDERSCORED_NAME 'Adanaxis_GPL'
+IfType: stub Subst: MUSH_APP_UNDERSCORED_NAME 'Adanaxis_Stub'
 
 Subst: MUSH_APP_MAJOR_VERSION '1'
 Subst: MUSH_APP_MINOR_VERSION '1'
@@ -147,7 +153,7 @@ Subst: MUSH_TOP_SUBDIRS 'src MUSH_DATA_DIR'
 Use: targets/app.acinclude.m4 as acinclude.m4
 Use: targets/app.Makefile.am as Makefile.am
 Use: targets/sdl_app.configure.in as configure.in
-IfType: (demo|gpl) Use: targets/app.COPYING as COPYING
+IfType: (demo|gpl|stub) Use: targets/app.COPYING as COPYING
 IfType: full Use: targets/commercial.COPYING as COPYING
 Use: targets/app.INSTALL as INSTALL
 Use: targets/app.AUTHORS as AUTHORS
@@ -155,10 +161,10 @@ Use: targets/app.README as README
 Use: targets/adanaxis.ChangeLog as ChangeLog
 Use: targets/adanaxis.ChangeLog as NEWS
 Use: targets/win32.installer.nsi as win32/installer.nsi
-IfType: (demo|gpl) Use: targets/empty.prebuild.sh as prebuild.sh
+IfType: (demo|gpl|stub) Use: targets/empty.prebuild.sh as prebuild.sh
 IfType: full Use: targets/app.prebuild.sh as prebuild.sh
 IfType: (demo|full) Use: ../core-keys/MushSecretKeys.cpp as src/MushSecret/MushSecretKeys.cpp
-IfType: gpl Use: targets/empty.MushSecretKeys.cpp as src/MushSecret/MushSecretKeys.cpp
+IfType: (gpl|stub) Use: targets/empty.MushSecretKeys.cpp as src/MushSecret/MushSecretKeys.cpp
 
 # Debian specifics
 Use: targets/adanaxis.debian.changelog as debian/changelog
@@ -175,13 +181,17 @@ Subst: MUSH_APP_RELEASE '1'
 IfDist: mandriva Use: targets/adanaxis.spec.mdk as MUSH_APP_PACKAGE.spec
 IfDist: mandriva Use: x11/icons/MUSH_APP_PACKAGE-icons.tar.bz2 as MUSH_APP_PACKAGE-icons.tar.bz2
 
+# Generic RPM specifics
+Subst: MUSH_APP_RELEASE '1'
+IfDist: genericrpm Use: targets/adanaxis.spec.generic as MUSH_APP_PACKAGE.spec
+
 Create: src/Makefile.am
 Output: AM_CFLAGS=$(BINRELOC_CFLAGS) -DMUSH_DATA_DIR=\"$(datadir)\"
 Output: AM_CPPFLAGS=$(BINRELOC_CFLAGS) -DMUSH_DATA_DIR=\"$(datadir)\"
 Program: MUSH_APP_PACKAGE
-Modules: API Game GL Main/SDLApp Media Mushcore MushFile MushGame MushGL MushCollision MushMesh MushMeshLibrary MushMeshRuby MushPie MushRender MushRuby MushSecret MushSkin Platform Support Adanaxis
-# Replace Modules with the following to just build a stub application
-# Modules: Stub
+IfNotType: stub Modules: API Game GL Main/SDLApp Media Mushcore MushFile MushGame MushGL MushCollision MushMesh MushMeshLibrary MushMeshRuby MushPie MushRender MushRuby MushSecret MushSkin Platform Support Adanaxis
+# Replacing Modules with the following justs build a stub application
+IfType: stub Modules: Stub
 
 ExtraDist:
 Modules: Platform/MacOSX Platform/win32 +.*\.c$ Platform/X11 +.*\.y$ +.*\.mkf$ +.*\.flex$ +.*\.m$
@@ -189,22 +199,22 @@ Modules: Platform/MacOSX Platform/win32 +.*\.c$ Platform/X11 +.*\.y$ +.*\.mkf$ +
 Append: Makefile.am
 
 ExtraDist:
-Modules: autogen.pl prebuild.sh MUSH_APP_PACKAGE.spec macosx/project/.*\.plist README\.* .*\.pl .*\.pm macosx/project/project.xcodeproj/.*pbx(proj|user) macosx/MakeRelease.sh macosx/adanaxis_app.icns scripts/AmendToType.rb scripts/FileMush.rb scripts/ImageProcess.rb scripts/MushObject.rb scripts/ProcessAnimation.rb scripts/ProcessCosmos.rb scripts/ProcessIntern.rb scripts/ProcessMush.rb scripts/SourceProcess.rb targets/adanaxis\..* targets/app\..* targets/commercial\..* targets/empty\..* targets/sdl_app\..* targets/win32.installer.nsi  win32/adanaxis.*\.ico win32/MakeInstaller.sh win32/installer.nsi win32/FileListToNSI.rb VisualC/project/adanaxis.*\.(sln|aps|rc|vcproj|ico) x11/icons/adanaxis\..*\.png$ x11/icons/adanaxis\..*\.xpm$ x11/icons/adanaxis\..*\.png$
+Modules: autogen.pl prebuild.sh MUSH_APP_PACKAGE.spec macosx/project/.*\.plist README\.* .*\.pl .*\.pm macosx/project/project.xcodeproj/.*pbx(proj|user) macosx/MakeRelease.sh macosx/adanaxis_app.icns scripts/AmendToType.rb scripts/FileMush.rb scripts/ImageProcess.rb scripts/MushObject.rb scripts/ProcessAnimation.rb scripts/ProcessCosmos.rb scripts/ProcessIntern.rb scripts/ProcessMush.rb scripts/SourceProcess.rb targets/adanaxis\..* targets/app\..* targets/commercial\..* targets/empty\..* targets/sdl_app\..* targets/win32.installer.nsi  win32/adanaxis.*\.ico win32/MakeInstaller.sh win32/installer.nsi win32/FileListToNSI.rb VisualC/project/adanaxis.*\.(sln|aps|rc|vcproj|ico) x11/icons/MUSH_APP_PACKAGE.*\.png$ x11/icons/MUSH_APP_PACKAGE.*\.xpm$
 
 Manual:
 Modules: x11/man/MUSH_APP_PACKAGE\..*
 
 # For Mandriva leave the PDF in the data dir, as the packager doesn't set --docdir for configure
 Subst: MUSH_EXTRA_PKGDATA ''
-IfDist: mandriva Subst: MUSH_EXTRA_PKGDATA '.*\.pdf$'
+IfDist: (mandriva|genericrpm) Subst: MUSH_EXTRA_PKGDATA '.*\.pdf$'
 
 Create: data-adanaxis/Makefile.am
 PkgData:
 IfType: demo Modules: pixels pixels/cosmos mush mushruby ruby spaces/demoend1 spaces/intro1 spaces/menu1 spaces/level1 spaces/level6 spaces/level8 spaces/level2/manifest.txt spaces/level30/manifest.txt spaces/level3/manifest.txt spaces/level4/manifest.txt spaces/level5/manifest.txt spaces/level6/manifest.txt spaces/level7/manifest.txt spaces/level9/manifest.txt spaces/level10/manifest.txt spaces/level11/manifest.txt spaces/level12/manifest.txt spaces/level13/manifest.txt spaces/level14/manifest.txt spaces/level15/manifest.txt spaces/level16/manifest.txt spaces/level17/manifest.txt spaces/level18/manifest.txt spaces/level19/manifest.txt spaces/level20/manifest.txt spaces/level21/manifest.txt spaces/level22/manifest.txt spaces/level23/manifest.txt spaces/level24/manifest.txt spaces/level25/manifest.txt spaces/level26/manifest.txt spaces/level27/manifest.txt spaces/level28/manifest.txt spaces/level29/manifest.txt spaces/level30/manifest.txt waves system/.*\.xml$ system/.*\.txt$ MUSH_EXTRA_PKGDATA
 IfType: full Modules: pixels pixels/cosmos mush mushruby ruby +spaces waves system/.*\.xml$ system/.*\.txt$ MUSH_EXTRA_PKGDATA
-IfType: gpl Modules: pixels pixels/cosmos mushruby ruby +spaces waves system/.*\.xml$ system/.*\.txt$ MUSH_EXTRA_PKGDATA
+IfType: (gpl|stub) Modules: pixels pixels/cosmos mushruby ruby +spaces waves system/.*\.xml$ system/.*\.txt$ MUSH_EXTRA_PKGDATA
 
 Doc:
-IfNotDist: mandriva Modules: .*\.pdf$
+IfNotDist: (mandriva|genericrpm) Modules: .*\.pdf$
 
 ExtraDist:
