@@ -1,7 +1,7 @@
 #!/usr/bin/ruby -w
 ##############################################################################
 #
-# File x11/DebianInit.rb
+# File x11/MandrivaBuildAll.rb
 #
 # Author Andy Southgate 2007
 #
@@ -17,8 +17,11 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-# $Id: MandrivaBuildAll.rb,v 1.2 2007/06/30 11:45:46 southa Exp $
+# $Id: MandrivaBuildAll.rb,v 1.3 2007/06/30 16:02:14 southa Exp $
 # $Log: MandrivaBuildAll.rb,v $
+# Revision 1.3  2007/06/30 16:02:14  southa
+# Generic packaging
+#
 # Revision 1.2  2007/06/30 11:45:46  southa
 # X11 release
 #

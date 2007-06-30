@@ -1,7 +1,7 @@
 #!/usr/bin/ruby -w
 ##############################################################################
 #
-# File x11/DebianInit.rb
+# File x11/GenericBuildAll.rb
 #
 # Author Andy Southgate 2007
 #
@@ -17,33 +17,24 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-# $Id: MandrivaBuildAll.rb,v 1.2 2007/06/30 11:45:46 southa Exp $
-# $Log: MandrivaBuildAll.rb,v $
-# Revision 1.2  2007/06/30 11:45:46  southa
-# X11 release
-#
-# Revision 1.1  2007/06/29 16:48:30  southa
-# Mandriva build
-#
-# Revision 1.1  2007/06/27 19:54:17  southa
-# X11 release
-#
+# $Id: GenericBuildAll.rb,v 1.1 2007/06/30 16:02:14 southa Exp $
+# $Log: GenericBuildAll.rb,v $
 
 commands = [
 "rm -rf ~/rpm/BUILD/*/* ~/rpm/RPMS/*/* ~/rpm/tmp/* ~/rpm/SOURCES/* ~/rpm/SPECS/* ~/rpm/SRPMS/*",
 "echo `test -f Makefile && make distclean`",
 "rm -rf *.spec *.tar.gz *.tar.bz2 ~/rpm/BUILD/*/* ~/rpm/tmp/*",
-"perl autogen.pl adanaxis --type=full --dist=mandriva",
+"perl autogen.pl adanaxis --type=full --dist=generic",
 "./configure",
 "make rpm",
 "make distclean",
 "rm -rf *.spec *.tar.gz *.tar.bz2 ~/rpm/BUILD/*/* ~/rpm/tmp/*",
-"perl autogen.pl adanaxis --type=demo --dist=mandriva",
+"perl autogen.pl adanaxis --type=demo --dist=generic",
 "./configure",
 "make rpm",
 "make distclean",
 "rm -rf *.spec *.tar.gz *.tar.bz2 ~/rpm/BUILD/*/* ~/rpm/tmp/*",
-"perl autogen.pl adanaxis --type=gpl --dist=mandriva",
+"perl autogen.pl adanaxis --type=gpl --dist=generic",
 "./configure",
 "make rpm",
 "ls -lR ~/rpm/RPMS/*",
