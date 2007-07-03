@@ -17,8 +17,11 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-# $Id: MakeIcons.rb,v 1.2 2007/06/30 11:45:47 southa Exp $
+# $Id: MakeIcons.rb,v 1.3 2007/06/30 16:02:14 southa Exp $
 # $Log: MakeIcons.rb,v $
+# Revision 1.3  2007/06/30 16:02:14  southa
+# Generic packaging
+#
 # Revision 1.2  2007/06/30 11:45:47  southa
 # X11 release
 #
@@ -32,10 +35,11 @@ require 'ftools'
 
 path = File.dirname(__FILE__)
 
-for size in ["16","32","48"]
-  File.copy(path+"/adanaxis-#{size}.png", path+"/adanaxisdemo-#{size}.png")
-  File.copy(path+"/adanaxis-#{size}.png", path+"/adanaxisgpl-#{size}.png")
-  File.copy(path+"/adanaxis-#{size}.png", path+"/adanaxisstub-#{size}.png")
+for suffix in ["demo", "gpl", "stub"]
+  for size in ["16","32","48"]
+    File.copy(path+"/adanaxis#{size}x#{size}.xpm", path+"/adanaxis#{suffix}#{size}x#{size}.xpm)
+    File.copy(path+"/adanaxis-#{size}.png", path+"/adanaxis#{suffix}-#{size}.png")
+  end
 end
 
 for name in ["adanaxis", "adanaxisdemo", "adanaxisgpl"]
