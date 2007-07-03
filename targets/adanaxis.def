@@ -16,8 +16,11 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-# $Id: adanaxis.def,v 1.35 2007/06/30 16:02:14 southa Exp $
+# $Id: adanaxis.def,v 1.36 2007/07/03 13:30:17 southa Exp $
 # $Log: adanaxis.def,v $
+# Revision 1.36  2007/07/03 13:30:17  southa
+# Generic dpkg release
+#
 # Revision 1.35  2007/06/30 16:02:14  southa
 # Generic packaging
 #
@@ -127,7 +130,7 @@
 Name: 'Adanaxis'
 
 IfNotType: (demo|full|gpl|stub) Error: Please supply --type=demo, --type=full, --type=gpl ot --type=stub
-IfNotDist: (none|debian|mandriva|genericrpm|genericdeb) Error: Please supply --dist=none, --dist=debian, --dist=mandriva, --dist= genericrpm, --dist= genericdeb or no dist option
+IfNotDist: (none|debian|mandriva|genericrpm|genericdpkg) Error: Please supply --dist=none, --dist=debian, --dist=mandriva, --dist= genericrpm, --dist= genericdpkg or no dist option
 
 IfType: demo Subst: MUSH_APP_PACKAGE 'adanaxisdemo'
 IfType: full Subst: MUSH_APP_PACKAGE 'adanaxis'
@@ -173,11 +176,11 @@ IfType: (gpl|stub) Use: targets/empty.MushSecretKeys.cpp as src/MushSecret/MushS
 Subst: MUSH_APP_RELEASE '1'
 
 # Generic debian specifics
-IfDist: genericdeb Subst: MUSH_APP_RELEASE '1generic'
-IfDist: genericdeb Subst: MUSH_MAKE_SUFFIX 'CC=apgcc CXX=apg++'
+IfDist: genericdpkg Subst: MUSH_APP_RELEASE '1generic'
+IfDist: genericdpkg Subst: MUSH_MAKE_SUFFIX 'CC=apgcc CXX=apg++'
 
 # Debian specifics
-IfNotDist: genericdeb Subst: MUSH_MAKE_SUFFIX ''
+IfNotDist: genericdpkg Subst: MUSH_MAKE_SUFFIX ''
 Use: targets/adanaxis.debian.changelog as debian/changelog
 Use: targets/adanaxis.debian.control as debian/control
 Use: targets/adanaxis.debian.copyright as debian/copyright
@@ -186,7 +189,7 @@ Use: targets/adanaxis.debian.rules as debian/rules
 Use: targets/adanaxis.debian.watch as debian/watch
 Append: debian/copyright
 OutputFile: COPYING
-IfDist: (debian|genericdeb) Use: targets/adanaxis.spec.generic as MUSH_APP_PACKAGE.spec
+IfDist: (debian|genericdpkg) Use: targets/adanaxis.spec.generic as MUSH_APP_PACKAGE.spec
 
 
 # Mandriva specifics

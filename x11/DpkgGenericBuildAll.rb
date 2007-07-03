@@ -1,7 +1,7 @@
 #!/usr/bin/ruby -w
 ##############################################################################
 #
-# File x11/GenericBuildAll.rb
+# File x11/DpkgGenericBuildAll.rb
 #
 # Author Andy Southgate 2007
 #
@@ -17,30 +17,23 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-# $Id: GenericBuildAll.rb,v 1.2 2007/06/30 16:04:05 southa Exp $
+# $Id: GenericBuildAll.rb,v 1.3 2007/06/30 16:05:49 southa Exp $
 # $Log: GenericBuildAll.rb,v $
-# Revision 1.2  2007/06/30 16:04:05  southa
-# Generic packaging
-#
 
 commands = [
-"rm -rf ~/rpm/BUILD/*/* ~/rpm/RPMS/*/* ~/rpm/tmp/* ~/rpm/SOURCES/* ~/rpm/SPECS/* ~/rpm/SRPMS/*",
 "echo `test -f Makefile && make distclean`",
-"rm -rf *.spec *.tar.gz *.tar.bz2 ~/rpm/BUILD/*/* ~/rpm/tmp/*",
-"perl autogen.pl adanaxis --type=full --dist=genericrpm",
+"perl autogen.pl adanaxis --type=full --dist=genericdpkg",
 "./configure",
-"make rpm",
+"make debian-release-unsigned",
 "make distclean",
-"rm -rf *.spec *.tar.gz *.tar.bz2 ~/rpm/BUILD/*/* ~/rpm/tmp/*",
-"perl autogen.pl adanaxis --type=demo --dist=genericrpm",
+"perl autogen.pl adanaxis --type=demo --dist=genericdpkg",
 "./configure",
-"make rpm",
+"make debian-release-unsigned",
 "make distclean",
-"rm -rf *.spec *.tar.gz *.tar.bz2 ~/rpm/BUILD/*/* ~/rpm/tmp/*",
-"perl autogen.pl adanaxis --type=gpl --dist=genericrpm",
+"perl autogen.pl adanaxis --type=gpl --dist=genericdpkg",
 "./configure",
-"make rpm",
-"ls -lR ~/rpm/RPMS/*",
+"make debian-release-unsigned",
+"ls -lrt ../*.deb",
 "echo Done."
 ]
 
