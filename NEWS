@@ -1,3 +1,21 @@
+2007-07-03  Andy Southgate <andy.southgate@mushware.com>
+    * Version 1.1.4 released
+    * Added Read PDF menu item
+    * Build x386 variant with apbuild
+    * Added firefox to browser list
+
+2007-06-30  Andy Southgate <andy.southgate@mushware.com>
+    * Version 1.1.2 released
+    * Extended attempts to select a video mode
+
+2007-06-27  Andy Southgate <andy.southgate@mushware.com>
+    * Version 1.1.0 released
+    * Initial X11 release
+
+2007-06-16  Andy Southgate <andy.southgate@mushware.com>
+    * Version 1.0.2 released
+    * Packaging and installer fixes
+
 2007-06-15  Andy Southgate <andy.southgate@mushware.com>
     * Version 1.0.0 released
     * Fixed startup on Mac OS X 10.3.9 and 10.2.8

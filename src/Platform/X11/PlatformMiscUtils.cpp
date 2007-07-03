@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } n699h4E6vRdwHSrlSs8lxQ
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.33 2007/06/28 15:15:17 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.34 2007/06/30 11:45:46 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.34  2007/06/30 11:45:46  southa
+ * X11 release
+ *
  * Revision 1.33  2007/06/28 15:15:17  southa
  * Mandriva fixes
  *
@@ -430,6 +433,7 @@ PlatformMiscUtils::LaunchURL(const string& inURL)
     browserCommands.push_back("konqueror");
     browserCommands.push_back("epiphany --new-window");
     browserCommands.push_back("netscape");
+    browserCommands.push_back("firefox");
 
     for (U32 i=0; i < browserCommands.size(); ++i)
     {

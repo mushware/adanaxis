@@ -1,3 +1,11 @@
+MUSH_APP_PACKAGE (1.1.4-1) unstable; urgency=low
+
+  * Added Read PDF menu item
+  * Build x386 variant with apbuild
+  * Added firefox to browser list
+
+ -- Andy Southgate <andy.southgate@mushware.com>  Tue, 3 Jul 2007 13:26:44 +0100
+
 MUSH_APP_PACKAGE (1.1.0-1) unstable; urgency=low
 
   * Initial release

@@ -15,6 +15,8 @@
 DEB_HOST_GNU_TYPE   ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
 DEB_BUILD_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
 
+# Mushware needs build arch for selecting apbuild
+MUSH_BUILD_ARCH  ?= $(shell dpkg-architecture -qDEB_BUILD_ARCH)
 
 CFLAGS = -Wall -g
 
@@ -36,8 +38,16 @@ build: build-stamp
 build-stamp:  config.status
 	dh_testdir
 
-	# Add here commands to compile the package.
+	# Mushware: For generic dpkg builds use apbuild on 32-bit x86
+ifeq ("$(MUSH_BUILD_ARCH)", "i386")
+	# libtiff has had ABI stability issues so link statically
+	export APBUILD_STATIC=tiff
+	# Use autopackage's apbuild for wider compatibility.  The make below may or
+	# may not have flags depending on the --dist= option passed to autogen.pl
+	$(MAKE) MUSH_MAKE_SUFFIX
+else
 	$(MAKE)
+endif
 	#docbook-to-man debian/MUSH_APP_PACKAGE.sgml > MUSH_APP_PACKAGE.1
 
 	touch $@

@@ -16,8 +16,11 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-# $Id: adanaxis.def,v 1.34 2007/06/30 11:45:46 southa Exp $
+# $Id: adanaxis.def,v 1.35 2007/06/30 16:02:14 southa Exp $
 # $Log: adanaxis.def,v $
+# Revision 1.35  2007/06/30 16:02:14  southa
+# Generic packaging
+#
 # Revision 1.34  2007/06/30 11:45:46  southa
 # X11 release
 #
@@ -124,7 +127,7 @@
 Name: 'Adanaxis'
 
 IfNotType: (demo|full|gpl|stub) Error: Please supply --type=demo, --type=full, --type=gpl ot --type=stub
-IfNotDist: (none|debian|mandriva|genericrpm) Error: Please supply --dist=none, --dist=debian, --dist=mandriva, --dist= genericrpm or no dist option
+IfNotDist: (none|debian|mandriva|genericrpm|genericdeb) Error: Please supply --dist=none, --dist=debian, --dist=mandriva, --dist= genericrpm, --dist= genericdeb or no dist option
 
 IfType: demo Subst: MUSH_APP_PACKAGE 'adanaxisdemo'
 IfType: full Subst: MUSH_APP_PACKAGE 'adanaxis'
@@ -141,7 +144,7 @@ IfType: stub Subst: MUSH_APP_UNDERSCORED_NAME 'Adanaxis_Stub'
 
 Subst: MUSH_APP_MAJOR_VERSION '1'
 Subst: MUSH_APP_MINOR_VERSION '1'
-Subst: MUSH_APP_MICRO_VERSION '2'
+Subst: MUSH_APP_MICRO_VERSION '4'
 Subst: MUSH_APP_VERSION 'MUSH_APP_MAJOR_VERSION.MUSH_APP_MINOR_VERSION.MUSH_APP_MICRO_VERSION'
 Subst: MUSH_DATA_DIR 'data-adanaxis'
 Subst: MUSH_DATA_MAKEFILE 'data-adanaxis/Makefile'
@@ -166,7 +169,15 @@ IfType: full Use: targets/app.prebuild.sh as prebuild.sh
 IfType: (demo|full) Use: ../core-keys/MushSecretKeys.cpp as src/MushSecret/MushSecretKeys.cpp
 IfType: (gpl|stub) Use: targets/empty.MushSecretKeys.cpp as src/MushSecret/MushSecretKeys.cpp
 
+# MUSH_APP_RELEASE is normally overriden later
+Subst: MUSH_APP_RELEASE '1'
+
+# Generic debian specifics
+IfDist: genericdeb Subst: MUSH_APP_RELEASE '1generic'
+IfDist: genericdeb Subst: MUSH_MAKE_SUFFIX 'CC=apgcc CXX=apg++'
+
 # Debian specifics
+IfNotDist: genericdeb Subst: MUSH_MAKE_SUFFIX ''
 Use: targets/adanaxis.debian.changelog as debian/changelog
 Use: targets/adanaxis.debian.control as debian/control
 Use: targets/adanaxis.debian.copyright as debian/copyright
@@ -175,14 +186,16 @@ Use: targets/adanaxis.debian.rules as debian/rules
 Use: targets/adanaxis.debian.watch as debian/watch
 Append: debian/copyright
 OutputFile: COPYING
+IfDist: (debian|genericdeb) Use: targets/adanaxis.spec.generic as MUSH_APP_PACKAGE.spec
+
 
 # Mandriva specifics
-Subst: MUSH_APP_RELEASE '1'
+IfDist: mandriva Subst: MUSH_APP_RELEASE '1'
 IfDist: mandriva Use: targets/adanaxis.spec.mdk as MUSH_APP_PACKAGE.spec
 IfDist: mandriva Use: x11/icons/MUSH_APP_PACKAGE-icons.tar.bz2 as MUSH_APP_PACKAGE-icons.tar.bz2
 
 # Generic RPM specifics
-Subst: MUSH_APP_RELEASE '1'
+IfDist: mandriva Subst: MUSH_APP_RELEASE '1'
 IfDist: genericrpm Use: targets/adanaxis.spec.generic as MUSH_APP_PACKAGE.spec
 
 Create: src/Makefile.am
@@ -199,7 +212,7 @@ Modules: Platform/MacOSX Platform/win32 +.*\.c$ Platform/X11 +.*\.y$ +.*\.mkf$ +
 Append: Makefile.am
 
 ExtraDist:
-Modules: autogen.pl prebuild.sh MUSH_APP_PACKAGE.spec macosx/project/.*\.plist README\.* .*\.pl .*\.pm macosx/project/project.xcodeproj/.*pbx(proj|user) macosx/MakeRelease.sh macosx/adanaxis_app.icns scripts/AmendToType.rb scripts/FileMush.rb scripts/ImageProcess.rb scripts/MushObject.rb scripts/ProcessAnimation.rb scripts/ProcessCosmos.rb scripts/ProcessIntern.rb scripts/ProcessMush.rb scripts/SourceProcess.rb targets/adanaxis\..* targets/app\..* targets/commercial\..* targets/empty\..* targets/sdl_app\..* targets/win32.installer.nsi  win32/adanaxis.*\.ico win32/MakeInstaller.sh win32/installer.nsi win32/FileListToNSI.rb VisualC/project/adanaxis.*\.(sln|aps|rc|vcproj|ico) x11/icons/MUSH_APP_PACKAGE.*\.png$ x11/icons/MUSH_APP_PACKAGE.*\.xpm$
+Modules: autogen.pl prebuild.sh MUSH_APP_PACKAGE.spec debian/changelog debian/compat debian/control debian/copyright debian/docs debian/menu debian/postinst debian/postrm debian/preinst debian/prerm debian/rules debian/watch macosx/project/.*\.plist README\.* .*\.pl .*\.pm macosx/project/project.xcodeproj/.*pbx(proj|user) macosx/MakeRelease.sh macosx/adanaxis_app.icns scripts/AmendToType.rb scripts/FileMush.rb scripts/ImageProcess.rb scripts/MushObject.rb scripts/ProcessAnimation.rb scripts/ProcessCosmos.rb scripts/ProcessIntern.rb scripts/ProcessMush.rb scripts/SourceProcess.rb targets/adanaxis\..* targets/app\..* targets/commercial\..* targets/empty\..* targets/sdl_app\..* targets/win32.installer.nsi  win32/adanaxis.*\.ico win32/MakeInstaller.sh win32/installer.nsi win32/FileListToNSI.rb VisualC/project/adanaxis.*\.(sln|aps|rc|vcproj|ico) x11/icons/MUSH_APP_PACKAGE.*\.png$ x11/icons/MUSH_APP_PACKAGE.*\.xpm$
 
 Manual:
 Modules: x11/man/MUSH_APP_PACKAGE\..*

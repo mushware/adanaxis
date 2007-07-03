@@ -17,11 +17,14 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-# $Id: DebianInit.rb,v 1.3 2007/06/27 11:56:44 southa Exp $
-# $Log: DebianInit.rb,v $
+# $Id: DebianBuildAll.rb,v 1.1 2007/06/27 19:54:17 southa Exp $
+# $Log: DebianBuildAll.rb,v $
+# Revision 1.1  2007/06/27 19:54:17  southa
+# X11 release
+#
 
 commands = [
-"make distclean",
+"echo `test -f Makefile && make distclean`",
 "perl autogen.pl adanaxis --type=full --dist=debian",
 "./configure",
 "make debian-release-unsigned",

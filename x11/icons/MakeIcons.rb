@@ -17,8 +17,11 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-# $Id: MakeIcons.rb,v 1.3 2007/06/30 16:02:14 southa Exp $
+# $Id: MakeIcons.rb,v 1.4 2007/07/03 12:49:40 southa Exp $
 # $Log: MakeIcons.rb,v $
+# Revision 1.4  2007/07/03 12:49:40  southa
+# Autocopy xpm variants
+#
 # Revision 1.3  2007/06/30 16:02:14  southa
 # Generic packaging
 #
@@ -37,7 +40,7 @@ path = File.dirname(__FILE__)
 
 for suffix in ["demo", "gpl", "stub"]
   for size in ["16","32","48"]
-    File.copy(path+"/adanaxis#{size}x#{size}.xpm", path+"/adanaxis#{suffix}#{size}x#{size}.xpm)
+    File.copy(path+"/adanaxis#{size}x#{size}.xpm", path+"/adanaxis#{suffix}#{size}x#{size}.xpm")
     File.copy(path+"/adanaxis-#{size}.png", path+"/adanaxis#{suffix}-#{size}.png")
   end
 end
