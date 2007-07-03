@@ -17,10 +17,14 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-# $Id: GenericBuildAll.rb,v 1.3 2007/06/30 16:05:49 southa Exp $
-# $Log: GenericBuildAll.rb,v $
+# $Id: DpkgGenericBuildAll.rb,v 1.1 2007/07/03 13:45:03 southa Exp $
+# $Log: DpkgGenericBuildAll.rb,v $
+# Revision 1.1  2007/07/03 13:45:03  southa
+# Generic dpkg release
+#
 
 commands = [
+"rm -rf ../*deb",
 "echo `test -f Makefile && make distclean`",
 "perl autogen.pl adanaxis --type=full --dist=genericdpkg",
 "./configure",
@@ -32,12 +36,18 @@ commands = [
 "make distclean",
 "perl autogen.pl adanaxis --type=gpl --dist=genericdpkg",
 "./configure",
-"make debian-release-unsigned",
-"ls -lrt ../*.deb",
-"echo Done."
+"make debian-release-unsigned"
 ]
 
 for command in commands
-  puts "+++ Executing #{command}"
-  system(command) or raise "+++Command failed"
+  #puts "+++ Executing #{command}"
+  #system(command) or raise "+++Command failed"
 end
+
+Dir.glob('../*deb') do |file|
+  newFile = file.sub(/(\d+\.\d+\.\d+-\d+)/, '\1generic')
+  File.rename(file, newFile)
+end
+system('ls -lrt ../*deb')
+puts "Done."
+
