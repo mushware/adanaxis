@@ -17,8 +17,11 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-# $Id: DpkgGenericBuildAll.rb,v 1.1 2007/07/03 13:45:03 southa Exp $
+# $Id: DpkgGenericBuildAll.rb,v 1.2 2007/07/03 13:56:39 southa Exp $
 # $Log: DpkgGenericBuildAll.rb,v $
+# Revision 1.2  2007/07/03 13:56:39  southa
+# Generic dpkg release
+#
 # Revision 1.1  2007/07/03 13:45:03  southa
 # Generic dpkg release
 #
@@ -40,8 +43,8 @@ commands = [
 ]
 
 for command in commands
-  #puts "+++ Executing #{command}"
-  #system(command) or raise "+++Command failed"
+  puts "+++ Executing #{command}"
+  system(command) or raise "+++Command failed"
 end
 
 Dir.glob('../*deb') do |file|
