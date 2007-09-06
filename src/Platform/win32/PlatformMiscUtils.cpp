@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } LpD9mKNNh8BkyLOBhcqZvg
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.40 2006/10/04 13:35:26 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.41 2007/03/13 21:45:11 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.41  2007/03/13 21:45:11  southa
+ * Release process
+ *
  * Revision 1.40  2006/10/04 13:35:26  southa
  * Selective targetting
  *
@@ -153,13 +156,14 @@
 #include <shlobj.h>
 #include <strsafe.h>
 
-using namespace Mushware;
-using namespace std;
-
 #ifndef MAXPATHLEN
 #define MAXPATHLEN 4096
 #endif
 
+bool PlatformMiscUtils::s_openHelpOnExit = false;
+
+using namespace Mushware;
+using namespace std;
 
 void
 PlatformMiscUtils::Initialise(void)
@@ -169,9 +173,14 @@ PlatformMiscUtils::Initialise(void)
     if (retVal != 0)
     {
         MushcoreGlobalConfig::Sgl().Set("HOME", buffer);
-	cerr << "Set home to " << buffer << endl;
+        cerr << "Set home to " << buffer << endl;
     }
     
+}
+
+void
+PlatformMiscUtils::Finalise(void)
+{
 }
 
 string
@@ -505,4 +514,8 @@ PlatformMiscUtils::FunctionPointerGet(void *& outPtr, const std::string& inName)
     }
 }
 
-
+void
+PlatformMiscUtils::HelpFileOpen(void)
+{
+    s_openHelpOnExit = true;
+}

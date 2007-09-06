@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } gNdwSMf5xIpttE1WeIDxUA
 /*
- * $Id: PlatformVideoUtils.cpp,v 1.24 2007/04/18 09:23:23 southa Exp $
+ * $Id: PlatformVideoUtils.cpp,v 1.25 2007/06/27 11:56:44 southa Exp $
  * $Log: PlatformVideoUtils.cpp,v $
+ * Revision 1.25  2007/06/27 11:56:44  southa
+ * Debian packaging
+ *
  * Revision 1.24  2007/04/18 09:23:23  southa
  * Header and level fixes
  *
@@ -96,6 +99,7 @@
  */
 
 #include "mushGL.h"
+#include "mushMedia.h"
 #include "mushPlatform.h"
 
 #include <ApplicationServices/ApplicationServices.h>
@@ -107,6 +111,11 @@ using namespace std;
 PlatformVideoUtils *PlatformVideoUtils::m_instance=NULL;
 
 PlatformVideoUtils::PlatformVideoUtils()
+{
+}
+
+void
+PlatformVideoUtils::Acquaint(void)
 {
     m_modeDefs.push_back(GLModeDef(640, 480, false));
     m_modeDefs.push_back(GLModeDef(800, 600, false));
@@ -181,10 +190,18 @@ PlatformVideoUtils::AppActivate(void)
 void
 PlatformVideoUtils::ModeChangePrologue(void)
 {
+    MediaSDL::Sgl().QuitVideoIfRequired();
 }
 
 void
 PlatformVideoUtils::ModeChangeEpilogue(void)
 {
+}
 
+bool
+PlatformVideoUtils::ModeSelectFixAttempt(Mushware::U32 inIteration)
+{
+    bool tryAgain=false;
+    
+    return tryAgain;
 }

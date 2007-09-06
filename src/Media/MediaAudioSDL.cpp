@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } FG1UBO0d8qPi+PGHUglZwQ
 /*
- * $Id: MediaAudioSDL.cpp,v 1.38 2007/06/25 15:59:43 southa Exp $
+ * $Id: MediaAudioSDL.cpp,v 1.39 2007/06/25 20:37:11 southa Exp $
  * $Log: MediaAudioSDL.cpp,v $
+ * Revision 1.39  2007/06/25 20:37:11  southa
+ * X11 fixes
+ *
  * Revision 1.38  2007/06/25 15:59:43  southa
  * X11 compatibility
  *
@@ -292,38 +295,41 @@ MediaAudioSDL::ChannelTrigger(Mushware::U32 inChannel)
     MediaAudioSDLChannelDef& channelDef( dynamic_cast<MediaAudioSDLChannelDef&>(ChannelDefWRef(inChannel)) );
     MUSHCOREASSERT(channelDef.ActiveSample() != NULL);
     
-    tVal volume = channelDef.Volume();
-    tVal baseVolume = channelDef.Voice() ? m_voiceVolume : m_audioVolume;
-    
-    if (channelDef.Positional())
+    if (!channelDef.ActiveSample()->IsNull())
     {
-        volume *= ImpliedVolume(channelDef);
-    }
-    
-    if (channelDef.ActiveSample()->MixChunkGet() == NULL)
-    {
-        channelDef.ActiveSample()->Load();
-    }
-    
-    if (static_cast<S32>(inChannel) != Mix_PlayChannel(inChannel,
-                                                       channelDef.ActiveSample()->MixChunkGet(),
-                                                       channelDef.Loop() ? -1 : 0))
-    {
-        MushcoreLog::Sgl().ErrorLog() << "Failed to play sound" << endl;
-    }
-    else
-    {
+        tVal volume = channelDef.Volume();
+        tVal baseVolume = channelDef.Voice() ? m_voiceVolume : m_audioVolume;
+        
         if (channelDef.Positional())
         {
-            ChannelUpdate(inChannel);
+            volume *= ImpliedVolume(channelDef);
+        }
+        
+        if (channelDef.ActiveSample()->MixChunkGet() == NULL)
+        {
+            channelDef.ActiveSample()->Load();
+        }
+        
+        if (static_cast<S32>(inChannel) != Mix_PlayChannel(inChannel,
+                                                           channelDef.ActiveSample()->MixChunkGet(),
+                                                           channelDef.Loop() ? -1 : 0))
+        {
+            MushcoreLog::Sgl().ErrorLog() << "Failed to play sound" << endl;
         }
         else
         {
-            Mix_Volume(inChannel, static_cast<int>(volume * baseVolume));        
-            Mix_SetPanning(inChannel,255,255);
+            if (channelDef.Positional())
+            {
+                ChannelUpdate(inChannel);
+            }
+            else
+            {
+                Mix_Volume(inChannel, static_cast<int>(volume * baseVolume));        
+                Mix_SetPanning(inChannel,255,255);
+            }
+            
+            channelDef.ActivitySet(MediaAudioChannelDef::kActivityPlaying);
         }
-        
-        channelDef.ActivitySet(MediaAudioChannelDef::kActivityPlaying);
     }
 }
 
@@ -409,11 +415,16 @@ MediaAudioSDL::Load(MediaSoundStream& inSoundStream)
         m_music=NULL;
     }
 
-    if (m_fpMix_LoadMUS_RW == NULL)
+    string filename(inSoundStream.FilenameGet());
+    m_musicMushFile.OpenForRead(filename);
+    
+    if (m_musicMushFile.SourceIsNull())
     {
-        string filename(inSoundStream.FilenameGet());
-        
-        m_musicMushFile.OpenForRead(filename);
+        MushcoreLog::Sgl().InfoLog() << "Music loaded form null source - not played" << endl;
+        // Leave m_music as NULL
+    }
+    else if (m_fpMix_LoadMUS_RW == NULL)
+    {
         try
         {
             m_music = Mix_LoadMUS(m_musicMushFile.PlainFilename().c_str());
@@ -436,9 +447,7 @@ MediaAudioSDL::Load(MediaSoundStream& inSoundStream)
     }
     else
     {
-        string filename(inSoundStream.FilenameGet());
 
-        m_musicMushFile.OpenForRead(filename);
         MediaRWops mediaRWops(m_musicMushFile);
 
         SDL_RWops *pSrc = NULL;
@@ -528,33 +537,44 @@ MediaAudioSDL::Load(MediaSound &inSound) const
     
     MushFileFile srcFile;
     srcFile.OpenForRead(filename);
-    MediaRWops mediaRWops(srcFile);
     
-    SDL_RWops *pSrc = NULL;
-    
-    try
+    if (srcFile.SourceIsNull())
     {
-        pSrc = mediaRWops.RWops();
+        MushcoreLog::Sgl().InfoLog() << "Sound loaded from null source - not played" << endl;
+        inSound.IsNullSet(true);
+        // Leave MixChunk as NULL
     }
-    catch (MushcoreFileFail& e)
+    else
     {
-        if (++m_errCtr < 100)
+        MediaRWops mediaRWops(srcFile);
+        
+        SDL_RWops *pSrc = NULL;
+        
+        try
         {
-            MushcoreLog::Sgl().WarningLog() << e.what() << endl;
+            pSrc = mediaRWops.RWops();
         }
-    }
-    
-    if (pSrc != NULL)
-    {
-        Mix_Chunk *chunk = Mix_LoadWAV_RW(pSrc, false); // Don't free after play
-        if (chunk == NULL)
+        catch (MushcoreFileFail& e)
         {
             if (++m_errCtr < 100)
             {
-                MushcoreLog::Sgl().WarningLog()  << "Failed to load sound '" << filename << "': " << string(Mix_GetError());
+                MushcoreLog::Sgl().WarningLog() << e.what() << endl;
             }
         }
-        inSound.MixChunkSet(chunk);
+        
+        if (pSrc != NULL)
+        {
+            Mix_Chunk *chunk = Mix_LoadWAV_RW(pSrc, false); // Don't free after play
+            if (chunk == NULL)
+            {
+                if (++m_errCtr < 100)
+                {
+                    MushcoreLog::Sgl().WarningLog()  << "Failed to load sound '" << filename << "': " << string(Mix_GetError());
+                }
+            }
+            inSound.MixChunkSet(chunk);
+            inSound.IsNullSet(false);
+        }
     }
 }
 

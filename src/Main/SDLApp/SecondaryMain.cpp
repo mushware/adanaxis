@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } iq/M/29BciHx/MWfKkILcw
 /*
- * $Id: SecondaryMain.cpp,v 1.16 2007/06/27 19:54:16 southa Exp $
+ * $Id: SecondaryMain.cpp,v 1.17 2007/06/28 15:15:15 southa Exp $
  * $Log: SecondaryMain.cpp,v $
+ * Revision 1.17  2007/06/28 15:15:15  southa
+ * Mandriva fixes
+ *
  * Revision 1.16  2007/06/27 19:54:16  southa
  * X11 release
  *
@@ -196,7 +199,8 @@
 using namespace Mushware;
 using namespace std;
 
-int main(int argc, char *argv[])
+int
+main(int argc, char *argv[])
 {
     int retVal = 0;
     PlatformMiscUtils::Initialise();
@@ -213,7 +217,10 @@ int main(int argc, char *argv[])
     for (int i=1; i<argc; i++)
     {
         str.append(argv[i]);
-        if (i+1 != argc) str.append(" ");
+        if (i+1 != argc)
+        {
+            str.append(" ");
+        }
     }
 
     PlatformMiscUtils::TweakArgs(str);
@@ -233,8 +240,12 @@ int main(int argc, char *argv[])
 
         {
             std::vector<std::string> paths;
+
+#if defined(PACKAGE) && defined(VERSION)
             paths.push_back(resourcesPath+"/../doc/"+PACKAGE+"-"+VERSION);
             paths.push_back(resourcesPath+"/../doc/"+PACKAGE);
+#endif
+
             paths.push_back(resourcesPath);
             for (U32 i=0; i<paths.size(); ++i)
             {

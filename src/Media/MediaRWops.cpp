@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } ZI86PyCnqBLWlcJZZkAnWA
 /*
- * $Id: MediaRWops.cpp,v 1.4 2007/04/18 09:22:27 southa Exp $
+ * $Id: MediaRWops.cpp,v 1.5 2007/06/25 15:59:43 southa Exp $
  * $Log: MediaRWops.cpp,v $
+ * Revision 1.5  2007/06/25 15:59:43  southa
+ * X11 compatibility
+ *
  * Revision 1.4  2007/04/18 09:22:27  southa
  * Header and level fixes
  *
@@ -54,7 +57,11 @@ SDL_RWops *
 MediaRWops::RWops(void)
 {
     SDL_RWops *retVal = NULL;
-    if (m_mushFile.SourceIsFile())
+    if (m_mushFile.SourceIsNull())
+    {
+        
+    }
+    else if (m_mushFile.SourceIsFile())
     {
         if (m_pRWops == NULL)
         {

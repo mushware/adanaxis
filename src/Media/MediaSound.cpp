@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } ZNvsqBdG6zrpHWHrEXxyFQ
 /*
- * $Id: MediaSound.cpp,v 1.24 2006/11/12 14:39:50 southa Exp $
+ * $Id: MediaSound.cpp,v 1.25 2007/04/18 09:22:27 southa Exp $
  * $Log: MediaSound.cpp,v $
+ * Revision 1.25  2007/04/18 09:22:27  southa
+ * Header and level fixes
+ *
  * Revision 1.24  2006/11/12 14:39:50  southa
  * Player weapons amd audio fix
  *
@@ -109,7 +112,9 @@ MushcoreInstaller MediaSoundInstaller(MediaSound::Install);
 
 MediaSound::MediaSound(const string& inName):
     m_filename(inName),
-    m_chunk(NULL)
+    m_chunk(NULL),
+    m_resident(false),
+    m_isNull(false)
 {
 }
 

@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } Y+WzijXDRsG7dDElPwQlbQ
 /*
- * $Id: PlatformVideoUtils.cpp,v 1.27 2007/06/29 12:05:03 southa Exp $
+ * $Id: PlatformVideoUtils.cpp,v 1.28 2007/06/29 16:48:29 southa Exp $
  * $Log: PlatformVideoUtils.cpp,v $
+ * Revision 1.28  2007/06/29 16:48:29  southa
+ * Mandriva build
+ *
  * Revision 1.27  2007/06/29 12:05:03  southa
  * Mandriva packaging
  *
@@ -152,23 +155,23 @@ PlatformVideoUtils::Acquaint(void)
         std::ostringstream varName;
         varName << "X11_MODE_" << i;
         MushcoreScalar textValue;
-	if (MushcoreEnv::Sgl().VariableGetIfExists(textValue, varName.str()))
-	{
-            std::istringstream strIStrm(textValue.StringGet());
-            MushcoreXMLIStream xmlIStrm(strIStrm);
-            try
-	    {
-                xmlIStrm >> modeDef;
-                if (modeDef.size() >= 2)
-	        {
-	            modesSoFar.push_back(std::pair<U32, U32>(modeDef[0], modeDef[1]));
-                }
-	    }
-	    catch (MushcoreFail& e)
-	    {
-	        cerr << "Mode syntax error in " << varName.str() << endl;
-	    }
-	}
+        if (MushcoreEnv::Sgl().VariableGetIfExists(textValue, varName.str()))
+        {
+                std::istringstream strIStrm(textValue.StringGet());
+                MushcoreXMLIStream xmlIStrm(strIStrm);
+                try
+            {
+                    xmlIStrm >> modeDef;
+                    if (modeDef.size() >= 2)
+                {
+                    modesSoFar.push_back(std::pair<U32, U32>(modeDef[0], modeDef[1]));
+                    }
+            }
+            catch (MushcoreFail& e)
+            {
+                cerr << "Mode syntax error in " << varName.str() << endl;
+            }
+        }
     }
 
     SDL_Rect **ppModes = NULL;
@@ -265,8 +268,8 @@ PlatformVideoUtils::ModeSelectFixAttempt(Mushware::U32 inIteration)
                 if (displayEnv.size() >= 2 && displayEnv.substr(displayEnv.size()-2, 2) == ":1")
                 {
                     /* Patch for '3D desktop' problem where we are presented with a virtual display :1
-                    * but must open :0 for 3D support
-                    */
+                     * but must open :0 for 3D support
+                     */
                     displayEnv.replace(displayEnv.size()-2, 2, ":0");
                     isModified = true;
                 }

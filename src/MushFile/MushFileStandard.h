@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } cityylqlnE9KOMrIq3RLfA
 /*
- * $Id: MushFileStandard.h,v 1.2 2007/04/18 09:22:33 southa Exp $
+ * $Id: MushFileStandard.h,v 1.3 2007/06/14 01:03:53 southa Exp $
  * $Log: MushFileStandard.h,v $
+ * Revision 1.3  2007/06/14 01:03:53  southa
+ * win32 build fixes
+ *
  * Revision 1.2  2007/04/18 09:22:33  southa
  * Header and level fixes
  *
@@ -55,6 +58,7 @@ namespace MushFile
     {
         kSourceTypeInvalid,
         kSourceTypeNone,
+        kSourceTypeNull,
         kSourceTypeFile,
         kSourceTypeMush
     };

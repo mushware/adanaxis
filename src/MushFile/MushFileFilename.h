@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } V2paZHNHmvRee5x7I1XYzg
 /*
- * $Id: MushFileFilename.h,v 1.3 2006/11/07 11:08:54 southa Exp $
+ * $Id: MushFileFilename.h,v 1.4 2007/04/18 09:22:32 southa Exp $
  * $Log: MushFileFilename.h,v $
+ * Revision 1.4  2007/04/18 09:22:32  southa
+ * Header and level fixes
+ *
  * Revision 1.3  2006/11/07 11:08:54  southa
  * Texture loading from mushfiles
  *
@@ -47,6 +50,7 @@ public:
     virtual ~MushFileFilename() {}
     
     void ResolveForRead(void);
+    bool SourceIsNull(void);
     bool SourceIsFile(void);
     bool SourceIsMush(void);
     bool SourceExists(void);

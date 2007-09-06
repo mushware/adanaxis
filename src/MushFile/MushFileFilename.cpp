@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } nbSfScUHVxLMMcxdNtZnIQ
 /*
- * $Id: MushFileFilename.cpp,v 1.3 2006/11/07 11:08:54 southa Exp $
+ * $Id: MushFileFilename.cpp,v 1.4 2007/04/18 09:22:32 southa Exp $
  * $Log: MushFileFilename.cpp,v $
+ * Revision 1.4  2007/04/18 09:22:32  southa
+ * Header and level fixes
+ *
  * Revision 1.3  2006/11/07 11:08:54  southa
  * Texture loading from mushfiles
  *
@@ -92,6 +95,11 @@ MushFileFilename::ResolveForRead(void)
                 m_sourceType = MushFile::kSourceTypeMush;
             }
         }
+        else if (filenames[i].substr(0, 5) == "null:")
+        {
+            m_resolvedName = "";
+            m_sourceType = MushFile::kSourceTypeNull;
+        }
         else
         {
             FILE *file = fopen(filenames[i].c_str(), "rb");
@@ -104,6 +112,13 @@ MushFileFilename::ResolveForRead(void)
         }
     }
     m_resolved = true;
+}
+
+bool
+MushFileFilename::SourceIsNull(void)
+{
+    AssertResolved();
+    return (m_sourceType == MushFile::kSourceTypeNull);
 }
 
 bool
@@ -124,7 +139,7 @@ bool
 MushFileFilename::SourceExists(void)
 {
     AssertResolved();
-    return (m_sourceType == MushFile::kSourceTypeMush || m_sourceType == MushFile::kSourceTypeFile);
+    return (m_sourceType == MushFile::kSourceTypeNull || m_sourceType == MushFile::kSourceTypeMush || m_sourceType == MushFile::kSourceTypeFile);
 }
 
 //%outOfLineFunctions {

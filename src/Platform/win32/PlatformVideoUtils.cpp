@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } KCxXYygl0O3Oosas7+Vmbw
 /*
- * $Id: PlatformVideoUtils.cpp,v 1.24 2007/04/18 09:23:24 southa Exp $
+ * $Id: PlatformVideoUtils.cpp,v 1.25 2007/06/14 01:03:53 southa Exp $
  * $Log: PlatformVideoUtils.cpp,v $
+ * Revision 1.25  2007/06/14 01:03:53  southa
+ * win32 build fixes
+ *
  * Revision 1.24  2007/04/18 09:23:24  southa
  * Header and level fixes
  *
@@ -136,6 +139,11 @@ PlatformVideoUtils::ModeAdd(Mushware::U32 inWidth, Mushware::U32 inHeight)
 PlatformVideoUtils::PlatformVideoUtils() :
     m_threadAttached(false)
 {
+}
+
+void
+PlatformVideoUtils::Acquaint(void)
+{
     bool safeMode = false;
     const MushcoreScalar *pScalar;
 
@@ -199,78 +207,6 @@ PlatformVideoUtils::PlatformVideoUtils() :
     }
 }
 
-const GLModeDef&
-PlatformVideoUtils::DefaultModeDef(void) const
-{
-    U32 modeNum = 0;
-    
-    for (U32 i=2; i < m_modeDefs.size(); ++i)
-    {
-        if (m_modeDefs[i].Width() == 1024 &&
-            m_modeDefs[i].Height() == 768)
-        {
-            modeNum = i;   
-        }
-    }
-    return m_modeDefs[modeNum];
-}
-
-Mushware::U32
-PlatformVideoUtils::ModeDefFind(const GLModeDef& inModeDef) const
-{
-    U32 retVal = 0;
-    for (U32 i=1; i<m_modeDefs.size(); ++i)
-    {
-        if (inModeDef == m_modeDefs[i])
-        {
-            retVal = i;
-        }
-    }
-    return retVal;
-}
-
-const GLModeDef&
-PlatformVideoUtils::PreviousModeDef(const GLModeDef& inModeDef) const
-{
-    U32 modeNum = ModeDefFind(inModeDef);
-
-    if (modeNum == 0)
-    {
-        modeNum = m_modeDefs.size() - 1;
-    }
-    else
-    {
-        --modeNum;
-    }
-    return m_modeDefs[modeNum];
-}
-
-const GLModeDef&
-PlatformVideoUtils::NextModeDef(const GLModeDef& inModeDef) const
-{
-    U32 modeNum = ModeDefFind(inModeDef);
-    
-    ++modeNum;
-    if (modeNum >= m_modeDefs.size())
-    {
-        modeNum = 0;
-    }
-    
-    return m_modeDefs[modeNum];
-}
-
-U32
-PlatformVideoUtils::NumModesGet(void) const
-{
-    return m_modeDefs.size();
-}
-
-void
-PlatformVideoUtils::RenderModeInfo(U32 inNum) const
-{
-    throw MushcoreLogicFail("RenderModeInfo deprecated");
-}
-
 void
 PlatformVideoUtils::VBLWait(void)
 {
@@ -288,6 +224,8 @@ PlatformVideoUtils::AppActivate(void)
 void
 PlatformVideoUtils::ModeChangePrologue(void)
 {
+    MediaSDL::Sgl().QuitVideoIfRequired();
+
 #if 0
     m_fgThreadID = GetWindowThreadProcessId(GetForegroundWindow(), NULL);
     DWORD ourThreadID = GetCurrentThreadId();
@@ -326,5 +264,10 @@ PlatformVideoUtils::ModeChangeEpilogue(void)
 #endif
 }
 
-
-	
+bool
+PlatformVideoUtils::ModeSelectFixAttempt(Mushware::U32 inIteration)
+{
+    bool tryAgain=false;
+    
+    return tryAgain;
+}

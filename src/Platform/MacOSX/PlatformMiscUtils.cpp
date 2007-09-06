@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } eUUeCJ1Cfr5OjIMLBtYBHw
 /*
- * $Id: PlatformMiscUtils.cpp,v 1.44 2007/03/13 21:45:11 southa Exp $
+ * $Id: PlatformMiscUtils.cpp,v 1.45 2007/04/18 12:44:40 southa Exp $
  * $Log: PlatformMiscUtils.cpp,v $
+ * Revision 1.45  2007/04/18 12:44:40  southa
+ * Cache purge fix and pre-release tweaks
+ *
  * Revision 1.44  2007/03/13 21:45:11  southa
  * Release process
  *
@@ -181,6 +184,8 @@ using namespace std;
 OSStatus FSPathMakeFSSpec(const UInt8 *path, FSSpec *spec, Boolean *isDirectory);
 OSErr FinderLaunch(long nTargets, FSSpec *targetList);
 
+bool PlatformMiscUtils::s_openHelpOnExit = false;
+
 void
 PlatformMiscUtils::Initialise(void)
 {
@@ -198,6 +203,11 @@ PlatformMiscUtils::Initialise(void)
     {
         cerr << "Failed to attach signal handler" << endl;
     }
+}
+
+void
+PlatformMiscUtils::Finalise(void)
+{
 }
 
 string
@@ -572,5 +582,9 @@ PlatformMiscUtils::FunctionPointerGet(void *& outPtr, const std::string& inName)
     }
 }
 
-
+void
+PlatformMiscUtils::HelpFileOpen(void)
+{
+    s_openHelpOnExit = true;
+}
 

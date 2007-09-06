@@ -336,7 +336,6 @@
 		7A5DB886080804C000163474 /* GameReg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A5DB884080804C000163474 /* GameReg.cpp */; };
 		7A5DB887080804C000163474 /* GameReg.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A5DB883080804C000163474 /* GameReg.h */; };
 		7A5DB888080804C000163474 /* GameReg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A5DB884080804C000163474 /* GameReg.cpp */; };
-		7A5E94F30B34080400D4B99E /* MushSecretKeys.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AF480230B331F0B00664BED /* MushSecretKeys.cpp */; };
 		7A5EACDE0B29AD58008D2EE7 /* MushGLRuby.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A5EACDC0B29AD58008D2EE7 /* MushGLRuby.h */; };
 		7A5EACDF0B29AD58008D2EE7 /* MushGLRuby.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A5EACDD0B29AD58008D2EE7 /* MushGLRuby.cpp */; };
 		7A5F017A0A3EB2E40086C680 /* MushRubyDataObj.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A5F01780A3EB2E40086C680 /* MushRubyDataObj.h */; };
@@ -2423,6 +2422,7 @@
 		7AE697D30A42129E004D7B75 /* MushMeshRubyBasePrism.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AE697D10A42129E004D7B75 /* MushMeshRubyBasePrism.cpp */; };
 		7AF47F320B32D64E00664BED /* MushFileKeys.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AF47F300B32D64E00664BED /* MushFileKeys.h */; };
 		7AF47F330B32D64E00664BED /* MushFileKeys.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AF47F310B32D64E00664BED /* MushFileKeys.cpp */; };
+		7AF9EDE60C90028200436562 /* PlatformVideoUtilsCommon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AF9EDE50C90028200436562 /* PlatformVideoUtilsCommon.cpp */; };
 		7AFB11E4088C052000F097A3 /* AdanaxisPieceKhazi.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AFB11E2088C052000F097A3 /* AdanaxisPieceKhazi.h */; };
 		7AFB11E5088C052000F097A3 /* AdanaxisPieceKhazi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7AFB11E3088C052000F097A3 /* AdanaxisPieceKhazi.cpp */; };
 		7AFB11E6088C052000F097A3 /* AdanaxisPieceKhazi.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AFB11E2088C052000F097A3 /* AdanaxisPieceKhazi.h */; };
@@ -4258,6 +4258,8 @@
 		7AF752AA0C1DB8B800AA8B41 /* dialogues.xml */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; path = dialogues.xml; sourceTree = "<group>"; };
 		7AF752AB0C1DB8B800AA8B41 /* manifest.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = manifest.txt; sourceTree = "<group>"; };
 		7AF752AC0C1DB8B800AA8B41 /* space.rb */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.ruby; path = space.rb; sourceTree = "<group>"; };
+		7AF9EDE50C90028200436562 /* PlatformVideoUtilsCommon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlatformVideoUtilsCommon.cpp; sourceTree = "<group>"; };
+		7AF9F1F00C901D0300436562 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		7AFA31910AD18BE500B73920 /* AdanaxisTargetSelect.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = AdanaxisTargetSelect.rb; sourceTree = "<group>"; };
 		7AFB11E2088C052000F097A3 /* AdanaxisPieceKhazi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdanaxisPieceKhazi.h; sourceTree = "<group>"; };
 		7AFB11E3088C052000F097A3 /* AdanaxisPieceKhazi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AdanaxisPieceKhazi.cpp; sourceTree = "<group>"; };
@@ -5739,6 +5741,7 @@
 				7A62B8DA05A49D05002A5F1C /* PlatformUtils.cpp */,
 				7A62B8DB05A49D05002A5F1C /* PlatformUtils.h */,
 				7A62B8DC05A49D05002A5F1C /* PlatformVideoUtils.h */,
+				7AF9EDE50C90028200436562 /* PlatformVideoUtilsCommon.cpp */,
 				7A62B8DD05A49D05002A5F1C /* win32 */,
 				7A62B8E305A49D05002A5F1C /* X11 */,
 			);
@@ -6400,6 +6403,7 @@
 		7A70D1F7085DF8870055C6FB /* waves */ = {
 			isa = PBXGroup;
 			children = (
+				7AF9F1F00C901D0300436562 /* README.txt */,
 			);
 			path = waves;
 			sourceTree = "<group>";
@@ -10014,9 +10018,9 @@
 				7A5C48D00B2D751A009085F9 /* MediaAudioSDLChannelDef.cpp in Sources */,
 				7A5C48D70B2D79EA009085F9 /* MediaAudioChannelDef.cpp in Sources */,
 				7AF47F330B32D64E00664BED /* MushFileKeys.cpp in Sources */,
-				7A5E94F30B34080400D4B99E /* MushSecretKeys.cpp in Sources */,
 				7A69173A0BA1C4F300C84ACA /* AdanaxisRecords.cpp in Sources */,
 				7A68D2760BAB0DE0009F2015 /* MushGLDraw.cpp in Sources */,
+				7AF9EDE60C90028200436562 /* PlatformVideoUtilsCommon.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

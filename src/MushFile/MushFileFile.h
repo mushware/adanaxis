@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } Cv0lbJVOu55nY2LOMFGkZw
 /*
- * $Id: MushFileFile.h,v 1.3 2006/11/07 11:08:54 southa Exp $
+ * $Id: MushFileFile.h,v 1.4 2007/04/18 09:22:32 southa Exp $
  * $Log: MushFileFile.h,v $
+ * Revision 1.4  2007/04/18 09:22:32  southa
+ * Header and level fixes
+ *
  * Revision 1.3  2006/11/07 11:08:54  southa
  * Texture loading from mushfiles
  *
@@ -49,6 +52,7 @@ public:
     void OpenForRead(const std::string& inName);
     std::string PlainFilename(void);
     std::string Name(void) const;
+    bool SourceIsNull(void) { return m_filename.SourceIsNull(); }
     bool SourceIsFile(void) { return m_filename.SourceIsFile(); }
     bool SourceIsMush(void) { return m_filename.SourceIsMush(); }
     Mushware::U8 *DataStart(void);

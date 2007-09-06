@@ -27,7 +27,7 @@
   eval.c -
 
  
-  $Date: 2006/04/21 00:10:43 $
+  $Date: 2007/06/25 15:59:47 $
   created at: Thu Jun 10 14:22:17 JST 1993
 
   Copyright (C) 1993-2003 Yukihiro Matsumoto
@@ -1330,7 +1330,6 @@ ruby_init()
     
 #ifdef HAVE_NATIVETHREAD
     ruby_thid = NATIVETHREAD_CURRENT();
-    printf("sizeof(pthread_self())=%lu\n", sizeof(pthread_self()));
 #endif
 
     ruby_frame = top_frame = &frame;

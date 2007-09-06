@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } s6UfZ/Cu41xU9QXP3R78Qw
 /*
- * $Id: MediaSound.h,v 1.16 2006/06/01 15:39:14 southa Exp $
+ * $Id: MediaSound.h,v 1.17 2007/04/18 09:22:27 southa Exp $
  * $Log: MediaSound.h,v $
+ * Revision 1.17  2007/04/18 09:22:27  southa
+ * Header and level fixes
+ *
  * Revision 1.16  2006/06/01 15:39:14  southa
  * DrawArray verification and fixes
  *
@@ -91,6 +94,8 @@ public:
     Mix_Chunk *MixChunkGet(void) const { return m_chunk; }
     void MixChunkSet(Mix_Chunk *inChunk) { m_chunk=inChunk; }
     void ResidenceSet(bool inResident) { m_resident=inResident; }
+    void IsNullSet(bool inIsNull) { m_isNull = inIsNull; }
+    bool IsNull(void) const { return m_isNull; }
 
     static MushcoreScalar TransientSound(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
     static MushcoreScalar ResidentSound(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv);
@@ -101,7 +106,9 @@ private:
     std::string m_filename;
     Mix_Chunk *m_chunk;
     bool m_resident;
+    bool m_isNull;
 };
+
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw
