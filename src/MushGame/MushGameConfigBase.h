@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } Z5QT+HDEtycAF4WkJtjh4g
 /*
- * $Id: MushGameConfigBase.h,v 1.4 2006/07/28 16:52:23 southa Exp $
+ * $Id: MushGameConfigBase.h,v 1.5 2007/04/16 18:51:00 southa Exp $
  * $Log: MushGameConfigBase.h,v $
+ * Revision 1.5  2007/04/16 18:51:00  southa
+ * Voice work
+ *
  * Revision 1.4  2006/07/28 16:52:23  southa
  * Options work
  *
@@ -58,6 +61,7 @@ private:
     Mushware::U32 m_voiceVolume; //:readwrite
     Mushware::tVal m_mouseSensitivity; //:readwrite
     Mushware::tVal m_brightness; //:readwrite
+    bool m_showSubtitles; //:readwrite
     
     // psuedo-config
     Mushware::U32 m_safeMode; //:readwrite
@@ -78,12 +82,14 @@ public:
     void MouseSensitivitySet(const Mushware::tVal& inValue) { m_mouseSensitivity=inValue; }
     const Mushware::tVal& Brightness(void) const { return m_brightness; }
     void BrightnessSet(const Mushware::tVal& inValue) { m_brightness=inValue; }
+    const bool& ShowSubtitles(void) const { return m_showSubtitles; }
+    void ShowSubtitlesSet(const bool& inValue) { m_showSubtitles=inValue; }
     const Mushware::U32& SafeMode(void) const { return m_safeMode; }
     void SafeModeSet(const Mushware::U32& inValue) { m_safeMode=inValue; }
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } lgrtmWkCD91kTefxHNuxHg
+//%classPrototypes } RAzJztO/4EE7b4w6LMjXNw
 };
 
 //%inlineHeader {

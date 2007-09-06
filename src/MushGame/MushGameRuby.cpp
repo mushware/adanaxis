@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } j1yQVneL+5MtyXUhYiB6CQ
 /*
- * $Id: MushGameRuby.cpp,v 1.32 2007/06/14 01:03:53 southa Exp $
+ * $Id: MushGameRuby.cpp,v 1.33 2007/06/30 11:45:44 southa Exp $
  * $Log: MushGameRuby.cpp,v $
+ * Revision 1.33  2007/06/30 11:45:44  southa
+ * X11 release
+ *
  * Revision 1.32  2007/06/14 01:03:53  southa
  * win32 build fixes
  *
@@ -664,6 +667,21 @@ MushGameRuby::Brightness(Mushware::tRubyValue inSelf)
 }
 
 Mushware::tRubyValue
+MushGameRuby::ShowSubtitlesSet(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0)
+{
+    MushRubyValue value(inArg0);
+    MushGameUtil::AppHandler().ConfigWRef().ShowSubtitlesSet(value.Bool());
+    return Mushware::kRubyQnil;
+}
+
+Mushware::tRubyValue
+MushGameRuby::ShowSubtitles(Mushware::tRubyValue inSelf)
+{
+    bool retVal = MushGameUtil::AppHandler().Config().ShowSubtitles();
+    return MushRubyValue(retVal).Value();
+}
+
+Mushware::tRubyValue
 MushGameRuby::BrightnessSet(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0)
 {
     MushRubyValue value(inArg0);
@@ -960,6 +978,8 @@ MushGameRuby::MethodsInstall(void)
     MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cMouseSensitivitySet", MouseSensitivitySet);
     MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cBrightness", Brightness);
     MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cBrightnessSet", BrightnessSet);
+    MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cShowSubtitles", ShowSubtitles);
+    MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cShowSubtitlesSet", ShowSubtitlesSet);
     MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cGameDialoguesLoad", GameDialoguesLoad);
     MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cNamedDialoguesAdd", NamedDialoguesAdd);
     MushRubyUtil::SingletonMethodDefineTwoParams(Klass(), "cSoundDefine", SoundDefine);

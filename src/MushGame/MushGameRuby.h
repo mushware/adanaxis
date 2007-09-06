@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } 5dkO+eg2P4Bh997GvySFQg
 /*
- * $Id: MushGameRuby.h,v 1.26 2007/04/16 18:51:01 southa Exp $
+ * $Id: MushGameRuby.h,v 1.27 2007/06/30 11:45:44 southa Exp $
  * $Log: MushGameRuby.h,v $
+ * Revision 1.27  2007/06/30 11:45:44  southa
+ * X11 release
+ *
  * Revision 1.26  2007/04/16 18:51:01  southa
  * Voice work
  *
@@ -144,6 +147,8 @@ public:
     static Mushware::tRubyValue MouseSensitivitySet(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
     static Mushware::tRubyValue Brightness(Mushware::tRubyValue inSelf);
     static Mushware::tRubyValue BrightnessSet(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
+    static Mushware::tRubyValue ShowSubtitles(Mushware::tRubyValue inSelf);
+    static Mushware::tRubyValue ShowSubtitlesSet(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
     static Mushware::tRubyValue GameDialoguesLoad(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
     static Mushware::tRubyValue NamedDialoguesAdd(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
     static Mushware::tRubyValue SoundDefine(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0, Mushware::tRubyValue inArg1);

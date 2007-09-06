@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } XUhUmgkLLrF2UgFr78vkXA
 /*
- * $Id: MushGameConfigBase.cpp,v 1.6 2006/08/01 23:21:53 southa Exp $
+ * $Id: MushGameConfigBase.cpp,v 1.7 2007/04/16 18:51:00 southa Exp $
  * $Log: MushGameConfigBase.cpp,v $
+ * Revision 1.7  2007/04/16 18:51:00  southa
+ * Voice work
+ *
  * Revision 1.6  2006/08/01 23:21:53  southa
  * Rendering demo content
  *
@@ -62,6 +65,7 @@ MushGameConfigBase::ToDefaultSet(void)
     m_safeMode = 0;
     m_mouseSensitivity = 1;
     m_brightness = 1;
+    m_showSubtitles = false;
 }
 
 void
@@ -89,6 +93,7 @@ MushGameConfigBase::AutoPrint(std::ostream& ioOut) const
     ioOut << "voiceVolume=" << m_voiceVolume << ", ";
     ioOut << "mouseSensitivity=" << m_mouseSensitivity << ", ";
     ioOut << "brightness=" << m_brightness << ", ";
+    ioOut << "showSubtitles=" << m_showSubtitles << ", ";
     ioOut << "safeMode=" << m_safeMode;
     ioOut << "]";
 }
@@ -129,6 +134,10 @@ MushGameConfigBase::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::stri
     {
         ioIn >> m_brightness;
     }
+    else if (inTagStr == "showSubtitles")
+    {
+        ioIn >> m_showSubtitles;
+    }
     else if (inTagStr == "safeMode")
     {
         ioIn >> m_safeMode;
@@ -156,7 +165,9 @@ MushGameConfigBase::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_mouseSensitivity;
     ioOut.TagSet("brightness");
     ioOut << m_brightness;
+    ioOut.TagSet("showSubtitles");
+    ioOut << m_showSubtitles;
     ioOut.TagSet("safeMode");
     ioOut << m_safeMode;
 }
-//%outOfLineFunctions } Og5mtznPPt6612TqsyLg/Q
+//%outOfLineFunctions } SccENMkcAZWXbVe2c4GOfg
