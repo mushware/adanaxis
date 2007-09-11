@@ -17,8 +17,11 @@
  ****************************************************************************/
 //%Header } aPGTKyALRR3GnoEDpQin4g
 /*
- * $Id: AdanaxisInfo.cpp,v 1.14 2007/06/16 11:09:32 southa Exp $
+ * $Id: AdanaxisInfo.cpp,v 1.15 2007/06/27 12:58:22 southa Exp $
  * $Log: AdanaxisInfo.cpp,v $
+ * Revision 1.15  2007/06/27 12:58:22  southa
+ * Debian packaging
+ *
  * Revision 1.14  2007/06/16 11:09:32  southa
  * Prerelease
  *
@@ -70,7 +73,7 @@
 #endif
 
 #ifndef VERSION
-#define VERSION "1.0.2"
+#define VERSION "1.2.0"
 #endif
 
 #include "AdanaxisSTL.h"
