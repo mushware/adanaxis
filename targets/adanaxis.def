@@ -16,8 +16,11 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-# $Id: adanaxis.def,v 1.36 2007/07/03 13:30:17 southa Exp $
+# $Id: adanaxis.def,v 1.37 2007/07/03 13:45:03 southa Exp $
 # $Log: adanaxis.def,v $
+# Revision 1.37  2007/07/03 13:45:03  southa
+# Generic dpkg release
+#
 # Revision 1.36  2007/07/03 13:30:17  southa
 # Generic dpkg release
 #
@@ -146,8 +149,8 @@ IfType: gpl Subst: MUSH_APP_UNDERSCORED_NAME 'Adanaxis_GPL'
 IfType: stub Subst: MUSH_APP_UNDERSCORED_NAME 'Adanaxis_Stub'
 
 Subst: MUSH_APP_MAJOR_VERSION '1'
-Subst: MUSH_APP_MINOR_VERSION '1'
-Subst: MUSH_APP_MICRO_VERSION '4'
+Subst: MUSH_APP_MINOR_VERSION '2'
+Subst: MUSH_APP_MICRO_VERSION '0'
 Subst: MUSH_APP_VERSION 'MUSH_APP_MAJOR_VERSION.MUSH_APP_MINOR_VERSION.MUSH_APP_MICRO_VERSION'
 Subst: MUSH_DATA_DIR 'data-adanaxis'
 Subst: MUSH_DATA_MAKEFILE 'data-adanaxis/Makefile'
@@ -189,7 +192,7 @@ Use: targets/adanaxis.debian.rules as debian/rules
 Use: targets/adanaxis.debian.watch as debian/watch
 Append: debian/copyright
 OutputFile: COPYING
-IfDist: (debian|genericdpkg) Use: targets/adanaxis.spec.generic as MUSH_APP_PACKAGE.spec
+IfDist: (debian|genericdpkg|genericrpm) Use: targets/adanaxis.spec.generic as MUSH_APP_PACKAGE.spec
 
 
 # Mandriva specifics
