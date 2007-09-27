@@ -1,6 +1,9 @@
 # Spec file for Mandriva Linux
-# $Id: adanaxis.spec.generic,v 1.1 2007/06/30 16:02:14 southa Exp $
-# $Log: adanaxis.spec.generic,v $
+# $Id: adanaxis.spec.fedora,v 1.1 2007/09/27 11:52:44 southa Exp $
+# $Log: adanaxis.spec.fedora,v $
+# Revision 1.1  2007/09/27 11:52:44  southa
+# Fedora release
+#
 # Revision 1.1  2007/06/30 16:02:14  southa
 # Generic packaging
 #
@@ -120,5 +123,5 @@ rm -rf %buildroot
 %_mandir/man6/%{name}*.6*
 
 %changelog
-* Thu Sep 27 2007 Andy Southgate <andy.southgate@mushware.com> 1.2.0-1
+* Thu Sep 27 2007 Andy Southgate <andy.southgate@mushware.com> 1.2.1-1
 - Created from Mandriva .spec
