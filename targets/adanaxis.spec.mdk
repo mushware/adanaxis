@@ -1,6 +1,9 @@
 # Spec file for Mandriva Linux
-# $Id: adanaxis.spec.mdk,v 1.2 2007/06/29 14:41:54 southa Exp $
+# $Id: adanaxis.spec.mdk,v 1.3 2007/06/29 16:48:30 southa Exp $
 # $Log: adanaxis.spec.mdk,v $
+# Revision 1.3  2007/06/29 16:48:30  southa
+# Mandriva build
+#
 # Revision 1.2  2007/06/29 14:41:54  southa
 # Mandriva release
 #
@@ -36,7 +39,7 @@ Buildrequires:       libexpat0-devel libjpeg62-devel libmesagl1-devel libmesaglu
 Buildrequires:       libSDL1.2-devel libSDL_mixer1.2-devel libtiff3-devel make
 
 %description
-Adanaxis is fast-moving first person shooter set in deep space, where the
+Adanaxis is a fast-moving first person shooter set in deep space, where the
 fundamentals of space itself are changed.  By adding another dimension to
 space this game provides an environment with movement in four directions
 and six planes of rotation.  Initially the game explains the 4D control

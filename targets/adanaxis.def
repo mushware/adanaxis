@@ -16,8 +16,11 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-# $Id: adanaxis.def,v 1.37 2007/07/03 13:45:03 southa Exp $
+# $Id: adanaxis.def,v 1.38 2007/09/25 22:59:16 southa Exp $
 # $Log: adanaxis.def,v $
+# Revision 1.38  2007/09/25 22:59:16  southa
+# X11 tweaks
+#
 # Revision 1.37  2007/07/03 13:45:03  southa
 # Generic dpkg release
 #
@@ -133,7 +136,7 @@
 Name: 'Adanaxis'
 
 IfNotType: (demo|full|gpl|stub) Error: Please supply --type=demo, --type=full, --type=gpl ot --type=stub
-IfNotDist: (none|debian|mandriva|genericrpm|genericdpkg) Error: Please supply --dist=none, --dist=debian, --dist=mandriva, --dist= genericrpm, --dist= genericdpkg or no dist option
+IfNotDist: (none|debian|fedora|mandriva|genericrpm|genericdpkg) Error: Please supply --dist=none, --dist=debian, --dist=fedora, --dist=mandriva, --dist= genericrpm, --dist= genericdpkg or no dist option
 
 IfType: demo Subst: MUSH_APP_PACKAGE 'adanaxisdemo'
 IfType: full Subst: MUSH_APP_PACKAGE 'adanaxis'
@@ -147,10 +150,12 @@ IfType: demo Subst: MUSH_APP_UNDERSCORED_NAME 'Adanaxis_Demo'
 IfType: full Subst: MUSH_APP_UNDERSCORED_NAME 'Adanaxis'
 IfType: gpl Subst: MUSH_APP_UNDERSCORED_NAME 'Adanaxis_GPL'
 IfType: stub Subst: MUSH_APP_UNDERSCORED_NAME 'Adanaxis_Stub'
+IfType: gpl Subst: MUSH_APP_LICENCE 'GPLv2'
+IfNotType: gpl Subst: MUSH_APP_LICENCE 'Shareware'
 
 Subst: MUSH_APP_MAJOR_VERSION '1'
 Subst: MUSH_APP_MINOR_VERSION '2'
-Subst: MUSH_APP_MICRO_VERSION '0'
+Subst: MUSH_APP_MICRO_VERSION '1'
 Subst: MUSH_APP_VERSION 'MUSH_APP_MAJOR_VERSION.MUSH_APP_MINOR_VERSION.MUSH_APP_MICRO_VERSION'
 Subst: MUSH_DATA_DIR 'data-adanaxis'
 Subst: MUSH_DATA_MAKEFILE 'data-adanaxis/Makefile'
@@ -194,14 +199,18 @@ Append: debian/copyright
 OutputFile: COPYING
 IfDist: (debian|genericdpkg|genericrpm) Use: targets/adanaxis.spec.generic as MUSH_APP_PACKAGE.spec
 
+IfDist: (mandriva|fedora) Use: x11/icons/MUSH_APP_PACKAGE-icons.tar.bz2 as MUSH_APP_PACKAGE-icons.tar.bz2
 
 # Mandriva specifics
 IfDist: mandriva Subst: MUSH_APP_RELEASE '1'
 IfDist: mandriva Use: targets/adanaxis.spec.mdk as MUSH_APP_PACKAGE.spec
-IfDist: mandriva Use: x11/icons/MUSH_APP_PACKAGE-icons.tar.bz2 as MUSH_APP_PACKAGE-icons.tar.bz2
 
 # Generic RPM specifics
-IfDist: mandriva Subst: MUSH_APP_RELEASE '1'
+IfDist: fedora Subst: MUSH_APP_RELEASE '1'
+IfDist: fedora Use: targets/adanaxis.spec.fedora as MUSH_APP_PACKAGE.spec
+
+# Generic RPM specifics
+IfDist: genericrpm Subst: MUSH_APP_RELEASE '1'
 IfDist: genericrpm Use: targets/adanaxis.spec.generic as MUSH_APP_PACKAGE.spec
 
 Create: src/Makefile.am
@@ -225,7 +234,7 @@ Modules: x11/man/MUSH_APP_PACKAGE\..*
 
 # For Mandriva leave the PDF in the data dir, as the packager doesn't set --docdir for configure
 Subst: MUSH_EXTRA_PKGDATA ''
-IfDist: (mandriva|genericrpm) Subst: MUSH_EXTRA_PKGDATA '.*\.pdf$'
+IfDist: (mandriva|fedora|genericrpm) Subst: MUSH_EXTRA_PKGDATA '.*\.pdf$'
 
 Create: data-adanaxis/Makefile.am
 PkgData:
@@ -234,6 +243,6 @@ IfType: full Modules: pixels pixels/cosmos mush mushruby ruby +spaces waves syst
 IfType: (gpl|stub) Modules: pixels pixels/cosmos mushruby ruby +spaces waves system/.*\.xml$ system/.*\.txt$ MUSH_EXTRA_PKGDATA
 
 Doc:
-IfNotDist: (mandriva|genericrpm) Modules: .*\.pdf$
+IfNotDist: (mandriva|fedora|genericrpm) Modules: .*\.pdf$
 
 ExtraDist:

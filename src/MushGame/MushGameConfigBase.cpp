@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } XUhUmgkLLrF2UgFr78vkXA
 /*
- * $Id: MushGameConfigBase.cpp,v 1.7 2007/04/16 18:51:00 southa Exp $
+ * $Id: MushGameConfigBase.cpp,v 1.8 2007/09/06 19:30:34 southa Exp $
  * $Log: MushGameConfigBase.cpp,v $
+ * Revision 1.8  2007/09/06 19:30:34  southa
+ * Subtitles
+ *
  * Revision 1.7  2007/04/16 18:51:00  southa
  * Voice work
  *
@@ -65,7 +68,7 @@ MushGameConfigBase::ToDefaultSet(void)
     m_safeMode = 0;
     m_mouseSensitivity = 1;
     m_brightness = 1;
-    m_showSubtitles = false;
+    m_showSubtitles = true;
 }
 
 void
