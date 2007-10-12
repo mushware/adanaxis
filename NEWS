@@ -1,6 +1,7 @@
 2007-10-12  Andy Southgate <andy.southgate@mushware.com>
     * Version 1.2.2 released
     * Added source document for About_Adanaxis.pdf
+    * Find documentation if datadir is one level lower, e.g. in /usr/share/games 
 
 2007-09-27  Andy Southgate <andy.southgate@mushware.com>
     * Version 1.2.1 released
