@@ -19,8 +19,11 @@
  ****************************************************************************/
 //%Header } iq/M/29BciHx/MWfKkILcw
 /*
- * $Id: SecondaryMain.cpp,v 1.17 2007/06/28 15:15:15 southa Exp $
+ * $Id: SecondaryMain.cpp,v 1.18 2007/09/06 13:07:11 southa Exp $
  * $Log: SecondaryMain.cpp,v $
+ * Revision 1.18  2007/09/06 13:07:11  southa
+ * Backport X11 changes
+ *
  * Revision 1.17  2007/06/28 15:15:15  southa
  * Mandriva fixes
  *
@@ -244,6 +247,10 @@ main(int argc, char *argv[])
 #if defined(PACKAGE) && defined(VERSION)
             paths.push_back(resourcesPath+"/../doc/"+PACKAGE+"-"+VERSION);
             paths.push_back(resourcesPath+"/../doc/"+PACKAGE);
+            paths.push_back(resourcesPath+"/../../doc/"+PACKAGE+"-"+VERSION);
+            paths.push_back(resourcesPath+"/../../doc/"+PACKAGE);
+            paths.push_back(resourcesPath+"/../../doc/games"+PACKAGE+"-"+VERSION);
+            paths.push_back(resourcesPath+"/../../doc/games"+PACKAGE);
 #endif
 
             paths.push_back(resourcesPath);

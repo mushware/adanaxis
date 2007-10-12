@@ -1,6 +1,7 @@
 MUSH_APP_PACKAGE (1.2.2-1) unstable; urgency=low
 
   * Subtitles on by default
+  * Move datadir to /usr/share/games
 
  -- Andy Southgate <andy.southgate@mushware.com>  Fri, 12 Oct 2007 21:00:00 +0100
 
