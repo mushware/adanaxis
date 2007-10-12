@@ -16,8 +16,11 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-# $Id: adanaxis.def,v 1.38 2007/09/25 22:59:16 southa Exp $
+# $Id: adanaxis.def,v 1.39 2007/09/27 11:52:43 southa Exp $
 # $Log: adanaxis.def,v $
+# Revision 1.39  2007/09/27 11:52:43  southa
+# Fedora release
+#
 # Revision 1.38  2007/09/25 22:59:16  southa
 # X11 tweaks
 #
@@ -155,7 +158,7 @@ IfNotType: gpl Subst: MUSH_APP_LICENCE 'Shareware'
 
 Subst: MUSH_APP_MAJOR_VERSION '1'
 Subst: MUSH_APP_MINOR_VERSION '2'
-Subst: MUSH_APP_MICRO_VERSION '1'
+Subst: MUSH_APP_MICRO_VERSION '2'
 Subst: MUSH_APP_VERSION 'MUSH_APP_MAJOR_VERSION.MUSH_APP_MINOR_VERSION.MUSH_APP_MICRO_VERSION'
 Subst: MUSH_DATA_DIR 'data-adanaxis'
 Subst: MUSH_DATA_MAKEFILE 'data-adanaxis/Makefile'
@@ -227,7 +230,10 @@ Modules: Platform/MacOSX Platform/win32 +.*\.c$ Platform/X11 +.*\.y$ +.*\.mkf$ +
 Append: Makefile.am
 
 ExtraDist:
-Modules: autogen.pl prebuild.sh MUSH_APP_PACKAGE.spec debian/changelog debian/compat debian/control debian/copyright debian/docs debian/menu debian/postinst debian/postrm debian/preinst debian/prerm debian/rules debian/watch macosx/project/.*\.plist README\.* .*\.pl .*\.pm macosx/project/project.xcodeproj/.*pbx(proj|user) macosx/MakeRelease.sh macosx/adanaxis_app.icns scripts/AmendToType.rb scripts/FileMush.rb scripts/ImageProcess.rb scripts/MushObject.rb scripts/ProcessAnimation.rb scripts/ProcessCosmos.rb scripts/ProcessIntern.rb scripts/ProcessMush.rb scripts/SourceProcess.rb targets/adanaxis\..* targets/app\..* targets/commercial\..* targets/empty\..* targets/sdl_app\..* targets/win32.installer.nsi  win32/adanaxis.*\.ico win32/MakeInstaller.sh win32/installer.nsi win32/FileListToNSI.rb VisualC/project/adanaxis.*\.(sln|aps|rc|vcproj|ico) x11/icons/MUSH_APP_PACKAGE.*\.png$ x11/icons/MUSH_APP_PACKAGE.*\.xpm$
+
+# 2007-10-12 Removed debian/changelog debian/compat debian/control debian/copyright debian/docs debian/menu debian/postinst debian/postrm debian/preinst debian/prerm debian/rules debian/watch
+
+Modules: autogen.pl prebuild.sh MUSH_APP_PACKAGE.spec macosx/project/.*\.plist README\.* .*\.pl .*\.pm macosx/project/project.xcodeproj/.*pbx(proj|user) macosx/MakeRelease.sh macosx/adanaxis_app.icns scripts/AmendToType.rb scripts/FileMush.rb scripts/ImageProcess.rb scripts/MushObject.rb scripts/ProcessAnimation.rb scripts/ProcessCosmos.rb scripts/ProcessIntern.rb scripts/ProcessMush.rb scripts/SourceProcess.rb targets/adanaxis\..* targets/app\..* targets/commercial\..* targets/empty\..* targets/sdl_app\..* targets/win32.installer.nsi  win32/adanaxis.*\.ico win32/MakeInstaller.sh win32/installer.nsi win32/FileListToNSI.rb VisualC/project/adanaxis.*\.(sln|aps|rc|vcproj|ico) x11/icons/MUSH_APP_PACKAGE.*\.png$ x11/icons/MUSH_APP_PACKAGE.*\.xpm$
 
 Manual:
 Modules: x11/man/MUSH_APP_PACKAGE\..*
@@ -243,6 +249,7 @@ IfType: full Modules: pixels pixels/cosmos mush mushruby ruby +spaces waves syst
 IfType: (gpl|stub) Modules: pixels pixels/cosmos mushruby ruby +spaces waves system/.*\.xml$ system/.*\.txt$ MUSH_EXTRA_PKGDATA
 
 Doc:
-IfNotDist: (mandriva|fedora|genericrpm) Modules: .*\.pdf$
+# 2007-10-12 Added .*\.doc$
+IfNotDist: (mandriva|fedora|genericrpm) Modules: .*\.pdf$ .*\.doc$
 
 ExtraDist:

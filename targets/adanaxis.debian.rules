@@ -30,7 +30,7 @@ config.status: configure
 	dh_testdir
 	# Add here commands to configure the package.
 	# Mushware added bindir to the following line
-	./configure --host=$(DEB_HOST_GNU_TYPE) --build=$(DEB_BUILD_GNU_TYPE) --prefix=/usr --mandir=\$${prefix}/share/man --infodir=\$${prefix}/share/info CFLAGS="$(CFLAGS)" LDFLAGS="-Wl,-z,defs" --bindir=\$${prefix}/games
+	./configure --host=$(DEB_HOST_GNU_TYPE) --build=$(DEB_BUILD_GNU_TYPE) --prefix=/usr --mandir=\$${prefix}/share/man --infodir=\$${prefix}/share/info CFLAGS="$(CFLAGS)" LDFLAGS="-Wl,-z,defs" --bindir=\$${prefix}/games --datadir=\$${prefix}/share/games
 
 
 build: build-stamp
