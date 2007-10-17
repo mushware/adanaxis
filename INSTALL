@@ -10,8 +10,8 @@ Unix/POSIX/Linux/FreeBSD
 
 Download and unpack the source and data files and build thus:
 
-tar xvzf adanaxisgpl-1.2.2.tar.gz
-cd adanaxisgpl-1.2.2
+tar xvzf adanaxisgpl-1.2.3.tar.gz
+cd adanaxisgpl-1.2.3
 ./configure
 # (spend a few days getting the libraries that configure asks for)
 make
@@ -22,7 +22,7 @@ Alternatively, the application can be started without installing.  In this
 case the data path enviroment variable must be set.  For example:
 
 make
-export adanaxisgpl_DATA_DIR=$HOME/adanaxisgpl-1.2.2/data-adanaxisgpl
+export adanaxisgpl_DATA_DIR=$HOME/adanaxisgpl-1.2.3/data-adanaxisgpl
 src/adanaxisgpl
 
 Mac OS X

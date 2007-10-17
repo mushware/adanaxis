@@ -16,8 +16,11 @@
 # This software carries NO WARRANTY of any kind.
 #
 ##############################################################################
-# $Id: adanaxis.def,v 1.39 2007/09/27 11:52:43 southa Exp $
+# $Id: adanaxis.def,v 1.40 2007/10/12 20:38:38 southa Exp $
 # $Log: adanaxis.def,v $
+# Revision 1.40  2007/10/12 20:38:38  southa
+# Debian package fixes
+#
 # Revision 1.39  2007/09/27 11:52:43  southa
 # Fedora release
 #
@@ -158,7 +161,7 @@ IfNotType: gpl Subst: MUSH_APP_LICENCE 'Shareware'
 
 Subst: MUSH_APP_MAJOR_VERSION '1'
 Subst: MUSH_APP_MINOR_VERSION '2'
-Subst: MUSH_APP_MICRO_VERSION '2'
+Subst: MUSH_APP_MICRO_VERSION '3'
 Subst: MUSH_APP_VERSION 'MUSH_APP_MAJOR_VERSION.MUSH_APP_MINOR_VERSION.MUSH_APP_MICRO_VERSION'
 Subst: MUSH_DATA_DIR 'data-adanaxis'
 Subst: MUSH_DATA_MAKEFILE 'data-adanaxis/Makefile'

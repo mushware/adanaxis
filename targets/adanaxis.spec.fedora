@@ -1,6 +1,9 @@
 # Spec file for Mandriva Linux
-# $Id: adanaxis.spec.fedora,v 1.1 2007/09/27 11:52:44 southa Exp $
+# $Id: adanaxis.spec.fedora,v 1.2 2007/09/27 12:10:09 southa Exp $
 # $Log: adanaxis.spec.fedora,v $
+# Revision 1.2  2007/09/27 12:10:09  southa
+# Fixed changelog
+#
 # Revision 1.1  2007/09/27 11:52:44  southa
 # Fedora release
 #
@@ -17,34 +20,35 @@
 # Mandriva packaging
 #
 
-%define _menudir %{_datadir}/applications
-%define _iconsdir %{_datadir}/pixmaps
-
-%define name    MUSH_APP_PACKAGE
-%define version MUSH_APP_VERSION
-%define release MUSH_APP_RELEASE
-
-%define section More Applications/Games/Arcade
-%define title   MUSH_APP_NAME
+%define title     MUSH_APP_NAME
 %define longtitle MUSH_APP_NAME - an action game in four spatial dimensions
 
-%define Summary Action game in four spatial dimensions
-
-Summary:        %Summary
-Name:           %name
-Version:        %version
-Release:        %release
+Summary:        Action game in four spatial dimensions
+Name:           MUSH_APP_PACKAGE
+Version:        MUSH_APP_VERSION
+Release:        MUSH_APP_RELEASE%{?dist}
 License:        MUSH_APP_LICENCE
 Group:          Amusements/Games
 URL:            http://www.mushware.com/
 
-Source0:        http://www.mushware.com/files/%name-%version.tar.gz
+Source0:        http://www.mushware.com/files/%{name}-MUSH_APP_VERSION.tar.gz
 
-BuildRoot:      %_tmppath/%name-buildroot
+BuildRoot:      %(mktemp -ud %{_tmppath}/%{name}-%{version}-%{release}-XXXXXX)
 
-Buildrequires:       autoconf automake binutils freeglut-devel gcc gcc-c++ glibc-devel
-Buildrequires:       expat-devel libjpeg-devel libGL-devel libGLU-devel pcre-devel
-Buildrequires:       SDL-devel SDL_mixer-devel libtiff-devel make
+BuildRequires:       autoconf
+BuildRequires:       automake
+BuildRequires:       binutils
+BuildRequires:       desktop-file-utils
+BuildRequires:       freeglut-devel
+BuildRequires:       glibc-devel
+BuildRequires:       expat-devel
+BuildRequires:       libjpeg-devel
+BuildRequires:       libGLU-devel
+BuildRequires:       libtiff-devel
+BuildRequires:       libvorbis-devel
+BuildRequires:       pcre-devel
+BuildRequires:       SDL-devel
+BuildRequires:       SDL_mixer-devel
 
 %description
 Adanaxis is a fast-moving first person shooter set in deep space, where the
@@ -65,16 +69,15 @@ Shading Language.
 
 %build
 %configure
-make
+make %{?_smp_mflags}
 
 %install
-rm -rf %buildroot
-%makeinstall
+rm -rf %{buildroot}
+make DESTDIR=%{buildroot} install
 
-# New-style menu
+# Build .desktop files
 
-mkdir -p %{buildroot}%{_menudir}
-cat > %{buildroot}%{_menudir}/mushware-%{name}.desktop <<EOF
+cat > %{name}.desktop <<EOF
 [Desktop Entry]
 Encoding=UTF-8
 Name=%{title}
@@ -84,10 +87,10 @@ Icon=%{name}
 Terminal=false
 Type=Application
 StartupNotify=false
-Categories=Game;ActionGame;MoreApplications;X-MandrivaLinux-MoreApplications-Games-Arcade;
+Categories=Game;ActionGame;
 EOF
 
-cat > %{buildroot}%{_menudir}/mushware-%{name}-recover.desktop <<EOF
+cat > %{name}-recover.desktop <<EOF
 [Desktop Entry]
 Encoding=UTF-8
 Name=%{title} (Recovery Mode)
@@ -97,31 +100,55 @@ Icon=%{name}
 Terminal=false
 Type=Application
 StartupNotify=false
-Categories=Game;ActionGame;MoreApplications;X-MandrivaLinux-MoreApplications-Games-Arcade;
+Categories=Game;ActionGame;
 EOF
 
-# Icons
+# Install desktop files
 
-mkdir -p %{buildroot}%{_iconsdir}
-install -d %{buildroot}%{_iconsdir}
-install -m 644 x11/icons/%{name}-16.png %{buildroot}%{_iconsdir}/%{name}-16.png
-install -m 644 x11/icons/%{name}-32.png %{buildroot}%{_iconsdir}/%{name}-32.png
-install -m 644 x11/icons/%{name}-48.png %{buildroot}%{_iconsdir}/%{name}-48.png
-install -m 644 x11/icons/%{name}-32.png %{buildroot}%{_iconsdir}/%{name}.png
+mkdir -p %{buildroot}%{_datadir}/applications
+desktop-file-install --vendor=mushware         \
+  --dir %{buildroot}%{_datadir}/applications \
+  %{name}.desktop
+desktop-file-install --vendor=mushware         \
+  --dir %{buildroot}%{_datadir}/applications \
+  %{name}-recover.desktop
+
+# Icons
+install -Dp -m 644 x11/icons/%{name}-16.png %{buildroot}%{_datadir}/icons/hicolor/16x16/apps/%{name}.png
+install -Dp -m 644 x11/icons/%{name}-32.png %{buildroot}%{_datadir}/icons/hicolor/32x32/apps/%{name}.png
+install -Dp -m 644 x11/icons/%{name}-48.png %{buildroot}%{_datadir}/icons/hicolor/48x48/apps/%{name}.png
+
+%post
+touch --no-create %{_datadir}/icons/hicolor
+if [ -x %{_bindir}/gtk-update-icon-cache ]; then
+  %{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+fi
+
+%postun
+touch --no-create %{_datadir}/icons/hicolor
+if [ -x %{_bindir}/gtk-update-icon-cache ]; then
+  %{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+fi
 
 %clean
-rm -rf %buildroot
+rm -rf %{buildroot}
 
 %files
 %defattr(0755,root,root,0755)
 %_bindir/*
 %defattr(0644,root,root,0755)
 %doc COPYING README INSTALL ChangeLog AUTHORS
-%_datadir/MUSH_APP_PACKAGE/*
-%_menudir/*
-%_iconsdir/*.png
+%dir %{_datadir}/%{name}
+%{_datadir}/applications/*
+%{_datadir}/%{name}/*
+%{_datadir}/icons/hicolor/16x16/apps/%{name}.png
+%{_datadir}/icons/hicolor/32x32/apps/%{name}.png
+%{_datadir}/icons/hicolor/48x48/apps/%{name}.png
 %_mandir/man6/%{name}*.6*
 
 %changelog
+* Wed Oct 17 2007 Andy Southgate <andy.southgate@mushware.com> 1.2.3-1
+- Created from Mandriva .spec
+
 * Thu Sep 27 2007 Andy Southgate <andy.southgate@mushware.com> 1.2.1-1
 - Created from Mandriva .spec
