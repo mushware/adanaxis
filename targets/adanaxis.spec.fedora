@@ -1,6 +1,9 @@
 # Spec file for Mandriva Linux
-# $Id: adanaxis.spec.fedora,v 1.2 2007/09/27 12:10:09 southa Exp $
+# $Id: adanaxis.spec.fedora,v 1.3 2007/10/17 23:44:50 southa Exp $
 # $Log: adanaxis.spec.fedora,v $
+# Revision 1.3  2007/10/17 23:44:50  southa
+# Fedora packaging review comments
+#
 # Revision 1.2  2007/09/27 12:10:09  southa
 # Fixed changelog
 #
@@ -114,9 +117,12 @@ desktop-file-install --vendor=mushware         \
   %{name}-recover.desktop
 
 # Icons
-install -Dp -m 644 x11/icons/%{name}-16.png %{buildroot}%{_datadir}/icons/hicolor/16x16/apps/%{name}.png
-install -Dp -m 644 x11/icons/%{name}-32.png %{buildroot}%{_datadir}/icons/hicolor/32x32/apps/%{name}.png
-install -Dp -m 644 x11/icons/%{name}-48.png %{buildroot}%{_datadir}/icons/hicolor/48x48/apps/%{name}.png
+mkdir -p -m 755 %{buildroot}%{_datadir}/icons/hicolor/16x16/apps
+mkdir -p -m 755 %{buildroot}%{_datadir}/icons/hicolor/32x32/apps
+mkdir -p -m 755 %{buildroot}%{_datadir}/icons/hicolor/48x48/apps
+install -p -m 644 x11/icons/%{name}-16.png %{buildroot}%{_datadir}/icons/hicolor/16x16/apps/%{name}.png
+install -p -m 644 x11/icons/%{name}-32.png %{buildroot}%{_datadir}/icons/hicolor/32x32/apps/%{name}.png
+install -p -m 644 x11/icons/%{name}-48.png %{buildroot}%{_datadir}/icons/hicolor/48x48/apps/%{name}.png
 
 %post
 touch --no-create %{_datadir}/icons/hicolor
