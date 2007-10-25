@@ -1,6 +1,9 @@
 # Spec file for Mandriva Linux
-# $Id: adanaxis.spec.fedora,v 1.3 2007/10/17 23:44:50 southa Exp $
+# $Id: adanaxis.spec.fedora,v 1.4 2007/10/18 00:04:13 southa Exp $
 # $Log: adanaxis.spec.fedora,v $
+# Revision 1.4  2007/10/18 00:04:13  southa
+# Fedora packaging review comments
+#
 # Revision 1.3  2007/10/17 23:44:50  southa
 # Fedora packaging review comments
 #
@@ -38,19 +41,13 @@ Source0:        http://www.mushware.com/files/%{name}-MUSH_APP_VERSION.tar.gz
 
 BuildRoot:      %(mktemp -ud %{_tmppath}/%{name}-%{version}-%{release}-XXXXXX)
 
-BuildRequires:       autoconf
-BuildRequires:       automake
-BuildRequires:       binutils
 BuildRequires:       desktop-file-utils
 BuildRequires:       freeglut-devel
-BuildRequires:       glibc-devel
 BuildRequires:       expat-devel
 BuildRequires:       libjpeg-devel
-BuildRequires:       libGLU-devel
 BuildRequires:       libtiff-devel
 BuildRequires:       libvorbis-devel
 BuildRequires:       pcre-devel
-BuildRequires:       SDL-devel
 BuildRequires:       SDL_mixer-devel
 
 %description
@@ -76,7 +73,7 @@ make %{?_smp_mflags}
 
 %install
 rm -rf %{buildroot}
-make DESTDIR=%{buildroot} install
+make DESTDIR=%{buildroot} INSTALL="install -p" CPPROG="cp -p" install
 
 # Build .desktop files
 
@@ -110,10 +107,10 @@ EOF
 
 mkdir -p %{buildroot}%{_datadir}/applications
 desktop-file-install --vendor=mushware         \
-  --dir %{buildroot}%{_datadir}/applications \
+  --dir %{buildroot}%{_datadir}/applications   \
   %{name}.desktop
 desktop-file-install --vendor=mushware         \
-  --dir %{buildroot}%{_datadir}/applications \
+  --dir %{buildroot}%{_datadir}/applications   \
   %{name}-recover.desktop
 
 # Icons
@@ -153,8 +150,11 @@ rm -rf %{buildroot}
 %_mandir/man6/%{name}*.6*
 
 %changelog
+* Thu Oct 25 2007 Andy Southgate <andy.southgate@mushware.com> 1.2.4-1
+- Updates following further review (bugzilla #309061)
+
 * Wed Oct 17 2007 Andy Southgate <andy.southgate@mushware.com> 1.2.3-1
-- Created from Mandriva .spec
+- Updates following review (bugzilla #309061)
 
 * Thu Sep 27 2007 Andy Southgate <andy.southgate@mushware.com> 1.2.1-1
 - Created from Mandriva .spec
