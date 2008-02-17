@@ -23,8 +23,11 @@
  ****************************************************************************/
 //%Header } mS4pvUCJCtdAQDhLtwpqEg
 /*
- * $Id: MushcoreStandard.h,v 1.29 2006/06/22 19:07:36 southa Exp $
+ * $Id: MushcoreStandard.h,v 1.30 2007/04/18 09:23:13 southa Exp $
  * $Log: MushcoreStandard.h,v $
+ * Revision 1.30  2007/04/18 09:23:13  southa
+ * Header and level fixes
+ *
  * Revision 1.29  2006/06/22 19:07:36  southa
  * Build fixes
  *
@@ -244,6 +247,7 @@
 #define HAVE_SSTREAM_NOT_IN_IOSFWD
 #endif
 
+#include <cstring>
 #include <iosfwd>
 #include <list>
 #include <map>
