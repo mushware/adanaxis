@@ -55,7 +55,7 @@ MediaKeyboard::KeySymbolToName(Mushware::U32 keyValue)
 
     if (keyValue < kKey_LAST)
     {
-        retVal = SDL_GetKeyName(static_cast<SDLKey>(keyValue));
+        retVal = SDL_GetKeyName(static_cast<SDL_Keycode>(keyValue));
         if (retVal == "left ctrl") retVal = "l-ctrl";
         if (retVal == "right ctrl") retVal = "r-ctrl";
         if (retVal == "left") retVal = "left arrow";

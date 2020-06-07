@@ -204,7 +204,7 @@ PlatformMiscUtils::GetSystemPath(int argc, char *argv[])
 {
     string appPath;
     char *pBuffer=new char[MAXPATHLEN];
-    if (getcwd(pBuffer, MAXPATHLEN) &&
+    if (_getcwd(pBuffer, MAXPATHLEN) &&
         strlen(pBuffer) > 1)
     {
         appPath=string(pBuffer);

@@ -262,7 +262,8 @@ SDLAppHandler::SDLAppHandler():
     m_firstDelta(true),
     m_mouseSensitivity(1.0),
     m_screenEntered(false),
-    m_shiftAtStartupPressed(false)
+    m_shiftAtStartupPressed(false),
+    m_pWindow(NULL)
 {
     m_deviceList.resize(kNumDevices);
     for (U32 i=0; i<kNumDevices; ++i)
@@ -385,18 +386,14 @@ SDLAppHandler::EnterScreen(const GLModeDef& inDef)
     U32 sdlFlags=0;
     if (inDef.FullScreen())
     {
-        sdlFlags=SDL_OPENGL|SDL_FULLSCREEN;
+        sdlFlags=SDL_WINDOW_OPENGL | SDL_WINDOW_FULLSCREEN;
     }
     else
     {
-        sdlFlags=SDL_OPENGL;
+        sdlFlags=SDL_WINDOW_OPENGL;
     }
 
     bool carryOn = true;
-    
-    SDL_Surface *pSurface = NULL;
-    
-    
     
     for (U32 i=0; i<16 && carryOn; ++i)
     {
@@ -414,7 +411,8 @@ SDLAppHandler::EnterScreen(const GLModeDef& inDef)
 
 #if (SDL_MAJOR_VERSION * 10000 + SDL_MINOR_VERSION * 100 + SDL_PATCHLEVEL) >= 10210
         // Attributes supported from SDL version 1.2.10 onwards
-        SDL_GL_SetAttribute(SDL_GL_SWAP_CONTROL, 1);
+        // Was: SDL_GL_SetAttribute(SDL_GL_SWAP_CONTROL, 1);
+        SDL_GL_SetSwapInterval(1);
 #endif
 
 
@@ -424,25 +422,31 @@ SDLAppHandler::EnterScreen(const GLModeDef& inDef)
         SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 4);
 #endif
         
-        pSurface=SDL_SetVideoMode(m_width, m_height, m_bpp, sdlFlags);
+        // Was: pSurface=SDL_SetVideoMode(m_width, m_height, m_bpp, sdlFlags);
+        m_pWindow = SDL_CreateWindow(MushcoreInfo::Sgl().ApplicationNameGet().c_str(),
+            SDL_WINDOWPOS_UNDEFINED,
+            SDL_WINDOWPOS_UNDEFINED,
+            m_width, m_height,
+            sdlFlags);
+
 
 #if (SDL_MAJOR_VERSION * 10000 + SDL_MINOR_VERSION * 100 + SDL_PATCHLEVEL) >= 10206
-        if (pSurface == NULL)
+        if (m_pWindow == NULL)
         {
             MushcoreLog::Sgl().WarningLog() << "SDL video mode failed - trying without FSAA" << endl;
             SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 0);
             SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 0);
-            pSurface=SDL_SetVideoMode(m_width, m_height, m_bpp, sdlFlags);
+            // Was: pSurface=SDL_SetVideoMode(m_width, m_height, m_bpp, sdlFlags);
+            m_pWindow = SDL_CreateWindow(MushcoreInfo::Sgl().ApplicationNameGet().c_str(),
+                SDL_WINDOWPOS_UNDEFINED,
+                SDL_WINDOWPOS_UNDEFINED,
+                m_width, m_height,
+                sdlFlags);
+        
         }
 #endif
-
-        if (pSurface == NULL)
-        {
-            MushcoreLog::Sgl().WarningLog() << "SDL video mode failed again - trying for ANYFORMAT mode" << endl;
-            pSurface=SDL_SetVideoMode(m_width, m_height, m_bpp, sdlFlags|SDL_ANYFORMAT);
-        }
         
-        if (pSurface != NULL)
+        if (m_pWindow != NULL)
         {
             // Mode successful
             carryOn = false;
@@ -454,7 +458,7 @@ SDLAppHandler::EnterScreen(const GLModeDef& inDef)
     }
     
     PlatformVideoUtils::Sgl().ModeChangeEpilogue();
-    if (pSurface == NULL) throw(MushcoreDeviceFail("Could not select a compatible display mode"));
+    if (m_pWindow == NULL) throw(MushcoreDeviceFail("Could not select a compatible display mode"));
 
     // Got video mode
     if (m_width > m_height)
@@ -466,7 +470,7 @@ SDLAppHandler::EnterScreen(const GLModeDef& inDef)
         m_greatestDimension=m_height;
     }
     SetCursorState(m_showCursor);
-    SDL_WM_SetCaption(MushcoreInfo::Sgl().ApplicationNameGet().c_str(), (MushcoreInfo::Sgl().ApplicationNameGet()+".bmp").c_str());
+    // Was: SDL_WM_SetCaption(MushcoreInfo::Sgl().ApplicationNameGet().c_str(), (MushcoreInfo::Sgl().ApplicationNameGet()+".bmp").c_str());
 
     GLState::Reset();
     for (U32 i=0; i<m_keyState.size(); ++i)
@@ -476,12 +480,12 @@ SDLAppHandler::EnterScreen(const GLModeDef& inDef)
 
     if (inDef.FullScreen())
     {
-        SDL_WM_GrabInput(SDL_GRAB_ON);
+        SDL_SetRelativeMouseMode(SDL_TRUE);
     }
     else
     {
         // Don't grab input so that user can still work
-        SDL_WM_GrabInput(SDL_GRAB_OFF);
+        SDL_SetRelativeMouseMode(SDL_FALSE);
     }
 
     m_modeDef=inDef;
@@ -505,7 +509,7 @@ SDLAppHandler::PostRedisplay(void)
 void
 SDLAppHandler::SwapBuffers(void)
 {
-    SDL_GL_SwapBuffers();
+    SDL_GL_SwapWindow(m_pWindow);
 }
 
 U32
@@ -517,7 +521,7 @@ SDLAppHandler::MillisecondsGet(void) const
 bool
 SDLAppHandler::HasFocus(void) const
 {
-    return ((SDL_GetAppState() & SDL_APPINPUTFOCUS) != 0);
+    return ((SDL_GetWindowFlags(m_pWindow) & SDL_WINDOW_INPUT_FOCUS) != 0);
 }
 
 void
@@ -525,12 +529,12 @@ SDLAppHandler::SetCursorState(bool inValue)
 {
     if (!inValue && !m_showCursor)
     {
-        SDL_ShowCursor(SDL_DISABLE);
+        // Was: SDL_ShowCursor(SDL_DISABLE);
     }
     else
     {
-        SDL_ShowCursor(SDL_ENABLE);
-        PlatformVideoUtils::ForceShowCursor();
+        // Was: SDL_ShowCursor(SDL_ENABLE);
+        // Was: PlatformVideoUtils::ForceShowCursor();
     }
 }
 
@@ -828,12 +832,12 @@ SDLAppHandler::KeyRepeatSet(bool inValue)
 {
     if (inValue)
     {
-        SDL_EnableKeyRepeat(SDL_DEFAULT_REPEAT_DELAY, SDL_DEFAULT_REPEAT_INTERVAL);
+        // SDL_EnableKeyRepeat(SDL_DEFAULT_REPEAT_DELAY, SDL_DEFAULT_REPEAT_INTERVAL);
     }
     else
     {
         //  Disable
-        SDL_EnableKeyRepeat(0, SDL_DEFAULT_REPEAT_INTERVAL);
+        // SDL_EnableKeyRepeat(0, SDL_DEFAULT_REPEAT_INTERVAL);
     }
 }
 

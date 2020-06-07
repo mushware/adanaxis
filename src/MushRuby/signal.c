@@ -978,6 +978,7 @@ rb_f_kill(argc, argv)
     int argc;
     VALUE *argv;
 {
+    return 0;
 }
 
 #endif

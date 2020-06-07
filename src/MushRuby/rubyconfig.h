@@ -94,12 +94,12 @@
 #define HAVE_COSH 1
 #define HAVE_SINH 1
 #define HAVE_TANH 1
-#define HAVE_TZNAME 1
-#define HAVE_DAYLIGHT 1
+// #define HAVE_TZNAME 1
+// #define HAVE_DAYLIGHT 1
 #define SETPGRP_VOID 1
 #define RSHIFT(x,y) ((x)>>(int)y)
-#define FILE_COUNT _cnt
-#define FILE_READPTR _ptr
+// #define FILE_COUNT _cnt
+// #define FILE_READPTR _ptr
 #define inline __inline
 #define NEED_IO_SEEK_BETWEEN_RW 1
 #define STACK_GROW_DIRECTION -1

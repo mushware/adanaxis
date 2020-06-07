@@ -102,6 +102,7 @@
  */
 
 #include "mushGL.h"
+#include "mushMedia.h"
 #include "mushPlatform.h"
 
 #define NOMINMAX

@@ -55,9 +55,10 @@
       <Optimization>MaxSpeed</Optimization>
       <InlineFunctionExpansion>Default</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <AdditionalIncludeDirectories>..\..\src;..\..\src\API;C:\msvclibs\GnuWin32\include;C:\msvclibs\Expat-1.95.8\Source\lib;C:\msvclibs\SDL-1.2.11\include;C:\msvclibs\SDL_mixer-1.2.7;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\src;..\..\src\API;C:\msvclibs\Expat-1.95.8\Source\lib;$(SolutionDir)..\..\win32deps\SDL2-devel\include;$(SolutionDir)..\..\win32deps\SDL2_mixer-devel\include;$(SolutionDir)..\..\win32deps\pcre-devel\include;$(SolutionDir)..\..\win32deps\tiffio-devel\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
+      <MinimalRebuild>
+      </MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -67,9 +68,9 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>WS2_32.lib;Winmm.lib;dxguid.lib;Iphlpapi.lib;OPENGL32.lib;GLU32.lib;libexpat.lib;libpcre.a;SDL.lib;SDL_mixer.lib;libtiff.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>WS2_32.lib;Winmm.lib;dxguid.lib;Iphlpapi.lib;OPENGL32.lib;GLU32.lib;libexpat.lib;pcre.lib;SDL2.lib;SDL2_mixer.lib;libtiff.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)adanaxis_debug.exe</OutputFile>
-      <AdditionalLibraryDirectories>C:\msvclibs\GnuWin32\lib;C:\msvclibs\Expat-1.95.8\Libs;C:\msvclibs\SDL-1.2.11\lib;C:\msvclibs\SDL_mixer-1.2.7\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\..\win32deps\expat-devel\lib;$(SolutionDir)..\..\win32deps\tiffio-devel\lib;$(SolutionDir)..\..\win32deps\pcre-devel\lib;$(SolutionDir)..\..\win32deps\SDL2_mixer-devel\lib\x86;$(SolutionDir)..\..\win32deps\SDL2-devel\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>$(OutDir)project.pdb</ProgramDatabaseFile>
@@ -117,7 +118,6 @@
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\core-keys\MushSecretKeys.cpp" />
     <ClCompile Include="..\..\src\Adanaxis\AdanaxisAppHandler.cpp" />
     <ClCompile Include="..\..\src\Adanaxis\AdanaxisClient.cpp" />
     <ClCompile Include="..\..\src\Adanaxis\AdanaxisCommandHandler.cpp" />
@@ -492,6 +492,7 @@
     <ClCompile Include="..\..\src\MushRuby\MushRubySTL.cpp" />
     <ClCompile Include="..\..\src\MushRuby\MushRubyUtil.cpp" />
     <ClCompile Include="..\..\src\MushRuby\MushRubyValue.cpp" />
+    <ClCompile Include="..\..\src\MushSecretKeys\MushSecretKeys.cpp" />
     <ClCompile Include="..\..\src\MushSkin\MushSkin.cpp" />
     <ClCompile Include="..\..\src\MushSkin\MushSkinLineGenerator.cpp" />
     <ClCompile Include="..\..\src\MushSkin\MushSkinPixelSourceCellNoise.cpp" />
@@ -632,6 +633,7 @@
     <ClInclude Include="..\..\src\Gl\GLTextureRef.h" />
     <ClInclude Include="..\..\src\Gl\GLTextureSpr.h" />
     <ClInclude Include="..\..\src\Gl\GLTextureTIFF.h" />
+    <ClInclude Include="resource1.h" />
     <CustomBuild Include="..\..\src\Gl\GLUTAppHandler.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
@@ -929,9 +931,7 @@
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="adanaxis.rc" />
-  </ItemGroup>
-  <ItemGroup>
+    <Image Include="..\..\win32\icons\adanaxis_app.ico" />
     <Image Include="adanaxiscontroldemo_app.ico" />
     <Image Include="adanaxis_app.ico" />
   </ItemGroup>
@@ -948,6 +948,11 @@
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
       </DeploymentContent>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="adanaxis.rc">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)..\..\win32\icons;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

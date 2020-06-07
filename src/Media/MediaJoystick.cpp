@@ -49,11 +49,12 @@ MediaJoystick::MediaJoystick()
     for (U32 i=0; i<numSticks; ++i)
     {
         m_sticks[i] = SDL_JoystickOpen(i);
-        
+        SDL_JoystickID stickId = SDL_JoystickInstanceID(m_sticks[i]);
+
         if (m_sticks[i] != NULL)
         {
             MushcoreLog::Sgl().InfoLog() << "Opening joystick " << i << endl;
-            MushcoreLog::Sgl().InfoLog() << "- Name     : " << SDL_JoystickName(i) << endl;
+            MushcoreLog::Sgl().InfoLog() << "- Name     : " << SDL_JoystickName(m_sticks[i]) << endl;
             MushcoreLog::Sgl().InfoLog() << "- Axes     : " << SDL_JoystickNumAxes(m_sticks[i]) << endl;
             MushcoreLog::Sgl().InfoLog() << "- Buttons  : " << SDL_JoystickNumButtons(m_sticks[i]) << endl;
             MushcoreLog::Sgl().InfoLog() << "- Balls    : " << SDL_JoystickNumBalls(m_sticks[i]) << endl;

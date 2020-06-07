@@ -131,6 +131,7 @@
 #include "mushMushcore.h"
 
 class GLKeyboardSignal;
+struct SDL_Window;
 
 class SDLControlEntry
 {
@@ -221,6 +222,7 @@ private:
     Mushware::tVal m_mouseSensitivity;
     bool m_screenEntered;
     bool m_shiftAtStartupPressed;
+    SDL_Window* m_pWindow;
 };
 //%includeGuardEnd {
 #endif

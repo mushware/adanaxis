@@ -233,7 +233,7 @@ extern int kill(int, int);
 extern int fcntl(int, int, ...);
 extern rb_pid_t rb_w32_getpid(void);
 
-#if !defined(__BORLANDC__) && !defined(_WIN32_WCE)
+#if !defined(__BORLANDC__) && !defined(_WIN32_WCE) && 0
 extern int rb_w32_isatty(int);
 #endif
 extern int rb_w32_mkdir(const char *, int);

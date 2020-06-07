@@ -67,6 +67,10 @@
 #define bool int
 #endif
 
+#define _filbuf fgetc
+#define _flsbuf fputc
+
+
 #if defined __BORLANDC__ || defined _WIN32_WCE
 #  define _filbuf _fgetc
 #  define _flsbuf _fputc
@@ -107,7 +111,7 @@ static struct ChildRecord *CreateChild(const char *, const char *, SECURITY_ATTR
 static bool has_redirection(const char *);
 static void StartSockets ();
 static DWORD wait_events(HANDLE event, DWORD timeout);
-#if !defined(_WIN32_WCE)
+#if !defined(_WIN32_WCE) && 0
 static int rb_w32_open_osfhandle(long osfhandle, int flags);
 #else
 #define rb_w32_open_osfhandle(osfhandle, flags) _open_osfhandle(osfhandle, flags)
@@ -1584,7 +1588,9 @@ typedef struct	{
 #define _CRTIMP __declspec(dllimport)
 #endif
 
-#if !defined(__BORLANDC__) && !defined(_WIN32_WCE)
+
+
+#if !defined(__BORLANDC__) && !defined(_WIN32_WCE) && 0
 EXTERN_C _CRTIMP ioinfo * __pioinfo[];
 
 #define IOINFO_L2E			5
@@ -3218,11 +3224,13 @@ rb_w32_getc(FILE* stream)
 {
     int c, trap_immediate = rb_trap_immediate;
 #ifndef _WIN32_WCE
+#if 0 // Mushware patch for newer MSVC
     if (enough_to_get(stream->FILE_COUNT)) {
 	c = (unsigned char)*stream->FILE_READPTR++;
 	rb_trap_immediate = trap_immediate;
     }
-    else 
+    else
+#endif
 #endif
     {
 	c = _filbuf(stream);
@@ -3243,11 +3251,13 @@ rb_w32_putc(int c, FILE* stream)
 {
     int trap_immediate = rb_trap_immediate;
 #ifndef _WIN32_WCE
+#if 0 // Mushware patch for newer MSVC
     if (enough_to_put(stream->FILE_COUNT)) {
 	c = (unsigned char)(*stream->FILE_READPTR++ = (char)c);
 	rb_trap_immediate = trap_immediate;
     }
     else 
+#endif
 #endif
     {
 	c = _flsbuf(c, stream);
@@ -3586,6 +3596,7 @@ rb_w32_unlink(const char *path)
 int
 rb_w32_isatty(int fd)
 {
+#if 0
     if (!(_osfile(fd) & FOPEN)) {
 	errno = EBADF;
 	return 0;
@@ -3594,6 +3605,7 @@ rb_w32_isatty(int fd)
 	errno = ENOTTY;
 	return 0;
     }
+#endif
     return 1;
 }
 #endif

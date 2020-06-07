@@ -1206,9 +1206,6 @@
     <ClCompile Include="..\..\src\MushSkin\MushSkinUtil.cpp">
       <Filter>Source Files\MushSkin</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\core-keys\MushSecretKeys.cpp">
-      <Filter>Source Files\MushSecret</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\MushFile\MushFile.cpp">
       <Filter>Source Files\MushFile</Filter>
     </ClCompile>
@@ -1238,6 +1235,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\MushFile\MushFileStandard.cpp">
       <Filter>Source Files\MushFile</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushSecretKeys\MushSecretKeys.cpp">
+      <Filter>Source Files\MushSecret</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -2453,17 +2453,18 @@
     <ClInclude Include="resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="adanaxis.rc">
-      <Filter>Resource Files</Filter>
-    </ResourceCompile>
+    <ClInclude Include="resource1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="adanaxis_app.ico">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="adanaxiscontroldemo_app.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\win32\icons\adanaxis_app.ico">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
@@ -2479,5 +2480,10 @@
     <None Include="..\..\scripts\GetWindowsDeps.ps1">
       <Filter>Scripts</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="adanaxis.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

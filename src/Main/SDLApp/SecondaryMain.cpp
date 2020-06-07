@@ -338,7 +338,7 @@ main(int argc, char *argv[])
     {
         cerr << "Unknown exception" << endl;
         // rethrow to see if the OS knows about it
-        throw;
+        // throw;
         retVal = 1;
     }
     
