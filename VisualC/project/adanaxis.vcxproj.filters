@@ -1,0 +1,2483 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Mushcore">
+      <UniqueIdentifier>{2fa43c32-3048-47e1-a500-9bd7b6c8d4ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Main">
+      <UniqueIdentifier>{3c74f47b-0138-48bb-a4d5-cf2127f4d3fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Main\CommandLineApp">
+      <UniqueIdentifier>{d38e614e-8d20-4e68-a946-cffc76dd192a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Main\SDLApp">
+      <UniqueIdentifier>{2720955a-1028-45e3-9299-8d594209a642}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\MushMesh">
+      <UniqueIdentifier>{29007980-d91c-44fa-8b01-e62f650945bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Adanaxis">
+      <UniqueIdentifier>{2c5ede70-3cfe-4acd-a109-01482952b969}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\API">
+      <UniqueIdentifier>{28de1eeb-17b8-40e1-854a-9258322e5ab0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Media">
+      <UniqueIdentifier>{4d2d32f1-294e-4b98-8412-309d202792be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\MushGL">
+      <UniqueIdentifier>{eba27641-3247-4252-9d39-2453fd040fec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\MushRender">
+      <UniqueIdentifier>{f160241b-d29f-4869-bb2b-3bae8dc3575c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Platform">
+      <UniqueIdentifier>{99edceb0-1492-4e76-9e44-607508990c77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Platform\win32">
+      <UniqueIdentifier>{f7e4b85f-546a-4081-879d-79d0b1f43702}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Support">
+      <UniqueIdentifier>{5ea9adde-e507-4fda-b0a9-42943caff144}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game">
+      <UniqueIdentifier>{81f37c9a-ea3a-40ea-9712-0061f4cf4ea0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GL">
+      <UniqueIdentifier>{d5ee5dc6-c46b-4fa7-bfc8-3264a313340b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\MushCollision">
+      <UniqueIdentifier>{15c7ace6-b4a1-4032-99cf-8f000718e7a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\MushMeshLibrary">
+      <UniqueIdentifier>{e8a00341-6daf-4fbf-9bb5-45ee0c7486ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\MushGame">
+      <UniqueIdentifier>{d4d63dff-75fe-4ee9-9d85-b38f51e6b3f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\MushRuby">
+      <UniqueIdentifier>{1b38a48c-5209-457b-8a28-2d3fd526369a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\MushMeshRuby">
+      <UniqueIdentifier>{3eac3fea-162b-45a3-8609-03b42fb1efe4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\MushSkin">
+      <UniqueIdentifier>{995f0545-632e-46a8-acd0-385efcc37e3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\MushSecret">
+      <UniqueIdentifier>{e96cd155-2d14-4d51-bd1c-f4ca56ebd400}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\MushFile">
+      <UniqueIdentifier>{aa270585-c8ab-4106-b4c3-deb471bec79e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx</Extensions>
+    </Filter>
+    <Filter Include="Libraries">
+      <UniqueIdentifier>{629061ee-d393-449f-a418-3fae92bb3798}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libraries\pcre">
+      <UniqueIdentifier>{042e4c27-ae62-442d-873f-4d56b05412be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libraries\expat">
+      <UniqueIdentifier>{1f2580af-f752-44aa-8ced-b6e04498e8bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts">
+      <UniqueIdentifier>{8d01aafd-3b38-4997-86c3-f2b5af340ded}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\Mushcore\Mushcore.cpp">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Mushcore\MushcoreAbstractSingleton.cpp">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Mushcore\MushcoreAppHandler.cpp">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Mushcore\MushcoreAppSignal.cpp">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Mushcore\MushcoreAutoBool.cpp">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Mushcore\MushcoreAutoClonePtr.cpp">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Mushcore\MushcoreAutoMonkey.cpp">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Mushcore\MushcoreBison.cpp">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Mushcore\MushcoreBisonDefs.cpp">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Mushcore\MushcoreBuiltinHandler.cpp">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Mushcore\MushcoreCommand.cpp">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Mushcore\MushcoreCommandHandler.cpp">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Mushcore\MushcoreConfig.cpp">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Mushcore\MushcoreData.cpp">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Mushcore\MushcoreDataRef.cpp">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Mushcore\MushcoreEnv.cpp">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Mushcore\MushcoreEnvOutput.cpp">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Mushcore\MushcoreFactory.cpp">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Mushcore\MushcoreFail.cpp">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Mushcore\MushcoreFlex.cpp">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Mushcore\MushcoreFunction.cpp">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Mushcore\MushcoreGlobalConfig.cpp">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Mushcore\MushcoreHistory.cpp">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Mushcore\MushcoreInfo.cpp">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Mushcore\MushcoreInstaller.cpp">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Mushcore\MushcoreInterpreter.cpp">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Mushcore\MushcoreIO.cpp">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Mushcore\MushcoreLog.cpp">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Mushcore\MushcoreMaptor.cpp">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Mushcore\MushcoreMaptorConstIterator.cpp">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Mushcore\MushcoreMaptorIterator.cpp">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Mushcore\MushcoreMaptorRef.cpp">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Mushcore\MushcoreObject.cpp">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Mushcore\MushcoreOrderedData.cpp">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Mushcore\MushcoreParamList.cpp">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Mushcore\MushcorePickle.cpp">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Mushcore\MushcorePipe.cpp">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Mushcore\MushcoreRegExp.cpp">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Mushcore\MushcoreScalar.cpp">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Mushcore\MushcoreScript.cpp">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Mushcore\MushcoreSingleton.cpp">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Mushcore\MushcoreStandard.cpp">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Mushcore\MushcoreSTL.cpp">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Mushcore\MushcoreStreamUtil.cpp">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Mushcore\MushcoreSwitches.cpp">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Mushcore\MushcoreUninstaller.cpp">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Mushcore\MushcoreUtil.cpp">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Mushcore\MushcoreVirtualObject.cpp">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Mushcore\MushcoreXML.cpp">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Mushcore\MushcoreXMLIStream.cpp">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Mushcore\MushcoreXMLOStream.cpp">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Mushcore\MushcoreXMLStream.cpp">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Main\PrimaryMain.cpp">
+      <Filter>Source Files\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Main\CommandLineApp\SecondaryMain.cpp">
+      <Filter>Source Files\Main\CommandLineApp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Main\SDLApp\SecondaryMain.cpp">
+      <Filter>Source Files\Main\SDLApp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMesh\MushMesh.cpp">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMesh\MushMesh4Base.cpp">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMesh\MushMesh4Chunk.cpp">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMesh\MushMesh4Extruder.cpp">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMesh\MushMesh4Face.cpp">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMesh\MushMesh4FaceGenerator.cpp">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMesh\MushMesh4Library.cpp">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMesh\MushMesh4LinkFaceFace.cpp">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMesh\MushMesh4Maker.cpp">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMesh\MushMesh4Material.cpp">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMesh\MushMesh4Mesh.cpp">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMesh\MushMesh4TextureTile.cpp">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMesh\MushMesh4Util.cpp">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMesh\MushMesh4VertexGenerator.cpp">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMesh\MushMeshArray.cpp">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMesh\MushMeshBox.cpp">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMesh\MushMeshConnector.cpp">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMesh\MushMeshDisplacement.cpp">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMesh\MushMeshDivide.cpp">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMesh\MushMeshFace.cpp">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMesh\MushMeshGroup.cpp">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMesh\MushMeshMattress.cpp">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMesh\MushMeshMesh.cpp">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMesh\MushMeshMushcoreIO.cpp">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMesh\MushMeshOps.cpp">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMesh\MushMeshPatch.cpp">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMesh\MushMeshPatchEnd.cpp">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMesh\MushMeshPatchPipe.cpp">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMesh\MushMeshPatchTypes.cpp">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMesh\MushMeshPosticity.cpp">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMesh\MushMeshPostMatrix.cpp">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMesh\MushMeshPreMatrix.cpp">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMesh\MushMeshQuaternion.cpp">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMesh\MushMeshQuaternionPair.cpp">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMesh\MushMeshSelection.cpp">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMesh\MushMeshStandard.cpp">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMesh\MushMeshStitchable.cpp">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMesh\MushMeshSTL.cpp">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMesh\MushMeshSubdivide.cpp">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMesh\MushMeshTools.cpp">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMesh\MushMeshTriangularArray.cpp">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMesh\MushMeshUtils.cpp">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMesh\MushMeshVector.cpp">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMesh\MushMeshWorkspace.cpp">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMesh\MushMeshWorkspaceBased.cpp">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Adanaxis\AdanaxisAppHandler.cpp">
+      <Filter>Source Files\Adanaxis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Adanaxis\AdanaxisClient.cpp">
+      <Filter>Source Files\Adanaxis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Adanaxis\AdanaxisCommandHandler.cpp">
+      <Filter>Source Files\Adanaxis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Adanaxis\AdanaxisConfig.cpp">
+      <Filter>Source Files\Adanaxis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Adanaxis\AdanaxisData.cpp">
+      <Filter>Source Files\Adanaxis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Adanaxis\AdanaxisEvents.cpp">
+      <Filter>Source Files\Adanaxis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Adanaxis\AdanaxisGame.cpp">
+      <Filter>Source Files\Adanaxis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Adanaxis\AdanaxisInfo.cpp">
+      <Filter>Source Files\Adanaxis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Adanaxis\AdanaxisIntern.cpp">
+      <Filter>Source Files\Adanaxis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Adanaxis\AdanaxisLogic.cpp">
+      <Filter>Source Files\Adanaxis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Adanaxis\AdanaxisMeshLibrary.cpp">
+      <Filter>Source Files\Adanaxis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Adanaxis\AdanaxisPiece.cpp">
+      <Filter>Source Files\Adanaxis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Adanaxis\AdanaxisPieceDeco.cpp">
+      <Filter>Source Files\Adanaxis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Adanaxis\AdanaxisPieceEffector.cpp">
+      <Filter>Source Files\Adanaxis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Adanaxis\AdanaxisPieceItem.cpp">
+      <Filter>Source Files\Adanaxis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Adanaxis\AdanaxisPieceKhazi.cpp">
+      <Filter>Source Files\Adanaxis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Adanaxis\AdanaxisPiecePlayer.cpp">
+      <Filter>Source Files\Adanaxis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Adanaxis\AdanaxisPieceProjectile.cpp">
+      <Filter>Source Files\Adanaxis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Adanaxis\AdanaxisPieceWorld.cpp">
+      <Filter>Source Files\Adanaxis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Adanaxis\AdanaxisRecords.cpp">
+      <Filter>Source Files\Adanaxis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Adanaxis\AdanaxisRender.cpp">
+      <Filter>Source Files\Adanaxis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Adanaxis\AdanaxisRuby.cpp">
+      <Filter>Source Files\Adanaxis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Adanaxis\AdanaxisRubyDeco.cpp">
+      <Filter>Source Files\Adanaxis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Adanaxis\AdanaxisRubyWorld.cpp">
+      <Filter>Source Files\Adanaxis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Adanaxis\AdanaxisSaveData.cpp">
+      <Filter>Source Files\Adanaxis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Adanaxis\AdanaxisScanner.cpp">
+      <Filter>Source Files\Adanaxis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Adanaxis\AdanaxisServer.cpp">
+      <Filter>Source Files\Adanaxis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Adanaxis\AdanaxisStandard.cpp">
+      <Filter>Source Files\Adanaxis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Adanaxis\AdanaxisSTL.cpp">
+      <Filter>Source Files\Adanaxis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Adanaxis\AdanaxisUtil.cpp">
+      <Filter>Source Files\Adanaxis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Adanaxis\AdanaxisVolatileData.cpp">
+      <Filter>Source Files\Adanaxis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Media\MediaAudio.cpp">
+      <Filter>Source Files\Media</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Media\MediaAudioChannelDef.cpp">
+      <Filter>Source Files\Media</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Media\MediaAudioCommandHandler.cpp">
+      <Filter>Source Files\Media</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Media\MediaAudioNull.cpp">
+      <Filter>Source Files\Media</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Media\MediaAudioSDL.cpp">
+      <Filter>Source Files\Media</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Media\MediaAudioSDLChannelDef.cpp">
+      <Filter>Source Files\Media</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Media\MediaJoystick.cpp">
+      <Filter>Source Files\Media</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Media\MediaKeyboard.cpp">
+      <Filter>Source Files\Media</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Media\MediaRWops.cpp">
+      <Filter>Source Files\Media</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Media\MediaSDL.cpp">
+      <Filter>Source Files\Media</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Media\MediaSound.cpp">
+      <Filter>Source Files\Media</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Media\MediaSoundStream.cpp">
+      <Filter>Source Files\Media</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Media\MediaSTL.cpp">
+      <Filter>Source Files\Media</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGL\MushGL.cpp">
+      <Filter>Source Files\MushGL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGL\MushGLAppHandler.cpp">
+      <Filter>Source Files\MushGL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGL\MushGLArrays.cpp">
+      <Filter>Source Files\MushGL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGL\MushGLAttribs.cpp">
+      <Filter>Source Files\MushGL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGL\MushGLBuffers.cpp">
+      <Filter>Source Files\MushGL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGL\MushGLCacheControl.cpp">
+      <Filter>Source Files\MushGL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGL\MushGLCamera.cpp">
+      <Filter>Source Files\MushGL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGL\MushGLClaimer.cpp">
+      <Filter>Source Files\MushGL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGL\MushGLControl.cpp">
+      <Filter>Source Files\MushGL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGL\MushGLDraw.cpp">
+      <Filter>Source Files\MushGL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGL\MushGLFont.cpp">
+      <Filter>Source Files\MushGL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGL\MushGLJob.cpp">
+      <Filter>Source Files\MushGL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGL\MushGLJobRender.cpp">
+      <Filter>Source Files\MushGL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGL\MushGLMaterial.cpp">
+      <Filter>Source Files\MushGL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGL\MushGLPixelSource.cpp">
+      <Filter>Source Files\MushGL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGL\MushGLPixelSourceTIFF.cpp">
+      <Filter>Source Files\MushGL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGL\MushGLProjection.cpp">
+      <Filter>Source Files\MushGL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGL\MushGLResolverPixelSource.cpp">
+      <Filter>Source Files\MushGL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGL\MushGLRuby.cpp">
+      <Filter>Source Files\MushGL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGL\MushGLRubyFont.cpp">
+      <Filter>Source Files\MushGL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGL\MushGLRubyShader.cpp">
+      <Filter>Source Files\MushGL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGL\MushGLShader.cpp">
+      <Filter>Source Files\MushGL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGL\MushGLStandard.cpp">
+      <Filter>Source Files\MushGL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGL\MushGLState.cpp">
+      <Filter>Source Files\MushGL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGL\MushGLTexture.cpp">
+      <Filter>Source Files\MushGL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGL\MushGLTIFFUtil.cpp">
+      <Filter>Source Files\MushGL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGL\MushGLUtil.cpp">
+      <Filter>Source Files\MushGL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGL\MushGLV.cpp">
+      <Filter>Source Files\MushGL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGL\MushGLVertexBuffer.cpp">
+      <Filter>Source Files\MushGL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGL\MushGLWorkspace.cpp">
+      <Filter>Source Files\MushGL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGL\MushGLWorkSpec.cpp">
+      <Filter>Source Files\MushGL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushRender\MushRender.cpp">
+      <Filter>Source Files\MushRender</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushRender\MushRenderMesh.cpp">
+      <Filter>Source Files\MushRender</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushRender\MushRenderMeshDiagnostic.cpp">
+      <Filter>Source Files\MushRender</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushRender\MushRenderMeshShader.cpp">
+      <Filter>Source Files\MushRender</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushRender\MushRenderMeshSolid.cpp">
+      <Filter>Source Files\MushRender</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushRender\MushRenderMeshWireframe.cpp">
+      <Filter>Source Files\MushRender</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushRender\MushRenderSpec.cpp">
+      <Filter>Source Files\MushRender</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushRender\MushRenderStandard.cpp">
+      <Filter>Source Files\MushRender</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushRender\MushRenderUtil.cpp">
+      <Filter>Source Files\MushRender</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Platform\PlatformSTL.cpp">
+      <Filter>Source Files\Platform</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Platform\PlatformUtils.cpp">
+      <Filter>Source Files\Platform</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Platform\win32\PlatformInputUtils.cpp">
+      <Filter>Source Files\Platform\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Platform\win32\PlatformMiscUtils.cpp">
+      <Filter>Source Files\Platform\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Platform\win32\PlatformVideoUtils.cpp">
+      <Filter>Source Files\Platform\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Platform\win32\SDL_main.c">
+      <Filter>Source Files\Platform\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Game\GameAppHandler.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Game\GameBase.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Game\GameCode.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Game\GameCommandHandler.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Game\GameConfig.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Game\GameConfigDef.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Game\GameControlFrameDef.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Game\GameController.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Game\GameDialogue.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Game\GameEvent.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Game\GameFrameTimer.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Game\GameGlobalConfig.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Game\GameGraphic.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Game\GameGraphicModel.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Game\GameGraphicSprite.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Game\GamePiece.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Game\GameProtocol.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Game\GameQuit.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Game\GameRecords.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Game\GameReg.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Game\GameRewards.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Game\GameRouter.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Game\GameSetup.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Game\GameSoundSpec.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Game\GameSoundStreamSpec.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Game\GameSTL.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Game\GameStringSpec.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Game\GameTimer.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Game\GameType.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Game\GameUtils.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Gl\GLAppHandler.cpp">
+      <Filter>Source Files\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Gl\GLArray.cpp">
+      <Filter>Source Files\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Gl\GLColour.cpp">
+      <Filter>Source Files\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Gl\GLCommandHandler.cpp">
+      <Filter>Source Files\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Gl\GLData.cpp">
+      <Filter>Source Files\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Gl\GLFont.cpp">
+      <Filter>Source Files\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Gl\GLFontRef.cpp">
+      <Filter>Source Files\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Gl\GLLightDef.cpp">
+      <Filter>Source Files\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Gl\GLLights.cpp">
+      <Filter>Source Files\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Gl\GLLine.cpp">
+      <Filter>Source Files\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Gl\GLModeDef.cpp">
+      <Filter>Source Files\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Gl\GLPoint.cpp">
+      <Filter>Source Files\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Gl\GLQuad.cpp">
+      <Filter>Source Files\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Gl\GLRectangle.cpp">
+      <Filter>Source Files\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Gl\GLRender.cpp">
+      <Filter>Source Files\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Gl\GLRenderable.cpp">
+      <Filter>Source Files\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Gl\GLState.cpp">
+      <Filter>Source Files\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Gl\GLSTL.cpp">
+      <Filter>Source Files\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Gl\GLString.cpp">
+      <Filter>Source Files\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Gl\GLTest.cpp">
+      <Filter>Source Files\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Gl\GLTest1AppHandler.cpp">
+      <Filter>Source Files\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Gl\GLTexture.cpp">
+      <Filter>Source Files\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Gl\GLTextureClip.cpp">
+      <Filter>Source Files\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Gl\GLTextureDef.cpp">
+      <Filter>Source Files\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Gl\GLTextureGIF.cpp">
+      <Filter>Source Files\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Gl\GLTextureProc.cpp">
+      <Filter>Source Files\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Gl\GLTextureRef.cpp">
+      <Filter>Source Files\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Gl\GLTextureSpr.cpp">
+      <Filter>Source Files\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Gl\GLTextureTIFF.cpp">
+      <Filter>Source Files\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Gl\GLUTAppHandler.cpp">
+      <Filter>Source Files\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Gl\GLUtils.cpp">
+      <Filter>Source Files\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Gl\GLVector.cpp">
+      <Filter>Source Files\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Gl\GLXMLOperators.cpp">
+      <Filter>Source Files\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Gl\SDLAppHandler.cpp">
+      <Filter>Source Files\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushCollision\MushCollision.cpp">
+      <Filter>Source Files\MushCollision</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushCollision\MushCollisionInfo.cpp">
+      <Filter>Source Files\MushCollision</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushCollision\MushCollisionList.cpp">
+      <Filter>Source Files\MushCollision</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushCollision\MushCollisionListEntry.cpp">
+      <Filter>Source Files\MushCollision</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushCollision\MushCollisionPiece.cpp">
+      <Filter>Source Files\MushCollision</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushCollision\MushCollisionResolver.cpp">
+      <Filter>Source Files\MushCollision</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushCollision\MushCollisionStandard.cpp">
+      <Filter>Source Files\MushCollision</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushCollision\MushCollisionWorkspace.cpp">
+      <Filter>Source Files\MushCollision</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMeshLibrary\MushMeshLibrary.cpp">
+      <Filter>Source Files\MushMeshLibrary</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMeshLibrary\MushMeshLibraryBase.cpp">
+      <Filter>Source Files\MushMeshLibrary</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMeshLibrary\MushMeshLibraryExtruder.cpp">
+      <Filter>Source Files\MushMeshLibrary</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMeshLibrary\MushMeshLibraryExtrusionContext.cpp">
+      <Filter>Source Files\MushMeshLibrary</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMeshLibrary\MushMeshLibraryFGenExtrude.cpp">
+      <Filter>Source Files\MushMeshLibrary</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMeshLibrary\MushMeshLibraryMaker.cpp">
+      <Filter>Source Files\MushMeshLibrary</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMeshLibrary\MushMeshLibraryPrism.cpp">
+      <Filter>Source Files\MushMeshLibrary</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMeshLibrary\MushMeshLibrarySingleFacet.cpp">
+      <Filter>Source Files\MushMeshLibrary</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMeshLibrary\MushMeshLibraryStandard.cpp">
+      <Filter>Source Files\MushMeshLibrary</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMeshLibrary\MushMeshLibraryUtil.cpp">
+      <Filter>Source Files\MushMeshLibrary</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMeshLibrary\MushMeshLibraryVGenExtrude.cpp">
+      <Filter>Source Files\MushMeshLibrary</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMeshLibrary\MushMeshLibraryWorldSphere.cpp">
+      <Filter>Source Files\MushMeshLibrary</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGame\MushGame.cpp">
+      <Filter>Source Files\MushGame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGame\MushGameAddress.cpp">
+      <Filter>Source Files\MushGame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGame\MushGameAnimPostManip.cpp">
+      <Filter>Source Files\MushGame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGame\MushGameAppHandler.cpp">
+      <Filter>Source Files\MushGame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGame\MushGameAxisDef.cpp">
+      <Filter>Source Files\MushGame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGame\MushGameBase.cpp">
+      <Filter>Source Files\MushGame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGame\MushGameCamera.cpp">
+      <Filter>Source Files\MushGame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGame\MushGameClient.cpp">
+      <Filter>Source Files\MushGame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGame\MushGameConfigBase.cpp">
+      <Filter>Source Files\MushGame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGame\MushGameConfigUtils.cpp">
+      <Filter>Source Files\MushGame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGame\MushGameData.cpp">
+      <Filter>Source Files\MushGame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGame\MushGameDespatch.cpp">
+      <Filter>Source Files\MushGame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGame\MushGameDialogue.cpp">
+      <Filter>Source Files\MushGame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGame\MushGameDialogueUtils.cpp">
+      <Filter>Source Files\MushGame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGame\MushGameDigest.cpp">
+      <Filter>Source Files\MushGame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGame\MushGameEvents.cpp">
+      <Filter>Source Files\MushGame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGame\MushGameHostData.cpp">
+      <Filter>Source Files\MushGame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGame\MushGameHostSaveData.cpp">
+      <Filter>Source Files\MushGame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGame\MushGameHostVolatileData.cpp">
+      <Filter>Source Files\MushGame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGame\MushGameIntern.cpp">
+      <Filter>Source Files\MushGame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGame\MushGameJob.cpp">
+      <Filter>Source Files\MushGame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGame\MushGameJobAdmission.cpp">
+      <Filter>Source Files\MushGame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGame\MushGameJobPlayerCreate.cpp">
+      <Filter>Source Files\MushGame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGame\MushGameKeyDef.cpp">
+      <Filter>Source Files\MushGame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGame\MushGameLink.cpp">
+      <Filter>Source Files\MushGame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGame\MushGameLinkLocal.cpp">
+      <Filter>Source Files\MushGame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGame\MushGameLogic.cpp">
+      <Filter>Source Files\MushGame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGame\MushGameLogicLocal.cpp">
+      <Filter>Source Files\MushGame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGame\MushGameMailbox.cpp">
+      <Filter>Source Files\MushGame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGame\MushGameMessage.cpp">
+      <Filter>Source Files\MushGame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGame\MushGameMessageCollision.cpp">
+      <Filter>Source Files\MushGame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGame\MushGameMessageCollisionFatal.cpp">
+      <Filter>Source Files\MushGame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGame\MushGameMessageControlInfo.cpp">
+      <Filter>Source Files\MushGame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGame\MushGameMessageFire.cpp">
+      <Filter>Source Files\MushGame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGame\MushGameMessageJoinConfirm.cpp">
+      <Filter>Source Files\MushGame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGame\MushGameMessageJoinDenied.cpp">
+      <Filter>Source Files\MushGame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGame\MushGameMessageJoinRequest.cpp">
+      <Filter>Source Files\MushGame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGame\MushGameMessageUplinkPiece.cpp">
+      <Filter>Source Files\MushGame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGame\MushGameMessageUplinkPlayer.cpp">
+      <Filter>Source Files\MushGame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGame\MushGameMessageWake.cpp">
+      <Filter>Source Files\MushGame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGame\MushGamePiece.cpp">
+      <Filter>Source Files\MushGame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGame\MushGamePiecePlayer.cpp">
+      <Filter>Source Files\MushGame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGame\MushGamePlayer.cpp">
+      <Filter>Source Files\MushGame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGame\MushGameReceiver.cpp">
+      <Filter>Source Files\MushGame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGame\MushGameRef.cpp">
+      <Filter>Source Files\MushGame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGame\MushGameRefPiece.cpp">
+      <Filter>Source Files\MushGame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGame\MushGameRefPlayer.cpp">
+      <Filter>Source Files\MushGame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGame\MushGameRender.cpp">
+      <Filter>Source Files\MushGame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGame\MushGameRuby.cpp">
+      <Filter>Source Files\MushGame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGame\MushGameSaveData.cpp">
+      <Filter>Source Files\MushGame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGame\MushGameServer.cpp">
+      <Filter>Source Files\MushGame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGame\MushGameStandard.cpp">
+      <Filter>Source Files\MushGame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGame\MushGameUtil.cpp">
+      <Filter>Source Files\MushGame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGame\MushGameVolatileData.cpp">
+      <Filter>Source Files\MushGame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushRuby\MushRuby.cpp">
+      <Filter>Source Files\MushRuby</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushRuby\MushRubyDataObj.cpp">
+      <Filter>Source Files\MushRuby</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushRuby\MushRubyEmptyObj.cpp">
+      <Filter>Source Files\MushRuby</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushRuby\MushRubyExec.cpp">
+      <Filter>Source Files\MushRuby</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushRuby\MushRubyFail.cpp">
+      <Filter>Source Files\MushRuby</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushRuby\MushRubyInstall.cpp">
+      <Filter>Source Files\MushRuby</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushRuby\MushRubyIntern.cpp">
+      <Filter>Source Files\MushRuby</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushRuby\MushRubyMaptorObj.cpp">
+      <Filter>Source Files\MushRuby</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushRuby\MushRubyObj.cpp">
+      <Filter>Source Files\MushRuby</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushRuby\MushRubyObject.cpp">
+      <Filter>Source Files\MushRuby</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushRuby\MushRubyRuby.cpp">
+      <Filter>Source Files\MushRuby</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushRuby\MushRubyStandard.cpp">
+      <Filter>Source Files\MushRuby</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushRuby\MushRubySTL.cpp">
+      <Filter>Source Files\MushRuby</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushRuby\MushRubyUtil.cpp">
+      <Filter>Source Files\MushRuby</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushRuby\MushRubyValue.cpp">
+      <Filter>Source Files\MushRuby</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMeshRuby\MushMeshRuby.cpp">
+      <Filter>Source Files\MushMeshRuby</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMeshRuby\MushMeshRubyBase.cpp">
+      <Filter>Source Files\MushMeshRuby</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMeshRuby\MushMeshRubyBasePrism.cpp">
+      <Filter>Source Files\MushMeshRuby</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMeshRuby\MushMeshRubyBaseSingleFacet.cpp">
+      <Filter>Source Files\MushMeshRuby</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMeshRuby\MushMeshRubyBaseWorldSphere.cpp">
+      <Filter>Source Files\MushMeshRuby</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMeshRuby\MushMeshRubyDisplacement.cpp">
+      <Filter>Source Files\MushMeshRuby</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMeshRuby\MushMeshRubyExtruder.cpp">
+      <Filter>Source Files\MushMeshRuby</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMeshRuby\MushMeshRubyMesh.cpp">
+      <Filter>Source Files\MushMeshRuby</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMeshRuby\MushMeshRubyMeshLibrary.cpp">
+      <Filter>Source Files\MushMeshRuby</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMeshRuby\MushMeshRubyPost.cpp">
+      <Filter>Source Files\MushMeshRuby</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMeshRuby\MushMeshRubyRotation.cpp">
+      <Filter>Source Files\MushMeshRuby</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMeshRuby\MushMeshRubyStandard.cpp">
+      <Filter>Source Files\MushMeshRuby</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMeshRuby\MushMeshRubyTools.cpp">
+      <Filter>Source Files\MushMeshRuby</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushMeshRuby\MushMeshRubyVector.cpp">
+      <Filter>Source Files\MushMeshRuby</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushSkin\MushSkin.cpp">
+      <Filter>Source Files\MushSkin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushSkin\MushSkinLineGenerator.cpp">
+      <Filter>Source Files\MushSkin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushSkin\MushSkinPixelSourceCellNoise.cpp">
+      <Filter>Source Files\MushSkin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushSkin\MushSkinPixelSourceGrid.cpp">
+      <Filter>Source Files\MushSkin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushSkin\MushSkinPixelSourceProc.cpp">
+      <Filter>Source Files\MushSkin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushSkin\MushSkinPixelSourceRadial.cpp">
+      <Filter>Source Files\MushSkin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushSkin\MushSkinPixelSourceTest.cpp">
+      <Filter>Source Files\MushSkin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushSkin\MushSkinPixelSourceTileShow.cpp">
+      <Filter>Source Files\MushSkin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushSkin\MushSkinSingular.cpp">
+      <Filter>Source Files\MushSkin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushSkin\MushSkinStandard.cpp">
+      <Filter>Source Files\MushSkin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushSkin\MushSkinTiled.cpp">
+      <Filter>Source Files\MushSkin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushSkin\MushSkinTiledMethod1.cpp">
+      <Filter>Source Files\MushSkin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushSkin\MushSkinUtil.cpp">
+      <Filter>Source Files\MushSkin</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\core-keys\MushSecretKeys.cpp">
+      <Filter>Source Files\MushSecret</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushFile\MushFile.cpp">
+      <Filter>Source Files\MushFile</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushFile\MushFileAccessor.cpp">
+      <Filter>Source Files\MushFile</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushFile\MushFileDirectory.cpp">
+      <Filter>Source Files\MushFile</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushFile\MushFileDirEntry.cpp">
+      <Filter>Source Files\MushFile</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushFile\MushFileFile.cpp">
+      <Filter>Source Files\MushFile</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushFile\MushFileFilename.cpp">
+      <Filter>Source Files\MushFile</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushFile\MushFileKeys.cpp">
+      <Filter>Source Files\MushFile</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushFile\MushFileLibrary.cpp">
+      <Filter>Source Files\MushFile</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushFile\MushFileRuby.cpp">
+      <Filter>Source Files\MushFile</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushFile\MushFileStandard.cpp">
+      <Filter>Source Files\MushFile</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\Mushcore\Mushcore.h">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Mushcore\MushcoreAbstractSingleton.h">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Mushcore\MushcoreAppHandler.h">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Mushcore\MushcoreAppSignal.h">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Mushcore\MushcoreAutoBool.h">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Mushcore\MushcoreAutoClonePtr.h">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Mushcore\MushcoreAutoMonkey.h">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Mushcore\MushcoreBison.h">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Mushcore\MushcoreBisonDefs.h">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Mushcore\MushcoreBuiltinHandler.h">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Mushcore\MushcoreCommand.h">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Mushcore\MushcoreCommandHandler.h">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Mushcore\MushcoreConfig.h">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Mushcore\MushcoreData.h">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Mushcore\MushcoreDataRef.h">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Mushcore\MushcoreEnv.h">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Mushcore\MushcoreEnvOutput.h">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Mushcore\MushcoreFactory.h">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Mushcore\MushcoreFail.h">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Mushcore\MushcoreFlex.h">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Mushcore\MushcoreFunction.h">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Mushcore\MushcoreGlobalConfig.h">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Mushcore\MushcoreHistory.h">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Mushcore\MushcoreInfo.h">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Mushcore\MushcoreInstaller.h">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Mushcore\MushcoreInterpreter.h">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Mushcore\MushcoreIO.h">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Mushcore\MushcoreLog.h">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Mushcore\MushcoreMaptor.h">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Mushcore\MushcoreMaptorConstIterator.h">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Mushcore\MushcoreMaptorIterator.h">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Mushcore\MushcoreMaptorRef.h">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Mushcore\MushcoreObject.h">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Mushcore\MushcoreOrderedData.h">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Mushcore\MushcoreParamList.h">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Mushcore\MushcorePickle.h">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Mushcore\MushcorePipe.h">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Mushcore\MushcoreRegExp.h">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Mushcore\MushcoreScalar.h">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Mushcore\MushcoreScript.h">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Mushcore\MushcoreSingleton.h">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Mushcore\MushcoreStandard.h">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Mushcore\MushcoreSTL.h">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Mushcore\MushcoreStreamUtil.h">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Mushcore\MushcoreSwitches.h">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Mushcore\MushcoreUninstaller.h">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Mushcore\MushcoreUtil.h">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Mushcore\MushcoreVirtualObject.h">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Mushcore\MushcoreXML.h">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Mushcore\MushcoreXMLIStream.h">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Mushcore\MushcoreXMLOStream.h">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Mushcore\MushcoreXMLStream.h">
+      <Filter>Source Files\Mushcore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Main\SecondaryMain.h">
+      <Filter>Source Files\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMesh\MushMesh.h">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMesh\MushMesh4Base.h">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMesh\MushMesh4Chunk.h">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMesh\MushMesh4Extruder.h">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMesh\MushMesh4Face.h">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMesh\MushMesh4FaceGenerator.h">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMesh\MushMesh4Library.h">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMesh\MushMesh4LinkFaceFace.h">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMesh\MushMesh4Maker.h">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMesh\MushMesh4Material.h">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMesh\MushMesh4Mesh.h">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMesh\MushMesh4TextureTile.h">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMesh\MushMesh4Util.h">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMesh\MushMesh4VertexGenerator.h">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMesh\MushMeshArray.h">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMesh\MushMeshBox.h">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMesh\MushMeshConnector.h">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMesh\MushMeshDisplacement.h">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMesh\MushMeshDivide.h">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMesh\MushMeshFace.h">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMesh\MushMeshGroup.h">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMesh\MushMeshMattress.h">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMesh\MushMeshMesh.h">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMesh\MushMeshMushcoreIO.h">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMesh\MushMeshOps.h">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMesh\MushMeshPatch.h">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMesh\MushMeshPatchEnd.h">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMesh\MushMeshPatchPipe.h">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMesh\MushMeshPatchTypes.h">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMesh\MushMeshPosticity.h">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMesh\MushMeshPostMatrix.h">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMesh\MushMeshPreMatrix.h">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMesh\MushMeshQuaternion.h">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMesh\MushMeshQuaternionPair.h">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMesh\MushMeshSelection.h">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMesh\MushMeshStandard.h">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMesh\MushMeshStitchable.h">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMesh\MushMeshSTL.h">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMesh\MushMeshSubdivide.h">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMesh\MushMeshTools.h">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMesh\MushMeshTriangularArray.h">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMesh\MushMeshUtils.h">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMesh\MushMeshVector.h">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMesh\MushMeshWorkspace.h">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMesh\MushMeshWorkspaceBased.h">
+      <Filter>Source Files\MushMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Adanaxis\AdanaxisAppHandler.h">
+      <Filter>Source Files\Adanaxis</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Adanaxis\AdanaxisClient.h">
+      <Filter>Source Files\Adanaxis</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Adanaxis\AdanaxisCommandHandler.h">
+      <Filter>Source Files\Adanaxis</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Adanaxis\AdanaxisConfig.h">
+      <Filter>Source Files\Adanaxis</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Adanaxis\AdanaxisData.h">
+      <Filter>Source Files\Adanaxis</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Adanaxis\AdanaxisEvents.h">
+      <Filter>Source Files\Adanaxis</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Adanaxis\AdanaxisGame.h">
+      <Filter>Source Files\Adanaxis</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Adanaxis\AdanaxisInfo.h">
+      <Filter>Source Files\Adanaxis</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Adanaxis\AdanaxisIntern.h">
+      <Filter>Source Files\Adanaxis</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Adanaxis\AdanaxisLogic.h">
+      <Filter>Source Files\Adanaxis</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Adanaxis\AdanaxisMeshLibrary.h">
+      <Filter>Source Files\Adanaxis</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Adanaxis\AdanaxisPiece.h">
+      <Filter>Source Files\Adanaxis</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Adanaxis\AdanaxisPieceDeco.h">
+      <Filter>Source Files\Adanaxis</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Adanaxis\AdanaxisPieceEffector.h">
+      <Filter>Source Files\Adanaxis</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Adanaxis\AdanaxisPieceItem.h">
+      <Filter>Source Files\Adanaxis</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Adanaxis\AdanaxisPieceKhazi.h">
+      <Filter>Source Files\Adanaxis</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Adanaxis\AdanaxisPiecePlayer.h">
+      <Filter>Source Files\Adanaxis</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Adanaxis\AdanaxisPieceProjectile.h">
+      <Filter>Source Files\Adanaxis</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Adanaxis\AdanaxisPieceWorld.h">
+      <Filter>Source Files\Adanaxis</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Adanaxis\AdanaxisRecords.h">
+      <Filter>Source Files\Adanaxis</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Adanaxis\AdanaxisRender.h">
+      <Filter>Source Files\Adanaxis</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Adanaxis\AdanaxisRuby.h">
+      <Filter>Source Files\Adanaxis</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Adanaxis\AdanaxisRubyDeco.h">
+      <Filter>Source Files\Adanaxis</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Adanaxis\AdanaxisRubyWorld.h">
+      <Filter>Source Files\Adanaxis</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Adanaxis\AdanaxisSaveData.h">
+      <Filter>Source Files\Adanaxis</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Adanaxis\AdanaxisScanner.h">
+      <Filter>Source Files\Adanaxis</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Adanaxis\AdanaxisServer.h">
+      <Filter>Source Files\Adanaxis</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Adanaxis\AdanaxisStandard.h">
+      <Filter>Source Files\Adanaxis</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Adanaxis\AdanaxisSTL.h">
+      <Filter>Source Files\Adanaxis</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Adanaxis\AdanaxisUtil.h">
+      <Filter>Source Files\Adanaxis</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Adanaxis\AdanaxisVolatileData.h">
+      <Filter>Source Files\Adanaxis</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Api\mushAppPrefix.h">
+      <Filter>Source Files\API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Api\mushGame.h">
+      <Filter>Source Files\API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Api\mushGL.h">
+      <Filter>Source Files\API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Api\mushMedia.h">
+      <Filter>Source Files\API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Api\mushModel.h">
+      <Filter>Source Files\API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Api\mushMushCollision.h">
+      <Filter>Source Files\API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Api\mushMushcore.h">
+      <Filter>Source Files\API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Api\mushMushcoreIO.h">
+      <Filter>Source Files\API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Api\mushMushcoreSTL.h">
+      <Filter>Source Files\API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Api\mushMushFile.h">
+      <Filter>Source Files\API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Api\mushMushGame.h">
+      <Filter>Source Files\API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Api\mushMushGL.h">
+      <Filter>Source Files\API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Api\mushMushMesh.h">
+      <Filter>Source Files\API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Api\mushMushMeshLibrary.h">
+      <Filter>Source Files\API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Api\mushMushMeshRuby.h">
+      <Filter>Source Files\API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Api\mushMushPie.h">
+      <Filter>Source Files\API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Api\mushMushRender.h">
+      <Filter>Source Files\API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Api\mushMushRuby.h">
+      <Filter>Source Files\API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Api\mushMushSkin.h">
+      <Filter>Source Files\API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Api\mushMustl.h">
+      <Filter>Source Files\API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Api\mushMustlGame.h">
+      <Filter>Source Files\API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Api\mushPie.h">
+      <Filter>Source Files\API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Api\mushPlatform.h">
+      <Filter>Source Files\API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Media\MediaAudio.h">
+      <Filter>Source Files\Media</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Media\MediaAudioChannelDef.h">
+      <Filter>Source Files\Media</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Media\MediaAudioCommandHandler.h">
+      <Filter>Source Files\Media</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Media\MediaAudioNull.h">
+      <Filter>Source Files\Media</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Media\MediaAudioSDL.h">
+      <Filter>Source Files\Media</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Media\MediaAudioSDLChannelDef.h">
+      <Filter>Source Files\Media</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Media\MediaJoystick.h">
+      <Filter>Source Files\Media</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Media\MediaKeyboard.h">
+      <Filter>Source Files\Media</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Media\MediaRWops.h">
+      <Filter>Source Files\Media</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Media\MediaSDL.h">
+      <Filter>Source Files\Media</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Media\MediaSound.h">
+      <Filter>Source Files\Media</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Media\MediaSoundStream.h">
+      <Filter>Source Files\Media</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Media\MediaStandard.h">
+      <Filter>Source Files\Media</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Media\MediaSTL.h">
+      <Filter>Source Files\Media</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGL\MushGL.h">
+      <Filter>Source Files\MushGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGL\MushGLAppHandler.h">
+      <Filter>Source Files\MushGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGL\MushGLArrays.h">
+      <Filter>Source Files\MushGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGL\MushGLAttribs.h">
+      <Filter>Source Files\MushGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGL\MushGLBuffers.h">
+      <Filter>Source Files\MushGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGL\MushGLCacheControl.h">
+      <Filter>Source Files\MushGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGL\MushGLCamera.h">
+      <Filter>Source Files\MushGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGL\MushGLClaimer.h">
+      <Filter>Source Files\MushGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGL\MushGLControl.h">
+      <Filter>Source Files\MushGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGL\MushGLDraw.h">
+      <Filter>Source Files\MushGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGL\MushGLFont.h">
+      <Filter>Source Files\MushGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGL\MushGLJob.h">
+      <Filter>Source Files\MushGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGL\MushGLJobRender.h">
+      <Filter>Source Files\MushGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGL\MushGLMaterial.h">
+      <Filter>Source Files\MushGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGL\MushGLPixelSource.h">
+      <Filter>Source Files\MushGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGL\MushGLPixelSourceTIFF.h">
+      <Filter>Source Files\MushGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGL\MushGLProjection.h">
+      <Filter>Source Files\MushGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGL\MushGLResolverPixelSource.h">
+      <Filter>Source Files\MushGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGL\MushGLRuby.h">
+      <Filter>Source Files\MushGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGL\MushGLRubyFont.h">
+      <Filter>Source Files\MushGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGL\MushGLRubyShader.h">
+      <Filter>Source Files\MushGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGL\MushGLShader.h">
+      <Filter>Source Files\MushGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGL\MushGLStandard.h">
+      <Filter>Source Files\MushGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGL\MushGLState.h">
+      <Filter>Source Files\MushGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGL\MushGLTexture.h">
+      <Filter>Source Files\MushGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGL\MushGLTIFFUtil.h">
+      <Filter>Source Files\MushGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGL\MushGLUtil.h">
+      <Filter>Source Files\MushGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGL\MushGLV.h">
+      <Filter>Source Files\MushGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGL\MushGLVertexBuffer.h">
+      <Filter>Source Files\MushGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGL\MushGLWorkspace.h">
+      <Filter>Source Files\MushGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGL\MushGLWorkSpec.h">
+      <Filter>Source Files\MushGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushRender\MushRender.h">
+      <Filter>Source Files\MushRender</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushRender\MushRenderMesh.h">
+      <Filter>Source Files\MushRender</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushRender\MushRenderMeshDiagnostic.h">
+      <Filter>Source Files\MushRender</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushRender\MushRenderMeshShader.h">
+      <Filter>Source Files\MushRender</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushRender\MushRenderMeshSolid.h">
+      <Filter>Source Files\MushRender</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushRender\MushRenderMeshWireframe.h">
+      <Filter>Source Files\MushRender</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushRender\MushRenderSpec.h">
+      <Filter>Source Files\MushRender</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushRender\MushRenderStandard.h">
+      <Filter>Source Files\MushRender</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushRender\MushRenderUtil.h">
+      <Filter>Source Files\MushRender</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Platform\PlatformInputUtils.h">
+      <Filter>Source Files\Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Platform\PlatformMiscUtils.h">
+      <Filter>Source Files\Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Platform\PlatformSTL.h">
+      <Filter>Source Files\Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Platform\PlatformUtils.h">
+      <Filter>Source Files\Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Platform\PlatformVideoUtils.h">
+      <Filter>Source Files\Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Game\GameAppHandler.h">
+      <Filter>Source Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Game\GameBase.h">
+      <Filter>Source Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Game\GameCode.h">
+      <Filter>Source Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Game\GameCommandHandler.h">
+      <Filter>Source Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Game\GameConfig.h">
+      <Filter>Source Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Game\GameConfigDef.h">
+      <Filter>Source Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Game\GameControlFrameDef.h">
+      <Filter>Source Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Game\GameController.h">
+      <Filter>Source Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Game\GameDialogue.h">
+      <Filter>Source Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Game\GameEvent.h">
+      <Filter>Source Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Game\GameFrameTimer.h">
+      <Filter>Source Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Game\GameGlobalConfig.h">
+      <Filter>Source Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Game\GameGraphic.h">
+      <Filter>Source Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Game\GameGraphicModel.h">
+      <Filter>Source Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Game\GameGraphicSprite.h">
+      <Filter>Source Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Game\GamePiece.h">
+      <Filter>Source Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Game\GameProtocol.h">
+      <Filter>Source Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Game\GameQuit.h">
+      <Filter>Source Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Game\GameRecords.h">
+      <Filter>Source Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Game\GameReg.h">
+      <Filter>Source Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Game\GameRewards.h">
+      <Filter>Source Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Game\GameRouter.h">
+      <Filter>Source Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Game\GameSetup.h">
+      <Filter>Source Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Game\GameSoundSpec.h">
+      <Filter>Source Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Game\GameSoundStreamSpec.h">
+      <Filter>Source Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Game\GameSTL.h">
+      <Filter>Source Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Game\GameStringSpec.h">
+      <Filter>Source Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Game\GameSwitches.h">
+      <Filter>Source Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Game\GameTimer.h">
+      <Filter>Source Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Game\GameType.h">
+      <Filter>Source Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Game\GameUtils.h">
+      <Filter>Source Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Gl\GLAppHandler.h">
+      <Filter>Source Files\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Gl\GLAppSignal.h">
+      <Filter>Source Files\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Gl\GLArray.h">
+      <Filter>Source Files\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Gl\GLColour.h">
+      <Filter>Source Files\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Gl\GLCommandHandler.h">
+      <Filter>Source Files\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Gl\GLData.h">
+      <Filter>Source Files\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Gl\GLFont.h">
+      <Filter>Source Files\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Gl\GLFontRef.h">
+      <Filter>Source Files\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Gl\GLLightDef.h">
+      <Filter>Source Files\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Gl\GLLights.h">
+      <Filter>Source Files\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Gl\GLLine.h">
+      <Filter>Source Files\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Gl\GLModeDef.h">
+      <Filter>Source Files\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Gl\GLPoint.h">
+      <Filter>Source Files\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Gl\GLQuad.h">
+      <Filter>Source Files\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Gl\GLRectangle.h">
+      <Filter>Source Files\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Gl\GLRender.h">
+      <Filter>Source Files\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Gl\GLRenderable.h">
+      <Filter>Source Files\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Gl\GLStandard.h">
+      <Filter>Source Files\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Gl\GLState.h">
+      <Filter>Source Files\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Gl\GLSTL.h">
+      <Filter>Source Files\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Gl\GLString.h">
+      <Filter>Source Files\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Gl\GLTest.h">
+      <Filter>Source Files\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Gl\GLTest1AppHandler.h">
+      <Filter>Source Files\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Gl\GLTexture.h">
+      <Filter>Source Files\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Gl\GLTextureClip.h">
+      <Filter>Source Files\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Gl\GLTextureDef.h">
+      <Filter>Source Files\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Gl\GLTextureGIF.h">
+      <Filter>Source Files\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Gl\GLTextureProc.h">
+      <Filter>Source Files\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Gl\GLTextureRef.h">
+      <Filter>Source Files\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Gl\GLTextureSpr.h">
+      <Filter>Source Files\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Gl\GLTextureTIFF.h">
+      <Filter>Source Files\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Gl\GLUtils.h">
+      <Filter>Source Files\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Gl\GLVector.h">
+      <Filter>Source Files\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Gl\GLXMLOperators.h">
+      <Filter>Source Files\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Gl\SDLAppHandler.h">
+      <Filter>Source Files\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushCollision\MushCollision.h">
+      <Filter>Source Files\MushCollision</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushCollision\MushCollisionInfo.h">
+      <Filter>Source Files\MushCollision</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushCollision\MushCollisionList.h">
+      <Filter>Source Files\MushCollision</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushCollision\MushCollisionListEntry.h">
+      <Filter>Source Files\MushCollision</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushCollision\MushCollisionPiece.h">
+      <Filter>Source Files\MushCollision</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushCollision\MushCollisionResolver.h">
+      <Filter>Source Files\MushCollision</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushCollision\MushCollisionStandard.h">
+      <Filter>Source Files\MushCollision</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushCollision\MushCollisionWorkspace.h">
+      <Filter>Source Files\MushCollision</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMeshLibrary\MushMeshLibrary.h">
+      <Filter>Source Files\MushMeshLibrary</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMeshLibrary\MushMeshLibraryBase.h">
+      <Filter>Source Files\MushMeshLibrary</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMeshLibrary\MushMeshLibraryExtruder.h">
+      <Filter>Source Files\MushMeshLibrary</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMeshLibrary\MushMeshLibraryExtrusionContext.h">
+      <Filter>Source Files\MushMeshLibrary</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMeshLibrary\MushMeshLibraryFGenExtrude.h">
+      <Filter>Source Files\MushMeshLibrary</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMeshLibrary\MushMeshLibraryMaker.h">
+      <Filter>Source Files\MushMeshLibrary</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMeshLibrary\MushMeshLibraryPrism.h">
+      <Filter>Source Files\MushMeshLibrary</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMeshLibrary\MushMeshLibrarySingleFacet.h">
+      <Filter>Source Files\MushMeshLibrary</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMeshLibrary\MushMeshLibraryStandard.h">
+      <Filter>Source Files\MushMeshLibrary</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMeshLibrary\MushMeshLibraryUtil.h">
+      <Filter>Source Files\MushMeshLibrary</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMeshLibrary\MushMeshLibraryVGenExtrude.h">
+      <Filter>Source Files\MushMeshLibrary</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMeshLibrary\MushMeshLibraryWorldSphere.h">
+      <Filter>Source Files\MushMeshLibrary</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGame\MushGame.h">
+      <Filter>Source Files\MushGame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGame\MushGameAddress.h">
+      <Filter>Source Files\MushGame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGame\MushGameAnimPostManip.h">
+      <Filter>Source Files\MushGame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGame\MushGameAppHandler.h">
+      <Filter>Source Files\MushGame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGame\MushGameAxisDef.h">
+      <Filter>Source Files\MushGame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGame\MushGameBase.h">
+      <Filter>Source Files\MushGame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGame\MushGameCamera.h">
+      <Filter>Source Files\MushGame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGame\MushGameClient.h">
+      <Filter>Source Files\MushGame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGame\MushGameConfigBase.h">
+      <Filter>Source Files\MushGame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGame\MushGameConfigUtils.h">
+      <Filter>Source Files\MushGame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGame\MushGameData.h">
+      <Filter>Source Files\MushGame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGame\MushGameDespatch.h">
+      <Filter>Source Files\MushGame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGame\MushGameDialogue.h">
+      <Filter>Source Files\MushGame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGame\MushGameDialogueUtils.h">
+      <Filter>Source Files\MushGame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGame\MushGameDigest.h">
+      <Filter>Source Files\MushGame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGame\MushGameEvents.h">
+      <Filter>Source Files\MushGame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGame\MushGameHostData.h">
+      <Filter>Source Files\MushGame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGame\MushGameHostSaveData.h">
+      <Filter>Source Files\MushGame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGame\MushGameHostVolatileData.h">
+      <Filter>Source Files\MushGame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGame\MushGameIntern.h">
+      <Filter>Source Files\MushGame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGame\MushGameJob.h">
+      <Filter>Source Files\MushGame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGame\MushGameJobAdmission.h">
+      <Filter>Source Files\MushGame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGame\MushGameJobPlayerCreate.h">
+      <Filter>Source Files\MushGame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGame\MushGameKeyDef.h">
+      <Filter>Source Files\MushGame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGame\MushGameLink.h">
+      <Filter>Source Files\MushGame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGame\MushGameLinkLocal.h">
+      <Filter>Source Files\MushGame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGame\MushGameLogic.h">
+      <Filter>Source Files\MushGame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGame\MushGameLogicLocal.h">
+      <Filter>Source Files\MushGame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGame\MushGameMailbox.h">
+      <Filter>Source Files\MushGame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGame\MushGameMessage.h">
+      <Filter>Source Files\MushGame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGame\MushGameMessageCollision.h">
+      <Filter>Source Files\MushGame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGame\MushGameMessageCollisionFatal.h">
+      <Filter>Source Files\MushGame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGame\MushGameMessageControlInfo.h">
+      <Filter>Source Files\MushGame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGame\MushGameMessageFire.h">
+      <Filter>Source Files\MushGame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGame\MushGameMessageJoinConfirm.h">
+      <Filter>Source Files\MushGame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGame\MushGameMessageJoinDenied.h">
+      <Filter>Source Files\MushGame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGame\MushGameMessageJoinRequest.h">
+      <Filter>Source Files\MushGame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGame\MushGameMessageUplinkPiece.h">
+      <Filter>Source Files\MushGame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGame\MushGameMessageUplinkPlayer.h">
+      <Filter>Source Files\MushGame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGame\MushGameMessageWake.h">
+      <Filter>Source Files\MushGame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGame\MushGamePiece.h">
+      <Filter>Source Files\MushGame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGame\MushGamePiecePlayer.h">
+      <Filter>Source Files\MushGame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGame\MushGamePlayer.h">
+      <Filter>Source Files\MushGame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGame\MushGameReceiver.h">
+      <Filter>Source Files\MushGame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGame\MushGameRef.h">
+      <Filter>Source Files\MushGame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGame\MushGameRefPiece.h">
+      <Filter>Source Files\MushGame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGame\MushGameRefPlayer.h">
+      <Filter>Source Files\MushGame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGame\MushGameRender.h">
+      <Filter>Source Files\MushGame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGame\MushGameRuby.h">
+      <Filter>Source Files\MushGame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGame\MushGameSaveData.h">
+      <Filter>Source Files\MushGame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGame\MushGameServer.h">
+      <Filter>Source Files\MushGame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGame\MushGameStandard.h">
+      <Filter>Source Files\MushGame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGame\MushGameUtil.h">
+      <Filter>Source Files\MushGame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGame\MushGameVolatileData.h">
+      <Filter>Source Files\MushGame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushRuby\MushRuby.h">
+      <Filter>Source Files\MushRuby</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushRuby\MushRubyDataObj.h">
+      <Filter>Source Files\MushRuby</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushRuby\MushRubyEmptyObj.h">
+      <Filter>Source Files\MushRuby</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushRuby\MushRubyExec.h">
+      <Filter>Source Files\MushRuby</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushRuby\MushRubyFail.h">
+      <Filter>Source Files\MushRuby</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushRuby\MushRubyInstall.h">
+      <Filter>Source Files\MushRuby</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushRuby\MushRubyIntern.h">
+      <Filter>Source Files\MushRuby</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushRuby\MushRubyMaptorObj.h">
+      <Filter>Source Files\MushRuby</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushRuby\MushRubyObj.h">
+      <Filter>Source Files\MushRuby</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushRuby\MushRubyObject.h">
+      <Filter>Source Files\MushRuby</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushRuby\MushRubyRuby.h">
+      <Filter>Source Files\MushRuby</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushRuby\MushRubyStandard.h">
+      <Filter>Source Files\MushRuby</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushRuby\MushRubySTL.h">
+      <Filter>Source Files\MushRuby</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushRuby\MushRubyUtil.h">
+      <Filter>Source Files\MushRuby</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushRuby\MushRubyValue.h">
+      <Filter>Source Files\MushRuby</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMeshRuby\MushMeshRuby.h">
+      <Filter>Source Files\MushMeshRuby</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMeshRuby\MushMeshRubyBase.h">
+      <Filter>Source Files\MushMeshRuby</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMeshRuby\MushMeshRubyBasePrism.h">
+      <Filter>Source Files\MushMeshRuby</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMeshRuby\MushMeshRubyBaseSingleFacet.h">
+      <Filter>Source Files\MushMeshRuby</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMeshRuby\MushMeshRubyBaseWorldSphere.h">
+      <Filter>Source Files\MushMeshRuby</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMeshRuby\MushMeshRubyDisplacement.h">
+      <Filter>Source Files\MushMeshRuby</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMeshRuby\MushMeshRubyExtruder.h">
+      <Filter>Source Files\MushMeshRuby</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMeshRuby\MushMeshRubyMesh.h">
+      <Filter>Source Files\MushMeshRuby</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMeshRuby\MushMeshRubyMeshLibrary.h">
+      <Filter>Source Files\MushMeshRuby</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMeshRuby\MushMeshRubyPost.h">
+      <Filter>Source Files\MushMeshRuby</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMeshRuby\MushMeshRubyRotation.h">
+      <Filter>Source Files\MushMeshRuby</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMeshRuby\MushMeshRubyStandard.h">
+      <Filter>Source Files\MushMeshRuby</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMeshRuby\MushMeshRubyTools.h">
+      <Filter>Source Files\MushMeshRuby</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushMeshRuby\MushMeshRubyVector.h">
+      <Filter>Source Files\MushMeshRuby</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushSkin\MushSkin.h">
+      <Filter>Source Files\MushSkin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushSkin\MushSkinLineGenerator.h">
+      <Filter>Source Files\MushSkin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushSkin\MushSkinPixelSourceCellNoise.h">
+      <Filter>Source Files\MushSkin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushSkin\MushSkinPixelSourceGrid.h">
+      <Filter>Source Files\MushSkin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushSkin\MushSkinPixelSourceProc.h">
+      <Filter>Source Files\MushSkin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushSkin\MushSkinPixelSourceRadial.h">
+      <Filter>Source Files\MushSkin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushSkin\MushSkinPixelSourceTest.h">
+      <Filter>Source Files\MushSkin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushSkin\MushSkinPixelSourceTileShow.h">
+      <Filter>Source Files\MushSkin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushSkin\MushSkinSingular.h">
+      <Filter>Source Files\MushSkin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushSkin\MushSkinStandard.h">
+      <Filter>Source Files\MushSkin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushSkin\MushSkinTiled.h">
+      <Filter>Source Files\MushSkin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushSkin\MushSkinTiledMethod1.h">
+      <Filter>Source Files\MushSkin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushSkin\MushSkinUtil.h">
+      <Filter>Source Files\MushSkin</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushFile\MushFile.h">
+      <Filter>Source Files\MushFile</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushFile\MushFileAccessor.h">
+      <Filter>Source Files\MushFile</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushFile\MushFileDirectory.h">
+      <Filter>Source Files\MushFile</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushFile\MushFileDirEntry.h">
+      <Filter>Source Files\MushFile</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushFile\MushFileFile.h">
+      <Filter>Source Files\MushFile</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushFile\MushFileFilename.h">
+      <Filter>Source Files\MushFile</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushFile\MushFileKeys.h">
+      <Filter>Source Files\MushFile</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushFile\MushFileLibrary.h">
+      <Filter>Source Files\MushFile</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushFile\MushFileRuby.h">
+      <Filter>Source Files\MushFile</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushFile\MushFileStandard.h">
+      <Filter>Source Files\MushFile</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="adanaxis.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="adanaxis_app.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="adanaxiscontroldemo_app.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\..\src\Main\PrimaryMain.h">
+      <Filter>Source Files\Main</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\Gl\GLUTAppHandler.h">
+      <Filter>Source Files\GL</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\scripts\GetWindowsDeps.ps1">
+      <Filter>Scripts</Filter>
+    </None>
+  </ItemGroup>
+</Project>

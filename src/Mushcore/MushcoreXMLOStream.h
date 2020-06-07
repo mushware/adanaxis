@@ -110,7 +110,7 @@
 #include "MushcoreUtil.h"
 #include "MushcoreVirtualObject.h"
 
-//#include <iomanip>
+#include <iomanip>
 
 class MushcoreXMLOStream : public MushcoreXMLStream
 {

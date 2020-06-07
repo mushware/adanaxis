@@ -74,6 +74,8 @@
 
 #include "MushcoreStandard.h"
 
+#include <iomanip>
+
 // std::auto_ptr output
 template <class T>
 inline std::ostream&

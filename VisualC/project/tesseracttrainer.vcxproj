@@ -1,0 +1,531 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{6475BAC2-81B1-4936-A2E3-7EE678E7235F}</ProjectGuid>
+    <RootNamespace>project</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>16.0.30028.132</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>Debug\</OutDir>
+    <IntDir>Debug\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>Release\</OutDir>
+    <IntDir>Release\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\..\src;..\..\src\API;C:\msvclibs\GnuWin32\include;C:\msvclibs\Expat-1.95.8\Source\lib;C:\msvclibs\SDL-1.2.8\include;C:\msvclibs\SDL_mixer-1.2.6\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeader />
+      <BrowseInformation>true</BrowseInformation>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>WS2_32.lib;Winmm.lib;dxguid.lib;Iphlpapi.lib;OPENGL32.lib;GLU32.lib;libexpat.lib;libpcre.a;SDL.lib;SDL_mixer.lib;libtiff.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)tesseracttrainer_debug.exe</OutputFile>
+      <AdditionalLibraryDirectories>C:\msvclibs\GnuWin32\lib;C:\msvclibs\Expat-1.95.8\Libs;C:\msvclibs\SDL-1.2.8\lib;C:\msvclibs\SDL_mixer-1.2.6\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(OutDir)project.pdb</ProgramDatabaseFile>
+      <SubSystem>Console</SubSystem>
+      <EntryPointSymbol />
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <PreBuildEvent>
+      <Message>Runs SourceConditioner.pm, which handles code autogeneration within the source files</Message>
+      <Command>cd ..\.. &amp;&amp; echo This build event is not essential &amp;&amp; echo Remove it if it causes trouble &amp;&amp; perl -w SourceConditioner.pl</Command>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>Full</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <AdditionalIncludeDirectories>..\..\src;..\..\src\API;C:\msvclibs\GnuWin32\include;C:\msvclibs\Expat-1.95.8\Source\lib;C:\msvclibs\SDL-1.2.7\include;C:\msvclibs\SDL_mixer-1.2.5\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>false</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>WS2_32.lib;Winmm.lib;dxguid.lib;Iphlpapi.lib;OPENGL32.lib;GLU32.lib;libexpat.lib;libpcre.a;SDL.lib;SDLmain.lib;SDL_mixer.lib;libtiff.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)tesseracttrainer.exe</OutputFile>
+      <Version>0.1.1</Version>
+      <AdditionalLibraryDirectories>C:\msvclibs\GnuWin32\lib;C:\msvclibs\Expat-1.95.8\Libs;C:\msvclibs\SDL-1.2.7\lib;C:\msvclibs\SDL_mixer-1.2.5\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences />
+      <EnableCOMDATFolding />
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <PreBuildEvent>
+      <Message>Running SourceConditioner.pl, which handles code autogeneration within the source files</Message>
+      <Command>cd ..\.. &amp;&amp; echo This build event is not essential.  Remove it if it causes trouble &amp;&amp; perl -w SourceConditioner.pl</Command>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\Game\GameAppHandler.cpp" />
+    <ClCompile Include="..\..\src\Game\GameBase.cpp" />
+    <ClCompile Include="..\..\src\Game\GameCode.cpp" />
+    <ClCompile Include="..\..\src\Game\GameCommandHandler.cpp" />
+    <ClCompile Include="..\..\src\Game\GameConfig.cpp" />
+    <ClCompile Include="..\..\src\Game\GameConfigDef.cpp" />
+    <ClCompile Include="..\..\src\Game\GameControlFrameDef.cpp" />
+    <ClCompile Include="..\..\src\Game\GameController.cpp" />
+    <ClCompile Include="..\..\src\Game\GameDialogue.cpp" />
+    <ClCompile Include="..\..\src\Game\GameEvent.cpp" />
+    <ClCompile Include="..\..\src\Game\GameFrameTimer.cpp" />
+    <ClCompile Include="..\..\src\Game\GameGlobalConfig.cpp" />
+    <ClCompile Include="..\..\src\Game\GameGraphic.cpp" />
+    <ClCompile Include="..\..\src\Game\GameGraphicModel.cpp" />
+    <ClCompile Include="..\..\src\Game\GameGraphicSprite.cpp" />
+    <ClCompile Include="..\..\src\Game\GamePiece.cpp" />
+    <ClCompile Include="..\..\src\Game\GameProtocol.cpp" />
+    <ClCompile Include="..\..\src\Game\GameQuit.cpp" />
+    <ClCompile Include="..\..\src\Game\GameRecords.cpp" />
+    <ClCompile Include="..\..\src\Game\GameReg.cpp" />
+    <ClCompile Include="..\..\src\Game\GameRewards.cpp" />
+    <ClCompile Include="..\..\src\Game\GameRouter.cpp" />
+    <ClCompile Include="..\..\src\Game\GameSetup.cpp" />
+    <ClCompile Include="..\..\src\Game\GameSoundSpec.cpp" />
+    <ClCompile Include="..\..\src\Game\GameSoundStreamSpec.cpp" />
+    <ClCompile Include="..\..\src\Game\GameSTL.cpp" />
+    <ClCompile Include="..\..\src\Game\GameStringSpec.cpp" />
+    <ClCompile Include="..\..\src\Game\GameTimer.cpp" />
+    <ClCompile Include="..\..\src\Game\GameType.cpp" />
+    <ClCompile Include="..\..\src\Game\GameUtils.cpp" />
+    <ClCompile Include="..\..\src\Gl\GLAppHandler.cpp" />
+    <ClCompile Include="..\..\src\Gl\GLArray.cpp" />
+    <ClCompile Include="..\..\src\Gl\GLColour.cpp" />
+    <ClCompile Include="..\..\src\Gl\GLCommandHandler.cpp" />
+    <ClCompile Include="..\..\src\Gl\GLData.cpp" />
+    <ClCompile Include="..\..\src\Gl\GLFont.cpp" />
+    <ClCompile Include="..\..\src\Gl\GLFontRef.cpp" />
+    <ClCompile Include="..\..\src\Gl\GLKeys.cpp" />
+    <ClCompile Include="..\..\src\Gl\GLLightDef.cpp" />
+    <ClCompile Include="..\..\src\Gl\GLLights.cpp" />
+    <ClCompile Include="..\..\src\Gl\GLLine.cpp" />
+    <ClCompile Include="..\..\src\Gl\GLModeDef.cpp" />
+    <ClCompile Include="..\..\src\Gl\GLPoint.cpp" />
+    <ClCompile Include="..\..\src\Gl\GLQuad.cpp" />
+    <ClCompile Include="..\..\src\Gl\GLRectangle.cpp" />
+    <ClCompile Include="..\..\src\Gl\GLRender.cpp" />
+    <ClCompile Include="..\..\src\Gl\GLRenderable.cpp" />
+    <ClCompile Include="..\..\src\Gl\GLState.cpp" />
+    <ClCompile Include="..\..\src\Gl\GLSTL.cpp" />
+    <ClCompile Include="..\..\src\Gl\GLString.cpp" />
+    <ClCompile Include="..\..\src\Gl\GLTest.cpp" />
+    <ClCompile Include="..\..\src\Gl\GLTest1AppHandler.cpp" />
+    <ClCompile Include="..\..\src\Gl\GLTexture.cpp" />
+    <ClCompile Include="..\..\src\Gl\GLTextureClip.cpp" />
+    <ClCompile Include="..\..\src\Gl\GLTextureDef.cpp" />
+    <ClCompile Include="..\..\src\Gl\GLTextureGIF.cpp" />
+    <ClCompile Include="..\..\src\Gl\GLTextureProc.cpp" />
+    <ClCompile Include="..\..\src\Gl\GLTextureRef.cpp" />
+    <ClCompile Include="..\..\src\Gl\GLTextureSpr.cpp" />
+    <ClCompile Include="..\..\src\Gl\GLTextureTIFF.cpp" />
+    <ClCompile Include="..\..\src\Gl\GLUTAppHandler.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Gl\GLUtils.cpp" />
+    <ClCompile Include="..\..\src\Gl\GLVector.cpp" />
+    <ClCompile Include="..\..\src\Gl\GLXMLOperators.cpp" />
+    <ClCompile Include="..\..\src\Gl\SDLAppHandler.cpp" />
+    <ClCompile Include="..\..\src\Main\CommandLineApp\SecondaryMain.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)</ObjectFileName>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Main\PrimaryMain.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Main\SDLApp\SecondaryMain.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Media\MediaAudio.cpp" />
+    <ClCompile Include="..\..\src\Media\MediaAudioCommandHandler.cpp" />
+    <ClCompile Include="..\..\src\Media\MediaAudioNull.cpp" />
+    <ClCompile Include="..\..\src\Media\MediaAudioSDL.cpp" />
+    <ClCompile Include="..\..\src\Media\MediaSDL.cpp" />
+    <ClCompile Include="..\..\src\Media\MediaSound.cpp" />
+    <ClCompile Include="..\..\src\Media\MediaSoundStream.cpp" />
+    <ClCompile Include="..\..\src\Media\MediaSTL.cpp" />
+    <ClCompile Include="..\..\src\Mushcore\Mushcore.cpp" />
+    <ClCompile Include="..\..\src\Mushcore\MushcoreAbstractSingleton.cpp" />
+    <ClCompile Include="..\..\src\Mushcore\MushcoreAppHandler.cpp" />
+    <ClCompile Include="..\..\src\Mushcore\MushcoreAppSignal.cpp" />
+    <ClCompile Include="..\..\src\Mushcore\MushcoreAutoMonkey.cpp" />
+    <ClCompile Include="..\..\src\Mushcore\MushcoreBison.cpp" />
+    <ClCompile Include="..\..\src\Mushcore\MushcoreBisonDefs.cpp" />
+    <ClCompile Include="..\..\src\Mushcore\MushcoreBuiltinHandler.cpp" />
+    <ClCompile Include="..\..\src\Mushcore\MushcoreCommand.cpp" />
+    <ClCompile Include="..\..\src\Mushcore\MushcoreCommandHandler.cpp" />
+    <ClCompile Include="..\..\src\Mushcore\MushcoreConfig.cpp" />
+    <ClCompile Include="..\..\src\Mushcore\MushcoreData.cpp" />
+    <ClCompile Include="..\..\src\Mushcore\MushcoreDataRef.cpp" />
+    <ClCompile Include="..\..\src\Mushcore\MushcoreEnv.cpp" />
+    <ClCompile Include="..\..\src\Mushcore\MushcoreEnvOutput.cpp" />
+    <ClCompile Include="..\..\src\Mushcore\MushcoreFactory.cpp" />
+    <ClCompile Include="..\..\src\Mushcore\MushcoreFail.cpp" />
+    <ClCompile Include="..\..\src\Mushcore\MushcoreFlex.cpp" />
+    <ClCompile Include="..\..\src\Mushcore\MushcoreFunction.cpp" />
+    <ClCompile Include="..\..\src\Mushcore\MushcoreGlobalConfig.cpp" />
+    <ClCompile Include="..\..\src\Mushcore\MushcoreHistory.cpp" />
+    <ClCompile Include="..\..\src\Mushcore\MushcoreInfo.cpp" />
+    <ClCompile Include="..\..\src\Mushcore\MushcoreInstaller.cpp" />
+    <ClCompile Include="..\..\src\Mushcore\MushcoreInterpreter.cpp" />
+    <ClCompile Include="..\..\src\Mushcore\MushcoreIO.cpp" />
+    <ClCompile Include="..\..\src\Mushcore\MushcoreLog.cpp" />
+    <ClCompile Include="..\..\src\Mushcore\MushcoreObject.cpp" />
+    <ClCompile Include="..\..\src\Mushcore\MushcoreParamList.cpp" />
+    <ClCompile Include="..\..\src\Mushcore\MushcorePickle.cpp" />
+    <ClCompile Include="..\..\src\Mushcore\MushcoreRegExp.cpp" />
+    <ClCompile Include="..\..\src\Mushcore\MushcoreScalar.cpp" />
+    <ClCompile Include="..\..\src\Mushcore\MushcoreScript.cpp" />
+    <ClCompile Include="..\..\src\Mushcore\MushcoreSingleton.cpp" />
+    <ClCompile Include="..\..\src\Mushcore\MushcoreStandard.cpp" />
+    <ClCompile Include="..\..\src\Mushcore\MushcoreSTL.cpp" />
+    <ClCompile Include="..\..\src\Mushcore\MushcoreStreamUtil.cpp" />
+    <ClCompile Include="..\..\src\Mushcore\MushcoreSwitches.cpp" />
+    <ClCompile Include="..\..\src\Mushcore\MushcoreUninstaller.cpp" />
+    <ClCompile Include="..\..\src\Mushcore\MushcoreUtil.cpp" />
+    <ClCompile Include="..\..\src\Mushcore\MushcoreVirtualObject.cpp" />
+    <ClCompile Include="..\..\src\Mushcore\MushcoreXML.cpp" />
+    <ClCompile Include="..\..\src\Mushcore\MushcoreXMLIStream.cpp" />
+    <ClCompile Include="..\..\src\Mushcore\MushcoreXMLOStream.cpp" />
+    <ClCompile Include="..\..\src\Mushcore\MushcoreXMLStream.cpp" />
+    <ClCompile Include="..\..\src\MushGL\MushGL.cpp" />
+    <ClCompile Include="..\..\src\MushGL\MushGLArrays.cpp" />
+    <ClCompile Include="..\..\src\MushGL\MushGLBuffer.cpp" />
+    <ClCompile Include="..\..\src\MushGL\MushGLPixelSource.cpp" />
+    <ClCompile Include="..\..\src\MushGL\MushGLStandard.cpp" />
+    <ClCompile Include="..\..\src\MushGL\MushGLV.cpp" />
+    <ClCompile Include="..\..\src\MushGL\MushGLVertexBuffer.cpp" />
+    <ClCompile Include="..\..\src\MushMesh\MushMesh.cpp" />
+    <ClCompile Include="..\..\src\MushMesh\MushMeshArray.cpp" />
+    <ClCompile Include="..\..\src\MushMesh\MushMeshBox.cpp" />
+    <ClCompile Include="..\..\src\MushMesh\MushMeshConnector.cpp" />
+    <ClCompile Include="..\..\src\MushMesh\MushMeshDivide.cpp" />
+    <ClCompile Include="..\..\src\MushMesh\MushMeshGroup.cpp" />
+    <ClCompile Include="..\..\src\MushMesh\MushMeshMushcoreIO.cpp" />
+    <ClCompile Include="..\..\src\MushMesh\MushMeshOps.cpp" />
+    <ClCompile Include="..\..\src\MushMesh\MushMeshPatch.cpp" />
+    <ClCompile Include="..\..\src\MushMesh\MushMeshPatchEnd.cpp" />
+    <ClCompile Include="..\..\src\MushMesh\MushMeshPatchPipe.cpp" />
+    <ClCompile Include="..\..\src\MushMesh\MushMeshPatchTypes.cpp" />
+    <ClCompile Include="..\..\src\MushMesh\MushMeshPostMatrix.cpp" />
+    <ClCompile Include="..\..\src\MushMesh\MushMeshPreMatrix.cpp" />
+    <ClCompile Include="..\..\src\MushMesh\MushMeshQuaternion.cpp" />
+    <ClCompile Include="..\..\src\MushMesh\MushMeshQuaternionPair.cpp" />
+    <ClCompile Include="..\..\src\MushMesh\MushMeshSelection.cpp" />
+    <ClCompile Include="..\..\src\MushMesh\MushMeshStandard.cpp" />
+    <ClCompile Include="..\..\src\MushMesh\MushMeshStitchable.cpp" />
+    <ClCompile Include="..\..\src\MushMesh\MushMeshSTL.cpp" />
+    <ClCompile Include="..\..\src\MushMesh\MushMeshSubdivide.cpp" />
+    <ClCompile Include="..\..\src\MushMesh\MushMeshTools.cpp" />
+    <ClCompile Include="..\..\src\MushMesh\MushMeshTriangularArray.cpp" />
+    <ClCompile Include="..\..\src\MushMesh\MushMeshUtils.cpp" />
+    <ClCompile Include="..\..\src\MushMesh\MushMeshVector.cpp" />
+    <ClCompile Include="..\..\src\MushMesh\MushMeshWorkspace.cpp" />
+    <ClCompile Include="..\..\src\MushMesh\MushMeshWorkspaceBased.cpp" />
+    <ClCompile Include="..\..\src\MushPie\MushPie.cpp" />
+    <ClCompile Include="..\..\src\MushPie\MushPieForm.cpp" />
+    <ClCompile Include="..\..\src\MushPie\MushPiePiece.cpp" />
+    <ClCompile Include="..\..\src\MushPie\MushPiePieceMobile.cpp" />
+    <ClCompile Include="..\..\src\MushPie\MushPiePieceSimple.cpp" />
+    <ClCompile Include="..\..\src\MushPie\MushPiePosicity.cpp" />
+    <ClCompile Include="..\..\src\MushPie\MushPiePosition.cpp" />
+    <ClCompile Include="..\..\src\MushPie\MushPieSignal.cpp" />
+    <ClCompile Include="..\..\src\MushPie\MushPieSignalNumeric.cpp" />
+    <ClCompile Include="..\..\src\MushPie\MushPieStandard.cpp" />
+    <ClCompile Include="..\..\src\MushPie\MushPieSTL.cpp" />
+    <ClCompile Include="..\..\src\Platform\PlatformSTL.cpp" />
+    <ClCompile Include="..\..\src\Platform\PlatformUtils.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Platform\win32\PlatformInputUtils.cpp" />
+    <ClCompile Include="..\..\src\Platform\win32\PlatformMiscUtils.cpp" />
+    <ClCompile Include="..\..\src\Platform\win32\PlatformVideoUtils.cpp" />
+    <ClCompile Include="..\..\src\Platform\win32\SDL_main.c" />
+    <ClCompile Include="..\..\src\TesseractTrainer\TesseractTrainerAppHandler.cpp" />
+    <ClCompile Include="..\..\src\TesseractTrainer\TesseractTrainerCommandHandler.cpp" />
+    <ClCompile Include="..\..\src\TesseractTrainer\TesseractTrainerConfig.cpp" />
+    <ClCompile Include="..\..\src\TesseractTrainer\TesseractTrainerGame.cpp" />
+    <ClCompile Include="..\..\src\TesseractTrainer\TesseractTrainerHypercube.cpp" />
+    <ClCompile Include="..\..\src\TesseractTrainer\TesseractTrainerHypersphere.cpp" />
+    <ClCompile Include="..\..\src\TesseractTrainer\TesseractTrainerInfo.cpp" />
+    <ClCompile Include="..\..\src\TesseractTrainer\TesseractTrainerPixelSource.cpp" />
+    <ClCompile Include="..\..\src\TesseractTrainer\TesseractTrainerPlanePair.cpp" />
+    <ClCompile Include="..\..\src\TesseractTrainer\TesseractTrainerPlaneSet.cpp" />
+    <ClCompile Include="..\..\src\TesseractTrainer\TesseractTrainerStandard.cpp" />
+    <ClCompile Include="..\..\src\TesseractTrainer\TesseractTrainerSTL.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\Api\mushGame.h" />
+    <ClInclude Include="..\..\src\Api\mushGL.h" />
+    <ClInclude Include="..\..\src\Api\mushMedia.h" />
+    <ClInclude Include="..\..\src\Api\mushModel.h" />
+    <ClInclude Include="..\..\src\Api\mushMushcore.h" />
+    <ClInclude Include="..\..\src\Api\mushMushcoreIO.h" />
+    <ClInclude Include="..\..\src\Api\mushMushcoreSTL.h" />
+    <ClInclude Include="..\..\src\Api\mushMushGL.h" />
+    <ClInclude Include="..\..\src\Api\mushMushMesh.h" />
+    <ClInclude Include="..\..\src\Api\mushMustl.h" />
+    <ClInclude Include="..\..\src\Api\mushMustlGame.h" />
+    <ClInclude Include="..\..\src\Api\mushPie.h" />
+    <ClInclude Include="..\..\src\Api\mushPlatform.h" />
+    <ClInclude Include="..\..\src\Game\GameAppHandler.h" />
+    <ClInclude Include="..\..\src\Game\GameBase.h" />
+    <ClInclude Include="..\..\src\Game\GameCode.h" />
+    <ClInclude Include="..\..\src\Game\GameCommandHandler.h" />
+    <ClInclude Include="..\..\src\Game\GameConfig.h" />
+    <ClInclude Include="..\..\src\Game\GameConfigDef.h" />
+    <ClInclude Include="..\..\src\Game\GameControlFrameDef.h" />
+    <ClInclude Include="..\..\src\Game\GameController.h" />
+    <ClInclude Include="..\..\src\Game\GameDialogue.h" />
+    <ClInclude Include="..\..\src\Game\GameEvent.h" />
+    <ClInclude Include="..\..\src\Game\GameFrameTimer.h" />
+    <ClInclude Include="..\..\src\Game\GameGlobalConfig.h" />
+    <ClInclude Include="..\..\src\Game\GameGraphic.h" />
+    <ClInclude Include="..\..\src\Game\GameGraphicModel.h" />
+    <ClInclude Include="..\..\src\Game\GameGraphicSprite.h" />
+    <ClInclude Include="..\..\src\Game\GamePiece.h" />
+    <ClInclude Include="..\..\src\Game\GameProtocol.h" />
+    <ClInclude Include="..\..\src\Game\GameQuit.h" />
+    <ClInclude Include="..\..\src\Game\GameRecords.h" />
+    <ClInclude Include="..\..\src\Game\GameReg.h" />
+    <ClInclude Include="..\..\src\Game\GameRewards.h" />
+    <ClInclude Include="..\..\src\Game\GameRouter.h" />
+    <ClInclude Include="..\..\src\Game\GameSetup.h" />
+    <ClInclude Include="..\..\src\Game\GameSoundSpec.h" />
+    <ClInclude Include="..\..\src\Game\GameSoundStreamSpec.h" />
+    <ClInclude Include="..\..\src\Game\GameSTL.h" />
+    <ClInclude Include="..\..\src\Game\GameStringSpec.h" />
+    <ClInclude Include="..\..\src\Game\GameSwitches.h" />
+    <ClInclude Include="..\..\src\Game\GameTimer.h" />
+    <ClInclude Include="..\..\src\Game\GameType.h" />
+    <ClInclude Include="..\..\src\Game\GameUtils.h" />
+    <ClInclude Include="..\..\src\Gl\GLAppHandler.h" />
+    <ClInclude Include="..\..\src\Gl\GLAppSignal.h" />
+    <ClInclude Include="..\..\src\Gl\GLArray.h" />
+    <ClInclude Include="..\..\src\Gl\GLColour.h" />
+    <ClInclude Include="..\..\src\Gl\GLCommandHandler.h" />
+    <ClInclude Include="..\..\src\Gl\GLData.h" />
+    <ClInclude Include="..\..\src\Gl\GLFont.h" />
+    <ClInclude Include="..\..\src\Gl\GLFontRef.h" />
+    <ClInclude Include="..\..\src\Gl\GLKeys.h" />
+    <ClInclude Include="..\..\src\Gl\GLLightDef.h" />
+    <ClInclude Include="..\..\src\Gl\GLLights.h" />
+    <ClInclude Include="..\..\src\Gl\GLLine.h" />
+    <ClInclude Include="..\..\src\Gl\GLModeDef.h" />
+    <ClInclude Include="..\..\src\Gl\GLPoint.h" />
+    <ClInclude Include="..\..\src\Gl\GLQuad.h" />
+    <ClInclude Include="..\..\src\Gl\GLRectangle.h" />
+    <ClInclude Include="..\..\src\Gl\GLRender.h" />
+    <ClInclude Include="..\..\src\Gl\GLRenderable.h" />
+    <ClInclude Include="..\..\src\Gl\GLStandard.h" />
+    <ClInclude Include="..\..\src\Gl\GLState.h" />
+    <ClInclude Include="..\..\src\Gl\GLSTL.h" />
+    <ClInclude Include="..\..\src\Gl\GLString.h" />
+    <ClInclude Include="..\..\src\Gl\GLTest.h" />
+    <ClInclude Include="..\..\src\Gl\GLTest1AppHandler.h" />
+    <ClInclude Include="..\..\src\Gl\GLTexture.h" />
+    <ClInclude Include="..\..\src\Gl\GLTextureClip.h" />
+    <ClInclude Include="..\..\src\Gl\GLTextureDef.h" />
+    <ClInclude Include="..\..\src\Gl\GLTextureGIF.h" />
+    <ClInclude Include="..\..\src\Gl\GLTextureProc.h" />
+    <ClInclude Include="..\..\src\Gl\GLTextureRef.h" />
+    <ClInclude Include="..\..\src\Gl\GLTextureSpr.h" />
+    <ClInclude Include="..\..\src\Gl\GLTextureTIFF.h" />
+    <CustomBuild Include="..\..\src\Gl\GLUTAppHandler.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <ClInclude Include="..\..\src\Gl\GLUtils.h" />
+    <ClInclude Include="..\..\src\Gl\GLVector.h" />
+    <ClInclude Include="..\..\src\Gl\GLXMLOperators.h" />
+    <ClInclude Include="..\..\src\Gl\SDLAppHandler.h" />
+    <CustomBuild Include="..\..\src\Main\PrimaryMain.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+    <ClInclude Include="..\..\src\Main\SecondaryMain.h" />
+    <ClInclude Include="..\..\src\Media\MediaAudio.h" />
+    <ClInclude Include="..\..\src\Media\MediaAudioCommandHandler.h" />
+    <ClInclude Include="..\..\src\Media\MediaAudioNull.h" />
+    <ClInclude Include="..\..\src\Media\MediaAudioSDL.h" />
+    <ClInclude Include="..\..\src\Media\MediaSDL.h" />
+    <ClInclude Include="..\..\src\Media\MediaSound.h" />
+    <ClInclude Include="..\..\src\Media\MediaSoundStream.h" />
+    <ClInclude Include="..\..\src\Media\MediaStandard.h" />
+    <ClInclude Include="..\..\src\Media\MediaSTL.h" />
+    <ClInclude Include="..\..\src\Mushcore\Mushcore.h" />
+    <ClInclude Include="..\..\src\Mushcore\MushcoreAbstractSingleton.h" />
+    <ClInclude Include="..\..\src\Mushcore\MushcoreAppHandler.h" />
+    <ClInclude Include="..\..\src\Mushcore\MushcoreAppSignal.h" />
+    <ClInclude Include="..\..\src\Mushcore\MushcoreAutoMonkey.h" />
+    <ClInclude Include="..\..\src\Mushcore\MushcoreBison.h" />
+    <ClInclude Include="..\..\src\Mushcore\MushcoreBisonDefs.h" />
+    <ClInclude Include="..\..\src\Mushcore\MushcoreBuiltinHandler.h" />
+    <ClInclude Include="..\..\src\Mushcore\MushcoreCommand.h" />
+    <ClInclude Include="..\..\src\Mushcore\MushcoreCommandHandler.h" />
+    <ClInclude Include="..\..\src\Mushcore\MushcoreConfig.h" />
+    <ClInclude Include="..\..\src\Mushcore\MushcoreData.h" />
+    <ClInclude Include="..\..\src\Mushcore\MushcoreDataRef.h" />
+    <ClInclude Include="..\..\src\Mushcore\MushcoreEnv.h" />
+    <ClInclude Include="..\..\src\Mushcore\MushcoreEnvOutput.h" />
+    <ClInclude Include="..\..\src\Mushcore\MushcoreFactory.h" />
+    <ClInclude Include="..\..\src\Mushcore\MushcoreFail.h" />
+    <ClInclude Include="..\..\src\Mushcore\MushcoreFlex.h" />
+    <ClInclude Include="..\..\src\Mushcore\MushcoreFunction.h" />
+    <ClInclude Include="..\..\src\Mushcore\MushcoreGlobalConfig.h" />
+    <ClInclude Include="..\..\src\Mushcore\MushcoreHistory.h" />
+    <ClInclude Include="..\..\src\Mushcore\MushcoreInfo.h" />
+    <ClInclude Include="..\..\src\Mushcore\MushcoreInstaller.h" />
+    <ClInclude Include="..\..\src\Mushcore\MushcoreInterpreter.h" />
+    <ClInclude Include="..\..\src\Mushcore\MushcoreIO.h" />
+    <ClInclude Include="..\..\src\Mushcore\MushcoreLog.h" />
+    <ClInclude Include="..\..\src\Mushcore\MushcoreObject.h" />
+    <ClInclude Include="..\..\src\Mushcore\MushcoreParamList.h" />
+    <ClInclude Include="..\..\src\Mushcore\MushcorePickle.h" />
+    <ClInclude Include="..\..\src\Mushcore\MushcoreRegExp.h" />
+    <ClInclude Include="..\..\src\Mushcore\MushcoreScalar.h" />
+    <ClInclude Include="..\..\src\Mushcore\MushcoreScript.h" />
+    <ClInclude Include="..\..\src\Mushcore\MushcoreSingleton.h" />
+    <ClInclude Include="..\..\src\Mushcore\MushcoreStandard.h" />
+    <ClInclude Include="..\..\src\Mushcore\MushcoreSTL.h" />
+    <ClInclude Include="..\..\src\Mushcore\MushcoreStreamUtil.h" />
+    <ClInclude Include="..\..\src\Mushcore\MushcoreSwitches.h" />
+    <ClInclude Include="..\..\src\Mushcore\MushcoreUninstaller.h" />
+    <ClInclude Include="..\..\src\Mushcore\MushcoreUtil.h" />
+    <ClInclude Include="..\..\src\Mushcore\MushcoreVirtualObject.h" />
+    <ClInclude Include="..\..\src\Mushcore\MushcoreXML.h" />
+    <ClInclude Include="..\..\src\Mushcore\MushcoreXMLIStream.h" />
+    <ClInclude Include="..\..\src\Mushcore\MushcoreXMLOStream.h" />
+    <ClInclude Include="..\..\src\Mushcore\MushcoreXMLStream.h" />
+    <ClInclude Include="..\..\src\MushGL\MushGL.h" />
+    <ClInclude Include="..\..\src\MushGL\MushGLArrays.h" />
+    <ClInclude Include="..\..\src\MushGL\MushGLBuffer.h" />
+    <ClInclude Include="..\..\src\MushGL\MushGLPixelSource.h" />
+    <ClInclude Include="..\..\src\MushGL\MushGLStandard.h" />
+    <ClInclude Include="..\..\src\MushGL\MushGLV.h" />
+    <ClInclude Include="..\..\src\MushGL\MushGLVertexBuffer.h" />
+    <ClInclude Include="..\..\src\MushMesh\MushMesh.h" />
+    <ClInclude Include="..\..\src\MushMesh\MushMeshArray.h" />
+    <ClInclude Include="..\..\src\MushMesh\MushMeshBox.h" />
+    <ClInclude Include="..\..\src\MushMesh\MushMeshConnector.h" />
+    <ClInclude Include="..\..\src\MushMesh\MushMeshDivide.h" />
+    <ClInclude Include="..\..\src\MushMesh\MushMeshGroup.h" />
+    <ClInclude Include="..\..\src\MushMesh\MushMeshMushcoreIO.h" />
+    <ClInclude Include="..\..\src\MushMesh\MushMeshOps.h" />
+    <ClInclude Include="..\..\src\MushMesh\MushMeshPatch.h" />
+    <ClInclude Include="..\..\src\MushMesh\MushMeshPatchEnd.h" />
+    <ClInclude Include="..\..\src\MushMesh\MushMeshPatchPipe.h" />
+    <ClInclude Include="..\..\src\MushMesh\MushMeshPatchTypes.h" />
+    <ClInclude Include="..\..\src\MushMesh\MushMeshPostMatrix.h" />
+    <ClInclude Include="..\..\src\MushMesh\MushMeshPreMatrix.h" />
+    <ClInclude Include="..\..\src\MushMesh\MushMeshQuaternion.h" />
+    <ClInclude Include="..\..\src\MushMesh\MushMeshQuaternionPair.h" />
+    <ClInclude Include="..\..\src\MushMesh\MushMeshSelection.h" />
+    <ClInclude Include="..\..\src\MushMesh\MushMeshStandard.h" />
+    <ClInclude Include="..\..\src\MushMesh\MushMeshStitchable.h" />
+    <ClInclude Include="..\..\src\MushMesh\MushMeshSTL.h" />
+    <ClInclude Include="..\..\src\MushMesh\MushMeshSubdivide.h" />
+    <ClInclude Include="..\..\src\MushMesh\MushMeshTools.h" />
+    <ClInclude Include="..\..\src\MushMesh\MushMeshTriangularArray.h" />
+    <ClInclude Include="..\..\src\MushMesh\MushMeshUtils.h" />
+    <ClInclude Include="..\..\src\MushMesh\MushMeshVector.h" />
+    <ClInclude Include="..\..\src\MushMesh\MushMeshWorkspace.h" />
+    <ClInclude Include="..\..\src\MushMesh\MushMeshWorkspaceBased.h" />
+    <ClInclude Include="..\..\src\MushPie\MushPie.h" />
+    <ClInclude Include="..\..\src\MushPie\MushPieForm.h" />
+    <ClInclude Include="..\..\src\MushPie\MushPiePiece.h" />
+    <ClInclude Include="..\..\src\MushPie\MushPiePieceMobile.h" />
+    <ClInclude Include="..\..\src\MushPie\MushPiePieceSimple.h" />
+    <ClInclude Include="..\..\src\MushPie\MushPiePosicity.h" />
+    <ClInclude Include="..\..\src\MushPie\MushPiePosition.h" />
+    <ClInclude Include="..\..\src\MushPie\MushPieSignal.h" />
+    <ClInclude Include="..\..\src\MushPie\MushPieSignalNumeric.h" />
+    <ClInclude Include="..\..\src\MushPie\MushPieStandard.h" />
+    <ClInclude Include="..\..\src\MushPie\MushPieSTL.h" />
+    <ClInclude Include="..\..\src\Platform\PlatformInputUtils.h" />
+    <ClInclude Include="..\..\src\Platform\PlatformMiscUtils.h" />
+    <ClInclude Include="..\..\src\Platform\PlatformSTL.h" />
+    <ClInclude Include="..\..\src\Platform\PlatformUtils.h" />
+    <ClInclude Include="..\..\src\Platform\PlatformVideoUtils.h" />
+    <ClInclude Include="..\..\src\TesseractTrainer\TesseractTrainerAppHandler.h" />
+    <ClInclude Include="..\..\src\TesseractTrainer\TesseractTrainerCommandHandler.h" />
+    <ClInclude Include="..\..\src\TesseractTrainer\TesseractTrainerConfig.h" />
+    <ClInclude Include="..\..\src\TesseractTrainer\TesseractTrainerGame.h" />
+    <ClInclude Include="..\..\src\TesseractTrainer\TesseractTrainerHypercube.h" />
+    <ClInclude Include="..\..\src\TesseractTrainer\TesseractTrainerHypersphere.h" />
+    <ClInclude Include="..\..\src\TesseractTrainer\TesseractTrainerInfo.h" />
+    <ClInclude Include="..\..\src\TesseractTrainer\TesseractTrainerPixelSource.h" />
+    <ClInclude Include="..\..\src\TesseractTrainer\TesseractTrainerPlanePair.h" />
+    <ClInclude Include="..\..\src\TesseractTrainer\TesseractTrainerPlaneSet.h" />
+    <ClInclude Include="..\..\src\TesseractTrainer\TesseractTrainerStandard.h" />
+    <ClInclude Include="..\..\src\TesseractTrainer\TesseractTrainerSTL.h" />
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="tesseracttrainer.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="tesseracttrainer_app.ico" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

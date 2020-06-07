@@ -26,3 +26,14 @@ _$*
 *.ln
 core
 # CVS default ignores end
+
+
+VisualC/project/.vs
+VisualC/project/Debug
+VisualC/project/Release
+VisualC/ruby
+windeps
+VisualC/project/adanaxis.vcxproj.user
+VisualC/project/Backup/project.sln
+VisualC/project/tesseracttrainer.vcxproj.user
+VisualC/project/UpgradeLog.htm
