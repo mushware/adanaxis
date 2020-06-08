@@ -82,17 +82,11 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx</Extensions>
     </Filter>
-    <Filter Include="Libraries">
-      <UniqueIdentifier>{629061ee-d393-449f-a418-3fae92bb3798}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Libraries\pcre">
-      <UniqueIdentifier>{042e4c27-ae62-442d-873f-4d56b05412be}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Libraries\expat">
-      <UniqueIdentifier>{1f2580af-f752-44aa-8ced-b6e04498e8bc}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Scripts">
       <UniqueIdentifier>{8d01aafd-3b38-4997-86c3-f2b5af340ded}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DLLs">
+      <UniqueIdentifier>{6cdd5626-3d6a-4fb6-abd8-74cf9c864c39}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1238,6 +1232,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\MushSecretKeys\MushSecretKeys.cpp">
       <Filter>Source Files\MushSecret</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Platform\PlatformVideoUtilsCommon.cpp">
+      <Filter>Source Files\Platform</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -2474,6 +2471,24 @@
     </CustomBuild>
     <CustomBuild Include="..\..\src\Gl\GLUTAppHandler.h">
       <Filter>Source Files\GL</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\win32deps\SDL2-devel\lib\x86\SDL2.dll">
+      <Filter>DLLs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\win32deps\SDL2_mixer-devel\lib\x86\SDL2_mixer.dll">
+      <Filter>DLLs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\win32deps\expat-devel\lib\libexpat.dll">
+      <Filter>DLLs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\win32deps\SDL2_mixer-devel\lib\x86\libogg-0.dll">
+      <Filter>DLLs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\win32deps\tiffio-devel\bin\libtiff3.dll">
+      <Filter>DLLs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\win32deps\pcre-devel\bin\pcre3.dll">
+      <Filter>DLLs</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
