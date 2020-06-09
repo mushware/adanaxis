@@ -489,6 +489,9 @@ SDLAppHandler::EnterScreen(const GLModeDef& inDef)
     }
 
     m_modeDef=inDef;
+
+    SDL_GLContext glcontext = SDL_GL_CreateContext(m_pWindow);
+
     PlatformVideoUtils::Sgl().Acquaint();
     PlatformVideoUtils::AppActivate();
     m_screenEntered = true;

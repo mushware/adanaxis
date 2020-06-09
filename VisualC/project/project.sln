@@ -6,7 +6,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tesseracttrainer", "tessera
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "adanaxis", "adanaxis.vcxproj", "{23130A84-9532-4B62-8839-CE377A6F5B35}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ruby", "..\ruby\ruby.vcxproj", "{8A02E8BA-FC67-4518-BE80-8D0CA39E03E4}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mushruby", "..\ruby\ruby.vcxproj", "{8A02E8BA-FC67-4518-BE80-8D0CA39E03E4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +21,7 @@ Global
 		{23130A84-9532-4B62-8839-CE377A6F5B35}.Debug|x86.Build.0 = Debug|Win32
 		{23130A84-9532-4B62-8839-CE377A6F5B35}.Release|x86.ActiveCfg = Release|Win32
 		{8A02E8BA-FC67-4518-BE80-8D0CA39E03E4}.Debug|x86.ActiveCfg = Debug|Win32
+		{8A02E8BA-FC67-4518-BE80-8D0CA39E03E4}.Debug|x86.Build.0 = Debug|Win32
 		{8A02E8BA-FC67-4518-BE80-8D0CA39E03E4}.Release|x86.ActiveCfg = Release|Win32
 		{8A02E8BA-FC67-4518-BE80-8D0CA39E03E4}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection

@@ -2490,6 +2490,12 @@
     <CustomBuild Include="..\..\win32deps\pcre-devel\bin\pcre3.dll">
       <Filter>DLLs</Filter>
     </CustomBuild>
+    <CustomBuild Include="..\..\win32deps\SDL2_mixer-devel\lib\x86\libvorbisfile-3.dll">
+      <Filter>DLLs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\win32deps\SDL2_mixer-devel\lib\x86\libvorbis-0.dll">
+      <Filter>DLLs</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\scripts\GetWindowsDeps.ps1">
