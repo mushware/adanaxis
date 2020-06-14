@@ -96,7 +96,7 @@ public:
     void StateGet(GameControlFrameDef& outDef, Mushware::U32 inAtMsec);
 
 private:
-    std::vector<Mushware::U32> m_keysOfInterest;
+    std::vector<Mushware::S32> m_keysOfInterest;
     std::vector<bool> m_keyState;
     Mushware::tVal m_lastMouseX;
     Mushware::tVal m_lastMouseY;

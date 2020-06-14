@@ -102,7 +102,7 @@ public:
 class GLKeyboardSignal: public MushcoreAppSignal
 {
 public:
-    GLKeyboardSignal(bool inKeyDown, Mushware::U32 inKeyValue, Mushware::U32 inKeyModifier, Mushware::tVal inMouseX, Mushware::tVal inMouseY):
+    GLKeyboardSignal(bool inKeyDown, Mushware::S32 inKeyValue, Mushware::U32 inKeyModifier, Mushware::tVal inMouseX, Mushware::tVal inMouseY):
         MushcoreAppSignal(GLAppSignal::kKeyboard),
         keyDown(inKeyDown),
         keyValue(inKeyValue),
@@ -112,13 +112,13 @@ public:
         {}
     
     bool KeyDown(void) const { return keyDown; }
-    Mushware::U32 KeyValue(void) const { return keyValue; }
+    Mushware::S32 KeyValue(void) const { return keyValue; }
     Mushware::U32 KeyModifier(void) const { return keyModifier; }
     Mushware::tVal MouseX(void) const { return mouseX; }
     Mushware::tVal MouseY(void) const { return mouseY; }
     
     bool keyDown;
-    Mushware::U32 keyValue;
+    Mushware::S32 keyValue;
     Mushware::U32 keyModifier;
     Mushware::tVal mouseX;
     Mushware::tVal mouseY;

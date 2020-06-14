@@ -401,10 +401,10 @@ MushGLTexture::U8RGBALookup(Mushware::t2Val inPos) const
     const U8 *p01 = &m_u8Data[4*(y1*m_size.X()+x0)];
     const U8 *p11 = &m_u8Data[4*(y1*m_size.X()+x1)];
     
-    MUSHCOREASSERT(p00 >= &m_u8Data[0] && p00 < &m_u8Data[m_u8Data.size()]);
-    MUSHCOREASSERT(p10 >= &m_u8Data[0] && p10 < &m_u8Data[m_u8Data.size()]);
-    MUSHCOREASSERT(p01 >= &m_u8Data[0] && p01 < &m_u8Data[m_u8Data.size()]);
-    MUSHCOREASSERT(p11 >= &m_u8Data[0] && p11 < &m_u8Data[m_u8Data.size()]);
+    MUSHCOREASSERT(p00 >= &m_u8Data[0] && p00 <= &m_u8Data[m_u8Data.size() - 1]);
+    MUSHCOREASSERT(p10 >= &m_u8Data[0] && p10 <= &m_u8Data[m_u8Data.size() - 1]);
+    MUSHCOREASSERT(p01 >= &m_u8Data[0] && p01 <= &m_u8Data[m_u8Data.size() - 1]);
+    MUSHCOREASSERT(p11 >= &m_u8Data[0] && p11 <= &m_u8Data[m_u8Data.size() - 1]);
 	
     t4Val col00 = t4Val(p00[0], p00[1], p00[2], p00[3]);
     t4Val col10 = t4Val(p10[0], p10[1], p10[2], p10[3]);

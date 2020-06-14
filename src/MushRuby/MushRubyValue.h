@@ -92,6 +92,7 @@ public:
 	MushRubyValue();
 	explicit MushRubyValue(Mushware::tRubyValue inValue) : m_value(inValue) {}
 	explicit MushRubyValue(Mushware::U32 inValue);
+	explicit MushRubyValue(Mushware::S32 inValue);
     explicit MushRubyValue(Mushware::tVal inValue);
 	explicit MushRubyValue(bool inValue);
 	explicit MushRubyValue(const char *inValue);

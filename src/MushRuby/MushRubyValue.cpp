@@ -106,6 +106,12 @@ MushRubyValue::MushRubyValue(Mushware::U32 inValue) :
 {
 }
 
+
+MushRubyValue::MushRubyValue(Mushware::S32 inValue) :
+	m_value(INT2NUM(inValue))
+{
+}
+
 MushRubyValue::MushRubyValue(Mushware::tVal inValue)
 {
     m_value = rb_float_new(inValue);

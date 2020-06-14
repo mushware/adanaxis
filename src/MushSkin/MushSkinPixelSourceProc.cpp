@@ -175,7 +175,7 @@ MushSkinPixelSourceProc::ToTextureCreate(MushGLTexture& outTexture)
                 LineGenerate(pTileData, endX - startX, objectPos, objectEndPos);
             }
             
-            MUSHCOREASSERT(pTileData <= &m_u8Data[pixelDataSize]);
+            MUSHCOREASSERT(pTileData <= &m_u8Data[pixelDataSize - 1] + 1);
         }
     }
 	

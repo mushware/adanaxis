@@ -140,7 +140,7 @@ public:
     Mushware::U32 timestamp;
     Mushware::S32 unboundedMouseX;
     Mushware::S32 unboundedMouseY;
-    Mushware::U32 keyValue;
+    Mushware::S32 keyValue;
     bool keyDirection;
 };
 
@@ -152,8 +152,8 @@ class SDLAppHandler : public GLAppHandler
 public:
     SDLAppHandler();
     virtual ~SDLAppHandler() {}
-    virtual bool KeyStateGet(Mushware::U32 inKey) const;
-    virtual bool LatchedKeyStateTake(Mushware::U32 inKey);
+    virtual bool KeyStateGet(Mushware::S32 inKey) const;
+    virtual bool LatchedKeyStateTake(Mushware::S32 inKey);
     virtual void MousePositionGet(Mushware::tVal& outX, Mushware::tVal& outY) const;
     virtual void UnboundedMousePositionGet(Mushware::S32& outX, Mushware::S32& outY) const;
     virtual Mushware::tVal ScaledUnboundedMouseX(void) const;
@@ -169,7 +169,7 @@ public:
     virtual const GLModeDef& CurrentModeDefGet(void);
     virtual void PollForControlEvents(void);
     virtual void AppQuit(void);
-    virtual void KeysOfInterestSet(const std::vector<Mushware::U32>& inKeyValues);
+    virtual void KeysOfInterestSet(const std::vector<Mushware::S32>& inKeyValues);
     virtual void ReadHistoricControlState(Mushware::S32& outUnboundedMouseX, Mushware::S32& outUnboundedMouseY, std::vector<bool>& outKeys, Mushware::tVal inMsec);
     virtual Mushware::tVal DeviceAxis(Mushware::U32 inDevice, Mushware::U32 inAxis);
     virtual void KeyRepeatSet(bool inValue);
@@ -205,8 +205,8 @@ private:
     bool m_showCursor;
     bool m_redisplay;
     bool m_visible;
-    std::vector<bool> m_keyState;
-    std::vector<bool> m_latchedKeyState;
+    std::map<Mushware::S32, bool> m_keyState;
+    std::map<Mushware::S32, bool> m_latchedKeyState;
     Mushware::tVal m_mouseX;
     Mushware::tVal m_mouseY;
     Mushware::S32 m_unboundedMouseX;
@@ -215,7 +215,7 @@ private:
     GLModeDef m_modeDef;
     std::vector<SDLControlEntry> m_controlBuffer;
     Mushware::U32 m_controlBufferIndex;
-    std::vector<Mushware::U32> m_keysOfInterest;
+    std::vector<Mushware::S32> m_keysOfInterest;
     bool m_firstDelta;
     bool m_doQuit;
     tDeviceList m_deviceList;

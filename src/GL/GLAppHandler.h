@@ -160,8 +160,8 @@ class GLAppHandler : public MushcoreAppHandler
 {
 public:
     virtual ~GLAppHandler() {}
-    virtual bool KeyStateGet(Mushware::U32 inKey) const = 0;
-    virtual bool LatchedKeyStateTake(Mushware::U32 inKey) = 0;
+    virtual bool KeyStateGet(Mushware::S32 inKey) const = 0;
+    virtual bool LatchedKeyStateTake(Mushware::S32 inKey) = 0;
     virtual void MousePositionGet(Mushware::tVal& outX, Mushware::tVal& outY) const = 0;
     virtual void UnboundedMousePositionGet(Mushware::S32& outX, Mushware::S32& outY) const = 0;
     virtual void EnterScreen(const GLModeDef& inDef) = 0;
@@ -178,7 +178,7 @@ public:
     virtual const GLModeDef& CurrentModeDefGet(void) = 0;
     virtual void PollForControlEvents(void) = 0;
     virtual void AppQuit(void) = 0;
-    virtual void KeysOfInterestSet(const std::vector<Mushware::U32>& inKeyValues) = 0;
+    virtual void KeysOfInterestSet(const std::vector<Mushware::S32>& inKeyValues) = 0;
     virtual void ReadHistoricControlState(Mushware::S32& outUnboundedMouseX, Mushware::S32& outUnboundedMouseY, std::vector<bool>& outKeys, Mushware::tVal inMsec) = 0;
 //%classPrototypes {
 public:

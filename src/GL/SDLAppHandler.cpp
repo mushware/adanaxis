@@ -251,8 +251,6 @@ using namespace std;
 SDLAppHandler::SDLAppHandler():
     m_redisplay(false),
     m_visible(true),
-    m_keyState(MediaKeyboard::kNumKeys, false),
-    m_latchedKeyState(MediaKeyboard::kNumKeys, false),
     m_mouseX(0),
     m_mouseY(0),
     m_unboundedMouseX(0),
@@ -302,11 +300,7 @@ SDLAppHandler::Display(void)
 void
 SDLAppHandler::KeyboardSignal(const GLKeyboardSignal& inSignal)
 {
-    U32 keyValue = inSignal.KeyValue();
-    if (keyValue >= m_keyState.size())
-    {
-        m_keyState.resize(keyValue+1, false);
-    }
+    S32 keyValue = inSignal.KeyValue();
 
     AddToControlBuffer(keyValue, inSignal.keyDown);
 
@@ -318,32 +312,31 @@ SDLAppHandler::KeyboardSignal(const GLKeyboardSignal& inSignal)
 }
 
 bool
-SDLAppHandler::KeyStateGet(const Mushware::U32 inKey) const
+SDLAppHandler::KeyStateGet(const Mushware::S32 inKey) const
 {
-    if (inKey >= m_keyState.size())
-    {
-        ostringstream message;
-        message << "Key number " << inKey << " too large";
-        throw MushcoreDataFail(message.str());
+    auto stateForKey = m_keyState.find(inKey);
+
+    if (stateForKey == m_keyState.end()) {
+        return false;
     }
-    return m_keyState[inKey];
+
+    return stateForKey->second;
 }
 
 bool
-SDLAppHandler::LatchedKeyStateTake(const Mushware::U32 inKey)
+SDLAppHandler::LatchedKeyStateTake(const Mushware::S32 inKey)
 {
-    if (inKey >= m_keyState.size())
+    auto stateForKey = m_latchedKeyState.find(inKey);
+
+    if (stateForKey != m_latchedKeyState.end())
     {
-        ostringstream message;
-        message << "Key number " << inKey << " too large";
-        throw MushcoreDataFail(message.str());
+        m_latchedKeyState[inKey] = false;
+        return true;
     }
-    bool state=m_latchedKeyState[inKey];
-    if (state)
+    else
     {
-        m_latchedKeyState[inKey]=false;
+        return false;
     }
-    return state;
 }
 
 void
@@ -473,10 +466,6 @@ SDLAppHandler::EnterScreen(const GLModeDef& inDef)
     // Was: SDL_WM_SetCaption(MushcoreInfo::Sgl().ApplicationNameGet().c_str(), (MushcoreInfo::Sgl().ApplicationNameGet()+".bmp").c_str());
 
     GLState::Reset();
-    for (U32 i=0; i<m_keyState.size(); ++i)
-    {
-        m_keyState[i] = false;
-    }
 
     if (inDef.FullScreen())
     {
@@ -628,8 +617,8 @@ SDLAppHandler::PollForControlEvents(void)
             case SDL_KEYDOWN:
             case SDL_KEYUP:
                 Signal(GLKeyboardSignal((event.key.type==SDL_KEYDOWN),
-                                        static_cast<U32>(event.key.keysym.sym),
-                                        static_cast<U32>(event.key.keysym.mod),
+                                        static_cast<S32>(event.key.keysym.sym),
+                                        static_cast<S32>(event.key.keysym.mod),
                                         m_mouseX, m_mouseY));
                 break;
 
@@ -762,7 +751,7 @@ SDLAppHandler::DeviceAxis(Mushware::U32 inDevice, Mushware::U32 inAxis)
 }
 
 void
-SDLAppHandler::KeysOfInterestSet(const vector<Mushware::U32>& inKeyValues)
+SDLAppHandler::KeysOfInterestSet(const vector<Mushware::S32>& inKeyValues)
 {
     m_keysOfInterest = inKeyValues;
 }
@@ -777,8 +766,7 @@ SDLAppHandler::ReadHistoricControlState(S32& outUnboundedMouseX, S32& outUnbound
     U32 keysOfInterestSize = m_keysOfInterest.size();
     for (U32 i=0; i<keysOfInterestSize; ++i)
     {
-        U32 keyValue = m_keysOfInterest[i];
-        MUSHCOREASSERT(keyValue < m_keyState.size());
+        S32 keyValue = m_keysOfInterest[i];
         outKeys[i] = m_keyState[keyValue];
     }
 
