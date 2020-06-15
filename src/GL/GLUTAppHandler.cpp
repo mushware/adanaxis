@@ -158,7 +158,7 @@ GLUTAppHandler::KeyboardSignal(const GLKeyboardSignal& inSignal)
         m_latchedKeyState[inSignal.keyValue.ValueGet()]=true;
     }
     
-    if (inSignal.keyValue.ValueGet() == 27 && inSignal.keyDown)
+    if (inSignal.keyValue.ValueGet() == MediaKeyboard::kKey_ESCAPE && inSignal.keyDown)
     {
         // Escape key pressed
         MushcoreAppHandler::Sgl().Signal(MushcoreAppSignal(MushcoreAppSignal::kEscape));

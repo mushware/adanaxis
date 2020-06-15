@@ -95,7 +95,7 @@ MushGameBase::KeyboardSignal(const GLKeyboardSignal& inSignal, MushGameAppHandle
                                  MushRubyValue(inSignal.keyModifier),
                                  MushRubyValue(inSignal.keyDown));
     }
-    else if (inSignal.keyValue == 27 && inSignal.keyDown)
+    else if (inSignal.keyValue == MediaKeyboard::kKey_ESCAPE && inSignal.keyDown)
     {
         if (!LogicRef().Ref().IsMenuMode())
         {

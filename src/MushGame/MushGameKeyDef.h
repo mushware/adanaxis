@@ -59,20 +59,20 @@ public:
     
     Mushware::U32 NumKeyValues(void) const { return m_keyValues.size(); }
     void KeyValuesResize(Mushware::U32 inSize) { m_keyValues.resize(inSize); }
-    Mushware::U32 KeyValue(Mushware::U32 inIndex) const;
-    void KeyValueSet(Mushware::U32 inValue, Mushware::U32 inIndex);
+    Mushware::S32 KeyValue(Mushware::U32 inIndex) const;
+    void KeyValueSet(Mushware::S32 inValue, Mushware::U32 inIndex);
     
     void Reset(void);
     
 private:
-    std::vector<Mushware::U32> m_keyValues; //:read
+    std::vector<Mushware::S32> m_keyValues; //:read
     bool m_state; //:readwrite
     bool m_stateHasChanged; //:readwrite
     std::string m_keyName; //:readwrite
     
 //%classPrototypes {
 public:
-    const std::vector<Mushware::U32>& KeyValues(void) const { return m_keyValues; }
+    const std::vector<Mushware::S32>& KeyValues(void) const { return m_keyValues; }
     const bool& State(void) const { return m_state; }
     void StateSet(const bool& inValue) { m_state=inValue; }
     const bool& StateHasChanged(void) const { return m_stateHasChanged; }

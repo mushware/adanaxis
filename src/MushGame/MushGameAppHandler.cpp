@@ -696,7 +696,7 @@ MushGameAppHandler::KeyboardSignal(const GLKeyboardSignal& inSignal)
 {
     bool keyHandled=false;
     
-    if (inSignal.KeyValue() == 27 &&
+    if (inSignal.KeyValue() == MediaKeyboard::kKey_ESCAPE &&
         MediaKeyboard::HasModifier(inSignal.KeyModifier(), MediaKeyboard::kModCtrl) &&
         inSignal.KeyDown())
     {
@@ -704,7 +704,7 @@ MushGameAppHandler::KeyboardSignal(const GLKeyboardSignal& inSignal)
         QuitStateEnter();
         keyHandled=true;
     }
-    else if (inSignal.KeyValue() == 'q' &&
+    else if (inSignal.KeyValue() == MediaKeyboard::kKey_q &&
         MediaKeyboard::HasModifier(inSignal.KeyModifier(), MediaKeyboard::kModMeta) &&
         inSignal.KeyDown())
     {
@@ -716,7 +716,7 @@ MushGameAppHandler::KeyboardSignal(const GLKeyboardSignal& inSignal)
     {
         keyHandled = m_currentRef.RefGet().KeyboardSignal(inSignal, *this);
     }
-    else if (inSignal.KeyValue() == 27 && inSignal.KeyDown())
+    else if (inSignal.KeyValue() == MediaKeyboard::kKey_ESCAPE && inSignal.KeyDown())
     {
         // Used when there is no current game
         QuitStateEnter();

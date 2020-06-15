@@ -390,7 +390,7 @@ void
 GameAppHandler::KeyboardSignal(const GLKeyboardSignal& inSignal)
 {
     bool keyHandled=false;
-    if (inSignal.keyValue == 27 && inSignal.keyDown)
+    if (inSignal.keyValue == MediaKeyboard::kKey_ESCAPE && inSignal.keyDown)
     {
         if (m_appState == kAppStateGame)
         {

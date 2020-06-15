@@ -447,7 +447,7 @@ MushGameRuby::AxisKeySet(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg
 Mushware::tRubyValue
 MushGameRuby::KeySymbols(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0)
 {
-    std::vector<U32> keySymbols;
+    std::vector<S32> keySymbols;
     
     try
     {

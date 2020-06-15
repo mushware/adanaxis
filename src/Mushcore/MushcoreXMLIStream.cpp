@@ -247,6 +247,18 @@ MushcoreXMLIStream::ObjectRead(U64& outU64)
     }
 }    
 
+
+void
+MushcoreXMLIStream::ObjectRead(S32& outS32)
+{
+    string dataStr = DataUntilTake(",)=<");
+    istringstream dataStream(dataStr);
+    if (!(dataStream >> outS32))
+    {
+        Throw("Read signed failed");
+    }
+}
+
 void
 MushcoreXMLIStream::ObjectRead(U32& outU32)
 {

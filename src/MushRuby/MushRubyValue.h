@@ -91,13 +91,14 @@ public:
 	
 	MushRubyValue();
 	explicit MushRubyValue(Mushware::tRubyValue inValue) : m_value(inValue) {}
-	explicit MushRubyValue(Mushware::U32 inValue);
 	explicit MushRubyValue(Mushware::S32 inValue);
+	explicit MushRubyValue(Mushware::U32 inValue);
     explicit MushRubyValue(Mushware::tVal inValue);
 	explicit MushRubyValue(bool inValue);
 	explicit MushRubyValue(const char *inValue);
     explicit MushRubyValue(const std::string& inValue);
-    explicit MushRubyValue(const std::vector<Mushware::U32>& inVector);
+	explicit MushRubyValue(const std::vector<Mushware::S32>& inVector);
+	explicit MushRubyValue(const std::vector<Mushware::U32>& inVector);
 	std::string String(void) const;
 	bool IsNil(void) const;
 	bool IsU32(void) const;

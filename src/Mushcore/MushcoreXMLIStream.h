@@ -166,6 +166,7 @@ public:
     void ObjectReadVirtual(MushcoreVirtualObject& outObj);
 
     void ObjectRead(Mushware::U64& outU64);
+    void ObjectRead(Mushware::S32& outS32);
     void ObjectRead(Mushware::U32& outU32);
     void ObjectRead(Mushware::U8& outU8);
     void ObjectRead(Mushware::tVal& outObj);
@@ -249,6 +250,12 @@ MushcoreXMLIStream::DiscardWhitespaceByteTake(void)
 
 inline void
 operator>>(MushcoreXMLIStream& ioIn, Mushware::U64& outObj)
+{
+    ioIn.ObjectRead(outObj);
+}
+
+inline void
+operator>>(MushcoreXMLIStream& ioIn, Mushware::S32& outObj)
 {
     ioIn.ObjectRead(outObj);
 }

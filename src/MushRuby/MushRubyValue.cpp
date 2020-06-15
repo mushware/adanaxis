@@ -101,16 +101,18 @@ MushRubyValue::MushRubyValue() :
 {
 }
 
-MushRubyValue::MushRubyValue(Mushware::U32 inValue) :
-    m_value(UINT2NUM(inValue))
-{
-}
-
 
 MushRubyValue::MushRubyValue(Mushware::S32 inValue) :
 	m_value(INT2NUM(inValue))
 {
 }
+
+
+MushRubyValue::MushRubyValue(Mushware::U32 inValue) :
+    m_value(UINT2NUM(inValue))
+{
+}
+
 
 MushRubyValue::MushRubyValue(Mushware::tVal inValue)
 {
@@ -139,14 +141,24 @@ MushRubyValue::MushRubyValue(const std::string& inValue)
     m_value = rb_str_new(inValue.data(), inValue.size());
 }
 
-MushRubyValue::MushRubyValue(const std::vector<Mushware::U32>& inVector)
+MushRubyValue::MushRubyValue(const std::vector<Mushware::S32>& inVector)
 {
     m_value = rb_ary_new();
     Mushware::U32 arySize = inVector.size();
     for (Mushware::U32 i=0; i<arySize; ++i)
     {
-        rb_ary_push(m_value, UINT2NUM(inVector[i]));
+        rb_ary_push(m_value, INT2NUM(inVector[i]));
     }
+}
+
+MushRubyValue::MushRubyValue(const std::vector<Mushware::U32>& inVector)
+{
+	m_value = rb_ary_new();
+	Mushware::U32 arySize = inVector.size();
+	for (Mushware::U32 i = 0; i < arySize; ++i)
+	{
+		rb_ary_push(m_value, UINT2NUM(inVector[i]));
+	}
 }
 
 std::string

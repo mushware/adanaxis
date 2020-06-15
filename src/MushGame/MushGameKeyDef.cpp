@@ -43,7 +43,7 @@ MushGameKeyDef::MushGameKeyDef() :
 {
 }
 
-Mushware::U32
+Mushware::S32
 MushGameKeyDef::KeyValue(Mushware::U32 inIndex) const
 {
     MushcoreUtil::DebugBoundsCheck(inIndex, m_keyValues.size());
@@ -51,7 +51,7 @@ MushGameKeyDef::KeyValue(Mushware::U32 inIndex) const
 }
 
 void
-MushGameKeyDef::KeyValueSet(Mushware::U32 inValue, Mushware::U32 inIndex)
+MushGameKeyDef::KeyValueSet(Mushware::S32 inValue, Mushware::U32 inIndex)
 {
     MushcoreUtil::DebugBoundsCheck(inIndex, m_keyValues.size());
     m_keyValues[inIndex] = inValue;
