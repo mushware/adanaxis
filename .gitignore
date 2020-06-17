@@ -27,6 +27,8 @@ _$*
 core
 # CVS default ignores end
 
+# Adanaxis ignores
+Entries.txt
 VisualC/ruby
 VisualC/project
 win32deps
