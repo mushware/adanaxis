@@ -7,19 +7,28 @@
  *
  * File: src/MushSkin/MushSkinTiled.h
  *
- * Copyright: Andy Southgate 2005-2007
+ * Copyright: Andy Southgate 2002-2007, 2020
  *
- * This file may be used and distributed under the terms of the Mushware
- * Software Licence version 1.4, under the terms for 'Proprietary original
- * source files'.  If not supplied with this software, a copy of the licence
- * can be obtained from Mushware Limited via http://www.mushware.com/.
- * One of your options under that licence is to use and distribute this file
- * under the terms of the GNU General Public Licence version 2.
+ * Permission is hereby granted, free of charge, to any person obtaining a
+ * copy of this software and associated documentation files (the "Software"),
+ * to deal in the Software without restriction, including without limitation
+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ * and/or sell copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
- * This software carries NO WARRANTY of any kind.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ * DEALINGS IN THE SOFTWARE.
  *
  ****************************************************************************/
-//%Header } nvBxKiVkdneXWo5JPiCymQ
+//%Header } fe2Ep8/+1MkIMEmLmxcPpQ
 /*
  * $Id: MushSkinTiled.h,v 1.4 2007/04/18 09:23:05 southa Exp $
  * $Log: MushSkinTiled.h,v $

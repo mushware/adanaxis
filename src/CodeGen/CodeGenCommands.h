@@ -7,17 +7,28 @@
  *
  * File: src/CodeGen/CodeGenCommands.h
  *
- * Copyright: Andy Southgate 2002-2007
+ * Copyright: Andy Southgate 2002-2007, 2020
  *
- * All rights reserved.  Distribution of this source file or the data
- * contained within it is prohibited unless expressly permitted by Mushware
- * Limited.  For information, please contact the author via
- * http://www.mushware.com/.
+ * Permission is hereby granted, free of charge, to any person obtaining a
+ * copy of this software and associated documentation files (the "Software"),
+ * to deal in the Software without restriction, including without limitation
+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ * and/or sell copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
- * This software carries NO WARRANTY of any kind.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ * DEALINGS IN THE SOFTWARE.
  *
  ****************************************************************************/
-//%Header } zEobk0DXETuFz8Ygd2wQqQ
+//%Header } gybFbkxLK6zoA87guYx0pw
 /*
  * $Id: CodeGenCommands.h,v 1.3 2006/06/01 15:38:49 southa Exp $
  * $Log: CodeGenCommands.h,v $

@@ -70,14 +70,14 @@ class SourceProcess
     followingLine = 1
     IO.foreach(filename) do |line|
       case state
-      when 0:
+      when 0
         lineNum += 1
         followingLine += 1
         if line =~ beginExp
           state = 1
         end
         
-      when 1:
+      when 1
         followingLine += 1
         if line =~ endExp
           state = 2
@@ -85,7 +85,7 @@ class SourceProcess
           toEval += line
         end
         
-      when 2:
+      when 2
         if (line =~ beginExp || line =~ endExp)
           raise RuntimeError, "Multiple #{dataName}begin/#{dataName}end markers in #{filename}"
         end
@@ -123,14 +123,14 @@ class SourceProcess
     lineNum = 0
     @m_content.each do |line|
       case state
-      when 0:
+      when 0
         if line =~ startExp
           startLine = lineNum
           endline = lineNum # In case no end marker
           state = 1
         end
       
-      when 1:
+      when 1
         if line =~ endExp
           checksum = $1
           endLine = lineNum
@@ -139,7 +139,7 @@ class SourceProcess
           digest << line
         end
         
-      when 2:
+      when 2
         break
       end
       lineNum += 1

@@ -7,21 +7,13 @@
  * For more information on the original see http://www.ruby-lang.org/.
  *
  * This file may contain original work and modifications by Andy Southgate.
- * In regard to these the author and his employer (Mushware Limited)
- * irrevocably waive all of their copyright rights vested in this particular
- * version of this file to the furthest extent permitted.  The author and
- * Mushware Limited also irrevocably waive any and all of their intellectual
- * property rights arising from said file and its modification and/or additions
- * that would otherwise restrict the rights of any party to use and/or
- * distribute the use of, the techniques and methods used herein.  A written
- * waiver can be obtained via http://www.mushware.com/.  This waiver does not
- * affect the rights of the original author or authors.
+ * In regard to these Andy Southgate irrevocably waives all copyright
+ * rights vested in said original work and modifications.
  *
- * This software carries NO WARRANTY of any kind from Andy Southgate or
- * Mushware Limited.
+ * This software carries NO WARRANTY of any kind from Andy Southgate.
  *
  ****************************************************************************/
-//%Header } e4rDm5bDGqYgtdruJTIBbA
+//%Header } M7tjNl/aIX2OzSS+Fczg5w
 /**********************************************************************
 
   signal.c -
