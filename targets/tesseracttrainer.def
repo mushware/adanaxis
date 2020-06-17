@@ -68,7 +68,7 @@ Subst: MUSH_DATA_DIR 'data-tesseracttrainer'
 Subst: MUSH_DATA_MAKEFILE 'data-tesseracttrainer/Makefile'
 Subst: MUSH_DATA_PATH '$(top_srcdir)/MUSH_DATA_DIR'
 Subst: MUSH_MACOSX_BUILD_PATH '$(top_srcdir)/macosx/project/build'
-Subst: MUSH_WIN32_BUILD_PATH '$(top_srcdir)/VisualC/project/Release'
+Subst: MUSH_WIN32_BUILD_PATH '$(top_srcdir)/VisualStudio/project/Release'
 Subst: MUSH_TOP_SUBDIRS 'src MUSH_DATA_DIR'
 Use: targets/tesseracttrainer.Makefile.am as Makefile.am
 Use: targets/sdl_app.configure.in as configure.in
@@ -97,7 +97,7 @@ Modules: Platform/MacOSX Platform/win32 +.*\.c$ Platform/X11 +.*\.y$ +.*\.mkf$ +
 Append: Makefile.am
 
 ExtraDist:
-Modules: tesseracttrainer\.spec\.* macosx/project/.*\.plist README\.* .*\.pl .*\.pm macosx/project/project.xcode/.*pbx(proj|user) macosx/MakeRelease.sh macosx/Start_in_Recovery_Mode.(app|scpt) win32/tesseracttrainer.*\.ico win32/MakeInstaller.sh win32/installer.nsi VisualC/project/tesseracttrainer.*\.(sln|aps|rc|vcproj|ico) x11/icons/tesseracttrainer\..*\.png$
+Modules: tesseracttrainer\.spec\.* macosx/project/.*\.plist README\.* .*\.pl .*\.pm macosx/project/project.xcode/.*pbx(proj|user) macosx/MakeRelease.sh macosx/Start_in_Recovery_Mode.(app|scpt) win32/tesseracttrainer.*\.ico win32/MakeInstaller.sh win32/installer.nsi VisualStudio/project/tesseracttrainer.*\.(sln|aps|rc|vcproj|ico) x11/icons/tesseracttrainer\..*\.png$
 Manual:
 Modules: x11/man/tesseracttrainer.*
 

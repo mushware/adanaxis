@@ -71,7 +71,7 @@ echo "from '$builddir' and '$datadir' to '$releasedir'"
 
 cp -pR "$builddir/$package.exe" "$appdir"
 
-for filename in VisualC/visualclibs/*.dll VisualC/ruby/Release/mushruby.dll
+for filename in VisualStudio/visualclibs/*.dll VisualC/ruby/Release/mushruby.dll
 do
 cp "$filename" "${appdir}"
 done

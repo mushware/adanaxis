@@ -173,7 +173,7 @@ Subst: MUSH_DATA_DIR 'data-adanaxis'
 Subst: MUSH_DATA_MAKEFILE 'data-adanaxis/Makefile'
 Subst: MUSH_DATA_PATH '$(top_srcdir)/MUSH_DATA_DIR'
 Subst: MUSH_MACOSX_BUILD_PATH '$(top_srcdir)/macosx/project/build/Deployment'
-Subst: MUSH_WIN32_BUILD_PATH '$(top_srcdir)/VisualC/project/Release'
+Subst: MUSH_WIN32_BUILD_PATH '$(top_srcdir)/VisualStudio/project/Release'
 Subst: MUSH_TOP_SUBDIRS 'src MUSH_DATA_DIR'
 
 Use: targets/app.acinclude.m4 as acinclude.m4

@@ -45,7 +45,7 @@ win32
 Install using the win32 installer from http://www.mushware.com/, or:
 
 Build using Visual Studio .NET 2003.  The project file can be found in the
-VisualC directory (project/project.sln).
+VisualStudio directory (adanaxis/adanaxis.sln).
 
 To build the installer, ensure that nullsoft.com's makensis.exe is visible
 in your path.  Place the required DLLs in win32/win32libs or get them via

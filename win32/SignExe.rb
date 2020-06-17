@@ -13,7 +13,7 @@
 keyPrefix="J:\\mushware"
 toolPath='C:/Program Files/Microsoft Visual Studio .NET 2003/Common7/Tools/Bin'
 
-fileList = Dir.glob("../VisualC/project/Release/*.exe")
+fileList = Dir.glob("../VisualStudio/project/Release/*.exe")
 fileList += Dir.glob("*.exe")
 
 fileList.each do |filename|

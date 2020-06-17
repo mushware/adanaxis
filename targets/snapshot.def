@@ -56,7 +56,7 @@ Subst: MUSH_DATA_DIR 'data-snapshot'
 Subst: MUSH_DATA_MAKEFILE ''
 Subst: MUSH_DATA_PATH '$(top_srcdir)/MUSH_DATA_DIR'
 Subst: MUSH_MACOSX_BUILD_PATH '$(top_srcdir)/macosx/project/build'
-Subst: MUSH_WIN32_BUILD_PATH '$(top_srcdir)/VisualC/project/Release'
+Subst: MUSH_WIN32_BUILD_PATH '$(top_srcdir)/VisualStudio/project/Release'
 Subst: MUSH_TOP_SUBDIRS 'src'
 
 Use: targets/app.Makefile.am as Makefile.am
