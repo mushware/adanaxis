@@ -2478,22 +2478,22 @@
     <CustomBuild Include="..\..\win32deps\SDL2_mixer-devel\lib\x86\SDL2_mixer.dll">
       <Filter>DLLs</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\..\win32deps\expat-devel\lib\libexpat.dll">
-      <Filter>DLLs</Filter>
-    </CustomBuild>
     <CustomBuild Include="..\..\win32deps\SDL2_mixer-devel\lib\x86\libogg-0.dll">
-      <Filter>DLLs</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\win32deps\tiffio-devel\bin\libtiff3.dll">
-      <Filter>DLLs</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\win32deps\pcre-devel\bin\pcre3.dll">
       <Filter>DLLs</Filter>
     </CustomBuild>
     <CustomBuild Include="..\..\win32deps\SDL2_mixer-devel\lib\x86\libvorbisfile-3.dll">
       <Filter>DLLs</Filter>
     </CustomBuild>
     <CustomBuild Include="..\..\win32deps\SDL2_mixer-devel\lib\x86\libvorbis-0.dll">
+      <Filter>DLLs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\adanaxis-win32deps\expat-devel\lib\libexpat.dll">
+      <Filter>DLLs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\adanaxis-win32deps\tiffio-devel\bin\libtiff3.dll">
+      <Filter>DLLs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\adanaxis-win32deps\pcre-devel\bin\pcre3.dll">
       <Filter>DLLs</Filter>
     </CustomBuild>
   </ItemGroup>

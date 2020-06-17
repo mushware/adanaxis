@@ -1,0 +1,3 @@
+[submodule "adanaxis-win32deps"]
+	path = adanaxis-win32deps
+	url = https://github.com/mushware/adanaxis-win32deps.git
