@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{8A02E8BA-FC67-4518-BE80-8D0CA39E03E4}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectName>mushruby</ProjectName>
+    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PreferredToolArchitecture>x86</PreferredToolArchitecture>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>16.0.30028.132</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>Debug\</OutDir>
+    <IntDir>Debug\</IntDir>
+    <LinkIncremental>
+    </LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>Release\</OutDir>
+    <IntDir>Release\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\..\src\MushRuby;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;_CRT_NO_POSIX_ERROR_CODES;RUBY_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>
+      </MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <EnableEnhancedInstructionSet>
+      </EnableEnhancedInstructionSet>
+      <PrecompiledHeader />
+      <WarningLevel>Level2</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <SupportJustMyCode>false</SupportJustMyCode>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>oldnames.lib;user32.lib;wsock32.lib;advapi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)mushruby.dll</OutputFile>
+      <ModuleDefinitionFile>..\..\src\MushRuby\win32\rubylib.def</ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(OutDir)ruby.pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <ImportLibrary>$(OutDir)mushruby.lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <PostBuildEvent>
+      <Command>COPY /Y $(TargetPath) $(SolutionDir)$(OutDir)</Command>
+    </PostBuildEvent>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>Full</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <AdditionalIncludeDirectories>..\..\src\MushRuby;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;RUBY_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions</EnableEnhancedInstructionSet>
+      <PrecompiledHeader />
+      <WarningLevel>Level2</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>oldnames.lib;user32.lib;wsock32.lib;advapi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)mushruby.dll</OutputFile>
+      <ModuleDefinitionFile>..\..\src\MushRuby\win32\rubylib.def</ModuleDefinitionFile>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <ImportLibrary>$(OutDir)mushruby.lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <PostBuildEvent>
+      <Command>XCOPY $(OutDir)mushruby.dll C:\msvclibs\system /Y</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\MushRuby\array.c" />
+    <ClCompile Include="..\..\src\MushRuby\bignum.c" />
+    <ClCompile Include="..\..\src\MushRuby\class.c" />
+    <ClCompile Include="..\..\src\MushRuby\compar.c" />
+    <ClCompile Include="..\..\src\MushRuby\dir.c" />
+    <ClCompile Include="..\..\src\MushRuby\dln.c" />
+    <ClCompile Include="..\..\src\MushRuby\dmyext.c" />
+    <ClCompile Include="..\..\src\MushRuby\enum.c" />
+    <ClCompile Include="..\..\src\MushRuby\error.c" />
+    <ClCompile Include="..\..\src\MushRuby\eval.c" />
+    <ClCompile Include="..\..\src\MushRuby\file.c" />
+    <ClCompile Include="..\..\src\MushRuby\gc.c" />
+    <ClCompile Include="..\..\src\MushRuby\hash.c" />
+    <ClCompile Include="..\..\src\MushRuby\inits.c" />
+    <ClCompile Include="..\..\src\MushRuby\io.c" />
+    <ClCompile Include="..\..\src\MushRuby\lex.c" />
+    <ClCompile Include="..\..\src\MushRuby\marshal.c" />
+    <ClCompile Include="..\..\src\MushRuby\math.c" />
+    <ClCompile Include="..\..\src\MushRuby\missing\acosh.c" />
+    <ClCompile Include="..\..\src\MushRuby\missing\crypt.c" />
+    <ClCompile Include="..\..\src\MushRuby\missing\erf.c" />
+    <ClCompile Include="..\..\src\MushRuby\numeric.c" />
+    <ClCompile Include="..\..\src\MushRuby\object.c" />
+    <ClCompile Include="..\..\src\MushRuby\pack.c" />
+    <ClCompile Include="..\..\src\MushRuby\parse.c" />
+    <ClCompile Include="..\..\src\MushRuby\prec.c" />
+    <ClCompile Include="..\..\src\MushRuby\process.c" />
+    <ClCompile Include="..\..\src\MushRuby\random.c" />
+    <ClCompile Include="..\..\src\MushRuby\range.c" />
+    <ClCompile Include="..\..\src\MushRuby\re.c" />
+    <ClCompile Include="..\..\src\MushRuby\regex.c" />
+    <ClCompile Include="..\..\src\MushRuby\ruby.c" />
+    <ClCompile Include="..\..\src\MushRuby\signal.c" />
+    <ClCompile Include="..\..\src\MushRuby\sprintf.c" />
+    <ClCompile Include="..\..\src\MushRuby\st.c" />
+    <ClCompile Include="..\..\src\MushRuby\string.c" />
+    <ClCompile Include="..\..\src\MushRuby\struct.c" />
+    <ClCompile Include="..\..\src\MushRuby\time.c" />
+    <ClCompile Include="..\..\src\MushRuby\util.c" />
+    <ClCompile Include="..\..\src\MushRuby\variable.c" />
+    <ClCompile Include="..\..\src\MushRuby\version.c" />
+    <ClCompile Include="..\..\src\MushRuby\win32\win32.c" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\MushRuby\defines.h" />
+    <ClInclude Include="..\..\src\MushRuby\dln.h" />
+    <ClInclude Include="..\..\src\MushRuby\env.h" />
+    <ClInclude Include="..\..\src\MushRuby\intern.h" />
+    <ClInclude Include="..\..\src\MushRuby\missing.h" />
+    <ClInclude Include="..\..\src\MushRuby\missing\file.h" />
+    <ClInclude Include="..\..\src\MushRuby\node.h" />
+    <ClInclude Include="..\..\src\MushRuby\re.h" />
+    <ClInclude Include="..\..\src\MushRuby\regex.h" />
+    <ClInclude Include="..\..\src\MushRuby\ruby.h" />
+    <ClInclude Include="..\..\src\MushRuby\rubyconfig.h" />
+    <ClInclude Include="..\..\src\MushRuby\rubyio.h" />
+    <ClInclude Include="..\..\src\MushRuby\rubysig.h" />
+    <ClInclude Include="..\..\src\MushRuby\st.h" />
+    <ClInclude Include="..\..\src\MushRuby\util.h" />
+    <ClInclude Include="..\..\src\MushRuby\version.h" />
+    <ClInclude Include="..\..\src\MushRuby\win32\dir.h" />
+    <ClInclude Include="..\..\src\MushRuby\win32\win32.h" />
+    <ClInclude Include="stdafx.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\src\MushRuby\win32\rubylib.def" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
