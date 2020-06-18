@@ -429,6 +429,8 @@ SourceProcess::AddFileProcessor('\.h$', \&ProcessProcessDirective);
 SourceProcess::AddFileProcessor('\.rb$', \&ProcessProcessDirective);
 
 SourceProcess::Process('src');
+SourceProcess::Process('adanaxis-data');
+SourceProcess::Process('adanaxis-mushruby');
 
 foreach my $dataDir ('data-adanaxis')
 {

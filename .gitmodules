@@ -4,3 +4,6 @@
 [submodule "adanaxis-data"]
 	path = adanaxis-data
 	url = https://github.com/mushware/adanaxis-data.git
+[submodule "adanaxis-mushruby"]
+	path = adanaxis-mushruby
+	url = https://github.com/mushware/adanaxis-mushruby.git
