@@ -1,12 +1,15 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30114.105
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1169
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tesseracttrainer", "tesseracttrainer.vcxproj", "{6475BAC2-81B1-4936-A2E3-7EE678E7235F}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "adanaxis", "adanaxis.vcxproj", "{23130A84-9532-4B62-8839-CE377A6F5B35}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mushruby", "..\ruby\ruby.vcxproj", "{8A02E8BA-FC67-4518-BE80-8D0CA39E03E4}"
+EndProject
+Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "adanaxis-wixsetup", "..\adanaxis-wixsetup\adanaxis-wixsetup.wixproj", "{191D4F37-FE07-4F48-92BC-81538C6632C7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{23130A84-9532-4B62-8839-CE377A6F5B35} = {23130A84-9532-4B62-8839-CE377A6F5B35}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -14,9 +17,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{6475BAC2-81B1-4936-A2E3-7EE678E7235F}.Debug|x86.ActiveCfg = Debug|Win32
-		{6475BAC2-81B1-4936-A2E3-7EE678E7235F}.Release|x86.ActiveCfg = Release|Win32
-		{6475BAC2-81B1-4936-A2E3-7EE678E7235F}.Release|x86.Build.0 = Release|Win32
 		{23130A84-9532-4B62-8839-CE377A6F5B35}.Debug|x86.ActiveCfg = Debug|Win32
 		{23130A84-9532-4B62-8839-CE377A6F5B35}.Debug|x86.Build.0 = Debug|Win32
 		{23130A84-9532-4B62-8839-CE377A6F5B35}.Release|x86.ActiveCfg = Release|Win32
@@ -24,6 +24,10 @@ Global
 		{8A02E8BA-FC67-4518-BE80-8D0CA39E03E4}.Debug|x86.Build.0 = Debug|Win32
 		{8A02E8BA-FC67-4518-BE80-8D0CA39E03E4}.Release|x86.ActiveCfg = Release|Win32
 		{8A02E8BA-FC67-4518-BE80-8D0CA39E03E4}.Release|x86.Build.0 = Release|Win32
+		{191D4F37-FE07-4F48-92BC-81538C6632C7}.Debug|x86.ActiveCfg = Debug|x86
+		{191D4F37-FE07-4F48-92BC-81538C6632C7}.Debug|x86.Build.0 = Debug|x86
+		{191D4F37-FE07-4F48-92BC-81538C6632C7}.Release|x86.ActiveCfg = Release|x86
+		{191D4F37-FE07-4F48-92BC-81538C6632C7}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -982,7 +982,7 @@
     </None>
     <CustomBuild Include="..\..\win32deps\SDL2-devel\lib\x86\SDL2.dll">
       <FileType>Document</FileType>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">COPY /Y %(RelativeDir)%(FileName)%(Extension)  $(OutputPath)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">COPY /Y %(RelativeDir)%(FileName)%(Extension) $(OutputPath)</Command>
       <OutputItemType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
       </OutputItemType>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkObjects>
@@ -993,7 +993,7 @@
     </CustomBuild>
     <CustomBuild Include="..\..\win32deps\SDL2_mixer-devel\lib\x86\SDL2_mixer.dll">
       <FileType>Document</FileType>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">COPY /Y %(RelativeDir)%(FileName)%(Extension)  $(OutputPath)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">COPY /Y %(RelativeDir)%(FileName)%(Extension) $(OutputPath)</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OutputPath)%(FileName)%(Extension)</Outputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(RelativeDir)%(FileName)%(Extension)  to output directory</Message>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -1002,7 +1002,7 @@
     </CustomBuild>
     <CustomBuild Include="..\..\win32deps\SDL2_mixer-devel\lib\x86\libogg-0.dll">
       <FileType>Document</FileType>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">COPY /Y %(RelativeDir)%(FileName)%(Extension)  $(OutputPath)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">COPY /Y %(RelativeDir)%(FileName)%(Extension) $(OutputPath)</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OutputPath)%(FileName)%(Extension)</Outputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(RelativeDir)%(FileName)%(Extension)  to output directory</Message>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

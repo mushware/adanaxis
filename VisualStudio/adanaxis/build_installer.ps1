@@ -1,0 +1,5 @@
+
+heat -?
+light -?
+candle -?
+

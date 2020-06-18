@@ -1,4 +1,6 @@
 language: cpp
 os: windows
+git:
+  depth: 3
 script:
   - VisualStudio/adanaxis/build_travis.bat
