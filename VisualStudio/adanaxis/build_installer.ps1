@@ -1,3 +1,4 @@
+
 param ([Parameter(Mandatory)]$Configuration)
 
 $ErrorActionPreference = "Stop"
@@ -12,8 +13,8 @@ Remove-Item -ErrorAction Ignore -Force $msi_path
 
 $datadirs = @("mush", "mushruby", "pixels", "ruby", "spaces", "system", "waves")
 foreach ($datadir in $datadirs) {
-    $sourcedir = "../../adanaxis-data/$datadir"
-    $destfile="obj/$Configuration/adanaxis_$datadir.wxi"
+    $sourcedir = "..\..\adanaxis-data\$datadir"
+    $destfile="obj\$Configuration\adanaxis_$datadir.wxi"
     $candle_args_pre += "-dadanaxis_$datadir=""$sourcedir"""  
     $candle_args_post += $destfile
     $obj_file = "${outpath}adanaxis_$datadir.wixobj"
@@ -33,15 +34,4 @@ $light_command = "light.exe -ext WixUIExtension -cultures:en-us -out ""$msi_path
 Write-Host "Executing $light_command`n"
 Invoke-Expression -ErrorAction Stop $light_command
 
-Write-Host Installer build [ArgumentCompleter({
-    [OutputType([System.Management.Automation.CompletionResult])]  # zero to many
-    param(
-        [string] $CommandName,
-        [string] $ParameterName,
-        [string] $WordToComplete,
-        [System.Management.Automation.Language.CommandAst] $CommandAst,
-        [System.Collections.IDictionary] $FakeBoundParameters
-    )
-    
-    
-})]
+Write-Host Installer build complete.

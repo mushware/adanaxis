@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-	<Product Id="*" Name="Adanaxis" Language="1033" Version="1.0.0.0" Manufacturer="Andy Southgate" UpgradeCode="23aa47f8-74a9-476d-8f3d-1cbd21cace62">
+	<Product Id="{7fcf2acc-f085-440d-9bf0-ee99599228fa}" Name="Adanaxis" Language="1033" Version="1.0.0.0" Manufacturer="Andy Southgate" UpgradeCode="{23aa47f8-74a9-476d-8f3d-1cbd21cace62}">
 		<Package InstallerVersion="301" Compressed="yes" InstallScope="perMachine" />
 
 		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
@@ -23,10 +23,38 @@
 			<MergeRef Id="VCRedist"/>
 		</Feature>
 
+		<DirectoryRef Id="INSTALLFOLDER">
+			<Directory Id="APPSYSTEMDIRECTORY" Name="system" />
+		</DirectoryRef>
+
+        <DirectoryRef Id="TARGETDIR">
+            <Directory Id="ProgramMenuFolder">
+                <Directory Id="ApplicationProgramsFolder" Name="Adanaxis"/>
+            </Directory>
+        </DirectoryRef>
+
+        <DirectoryRef Id="ApplicationProgramsFolder">
+            <Component Id="ApplicationShortcut" Guid="{f45fde75-9d4a-44d7-89dd-93dab1b3a990}">
+                <Shortcut Id="ApplicationStartMenuShortcut" 
+                          Name="Adanaxis" 
+                          Description="A game in four spatial dimensions"
+                          Target="[APPSYSTEMDIRECTORY]\adanaxis.exe"
+                          WorkingDirectory="APPSYSTEMDIRECTORY"/>
+                <RemoveFolder Id="ApplicationProgramsFolder" On="uninstall"/>
+                <RegistryValue Root="HKCU" Key="Software\Mushware\adanaxisName" Name="installed" Type="integer" Value="1" KeyPath="yes"/>
+           </Component>
+        </DirectoryRef>
+
+        <Feature Id="MainApplication" Title="Main Application" Level="1">
+             <ComponentRef Id="ApplicationShortcut" />  
+        </Feature>
+
 		<WixVariable Id="WixUILicenseRtf" Value="COPYING.rtf" />
 
 		<UIRef Id="WixUI_InstallDir" />
 		<Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
+
+
 	</Product>
 
 	<Fragment>

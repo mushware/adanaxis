@@ -29,6 +29,10 @@ core
 
 # Adanaxis ignores
 Entries.txt
-VisualStudio/ruby/Debug
+VisualStudio/adanaxis/.vs
+VisualStudio/adanaxis/*.log
 VisualStudio/adanaxis/Debug
+VisualStudio/adanaxis/obj
+VisualStudio/ruby/Debug
+VisualStudio/ruby.obj
 win32deps
