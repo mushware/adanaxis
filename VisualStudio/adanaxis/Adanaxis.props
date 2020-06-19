@@ -4,15 +4,25 @@
   <PropertyGroup Label="UserMacros">
     <AdanaxisDataDir>$(ProjectDir)..\..\adanaxis-data\</AdanaxisDataDir>
     <AdanaxisSystemDir>$(AdanaxisDataDir)system\</AdanaxisSystemDir>
+    <AdanaxisBuildInstallerScript>$(ProjectDir)build_installer.ps1</AdanaxisBuildInstallerScript>
   </PropertyGroup>
-  <PropertyGroup />
-  <ItemDefinitionGroup />
+  <PropertyGroup>
+    <OutDir>$(AdanaxisSystemDir)</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <Link>
+      <OutputFile>$(AdanaxisSystemDir)$(TargetName)$(TargetExt)</OutputFile>
+    </Link>
+  </ItemDefinitionGroup>
   <ItemGroup>
     <BuildMacro Include="AdanaxisDataDir">
       <Value>$(AdanaxisDataDir)</Value>
     </BuildMacro>
     <BuildMacro Include="AdanaxisSystemDir">
       <Value>$(AdanaxisSystemDir)</Value>
+    </BuildMacro>
+    <BuildMacro Include="AdanaxisBuildInstallerScript">
+      <Value>$(AdanaxisBuildInstallerScript)</Value>
     </BuildMacro>
   </ItemGroup>
 </Project>

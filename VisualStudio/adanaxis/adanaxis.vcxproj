@@ -45,15 +45,13 @@
     <_ProjectFileVersion>16.0.30028.132</_ProjectFileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>Debug\</OutDir>
     <IntDir>Debug\</IntDir>
-    <LinkIncremental>
-    </LinkIncremental>
+    <LinkIncremental>false</LinkIncremental>
     <PreBuildEventUseInBuild>false</PreBuildEventUseInBuild>
     <CopyFileBeforeTargets>PostBuildEvent</CopyFileBeforeTargets>
     <CustomBuildAfterTargets>
     </CustomBuildAfterTargets>
-    <ExtensionsToDeleteOnClean>*.msi;$(ExtensionsToDeleteOnClean)</ExtensionsToDeleteOnClean>
+    <ExtensionsToDeleteOnClean>*.msi;*.wixobj;*.wixpdb;*.wxi;$(ExtensionsToDeleteOnClean)</ExtensionsToDeleteOnClean>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>Release\</OutDir>
@@ -83,15 +81,16 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>WS2_32.lib;Winmm.lib;dxguid.lib;Iphlpapi.lib;OPENGL32.lib;GLU32.lib;libexpat.lib;pcre.lib;SDL2.lib;SDL2_mixer.lib;libtiff.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(TargetPath)</OutputFile>
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\adanaxis-win32deps\expat-devel\lib;$(SolutionDir)..\..\adanaxis-win32deps\tiffio-devel\lib;$(SolutionDir)..\..\adanaxis-win32deps\pcre-devel\lib;$(SolutionDir)..\..\win32deps\SDL2_mixer-devel\lib\x86;$(SolutionDir)..\..\win32deps\SDL2-devel\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(OutDir)project.pdb</ProgramDatabaseFile>
+      <GenerateDebugInformation>DebugFastLink</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
       <EntryPointSymbol />
       <TargetMachine>
       </TargetMachine>
+      <AdditionalOptions>/PDBCOMPRESS %(AdditionalOptions)</AdditionalOptions>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
     </Link>
     <PreBuildEvent>
       <Message>Runs SourceConditioner.pm, which handles code autogeneration within the source files</Message>
@@ -128,7 +127,7 @@
       </OutputItemType>
     </CustomBuild>
     <CustomBuildStep>
-      <Command>powershell.exe -ExecutionPolicy Bypass -NonInteractive -NoProfile -File "$(ProjectDir)build_installer.ps1"</Command>
+      <Command>powershell.exe -ExecutionPolicy Bypass -NonInteractive -NoProfile -File "$(AdanaxisBuildInstallerScript)" $(Configuration)</Command>
     </CustomBuildStep>
     <CustomBuildStep>
       <Message>Building installer using WiX</Message>
@@ -137,7 +136,7 @@
       <Outputs>$(ProjectDir)msi\$(Configuration)\Adanaxis.msi;%(Outputs)</Outputs>
     </CustomBuildStep>
     <CustomBuildStep>
-      <Inputs>$(TargetPath);%(AdditionalInputs)</Inputs>
+      <Inputs>$(TargetPath);$(AdanaxisBuildInstallerScript);%(AdditionalInputs)</Inputs>
     </CustomBuildStep>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

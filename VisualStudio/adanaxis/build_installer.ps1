@@ -1,6 +1,9 @@
+param ([Parameter(Mandatory)]$Configuration)
 
-$outpath = "obj\Debug\"
-$msi_path = "msi\Debug\Adanaxis.msi"
+$ErrorActionPreference = "Stop"
+
+$outpath = "obj\$Configuration\"
+$msi_path = "msi\$Configuration\Adanaxis.msi"
 $candle_args_pre = @()
 $candle_args_post = @()
 $light_args_post = @()
@@ -9,12 +12,8 @@ Remove-Item -ErrorAction Ignore -Force $msi_path
 
 $datadirs = @("mush", "mushruby", "pixels", "ruby", "spaces", "system", "waves")
 foreach ($datadir in $datadirs) {
-    if ($datadir -eq "mushruby") {
-        $sourcedir = "../../adanaxis-mushruby/$datadir"
-    } else {
-        $sourcedir = "../../adanaxis-data/$datadir"
-    }
-    $destfile="adanaxis_$datadir.wxi"
+    $sourcedir = "../../adanaxis-data/$datadir"
+    $destfile="obj/$Configuration/adanaxis_$datadir.wxi"
     $candle_args_pre += "-dadanaxis_$datadir=""$sourcedir"""  
     $candle_args_post += $destfile
     $obj_file = "${outpath}adanaxis_$datadir.wixobj"
@@ -30,6 +29,19 @@ $candle_command = "candle.exe $($candle_args_pre -join "" "") -v -out $outpath -
 Write-Host "Executing $candle_command`n"
 Invoke-Expression -ErrorAction Stop $candle_command
 
-$light_command = "light.exe -ext WixUIExtension -cultures:en-us -out ""$msi_path"" -pdbout msi\Debug\Adanaxis.wixpdb -contentsfile obj\Debug\adanaxis-wixsetup.wixproj.BindContentsFileListnull.txt -outputsfile obj\Debug\adanaxis-wixsetup.wixproj.BindOutputsFileListnull.txt -builtoutputsfile obj\Debug\adanaxis-wixsetup.wixproj.BindBuiltOutputsFileListnull.txt obj\Debug\Adanaxis.wixobj $($light_args_post -join "" "")"
+$light_command = "light.exe -ext WixUIExtension -cultures:en-us -out ""$msi_path"" -pdbout msi\$Configuration\Adanaxis.wixpdb -contentsfile obj\$Configuration\adanaxis-wixsetup.wixproj.BindContentsFileListnull.txt -outputsfile obj\$Configuration\adanaxis-wixsetup.wixproj.BindOutputsFileListnull.txt -builtoutputsfile obj\$Configuration\adanaxis-wixsetup.wixproj.BindBuiltOutputsFileListnull.txt obj\$Configuration\Adanaxis.wixobj $($light_args_post -join "" "")"
 Write-Host "Executing $light_command`n"
 Invoke-Expression -ErrorAction Stop $light_command
+
+Write-Host Installer build [ArgumentCompleter({
+    [OutputType([System.Management.Automation.CompletionResult])]  # zero to many
+    param(
+        [string] $CommandName,
+        [string] $ParameterName,
+        [string] $WordToComplete,
+        [System.Management.Automation.Language.CommandAst] $CommandAst,
+        [System.Collections.IDictionary] $FakeBoundParameters
+    )
+    
+    
+})]

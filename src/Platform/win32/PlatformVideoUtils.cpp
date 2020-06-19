@@ -182,7 +182,6 @@ PlatformVideoUtils::Acquaint(void)
         if (pLibrary != NULL)
         {
             fpDirectDrawCreate = (tfpDirectDrawCreate) GetProcAddress(pLibrary, "DirectDrawCreate");
-            FreeLibrary(pLibrary);
         }
 
         if (fpDirectDrawCreate != NULL && fpDirectDrawCreate(NULL, &iDirectDraw, NULL) == DD_OK)
@@ -194,6 +193,11 @@ PlatformVideoUtils::Acquaint(void)
                 iDirectDraw2->Release();
             }
             iDirectDraw->Release();
+        }
+
+        if (pLibrary != NULL)
+        {
+	        FreeLibrary(pLibrary);
         }
     }
     
