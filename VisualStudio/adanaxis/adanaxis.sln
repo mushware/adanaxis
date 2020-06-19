@@ -3,8 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 15.0.28307.1169
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "adanaxis", "adanaxis.vcxproj", "{23130A84-9532-4B62-8839-CE377A6F5B35}"
+	ProjectSection(ProjectDependencies) = postProject
+		{8A02E8BA-FC67-4518-BE80-8D0CA39E03E4} = {8A02E8BA-FC67-4518-BE80-8D0CA39E03E4}
+	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mushruby", "..\ruby\ruby.vcxproj", "{8A02E8BA-FC67-4518-BE80-8D0CA39E03E4}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mushruby", "..\mushruby\mushruby.vcxproj", "{8A02E8BA-FC67-4518-BE80-8D0CA39E03E4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -80,8 +80,8 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>WS2_32.lib;Winmm.lib;dxguid.lib;Iphlpapi.lib;OPENGL32.lib;GLU32.lib;libexpat.lib;pcre.lib;SDL2.lib;SDL2_mixer.lib;libtiff.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\..\adanaxis-win32deps\expat-devel\lib;$(SolutionDir)..\..\adanaxis-win32deps\tiffio-devel\lib;$(SolutionDir)..\..\adanaxis-win32deps\pcre-devel\lib;$(SolutionDir)..\..\win32deps\SDL2_mixer-devel\lib\x86;$(SolutionDir)..\..\win32deps\SDL2-devel\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>WS2_32.lib;Winmm.lib;dxguid.lib;Iphlpapi.lib;OPENGL32.lib;GLU32.lib;libexpat.lib;pcre.lib;SDL2.lib;SDL2_mixer.lib;libtiff.lib;mushruby.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\..\adanaxis-win32deps\expat-devel\lib;$(SolutionDir)..\..\adanaxis-win32deps\tiffio-devel\lib;$(SolutionDir)..\..\adanaxis-win32deps\pcre-devel\lib;$(SolutionDir)..\..\win32deps\SDL2_mixer-devel\lib\x86;$(SolutionDir)..\mushruby\$(Configuration);$(SolutionDir)..\..\win32deps\SDL2-devel\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateDebugInformation>DebugFastLink</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
@@ -991,12 +991,6 @@
     <Image Include="..\..\win32\icons\adanaxis_app.ico" />
     <Image Include="adanaxiscontroldemo_app.ico" />
     <Image Include="adanaxis_app.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ruby\ruby.vcxproj">
-      <Project>{8a02e8ba-fc67-4518-be80-8d0ca39e03e4}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\..\adanaxis-win32deps\expat-devel\lib\libexpat.dll">
