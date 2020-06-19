@@ -4,39 +4,53 @@
   <PropertyGroup Label="UserMacros">
     <AdanaxisDataDir>$(ProjectDir)..\..\adanaxis-data\</AdanaxisDataDir>
     <AdanaxisSystemDir>$(AdanaxisDataDir)system\</AdanaxisSystemDir>
-    <AdanaxisBuildInstallerScript>$(ProjectDir)build_installer.ps1</AdanaxisBuildInstallerScript>
   </PropertyGroup>
   <PropertyGroup>
     <OutDir>$(AdanaxisSystemDir)</OutDir>
     <LinkIncremental>false</LinkIncremental>
     <ExtensionsToDeleteOnClean>*.msi;*.wixobj;*.wixpdb;*.wxi;$(ExtensionsToDeleteOnClean)</ExtensionsToDeleteOnClean>
-    <PreBuildEventUseInBuild>true</PreBuildEventUseInBuild>
   </PropertyGroup>
   <ItemDefinitionGroup>
     <Link>
       <OutputFile>$(AdanaxisSystemDir)$(TargetName)$(TargetExt)</OutputFile>
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\adanaxis-win32deps\expat-devel\lib;$(SolutionDir)..\..\adanaxis-win32deps\tiffio-devel\lib;$(SolutionDir)..\..\adanaxis-win32deps\pcre-devel\lib;$(SolutionDir)..\..\win32deps\SDL2_mixer-devel\lib\x86;$(SolutionDir)..\mushruby\$(Configuration);$(SolutionDir)..\..\win32deps\SDL2-devel\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>WS2_32.lib;Winmm.lib;dxguid.lib;Iphlpapi.lib;OPENGL32.lib;GLU32.lib;libexpat.lib;pcre.lib;SDL2.lib;SDL2_mixer.lib;libtiff.lib;mushruby.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>oldnames.lib;user32.lib;wsock32.lib;advapi32.lib;oldnames.lib;user32.lib;wsock32.lib;advapi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <ModuleDefinitionFile>..\..\src\MushRuby\win32\rubylib.def</ModuleDefinitionFile>
+      <SubSystem>Windows</SubSystem>
+      <ProfileGuidedDatabase>$(IntDir)$(TargetName).pgd</ProfileGuidedDatabase>
+      <ImportLibrary>$(IntDir)$(TargetName).lib</ImportLibrary>
     </Link>
     <ClCompile>
-      <AdditionalIncludeDirectories>..\..\src;..\..\src\API;$(SolutionDir)..\..\win32deps\SDL2-devel\include;$(SolutionDir)..\..\win32deps\SDL2_mixer-devel\include;$(SolutionDir)..\..\adanaxis-win32deps\pcre-devel\include;$(SolutionDir)..\..\adanaxis-win32deps\tiffio-devel\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\src\MushRuby;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <StringPooling>true</StringPooling>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <FloatingPointModel>Fast</FloatingPointModel>
     </ClCompile>
     <CustomBuildStep>
-      <Command>powershell.exe -ExecutionPolicy Bypass -NonInteractive -NoProfile -File "$(AdanaxisBuildInstallerScript)" $(Configuration)</Command>
-      <Message>Building installer using WiX</Message>
-      <Outputs>$(ProjectDir)msi\$(Configuration)\Adanaxis.msi;%(Outputs)</Outputs>
-      <Inputs>$(TargetPath);$(AdanaxisBuildInstallerScript);%(AdditionalInputs)</Inputs>
+      <Command>
+      </Command>
+      <Message>
+      </Message>
+      <Outputs>
+      </Outputs>
+      <Inputs>
+      </Inputs>
     </CustomBuildStep>
     <PreBuildEvent>
-      <Command>IF EXIST "C:\Strawberry\perl\bin\perl.exe" cd ..\.. &amp;&amp; echo This build event is not essential.  Remove it if it causes trouble &amp;&amp; "C:\Strawberry\perl\bin\perl.exe" -I . -w SourceConditioner.pl</Command>
-      <Message>Runs SourceConditioner.pm, which handles code autogeneration within the source files</Message>
+      <Command>
+      </Command>
+      <Message>
+      </Message>
     </PreBuildEvent>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
     <BuildMacro Include="AdanaxisDataDir">
@@ -44,9 +58,6 @@
     </BuildMacro>
     <BuildMacro Include="AdanaxisSystemDir">
       <Value>$(AdanaxisSystemDir)</Value>
-    </BuildMacro>
-    <BuildMacro Include="AdanaxisBuildInstallerScript">
-      <Value>$(AdanaxisBuildInstallerScript)</Value>
     </BuildMacro>
   </ItemGroup>
 </Project>

@@ -82,7 +82,7 @@
 #endif
 
 #ifndef VERSION
-#define VERSION "1.2.0"
+#define VERSION "1.5.0"
 #endif
 
 #include "AdanaxisSTL.h"

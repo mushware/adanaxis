@@ -10,4 +10,4 @@ IF NOT EXIST "%WIX_ROOT%" powershell.exe -ExecutionPolicy Bypass -NonInteractive
 
 SET "PATH=%WIX_ROOT%;%MSBUILD_ROOT%;%PATH%"
 
-MSBuild.exe adanaxis.sln
+MSBuild.exe adanaxis.sln /t:adanaxis /p:Configuration="Release"
