@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Product Id="*" Name="Adanaxis" Language="1033" Version="1.0.0.0" Manufacturer="Andy Southgate" UpgradeCode="23aa47f8-74a9-476d-8f3d-1cbd21cace62">
+		<Package InstallerVersion="301" Compressed="yes" InstallScope="perMachine" />
+
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+		<MediaTemplate EmbedCab="yes" />
+
+		<Feature Id="ProductFeature" Title="Adanaxis" Level="1">
+			<ComponentGroupRef Id="Adanaxis_mush" />
+			<ComponentGroupRef Id="Adanaxis_mushruby" />
+			<ComponentGroupRef Id="Adanaxis_pixels" />
+			<ComponentGroupRef Id="Adanaxis_ruby" />
+			<ComponentGroupRef Id="Adanaxis_spaces" />
+			<ComponentGroupRef Id="Adanaxis_system" />
+			<ComponentGroupRef Id="Adanaxis_waves" />
+		</Feature>
+
+		<DirectoryRef Id="TARGETDIR">
+			<Merge Id="VCRedist" SourceFile="..\..\adanaxis-win32deps\VC\Redist\MSVC\14.16.27012\MergeModules\Microsoft_VC141_CRT_x86.msm" DiskId="1" Language="0"/>
+		</DirectoryRef>
+		<Feature Id="VCRedist" Title="Visual C++ 14.1 Runtime" AllowAdvertise="no" Display="hidden" Level="1">
+			<MergeRef Id="VCRedist"/>
+		</Feature>
+
+		<WixVariable Id="WixUILicenseRtf" Value="COPYING.rtf" />
+
+		<UIRef Id="WixUI_InstallDir" />
+		<Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
+	</Product>
+
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="INSTALLFOLDER" Name="Adanaxis" />
+			</Directory>
+		</Directory>
+	</Fragment>
+</Wix>

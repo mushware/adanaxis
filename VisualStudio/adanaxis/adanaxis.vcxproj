@@ -34,9 +34,11 @@
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="Adanaxis.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="Adanaxis.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
@@ -49,6 +51,9 @@
     </LinkIncremental>
     <PreBuildEventUseInBuild>false</PreBuildEventUseInBuild>
     <CopyFileBeforeTargets>PostBuildEvent</CopyFileBeforeTargets>
+    <CustomBuildAfterTargets>
+    </CustomBuildAfterTargets>
+    <ExtensionsToDeleteOnClean>*.msi;$(ExtensionsToDeleteOnClean)</ExtensionsToDeleteOnClean>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>Release\</OutDir>
@@ -92,6 +97,48 @@
       <Message>Runs SourceConditioner.pm, which handles code autogeneration within the source files</Message>
       <Command>cd ..\.. &amp;&amp; echo This build event is not essential.  Remove it if it causes trouble &amp;&amp; C:\cygwin\bin\perl -w SourceConditioner.pl</Command>
     </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Message>
+      </Message>
+    </PostBuildEvent>
+    <CustomBuild>
+      <Command>
+      </Command>
+    </CustomBuild>
+    <CustomBuild>
+      <Message>
+      </Message>
+    </CustomBuild>
+    <CustomBuild>
+      <Outputs>
+      </Outputs>
+    </CustomBuild>
+    <CustomBuild>
+      <AdditionalInputs>
+      </AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild>
+      <LinkObjects>
+      </LinkObjects>
+      <OutputItemType>
+      </OutputItemType>
+    </CustomBuild>
+    <CustomBuildStep>
+      <Command>powershell.exe -ExecutionPolicy Bypass -NonInteractive -NoProfile -File "$(ProjectDir)build_installer.ps1"</Command>
+    </CustomBuildStep>
+    <CustomBuildStep>
+      <Message>Building installer using WiX</Message>
+    </CustomBuildStep>
+    <CustomBuildStep>
+      <Outputs>$(ProjectDir)msi\$(Configuration)\Adanaxis.msi;%(Outputs)</Outputs>
+    </CustomBuildStep>
+    <CustomBuildStep>
+      <Inputs>$(TargetPath);%(AdditionalInputs)</Inputs>
+    </CustomBuildStep>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -955,22 +1002,36 @@
   <ItemGroup>
     <CustomBuild Include="..\..\adanaxis-win32deps\expat-devel\lib\libexpat.dll">
       <FileType>Document</FileType>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">COPY /Y %(RelativeDir)%(FileName)%(Extension) $(OutputPath)</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(RelativeDir)%(FileName)%(Extension)  to output directory</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">COPY /Y %(RelativeDir)%(FileName)%(Extension) $(AdanaxisSystemDir)%(FileName)%(Extension)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(RelativeDir)%(FileName)%(Extension) to $(AdanaxisSystemDir)%(FileName)%(Extension)</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OutputPath)%(FileName)%(Extension)</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkObjects>
     </CustomBuild>
     <CustomBuild Include="..\..\adanaxis-win32deps\pcre-devel\bin\pcre3.dll">
       <FileType>Document</FileType>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">COPY /Y %(RelativeDir)%(FileName)%(Extension) $(OutputPath)</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(RelativeDir)%(FileName)%(Extension)  to output directory</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">COPY /Y %(RelativeDir)%(FileName)%(Extension) $(AdanaxisSystemDir)%(FileName)%(Extension)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(RelativeDir)%(FileName)%(Extension) to $(AdanaxisSystemDir)%(FileName)%(Extension)</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OutputPath)%(FileName)%(Extension)</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkObjects>
     </CustomBuild>
     <CustomBuild Include="..\..\adanaxis-win32deps\tiffio-devel\bin\libtiff3.dll">
       <FileType>Document</FileType>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">COPY /Y %(RelativeDir)%(FileName)%(Extension) $(OutputPath)</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(RelativeDir)%(FileName)%(Extension)  to output directory</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">COPY /Y %(RelativeDir)%(FileName)%(Extension) $(AdanaxisSystemDir)%(FileName)%(Extension)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(RelativeDir)%(FileName)%(Extension) to $(AdanaxisSystemDir)%(FileName)%(Extension)</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OutputPath)%(FileName)%(Extension)</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkObjects>
+    </CustomBuild>
+    <CustomBuild Include="..\..\adanaxis-win32deps\jpeg-6b-devel\bin\jpeg62.dll">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">COPY /Y %(RelativeDir)%(FileName)%(Extension) $(AdanaxisSystemDir)%(FileName)%(Extension)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(RelativeDir)%(FileName)%(Extension) to $(AdanaxisSystemDir)%(FileName)%(Extension)</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OutputPath)%(FileName)%(Extension)</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkObjects>
+    </CustomBuild>
+    <CustomBuild Include="..\..\adanaxis-win32deps\zlib-devel\bin\zlib1.dll">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">COPY /Y %(RelativeDir)%(FileName)%(Extension) $(AdanaxisSystemDir)%(FileName)%(Extension)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(RelativeDir)%(FileName)%(Extension) to $(AdanaxisSystemDir)%(FileName)%(Extension)</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OutputPath)%(FileName)%(Extension)</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkObjects>
     </CustomBuild>
@@ -982,44 +1043,44 @@
     </None>
     <CustomBuild Include="..\..\win32deps\SDL2-devel\lib\x86\SDL2.dll">
       <FileType>Document</FileType>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">COPY /Y %(RelativeDir)%(FileName)%(Extension) $(OutputPath)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">COPY /Y %(RelativeDir)%(FileName)%(Extension) $(AdanaxisSystemDir)%(FileName)%(Extension)</Command>
       <OutputItemType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
       </OutputItemType>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkObjects>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OutputPath)%(FileName)%(Extension)</Outputs>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(RelativeDir)%(FileName)%(Extension)  to output directory</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(RelativeDir)%(FileName)%(Extension) to $(AdanaxisSystemDir)%(FileName)%(Extension)</Message>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
       </ExcludedFromBuild>
     </CustomBuild>
     <CustomBuild Include="..\..\win32deps\SDL2_mixer-devel\lib\x86\SDL2_mixer.dll">
       <FileType>Document</FileType>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">COPY /Y %(RelativeDir)%(FileName)%(Extension) $(OutputPath)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">COPY /Y %(RelativeDir)%(FileName)%(Extension) $(AdanaxisSystemDir)%(FileName)%(Extension)</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OutputPath)%(FileName)%(Extension)</Outputs>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(RelativeDir)%(FileName)%(Extension)  to output directory</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(RelativeDir)%(FileName)%(Extension) to $(AdanaxisSystemDir)%(FileName)%(Extension)</Message>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
       </ExcludedFromBuild>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkObjects>
     </CustomBuild>
     <CustomBuild Include="..\..\win32deps\SDL2_mixer-devel\lib\x86\libogg-0.dll">
       <FileType>Document</FileType>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">COPY /Y %(RelativeDir)%(FileName)%(Extension) $(OutputPath)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">COPY /Y %(RelativeDir)%(FileName)%(Extension) $(AdanaxisSystemDir)%(FileName)%(Extension)</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OutputPath)%(FileName)%(Extension)</Outputs>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(RelativeDir)%(FileName)%(Extension)  to output directory</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(RelativeDir)%(FileName)%(Extension) to $(AdanaxisSystemDir)%(FileName)%(Extension)</Message>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
       </ExcludedFromBuild>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkObjects>
     </CustomBuild>
     <CustomBuild Include="..\..\win32deps\SDL2_mixer-devel\lib\x86\libvorbisfile-3.dll">
       <FileType>Document</FileType>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">COPY /Y %(RelativeDir)%(FileName)%(Extension) $(OutputPath)</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(RelativeDir)%(FileName)%(Extension)  to output directory</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">COPY /Y %(RelativeDir)%(FileName)%(Extension) $(AdanaxisSystemDir)%(FileName)%(Extension)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(RelativeDir)%(FileName)%(Extension) to $(AdanaxisSystemDir)%(FileName)%(Extension)</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OutputPath)%(FileName)%(Extension)</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkObjects>
     </CustomBuild>
     <CustomBuild Include="..\..\win32deps\SDL2_mixer-devel\lib\x86\libvorbis-0.dll">
       <FileType>Document</FileType>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">COPY /Y %(RelativeDir)%(FileName)%(Extension) $(OutputPath)</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(RelativeDir)%(FileName)%(Extension)  to output directory</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">COPY /Y %(RelativeDir)%(FileName)%(Extension) $(AdanaxisSystemDir)%(FileName)%(Extension)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Copying %(RelativeDir)%(FileName)%(Extension) to $(AdanaxisSystemDir)%(FileName)%(Extension)</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OutputPath)%(FileName)%(Extension)</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkObjects>
     </CustomBuild>

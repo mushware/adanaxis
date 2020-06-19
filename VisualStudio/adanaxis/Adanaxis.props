@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros">
+    <AdanaxisDataDir>$(ProjectDir)..\..\adanaxis-data\</AdanaxisDataDir>
+    <AdanaxisSystemDir>$(AdanaxisDataDir)system\</AdanaxisSystemDir>
+  </PropertyGroup>
+  <PropertyGroup />
+  <ItemDefinitionGroup />
+  <ItemGroup>
+    <BuildMacro Include="AdanaxisDataDir">
+      <Value>$(AdanaxisDataDir)</Value>
+    </BuildMacro>
+    <BuildMacro Include="AdanaxisSystemDir">
+      <Value>$(AdanaxisSystemDir)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>

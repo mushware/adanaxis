@@ -2496,6 +2496,12 @@
     <CustomBuild Include="..\..\adanaxis-win32deps\pcre-devel\bin\pcre3.dll">
       <Filter>DLLs</Filter>
     </CustomBuild>
+    <CustomBuild Include="..\..\adanaxis-win32deps\jpeg-6b-devel\bin\jpeg62.dll">
+      <Filter>DLLs</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\adanaxis-win32deps\zlib-devel\bin\zlib1.dll">
+      <Filter>DLLs</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\scripts\GetWindowsDeps.ps1">
