@@ -140,13 +140,28 @@ GameCommandHandler::SetSavePath(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
     ioCommand.PopParam(dirName);
     bool found=false;
     string dirPath="/nopath";
-    for (U32 i=0; !found && i+1<numParams; ++i)
+
+    std::vector<string> pathsToCheck;
+
+    string userDataPath = PlatformMiscUtils::GetUserDataPath(0, NULL);
+
+    if (userDataPath.size() > 0) {
+        pathsToCheck.push_back(userDataPath);
+    }
+
+    for (U32 i = 0; !found && i + 1 < numParams; ++i)
     {
         ioCommand.PopParam(rootName);
-        dirPath=rootName+"/"+dirName;
+        dirPath = rootName + "/" + dirName;
+        pathsToCheck.push_back(dirPath);
+    }
+
+    for (U32 i = 0; i < pathsToCheck.size() && !found; ++i)
+    {
+        dirPath = pathsToCheck[i];
         if (PlatformMiscUtils::DirectoryExists(dirPath))
         {
-            found=true;
+            found = true;
         }
         else
         {
@@ -155,7 +170,7 @@ GameCommandHandler::SetSavePath(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
                 PlatformMiscUtils::MakePrivateDirectory(dirPath);
                 MushcoreGlobalConfig::Sgl().Set("FIRST_RUN", 1);
 
-                found=true;
+                found = true;
             }
             catch (MushcoreCommandFail& e)
             {
@@ -190,25 +205,41 @@ GameCommandHandler::SetCachePath(MushcoreCommand& ioCommand, MushcoreEnv& ioEnv)
     ioCommand.PopParam(dirName);
     bool found=false;
     string dirPath="/nopath";
-    for (U32 i=0; !found && i+1<numParams; ++i)
+    std::vector<string> pathsToCheck;
+
+    string userDataPath = PlatformMiscUtils::GetUserDataPath(0, NULL);
+
+    if (userDataPath.size() > 0) {
+        pathsToCheck.push_back(userDataPath + "/" + dirName);
+    }
+
+    for (U32 i = 0; !found && i + 1 < numParams; ++i)
     {
         ioCommand.PopParam(rootName);
-        dirPath=rootName+"/"+dirName;
+        dirPath = rootName + "/" + dirName;
+        pathsToCheck.push_back(dirPath);
+    }
+
+    for (U32 i = 0; i < pathsToCheck.size() && !found; ++i)
+    {
+        dirPath = pathsToCheck[i];
         if (PlatformMiscUtils::DirectoryExists(dirPath))
         {
-            found=true;
+            found = true;
         }
         else
         {
             try
-			{
-				PlatformMiscUtils::MakePublicDirectory(dirPath);
-				found=true;
-			}
+            {
+                PlatformMiscUtils::MakePrivateDirectory(dirPath);
+                MushcoreGlobalConfig::Sgl().Set("FIRST_RUN", 1);
+
+                found = true;
+            }
             catch (MushcoreCommandFail& e)
-			{
-					cerr << e.what() << endl;
-			}
+            {
+                cerr << e.what() << endl;
+            }
         }
     }
     if (found)

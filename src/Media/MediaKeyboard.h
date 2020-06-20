@@ -57,7 +57,7 @@
 class MediaKeyboard
 {
 public:
-    enum tKeySymbo {
+    enum tKeySymbol {
         kKey_UNKNOWN=SDLK_UNKNOWN,
         kKey_BACKSPACE=SDLK_BACKSPACE,
         kKey_TAB=SDLK_TAB,

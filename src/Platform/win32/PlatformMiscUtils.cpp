@@ -161,6 +161,7 @@
 #include <windows.h>
 #include <shellapi.h>
 #include <shlobj.h>
+#include <shlobj_core.h>
 #include <strsafe.h>
 
 #ifndef MAXPATHLEN
@@ -237,7 +238,7 @@ PlatformMiscUtils::GetUserDataPath(int argc, char *argv[])
 
     SHGetFolderPathA(NULL, CSIDL_LOCAL_APPDATA, NULL, SHGFP_TYPE_CURRENT, userPath);
 
-    return std::string(userPath) + "\\mushware\\" + MushcoreInfo::Sgl().PackageNameGet();
+    return std::string(userPath) + "\\Mushware\\" + MushcoreInfo::Sgl().ApplicationNameGet();
 }
 
 void
@@ -284,10 +285,11 @@ PlatformMiscUtils::MakePublicDirectory(const string& inName)
 void
 PlatformMiscUtils::MakePrivateDirectory(const string& inName)
 {
-    if (CreateDirectory(inName.c_str(), NULL) == 0)
+    int rc = SHCreateDirectoryExA(NULL, inName.c_str(), NULL);
+    if (rc != ERROR_SUCCESS)
     {
-	ostringstream message;
-	message << "mkdir " << inName << " failed: " << GetLastError(); 
+        ostringstream message;
+        message << "mkdir " << inName << " failed: (" << rc << ") " << GetLastError(); 
         throw(MushcoreCommandFail(message.str()));
     }
 }

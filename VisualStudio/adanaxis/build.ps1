@@ -12,7 +12,15 @@ If ($BuildNumber) {
     If ($BuildNumber -gt 65534) {
         Throw "Build number too large"
     }
-    $Version = "1.5.$BuildNumber.0"
+    $Version = "1.4.0.$BuildNumber"
+    If ($env:TRAVIS_TAG) {
+        If ($env:TRAVIS_TAG -match "^v\d\.\d\.\d$") {
+            $Version = "$($env:TRAVIS_TAG.Substring(1)).$BuildNumber"
+        } Else {
+            Write-Error "Badly formed or non-release git tag ""$($env:TRAVIS_TAG)"""
+        }
+    } else {
+    }
 } Else {
     $Version = "0.0.0.0"
 }
@@ -61,7 +69,7 @@ If (Test-Path $wix_root) {
 
 # Need to wait for dependencies before build, since they supply headers
 Receive-Job -Job $getdeps_job -Wait
-Receive-Job -Job $wix_job -Wait
+# Receive-Job -Job $wix_job -Wait
 
 $env:PATH = "$wix_root;$msbuild_root;$env:PATH"
 
@@ -85,6 +93,12 @@ Write-Host "Installation successful.  Package details:"
 Get-Package "Adanaxis" | Select-Object *
 Uninstall-Package "Adanaxis" | ForEach-Object { Write-Host "Uninstall successful, $($_ | Select-Object Status)" }
 
+$underscore_version = $Version.Replace(".", "_")
+If ($Configuration -eq "Debug") {
+    Rename-Item "msi\${Configuration}\Adanaxis.msi" "Adanaxis_Debug_${underscore_version}.msi"
+} Else {
+    Rename-Item "msi\${Configuration}\Adanaxis.msi" "Adanaxis_${underscore_version}.msi"
+}
 Write-Host -ForegroundColor Green @"
 
 **************************
