@@ -1,8 +1,6 @@
 before_deploy:
   - git config --local user.name "Mushware Machine"
   - git config --local user.email "machine@mushware.com"
-  - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
-  - echo git tag -f $TRAVIS_TAG
 deploy:
   edge: true
   file: VisualStudio/adanaxis/msi/Release/Adanaxis.msi
@@ -21,4 +19,4 @@ git:
 language: cpp
 os: windows
 script:
-- VisualStudio/adanaxis/build_travis.bat
+  - VisualStudio/adanaxis/build_travis.bat

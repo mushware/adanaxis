@@ -29,7 +29,7 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
     </ClCompile>
     <CustomBuildStep>
-      <Command>powershell.exe -ExecutionPolicy Bypass -NonInteractive -NoProfile -File "$(AdanaxisBuildInstallerScript)" $(Configuration)</Command>
+      <Command>powershell.exe -ExecutionPolicy Bypass -NonInteractive -NoProfile -File "$(AdanaxisBuildInstallerScript)" "$(Configuration)" "$(Version)"</Command>
       <Message>Building installer using WiX</Message>
       <Outputs>$(ProjectDir)msi\$(Configuration)\Adanaxis.msi;%(Outputs)</Outputs>
       <Inputs>$(TargetPath);$(AdanaxisBuildInstallerScript);%(AdditionalInputs)</Inputs>

@@ -28,11 +28,14 @@ core
 # CVS default ignores end
 
 # Adanaxis ignores
+*.code-workspace
 Entries.txt
 VisualStudio/adanaxis/.vs
 VisualStudio/adanaxis/*.log
-VisualStudio/adanaxis/Debug
-VisualStudio/adanaxis/obj
-VisualStudio/ruby/Debug
-VisualStudio/ruby.obj
+VisualStudio/adanaxis/Debug/
+VisualStudio/adanaxis/msi/
+VisualStudio/adanaxis/obj/
+VisualStudio/adanaxis/Release/
+VisualStudio/mushruby/Debug/
+VisualStudio/mushruby/Release/
 win32deps
