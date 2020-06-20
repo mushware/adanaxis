@@ -59,6 +59,8 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <UseFullPaths />
       <EnablePREfast>true</EnablePREfast>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <SupportJustMyCode>false</SupportJustMyCode>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>

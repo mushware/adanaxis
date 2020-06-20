@@ -311,10 +311,10 @@ SDLAppHandler::KeyboardSignal(const GLKeyboardSignal& inSignal)
 
     AddToControlBuffer(keyValue, inSignal.keyDown);
 
-    m_keyState[keyValue]=inSignal.keyDown;
+    m_keyState[keyValue] = inSignal.keyDown;
     if (inSignal.keyDown)
     {
-        m_latchedKeyState[keyValue]=true;
+        m_latchedKeyState[keyValue] = true;
     }
 }
 
@@ -335,7 +335,7 @@ SDLAppHandler::LatchedKeyStateTake(const Mushware::S32 inKey)
 {
     auto stateForKey = m_latchedKeyState.find(inKey);
 
-    if (stateForKey != m_latchedKeyState.end())
+    if (stateForKey != m_latchedKeyState.end() && m_latchedKeyState[inKey])
     {
         m_latchedKeyState[inKey] = false;
         return true;
@@ -664,6 +664,26 @@ SDLAppHandler::PollForControlEvents(void)
                                         MediaKeyboard::kKeyMouse0+button,
                                         0,
                                         event.button.x, event.button.y));
+            }
+            break;
+
+            case SDL_MOUSEWHEEL:
+            {
+                MediaKeyboard::tKeySymbol keyCode = MediaKeyboard::kKey_LAST;
+                if (event.wheel.y < 0) {
+                    keyCode = MediaKeyboard::kKeyMouse3;
+                }
+                else if (event.wheel.y > 0) {
+                    keyCode = MediaKeyboard::kKeyMouse4;
+                }
+                if (keyCode != MediaKeyboard::kKey_LAST) {
+                    Signal(GLKeyboardSignal(true,
+                        static_cast<Mushware::S32>(keyCode),
+                        0, 0, 0));
+                    Signal(GLKeyboardSignal(false,
+                        static_cast<Mushware::S32>(keyCode),
+                        0, 0, 0));
+                }
             }
             break;
 
