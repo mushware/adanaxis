@@ -1,5 +1,6 @@
 
 Set-StrictMode -Version 3.0
+$ErrorActionPreference = "Stop"
 
 $SDLVersion="2.0.12"
 $SDL_mixerVersion="2.0.4"
@@ -13,7 +14,7 @@ if ($PSScriptRoot) {
 $DepRoot = $(Join-Path $ProjectRoot -ChildPath "win32deps")
 
 Write-Host "Fetching build dependecies for Adanaxis into ${DepRoot}"
-New-Item -ItemType "directory" -Path $DepRoot -Force -ErrorAction Stop
+New-Item -ItemType "directory" -Path $DepRoot -Force | Foreach-Object { "Created directory $($_.FullName)" }
 
 # 
 # Fetch libSDL
@@ -28,7 +29,7 @@ if (Test-Path $SDLDestPath) {
     Write-Host "libSDL2 already present in $SDLDestPath"
 } else {
     Write-Host "Fetching libSDL2 ${SDLVersion} to ${SDLLeafname} from ${SDLUri}"
-    Invoke-WebRequest -Uri $SDLUri -ErrorAction Stop -OutFile $(Join-Path $DepRoot $SDLLeafname)
+    Invoke-WebRequest -Uri $SDLUri -OutFile $(Join-Path $DepRoot $SDLLeafname)
 
     Remove-Item -Recurse -Force -ErrorAction Ignore $SDLDestPath
     Expand-Archive $(Join-Path $DepRoot $SDLLeafname) -DestinationPath $SDLTempPath
@@ -50,7 +51,7 @@ if (Test-Path $SDL_mixerDestPath) {
     Write-Host "libSDL2_mixer already present in $SDL_mixerDestPath"
 } else {
     Write-Host "Fetching libSDL2_mixer ${SDL_mixerVersion} to ${SDL_mixerLeafname} from ${SDL_mixerUri}"
-    Invoke-WebRequest -Uri $SDL_mixerUri -ErrorAction Stop -OutFile $(Join-Path $DepRoot $SDL_mixerLeafname)
+    Invoke-WebRequest -Uri $SDL_mixerUri -OutFile $(Join-Path $DepRoot $SDL_mixerLeafname)
 
     Remove-Item -Recurse -Force -ErrorAction Ignore $SDL_mixerDestPath
     Expand-Archive $(Join-Path $DepRoot $SDL_mixerLeafname) -DestinationPath $SDL_mixerTempPath

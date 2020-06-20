@@ -1,7 +1,7 @@
-ls env:*
 
-param ([Parameter(Mandatory)]$Configuration)
+Param([Parameter(Mandatory)]$Configuration)
 
+Set-StrictMode -Version 3.0
 $ErrorActionPreference = "Stop"
 
 $outpath = "obj\$Configuration\"

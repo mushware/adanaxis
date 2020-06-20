@@ -11,6 +11,7 @@
     <LinkIncremental>false</LinkIncremental>
     <ExtensionsToDeleteOnClean>*.msi;*.wixobj;*.wixpdb;*.wxi;$(ExtensionsToDeleteOnClean)</ExtensionsToDeleteOnClean>
     <PreBuildEventUseInBuild>true</PreBuildEventUseInBuild>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
   </PropertyGroup>
   <ItemDefinitionGroup>
     <Link>
