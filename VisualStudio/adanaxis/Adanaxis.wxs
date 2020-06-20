@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-	<Product Id="{7fcf2acc-f085-440d-9bf0-ee99599228fa}" Name="Adanaxis" Language="1033" Version="1.0.0.0" Manufacturer="Andy Southgate" UpgradeCode="{23aa47f8-74a9-476d-8f3d-1cbd21cace62}">
+	<Product Id="{7fcf2acc-f085-440d-9bf0-ee99599228fa}" Name="Adanaxis" Language="1033" Version="$(var.adanaxis_version)" Manufacturer="Andy Southgate" UpgradeCode="{23aa47f8-74a9-476d-8f3d-1cbd21cace62}">
 		<Package InstallerVersion="301" Compressed="yes" InstallScope="perMachine" />
 
 		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />

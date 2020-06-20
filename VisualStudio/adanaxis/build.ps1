@@ -1,11 +1,33 @@
 
-Param([Parameter(Mandatory)]$Configuration,
-      [Parameter(Mandatory=$false)][Switch]$InstallWix)
+Param(
+    [Parameter(Mandatory)]$Configuration,
+    [Parameter(Mandatory)]$BuildNumber,
+    [Parameter(Mandatory=$false)][Switch]$InstallWix
+)
 
 Set-StrictMode -Version 3.0
 $ErrorActionPreference = "Stop"
 
-Write-Host "Beginning Adanaxis $Configuration build.  Environment is:"
+If ($BuildNumber) {
+    If ($BuildNumber -gt 65534) {
+        Throw "Build number too large"
+    }
+    $Version = "1.5.$BuildNumber.0"
+} Else {
+    $Version = "0.0.0.0"
+}
+
+Write-Host -ForegroundColor Blue @"
+*
+*
+* Beginning Adanaxis $Configuration build for version $Version.
+*
+*
+
+Environment is:
+
+"@
+
 Get-ChildItem env:* | Sort-Object -Property Name
 
 Write-Host "Path is:"
@@ -23,7 +45,7 @@ if ($PSScriptRoot) {
 $getdeps_job = Start-Job -Init ([ScriptBlock]::Create("Set-Location '$pwd'")) -File ./GetWindowsDeps.ps1
 
 $msbuild_root="C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\MSBuild\15.0\Bin"
-$wix_root="C:\Program Files (x86)\WiX Toolset v3.11\binz"
+$wix_root="C:\Program Files (x86)\WiX Toolset v3.11\bin"
 
 If (Test-Path $wix_root) {
     Write-Host "WiX already installed."
@@ -43,10 +65,10 @@ Receive-Job -Job $wix_job -Wait
 
 $env:PATH = "$wix_root;$msbuild_root;$env:PATH"
 
-$build_process = Start-Process -NoNewWindow -PassThru -Wait -FilePath "MSBuild.exe" -ArgumentList "adanaxis.sln", "/t:adanaxis",  "/p:Configuration=`"$Configuration`""
+$build_process = Start-Process -NoNewWindow -PassThru -Wait -FilePath "MSBuild.exe" -ArgumentList "adanaxis.sln", "-detailedSummary", "-maxCpuCount", "-nodeReuse:false", "-target:adanaxis",  "-property:Configuration=`"$Configuration`"", "-property:Version=`"$Version`""
 
 if ($build_process.ExitCode -ne 0) {
-    throw "Build failed"   
+    throw "Build failed ($($build_process.ExitCode))"   
 }
 
 Write-Host "Output of previous WiX install job:"
@@ -61,7 +83,7 @@ if ($install_process.ExitCode -ne 0) {
 }
 Write-Host "Installation successful.  Package details:"
 Get-Package "Adanaxis" | Select-Object *
-Uninstall-Package "Adanaxis"
+Uninstall-Package "Adanaxis" | ForEach-Object { Write-Host "Uninstall successful, $($_ | Select-Object Status)" }
 
 Write-Host -ForegroundColor Green @"
 
@@ -70,4 +92,7 @@ Write-Host -ForegroundColor Green @"
 *    BUILD SUCCESSFUL    *
 *                        *
 **************************
+
 "@
+
+Write-Host -ForegroundColor Blue "$Configuration build complete for Adanaxis version $Version"
