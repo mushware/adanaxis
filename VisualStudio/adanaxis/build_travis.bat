@@ -10,8 +10,7 @@ IF NOT EXIST "%WIX_ROOT%" powershell.exe -ExecutionPolicy Bypass -NonInteractive
 
 SET "PATH=%WIX_ROOT%;%MSBUILD_ROOT%;%PATH%"
 
-MSBuild.exe adanaxis.sln /t:adanaxis /p:Configuration="Debug"
-MSBuild.exe adanaxis.sln /t:adanaxis /p:Configuration="Release"
+MSBuild.exe adanaxis.sln /t:adanaxis /p:Configuration="%BUILD_CONFIGURATION%"
 
-START /B /WAIT "" msiexec.exe /q /i msi\Release\Adanaxis.msi
+START /B /WAIT "" msiexec.exe /q /i msi\%BUILD_CONFIGURATION%\Adanaxis.msi
 powershell.exe -ExecutionPolicy Bypass -NonInteractive -NoProfile -Command "Uninstall-Package Adanaxis"

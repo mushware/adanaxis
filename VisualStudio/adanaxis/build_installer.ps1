@@ -1,3 +1,4 @@
+ls env:*
 
 param ([Parameter(Mandatory)]$Configuration)
 
