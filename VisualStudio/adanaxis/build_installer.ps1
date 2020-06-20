@@ -1,5 +1,8 @@
 
-Param([Parameter(Mandatory)]$Configuration)
+Param(
+    [Parameter(Mandatory)]$Configuration,
+    [Parameter(Mandatory)]$Version
+)
 
 Set-StrictMode -Version 3.0
 $ErrorActionPreference = "Stop"
@@ -27,7 +30,7 @@ foreach ($datadir in $datadirs) {
     Invoke-Expression -ErrorAction Stop $heat_command
 }
 
-$candle_command = "candle.exe $($candle_args_pre -join "" "") -v -out $outpath -arch x86 Adanaxis.wxs $($candle_args_post -join "" "")"
+$candle_command = "candle.exe $($candle_args_pre -join "" "") -dadanaxis_version=""$Version"" -v -out $outpath -arch x86 Adanaxis.wxs $($candle_args_post -join "" "")"
 Write-Host "Executing $candle_command`n"
 Invoke-Expression -ErrorAction Stop $candle_command
 
