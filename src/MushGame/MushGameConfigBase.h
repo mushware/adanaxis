@@ -58,6 +58,7 @@ public:
     MushGameConfigBase();
     virtual void ToDefaultSet(void);
     virtual void AutoInputPrologue(MushcoreXMLIStream& ioIn);
+    virtual void AutoInputEpilogue(MushcoreXMLIStream& ioIn);
     virtual void AutoOutputPrologue(MushcoreXMLOStream& ioOut) const;
     
 private:

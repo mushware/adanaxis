@@ -204,6 +204,7 @@ AdanaxisConfig::AutoInputPrologue(MushcoreXMLIStream& ioIn)
 void
 AdanaxisConfig::AutoInputEpilogue(MushcoreXMLIStream& ioIn)
 {
+    MushGameConfigBase::AutoInputEpilogue(ioIn);
     if (m_axisDefs.size() < kNumAxes)
     {
         AxesToDefaultSet();

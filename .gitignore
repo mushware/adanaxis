@@ -29,6 +29,8 @@ core
 
 # Adanaxis ignores
 *.code-workspace
+.vscode
+*.vcxproj.user
 Entries.txt
 VisualStudio/adanaxis/.vs
 VisualStudio/adanaxis/*.log

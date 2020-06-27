@@ -1236,6 +1236,15 @@
     <ClCompile Include="..\..\src\Platform\PlatformVideoUtilsCommon.cpp">
       <Filter>Source Files\Platform</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Media\MediaThreadPool.cpp">
+      <Filter>Source Files\Media</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Media\MediaJob.cpp">
+      <Filter>Source Files\Media</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MushGL\MushGLMakeJob.cpp">
+      <Filter>Source Files\MushGL</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Mushcore\Mushcore.h">
@@ -2452,6 +2461,15 @@
     </ClInclude>
     <ClInclude Include="resource1.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Media\MediaThreadPool.h">
+      <Filter>Source Files\Media</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Media\MediaJob.h">
+      <Filter>Source Files\Media</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MushGL\MushGLMakeJob.h">
+      <Filter>Source Files\MushGL</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

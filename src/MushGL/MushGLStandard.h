@@ -177,6 +177,7 @@ typedef ptrdiff_t GLintptr;
 #include "API/mushMushcoreIO.h"
 #include "API/mushMushcoreSTL.h"
 #include "API/mushMushMesh.h"
+#include "API/mushMedia.h"
  
 #include <cmath>
 

@@ -134,11 +134,13 @@
  */
 
 #include "Media/MediaAudio.h"
+#include "Media/MediaJob.h"
 #include "Media/MediaJoystick.h"
 #include "Media/MediaKeyboard.h"
 #include "Media/MediaSDL.h"
 #include "Media/MediaSound.h"
 #include "Media/MediaSoundStream.h"
+#include "Media/MediaThreadPool.h"
 
 //%includeGuardEnd {
 #endif

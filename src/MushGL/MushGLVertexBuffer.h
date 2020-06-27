@@ -203,12 +203,6 @@ MushGLVertexBuffer<T>::Deallocate()
         {
             MushGLV::Sgl().DeleteBuffers(1, &m_handle);
         }
-        else
-        {
-            // Mustn't delete if the context has changed, as the old buffers are already gone
-            // and we might delete a new one
-            MushcoreLog::Sgl().WarningLog() << "Couldn't delete buffer - context mismatch" << std::endl;
-        }
     }
     else
     {

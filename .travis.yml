@@ -3,7 +3,7 @@ before_deploy:
   - git config --local user.email "machine@mushware.com"
 deploy:
   edge: true
-  file: VisualStudio/adanaxis/msi/Release/Adanaxis*.msi
+  file: VisualStudio/adanaxis/msi/*/Adanaxis*.msi
   file_glob: true
   provider: releases
   on:

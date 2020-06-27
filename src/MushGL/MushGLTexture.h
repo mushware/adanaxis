@@ -112,6 +112,8 @@ public:
     void PixelDataUse(void *pData);
     Mushware::t4Val U8RGBALookup(Mushware::t2Val inPos) const;
     
+    void ToCacheSave(const MushGLPixelSource& inSrc);
+
     static Mushware::tSize ByteCount(void) { return m_byteCount; }
     static void ByteCountSet(Mushware::tSize inCount) { m_byteCount = inCount; }
     
@@ -137,7 +139,6 @@ private:
 
     void PixelDataGLRGBAUse(void *pData);
     void PixelDataU8RGBAUse(void *pData);
-    void ToCacheSave(const MushGLPixelSource& inSrc);
 	bool FromCacheLoad(void);
 	
     std::vector<Mushware::U8> m_u8Data;

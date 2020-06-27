@@ -102,12 +102,15 @@
 #include "MushGLTexture.h"
 
 #include "MushGLCacheControl.h"
+#include "MushGLMakeJob.h"
 #include "MushGLPixelSource.h"
 #include "MushGLPixelSourceTIFF.h"
 #include "MushGLResolverPixelSource.h"
 #include "MushGLTIFFUtil.h"
 #include "MushGLUtil.h"
 #include "MushGLV.h"
+
+#include "API/mushMedia.h"
 
 using namespace Mushware;
 using namespace std;
@@ -148,23 +151,22 @@ MushGLTexture::Make(void)
 			MUSHCOREASSERT(false);
 			throw MushcoreRequestFail("MushGLTexture::Make failure");
 		}
-        pSrc->DataCreate();
 
-		pSrc->ToTextureCreate(*this);
-		m_cacheable = pSrc->Cacheable();
-		m_resident = pSrc->Resident();
-		
-		// Built this texture the hard way, so save to cache
-		if (m_cacheable && MushGLCacheControl::Sgl().PermitCache())
-		{
-		    ToCacheSave(*pSrc);
+        m_cacheable = pSrc->Cacheable();
+        m_resident = pSrc->Resident();
+
+        std::ostringstream jobName;
+        jobName << "Make texture " << m_name;
+        MediaJob *pMakeJob = new MushGLMakeJob(jobName.str(), pSrc, this);
+        if (1) { // FIXME: Threaded texture load disabled for now
+            pMakeJob->Run();
+        } else {
+            MediaThreadPool::Sgl().InputQueueGive(&pMakeJob);
         }
-        
-        pSrc->DataRelease();
-		
         m_made = true;
 	}
 }
+
 
 void
 MushGLTexture::Bind(void)
@@ -176,11 +178,12 @@ MushGLTexture::Bind(void)
 	
     if (!m_bindingNameValid)
     {
-        throw MushcoreRequestFail("MushGLTexture::Bind attempt on non-GL texture");
+        // throw MushcoreRequestFail("MushGLTexture::Bind attempt on non-GL texture");
+    } else {
+        MushGLV::Sgl().BindTexture2D(m_bindingName);
     }
-	
-    MushGLV::Sgl().BindTexture2D(m_bindingName);
 }
+
 
 void
 MushGLTexture::Purge(void)
@@ -193,6 +196,7 @@ MushGLTexture::Purge(void)
         m_bound = false;
     }
 }
+
 
 void
 MushGLTexture::ToCacheSave(const MushGLPixelSource& inSrc)
@@ -504,9 +508,11 @@ MushGLTexture::RubyPrecache(Mushware::tRubyArgC inArgC, Mushware::tRubyValue *in
 		{
 			throw MushRubyFail("Wrong number of parameters to RubyPrecache");	
 		}
-		
+
 		std::string textureName = MushRubyValue(inpArgV[0]).String();
 		
+
+
 		MushGLTexture *pTexture = NULL;
         
         if (MushcoreData<MushGLTexture>::Sgl().GetIfExists(pTexture, textureName))

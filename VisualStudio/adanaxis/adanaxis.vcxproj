@@ -50,17 +50,15 @@
     </CustomBuildAfterTargets>
     <CodeAnalysisRuleSet>NativeRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <RunCodeAnalysis>false</RunCodeAnalysis>
+    <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <LinkIncremental>
-    </LinkIncremental>
+    <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_CONSOLE;VERSION="$(Version)";%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>
-      </MinimalRebuild>
       <BasicRuntimeChecks>
       </BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -74,6 +72,7 @@
       <EnablePREfast>false</EnablePREfast>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <SupportJustMyCode>false</SupportJustMyCode>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
     </ClCompile>
     <Link>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
@@ -81,6 +80,7 @@
       <SubSystem>Console</SubSystem>
       <EntryPointSymbol />
       <AdditionalOptions>/PDBCOMPRESS %(AdditionalOptions)</AdditionalOptions>
+      <EnableCOMDATFolding>false</EnableCOMDATFolding>
     </Link>
     <PreBuildEvent />
     <PostBuildEvent>
@@ -136,6 +136,8 @@
       </Version>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <PreBuildEvent />
   </ItemDefinitionGroup>
@@ -257,6 +259,7 @@
     <ClCompile Include="..\..\src\Media\MediaAudioNull.cpp" />
     <ClCompile Include="..\..\src\Media\MediaAudioSDL.cpp" />
     <ClCompile Include="..\..\src\Media\MediaAudioSDLChannelDef.cpp" />
+    <ClCompile Include="..\..\src\Media\MediaJob.cpp" />
     <ClCompile Include="..\..\src\Media\MediaJoystick.cpp" />
     <ClCompile Include="..\..\src\Media\MediaKeyboard.cpp" />
     <ClCompile Include="..\..\src\Media\MediaRWops.cpp" />
@@ -264,6 +267,7 @@
     <ClCompile Include="..\..\src\Media\MediaSound.cpp" />
     <ClCompile Include="..\..\src\Media\MediaSoundStream.cpp" />
     <ClCompile Include="..\..\src\Media\MediaSTL.cpp" />
+    <ClCompile Include="..\..\src\Media\MediaThreadPool.cpp" />
     <ClCompile Include="..\..\src\MushCollision\MushCollision.cpp" />
     <ClCompile Include="..\..\src\MushCollision\MushCollisionInfo.cpp" />
     <ClCompile Include="..\..\src\MushCollision\MushCollisionList.cpp" />
@@ -404,6 +408,7 @@
     <ClCompile Include="..\..\src\MushGL\MushGLMaterial.cpp" />
     <ClCompile Include="..\..\src\MushGL\MushGLPixelSource.cpp" />
     <ClCompile Include="..\..\src\MushGL\MushGLPixelSourceTIFF.cpp" />
+    <ClCompile Include="..\..\src\MushGL\MushGLMakeJob.cpp" />
     <ClCompile Include="..\..\src\MushGL\MushGLProjection.cpp" />
     <ClCompile Include="..\..\src\MushGL\MushGLResolverPixelSource.cpp" />
     <ClCompile Include="..\..\src\MushGL\MushGLRuby.cpp" />
@@ -656,6 +661,9 @@
     <ClInclude Include="..\..\src\Gl\GLTextureRef.h" />
     <ClInclude Include="..\..\src\Gl\GLTextureSpr.h" />
     <ClInclude Include="..\..\src\Gl\GLTextureTIFF.h" />
+    <ClInclude Include="..\..\src\Media\MediaJob.h" />
+    <ClInclude Include="..\..\src\Media\MediaThreadPool.h" />
+    <ClInclude Include="..\..\src\MushGL\MushGLMakeJob.h" />
     <ClInclude Include="resource1.h" />
     <CustomBuild Include="..\..\src\Gl\GLUTAppHandler.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>

@@ -81,7 +81,18 @@ MushGameConfigBase::ToDefaultSet(void)
 void
 MushGameConfigBase::AutoInputPrologue(MushcoreXMLIStream& ioIn)
 {
-    ToDefaultSet();    
+    ToDefaultSet();
+}
+
+void
+MushGameConfigBase::AutoInputEpilogue(MushcoreXMLIStream& ioIn)
+{
+#ifdef MUSHCORE_DEBUG
+    if (m_textureDetail > 1) {
+        m_textureDetail = 1;
+        MushcoreLog::Sgl().InfoLog() << "Reducing texture detail to " << m_textureDetail << " because build is Debug" << endl;
+    }
+#endif
 }
 
 void
