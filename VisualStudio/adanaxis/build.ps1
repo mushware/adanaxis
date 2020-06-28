@@ -9,7 +9,7 @@ Set-StrictMode -Version 3.0
 $ErrorActionPreference = "Stop"
 
 If ($BuildNumber) {
-    If ($BuildNumber -gt 65534) {
+    If ($BuildNumber -as [int] -gt 65534) {
         Throw "Build number too large"
     }
     $Version = "1.4.0.$BuildNumber"
