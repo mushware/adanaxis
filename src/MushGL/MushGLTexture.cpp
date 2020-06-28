@@ -161,9 +161,7 @@ MushGLTexture::Make(void)
         jobName << "Make texture " << m_name;
         std::auto_ptr<MediaJob> pMakeJob(new MushGLMakeJob(jobName.str(), pSrc, this));
 
-        if (m_name.find("cosmos") != string::npos ||
-            m_name.find("font") != string::npos ||
-            m_name.find("palette") != string::npos) {
+        if (1) { // FIXME: Disables threaded loading until load order problem can be fixed
             pMakeJob->RunToCompletionNow();
         } else {
             MediaThreadPool::Sgl().InputQueueGive(pMakeJob);
