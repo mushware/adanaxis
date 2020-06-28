@@ -71,7 +71,11 @@ namespace tiffio
 using namespace Mushware;
 using namespace std;
 
-MushGLPixelSourceTIFF::MushGLPixelSourceTIFF()
+MushGLPixelSourceTIFF::MushGLPixelSourceTIFF() :
+    m_pTIFF(NULL),
+    m_pTIFFData(NULL),
+    m_width(0),
+    m_height(0)
 {
 	// Don't cache TIFFs by default
 	CacheableSet(false);	
@@ -124,25 +128,21 @@ MushGLPixelSourceTIFFUnmapFileProc(tiffio::thandle_t inHandle, tiffio::tdata_t i
 void
 MushGLPixelSourceTIFF::ToTextureCreate(MushGLTexture& outTexture)
 {
-    tiffio::uint32 *pTIFFData = NULL;
-
 	// Suppress error message on stderr
 #ifndef MUSHCORE_DEBUG
     tiffio::TIFFErrorHandler currentHandler = tiffio::TIFFSetErrorHandler(NULL);
 #endif
 	
-	tiffio::TIFF* pTIFF = NULL;
-    
     MushFileFile srcFile;
     srcFile.OpenForRead(m_filename);
     
     if (srcFile.SourceIsFile())
     {
-        pTIFF = tiffio::TIFFOpen(srcFile.PlainFilename().c_str(), "r");
+        m_pTIFF = tiffio::TIFFOpen(srcFile.PlainFilename().c_str(), "r");
     }
     else if (srcFile.SourceIsMush())
     {
-        pTIFF = tiffio::TIFFClientOpen(srcFile.Name().c_str(), "rm", // m-> no memory-mapped files
+        m_pTIFF = tiffio::TIFFClientOpen(srcFile.Name().c_str(), "rm", // m-> no memory-mapped files
                                        reinterpret_cast<tiffio::thandle_t>(&srcFile), // Handle
                                        MushGLPixelSourceTIFFRead,  // readproc
                                        MushGLPixelSourceTIFFWrite, // writeproc
@@ -157,7 +157,7 @@ MushGLPixelSourceTIFF::ToTextureCreate(MushGLTexture& outTexture)
 	tiffio::TIFFSetErrorHandler(currentHandler);
 #endif
     
-    if (pTIFF == NULL)
+    if (m_pTIFF == NULL)
     {
         throw MushcoreFileFail(m_filename, "Could not open file");
     }
@@ -167,26 +167,25 @@ MushGLPixelSourceTIFF::ToTextureCreate(MushGLTexture& outTexture)
         // Needs extending for multi image TIFFs
         for (U32 imageNum=0; imageNum < 1; ++imageNum)
         {
-            tiffio::uint32 width, height;
             
-            tiffio::TIFFGetField(pTIFF, TIFFTAG_IMAGEWIDTH, &width);
-            tiffio::TIFFGetField(pTIFF, TIFFTAG_IMAGELENGTH, &height);            
+            tiffio::TIFFGetField(m_pTIFF, TIFFTAG_IMAGEWIDTH, &m_width);
+            tiffio::TIFFGetField(m_pTIFF, TIFFTAG_IMAGELENGTH, &m_height);            
             
 			// Change the orientation so that we vertically flip the image as we load it
-			tiffio::TIFFSetField(pTIFF, TIFFTAG_ORIENTATION, ORIENTATION_BOTLEFT);
+			tiffio::TIFFSetField(m_pTIFF, TIFFTAG_ORIENTATION, ORIENTATION_BOTLEFT);
 
-            U32 numPixels=width*height;
-            pTIFFData = reinterpret_cast<tiffio::uint32 *>(tiffio::_TIFFmalloc(sizeof(tiffio::uint32)*width*height));
+            U32 numPixels=m_width*m_height;
+            m_pTIFFData = reinterpret_cast<tiffio::uint32 *>(tiffio::_TIFFmalloc(sizeof(tiffio::uint32)*m_width*m_height));
             
-            if (pTIFFData == NULL)
+            if (m_pTIFFData == NULL)
             {
                 throw MushcoreRequestFail("Malloc failure for TIFF");
             }
             
-            tiffio::TIFFReadRGBAImage(pTIFF, width, height, pTIFFData, 0);
+            tiffio::TIFFReadRGBAImage(m_pTIFF, m_width, m_height, m_pTIFFData, 0);
             
-            tiffio::uint32 *pSrcData = pTIFFData;
-            U8 *pDestData = reinterpret_cast<U8 *>(pTIFFData);
+            tiffio::uint32 *pSrcData = m_pTIFFData;
+            U8 *pDestData = reinterpret_cast<U8 *>(m_pTIFFData);
             
             // Convert from ABGR words (from tifflib) into RGBA bytes.  Has to work on big
             // and little endian machines
@@ -198,34 +197,70 @@ MushGLPixelSourceTIFF::ToTextureCreate(MushGLTexture& outTexture)
                 *pDestData++=col>>16; // Blue
                 *pDestData++=col>>24; // Alpha
             }
-            MUSHCOREASSERT(pSrcData == pTIFFData+width*height);
-            MUSHCOREASSERT(pDestData == reinterpret_cast<U8 *>(pTIFFData+width*height));
+            MUSHCOREASSERT(pSrcData == m_pTIFFData+m_width*m_height);
+            MUSHCOREASSERT(pDestData == reinterpret_cast<U8 *>(m_pTIFFData+m_width*m_height));
             
-            // Bind the texture
-            outTexture.SizeSet(t4U32(width, height, 1, 1));
+            outTexture.SizeSet(t4U32(m_width, m_height, 1, 1));
             outTexture.PixelTypeRGBASet();
             outTexture.StorageTypeSet(StorageType());
             outTexture.CompressSet(Compress());
-            outTexture.PixelDataUse(pTIFFData);
+
             if (srcFile.SourceIsMush())
             {
                 outTexture.SaveableSet(false);
             }
-            tiffio::_TIFFfree(pTIFFData);
-            pTIFFData=NULL;
         }
     }
     catch (...)
     {
-        tiffio::TIFFClose(pTIFF);
-        if (pTIFFData != NULL)
+        if (m_pTIFFData != NULL)
         {
-            tiffio::_TIFFfree(pTIFFData);
+            tiffio::_TIFFfree(m_pTIFFData);
+            m_pTIFFData = NULL;
+        }
+        if (m_pTIFF != NULL)
+        {
+            tiffio::TIFFClose(m_pTIFF);
+            m_pTIFF = NULL;
         }
         throw;
     }
-    tiffio::TIFFClose(pTIFF);
 }
+
+
+void
+MushGLPixelSourceTIFF::ToTextureBind(MushGLTexture& outTexture)
+{
+    try {
+        // Bind the texture
+        outTexture.PixelDataUse(m_pTIFFData);
+    }
+    catch (...)
+    {
+        if (m_pTIFFData != NULL)
+        {
+            tiffio::_TIFFfree(m_pTIFFData);
+            m_pTIFFData = NULL;
+        }
+        if (m_pTIFF != NULL)
+        {
+            tiffio::TIFFClose(m_pTIFF);
+            m_pTIFF = NULL;
+        }
+        throw;
+    }
+    if (m_pTIFFData != NULL)
+    {
+        tiffio::_TIFFfree(m_pTIFFData);
+        m_pTIFFData = NULL;
+    }
+    if (m_pTIFF != NULL)
+    {
+        tiffio::TIFFClose(m_pTIFF);
+        m_pTIFF = NULL;
+    }
+}
+
 
 void
 MushGLPixelSourceTIFF::ParamDecode(const MushRubyValue& inName, const MushRubyValue& inValue)
@@ -275,7 +310,17 @@ void
 MushGLPixelSourceTIFF::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
-    ioOut << "filename=" << m_filename;
+    ioOut << "filename=" << m_filename << ", ";
+    if (m_pTIFFData == NULL)
+    {
+        ioOut << "pTIFFData=NULL"  << ", ";
+    }
+    else
+    {
+        ioOut << "pTIFFData=" << *m_pTIFFData << ", ";
+    }
+    ioOut << "width=" << m_width << ", ";
+    ioOut << "height=" << m_height;
     ioOut << "]";
 }
 bool
@@ -291,6 +336,18 @@ MushGLPixelSourceTIFF::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::s
     {
         ioIn >> m_filename;
     }
+    else if (inTagStr == "pTIFFData")
+    {
+        ioIn >> m_pTIFFData;
+    }
+    else if (inTagStr == "width")
+    {
+        ioIn >> m_width;
+    }
+    else if (inTagStr == "height")
+    {
+        ioIn >> m_height;
+    }
     else 
     {
         return false;
@@ -302,5 +359,11 @@ MushGLPixelSourceTIFF::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
     ioOut.TagSet("filename");
     ioOut << m_filename;
+    ioOut.TagSet("pTIFFData");
+    ioOut << m_pTIFFData;
+    ioOut.TagSet("width");
+    ioOut << m_width;
+    ioOut.TagSet("height");
+    ioOut << m_height;
 }
-//%outOfLineFunctions } Tkm2IzZ5ojau36+Dkqqx5w
+//%outOfLineFunctions } wGzQgJ4e29Lgx6vWH018Ug

@@ -55,17 +55,27 @@
 
 class MushGLTexture;
 
+namespace tiffio {
+    typedef unsigned int uint32;
+    typedef struct tiff TIFF;
+}
+
 //:generate virtual standard ostream xml1
 class MushGLPixelSourceTIFF : public MushGLPixelSource
 {
 public:
 	MushGLPixelSourceTIFF();
     virtual void ToTextureCreate(MushGLTexture& outTexture);
+    virtual void ToTextureBind(MushGLTexture& outTexture);
 	virtual void ParamDecode(const MushRubyValue& inName, const MushRubyValue& inValue);
 
 private:
     std::string m_filename; //:readwrite
-    
+    tiffio::uint32 *m_pTIFFData;
+    tiffio::TIFF* m_pTIFF;
+    tiffio::uint32 m_width;
+    tiffio::uint32 m_height;
+
 //%classPrototypes {
 public:
     const std::string& Filename(void) const { return m_filename; }

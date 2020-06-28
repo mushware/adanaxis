@@ -41,13 +41,14 @@ class MushGLTexture;
 class MushGLMakeJob : public MediaJob {
 public:
     MushGLMakeJob();
-    MushGLMakeJob(std::string name, MushGLPixelSource *pPixelSource, MushGLTexture *pTexture);
+    MushGLMakeJob(std::string& name, MushGLPixelSource *pPixelSource, MushGLTexture *pTexture);
     virtual ~MushGLMakeJob();
 
     virtual void Run();
+    virtual bool MainThreadPostRun();
 
 private:
-    MushGLPixelSource *m_pPixelSource;
+    MushGLPixelSource *m_pPixelSource; // This object own this
     MushGLTexture *m_pTexture;
 
 //%classPrototypes {

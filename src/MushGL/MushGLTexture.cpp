@@ -136,6 +136,8 @@ MushGLTexture::Make(void)
 
 	if (!m_made)
 	{
+        m_made = true;
+
 		// Switch off compression when generating, so we save a pristine copy to the cache
 		m_compress = false;
 		
@@ -143,7 +145,7 @@ MushGLTexture::Make(void)
 		
 		if (!MushcoreData<MushGLPixelSource>::Sgl().GetIfExists(pSrc, m_name))
 		{
-			throw MushcoreRequestFail("Cannot resolve pixel source '"+m_name+"' for texture");
+            throw MushcoreRequestFail("Cannot resolve pixel source '" + m_name + "' for texture");
 		}
 
 		if (pSrc == NULL)
@@ -157,13 +159,15 @@ MushGLTexture::Make(void)
 
         std::ostringstream jobName;
         jobName << "Make texture " << m_name;
-        MediaJob *pMakeJob = new MushGLMakeJob(jobName.str(), pSrc, this);
-        if (1) { // FIXME: Threaded texture load disabled for now
-            pMakeJob->Run();
+        std::auto_ptr<MediaJob> pMakeJob(new MushGLMakeJob(jobName.str(), pSrc, this));
+
+        if (m_name.find("cosmos") != string::npos ||
+            m_name.find("font") != string::npos ||
+            m_name.find("palette") != string::npos) {
+            pMakeJob->RunToCompletionNow();
         } else {
-            MediaThreadPool::Sgl().InputQueueGive(&pMakeJob);
+            MediaThreadPool::Sgl().InputQueueGive(pMakeJob);
         }
-        m_made = true;
 	}
 }
 
@@ -178,7 +182,9 @@ MushGLTexture::Bind(void)
 	
     if (!m_bindingNameValid)
     {
-        // throw MushcoreRequestFail("MushGLTexture::Bind attempt on non-GL texture");
+        // Texture not ready yet
+        MushGLV::Sgl().BindTexture2D(0);
+        GLState::ColourSet(1.0, 1.0, 1.0, 0.1);
     } else {
         MushGLV::Sgl().BindTexture2D(m_bindingName);
     }
@@ -205,7 +211,7 @@ MushGLTexture::ToCacheSave(const MushGLPixelSource& inSrc)
 	{
         if (m_saveable)
         {
-            m_cacheFilename = MushGLCacheControl::Sgl().TextureCacheFilenameMake(m_uniqueIdentifier);
+            m_cacheFilename = MushGLCacheControl::Sgl().TextureCacheFilenameMake(m_uniqueIdentifier, Mushware::t2U32(m_size.X(), m_size.Y()));
             MushGLTIFFUtil::RGBASave(m_cacheFilename, m_uniqueIdentifier,
                                      Mushware::t2U32(m_size.X(), m_size.Y()),
                                      inSrc.DataRGBAU8Get());
@@ -222,14 +228,15 @@ MushGLTexture::FromCacheLoad(void)
 {
 	bool success = false;
 	
-	m_cacheFilename = MushGLCacheControl::Sgl().TextureCacheFilenameMake(m_uniqueIdentifier);
+	m_cacheFilename = MushGLCacheControl::Sgl().TextureCacheFilenameMake(m_uniqueIdentifier, Mushware::t2U32(m_size.X(), m_size.Y()));
     MushGLPixelSourceTIFF pixelSourceTIFF;
 	
 	pixelSourceTIFF.FilenameSet(m_cacheFilename);
 	
 	try
 	{
-		pixelSourceTIFF.ToTextureCreate(*this);
+        pixelSourceTIFF.ToTextureCreate(*this);
+        pixelSourceTIFF.ToTextureBind(*this);
 		MushGLCacheControl::Sgl().TextureCacheHitRegister();
 		MushcoreLog::Sgl().InfoLog() << "Loaded cache texture: '" << m_name << "' from '" << m_cacheFilename << "'" << endl;
 		success = true;
@@ -517,7 +524,6 @@ MushGLTexture::RubyPrecache(Mushware::tRubyArgC inArgC, Mushware::tRubyValue *in
         
         if (MushcoreData<MushGLTexture>::Sgl().GetIfExists(pTexture, textureName))
         {
-            pTexture->Make();
             pTexture->Bind();
         }
         else

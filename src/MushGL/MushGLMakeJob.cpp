@@ -35,19 +35,21 @@
 MushGLMakeJob::MushGLMakeJob() :
     m_pTexture(NULL)
 {
+    MediaJob::MediaJob();
 }
 
 
-MushGLMakeJob::MushGLMakeJob(std::string name, MushGLPixelSource *pPixelSource, MushGLTexture *pTexture) :
-    m_pPixelSource(pPixelSource),
+MushGLMakeJob::MushGLMakeJob(std::string& name, MushGLPixelSource *pPixelSource, MushGLTexture *pTexture) :
+    MediaJob::MediaJob(name),
+    m_pPixelSource(dynamic_cast<MushGLPixelSource *>(pPixelSource->AutoClone())),
     m_pTexture(pTexture)
 {
-    MediaJob::MediaJob(name);
 }
 
 
 MushGLMakeJob::~MushGLMakeJob()
 {
+    delete m_pPixelSource;
 }
 
 
@@ -64,11 +66,18 @@ void MushGLMakeJob::Run()
         {
            m_pTexture->ToCacheSave(*m_pPixelSource);
         }
-
-        m_pPixelSource->DataRelease();
     }
 }
 
+
+bool MushGLMakeJob::MainThreadPostRun()
+{
+    if (m_pTexture != NULL) {
+        m_pPixelSource->ToTextureBind(*m_pTexture);
+        m_pPixelSource->DataRelease();
+    }
+    return false;
+}
 
 //%outOfLineFunctions {
 

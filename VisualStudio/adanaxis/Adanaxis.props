@@ -8,8 +8,6 @@
   </PropertyGroup>
   <PropertyGroup>
     <OutDir>$(AdanaxisSystemDir)</OutDir>
-    <LinkIncremental>
-    </LinkIncremental>
     <ExtensionsToDeleteOnClean>*.msi;*.wixobj;*.wixpdb;*.wxi;$(ExtensionsToDeleteOnClean)</ExtensionsToDeleteOnClean>
     <PreBuildEventUseInBuild>true</PreBuildEventUseInBuild>
     <RunCodeAnalysis>false</RunCodeAnalysis>

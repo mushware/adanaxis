@@ -165,6 +165,9 @@ PlatformVideoUtils::Acquaint(void)
 
     m_modeDefs.push_back(GLModeDef(640, 480, false));
     m_modeDefs.push_back(GLModeDef(800, 600, false));
+    m_modeDefs.push_back(GLModeDef(1024, 768, false));
+    m_modeDefs.push_back(GLModeDef(1280, 960, false));
+    m_modeDefs.push_back(GLModeDef(1920, 1080, false));
         
     // Find all display modes available on the default display and add them
     // to the list

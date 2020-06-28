@@ -50,7 +50,7 @@ public:
     virtual ~MushGLCacheControl() {}
 	
 	virtual std::string HashedFilenameMake(const std::string& inName);
-	virtual std::string TextureCacheFilenameMake(const std::string& inName);
+	virtual std::string TextureCacheFilenameMake(const std::string& inName, Mushware::t2U32& inSize);
 	virtual std::string TextureCachePlainFilenameMake(const std::string& inName);
 	virtual std::string TextureCachePath(void) const;
 	virtual void CachePurge(void);

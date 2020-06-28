@@ -41,8 +41,11 @@ public:
     MediaThreadPool();
     virtual ~MediaThreadPool();
 
-    void InputQueueGive(MediaJob **pJob);
-    bool OutputQueueTake(MediaJob **pJob);
+    virtual void InputQueueGive(std::auto_ptr<MediaJob> apJob);
+    virtual void InputQueueGive(MediaJob **pJob);
+    virtual bool OutputQueueTake(MediaJob **pJob);
+
+    virtual void MainThreadPump();
 
 private:
     Mushware::U32 m_numThreads;

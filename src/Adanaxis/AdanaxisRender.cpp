@@ -629,6 +629,8 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
         MushGLUtil::IdentityEpilogue();
     }
 
+    MediaThreadPool::Sgl().MainThreadPump();
+
     MushGLUtil::DisplayEpilogue();
 
     if (m_renderPrelude > 0)

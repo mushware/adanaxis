@@ -79,7 +79,7 @@ MushcoreLog::MushcoreLog() :
     m_enableInfoLog(true),
 #else
     m_enableWarningLog(true),
-    m_enableInfoLog(false),
+    m_enableInfoLog(true),
 #endif
     m_errorHeaderDone(false),
     m_stdHeaderDone(false)

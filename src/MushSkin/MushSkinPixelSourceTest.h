@@ -59,8 +59,9 @@ class MushSkinPixelSourceTest : public MushSkinPixelSourceProc
 public:
     MushSkinPixelSourceTest();
 	virtual ~MushSkinPixelSourceTest();
-	
-	virtual void ToTextureCreate(MushGLTexture& outTexture);
+
+    virtual void ToTextureCreate(MushGLTexture& outTexture);
+    virtual void ToTextureBind(MushGLTexture& outTexture);
 
 	// Delegate everything else
 	virtual void ParamDecode(const MushRubyValue& inName, const MushRubyValue& inValue);

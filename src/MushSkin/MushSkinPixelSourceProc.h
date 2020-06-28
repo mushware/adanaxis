@@ -58,6 +58,7 @@ class MushSkinPixelSourceProc : public MushGLPixelSource
 public:
     MushSkinPixelSourceProc();
     virtual void ToTextureCreate(MushGLTexture& outTexture);
+    virtual void ToTextureBind(MushGLTexture& outTexture);
     virtual void DataCreate(void);
     virtual void DataRelease(void);
     virtual const std::vector<Mushware::U8>& DataRGBAU8Get(void) const;
@@ -92,6 +93,7 @@ public:
 	Mushware::t4Val PositionTransform(const Mushware::t4Val& inPos) { return inPos.ElementwiseProduct(m_scale) + m_offset; }
 	
 protected:
+    std::vector<Mushware::U8> m_u8Data;
 	
 private:
 	std::string m_meshName; //:readwrite
@@ -103,7 +105,6 @@ private:
 	Mushware::t4Val m_offset; //:read
 	Mushware::U32 m_numOctaves; //:read
 	Mushware::tVal m_octaveRatio; //:read
-    std::vector<Mushware::U8> m_u8Data;
     
     mutable MushGLTexture *m_pPaletteTexture; //Not owned by this object
 	mutable MushMesh4Mesh *m_pMesh; //:read

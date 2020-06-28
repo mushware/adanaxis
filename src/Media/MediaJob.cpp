@@ -37,10 +37,42 @@ MediaJob::MediaJob(std::string& name) :
 MediaJob::~MediaJob()
 {}
 
+
+// Return true means continue to queue the job
+bool MediaJob::MainThreadPreRun()
+{
+    return true;
+}
+
+
 void MediaJob::Run()
 {
     MushcoreLog::Sgl().ErrorLog() << "Run method for job " << m_name << " not overriden" << std::endl;
 }
+
+
+// Return code true means queue this job again
+bool MediaJob::MainThreadPostRun()
+{
+    return false;
+}
+
+
+void MediaJob::RunToCompletionNow()
+{
+    bool carryOn = MainThreadPreRun();
+
+    Mushware::U32 count = 0;
+    while (carryOn) {
+        Run();
+        carryOn = MainThreadPostRun();
+        ++count;
+        if (count > 10000) {
+            throw MushcoreLogicFail("Overrun in processing job " + m_name);
+        }
+    }
+}
+
 
 //%outOfLineFunctions {
 
@@ -76,7 +108,9 @@ MediaJob::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
     ioOut << "name=" << m_name << ", ";
-    ioOut << "error=" << m_error;
+    ioOut << "error=" << m_error << ", ";
+    ioOut << "startTime=" << m_startTime << ", ";
+    ioOut << "endTime=" << m_endTime;
     ioOut << "]";
 }
 bool
@@ -96,6 +130,14 @@ MediaJob::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagS
     {
         ioIn >> m_error;
     }
+    else if (inTagStr == "startTime")
+    {
+        ioIn >> m_startTime;
+    }
+    else if (inTagStr == "endTime")
+    {
+        ioIn >> m_endTime;
+    }
     else 
     {
         return false;
@@ -109,5 +151,9 @@ MediaJob::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_name;
     ioOut.TagSet("error");
     ioOut << m_error;
+    ioOut.TagSet("startTime");
+    ioOut << m_startTime;
+    ioOut.TagSet("endTime");
+    ioOut << m_endTime;
 }
-//%outOfLineFunctions } 4Jbdq4q1EaEHL3bDD7te5w
+//%outOfLineFunctions } m7NOnMXaEhLYlz06in2AfA

@@ -139,6 +139,12 @@ MushGLPixelSource::ToTextureCreate(MushGLTexture& outTexture)
     throw MushcoreRequestFail("Cannot create texture from this pixel source");
 }
 
+void
+MushGLPixelSource::ToTextureBind(MushGLTexture& outTexture)
+{
+    throw MushcoreRequestFail("Cannot bind texture from this pixel source");
+}
+
 void 
 MushGLPixelSource::DataCreate(void)
 {

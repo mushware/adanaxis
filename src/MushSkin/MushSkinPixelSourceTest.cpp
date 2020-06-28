@@ -90,46 +90,52 @@ MushSkinPixelSourceTest::PixelSource(void) const
 void
 MushSkinPixelSourceTest::ToTextureCreate(MushGLTexture& outTexture)
 {
-    U32 pixelDataSize = 4*Size().X()*Size().Y();
-    std::vector<U8> pixelData(pixelDataSize, 0);
-    
+    U32 pixelDataSize = 4 * Size().X()*Size().Y();
+    m_u8Data.resize(pixelDataSize, 0);
+
     t4Val objectPos, objectEndPos;
 
-	t2Val startPoint = t2Val(0.0, 0.0);
-	t2Val endPoint = t2Val(1.0, 1.0);
-	U32 startX = static_cast<U32>(startPoint.X() * Size().X());
-	U32 startY = static_cast<U32>(startPoint.Y() * Size().Y());
-	U32 endX = static_cast<U32>(endPoint.X() * Size().X());
-	U32 endY = static_cast<U32>(endPoint.Y() * Size().Y());
-	MUSHCOREASSERT(endX >= startX);
-	MUSHCOREASSERT(endY >= startY);
-	
-	for (U32 y=startY; y<endY; ++y)
-	{
-		U32 pixelOffset = 4*(startX+y*Size().Y());
-		if (pixelOffset + 4*(endX - startX) > pixelDataSize)
-		{
-			throw MushcoreDataFail("Pixel data overrun");
-		}
-		U8 *pTileData = &pixelData[pixelOffset];
-		
-		objectPos = t4Val(static_cast<tVal>(startX) / Size().X(), static_cast<tVal>(y) / Size().Y(), 0, 0);
-		objectEndPos = t4Val(static_cast<tVal>(endX) / Size().X(), static_cast<tVal>(y) / Size().Y(), 0, 0);
-		
-		if (endX > startX)
-		{
-			PixelSource().LineGenerate(pTileData, endX - startX, objectPos, objectEndPos);
-		}
-	}
-	
-    PaletteTextureInvalidate();
-    
-    // Bind the texture
+    t2Val startPoint = t2Val(0.0, 0.0);
+    t2Val endPoint = t2Val(1.0, 1.0);
+    U32 startX = static_cast<U32>(startPoint.X() * Size().X());
+    U32 startY = static_cast<U32>(startPoint.Y() * Size().Y());
+    U32 endX = static_cast<U32>(endPoint.X() * Size().X());
+    U32 endY = static_cast<U32>(endPoint.Y() * Size().Y());
+    MUSHCOREASSERT(endX >= startX);
+    MUSHCOREASSERT(endY >= startY);
+
+    for (U32 y = startY; y < endY; ++y)
+    {
+        U32 pixelOffset = 4 * (startX + y * Size().Y());
+        if (pixelOffset + 4 * (endX - startX) > pixelDataSize)
+        {
+            throw MushcoreDataFail("Pixel data overrun");
+        }
+        U8 *pTileData = &m_u8Data[pixelOffset];
+
+        objectPos = t4Val(static_cast<tVal>(startX) / Size().X(), static_cast<tVal>(y) / Size().Y(), 0, 0);
+        objectEndPos = t4Val(static_cast<tVal>(endX) / Size().X(), static_cast<tVal>(y) / Size().Y(), 0, 0);
+
+        if (endX > startX)
+        {
+            PixelSource().LineGenerate(pTileData, endX - startX, objectPos, objectEndPos);
+        }
+    }
+
     outTexture.SizeSet(t4U32(Size().X(), Size().Y(), 1, 1));
     outTexture.PixelTypeRGBASet();
     outTexture.StorageTypeGLSet();
-    outTexture.PixelDataUse(&pixelData[0]);
-	
+
+    PaletteTextureInvalidate();
+}
+
+
+void
+MushSkinPixelSourceTest::ToTextureBind(MushGLTexture& outTexture)
+{
+    // Bind the texture
+    outTexture.PixelDataUse(&m_u8Data[0]);
+    m_u8Data.resize(0);
 	MushGLTIFFUtil::TextureSave(MushGLCacheControl::Sgl().
 								TextureCachePlainFilenameMake("test-"+outTexture.Name()+".tiff"), outTexture.UniqueIdentifier());
 }

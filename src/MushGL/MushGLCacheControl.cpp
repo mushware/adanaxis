@@ -114,16 +114,16 @@ MushGLCacheControl::HashedFilenameMake(const std::string& inName)
 }
 
 std::string
-MushGLCacheControl::TextureCacheFilenameMake(const std::string& inName)
+MushGLCacheControl::TextureCacheFilenameMake(const std::string& inName, Mushware::t2U32& inSize)
 {
 	std::string filename;
 	if (m_globalCachePath == "")
 	{
 	    throw MushcoreRequestFail("No global cache path defined");	
 	}
-	
-	filename = m_globalCachePath+"/tex-"+HashedFilenameMake(inName)+".tiff";
-	return filename;
+    std::ostringstream pathStream;
+    pathStream << m_globalCachePath << "/tex-" << inSize.X() << "x" << inSize.Y() << "-" << HashedFilenameMake(inName) << ".tiff";
+	return pathStream.str();
 }
 
 std::string

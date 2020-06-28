@@ -42,10 +42,16 @@ public:
     virtual ~MediaJob();
 
     virtual void Run();
+    virtual bool MainThreadPreRun();
+    virtual bool MainThreadPostRun();
+
+    virtual void RunToCompletionNow();
 
 private:
     std::string m_name; //:readwrite
     std::string m_error; //:readwrite
+    Mushware::U64 m_startTime; //:readwrite
+    Mushware::U64 m_endTime; //:readwrite
 
 //%classPrototypes {
 public:
@@ -53,6 +59,10 @@ public:
     void NameSet(const std::string& inValue) { m_name=inValue; }
     const std::string& Error(void) const { return m_error; }
     void ErrorSet(const std::string& inValue) { m_error=inValue; }
+    const Mushware::U64& StartTime(void) const { return m_startTime; }
+    void StartTimeSet(const Mushware::U64& inValue) { m_startTime=inValue; }
+    const Mushware::U64& EndTime(void) const { return m_endTime; }
+    void EndTimeSet(const Mushware::U64& inValue) { m_endTime=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -60,7 +70,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } tWTw0NgtZ/jqSMiijVAVYg
+//%classPrototypes } KN7Aee4b0IxZoboB4CAePg
 };
 //%inlineHeader {
 inline std::ostream&

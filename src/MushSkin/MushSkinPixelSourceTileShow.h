@@ -54,7 +54,8 @@ class MushSkinPixelSourceTileShow : public MushSkinPixelSourceProc
 public:
     MushSkinPixelSourceTileShow();
     virtual void ParamDecode(const MushRubyValue& inName, const MushRubyValue& inValue);
-	virtual void ToTextureCreate(MushGLTexture& outTexture);
+    virtual void ToTextureCreate(MushGLTexture& outTexture);
+    virtual void ToTextureBind(MushGLTexture& outTexture);
 	virtual void TileShowLineGenerate(Mushware::U8 *outpTileData,
 									  Mushware::U32 inNumPixels, const std::vector<Mushware::t4Val>& texCoords,
 									  const Mushware::t4Val& inStartUV, const Mushware::t4Val& inEndUV);

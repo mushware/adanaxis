@@ -76,58 +76,66 @@ MushSkinPixelSourceTileShow::TileShowLineGenerate(Mushware::U8 *outpTileData,
 void
 MushSkinPixelSourceTileShow::ToTextureCreate(MushGLTexture& outTexture)
 {
-    U32 pixelDataSize = 4*Size().X()*Size().Y();
-    std::vector<U8> pixelData(pixelDataSize, 0);
-    
+    U32 pixelDataSize = 4 * Size().X()*Size().Y();
+    m_u8Data.resize(pixelDataSize);
+
     const MushMesh4Mesh::tTextureTiles& texTilesRef = Mesh().TextureTiles();
     U32 numTexTiles = texTilesRef.size();
-	
+
     for (U32 tileIndex = 0; tileIndex < numTexTiles; ++tileIndex)
     {
         const MushMesh4Mesh::tTextureTile& tileRef = texTilesRef[tileIndex];
-        
-		std::vector<t4Val> texCoords;
-		MushMeshTools::TextureCoordsForFacet(texCoords, Mesh(), tileRef.SourceFaceNum(), tileRef.SourceFacetNum());
-		
+
+        std::vector<t4Val> texCoords;
+        MushMeshTools::TextureCoordsForFacet(texCoords, Mesh(), tileRef.SourceFaceNum(), tileRef.SourceFacetNum());
+
         t2Val startPoint = tileRef.TileBox().Start();
         t2Val endPoint = tileRef.TileBox().End();
-		
+
         U32 startX = static_cast<U32>(startPoint.X() * Size().X());
         U32 startY = static_cast<U32>(startPoint.Y() * Size().Y());
         U32 endX = static_cast<U32>(endPoint.X() * Size().X());
         U32 endY = static_cast<U32>(endPoint.Y() * Size().Y());
         MUSHCOREASSERT(endX >= startX);
         MUSHCOREASSERT(endY >= startY);
-		
-        for (U32 y=startY; y<endY; ++y)
+
+        for (U32 y = startY; y < endY; ++y)
         {
-            U32 pixelOffset = 4*(startX+y*Size().Y());
-            if (pixelOffset + 4*(endX - startX) > pixelDataSize)
+            U32 pixelOffset = 4 * (startX + y * Size().Y());
+            if (pixelOffset + 4 * (endX - startX) > pixelDataSize)
             {
                 throw MushcoreDataFail("Pixel data overrun");
             }
-            U8 *pTileData = &pixelData[pixelOffset];
-			
+            U8 *pTileData = &m_u8Data[pixelOffset];
+
             if (endX > startX)
             {
                 TileShowLineGenerate(pTileData, endX - startX, texCoords,
-									 t4Val(startPoint.X(), static_cast<tVal>(y) / Size().Y(), 0, 0),
-									 t4Val(endPoint.X(),   static_cast<tVal>(y) / Size().Y(),   0, 0));
+                    t4Val(startPoint.X(), static_cast<tVal>(y) / Size().Y(), 0, 0),
+                    t4Val(endPoint.X(), static_cast<tVal>(y) / Size().Y(), 0, 0));
             }
-            
-            MUSHCOREASSERT(pTileData <= &pixelData[pixelDataSize]);
+
+            MUSHCOREASSERT(pTileData <= &m_u8Data[pixelDataSize]);
         }
     }
-	
-    PaletteTextureInvalidate();
-    MeshInvalidate();
-	
-    // Bind the texture
+
     outTexture.SizeSet(t4U32(Size().X(), Size().Y(), 1, 1));
     outTexture.PixelTypeRGBASet();
     outTexture.StorageTypeGLSet();
-    outTexture.PixelDataUse(&pixelData[0]);
+
+    PaletteTextureInvalidate();
+    MeshInvalidate();
 }
+
+
+void
+MushSkinPixelSourceTileShow::ToTextureBind(MushGLTexture& outTexture)
+{
+    // Bind the texture
+    outTexture.PixelDataUse(&m_u8Data[0]);
+    m_u8Data.resize(0);
+}
+
 
 //%outOfLineFunctions {
 

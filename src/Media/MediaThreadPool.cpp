@@ -68,13 +68,19 @@ MediaThreadPool::~MediaThreadPool()
         SDL_SemPost(m_pJobAvailSem);
     }
 
-#ifdef MUSHCORE_DEBUG
-    // Only wait during debug so we never hang exit for users
     for (U32 i = 0; i < m_threads.size(); ++i) {
         SDL_WaitThread(m_threads[i], NULL);
     }
+#ifdef MUSHCORE_DEBUG
     MushcoreLog::Sgl().InfoLog() << "Thread pool exited cleanly" << std::endl;
 #endif
+}
+
+
+void MediaThreadPool::InputQueueGive(std::auto_ptr<MediaJob> apJob)
+{
+    MediaJob *pJob = apJob.release();
+    InputQueueGive(&pJob);
 }
 
 
@@ -123,6 +129,32 @@ bool MediaThreadPool::OutputQueueTake(MediaJob **pJob)
 }
 
 
+// Call this somewhere in the main thread loop to handle job completions
+void MediaThreadPool::MainThreadPump()
+{
+    MediaJob *pJob;
+    while (OutputQueueTake(&pJob)) {
+        if (pJob->Error() != "") {
+            MushcoreLog::Sgl().ErrorLog() << "Job " << pJob->Name() << " failed: " << pJob->Error() << std::endl;
+            delete pJob;
+        } else {
+            Mushware::tVal duration = static_cast<Mushware::tVal>(pJob->EndTime() - pJob->StartTime()) / SDL_GetPerformanceFrequency();
+
+            std::ostringstream durationStream;
+            durationStream << setprecision(3) << fixed << duration << " s";
+            MushcoreLog::Sgl().InfoLog() << "Finished job " << pJob->Name() << " in " << durationStream.str() << std::endl;
+            bool reQueue = pJob->MainThreadPostRun();
+            if (reQueue) {
+                InputQueueGive(&pJob);
+            } else {
+
+                delete pJob;
+            }
+        }
+    }
+}
+
+
 int MediaThreadPool::ThreadHandler(void *data) {
     MediaThreadPool* pObj = reinterpret_cast<MediaThreadPool*>(data);
 
@@ -137,17 +169,16 @@ int MediaThreadPool::ThreadHandler(void *data) {
         }
         MediaJob *pJob;
         if (pObj->InputQueueTake(&pJob)) {
+            pJob->StartTimeSet(SDL_GetPerformanceCounter());
+
 #ifdef MUSHCORE_DEBUG
             MushcoreLog::Sgl().InfoLog() << "Starting job " << pJob->Name() << std::endl;
 #endif
             try {
                 pJob->Run();
-#ifdef MUSHCORE_DEBUG
-                MushcoreLog::Sgl().InfoLog() << "Finished job " << pJob->Name() << std::endl;
-#endif
+                pJob->EndTimeSet(SDL_GetPerformanceCounter());
             }
             catch (std::exception& e) {
-                MushcoreLog::Sgl().ErrorLog() << "Job " << pJob->Name() << " failed: " << e.what() << std::endl;
                 pJob->ErrorSet(e.what());
             }
             pObj->OutputQueueGive(&pJob);
