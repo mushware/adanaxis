@@ -1,11 +1,11 @@
 //%includeGuardStart {
-#ifndef MEDIATHREADPOOL_H
-#define MEDIATHREADPOOL_H
-//%includeGuardStart } eNAmS7Ud1fB5c0IOfBUI4Q
+#ifndef MEDIALOCK_H
+#define MEDIALOCK_H
+//%includeGuardStart } yefxnGbP2L5PErGzp+CP8g
 //%Header {
 /*****************************************************************************
  *
- * File: src/Media/MediaThreadPool.h
+ * File: src/Media/MediaLock.h
  *
  * Copyright: Andy Southgate 2002-2007, 2020
  *
@@ -28,51 +28,20 @@
  * DEALINGS IN THE SOFTWARE.
  *
  ****************************************************************************/
-//%Header } Ruz4+GNM9HuRf8P0uJvFaQ
+//%Header } UOFq+p/+E4Xmp9hflz/cCg
 
 #include "MediaSDL.h"
 #include "MediaStandard.h"
 
-class MediaJob;
-
-class MediaThreadPool : public MushcoreSingleton<MediaThreadPool>
+class MediaLock
 {
 public:
-
-    MediaThreadPool();
-    virtual ~MediaThreadPool();
-
-    MediaJobId JobIdTake();
-
-    virtual void WaitMapGive(std::auto_ptr<MediaJob> apJob);
-    virtual void MediaThreadPool::WaitMapGive(MediaJob **pJob);
-    virtual void InputQueueGive(std::auto_ptr<MediaJob> apJob);
-    virtual void InputQueueGive(MediaJob **pJob);
-    virtual bool OutputQueueTake(MediaJob **pJob);
-    virtual void MainThreadPump();
-
-protected:
-    void JobDelete(MediaJobId jobId);
-    void JobStart(MediaJobId jobId);
-    bool InputQueueTake(MediaJob **pJob);
-    void OutputQueueGive(MediaJob **pJob);
+    explicit MediaLock(SDL_mutex *pMutex);
+    virtual ~MediaLock();
 
 private:
-    MediaJobId m_nextJobId;
-    Mushware::U32 m_numThreads;
-    SDL_atomic_t m_done;
-    SDL_sem *m_pJobAvailSem;
-    SDL_mutex *m_pStateMutex;
-    std::vector<SDL_Thread *> m_threads;
-    std::map<MediaJobId, MediaJob *> m_jobMap;
-    std::deque<MediaJob *> m_inputQueue;
-    std::deque<MediaJob *> m_outputQueue;
-
-    static int MediaThreadPool::ThreadHandler(void *data);
-
+    SDL_mutex *m_pMutex;
 };
-
-
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

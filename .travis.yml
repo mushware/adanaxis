@@ -9,6 +9,7 @@ deploy:
   on:
     tags: true
   overwrite: false
+  prerelease: true
   repo: mushware/adanaxis
   token:
     secure: AcfEZALD+5/ErRGgHICOoNAWKasgGm3mIrfKbUOvAIje6NDNN9219IMJok8iTw87ViuMWIkp27dZbLvyp9x1Jwe7tcM9s5K+35UAnbCMVX7s+fX2eMl08Y7lr9UOJOZrJxAgFDqCBv8MghC6HgYe1uUY4YQRSyj+BiNqbuPy70ySQXmxLzLZTSH1ZjSWAmx0uJ/YeQen9rdnVM4a6MuMUfk5pFdr7CxLqf9NJJjun/uWPPv4g66ec2jLCp8uH8GTQGeWprf0uumnqvvZ1TH8WwBMLfQEECIKpbYcVHlsQZKJtvrTY9GrWZxafNXaUYS4+N2PFq+P41bKw9inJTBlXfR1jVB+GObZ88UR5HnZlPc+lkM/JR0coD0+V8Iywb0cRXUPhHGaoHKi/ef+a2+QZ6UPPqvF2fSPJ/hnGZSvXFSLAUcZLjcmTacaf4DRyFRd1A4VkxdZvNSPexovyMr881+HNVhVaWnd7LGaNtaV2HUQP/FDuyenC73OUnQhVQq3bPHaDrA8HKAS0A0LyLknKe2pLX+NkGY4eaXuXjDJwzT0PxTba0ww7pq9bJ1h4U732PgbaLdcJe15j3Nture7boSLoEWyto/Rb1WBSh6PWYH1m+ZRVga6wF1YpyTc0ZCiIsWJGh1jhvb59UpxFjRiUfVNWAARvB+5qma5muODLLg=

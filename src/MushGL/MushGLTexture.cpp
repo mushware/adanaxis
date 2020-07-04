@@ -161,7 +161,7 @@ MushGLTexture::Make(void)
         jobName << "Make texture " << m_name;
         std::auto_ptr<MediaJob> pMakeJob(new MushGLMakeJob(jobName.str(), pSrc, this));
 
-        if (1) { // FIXME: Disables threaded loading until load order problem can be fixed
+        if (true) { // FIXME: Thread pool unctionality still needs fixing
             pMakeJob->RunToCompletionNow();
         } else {
             MediaThreadPool::Sgl().InputQueueGive(pMakeJob);
@@ -170,7 +170,7 @@ MushGLTexture::Make(void)
 }
 
 
-void
+bool
 MushGLTexture::Bind(void)
 {
     if (!m_made)
@@ -178,13 +178,15 @@ MushGLTexture::Bind(void)
         Make();
     }
 	
-    if (!m_bindingNameValid)
+    if (!m_ready)
     {
         // Texture not ready yet
         MushGLV::Sgl().BindTexture2D(0);
         GLState::ColourSet(1.0, 1.0, 1.0, 0.1);
+        return false;
     } else {
         MushGLV::Sgl().BindTexture2D(m_bindingName);
+        return true;
     }
 }
 
@@ -598,6 +600,8 @@ MushGLTexture::AutoPrint(std::ostream& ioOut) const
     ioOut << "cacheable=" << m_cacheable << ", ";
     ioOut << "compress=" << m_compress << ", ";
     ioOut << "made=" << m_made << ", ";
+    ioOut << "ready=" << m_ready << ", ";
+    ioOut << "finished=" << m_finished << ", ";
     ioOut << "saveable=" << m_saveable << ", ";
     ioOut << "resident=" << m_resident;
     ioOut << "]";
@@ -667,6 +671,14 @@ MushGLTexture::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& i
     {
         ioIn >> m_made;
     }
+    else if (inTagStr == "ready")
+    {
+        ioIn >> m_ready;
+    }
+    else if (inTagStr == "finished")
+    {
+        ioIn >> m_finished;
+    }
     else if (inTagStr == "saveable")
     {
         ioIn >> m_saveable;
@@ -712,10 +724,14 @@ MushGLTexture::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_compress;
     ioOut.TagSet("made");
     ioOut << m_made;
+    ioOut.TagSet("ready");
+    ioOut << m_ready;
+    ioOut.TagSet("finished");
+    ioOut << m_finished;
     ioOut.TagSet("saveable");
     ioOut << m_saveable;
     ioOut.TagSet("resident");
     ioOut << m_resident;
 }
-//%outOfLineFunctions } zGOFhbfFVqp1DBXHHwgAAg
+//%outOfLineFunctions } u2eVwGxPmIdRDLVuvu7rlw
 

@@ -1245,6 +1245,9 @@
     <ClCompile Include="..\..\src\MushGL\MushGLMakeJob.cpp">
       <Filter>Source Files\MushGL</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Media\MediaLock.cpp">
+      <Filter>Source Files\Media</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\Mushcore\Mushcore.h">
@@ -2470,6 +2473,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\MushGL\MushGLMakeJob.h">
       <Filter>Source Files\MushGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Media\MediaLock.h">
+      <Filter>Source Files\Media</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

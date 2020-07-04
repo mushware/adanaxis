@@ -67,16 +67,19 @@ void MushGLMakeJob::Run()
            m_pTexture->ToCacheSave(*m_pPixelSource);
         }
     }
+    JobStateSet(kJobStatePostRun);
 }
 
 
-bool MushGLMakeJob::MainThreadPostRun()
+void MushGLMakeJob::MainThreadPostRun()
 {
     if (m_pTexture != NULL) {
         m_pPixelSource->ToTextureBind(*m_pTexture);
         m_pPixelSource->DataRelease();
+        m_pTexture->ReadySet(true);
+        m_pTexture->FinishedSet(true);
     }
-    return false;
+    JobStateSet(kJobStateDone);
 }
 
 //%outOfLineFunctions {

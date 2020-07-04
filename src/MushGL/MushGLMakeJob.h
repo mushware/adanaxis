@@ -45,7 +45,7 @@ public:
     virtual ~MushGLMakeJob();
 
     virtual void Run();
-    virtual bool MainThreadPostRun();
+    virtual void MainThreadPostRun();
 
 private:
     MushGLPixelSource *m_pPixelSource; // This object own this

@@ -97,12 +97,14 @@ public:
 		m_cacheable(true),
 		m_compress(false),
         m_made(false),
+        m_ready(false),
+        m_finished(false),
         m_saveable(true),
         m_resident(false)
     {}
 
     void Make(void);
-    void Bind(void);
+    bool Bind(void);
     void Purge(void);
     
     void PixelTypeRGBASet(void) { m_pixelType = kPixelTypeRGBA; }
@@ -155,6 +157,8 @@ private:
 	bool m_cacheable; //:readwrite
 	bool m_compress; //:readwrite
     bool m_made;
+    bool m_ready; //:readwrite
+    bool m_finished; //:readwrite
     bool m_saveable; //:readwrite
     bool m_resident; //:readwrite
     
@@ -172,6 +176,10 @@ public:
     void CacheableSet(const bool& inValue) { m_cacheable=inValue; }
     const bool& Compress(void) const { return m_compress; }
     void CompressSet(const bool& inValue) { m_compress=inValue; }
+    const bool& Ready(void) const { return m_ready; }
+    void ReadySet(const bool& inValue) { m_ready=inValue; }
+    const bool& Finished(void) const { return m_finished; }
+    void FinishedSet(const bool& inValue) { m_finished=inValue; }
     const bool& Saveable(void) const { return m_saveable; }
     void SaveableSet(const bool& inValue) { m_saveable=inValue; }
     const bool& Resident(void) const { return m_resident; }
@@ -183,7 +191,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } qO/uHtdHXFb5ixOoQT+26g
+//%classPrototypes } XP0BvDmHqDFPqJd1PCgkXQ
 };
 //%inlineHeader {
 inline std::ostream&

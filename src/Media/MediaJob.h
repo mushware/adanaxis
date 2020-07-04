@@ -37,17 +37,43 @@
 class MediaJob : public MushcoreVirtualObject
 {
 public:
-    MediaJob() {}
+
+    enum tJobState {
+        kJobStateNew,
+        kJobStateWaiting,
+        kJobStateQueued,
+        kJobStatePreRun,
+        kJobStateRunning,
+        kJobStatePostRun,
+        kJobStateReWait,
+        kJobStateReQueue,
+        kJobStateDone,
+        kJobStateAbort,
+        kJobStateErrored
+    };
+
+    enum {
+        kJobMagic=0x7f34af17
+    };
+
+    MediaJob();
     explicit MediaJob(std::string& name);
     virtual ~MediaJob();
 
+    tJobState JobState() const;
+    void JobStateSet(tJobState inValue);
+
     virtual void Run();
-    virtual bool MainThreadPreRun();
-    virtual bool MainThreadPostRun();
+    virtual void MainThreadPreRun();
+    virtual void MainThreadPostRun();
 
     virtual void RunToCompletionNow();
 
 private:
+    MediaJobId m_jobMagic; //:readwrite
+    mutable SDL_mutex *m_pStateMutex; //:ignore
+    MediaJobId m_jobId; //:read
+    Mushware::U32 m_jobState; 
     std::string m_name; //:readwrite
     std::string m_error; //:readwrite
     Mushware::U64 m_startTime; //:readwrite
@@ -55,6 +81,9 @@ private:
 
 //%classPrototypes {
 public:
+    const MediaJobId& JobMagic(void) const { return m_jobMagic; }
+    void JobMagicSet(const MediaJobId& inValue) { m_jobMagic=inValue; }
+    const MediaJobId& JobId(void) const { return m_jobId; }
     const std::string& Name(void) const { return m_name; }
     void NameSet(const std::string& inValue) { m_name=inValue; }
     const std::string& Error(void) const { return m_error; }
@@ -70,7 +99,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } KN7Aee4b0IxZoboB4CAePg
+//%classPrototypes } TUwcvAYJE86UN5b1H6NS+g
 };
 //%inlineHeader {
 inline std::ostream&

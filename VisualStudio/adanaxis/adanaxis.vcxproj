@@ -261,6 +261,7 @@
     <ClCompile Include="..\..\src\Media\MediaJob.cpp" />
     <ClCompile Include="..\..\src\Media\MediaJoystick.cpp" />
     <ClCompile Include="..\..\src\Media\MediaKeyboard.cpp" />
+    <ClCompile Include="..\..\src\Media\MediaLock.cpp" />
     <ClCompile Include="..\..\src\Media\MediaRWops.cpp" />
     <ClCompile Include="..\..\src\Media\MediaSDL.cpp" />
     <ClCompile Include="..\..\src\Media\MediaSound.cpp" />
@@ -661,6 +662,7 @@
     <ClInclude Include="..\..\src\Gl\GLTextureSpr.h" />
     <ClInclude Include="..\..\src\Gl\GLTextureTIFF.h" />
     <ClInclude Include="..\..\src\Media\MediaJob.h" />
+    <ClInclude Include="..\..\src\Media\MediaLock.h" />
     <ClInclude Include="..\..\src\Media\MediaThreadPool.h" />
     <ClInclude Include="..\..\src\MushGL\MushGLMakeJob.h" />
     <ClInclude Include="resource1.h" />

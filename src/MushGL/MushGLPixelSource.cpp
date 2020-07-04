@@ -134,6 +134,12 @@ MushGLPixelSource::BufferFill(Mushware::U32 * const outPtr, const Mushware::t2U3
 }
 
 void
+MushGLPixelSource::PrerequisitesCreate(MushGLTexture& outTexture)
+{
+    // No operation
+}
+
+void
 MushGLPixelSource::ToTextureCreate(MushGLTexture& outTexture)
 {
     throw MushcoreRequestFail("Cannot create texture from this pixel source");

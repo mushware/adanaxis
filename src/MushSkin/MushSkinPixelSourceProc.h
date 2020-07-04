@@ -57,6 +57,7 @@ class MushSkinPixelSourceProc : public MushGLPixelSource
 {
 public:
     MushSkinPixelSourceProc();
+    virtual void PrerequisitesCreate(MushGLTexture& outTexture);
     virtual void ToTextureCreate(MushGLTexture& outTexture);
     virtual void ToTextureBind(MushGLTexture& outTexture);
     virtual void DataCreate(void);
@@ -75,7 +76,7 @@ public:
 	}
     const MushGLTexture& PaletteTexture(void) const;
 	void PaletteTextureInvalidate(void) const { m_pPaletteTexture = NULL; }
-	virtual void PaletteResolve(void) const;
+    virtual void PaletteResolve(void) const;
 
 	bool MeshValid(void) const
 	{

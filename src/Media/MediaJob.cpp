@@ -28,8 +28,23 @@
 
 #include "MediaJob.h"
 
+#include "MediaLock.h"
+#include "MediaThreadPool.h"
+
+
+MediaJob::MediaJob() :
+    m_jobMagic(kJobMagic),
+    m_pStateMutex(SDL_CreateMutex()),
+    m_jobId(MediaThreadPool::Sgl().JobIdTake()),
+    m_jobState(kJobStateNew)
+{
+}
+
 
 MediaJob::MediaJob(std::string& name) :
+    m_pStateMutex(SDL_CreateMutex()),
+    m_jobId(MediaThreadPool::Sgl().JobIdTake()),
+    m_jobState(kJobStateNew),
     m_name(name)
 {}
 
@@ -38,34 +53,48 @@ MediaJob::~MediaJob()
 {}
 
 
-// Return true means continue to queue the job
-bool MediaJob::MainThreadPreRun()
+MediaJob::tJobState
+MediaJob::JobState(void) const
 {
-    return true;
+    MediaLock lock(m_pStateMutex);
+    return static_cast<tJobState>(m_jobState);
+}
+
+
+void
+MediaJob::JobStateSet(tJobState inValue)
+{
+    MediaLock lock(m_pStateMutex);
+    m_jobState = inValue;
+}
+
+
+void MediaJob::MainThreadPreRun()
+{
 }
 
 
 void MediaJob::Run()
 {
     MushcoreLog::Sgl().ErrorLog() << "Run method for job " << m_name << " not overriden" << std::endl;
+    JobStateSet(kJobStateAbort);
 }
 
 
-// Return code true means queue this job again
-bool MediaJob::MainThreadPostRun()
+void MediaJob::MainThreadPostRun()
 {
-    return false;
 }
 
 
 void MediaJob::RunToCompletionNow()
 {
-    bool carryOn = MainThreadPreRun();
+    JobStateSet(kJobStateRunning);
+    MainThreadPreRun();
 
     Mushware::U32 count = 0;
-    while (carryOn) {
+    while (JobState() == kJobStateRunning) {
         Run();
-        carryOn = MainThreadPostRun();
+        MainThreadPostRun();
         ++count;
         if (count > 10000) {
             throw MushcoreLogicFail("Overrun in processing job " + m_name);
@@ -107,6 +136,9 @@ void
 MediaJob::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
+    ioOut << "jobMagic=" << m_jobMagic << ", ";
+    ioOut << "jobId=" << m_jobId << ", ";
+    ioOut << "jobState=" << m_jobState << ", ";
     ioOut << "name=" << m_name << ", ";
     ioOut << "error=" << m_error << ", ";
     ioOut << "startTime=" << m_startTime << ", ";
@@ -121,6 +153,18 @@ MediaJob::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagS
         AutoInputPrologue(ioIn);
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
+    }
+    else if (inTagStr == "jobMagic")
+    {
+        ioIn >> m_jobMagic;
+    }
+    else if (inTagStr == "jobId")
+    {
+        ioIn >> m_jobId;
+    }
+    else if (inTagStr == "jobState")
+    {
+        ioIn >> m_jobState;
     }
     else if (inTagStr == "name")
     {
@@ -147,6 +191,12 @@ MediaJob::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagS
 void
 MediaJob::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
+    ioOut.TagSet("jobMagic");
+    ioOut << m_jobMagic;
+    ioOut.TagSet("jobId");
+    ioOut << m_jobId;
+    ioOut.TagSet("jobState");
+    ioOut << m_jobState;
     ioOut.TagSet("name");
     ioOut << m_name;
     ioOut.TagSet("error");
@@ -156,4 +206,4 @@ MediaJob::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("endTime");
     ioOut << m_endTime;
 }
-//%outOfLineFunctions } m7NOnMXaEhLYlz06in2AfA
+//%outOfLineFunctions } g/7FigBWF2jBMgzx+bcLxg

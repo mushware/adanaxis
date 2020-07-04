@@ -86,6 +86,8 @@
 #include "API/mushMushFile.h"
 #include "API/mushMushMesh.h"
 
+typedef Mushware::U64 MediaJobId;
+
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw

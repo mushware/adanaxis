@@ -30,6 +30,7 @@
 #include "MediaThreadPool.h"
 
 #include "MediaJob.h"
+#include "MediaLock.h"
 
 #include "MediaSDL.h"
 #include "MediaSTL.h"
@@ -39,7 +40,10 @@ using namespace std;
 
 MUSHCORE_SINGLETON_INSTANCE(MediaThreadPool);
 
-MediaThreadPool::MediaThreadPool()
+MediaThreadPool::MediaThreadPool() :
+    m_nextJobId(1),
+    m_pJobAvailSem(SDL_CreateSemaphore(0)),
+    m_pStateMutex(SDL_CreateMutex())
 {
     if (MushcoreSingleton<MediaThreadPool>::SingletonExists())
     {
@@ -49,9 +53,6 @@ MediaThreadPool::MediaThreadPool()
 
     MushcoreLog::Sgl().InfoLog() << "Creating " << m_numThreads << " worker threads" << std::endl;
     SDL_AtomicSet(&m_done, 0);
-    m_pJobAvailSem = SDL_CreateSemaphore(0);
-    m_pInputQueueMutex = SDL_CreateMutex();
-    m_pOutputQueueMutex = SDL_CreateMutex();
 
     for (U32 i = 0; i < m_numThreads; ++i) {
         std::ostringstream threadName;
@@ -71,86 +72,180 @@ MediaThreadPool::~MediaThreadPool()
     for (U32 i = 0; i < m_threads.size(); ++i) {
         SDL_WaitThread(m_threads[i], NULL);
     }
-#ifdef MUSHCORE_DEBUG
-    MushcoreLog::Sgl().InfoLog() << "Thread pool exited cleanly" << std::endl;
-#endif
 }
 
 
-void MediaThreadPool::InputQueueGive(std::auto_ptr<MediaJob> apJob)
+MediaJobId
+MediaThreadPool::JobIdTake()
+{
+    MediaLock lock(m_pStateMutex);
+    return m_nextJobId++;
+}
+
+
+void
+MediaThreadPool::WaitMapGive(std::auto_ptr<MediaJob> apJob)
+{
+    MediaJob *pJob = apJob.release();
+    return WaitMapGive(&pJob);
+}
+
+
+void
+MediaThreadPool::WaitMapGive(MediaJob **ppJob)
+{
+
+    MediaLock lock(m_pStateMutex);
+    m_jobMap[(*ppJob)->JobId()] = *ppJob;
+    (*ppJob)->JobStateSet(MediaJob::kJobStateWaiting);
+    *ppJob = NULL;
+}
+
+
+void
+MediaThreadPool::InputQueueGive(std::auto_ptr<MediaJob> apJob)
 {
     MediaJob *pJob = apJob.release();
     InputQueueGive(&pJob);
 }
 
 
-void MediaThreadPool::InputQueueGive(MediaJob **pJob)
+void
+MediaThreadPool::InputQueueGive(MediaJob **ppJob)
 {
-    SDL_LockMutex(m_pInputQueueMutex);
-    m_inputQueue.push_back(*pJob);
-    SDL_UnlockMutex(m_pInputQueueMutex);
+    MediaLock lock(m_pStateMutex);
+    m_inputQueue.push_back(*ppJob);
+    (*ppJob)->JobStateSet(MediaJob::kJobStateQueued);
     SDL_SemPost(m_pJobAvailSem);
-    *pJob = NULL;
+    *ppJob = NULL;
 }
 
 
-bool MediaThreadPool::InputQueueTake(MediaJob **pJob)
+bool
+MediaThreadPool::InputQueueTake(MediaJob **pJob)
 {
-    SDL_LockMutex(m_pInputQueueMutex);
+    MediaLock lock(m_pStateMutex);
     bool isNotEmpty = !m_inputQueue.empty();
     if (isNotEmpty) {
         *pJob = m_inputQueue.front();
         m_inputQueue.pop_front();
     }
-    SDL_UnlockMutex(m_pInputQueueMutex);
     return isNotEmpty;
 }
 
 
 void MediaThreadPool::OutputQueueGive(MediaJob **pJob)
 {
-    SDL_LockMutex(m_pOutputQueueMutex);
+    MediaLock lock(m_pStateMutex);
     m_outputQueue.push_back(*pJob);
-    SDL_UnlockMutex(m_pOutputQueueMutex);
     *pJob = NULL;
 }
 
 
 bool MediaThreadPool::OutputQueueTake(MediaJob **pJob)
 {
-    SDL_LockMutex(m_pOutputQueueMutex);
+    MediaLock lock(m_pStateMutex);
     bool isNotEmpty = !m_outputQueue.empty();
     if (isNotEmpty) {
         *pJob = m_outputQueue.front();
         m_outputQueue.pop_front();
     }
-    SDL_UnlockMutex(m_pOutputQueueMutex);
     return isNotEmpty;
 }
 
 
-// Call this somewhere in the main thread loop to handle job completions
+// JobDelete must run on the main thrread only
+void MediaThreadPool::JobDelete(MediaJobId jobId)
+{
+    MediaLock lock(m_pStateMutex);
+    auto jobIter = m_jobMap.find(jobId);
+    if (jobIter == m_jobMap.end()) {
+        ostringstream messageStream;
+        messageStream << "Cannot find job to delete (id=" << jobId << "), suggests double delete";
+        throw MushcoreLogicFail(messageStream.str());
+    }
+
+    if (jobIter->second->JobMagic() != MediaJob::kJobMagic) {
+        ostringstream messageStream;
+        messageStream << "Bad value for JobMagic (" << jobIter->second->JobMagic() << "m job ID " << jobId << "), suggests double delete";
+        throw MushcoreLogicFail(messageStream.str());
+    }
+    jobIter->second->JobMagicSet(jobId);
+    delete jobIter->second;
+    m_jobMap.erase(jobId);
+}
+
+
+// JobStart must run on the main thread only
+void MediaThreadPool::JobStart(MediaJobId jobId)
+{
+    MediaJob *pJob = NULL;
+    {
+        MediaLock lock(m_pStateMutex);
+        auto jobIter = m_jobMap.find(jobId);
+        if (jobIter == m_jobMap.end()) {
+            ostringstream messageStream;
+            messageStream << "Cannot find job to start (id=" << jobId << ")";
+            throw MushcoreLogicFail(messageStream.str());
+        }
+
+        pJob = jobIter->second;
+    }
+    InputQueueGive(&pJob); // FIXME: Avoid the double lock in a neater way
+}
+
+
+// Call this somewhere in the main thread loop to handle job completions and starts
 void MediaThreadPool::MainThreadPump()
 {
     MediaJob *pJob;
     while (OutputQueueTake(&pJob)) {
         if (pJob->Error() != "") {
             MushcoreLog::Sgl().ErrorLog() << "Job " << pJob->Name() << " failed: " << pJob->Error() << std::endl;
-            delete pJob;
-        } else {
+            pJob->JobStateSet(MediaJob::kJobStateErrored);
+        }
+        else {
             Mushware::tVal duration = static_cast<Mushware::tVal>(pJob->EndTime() - pJob->StartTime()) / SDL_GetPerformanceFrequency();
 
             std::ostringstream durationStream;
             durationStream << setprecision(3) << fixed << duration << " s";
             MushcoreLog::Sgl().InfoLog() << "Finished job " << pJob->Name() << " in " << durationStream.str() << std::endl;
-            bool reQueue = pJob->MainThreadPostRun();
-            if (reQueue) {
-                InputQueueGive(&pJob);
-            } else {
-
-                delete pJob;
+            pJob->MainThreadPostRun();
+            if (pJob->JobState() == MediaJob::kJobStateRunning) {
+                MushcoreLog::Sgl().ErrorLog() << "Job " << pJob->Name() << " failed to set state on exit, aborting" << std::endl;
+                pJob->JobStateSet(MediaJob::kJobStateAbort);
             }
         }
+    }
+
+    std::vector<MediaJobId> jobIdsToTestStartable;
+    std::vector<MediaJobId> jobIdsToDelete;
+    {
+        MediaLock lock(m_pStateMutex);
+        for (auto jobIter=m_jobMap.begin(); jobIter != m_jobMap.end(); ++jobIter) {
+            switch (jobIter->second->JobState()) {
+            case MediaJob::kJobStateWaiting:
+                jobIdsToTestStartable.push_back(jobIter->first);
+                break;
+
+            case MediaJob::kJobStateAbort:
+            case MediaJob::kJobStateDone:
+            case MediaJob::kJobStateErrored:
+                jobIdsToDelete.push_back(jobIter->first);
+                break;
+
+            default:
+                break;
+            }
+        }
+    }
+
+    for (auto jobIter=jobIdsToDelete.begin(); jobIter != jobIdsToDelete.end(); ++jobIter) {
+        JobDelete(*jobIter);
+    }
+
+    for (auto jobIter = jobIdsToTestStartable.begin(); jobIter != jobIdsToTestStartable.end(); ++jobIter) {
+        JobStart(*jobIter);
     }
 }
 

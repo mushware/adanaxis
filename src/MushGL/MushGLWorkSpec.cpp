@@ -123,9 +123,14 @@ MushGLWorkSpec::Execute(MushGLBuffers::tDataRef& ioDataRef, MushGLBuffers::tShar
             if (IsValidTexture(i))
             {
                 stateRef.ActiveTextureZeroBased(i);
-                Texture(i).Bind();
+                bool bound = Texture(i).Bind();
                 stateRef.TexCoordArraySetTrue(pTexCoordBuffers->TexCoordBufferWRef(i), i);
-                stateRef.TextureEnable2D(i);
+                if (bound) {
+                    stateRef.TextureEnable2D(i);
+                }
+                else {
+                    stateRef.TextureDisable2D(i);
+                }
             }
         }
     }

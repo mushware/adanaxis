@@ -140,6 +140,11 @@ MushSkinPixelSourceProc::LineGenerate(Mushware::U8 *inpTileData, Mushware::U32 i
 }
 
 void
+MushSkinPixelSourceProc::PrerequisitesCreate(MushGLTexture& outTexture)
+{
+}
+
+void
 MushSkinPixelSourceProc::ToTextureCreate(MushGLTexture& outTexture)
 {
     U32 pixelDataSize = 4 * Size().X()*Size().Y();
