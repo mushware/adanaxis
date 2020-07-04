@@ -31,12 +31,7 @@ Write-Host -ForegroundColor Blue @"
 * Beginning Adanaxis $Configuration build for version $Version.
 *
 *
-
-Environment is:
-
 "@
-
-Get-ChildItem env:* | Sort-Object -Property Name
 
 Write-Host "Path is:"
 Get-ChildItem env:PATH | ForEach-Object { $_.Value.Split(';') }
@@ -53,6 +48,7 @@ if ($PSScriptRoot) {
 $getdeps_job = Start-Job -Init ([ScriptBlock]::Create("Set-Location '$pwd'")) -File ./GetWindowsDeps.ps1
 
 $msbuild_root="C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\MSBuild\15.0\Bin"
+$signtool_root="C:\Program Files (x86)\Windows Kits\10\bin\10.0.18362.0\x86"
 $wix_root="C:\Program Files (x86)\WiX Toolset v3.11\bin"
 
 If (Test-Path $wix_root) {
@@ -71,7 +67,10 @@ If (Test-Path $wix_root) {
 Receive-Job -Job $getdeps_job -Wait
 Receive-Job -Job $wix_job -Wait
 
-$env:PATH = "$wix_root;$msbuild_root;$env:PATH"
+$env:PATH = "$msbuild_root;$wix_root;$signtool_root;$env:PATH"
+
+Write-Host "Path for build is:"
+Get-ChildItem env:PATH | ForEach-Object { $_.Value.Split(';') }
 
 $build_process = Start-Process -NoNewWindow -PassThru -Wait -FilePath "MSBuild.exe" -ArgumentList "adanaxis.sln", "-detailedSummary", "-maxCpuCount", "-nodeReuse:false", "-target:adanaxis",  "-property:Configuration=`"$Configuration`"", "-property:Version=`"$Version`""
 
