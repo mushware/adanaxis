@@ -15,7 +15,7 @@
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
  *
@@ -28,7 +28,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  ****************************************************************************/
-//%Header } F9aFn9P0UcuE1Xb1Z0Avzw
+//%Header } TZ2iQrHfZrtYCEer1E33cg
 /*
  * $Id: MushRubyExec.h,v 1.8 2007/04/18 09:23:02 southa Exp $
  * $Log: MushRubyExec.h,v $

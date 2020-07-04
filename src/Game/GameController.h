@@ -15,7 +15,7 @@
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
  *
@@ -28,7 +28,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  ****************************************************************************/
-//%Header } qrruy7TvASL7CymLEWnRnw
+//%Header } H10dq6S63ckzrjAfxN4Lzg
 /*
  * $Id: GameController.h,v 1.19 2006/07/08 16:05:56 southa Exp $
  * $Log: GameController.h,v $

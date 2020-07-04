@@ -15,7 +15,7 @@
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
  *
@@ -28,7 +28,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  ****************************************************************************/
-//%Header } rJkQZC8Ye/QrWhIoalluVA
+//%Header } y7ozfbu11er49YIIJhDjtA
 /*
  * $Id: MushFileDirectory.h,v 1.3 2006/12/16 10:57:22 southa Exp $
  * $Log: MushFileDirectory.h,v $

@@ -15,7 +15,7 @@
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
  *
@@ -28,7 +28,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  ****************************************************************************/
-//%Header } QEvhOSrH1x7+E0XYsp23FQ
+//%Header } AAL8vHp666fh2A9/8vgH2A
 /*
  * $Id: TesseractTrainerSTL.h,v 1.4 2006/06/22 19:07:37 southa Exp $
  * $Log: TesseractTrainerSTL.h,v $

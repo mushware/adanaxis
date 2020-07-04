@@ -11,7 +11,7 @@
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
  *
@@ -24,7 +24,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  ****************************************************************************/
-//%Header } /9KnYANy4mKRz1uwAfHnGQ
+//%Header } w8nw2M2dsIpSsNkzewQYAw
 /*
  * $Id: MustlWebServer.cpp,v 1.20 2006/06/01 15:39:55 southa Exp $
  * $Log: MustlWebServer.cpp,v $

@@ -11,7 +11,7 @@
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
  *
@@ -24,7 +24,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  ****************************************************************************/
-//%Header } Hnr/TO8BzU5aNv/7eBC+wg
+//%Header } KXEKkkMehoUc8EEyTIll9w
 /*
  * $Id: PlatformVideoUtils.cpp,v 1.25 2007/06/27 11:56:44 southa Exp $
  * $Log: PlatformVideoUtils.cpp,v $

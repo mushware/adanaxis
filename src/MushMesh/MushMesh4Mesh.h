@@ -15,7 +15,7 @@
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
  *
@@ -28,7 +28,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  ****************************************************************************/
-//%Header } AcDh4pMVZoBqy4ZdSluZPQ
+//%Header } 12KWjD0UwD+xv5HGxuj0ug
 /*
  * $Id: MushMesh4Mesh.h,v 1.25 2006/12/18 15:39:35 southa Exp $
  * $Log: MushMesh4Mesh.h,v $

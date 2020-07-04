@@ -11,7 +11,7 @@
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
  *
@@ -24,7 +24,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  ****************************************************************************/
-//%Header } AitWav2AW1G8Vid4laXzEA
+//%Header } H4v7NWHjot392qU1IXiS3w
 /*
  * $Id: GLRenderable.cpp,v 1.12 2006/06/01 15:38:52 southa Exp $
  * $Log: GLRenderable.cpp,v $

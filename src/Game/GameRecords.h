@@ -15,7 +15,7 @@
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
  *
@@ -28,7 +28,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  ****************************************************************************/
-//%Header } sUkhKBEEd83hCos21ltI8g
+//%Header } /aelfjHw3D0b+97Xkkv/Uw
 /*
  * $Id: GameRecords.h,v 1.20 2006/06/01 15:38:59 southa Exp $
  * $Log: GameRecords.h,v $

@@ -11,7 +11,7 @@
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
  *
@@ -24,7 +24,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  ****************************************************************************/
-//%Header } z5ZEX3nu0C0U6ANoU5TUvg
+//%Header } HeFxbk+j+Faa26gITbrcEg
 /*
  * $Id: GameConfigDef.cpp,v 1.24 2006/06/29 10:12:34 southa Exp $
  * $Log: GameConfigDef.cpp,v $

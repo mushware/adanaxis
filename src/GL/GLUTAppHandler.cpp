@@ -11,7 +11,7 @@
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
  *
@@ -24,7 +24,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  ****************************************************************************/
-//%Header } t2nVeZwoPATYd+kSj9l8Iw
+//%Header } gcnvQ1n30Lu9oo/Vd1987Q
 /*
  * $Id: GLUTAppHandler.cpp,v 1.28 2006/06/01 15:38:55 southa Exp $
  * $Log: GLUTAppHandler.cpp,v $

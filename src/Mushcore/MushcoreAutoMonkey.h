@@ -15,7 +15,7 @@
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
  *
@@ -28,7 +28,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  ****************************************************************************/
-//%Header } CsM6kufv8D2EJyJyn/38ig
+//%Header } 5rdQzMq+4bSTbqBx4waJ8g
 /*
  * $Id: MushcoreAutoMonkey.h,v 1.10 2006/10/16 14:36:51 southa Exp $
  * $Log: MushcoreAutoMonkey.h,v $

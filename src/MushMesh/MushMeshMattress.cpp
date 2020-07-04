@@ -11,7 +11,7 @@
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
  *
@@ -24,7 +24,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  ****************************************************************************/
-//%Header } M5lKYrAvWYet0852RVdZEA
+//%Header } aHdqZv10WTIq2l4ExMWzIw
 /*
  * $Id: MushMeshMattress.cpp,v 1.2 2006/06/01 15:39:30 southa Exp $
  * $Log: MushMeshMattress.cpp,v $
