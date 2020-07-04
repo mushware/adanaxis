@@ -15,7 +15,7 @@
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
  *
@@ -28,7 +28,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  ****************************************************************************/
-//%Header } gn1kOYIxOQfdfeZV4bfPDw
+//%Header } 4GZ9clRCuOxlXCHLzJ+hbA
 /*
  * $Id: MustlGameID.h,v 1.7 2006/06/01 20:13:01 southa Exp $
  * $Log: MustlGameID.h,v $

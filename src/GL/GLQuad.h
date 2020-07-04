@@ -15,7 +15,7 @@
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
  *
@@ -28,7 +28,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  ****************************************************************************/
-//%Header } LMaIAiXVbWquUZ5HI1KwVw
+//%Header } bMdVDH3pH5Jzev8jcxwjXQ
 /*
  * $Id: GLQuad.h,v 1.16 2006/06/01 15:38:52 southa Exp $
  * $Log: GLQuad.h,v $

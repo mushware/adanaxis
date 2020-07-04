@@ -15,7 +15,7 @@
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
  *
@@ -28,7 +28,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  ****************************************************************************/
-//%Header } BOwQHR4gKS3KTrrfEuZkRg
+//%Header } mXEJasZc1dtqtm5r68XatA
 /*
  * $Id: MediaSound.h,v 1.17 2007/04/18 09:22:27 southa Exp $
  * $Log: MediaSound.h,v $

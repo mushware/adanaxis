@@ -11,7 +11,7 @@
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
  *
@@ -24,7 +24,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  ****************************************************************************/
-//%Header } OeMEZtrT+yRCd5W31tIfhw
+//%Header } jQDg8bN+tXiuL2e6uTkJeQ
 /*
  * $Id: GameBase.cpp,v 1.9 2006/06/01 15:38:56 southa Exp $
  * $Log: GameBase.cpp,v $

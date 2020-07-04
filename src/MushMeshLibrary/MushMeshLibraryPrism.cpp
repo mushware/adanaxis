@@ -11,7 +11,7 @@
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
  *
@@ -24,7 +24,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  ****************************************************************************/
-//%Header } KxO0L8VZ2TtpF4kp6s1grg
+//%Header } k9mJByEqkU6kMWxVjhUP3Q
 /*
  * $Id: MushMeshLibraryPrism.cpp,v 1.3 2007/04/18 09:22:53 southa Exp $
  * $Log: MushMeshLibraryPrism.cpp,v $

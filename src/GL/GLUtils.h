@@ -15,7 +15,7 @@
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
  *
@@ -28,7 +28,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  ****************************************************************************/
-//%Header } QqhxxZnRmHl6lpsvWLF8rw
+//%Header } Q5PpCdJwPA/Eg1SwVQGKNg
 /*
  * $Id: GLUtils.h,v 1.47 2006/06/01 15:38:55 southa Exp $
  * $Log: GLUtils.h,v $

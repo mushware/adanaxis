@@ -1,3 +1,30 @@
+#%Header {
+##############################################################################
+#
+# File VisualStudio/adanaxis/build.ps1
+#
+# Copyright: Andy Southgate 2002-2007, 2020
+#
+# Permission is hereby granted, free of charge, to any person obtaining a
+# copy of this software and associated documentation files (the "Software"),
+# to deal in the Software without restriction, including without limitation
+# the rights to use, copy, modify, merge, publish, distribute, sublicense,
+# and/or sell copies of the Software, and to permit persons to whom the
+# Software is furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+# FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+# DEALINGS IN THE SOFTWARE.
+#
+##############################################################################
+#%Header } Qr5Vw09MMnMYlaXKb6VQrA
 
 Param(
     [Parameter(Mandatory)]$Configuration,
@@ -72,7 +99,7 @@ $env:PATH = "$msbuild_root;$wix_root;$signtool_root;$env:PATH"
 Write-Host "Path for build is:"
 Get-ChildItem env:PATH | ForEach-Object { $_.Value.Split(';') }
 
-$build_process = Start-Process -NoNewWindow -PassThru -Wait -FilePath "MSBuild.exe" -ArgumentList "adanaxis.sln", "-detailedSummary", "-maxCpuCount", "-nodeReuse:false", "-target:adanaxis",  "-property:Configuration=`"$Configuration`"", "-property:Version=`"$Version`""
+$build_process = Start-Process -NoNewWindow -PassThru -Wait -FilePath "cmd.exe" -ArgumentList "/CSTART", "/B", "/WAIT", "MSBuild.exe", "adanaxis.sln", "-maxCpuCount", "-nodeReuse:false", "-target:adanaxis", "-property:Configuration=`"$Configuration`"", "-property:Version=`"$Version`""
 
 if ($build_process.ExitCode -ne 0) {
     throw "Build failed ($($build_process.ExitCode))"   
@@ -82,7 +109,7 @@ Write-Host "Output of previous WiX install job:"
 Receive-Job -Job $wix_job -Wait
 
 $installer_log_filename = "install.log"
-$install_process = Start-Process -NoNewWindow -PassThru -Wait -FilePath "msiexec.exe" -ArgumentList "/lv*", $installer_log_filename, "/q", "/i", "msi\$Configuration\Adanaxis.msi"
+$install_process = Start-Process -NoNewWindow -PassThru -Wait -FilePath "cmd.exe" -ArgumentList  "/Cmsiexec.exe", "/lv*", $installer_log_filename, "/q", "/i", "msi\$Configuration\Adanaxis.msi"
 if ($install_process.ExitCode -ne 0) {
     Write-Host "Installation failed.  Log dump:"
     Get-Content $installer_log_filename | Write-Host

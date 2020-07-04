@@ -11,7 +11,7 @@
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
  *
@@ -24,7 +24,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  ****************************************************************************/
-//%Header } wk+1pbrcLVM7XU1bOubRMQ
+//%Header } Dhlb9aVgy7j2DL3/YVJNWw
 /*
  * $Id: MushGLVertexBuffer.cpp,v 1.4 2006/05/11 10:43:16 southa Exp $
  * $Log: MushGLVertexBuffer.cpp,v $

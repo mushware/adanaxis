@@ -15,7 +15,7 @@
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
  *
@@ -28,7 +28,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  ****************************************************************************/
-//%Header } JLK/iYHijwsAOUM6rnJ0Xg
+//%Header } /0/aMsWocssuxoRI2taq2w
 /*
  * $Id: AdanaxisEvents.h,v 1.4 2007/06/14 01:03:52 southa Exp $
  * $Log: AdanaxisEvents.h,v $

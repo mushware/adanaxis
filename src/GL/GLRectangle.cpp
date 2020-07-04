@@ -11,7 +11,7 @@
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
  *
@@ -24,7 +24,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  ****************************************************************************/
-//%Header } BpGT0XOwzry4tFxWHpmZ1w
+//%Header } qy/SIGSo2Djb2/+GyK/GYg
 /*
  * $Id: GLRectangle.cpp,v 1.23 2006/06/01 15:38:52 southa Exp $
  * $Log: GLRectangle.cpp,v $

@@ -15,7 +15,7 @@
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
  *
@@ -28,7 +28,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  ****************************************************************************/
-//%Header } mbFDRtsZlbukqnYifQ3aVA
+//%Header } YW+CAV/hqYt76s/nFXPh1Q
 /*
  * $Id: MediaKeyboard.h,v 1.5 2006/11/08 18:30:54 southa Exp $
  * $Log: MediaKeyboard.h,v $

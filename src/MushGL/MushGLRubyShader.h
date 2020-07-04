@@ -15,7 +15,7 @@
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
  *
@@ -28,7 +28,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  ****************************************************************************/
-//%Header } c6AqHmGwmkBkVIgvvE3q2Q
+//%Header } 3bgt6j0Fbg4/0lubu+kJ0Q
 /*
  * $Id: MushGLRubyShader.h,v 1.1 2006/09/07 10:02:37 southa Exp $
  * $Log: MushGLRubyShader.h,v $

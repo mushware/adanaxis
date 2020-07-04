@@ -15,7 +15,7 @@
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
  *
@@ -28,7 +28,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  ****************************************************************************/
-//%Header } HuNX080ihlgVQuvp1SQ6qg
+//%Header } ak8kIDJs8BoNF69uIKJ8Lw
 /*
  * $Id: MushSkinPixelSourceTileShow.h,v 1.3 2007/04/18 09:23:05 southa Exp $
  * $Log: MushSkinPixelSourceTileShow.h,v $

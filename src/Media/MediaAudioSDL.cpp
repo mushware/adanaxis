@@ -11,7 +11,7 @@
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
  *
@@ -24,7 +24,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  ****************************************************************************/
-//%Header } 7o9SlTETInIxLua4Si41tg
+//%Header } 855iXKDHzq/sqHagCGXUGw
 /*
  * $Id: MediaAudioSDL.cpp,v 1.39 2007/06/25 20:37:11 southa Exp $
  * $Log: MediaAudioSDL.cpp,v $

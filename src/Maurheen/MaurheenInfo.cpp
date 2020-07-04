@@ -11,7 +11,7 @@
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
  *
@@ -24,7 +24,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  ****************************************************************************/
-//%Header } 5ilAwK83YmTf0v7Yfeqx6Q
+//%Header } 8j3T3sUDvIK1Dgdb9A5J6Q
 /*
  * $Id: MaurheenInfo.cpp,v 1.3 2006/06/01 15:39:12 southa Exp $
  * $Log: MaurheenInfo.cpp,v $

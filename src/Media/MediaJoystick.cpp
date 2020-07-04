@@ -11,7 +11,7 @@
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
  *
@@ -24,7 +24,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  ****************************************************************************/
-//%Header } l2DTHaGHSxm6Q7V0ieJ2DA
+//%Header } QTCqGGve2ziFnEL2Ljyj9A
 /*
  * $Id: MediaJoystick.cpp,v 1.2 2006/07/21 10:52:06 southa Exp $
  * $Log: MediaJoystick.cpp,v $

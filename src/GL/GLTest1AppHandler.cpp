@@ -11,7 +11,7 @@
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
  *
@@ -24,7 +24,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  ****************************************************************************/
-//%Header } qMZA8vExaKaB2iHA4s2Alw
+//%Header } zS+zYXOd3yvhSZtzxfCNig
 /*
  * $Id: GLTest1AppHandler.cpp,v 1.36 2006/11/25 21:26:32 southa Exp $
  * $Log: GLTest1AppHandler.cpp,v $

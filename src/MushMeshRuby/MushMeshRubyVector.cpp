@@ -11,7 +11,7 @@
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
  *
@@ -24,7 +24,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  ****************************************************************************/
-//%Header } jwoEoetKAOzGd2j6d+p3Vw
+//%Header } cjJr/4cPiytBCA1jZN1gsw
 /*
  * $Id: MushMeshRubyVector.cpp,v 1.11 2006/11/01 10:07:13 southa Exp $
  * $Log: MushMeshRubyVector.cpp,v $

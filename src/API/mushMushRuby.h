@@ -15,7 +15,7 @@
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
  *
@@ -28,7 +28,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  ****************************************************************************/
-//%Header } 0x4znp81cYRapJGfbmZ1oQ
+//%Header } IZZdf55TZWR83pAHNGxEyg
 
 #if defined(HAVE_CONFIG_H)  && !defined(MUSHWARE_CONFIG_H)
 #define MUSHWARE_CONFIG_H 1

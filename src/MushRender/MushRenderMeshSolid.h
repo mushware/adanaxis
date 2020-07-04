@@ -15,7 +15,7 @@
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
  *
@@ -28,7 +28,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  ****************************************************************************/
-//%Header } rZ/T0mqUcOrFdIWA90CgzA
+//%Header } oYfXK8knUyLjdoU8lfuEnA
 /*
  * $Id: MushRenderMeshSolid.h,v 1.6 2006/09/09 11:16:42 southa Exp $
  * $Log: MushRenderMeshSolid.h,v $

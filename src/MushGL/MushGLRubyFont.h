@@ -15,7 +15,7 @@
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
  *
@@ -28,7 +28,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  ****************************************************************************/
-//%Header } e205I7b9O7NMonWulwQPhA
+//%Header } bb+a3UO2TaKnCNr7MgAq3w
 /*
  * $Id: MushGLRubyFont.h,v 1.3 2006/10/17 20:43:01 southa Exp $
  * $Log: MushGLRubyFont.h,v $

@@ -15,7 +15,7 @@
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
  *
@@ -28,7 +28,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  ****************************************************************************/
-//%Header } IYajhao48GFST5d2S7SHUA
+//%Header } lXEJ1avZJY9+z/jgGDifiA
 /*
  * $Id: GLAppSignal.h,v 1.19 2006/07/08 16:05:55 southa Exp $
  * $Log: GLAppSignal.h,v $

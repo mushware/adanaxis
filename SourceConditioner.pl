@@ -233,7 +233,7 @@ my @gCHeaders = (
 ' * the rights to use, copy, modify, merge, publish, distribute, sublicense,',
 ' * and/or sell copies of the Software, and to permit persons to whom the',
 ' * Software is furnished to do so, subject to the following conditions:',
-' * ',
+' *',
 ' * The above copyright notice and this permission notice shall be included in',
 ' * all copies or substantial portions of the Software.',
 ' *', 
@@ -283,7 +283,7 @@ my @gCHeaders = (
 '# the rights to use, copy, modify, merge, publish, distribute, sublicense,',
 '# and/or sell copies of the Software, and to permit persons to whom the',
 '# Software is furnished to do so, subject to the following conditions:',
-'# ',
+'#',
 '# The above copyright notice and this permission notice shall be included in',
 '# all copies or substantial portions of the Software.',
 '#', 
@@ -310,7 +310,7 @@ my @gCHeaders = (
 '# the rights to use, copy, modify, merge, publish, distribute, sublicense,',
 '# and/or sell copies of the Software, and to permit persons to whom the',
 '# Software is furnished to do so, subject to the following conditions:',
-'# ',
+'#',
 '# The above copyright notice and this permission notice shall be included in',
 '# all copies or substantial portions of the Software.',
 '#', 
@@ -324,7 +324,7 @@ my @gCHeaders = (
 '#',
 '##############################################################################'
 ],
-'(.*\.rb|.*\.txt)$' =>
+'(.*\.ps1|.*\.rb|.*\.txt)$' =>
 [
 '##############################################################################',
 '#',
@@ -338,7 +338,7 @@ my @gCHeaders = (
 '# the rights to use, copy, modify, merge, publish, distribute, sublicense,',
 '# and/or sell copies of the Software, and to permit persons to whom the',
 '# Software is furnished to do so, subject to the following conditions:',
-'# ',
+'#',
 '# The above copyright notice and this permission notice shall be included in',
 '# all copies or substantial portions of the Software.',
 '#', 
@@ -365,7 +365,7 @@ my @gCHeaders = (
 ' * the rights to use, copy, modify, merge, publish, distribute, sublicense,',
 ' * and/or sell copies of the Software, and to permit persons to whom the',
 ' * Software is furnished to do so, subject to the following conditions:',
-' * ',
+' *',
 ' * The above copyright notice and this permission notice shall be included in',
 ' * all copies or substantial portions of the Software.',
 ' *', 
@@ -393,7 +393,7 @@ my @gCHeaders = (
 ' * the rights to use, copy, modify, merge, publish, distribute, sublicense,',
 ' * and/or sell copies of the Software, and to permit persons to whom the',
 ' * Software is furnished to do so, subject to the following conditions:',
-' * ',
+' *',
 ' * The above copyright notice and this permission notice shall be included in',
 ' * all copies or substantial portions of the Software.',
 ' *', 
@@ -416,6 +416,7 @@ SourceProcess::AddArrayProcessor('\.h$', \&OldBlocksStrip);
 SourceProcess::AddArrayProcessor('\.h$', \&ProcessFileHeader);
 SourceProcess::AddArrayProcessor('\.cpp$', \&ProcessFileHeader);
 SourceProcess::AddArrayProcessor('\.c$', \&ProcessFileHeader);
+SourceProcess::AddArrayProcessor('\.ps1$', \&ProcessFileHeader);
 SourceProcess::AddArrayProcessor('\.txt$', \&ProcessFileHeader);
 SourceProcess::AddArrayProcessor('\.h$', \&ProcessHeader);
 SourceProcess::AddArrayProcessor('\.cpp$', \&ProcessCPP);
@@ -430,6 +431,7 @@ SourceProcess::AddFileProcessor('\.rb$', \&ProcessProcessDirective);
 
 SourceProcess::Process('src');
 SourceProcess::Process('adanaxis-data');
+SourceProcess::Process('VisualStudio');
 
 foreach my $dataDir ('data-adanaxis')
 {
@@ -1364,7 +1366,7 @@ sub HeaderGenerate($$$)
                 $line =~ s/\@FILENAME\@/$userFilename/;
                 push @headerStore, $line;
             }
-            if ($filename =~ /\.(rb|txt)$/)
+            if ($filename =~ /\.(ps1|rb|txt)$/)
             {
                 SourceProcess::CommentStartSet('#');
             }

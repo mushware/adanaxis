@@ -11,7 +11,7 @@
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
  *
@@ -24,7 +24,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  ****************************************************************************/
-//%Header } C24CmyRtcPbPuznBuhK1oQ
+//%Header } l07pt0xnMQMYR55urMoeOQ
 /*
  * $Id: GameGraphicModel.cpp,v 1.21 2006/06/01 15:38:58 southa Exp $
  * $Log: GameGraphicModel.cpp,v $
