@@ -56,6 +56,7 @@ protected:
     void JobStart(MediaJobId jobId);
     bool InputQueueTake(MediaJob **pJob);
     void OutputQueueGive(MediaJob **pJob);
+    void HandleStateChange();
 
 private:
     MediaJobId m_nextJobId;

@@ -54,7 +54,7 @@ MediaJob::~MediaJob()
 
 
 MediaJob::tJobState
-MediaJob::JobState(void) const
+MediaJob::JobState() const
 {
     MediaLock lock(m_pStateMutex);
     return static_cast<tJobState>(m_jobState);
@@ -68,6 +68,32 @@ MediaJob::JobStateSet(tJobState inValue)
     m_jobState = inValue;
 }
 
+
+const std::vector<MediaJobId>
+MediaJob::JobIdsToWaitFor() const
+{
+    // Return a copy, and make it const to discourage callers from adding to it
+    // which would have no effect
+    MediaLock lock(m_pStateMutex);
+    return m_JobIdsToWaitFor;
+}
+
+
+void
+MediaJob::JobIdToWaitForAdd(MediaJobId jobId)
+{
+    MediaLock lock(m_pStateMutex);
+    m_JobIdsToWaitFor.push_back(jobId);
+}
+
+
+bool
+MediaJob::JobCanStart() const
+{
+    // Additonal check a to whether the job can start.  MediaThreadPool will
+    // apply the JobIdsToWaitFor constraint in addition to this
+    return true;
+}
 
 void MediaJob::MainThreadPreRun()
 {
@@ -138,6 +164,7 @@ MediaJob::AutoPrint(std::ostream& ioOut) const
     ioOut << "[";
     ioOut << "jobMagic=" << m_jobMagic << ", ";
     ioOut << "jobId=" << m_jobId << ", ";
+    ioOut << "JobIdsToWaitFor=" << m_JobIdsToWaitFor << ", ";
     ioOut << "jobState=" << m_jobState << ", ";
     ioOut << "name=" << m_name << ", ";
     ioOut << "error=" << m_error << ", ";
@@ -161,6 +188,10 @@ MediaJob::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagS
     else if (inTagStr == "jobId")
     {
         ioIn >> m_jobId;
+    }
+    else if (inTagStr == "JobIdsToWaitFor")
+    {
+        ioIn >> m_JobIdsToWaitFor;
     }
     else if (inTagStr == "jobState")
     {
@@ -195,6 +226,8 @@ MediaJob::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_jobMagic;
     ioOut.TagSet("jobId");
     ioOut << m_jobId;
+    ioOut.TagSet("JobIdsToWaitFor");
+    ioOut << m_JobIdsToWaitFor;
     ioOut.TagSet("jobState");
     ioOut << m_jobState;
     ioOut.TagSet("name");
@@ -206,4 +239,4 @@ MediaJob::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("endTime");
     ioOut << m_endTime;
 }
-//%outOfLineFunctions } g/7FigBWF2jBMgzx+bcLxg
+//%outOfLineFunctions } +NdbBR9jtp3doAbuHEQ5sA

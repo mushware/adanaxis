@@ -66,6 +66,7 @@ MediaThreadPool::~MediaThreadPool()
 {
     SDL_AtomicSet(&m_done, 1);
     for (U32 i = 0; i < m_threads.size(); ++i) {
+        // Wake all threads so they can handle the change in m_done and exit
         SDL_SemPost(m_pJobAvailSem);
     }
 
@@ -78,6 +79,7 @@ MediaThreadPool::~MediaThreadPool()
 MediaJobId
 MediaThreadPool::JobIdTake()
 {
+    // This is called by the MediaJobs themselves to take the next ID
     MediaLock lock(m_pStateMutex);
     return m_nextJobId++;
 }
@@ -94,6 +96,9 @@ MediaThreadPool::WaitMapGive(std::auto_ptr<MediaJob> apJob)
 void
 MediaThreadPool::WaitMapGive(MediaJob **ppJob)
 {
+    // This is the usual interface for clients quqing jobs.  Jobs go into the
+    // wait map so the ticker can check whether any of their dependent jobs
+    // still need to complete, before queueing up the new job.
 
     MediaLock lock(m_pStateMutex);
     m_jobMap[(*ppJob)->JobId()] = *ppJob;
@@ -113,6 +118,10 @@ MediaThreadPool::InputQueueGive(std::auto_ptr<MediaJob> apJob)
 void
 MediaThreadPool::InputQueueGive(MediaJob **ppJob)
 {
+    // This will queue a job without checking jobs it depends on, and will
+    // start the job without waiting for the next tick if a thread is
+    // available.
+
     MediaLock lock(m_pStateMutex);
     m_inputQueue.push_back(*ppJob);
     (*ppJob)->JobStateSet(MediaJob::kJobStateQueued);
@@ -124,6 +133,9 @@ MediaThreadPool::InputQueueGive(MediaJob **ppJob)
 bool
 MediaThreadPool::InputQueueTake(MediaJob **pJob)
 {
+    // Internal method to take jobs off the input queue when they're being
+    // given to a thread.
+
     MediaLock lock(m_pStateMutex);
     bool isNotEmpty = !m_inputQueue.empty();
     if (isNotEmpty) {
@@ -136,6 +148,10 @@ MediaThreadPool::InputQueueTake(MediaJob **pJob)
 
 void MediaThreadPool::OutputQueueGive(MediaJob **pJob)
 {
+    // Called by a worker thread and for internal use, puts a job onto the
+    // output queue.  The ticker will pick it up on the main thread and take
+    // the next steps.
+
     MediaLock lock(m_pStateMutex);
     m_outputQueue.push_back(*pJob);
     *pJob = NULL;
@@ -144,6 +160,8 @@ void MediaThreadPool::OutputQueueGive(MediaJob **pJob)
 
 bool MediaThreadPool::OutputQueueTake(MediaJob **pJob)
 {
+    // Called by the ticker on the main thread to take a job off the output queue.
+
     MediaLock lock(m_pStateMutex);
     bool isNotEmpty = !m_outputQueue.empty();
     if (isNotEmpty) {
@@ -157,6 +175,8 @@ bool MediaThreadPool::OutputQueueTake(MediaJob **pJob)
 // JobDelete must run on the main thrread only
 void MediaThreadPool::JobDelete(MediaJobId jobId)
 {
+    // Deletes a job from our records, with a few checks to confirm it's still OK.
+
     MediaLock lock(m_pStateMutex);
     auto jobIter = m_jobMap.find(jobId);
     if (jobIter == m_jobMap.end()) {
@@ -179,6 +199,7 @@ void MediaThreadPool::JobDelete(MediaJobId jobId)
 // JobStart must run on the main thread only
 void MediaThreadPool::JobStart(MediaJobId jobId)
 {
+    // Used internally, and starts a job from the wait map
     MediaJob *pJob = NULL;
     {
         MediaLock lock(m_pStateMutex);
@@ -191,15 +212,24 @@ void MediaThreadPool::JobStart(MediaJobId jobId)
 
         pJob = jobIter->second;
     }
-    InputQueueGive(&pJob); // FIXME: Avoid the double lock in a neater way
+
+    // m_pStateMutex is released here because InputQueueGive needs to take it
+    InputQueueGive(&pJob);
 }
 
 
 // Call this somewhere in the main thread loop to handle job completions and starts
 void MediaThreadPool::MainThreadPump()
 {
+    // Handle stuff we need to do on the main thread
+
     MediaJob *pJob;
+
+
+    bool stateHasChanged = false;
+    // Handle job completions first
     while (OutputQueueTake(&pJob)) {
+        stateHasChanged = true;
         if (pJob->Error() != "") {
             MushcoreLog::Sgl().ErrorLog() << "Job " << pJob->Name() << " failed: " << pJob->Error() << std::endl;
             pJob->JobStateSet(MediaJob::kJobStateErrored);
@@ -218,14 +248,30 @@ void MediaThreadPool::MainThreadPump()
         }
     }
 
-    std::vector<MediaJobId> jobIdsToTestStartable;
+    if (stateHasChanged) {
+        HandleStateChange();
+    }
+}
+
+
+void
+MediaThreadPool::HandleStateChange()
+{
+
+    // Only this method can delete jobs, so any pointers (jobIter is a pointer)
+    // we take are safe and will persist unless we delete the jobs they're pointing to
+
+    // Check whether those job completions allow any other jobs to start
+    std::vector<std::map<MediaJobId, MediaJob *>::iterator> jobsToTestStartable;
     std::vector<MediaJobId> jobIdsToDelete;
     {
         MediaLock lock(m_pStateMutex);
-        for (auto jobIter=m_jobMap.begin(); jobIter != m_jobMap.end(); ++jobIter) {
+
+        // We're holding the mutex so don't do anything complex in here
+        for (auto jobIter = m_jobMap.begin(); jobIter != m_jobMap.end(); ++jobIter) {
             switch (jobIter->second->JobState()) {
             case MediaJob::kJobStateWaiting:
-                jobIdsToTestStartable.push_back(jobIter->first);
+                jobsToTestStartable.push_back(jobIter);
                 break;
 
             case MediaJob::kJobStateAbort:
@@ -240,30 +286,72 @@ void MediaThreadPool::MainThreadPump()
         }
     }
 
-    for (auto jobIter=jobIdsToDelete.begin(); jobIter != jobIdsToDelete.end(); ++jobIter) {
+    for (auto jobIter = jobIdsToDelete.begin(); jobIter != jobIdsToDelete.end(); ++jobIter) {
+        // Delete first so that jobs waiting for other jobs can start.  Logic above needs
+        // to ensure that jobs are not on both lists
         JobDelete(*jobIter);
     }
 
-    for (auto jobIter = jobIdsToTestStartable.begin(); jobIter != jobIdsToTestStartable.end(); ++jobIter) {
-        JobStart(*jobIter);
+    for (auto jobIter = jobsToTestStartable.begin(); jobIter != jobsToTestStartable.end(); ++jobIter) {
+
+        bool canStart = true;
+        const std::vector<MediaJobId> jobIdsToWaitFor = (*jobIter)->second->JobIdsToWaitFor();
+
+        {
+            MediaLock lock(m_pStateMutex);
+            for (U32 i = 0; i < jobIdsToWaitFor.size() && canStart; ++i) {
+                auto jobIter = m_jobMap.find(jobIdsToWaitFor[i]);
+                if (jobIter != m_jobMap.end()) {
+                    switch (jobIter->second->JobState()) {
+
+                    case MediaJob::kJobStateDone:
+                        // Done is fine so carry on
+                        break;
+
+                    case MediaJob::kJobStateAbort:
+                    case MediaJob::kJobStateErrored:
+                        MushcoreLog::Sgl().ErrorLog() << "Abandoning job " << jobIter->second->Name() << " because dependency job failed (" << jobIter->second->JobState() << ")" << std::endl;
+                        jobIter->second->JobStateSet(MediaJob::kJobStateAbort);
+                        break;
+
+                    default:
+                        canStart = false;
+                    }
+                }
+            }
+        }
+
+        if (canStart && (*jobIter)->second->JobCanStart()) {
+            if (jobIdsToWaitFor.size() > 0) {
+                MushcoreLog::Sgl().InfoLog() << "Job " << (*jobIter)->second->Name() << " now starting because dependency jobs are complete" << std::endl;
+            }
+            JobStart((*jobIter)->first);
+        }
     }
 }
 
 
 int MediaThreadPool::ThreadHandler(void *data) {
+    // Code running on the worker threads.  It calls the job's Run method
+    // to do the actual work of the thread
+
     MediaThreadPool* pObj = reinterpret_cast<MediaThreadPool*>(data);
 
     for (;;) {
+        // This semaphore is how jobs wake up when a job is available on the input queue.
+        // Otherwise they just block here.
         int retVal = SDL_SemWait(pObj->m_pJobAvailSem);
         if (retVal != 0) {
             MushcoreLog::Sgl().ErrorLog() << "Wait for semaphore failed, thread must exit" << std::endl;
             return 0;
         }
         if (SDL_AtomicGet(&pObj->m_done)) {
+            // m_done means the application is quitting so threads should exit
             return 0;
         }
         MediaJob *pJob;
         if (pObj->InputQueueTake(&pJob)) {
+            // Now we own the job
             pJob->StartTimeSet(SDL_GetPerformanceCounter());
 
 #ifdef MUSHCORE_DEBUG
@@ -274,8 +362,11 @@ int MediaThreadPool::ThreadHandler(void *data) {
                 pJob->EndTimeSet(SDL_GetPerformanceCounter());
             }
             catch (std::exception& e) {
+                // We communicate failures back to the main thread by setting the Error value
+                // in the job itself.  The main thread will check it and take action
                 pJob->ErrorSet(e.what());
             }
+            // Relinquish the job.  It'll be picked up on the main thread
             pObj->OutputQueueGive(&pJob);
         }
     }

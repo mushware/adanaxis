@@ -62,6 +62,9 @@ public:
 
     tJobState JobState() const;
     void JobStateSet(tJobState inValue);
+    virtual const std::vector<MediaJobId> JobIdsToWaitFor() const;
+    virtual void JobIdToWaitForAdd(MediaJobId jobId);
+    virtual bool JobCanStart() const;
 
     virtual void Run();
     virtual void MainThreadPreRun();
@@ -71,9 +74,13 @@ public:
 
 private:
     MediaJobId m_jobMagic; //:readwrite
-    mutable SDL_mutex *m_pStateMutex; //:ignore
     MediaJobId m_jobId; //:read
-    Mushware::U32 m_jobState; 
+
+    // Mutex covers the two elements below
+    mutable SDL_mutex *m_pStateMutex; //:ignore
+    std::vector<MediaJobId> m_JobIdsToWaitFor;
+    Mushware::U32 m_jobState;
+
     std::string m_name; //:readwrite
     std::string m_error; //:readwrite
     Mushware::U64 m_startTime; //:readwrite
