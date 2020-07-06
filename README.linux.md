@@ -24,6 +24,9 @@ ArchLinux 2020.06.01 below:
     cp -R adanaxis-data/* adanaxis
     cp -R adanaxis-data adanaxis/data-adanaxis
     git clone https://github.com/mushware/adanaxis-mushruby
+    cd adanaxis-mushruby
+    git checkout IMPORTED_FROM_CVS
+    cd ..
     cp -R adanaxis-mushruby adanaxis/mushruby
     cp -R adanaxis-mushruby adanaxis/data-adanaxis/mushruby
     cd adanaxis
