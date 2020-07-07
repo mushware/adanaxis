@@ -121,9 +121,9 @@ MushcoreInstaller MushGLTextureInstaller(MushGLTexture::Install);
 
 Mushware::tSize MushGLTexture::m_byteCount = 0;
 
-void
+const std::vector<MediaJobId>
 MushGLTexture::Make(void)
-{	
+{
 	// This cache load should still happen if m_made is true
 	if (m_cacheable && MushGLCacheControl::Sgl().PermitCache())
 	{
@@ -158,15 +158,18 @@ MushGLTexture::Make(void)
         m_resident = pSrc->Resident();
 
         std::ostringstream jobName;
-        jobName << "Make texture " << m_name;
+        jobName << "maketexture-" << m_name;
         std::auto_ptr<MediaJob> pMakeJob(new MushGLMakeJob(jobName.str(), pSrc, this));
 
-        if (true) { // FIXME: Thread pool unctionality still needs fixing
+        if (false) {
+            // Non-threaded version, now disabled
             pMakeJob->RunToCompletionNow();
         } else {
-            MediaThreadPool::Sgl().InputQueueGive(pMakeJob);
+            m_dependencyJobIds.push_back(pMakeJob->JobId());
+            MediaThreadPool::Sgl().WaitMapGive(pMakeJob);
         }
 	}
+    return m_dependencyJobIds;
 }
 
 
@@ -603,7 +606,8 @@ MushGLTexture::AutoPrint(std::ostream& ioOut) const
     ioOut << "ready=" << m_ready << ", ";
     ioOut << "finished=" << m_finished << ", ";
     ioOut << "saveable=" << m_saveable << ", ";
-    ioOut << "resident=" << m_resident;
+    ioOut << "resident=" << m_resident << ", ";
+    ioOut << "dependencyJobIds=" << m_dependencyJobIds;
     ioOut << "]";
 }
 bool
@@ -687,6 +691,10 @@ MushGLTexture::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& i
     {
         ioIn >> m_resident;
     }
+    else if (inTagStr == "dependencyJobIds")
+    {
+        ioIn >> m_dependencyJobIds;
+    }
     else 
     {
         return false;
@@ -732,6 +740,8 @@ MushGLTexture::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_saveable;
     ioOut.TagSet("resident");
     ioOut << m_resident;
+    ioOut.TagSet("dependencyJobIds");
+    ioOut << m_dependencyJobIds;
 }
-//%outOfLineFunctions } u2eVwGxPmIdRDLVuvu7rlw
+//%outOfLineFunctions } ekB0aa9r+ZoB0L8qTUfuKw
 

@@ -43,7 +43,8 @@ MUSHCORE_SINGLETON_INSTANCE(MediaThreadPool);
 MediaThreadPool::MediaThreadPool() :
     m_nextJobId(1),
     m_pJobAvailSem(SDL_CreateSemaphore(0)),
-    m_pStateMutex(SDL_CreateMutex())
+    m_pStateMutex(SDL_CreateMutex()),
+    m_stateHasChanged(true)
 {
     if (MushcoreSingleton<MediaThreadPool>::SingletonExists())
     {
@@ -96,14 +97,18 @@ MediaThreadPool::WaitMapGive(std::auto_ptr<MediaJob> apJob)
 void
 MediaThreadPool::WaitMapGive(MediaJob **ppJob)
 {
-    // This is the usual interface for clients quqing jobs.  Jobs go into the
+    // This is the usual interface for clients queueing jobs.  Jobs go into the
     // wait map so the ticker can check whether any of their dependent jobs
     // still need to complete, before queueing up the new job.
+
+    // Call PrerequisitesCreate first as it can add dependency jobs
+    (*ppJob)->PrerequisitesCreate();
 
     MediaLock lock(m_pStateMutex);
     m_jobMap[(*ppJob)->JobId()] = *ppJob;
     (*ppJob)->JobStateSet(MediaJob::kJobStateWaiting);
     *ppJob = NULL;
+    m_stateHasChanged = true;
 }
 
 
@@ -213,6 +218,7 @@ void MediaThreadPool::JobStart(MediaJobId jobId)
         pJob = jobIter->second;
     }
 
+    pJob->MainThreadPreRun();
     // m_pStateMutex is released here because InputQueueGive needs to take it
     InputQueueGive(&pJob);
 }
@@ -225,8 +231,7 @@ void MediaThreadPool::MainThreadPump()
 
     MediaJob *pJob;
 
-
-    bool stateHasChanged = false;
+    bool stateHasChanged = true;
     // Handle job completions first
     while (OutputQueueTake(&pJob)) {
         stateHasChanged = true;
@@ -248,6 +253,11 @@ void MediaThreadPool::MainThreadPump()
         }
     }
 
+    {
+        MediaLock lock(m_pStateMutex);
+        stateHasChanged = stateHasChanged || m_stateHasChanged;
+        m_stateHasChanged = false;
+    }
     if (stateHasChanged) {
         HandleStateChange();
     }
@@ -257,7 +267,6 @@ void MediaThreadPool::MainThreadPump()
 void
 MediaThreadPool::HandleStateChange()
 {
-
     // Only this method can delete jobs, so any pointers (jobIter is a pointer)
     // we take are safe and will persist unless we delete the jobs they're pointing to
 
@@ -323,7 +332,7 @@ MediaThreadPool::HandleStateChange()
 
         if (canStart && (*jobIter)->second->JobCanStart()) {
             if (jobIdsToWaitFor.size() > 0) {
-                MushcoreLog::Sgl().InfoLog() << "Job " << (*jobIter)->second->Name() << " now starting because dependency jobs are complete" << std::endl;
+                MushcoreLog::Sgl().InfoLog() << "Job " << (*jobIter)->second->Name() << " now released because dependency jobs are complete" << std::endl;
             }
             JobStart((*jobIter)->first);
         }

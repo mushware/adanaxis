@@ -53,22 +53,36 @@ MushGLMakeJob::~MushGLMakeJob()
 }
 
 
+void
+MushGLMakeJob::PrerequisitesCreate()
+{
+    if (m_pTexture == NULL) {
+        throw MushcoreRequestFail("MushGLMakeJob has no texture to make");
+    }
+    if (m_pPixelSource == NULL) {
+        throw MushcoreRequestFail("MushGLMakeJob has no pixel source");
+    }
+    std::vector<MediaJobId> jobIds = m_pPixelSource->PrerequisitesCreate(*m_pTexture);
+    
+    JobIdToWaitForAdd(jobIds);
+}
+
 void MushGLMakeJob::Run()
 {
-    if (m_pTexture != NULL) {
 
-        m_pPixelSource->DataCreate();
+    m_pPixelSource->DataCreate();
 
-        m_pPixelSource->ToTextureCreate(*m_pTexture);
+    m_pPixelSource->ToTextureCreate(*m_pTexture);
 
-        // Built this texture the hard way, so save to cache
-        if (m_pTexture->Cacheable() && MushGLCacheControl::Sgl().PermitCache())
-        {
-           m_pTexture->ToCacheSave(*m_pPixelSource);
-        }
+    // Built this texture the hard way, so save to cache
+    if (m_pTexture->Cacheable() && MushGLCacheControl::Sgl().PermitCache())
+    {
+        m_pTexture->ToCacheSave(*m_pPixelSource);
     }
+
     JobStateSet(kJobStatePostRun);
 }
+
 
 
 void MushGLMakeJob::MainThreadPostRun()

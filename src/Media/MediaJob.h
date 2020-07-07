@@ -64,8 +64,10 @@ public:
     void JobStateSet(tJobState inValue);
     virtual const std::vector<MediaJobId> JobIdsToWaitFor() const;
     virtual void JobIdToWaitForAdd(MediaJobId jobId);
+    virtual void JobIdToWaitForAdd(std::vector<MediaJobId>& jobIds);
     virtual bool JobCanStart() const;
 
+    virtual void PrerequisitesCreate();
     virtual void Run();
     virtual void MainThreadPreRun();
     virtual void MainThreadPostRun();

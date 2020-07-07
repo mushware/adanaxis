@@ -44,6 +44,7 @@ public:
     MushGLMakeJob(std::string& name, MushGLPixelSource *pPixelSource, MushGLTexture *pTexture);
     virtual ~MushGLMakeJob();
 
+    virtual void PrerequisitesCreate();
     virtual void Run();
     virtual void MainThreadPostRun();
 

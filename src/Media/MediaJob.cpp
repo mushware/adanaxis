@@ -34,16 +34,17 @@
 
 MediaJob::MediaJob() :
     m_jobMagic(kJobMagic),
-    m_pStateMutex(SDL_CreateMutex()),
     m_jobId(MediaThreadPool::Sgl().JobIdTake()),
+    m_pStateMutex(SDL_CreateMutex()),
     m_jobState(kJobStateNew)
 {
 }
 
 
 MediaJob::MediaJob(std::string& name) :
-    m_pStateMutex(SDL_CreateMutex()),
+    m_jobMagic(kJobMagic),
     m_jobId(MediaThreadPool::Sgl().JobIdTake()),
+    m_pStateMutex(SDL_CreateMutex()),
     m_jobState(kJobStateNew),
     m_name(name)
 {}
@@ -87,6 +88,14 @@ MediaJob::JobIdToWaitForAdd(MediaJobId jobId)
 }
 
 
+void
+MediaJob::JobIdToWaitForAdd(std::vector<MediaJobId>& jobIds)
+{
+    MediaLock lock(m_pStateMutex);
+    m_JobIdsToWaitFor.insert(m_JobIdsToWaitFor.end(), jobIds.begin(), jobIds.end());
+}
+
+
 bool
 MediaJob::JobCanStart() const
 {
@@ -95,19 +104,29 @@ MediaJob::JobCanStart() const
     return true;
 }
 
-void MediaJob::MainThreadPreRun()
+
+void
+MediaJob::PrerequisitesCreate()
 {
 }
 
 
-void MediaJob::Run()
+void
+MediaJob::MainThreadPreRun()
+{
+}
+
+
+void
+MediaJob::Run()
 {
     MushcoreLog::Sgl().ErrorLog() << "Run method for job " << m_name << " not overriden" << std::endl;
     JobStateSet(kJobStateAbort);
 }
 
 
-void MediaJob::MainThreadPostRun()
+void
+MediaJob::MainThreadPostRun()
 {
 }
 

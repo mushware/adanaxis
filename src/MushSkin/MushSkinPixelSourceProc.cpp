@@ -139,9 +139,20 @@ MushSkinPixelSourceProc::LineGenerate(Mushware::U8 *inpTileData, Mushware::U32 i
     MUSHCOREASSERT(pTileData <= inpTileData + 4*inNumPixels);
 }
 
-void
+std::vector<MediaJobId>
 MushSkinPixelSourceProc::PrerequisitesCreate(MushGLTexture& outTexture)
 {
+    std::vector<MediaJobId> dependencyJobIds;
+
+    if (m_paletteName != "")
+    {
+        if (!MushcoreData<MushGLTexture>::Sgl().GetIfExists(m_pPaletteTexture, m_paletteName))
+        {
+            throw MushcoreDataFail("Non-existent palette '" + m_paletteName + "'");
+        }
+        dependencyJobIds = m_pPaletteTexture->Make();
+    }
+    return dependencyJobIds;
 }
 
 void
@@ -237,7 +248,9 @@ MushSkinPixelSourceProc::PaletteResolve(void) const
 		{
 			throw MushcoreDataFail("Non-existent palette '"+m_paletteName+"'");
 		}
-		m_pPaletteTexture->Make();
+        if (!m_pPaletteTexture->Ready()) {
+            throw MushcoreDataFail("Texture palette '" + m_paletteName + "' not ready");
+        }
 	}
 }
 

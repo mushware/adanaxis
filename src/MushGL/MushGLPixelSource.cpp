@@ -133,10 +133,11 @@ MushGLPixelSource::BufferFill(Mushware::U32 * const outPtr, const Mushware::t2U3
     throw MushcoreRequestFail("Cannot fill buffer from this pixel source");
 }
 
-void
+std::vector<MediaJobId>
 MushGLPixelSource::PrerequisitesCreate(MushGLTexture& outTexture)
 {
     // No operation
+    return std::vector<MediaJobId>();
 }
 
 void

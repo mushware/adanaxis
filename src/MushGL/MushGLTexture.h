@@ -103,7 +103,7 @@ public:
         m_resident(false)
     {}
 
-    void Make(void);
+    const std::vector<MediaJobId> Make(void);
     bool Bind(void);
     void Purge(void);
     
@@ -126,6 +126,7 @@ public:
 	static Mushware::tRubyValue RubyDefine(Mushware::tRubyArgC inArgC, Mushware::tRubyValue *inpArgV, Mushware::tRubyValue inSelf);
 	static Mushware::tRubyValue RubyPrecache(Mushware::tRubyArgC inArgC, Mushware::tRubyValue *inpArgV, Mushware::tRubyValue inSelf);
 		
+
 private:
     enum 
     {
@@ -161,7 +162,9 @@ private:
     bool m_finished; //:readwrite
     bool m_saveable; //:readwrite
     bool m_resident; //:readwrite
-    
+
+    std::vector<MediaJobId> m_dependencyJobIds; //:readwrite
+
     static Mushware::tSize m_byteCount;
     
 //%classPrototypes {
@@ -184,6 +187,8 @@ public:
     void SaveableSet(const bool& inValue) { m_saveable=inValue; }
     const bool& Resident(void) const { return m_resident; }
     void ResidentSet(const bool& inValue) { m_resident=inValue; }
+    const std::vector<MediaJobId>& DependencyJobIds(void) const { return m_dependencyJobIds; }
+    void DependencyJobIdsSet(const std::vector<MediaJobId>& inValue) { m_dependencyJobIds=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -191,7 +196,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } XP0BvDmHqDFPqJd1PCgkXQ
+//%classPrototypes } zEVnHmCoI90ILGlJfK9jgg
 };
 //%inlineHeader {
 inline std::ostream&

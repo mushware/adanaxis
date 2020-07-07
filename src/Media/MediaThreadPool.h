@@ -46,8 +46,6 @@ public:
 
     virtual void WaitMapGive(std::auto_ptr<MediaJob> apJob);
     virtual void MediaThreadPool::WaitMapGive(MediaJob **pJob);
-    virtual void InputQueueGive(std::auto_ptr<MediaJob> apJob);
-    virtual void InputQueueGive(MediaJob **pJob);
     virtual bool OutputQueueTake(MediaJob **pJob);
     virtual void MainThreadPump();
 
@@ -57,6 +55,9 @@ protected:
     bool InputQueueTake(MediaJob **pJob);
     void OutputQueueGive(MediaJob **pJob);
     void HandleStateChange();
+
+    virtual void InputQueueGive(std::auto_ptr<MediaJob> apJob);
+    virtual void InputQueueGive(MediaJob **pJob);
 
 private:
     MediaJobId m_nextJobId;
@@ -68,6 +69,7 @@ private:
     std::map<MediaJobId, MediaJob *> m_jobMap;
     std::deque<MediaJob *> m_inputQueue;
     std::deque<MediaJob *> m_outputQueue;
+    bool m_stateHasChanged;
 
     static int MediaThreadPool::ThreadHandler(void *data);
 

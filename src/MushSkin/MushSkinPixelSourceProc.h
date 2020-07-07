@@ -51,13 +51,15 @@
 
 #include "MushSkinStandard.h"
 
+class MushGLTexture;
+
 //:xml1base MushGLPixelSource
 //:generate virtual standard ostream xml1
 class MushSkinPixelSourceProc : public MushGLPixelSource
 {
 public:
     MushSkinPixelSourceProc();
-    virtual void PrerequisitesCreate(MushGLTexture& outTexture);
+    virtual std::vector<MediaJobId> PrerequisitesCreate(MushGLTexture& outTexture);
     virtual void ToTextureCreate(MushGLTexture& outTexture);
     virtual void ToTextureBind(MushGLTexture& outTexture);
     virtual void DataCreate(void);
