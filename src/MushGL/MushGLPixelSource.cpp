@@ -76,7 +76,8 @@ MUSHCORE_INSTALLER(MushGLPixelSource::Install);
 
 MushGLPixelSource::MushGLPixelSource() :
     m_storageType("GL"),
-	m_cacheable(true),
+    m_reductionFactor(16.0),
+    m_cacheable(true),
     m_compress(false),
     m_resident(false)
 {
@@ -97,7 +98,7 @@ MushGLPixelSource::ParamDecode(const MushRubyValue& inName, const MushRubyValue&
 	}
 	else if (nameStr == "size")
 	{
-		m_size = t4U32(inValue.U32Vector());
+		m_finalSize = t4U32(inValue.U32Vector());
 	}
 	else if (nameStr == "cache")
 	{
@@ -211,7 +212,8 @@ MushGLPixelSource::AutoPrint(std::ostream& ioOut) const
     ioOut << "[";
     ioOut << "name=" << m_name << ", ";
     ioOut << "storageType=" << m_storageType << ", ";
-    ioOut << "size=" << m_size << ", ";
+    ioOut << "finalSize=" << m_finalSize << ", ";
+    ioOut << "reductionFactor=" << m_reductionFactor << ", ";
     ioOut << "cacheable=" << m_cacheable << ", ";
     ioOut << "compress=" << m_compress << ", ";
     ioOut << "resident=" << m_resident;
@@ -234,9 +236,13 @@ MushGLPixelSource::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::strin
     {
         ioIn >> m_storageType;
     }
-    else if (inTagStr == "size")
+    else if (inTagStr == "finalSize")
     {
-        ioIn >> m_size;
+        ioIn >> m_finalSize;
+    }
+    else if (inTagStr == "reductionFactor")
+    {
+        ioIn >> m_reductionFactor;
     }
     else if (inTagStr == "cacheable")
     {
@@ -263,8 +269,10 @@ MushGLPixelSource::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_name;
     ioOut.TagSet("storageType");
     ioOut << m_storageType;
-    ioOut.TagSet("size");
-    ioOut << m_size;
+    ioOut.TagSet("finalSize");
+    ioOut << m_finalSize;
+    ioOut.TagSet("reductionFactor");
+    ioOut << m_reductionFactor;
     ioOut.TagSet("cacheable");
     ioOut << m_cacheable;
     ioOut.TagSet("compress");
@@ -272,4 +280,4 @@ MushGLPixelSource::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("resident");
     ioOut << m_resident;
 }
-//%outOfLineFunctions } e+oDlasCM53DxZHVQdIBjg
+//%outOfLineFunctions } hbdT8xPTpPPSfEtj7Os3+w

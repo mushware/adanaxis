@@ -108,7 +108,6 @@ private:
 	Mushware::t4Val m_offset; //:read
 	Mushware::U32 m_numOctaves; //:read
 	Mushware::tVal m_octaveRatio; //:read
-    
     mutable MushGLTexture *m_pPaletteTexture; //Not owned by this object
 	mutable MushMesh4Mesh *m_pMesh; //:read
 	

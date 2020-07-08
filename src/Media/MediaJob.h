@@ -45,8 +45,8 @@ public:
         kJobStatePreRun,
         kJobStateRunning,
         kJobStatePostRun,
-        kJobStateReWait,
-        kJobStateReQueue,
+        kJobStateWaitAgain,
+        kJobStateQueueAgain,
         kJobStateDone,
         kJobStateAbort,
         kJobStateErrored

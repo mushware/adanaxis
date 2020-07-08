@@ -84,16 +84,25 @@ void MushGLMakeJob::Run()
 }
 
 
-
 void MushGLMakeJob::MainThreadPostRun()
 {
-    if (m_pTexture != NULL) {
-        m_pPixelSource->ToTextureBind(*m_pTexture);
-        m_pPixelSource->DataRelease();
-        m_pTexture->ReadySet(true);
+    m_pPixelSource->ToTextureBind(*m_pTexture);
+    m_pPixelSource->DataRelease();
+
+    m_pTexture->ReadySet(true);
+
+    Mushware::tVal reductionFactor = m_pPixelSource->ReductionFactor();
+    m_pPixelSource->ReductionFactorSet(reductionFactor / 2);
+
+    if (reductionFactor < 2) {
         m_pTexture->FinishedSet(true);
     }
-    JobStateSet(kJobStateDone);
+
+    if (m_pTexture->Finished()) {
+        JobStateSet(kJobStateDone);
+    } else {
+        JobStateSet(kJobStateQueueAgain);
+    }
 }
 
 //%outOfLineFunctions {

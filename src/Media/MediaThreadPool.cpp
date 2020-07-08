@@ -280,6 +280,7 @@ MediaThreadPool::HandleStateChange()
         for (auto jobIter = m_jobMap.begin(); jobIter != m_jobMap.end(); ++jobIter) {
             switch (jobIter->second->JobState()) {
             case MediaJob::kJobStateWaiting:
+            case MediaJob::kJobStateQueueAgain:
                 jobsToTestStartable.push_back(jobIter);
                 break;
 
@@ -331,7 +332,8 @@ MediaThreadPool::HandleStateChange()
         }
 
         if (canStart && (*jobIter)->second->JobCanStart()) {
-            if (jobIdsToWaitFor.size() > 0) {
+            if ((*jobIter)->second->JobState() == MediaJob::kJobStateWaiting && jobIdsToWaitFor.size() > 0) {
+                // Log when jobs are released for the first time
                 MushcoreLog::Sgl().InfoLog() << "Job " << (*jobIter)->second->Name() << " now released because dependency jobs are complete" << std::endl;
             }
             JobStart((*jobIter)->first);

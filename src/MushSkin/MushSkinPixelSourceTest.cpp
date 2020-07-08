@@ -90,31 +90,32 @@ MushSkinPixelSourceTest::PixelSource(void) const
 void
 MushSkinPixelSourceTest::ToTextureCreate(MushGLTexture& outTexture)
 {
-    U32 pixelDataSize = 4 * Size().X()*Size().Y();
+    t4U32 currentSize = FinalSize() / ReductionFactor();
+    U32 pixelDataSize = 4 * currentSize.X()*currentSize.Y();
     m_u8Data.resize(pixelDataSize, 0);
 
     t4Val objectPos, objectEndPos;
 
     t2Val startPoint = t2Val(0.0, 0.0);
     t2Val endPoint = t2Val(1.0, 1.0);
-    U32 startX = static_cast<U32>(startPoint.X() * Size().X());
-    U32 startY = static_cast<U32>(startPoint.Y() * Size().Y());
-    U32 endX = static_cast<U32>(endPoint.X() * Size().X());
-    U32 endY = static_cast<U32>(endPoint.Y() * Size().Y());
+    U32 startX = static_cast<U32>(startPoint.X() * currentSize.X());
+    U32 startY = static_cast<U32>(startPoint.Y() * currentSize.Y());
+    U32 endX = static_cast<U32>(endPoint.X() * currentSize.X());
+    U32 endY = static_cast<U32>(endPoint.Y() * currentSize.Y());
     MUSHCOREASSERT(endX >= startX);
     MUSHCOREASSERT(endY >= startY);
 
     for (U32 y = startY; y < endY; ++y)
     {
-        U32 pixelOffset = 4 * (startX + y * Size().Y());
+        U32 pixelOffset = 4 * (startX + y * currentSize.Y());
         if (pixelOffset + 4 * (endX - startX) > pixelDataSize)
         {
             throw MushcoreDataFail("Pixel data overrun");
         }
         U8 *pTileData = &m_u8Data[pixelOffset];
 
-        objectPos = t4Val(static_cast<tVal>(startX) / Size().X(), static_cast<tVal>(y) / Size().Y(), 0, 0);
-        objectEndPos = t4Val(static_cast<tVal>(endX) / Size().X(), static_cast<tVal>(y) / Size().Y(), 0, 0);
+        objectPos = t4Val(static_cast<tVal>(startX) / currentSize.X(), static_cast<tVal>(y) / currentSize.Y(), 0, 0);
+        objectEndPos = t4Val(static_cast<tVal>(endX) / currentSize.X(), static_cast<tVal>(y) / currentSize.Y(), 0, 0);
 
         if (endX > startX)
         {
@@ -122,7 +123,7 @@ MushSkinPixelSourceTest::ToTextureCreate(MushGLTexture& outTexture)
         }
     }
 
-    outTexture.SizeSet(t4U32(Size().X(), Size().Y(), 1, 1));
+    outTexture.SizeSet(t4U32(currentSize.X(), currentSize.Y(), 1, 1));
     outTexture.PixelTypeRGBASet();
     outTexture.StorageTypeGLSet();
 

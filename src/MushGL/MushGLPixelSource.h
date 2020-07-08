@@ -98,18 +98,21 @@ public:
 private:
 	std::string m_name; //:readwrite
     std::string m_storageType; //:read
-	Mushware::t4U32 m_size; //:readwrite
-	bool m_cacheable; //:readwrite
-	bool m_compress; //:readwrite
-	bool m_resident; //:readwrite
+    Mushware::t4U32 m_finalSize; //:readwrite
+    Mushware::tVal m_reductionFactor; //:readwrite
+    bool m_cacheable; //:readwrite
+    bool m_compress; //:readwrite
+    bool m_resident; //:readwrite
 	
 //%classPrototypes {
 public:
     const std::string& Name(void) const { return m_name; }
     void NameSet(const std::string& inValue) { m_name=inValue; }
     const std::string& StorageType(void) const { return m_storageType; }
-    const Mushware::t4U32& Size(void) const { return m_size; }
-    void SizeSet(const Mushware::t4U32& inValue) { m_size=inValue; }
+    const Mushware::t4U32& FinalSize(void) const { return m_finalSize; }
+    void FinalSizeSet(const Mushware::t4U32& inValue) { m_finalSize=inValue; }
+    const Mushware::tVal& ReductionFactor(void) const { return m_reductionFactor; }
+    void ReductionFactorSet(const Mushware::tVal& inValue) { m_reductionFactor=inValue; }
     const bool& Cacheable(void) const { return m_cacheable; }
     void CacheableSet(const bool& inValue) { m_cacheable=inValue; }
     const bool& Compress(void) const { return m_compress; }
@@ -123,7 +126,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } kPw9jUVIzD6bHVkbKZuE/g
+//%classPrototypes } 0fTYQN+U403WBgv6ACIUqg
 };
 //%inlineHeader {
 inline std::ostream&

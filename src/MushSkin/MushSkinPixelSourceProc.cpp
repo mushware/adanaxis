@@ -63,7 +63,6 @@ MushSkinPixelSourceProc::MushSkinPixelSourceProc() :
     m_octaveRatio(0.5),
 	m_pPaletteTexture(NULL),
 	m_pMesh(NULL)
-
 {}
 
 void
@@ -158,7 +157,9 @@ MushSkinPixelSourceProc::PrerequisitesCreate(MushGLTexture& outTexture)
 void
 MushSkinPixelSourceProc::ToTextureCreate(MushGLTexture& outTexture)
 {
-    U32 pixelDataSize = 4 * Size().X()*Size().Y();
+    t4U32 currentSize = FinalSize() / ReductionFactor();
+
+    U32 pixelDataSize = 4 * currentSize.X()*currentSize.Y();
     m_u8Data.resize(pixelDataSize);
 
     const MushMesh4Mesh::tTextureTiles& texTilesRef = Mesh().TextureTiles();
@@ -171,16 +172,16 @@ MushSkinPixelSourceProc::ToTextureCreate(MushGLTexture& outTexture)
 
         t2Val startPoint = tileRef.TileBox().Start();
         t2Val endPoint = tileRef.TileBox().End();
-        U32 startX = static_cast<U32>(startPoint.X() * Size().X());
-        U32 startY = static_cast<U32>(startPoint.Y() * Size().Y());
-        U32 endX = static_cast<U32>(endPoint.X() * Size().X());
-        U32 endY = static_cast<U32>(endPoint.Y() * Size().Y());
+        U32 startX = static_cast<U32>(startPoint.X() * currentSize.X());
+        U32 startY = static_cast<U32>(startPoint.Y() * currentSize.Y());
+        U32 endX = static_cast<U32>(endPoint.X() * currentSize.X());
+        U32 endY = static_cast<U32>(endPoint.Y() * currentSize.Y());
         MUSHCOREASSERT(endX >= startX);
         MUSHCOREASSERT(endY >= startY);
 
         for (U32 y = startY; y < endY; ++y)
         {
-            U32 pixelOffset = 4 * (startX + y * Size().Y());
+            U32 pixelOffset = 4 * (startX + y * currentSize.Y());
             if (pixelOffset + 4 * (endX - startX) > pixelDataSize)
             {
                 throw MushcoreDataFail("Pixel data overrun");
@@ -189,11 +190,11 @@ MushSkinPixelSourceProc::ToTextureCreate(MushGLTexture& outTexture)
 
             // objectEndPos is one pixel beyond the end of the generated data
 #if 0
-            tileRef.Transform(objectPos, t2Val((0.5 + startX) / Size().X(), (0.5 + y) / Size().Y()));
-            tileRef.Transform(objectEndPos, t2Val((0.5 + endX) / Size().X(), (0.5 + y) / Size().Y()));
+            tileRef.Transform(objectPos, t2Val((0.5 + startX) / currentSize.X(), (0.5 + y) / currentSize.Y()));
+            tileRef.Transform(objectEndPos, t2Val((0.5 + endX) / currentSize.X(), (0.5 + y) / currentSize.Y()));
 #else
-            tileRef.TextureToFacet(objectPos, t2Val((0.5 + startX) / Size().X(), (0.5 + y) / Size().Y()));
-            tileRef.TextureToFacet(objectEndPos, t2Val((0.5 + endX) / Size().X(), (0.5 + y) / Size().Y()));
+            tileRef.TextureToFacet(objectPos, t2Val((0.5 + startX) / currentSize.X(), (0.5 + y) / currentSize.Y()));
+            tileRef.TextureToFacet(objectEndPos, t2Val((0.5 + endX) / currentSize.X(), (0.5 + y) / currentSize.Y()));
 #endif
             if (endX > startX)
             {
@@ -204,7 +205,7 @@ MushSkinPixelSourceProc::ToTextureCreate(MushGLTexture& outTexture)
         }
     }
 
-    outTexture.SizeSet(t4U32(Size().X(), Size().Y(), 1, 1));
+    outTexture.SizeSet(t4U32(currentSize.X(), currentSize.Y(), 1, 1));
     outTexture.PixelTypeRGBASet();
     outTexture.StorageTypeGLSet();
 
