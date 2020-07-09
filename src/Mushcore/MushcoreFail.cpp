@@ -94,6 +94,11 @@ MushcoreNonFatalFail::MushcoreNonFatalFail(const string &inMessage) :
 {
 }
 
+MushcoreCommandedExitFail::MushcoreCommandedExitFail(const string &inMessage) :
+    MushcoreNonFatalFail(inMessage)
+{
+}
+
 MushcoreCommandFail::MushcoreCommandFail(const string &inMessage) :
     MushcoreNonFatalFail(inMessage)
 {

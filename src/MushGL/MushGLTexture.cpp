@@ -156,6 +156,7 @@ MushGLTexture::Make(void)
 
         m_cacheable = pSrc->Cacheable();
         m_resident = pSrc->Resident();
+        pSrc->ReductionFactorSet(16);
 
         std::ostringstream jobName;
         jobName << "maketexture-" << m_name;
@@ -165,11 +166,11 @@ MushGLTexture::Make(void)
             // Non-threaded version, now disabled
             pMakeJob->RunToCompletionNow();
         } else {
-            m_dependencyJobIds.push_back(pMakeJob->JobId());
+            m_creationJobIds.push_back(pMakeJob->JobId());
             MediaThreadPool::Sgl().WaitMapGive(pMakeJob);
         }
 	}
-    return m_dependencyJobIds;
+    return m_creationJobIds;
 }
 
 
@@ -197,13 +198,20 @@ MushGLTexture::Bind(void)
 void
 MushGLTexture::Purge(void)
 {
+    for (U32 i=0; i < m_creationJobIds.size(); ++i) {
+        MediaThreadPool::Sgl().JobKillIfExists(m_creationJobIds[i]);
+    }
+    m_creationJobIds.clear();
+
     if (m_bindingNameValid)
     {
         MushGLV::Sgl().DeleteTexture(m_bindingName);
         m_bindingNameValid = false;
-        m_made = false;
-        m_bound = false;
     }
+    m_made = false;
+    m_bound = false;
+    m_ready = false;
+    m_finished = false;
 }
 
 
@@ -238,7 +246,7 @@ MushGLTexture::FromCacheLoad(void)
 	
 	try
 	{
-        pixelSourceTIFF.ToTextureCreate(*this);
+        pixelSourceTIFF.ToTextureCreate(*this, NULL);
         pixelSourceTIFF.ToTextureBind(*this);
 		MushGLCacheControl::Sgl().TextureCacheHitRegister();
 		MushcoreLog::Sgl().InfoLog() << "Loaded cache texture: '" << m_name << "' from '" << m_cacheFilename << "'" << endl;
@@ -607,7 +615,7 @@ MushGLTexture::AutoPrint(std::ostream& ioOut) const
     ioOut << "finished=" << m_finished << ", ";
     ioOut << "saveable=" << m_saveable << ", ";
     ioOut << "resident=" << m_resident << ", ";
-    ioOut << "dependencyJobIds=" << m_dependencyJobIds;
+    ioOut << "creationJobIds=" << m_creationJobIds;
     ioOut << "]";
 }
 bool
@@ -691,9 +699,9 @@ MushGLTexture::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& i
     {
         ioIn >> m_resident;
     }
-    else if (inTagStr == "dependencyJobIds")
+    else if (inTagStr == "creationJobIds")
     {
-        ioIn >> m_dependencyJobIds;
+        ioIn >> m_creationJobIds;
     }
     else 
     {
@@ -740,8 +748,8 @@ MushGLTexture::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_saveable;
     ioOut.TagSet("resident");
     ioOut << m_resident;
-    ioOut.TagSet("dependencyJobIds");
-    ioOut << m_dependencyJobIds;
+    ioOut.TagSet("creationJobIds");
+    ioOut << m_creationJobIds;
 }
-//%outOfLineFunctions } ekB0aa9r+ZoB0L8qTUfuKw
+//%outOfLineFunctions } wFcBka44j9oRofqb10E5CQ
 

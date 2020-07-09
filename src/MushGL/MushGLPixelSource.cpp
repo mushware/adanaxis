@@ -142,7 +142,7 @@ MushGLPixelSource::PrerequisitesCreate(MushGLTexture& outTexture)
 }
 
 void
-MushGLPixelSource::ToTextureCreate(MushGLTexture& outTexture)
+MushGLPixelSource::ToTextureCreate(MushGLTexture& outTexture, volatile bool *pKillSwitch)
 {
     throw MushcoreRequestFail("Cannot create texture from this pixel source");
 }

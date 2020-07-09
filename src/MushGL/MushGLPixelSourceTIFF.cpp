@@ -126,7 +126,7 @@ MushGLPixelSourceTIFFUnmapFileProc(tiffio::thandle_t inHandle, tiffio::tdata_t i
 }
 
 void
-MushGLPixelSourceTIFF::ToTextureCreate(MushGLTexture& outTexture)
+MushGLPixelSourceTIFF::ToTextureCreate(MushGLTexture& outTexture, volatile bool *pKillSwitch)
 {
 	// Suppress error message on stderr
 #ifndef MUSHCORE_DEBUG

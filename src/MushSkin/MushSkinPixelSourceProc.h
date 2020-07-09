@@ -60,7 +60,7 @@ class MushSkinPixelSourceProc : public MushGLPixelSource
 public:
     MushSkinPixelSourceProc();
     virtual std::vector<MediaJobId> PrerequisitesCreate(MushGLTexture& outTexture);
-    virtual void ToTextureCreate(MushGLTexture& outTexture);
+    virtual void ToTextureCreate(MushGLTexture& outTexture, volatile bool *pKillSwitch);
     virtual void ToTextureBind(MushGLTexture& outTexture);
     virtual void DataCreate(void);
     virtual void DataRelease(void);

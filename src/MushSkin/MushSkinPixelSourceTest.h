@@ -60,7 +60,7 @@ public:
     MushSkinPixelSourceTest();
 	virtual ~MushSkinPixelSourceTest();
 
-    virtual void ToTextureCreate(MushGLTexture& outTexture);
+    virtual void ToTextureCreate(MushGLTexture& outTexture, volatile bool *pKillSwitch);
     virtual void ToTextureBind(MushGLTexture& outTexture);
 
 	// Delegate everything else

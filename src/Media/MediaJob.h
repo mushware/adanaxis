@@ -49,15 +49,16 @@ public:
         kJobStateQueueAgain,
         kJobStateDone,
         kJobStateAbort,
-        kJobStateErrored
+        kJobStateErrored,
+        kJobStateKilled
     };
 
     enum {
-        kJobMagic=0x7f34af17
+        kJobMagic=0x6f3fa396
     };
 
     MediaJob();
-    explicit MediaJob(std::string& name);
+    MediaJob(std::string& name, const char*jobType);
     virtual ~MediaJob();
 
     tJobState JobState() const;
@@ -74,8 +75,14 @@ public:
 
     virtual void RunToCompletionNow();
 
+protected:
+    // m_killSwitch is written/read by multiple threads but can only transiton once, false to true
+    // and exact synchronisation is not necessary
+    bool m_killSwitch; //:readwrite
+
 private:
     MediaJobId m_jobMagic; //:readwrite
+    std::string m_jobType; //:read
     MediaJobId m_jobId; //:read
 
     // Mutex covers the two elements below
@@ -90,8 +97,11 @@ private:
 
 //%classPrototypes {
 public:
+    const bool& KillSwitch(void) const { return m_killSwitch; }
+    void KillSwitchSet(const bool& inValue) { m_killSwitch=inValue; }
     const MediaJobId& JobMagic(void) const { return m_jobMagic; }
     void JobMagicSet(const MediaJobId& inValue) { m_jobMagic=inValue; }
+    const std::string& JobType(void) const { return m_jobType; }
     const MediaJobId& JobId(void) const { return m_jobId; }
     const std::string& Name(void) const { return m_name; }
     void NameSet(const std::string& inValue) { m_name=inValue; }
@@ -108,7 +118,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } TUwcvAYJE86UN5b1H6NS+g
+//%classPrototypes } hRB8oUnbp4b3xkYbWHqwmw
 };
 //%inlineHeader {
 inline std::ostream&

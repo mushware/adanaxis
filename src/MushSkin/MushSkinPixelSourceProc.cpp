@@ -155,7 +155,7 @@ MushSkinPixelSourceProc::PrerequisitesCreate(MushGLTexture& outTexture)
 }
 
 void
-MushSkinPixelSourceProc::ToTextureCreate(MushGLTexture& outTexture)
+MushSkinPixelSourceProc::ToTextureCreate(MushGLTexture& outTexture, volatile bool *pKillSwitch)
 {
     t4U32 currentSize = FinalSize() / ReductionFactor();
 
@@ -168,6 +168,8 @@ MushSkinPixelSourceProc::ToTextureCreate(MushGLTexture& outTexture)
 
     for (U32 tileIndex = 0; tileIndex < numTexTiles; ++tileIndex)
     {
+
+
         const MushMesh4Mesh::tTextureTile& tileRef = texTilesRef[tileIndex];
 
         t2Val startPoint = tileRef.TileBox().Start();
@@ -181,6 +183,10 @@ MushSkinPixelSourceProc::ToTextureCreate(MushGLTexture& outTexture)
 
         for (U32 y = startY; y < endY; ++y)
         {
+            if (pKillSwitch != NULL && *pKillSwitch) {
+                throw MushcoreCommandedExitFail("Killswitch triggered");
+            }
+
             U32 pixelOffset = 4 * (startX + y * currentSize.Y());
             if (pixelOffset + 4 * (endX - startX) > pixelDataSize)
             {

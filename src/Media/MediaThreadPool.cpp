@@ -177,8 +177,9 @@ bool MediaThreadPool::OutputQueueTake(MediaJob **pJob)
 }
 
 
-// JobDelete must run on the main thrread only
-void MediaThreadPool::JobDelete(MediaJobId jobId)
+// JobDelete must run on the main thread only
+void
+MediaThreadPool::JobDelete(MediaJobId jobId)
 {
     // Deletes a job from our records, with a few checks to confirm it's still OK.
 
@@ -198,6 +199,34 @@ void MediaThreadPool::JobDelete(MediaJobId jobId)
     jobIter->second->JobMagicSet(jobId);
     delete jobIter->second;
     m_jobMap.erase(jobId);
+}
+
+
+void
+MediaThreadPool::JobKill(MediaJobId jobId)
+{
+    MediaLock lock(m_pStateMutex);
+    auto jobMapIter = m_jobMap.find(jobId);
+    if (jobMapIter == m_jobMap.end()) {
+        ostringstream messageStream;
+        messageStream << "Cannot find job to kill (id=" << jobId << ")" << std::endl;
+        throw MushcoreLogicFail(messageStream.str());
+    }
+
+    MushcoreLog::Sgl().InfoLog() << "Job " << jobMapIter->second->Name() << " was killed" << std::endl;
+    jobMapIter->second->JobStateSet(MediaJob::kJobStateKilled);
+}
+
+
+void
+MediaThreadPool::JobKillIfExists(MediaJobId jobId)
+{
+    MediaLock lock(m_pStateMutex);
+    auto jobMapIter = m_jobMap.find(jobId);
+    if (jobMapIter != m_jobMap.end()) {
+        MushcoreLog::Sgl().InfoLog() << "Job " << jobMapIter->second->Name() << " was killed" << std::endl;
+        jobMapIter->second->JobStateSet(MediaJob::kJobStateKilled);
+    }
 }
 
 
@@ -239,7 +268,9 @@ void MediaThreadPool::MainThreadPump()
             MushcoreLog::Sgl().ErrorLog() << "Job " << pJob->Name() << " failed: " << pJob->Error() << std::endl;
             pJob->JobStateSet(MediaJob::kJobStateErrored);
         }
-        else {
+        else if (pJob->JobState() == MediaJob::kJobStateKilled) {
+            MushcoreLog::Sgl().InfoLog() << "Harvesting killed job " << pJob->Name() << std::endl;
+        } else {
             Mushware::tVal duration = static_cast<Mushware::tVal>(pJob->EndTime() - pJob->StartTime()) / SDL_GetPerformanceFrequency();
 
             std::ostringstream durationStream;
@@ -287,6 +318,7 @@ MediaThreadPool::HandleStateChange()
             case MediaJob::kJobStateAbort:
             case MediaJob::kJobStateDone:
             case MediaJob::kJobStateErrored:
+            case MediaJob::kJobStateKilled:
                 jobIdsToDelete.push_back(jobIter->first);
                 break;
 
@@ -338,6 +370,33 @@ MediaThreadPool::HandleStateChange()
             }
             JobStart((*jobIter)->first);
         }
+    }
+}
+
+
+void
+MediaThreadPool::JobKillByType(const std::string& jobType)
+{
+    std::vector<std::map<MediaJobId, MediaJob *>::iterator> jobsToKill;
+
+    {
+        MediaLock lock(m_pStateMutex);
+        // We're holding the mutex so don't do anything complex in here
+        for (auto jobIter = m_jobMap.begin(); jobIter != m_jobMap.end(); ++jobIter) {
+            if (jobType == "*" || jobIter->second->JobType() == jobType) {
+                switch (jobIter->second->JobState()) {
+                case MediaJob::kJobStateKilled:
+                    break;
+
+                default:
+                    jobsToKill.push_back(jobIter);
+                }
+            }
+        }
+    }
+
+    for (auto jobIter = jobsToKill.begin(); jobIter != jobsToKill.end(); ++jobIter) {
+        JobKill((*jobIter)->first);
     }
 }
 

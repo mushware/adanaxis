@@ -163,7 +163,7 @@ private:
     bool m_saveable; //:readwrite
     bool m_resident; //:readwrite
 
-    std::vector<MediaJobId> m_dependencyJobIds; //:readwrite
+    std::vector<MediaJobId> m_creationJobIds; //:readwrite
 
     static Mushware::tSize m_byteCount;
     
@@ -187,8 +187,8 @@ public:
     void SaveableSet(const bool& inValue) { m_saveable=inValue; }
     const bool& Resident(void) const { return m_resident; }
     void ResidentSet(const bool& inValue) { m_resident=inValue; }
-    const std::vector<MediaJobId>& DependencyJobIds(void) const { return m_dependencyJobIds; }
-    void DependencyJobIdsSet(const std::vector<MediaJobId>& inValue) { m_dependencyJobIds=inValue; }
+    const std::vector<MediaJobId>& CreationJobIds(void) const { return m_creationJobIds; }
+    void CreationJobIdsSet(const std::vector<MediaJobId>& inValue) { m_creationJobIds=inValue; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
     virtual MushcoreVirtualObject *AutoCreate(void) const;
@@ -196,7 +196,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } zEVnHmCoI90ILGlJfK9jgg
+//%classPrototypes } BK8zdnXqK31I+mIK5LSKig
 };
 //%inlineHeader {
 inline std::ostream&

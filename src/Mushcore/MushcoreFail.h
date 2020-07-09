@@ -118,6 +118,13 @@ public:
     MushcoreNonFatalFail(const std::string& inMessage);
 };
 
+// Routine was commanded to exit
+class MushcoreCommandedExitFail : public MushcoreNonFatalFail
+{
+public:
+    MushcoreCommandedExitFail(const std::string &inMessage);
+};
+
 // A MushcoreCommand failed
 class MushcoreCommandFail : public MushcoreNonFatalFail
 {

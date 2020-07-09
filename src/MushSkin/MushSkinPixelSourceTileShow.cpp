@@ -74,7 +74,7 @@ MushSkinPixelSourceTileShow::TileShowLineGenerate(Mushware::U8 *outpTileData,
 }
 
 void
-MushSkinPixelSourceTileShow::ToTextureCreate(MushGLTexture& outTexture)
+MushSkinPixelSourceTileShow::ToTextureCreate(MushGLTexture& outTexture, volatile bool *pKillSwitch)
 {
     t4U32 currentSize = FinalSize() / ReductionFactor();
 

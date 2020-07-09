@@ -843,6 +843,7 @@ void
 SDLAppHandler::AppQuit(void)
 {
     m_doQuit=true;
+    MushcoreSingleton<MediaThreadPool>::Sgl().JobKillByType("*");
     MushcoreSingleton<MediaThreadPool>::SingletonDestroy();
 }
 

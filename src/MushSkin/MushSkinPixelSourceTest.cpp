@@ -88,7 +88,7 @@ MushSkinPixelSourceTest::PixelSource(void) const
 }
 
 void
-MushSkinPixelSourceTest::ToTextureCreate(MushGLTexture& outTexture)
+MushSkinPixelSourceTest::ToTextureCreate(MushGLTexture& outTexture, volatile bool *pKillSwitch)
 {
     t4U32 currentSize = FinalSize() / ReductionFactor();
     U32 pixelDataSize = 4 * currentSize.X()*currentSize.Y();

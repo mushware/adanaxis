@@ -40,7 +40,7 @@ MushGLMakeJob::MushGLMakeJob() :
 
 
 MushGLMakeJob::MushGLMakeJob(std::string& name, MushGLPixelSource *pPixelSource, MushGLTexture *pTexture) :
-    MediaJob::MediaJob(name),
+    MediaJob::MediaJob(name, "GL"),
     m_pPixelSource(dynamic_cast<MushGLPixelSource *>(pPixelSource->AutoClone())),
     m_pTexture(pTexture)
 {
@@ -69,10 +69,9 @@ MushGLMakeJob::PrerequisitesCreate()
 
 void MushGLMakeJob::Run()
 {
-
     m_pPixelSource->DataCreate();
 
-    m_pPixelSource->ToTextureCreate(*m_pTexture);
+    m_pPixelSource->ToTextureCreate(*m_pTexture, &m_killSwitch);
 
     // Built this texture the hard way, so save to cache
     if (m_pTexture->Cacheable() && MushGLCacheControl::Sgl().PermitCache())

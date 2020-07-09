@@ -86,7 +86,7 @@ public:
 	virtual void ParamHashDecode(const Mushware::tRubyHash& inHash);
     virtual void BufferFill(Mushware::U32 * const outPtr, const Mushware::t2U32 inSize) const; // Deprecated
     virtual std::vector<MediaJobId> PrerequisitesCreate(MushGLTexture& outTexture); // Must be called on main thread
-    virtual void ToTextureCreate(MushGLTexture& outTexture); // Can be called on other threads
+    virtual void ToTextureCreate(MushGLTexture& outTexture, volatile bool *pKillSwitch); // Can be called on other threads
     virtual void ToTextureBind(MushGLTexture& outTexture); // Must be called on main thread
 	
     virtual void DataCreate(void);

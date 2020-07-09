@@ -48,6 +48,9 @@ public:
     virtual void MediaThreadPool::WaitMapGive(MediaJob **pJob);
     virtual bool OutputQueueTake(MediaJob **pJob);
     virtual void MainThreadPump();
+    virtual void JobKill(MediaJobId jobId);
+    virtual void JobKillIfExists(MediaJobId jobId);
+    virtual void JobKillByType(const std::string& jobType);
 
 protected:
     void JobDelete(MediaJobId jobId);

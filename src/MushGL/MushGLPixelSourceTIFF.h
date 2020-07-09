@@ -65,7 +65,7 @@ class MushGLPixelSourceTIFF : public MushGLPixelSource
 {
 public:
 	MushGLPixelSourceTIFF();
-    virtual void ToTextureCreate(MushGLTexture& outTexture);
+    virtual void ToTextureCreate(MushGLTexture& outTexture, volatile bool *pKillSwitch);
     virtual void ToTextureBind(MushGLTexture& outTexture);
 	virtual void ParamDecode(const MushRubyValue& inName, const MushRubyValue& inValue);
 

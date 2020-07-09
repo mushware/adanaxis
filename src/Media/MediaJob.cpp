@@ -33,7 +33,9 @@
 
 
 MediaJob::MediaJob() :
+    m_killSwitch(false),
     m_jobMagic(kJobMagic),
+    m_jobType("unset"),
     m_jobId(MediaThreadPool::Sgl().JobIdTake()),
     m_pStateMutex(SDL_CreateMutex()),
     m_jobState(kJobStateNew)
@@ -41,8 +43,10 @@ MediaJob::MediaJob() :
 }
 
 
-MediaJob::MediaJob(std::string& name) :
+MediaJob::MediaJob(std::string& name, const char *jobType) :
+    m_killSwitch(false),
     m_jobMagic(kJobMagic),
+    m_jobType(jobType),
     m_jobId(MediaThreadPool::Sgl().JobIdTake()),
     m_pStateMutex(SDL_CreateMutex()),
     m_jobState(kJobStateNew),
@@ -66,7 +70,13 @@ void
 MediaJob::JobStateSet(tJobState inValue)
 {
     MediaLock lock(m_pStateMutex);
-    m_jobState = inValue;
+    // Kill state cannot be undone
+    if (m_jobState != kJobStateKilled) {
+        m_jobState = inValue;
+        if (inValue == kJobStateKilled) {
+            m_killSwitch = true;
+        }
+    }
 }
 
 
@@ -181,7 +191,9 @@ void
 MediaJob::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
+    ioOut << "killSwitch=" << m_killSwitch << ", ";
     ioOut << "jobMagic=" << m_jobMagic << ", ";
+    ioOut << "jobType=" << m_jobType << ", ";
     ioOut << "jobId=" << m_jobId << ", ";
     ioOut << "JobIdsToWaitFor=" << m_JobIdsToWaitFor << ", ";
     ioOut << "jobState=" << m_jobState << ", ";
@@ -200,9 +212,17 @@ MediaJob::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagS
         ioIn >> *this;
         AutoInputEpilogue(ioIn);
     }
+    else if (inTagStr == "killSwitch")
+    {
+        ioIn >> m_killSwitch;
+    }
     else if (inTagStr == "jobMagic")
     {
         ioIn >> m_jobMagic;
+    }
+    else if (inTagStr == "jobType")
+    {
+        ioIn >> m_jobType;
     }
     else if (inTagStr == "jobId")
     {
@@ -241,8 +261,12 @@ MediaJob::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagS
 void
 MediaJob::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
 {
+    ioOut.TagSet("killSwitch");
+    ioOut << m_killSwitch;
     ioOut.TagSet("jobMagic");
     ioOut << m_jobMagic;
+    ioOut.TagSet("jobType");
+    ioOut << m_jobType;
     ioOut.TagSet("jobId");
     ioOut << m_jobId;
     ioOut.TagSet("JobIdsToWaitFor");
@@ -258,4 +282,4 @@ MediaJob::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("endTime");
     ioOut << m_endTime;
 }
-//%outOfLineFunctions } +NdbBR9jtp3doAbuHEQ5sA
+//%outOfLineFunctions } kL823uhsTEf2bEwSm462RQ
