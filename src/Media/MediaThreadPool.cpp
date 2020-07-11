@@ -44,7 +44,8 @@ MediaThreadPool::MediaThreadPool() :
     m_nextJobId(1),
     m_pJobAvailSem(SDL_CreateSemaphore(0)),
     m_pStateMutex(SDL_CreateMutex()),
-    m_stateHasChanged(true)
+    m_stateHasChanged(true),
+    m_threadPumpTimeLimit(0.1)
 {
     if (MushcoreSingleton<MediaThreadPool>::SingletonExists())
     {
@@ -262,6 +263,10 @@ void MediaThreadPool::MainThreadPump()
 
     bool stateHasChanged = true;
     // Handle job completions first
+
+    Mushware::U64 endCount = SDL_GetPerformanceCounter() + m_threadPumpTimeLimit * SDL_GetPerformanceFrequency();
+    Mushware::U32 jobCount = 0;
+
     while (OutputQueueTake(&pJob)) {
         stateHasChanged = true;
         if (pJob->Error() != "") {
@@ -283,6 +288,12 @@ void MediaThreadPool::MainThreadPump()
                 MushcoreLog::Sgl().ErrorLog() << "Job " << pJob->Name() << " failed to set state on exit, aborting" << std::endl;
                 pJob->JobStateSet(MediaJob::kJobStateAbort);
             }
+        }
+
+        ++jobCount;
+        if (SDL_GetPerformanceCounter() > endCount) {
+            MushcoreLog::Sgl().InfoLog() << "Limited to procesing " << jobCount << " in main thread" << std::endl;
+            break;
         }
     }
 

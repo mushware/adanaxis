@@ -242,6 +242,7 @@ MushGLTexture::ToCacheSave(const MushGLPixelSource& inSrc)
 void
 MushGLTexture::PixelDataGLRGBAUse(void *pData)
 {
+    Mushware::U64 startTime = SDL_GetPerformanceCounter();
     if (!MushGLV::Sgl().ContextValid())
     {
         throw MushcoreRequestFail("Cannot create texture because OpenGL context not valid yet");
@@ -259,7 +260,7 @@ MushGLTexture::PixelDataGLRGBAUse(void *pData)
     {
 #ifdef GL_VERSION_1_4
         glTexParameteri(GL_TEXTURE_2D, GL_GENERATE_MIPMAP, GL_TRUE);
-        glHint(GL_TEXTURE_COMPRESSION_HINT, GL_NICEST);
+        glHint(GL_TEXTURE_COMPRESSION_HINT, GL_FASTEST);
 
 		GLenum internalFormat;
 		
@@ -335,6 +336,14 @@ MushGLTexture::PixelDataGLRGBAUse(void *pData)
                      pData             // pointer to data
                      );
     }
+
+#ifdef MUSHCORE_DEBUG
+    Mushware::U64 endTime = SDL_GetPerformanceCounter();
+    Mushware::tVal duration = static_cast<Mushware::tVal>(endTime - startTime) / SDL_GetPerformanceFrequency();
+    std::ostringstream durationStream;
+    durationStream << setprecision(3) << fixed << duration << "s";
+    MushcoreLog::Sgl().InfoLog() << "Finished bind for texture " << m_name << " in " << durationStream.str() << std::endl;
+#endif
     m_bound=true;
 }
 

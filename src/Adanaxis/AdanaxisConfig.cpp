@@ -128,7 +128,7 @@ AdanaxisConfig::ToDefaultSet(void)
     AxesToDefaultSet();
     KeysToDefaultSet();
     m_configDifficulty = 1;
-    m_useGLCompression = 1;
+    m_useGLCompression = 0;
     m_useGLShader = 1;
 }
 

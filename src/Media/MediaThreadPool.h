@@ -35,6 +35,7 @@
 
 class MediaJob;
 
+//:generate
 class MediaThreadPool : public MushcoreSingleton<MediaThreadPool>
 {
 public:
@@ -73,9 +74,15 @@ private:
     std::deque<MediaJob *> m_inputQueue;
     std::deque<MediaJob *> m_outputQueue;
     bool m_stateHasChanged;
+    Mushware::tVal m_threadPumpTimeLimit; //:readwrite
 
     static int MediaThreadPool::ThreadHandler(void *data);
 
+//%classPrototypes {
+public:
+    const Mushware::tVal& ThreadPumpTimeLimit(void) const { return m_threadPumpTimeLimit; }
+    void ThreadPumpTimeLimitSet(const Mushware::tVal& inValue) { m_threadPumpTimeLimit=inValue; }
+//%classPrototypes } twD9UlX7OhJnx0po+Cft7A
 };
 
 
