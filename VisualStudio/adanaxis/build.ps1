@@ -33,6 +33,7 @@ Param(
 )
 
 Set-StrictMode -Version 3.0
+
 $ErrorActionPreference = "Stop"
 
 If ($BuildNumber) {
@@ -69,11 +70,18 @@ If ($Configuration -eq "") {
 }
 
 if ($PSScriptRoot) {
-    Set-Location $PSScriptRoot
+    $ProjectRoot = $(Join-Path -Resolve $PSScriptRoot -ChildPath "..\..")
+} Else {
+    $ProjectRoot = $(Join-Path -Resolve $pwd -ChildPath "..\..")
 }
+$AdanaxisBuildRoot = $(Join-Path -Resolve $ProjectRoot -ChildPath "VisualStudio\adanaxis")
+$SpdlogRoot = $(Join-Path -Resolve $ProjectRoot -ChildPath "spdlog")
+$SpdlogBuildRoot = $(Join-Path $SpdlogRoot -ChildPath "build")
+Set-Location $AdanaxisBuildRoot
 
 $getdeps_job = Start-Job -Init ([ScriptBlock]::Create("Set-Location '$pwd'")) -File ./GetWindowsDeps.ps1
 
+$cmake_root="C:\Program Files\CMake\bin"
 $msbuild_root="C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\MSBuild\15.0\Bin"
 $signtool_root="C:\Program Files (x86)\Windows Kits\10\bin\10.0.18362.0\x86"
 $wix_root="C:\Program Files (x86)\WiX Toolset v3.11\bin"
@@ -90,16 +98,58 @@ If (Test-Path $wix_root) {
     }
 }
 
-# Need to wait for dependencies before build, since they supply headers
-Receive-Job -Job $getdeps_job -Wait
-Receive-Job -Job $wix_job -Wait
-
-$env:PATH = "$msbuild_root;$wix_root;$signtool_root;$env:PATH"
+$env:PATH = "$msbuild_root;$wix_root;$signtool_root;$cmake_root;$env:PATH"
 
 Write-Host "Path for build is:"
 Get-ChildItem env:PATH | ForEach-Object { $_.Value.Split(';') }
 
-$build_process = Start-Process -NoNewWindow -PassThru -Wait -FilePath "cmd.exe" -ArgumentList "/CSTART", "/B", "/WAIT", "MSBuild.exe", "adanaxis.sln", "-maxCpuCount", "-nodeReuse:false", "-target:adanaxis", "-property:Configuration=`"$Configuration`"", "-property:Version=`"$Version`""
+If ($null -eq (Get-Command -ErrorAction SilentlyContinue cmake)) {
+    Throw "CMake not installed, use e.g. choco install --yes cmake.install --version 3.16.2"
+}
+
+Write-Host "Building spdlog library - props to https://github.com/gabime"
+New-Item -ItemType "directory" -Path $SpdlogBuildRoot -Force | Foreach-Object { "Created directory $($_.FullName)" }
+
+Set-Location $SpdlogBuildRoot
+$spdlog_cmake_process = Start-Process -NoNewWindow -PassThru -FilePath "cmake.exe" -ArgumentList "-A", "Win32", "-G", "`"Visual Studio 15 2017`"", ".."
+$handle = $spdlog_cmake_process.Handle # Fix for missing ExitCode
+$spdlog_cmake_process.WaitForExit()
+
+if ($spdlog_cmake_process.ExitCode -ne 0) {
+    throw "Spdlog CMake failed ($($spdlog_cmake_process.ExitCode))"
+}
+
+Set-Location $SpdlogRoot
+
+$spdlog_build_process = Start-Process -NoNewWindow -PassThru -FilePath "MSBuild.exe" -ArgumentList "build\spdlog.sln", "-maxCpuCount", "-nodeReuse:false", "-target:spdlog", "-property:UseSharedCompilation=false"
+$handle = $spdlog_build_process.Handle # Fix for missing ExitCode
+$spdlog_build_process.WaitForExit()
+
+if ($spdlog_build_process.ExitCode -ne 0) {
+    throw "Spdlog make failed ($($spdlog_build_process.ExitCode))"
+}
+
+Write-Host -ForegroundColor DarkCyan "Waiting for dependency fetch jobs.."
+
+# Need to wait for dependencies before build, since they supply headers
+Receive-Job -Job $getdeps_job -Wait
+Receive-Job -Job $wix_job -Wait
+
+Write-Host -ForegroundColor DarkCyan @"
+
+**************************************
+*                                    *
+*    Starting Adanaxis main build    *
+*                                    *
+**************************************
+
+"@
+
+Set-Location $AdanaxisBuildRoot
+
+$build_process = Start-Process -NoNewWindow -PassThru -FilePath "MSBuild.exe" -ArgumentList "adanaxis.sln", "-maxCpuCount", "-nodeReuse:false", "-target:adanaxis", "-property:Configuration=`"$Configuration`"", "-property:Version=`"$Version`"", "-property:UseSharedCompilation=false"
+$handle = $build_process.Handle # Fix for missing ExitCode
+$build_process.WaitForExit()
 
 if ($build_process.ExitCode -ne 0) {
     throw "Build failed ($($build_process.ExitCode))"   

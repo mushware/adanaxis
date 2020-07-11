@@ -130,7 +130,9 @@ MushGLTexture::Make(void)
 		m_compress = MushGLCacheControl::Sgl().PermitCompression();
         if (FromCacheLoad())
 		{
-			m_made = true;
+            m_made = true;
+            m_ready = true;
+            m_finished = true;
 		}
 	}
 

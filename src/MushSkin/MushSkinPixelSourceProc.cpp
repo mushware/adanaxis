@@ -184,7 +184,7 @@ MushSkinPixelSourceProc::ToTextureCreate(MushGLTexture& outTexture, volatile boo
         for (U32 y = startY; y < endY; ++y)
         {
             if (pKillSwitch != NULL && *pKillSwitch) {
-                throw MushcoreCommandedExitFail("Killswitch triggered");
+                throw MushcoreCommandedExit("Killswitch triggered");
             }
 
             U32 pixelOffset = 4 * (startX + y * currentSize.Y());

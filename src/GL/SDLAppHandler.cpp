@@ -422,6 +422,11 @@ SDLAppHandler::EnterScreen(const GLModeDef& inDef)
         SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 4);
 #endif
         
+#if defined(MUSHCORE_DEBUG) && defined(SDL_HINT_ALLOW_TOPMOST)
+        // Don't lock developer out when debugging
+        SDL_SetHint(SDL_HINT_ALLOW_TOPMOST, "0");
+#endif
+
         // Was: pSurface=SDL_SetVideoMode(m_width, m_height, m_bpp, sdlFlags);
         m_pWindow = SDL_CreateWindow(MushcoreInfo::Sgl().ApplicationNameGet().c_str(),
             SDL_WINDOWPOS_UNDEFINED,
