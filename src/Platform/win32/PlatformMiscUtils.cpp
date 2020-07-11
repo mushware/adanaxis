@@ -249,10 +249,23 @@ PlatformMiscUtils::TweakArgs(string& ioStr)
 bool
 PlatformMiscUtils::DirectoryExists(const string& inName)
 {
-    DWORD attrib=GetFileAttributes(inName.c_str());
-    
-    if (attrib != INVALID_FILE_ATTRIBUTES && 
-	(attrib & FILE_ATTRIBUTE_DIRECTORY) != 0)
+    DWORD attrib = GetFileAttributes(inName.c_str());
+
+    if (attrib != INVALID_FILE_ATTRIBUTES &&
+        (attrib & FILE_ATTRIBUTE_DIRECTORY) != 0)
+    {
+        return true;
+    }
+    return false;
+}
+
+bool
+PlatformMiscUtils::FileExists(const string& inName)
+{
+    DWORD attrib = GetFileAttributes(inName.c_str());
+
+    if (attrib != INVALID_FILE_ATTRIBUTES &&
+        (attrib & FILE_ATTRIBUTE_DIRECTORY) == 0)
     {
         return true;
     }

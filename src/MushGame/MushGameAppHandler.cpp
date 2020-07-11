@@ -187,7 +187,7 @@ MushGameAppHandler::QuitStateEnter(void)
         }
         if (permitPurge)
         {
-#ifdef MUSHCORE_DEBUGz // FIXME
+#ifdef MUSHCORE_DEBUG
             MushcoreLog::Sgl().InfoLog() << "MUSHCORE_DEBUG prevented texture cache purging" << endl;
 #else
             MushGLCacheControl::Sgl().CachePurge();

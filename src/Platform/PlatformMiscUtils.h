@@ -124,6 +124,7 @@ public:
     static void Initialise(void);
     static void Finalise(void);
     static bool DirectoryExists(const std::string& inName);
+    static bool FileExists(const std::string& inName);
     static void MakePrivateDirectory(const std::string& inName);
     static void MakePublicDirectory(const std::string& inName);
     static void ReadDirectory(std::vector<std::string>& outFilenames, const std::string& inDirName);

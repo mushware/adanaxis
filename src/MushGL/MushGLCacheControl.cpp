@@ -114,7 +114,7 @@ MushGLCacheControl::HashedFilenameMake(const std::string& inName)
 }
 
 std::string
-MushGLCacheControl::TextureCacheFilenameMake(const std::string& inName, Mushware::t2U32& inSize)
+MushGLCacheControl::TextureCacheFilenameMake(const std::string& inName, const std::string& inUniqueId, Mushware::t2U32& inSize)
 {
 	std::string filename;
 	if (m_globalCachePath == "")
@@ -122,7 +122,9 @@ MushGLCacheControl::TextureCacheFilenameMake(const std::string& inName, Mushware
 	    throw MushcoreRequestFail("No global cache path defined");	
 	}
     std::ostringstream pathStream;
-    pathStream << m_globalCachePath << "/tex-" << inSize.X() << "x" << inSize.Y() << "-" << HashedFilenameMake(inName) << ".tiff";
+    std::string version = MushcoreInfo::Sgl().PackageVersionGet();
+    std::replace(version.begin(), version.end(), '.', '_');
+    pathStream << m_globalCachePath << "/tex-" << inName << "-" << version << "-" << inSize.X() << "x" << inSize.Y() << "-" << HashedFilenameMake(inUniqueId) << ".tiff";
 	return pathStream.str();
 }
 

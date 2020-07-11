@@ -111,6 +111,7 @@
 #include "MushGLV.h"
 
 #include "API/mushMedia.h"
+#include "API/mushPlatform.h"
 
 using namespace Mushware;
 using namespace std;
@@ -124,52 +125,51 @@ Mushware::tSize MushGLTexture::m_byteCount = 0;
 const std::vector<MediaJobId>
 MushGLTexture::Make(void)
 {
-	// This cache load should still happen if m_made is true
-	if (m_cacheable && MushGLCacheControl::Sgl().PermitCache())
-	{
-		m_compress = MushGLCacheControl::Sgl().PermitCompression();
-        if (FromCacheLoad())
-		{
-            m_made = true;
-            m_ready = true;
-            m_finished = true;
-		}
-	}
-
 	if (!m_made)
 	{
         m_made = true;
-
-		// Switch off compression when generating, so we save a pristine copy to the cache
-		m_compress = false;
 		
-		MushGLPixelSource *pSrc = NULL;
-		
-		if (!MushcoreData<MushGLPixelSource>::Sgl().GetIfExists(pSrc, m_name))
-		{
-            throw MushcoreRequestFail("Cannot resolve pixel source '" + m_name + "' for texture");
-		}
+        if (MushGLCacheControl::Sgl().PermitCache() && PlatformMiscUtils::FileExists(m_cacheFilename)) {
+            MushGLPixelSourceTIFF *pSrcTiff = new MushGLPixelSourceTIFF();
+            pSrcTiff->FilenameSet(m_cacheFilename);
 
-		if (pSrc == NULL)
-		{
-			MUSHCOREASSERT(false);
-			throw MushcoreRequestFail("MushGLTexture::Make failure");
-		}
-
-        m_cacheable = pSrc->Cacheable();
-        m_resident = pSrc->Resident();
-        pSrc->ReductionFactorSet(16);
-
-        std::ostringstream jobName;
-        jobName << "maketexture-" << m_name;
-        std::auto_ptr<MediaJob> pMakeJob(new MushGLMakeJob(jobName.str(), pSrc, this));
-
-        if (false) {
-            // Non-threaded version, now disabled
-            pMakeJob->RunToCompletionNow();
-        } else {
+            std::ostringstream jobName;
+            jobName << "loadcachedtexture-" << m_name;
+            std::auto_ptr<MediaJob> pMakeJob(new MushGLMakeJob(jobName.str(), pSrcTiff, this));
             m_creationJobIds.push_back(pMakeJob->JobId());
             MediaThreadPool::Sgl().WaitMapGive(pMakeJob);
+
+            MushGLCacheControl::Sgl().TextureCacheHitRegister();
+        } else {
+
+            MushGLPixelSource *pSrc = NULL;
+
+            // Switch off compression when generating, so we save a pristine copy to the cache
+            m_compress = false;
+
+            if (!MushcoreData<MushGLPixelSource>::Sgl().GetIfExists(pSrc, m_name))
+            {
+                throw MushcoreRequestFail("Cannot resolve pixel source '" + m_name + "' for texture");
+            }
+
+            if (pSrc == NULL)
+            {
+                MUSHCOREASSERT(false);
+                throw MushcoreRequestFail("MushGLTexture::Make failure");
+            }
+
+            m_cacheable = pSrc->Cacheable();
+            m_resident = pSrc->Resident();
+            pSrc->ReductionFactorSet(16);
+
+            std::ostringstream jobName;
+            jobName << "maketexture-" << m_name;
+            std::auto_ptr<MediaJob> pMakeJob(new MushGLMakeJob(jobName.str(), pSrc, this));
+
+            m_creationJobIds.push_back(pMakeJob->JobId());
+            MediaThreadPool::Sgl().WaitMapGive(pMakeJob);
+
+            MushGLCacheControl::Sgl().TextureCacheMissRegister();
         }
 	}
     return m_creationJobIds;
@@ -224,7 +224,9 @@ MushGLTexture::ToCacheSave(const MushGLPixelSource& inSrc)
 	{
         if (m_saveable)
         {
-            m_cacheFilename = MushGLCacheControl::Sgl().TextureCacheFilenameMake(m_uniqueIdentifier, Mushware::t2U32(m_size.X(), m_size.Y()));
+            if (m_cacheFilename == "") {
+                throw MushcoreRequestFail("Empty cache filename");
+            }
             MushGLTIFFUtil::RGBASave(m_cacheFilename, m_uniqueIdentifier,
                                      Mushware::t2U32(m_size.X(), m_size.Y()),
                                      inSrc.DataRGBAU8Get());
@@ -236,40 +238,6 @@ MushGLTexture::ToCacheSave(const MushGLPixelSource& inSrc)
 	}
 }
 
-bool
-MushGLTexture::FromCacheLoad(void)
-{
-	bool success = false;
-	
-	m_cacheFilename = MushGLCacheControl::Sgl().TextureCacheFilenameMake(m_uniqueIdentifier, Mushware::t2U32(m_size.X(), m_size.Y()));
-    MushGLPixelSourceTIFF pixelSourceTIFF;
-	
-	pixelSourceTIFF.FilenameSet(m_cacheFilename);
-	
-	try
-	{
-        pixelSourceTIFF.ToTextureCreate(*this, NULL);
-        pixelSourceTIFF.ToTextureBind(*this);
-		MushGLCacheControl::Sgl().TextureCacheHitRegister();
-		MushcoreLog::Sgl().InfoLog() << "Loaded cache texture: '" << m_name << "' from '" << m_cacheFilename << "'" << endl;
-		success = true;
-		
-#if 0
-        if (m_saveable)
-        {
-            std::string saveFilename = m_cacheFilename.substr(0, m_cacheFilename.size()-5);
-            MushGLTIFFUtil::TextureSave(saveFilename+"-resaved.tiff", m_name);
-        }
-#endif
-
-	}
-	catch (MushcoreNonFatalFail& e)
-	{
-		MushcoreLog::Sgl().InfoLog() << "Texture cache miss: '" << m_name << "' (loads from '" << m_cacheFilename << "')" << endl;
-		MushGLCacheControl::Sgl().TextureCacheMissRegister();
-	}
-	return success;
-}
 
 void
 MushGLTexture::PixelDataGLRGBAUse(void *pData)
@@ -505,10 +473,16 @@ MushGLTexture::RubyDefine(Mushware::tRubyArgC inArgC, Mushware::tRubyValue *inpA
         {
             MushGLTexture *pTexture = MushcoreData<MushGLTexture>::Sgl().Give(textureName, new MushGLTexture);
             pTexture->NameSet(textureName);
+            pTexture->SizeSet(pixelSource.FinalSize());
             pTexture->CacheableSet(pixelSource.Cacheable());
             std::ostringstream hashStream;
             hashStream << paramHash;
             pTexture->UniqueIdentifierSet(hashStream.str());
+            pTexture->CacheFilenameSet(MushGLCacheControl::Sgl().TextureCacheFilenameMake(
+                textureName,
+                pTexture->UniqueIdentifier(),
+                Mushware::t2U32(pTexture->Size().X(), pTexture->Size().Y()))
+            );
         }
 	}
 	catch (MushcoreFail& e)
@@ -530,8 +504,6 @@ MushGLTexture::RubyPrecache(Mushware::tRubyArgC inArgC, Mushware::tRubyValue *in
 		}
 
 		std::string textureName = MushRubyValue(inpArgV[0]).String();
-		
-
 
 		MushGLTexture *pTexture = NULL;
         

@@ -107,7 +107,17 @@ If ($null -eq (Get-Command -ErrorAction SilentlyContinue cmake)) {
     Throw "CMake not installed, use e.g. choco install --yes cmake.install --version 3.16.2"
 }
 
-Write-Host "Building spdlog library - props to https://github.com/gabime"
+Write-Host -ForegroundColor DarkCyan @"
+
+********************************************
+*                                          *
+*    Building spdlog library               *
+*    Props to https://github.com/gabime    *
+*                                          *
+********************************************
+
+"@
+
 New-Item -ItemType "directory" -Path $SpdlogBuildRoot -Force | Foreach-Object { "Created directory $($_.FullName)" }
 
 Set-Location $SpdlogBuildRoot
@@ -129,9 +139,9 @@ if ($spdlog_build_process.ExitCode -ne 0) {
     throw "Spdlog make failed ($($spdlog_build_process.ExitCode))"
 }
 
-Write-Host -ForegroundColor DarkCyan "Waiting for dependency fetch jobs.."
+Write-Host -ForegroundColor DarkCyan "Waiting for dependency fetch jobs..."
 
-# Need to wait for dependencies before build, since they supply headers
+# Need to wait for dependencies before Adanaxis build
 Receive-Job -Job $getdeps_job -Wait
 Receive-Job -Job $wix_job -Wait
 
@@ -159,7 +169,10 @@ Write-Host "Output of previous WiX install job:"
 Receive-Job -Job $wix_job -Wait
 
 $installer_log_filename = "install.log"
-$install_process = Start-Process -NoNewWindow -PassThru -Wait -FilePath "cmd.exe" -ArgumentList  "/Cmsiexec.exe", "/lv*", $installer_log_filename, "/q", "/i", "msi\$Configuration\Adanaxis.msi"
+$install_process = Start-Process -NoNewWindow -PassThru -FilePath "cmd.exe" -ArgumentList  "/Cmsiexec.exe", "/lv*", $installer_log_filename, "/q", "/i", "msi\$Configuration\Adanaxis.msi"
+$handle = $install_process.Handle # Fix for missing ExitCode
+$install_process.WaitForExit()
+
 if ($install_process.ExitCode -ne 0) {
     Write-Host "Installation failed.  Log dump:"
     Get-Content $installer_log_filename | Write-Host

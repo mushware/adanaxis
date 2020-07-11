@@ -142,7 +142,6 @@ private:
 
     void PixelDataGLRGBAUse(void *pData);
     void PixelDataU8RGBAUse(void *pData);
-	bool FromCacheLoad(void);
 	
     std::vector<Mushware::U8> m_u8Data;
     std::vector<Mushware::tVal> m_valData;
@@ -154,7 +153,7 @@ private:
     Mushware::U32 m_storageType;
     std::string m_uniqueIdentifier; //:readwrite
 	std::string m_name; //:readwrite
-    std::string m_cacheFilename;
+    std::string m_cacheFilename; //:readwrite
 	bool m_cacheable; //:readwrite
 	bool m_compress; //:readwrite
     bool m_made;
@@ -175,6 +174,8 @@ public:
     void UniqueIdentifierSet(const std::string& inValue) { m_uniqueIdentifier=inValue; }
     const std::string& Name(void) const { return m_name; }
     void NameSet(const std::string& inValue) { m_name=inValue; }
+    const std::string& CacheFilename(void) const { return m_cacheFilename; }
+    void CacheFilenameSet(const std::string& inValue) { m_cacheFilename=inValue; }
     const bool& Cacheable(void) const { return m_cacheable; }
     void CacheableSet(const bool& inValue) { m_cacheable=inValue; }
     const bool& Compress(void) const { return m_compress; }
@@ -196,7 +197,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } BK8zdnXqK31I+mIK5LSKig
+//%classPrototypes } NHuM0afWBX1cdqKCqQwXRw
 };
 //%inlineHeader {
 inline std::ostream&

@@ -67,6 +67,7 @@ MushGLMakeJob::PrerequisitesCreate()
     JobIdToWaitForAdd(jobIds);
 }
 
+
 void MushGLMakeJob::Run()
 {
     m_pPixelSource->DataCreate();
@@ -76,7 +77,26 @@ void MushGLMakeJob::Run()
     // Built this texture the hard way, so save to cache
     if (m_pTexture->Cacheable() && MushGLCacheControl::Sgl().PermitCache())
     {
-        m_pTexture->ToCacheSave(*m_pPixelSource);
+        if (m_pPixelSource->ReductionFactor() < 1.5) {
+            // Final copy
+            m_pTexture->ToCacheSave(*m_pPixelSource);
+        } else {
+#ifdef MUSHCORE_DEBUG
+            std::string cacheFilename = m_pTexture->CacheFilename();
+            std::ostringstream nameStream;
+            nameStream << m_pTexture->Name() << "-reduce" << m_pPixelSource->ReductionFactor();
+            m_pTexture->CacheFilenameSet(MushGLCacheControl::Sgl().TextureCacheFilenameMake(
+                nameStream.str(),
+                m_pTexture->UniqueIdentifier(),
+                Mushware::t2U32(m_pTexture->Size().X(),
+                    m_pTexture->Size().Y()))
+            );
+            
+            m_pTexture->ToCacheSave(*m_pPixelSource);
+
+            m_pTexture->CacheFilenameSet(cacheFilename);
+#endif
+        }
     }
 
     JobStateSet(kJobStatePostRun);
@@ -93,7 +113,7 @@ void MushGLMakeJob::MainThreadPostRun()
     Mushware::tVal reductionFactor = m_pPixelSource->ReductionFactor();
     m_pPixelSource->ReductionFactorSet(reductionFactor / 2);
 
-    if (reductionFactor < 2) {
+    if (reductionFactor < 1.5) {
         m_pTexture->FinishedSet(true);
     }
 
