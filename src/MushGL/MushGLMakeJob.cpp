@@ -75,7 +75,7 @@ void MushGLMakeJob::Run()
     m_pPixelSource->ToTextureCreate(*m_pTexture, &m_killSwitch);
 
     // Built this texture the hard way, so save to cache
-    if (m_pTexture->Cacheable() && MushGLCacheControl::Sgl().PermitCache())
+    if (m_pTexture->Cacheable() && m_pPixelSource->Cacheable() && MushGLCacheControl::Sgl().PermitCache())
     {
         if (m_pPixelSource->ReductionFactor() < 1.5) {
             // Final copy

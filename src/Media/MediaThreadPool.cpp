@@ -275,7 +275,9 @@ void MediaThreadPool::MainThreadPump()
 
             std::ostringstream durationStream;
             durationStream << setprecision(3) << fixed << duration << " s";
+#ifdef MUSHCORE_DEBUG
             MushcoreLog::Sgl().InfoLog() << "Finished job " << pJob->Name() << " in " << durationStream.str() << std::endl;
+#endif
             pJob->MainThreadPostRun();
             if (pJob->JobState() == MediaJob::kJobStateRunning) {
                 MushcoreLog::Sgl().ErrorLog() << "Job " << pJob->Name() << " failed to set state on exit, aborting" << std::endl;
@@ -364,10 +366,12 @@ MediaThreadPool::HandleStateChange()
         }
 
         if (canStart && (*jobIter)->second->JobCanStart()) {
+#ifdef MUSHCORE_DEBUG
             if ((*jobIter)->second->JobState() == MediaJob::kJobStateWaiting && jobIdsToWaitFor.size() > 0) {
                 // Log when jobs are released for the first time
                 MushcoreLog::Sgl().InfoLog() << "Job " << (*jobIter)->second->Name() << " now released because dependency jobs are complete" << std::endl;
             }
+#endif
             JobStart((*jobIter)->first);
         }
     }
