@@ -766,7 +766,7 @@ SDLAppHandler::PollForControlEvents(void)
 
     if (loopCtr > 100)
     {
-        MushcoreLog::Sgl().WarningLog() << "event loopCtr overrun";
+        MushcoreLog::Sgl().WarningLog() << "Large number of control events in single main loop pass";
     }
 }
 

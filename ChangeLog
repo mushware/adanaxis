@@ -1,3 +1,29 @@
+
+2020-07-11  Andy Southgate <andy.southgate@mushware.com>
+    * Version v1.5.9
+    * Now loads textures on background threads
+
+2020-07-05  Andy Southgate <andy.southgate@mushware.com>
+    * Version v1.5.5
+    * Source file headers updated to match MIT licence
+
+2020-07-05  Andy Southgate <andy.southgate@mushware.com>
+    * Version v1.5.3
+    * Adds Windows code signing to installer and executable
+    * From now on, Windows release builds should only be trusted if signed
+
+2020-06-20  Andy Southgate <andy.southgate@mushware.com>
+    * Version v1.5.1
+    * Sundry fixes to make Windows build playable
+
+2020-06-20  Andy Southgate <andy.southgate@mushware.com>
+    * Version v1.5.0
+    * First Travis build after resurrection
+    * Moved code from CVSNT to Github
+    * Moved to MIT-style licence as far as possible
+    * Windows build fixup
+    * Move to SDL version 2
+
 2007-10-12  Andy Southgate <andy.southgate@mushware.com>
     * Version 1.2.2 released
     * Added source document for About_Adanaxis.pdf

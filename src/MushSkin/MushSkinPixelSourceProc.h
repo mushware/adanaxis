@@ -93,6 +93,7 @@ public:
 	virtual void MeshResolve(void) const;
 
 	virtual void LineGenerate(Mushware::U8 *inpTileData, Mushware::U32 inNumPixels, Mushware::t4Val inStartPos, Mushware::t4Val inEndPos);
+    virtual void LineEdgeEffectGenerate(Mushware::U8 *inpTileData, Mushware::U32 startX, Mushware::U32 endX, Mushware::U32 startY, Mushware::U32 endY, Mushware::U32 y);
 	Mushware::t4Val PositionTransform(const Mushware::t4Val& inPos) { return inPos.ElementwiseProduct(m_scale) + m_offset; }
 	
 protected:
@@ -108,6 +109,10 @@ private:
 	Mushware::t4Val m_offset; //:read
 	Mushware::U32 m_numOctaves; //:read
 	Mushware::tVal m_octaveRatio; //:read
+
+    Mushware::tVal m_edgeProximityDist; //:read
+    Mushware::t4Val m_edgeProximityCol; //:read
+
     mutable MushGLTexture *m_pPaletteTexture; //Not owned by this object
 	mutable MushMesh4Mesh *m_pMesh; //:read
 	
@@ -123,6 +128,8 @@ public:
     const Mushware::t4Val& Offset(void) const { return m_offset; }
     const Mushware::U32& NumOctaves(void) const { return m_numOctaves; }
     const Mushware::tVal& OctaveRatio(void) const { return m_octaveRatio; }
+    const Mushware::tVal& EdgeProximityDist(void) const { return m_edgeProximityDist; }
+    const Mushware::t4Val& EdgeProximityCol(void) const { return m_edgeProximityCol; }
     const MushMesh4Mesh& PMesh(void) const { return *m_pMesh; }
     virtual const char *AutoName(void) const;
     virtual MushcoreVirtualObject *AutoClone(void) const;
@@ -131,7 +138,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } zCIEMLUMgqNAtQZIC6vhGQ
+//%classPrototypes } UtKGKAdyFhKr3WFNM1gsmA
 };
 
 inline const MushGLTexture&

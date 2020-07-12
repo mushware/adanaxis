@@ -61,6 +61,8 @@ MushSkinPixelSourceProc::MushSkinPixelSourceProc() :
     m_offset(0,0,0,0),
     m_numOctaves(1),
     m_octaveRatio(0.5),
+    m_edgeProximityDist(0.0),
+    m_edgeProximityCol(255, 255, 255, 96),
 	m_pPaletteTexture(NULL),
 	m_pMesh(NULL)
 {}
@@ -98,10 +100,18 @@ MushSkinPixelSourceProc::ParamDecode(const MushRubyValue& inName, const MushRuby
 	{
 		m_numOctaves = inValue.U32();
 	}	
-	else if (nameStr == "octaveratio")
-	{
-		m_octaveRatio = inValue.Val();
-	}	
+    else if (nameStr == "octaveratio")
+    {
+        m_octaveRatio = inValue.Val();
+    }
+    else if (nameStr == "edgeproximitydist")
+    {
+        m_edgeProximityDist = inValue.Val();
+    }
+    else if (nameStr == "edgeproximitycol")
+    {
+        m_edgeProximityCol = t4Val(inValue.ValVector());
+    }
 	else
 	{
 		MushGLPixelSource::ParamDecode(inName, inValue);
@@ -137,6 +147,42 @@ MushSkinPixelSourceProc::LineGenerate(Mushware::U8 *inpTileData, Mushware::U32 i
     }
     MUSHCOREASSERT(pTileData <= inpTileData + 4*inNumPixels);
 }
+
+
+void
+MushSkinPixelSourceProc::LineEdgeEffectGenerate(Mushware::U8 *inpTileData, Mushware::U32 startX, Mushware::U32 endX, Mushware::U32 startY, Mushware::U32 endY, Mushware::U32 y)
+{
+    U8 *pTileData = inpTileData;
+    U32 xSize = endX - startX;
+    U32 ySize = endY - startY;
+
+    if (xSize > 0 && ySize > 0 && m_edgeProximityDist > 0) {
+        for (U32 x = startX; x < startX + xSize; ++x)
+        {
+            tVal distFromEdge = std::min(
+                std::min(std::fabs(1.0 * startX - x),
+                    std::fabs(1.0 * endX - x)) / xSize,
+                std::min(std::fabs(1.0 * startY - y),
+                    std::fabs(1.0 * endY - y)) / ySize
+            );
+
+            tVal effectStrength = std::min(1.0, 1.0 - (distFromEdge / m_edgeProximityDist));
+            if (effectStrength > 0) {
+
+                *pTileData++ = static_cast<U8>(*pTileData * (1 - effectStrength) + m_edgeProximityCol.X() * effectStrength); // Red
+                *pTileData++ = static_cast<U8>(*pTileData * (1 - effectStrength) + m_edgeProximityCol.Y() * effectStrength); // Green
+                *pTileData++ = static_cast<U8>(*pTileData * (1 - effectStrength) + m_edgeProximityCol.Z() * effectStrength); // Blue
+                *pTileData++ = static_cast<U8>(*pTileData * (1 - effectStrength) + m_edgeProximityCol.W() * effectStrength); // Alpha
+            }
+            else {
+                pTileData += 4;
+            }
+        }
+    }
+
+    MUSHCOREASSERT(pTileData <= inpTileData + 4 * xSize);
+}
+
 
 std::vector<MediaJobId>
 MushSkinPixelSourceProc::PrerequisitesCreate(MushGLTexture& outTexture)
@@ -205,9 +251,13 @@ MushSkinPixelSourceProc::ToTextureCreate(MushGLTexture& outTexture, volatile boo
             if (endX > startX)
             {
                 LineGenerate(pTileData, endX - startX, objectPos, objectEndPos);
+
+                LineEdgeEffectGenerate(pTileData, startX, endX, startY, endY, y);
             }
 
             MUSHCOREASSERT(pTileData <= &m_u8Data[pixelDataSize - 1] + 1);
+
+
         }
     }
 
@@ -327,6 +377,8 @@ MushSkinPixelSourceProc::AutoPrint(std::ostream& ioOut) const
     ioOut << "offset=" << m_offset << ", ";
     ioOut << "numOctaves=" << m_numOctaves << ", ";
     ioOut << "octaveRatio=" << m_octaveRatio << ", ";
+    ioOut << "edgeProximityDist=" << m_edgeProximityDist << ", ";
+    ioOut << "edgeProximityCol=" << m_edgeProximityCol << ", ";
     if (m_pPaletteTexture == NULL)
     {
         ioOut << "pPaletteTexture=NULL"  << ", ";
@@ -394,6 +446,14 @@ MushSkinPixelSourceProc::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std:
     {
         ioIn >> m_octaveRatio;
     }
+    else if (inTagStr == "edgeProximityDist")
+    {
+        ioIn >> m_edgeProximityDist;
+    }
+    else if (inTagStr == "edgeProximityCol")
+    {
+        ioIn >> m_edgeProximityCol;
+    }
     else if (inTagStr == "pPaletteTexture")
     {
         ioIn >> m_pPaletteTexture;
@@ -436,9 +496,13 @@ MushSkinPixelSourceProc::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_numOctaves;
     ioOut.TagSet("octaveRatio");
     ioOut << m_octaveRatio;
+    ioOut.TagSet("edgeProximityDist");
+    ioOut << m_edgeProximityDist;
+    ioOut.TagSet("edgeProximityCol");
+    ioOut << m_edgeProximityCol;
     ioOut.TagSet("pPaletteTexture");
     ioOut << m_pPaletteTexture;
     ioOut.TagSet("pMesh");
     ioOut << m_pMesh;
 }
-//%outOfLineFunctions } bSBleOBESd07WmfrIGgu2w
+//%outOfLineFunctions } GrB2i+5vQHM49ei+a19ToQ

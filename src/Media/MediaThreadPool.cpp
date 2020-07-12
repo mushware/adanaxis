@@ -292,7 +292,7 @@ void MediaThreadPool::MainThreadPump()
 
         ++jobCount;
         if (SDL_GetPerformanceCounter() > endCount) {
-            MushcoreLog::Sgl().InfoLog() << "Limited to procesing " << jobCount << " in main thread" << std::endl;
+            MushcoreLog::Sgl().InfoLog() << "Limited to processing output of " << jobCount << " jobs in main thread" << std::endl;
             break;
         }
     }
