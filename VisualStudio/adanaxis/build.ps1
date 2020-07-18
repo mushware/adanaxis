@@ -42,7 +42,7 @@ If ($BuildNumber) {
     }
     $Version = "1.4.0.$BuildNumber"
     If ($env:TRAVIS_TAG) {
-        If ($env:TRAVIS_TAG -match "^v\d\.\d\.\d$") {
+        If ($env:TRAVIS_TAG -match "^v\d+\.\d+\.\d+$") {
             $Version = "$($env:TRAVIS_TAG.Substring(1)).$BuildNumber"
         } Else {
             Write-Error "Badly formed or non-release git tag ""$($env:TRAVIS_TAG)"""

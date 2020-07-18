@@ -271,9 +271,9 @@ private:
     std::string m_version;
     std::string m_extensions;
     Mushware::U32 m_numTextureUnits; //:read
+    Mushware::U32 m_maxTextureSize; //:read
     bool m_hasS3TC; //:read
 	bool m_useS3TC; //:write
-    
     Mushware::U32 m_contextNum; //:read
     bool m_contextValid; //:read
     
@@ -283,12 +283,13 @@ public:
     void UseShaderSet(const bool& inValue) { m_useShader=inValue; }
     const Mushware::U32& MaxFragmentUniformComponents(void) const { return m_maxFragmentUniformComponents; }
     const Mushware::U32& NumTextureUnits(void) const { return m_numTextureUnits; }
+    const Mushware::U32& MaxTextureSize(void) const { return m_maxTextureSize; }
     const bool& HasS3TC(void) const { return m_hasS3TC; }
     void UseS3TCSet(const bool& inValue) { m_useS3TC=inValue; }
     const Mushware::U32& ContextNum(void) const { return m_contextNum; }
     const bool& ContextValid(void) const { return m_contextValid; }
     virtual void AutoPrint(std::ostream& ioOut) const;
-//%classPrototypes } V7083U4lmtjlDOlJNceWlA
+//%classPrototypes } f0E47eG6MszSPH794g1icA
 };
 
 inline void

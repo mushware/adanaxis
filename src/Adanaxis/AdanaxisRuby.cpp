@@ -206,6 +206,22 @@ AdanaxisRuby::UseGLShaderSet(Mushware::tRubyValue inSelf, Mushware::tRubyValue i
     return kRubyQnil;
 }
 
+Mushware::tRubyValue
+AdanaxisRuby::Apply2020Makeover(Mushware::tRubyValue inSelf)
+{
+    U32 retVal = MushGameUtil::AppHandler().Config().Apply2020Makeover();
+    return MushRubyValue(retVal).Value();
+}
+
+Mushware::tRubyValue
+AdanaxisRuby::Apply2020MakeoverSet(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0)
+{
+    MushRubyValue value(inArg0);
+    MushGameUtil::AppHandler().ConfigWRef().Apply2020MakeoverSet(value.U32());
+
+    return Mushware::kRubyQnil;
+}
+
 void
 AdanaxisRuby::AdanaxisInstall(void)
 {
@@ -221,4 +237,6 @@ AdanaxisRuby::AdanaxisInstall(void)
     MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cUseGLCompressionSet", UseGLCompressionSet);
     MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cUseGLShader", UseGLShader);
     MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cUseGLShaderSet", UseGLShaderSet);
+    MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cApply2020Makeover", Apply2020Makeover);
+    MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cApply2020MakeoverSet", Apply2020MakeoverSet);
 }

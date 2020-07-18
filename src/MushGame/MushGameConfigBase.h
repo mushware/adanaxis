@@ -70,6 +70,7 @@ private:
     Mushware::tVal m_mouseSensitivity; //:readwrite
     Mushware::tVal m_brightness; //:readwrite
     bool m_showSubtitles; //:readwrite
+    bool m_apply2020Makeover; //:readwrite
     
     // psuedo-config
     Mushware::U32 m_safeMode; //:readwrite
@@ -92,12 +93,14 @@ public:
     void BrightnessSet(const Mushware::tVal& inValue) { m_brightness=inValue; }
     const bool& ShowSubtitles(void) const { return m_showSubtitles; }
     void ShowSubtitlesSet(const bool& inValue) { m_showSubtitles=inValue; }
+    const bool& Apply2020Makeover(void) const { return m_apply2020Makeover; }
+    void Apply2020MakeoverSet(const bool& inValue) { m_apply2020Makeover=inValue; }
     const Mushware::U32& SafeMode(void) const { return m_safeMode; }
     void SafeModeSet(const Mushware::U32& inValue) { m_safeMode=inValue; }
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } RAzJztO/4EE7b4w6LMjXNw
+//%classPrototypes } zJeglMPnF9ScID0fRMVyDA
 };
 
 //%inlineHeader {

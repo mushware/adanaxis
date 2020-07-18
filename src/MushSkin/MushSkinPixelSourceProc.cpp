@@ -55,14 +55,14 @@ using namespace std;
 
 
 MushSkinPixelSourceProc::MushSkinPixelSourceProc() :
-    m_paletteStart(0,0),
-    m_paletteVector1(1,0),
-    m_scale(1,1,1,1),
-    m_offset(0,0,0,0),
+    m_paletteStart(0, 0),
+    m_paletteVector1(1, 0),
+    m_scale(1, 1, 1, 1),
+    m_offset(0, 0, 0, 0),
     m_numOctaves(1),
     m_octaveRatio(0.5),
-    m_edgeProximityDist(0.0),
-    m_edgeProximityCol(255, 255, 255, 96),
+    m_edgeProximityDist(0),
+    m_edgeProximityCol(0, 0, 0, 0),
 	m_pPaletteTexture(NULL),
 	m_pMesh(NULL)
 {}
@@ -110,7 +110,7 @@ MushSkinPixelSourceProc::ParamDecode(const MushRubyValue& inName, const MushRuby
     }
     else if (nameStr == "edgeproximitycol")
     {
-        m_edgeProximityCol = t4Val(inValue.ValVector());
+        m_edgeProximityCol = 255 * t4Val(inValue.ValVector());
     }
 	else
 	{
@@ -166,15 +166,17 @@ MushSkinPixelSourceProc::LineEdgeEffectGenerate(Mushware::U8 *inpTileData, Mushw
                     std::fabs(1.0 * endY - y)) / ySize
             );
 
-            tVal effectStrength = std::min(1.0, 1.0 - (distFromEdge / m_edgeProximityDist));
+            tVal effectStrength = std::min(1.0, 1.5 - (distFromEdge / m_edgeProximityDist));
             if (effectStrength > 0) {
+                tVal invEffectStrength = 1.0 - effectStrength;
+                MUSHCOREASSERT(invEffectStrength >= 0.0);
+                MUSHCOREASSERT(invEffectStrength < 1.0);
 
-                *pTileData++ = static_cast<U8>(*pTileData * (1 - effectStrength) + m_edgeProximityCol.X() * effectStrength); // Red
-                *pTileData++ = static_cast<U8>(*pTileData * (1 - effectStrength) + m_edgeProximityCol.Y() * effectStrength); // Green
-                *pTileData++ = static_cast<U8>(*pTileData * (1 - effectStrength) + m_edgeProximityCol.Z() * effectStrength); // Blue
-                *pTileData++ = static_cast<U8>(*pTileData * (1 - effectStrength) + m_edgeProximityCol.W() * effectStrength); // Alpha
-            }
-            else {
+                *pTileData++ = static_cast<U8>(*pTileData * invEffectStrength + m_edgeProximityCol.X() * effectStrength); // Red
+                *pTileData++ = static_cast<U8>(*pTileData * invEffectStrength + m_edgeProximityCol.Y() * effectStrength); // Green
+                *pTileData++ = static_cast<U8>(*pTileData * invEffectStrength + m_edgeProximityCol.Z() * effectStrength); // Blue
+                *pTileData++ = static_cast<U8>(*pTileData * invEffectStrength + m_edgeProximityCol.W() * effectStrength); // Alpha
+            } else {
                 pTileData += 4;
             }
         }

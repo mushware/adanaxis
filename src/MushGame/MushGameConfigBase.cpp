@@ -76,6 +76,7 @@ MushGameConfigBase::ToDefaultSet(void)
     m_mouseSensitivity = 1;
     m_brightness = 1;
     m_showSubtitles = true;
+    m_apply2020Makeover = 1;
 }
 
 void
@@ -115,6 +116,7 @@ MushGameConfigBase::AutoPrint(std::ostream& ioOut) const
     ioOut << "mouseSensitivity=" << m_mouseSensitivity << ", ";
     ioOut << "brightness=" << m_brightness << ", ";
     ioOut << "showSubtitles=" << m_showSubtitles << ", ";
+    ioOut << "apply2020Makeover=" << m_apply2020Makeover << ", ";
     ioOut << "safeMode=" << m_safeMode;
     ioOut << "]";
 }
@@ -159,6 +161,10 @@ MushGameConfigBase::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::stri
     {
         ioIn >> m_showSubtitles;
     }
+    else if (inTagStr == "apply2020Makeover")
+    {
+        ioIn >> m_apply2020Makeover;
+    }
     else if (inTagStr == "safeMode")
     {
         ioIn >> m_safeMode;
@@ -188,7 +194,9 @@ MushGameConfigBase::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_brightness;
     ioOut.TagSet("showSubtitles");
     ioOut << m_showSubtitles;
+    ioOut.TagSet("apply2020Makeover");
+    ioOut << m_apply2020Makeover;
     ioOut.TagSet("safeMode");
     ioOut << m_safeMode;
 }
-//%outOfLineFunctions } SccENMkcAZWXbVe2c4GOfg
+//%outOfLineFunctions } xNJ/Tne4wMI5FjdvMFOaHw

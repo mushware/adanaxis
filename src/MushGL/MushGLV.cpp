@@ -157,6 +157,7 @@ MushGLV::MushGLV() :
     m_fpGetActiveUniform(NULL),
     m_fpValidateProgram(NULL),
     m_numTextureUnits(0),
+    m_maxTextureSize(0),
     m_hasS3TC(false),
     m_useS3TC(false),
     m_contextNum(1),
@@ -203,7 +204,11 @@ MushGLV::Acquaint(void)
         glGetIntegerv(GL_MAX_TEXTURE_UNITS, &texUnits);
         m_numTextureUnits = texUnits;
     }
-    
+    {
+        GLint maxTexSize = 1024;
+        glGetIntegerv(GL_MAX_TEXTURE_SIZE, &maxTexSize);
+        m_maxTextureSize = maxTexSize;
+    }
     if (!safeMode && m_extensions.find(" GL_ARB_vertex_buffer_object ") != string::npos)
     {
         try
@@ -441,10 +446,11 @@ MushGLV::AutoPrint(std::ostream& ioOut) const
     ioOut << "version=" << m_version << ", ";
     ioOut << "extensions=" << m_extensions << ", ";
     ioOut << "numTextureUnits=" << m_numTextureUnits << ", ";
+    ioOut << "maxTextureSize=" << m_maxTextureSize << ", ";
     ioOut << "hasS3TC=" << m_hasS3TC << ", ";
     ioOut << "useS3TC=" << m_useS3TC << ", ";
     ioOut << "contextNum=" << m_contextNum << ", ";
     ioOut << "contextValid=" << m_contextValid;
     ioOut << "]";
 }
-//%outOfLineFunctions } wndptupBoqbDdmUF4SX2sg
+//%outOfLineFunctions } /azEHhMgYE/cSgIJ3Mqsmg

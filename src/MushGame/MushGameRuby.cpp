@@ -674,6 +674,15 @@ MushGameRuby::Brightness(Mushware::tRubyValue inSelf)
 }
 
 Mushware::tRubyValue
+MushGameRuby::BrightnessSet(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0)
+{
+    MushRubyValue value(inArg0);
+    MushGameUtil::AppHandler().ConfigWRef().BrightnessSet(value.Val());
+    MushGameUtil::AppHandler().BrightnessSet(value.Val());
+    return Mushware::kRubyQnil;
+}
+
+Mushware::tRubyValue
 MushGameRuby::ShowSubtitlesSet(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0)
 {
     MushRubyValue value(inArg0);
@@ -686,15 +695,6 @@ MushGameRuby::ShowSubtitles(Mushware::tRubyValue inSelf)
 {
     bool retVal = MushGameUtil::AppHandler().Config().ShowSubtitles();
     return MushRubyValue(retVal).Value();
-}
-
-Mushware::tRubyValue
-MushGameRuby::BrightnessSet(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0)
-{
-    MushRubyValue value(inArg0);
-    MushGameUtil::AppHandler().ConfigWRef().BrightnessSet(value.Val());
-    MushGameUtil::AppHandler().BrightnessSet(value.Val());
-    return Mushware::kRubyQnil;
 }
 
 Mushware::tRubyValue
