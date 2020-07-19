@@ -156,10 +156,35 @@ MushGLV::MushGLV() :
     m_fpUniformMatrix4fv(NULL), 
     m_fpGetActiveUniform(NULL),
     m_fpValidateProgram(NULL),
+    m_fpIsRenderbuffer(NULL),
+    m_fpBindRenderbuffer(NULL),
+    m_fpDeleteRenderbuffers(NULL),
+    m_fpGenRenderbuffers(NULL),
+    m_fpRenderbufferStorage(NULL),
+    m_fpRenderbufferStorageMultisample(NULL),
+    m_fpGetRenderbufferParameteriv(NULL),
+    m_fpIsFramebuffer(NULL),
+    m_fpBindFramebuffer(NULL),
+    m_fpDeleteFramebuffers(NULL),
+    m_fpGenFramebuffers(NULL),
+    m_fpCheckFramebufferStatus(NULL),
+    m_fpFramebufferTexture1D(NULL),
+    m_fpFramebufferTexture2D(NULL),
+    m_fpFramebufferTexture3D(NULL),
+    m_fpFramebufferTextureLayer(NULL),
+    m_fpFramebufferRenderbuffer(NULL),
+    m_fpGetFramebufferAttachmentParameteriv(NULL),
+    m_fpBlitFramebuffer(NULL),
+    m_fpGenerateMipmap(NULL),
+    m_fpTexStorage1D(NULL),
+    m_fpTexStorage2D(NULL),
+    m_fpTexStorage3D(NULL),
     m_numTextureUnits(0),
     m_maxTextureSize(0),
     m_hasS3TC(false),
     m_useS3TC(false),
+    m_hasFrameBufferObject(false),
+    m_hasTextureStorage(false),
     m_contextNum(1),
     m_contextValid(false)
 {
@@ -302,6 +327,55 @@ MushGLV::Acquaint(void)
         {
                 MushcoreLog::Sgl().InfoLog() << "OpenGL symbol missing: " << e.what() << endl;
         }
+
+        if (!safeMode && m_extensions.find(" GL_ARB_framebuffer_object ") != string::npos)
+        {
+            try
+            {
+                m_fpIsRenderbuffer = (tfpIsRenderbuffer)GetProcAddressWithARB("glIsRenderbuffer");
+                m_fpBindRenderbuffer = (tfpBindRenderbuffer)GetProcAddressWithARB("glBindRenderbuffer");
+                m_fpDeleteRenderbuffers = (tfpDeleteRenderbuffers)GetProcAddressWithARB("glDeleteRenderbuffers");
+                m_fpGenRenderbuffers = (tfpGenRenderbuffers)GetProcAddressWithARB("glGenRenderbuffers");
+                m_fpRenderbufferStorage = (tfpRenderbufferStorage)GetProcAddressWithARB("glRenderbufferStorage");
+                m_fpRenderbufferStorageMultisample = (tfpRenderbufferStorageMultisample)GetProcAddressWithARB("glRenderbufferStorageMultisample");
+                m_fpGetRenderbufferParameteriv = (tfpGetRenderbufferParameteriv)GetProcAddressWithARB("glGetRenderbufferParameteriv");
+                m_fpIsFramebuffer = (tfpIsFramebuffer)GetProcAddressWithARB("glIsFramebuffer");
+                m_fpBindFramebuffer = (tfpBindFramebuffer)GetProcAddressWithARB("glBindFramebuffer");
+                m_fpDeleteFramebuffers = (tfpDeleteFramebuffers)GetProcAddressWithARB("glDeleteFramebuffers");
+                m_fpGenFramebuffers = (tfpGenFramebuffers)GetProcAddressWithARB("glGenFramebuffers");
+                m_fpCheckFramebufferStatus = (tfpCheckFramebufferStatus)GetProcAddressWithARB("glCheckFramebufferStatus");
+                m_fpFramebufferTexture1D = (tfpFramebufferTexture1D)GetProcAddressWithARB("glFramebufferTexture1D");
+                m_fpFramebufferTexture2D = (tfpFramebufferTexture2D)GetProcAddressWithARB("glFramebufferTexture2D");
+                m_fpFramebufferTexture3D = (tfpFramebufferTexture3D)GetProcAddressWithARB("glFramebufferTexture3D");
+                m_fpFramebufferTextureLayer = (tfpFramebufferTextureLayer)GetProcAddressWithARB("glFramebufferTextureLayer");
+                m_fpFramebufferRenderbuffer = (tfpFramebufferRenderbuffer)GetProcAddressWithARB("glFramebufferRenderbuffer");
+                m_fpGetFramebufferAttachmentParameteriv = (tfpGetFramebufferAttachmentParameteriv)GetProcAddressWithARB("glGetFramebufferAttachmentParameteriv");
+                m_fpBlitFramebuffer = (tfpBlitFramebuffer)GetProcAddressWithARB("glBlitFramebuffer");
+                m_fpGenerateMipmap = (tfpGenerateMipmap)GetProcAddressWithARB("glGenerateMipmap");
+
+                m_hasFrameBufferObject = true;
+            }
+            catch (MushcoreNonFatalFail &e)
+            {
+                MushcoreLog::Sgl().InfoLog() << "OpenGL symbol missing: " << e.what() << endl;
+            }
+        }
+
+        if (!safeMode && (m_extensions.find(" GL_ARB_texture_storage ") != string::npos ||
+                          m_extensions.find(" GL_EXT_texture_storage ") != string::npos))
+        {
+            try
+            {
+                m_fpTexStorage1D = (tfpTexStorage1D)GetProcAddressWithARB("glTexStorage1D");
+                m_fpTexStorage2D = (tfpTexStorage2D)GetProcAddressWithARB("glTexStorage2D");
+                m_fpTexStorage3D = (tfpTexStorage3D)GetProcAddressWithARB("glTexStorage3D");
+                m_hasTextureStorage = true;
+            }
+            catch (MushcoreNonFatalFail &e)
+            {
+                MushcoreLog::Sgl().InfoLog() << "OpenGL symbol missing: " << e.what() << endl;
+            }
+        }
 	}
 	else
 	{
@@ -441,6 +515,31 @@ MushGLV::AutoPrint(std::ostream& ioOut) const
     ioOut << "fpGetActiveUniform=" << (void *)m_fpGetActiveUniform << ", ";
     ioOut << "fpValidateProgram=" << (void *)m_fpValidateProgram << ", ";
     ioOut << "maxFragmentUniformComponents=" << m_maxFragmentUniformComponents << ", ";
+    ioOut << "hasFrameBufferObject=" << m_hasFrameBufferObject << ", ";
+    ioOut << "fpIsRenderbuffer=" << (void *)m_fpIsRenderbuffer << ", ";
+    ioOut << "fpBindRenderbuffer=" << (void *)m_fpBindRenderbuffer << ", ";
+    ioOut << "fpDeleteRenderbuffers=" << (void *)m_fpDeleteRenderbuffers << ", ";
+    ioOut << "fpGenRenderbuffers=" << (void *)m_fpGenRenderbuffers << ", ";
+    ioOut << "fpRenderbufferStorage=" << (void *)m_fpRenderbufferStorage << ", ";
+    ioOut << "fpRenderbufferStorageMultisample=" << (void *)m_fpRenderbufferStorageMultisample << ", ";
+    ioOut << "fpGetRenderbufferParameteriv=" << (void *)m_fpGetRenderbufferParameteriv << ", ";
+    ioOut << "fpIsFramebuffer=" << (void *)m_fpIsFramebuffer << ", ";
+    ioOut << "fpBindFramebuffer=" << (void *)m_fpBindFramebuffer << ", ";
+    ioOut << "fpDeleteFramebuffers=" << (void *)m_fpDeleteFramebuffers << ", ";
+    ioOut << "fpGenFramebuffers=" << (void *)m_fpGenFramebuffers << ", ";
+    ioOut << "fpCheckFramebufferStatus=" << (void *)m_fpCheckFramebufferStatus << ", ";
+    ioOut << "fpFramebufferTexture1D=" << (void *)m_fpFramebufferTexture1D << ", ";
+    ioOut << "fpFramebufferTexture2D=" << (void *)m_fpFramebufferTexture2D << ", ";
+    ioOut << "fpFramebufferTexture3D=" << (void *)m_fpFramebufferTexture3D << ", ";
+    ioOut << "fpFramebufferTextureLayer=" << (void *)m_fpFramebufferTextureLayer << ", ";
+    ioOut << "fpFramebufferRenderbuffer=" << (void *)m_fpFramebufferRenderbuffer << ", ";
+    ioOut << "fpGetFramebufferAttachmentParameteriv=" << (void *)m_fpGetFramebufferAttachmentParameteriv << ", ";
+    ioOut << "fpBlitFramebuffer=" << (void *)m_fpBlitFramebuffer << ", ";
+    ioOut << "fpGenerateMipmap=" << (void *)m_fpGenerateMipmap << ", ";
+    ioOut << "hasTextureStorage=" << m_hasTextureStorage << ", ";
+    ioOut << "fpTexStorage1D=" << (void *)m_fpTexStorage1D << ", ";
+    ioOut << "fpTexStorage2D=" << (void *)m_fpTexStorage2D << ", ";
+    ioOut << "fpTexStorage3D=" << (void *)m_fpTexStorage3D << ", ";
     ioOut << "vendor=" << m_vendor << ", ";
     ioOut << "renderer=" << m_renderer << ", ";
     ioOut << "version=" << m_version << ", ";
@@ -453,4 +552,4 @@ MushGLV::AutoPrint(std::ostream& ioOut) const
     ioOut << "contextValid=" << m_contextValid;
     ioOut << "]";
 }
-//%outOfLineFunctions } /azEHhMgYE/cSgIJ3Mqsmg
+//%outOfLineFunctions } EETeUz02JyQJk7eG9nkh9Q

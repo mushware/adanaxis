@@ -243,99 +243,113 @@ void
 MushGLTexture::PixelDataGLRGBAUse(void *pData)
 {
     Mushware::U64 startTime = SDL_GetPerformanceCounter();
-    if (!MushGLV::Sgl().ContextValid())
-    {
+    if (!MushGLV::Sgl().ContextValid()) {
         throw MushcoreRequestFail("Cannot create texture because OpenGL context not valid yet");
     }
     
-    if (!m_bindingNameValid)
-    {
+    if (!m_bindingNameValid) {
         glGenTextures(1, &m_bindingName);
         m_bindingNameValid = true;
     }
     
     MushGLV::Sgl().BindTexture2D(m_bindingName);
 
-    if (1) // Use MIPMAP
-    {
-#ifdef GL_VERSION_1_4
-        glTexParameteri(GL_TEXTURE_2D, GL_GENERATE_MIPMAP, GL_TRUE);
+    if (MushGLV::Sgl().HasFrameBufferObject() && MushGLV::Sgl().HasTextureStorage()) {
+        glTexParameteri(GL_TEXTURE_2D, GL_GENERATE_MIPMAP, GL_FALSE);
         glHint(GL_TEXTURE_COMPRESSION_HINT, GL_FASTEST);
 
-		GLenum internalFormat;
-		
-		if (m_compress && MushGLV::Sgl().UseS3TC())
-		{
-			internalFormat = GL_COMPRESSED_RGBA_S3TC_DXT5_EXT;
-		}
-		else
-		{
-		    internalFormat = GL_RGBA;	
-		}
-		
+        MushGLUtil::CheckGLError("GL_TEXTURE_COMPRESSION_HINT");
+
+        GLenum internalFormat;
+
+        if (m_compress && MushGLV::Sgl().UseS3TC()) {
+            internalFormat = GL_COMPRESSED_RGBA_S3TC_DXT5_EXT;
+        }
+        else {
+            internalFormat = GL_RGBA8;
+        }
+
+        U32 levels = static_cast<U32>(
+            std::max(
+                2.0,
+                std::floor(
+                    std::min(
+                        std::log2(m_size.X()),
+                        std::log2(m_size.Y())
+                    )
+                ) + 1.0
+            )
+        );
+
+#ifdef MUSHCORE_DEBUG
+        MushcoreLog::Sgl().InfoLog() << endl <<"levels=" << levels << ", xsize=" << m_size.X() << ", ysize=" << m_size.Y() << endl;
+#endif
+
+        MushGLV::Sgl().TexStorage2D(GL_TEXTURE_2D,
+            levels,
+            internalFormat,
+            m_size.X(), // width
+            m_size.Y() // height
+        );
+        MushGLUtil::CheckGLError("TexStorage2D");
+        glTexSubImage2D(GL_TEXTURE_2D, //target
+            0, // level
+            0, // xoffset
+            0, // yoffset
+            m_size.X(), // width
+            m_size.Y(), // height
+            GL_RGBA, // format
+            GL_UNSIGNED_BYTE, // type
+            pData // pointer to data
+        );
+        MushGLUtil::CheckGLError("glTexSubImage2D");
+        if (levels > 1) {
+            MushGLV::Sgl().GenerateMipmap(GL_TEXTURE_2D);
+            MushGLUtil::CheckGLError("GenerateMipmap");
+        }
+    } else {
+        glTexParameteri(GL_TEXTURE_2D, GL_GENERATE_MIPMAP, GL_TRUE);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_BASE_LEVEL, 0);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_LEVEL, 8);
+        glHint(GL_TEXTURE_COMPRESSION_HINT, GL_FASTEST);
+
+        GLenum internalFormat;
+
+        if (m_compress && MushGLV::Sgl().UseS3TC()) {
+            internalFormat = GL_COMPRESSED_RGBA_S3TC_DXT5_EXT;
+        } else {
+            internalFormat = GL_RGBA;
+        }
+
         glTexImage2D(GL_TEXTURE_2D,      // target
-                     0,                  // level
-                     internalFormat,     // internal format
-                     m_size.X(),         // width
-                     m_size.Y(),         // height
-                     0,                  // border
-                     GL_RGBA,            // format
-                     GL_UNSIGNED_BYTE,   // type
-                     pData               // pointer to data
-                     );
-		
-        Mushware::U32 naturalSize = m_size.X() * m_size.Y() * 4; // 1.33 factor for mipmapping
-		GLint compFlag = GL_FALSE;
-        GLint compSize = 0;
-		glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_COMPRESSED, &compFlag);
-		if (compFlag == GL_TRUE)
-		{
-			glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_COMPRESSED_IMAGE_SIZE, &compSize);
-            m_byteCount += compSize;
-#ifdef MUSHCORE_DEBUG        
-            MushcoreLog::Sgl().InfoLog() << "Compressed texture (natural size " << naturalSize
-                << " bytes) to " << compSize << " bytes (" << 100*compSize/naturalSize << "%)" << endl;
-#endif
-		}
-        else
-        {
-            m_byteCount += naturalSize;
-        }
-        MushGLUtil::CheckGLError("Texture load");
-        
-		
-#else
-        GLint err=gluBuild2DMipmaps(GL_TEXTURE_2D,    // target
-                                    4,                // components
-                                    m_size.X(),       // width
-                                    m_size.Y(),       // height
-                                    GL_RGBA,          // format
-                                    GL_UNSIGNED_BYTE, // type
-                                    pData             // pointer to data
-                                    );
-        if (err != 0)
-        {
-            // throw MushcoreRequestFail(std::string("Error building mipmaps: ") + gluErrorString(err));
-        }
-#endif
+            0,                  // level
+            internalFormat,     // internal format
+            m_size.X(),         // width
+            m_size.Y(),         // height
+            0,                  // border
+            GL_RGBA,            // format
+            GL_UNSIGNED_BYTE,   // type
+            pData               // pointer to data
+        );
     }
+    Mushware::U32 naturalSize = m_size.X() * m_size.Y() * 4; // 1.33 factor for mipmapping
+	GLint compFlag = GL_FALSE;
+    GLint compSize = 0;
+	glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_COMPRESSED, &compFlag);
+	if (compFlag == GL_TRUE)
+	{
+		glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_COMPRESSED_IMAGE_SIZE, &compSize);
+        m_byteCount += compSize;
+#ifdef MUSHCORE_DEBUG
+        MushcoreLog::Sgl().InfoLog() << "Compressed texture (natural size " << naturalSize
+            << " bytes) to " << compSize << " bytes (" << 100*compSize/naturalSize << "%)" << endl;
+#endif
+	}
     else
     {
-#ifdef GL_VERSION_1_4
-        glTexParameteri(GL_TEXTURE_2D, GL_GENERATE_MIPMAP, GL_FALSE);
-#endif
-        
-        glTexImage2D(GL_TEXTURE_2D,    // target
-                     0,                // level
-                     GL_RGBA,          // internal format
-                     m_size.X(),       // width
-                     m_size.Y(),       // height
-                     0,                // border
-                     GL_RGBA,          // format
-                     GL_UNSIGNED_BYTE, // type
-                     pData             // pointer to data
-                     );
+        m_byteCount += naturalSize;
     }
+    MushGLUtil::CheckGLError("Texture load");
 
 #ifdef MUSHCORE_DEBUG
     Mushware::U64 endTime = SDL_GetPerformanceCounter();

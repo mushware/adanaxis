@@ -171,6 +171,10 @@ public:
     void GetActiveUniform(GLhandleARB progam, GLuint index, GLsizei maxLength, GLsizei *length, GLint *size, GLenum *type, GLcharARB *name) const { if (m_fpGetActiveUniform != NULL) m_fpGetActiveUniform(progam, index, maxLength, length, size, type, name); else throw MushcoreLogicFail("MushGLV: GetActiveUniform"); }
     void ValidateProgram(GLhandleARB program) const { if (m_fpValidateProgram != NULL) m_fpValidateProgram(program); else throw MushcoreLogicFail("MushGLV: ValidateProgram"); }
 
+    void GenerateMipmap(GLenum target) const { if (m_fpGenerateMipmap != NULL) m_fpGenerateMipmap(target); else throw MushcoreLogicFail("MushGLV: GenerateMipmap"); }
+
+    void TexStorage2D(GLenum target, GLsizei levels, GLenum internalformat, GLsizei width, GLsizei height) const { if (m_fpTexStorage2D != NULL) m_fpTexStorage2D(target, levels, internalformat, width, height); else throw MushcoreLogicFail("MushGLV: TexStorage2D"); }
+
 protected:
     void ContextValidAssert(void) const;
     void DrawArraysVerify(GLenum inMode, GLint inFirst, GLsizei inCount) const;
@@ -263,7 +267,56 @@ private:
     tfpValidateProgram m_fpValidateProgram; // :fnpointer  
     Mushware::U32 m_maxFragmentUniformComponents; //:read
     
-    
+    bool m_hasFrameBufferObject; //:read
+    typedef bool (MUSHCORE_APIENTRY *tfpIsRenderbuffer)(GLuint renderbuffer);
+    tfpIsRenderbuffer m_fpIsRenderbuffer; //:fnpointer
+    typedef void (MUSHCORE_APIENTRY *tfpBindRenderbuffer)(GLenum target, GLuint renderbuffer);
+    tfpBindRenderbuffer m_fpBindRenderbuffer; //:fnpointer
+    typedef void (MUSHCORE_APIENTRY *tfpDeleteRenderbuffers)(GLsizei n, const GLuint *renderbuffers);
+    tfpDeleteRenderbuffers m_fpDeleteRenderbuffers; //:fnpointer
+    typedef void (MUSHCORE_APIENTRY *tfpGenRenderbuffers)(GLsizei n, GLuint *renderbuffers);
+    tfpGenRenderbuffers m_fpGenRenderbuffers; //:fnpointer
+    typedef void (MUSHCORE_APIENTRY *tfpRenderbufferStorage)(GLenum target, GLenum internalformat, GLsizei width, GLsizei height);
+    tfpRenderbufferStorage m_fpRenderbufferStorage; //:fnpointer
+    typedef void (MUSHCORE_APIENTRY *tfpRenderbufferStorageMultisample)(GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height);
+    tfpRenderbufferStorageMultisample m_fpRenderbufferStorageMultisample; //:fnpointer
+    typedef void (MUSHCORE_APIENTRY *tfpGetRenderbufferParameteriv)(GLenum target, GLenum pname, GLint *params);
+    tfpGetRenderbufferParameteriv m_fpGetRenderbufferParameteriv; //:fnpointer
+    typedef boolean(MUSHCORE_APIENTRY *tfpIsFramebuffer)(GLuint framebuffer);
+    tfpIsFramebuffer m_fpIsFramebuffer; //:fnpointer
+    typedef void (MUSHCORE_APIENTRY *tfpBindFramebuffer)(GLenum target, GLuint framebuffer);
+    tfpBindFramebuffer m_fpBindFramebuffer; //:fnpointer
+    typedef void (MUSHCORE_APIENTRY *tfpDeleteFramebuffers)(GLsizei n, const GLuint *framebuffers);
+    tfpDeleteFramebuffers m_fpDeleteFramebuffers; //:fnpointer
+    typedef void (MUSHCORE_APIENTRY *tfpGenFramebuffers)(GLsizei n, GLuint *framebuffers);
+    tfpGenFramebuffers m_fpGenFramebuffers; //:fnpointer
+    typedef GLenum (MUSHCORE_APIENTRY *tfpCheckFramebufferStatus)(GLenum target);
+    tfpCheckFramebufferStatus m_fpCheckFramebufferStatus; //:fnpointer
+    typedef void (MUSHCORE_APIENTRY *tfpFramebufferTexture1D)(GLenum target, GLenum attachment,  GLenum textarget, GLuint texture, GLint level);
+    tfpFramebufferTexture1D m_fpFramebufferTexture1D; //:fnpointer
+    typedef void (MUSHCORE_APIENTRY *tfpFramebufferTexture2D)(GLenum target, GLenum attachment, GLenum textarget, GLuint texture, GLint level);
+    tfpFramebufferTexture2D m_fpFramebufferTexture2D; //:fnpointer
+    typedef void (MUSHCORE_APIENTRY *tfpFramebufferTexture3D)(GLenum target, GLenum attachment, GLenum textarget, GLuint texture, GLint level, GLint layer);
+    tfpFramebufferTexture3D m_fpFramebufferTexture3D; //:fnpointer
+    typedef void (MUSHCORE_APIENTRY *tfpFramebufferTextureLayer)(GLenum target, GLenum attachment, GLuint texture, GLint level, GLint layer);
+    tfpFramebufferTextureLayer m_fpFramebufferTextureLayer; //:fnpointer
+    typedef void (MUSHCORE_APIENTRY *tfpFramebufferRenderbuffer)(GLenum target, GLenum attachment, GLenum renderbuffertarget, GLuint renderbuffer);
+    tfpFramebufferRenderbuffer m_fpFramebufferRenderbuffer; //:fnpointer
+    typedef void (MUSHCORE_APIENTRY *tfpGetFramebufferAttachmentParameteriv)(GLenum target, GLenum attachment, GLenum pname, GLint *params);
+    tfpGetFramebufferAttachmentParameteriv m_fpGetFramebufferAttachmentParameteriv; //:fnpointer
+    typedef void (MUSHCORE_APIENTRY *tfpBlitFramebuffer)(GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLint dstX0, GLint dstY0, GLint dstX1, GLint dstY1, GLbitfield mask, GLenum filter);
+    tfpBlitFramebuffer m_fpBlitFramebuffer; //:fnpointer
+    typedef void (MUSHCORE_APIENTRY *tfpGenerateMipmap)(GLenum target);
+    tfpGenerateMipmap m_fpGenerateMipmap; //:fnpointer
+
+    bool m_hasTextureStorage; //:read
+    typedef void (MUSHCORE_APIENTRY *tfpTexStorage1D)(GLenum target, GLsizei levels, GLenum internalformat, GLsizei width);
+    tfpTexStorage1D m_fpTexStorage1D; //:fnpointer
+    typedef void (MUSHCORE_APIENTRY *tfpTexStorage2D)(GLenum target, GLsizei levels, GLenum internalformat, GLsizei width, GLsizei height);
+    tfpTexStorage2D m_fpTexStorage2D; //:fnpointer
+    typedef void (MUSHCORE_APIENTRY *tfpTexStorage3D)(GLenum target, GLsizei levels, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth);
+    tfpTexStorage3D m_fpTexStorage3D; //:fnpointer
+
     void *GetProcAddressWithARB(const std::string& inName) const;
     
     std::string m_vendor;
@@ -282,6 +335,8 @@ public:
     const bool& HasShader(void) const { return m_hasShader; }
     void UseShaderSet(const bool& inValue) { m_useShader=inValue; }
     const Mushware::U32& MaxFragmentUniformComponents(void) const { return m_maxFragmentUniformComponents; }
+    const bool& HasFrameBufferObject(void) const { return m_hasFrameBufferObject; }
+    const bool& HasTextureStorage(void) const { return m_hasTextureStorage; }
     const Mushware::U32& NumTextureUnits(void) const { return m_numTextureUnits; }
     const Mushware::U32& MaxTextureSize(void) const { return m_maxTextureSize; }
     const bool& HasS3TC(void) const { return m_hasS3TC; }
@@ -289,7 +344,7 @@ public:
     const Mushware::U32& ContextNum(void) const { return m_contextNum; }
     const bool& ContextValid(void) const { return m_contextValid; }
     virtual void AutoPrint(std::ostream& ioOut) const;
-//%classPrototypes } f0E47eG6MszSPH794g1icA
+//%classPrototypes } caqpT/UzLJ76G5469/ep+Q
 };
 
 inline void
