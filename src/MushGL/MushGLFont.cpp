@@ -214,55 +214,57 @@ MushGLFont::RenderAtSize(const std::string& inStr, const Mushware::t2Val& inCoor
     MushGLState::Sgl().TextureEnable2D(0); // Enable texture 0
     m_textureRef.WRef().Bind();
     
-    t4U32 texSize = m_textureRef.WRef().Size();
-    
-    MushGLUtil::ColourSet(m_colour);
-    
-    // Already expect to be in kRenderState2D    
-    glBegin(GL_QUADS);
-    
-    tVal xSize = inSize.X();
-    tVal ySize = inSize.Y();
-    
-    tVal xPos = inCoords.X();
-    tVal yPos = inCoords.Y() - ySize/2;
-    tVal uScale = m_extent.X() / texSize.X();
-    tVal vScale = m_extent.Y() / texSize.Y();
-    
-    // Move half a pixel away from the edges of the character tile
-    tVal uTweak = 0.5 / texSize.X();
-    tVal vTweak = 0.5 / texSize.Y();
-    
-    for (U32 i=0; i < strSize; ++i)
-    {
-        U32 charValue = inStr[i];
-        
-        if (charValue < 32)
+    if (m_textureRef.WRef().Ready()) {
+        t4U32 texSize = m_textureRef.WRef().Size();
+
+        MushGLUtil::ColourSet(m_colour);
+
+        // Already expect to be in kRenderState2D
+        glBegin(GL_QUADS);
+
+        tVal xSize = inSize.X();
+        tVal ySize = inSize.Y();
+
+        tVal xPos = inCoords.X();
+        tVal yPos = inCoords.Y() - ySize / 2;
+        tVal uScale = m_extent.X() / texSize.X();
+        tVal vScale = m_extent.Y() / texSize.Y();
+
+        // Move half a pixel away from the edges of the character tile
+        tVal uTweak = 0.5 / texSize.X();
+        tVal vTweak = 0.5 / texSize.Y();
+
+        for (U32 i = 0; i < strSize; ++i)
         {
-            // Control character
-        }
-        else
-        {
-            if (charValue != 32) // Don't render spaces
+            U32 charValue = inStr[i];
+
+            if (charValue < 32)
             {
-                charValue -= 32;
-            
-                tVal uPos = (charValue % m_divide.X()) * uScale;
-                tVal vPos = (1 + charValue / m_divide.X()) * vScale;
-                
-                glTexCoord2f(uPos + uTweak , vPos - vTweak);
-                glVertex2f(xPos, yPos);
-                glTexCoord2f(uPos + uScale - uTweak, vPos - vTweak);
-                glVertex2f(xPos + xSize, yPos);
-                glTexCoord2f(uPos + uScale - uTweak, vPos - vScale + vTweak);
-                glVertex2f(xPos + xSize, yPos + ySize);
-                glTexCoord2f(uPos + uTweak, vPos - vScale + vTweak);
-                glVertex2f(xPos, yPos + ySize);
+                // Control character
             }
-            xPos += xSize;
+            else
+            {
+                if (charValue != 32) // Don't render spaces
+                {
+                    charValue -= 32;
+
+                    tVal uPos = (charValue % m_divide.X()) * uScale;
+                    tVal vPos = (1 + charValue / m_divide.X()) * vScale;
+
+                    glTexCoord2f(uPos + uTweak, vPos - vTweak);
+                    glVertex2f(xPos, yPos);
+                    glTexCoord2f(uPos + uScale - uTweak, vPos - vTweak);
+                    glVertex2f(xPos + xSize, yPos);
+                    glTexCoord2f(uPos + uScale - uTweak, vPos - vScale + vTweak);
+                    glVertex2f(xPos + xSize, yPos + ySize);
+                    glTexCoord2f(uPos + uTweak, vPos - vScale + vTweak);
+                    glVertex2f(xPos, yPos + ySize);
+                }
+                xPos += xSize;
+            }
         }
+        glEnd();
     }
-    glEnd();
 }
 
 void

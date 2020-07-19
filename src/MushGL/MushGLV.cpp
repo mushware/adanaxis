@@ -115,6 +115,8 @@ MUSHCORE_SINGLETON_INSTANCE(MushGLV);
 
 MushGLV::MushGLV() :
     m_hasVertexBuffer(false),
+    m_hasDebugExtension(false),
+    m_fpDebugMessageCallback(NULL),
     m_fpBindBuffer(NULL),
     m_fpBufferData(NULL),
     m_fpBufferSubData(NULL),
@@ -204,17 +206,126 @@ MushGLV::GetProcAddressWithARB(const std::string& inName) const
     return fnPtr;
 }
 
+
+void MUSHCORE_APIENTRY
+MushGLV::MessageCallback(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar* message, const void* userParam)
+{
+    switch (id) {
+    case 0x00020071:
+    case 0x00020084: // "Texture state usage warning: The texture object (0) bound to texture image unit 0 does not have a defined base level and cannot be used for texture mapping."
+        return;
+    }
+
+    std::string sourceStr;
+
+    switch (source) {
+    case GL_DEBUG_SOURCE_API:
+        sourceStr = "API";
+        break;
+
+    case GL_DEBUG_SOURCE_WINDOW_SYSTEM:
+        sourceStr = "WINDOW_SYSTEM";
+        break;
+
+    case GL_DEBUG_SOURCE_SHADER_COMPILER:
+        sourceStr = "SHADER_COMPILER";
+        break;
+
+    case GL_DEBUG_SOURCE_THIRD_PARTY:
+        sourceStr = "THIRD_PARTY";
+        break;
+
+    case GL_DEBUG_SOURCE_APPLICATION:
+        sourceStr = "APPLICATION";
+        break;
+
+    case GL_DEBUG_SOURCE_OTHER:
+        sourceStr = "OTHER";
+        break;
+
+    default:
+        sourceStr = "<source unknown>";
+        break;
+    }
+
+    std::string typeStr;
+
+    switch (type) {
+
+    case GL_DEBUG_TYPE_ERROR:
+        typeStr = "error";
+        break;
+
+    case GL_DEBUG_TYPE_DEPRECATED_BEHAVIOR:
+        typeStr = "deprecated";
+        break;
+
+    case GL_DEBUG_TYPE_UNDEFINED_BEHAVIOR:
+        typeStr = "undefined behaviour";
+        break;
+
+    case GL_DEBUG_TYPE_PORTABILITY:
+        typeStr = "portability";
+        break;
+
+    case GL_DEBUG_TYPE_PERFORMANCE:
+        typeStr = "performance";
+        break;
+
+    case GL_DEBUG_TYPE_OTHER:
+        typeStr = "other";
+        break;
+
+    default:
+        typeStr = "<type unknown>";
+        break;
+    }
+
+    std::string severityStr;
+
+    switch (severity) {
+    case GL_DEBUG_SEVERITY_HIGH:
+        severityStr = "high";
+        break;
+
+    case GL_DEBUG_SEVERITY_MEDIUM:
+        severityStr = "medium";
+        break;
+
+    case GL_DEBUG_SEVERITY_LOW:
+        severityStr = "low";
+        break;
+
+    case GL_DEBUG_SEVERITY_NOTIFICATION:
+        severityStr = "notice";
+        break;
+
+    default:
+        severityStr = "<severity unknown>";
+        break;
+    }
+
+    if (type == GL_DEBUG_TYPE_ERROR) {
+        MushcoreLog::Sgl().ErrorLog() << "(GL " << severityStr << ") " << sourceStr << ":" << typeStr << " " << message << endl;
+    } else {
+        MushcoreLog::Sgl().InfoLog() << "(GL " << severityStr << ") " << sourceStr << ":" << typeStr << " " << message << endl;
+    }
+}
+
+
 void
 MushGLV::Acquaint(void)
 {
     bool safeMode = false;
     const MushcoreScalar *pScalar = NULL;
 
+
+
     ++m_contextNum;
     m_vendor = reinterpret_cast<const char *>(glGetString(GL_VENDOR));
     m_renderer = reinterpret_cast<const char *>(glGetString(GL_RENDERER));
     m_version = reinterpret_cast<const char *>(glGetString(GL_VERSION));
-    m_extensions = std::string(" ")+reinterpret_cast<const char *>(glGetString(GL_EXTENSIONS))+" ";
+    m_extensions = std::string(" ") + reinterpret_cast<const char *>(glGetString(GL_EXTENSIONS)) + " ";
 
     if (MushcoreEnv::Sgl().VariableGetIfExists(pScalar, "SAFE_MODE"))
     {
@@ -222,6 +333,27 @@ MushGLV::Acquaint(void)
         {
             safeMode = true;
         }
+    }
+
+    if (!safeMode && m_extensions.find(" GL_ARB_debug_output ") != string::npos)
+    {
+        try
+        {
+            m_fpDebugMessageCallback = (tfpDebugMessageCallback)GetProcAddressWithARB("glDebugMessageCallback");
+            m_fpDebugMessageControl = (tfpDebugMessageControl)GetProcAddressWithARB("glDebugMessageControl");
+            m_hasDebugExtension = true;
+        }
+        catch (MushcoreNonFatalFail &e)
+        {
+            MushcoreLog::Sgl().InfoLog() << "OpenGL symbol missing: " << e.what() << endl;
+        }
+    }
+
+    if (m_hasDebugExtension) {
+        glEnable(GL_DEBUG_OUTPUT);
+        glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
+        DebugMessageCallback(MushGLV::MessageCallback, 0);
+        DebugMessageControl(GL_DONT_CARE, GL_DONT_CARE,  GL_DONT_CARE,  0, NULL, GL_TRUE);
     }
 
     {
@@ -234,6 +366,7 @@ MushGLV::Acquaint(void)
         glGetIntegerv(GL_MAX_TEXTURE_SIZE, &maxTexSize);
         m_maxTextureSize = maxTexSize;
     }
+
     if (!safeMode && m_extensions.find(" GL_ARB_vertex_buffer_object ") != string::npos)
     {
         try
@@ -471,6 +604,9 @@ void
 MushGLV::AutoPrint(std::ostream& ioOut) const
 {
     ioOut << "[";
+    ioOut << "hasDebugExtension=" << m_hasDebugExtension << ", ";
+    ioOut << "fpDebugMessageCallback=" << (void *)m_fpDebugMessageCallback << ", ";
+    ioOut << "fpDebugMessageControl=" << (void *)m_fpDebugMessageControl << ", ";
     ioOut << "hasVertexBuffer=" << m_hasVertexBuffer << ", ";
     ioOut << "fpBindBuffer=" << (void *)m_fpBindBuffer << ", ";
     ioOut << "fpBufferData=" << (void *)m_fpBufferData << ", ";
@@ -552,4 +688,4 @@ MushGLV::AutoPrint(std::ostream& ioOut) const
     ioOut << "contextValid=" << m_contextValid;
     ioOut << "]";
 }
-//%outOfLineFunctions } EETeUz02JyQJk7eG9nkh9Q
+//%outOfLineFunctions } VEAXISq26Z1Yu1UIUcKDcA

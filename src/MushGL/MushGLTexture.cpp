@@ -250,9 +250,12 @@ MushGLTexture::PixelDataGLRGBAUse(void *pData)
     if (!m_bindingNameValid) {
         glGenTextures(1, &m_bindingName);
         m_bindingNameValid = true;
+    } else {
+        MushGLV::Sgl().DeleteTexture(m_bindingName);
     }
     
     MushGLV::Sgl().BindTexture2D(m_bindingName);
+
 
     if (MushGLV::Sgl().HasFrameBufferObject() && MushGLV::Sgl().HasTextureStorage()) {
         glTexParameteri(GL_TEXTURE_2D, GL_GENERATE_MIPMAP, GL_FALSE);

@@ -150,11 +150,15 @@ MushGLUtil::CheckGLError(void)
 inline void
 MushGLUtil::CheckGLError(const std::string& inMessage)
 {
-    GLenum glErr=glGetError();
-    if (glErr != GL_NO_ERROR)
-	{
+    for (Mushware::U32 i=0; i < 10; ++i) {
+        GLenum glErr=glGetError();
+        if (glErr == GL_NO_ERROR)
+        {
+            return;
+        }
 		GLErrorWriteToLog(glErr, inMessage);
 	}
+    GLErrorWriteToLog(GL_INVALID_OPERATION, "Too many errors - abandoning");
 }
 
 //%includeGuardEnd {

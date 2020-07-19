@@ -106,6 +106,7 @@
 #include "MushGLStandard.h"
 #include "MushGLV.h"
 
+
 //:generate ostream
 class MushGLV : public MushcoreSingleton<MushGLV>
 {
@@ -114,7 +115,11 @@ public:
     virtual ~MushGLV() {};
     virtual void Acquaint(void);
     virtual void Purge(void);
-    
+
+    void DebugMessageCallback(GLDEBUGPROC target, const void *userParams)  const { if (m_fpDebugMessageCallback != NULL) return m_fpDebugMessageCallback(target, userParams); else throw MushcoreLogicFail("MushGLV::DebugMessageCallback"); }
+    void DebugMessageControl(GLenum source, GLenum type, GLenum severity, GLsizei count, const GLuint *ids, GLboolean enabled)  const {
+        if (m_fpDebugMessageControl != NULL) return m_fpDebugMessageControl(source, type, severity, count, ids, enabled); else throw MushcoreLogicFail("MushGLV::DebugMessageControl"); }
+
     void DrawArrays(GLenum inMode, GLint inFirst, GLsizei inCount);
     void BindTexture2D(GLuint inBindingName) { glBindTexture(GL_TEXTURE_2D, inBindingName); }
     void DeleteTexture(GLuint inBindingName) { glDeleteTextures(1, &inBindingName); }
@@ -181,6 +186,12 @@ protected:
     void BufferValidate(Mushware::U32 inSize) const;
 	
 private:
+    bool m_hasDebugExtension;
+    typedef void (MUSHCORE_APIENTRY *tfpDebugMessageCallback)(GLDEBUGPROC target, const void *userParams);
+    tfpDebugMessageCallback m_fpDebugMessageCallback; //:fnpointer
+    typedef void (MUSHCORE_APIENTRY *tfpDebugMessageControl)(GLenum source, GLenum type, GLenum severity, GLsizei count, const GLuint *ids, GLboolean enabled);
+    tfpDebugMessageControl m_fpDebugMessageControl; //:fnpointer
+
     bool m_hasVertexBuffer;
     typedef void (MUSHCORE_APIENTRY *tfpBindBuffer)(GLenum target, GLuint buffer);
     tfpBindBuffer m_fpBindBuffer; // :fnpointer
@@ -319,6 +330,8 @@ private:
 
     void *GetProcAddressWithARB(const std::string& inName) const;
     
+    static void MUSHCORE_APIENTRY MessageCallback(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar* message, const void* userParam);
+
     std::string m_vendor;
     std::string m_renderer;
     std::string m_version;

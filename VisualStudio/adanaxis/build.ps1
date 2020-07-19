@@ -29,7 +29,7 @@
 Param(
     [Parameter(Mandatory)]$Configuration,
     [Parameter(Mandatory)]$BuildNumber,
-    [Parameter(Mandatory=$false)][Switch]$InstallWix
+    [Parameter(Mandatory=$false)][Switch]$InstallMissing
 )
 
 Set-StrictMode -Version 3.0
@@ -90,11 +90,11 @@ If (Test-Path $wix_root) {
     Write-Host "WiX already installed."
     $wix_job = Start-Job -ScriptBlock { Write-Output "(output from null install job) WiX already installed" }
 } Else {
-    If ($InstallWix) {
+    If ($InstallMissing) {
         Write-Host "Launching job to install WiX."
         $wix_job = Start-Job -File "./install_wix.ps1"
     } Else {
-        Throw "WiX not found but cannot install, please install or supply -InstallWix as a parameter."
+        Throw "WiX not found but cannot install, please install or supply -InstallMissing as a parameter."
     }
 }
 
@@ -157,7 +157,7 @@ Write-Host -ForegroundColor DarkCyan @"
 
 Set-Location $AdanaxisBuildRoot
 
-$build_process = Start-Process -NoNewWindow -PassThru -FilePath "MSBuild.exe" -ArgumentList "adanaxis.sln", "-maxCpuCount", "-nodeReuse:false", "-target:adanaxis", "-property:Configuration=`"$Configuration`"", "-property:Version=`"$Version`"", "-property:UseSharedCompilation=false"
+$build_process = Start-Process -NoNewWindow -PassThru -FilePath "MSBuild.exe" -ArgumentList "adanaxis.sln", "-maxCpuCount", "-nodeReuse:false", "-target:adanaxis", "-property:Configuration=`"$Configuration`"", "-property:Version=`"$Version`""
 $handle = $build_process.Handle # Fix for missing ExitCode
 $build_process.WaitForExit()
 
