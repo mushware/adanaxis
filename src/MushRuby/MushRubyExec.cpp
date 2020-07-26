@@ -363,7 +363,7 @@ MushRubyExec::Initialise(void)
         Eval("$LOAD_PATH.push('"+rubyPath.StringGet()+"/../mushruby')");
         ruby_script((rubyPath.StringGet()+"/ruby/init.rb").c_str());
     }
-    rb_set_safe_level(2);
+    // rb_set_safe_level(2);
     MushRubyInstall::Sgl().Execute();
     Require("init.rb");
 }

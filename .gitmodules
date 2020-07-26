@@ -1,9 +1,9 @@
-[submodule "adanaxis-win32deps"]
-	path = adanaxis-win32deps
-	url = https://github.com/mushware/adanaxis-win32deps.git
 [submodule "adanaxis-data"]
 	path = adanaxis-data
 	url = https://github.com/mushware/adanaxis-data.git
 [submodule "spdlog"]
 	path = spdlog
 	url = https://github.com/mushware/spdlog.git
+[submodule "adanaxis-win64deps"]
+	path = adanaxis-win64deps
+	url = https://github.com/mushware/adanaxis-win64deps.git

@@ -15,15 +15,16 @@
   <ItemDefinitionGroup>
     <Link>
       <OutputFile>$(AdanaxisSystemDir)$(TargetName)$(TargetExt)</OutputFile>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\..\adanaxis-win32deps\expat-devel\lib;$(SolutionDir)..\..\adanaxis-win32deps\tiffio-devel\lib;$(SolutionDir)..\..\adanaxis-win32deps\pcre-devel\lib;$(SolutionDir)..\..\win32deps\SDL2_mixer-devel\lib\x86;$(SolutionDir)..\mushruby\$(Configuration);$(SolutionDir)..\..\win32deps\SDL2-devel\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>WS2_32.lib;Winmm.lib;dxguid.lib;Iphlpapi.lib;OPENGL32.lib;GLU32.lib;libexpat.lib;pcre.lib;SDL2.lib;SDL2_mixer.lib;libtiff.lib;mushruby.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\..\adanaxis-win64deps\expat-devel\lib;$(SolutionDir)..\..\adanaxis-win64deps\tiffio-devel\lib;$(SolutionDir)..\..\adanaxis-win64deps\pcre-devel\lib;$(SolutionDir)..\..\adanaxis-win64deps\SDL\Release\SDL2_mixer-devel\lib\x64;$(SolutionDir)..\..\adanaxis-win64deps\SDL\Release\SDL2-devel\lib\x64;$(SolutionDir)..\..\adanaxis-win64deps\MushRuby\$(Configuration)\dll;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>WS2_32.lib;Winmm.lib;dxguid.lib;Iphlpapi.lib;OPENGL32.lib;GLU32.lib;libexpat.lib;pcre.lib;SDL2.lib;SDL2_mixer.lib;libtiff.lib;x64-vcruntime140-ruby280.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <ClCompile>
-      <AdditionalIncludeDirectories>..\..\src;..\..\src\API;$(SolutionDir)..\..\win32deps\SDL2-devel\include;$(SolutionDir)..\..\win32deps\SDL2_mixer-devel\include;$(SolutionDir)..\..\adanaxis-win32deps\pcre-devel\include;$(SolutionDir)..\..\adanaxis-win32deps\tiffio-devel\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\src;..\..\src\API;$(SolutionDir)..\..\adanaxis-win64deps\SDL\Release\SDL2-devel\include;$(SolutionDir)..\..\adanaxis-win64deps\SDL\Release\SDL2_mixer-devel\include;$(SolutionDir)..\..\adanaxis-win64deps\pcre-devel\include;$(SolutionDir)..\..\adanaxis-win64deps\tiffio-devel\include;$(SolutionDir)..\..\adanaxis-win64deps\MushRuby\$(Configuration)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <CustomBuildStep>
       <Command>powershell.exe -ExecutionPolicy Bypass -NonInteractive -NoProfile -File "$(AdanaxisBuildInstallerScript)" "$(Configuration)" "$(Version)"</Command>

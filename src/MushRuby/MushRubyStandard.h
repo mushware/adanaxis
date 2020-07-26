@@ -73,8 +73,8 @@
 
 namespace Mushware
 {
-    typedef unsigned long tRubyValue;
-    typedef unsigned long tRubyID;
+    typedef unsigned long long tRubyValue;
+    typedef unsigned long long tRubyID;
     typedef int tRubyArgC, tRubyError;
     typedef tRubyValue (*tfpRubyMethod)(tRubyArgC inArgC, tRubyValue *inpArgV, tRubyValue inSelf);
 	typedef tRubyValue (*tfpRubyMethodNoParams)(tRubyValue inSelf);

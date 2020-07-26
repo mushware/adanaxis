@@ -37,10 +37,8 @@
  *
  */
 
-extern "C"
-{
 #include "ruby.h"
-}
+
 //%includeGuardEnd {
 #endif
 //%includeGuardEnd } hNb4yLSsimk5RFvFdUzHEw
