@@ -113,6 +113,9 @@ using namespace std;
 
 MUSHCORE_SINGLETON_INSTANCE(MushGLV);
 
+U32 MushGLV::s_nonErrorCount = 0;
+U32 MushGLV::s_messageCount = 0;
+
 MushGLV::MushGLV() :
     m_hasVertexBuffer(false),
     m_hasDebugExtension(false),
@@ -206,12 +209,15 @@ MushGLV::GetProcAddressWithARB(const std::string& inName) const
     return fnPtr;
 }
 
-
 void MUSHCORE_APIENTRY
 MushGLV::MessageCallback(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar* message, const void* userParam)
 {
+    if (s_messageCount >= kMessageLimit) {
+        return;
+    }
+
     switch (id) {
-    case 0x00020071:
+    case 0x00020071: // "Buffer detailed info: Buffer object 1 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_DYNAMIC_DRAW) will use SYSTEM HEAP memory as the source for buffer object operations."
     case 0x00020084: // "Texture state usage warning: The texture object (0) bound to texture image unit 0 does not have a defined base level and cannot be used for texture mapping."
         return;
     }
@@ -305,10 +311,18 @@ MushGLV::MessageCallback(GLenum source, GLenum type, GLuint id, GLenum severity,
         break;
     }
 
+    ++s_messageCount;
+
     if (type == GL_DEBUG_TYPE_ERROR) {
         MushcoreLog::Sgl().ErrorLog() << "(GL " << severityStr << ") " << sourceStr << ":" << typeStr << " " << message << endl;
     } else {
-        MushcoreLog::Sgl().InfoLog() << "(GL " << severityStr << ") " << sourceStr << ":" << typeStr << " " << message << endl;
+        if (++s_nonErrorCount < kNonErrorMessageLimit) {
+            MushcoreLog::Sgl().InfoLog() << "(GL " << severityStr << ") " << sourceStr << ":" << typeStr << " " << message << endl;
+        }
+    }
+
+    if (s_messageCount == kMessageLimit) {
+        MushcoreLog::Sgl().ErrorLog() << "(GL) further output supressed because message count is " << s_messageCount << endl;
     }
 }
 

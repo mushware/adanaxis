@@ -343,6 +343,18 @@ private:
     Mushware::U32 m_contextNum; //:read
     bool m_contextValid; //:read
     
+    enum {
+#ifdef MUSHCORE_DEBUG
+        kMessageLimit = 1000000,
+        kNonErrorMessageLimit = 10000
+#else
+        kMessageLimit = 10000,
+        kNonErrorMessageLimit = 100
+#endif
+    };
+    static Mushware::U32 s_nonErrorCount;
+    static Mushware::U32 s_messageCount;
+
 //%classPrototypes {
 public:
     const bool& HasShader(void) const { return m_hasShader; }
