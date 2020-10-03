@@ -322,7 +322,7 @@ MushGLV::MessageCallback(GLenum source, GLenum type, GLuint id, GLenum severity,
     }
 
     if (s_messageCount == kMessageLimit) {
-        MushcoreLog::Sgl().ErrorLog() << "(GL) further output supressed because message count is " << s_messageCount << endl;
+        MushcoreLog::Sgl().ErrorLog() << "(GL) further output suppressed because message count is " << s_messageCount << endl;
     }
 }
 

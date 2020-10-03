@@ -123,6 +123,7 @@ private:
     Mushware::tVal m_halfAngle; //:readwrite
     Mushware::tVal m_halfAngleAttractor; //:readwrite
     Mushware::U32 m_renderPrelude;
+    Mushware::tVal m_lastFps;
     std::vector<MushGLJobRender *> m_renderList;
     AdanaxisScanner m_scanner;
     tDamageVerticesList m_damageVertices;

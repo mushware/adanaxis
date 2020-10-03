@@ -233,7 +233,7 @@ GameSetup::Display(GameAppHandler& inAppHandler)
 {
     GLUtils::DisplayPrologue();
     GLUtils::ClearScreen();
-    GLUtils::OrthoPrologue();
+    GLUtils::VisiblePrologue();
 
     GameAppHandler& gameAppHandler=dynamic_cast<GameAppHandler &>(MushcoreAppHandler::Sgl());
 
@@ -290,7 +290,7 @@ GameSetup::Display(GameAppHandler& inAppHandler)
 GLUtils::RotateAboutZ(5*sin(msecNow/151));
         glStr.Render();
     }
-    GLUtils::OrthoEpilogue();
+    GLUtils::VisibleEpilogue();
     GLUtils::DisplayEpilogue();
 }
 

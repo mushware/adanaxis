@@ -95,6 +95,8 @@ public:
     static Mushware::tRubyValue UseGLShaderSet(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
     static Mushware::tRubyValue Apply2020Makeover(Mushware::tRubyValue inSelf);
     static Mushware::tRubyValue Apply2020MakeoverSet(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
+    static Mushware::tRubyValue ShowFps(Mushware::tRubyValue inSelf);
+    static Mushware::tRubyValue ShowFpsSet(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0);
 private:
     static MushcoreDataRef<MushGameLogic> s_logicRef;
 };

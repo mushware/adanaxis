@@ -77,12 +77,12 @@ MushGameDialogueUtils::MoveAndRender(MushcoreData<MushGameDialogue>& ioDialogues
                                      Mushware::U32 inMoves)
 {
     MUSHCOREASSERT(inMoves < 100);
-    GLUtils::OrthoPrologue();
+    GLUtils::VisiblePrologue();
 
     for (MushcoreData<MushGameDialogue>::tIterator p = ioDialogues.Begin();
-         p != ioDialogues.End();)
+        p != ioDialogues.End();)
     {
-        for (U32 i=0; i<inMoves; ++i)
+        for (U32 i = 0; i < inMoves; ++i)
         {
             p->second->Move();
         }
@@ -97,7 +97,7 @@ MushGameDialogueUtils::MoveAndRender(MushcoreData<MushGameDialogue>& ioDialogues
         }
     }
 
-    GLUtils::OrthoEpilogue();
+    GLUtils::VisibleEpilogue();
 }
 
 void

@@ -201,11 +201,15 @@ public:
     static void IdentityEpilogue(void);
     static void OrthoPrologue(void);
     static void OrthoEpilogue(void);
+    static void VisiblePrologue(void);
+    static void VisibleEpilogue(void);
     static const GLPoint ScreenSizeGet(void);
     static const GLPoint ScreenRatiosGet(void); // Screensize / longest axis
+    static const GLPoint VisibleScreenRatiosGet(void); // Screensize / shortest axis
     static Mushware::tVal ScreenScaleGet(void);
     static Mushware::tVal EyeDistanceGet(void) { return m_eyeDistance; }
     static Mushware::tVal LongestScreenAxis(void);
+    static Mushware::tVal ShortestScreenAxis(void);
     static void OrthoLookAt(Mushware::tVal inX, Mushware::tVal inY, Mushware::tVal inAngle);
     static void PerspectiveLookAt(const GLPoint& inPoint, Mushware::tVal inAngle);
     static void PerspectiveLookAt(const GLVector& inCamera, const GLVector& inLookAt, Mushware::tVal inAngle);

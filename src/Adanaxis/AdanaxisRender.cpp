@@ -287,7 +287,8 @@ using namespace std;
 AdanaxisRender::AdanaxisRender() :
     m_halfAngle(M_PI/12),
     m_halfAngleAttractor(M_PI/12),
-    m_renderPrelude(0)
+    m_renderPrelude(0),
+    m_lastFps(0)
 {
     const MushcoreScalar *pScalar;
     if (MushcoreEnv::Sgl().VariableGetIfExists(pScalar, "SYSTEM_PATH"))
@@ -319,7 +320,7 @@ AdanaxisRender::PrecacheRender(MushGameLogic& ioLogic, const MushGameCamera& inC
     MushGLUtil::DisplayPrologue();
     MushGLUtil::ClearScreen();
     MushGLUtil::IdentityPrologue();
-    MushGLUtil::OrthoPrologue();
+    MushGLUtil::VisiblePrologue();
 
     MushGLState::Sgl().RenderStateSet(MushGLState::kRenderState2D);
 
@@ -331,7 +332,7 @@ AdanaxisRender::PrecacheRender(MushGameLogic& ioLogic, const MushGameCamera& inC
                              MushRubyValue(mbUsed)
                              );
 
-    MushGLUtil::OrthoEpilogue();
+    MushGLUtil::VisibleEpilogue();
     MushGLUtil::IdentityEpilogue();
     MushGLUtil::DisplayEpilogue();
 }
@@ -578,7 +579,7 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
     if (ioLogic.IsMenuMode())
     {
         MushGLUtil::IdentityPrologue();
-        MushGLUtil::OrthoPrologue();
+        MushGLUtil::VisiblePrologue();
         GLState::ColourSet(1.0,1.0,1.0,1.0);
 
         U32 timeNow = AdanaxisUtil::AppHandler().MillisecondsGet();
@@ -586,19 +587,19 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
         MushRubyExec::Sgl().Call(pVolData->RubyGame(),
                                  AdanaxisIntern::Sgl().mMenuRender(),
                                  MushRubyValue(timeNow));
-        MushGLUtil::OrthoEpilogue();
+        MushGLUtil::VisibleEpilogue();
         MushGLUtil::IdentityEpilogue();
     }
     else if (ioLogic.IsCutSceneMode())
     {
         MushGLUtil::IdentityPrologue();
-        MushGLUtil::OrthoPrologue();
+        MushGLUtil::VisiblePrologue();
         GLState::ColourSet(1.0,1.0,1.0,1.0);
 
         MushRubyExec::Sgl().Call(pVolData->RubyGame(),
                                  AdanaxisIntern::Sgl().mCutSceneRender(),
                                  MushRubyValue(pVolData->CutSceneNum()));
-        MushGLUtil::OrthoEpilogue();
+        MushGLUtil::VisibleEpilogue();
         MushGLUtil::IdentityEpilogue();
     }
     else
@@ -619,13 +620,13 @@ AdanaxisRender::FrameRender(MushGameLogic& ioLogic, const MushGameCamera& inCame
     if (ioLogic.IsEpilogueMode())
     {
         MushGLUtil::IdentityPrologue();
-        MushGLUtil::OrthoPrologue();
+        MushGLUtil::VisiblePrologue();
         GLState::ColourSet(1.0,1.0,1.0,1.0);
 
         MushRubyExec::Sgl().Call(pVolData->RubyGame(),
                                  AdanaxisIntern::Sgl().mEpilogueRender());
 
-        MushGLUtil::OrthoEpilogue();
+        MushGLUtil::VisibleEpilogue();
         MushGLUtil::IdentityEpilogue();
     }
 
@@ -711,19 +712,21 @@ AdanaxisRender::OverPlot(MushGameLogic& ioLogic, const MushGameCamera& inCamera)
 
     AdanaxisLogic &logicRef = dynamic_cast<AdanaxisLogic &>(ioLogic);
 
-    GLFontRef fontMedium("font-mono1", 0.02);
-    GLFontRef fontLarge("font-mono1", 0.03);
+    GLFontRef fontSmall("font-mono1", 0.008);
+    GLFontRef fontMedium("font-mono1", 0.01);
+    GLFontRef fontLarge("font-mono1", 0.015);
 
     if (m_renderPrelude != 0)
     {
         orthoGL.MoveToEdge(0,0);
-        GLString glStr2("Generating texture cache", fontLarge, 0);
+        orthoGL.MoveRelative(0, -0.08);
+        GLString glStr2("Generating textures", fontSmall, 0);
         glStr2.Render();
 
         if (MushcoreGlobalConfig::Sgl().Exists("FIRST_RUN"))
         {
-            orthoGL.MoveRelative(0, -0.08);
-            GLString glStr3("(This may take a minute or two)", fontMedium, 0);
+            orthoGL.MoveRelative(0, -0.10);
+            GLString glStr3("(This may take a minute or two)", fontSmall, 0);
             glStr3.Render();
         }
     }
@@ -744,37 +747,51 @@ AdanaxisRender::OverPlot(MushGameLogic& ioLogic, const MushGameCamera& inCamera)
                 ostringstream message;
                 message << GameTimer::MsecToLongString(logicRef.GameMsec() - logicRef.StartTime());
                 orthoGL.MoveToEdge(1,1);
-                orthoGL.MoveRelative(-0.03, -0.03);
+                orthoGL.MoveRelative(-0.02, -0.02);
                 GLString glStr(message.str(), fontMedium, 1);
                 glStr.Render();
             }
         }
 
-#ifdef MUSHCORE_DEBUG
+        if (logicRef.VolatileData().ShowFps())
         {
-            orthoGL.MoveToEdge(0,1);
-            orthoGL.MoveRelative(0, -0.07);
+            orthoGL.MoveToEdge(1, 1);
+            orthoGL.MoveRelative(-0.02, -0.035);
             ostringstream message;
-            message << setprecision(1) << fixed << (static_cast<U32>(10000.0 / logicRef.VolatileData().AverageMsecPerFrame()) / 10.0) << " fps";
-            GLString glStr(message.str(), fontMedium, 0);
+            tVal fpsValue = (static_cast<U32>(10000.0 / logicRef.VolatileData().AverageMsecPerFrame()) / 10.0);
+            if (fpsValue < 10.0) {
+                m_lastFps = fpsValue;
+            } else {
+                m_lastFps = 0.9 * m_lastFps + 0.1 * fpsValue;
+                fpsValue = m_lastFps + 0.25; // Add a small offest to stop jitter
+            }
+            message << setprecision((fpsValue < 10) ? 1 : 0) << fixed << fpsValue << " fps";
+
+            GLState::ColourSet(
+                1.0 + 0.0,
+                0.2 + 0.8 * std::max(0.0, std::min(1.0, (fpsValue - 15) / 15.0)),
+                0.2 + 0.8 * std::max(0.0, std::min(1.0, (fpsValue - 30) / 30.0)),
+                0.3);
+            GLString glStr(message.str(), fontSmall, 1);
             glStr.Render();
         }
 #if 0
         {
-            orthoGL.MoveToEdge(0,1);
-            orthoGL.MoveRelative(0, -0.10);
+            orthoGL.MoveToEdge(1,1);
+            orthoGL.MoveRelative(-0.02, -0.06);
             ostringstream message;
             message << logicRef.VolatileData().MovesThisFrame() << " mtf";
-            GLString glStr(message.str(), fontMedium, 0);
+            GLString glStr(message.str(), fontMedium, 1);
             glStr.Render();
         }
 #endif
-#endif
 
+		GLState::ColourSet(1.0, 1.0, 1.0, 0.3);
         if (logicRef.IsEpilogueMode())
         {
             {
-                orthoGL.MoveTo(0, -0.3);
+                orthoGL.MoveToEdge(0, -1);
+                orthoGL.MoveRelative(0, 0.02);
                 ostringstream message;
                 message << "(Space to continue)";
                 GLString glStr(message.str(), fontMedium, 0);
@@ -784,7 +801,7 @@ AdanaxisRender::OverPlot(MushGameLogic& ioLogic, const MushGameCamera& inCamera)
             {
                 if (logicRef.EndTime() > logicRef.StartTime())
                 {
-                    orthoGL.MoveTo(0, 0.04);
+                    orthoGL.MoveTo(0, 0.00);
                     ostringstream message;
                     message << "Time:   " << GameTimer::MsecToLongString(logicRef.EndTime() - logicRef.StartTime());
                     GLString glStr(message.str(), fontLarge, 0);
@@ -792,7 +809,7 @@ AdanaxisRender::OverPlot(MushGameLogic& ioLogic, const MushGameCamera& inCamera)
                 }
                 if (logicRef.RecordTime() != 0)
                 {
-                    orthoGL.MoveTo(0, -0.04);
+                    orthoGL.MoveTo(0, -0.03);
                     ostringstream message;
                     message << "Record: " << GameTimer::MsecToLongString(logicRef.RecordTime());
                     GLString glStr(message.str(), fontLarge, 0);
@@ -842,6 +859,7 @@ AdanaxisRender::AutoPrint(std::ostream& ioOut) const
     ioOut << "halfAngle=" << m_halfAngle << ", ";
     ioOut << "halfAngleAttractor=" << m_halfAngleAttractor << ", ";
     ioOut << "renderPrelude=" << m_renderPrelude << ", ";
+    ioOut << "lastFps=" << m_lastFps << ", ";
     ioOut << "renderList=" << m_renderList << ", ";
     ioOut << "scanner=" << m_scanner << ", ";
     ioOut << "damageVertices=" << m_damageVertices << ", ";
@@ -873,6 +891,10 @@ AdanaxisRender::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& 
     else if (inTagStr == "renderPrelude")
     {
         ioIn >> m_renderPrelude;
+    }
+    else if (inTagStr == "lastFps")
+    {
+        ioIn >> m_lastFps;
     }
     else if (inTagStr == "renderList")
     {
@@ -911,6 +933,8 @@ AdanaxisRender::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_halfAngleAttractor;
     ioOut.TagSet("renderPrelude");
     ioOut << m_renderPrelude;
+    ioOut.TagSet("lastFps");
+    ioOut << m_lastFps;
     ioOut.TagSet("renderList");
     ioOut << m_renderList;
     ioOut.TagSet("scanner");
@@ -922,4 +946,4 @@ AdanaxisRender::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("damageAlphaFactors");
     ioOut << m_damageAlphaFactors;
 }
-//%outOfLineFunctions } ED67VoigBiyea/CHjMTuWw
+//%outOfLineFunctions } lfNo9iyk6vBxI26uHpjlxg

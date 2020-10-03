@@ -222,6 +222,22 @@ AdanaxisRuby::Apply2020MakeoverSet(Mushware::tRubyValue inSelf, Mushware::tRubyV
     return Mushware::kRubyQnil;
 }
 
+Mushware::tRubyValue
+AdanaxisRuby::ShowFps(Mushware::tRubyValue inSelf)
+{
+    U32 retVal = MushGameUtil::AppHandler().Config().ShowFps();
+    return MushRubyValue(retVal).Value();
+}
+
+Mushware::tRubyValue
+AdanaxisRuby::ShowFpsSet(Mushware::tRubyValue inSelf, Mushware::tRubyValue inArg0)
+{
+    MushRubyValue value(inArg0);
+    MushGameUtil::AppHandler().ConfigWRef().ShowFpsSet(value.Bool());
+
+    return Mushware::kRubyQnil;
+}
+
 void
 AdanaxisRuby::AdanaxisInstall(void)
 {
@@ -239,4 +255,6 @@ AdanaxisRuby::AdanaxisInstall(void)
     MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cUseGLShaderSet", UseGLShaderSet);
     MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cApply2020Makeover", Apply2020Makeover);
     MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cApply2020MakeoverSet", Apply2020MakeoverSet);
+    MushRubyUtil::SingletonMethodDefineNoParams(Klass(), "cShowFps", ShowFps);
+    MushRubyUtil::SingletonMethodDefineOneParam(Klass(), "cShowFpsSet", ShowFpsSet);
 }

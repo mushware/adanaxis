@@ -299,7 +299,9 @@ AdanaxisGame::Process(MushGameAppHandler& inAppHandler)
         MushGLV::Sgl().Acquaint();
     }
 #endif
-    
+
+    VolatileData().ShowFpsSet(m_config.ShowFps());
+
     Logic().PerFrameProcessing();
     Logic().MainSequence();
     
@@ -437,6 +439,7 @@ AdanaxisGame::Init(MushGameAppHandler& inAppHandler)
     Logic().EndTimeSet(0);
     inAppHandler.MouseSensitivitySet(m_config.MouseSensitivity());
     VolatileData().BrightnessSet(m_config.Brightness());
+    VolatileData().ShowFpsSet(m_config.ShowFps());
     VolatileData().ScannerOnSet(false);
     
     m_inited = true;

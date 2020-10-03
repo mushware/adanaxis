@@ -69,6 +69,8 @@ public:
     static void IdentityEpilogue(void);
     static void OrthoPrologue(void);
     static void OrthoEpilogue(void);
+    static void VisiblePrologue(void);
+    static void VisibleEpilogue(void);
     static void UnitaryPrologue(void);
     static void UnitaryEpilogue(void);
     static void DisplayPrologue(void);
@@ -78,8 +80,10 @@ public:
     
     static const Mushware::t2Val ScreenSize(void);
     static const Mushware::t2Val ScreenRatios(void);
+    static const Mushware::t2Val VisibleScreenRatios(void);
 
     static Mushware::tVal LongestScreenAxis(void);
+    static Mushware::tVal ShortestScreenAxis(void);
     static Mushware::tVal ScreenAspectRatio(void);
 
 	static void ThrowIfGLError(void);

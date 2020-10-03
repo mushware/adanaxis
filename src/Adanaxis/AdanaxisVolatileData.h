@@ -123,6 +123,7 @@ private:
     std::auto_ptr<MushRenderMesh> m_aRenderMesh; //:read :wref
 	MushRubyValue m_rubySpace; //:readwrite
     Mushware::tVal m_brightness; //:readwrite
+    bool m_showFps; //:readwrite
     bool m_scannerOn; //:readwrite
     std::string m_playerTargetID; //:readwrite
     Mushware::U32 m_khaziCount; //:readwrite
@@ -149,6 +150,8 @@ public:
     void RubySpaceSet(const MushRubyValue& inValue) { m_rubySpace=inValue; }
     const Mushware::tVal& Brightness(void) const { return m_brightness; }
     void BrightnessSet(const Mushware::tVal& inValue) { m_brightness=inValue; }
+    const bool& ShowFps(void) const { return m_showFps; }
+    void ShowFpsSet(const bool& inValue) { m_showFps=inValue; }
     const bool& ScannerOn(void) const { return m_scannerOn; }
     void ScannerOnSet(const bool& inValue) { m_scannerOn=inValue; }
     const std::string& PlayerTargetID(void) const { return m_playerTargetID; }
@@ -174,7 +177,7 @@ public:
     virtual void AutoPrint(std::ostream& ioOut) const;
     virtual bool AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::string& inTagStr);
     virtual void AutoXMLPrint(MushcoreXMLOStream& ioOut) const;
-//%classPrototypes } 0c1iPHDxelbsfzcokZN9HA
+//%classPrototypes } Fb82n61Qlfr0MDYO+nDY1g
 };
 //%inlineHeader {
 inline std::ostream&

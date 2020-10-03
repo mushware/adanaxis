@@ -310,6 +310,24 @@ GLUtils::OrthoEpilogue(void)
 }
 
 void
+GLUtils::VisiblePrologue(void)
+{
+    // The screen should enclose a square with corners (-0.5,-0.5) and
+    // (0.5,0.5) with aspect ratio 1.  The square is fully contained within the screen
+    IdentityPrologue();
+    glMatrixMode(GL_PROJECTION);
+    GLPoint screenRatios(VisibleScreenRatiosGet()*0.5);
+    gluOrtho2D(-screenRatios.x, screenRatios.x, -screenRatios.y, screenRatios.y);
+    glMatrixMode(GL_MODELVIEW);
+}
+
+void
+GLUtils::VisibleEpilogue(void)
+{
+    IdentityEpilogue();
+}
+
+void
 GLUtils::OrthoLookAt(tVal inX, tVal inY, tVal inAngle)
 {
 
@@ -413,6 +431,12 @@ GLUtils::ScreenRatiosGet(void)
     return ScreenSizeGet() / LongestScreenAxis();
 }
 
+const GLPoint
+GLUtils::VisibleScreenRatiosGet(void)
+{
+    return ScreenSizeGet() / ShortestScreenAxis();
+}
+
 tVal
 GLUtils::ScreenScaleGet(void)
 {
@@ -432,6 +456,20 @@ GLUtils::LongestScreenAxis(void)
         return screenSize.y;
     }
 }    
+
+tVal
+GLUtils::ShortestScreenAxis(void)
+{
+    GLPoint screenSize(ScreenSizeGet());
+    if (screenSize.x < screenSize.y)
+    {
+        return screenSize.x;
+    }
+    else
+    {
+        return screenSize.y;
+    }
+}
 
 void
 GLUtils::DisplayPrologue(void)

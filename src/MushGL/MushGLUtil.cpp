@@ -117,6 +117,24 @@ MushGLUtil::OrthoEpilogue(void)
 }
 
 void
+MushGLUtil::VisiblePrologue(void)
+{
+    // The screen should enclose a square with corners (-0.5,-0.5) and
+    // (0.5,0.5) with aspect ratio 1.  The square is fully contained within the screen
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    t2Val screenRatios(VisibleScreenRatios()*0.5);
+    gluOrtho2D(-screenRatios.X(), screenRatios.X(), -screenRatios.Y(), screenRatios.Y());
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+}
+
+void
+MushGLUtil::VisibleEpilogue(void)
+{
+}
+
+void
 MushGLUtil::UnitaryPrologue(void)
 {
     // The screen should be enclosed by a square with corners (-0.5,-0.5) and
@@ -166,6 +184,12 @@ MushGLUtil::ScreenRatios(void)
     return ScreenSize() / LongestScreenAxis();
 }
 
+const t2Val
+MushGLUtil::VisibleScreenRatios(void)
+{
+    return ScreenSize() / ShortestScreenAxis();
+}
+
 tVal
 MushGLUtil::ScreenAspectRatio(void)
 {
@@ -188,6 +212,19 @@ MushGLUtil::LongestScreenAxis(void)
     }
 }
 
+tVal
+MushGLUtil::ShortestScreenAxis(void)
+{
+    t2Val screenSize(ScreenSize());
+    if (screenSize.X() < screenSize.Y())
+    {
+        return screenSize.X();
+    }
+    else
+    {
+        return screenSize.Y();
+    }
+}
 
 void
 MushGLUtil::ThrowGLError(GLenum inGLErr)

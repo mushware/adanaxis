@@ -134,6 +134,7 @@ AdanaxisVolatileData::AutoPrint(std::ostream& ioOut) const
     ioOut << "aRenderMesh=" << m_aRenderMesh << ", ";
     ioOut << "rubySpace=" << m_rubySpace << ", ";
     ioOut << "brightness=" << m_brightness << ", ";
+    ioOut << "showFps=" << m_showFps << ", ";
     ioOut << "scannerOn=" << m_scannerOn << ", ";
     ioOut << "playerTargetID=" << m_playerTargetID << ", ";
     ioOut << "khaziCount=" << m_khaziCount << ", ";
@@ -174,6 +175,10 @@ AdanaxisVolatileData::AutoXMLDataProcess(MushcoreXMLIStream& ioIn, const std::st
     else if (inTagStr == "brightness")
     {
         ioIn >> m_brightness;
+    }
+    else if (inTagStr == "showFps")
+    {
+        ioIn >> m_showFps;
     }
     else if (inTagStr == "scannerOn")
     {
@@ -239,6 +244,8 @@ AdanaxisVolatileData::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut << m_rubySpace;
     ioOut.TagSet("brightness");
     ioOut << m_brightness;
+    ioOut.TagSet("showFps");
+    ioOut << m_showFps;
     ioOut.TagSet("scannerOn");
     ioOut << m_scannerOn;
     ioOut.TagSet("playerTargetID");
@@ -260,4 +267,4 @@ AdanaxisVolatileData::AutoXMLPrint(MushcoreXMLOStream& ioOut) const
     ioOut.TagSet("damageIcons");
     ioOut << m_damageIcons;
 }
-//%outOfLineFunctions } s4z9CuHpl0+/oMcTbhtTPA
+//%outOfLineFunctions } 98ce20gAsqUaW1he3IFQhQ
