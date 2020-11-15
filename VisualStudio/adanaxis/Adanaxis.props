@@ -21,7 +21,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <ClCompile>
-      <AdditionalIncludeDirectories>..\..\src;..\..\src\API;$(SolutionDir)..\..\adanaxis-win64deps\SDL\Release\SDL2-devel\include;$(SolutionDir)..\..\adanaxis-win64deps\SDL\Release\SDL2_mixer-devel\include;$(SolutionDir)..\..\adanaxis-win64deps\pcre-devel\include;$(SolutionDir)..\..\adanaxis-win64deps\tiffio-devel\include;$(SolutionDir)..\..\adanaxis-win64deps\MushRuby\$(Configuration)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\src;..\..\src\API;$(SolutionDir)..\..\deps\include;$(SolutionDir)..\..\adanaxis-win64deps\SDL\Release\SDL2-devel\include;$(SolutionDir)..\..\adanaxis-win64deps\SDL\Release\SDL2_mixer-devel\include;$(SolutionDir)..\..\adanaxis-win64deps\pcre-devel\include;$(SolutionDir)..\..\adanaxis-win64deps\tiffio-devel\include;$(SolutionDir)..\..\adanaxis-win64deps\MushRuby\$(Configuration)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>

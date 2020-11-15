@@ -36,6 +36,8 @@ Set-StrictMode -Version 3.0
 
 $ErrorActionPreference = "Stop"
 
+$DepsVersion = "0.0.4.16"
+
 If ($BuildNumber) {
     If ($BuildNumber -as [int] -gt 65534) {
         Throw "Build number too large"
@@ -56,7 +58,7 @@ If ($BuildNumber) {
 Write-Host -ForegroundColor Blue @"
 *
 *
-* Beginning Adanaxis $Configuration build for version $Version.
+* Beginning Adanaxis $Configuration build for version $Version with deps $DepsVersion.
 *
 *
 "@
@@ -79,8 +81,6 @@ $SpdlogRoot = $(Join-Path -Resolve $ProjectRoot -ChildPath "spdlog")
 $SpdlogBuildRoot = $(Join-Path $SpdlogRoot -ChildPath "build")
 Set-Location $AdanaxisBuildRoot
 
-$getdeps_job = Start-Job -Init ([ScriptBlock]::Create("Set-Location '$pwd'")) -File ./GetWindowsDeps.ps1
-
 $cmake_root="C:\Program Files\CMake\bin"
 $msbuild_root="C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\MSBuild\15.0\Bin"
 $signtool_root="C:\Program Files (x86)\Windows Kits\10\bin\10.0.18362.0\x86"
@@ -97,6 +97,9 @@ If (Test-Path $wix_root) {
         Throw "WiX not found but cannot install, please install or supply -InstallMissing as a parameter."
     }
 }
+
+Write-Host "Launching job to get deps."
+$getdeps_job = Start-Job -Init ([ScriptBlock]::Create("Set-Location '$pwd'")) -File "./get_adanaxis_deps.ps1" -ArgumentList $Configuration, $DepsVersion
 
 $env:PATH = "$msbuild_root;$wix_root;$signtool_root;$cmake_root;$env:PATH"
 
@@ -139,10 +142,21 @@ if ($spdlog_build_process.ExitCode -ne 0) {
     throw "Spdlog make failed ($($spdlog_build_process.ExitCode))"
 }
 
-Write-Host -ForegroundColor DarkCyan "Waiting for dependency fetch jobs..."
+Write-Host -ForegroundColor DarkCyan @"
+
+********************************************
+*                                          *
+*    Starting Adanaxis dependency setup    *
+*                                          *
+********************************************
+
+"@
 
 # Need to wait for dependencies before Adanaxis build
+Set-Location $AdanaxisBuildRoot
+Write-Host -ForegroundColor DarkCyan "Waiting for dependency fetch job..."
 Receive-Job -Job $getdeps_job -Wait
+Write-Host -ForegroundColor DarkCyan "Waiting for WiX installation job..."
 Receive-Job -Job $wix_job -Wait
 
 Write-Host -ForegroundColor DarkCyan @"
@@ -198,4 +212,4 @@ Write-Host -ForegroundColor Green @"
 
 "@
 
-Write-Host -ForegroundColor Blue "$Configuration build complete for Adanaxis version $Version"
+Write-Host -ForegroundColor Blue "$Configuration build complete for Adanaxis version $Version with deps $DepsVersion"
