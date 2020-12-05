@@ -36,7 +36,9 @@ Set-StrictMode -Version 3.0
 
 $ErrorActionPreference = "Stop"
 
-$DepsVersion = "0.0.4.16"
+$DepsVersion = "0.0.7.22"
+$MushRubyTag = "2.8.0-4"
+$MushRubyVersion = "2.8.0.40"
 
 If ($BuildNumber) {
     If ($BuildNumber -as [int] -gt 65534) {
@@ -99,7 +101,7 @@ If (Test-Path $wix_root) {
 }
 
 Write-Host "Launching job to get deps."
-$getdeps_job = Start-Job -Init ([ScriptBlock]::Create("Set-Location '$pwd'")) -File "./get_adanaxis_deps.ps1" -ArgumentList $Configuration, $DepsVersion
+$getdeps_job = Start-Job -Init ([ScriptBlock]::Create("Set-Location '$pwd'")) -File "./get_adanaxis_deps.ps1" -ArgumentList $Configuration, $DepsVersion, $MushRubyTag, $MushRubyVersion
 
 $env:PATH = "$msbuild_root;$wix_root;$signtool_root;$cmake_root;$env:PATH"
 

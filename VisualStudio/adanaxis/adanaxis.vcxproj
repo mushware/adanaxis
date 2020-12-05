@@ -78,6 +78,7 @@
       <EntryPointSymbol />
       <AdditionalOptions>/PDBCOMPRESS %(AdditionalOptions)</AdditionalOptions>
       <EnableCOMDATFolding>false</EnableCOMDATFolding>
+      <AdditionalDependencies>WS2_32.lib;Winmm.lib;dxguid.lib;Iphlpapi.lib;OPENGL32.lib;GLU32.lib;libexpatdMD.lib;pcred.lib;SDL2.lib;SDL2_mixer.lib;tiffd.lib;x64-vcruntime140-ruby280.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent />
     <PostBuildEvent>

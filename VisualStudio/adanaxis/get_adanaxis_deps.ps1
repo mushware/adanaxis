@@ -28,7 +28,9 @@
 
 Param(
     [Parameter(Mandatory)]$Configuration,
-    [Parameter(Mandatory)]$DepsVersion
+    [Parameter(Mandatory)]$DepsVersion,
+    [Parameter(Mandatory)]$MushRubyTag,
+    [Parameter(Mandatory)]$MushRubyVersion
 )
 
 Set-StrictMode -Version 3.0
@@ -65,7 +67,7 @@ File ${DepsName} already present in ${DepsRoot} so not downloading.
 } else {
     if (Test-Path $DepsRoot) {
         if (!(Test-Path $DepsManifestPath)) {
-            Throw "Deps directory ${DepsRoot} present but manifest ${DepsManifestPath}, so abandoning for safety"
+            throw "Deps directory ${DepsRoot} present but manifest ${DepsManifestPath} missing, so abandoning for safety"
         }
         Write-Host "Removing previous deps directory ${DepsRoot}"
         Remove-Item -Path $DepsRoot -Recurse
@@ -76,17 +78,81 @@ File ${DepsName} already present in ${DepsRoot} so not downloading.
     Write-Host  -ForegroundColor Blue @"
 
 Fetching ${DepsZipName}
-    to ${DepsZipPath}
-    from ${DepsUrl}
+to ${DepsZipPath}
+from ${DepsUrl}
 
 "@
 
-    Invoke-WebRequest -Uri $DepsUrl -OutFile $DepsZipPath
+    try {
+        Invoke-WebRequest -Uri $DepsUrl -OutFile $DepsZipPath
 
-    Expand-Archive $DepsZipPath -DestinationPath $DepsRoot
+        Expand-Archive $DepsZipPath -DestinationPath $DepsRoot
+    }
+    catch {
+        Write-Host  -ForegroundColor DarkRed "Removing deps directory ${DepsRoot} after failure"
+        Remove-Item -Path $DepsRoot
+        throw
+    }
+
     Write-Host -ForegroundColor Green @"
 
-File ${DepsName} download into ${DepsRoot} successfully.
+File ${DepsName} downloaded into ${DepsRoot} successfully.
+
+"@
+}
+
+$underscore_MushRuby_version = $MushRubyVersion.Replace(".", "_")
+$MushRuby_tag = "v" + ($MushRubyTag.Split(".")[0..2] -join ".")
+
+$MushRubyName = "MushRuby_${Configuration}_${underscore_MushRuby_version}"
+$MushRubyZipName = "$MushRubyName.zip"
+$MushRubyUrl = "https://github.com/mushware/ruby/releases/download/$MushRuby_tag/$MushRubyZipName"
+$MushRubyRoot = $(Join-Path $ProjectRoot -ChildPath "MushRuby")
+$MushRubyTagPath = $(Join-Path $MushRubyRoot -ChildPath "README.txt")
+$MushRubyZipPath = $(Join-Path $ProjectRoot -ChildPath $MushRubyZipName)
+# 
+# Fetch MushRuby
+#
+
+if (Test-Path $MushRubyTagPath) {
+    Write-Host -ForegroundColor Green @"
+
+File ${MushRubyName} already present in ${MushRubyRoot} so not downloading.
+
+"@
+} else {
+    if (Test-Path $MushRubyRoot) {
+        if (!(Test-Path $MushRubyManifestPath)) {
+            throw "MushRuby directory ${MushRubyRoot} present but tag file ${MushRubyTagPath} missing, so abandoning for safety"
+        }
+        Write-Host "Removing previous MushRuby directory ${MushRubyRoot}"
+        Remove-Item -Path $MushRubyRoot -Recurse
+    }
+
+    New-Item -ItemType "directory" -Path $MushRubyRoot -Force | Foreach-Object { "Created directory $($_.FullName)" }
+
+    Write-Host  -ForegroundColor Blue @"
+
+Fetching ${MushRubyZipName}
+to ${MushRubyZipPath}
+from ${MushRubyUrl}
+
+"@
+
+    try {
+        Invoke-WebRequest -Uri $MushRubyUrl -OutFile $MushRubyZipPath
+
+        Expand-Archive $MushRubyZipPath -DestinationPath $MushRubyRoot
+    }
+    catch {
+        Write-Host  -ForegroundColor DarkRed "Removing MushRuby directory ${MushRubyRoot} after failure"
+        Remove-Item -Path $MushRubyRoot
+        throw
+    }
+
+    Write-Host -ForegroundColor Green @"
+
+File ${MushRubyName} downloaded into ${MushRubyRoot} successfully.
 
 "@
 }
