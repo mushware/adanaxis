@@ -4,6 +4,3 @@
 [submodule "spdlog"]
 	path = spdlog
 	url = https://github.com/mushware/spdlog.git
-[submodule "adanaxis-win64deps"]
-	path = adanaxis-win64deps
-	url = https://github.com/mushware/adanaxis-win64deps.git
