@@ -108,7 +108,7 @@ $MushRubyName = "MushRuby_${Configuration}_${underscore_MushRuby_version}"
 $MushRubyZipName = "$MushRubyName.zip"
 $MushRubyUrl = "https://github.com/mushware/ruby/releases/download/$MushRuby_tag/$MushRubyZipName"
 $MushRubyRoot = $(Join-Path $ProjectRoot -ChildPath "MushRuby")
-$MushRubyTagPath = $(Join-Path $MushRubyRoot -ChildPath "README.txt")
+$MushRubyTagPath = $(Join-Path $MushRubyRoot -ChildPath "include\ruby.h")
 $MushRubyZipPath = $(Join-Path $ProjectRoot -ChildPath $MushRubyZipName)
 # 
 # Fetch MushRuby
@@ -122,7 +122,7 @@ File ${MushRubyName} already present in ${MushRubyRoot} so not downloading.
 "@
 } else {
     if (Test-Path $MushRubyRoot) {
-        if (!(Test-Path $MushRubyManifestPath)) {
+        if (!(Test-Path $MushRubyTagPath)) {
             throw "MushRuby directory ${MushRubyRoot} present but tag file ${MushRubyTagPath} missing, so abandoning for safety"
         }
         Write-Host "Removing previous MushRuby directory ${MushRubyRoot}"

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-	<Product Id="{7fcf2acc-f085-440d-9bf0-ee99599228fa}" Name="Adanaxis" Language="1033" Version="$(var.adanaxis_version)" Manufacturer="Andy Southgate" UpgradeCode="{23aa47f8-74a9-476d-8f3d-1cbd21cace62}">
-		<Package InstallerVersion="301" Compressed="yes" InstallScope="perMachine" />
+	<Product Id="{e3a7e390-c862-4dd4-9e72-5fbda33c8fac}" Name="Adanaxis" Language="1033" Version="$(var.adanaxis_version)" Manufacturer="Andy Southgate" UpgradeCode="{23aa47f8-74a9-476d-8f3d-1cbd21cace62}">
+		<Package InstallerVersion="301" Compressed="yes" InstallScope="perMachine" Platform="x64" />
 
 		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
 		<MediaTemplate EmbedCab="yes" />
@@ -17,7 +17,7 @@
 		</Feature>
 
 		<DirectoryRef Id="TARGETDIR">
-			<Merge Id="VCRedist" SourceFile="..\..\adanaxis-win32deps\VC\Redist\MSVC\14.16.27012\MergeModules\Microsoft_VC141_CRT_x86.msm" DiskId="1" Language="0"/>
+			<Merge Id="VCRedist" SourceFile="C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\VC\Redist\MSVC\14.16.27012\MergeModules\Microsoft_VC141_CRT_x64.msm" DiskId="1" Language="0"/>
 		</DirectoryRef>
 		<Feature Id="VCRedist" Title="Visual C++ 14.1 Runtime" AllowAdvertise="no" Display="hidden" Level="1">
 			<MergeRef Id="VCRedist"/>
@@ -54,12 +54,11 @@
 		<UIRef Id="WixUI_InstallDir" />
 		<Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
 
-
 	</Product>
 
 	<Fragment>
 		<Directory Id="TARGETDIR" Name="SourceDir">
-			<Directory Id="ProgramFilesFolder">
+			<Directory Id="ProgramFiles64Folder">
 				<Directory Id="INSTALLFOLDER" Name="Adanaxis" />
 			</Directory>
 		</Directory>

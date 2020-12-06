@@ -2496,41 +2496,30 @@
     <CustomBuild Include="..\..\src\Gl\GLUTAppHandler.h">
       <Filter>Source Files\GL</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\..\win32deps\SDL2-devel\lib\x86\SDL2.dll">
+    <CustomBuild Include="..\..\deps\SDL2_mixer\lib\x64\libogg-0.dll">
       <Filter>DLLs</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\..\win32deps\SDL2_mixer-devel\lib\x86\SDL2_mixer.dll">
+    <CustomBuild Include="..\..\deps\SDL2_mixer\lib\x64\libvorbis-0.dll">
       <Filter>DLLs</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\..\win32deps\SDL2_mixer-devel\lib\x86\libogg-0.dll">
+    <CustomBuild Include="..\..\deps\SDL2_mixer\lib\x64\libvorbisfile-3.dll">
       <Filter>DLLs</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\..\win32deps\SDL2_mixer-devel\lib\x86\libvorbisfile-3.dll">
+    <CustomBuild Include="..\..\deps\SDL2\lib\x64\SDL2.dll">
       <Filter>DLLs</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\..\win32deps\SDL2_mixer-devel\lib\x86\libvorbis-0.dll">
+    <CustomBuild Include="..\..\deps\SDL2_mixer\lib\x64\SDL2_mixer.dll">
       <Filter>DLLs</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\..\adanaxis-win32deps\expat-devel\lib\libexpat.dll">
+    <CustomBuild Include="..\..\deps\bin\tiff.dll">
       <Filter>DLLs</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\..\adanaxis-win32deps\tiffio-devel\bin\libtiff3.dll">
+    <CustomBuild Include="..\..\deps\bin\tiffd.dll">
       <Filter>DLLs</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\..\adanaxis-win32deps\pcre-devel\bin\pcre3.dll">
+    <CustomBuild Include="..\..\MushRuby\dll\x64-vcruntime140-ruby280.dll">
       <Filter>DLLs</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\..\adanaxis-win32deps\jpeg-6b-devel\bin\jpeg62.dll">
-      <Filter>DLLs</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\adanaxis-win32deps\zlib-devel\bin\zlib1.dll">
-      <Filter>DLLs</Filter>
-    </CustomBuild>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\scripts\GetWindowsDeps.ps1">
-      <Filter>Scripts</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="adanaxis.rc">

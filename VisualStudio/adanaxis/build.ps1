@@ -36,7 +36,7 @@ Set-StrictMode -Version 3.0
 
 $ErrorActionPreference = "Stop"
 
-$DepsVersion = "0.0.7.22"
+$DepsVersion = "0.0.8.24"
 $MushRubyTag = "2.8.0-4"
 $MushRubyVersion = "2.8.0.40"
 

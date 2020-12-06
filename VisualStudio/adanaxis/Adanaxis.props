@@ -21,7 +21,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <ClCompile>
-      <AdditionalIncludeDirectories>..\..\src;..\..\src\API;$(SolutionDir)..\..\deps\include;$(SolutionDir)..\..\deps\SDL2\include;$(SolutionDir)..\..\deps\SDL2_mixer\include;$(SolutionDir)..\..\adanaxis-win64deps\MushRuby\$(Configuration)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\src;..\..\src\API;$(SolutionDir)..\..\deps\include;$(SolutionDir)..\..\deps\SDL2\include;$(SolutionDir)..\..\deps\SDL2_mixer\include;$(SolutionDir)..\..\MushRuby\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PreprocessorDefinitions>_MBCS;PCRE_STATIC=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>

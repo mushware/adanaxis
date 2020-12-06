@@ -57,7 +57,7 @@ function SignFile {
     $user_cert = $(Import-PfxCertificate -FilePath "$f_opt" -CertStoreLocation Cert:\CurrentUser\My -Password $(ConvertTo-SecureString -String "$p_opt" -AsPlainText -Force)) 2>&1
     $ErrorActionPreference = "Stop"
 
-    $sign_arglist = @("sign",  "/d", "`"From the Adanaxis project`"", "/du", "`"https://www.mushware.com/`"", "/fd", "sha256", "/tr", "`"http://timestamp.digicert.com?alg=sha256`"", "/td", "sha256", "/v")
+    $sign_arglist = @("sign",  "/d", "`"Adanaxis ${Version}`"", "/du", "`"https://www.mushware.com/`"", "/fd", "sha256", "/tr", "`"http://timestamp.digicert.com?alg=sha256`"", "/td", "sha256", "/v")
 
     If ($machine_cert) {
         Write-Host "Signing with machine cert thumbprint: $($machine_cert.Thumbprint)"
@@ -124,7 +124,7 @@ ForEach ($datadir In $datadirs) {
     Invoke-Expression -ErrorAction Stop $heat_command
 }
 
-$candle_command = "candle.exe $($candle_args_pre -join "" "") -dadanaxis_version=""$Version"" -v -out $outpath -arch x86 Adanaxis.wxs $($candle_args_post -join "" "")"
+$candle_command = "candle.exe $($candle_args_pre -join "" "") -dadanaxis_version=""$Version"" -v -out $outpath -arch x64 Adanaxis.wxs $($candle_args_post -join "" "")"
 Write-Host "Executing $candle_command`n"
 Invoke-Expression -ErrorAction Stop $candle_command
 
