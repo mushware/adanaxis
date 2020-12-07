@@ -339,6 +339,11 @@ MushRubyExec::ConfigSet(void)
 void
 MushRubyExec::Initialise(void)
 {
+    int fakeArgc = 0;
+    char *fakeArgv = "";
+    char **pFakeArgv = &fakeArgv;
+    ruby_sysinit(&fakeArgc, &pFakeArgv);
+    RUBY_INIT_STACK;
     ruby_init();
 
 #ifdef MUSHCORE_DEBUG

@@ -124,7 +124,7 @@ MushRubyUtil::ValueConvert(std::string& outString, Mushware::tRubyValue inValue)
 {
     tRubyValue stringValue = StringValue(inValue);
     
-    outString = std::string(RSTRING(stringValue)->as.heap.ptr, RSTRING(stringValue)->as.heap.ptr + RSTRING(stringValue)->as.heap.len);
+    outString = std::string(StringValueCStr(stringValue));
 }
 
 void

@@ -37,8 +37,8 @@ Set-StrictMode -Version 3.0
 $ErrorActionPreference = "Stop"
 
 $DepsVersion = "0.0.8.24"
-$MushRubyTag = "2.8.0-4"
-$MushRubyVersion = "2.8.0.40"
+$MushRubyTag = "2.8.0-5"
+$MushRubyVersion = "2.8.0.42"
 
 If ($BuildNumber) {
     If ($BuildNumber -as [int] -gt 65534) {

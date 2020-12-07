@@ -69,18 +69,19 @@ MushRubyFail::ExceptionInfo(void)
     tRubyValue lasterr = rb_gv_get("$!");
 
     tRubyValue klassStr = rb_class_path(CLASS_OF(lasterr));
-    message << RSTRING(klassStr)->as.heap.ptr << ": "; 
+    message << StringValueCStr(klassStr) << ": ";
         
     tRubyValue errorStr = rb_obj_as_string(lasterr);
-    message << RSTRING(errorStr)->as.heap.ptr;
+    message << StringValueCStr(errorStr);
         
     if(!NIL_P(rb_errinfo()))
     {
         message << std::endl;
         tRubyValue ary = rb_funcall(rb_errinfo(), MushRubyIntern::backtrace(), 0);
-        for (S32 i=0; i<RARRAY(ary)->as.heap.len; i++)
+        for (S32 i=0; i<RARRAY_LEN(ary); i++)
         {
-            message << "\tfrom " << RSTRING(RARRAY(ary)->as.heap.ptr[i])->as.heap.ptr << std::endl;
+            VALUE entry = rb_ary_entry(ary, i);
+            message << "\tfrom " << rb_string_value_cstr(&entry) << std::endl;
         }
     }
     return message.str();

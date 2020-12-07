@@ -184,18 +184,18 @@ MushRubyValue::String(void) const
 	{
 		Mushware::tRubyValue stringValue = StringValue(tempValue);
 		
-		retVal =  std::string(RSTRING(stringValue)->as.heap.ptr, RSTRING(stringValue)->as.heap.ptr + RSTRING(stringValue)->as.heap.len);
+		retVal = std::string(StringValueCStr(stringValue));
 	}
 	else if (rb_obj_is_instance_of(tempValue, rb_cArray))
 	{
 		Mushware::tRubyValue stringValue = MushRubyExec::Sgl().Call(MushRubyValue(tempValue), MushRubyIntern::cToPrint()).Value();
 		
-		retVal = std::string(RSTRING(stringValue)->as.heap.ptr, RSTRING(stringValue)->as.heap.ptr + RSTRING(stringValue)->as.heap.len);
+		retVal = std::string(StringValueCStr(stringValue));
 	}
 	else
 	{
 		Mushware::tRubyValue stringValue = MushRubyExec::Sgl().Call(MushRubyValue(tempValue), MushRubyIntern::to_s()).Value();
-		retVal = std::string(RSTRING(stringValue)->as.heap.ptr, RSTRING(stringValue)->as.heap.ptr + RSTRING(stringValue)->as.heap.len);
+		retVal = std::string(StringValueCStr(stringValue));
 	}
 			 
 	return retVal;
@@ -379,5 +379,5 @@ const std::string
 MushRubyValue::Inspect(void) const
 {
     Mushware::tRubyValue stringValue = MushRubyExec::Sgl().Call(MushRubyValue(m_value), MushRubyIntern::inspect()).Value();
-    return std::string(RSTRING(stringValue)->as.heap.ptr, RSTRING(stringValue)->as.heap.ptr + RSTRING(stringValue)->as.heap.len);
+    return std::string(StringValueCStr(stringValue));
 }
